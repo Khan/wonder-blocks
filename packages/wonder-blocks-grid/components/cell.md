@@ -3,11 +3,11 @@
 A row inside of a grid containing many Cells. Each cell has a column width of 1 and will display at different sizes of the viewport (always matching the number of available columns).
 
 ```jsx
-const {Row} = require("@khanacademy/wonder-blocks-grid");
-const Color = require("@khanacademy/wonder-blocks-color").default;
-const {View, Text} = require("@khanacademy/wonder-blocks-core");
-const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
-const {StyleSheet} = require("aphrodite");
+import {Row} from "@khanacademy/wonder-blocks-grid";
+import Color from "@khanacademy/wonder-blocks-color";
+import {View, Text} from "@khanacademy/wonder-blocks-core";
+import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
+import {StyleSheet} from "aphrodite";
 
 const styleSheets = {
     all: StyleSheet.create({

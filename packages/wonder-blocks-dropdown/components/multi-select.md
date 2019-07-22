@@ -4,9 +4,9 @@ This multi select starts with nothing selected and has no selection shortcuts.
 It also has a set minWidth, and one of the items is disabled.
 
 ```js
-const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -65,9 +65,9 @@ Sometimes, we may want to customize the dropdown style (for example, to limit
 the height of the list), For this purpose, we have the `dropdownStyle` prop.
 
 ```js
-const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -130,9 +130,9 @@ This example starts with one item selected and has selection shortcuts for
 select all and select none. This one does not have a predefined placeholder.
 
 ```js
-const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -187,11 +187,11 @@ class ExampleWithShortcuts extends React.Component {
 This multi select is in a modal.
 
 ```js
-const {StyleSheet} = require("aphrodite");
-const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View, Text} = require("@khanacademy/wonder-blocks-core");
-const {OnePaneDialog, ModalLauncher} = require("@khanacademy/wonder-blocks-modal");
-const Button = require("@khanacademy/wonder-blocks-button").default;
+import {StyleSheet} from "aphrodite";
+import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View, Text} from "@khanacademy/wonder-blocks-core";
+import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
+import Button from "@khanacademy/wonder-blocks-button";
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -275,8 +275,9 @@ const modal = (
 ### Empty menus are disabled automatically
 
 ```js
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
 
 const styles = StyleSheet.create({
     row: {
@@ -296,9 +297,9 @@ make sure to pass the `aria-labelledby` and/or `id` props to the `MultiSelect` c
 This way, the `opener` will receive this value and it will associate both elements.
 
 ```js
-const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 <View>
     <LabelLarge
@@ -324,9 +325,9 @@ When nothing is selected, show the menu text as "All selected".
 Note that the actual selection logic doesn't change. (Only the menu text)
 
 ```js
-const {StyleSheet} = require("aphrodite");
-const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {StyleSheet} from "aphrodite";
+import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 const styles = StyleSheet.create({
     row: {

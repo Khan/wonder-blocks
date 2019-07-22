@@ -8,45 +8,31 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import BodyMonospace from "./components/body-monospace.js";
-import BodySerifBlock from "./components/body-serif-block.js";
-import BodySerif from "./components/body-serif.js";
-import Body from "./components/body.js";
-import Caption from "./components/caption.js";
-import Footnote from "./components/footnote.js";
-import HeadingLarge from "./components/heading-large.js";
-import HeadingMedium from "./components/heading-medium.js";
-import HeadingSmall from "./components/heading-small.js";
-import HeadingXSmall from "./components/heading-xsmall.js";
-import LabelLarge from "./components/label-large.js";
-import LabelMedium from "./components/label-medium.js";
-import LabelSmall from "./components/label-small.js";
-import LabelXSmall from "./components/label-xsmall.js";
-import Tagline from "./components/tagline.js";
-import Title from "./components/title.js";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {
+    Title,
+    HeadingLarge,
+    HeadingMedium,
+    HeadingSmall,
+    HeadingXSmall,
+    BodySerifBlock,
+    BodySerif,
+    BodyMonospace,
+    Body,
+    LabelLarge,
+    LabelMedium,
+    LabelSmall,
+    LabelXSmall,
+    Tagline,
+    Caption,
+    Footnote,
+} from "@khanacademy/wonder-blocks-typography";
+import {StyleSheet} from "aphrodite";
+import Color from "@khanacademy/wonder-blocks-color";
+import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 
 describe("wonder-blocks-typography", () => {
     it("example 1", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            Title,
-            HeadingLarge,
-            HeadingMedium,
-            HeadingSmall,
-            HeadingXSmall,
-            BodySerifBlock,
-            BodySerif,
-            BodyMonospace,
-            Body,
-            LabelLarge,
-            LabelMedium,
-            LabelSmall,
-            LabelXSmall,
-            Tagline,
-            Caption,
-            Footnote,
-        } = require("@khanacademy/wonder-blocks-typography");
-
         // NOTE(mdr): I added an `id` attribute to each of these tags, to ensure that
         //     they all pass the `id` attribute correctly. This fact will be saved in
         //     snapshot tests.
@@ -85,50 +71,25 @@ describe("wonder-blocks-typography", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 2", () => {
-        const {StyleSheet} = require("aphrodite");
-
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {Title} = require("@khanacademy/wonder-blocks-typography");
-
         const styles = StyleSheet.create({
             blueText: {
                 color: Color.blue,
             },
         });
-
         const example = <Title style={styles.blueText}>Blue Title</Title>;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
-        const {Title} = require("@khanacademy/wonder-blocks-typography");
 
+    it("example 3", () => {
         const example = <Title aria-label="Accessible Title">Title</Title>;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            Title,
-            HeadingLarge,
-            HeadingMedium,
-            HeadingSmall,
-            HeadingXSmall,
-            BodySerifBlock,
-            BodySerif,
-            BodyMonospace,
-            Body,
-            LabelLarge,
-            LabelMedium,
-            LabelSmall,
-            LabelXSmall,
-            Tagline,
-            Caption,
-            Footnote,
-        } = require("@khanacademy/wonder-blocks-typography");
 
+    it("example 4", () => {
         const example = (
             <View>
                 <Title>Привет</Title>
@@ -152,36 +113,23 @@ describe("wonder-blocks-typography", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            OptionItem,
-            SingleSelect,
-        } = require("@khanacademy/wonder-blocks-dropdown");
-        const {
-            Title,
-            HeadingLarge,
-            HeadingMedium,
-            HeadingSmall,
-            HeadingXSmall,
-            BodySerifBlock,
-            BodySerif,
-            BodyMonospace,
-            Body,
-            LabelLarge,
-            LabelMedium,
-            LabelSmall,
-            LabelXSmall,
-            Tagline,
-            Caption,
-            Footnote,
-        } = require("@khanacademy/wonder-blocks-typography");
 
+    it("example 5", () => {
         const languages = {
-            arabic: {text: "مرحبا", dir: "rtl"},
-            armenian: {text: "Բարեւ"},
-            greek: {text: "γεια σας"},
-            hebrew: {text: "שלום", dir: "rtl"},
+            arabic: {
+                text: "مرحبا",
+                dir: "rtl",
+            },
+            armenian: {
+                text: "Բարեւ",
+            },
+            greek: {
+                text: "γεια σας",
+            },
+            hebrew: {
+                text: "שלום",
+                dir: "rtl",
+            },
         };
 
         class LanguageSelector extends React.Component {
@@ -196,7 +144,6 @@ describe("wonder-blocks-typography", () => {
                 const {text, dir} = this.props.languages[
                     this.state.selectedValue
                 ];
-
                 return (
                     <React.Fragment>
                         <Title dir={dir}>{text}</Title>
@@ -227,7 +174,9 @@ describe("wonder-blocks-typography", () => {
                             id="unique-language-selector"
                             placeholder="Select language"
                             onChange={(selectedValue) =>
-                                this.setState({selectedValue})
+                                this.setState({
+                                    selectedValue,
+                                })
                             }
                             selectedValue={this.state.selectedValue}
                         >
@@ -256,17 +205,21 @@ describe("wonder-blocks-typography", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 6", () => {
         const Code = ({children}) => (
-            <BodyMonospace style={{whiteSpace: "pre"}}>
+            <BodyMonospace
+                style={{
+                    whiteSpace: "pre",
+                }}
+            >
                 {children}
             </BodyMonospace>
         );
 
         const code = `const things = {
-            areTested\: "This is my new Code element with my code.",
-        };`;
-
+    areTested\: "This is my new Code element with my code.",
+};`;
         const example = <Code>{code}</Code>;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();

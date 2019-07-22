@@ -3,12 +3,12 @@
 Use only accessible colors against appropriate backgrounds for links, buttons, and other navigational elements.
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const {View} = require("@khanacademy/wonder-blocks-core");
-const Swatch = require("./docutils/swatch.js").default;
+import {View} from "@khanacademy/wonder-blocks-core";
+import Swatch from "./docutils/swatch.js";
 
-const Color = require("./index.js").default;
+import Color from "./index.js";
 
 const styles = StyleSheet.create({
     container: {
@@ -57,12 +57,12 @@ const styles = StyleSheet.create({
 Used for text and chrome components
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const {View} = require("@khanacademy/wonder-blocks-core");
-const Swatch = require("./docutils/swatch.js").default;
+import {View} from "@khanacademy/wonder-blocks-core";
+import Swatch from "./docutils/swatch.js";
 
-const Color = require("./index.js").default;
+import Color from "./index.js";
 
 const styles = StyleSheet.create({
     container: {
@@ -137,12 +137,12 @@ const styles = StyleSheet.create({
 Use for designing anything centered around Khan Academy as a brand. Secondary brand colors should only be used for decoration. Expanded brand palette used for illustrations.
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const {View} = require("@khanacademy/wonder-blocks-core");
-const Swatch = require("./docutils/swatch.js").default;
+import {View} from "@khanacademy/wonder-blocks-core";
+import Swatch from "./docutils/swatch.js";
 
-const Color = require("./index.js").default;
+import Color from "./index.js";
 
 const styles = StyleSheet.create({
     container: {

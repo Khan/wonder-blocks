@@ -8,13 +8,12 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Spacing from "./index.js";
 
 describe("wonder-blocks-spacing", () => {
     it("example 1", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Spacing = require("./index.js").default;
-
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -22,7 +21,6 @@ describe("wonder-blocks-spacing", () => {
                 marginBottom: Spacing.xxSmall,
             },
         });
-
         const example = (
             <View>
                 {Object.keys(Spacing).map((spaceName, idx) => (
@@ -35,7 +33,11 @@ describe("wonder-blocks-spacing", () => {
                         >
                             {spaceName}: {Spacing[spaceName]}px
                         </View>
-                        <View style={{width: Spacing.xSmall}} />
+                        <View
+                            style={{
+                                width: Spacing.xSmall,
+                            }}
+                        />
                         <View
                             style={{
                                 width: Spacing.xxxLarge,
@@ -49,7 +51,11 @@ describe("wonder-blocks-spacing", () => {
                                 }}
                             />
                         </View>
-                        <View style={{width: Spacing.xSmall}} />
+                        <View
+                            style={{
+                                width: Spacing.xSmall,
+                            }}
+                        />
                         <View
                             style={{
                                 backgroundColor: "black",

@@ -8,21 +8,19 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import CircularSpinner from "./components/circular-spinner.js";
+import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
+import {StyleSheet} from "aphrodite";
+import {Text, View} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
 
 describe("wonder-blocks-progress-spinner", () => {
     it("example 1", () => {
-        const {CircularSpinner} = require("./index.js");
-
         const example = <CircularSpinner />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {Text, View} = require("@khanacademy/wonder-blocks-core");
-        const Color = require("@khanacademy/wonder-blocks-color").default;
 
+    it("example 2", () => {
         const styles = StyleSheet.create({
             contents: {
                 flexDirection: "row",
@@ -43,7 +41,6 @@ describe("wonder-blocks-progress-spinner", () => {
                 display: "inline",
             },
         });
-
         const example = (
             <View>
                 <View style={styles.contents}>

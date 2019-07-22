@@ -3,9 +3,9 @@ Icon is a collection of SVGs that are to be used for all of the most common icon
 Below you will find a table of all available Wonder Blocks icons. Note that for some icons we use different SVG paths at different sizes.
 
 ```jsx
-const {StyleSheet, css} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
+import {StyleSheet, css} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
 const headings = ["small", "medium"];
 

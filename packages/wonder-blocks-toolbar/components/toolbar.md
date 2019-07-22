@@ -1,8 +1,9 @@
 ### Small toolbar example:
 
 ```js
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
+import Button from "@khanacademy/wonder-blocks-button";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
 const buttonStyle = { width: 160 };
 
@@ -34,10 +35,11 @@ const rightContent = <React.Fragment>
 **Note:** The `IconButton`s are nudged to the left by 1px to match designs.
 
 ```js
-const {icons} = require("@khanacademy/wonder-blocks-icon");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import Button from "@khanacademy/wonder-blocks-button";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
 const zoomOutButton = <IconButton icon={icons.zoomOut} kind="primary"/>;
 const zoomInButton = <IconButton icon={icons.zoomIn} kind="primary"/>;
@@ -64,9 +66,10 @@ const leftContent = <React.Fragment>
 **Note:** The `IconButton` is nudged to the left by 4px to match designs.
 
 ```js
-const {icons} = require("@khanacademy/wonder-blocks-icon");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import Button from "@khanacademy/wonder-blocks-button";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
 const hintButton = <IconButton icon={icons.hint} kind="primary"/>;
 
@@ -84,8 +87,9 @@ const mainButton = (
 **Note:** The `IconButton` is nudged to the left by 6px to match designs.
 
 ```js
-const {icons} = require("@khanacademy/wonder-blocks-icon");
-const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
 const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 
@@ -100,9 +104,9 @@ const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 **Note:** The `IconButton` is nudged to the left by 6px to match designs.
 
 ```js
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {icons} = require("@khanacademy/wonder-blocks-icon");
-const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
+import Button from "@khanacademy/wonder-blocks-button";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 const startExercise = <Button>Next Video</Button>;
@@ -117,9 +121,10 @@ const startExercise = <Button>Next Video</Button>;
 ### Toolbar with multiple elements on the right
 
 ```js
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
+import Button from "@khanacademy/wonder-blocks-button";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
 const buttonStyle = { width: 140 };
 
@@ -144,10 +149,11 @@ const rightContent = <React.Fragment>
 **Note:** The `IconButton` is nudged to the left by 6px to match designs.
 
 ```js
-const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
-const IconButton = require("@khanacademy/wonder-blocks-icon-button").default;
-const Link = require("@khanacademy/wonder-blocks-link").default;
-const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import Link from "@khanacademy/wonder-blocks-link";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
 const closeButton = <IconButton icon={icons.dismiss} kind="tertiary"/>;
 
@@ -168,7 +174,7 @@ const goToExercise = (
 ### Inverted dark-colour scheme
 
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {View} from "@khanacademy/wonder-blocks-core";
 
 const style = {
     backgroundColor: "#0a2a66",

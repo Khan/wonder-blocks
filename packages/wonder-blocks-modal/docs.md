@@ -8,13 +8,13 @@ Looking for docs for StandardModal, OneColumnModal, or TwoColumnModal click
 Once the modal is launched, tab focus wraps inside the modal content. Pressing Tab at the end of the modal will focus the modal's first element, and pressing Shift-Tab at the start of the modal will focus the modal's last element.
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const {ModalLauncher, OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Body} = require("@khanacademy/wonder-blocks-typography");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Body} from "@khanacademy/wonder-blocks-typography";
+import Button from "@khanacademy/wonder-blocks-button";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const styles = StyleSheet.create({
     example: {
@@ -85,13 +85,13 @@ const onePaneDialog = ({closeModal}) => (
 By default, `ModalLauncher` allows you to close the modal by clicking on the overlay/backdrop window. Somethimes you might need to disable it, and to to this, you can set `backgropDismissEnabled` to `false`.
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const {ModalLauncher, OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Body} = require("@khanacademy/wonder-blocks-typography");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Body} from "@khanacademy/wonder-blocks-typography";
+import Button from "@khanacademy/wonder-blocks-button";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const styles = StyleSheet.create({
     example: {
@@ -136,11 +136,11 @@ which means you'll also have to update `opened` to `false` in response to the
 `onClose` callback being triggered.
 
 ```js
-const {ModalLauncher, OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-const {Title} = require("@khanacademy/wonder-blocks-typography");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {ActionMenu, ActionItem} = require("@khanacademy/wonder-blocks-dropdown");
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import {Title} from "@khanacademy/wonder-blocks-typography";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
+import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 
 class Example extends React.Component {
     constructor(props) {
@@ -231,14 +231,14 @@ The initial focus placement depends on the following scenarios:
 ### Example: Set initial focus on a given element inside the modal
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const {ModalLauncher, OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-const {Title} = require("@khanacademy/wonder-blocks-typography");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import {Title} from "@khanacademy/wonder-blocks-typography";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const styles = StyleSheet.create({
     example: {
@@ -298,14 +298,14 @@ const modalInitialFocus = ({closeModal}) => (
 This example illustrates how we can easily update the Modal's contents by wrapping it into a new component/container. **Modal** is built in a way that provides great flexibility and makes it work with different variations and/or layouts (see Custom Two-Pane Dialog example).
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const {ModalLauncher, OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-const {Body, LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 const styles = StyleSheet.create({
     example: {
@@ -403,12 +403,12 @@ Sometimes you'll want to customize the styling of the **Dialog** .e.g., custom w
 To use styling for different screen sizes, wrap your component with `MediaLayout` component.  Please see example code below for details.
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const {OnePaneDialog} = require("@khanacademy/wonder-blocks-modal");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Title, Body} = require("@khanacademy/wonder-blocks-typography");
-const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
+import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Title, Body} from "@khanacademy/wonder-blocks-typography";
+import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 
 const styles = StyleSheet.create({
     previewSizer: {

@@ -8,18 +8,22 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import Link from "./components/link.js";
+import Color from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import Link from "@khanacademy/wonder-blocks-link";
 
 describe("wonder-blocks-link", () => {
     it("example 1", () => {
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-
         const example = (
             <View>
                 <p>
                     I am a <Link href="#nonexistent-link">Primary Link</Link>.{" "}
-                    <span style={{color: Color.offBlack64}}>
+                    <span
+                        style={{
+                            color: Color.offBlack64,
+                        }}
+                    >
                         My friend the
                         <Link
                             href="#secondary-nonexistent-link"
@@ -54,10 +58,8 @@ describe("wonder-blocks-link", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
-        const {HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 2", () => {
         const example = (
             <View>
                 <Link href="#nonexistent-link">

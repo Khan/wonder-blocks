@@ -3,8 +3,9 @@
 There are three `kind`s of buttons: `"primary"` (default), `"secondary"`, and
 `"tertiary"`:
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -44,8 +45,9 @@ const styles = StyleSheet.create({
 Buttons have a `color` that is either `"default"` (the default, as shown above) or `"destructive"` (as can seen below):
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -97,8 +99,9 @@ Links:
 
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -140,9 +143,10 @@ const styles = StyleSheet.create({
 
 Buttons on a `darkBlue` background should set `light` to `true`.
 ```jsx
-const Color = require("@khanacademy/wonder-blocks-color").default;
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import Button from "@khanacademy/wonder-blocks-button";
+import Color from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -212,8 +216,9 @@ const styles = StyleSheet.create({
 
 Buttons have a `size` that's either `"medium"` (default) or `"small"`.
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -259,8 +264,9 @@ Being able to use both is necessary to support marking conversions in A/B
 tests.  There is however no built-in facility for doing A/B testing in
 `wonder-blocks` itself.
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -300,9 +306,10 @@ const styles = StyleSheet.create({
 
 Buttons do client-side navigation by default, if React Router exists:
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {MemoryRouter, Route, Switch} = require("react-router-dom");
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
+import {MemoryRouter, Route, Switch} from "react-router-dom";
 
 const styles = StyleSheet.create({
     row: {
@@ -339,8 +346,9 @@ their input has been recognized but that the operation will take some time.
 While the `spinner` property is set to `true` the button is disabled.
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -368,10 +376,12 @@ Buttons can have a `style` props which supports width, position, margin,
 and flex styles.
 
 Buttons can have an icon on it's left side.
-```
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
-const {icons} = require("@khanacademy/wonder-blocks-icon");
+
+```jsx
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
+import {icons} from "@khanacademy/wonder-blocks-icon";
 
 const styles = StyleSheet.create({
     row: {
@@ -425,7 +435,8 @@ space.  This is probably not what you want unless you're on a very narrow
 screen.
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 <View>
     <Button>
@@ -437,8 +448,9 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 This can be corrected by applying appropriate flex styles to the container.
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     column: {
@@ -479,8 +491,9 @@ of 144px. The one on the right is wider but it accommodates the full string
 instead of wrapping it. Note that if the parent container of the button doesn't
 have enough room to accommodate the width of the button, the text will truncate.
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -512,8 +525,9 @@ const styles = StyleSheet.create({
 
 Only one button in a layout should be `primary`.
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -544,8 +558,9 @@ const styles = StyleSheet.create({
 When an action is going to take a while, show a spinner during that time.
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {

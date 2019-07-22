@@ -1,7 +1,7 @@
 `WithSSRPlaceholder` is a behavioral component, providing a mechanism to hide the rendering of a component from server-side rendering (SSR).
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {View, WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";
 
 <WithSSRPlaceholder placeholder={() => <View>This gets rendered on server, and also on the client for the very first render (the "rehydration" render)</View>}>
     {() => <View>This is rendered only by the client, for all renders after the rehydration render.</View>}
@@ -11,7 +11,7 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 This example shows how you can use a `null` placeholder to just display nothing during server-side render.
 
 ```jsx
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {View, WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";
 
 <WithSSRPlaceholder placeholder={null}>
     {() => <View>This is rendered only by the client, while nothing was rendered on the server.</View>}
@@ -21,8 +21,8 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 Here, we nest two `WithSSRPlaceholder` components and use an array to track rendering, so that we can see how only the top level `WithSSRPlaceholder` component skips the initial render.
 
 ```jsx
-const {Body, BodyMonospace} = require("@khanacademy/wonder-blocks-typography");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
+import {View, WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";
 
 const trackingArray = [];
 const resultsId = "nossr-example-2-results";
@@ -85,8 +85,8 @@ const trackAndRender = text => {
 In this example, we have side-by-side `WithSSRPlaceholder` components. This demonstrates how component non-nested `WithSSRPlaceholder` components independently track the first render.
 
 ```jsx
-const {Body, BodyMonospace} = require("@khanacademy/wonder-blocks-typography");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
+import {View, WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";
 
 const trackingArray = [];
 const resultsId = "nossr-example-3-results";

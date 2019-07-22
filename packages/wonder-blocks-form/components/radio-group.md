@@ -6,9 +6,9 @@ the choices, and use tab to navigate between this radio group and the rest of
 the page.
 
 ```js
-const {Choice} = require("@khanacademy/wonder-blocks-form");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -66,12 +66,11 @@ This example shows how to use custom styling to change the appearance of the
 radio group to look more like a multiple choice question.
 
 ```js
-const {Choice} = require("@khanacademy/wonder-blocks-form");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const Color = require("@khanacademy/wonder-blocks-color").default;
-const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
-const {StyleSheet} = require("aphrodite");
-
+import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     wrapper: {

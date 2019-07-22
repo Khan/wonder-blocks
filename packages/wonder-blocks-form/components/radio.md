@@ -1,7 +1,8 @@
 The radio button has various styles for clickable states. Here are sets of default radio buttons, radio buttons in an error state, and disabled radio buttons.
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Radio} from "@khanacademy/wonder-blocks-form";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {

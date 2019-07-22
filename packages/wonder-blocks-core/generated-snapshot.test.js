@@ -8,17 +8,26 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
+import {
+    IDProvider,
+    View,
+    UniqueIDProvider,
+    Text,
+    WithSSRPlaceholder,
+} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
+import {
+    Body,
+    HeadingSmall,
+    BodyMonospace,
+} from "@khanacademy/wonder-blocks-typography";
+import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
+import Button from "@khanacademy/wonder-blocks-button";
+
 import ClickableBehavior from "./components/clickable-behavior.js";
-import IDProvider from "./components/id-provider.js";
-import Text from "./components/text.js";
-import UniqueIDProvider from "./components/unique-id-provider.js";
-import View from "./components/view.js";
-import WithSSRPlaceholder from "./components/with-ssr-placeholder.js";
 
 describe("wonder-blocks-core", () => {
     it("example 1", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-
         const example = (
             <View>
                 <IDProvider scope="field">
@@ -34,9 +43,8 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 2", () => {
         const example = (
             <View>
                 <IDProvider scope="field" id="some-user-id">
@@ -52,10 +60,8 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 3", () => {
         const styles = StyleSheet.create({
             container: {
                 padding: 32,
@@ -66,14 +72,16 @@ describe("wonder-blocks-core", () => {
                 fontSize: 24,
             },
         });
-
         const example = (
             <View style={styles.container}>
                 <Text style={styles.text}>Hello, world!</Text>
                 <View
                     style={[
                         styles.container,
-                        {backgroundColor: "goldenrod", padding: 4},
+                        {
+                            backgroundColor: "goldenrod",
+                            padding: 4,
+                        },
                     ]}
                 >
                     Even with an array and inline styles!
@@ -83,9 +91,8 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 4", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -98,9 +105,8 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 5", () => {
         const example = (
             <View>
                 <View testId="foo">Foo</View>
@@ -110,17 +116,9 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 6", () => {
-        const {
-            Body,
-            HeadingSmall,
-        } = require("@khanacademy/wonder-blocks-typography");
-        const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-
         let providerRef = null;
-
         const renders = [];
         const provider = (
             <UniqueIDProvider
@@ -150,7 +148,11 @@ describe("wonder-blocks-core", () => {
 
         const example = (
             <View>
-                <View style={{flexDirection: "row"}}>
+                <View
+                    style={{
+                        flexDirection: "row",
+                    }}
+                >
                     <Button onClick={onClick}>Click Me to Rerender</Button>
                     <Spring />
                 </View>
@@ -162,15 +164,8 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
-        const {
-            Body,
-            BodyMonospace,
-            HeadingSmall,
-        } = require("@khanacademy/wonder-blocks-typography");
-        const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 7", () => {
         let firstId = null;
         let secondId = null;
 
@@ -206,15 +201,8 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
-        const {
-            Body,
-            HeadingSmall,
-            BodyMonospace,
-        } = require("@khanacademy/wonder-blocks-typography");
-        const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 8", () => {
         const children = ({get}) => (
             <View>
                 <Body>
@@ -238,13 +226,8 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
-        const {
-            BodyMonospace,
-        } = require("@khanacademy/wonder-blocks-typography");
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 9", () => {
         // TODO(somewhatabstract): Update this to be nice once we can get BodyMonospace
         // to allow us to properly preserve whitespace or have an alternative. Or remove
         // this entirely when our styleguide renders our interface definitions.
@@ -253,7 +236,11 @@ describe("wonder-blocks-core", () => {
                 <BodyMonospace>
                     interface IIdentifierFactory &#123;
                 </BodyMonospace>
-                <View style={{flexDirection: "row"}}>
+                <View
+                    style={{
+                        flexDirection: "row",
+                    }}
+                >
                     <Strut size={"2em"} />
                     <BodyMonospace>get(id: string): string;</BodyMonospace>
                 </View>
@@ -263,10 +250,8 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {Text} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 10", () => {
         const styles = StyleSheet.create({
             container: {
                 padding: 32,
@@ -277,14 +262,16 @@ describe("wonder-blocks-core", () => {
                 fontSize: 24,
             },
         });
-
         const example = (
             <View style={styles.container}>
                 <Text style={styles.text}>Hello, world!</Text>
                 <View
                     style={[
                         styles.container,
-                        {backgroundColor: "goldenrod", padding: 4},
+                        {
+                            backgroundColor: "goldenrod",
+                            padding: 4,
+                        },
                     ]}
                 >
                     Even with an array and inline styles!
@@ -294,9 +281,8 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
-        const {Text} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 11", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -309,9 +295,8 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 12", () => {
         const example = (
             <WithSSRPlaceholder
                 placeholder={() => (
@@ -332,9 +317,8 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 13", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 13", () => {
         const example = (
             <WithSSRPlaceholder placeholder={null}>
                 {() => (
@@ -348,15 +332,11 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 14", () => {
-        const {
-            Body,
-            BodyMonospace,
-        } = require("@khanacademy/wonder-blocks-typography");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 14", () => {
         const trackingArray = [];
         const resultsId = "nossr-example-2-results";
+
         const newLi = (text) => {
             const li = document.createElement("li");
             li.appendChild(document.createTextNode(text));
@@ -365,10 +345,12 @@ describe("wonder-blocks-core", () => {
 
         const addTrackedRender = (text) => {
             const el = document.getElementById(resultsId);
+
             if (el) {
                 for (let i = 0; i < trackingArray.length; i++) {
                     el.append(newLi(trackingArray[i]));
                 }
+
                 trackingArray.length = 0;
                 el.append(newLi(text));
             } else {
@@ -428,15 +410,11 @@ describe("wonder-blocks-core", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 15", () => {
-        const {
-            Body,
-            BodyMonospace,
-        } = require("@khanacademy/wonder-blocks-typography");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 15", () => {
         const trackingArray = [];
         const resultsId = "nossr-example-3-results";
+
         const newLi = (text) => {
             const li = document.createElement("li");
             li.appendChild(document.createTextNode(text));
@@ -445,10 +423,12 @@ describe("wonder-blocks-core", () => {
 
         const addTrackedRender = (text) => {
             const el = document.getElementById(resultsId);
+
             if (el) {
                 for (let i = 0; i < trackingArray.length; i++) {
                     el.append(newLi(trackingArray[i]));
                 }
+
                 trackingArray.length = 0;
                 el.append(newLi(text));
             } else {

@@ -1,6 +1,6 @@
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {
+import {View} from "@khanacademy/wonder-blocks-core";
+import {
     Title,
     HeadingLarge,
     HeadingMedium,
@@ -17,7 +17,7 @@ const {
     Tagline,
     Caption,
     Footnote
-} = require("@khanacademy/wonder-blocks-typography");
+} from "@khanacademy/wonder-blocks-typography";
 
 // NOTE(mdr): I added an `id` attribute to each of these tags, to ensure that
 //     they all pass the `id` attribute correctly. This fact will be saved in
@@ -45,10 +45,10 @@ const {
 You can change the color of text with the `style` prop:
 
 ```js
-const {StyleSheet} = require("aphrodite");
+import {StyleSheet} from "aphrodite";
 
-const Color = require("@khanacademy/wonder-blocks-color").default;
-const {Title} = require("@khanacademy/wonder-blocks-typography");
+import Color from "@khanacademy/wonder-blocks-color";
+import {Title} from "@khanacademy/wonder-blocks-typography";
 
 const styles = StyleSheet.create({
     blueText: {
@@ -65,7 +65,7 @@ The `role` and any `aria-` attribute can be set as props any of the typography
 components
 
 ```js
-const {Title} = require("@khanacademy/wonder-blocks-typography");
+import {Title} from "@khanacademy/wonder-blocks-typography";
 
 <Title aria-label="Accessible Title">Title</Title>
 ```
@@ -73,8 +73,8 @@ const {Title} = require("@khanacademy/wonder-blocks-typography");
 ## Lato is use for Latin and Cyrillic languages
 
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {
+import {View} from "@khanacademy/wonder-blocks-core";
+import {
     Title,
     HeadingLarge,
     HeadingMedium,
@@ -91,7 +91,7 @@ const {
     Tagline,
     Caption,
     Footnote
-} = require("@khanacademy/wonder-blocks-typography");
+} from "@khanacademy/wonder-blocks-typography";
 
 <View>
     <Title>Привет</Title>
@@ -116,9 +116,9 @@ const {
 ## Noto for non-Latin languages
 
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {OptionItem, SingleSelect} = require("@khanacademy/wonder-blocks-dropdown");
-const {
+import {View} from "@khanacademy/wonder-blocks-core";
+import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
+import {
     Title,
     HeadingLarge,
     HeadingMedium,
@@ -135,7 +135,7 @@ const {
     Tagline,
     Caption,
     Footnote
-} = require("@khanacademy/wonder-blocks-typography");
+} from "@khanacademy/wonder-blocks-typography";
 
 const languages = {
     arabic: { text: "مرحبا", dir: "rtl" },

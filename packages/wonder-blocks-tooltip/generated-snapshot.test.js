@@ -8,8 +8,17 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import Tooltip from "./components/tooltip.js";
-import TooltipContent from "./components/tooltip-content.js";
+import {View, Text} from "@khanacademy/wonder-blocks-core";
+import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
+import {StyleSheet} from "aphrodite";
+import {Body, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
+import Button from "@khanacademy/wonder-blocks-button";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import {Strut, Spring} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+
 import TooltipTail from "./components/tooltip-tail.js";
 import TooltipBubble from "./components/tooltip-bubble.js";
 
@@ -26,9 +35,8 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 2", () => {
         const example = (
             <Tooltip
                 id="my-a11y-tooltip"
@@ -45,12 +53,8 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 3", () => {
-        const {StyleSheet} = require("aphrodite");
-
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Body} = require("@khanacademy/wonder-blocks-typography");
-
         const styles = StyleSheet.create({
             scrollbox: {
                 height: 100,
@@ -62,7 +66,6 @@ describe("wonder-blocks-tooltip", () => {
                 minHeight: "200vh",
             },
         });
-
         const example = (
             <View>
                 <View style={styles.scrollbox}>
@@ -84,16 +87,8 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 4", () => {
-        const {StyleSheet} = require("aphrodite");
-
-        const {View, Text} = require("@khanacademy/wonder-blocks-core");
-        const {
-            OnePaneDialog,
-            ModalLauncher,
-        } = require("@khanacademy/wonder-blocks-modal");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-
         const styles = StyleSheet.create({
             scrollbox: {
                 height: 100,
@@ -108,7 +103,6 @@ describe("wonder-blocks-tooltip", () => {
                 height: "200vh",
             },
         });
-
         const scrollyContent = (
             <View style={styles.scrollbox}>
                 <View style={styles.hostbox}>
@@ -118,11 +112,9 @@ describe("wonder-blocks-tooltip", () => {
                 </View>
             </View>
         );
-
         const modalContent = (
             <View style={styles.modalbox}>{scrollyContent}</View>
         );
-
         const modal = (
             <OnePaneDialog
                 title="My modal"
@@ -130,7 +122,6 @@ describe("wonder-blocks-tooltip", () => {
                 content={modalContent}
             />
         );
-
         const example = (
             <ModalLauncher modal={modal}>
                 {({openModal}) => (
@@ -141,12 +132,8 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 5", () => {
-        const {StyleSheet} = require("aphrodite");
-
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {LabelSmall} = require("@khanacademy/wonder-blocks-typography");
-
         const styles = StyleSheet.create({
             block: {
                 border: "solid 1px steelblue",
@@ -156,7 +143,6 @@ describe("wonder-blocks-tooltip", () => {
                 justifyContent: "center",
             },
         });
-
         const example = (
             <View>
                 <LabelSmall>
@@ -166,7 +152,11 @@ describe("wonder-blocks-tooltip", () => {
                     one to another is instantaneous.
                 </LabelSmall>
 
-                <View style={{flexDirection: "row"}}>
+                <View
+                    style={{
+                        flexDirection: "row",
+                    }}
+                >
                     <Tooltip content="Tooltip A" placement="bottom">
                         <View style={styles.block}>A</View>
                     </Tooltip>
@@ -185,23 +175,14 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 6", () => {
-        const {StyleSheet} = require("aphrodite");
-
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const IconButton = require("@khanacademy/wonder-blocks-icon-button")
-            .default;
-        const {icons} = require("@khanacademy/wonder-blocks-icon");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-
         const styles = {
             container: {
                 flexDirection: "row",
                 alignItems: "center",
             },
         };
-
         const example = (
             <View style={styles.container}>
                 <Tooltip content="I'm a little tooltip">
@@ -220,11 +201,13 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 7", () => {
         const example = <TooltipContent>Just the content</TooltipContent>;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 8", () => {
         const example = (
             <TooltipContent title="Title text!">
@@ -234,6 +217,7 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 9", () => {
         const {
             Body,
@@ -249,12 +233,8 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Spring} = require("@khanacademy/wonder-blocks-layout");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
+    it("example 10", () => {
         const styles = StyleSheet.create({
             guideContainer: {
                 flexDirection: "row",
@@ -269,7 +249,6 @@ describe("wonder-blocks-tooltip", () => {
                 width: Spacing.large,
             },
         });
-
         const example = (
             <View>
                 <TooltipTail placement="top" />
@@ -284,12 +263,8 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Spring} = require("@khanacademy/wonder-blocks-layout");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
+    it("example 11", () => {
         const styles = StyleSheet.create({
             exampleContainer: {
                 flexDirection: "row",
@@ -306,7 +281,6 @@ describe("wonder-blocks-tooltip", () => {
                 height: Spacing.large,
             },
         });
-
         const example = (
             <View style={styles.exampleContainer}>
                 <View style={styles.guideContainer}>
@@ -321,12 +295,8 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Spring} = require("@khanacademy/wonder-blocks-layout");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
+    it("example 12", () => {
         const styles = StyleSheet.create({
             guideContainer: {
                 flexDirection: "row",
@@ -341,7 +311,6 @@ describe("wonder-blocks-tooltip", () => {
                 width: Spacing.large,
             },
         });
-
         const example = (
             <View>
                 <View style={styles.guideContainer}>
@@ -356,12 +325,8 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 13", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Spring} = require("@khanacademy/wonder-blocks-layout");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
+    it("example 13", () => {
         const styles = StyleSheet.create({
             exampleContainer: {
                 flexDirection: "row",
@@ -378,7 +343,6 @@ describe("wonder-blocks-tooltip", () => {
                 height: Spacing.large,
             },
         });
-
         const example = (
             <View style={styles.exampleContainer}>
                 <TooltipTail placement="left" />
@@ -393,13 +357,16 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 14", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 
+    it("example 14", () => {
         const example = (
             <View>
-                <TooltipBubble placement="top" style={{position: "relative"}}>
+                <TooltipBubble
+                    placement="top"
+                    style={{
+                        position: "relative",
+                    }}
+                >
                     <TooltipContent>I'm on the top!</TooltipContent>
                 </TooltipBubble>
             </View>
@@ -407,13 +374,20 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 15", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 
+    it("example 15", () => {
         const example = (
-            <View style={{alignItems: "flex-start"}}>
-                <TooltipBubble placement="right" style={{position: "relative"}}>
+            <View
+                style={{
+                    alignItems: "flex-start",
+                }}
+            >
+                <TooltipBubble
+                    placement="right"
+                    style={{
+                        position: "relative",
+                    }}
+                >
                     <TooltipContent>I'm on the right!</TooltipContent>
                 </TooltipBubble>
             </View>
@@ -421,15 +395,15 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 16", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 
+    it("example 16", () => {
         const example = (
             <View>
                 <TooltipBubble
                     placement="bottom"
-                    style={{position: "relative"}}
+                    style={{
+                        position: "relative",
+                    }}
                 >
                     <TooltipContent>I'm on the bottom!</TooltipContent>
                 </TooltipBubble>
@@ -438,13 +412,16 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 17", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 
+    it("example 17", () => {
         const example = (
             <View>
-                <TooltipBubble placement="left" style={{position: "relative"}}>
+                <TooltipBubble
+                    placement="left"
+                    style={{
+                        position: "relative",
+                    }}
+                >
                     <TooltipContent>I'm on the left!</TooltipContent>
                 </TooltipBubble>
             </View>
@@ -452,17 +429,19 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 18", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing");
-        const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 
+    it("example 18", () => {
         const example = (
             <View>
                 <TooltipBubble
                     placement="bottom"
-                    tailOffset={{left: 50, top: 0}}
-                    style={{position: "relative"}}
+                    tailOffset={{
+                        left: 50,
+                        top: 0,
+                    }}
+                    style={{
+                        position: "relative",
+                    }}
                 >
                     <TooltipContent>
                         I'm on the bottom with a tail 50px in!
@@ -473,17 +452,16 @@ describe("wonder-blocks-tooltip", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 19", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing");
-        const {TooltipContent} = require("@khanacademy/wonder-blocks-tooltip");
 
+    it("example 19", () => {
         const example = (
             <View>
                 <TooltipBubble
                     placement="top"
                     outOfBoundaries={true}
-                    style={{position: "relative"}}
+                    style={{
+                        position: "relative",
+                    }}
                 >
                     <TooltipContent>
                         I'm hidden. So hidden. Shhhhh!

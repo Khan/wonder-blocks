@@ -21,10 +21,10 @@ control when and/or from where to open the popover dialog.
 can close the Popover by pressing `esc` or clicking in the trigger element.
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Popover, PopoverContent} = require("@khanacademy/wonder-blocks-popover");
+import {StyleSheet} from "aphrodite";
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 
 const styles = StyleSheet.create({
     example: {
@@ -64,15 +64,15 @@ Here you can see as well how the focus is managed when a popover is opened. To s
 details, please check the **Accesibility section**.
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const Color = require("@khanacademy/wonder-blocks-color").default;
-const {addStyle, View} = require("@khanacademy/wonder-blocks-core");
-const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-const {HeadingSmall, LabelLarge} = require("@khanacademy/wonder-blocks-typography");
-const {Popover, PopoverContentCore} = require("@khanacademy/wonder-blocks-popover");
+import {StyleSheet} from "aphrodite";
+import Button from "@khanacademy/wonder-blocks-button";
+import Color from "@khanacademy/wonder-blocks-color";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {Popover, PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 
 const customIcon = {
     small: "M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z",
@@ -194,12 +194,12 @@ This example shows the default popover variant. By default, it only includes
    the `onClick` handler on each action inside this example.
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Popover, PopoverContent} = require("@khanacademy/wonder-blocks-popover");
+import {StyleSheet} from "aphrodite";
+import Button from "@khanacademy/wonder-blocks-button";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 
 const styles = StyleSheet.create({
     example: {
@@ -248,10 +248,10 @@ will need to set the `icon` prop inside the `PopoverContent`.
   `emphasized` at the same time. Doing so will throw an error.
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Popover, PopoverContent} = require("@khanacademy/wonder-blocks-popover");
+import {StyleSheet} from "aphrodite";
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 
 const styles = StyleSheet.create({
     example: {
@@ -287,10 +287,10 @@ to the image.
   `emphasized` at the same time. Doing so will throw an error.
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Popover, PopoverContent} = require("@khanacademy/wonder-blocks-popover");
+import {StyleSheet} from "aphrodite";
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 
 const styles = StyleSheet.create({
     example: {

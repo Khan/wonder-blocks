@@ -1,7 +1,8 @@
 The checkbox has various styles for clickable states. Here are sets of default checkboxes, checkboxes in an error state, and disabled checkboxes.
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Checkbox} from "@khanacademy/wonder-blocks-form";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -29,9 +30,10 @@ used as a settings-like item. The user of this component is responsible for
 keeping track of checked state and providing an onChange callback.
 
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {LabelMedium, LabelSmall} = require("@khanacademy/wonder-blocks-typography");
-const {StyleSheet} = require("aphrodite");
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Checkbox} from "@khanacademy/wonder-blocks-form";
+import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {StyleSheet} from "aphrodite";
 
 class Settings extends React.Component {
     constructor() {
@@ -52,10 +54,7 @@ class Settings extends React.Component {
     render() {
         const handleChanged = (checked) => console.log(`clicked on checkbox with checked=${checked.toString()}`);
         const headingText = "Functions";
-        const descriptionText = `A great cook knows how to take basic ingredients and
-        prepare a delicious meal. In this topic, you will become function-chefs! You
-        will learn how to combine functions with arithmetic operations and how to
-        compose functions.`;
+
         return <View>
             <Checkbox
                 label="Receive assignment reminders for Algebra"
@@ -79,9 +78,10 @@ be right next to the checkbox), like in this example content item. Use a
 Checkbox. This is for accessibility purposes, and doing this also automatically
 makes the label a click target for the checkbox.
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {LabelMedium, LabelSmall} = require("@khanacademy/wonder-blocks-typography");
-const {StyleSheet} = require("aphrodite");
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Checkbox} from "@khanacademy/wonder-blocks-form";
+import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     wrapper: {
@@ -121,7 +121,11 @@ class ContentItem extends React.Component {
                 <label htmlFor="topic-123"><LabelMedium>{headingText}</LabelMedium></label>
                 <LabelSmall>{descriptionText}</LabelSmall>
             </View>
-            <Checkbox checked={this.state.checked} id="topic-123" onChange={checked => this.handleChange(checked)} />
+                <Checkbox
+                    checked={this.state.checked}
+                    id="topic-123"
+                    onChange={(checked) => this.handleChange(checked)}
+                />
         </View>;
     }
 }

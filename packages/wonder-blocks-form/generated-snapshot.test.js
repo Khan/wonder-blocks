@@ -8,20 +8,28 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import Checkbox from "./components/checkbox.js";
-import Radio from "./components/radio.js";
-import Choice from "./components/choice.js";
-import CheckboxGroup from "./components/checkbox-group.js";
-import RadioGroup from "./components/radio-group.js";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {
+    Checkbox,
+    Radio,
+    CheckboxGroup,
+    Choice,
+    RadioGroup,
+} from "@khanacademy/wonder-blocks-form";
+import {StyleSheet} from "aphrodite";
+import {
+    LabelMedium,
+    LabelSmall,
+    LabelLarge,
+} from "@khanacademy/wonder-blocks-typography";
+import Color from "@khanacademy/wonder-blocks-color";
+
 import CheckboxCore from "./components/checkbox-core.js";
 import RadioCore from "./components/radio-core.js";
 import ChoiceInternal from "./components/choice-internal.js";
 
 describe("wonder-blocks-form", () => {
     it("example 1", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -79,14 +87,8 @@ describe("wonder-blocks-form", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            LabelMedium,
-            LabelSmall,
-        } = require("@khanacademy/wonder-blocks-typography");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 2", () => {
         class Settings extends React.Component {
             constructor() {
                 super();
@@ -99,8 +101,7 @@ describe("wonder-blocks-form", () => {
             handleChange(checked) {
                 this.setState({
                     assignment: checked,
-                });
-                // Potentially do something here with this updated state information.
+                }); // Potentially do something here with this updated state information.
             }
 
             render() {
@@ -108,11 +109,8 @@ describe("wonder-blocks-form", () => {
                     console.log(
                         `clicked on checkbox with checked=${checked.toString()}`,
                     );
+
                 const headingText = "Functions";
-                const descriptionText = `A great cook knows how to take basic ingredients and
-                prepare a delicious meal. In this topic, you will become function-chefs! You
-                will learn how to combine functions with arithmetic operations and how to
-                compose functions.`;
                 return (
                     <View>
                         <Checkbox
@@ -133,14 +131,8 @@ describe("wonder-blocks-form", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            LabelMedium,
-            LabelSmall,
-        } = require("@khanacademy/wonder-blocks-typography");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 3", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 flexDirection: "row",
@@ -163,8 +155,7 @@ describe("wonder-blocks-form", () => {
             handleChange(checked) {
                 this.setState({
                     checked: checked,
-                });
-                // Potentially do something here with this updated state information.
+                }); // Potentially do something here with this updated state information.
             }
 
             render() {
@@ -172,11 +163,12 @@ describe("wonder-blocks-form", () => {
                     console.log(
                         `clicked on checkbox with checked=${checked.toString()}`,
                     );
+
                 const headingText = "Functions";
                 const descriptionText = `A great cook knows how to take basic ingredients and
-                prepare a delicious meal. In this topic, you will become function-chefs! You
-                will learn how to combine functions with arithmetic operations and how to
-                compose functions.`;
+        prepare a delicious meal. In this topic, you will become function-chefs! You
+        will learn how to combine functions with arithmetic operations and how to
+        compose functions.`;
                 return (
                     <View style={styles.wrapper}>
                         <View style={styles.topic}>
@@ -199,10 +191,8 @@ describe("wonder-blocks-form", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 4", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -260,11 +250,8 @@ describe("wonder-blocks-form", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Choice} = require("@khanacademy/wonder-blocks-form");
 
+    it("example 5", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 width: 300,
@@ -323,6 +310,7 @@ describe("wonder-blocks-form", () => {
                 );
             }
         }
+
         const example = (
             <View style={styles.wrapper}>
                 <CheckboxGroupPizzaExample />
@@ -331,13 +319,8 @@ describe("wonder-blocks-form", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
-        const {StyleSheet} = require("aphrodite");
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Choice} = require("@khanacademy/wonder-blocks-form");
-        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
+    it("example 6", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 width: 650,
@@ -414,6 +397,7 @@ describe("wonder-blocks-form", () => {
                 );
             }
         }
+
         const example = (
             <View style={styles.wrapper}>
                 <LabelLarge style={styles.title}>Science</LabelLarge>
@@ -423,13 +407,8 @@ describe("wonder-blocks-form", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
-        const {Choice} = require("@khanacademy/wonder-blocks-form");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 7", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 width: 650,
@@ -492,11 +471,8 @@ describe("wonder-blocks-form", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
-        const {Choice} = require("@khanacademy/wonder-blocks-form");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 8", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 width: 300,
@@ -551,6 +527,7 @@ describe("wonder-blocks-form", () => {
                 );
             }
         }
+
         const example = (
             <View style={styles.wrapper}>
                 <RadioGroupPokemonExample />
@@ -559,13 +536,8 @@ describe("wonder-blocks-form", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
-        const {Choice} = require("@khanacademy/wonder-blocks-form");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 9", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 width: 650,

@@ -15,9 +15,9 @@ This menu shows different type of possible items in this type of menu:
 This menu is also right-aligned.
 
 ```js
-const {ActionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {ActionMenu, ActionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -48,10 +48,10 @@ The text in the menu opener should be truncated with ellipsis at the end
 and the down caret should be the same size as it is for the other examples.
 
 ```js
-const {ActionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
-const {Spring} = require("@khanacademy/wonder-blocks-layout");
+import {ActionMenu, ActionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
+import {Spring} from "@khanacademy/wonder-blocks-layout";
 
 const styles = StyleSheet.create({
     row: {
@@ -82,9 +82,9 @@ that can toggle to change the state of the application. The user of this menu
 must keep track of the state of the selected items.
 
 ```js
-const {ActionItem, OptionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {ActionMenu, ActionItem, OptionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -138,8 +138,9 @@ class HybridMenu extends React.Component {
 ### Empty menus are disabled automatically
 
 ```js
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {ActionMenu} from "@khanacademy/wonder-blocks-dropdown";
 
 const styles = StyleSheet.create({
     row: {
@@ -157,9 +158,9 @@ const styles = StyleSheet.create({
 This example shows how we can add custom dropdownStyle to the action menu.
 
 ```js
-const {ActionItem, SeparatorItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {ActionMenu, ActionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
