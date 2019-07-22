@@ -3,11 +3,11 @@
 You can make custom components Clickable by simply returning them in function of the Clickable child. The eventState parameter the function takes allows access to states pressed, hovered and clicked, which you may use to create custom styles.
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {MemoryRouter, Route, Switch} = require("react-router-dom");
-const Color = require("@khanacademy/wonder-blocks-color").default;
-const {Body} = require("@khanacademy/wonder-blocks-typography");
+import {StyleSheet} from "aphrodite";
+import Clickable from "@khanacademy/wonder-blocks-clickable";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
+import {Body} from "@khanacademy/wonder-blocks-typography";
 
 const styles = StyleSheet.create({
     hovered: {
@@ -41,10 +41,11 @@ const styles = StyleSheet.create({
 If your Clickable component is within a React-Router enviroment, your component will automatically default to client-side routing with the `href` prop is set. This behavior can be toggeled by passing the `skipClientNav` prop. In this example we see two Clickable h1 tags, one which employs client-side routing, and the other uses skipClientNav to avoid this default behavior.
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-const {MemoryRouter, Route, Switch} = require("react-router-dom");
+import {StyleSheet} from "aphrodite";
+import Clickable from "@khanacademy/wonder-blocks-clickable";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {MemoryRouter, Route, Switch} from "react-router-dom";
 
 const styles = StyleSheet.create({
     row: {

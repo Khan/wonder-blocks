@@ -8,28 +8,33 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import Dropdown from "./components/dropdown.js";
-import ActionItem from "./components/action-item.js";
-import SeparatorItem from "./components/separator-item.js";
-import OptionItem from "./components/option-item.js";
-import ActionMenu from "./components/action-menu.js";
-import SingleSelect from "./components/single-select.js";
-import MultiSelect from "./components/multi-select.js";
+import {
+    Dropdown,
+    ActionItem,
+    OptionItem,
+    SeparatorItem,
+    ActionMenu,
+    SingleSelect,
+    MultiSelect,
+} from "@khanacademy/wonder-blocks-dropdown";
+import {View, Text} from "@khanacademy/wonder-blocks-core";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import {
+    Title,
+    HeadingSmall,
+    LabelLarge,
+} from "@khanacademy/wonder-blocks-typography";
+import Color from "@khanacademy/wonder-blocks-color";
+import {StyleSheet} from "aphrodite";
+import {Spring} from "@khanacademy/wonder-blocks-layout";
+import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
+import Button from "@khanacademy/wonder-blocks-button";
+
 import DropdownCore from "./components/dropdown-core.js";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
-        const {
-            ActionItem,
-            OptionItem,
-            SeparatorItem,
-        } = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const IconButton = require("@khanacademy/wonder-blocks-icon-button")
-            .default;
-        const {icons} = require("@khanacademy/wonder-blocks-icon");
-        const {StyleSheet} = require("aphrodite");
-
         const dropdownItems = [
             <ActionItem
                 label="Profile"
@@ -75,7 +80,6 @@ describe("wonder-blocks-dropdown", () => {
                 onClick={() => console.log(`Show in-class assignments toggled`)}
             />,
         ];
-
         const example = (
             <Dropdown
                 disabled={false}
@@ -91,15 +95,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 2", () => {
-        const {
-            ActionItem,
-            SeparatorItem,
-        } = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-        const {Title} = require("@khanacademy/wonder-blocks-typography");
-        const Color = require("@khanacademy/wonder-blocks-color").default;
         // Custom styles for mouse events can be defined like so
         const styles = StyleSheet.create({
             focused: {
@@ -116,7 +113,6 @@ describe("wonder-blocks-dropdown", () => {
                 outline: "none",
             },
         });
-
         const dropdownItems = [
             <ActionItem label="Change password" />,
             <ActionItem label="Manage email" />,
@@ -125,7 +121,6 @@ describe("wonder-blocks-dropdown", () => {
             <SeparatorItem />,
             <ActionItem label="Log out" />,
         ];
-
         const example = (
             <View>
                 <Dropdown testId="teacher-menu" menuItems={dropdownItems}>
@@ -147,15 +142,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 3", () => {
-        const {
-            ActionItem,
-            OptionItem,
-            SeparatorItem,
-        } = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-        const {HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
         const styles = StyleSheet.create({
             focused: {
                 border: "none",
@@ -195,7 +183,6 @@ describe("wonder-blocks-dropdown", () => {
                     <OptionItem label="Yan" value="yan" />,
                     <OptionItem label="Yash" value="yash" />,
                 ];
-
                 return (
                     <Dropdown
                         selectionType={"single"}
@@ -227,14 +214,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
-        const {
-            ActionItem,
-            SeparatorItem,
-        } = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 4", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -287,25 +268,22 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
-        const {
-            ActionItem,
-            SeparatorItem,
-        } = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
-        const {Spring} = require("@khanacademy/wonder-blocks-layout");
 
+    it("example 5", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <Spring />
-                <ActionMenu menuText="Betsy Appleseed" style={{width: 100}}>
+                <ActionMenu
+                    menuText="Betsy Appleseed"
+                    style={{
+                        width: 100,
+                    }}
+                >
                     <ActionItem
                         label="Profile"
                         href="http://khanacademy.org/profile"
@@ -334,15 +312,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
-        const {
-            ActionItem,
-            OptionItem,
-            SeparatorItem,
-        } = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 6", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -355,8 +326,8 @@ describe("wonder-blocks-dropdown", () => {
                 this.state = {
                     selectedValues: ["homework"],
                     showHiddenOption: false,
-                };
-                // Styleguidist doesn't support arrow functions in class field properties
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -426,16 +397,13 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 7", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <ActionMenu menuText="Empty" />
@@ -444,14 +412,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
-        const {
-            ActionItem,
-            SeparatorItem,
-        } = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 8", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -460,7 +422,6 @@ describe("wonder-blocks-dropdown", () => {
                 maxHeight: 200,
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <ActionMenu
@@ -507,11 +468,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
-        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 9", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -582,11 +540,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
-        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 10", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -645,11 +600,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 11", () => {
-        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 11", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -661,8 +613,8 @@ describe("wonder-blocks-dropdown", () => {
                 super();
                 this.state = {
                     selectedValue: "banana",
-                };
-                // Styleguidist doesn't support arrow functions in class field properties
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -700,11 +652,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 12", () => {
-        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 12", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -716,8 +665,8 @@ describe("wonder-blocks-dropdown", () => {
                 super();
                 this.state = {
                     selectedValue: "banana",
-                };
-                // Styleguidist doesn't support arrow functions in class field properties
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -756,12 +705,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 13", () => {
-        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-        const Color = require("@khanacademy/wonder-blocks-color");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 13", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -769,7 +714,7 @@ describe("wonder-blocks-dropdown", () => {
             darkBackgroundWrapper: {
                 flexDirection: "row",
                 justifyContent: "flex-end",
-                backgroundColor: Color.default.darkBlue,
+                backgroundColor: Color.darkBlue,
                 width: 350,
                 height: 200,
                 paddingRight: 10,
@@ -782,8 +727,8 @@ describe("wonder-blocks-dropdown", () => {
                 super();
                 this.state = {
                     selectedValue: null,
-                };
-                // Styleguidist doesn't support arrow functions in class field properties
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -827,20 +772,16 @@ describe("wonder-blocks-dropdown", () => {
                 </View>
             </View>
         );
-
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 14", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 14", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <SingleSelect placeholder="empty" />
@@ -849,11 +790,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 15", () => {
-        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
+    it("example 15", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -875,11 +813,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 16", () => {
-        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 16", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -894,8 +829,8 @@ describe("wonder-blocks-dropdown", () => {
                 super();
                 this.state = {
                     selectedValues: [],
-                };
-                // Styleguidist doesn't support arrow functions in class field properties
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -946,11 +881,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 17", () => {
-        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 17", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -968,8 +900,8 @@ describe("wonder-blocks-dropdown", () => {
                 super();
                 this.state = {
                     selectedValues: [],
-                };
-                // Styleguidist doesn't support arrow functions in class field properties
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -1011,11 +943,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 18", () => {
-        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 18", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1027,8 +956,8 @@ describe("wonder-blocks-dropdown", () => {
                 super();
                 this.state = {
                     selectedValues: ["wonderblocks 4ever"],
-                };
-                // Styleguidist doesn't support arrow functions in class field properties
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -1078,16 +1007,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 19", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-        const {View, Text} = require("@khanacademy/wonder-blocks-core");
-        const {
-            OnePaneDialog,
-            ModalLauncher,
-        } = require("@khanacademy/wonder-blocks-modal");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
 
+    it("example 19", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 alignItems: "center",
@@ -1110,8 +1031,8 @@ describe("wonder-blocks-dropdown", () => {
                 super();
                 this.state = {
                     selectedValues: [],
-                };
-                // Styleguidist doesn't support arrow functions in class field properties
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
 
@@ -1145,15 +1066,22 @@ describe("wonder-blocks-dropdown", () => {
         }
 
         const modalContent = (
-            <View style={{height: "200vh"}}>
+            <View
+                style={{
+                    height: "200vh",
+                }}
+            >
                 <View style={styles.scrolledWrapper}>
-                    <View style={{minHeight: "100vh"}}>
+                    <View
+                        style={{
+                            minHeight: "100vh",
+                        }}
+                    >
                         <SimpleMultiSelect />
                     </View>
                 </View>
             </View>
         );
-
         const modal = (
             <OnePaneDialog
                 title="Westerosi modal"
@@ -1161,7 +1089,6 @@ describe("wonder-blocks-dropdown", () => {
                 content={modalContent}
             />
         );
-
         const example = (
             <View style={styles.wrapper}>
                 <ModalLauncher modal={modal}>
@@ -1174,16 +1101,13 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 20", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 20", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <MultiSelect placeholder="empty" />
@@ -1192,11 +1116,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 21", () => {
-        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
 
+    it("example 21", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -1218,11 +1139,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 22", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 22", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1234,8 +1152,8 @@ describe("wonder-blocks-dropdown", () => {
                 super();
                 this.state = {
                     selectedValues: [],
-                };
-                // Styleguidist doesn't support arrow functions in class field properties
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
 

@@ -8,29 +8,31 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import Popover from "./components/popover.js";
-import PopoverContent from "./components/popover-content.js";
-import PopoverContentCore from "./components/popover-content-core.js";
+import {StyleSheet} from "aphrodite";
+import Button from "@khanacademy/wonder-blocks-button";
+import {View, addStyle} from "@khanacademy/wonder-blocks-core";
+import {
+    Popover,
+    PopoverContent,
+    PopoverContentCore,
+} from "@khanacademy/wonder-blocks-popover";
+import Color from "@khanacademy/wonder-blocks-color";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+
 import CloseButton from "./components/close-button.js";
 import PopoverAnchor from "./components/popover-anchor.js";
 import PopoverDialog from "./components/popover-dialog.js";
 
 describe("wonder-blocks-popover", () => {
     it("example 1", () => {
-        const {StyleSheet} = require("aphrodite");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            Popover,
-            PopoverContent,
-        } = require("@khanacademy/wonder-blocks-popover");
-
         const styles = StyleSheet.create({
             example: {
                 alignItems: "center",
             },
         });
-
         const example = (
             <View style={styles.example}>
                 <Popover
@@ -60,30 +62,11 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
-        const {StyleSheet} = require("aphrodite");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {addStyle, View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            default: Icon,
-            icons,
-        } = require("@khanacademy/wonder-blocks-icon");
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-        const {
-            HeadingSmall,
-            LabelLarge,
-        } = require("@khanacademy/wonder-blocks-typography");
-        const {
-            Popover,
-            PopoverContentCore,
-        } = require("@khanacademy/wonder-blocks-popover");
 
+    it("example 2", () => {
         const customIcon = {
             small: "M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z",
         };
-
         const styles = StyleSheet.create({
             example: {
                 paddingTop: Spacing.medium * 15,
@@ -109,13 +92,11 @@ describe("wonder-blocks-popover", () => {
                 justifyContent: "center",
             },
         });
-
         const CustomButton = addStyle("button");
 
         class ControlledPopover extends React.Component {
             constructor(props) {
                 super(props);
-
                 this.state = {
                     popoverOpened: true,
                 };
@@ -128,7 +109,9 @@ describe("wonder-blocks-popover", () => {
                             opened={this.state.popoverOpened}
                             onClose={() => {
                                 console.log("popover closed!");
-                                this.setState({popoverOpened: false});
+                                this.setState({
+                                    popoverOpened: false,
+                                });
                             }}
                             content={({close}) => (
                                 <PopoverContentCore
@@ -197,7 +180,11 @@ describe("wonder-blocks-popover", () => {
                         </Popover>
                         <Strut size={Spacing.xLarge} />
                         <Button
-                            onClick={() => this.setState({popoverOpened: true})}
+                            onClick={() =>
+                                this.setState({
+                                    popoverOpened: true,
+                                })
+                            }
                         >
                             Outside button (click here to re-open the popover)
                         </Button>
@@ -214,17 +201,8 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
-        const {StyleSheet} = require("aphrodite");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            Popover,
-            PopoverContent,
-        } = require("@khanacademy/wonder-blocks-popover");
 
+    it("example 3", () => {
         const styles = StyleSheet.create({
             example: {
                 alignItems: "center",
@@ -233,7 +211,6 @@ describe("wonder-blocks-popover", () => {
                 flexDirection: "row",
             },
         });
-
         const example = (
             <View style={styles.example}>
                 <Popover
@@ -277,21 +254,13 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
-        const {StyleSheet} = require("aphrodite");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            Popover,
-            PopoverContent,
-        } = require("@khanacademy/wonder-blocks-popover");
 
+    it("example 4", () => {
         const styles = StyleSheet.create({
             example: {
                 alignItems: "center",
             },
         });
-
         const example = (
             <View style={styles.example}>
                 <Popover
@@ -312,21 +281,13 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 5", () => {
-        const {StyleSheet} = require("aphrodite");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            Popover,
-            PopoverContent,
-        } = require("@khanacademy/wonder-blocks-popover");
 
+    it("example 5", () => {
         const styles = StyleSheet.create({
             example: {
                 alignItems: "center",
             },
         });
-
         const example = (
             <View style={styles.example}>
                 <Popover
@@ -354,16 +315,13 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 6", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 6", () => {
         const styles = StyleSheet.create({
             example: {
                 alignItems: "center",
             },
         });
-
         const example = (
             <View style={styles.example}>
                 <PopoverContent
@@ -376,13 +334,8 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 7", () => {
-        const {StyleSheet} = require("aphrodite");
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
 
+    it("example 7", () => {
         const styles = StyleSheet.create({
             example: {
                 alignItems: "center",
@@ -391,7 +344,6 @@ describe("wonder-blocks-popover", () => {
                 flexDirection: "row",
             },
         });
-
         const example = (
             <View style={styles.example}>
                 <PopoverContent
@@ -415,16 +367,13 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 8", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 8", () => {
         const styles = StyleSheet.create({
             example: {
                 alignItems: "center",
             },
         });
-
         const example = (
             <View style={styles.example}>
                 <PopoverContent
@@ -439,16 +388,13 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 9", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 9", () => {
         const styles = StyleSheet.create({
             example: {
                 alignItems: "center",
             },
         });
-
         const example = (
             <View style={styles.example}>
                 <PopoverContent
@@ -464,24 +410,11 @@ describe("wonder-blocks-popover", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 10", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {
-            HeadingSmall,
-            LabelLarge,
-        } = require("@khanacademy/wonder-blocks-typography");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {
-            default: Icon,
-            icons,
-        } = require("@khanacademy/wonder-blocks-icon");
 
+    it("example 10", () => {
         const customIcon = {
             small: "M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z",
         };
-
         const styles = StyleSheet.create({
             customPopover: {
                 maxWidth: Spacing.medium * 25,
@@ -501,7 +434,6 @@ describe("wonder-blocks-popover", () => {
                 justifyContent: "center",
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <PopoverContentCore

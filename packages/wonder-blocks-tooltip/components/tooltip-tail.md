@@ -5,10 +5,10 @@ Each example is shown next to a bar that indicates the padding either side of th
 ### Placement top
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Spring} = require("@khanacademy/wonder-blocks-layout");
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Spring} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const styles = StyleSheet.create({
     guideContainer: {
@@ -39,10 +39,10 @@ const styles = StyleSheet.create({
 ### Placement right
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Spring} = require("@khanacademy/wonder-blocks-layout");
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Spring} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const styles = StyleSheet.create({
     exampleContainer: {
@@ -75,10 +75,10 @@ const styles = StyleSheet.create({
 ### Placement bottom
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Spring} = require("@khanacademy/wonder-blocks-layout");
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Spring} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const styles = StyleSheet.create({
     guideContainer: {
@@ -109,10 +109,10 @@ const styles = StyleSheet.create({
 ### Placement left
 
 ```jsx
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Spring} = require("@khanacademy/wonder-blocks-layout");
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Spring} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const styles = StyleSheet.create({
     exampleContainer: {

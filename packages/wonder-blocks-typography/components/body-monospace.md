@@ -5,8 +5,7 @@ const Code = ({children}) => (
     <BodyMonospace style={{whiteSpace: "pre"}}>{children}</BodyMonospace>
 );
 
-const code = (
-`const things = {
+const code = (`const things = {
     areTested\: "This is my new Code element with my code.",
 };`
 );

@@ -3,10 +3,10 @@
 When `mockOnFirstRender` is `false`, the `children` prop is only called after the initial render. Each call provides the same identifier factory, meaning the same identifier gets returned. Try it below.
 
 ```jsx
-const {Body, HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
-const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
+import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
+import Button from "@khanacademy/wonder-blocks-button";
 
 let providerRef = null;
 
@@ -33,7 +33,10 @@ const onClick = () => {
 };
 
 <View>
-    <View style={{flexDirection: "row"}}><Button onClick={onClick}>Click Me to Rerender</Button><Spring /></View>
+    <View style={{flexDirection: "row"}}>
+        <Button onClick={onClick}>Click Me to Rerender</Button>
+        <Spring />
+    </View>
     <Strut size={16} />
     <HeadingSmall>The UniqueIDProvider:</HeadingSmall>
     {provider}
@@ -45,9 +48,9 @@ const onClick = () => {
 When specifying `mockOnFirstRender` to be `true`, the first render will use a mock identifier factory that doesn't guarantee identifier uniqueness. Mock mode can help things appear on the screen during the initial render, but is not the default, because it is not always safe (e.g., we need actual IDs for some SVG constructs).
 
 ```jsx
-const {Body, BodyMonospace, HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
-const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {Body, BodyMonospace, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
+import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
 
 let firstId = null;
 let secondId = null;
@@ -84,9 +87,8 @@ const children = (idf) => {
 `UniqueIDProvider` ensures every identifier factory is unique using a unique number for each one. However, this isn't very readable when wanting to differentiate the types of things using unique identifiers. If we want to, we can provide a `scope` prop that adds some text to each identifier provided. This can be useful for providing some quick at-a-glance component identification to identifiers when there are multiple providers.
 
 ```jsx
-const {Body, HeadingSmall, BodyMonospace} = require("@khanacademy/wonder-blocks-typography");
-const {Spring, Strut} = require("@khanacademy/wonder-blocks-layout");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
 
 const children = ({get}) => (
     <View>
@@ -111,9 +113,9 @@ const children = ({get}) => (
 ### IIdentifierFactory
 
 ```jsx
-const {BodyMonospace} = require("@khanacademy/wonder-blocks-typography");
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {BodyMonospace} from "@khanacademy/wonder-blocks-typography";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
 
 // TODO(somewhatabstract): Update this to be nice once we can get BodyMonospace
 // to allow us to properly preserve whitespace or have an alternative. Or remove

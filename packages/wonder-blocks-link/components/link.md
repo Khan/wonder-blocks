@@ -1,8 +1,8 @@
 ### Example: Link
 
 ```js
-const Color = require("@khanacademy/wonder-blocks-color").default;
-const {View} = require("@khanacademy/wonder-blocks-core");
+import Color from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 <View>
     <p>
@@ -25,8 +25,9 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 You can also use a Typography element instead of just plain text.
 
 ```js
-const {HeadingSmall} = require("@khanacademy/wonder-blocks-typography");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Link from "@khanacademy/wonder-blocks-link";
 
 <View>
     <Link href="#nonexistent-link">

@@ -27,6 +27,11 @@ module.exports = {
             components: "packages/wonder-blocks-button/components/button.js",
         },
         {
+            name: "Clickable",
+            content: "packages/wonder-blocks-clickable/docs.md",
+            components: "packages/wonder-blocks-clickable/components/*.js",
+        },
+        {
             name: "Color",
             content: "packages/wonder-blocks-color/docs.md",
         },
@@ -34,11 +39,6 @@ module.exports = {
             name: "Core",
             content: "packages/wonder-blocks-core/docs.md",
             components: "packages/wonder-blocks-core/components/*.js",
-        },
-        {
-            name: "Clickable",
-            content: "packages/wonder-blocks-clickable/docs.md",
-            components: "packages/wonder-blocks-clickable/components/*.js",
         },
         {
             name: "Dropdown",
@@ -87,7 +87,10 @@ module.exports = {
         {
             name: "Grid",
             content: "packages/wonder-blocks-grid/docs.md",
-            components: "packages/wonder-blocks-grid/components/*.js",
+            components: [
+                "packages/wonder-blocks-grid/components/cell.js",
+                "packages/wonder-blocks-grid/components/row.js",
+            ],
             sections: [
                 {
                     name: "Internal Components",

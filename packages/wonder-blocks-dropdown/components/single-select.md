@@ -6,9 +6,9 @@ the first item is chosen, the text in the opener would exceed the maxWidth. It
 ellipses instead.
 
 ```js
-const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -62,9 +62,9 @@ class ExampleWithPlaceholder extends React.Component {
 This example shows how we can add custom styles to the dropdown.
 
 ```js
-const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -125,9 +125,9 @@ This select starts with a starting selected item. One of the items is disabled
 and thus cannot be selected.
 
 ```js
-const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -174,9 +174,9 @@ class ExampleWithStartingSelection extends React.Component {
 
 This select is disabled.
 ```js
-const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -225,10 +225,10 @@ class DisabledExample extends React.Component {
 This single select is on a dark background and is also right-aligned.
 
 ```js
-const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-const Color = require("@khanacademy/wonder-blocks-color");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import Color from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -237,7 +237,7 @@ const styles = StyleSheet.create({
     darkBackgroundWrapper: {
         flexDirection: "row",
         justifyContent: "flex-end",
-        backgroundColor: Color.default.darkBlue,
+        backgroundColor: Color.darkBlue,
         width: 350,
         height: 200,
         paddingRight: 10,
@@ -288,8 +288,9 @@ class LightRightAlignedExample extends React.Component {
 ### Empty menus are disabled automatically
 
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {StyleSheet} = require("aphrodite");
+import {SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {
@@ -309,9 +310,9 @@ make sure to pass the `aria-labelledby` and/or `id` props to the `SingleSelect` 
 This way, the `opener` will receive this value and it will associate both elements.
 
 ```js
-const {OptionItem} = require("@khanacademy/wonder-blocks-dropdown");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
+import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 <View>
     <LabelLarge

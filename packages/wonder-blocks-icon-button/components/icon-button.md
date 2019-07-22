@@ -1,8 +1,9 @@
 Primary, secondary, and tertiary IconButton examples:
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {icons} = require("@khanacademy/wonder-blocks-icon");
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
+import {View} from "@khanacademy/wonder-blocks-core";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
 
 <View style={{flexDirection: "row"}}>
     <IconButton
@@ -43,10 +44,11 @@ const {Strut} = require("@khanacademy/wonder-blocks-layout");
 
 An IconButton on a dark background. Only the primary kind is allowed.
 ```js
-const Color = require("@khanacademy/wonder-blocks-color").default;
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {icons} = require("@khanacademy/wonder-blocks-icon");
-const {StyleSheet} = require("aphrodite");
+import Color from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
     row: {

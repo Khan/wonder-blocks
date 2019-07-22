@@ -3,12 +3,12 @@
 This component provides a flexible variant that can be used for example, for our Confidence Prompt in test prep and popovers that don't fit into other categories. If you want to use a different background, you can set `color` as part of `PopoverContentCore`.
 
 ```js
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {HeadingSmall, LabelLarge} = require("@khanacademy/wonder-blocks-typography");
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-const Color = require("@khanacademy/wonder-blocks-color").default;
-const {default: Icon, icons} = require("@khanacademy/wonder-blocks-icon");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import Color from "@khanacademy/wonder-blocks-color";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
 const customIcon = {
     small: "M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z",

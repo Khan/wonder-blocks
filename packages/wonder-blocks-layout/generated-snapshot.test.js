@@ -8,19 +8,15 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import MediaLayout from "./components/media-layout.js";
-import Spring from "./components/spring.js";
-import Strut from "./components/strut.js";
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import Button from "@khanacademy/wonder-blocks-button";
+import {Spring, Strut, MediaLayout} from "@khanacademy/wonder-blocks-layout";
 
 describe("wonder-blocks-layout", () => {
     it("example 1", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-        const Button = require("@khanacademy/wonder-blocks-button").default;
-        const {Spring, Strut} = require("./index.js");
-
         const styles = StyleSheet.create({
             container: {
                 flexDirection: "row",
@@ -30,7 +26,6 @@ describe("wonder-blocks-layout", () => {
                 width: 100,
             },
         });
-
         const example = (
             <View style={styles.container}>
                 <Button style={styles.button}>A</Button>
@@ -47,11 +42,8 @@ describe("wonder-blocks-layout", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
 
+    it("example 2", () => {
         const styleSheets = {
             large: StyleSheet.create({
                 test: {
@@ -69,7 +61,6 @@ describe("wonder-blocks-layout", () => {
                 },
             }),
         };
-
         const example = (
             <MediaLayout styleSheets={styleSheets}>
                 {({mediaSize, mediaSpec, styles}) => {
@@ -80,16 +71,13 @@ describe("wonder-blocks-layout", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 3", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 3", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <View style={styles.row}>
@@ -102,16 +90,13 @@ describe("wonder-blocks-layout", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 4", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
 
+    it("example 4", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
             },
         });
-
         const example = (
             <View style={styles.row}>
                 <View style={styles.row}>

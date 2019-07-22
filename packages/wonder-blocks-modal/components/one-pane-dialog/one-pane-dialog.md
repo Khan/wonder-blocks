@@ -1,10 +1,10 @@
 ### Example: OnePaneDialog with above container
 
 ```js
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Body} = require("@khanacademy/wonder-blocks-typography");
-const Button = require("@khanacademy/wonder-blocks-button").default;
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Body} from "@khanacademy/wonder-blocks-typography";
+import Button from "@khanacademy/wonder-blocks-button";
 
 const styles = StyleSheet.create({
     previewSizer: {
@@ -76,13 +76,13 @@ const styles = StyleSheet.create({
 This component is fully responsive, try it by resizing the window.
 
 ```js
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Body} = require("@khanacademy/wonder-blocks-typography");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-const {Breadcrumbs, BreadcrumbsItem} = require("@khanacademy/wonder-blocks-breadcrumbs");
-const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Body} from "@khanacademy/wonder-blocks-typography";
+import Button from "@khanacademy/wonder-blocks-button";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {Breadcrumbs, BreadcrumbsItem} from "@khanacademy/wonder-blocks-breadcrumbs";
+import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 
 const styles = StyleSheet.create({
     previewSizer: {
@@ -180,13 +180,11 @@ const Footer = () => (
 ### Example: Multi-step flows
 
 ```js
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
-const {Body} = require("@khanacademy/wonder-blocks-typography");
-const {Strut} = require("@khanacademy/wonder-blocks-layout");
-const {LabelLarge} = require("@khanacademy/wonder-blocks-typography");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {MediaLayout} = require("@khanacademy/wonder-blocks-layout");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {MediaLayout, Strut} from "@khanacademy/wonder-blocks-layout";
+import Button from "@khanacademy/wonder-blocks-button";
 
 const exampleStyles = StyleSheet.create({
     previewSizer: {

@@ -8,16 +8,21 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import IconButton from "./components/icon-button.js";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Color from "@khanacademy/wonder-blocks-color";
+import {StyleSheet} from "aphrodite";
 
 describe("wonder-blocks-icon-button", () => {
     it("example 1", () => {
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {icons} = require("@khanacademy/wonder-blocks-icon");
-        const {Strut} = require("@khanacademy/wonder-blocks-layout");
-
         const example = (
-            <View style={{flexDirection: "row"}}>
+            <View
+                style={{
+                    flexDirection: "row",
+                }}
+            >
                 <IconButton
                     icon={icons.search}
                     aria-label="search"
@@ -56,12 +61,8 @@ describe("wonder-blocks-icon-button", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {icons} = require("@khanacademy/wonder-blocks-icon");
-        const {StyleSheet} = require("aphrodite");
 
+    it("example 2", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -69,7 +70,6 @@ describe("wonder-blocks-icon-button", () => {
                 padding: 10,
             },
         });
-
         const example = (
             <View style={[styles.row]}>
                 <IconButton

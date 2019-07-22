@@ -8,16 +8,13 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Swatch from "./docutils/swatch.js";
+import Color from "./index.js";
 
 describe("wonder-blocks-color", () => {
     it("example 1", () => {
-        const {StyleSheet} = require("aphrodite");
-
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Swatch = require("./docutils/swatch.js").default;
-
-        const Color = require("./index.js").default;
-
         const styles = StyleSheet.create({
             container: {
                 display: "grid",
@@ -25,7 +22,6 @@ describe("wonder-blocks-color", () => {
                 gridAutoFlow: "row",
             },
         });
-
         const example = (
             <View style={styles.container}>
                 <Swatch
@@ -63,14 +59,8 @@ describe("wonder-blocks-color", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 2", () => {
-        const {StyleSheet} = require("aphrodite");
-
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Swatch = require("./docutils/swatch.js").default;
-
-        const Color = require("./index.js").default;
-
         const styles = StyleSheet.create({
             container: {
                 display: "grid",
@@ -78,7 +68,6 @@ describe("wonder-blocks-color", () => {
                 gridAutoFlow: "row",
             },
         });
-
         const example = (
             <View style={styles.container}>
                 <Swatch
@@ -142,14 +131,8 @@ describe("wonder-blocks-color", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 3", () => {
-        const {StyleSheet} = require("aphrodite");
-
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Swatch = require("./docutils/swatch.js").default;
-
-        const Color = require("./index.js").default;
-
         const styles = StyleSheet.create({
             container: {
                 display: "grid",
@@ -157,7 +140,6 @@ describe("wonder-blocks-color", () => {
                 gridAutoFlow: "row",
             },
         });
-
         const example = (
             <View style={styles.container}>
                 <Swatch
@@ -172,7 +154,11 @@ describe("wonder-blocks-color", () => {
                     segments={1}
                     desc="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
                 />
-                <View style={{width: 256}} />
+                <View
+                    style={{
+                        width: 256,
+                    }}
+                />
                 <Swatch
                     color={Color.teal}
                     name="teal"

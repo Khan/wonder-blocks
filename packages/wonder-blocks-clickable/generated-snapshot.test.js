@@ -8,16 +8,16 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import Clickable from "./components/clickable.js";
+import {StyleSheet} from "aphrodite";
+import Clickable from "@khanacademy/wonder-blocks-clickable";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
+import {Body} from "@khanacademy/wonder-blocks-typography";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {MemoryRouter, Route, Switch} from "react-router-dom";
 
 describe("wonder-blocks-clickable", () => {
     it("example 1", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const {MemoryRouter, Route, Switch} = require("react-router-dom");
-        const Color = require("@khanacademy/wonder-blocks-color").default;
-        const {Body} = require("@khanacademy/wonder-blocks-typography");
-
         const styles = StyleSheet.create({
             hovered: {
                 textDecoration: "underline",
@@ -27,7 +27,6 @@ describe("wonder-blocks-clickable", () => {
                 color: Color.blue,
             },
         });
-
         const example = (
             <View>
                 <Clickable onClick={() => alert("You clicked some text!")}>
@@ -49,12 +48,8 @@ describe("wonder-blocks-clickable", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 2", () => {
-        const {StyleSheet} = require("aphrodite");
-        const {View} = require("@khanacademy/wonder-blocks-core");
-        const Spacing = require("@khanacademy/wonder-blocks-spacing").default;
-        const {MemoryRouter, Route, Switch} = require("react-router-dom");
 
+    it("example 2", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -63,9 +58,8 @@ describe("wonder-blocks-clickable", () => {
             h1: {
                 marginRight: Spacing.large,
             },
-        });
+        }); // NOTE: In actual code you would use BrowserRouter instead
 
-        // NOTE: In actual code you would use BrowserRouter instead
         const example = (
             <MemoryRouter>
                 <View style={styles.row}>

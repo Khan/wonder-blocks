@@ -7,8 +7,8 @@ than those in `@khanacademy/wonder-block-typography` please create custom type
 components that wrap `Text`.
 
 ```js
-const {StyleSheet} = require("aphrodite");
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
 
 const styles = StyleSheet.create({
     container: {
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
 Other props can be passed through `View` or `Text`, as if they were normal tags.
 
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {View} from "@khanacademy/wonder-blocks-core";
 
 <View>
     <View onClick={() => alert("Clicked!")}>
@@ -53,7 +53,7 @@ const {View} = require("@khanacademy/wonder-blocks-core");
 Both `View` and `Text` support a `testId` prop.
 
 ```js
-const {View} = require("@khanacademy/wonder-blocks-core");
+import {View} from "@khanacademy/wonder-blocks-core";
 
 <View>
     <View testId="foo">Foo</View>
