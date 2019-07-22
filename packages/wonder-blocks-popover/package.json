@@ -2,9 +2,8 @@
   "name": "@khanacademy/wonder-blocks-popover",
   "version": "0.0.1",
   "design": "v1",
-  "private": true,
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "description": "",
   "main": "dist/index.js",
