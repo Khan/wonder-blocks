@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-progress-spinner",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -15,9 +15,9 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@khanacademy/wonder-blocks-color": "^1.1.6",
-    "@khanacademy/wonder-blocks-core": "^2.4.0",
-    "@khanacademy/wonder-blocks-spacing": "^2.1.6"
+    "@khanacademy/wonder-blocks-color": "^1.1.7",
+    "@khanacademy/wonder-blocks-core": "^2.4.1",
+    "@khanacademy/wonder-blocks-spacing": "^2.1.7"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
