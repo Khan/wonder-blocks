@@ -249,8 +249,7 @@ class ControlledPopoverExample extends React.Component {
             selectedValues: ["kumail"],
         };
         this.handleChange = this.handleChange.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.openDropdown = this.openDropdown.bind(this);
+        this.toggleDropdown = this.toggleDropdown.bind(this);
     }
 
     handleChange(update) {
@@ -259,14 +258,10 @@ class ControlledPopoverExample extends React.Component {
         });
     }
 
-    handleClose() {
+    toggleDropdown() {
         this.setState({
-            opened: false,
+            opened: !this.state.opened,
         });
-    }
-
-    openDropdown() {
-        this.setState({opened: true});
     }
 
     render() {
@@ -287,7 +282,7 @@ class ControlledPopoverExample extends React.Component {
                     selectionType={"single"}
                     menuItems={dropdownItems}
                     onChange={this.handleChange}
-                    onClose={this.handleClose}
+                    onClose={this.toggleDropdown}
                     opened={this.state.opened}
                     selectedValues={this.state.selectedValues}
                 >
@@ -305,7 +300,7 @@ class ControlledPopoverExample extends React.Component {
                     )}
                 </Dropdown>
                 <Strut size={Spacing.medium} />
-                <Button onClick={this.openDropdown}>Open dropdown programatically</Button>
+                <Button onClick={this.toggleDropdown}>Open dropdown programatically</Button>
             </View>
         );
     }

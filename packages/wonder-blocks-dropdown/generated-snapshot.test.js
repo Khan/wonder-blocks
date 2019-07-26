@@ -242,8 +242,7 @@ describe("wonder-blocks-dropdown", () => {
                     selectedValues: ["kumail"],
                 };
                 this.handleChange = this.handleChange.bind(this);
-                this.handleClose = this.handleClose.bind(this);
-                this.openDropdown = this.openDropdown.bind(this);
+                this.toggleDropdown = this.toggleDropdown.bind(this);
             }
 
             handleChange(update) {
@@ -252,15 +251,9 @@ describe("wonder-blocks-dropdown", () => {
                 });
             }
 
-            handleClose() {
+            toggleDropdown() {
                 this.setState({
-                    opened: false,
-                });
-            }
-
-            openDropdown() {
-                this.setState({
-                    opened: true,
+                    opened: !this.state.opened,
                 });
             }
 
@@ -281,7 +274,7 @@ describe("wonder-blocks-dropdown", () => {
                             selectionType={"single"}
                             menuItems={dropdownItems}
                             onChange={this.handleChange}
-                            onClose={this.handleClose}
+                            onClose={this.toggleDropdown}
                             opened={this.state.opened}
                             selectedValues={this.state.selectedValues}
                         >
@@ -303,7 +296,7 @@ describe("wonder-blocks-dropdown", () => {
                             )}
                         </Dropdown>
                         <Strut size={Spacing.medium} />
-                        <Button onClick={this.openDropdown}>
+                        <Button onClick={this.toggleDropdown}>
                             Open dropdown programatically
                         </Button>
                     </View>
