@@ -27,6 +27,17 @@ type Props = {|
     onChange: (selectedValue: string) => mixed,
 
     /**
+     * Can be used to override the state of the ActionMenu by parent elements
+     */
+    opened?: boolean,
+
+    /**
+     * In controlled mode, use this prop in case the parent needs to be notified
+     * when the menu opens/closes.
+     */
+    onToggle?: (opened: boolean) => mixed,
+
+    /**
      * Unique identifier attached to the field control. If used, we need to
      * guarantee that the ID is unique within everything rendered on a page.
      * Used to match `<label>` with `<button>` elements for screenreaders.
@@ -83,7 +94,7 @@ type State = {|
      */
     open: boolean,
     /**
-     * Whether or not last open state change was triggered by a keyboard click.
+     * Whether or not last opened state change was triggered by a keyboard click.
      */
     keyboard?: boolean,
 |};
@@ -115,11 +126,25 @@ export default class SingleSelect extends React.Component<Props, State> {
         };
     }
 
-    handleOpenChanged = (open: boolean, keyboard?: boolean) => {
+    /**
+     * Used to sync the `opened` state when this component acts as a controlled
+     * component
+     */
+    static getDerivedStateFromProps(props: Props, state: State) {
+        return {
+            open: typeof props.opened === "boolean" ? props.opened : state.open,
+        };
+    }
+
+    handleOpenChanged = (opened: boolean, keyboard?: boolean) => {
         this.setState({
-            open,
+            open: opened,
             keyboard,
         });
+
+        if (this.props.onToggle) {
+            this.props.onToggle(opened);
+        }
     };
 
     handleToggle = (selectedValue: string) => {
@@ -129,13 +154,17 @@ export default class SingleSelect extends React.Component<Props, State> {
         }
 
         // Bring focus back to the opener element.
-        if (open && this.openerElement) {
+        if (this.state.open && this.openerElement) {
             this.openerElement.focus();
         }
 
         this.setState({
             open: false, // close the menu upon selection
         });
+
+        if (this.props.onToggle) {
+            this.props.onToggle(false);
+        }
     };
 
     getMenuItems(): Array<DropdownItem> {
@@ -184,11 +213,15 @@ export default class SingleSelect extends React.Component<Props, State> {
             selectedValue,
             style,
             testId,
-            // eslint-disable-next-line no-unused-vars
+            // the following props are being included here to avoid
+            // passing them down to the opener as part of sharedProps
+            /* eslint-disable no-unused-vars */
             onChange,
+            onToggle,
+            opened,
+            /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
-        const {open} = this.state;
 
         const selectedItem = React.Children.toArray(children).find(
             (option) => option.props.value === selectedValue,
@@ -207,7 +240,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 isPlaceholder={!selectedItem}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
-                open={open}
+                open={this.state.open}
                 ref={this.handleOpenerRef}
                 testId={testId}
             >
@@ -225,7 +258,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 keyboard={this.state.keyboard}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
-                open={open}
+                open={this.state.open}
                 opener={opener}
                 openerElement={this.openerElement}
                 style={style}

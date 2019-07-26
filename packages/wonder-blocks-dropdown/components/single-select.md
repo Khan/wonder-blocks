@@ -39,6 +39,7 @@ class ExampleWithPlaceholder extends React.Component {
     render() {
         return <SingleSelect
             onChange={this.handleChange}
+            onToggle={(opened) => console.log('toggle: ', opened)}
             placeholder="Choose a fruit"
             selectedValue={this.state.selectedValue}
             style={styles.setWidth}
@@ -330,4 +331,77 @@ import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
         <OptionItem label="some value" value="" />
     </SingleSelect>
 </View>
+```
+
+### Example: Opening a SingleSelect programmatically
+
+Sometimes you'll want to trigger a dropdown programmatically. This can be done by
+setting the `opened` prop to `true`. In this situation the `SingleSelect` is a
+controlled component. The parent is responsible for managing the opening/closing
+of the dropdown when using this prop.
+
+This means that you'll also have to update `opened` to the value triggered by
+the `onToggle` prop.
+
+```js
+import {OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {StyleSheet} from "aphrodite";
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    }
+});
+
+class ControlledSingleSelectExample extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            opened: false,
+            selectedValue: null,
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.toggleMenu = this.toggleMenu.bind(this);
+    }
+
+    handleChange(selected) {
+        this.setState({
+            selectedValue: selected,
+        });
+    }
+
+    toggleMenu(opened) {
+        this.setState({
+            opened: opened,
+        });
+    }
+
+    render() {
+        return (
+            <View style={styles.row}>
+                <SingleSelect
+                    opened={this.state.opened}
+                    onToggle={this.toggleMenu}
+                    onChange={this.handleChange}
+                    selectedValue={this.state.selectedValue}
+                    placeholder="Choose"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>
+                <Strut size={Spacing.medium} />
+                <Button onClick={() => this.toggleMenu(true)}>
+                    Open SingleSelect programatically
+                </Button>
+            </View>
+        );
+    }
+}
+
+<ControlledSingleSelectExample />
 ```

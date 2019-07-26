@@ -586,10 +586,11 @@ describe("wonder-blocks-dropdown", () => {
             }
 
             toggleMenu(opened) {
-                console.log("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥");
-                console.log("should toggle!!!", opened);
-                this.setState({opened: opened});
+                this.setState({
+                    opened: opened,
+                });
             }
+
             render() {
                 return (
                     <View style={styles.row}>
@@ -620,32 +621,44 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
+
         const example = <ControlledActionMenuExample />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 11", () => {
         const styles = StyleSheet.create({
-            row: {flexDirection: "row"},
+            row: {
+                flexDirection: "row",
+            },
             setWidth: {
                 minWidth: 170,
                 maxWidth: 190,
             },
         });
+
         class ExampleWithPlaceholder extends React.Component {
             constructor() {
                 super();
-                this.state = {selectedValue: null};
+                this.state = {
+                    selectedValue: null,
+                };
                 this.handleChange = this.handleChange.bind(this);
             }
+
             handleChange(selected) {
                 console.log(`${selected} was selected!`);
-                this.setState({selectedValue: selected});
+                this.setState({
+                    selectedValue: selected,
+                });
             }
+
             render() {
                 return (
                     <SingleSelect
                         onChange={this.handleChange}
+                        onToggle={(opened) => console.log("toggle: ", opened)}
                         placeholder="Choose a fruit"
                         selectedValue={this.state.selectedValue}
                         style={styles.setWidth}
@@ -677,6 +690,7 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
+
         const example = (
             <View style={styles.row}>
                 <ExampleWithPlaceholder />
@@ -685,9 +699,12 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 12", () => {
         const styles = StyleSheet.create({
-            row: {flexDirection: "row"},
+            row: {
+                flexDirection: "row",
+            },
             setWidth: {
                 minWidth: 170,
                 maxWidth: 190,
@@ -696,16 +713,23 @@ describe("wonder-blocks-dropdown", () => {
                 maxHeight: 240,
             },
         });
+
         class ExampleWithDropdownStyles extends React.Component {
             constructor() {
                 super();
-                this.state = {selectedValue: null};
+                this.state = {
+                    selectedValue: null,
+                };
                 this.handleChange = this.handleChange.bind(this);
             }
+
             handleChange(selected) {
                 console.log(`${selected} was selected!`);
-                this.setState({selectedValue: selected});
+                this.setState({
+                    selectedValue: selected,
+                });
             }
+
             render() {
                 return (
                     <SingleSelect
@@ -726,6 +750,7 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
+
         const example = (
             <View style={styles.row}>
                 <ExampleWithDropdownStyles />
@@ -734,18 +759,31 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 13", () => {
-        const styles = StyleSheet.create({row: {flexDirection: "row"}});
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+
         class ExampleWithStartingSelection extends React.Component {
             constructor() {
                 super();
-                this.state = {selectedValue: "banana"}; // Styleguidist doesn't support arrow functions in class field properties
+                this.state = {
+                    selectedValue: "banana",
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
+
             handleChange(selected) {
                 console.log(`${selected} was selected!`);
-                this.setState({selectedValue: selected});
+                this.setState({
+                    selectedValue: selected,
+                });
             }
+
             render() {
                 return (
                     <SingleSelect
@@ -764,6 +802,7 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
+
         const example = (
             <View style={styles.row}>
                 <ExampleWithStartingSelection />
@@ -772,18 +811,31 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 14", () => {
-        const styles = StyleSheet.create({row: {flexDirection: "row"}});
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+
         class DisabledExample extends React.Component {
             constructor() {
                 super();
-                this.state = {selectedValue: "banana"}; // Styleguidist doesn't support arrow functions in class field properties
+                this.state = {
+                    selectedValue: "banana",
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
+
             handleChange(selected) {
                 console.log(`${selected} was selected!`);
-                this.setState({selectedValue: selected});
+                this.setState({
+                    selectedValue: selected,
+                });
             }
+
             render() {
                 return (
                     <SingleSelect
@@ -803,6 +855,7 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
+
         const example = (
             <View style={styles.row}>
                 <DisabledExample />
@@ -811,9 +864,12 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 15", () => {
         const styles = StyleSheet.create({
-            row: {flexDirection: "row"},
+            row: {
+                flexDirection: "row",
+            },
             darkBackgroundWrapper: {
                 flexDirection: "row",
                 justifyContent: "flex-end",
@@ -824,16 +880,24 @@ describe("wonder-blocks-dropdown", () => {
                 paddingTop: 10,
             },
         });
+
         class LightRightAlignedExample extends React.Component {
             constructor() {
                 super();
-                this.state = {selectedValue: null}; // Styleguidist doesn't support arrow functions in class field properties
+                this.state = {
+                    selectedValue: null,
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
+
             handleChange(selected) {
                 console.log(`${selected} was selected!`);
-                this.setState({selectedValue: selected});
+                this.setState({
+                    selectedValue: selected,
+                });
             }
+
             render() {
                 return (
                     <SingleSelect
@@ -859,6 +923,7 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
+
         const example = (
             <View style={styles.row}>
                 <View style={styles.darkBackgroundWrapper}>
@@ -869,8 +934,13 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 16", () => {
-        const styles = StyleSheet.create({row: {flexDirection: "row"}});
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
         const example = (
             <View style={styles.row}>
                 <SingleSelect placeholder="empty" />
@@ -879,6 +949,7 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 17", () => {
         const example = (
             <View>
@@ -901,23 +972,92 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
     it("example 18", () => {
         const styles = StyleSheet.create({
-            row: {flexDirection: "row"},
+            row: {
+                flexDirection: "row",
+            },
+        });
+
+        class ControlledSingleSelectExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    opened: false,
+                    selectedValue: null,
+                };
+                this.handleChange = this.handleChange.bind(this);
+                this.toggleMenu = this.toggleMenu.bind(this);
+            }
+
+            handleChange(selected) {
+                this.setState({
+                    selectedValue: selected,
+                });
+            }
+
+            toggleMenu(opened) {
+                this.setState({
+                    opened: opened,
+                });
+            }
+
+            render() {
+                return (
+                    <View style={styles.row}>
+                        <SingleSelect
+                            opened={this.state.opened}
+                            onToggle={this.toggleMenu}
+                            onChange={this.handleChange}
+                            selectedValue={this.state.selectedValue}
+                            placeholder="Choose"
+                        >
+                            <OptionItem label="item 1" value="1" />
+                            <OptionItem label="item 2" value="2" />
+                            <OptionItem label="item 3" value="3" />
+                        </SingleSelect>
+                        <Strut size={Spacing.medium} />
+                        <Button onClick={() => this.toggleMenu(true)}>
+                            Open SingleSelect programatically
+                        </Button>
+                    </View>
+                );
+            }
+        }
+
+        const example = <ControlledSingleSelectExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 19", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
             setWidth: {
                 minWidth: 170,
             },
         });
+
         class ExampleNoneSelected extends React.Component {
             constructor() {
                 super();
-                this.state = {selectedValues: []}; // Styleguidist doesn't support arrow functions in class field properties
+                this.state = {
+                    selectedValues: [],
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
+
             handleChange(update) {
                 console.log("changes happened!");
-                this.setState({selectedValues: update});
+                this.setState({
+                    selectedValues: update,
+                });
             }
+
             render() {
                 return (
                     <MultiSelect
@@ -949,6 +1089,7 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
+
         const example = (
             <View style={styles.row}>
                 <ExampleNoneSelected />
@@ -957,24 +1098,37 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 19", () => {
+
+    it("example 20", () => {
         const styles = StyleSheet.create({
-            row: {flexDirection: "row"},
+            row: {
+                flexDirection: "row",
+            },
             setWidth: {
                 minWidth: 170,
             },
-            dropdownHeight: {maxHeight: 200},
+            dropdownHeight: {
+                maxHeight: 200,
+            },
         });
+
         class ExampleScrolling extends React.Component {
             constructor() {
                 super();
-                this.state = {selectedValues: []}; // Styleguidist doesn't support arrow functions in class field properties
+                this.state = {
+                    selectedValues: [],
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
+
             handleChange(update) {
                 console.log("changes happened!");
-                this.setState({selectedValues: update});
+                this.setState({
+                    selectedValues: update,
+                });
             }
+
             render() {
                 return (
                     <MultiSelect
@@ -997,6 +1151,7 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
+
         const example = (
             <View style={styles.row}>
                 <ExampleScrolling />
@@ -1005,18 +1160,31 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 20", () => {
-        const styles = StyleSheet.create({row: {flexDirection: "row"}});
+
+    it("example 21", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+
         class ExampleWithShortcuts extends React.Component {
             constructor() {
                 super();
-                this.state = {selectedValues: ["wonderblocks 4ever"]}; // Styleguidist doesn't support arrow functions in class field properties
+                this.state = {
+                    selectedValues: ["wonderblocks 4ever"],
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
+
             handleChange(update) {
                 console.log("changes happened!");
-                this.setState({selectedValues: update});
+                this.setState({
+                    selectedValues: update,
+                });
             }
+
             render() {
                 return (
                     <MultiSelect
@@ -1047,6 +1215,7 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
+
         const example = (
             <View style={styles.row}>
                 <ExampleWithShortcuts />
@@ -1055,7 +1224,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 21", () => {
+
+    it("example 22", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 alignItems: "center",
@@ -1072,16 +1242,24 @@ describe("wonder-blocks-dropdown", () => {
                 minWidth: 170,
             },
         });
+
         class SimpleMultiSelect extends React.Component {
             constructor() {
                 super();
-                this.state = {selectedValues: []}; // Styleguidist doesn't support arrow functions in class field properties
+                this.state = {
+                    selectedValues: [],
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
+
             handleChange(update) {
                 console.log("changes happened!");
-                this.setState({selectedValues: update});
+                this.setState({
+                    selectedValues: update,
+                });
             }
+
             render() {
                 return (
                     <MultiSelect
@@ -1103,10 +1281,19 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
+
         const modalContent = (
-            <View style={{height: "200vh"}}>
+            <View
+                style={{
+                    height: "200vh",
+                }}
+            >
                 <View style={styles.scrolledWrapper}>
-                    <View style={{minHeight: "100vh"}}>
+                    <View
+                        style={{
+                            minHeight: "100vh",
+                        }}
+                    >
                         <SimpleMultiSelect />
                     </View>
                 </View>
@@ -1131,8 +1318,13 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 22", () => {
-        const styles = StyleSheet.create({row: {flexDirection: "row"}});
+
+    it("example 23", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
         const example = (
             <View style={styles.row}>
                 <MultiSelect placeholder="empty" />
@@ -1141,7 +1333,8 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 23", () => {
+
+    it("example 24", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -1163,18 +1356,31 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
-    it("example 24", () => {
-        const styles = StyleSheet.create({row: {flexDirection: "row"}});
+
+    it("example 25", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+
         class ImplicitAllEnabledExample extends React.Component {
             constructor() {
                 super();
-                this.state = {selectedValues: []}; // Styleguidist doesn't support arrow functions in class field properties
+                this.state = {
+                    selectedValues: [],
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
                 this.handleChange = this.handleChange.bind(this);
             }
+
             handleChange(update) {
                 console.log("changes happened!");
-                this.setState({selectedValues: update});
+                this.setState({
+                    selectedValues: update,
+                });
             }
+
             render() {
                 return (
                     <MultiSelect
@@ -1191,11 +1397,71 @@ describe("wonder-blocks-dropdown", () => {
                 );
             }
         }
+
         const example = (
             <View style={styles.row}>
                 <ImplicitAllEnabledExample />
             </View>
         );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 26", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+
+        class ControlledMultiSelectExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    opened: false,
+                    selectedValues: [],
+                };
+                this.handleChange = this.handleChange.bind(this);
+                this.toggleMenu = this.toggleMenu.bind(this);
+            }
+
+            handleChange(update) {
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            toggleMenu(opened) {
+                this.setState({
+                    opened: opened,
+                });
+            }
+
+            render() {
+                return (
+                    <View style={styles.row}>
+                        <MultiSelect
+                            selectItemType="fruits"
+                            onChange={this.handleChange}
+                            opened={this.state.opened}
+                            onToggle={this.toggleMenu}
+                            selectedValues={this.state.selectedValues}
+                        >
+                            <OptionItem label="Nectarine" value="nectarine" />
+                            <OptionItem label="Plum" value="plum" />
+                            <OptionItem label="Cantaloupe" value="cantaloupe" />
+                            <OptionItem label="Pineapples" value="pineapples" />
+                        </MultiSelect>
+                        <Strut size={Spacing.medium} />
+                        <Button onClick={() => this.toggleMenu(true)}>
+                            Open SingleSelect programatically
+                        </Button>
+                    </View>
+                );
+            }
+        }
+
+        const example = <ControlledMultiSelectExample />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
