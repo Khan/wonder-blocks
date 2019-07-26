@@ -187,3 +187,86 @@ const styles = StyleSheet.create({
     </ActionMenu>
 </View>
 ```
+
+### Example: Opening an ActionMenu programmatically
+
+Sometimes you'll want to trigger a dropdown programmatically. This can be done by
+setting the `opened` prop to `true`. In this situation the `ActionMenu` is a
+controlled component. The parent is responsible for managing the opening/closing
+of the dropdown when using this prop.
+
+This means that you'll also have to update `opened` for these situations:
+-  to `true`: inside the Dropdown children instance (dropdown anchor). See example
+   below.
+-  to `false`: in response to the `onClose` callback being triggered.
+
+```js
+import {Dropdown, ActionItem, OptionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {StyleSheet} from "aphrodite";
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    }
+});
+
+class ControlledActionMenuExample extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            opened: false,
+            selectedValues: ["kumail"],
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.toggleMenu = this.toggleMenu.bind(this);
+    }
+
+    handleChange(update) {
+        this.setState({
+            selectedValues: update,
+        });
+    }
+
+    toggleMenu(opened) {
+        console.log("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥");
+        console.log('should toggle!!!', opened);
+        this.setState({
+            opened: opened,
+        });
+    }
+
+    render() {
+        return (
+            <View style={styles.row}>
+                <ActionMenu
+                    menuText="Betsy Appleseed"
+                    onChange={this.handleChange}
+                    onToggle={(opened) => {
+                        console.log('toggle called!!!! ', opened);
+                        this.toggleMenu(opened);
+                    }}
+                    opened={this.state.opened}
+                    selectedValues={this.state.selectedValues}
+                >
+                    <ActionItem label="Add new +" />
+                    <SeparatorItem />
+                    <OptionItem label="Alex" value="alex" />
+                    <OptionItem label="Cathy" value="cathy" />
+                    <OptionItem label="Kumail" value="kumail" />
+                    <OptionItem label="Salman" value="salman" />
+                    <OptionItem label="Yan" value="yan" />
+                    <OptionItem label="Yash" value="yash" />
+                </ActionMenu>
+                <Strut size={Spacing.medium} />
+                <Button onClick={() => this.toggleMenu(true)}>Open ActionMenu programatically</Button>
+            </View>
+        );
+    }
+}
+
+<ControlledActionMenuExample />
+```

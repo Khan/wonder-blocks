@@ -210,10 +210,8 @@ setting the `opened` prop to `true`. In this situation the `Dropdown` is a
 controlled component. The parent is responsible for managing the opening/closing
 of the dropdown when using this prop.
 
-This means that you'll also have to update `opened` for these situations:
--  to `true`: inside the Dropdown children instance (dropdown anchor). See example
-   below.
--  to `false`: in response to the `onClose` callback being triggered.
+This means that you'll also have to update `opened` to the value triggered by
+the `onToggle` prop.
 
 ```js
 import {Dropdown, ActionItem, OptionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
@@ -241,7 +239,7 @@ const styles = StyleSheet.create({
     }
 });
 
-class ControlledPopoverExample extends React.Component {
+class ControlledDropdownExample extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -258,15 +256,18 @@ class ControlledPopoverExample extends React.Component {
         });
     }
 
-    toggleDropdown() {
+    toggleDropdown(opened) {
         this.setState({
-            opened: !this.state.opened,
+            opened: opened,
         });
     }
 
     render() {
         const dropdownItems = [
-            <ActionItem label="Add new +" href="#!/Dropdown/7?new" />,
+            <ActionItem
+                label="Add new +"
+                onClick={() => console.log("Add new clicked...")}
+            />,
             <SeparatorItem />,
             <OptionItem label="Alex" value="alex" />,
             <OptionItem label="Cathy" value="cathy" />,
@@ -282,13 +283,12 @@ class ControlledPopoverExample extends React.Component {
                     selectionType={"single"}
                     menuItems={dropdownItems}
                     onChange={this.handleChange}
-                    onClose={this.toggleDropdown}
+                    onToggle={this.toggleDropdown}
                     opened={this.state.opened}
                     selectedValues={this.state.selectedValues}
                 >
                     {(eventState) => (
                         <HeadingSmall
-                            onClick={() => this.setState({opened: !this.state.opened})}
                             style={[
                                 styles.cursor,
                                 eventState.focused && styles.focused,
@@ -300,11 +300,11 @@ class ControlledPopoverExample extends React.Component {
                     )}
                 </Dropdown>
                 <Strut size={Spacing.medium} />
-                <Button onClick={this.toggleDropdown}>Open dropdown programatically</Button>
+                <Button onClick={() => this.toggleDropdown(true)}>Open dropdown programatically</Button>
             </View>
         );
     }
 }
 
-<ControlledPopoverExample />
+<ControlledDropdownExample />
 ```

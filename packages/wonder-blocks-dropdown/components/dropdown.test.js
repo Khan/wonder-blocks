@@ -13,7 +13,7 @@ import {keyCodes} from "../util/constants.js";
 type Props = {|
     selectionType?: "single" | "multi",
     opened?: boolean,
-    onClose?: () => mixed,
+    onToggle?: (opened: boolean) => mixed,
 |};
 type State = {|
     selectedValues: Array<*>,
@@ -184,12 +184,12 @@ describe("Dropdown", () => {
                     selectedValues: update,
                 });
 
-            handleClose = () => {
+            handleToggle = (opened) => {
                 this.setState({
-                    opened: false,
+                    opened: opened,
                 });
 
-                this.props.onClose && this.props.onClose();
+                this.props.onToggle && this.props.onToggle(opened);
             };
 
             render() {
@@ -204,16 +204,14 @@ describe("Dropdown", () => {
                     <Dropdown
                         menuItems={dropdownItems}
                         opened={this.state.opened}
-                        onClose={this.handleClose}
+                        onToggle={this.handleToggle}
                         onChange={this.handleChange}
                         selectionType={this.props.selectionType}
                         selectedValues={this.state.selectedValues}
                         testId="dropdown"
                     >
                         {(state) => (
-                            <h1 onClick={() => this.setState({opened: true})}>
-                                Manage students
-                            </h1>
+                            <h1 onClick={this.handleToggle}>Manage students</h1>
                         )}
                     </Dropdown>
                 );
@@ -351,12 +349,12 @@ describe("Dropdown", () => {
             );
         });
 
-        it("calls onClose after the menu is closed", () => {
+        it("calls onToggleMock after the menu is closed", () => {
             // Arrange
-            const onCloseMock = jest.fn();
+            const onToggleMock = jest.fn();
 
             const controlledComponent = mount(
-                <ControlledComponent opened={true} onClose={onCloseMock} />,
+                <ControlledComponent opened={true} onToggle={onToggleMock} />,
             );
 
             // Act
@@ -364,7 +362,7 @@ describe("Dropdown", () => {
             optionItem.simulate("click");
 
             // Assert
-            expect(onCloseMock).toHaveBeenCalled();
+            expect(onToggleMock).toHaveBeenCalledWith(false);
         });
     });
 });
