@@ -13,9 +13,11 @@ import {keyCodes} from "../util/constants.js";
 type Props = {|
     selectionType?: "single" | "multi",
     opened?: boolean,
+    onClose?: () => mixed,
 |};
 type State = {|
     selectedValues: Array<*>,
+    opened?: boolean,
 |};
 
 describe("Dropdown", () => {
@@ -167,18 +169,28 @@ describe("Dropdown", () => {
         // Assert
         expect(dropdown.state("opened")).toBe(true);
     });
+
     describe("use controlled components", () => {
         window.scrollTo = jest.fn();
         window.getComputedStyle = jest.fn();
         class ControlledComponent extends React.Component<Props, State> {
             state = {
                 selectedValues: ["A"],
+                opened: this.props.opened,
             };
 
             handleChange = (update) =>
                 this.setState({
                     selectedValues: update,
                 });
+
+            handleClose = () => {
+                this.setState({
+                    opened: false,
+                });
+
+                this.props.onClose && this.props.onClose();
+            };
 
             render() {
                 const dropdownItems = [
@@ -191,12 +203,18 @@ describe("Dropdown", () => {
                 return (
                     <Dropdown
                         menuItems={dropdownItems}
-                        opened={this.props.opened}
+                        opened={this.state.opened}
+                        onClose={this.handleClose}
                         onChange={this.handleChange}
                         selectionType={this.props.selectionType}
                         selectedValues={this.state.selectedValues}
+                        testId="dropdown"
                     >
-                        {(state) => <h1>Manage students</h1>}
+                        {(state) => (
+                            <h1 onClick={() => this.setState({opened: true})}>
+                                Manage students
+                            </h1>
+                        )}
                     </Dropdown>
                 );
             }
@@ -300,7 +318,24 @@ describe("Dropdown", () => {
             );
         });
 
-        it("override the Dropdowns state if the opened prop is set", () => {
+        it("opens the Controlled Dropdown when the anchor is clicked", () => {
+            // Arrange
+            const controlledComponent = mount(<ControlledComponent />);
+
+            // Act
+            // click on dropdown anchor
+            controlledComponent
+                .find(Dropdown)
+                .find(`[data-test-id="dropdown"]`)
+                .simulate("click");
+
+            // Assert
+            expect(controlledComponent.find(Dropdown).prop("opened")).toBe(
+                true,
+            );
+        });
+
+        it("updates the Controlled Dropdown state if the menu is closed", () => {
             // Arrange
             const controlledComponent = mount(
                 <ControlledComponent opened={true} />,
@@ -311,9 +346,25 @@ describe("Dropdown", () => {
             optionItem.simulate("click");
 
             // Assert
-            expect(controlledComponent.find(Dropdown).state("opened")).toBe(
-                true,
+            expect(controlledComponent.find(Dropdown).prop("opened")).toBe(
+                false,
             );
+        });
+
+        it("calls onClose after the menu is closed", () => {
+            // Arrange
+            const onCloseMock = jest.fn();
+
+            const controlledComponent = mount(
+                <ControlledComponent opened={true} onClose={onCloseMock} />,
+            );
+
+            // Act
+            const optionItem = controlledComponent.find(OptionItem).at(0);
+            optionItem.simulate("click");
+
+            // Assert
+            expect(onCloseMock).toHaveBeenCalled();
         });
     });
 });
