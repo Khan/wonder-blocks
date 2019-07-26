@@ -42,6 +42,17 @@ type Props = {|
     onChange: (selectedValues: Array<string>) => mixed,
 
     /**
+     * Can be used to override the state of the ActionMenu by parent elements
+     */
+    opened?: boolean,
+
+    /**
+     * In controlled mode, use this prop in case the parent needs to be notified
+     * when the menu opens/closes.
+     */
+    onToggle?: (opened: boolean) => mixed,
+
+    /**
      * The values of the items that are currently selected.
      */
     selectedValues: Array<string>,
@@ -136,11 +147,25 @@ export default class MultiSelect extends React.Component<Props, State> {
         };
     }
 
-    handleOpenChanged = (open: boolean, keyboard?: boolean) => {
+    /**
+     * Used to sync the `opened` state when this component acts as a controlled
+     * component
+     */
+    static getDerivedStateFromProps(props: Props, state: State) {
+        return {
+            open: typeof props.opened === "boolean" ? props.opened : state.open,
+        };
+    }
+
+    handleOpenChanged = (opened: boolean, keyboard?: boolean) => {
         this.setState({
-            open,
+            open: opened,
             keyboard,
         });
+
+        if (this.props.onToggle) {
+            this.props.onToggle(opened);
+        }
     };
 
     handleToggle = (selectedValue: string) => {
@@ -296,6 +321,8 @@ export default class MultiSelect extends React.Component<Props, State> {
             /* eslint-disable no-unused-vars */
             children,
             onChange,
+            onToggle,
+            opened,
             selectedValues,
             selectItemType,
             implicitAllEnabled,

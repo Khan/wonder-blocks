@@ -142,4 +142,94 @@ describe("MultiSelect", () => {
         // Assert
         expect(opener.text()).toEqual("All students");
     });
+
+    describe("Controlled component", () => {
+        type Props = {|
+            opened?: boolean,
+            onToggle?: (opened: boolean) => mixed,
+        |};
+
+        type State = {|
+            opened?: boolean,
+        |};
+        class ControlledComponent extends React.Component<Props, State> {
+            state = {
+                opened: this.props.opened,
+            };
+
+            handleToggle = (opened) => {
+                this.setState({
+                    opened: opened,
+                });
+
+                this.props.onToggle && this.props.onToggle(opened);
+            };
+
+            render() {
+                return (
+                    <React.Fragment>
+                        <MultiSelect
+                            selectItemType="fruits"
+                            onChange={onChange}
+                            opened={this.state.opened}
+                            onToggle={this.handleToggle}
+                        >
+                            <OptionItem label="item 1" value="1" />
+                            <OptionItem label="item 2" value="2" />
+                            <OptionItem label="item 3" value="3" />
+                        </MultiSelect>
+                        <button
+                            data-test-id="parent-button"
+                            onClick={() => this.handleToggle(true)}
+                        />
+                    </React.Fragment>
+                );
+            }
+        }
+
+        it("opens the menu when the parent updates its state", () => {
+            // Arrange
+            const onToggleMock = jest.fn();
+            const wrapper = mount(
+                <ControlledComponent onToggle={onToggleMock} />,
+            );
+
+            // Act
+            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+
+            // Assert
+            expect(onToggleMock).toHaveBeenCalledWith(true);
+        });
+
+        it("closes the menu when the parent updates its state", () => {
+            // Arrange
+            const onToggleMock = jest.fn();
+            const wrapper = mount(
+                <ControlledComponent onToggle={onToggleMock} />,
+            );
+
+            // Act
+            // open the menu from the outside
+            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            // click on the opener
+            wrapper.find(SelectOpener).simulate("click");
+
+            // Assert
+            expect(onToggleMock).toHaveBeenCalledWith(false);
+        });
+
+        it("should still allow the opener to open the menu", () => {
+            // Arrange
+            const onToggleMock = jest.fn();
+            const wrapper = mount(
+                <ControlledComponent onToggle={onToggleMock} />,
+            );
+
+            // Act
+            wrapper.find(SelectOpener).simulate("click");
+
+            // Assert
+            expect(onToggleMock).toHaveBeenCalledWith(true);
+        });
+    });
 });
