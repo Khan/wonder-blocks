@@ -6,6 +6,7 @@ import {StyleSheet} from "aphrodite";
 import type {
     AriaProps,
     StyleType,
+    ClickableHandlers,
     ClickableState,
 } from "@khanacademy/wonder-blocks-core";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
@@ -26,9 +27,14 @@ type Props = {|
     children: (eventState: ClickableState) => React.Element<any>,
 
     /**
-     * Can be used to override the state of the Dropdown by parent elemnents
+     * Can be used to override the state of the Dropdown by parent elements
      */
     opened?: boolean,
+
+    /**
+     * Called when the menu closes
+     */
+    onClose?: () => mixed,
 
     /**
      * The items present in the Dropdown
@@ -101,21 +107,26 @@ export default class Dropdown extends React.Component<Props, State> {
         selectionType: "multi",
     };
 
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            opened: false,
-            keyboard: false,
+    state = {
+        opened: false,
+        keyboard: false,
+    };
+
+    /**
+     * Used to sync the `opened` state when this component acts as a controlled
+     * component
+     */
+    static getDerivedStateFromProps(props: Props, state: State) {
+        return {
+            opened:
+                typeof props.opened === "boolean" ? props.opened : state.opened,
         };
     }
 
-    componentDidMount() {
-        if (this.props.opened != null) {
-            this.handleOpenChanged(this.props.opened);
-        }
-    }
-
     handleItemSelected = () => {
+        // close menu
+        this.handleOpenChanged(false);
+
         // Bring focus back to the opener element.
         if (this.openerElement) {
             this.openerElement.focus();
@@ -127,6 +138,10 @@ export default class Dropdown extends React.Component<Props, State> {
             opened,
             keyboard,
         });
+
+        if (!opened && this.props.onClose) {
+            this.props.onClose();
+        }
     };
 
     handleOptionSelected = (selectedValue: string) => {
@@ -200,10 +215,30 @@ export default class Dropdown extends React.Component<Props, State> {
             });
     };
 
+    renderAnchorChildren(
+        eventState: ClickableState,
+        handlers: ClickableHandlers,
+    ) {
+        const renderedChildren = this.props.children(eventState);
+
+        return React.cloneElement(renderedChildren, {
+            ...handlers,
+            "data-test-id": this.props.testId,
+            onClick: renderedChildren.props.onClick
+                ? (e: SyntheticMouseEvent<>) => {
+                      // This is done to avoid overriding a
+                      // custom onClick handler inside the
+                      // children node
+                      renderedChildren.props.onClick(e);
+                      handlers.onClick(e);
+                  }
+                : handlers.onClick,
+        });
+    }
+
     render() {
         const {
             style,
-            children,
             alignment,
             dropdownStyle,
             /* eslint-disable no-unused-vars */
@@ -226,7 +261,7 @@ export default class Dropdown extends React.Component<Props, State> {
                             ): any): ?HTMLElement))
                         }
                     >
-                        {React.cloneElement(children(eventState), handlers)}
+                        {this.renderAnchorChildren(eventState, handlers)}
                     </DropdownAnchor>
                 )}
             </ClickableBehavior>

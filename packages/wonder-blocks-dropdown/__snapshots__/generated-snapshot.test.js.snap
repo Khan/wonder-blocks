@@ -26,6 +26,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
   <button
     aria-label="search"
     className=""
+    data-test-id="teacher-menu"
     disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
@@ -269,6 +270,184 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       "boxSizing": "border-box",
       "display": "flex",
       "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": "fit-content",
+        "zIndex": 0,
+      }
+    }
+  >
+    <h4
+      className=""
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "cursor": "pointer",
+          "display": "block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 20,
+          "fontWeight": 700,
+          "lineHeight": "24px",
+          "marginBottom": 0,
+          "marginTop": 0,
+          "outline": "none",
+        }
+      }
+      tabIndex={0}
+    >
+      Open custom dropdown
+    </h4>
+  </div>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 16,
+        "MsFlexPreferredSize": 16,
+        "WebkitFlexBasis": 16,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 16,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 16,
+        "zIndex": 0,
+      }
+    }
+  />
+  <button
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "flex",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Open dropdown programatically
+    </span>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 5 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
       "justifyContent": "flex-end",
       "margin": 0,
       "minHeight": 0,
@@ -305,7 +484,6 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       aria-expanded="false"
       aria-haspopup="menu"
       className=""
-      data-test-id="teacher-menu"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
@@ -441,7 +619,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 5 1`] = `
+exports[`wonder-blocks-dropdown example 6 1`] = `
 <div
   className=""
   style={
@@ -643,7 +821,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 6 1`] = `
+exports[`wonder-blocks-dropdown example 7 1`] = `
 <div
   className=""
   style={
@@ -824,7 +1002,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 7 1`] = `
+exports[`wonder-blocks-dropdown example 8 1`] = `
 <div
   className=""
   style={
@@ -1005,7 +1183,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 8 1`] = `
+exports[`wonder-blocks-dropdown example 9 1`] = `
 <div
   className=""
   style={
@@ -1051,7 +1229,6 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       aria-expanded="false"
       aria-haspopup="menu"
       className=""
-      data-test-id="teacher-menu"
       disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
@@ -1187,7 +1364,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 9 1`] = `
+exports[`wonder-blocks-dropdown example 10 1`] = `
 <div
   className=""
   style={
@@ -1325,7 +1502,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 10 1`] = `
+exports[`wonder-blocks-dropdown example 11 1`] = `
 <div
   className=""
   style={
@@ -1462,7 +1639,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 11 1`] = `
+exports[`wonder-blocks-dropdown example 12 1`] = `
 <div
   className=""
   style={
@@ -1598,7 +1775,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 12 1`] = `
+exports[`wonder-blocks-dropdown example 13 1`] = `
 <div
   className=""
   style={
@@ -1735,7 +1912,7 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 13 1`] = `
+exports[`wonder-blocks-dropdown example 14 1`] = `
 <div
   className=""
   style={
@@ -1897,7 +2074,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 14 1`] = `
+exports[`wonder-blocks-dropdown example 15 1`] = `
 <div
   className=""
   style={
@@ -2034,7 +2211,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 15 1`] = `
+exports[`wonder-blocks-dropdown example 16 1`] = `
 <div
   className=""
   style={
@@ -2190,7 +2367,7 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 16 1`] = `
+exports[`wonder-blocks-dropdown example 17 1`] = `
 <div
   className=""
   style={
@@ -2327,7 +2504,7 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 17 1`] = `
+exports[`wonder-blocks-dropdown example 18 1`] = `
 <div
   className=""
   style={
@@ -2463,7 +2640,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 18 1`] = `
+exports[`wonder-blocks-dropdown example 19 1`] = `
 <div
   className=""
   style={
@@ -2599,7 +2776,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 19 1`] = `
+exports[`wonder-blocks-dropdown example 20 1`] = `
 <div
   className=""
   style={
@@ -2694,7 +2871,7 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 20 1`] = `
+exports[`wonder-blocks-dropdown example 21 1`] = `
 <div
   className=""
   style={
@@ -2831,7 +3008,7 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 21 1`] = `
+exports[`wonder-blocks-dropdown example 22 1`] = `
 <div
   className=""
   style={
@@ -2987,7 +3164,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 22 1`] = `
+exports[`wonder-blocks-dropdown example 23 1`] = `
 <div
   className=""
   style={
