@@ -191,7 +191,7 @@ const styles = StyleSheet.create({
 ### Example: Opening an ActionMenu programmatically
 
 Sometimes you'll want to trigger a dropdown programmatically. This can be done by
-setting the `opened` prop to `true`. In this situation the `ActionMenu` is a
+setting a value to the `opened` prop (`true` or `false`). In this situation the `ActionMenu` is a
 controlled component. The parent is responsible for managing the opening/closing
 of the dropdown when using this prop.
 
@@ -231,7 +231,7 @@ class ControlledActionMenuExample extends React.Component {
 
     toggleMenu(opened) {
         this.setState({
-            opened: opened,
+            opened,
         });
     }
 

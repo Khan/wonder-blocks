@@ -206,7 +206,7 @@ class MixedDropdownExample extends React.Component {
 ### Example: Opening a dropdown programmatically
 
 Sometimes you'll want to trigger a dropdown programmatically. This can be done by
-setting the `opened` prop to `true`. In this situation the `Dropdown` is a
+setting a value to the `opened` prop (`true` or `false`). In this situation the `Dropdown` is a
 controlled component. The parent is responsible for managing the opening/closing
 of the dropdown when using this prop.
 
@@ -258,7 +258,7 @@ class ControlledDropdownExample extends React.Component {
 
     toggleDropdown(opened) {
         this.setState({
-            opened: opened,
+            opened,
         });
     }
 

@@ -253,7 +253,7 @@ describe("wonder-blocks-dropdown", () => {
 
             toggleDropdown(opened) {
                 this.setState({
-                    opened: opened,
+                    opened,
                 });
             }
 
@@ -587,7 +587,7 @@ describe("wonder-blocks-dropdown", () => {
 
             toggleMenu(opened) {
                 this.setState({
-                    opened: opened,
+                    opened,
                 });
             }
 
@@ -999,7 +999,7 @@ describe("wonder-blocks-dropdown", () => {
 
             toggleMenu(opened) {
                 this.setState({
-                    opened: opened,
+                    opened,
                 });
             }
 
@@ -1433,7 +1433,7 @@ describe("wonder-blocks-dropdown", () => {
 
             toggleMenu(opened) {
                 this.setState({
-                    opened: opened,
+                    opened,
                 });
             }
 

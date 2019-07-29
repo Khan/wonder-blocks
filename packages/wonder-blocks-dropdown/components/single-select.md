@@ -336,7 +336,7 @@ import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 ### Example: Opening a SingleSelect programmatically
 
 Sometimes you'll want to trigger a dropdown programmatically. This can be done by
-setting the `opened` prop to `true`. In this situation the `SingleSelect` is a
+setting a value to the `opened` prop (`true` or `false`). In this situation the `SingleSelect` is a
 controlled component. The parent is responsible for managing the opening/closing
 of the dropdown when using this prop.
 
@@ -376,7 +376,7 @@ class ControlledSingleSelectExample extends React.Component {
 
     toggleMenu(opened) {
         this.setState({
-            opened: opened,
+            opened,
         });
     }
 
