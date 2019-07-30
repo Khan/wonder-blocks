@@ -65,7 +65,7 @@ export interface IInterval {
      * Set the interval.
      *
      * If the interval is active, this cancels that interval and restarts it
-     * afresh. If the timeout is not active, this starts the interval.
+     * afresh. If the interval is not active, this starts the interval.
      *
      * @memberof IInterval
      */
@@ -154,10 +154,10 @@ export interface IScheduleActions {
      * This value must be greater than or equal to zero.
      * @param {boolean} [autoSchedule] Whether or not to set the timeout as soon
      * as this call is made, or wait until `set` is explicitly called. Defaults
-     * to true.
+     * to `true`.
      * @param {boolean} [resolveOnClear] Whether or not the associated action
      * will be invoked if it is still pending at the point the timeout is
-     * cleared. Defaults to false.
+     * cleared. Defaults to `false`.
      * @returns {ITimeout} A interface for manipulating the created timeout.
      * @memberof IScheduleActions
      */
@@ -174,18 +174,18 @@ export interface IScheduleActions {
      * An interval will invoke a given action each time the given period has
      * passed until the interval is cleared.
      *
-     * @param {() => void} action The action to be invoked when the timeout
-     * period is reached.
+     * @param {() => void} action The action to be invoked when the interval
+     * period occurs.
      * @param {number} period The interval period in milliseconds. The action
      * will be invoked each time this period has passed since the interval was
      * set or last occurred.
      * This value must be greater than zero.
      * @param {boolean} [autoSchedule] Whether or not to set the interval as soon
      * as this call is made, or wait until `set` is explicitly called. Defaults
-     * to true.
+     * to `true`.
      * @param {boolean} [resolveOnClear] Whether or not the associated action
      * will be invoked at the point the interval is cleared if the interval
-     * is running at that time. Defaults to false.
+     * is running at that time. Defaults to `false`.
      * @returns {IInterval} An interface for manipulating the created interval.
      * @memberof IScheduleActions
      */
@@ -206,10 +206,10 @@ export interface IScheduleActions {
      * @param {() => void} action The action to be invoked before the repaint.
      * @param {boolean} [autoSchedule] Whether or not to make the request as soon
      * as this call is made, or wait until `set` is explicitly called. Defaults
-     * to true.
+     * to `true`.
      * @param {boolean} [resolveOnClear] Whether or not the associated action
      * will be invoked at the point the request is cleared if it has not yet
-     * executed. Defaults to false.
+     * executed. Defaults to `false`.
      * @returns {IAnimationFrame} An interface for manipulating the created
      * request.
      * @memberof IScheduleActions
