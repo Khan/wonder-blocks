@@ -12,9 +12,8 @@ The following component, `MyNaughtyComponent`, will keep spamming our pretend
 log even after it was unmounted.
 
 ```jsx
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {IDProvider, View} = require("@khanacademy/wonder-blocks-core");
-
+import Button from "@khanacademy/wonder-blocks-button";
+import {IDProvider, View} from "@khanacademy/wonder-blocks-core";
 
 class Unmounter extends React.Component {
     constructor() {
@@ -84,10 +83,9 @@ But if we use `withActionScheduler` and the `interval` method, everything is
 just fine. Unmount the component, and the logging stops.
 
 ```jsx
-const {withActionScheduler} = require("@khanacademy/wonder-blocks-timing");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {IDProvider, View} = require("@khanacademy/wonder-blocks-core");
-
+import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
+import Button from "@khanacademy/wonder-blocks-button";
+import {IDProvider, View} from "@khanacademy/wonder-blocks-core";
 
 class Unmounter extends React.Component {
     constructor() {
