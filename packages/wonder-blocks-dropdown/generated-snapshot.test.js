@@ -242,7 +242,7 @@ describe("wonder-blocks-dropdown", () => {
                     selectedValues: ["kumail"],
                 };
                 this.handleChange = this.handleChange.bind(this);
-                this.toggleDropdown = this.toggleDropdown.bind(this);
+                this.handleToggleMenu = this.handleToggleMenu.bind(this);
             }
 
             handleChange(update) {
@@ -251,7 +251,7 @@ describe("wonder-blocks-dropdown", () => {
                 });
             }
 
-            toggleDropdown(opened) {
+            handleToggleMenu(opened) {
                 this.setState({
                     opened,
                 });
@@ -277,7 +277,7 @@ describe("wonder-blocks-dropdown", () => {
                             selectionType={"single"}
                             menuItems={dropdownItems}
                             onChange={this.handleChange}
-                            onToggle={this.toggleDropdown}
+                            onToggle={this.handleToggleMenu}
                             opened={this.state.opened}
                             selectedValues={this.state.selectedValues}
                         >
@@ -294,7 +294,7 @@ describe("wonder-blocks-dropdown", () => {
                             )}
                         </Dropdown>
                         <Strut size={Spacing.medium} />
-                        <Button onClick={() => this.toggleDropdown(true)}>
+                        <Button onClick={() => this.handleToggleMenu(true)}>
                             Open dropdown programatically
                         </Button>
                     </View>
@@ -576,7 +576,7 @@ describe("wonder-blocks-dropdown", () => {
                     selectedValues: ["kumail"],
                 };
                 this.handleChange = this.handleChange.bind(this);
-                this.toggleMenu = this.toggleMenu.bind(this);
+                this.handleToggleMenu = this.handleToggleMenu.bind(this);
             }
 
             handleChange(update) {
@@ -585,7 +585,7 @@ describe("wonder-blocks-dropdown", () => {
                 });
             }
 
-            toggleMenu(opened) {
+            handleToggleMenu(opened) {
                 this.setState({
                     opened,
                 });
@@ -599,7 +599,7 @@ describe("wonder-blocks-dropdown", () => {
                             onChange={this.handleChange}
                             onToggle={(opened) => {
                                 console.log("toggle called!!!! ", opened);
-                                this.toggleMenu(opened);
+                                this.handleToggleMenu(opened);
                             }}
                             opened={this.state.opened}
                             selectedValues={this.state.selectedValues}
@@ -614,7 +614,7 @@ describe("wonder-blocks-dropdown", () => {
                             <OptionItem label="Yash" value="yash" />
                         </ActionMenu>
                         <Strut size={Spacing.medium} />
-                        <Button onClick={() => this.toggleMenu(true)}>
+                        <Button onClick={() => this.handleToggleMenu(true)}>
                             Open ActionMenu programatically
                         </Button>
                     </View>
@@ -988,7 +988,7 @@ describe("wonder-blocks-dropdown", () => {
                     selectedValue: null,
                 };
                 this.handleChange = this.handleChange.bind(this);
-                this.toggleMenu = this.toggleMenu.bind(this);
+                this.handleToggleMenu = this.handleToggleMenu.bind(this);
             }
 
             handleChange(selected) {
@@ -997,7 +997,7 @@ describe("wonder-blocks-dropdown", () => {
                 });
             }
 
-            toggleMenu(opened) {
+            handleToggleMenu(opened) {
                 this.setState({
                     opened,
                 });
@@ -1008,7 +1008,7 @@ describe("wonder-blocks-dropdown", () => {
                     <View style={styles.row}>
                         <SingleSelect
                             opened={this.state.opened}
-                            onToggle={this.toggleMenu}
+                            onToggle={this.handleToggleMenu}
                             onChange={this.handleChange}
                             selectedValue={this.state.selectedValue}
                             placeholder="Choose"
@@ -1018,7 +1018,7 @@ describe("wonder-blocks-dropdown", () => {
                             <OptionItem label="item 3" value="3" />
                         </SingleSelect>
                         <Strut size={Spacing.medium} />
-                        <Button onClick={() => this.toggleMenu(true)}>
+                        <Button onClick={() => this.handleToggleMenu(true)}>
                             Open SingleSelect programatically
                         </Button>
                     </View>
@@ -1422,7 +1422,7 @@ describe("wonder-blocks-dropdown", () => {
                     selectedValues: [],
                 };
                 this.handleChange = this.handleChange.bind(this);
-                this.toggleMenu = this.toggleMenu.bind(this);
+                this.handleToggleMenu = this.handleToggleMenu.bind(this);
             }
 
             handleChange(update) {
@@ -1431,7 +1431,7 @@ describe("wonder-blocks-dropdown", () => {
                 });
             }
 
-            toggleMenu(opened) {
+            handleToggleMenu(opened) {
                 this.setState({
                     opened,
                 });
@@ -1444,7 +1444,7 @@ describe("wonder-blocks-dropdown", () => {
                             selectItemType="fruits"
                             onChange={this.handleChange}
                             opened={this.state.opened}
-                            onToggle={this.toggleMenu}
+                            onToggle={this.handleToggleMenu}
                             selectedValues={this.state.selectedValues}
                         >
                             <OptionItem label="Nectarine" value="nectarine" />
@@ -1453,7 +1453,7 @@ describe("wonder-blocks-dropdown", () => {
                             <OptionItem label="Pineapples" value="pineapples" />
                         </MultiSelect>
                         <Strut size={Spacing.medium} />
-                        <Button onClick={() => this.toggleMenu(true)}>
+                        <Button onClick={() => this.handleToggleMenu(true)}>
                             Open SingleSelect programatically
                         </Button>
                     </View>

@@ -226,7 +226,7 @@ describe("ActionMenu", () => {
                 opened: this.props.opened,
             };
 
-            handleToggle = (opened) => {
+            handleToggleMenu = (opened) => {
                 this.setState({
                     opened: opened,
                 });
@@ -239,7 +239,7 @@ describe("ActionMenu", () => {
                     <React.Fragment>
                         <ActionMenu
                             opened={this.state.opened}
-                            onToggle={this.handleToggle}
+                            onToggle={this.handleToggleMenu}
                             menuText={"Action menu!"}
                         >
                             <ActionItem label="Create" />
@@ -247,7 +247,7 @@ describe("ActionMenu", () => {
                         </ActionMenu>
                         <button
                             data-test-id="parent-button"
-                            onClick={() => this.handleToggle(true)}
+                            onClick={() => this.handleToggleMenu(true)}
                         />
                     </React.Fragment>
                 );
@@ -285,6 +285,35 @@ describe("ActionMenu", () => {
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(false);
+        });
+
+        it("opens the menu when the anchor is clicked once", () => {
+            // Arrange
+            const wrapper = mount(<ControlledComponent />);
+
+            // Act
+            // click on the anchor
+            wrapper.find(ClickableBehavior).simulate("click");
+
+            // Assert
+            expect(wrapper.find(ActionMenu).prop("opened")).toBe(true);
+        });
+
+        it("closes the menu when an option is clicked", () => {
+            // Arrange
+            const wrapper = mount(<ControlledComponent />);
+
+            // Act
+            // open the menu from the outside
+            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            // pick an option to close the menu
+            wrapper
+                .find(ActionItem)
+                .at(0)
+                .simulate("click");
+
+            // Assert
+            expect(wrapper.find(ActionMenu).prop("opened")).toBe(false);
         });
     });
 });

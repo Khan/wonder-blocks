@@ -404,7 +404,7 @@ class ControlledMultiSelectExample extends React.Component {
             selectedValues: [],
         };
         this.handleChange = this.handleChange.bind(this);
-        this.toggleMenu = this.toggleMenu.bind(this);
+        this.handleToggleMenu = this.handleToggleMenu.bind(this);
     }
 
     handleChange(update) {
@@ -413,7 +413,7 @@ class ControlledMultiSelectExample extends React.Component {
         });
     }
 
-    toggleMenu(opened) {
+    handleToggleMenu(opened) {
         this.setState({
             opened,
         });
@@ -426,7 +426,7 @@ class ControlledMultiSelectExample extends React.Component {
                     selectItemType="fruits"
                     onChange={this.handleChange}
                     opened={this.state.opened}
-                    onToggle={this.toggleMenu}
+                    onToggle={this.handleToggleMenu}
                     selectedValues={this.state.selectedValues}
                 >
                     <OptionItem label="Nectarine" value="nectarine" />
@@ -435,7 +435,7 @@ class ControlledMultiSelectExample extends React.Component {
                     <OptionItem label="Pineapples" value="pineapples" />
                 </MultiSelect>
                 <Strut size={Spacing.medium} />
-                <Button onClick={() => this.toggleMenu(true)}>
+                <Button onClick={() => this.handleToggleMenu(true)}>
                     Open SingleSelect programatically
                 </Button>
             </View>

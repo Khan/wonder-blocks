@@ -152,12 +152,13 @@ describe("MultiSelect", () => {
         type State = {|
             opened?: boolean,
         |};
+
         class ControlledComponent extends React.Component<Props, State> {
             state = {
                 opened: this.props.opened,
             };
 
-            handleToggle = (opened) => {
+            handleToggleMenu = (opened) => {
                 this.setState({
                     opened: opened,
                 });
@@ -172,7 +173,7 @@ describe("MultiSelect", () => {
                             selectItemType="fruits"
                             onChange={onChange}
                             opened={this.state.opened}
-                            onToggle={this.handleToggle}
+                            onToggle={this.handleToggleMenu}
                         >
                             <OptionItem label="item 1" value="1" />
                             <OptionItem label="item 2" value="2" />
@@ -180,7 +181,7 @@ describe("MultiSelect", () => {
                         </MultiSelect>
                         <button
                             data-test-id="parent-button"
-                            onClick={() => this.handleToggle(true)}
+                            onClick={() => this.handleToggleMenu(true)}
                         />
                     </React.Fragment>
                 );
@@ -230,6 +231,32 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(true);
+        });
+
+        it("opens the menu when the anchor is clicked once", () => {
+            // Arrange
+            const wrapper = mount(<ControlledComponent />);
+
+            // Act
+            // click on the anchor
+            wrapper.find(SelectOpener).simulate("click");
+
+            // Assert
+            expect(wrapper.find(MultiSelect).prop("opened")).toBe(true);
+        });
+
+        it("closes the menu when the anchor is clicked", () => {
+            // Arrange
+            const wrapper = mount(<ControlledComponent />);
+
+            // Act
+            // open the menu from the outside
+            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            // click on the dropdown anchor to hide the menu
+            wrapper.find(SelectOpener).simulate("click");
+
+            // Assert
+            expect(wrapper.find(MultiSelect).prop("opened")).toBe(false);
         });
     });
 });

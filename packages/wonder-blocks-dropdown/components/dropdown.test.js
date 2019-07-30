@@ -184,7 +184,7 @@ describe("Dropdown", () => {
                     selectedValues: update,
                 });
 
-            handleToggle = (opened) => {
+            handleToggleMenu = (opened) => {
                 this.setState({
                     opened: opened,
                 });
@@ -204,14 +204,16 @@ describe("Dropdown", () => {
                     <Dropdown
                         menuItems={dropdownItems}
                         opened={this.state.opened}
-                        onToggle={this.handleToggle}
+                        onToggle={this.handleToggleMenu}
                         onChange={this.handleChange}
                         selectionType={this.props.selectionType}
                         selectedValues={this.state.selectedValues}
                         testId="dropdown"
                     >
                         {(state) => (
-                            <h1 onClick={this.handleToggle}>Manage students</h1>
+                            <h1 onClick={this.handleToggleMenu}>
+                                Manage students
+                            </h1>
                         )}
                     </Dropdown>
                 );

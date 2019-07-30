@@ -365,7 +365,7 @@ class ControlledSingleSelectExample extends React.Component {
             selectedValue: null,
         };
         this.handleChange = this.handleChange.bind(this);
-        this.toggleMenu = this.toggleMenu.bind(this);
+        this.handleToggleMenu = this.handleToggleMenu.bind(this);
     }
 
     handleChange(selected) {
@@ -374,7 +374,7 @@ class ControlledSingleSelectExample extends React.Component {
         });
     }
 
-    toggleMenu(opened) {
+    handleToggleMenu(opened) {
         this.setState({
             opened,
         });
@@ -385,7 +385,7 @@ class ControlledSingleSelectExample extends React.Component {
             <View style={styles.row}>
                 <SingleSelect
                     opened={this.state.opened}
-                    onToggle={this.toggleMenu}
+                    onToggle={this.handleToggleMenu}
                     onChange={this.handleChange}
                     selectedValue={this.state.selectedValue}
                     placeholder="Choose"
@@ -395,7 +395,7 @@ class ControlledSingleSelectExample extends React.Component {
                     <OptionItem label="item 3" value="3" />
                 </SingleSelect>
                 <Strut size={Spacing.medium} />
-                <Button onClick={() => this.toggleMenu(true)}>
+                <Button onClick={() => this.handleToggleMenu(true)}>
                     Open SingleSelect programatically
                 </Button>
             </View>

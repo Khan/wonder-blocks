@@ -247,7 +247,7 @@ class ControlledDropdownExample extends React.Component {
             selectedValues: ["kumail"],
         };
         this.handleChange = this.handleChange.bind(this);
-        this.toggleDropdown = this.toggleDropdown.bind(this);
+        this.handleToggleMenu = this.handleToggleMenu.bind(this);
     }
 
     handleChange(update) {
@@ -256,7 +256,7 @@ class ControlledDropdownExample extends React.Component {
         });
     }
 
-    toggleDropdown(opened) {
+    handleToggleMenu(opened) {
         this.setState({
             opened,
         });
@@ -283,7 +283,7 @@ class ControlledDropdownExample extends React.Component {
                     selectionType={"single"}
                     menuItems={dropdownItems}
                     onChange={this.handleChange}
-                    onToggle={this.toggleDropdown}
+                    onToggle={this.handleToggleMenu}
                     opened={this.state.opened}
                     selectedValues={this.state.selectedValues}
                 >
@@ -300,7 +300,9 @@ class ControlledDropdownExample extends React.Component {
                     )}
                 </Dropdown>
                 <Strut size={Spacing.medium} />
-                <Button onClick={() => this.toggleDropdown(true)}>Open dropdown programatically</Button>
+                <Button onClick={() => this.handleToggleMenu(true)}>
+                    Open dropdown programatically
+                </Button>
             </View>
         );
     }

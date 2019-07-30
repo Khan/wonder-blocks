@@ -220,7 +220,7 @@ class ControlledActionMenuExample extends React.Component {
             selectedValues: ["kumail"],
         };
         this.handleChange = this.handleChange.bind(this);
-        this.toggleMenu = this.toggleMenu.bind(this);
+        this.handleToggleMenu = this.handleToggleMenu.bind(this);
     }
 
     handleChange(update) {
@@ -229,7 +229,7 @@ class ControlledActionMenuExample extends React.Component {
         });
     }
 
-    toggleMenu(opened) {
+    handleToggleMenu(opened) {
         this.setState({
             opened,
         });
@@ -243,7 +243,7 @@ class ControlledActionMenuExample extends React.Component {
                     onChange={this.handleChange}
                     onToggle={(opened) => {
                         console.log('toggle called!!!! ', opened);
-                        this.toggleMenu(opened);
+                        this.handleToggleMenu(opened);
                     }}
                     opened={this.state.opened}
                     selectedValues={this.state.selectedValues}
@@ -258,7 +258,9 @@ class ControlledActionMenuExample extends React.Component {
                     <OptionItem label="Yash" value="yash" />
                 </ActionMenu>
                 <Strut size={Spacing.medium} />
-                <Button onClick={() => this.toggleMenu(true)}>Open ActionMenu programatically</Button>
+                <Button onClick={() => this.handleToggleMenu(true)}>
+                    Open ActionMenu programatically
+                </Button>
             </View>
         );
     }
