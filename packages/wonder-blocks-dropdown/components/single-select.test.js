@@ -91,6 +91,7 @@ describe("SingleSelect", () => {
         type State = {|
             opened?: boolean,
         |};
+
         class ControlledComponent extends React.Component<Props, State> {
             state = {
                 opened: this.props.opened,

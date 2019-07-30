@@ -186,7 +186,7 @@ describe("Dropdown", () => {
 
             handleToggleMenu = (opened) => {
                 this.setState({
-                    opened: opened,
+                    opened,
                 });
 
                 this.props.onToggle && this.props.onToggle(opened);
