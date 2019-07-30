@@ -29,6 +29,19 @@ type Common = {|
     titleId: string,
 
     /**
+     * Test ID used for e2e testing.
+     *
+     * In this case, this component is internal, so `testId` is composed with
+     * the `testId` passed down from the Dialog variant + a suffix to scope it
+     * to this component.
+     *
+     * @example
+     * For testId="some-random-id"
+     * The result will be: `some-random-id-modal-header`
+     */
+    testId?: string,
+
+    /**
      * Without these, flow complains about subtitle and breadcrumbs not being
      * available on props at all b/c these are exact object types, flow looks
      * for subtitle in each of Common, WithSubtitle and WithBreadcrumbs. I also
@@ -60,27 +73,36 @@ type WithBreadcrumbs = {|
 type Props = Common | WithSubtitle | WithBreadcrumbs;
 
 /**
- * This is a helper component that is never rendered by itself.
- * It is always pinned to the top of the dialog, is responsive using the same behavior as its parent dialog,
- * and has the following properties:
+ * This is a helper component that is never rendered by itself. It is always
+ * pinned to the top of the dialog, is responsive using the same behavior as its
+ * parent dialog, and has the following properties:
  * - title
  * - breadcrumb OR subtitle, but not both.
  *
  * **Accessibility notes:**
  *
- * - By default (e.g. using [OnePaneDialog](/#onepanedialog)), `titleId` is populated automatically by the parent container.
- * - If there is a custom Dialog implementation (e.g. `TwoPaneDialog`), the ModalHeader doesn’t have to have
- * the `titleId` prop however this is recommended. It should match the `aria-labelledby` prop of the [ModalDialog](/#modaldialog) component.
- * If you want to see an example of how to generate this ID, check [IDProvider](/#idprovider).
+ * - By default (e.g. using [OnePaneDialog](/#onepanedialog)), `titleId` is
+ *   populated automatically by the parent container.
+ * - If there is a custom Dialog implementation (e.g. `TwoPaneDialog`), the
+ *   ModalHeader doesn’t have to have the `titleId` prop however this is
+ *   recommended. It should match the `aria-labelledby` prop of the
+ *   [ModalDialog](/#modaldialog) component. If you want to see an example of
+ *   how to generate this ID, check [IDProvider](/#idprovider).
  *
  * **Implementation notes:**
  *
  * If you are creating a custom Dialog, make sure to follow these guidelines:
- * - Make sure to include it as part of [ModalPanel](/#modalpanel) by using the `header` prop.
+ * - Make sure to include it as part of [ModalPanel](/#modalpanel) by using the
+ *   `header` prop.
  * - Add a title (required).
  * - Optionally add a subtitle or breadcrumbs.
  * - We encourage you to add `titleId` (see Accessibility notes).
- * - If the `ModalPanel` has a dark background, make sure to set `light` to `false`.
+ * - If the `ModalPanel` has a dark background, make sure to set `light` to
+ *   `false`.
+ * - If you need to create e2e tests, make sure to pass a `testId` prop and
+ *   add a sufix to scope the testId to this component: e.g.
+ *   `some-random-id-ModalHeader`. This scope will also be passed to the title
+ *   and subtitle elements: e.g. `some-random-id-ModalHeader-title`.
  *
  * Example:
  *
@@ -99,7 +121,14 @@ export default class ModalHeader extends React.Component<Props> {
     };
 
     render() {
-        const {breadcrumbs, light, subtitle, title, titleId} = this.props;
+        const {
+            breadcrumbs,
+            light,
+            subtitle,
+            testId,
+            title,
+            titleId,
+        } = this.props;
 
         if (subtitle && breadcrumbs) {
             throw new Error(
@@ -110,15 +139,26 @@ export default class ModalHeader extends React.Component<Props> {
         return (
             <MediaLayout styleSheets={styleSheets}>
                 {({styles}) => (
-                    <View style={[styles.header, !light && styles.dark]}>
+                    <View
+                        style={[styles.header, !light && styles.dark]}
+                        testId={testId}
+                    >
                         {breadcrumbs && (
                             <View style={styles.breadcrumbs}>
                                 {breadcrumbs}
                             </View>
                         )}
-                        <HeadingMedium id={titleId}>{title}</HeadingMedium>
+                        <HeadingMedium
+                            id={titleId}
+                            testId={testId && `${testId}-title`}
+                        >
+                            {title}
+                        </HeadingMedium>
                         {subtitle && (
-                            <LabelMedium style={light && styles.subtitle}>
+                            <LabelMedium
+                                style={light && styles.subtitle}
+                                testId={testId && `${testId}-subtitle`}
+                            >
                                 {subtitle}
                             </LabelMedium>
                         )}

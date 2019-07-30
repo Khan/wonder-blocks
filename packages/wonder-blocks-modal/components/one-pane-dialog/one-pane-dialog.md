@@ -49,6 +49,7 @@ const styles = StyleSheet.create({
         <OnePaneDialog
             title="Single-line title"
             subtitle="Subtitle that provides additional context to the title"
+            testId="one-pane-dialog-above"
             content={
                 <View style={styles.modalContent}>
                     <Body>

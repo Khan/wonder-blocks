@@ -64,6 +64,7 @@ describe("wonder-blocks-modal", () => {
                 subtitle="You're reading the subtitle!"
                 above={<View style={styles.above} />}
                 below={<View style={styles.below} />}
+                testId="dialog-default-example"
                 content={
                     <View style={styles.modalContent}>
                         <Body tag="p">
@@ -79,7 +80,10 @@ describe("wonder-blocks-modal", () => {
 
         const example = (
             <View style={styles.example}>
-                <ModalLauncher modal={onePaneDialog}>
+                <ModalLauncher
+                    modal={onePaneDialog}
+                    testId="modal-launcher-default-example"
+                >
                     {({openModal}) => (
                         <Button onClick={openModal}>OnePaneDialog</Button>
                     )}
@@ -497,6 +501,7 @@ describe("wonder-blocks-modal", () => {
                     <OnePaneDialog
                         title="Single-line title"
                         subtitle="Subtitle that provides additional context to the title"
+                        testId="one-pane-dialog-above"
                         content={
                             <View style={styles.modalContent}>
                                 <Body>

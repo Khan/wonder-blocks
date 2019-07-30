@@ -1057,6 +1057,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
       <div
         aria-labelledby="uid-modal-1-wb-id"
         className=""
+        data-test-id="one-pane-dialog-above"
         role="dialog"
         style={
           Object {
@@ -1081,6 +1082,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
       >
         <div
           className=""
+          data-test-id="one-pane-dialog-above-ModalPanel"
           style={
             Object {
               "alignItems": "stretch",
@@ -1106,6 +1108,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
           <button
             aria-label="Close modal"
             className=""
+            data-test-id="one-pane-dialog-above-CloseButton"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
@@ -1174,6 +1177,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
           </button>
           <div
             className=""
+            data-test-id="one-pane-dialog-above-ModalHeader"
             style={
               Object {
                 "alignItems": "stretch",
@@ -1195,6 +1199,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
           >
             <h3
               className=""
+              data-test-id="one-pane-dialog-above-ModalHeader-title"
               id="uid-modal-1-wb-id"
               style={
                 Object {
@@ -1220,6 +1225,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
             </h3>
             <span
               className=""
+              data-test-id="one-pane-dialog-above-ModalHeader-subtitle"
               style={
                 Object {
                   "MozOsxFontSmoothing": "grayscale",

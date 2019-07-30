@@ -17,6 +17,11 @@ type Props = {|
      * When not set, the first tabbable element within the dialog will be used.
      */
     initialFocusId?: string,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 /**
@@ -116,7 +121,7 @@ export default class ModalBackdrop extends React.Component<Props> {
     };
 
     render() {
-        const children = this.props.children;
+        const {children, testId} = this.props;
         const backdropProps = {
             [ModalLauncherPortalAttributeName]: true,
         };
@@ -125,6 +130,7 @@ export default class ModalBackdrop extends React.Component<Props> {
             <View
                 style={styles.modalPositioner}
                 onClick={this.handleClick}
+                testId={testId}
                 {...backdropProps}
             >
                 {children}

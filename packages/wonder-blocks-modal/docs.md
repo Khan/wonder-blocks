@@ -56,6 +56,7 @@ const onePaneDialog = ({closeModal}) => (
         subtitle="You're reading the subtitle!"
         above={<View style={styles.above} />}
         below={<View style={styles.below} />}
+        testId="dialog-default-example"
         content={
             <View style={styles.modalContent}>
                 <Body tag="p">
@@ -74,7 +75,10 @@ const onePaneDialog = ({closeModal}) => (
 );
 
 <View style={styles.example}>
-    <ModalLauncher modal={onePaneDialog}>
+    <ModalLauncher
+        modal={onePaneDialog}
+        testId="modal-launcher-default-example"
+    >
         {({openModal}) => <Button onClick={openModal}>OnePaneDialog</Button>}
     </ModalLauncher>
 </View>;
