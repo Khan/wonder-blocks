@@ -181,8 +181,6 @@ The `IScheduleActions` interface provides 4 (four) different functions:
 The `timeout` function replaces the `setTimeout` and `clearTimeout` functions
 in the standard timer API.
 
-Unless indicated otherwise, all timeouts scheduled this way will be cleared on component unmount.
-
 | | Flow&nbsp;Type | Default | Description |
 | --- | --- | --- | --- |
 | `action` | `()`&nbsp;`=>`&nbsp;`void` | _Required_ | The action to be invoked when the timeout period is reached. |
@@ -202,6 +200,9 @@ Unless indicated otherwise, all timeouts scheduled this way will be cleared on c
     ): IInterval;
 ```
 
+The `interval` function replaces the `setInterval` and `clearInterval` functions
+in the standard timer API.
+
 | | Flow&nbsp;Type | Default | Description |
 | --- | --- | --- | --- |
 | `action` | `()`&nbsp;`=>`&nbsp;`void` | _Required_ | The action to be invoked when the interval period occurs. |
@@ -219,6 +220,9 @@ Unless indicated otherwise, all timeouts scheduled this way will be cleared on c
         resolveOnClear?: boolean,
     ): IAnimationFrame;
 ```
+
+The `animationFrame` function replaces the `requestAnimationFrame` and `cancelAnimationFrame` functions
+in the standard timer API.
 
 | | Flow&nbsp;Type | Default | Description |
 | --- | --- | --- | --- |
