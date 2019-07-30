@@ -290,7 +290,19 @@ function readExamplesFromDocument(documentPath) {
     const content = fs.readFileSync(documentPath, "utf8");
     const tokens = marked.lexer(content);
     const examples = tokens
+        /**
+         * We only want code snippets.
+         */
         .filter((token) => token.type === "code")
+        /**
+         * Any snippet that doesn't have a language is not something we want
+         * here.
+         *
+         * NOTE(somewhatabstract): Long term, we should probably check for
+         * js/jsx etc. so that we don't try to compile examples from bash
+         * scripts or CSS snippets, etc.
+         */
+        .filter((token) => token.lang)
         .map((token) => token.text);
 
     return examples;
