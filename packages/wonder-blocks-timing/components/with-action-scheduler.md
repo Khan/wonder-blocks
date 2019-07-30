@@ -1,150 +1,19 @@
-This is a higher order component that attaches the given component to an
-`IScheduleActions` instance. Any actions scheduled will automatically be
+This is a higher order component (HOC) that attaches the given component to an
+[`IScheduleActions`](#ischeduleactions) instance. Any actions scheduled will automatically be
 cleared on unmount. This allows for "set it and forget it" behavior that won't
 leave timers dangling when the component's lifecycle ends.
 
-For example, the following component, `MyNaughtyComponent`, will keep spamming
-our pretend log even after it was unmounted.
+For more details on using this component and the [`IScheduleActions`](#ischeduleactions) interface,
+see the [API overview](#timing-api-overview).
 
-```jsx
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {IDProvider, View} = require("@khanacademy/wonder-blocks-core");
+### Flow Types
+If you are using Flow typing, you can use the `WithActionScheduler<TProps>`
+generic type to build the props for the component that you will pass to the
+`withActionScheduler` function, where `TProps` represents all the props your
+component uses other than the `schedule` prop that will get added.
 
+The added `schedule` prop is of type [`IScheduleActions`](#ischeduleactions). This is what the
+`withActionScheduler` function injects to your component.
 
-class Unmounter extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            mountKids: true,
-        };
-    }
-
-    maybeRenderKids() {
-        if (this.state.mountKids) {
-            return (
-                <React.Fragment>
-                    <Button onClick={() => this.onClick()}>Unmount</Button>
-                    {this.props.children}
-                </React.Fragment>
-            );
-        } else {
-            return "Children unmounted";
-        }
-    }
-
-    onClick() {
-        this.setState({mountKids: false});
-    }
-
-    render() {
-        return (
-            <View>
-                {this.maybeRenderKids()}
-            </View>
-        );
-    }
-}
-
-class MyNaughtyComponent extends React.Component {
-    componentDidMount() {
-        const {targetId} = this.props;
-        let counter = 0;
-        const domElement = document.getElementById(targetId);
-        setInterval(() => {
-            domElement.innerText = "Naughty interval logged: " + counter++;
-        }, 200);
-    }
-
-    render() {
-        return <View>NaughtyComponent here</View>;
-    }
-}
-
-
-<IDProvider>
-    {id => (
-        <View>
-            <Unmounter>
-                <MyNaughtyComponent targetId={id} />
-            </Unmounter>
-            <View>
-                <View id={id}></View>
-            </View>
-        </View>
-    )}
-</IDProvider>
-```
-
-But if we use `withActionScheduler` and the `interval` method, everything is
-just fine. Unmount the component, and the logging stops.
-
-```jsx
-const {withActionScheduler} = require("@khanacademy/wonder-blocks-timing");
-const Button = require("@khanacademy/wonder-blocks-button").default;
-const {IDProvider, View} = require("@khanacademy/wonder-blocks-core");
-
-
-class Unmounter extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            mountKids: true,
-        };
-    }
-
-    maybeRenderKids() {
-        if (this.state.mountKids) {
-            return (
-                <React.Fragment>
-                    <Button onClick={() => this.onClick()}>Unmount</Button>
-                    {this.props.children}
-                </React.Fragment>
-            );
-        } else {
-            return "Children unmounted";
-        }
-    }
-
-    onClick() {
-        this.setState({mountKids: false});
-    }
-
-    render() {
-        return (
-            <View>
-                {this.maybeRenderKids()}
-            </View>
-        );
-    }
-}
-
-class MyGoodComponent extends React.Component {
-    componentDidMount() {
-        const {targetId, schedule} = this.props;
-        let counter = 0;
-        const domElement = document.getElementById(targetId);
-        schedule.interval(() => {
-            domElement.innerText = "Naughty interval logged: " + counter++;
-        }, 200);
-    }
-
-    render() {
-        return <View>GoodComponent here</View>;
-    }
-}
-
-const MyGoodComponentWithScheduler = withActionScheduler(MyGoodComponent);
-
-<IDProvider>
-    {id => (
-        <View>
-            <Unmounter>
-                <MyGoodComponentWithScheduler targetId={id} />
-            </Unmounter>
-            <View>
-                <View id={id}></View>
-            </View>
-        </View>
-    )}
-</IDProvider>
-```
+The returned value from `withActionScheduler` is a React component with props of
+type `TProps`.
