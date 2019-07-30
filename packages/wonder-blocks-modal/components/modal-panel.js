@@ -135,14 +135,14 @@ export default class ModalPanel extends React.Component<Props> {
         return (
             <View
                 style={[styles.wrapper, !light && styles.dark, style]}
-                testId={testId && `${testId}-ModalPanel`}
+                testId={testId && `${testId}-panel`}
             >
                 {closeButtonVisible && (
                     <CloseButton
                         light={!light}
                         onClick={onClose}
                         style={styles.closeButton}
-                        testId={testId && `${testId}-CloseButton`}
+                        testId={testId && `${testId}-close`}
                     />
                 )}
                 {header}

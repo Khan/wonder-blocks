@@ -275,4 +275,22 @@ describe("ModalLauncher", () => {
         // Assert
         expect(document.activeElement).toBe(lastButton);
     });
+
+    test("testId should be added to the Backdrop", () => {
+        // Arrange
+        const wrapper = mount(
+            <ModalLauncher
+                opened={true}
+                onClose={jest.fn()}
+                modal={<div role="dialog">dialog</div>}
+                testId="test-id-example"
+            />,
+        );
+
+        // Act
+        const backdrop = wrapper.find("[data-modal-launcher-portal]").first();
+
+        // Assert
+        expect(backdrop.prop("testId")).toBe("test-id-example");
+    });
 });

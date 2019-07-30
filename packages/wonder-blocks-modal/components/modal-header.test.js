@@ -6,6 +6,8 @@ import {
     Breadcrumbs,
     BreadcrumbsItem,
 } from "@khanacademy/wonder-blocks-breadcrumbs";
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
+
 import ModalHeader from "./modal-header.js";
 
 const exampleBreadcrumbs: React.Element<typeof Breadcrumbs> = (
@@ -15,6 +17,10 @@ const exampleBreadcrumbs: React.Element<typeof Breadcrumbs> = (
 );
 
 describe("ModalHeader", () => {
+    beforeEach(() => {
+        unmountAll();
+    });
+
     test("renders the title by default", () => {
         // Arrange, Act
         const wrapper = shallow(
@@ -51,5 +57,29 @@ describe("ModalHeader", () => {
 
         // Assert
         expect(wrapper.exists()).toBe(true);
+    });
+
+    test("renders the title by default", () => {
+        // Arrange
+        const wrapper = mount(
+            <ModalHeader
+                title="Title"
+                subtitle="Subtitle"
+                testId="test-example-header"
+                titleId="modal-title"
+            />,
+        );
+
+        // Act
+        const title = wrapper.find(
+            `[data-test-id="test-example-header-title"]`,
+        );
+        const subtitle = wrapper.find(
+            `[data-test-id="test-example-header-subtitle"]`,
+        );
+
+        // Assert
+        expect(title).toHaveLength(1);
+        expect(subtitle).toHaveLength(1);
     });
 });

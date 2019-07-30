@@ -1082,7 +1082,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
       >
         <div
           className=""
-          data-test-id="one-pane-dialog-above-ModalPanel"
+          data-test-id="one-pane-dialog-above-panel"
           style={
             Object {
               "alignItems": "stretch",
@@ -1108,7 +1108,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
           <button
             aria-label="Close modal"
             className=""
-            data-test-id="one-pane-dialog-above-CloseButton"
+            data-test-id="one-pane-dialog-above-close"
             disabled={false}
             onBlur={[Function]}
             onClick={[Function]}
