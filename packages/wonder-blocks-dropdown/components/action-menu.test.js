@@ -29,6 +29,7 @@ describe("ActionMenu", () => {
         const menu = mount(
             <ActionMenu
                 menuText={"Action menu!"}
+                testId="fail-test"
                 onChange={onChange}
                 selectedValues={[]}
             >
@@ -209,5 +210,110 @@ describe("ActionMenu", () => {
         // Assert
         expect(menu.find(ActionItem)).toHaveLength(1);
         expect(menu.find(ActionItem).first()).toHaveProp("label", "Create");
+    });
+
+    describe("Controlled component", () => {
+        type Props = {|
+            opened?: boolean,
+            onToggle?: (opened: boolean) => mixed,
+        |};
+
+        type State = {|
+            opened?: boolean,
+        |};
+        class ControlledComponent extends React.Component<Props, State> {
+            state = {
+                opened: this.props.opened,
+            };
+
+            handleToggleMenu = (opened) => {
+                this.setState({
+                    opened: opened,
+                });
+
+                this.props.onToggle && this.props.onToggle(opened);
+            };
+
+            render() {
+                return (
+                    <React.Fragment>
+                        <ActionMenu
+                            opened={this.state.opened}
+                            onToggle={this.handleToggleMenu}
+                            menuText={"Action menu!"}
+                        >
+                            <ActionItem label="Create" />
+                            <ActionItem label="Delete" />
+                        </ActionMenu>
+                        <button
+                            data-test-id="parent-button"
+                            onClick={() => this.handleToggleMenu(true)}
+                        />
+                    </React.Fragment>
+                );
+            }
+        }
+
+        it("opens the menu when the parent updates its state", () => {
+            // Arrange
+            const onToggleMock = jest.fn();
+            const wrapper = mount(
+                <ControlledComponent onToggle={onToggleMock} />,
+            );
+
+            // Act
+            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+
+            // Assert
+            expect(onToggleMock).toHaveBeenCalledWith(true);
+        });
+
+        it("closes the menu when the parent updates its state", () => {
+            const onToggleMock = jest.fn();
+            const wrapper = mount(
+                <ControlledComponent onToggle={onToggleMock} />,
+            );
+
+            // Act
+            // open the menu from the outside
+            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            // click on first item
+            wrapper
+                .find(ActionItem)
+                .at(0)
+                .simulate("click");
+
+            // Assert
+            expect(onToggleMock).toHaveBeenCalledWith(false);
+        });
+
+        it("opens the menu when the anchor is clicked once", () => {
+            // Arrange
+            const wrapper = mount(<ControlledComponent />);
+
+            // Act
+            // click on the anchor
+            wrapper.find(ClickableBehavior).simulate("click");
+
+            // Assert
+            expect(wrapper.find(ActionMenu).prop("opened")).toBe(true);
+        });
+
+        it("closes the menu when an option is clicked", () => {
+            // Arrange
+            const wrapper = mount(<ControlledComponent />);
+
+            // Act
+            // open the menu from the outside
+            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            // pick an option to close the menu
+            wrapper
+                .find(ActionItem)
+                .at(0)
+                .simulate("click");
+
+            // Assert
+            expect(wrapper.find(ActionMenu).prop("opened")).toBe(false);
+        });
     });
 });

@@ -32,9 +32,10 @@ type Props = {|
     opened?: boolean,
 
     /**
-     * Called when the menu closes
+     * In controlled mode, use this prop in case the parent needs to be notified
+     * when the menu opens/closes.
      */
-    onClose?: () => mixed,
+    onToggle?: (opened: boolean) => mixed,
 
     /**
      * The items present in the Dropdown
@@ -139,8 +140,8 @@ export default class Dropdown extends React.Component<Props, State> {
             keyboard,
         });
 
-        if (!opened && this.props.onClose) {
-            this.props.onClose();
+        if (this.props.onToggle) {
+            this.props.onToggle(opened);
         }
     };
 

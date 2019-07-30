@@ -371,3 +371,77 @@ class ImplicitAllEnabledExample extends React.Component {
     <ImplicitAllEnabledExample />
 </View>
 ```
+
+### Example: Opening a MultiSelect programmatically
+
+Sometimes you'll want to trigger a dropdown programmatically. This can be done by
+setting a value to the `opened` prop (`true` or `false`). In this situation the `MultiSelect` is a
+controlled component. The parent is responsible for managing the opening/closing
+of the dropdown when using this prop.
+
+This means that you'll also have to update `opened` to the value triggered by
+the `onToggle` prop.
+
+```js
+import {OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {StyleSheet} from "aphrodite";
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    }
+});
+
+class ControlledMultiSelectExample extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            opened: false,
+            selectedValues: [],
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleToggleMenu = this.handleToggleMenu.bind(this);
+    }
+
+    handleChange(update) {
+        this.setState({
+           selectedValues: update,
+        });
+    }
+
+    handleToggleMenu(opened) {
+        this.setState({
+            opened,
+        });
+    }
+
+    render() {
+        return (
+            <View style={styles.row}>
+                <MultiSelect
+                    selectItemType="fruits"
+                    onChange={this.handleChange}
+                    opened={this.state.opened}
+                    onToggle={this.handleToggleMenu}
+                    selectedValues={this.state.selectedValues}
+                >
+                    <OptionItem label="Nectarine" value="nectarine" />
+                    <OptionItem label="Plum" value="plum" />
+                    <OptionItem label="Cantaloupe" value="cantaloupe" />
+                    <OptionItem label="Pineapples" value="pineapples" />
+                </MultiSelect>
+                <Strut size={Spacing.medium} />
+                <Button onClick={() => this.handleToggleMenu(true)}>
+                    Open SingleSelect programatically
+                </Button>
+            </View>
+        );
+    }
+}
+
+<ControlledMultiSelectExample />
+```

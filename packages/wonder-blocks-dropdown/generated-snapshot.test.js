@@ -234,7 +234,7 @@ describe("wonder-blocks-dropdown", () => {
             },
         });
 
-        class ControlledPopoverExample extends React.Component {
+        class ControlledDropdownExample extends React.Component {
             constructor() {
                 super();
                 this.state = {
@@ -242,7 +242,7 @@ describe("wonder-blocks-dropdown", () => {
                     selectedValues: ["kumail"],
                 };
                 this.handleChange = this.handleChange.bind(this);
-                this.toggleDropdown = this.toggleDropdown.bind(this);
+                this.handleToggleMenu = this.handleToggleMenu.bind(this);
             }
 
             handleChange(update) {
@@ -251,15 +251,18 @@ describe("wonder-blocks-dropdown", () => {
                 });
             }
 
-            toggleDropdown() {
+            handleToggleMenu(opened) {
                 this.setState({
-                    opened: !this.state.opened,
+                    opened,
                 });
             }
 
             render() {
                 const dropdownItems = [
-                    <ActionItem label="Add new +" href="#!/Dropdown/7?new" />,
+                    <ActionItem
+                        label="Add new +"
+                        onClick={() => console.log("Add new clicked...")}
+                    />,
                     <SeparatorItem />,
                     <OptionItem label="Alex" value="alex" />,
                     <OptionItem label="Cathy" value="cathy" />,
@@ -274,17 +277,12 @@ describe("wonder-blocks-dropdown", () => {
                             selectionType={"single"}
                             menuItems={dropdownItems}
                             onChange={this.handleChange}
-                            onClose={this.toggleDropdown}
+                            onToggle={this.handleToggleMenu}
                             opened={this.state.opened}
                             selectedValues={this.state.selectedValues}
                         >
                             {(eventState) => (
                                 <HeadingSmall
-                                    onClick={() =>
-                                        this.setState({
-                                            opened: !this.state.opened,
-                                        })
-                                    }
                                     style={[
                                         styles.cursor,
                                         eventState.focused && styles.focused,
@@ -296,7 +294,7 @@ describe("wonder-blocks-dropdown", () => {
                             )}
                         </Dropdown>
                         <Strut size={Spacing.medium} />
-                        <Button onClick={this.toggleDropdown}>
+                        <Button onClick={() => this.handleToggleMenu(true)}>
                             Open dropdown programatically
                         </Button>
                     </View>
@@ -304,7 +302,7 @@ describe("wonder-blocks-dropdown", () => {
             }
         }
 
-        const example = <ControlledPopoverExample />;
+        const example = <ControlledDropdownExample />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
@@ -568,6 +566,72 @@ describe("wonder-blocks-dropdown", () => {
             row: {
                 flexDirection: "row",
             },
+        });
+
+        class ControlledActionMenuExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    opened: false,
+                    selectedValues: ["kumail"],
+                };
+                this.handleChange = this.handleChange.bind(this);
+                this.handleToggleMenu = this.handleToggleMenu.bind(this);
+            }
+
+            handleChange(update) {
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            handleToggleMenu(opened) {
+                this.setState({
+                    opened,
+                });
+            }
+
+            render() {
+                return (
+                    <View style={styles.row}>
+                        <ActionMenu
+                            menuText="Betsy Appleseed"
+                            onChange={this.handleChange}
+                            onToggle={(opened) => {
+                                console.log("toggle called!!!! ", opened);
+                                this.handleToggleMenu(opened);
+                            }}
+                            opened={this.state.opened}
+                            selectedValues={this.state.selectedValues}
+                        >
+                            <ActionItem label="Add new +" />
+                            <SeparatorItem />
+                            <OptionItem label="Alex" value="alex" />
+                            <OptionItem label="Cathy" value="cathy" />
+                            <OptionItem label="Kumail" value="kumail" />
+                            <OptionItem label="Salman" value="salman" />
+                            <OptionItem label="Yan" value="yan" />
+                            <OptionItem label="Yash" value="yash" />
+                        </ActionMenu>
+                        <Strut size={Spacing.medium} />
+                        <Button onClick={() => this.handleToggleMenu(true)}>
+                            Open ActionMenu programatically
+                        </Button>
+                    </View>
+                );
+            }
+        }
+
+        const example = <ControlledActionMenuExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 11", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
             setWidth: {
                 minWidth: 170,
                 maxWidth: 190,
@@ -594,6 +658,7 @@ describe("wonder-blocks-dropdown", () => {
                 return (
                     <SingleSelect
                         onChange={this.handleChange}
+                        onToggle={(opened) => console.log("toggle: ", opened)}
                         placeholder="Choose a fruit"
                         selectedValue={this.state.selectedValue}
                         style={styles.setWidth}
@@ -635,7 +700,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 11", () => {
+    it("example 12", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -695,7 +760,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 12", () => {
+    it("example 13", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -747,7 +812,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 13", () => {
+    it("example 14", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -800,7 +865,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 14", () => {
+    it("example 15", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -870,7 +935,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 15", () => {
+    it("example 16", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -885,7 +950,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 16", () => {
+    it("example 17", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -908,7 +973,65 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 17", () => {
+    it("example 18", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+
+        class ControlledSingleSelectExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    opened: false,
+                    selectedValue: null,
+                };
+                this.handleChange = this.handleChange.bind(this);
+                this.handleToggleMenu = this.handleToggleMenu.bind(this);
+            }
+
+            handleChange(selected) {
+                this.setState({
+                    selectedValue: selected,
+                });
+            }
+
+            handleToggleMenu(opened) {
+                this.setState({
+                    opened,
+                });
+            }
+
+            render() {
+                return (
+                    <View style={styles.row}>
+                        <SingleSelect
+                            opened={this.state.opened}
+                            onToggle={this.handleToggleMenu}
+                            onChange={this.handleChange}
+                            selectedValue={this.state.selectedValue}
+                            placeholder="Choose"
+                        >
+                            <OptionItem label="item 1" value="1" />
+                            <OptionItem label="item 2" value="2" />
+                            <OptionItem label="item 3" value="3" />
+                        </SingleSelect>
+                        <Strut size={Spacing.medium} />
+                        <Button onClick={() => this.handleToggleMenu(true)}>
+                            Open SingleSelect programatically
+                        </Button>
+                    </View>
+                );
+            }
+        }
+
+        const example = <ControlledSingleSelectExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 19", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -976,7 +1099,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 18", () => {
+    it("example 20", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1038,7 +1161,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 19", () => {
+    it("example 21", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1102,7 +1225,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 20", () => {
+    it("example 22", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 alignItems: "center",
@@ -1196,7 +1319,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 21", () => {
+    it("example 23", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1211,7 +1334,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 22", () => {
+    it("example 24", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -1234,7 +1357,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 23", () => {
+    it("example 25", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1280,6 +1403,65 @@ describe("wonder-blocks-dropdown", () => {
                 <ImplicitAllEnabledExample />
             </View>
         );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 26", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+
+        class ControlledMultiSelectExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    opened: false,
+                    selectedValues: [],
+                };
+                this.handleChange = this.handleChange.bind(this);
+                this.handleToggleMenu = this.handleToggleMenu.bind(this);
+            }
+
+            handleChange(update) {
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            handleToggleMenu(opened) {
+                this.setState({
+                    opened,
+                });
+            }
+
+            render() {
+                return (
+                    <View style={styles.row}>
+                        <MultiSelect
+                            selectItemType="fruits"
+                            onChange={this.handleChange}
+                            opened={this.state.opened}
+                            onToggle={this.handleToggleMenu}
+                            selectedValues={this.state.selectedValues}
+                        >
+                            <OptionItem label="Nectarine" value="nectarine" />
+                            <OptionItem label="Plum" value="plum" />
+                            <OptionItem label="Cantaloupe" value="cantaloupe" />
+                            <OptionItem label="Pineapples" value="pineapples" />
+                        </MultiSelect>
+                        <Strut size={Spacing.medium} />
+                        <Button onClick={() => this.handleToggleMenu(true)}>
+                            Open SingleSelect programatically
+                        </Button>
+                    </View>
+                );
+            }
+        }
+
+        const example = <ControlledMultiSelectExample />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

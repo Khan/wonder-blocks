@@ -7,7 +7,7 @@ import Dropdown from "./dropdown.js";
 import ActionMenuOpenerCore from "./action-menu-opener-core.js";
 import type {Item} from "../util/types.js";
 
-type MenuProps = {|
+type Props = {|
     ...AriaProps,
 
     /**
@@ -19,6 +19,17 @@ type MenuProps = {|
      * Text for the opener of this menu.
      */
     menuText: string,
+
+    /**
+     * Can be used to override the state of the ActionMenu by parent elements
+     */
+    opened?: boolean,
+
+    /**
+     * In controlled mode, use this prop in case the parent needs to be notified
+     * when the menu opens/closes.
+     */
+    onToggle?: (opened: boolean) => mixed,
 
     /**
      * A callback that returns items that are newly selected. Use only if this
@@ -75,7 +86,7 @@ type State = {|
 /**
  * A menu that consists of various types of items.
  */
-export default class ActionMenu extends React.Component<MenuProps, State> {
+export default class ActionMenu extends React.Component<Props, State> {
     openerElement: ?HTMLElement;
 
     static defaultProps = {
@@ -85,6 +96,31 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
 
     state = {
         opened: false,
+    };
+
+    /**
+     * Used to sync the `opened` state when this component acts as a controlled
+     * component
+     */
+    static getDerivedStateFromProps(props: Props, state: State) {
+        return {
+            opened:
+                typeof props.opened === "boolean" ? props.opened : state.opened,
+        };
+    }
+
+    /**
+     * Update the internal state and notify the parent component when menu is
+     * toggled
+     */
+    handleToggleMenu = (opened: boolean) => {
+        this.setState({
+            opened: opened,
+        });
+
+        if (this.props.onToggle) {
+            this.props.onToggle(opened);
+        }
     };
 
     render() {
@@ -99,18 +135,22 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
             /* eslint-disable no-unused-vars */
             children,
             onChange,
+            onToggle,
+            opened,
             selectedValues,
             style,
             "aria-disabled": ariaDisabled, // WB-535 avoids passing this prop to the opener
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
-
         const menuItems = React.Children.toArray(this.props.children);
+
         return (
             <Dropdown
                 style={style}
                 onChange={onChange}
+                onToggle={this.handleToggleMenu}
+                opened={this.state.opened}
                 alignment={alignment}
                 menuItems={menuItems}
                 selectedValues={selectedValues}
@@ -132,12 +172,10 @@ export default class ActionMenu extends React.Component<MenuProps, State> {
         );
     }
 }
-
 const styles = StyleSheet.create({
     caret: {
         marginLeft: 4,
     },
-
     // The design calls for additional offset around the opener.
     opener: {
         whiteSpace: "nowrap",
@@ -145,7 +183,6 @@ const styles = StyleSheet.create({
         overflow: "hidden",
         textOverflow: "ellipsis",
     },
-
     // This is to adjust the space between the menu and the opener.
     menuTopSpace: {
         top: -4,
