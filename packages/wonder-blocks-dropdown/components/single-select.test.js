@@ -82,6 +82,26 @@ describe("SingleSelect", () => {
         expect(opener.text()).toEqual("item 2");
     });
 
+    it("verifies testId is added to the opener", () => {
+        // Arrange
+        const wrapper = mount(
+            <SingleSelect
+                onChange={onChange}
+                placeholder="Choose"
+                testId="some-test-id"
+            >
+                <OptionItem label="item 1" value="1" />
+                <OptionItem label="item 2" value="2" />
+            </SingleSelect>,
+        );
+
+        // Act
+        const opener = wrapper.find(SelectOpener).find("button");
+
+        // Assert
+        expect(opener.prop("data-test-id")).toBe("some-test-id");
+    });
+
     describe("Controlled component", () => {
         type Props = {|
             opened?: boolean,

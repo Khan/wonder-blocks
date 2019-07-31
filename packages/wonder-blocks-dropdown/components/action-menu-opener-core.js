@@ -81,11 +81,11 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
                 aria-expanded={opened ? "true" : "false"}
                 aria-haspopup="menu"
                 aria-label={ariaLabel}
-                data-test-id={testId}
                 disabled={disabled}
                 style={defaultStyle}
                 type="button"
                 {...handlers}
+                data-test-id={testId}
             >
                 <View
                     style={
