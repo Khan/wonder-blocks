@@ -212,6 +212,21 @@ describe("ActionMenu", () => {
         expect(menu.find(ActionItem).first()).toHaveProp("label", "Create");
     });
 
+    it("verifies testId is added to the opener", () => {
+        // Arrange
+        const menu = mount(
+            <ActionMenu menuText={"Action menu!"} testId="some-test-id">
+                <ActionItem label="Create" />
+            </ActionMenu>,
+        );
+
+        // Act
+        const opener = menu.find(ClickableBehavior).find("button");
+
+        // Assert
+        expect(opener.prop("data-test-id")).toBe("some-test-id");
+    });
+
     describe("Controlled component", () => {
         type Props = {|
             opened?: boolean,
