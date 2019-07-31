@@ -36,6 +36,11 @@ type Props = {|
      * Custom styles
      */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 /**
@@ -55,6 +60,7 @@ export default class ModalDialog extends React.Component<Props> {
             below,
             style,
             children,
+            testId,
             "aria-labelledby": ariaLabelledBy,
         } = this.props;
 
@@ -73,6 +79,7 @@ export default class ModalDialog extends React.Component<Props> {
                                 role="dialog"
                                 aria-labelledby={ariaLabelledBy}
                                 style={styles.dialog}
+                                testId={testId}
                             >
                                 {children}
                             </View>

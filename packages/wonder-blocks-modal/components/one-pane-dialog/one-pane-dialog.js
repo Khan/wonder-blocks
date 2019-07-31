@@ -68,7 +68,7 @@ type Common = {|
     style?: StyleType,
 
     /**
-     * Test ID used for e2e testing.
+     * Test ID used for e2e testing. This ID will be passed down to the Dialog.
      */
     testId?: string,
 
@@ -121,7 +121,7 @@ export default class OnePaneDialog extends React.Component<Props> {
     };
 
     renderHeader(uniqueId: string): React.Element<typeof ModalHeader> {
-        const {title, subtitle, breadcrumbs} = this.props;
+        const {title, subtitle, breadcrumbs, testId} = this.props;
 
         if (breadcrumbs) {
             return (
@@ -139,6 +139,7 @@ export default class OnePaneDialog extends React.Component<Props> {
                     title={title}
                     subtitle={(subtitle: string)}
                     titleId={uniqueId}
+                    testId={testId && `${testId}-ModalHeader`}
                 />
             );
         } else {
@@ -155,6 +156,7 @@ export default class OnePaneDialog extends React.Component<Props> {
             below,
             style,
             closeButtonVisible,
+            testId,
             titleId,
         } = this.props;
 
@@ -167,6 +169,7 @@ export default class OnePaneDialog extends React.Component<Props> {
                                 style={[styles.dialog, style]}
                                 above={above}
                                 below={below}
+                                testId={testId}
                                 aria-labelledby={uniqueId}
                             >
                                 <ModalPanel
@@ -175,6 +178,7 @@ export default class OnePaneDialog extends React.Component<Props> {
                                     content={content}
                                     footer={footer}
                                     closeButtonVisible={closeButtonVisible}
+                                    testId={testId}
                                 />
                             </ModalDialog>
                         )}
