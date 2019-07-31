@@ -435,10 +435,3 @@ function tryGenerateSectionTests(section) {
 for (const section of styleguideConfig.sections) {
     tryGenerateSectionTests(section);
 }
-
-// tryGenerateSectionTests({
-//     name: "Layout",
-//     content: "packages/wonder-blocks-layout/docs.md",
-//     components:
-//         "packages/wonder-blocks-layout/components/media-layout-context.js",
-// });
