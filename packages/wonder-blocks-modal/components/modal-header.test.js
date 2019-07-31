@@ -59,7 +59,7 @@ describe("ModalHeader", () => {
         expect(wrapper.exists()).toBe(true);
     });
 
-    test("renders the title by default", () => {
+    test("testId should be added to the title", () => {
         // Arrange
         const wrapper = mount(
             <ModalHeader
@@ -74,12 +74,28 @@ describe("ModalHeader", () => {
         const title = wrapper.find(
             `[data-test-id="test-example-header-title"]`,
         );
+
+        // Assert
+        expect(title).toHaveLength(1);
+    });
+
+    test("testId should be added to the subtitle", () => {
+        // Arrange
+        const wrapper = mount(
+            <ModalHeader
+                title="Title"
+                subtitle="Subtitle"
+                testId="test-example-header"
+                titleId="modal-title"
+            />,
+        );
+
+        // Act
         const subtitle = wrapper.find(
             `[data-test-id="test-example-header-subtitle"]`,
         );
 
         // Assert
-        expect(title).toHaveLength(1);
         expect(subtitle).toHaveLength(1);
     });
 });

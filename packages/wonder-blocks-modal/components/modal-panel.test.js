@@ -27,7 +27,7 @@ describe("ModalPanel", () => {
         );
     });
 
-    test("testId should be added to both ModalPanel and CloseButton elements", () => {
+    test("testId should be added to the panel wrapper", () => {
         // Arrange
         const wrapper = mount(
             <ModalPanel content="dummy content" testId="test-id" />,
@@ -35,10 +35,21 @@ describe("ModalPanel", () => {
 
         // Act
         const mainElement = wrapper.find(View).first();
-        const closeButton = wrapper.find(CloseButton);
 
         // Assert
         expect(mainElement.prop("testId")).toBe("test-id-panel");
+    });
+
+    test("testId should be added to the CloseButton element", () => {
+        // Arrange
+        const wrapper = mount(
+            <ModalPanel content="dummy content" testId="test-id" />,
+        );
+
+        // Act
+        const closeButton = wrapper.find(CloseButton);
+
+        // Assert
         expect(closeButton.prop("testId")).toBe("test-id-close");
     });
 });
