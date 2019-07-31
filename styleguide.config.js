@@ -38,7 +38,15 @@ module.exports = {
         {
             name: "Core",
             content: "packages/wonder-blocks-core/docs.md",
-            components: "packages/wonder-blocks-core/components/*.js",
+            components: [
+                "packages/wonder-blocks-core/util/add-style.js",
+                "packages/wonder-blocks-core/components/clickable-behavior.js",
+                "packages/wonder-blocks-core/components/id-provider.js",
+                "packages/wonder-blocks-core/components/text.js",
+                "packages/wonder-blocks-core/components/unique-id-provider.js",
+                "packages/wonder-blocks-core/components/view.js",
+                "packages/wonder-blocks-core/components/with-ssr-placeholder.js",
+            ],
         },
         {
             name: "Dropdown",

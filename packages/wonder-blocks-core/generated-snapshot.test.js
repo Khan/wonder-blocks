@@ -8,14 +8,18 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
+import {StyleSheet} from "aphrodite";
+import Color, {fade} from "@khanacademy/wonder-blocks-color";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
-    IDProvider,
+    addStyle,
     View,
+    IDProvider,
     UniqueIDProvider,
     Text,
     WithSSRPlaceholder,
 } from "@khanacademy/wonder-blocks-core";
-import {StyleSheet} from "aphrodite";
+import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {
     Body,
     HeadingSmall,
@@ -28,6 +32,107 @@ import ClickableBehavior from "./components/clickable-behavior.js";
 
 describe("wonder-blocks-core", () => {
     it("example 1", () => {
+        const styles = StyleSheet.create({
+            // default style for all instances of StyledInput
+            input: {
+                background: Color.white,
+                border: `1px solid ${Color.offBlack16}`,
+                borderRadius: Spacing.xxxSmall,
+                fontSize: Spacing.medium,
+                padding: Spacing.xSmall,
+            },
+        });
+        const StyledInput = addStyle("input", styles.input);
+        const example = <StyledInput type="text" placeholder="Lorem ipsum" />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 2", () => {
+        const styles = StyleSheet.create({
+            // default style for all instances of StyledInput
+            input: {
+                background: Color.white,
+                border: `1px solid ${Color.offBlack16}`,
+                borderRadius: Spacing.xxxSmall,
+                fontSize: Spacing.medium,
+                padding: Spacing.xSmall,
+            },
+            error: {
+                background: fade(Color.red, 0.16),
+                borderColor: Color.red,
+            },
+        });
+        const StyledInput = addStyle("input", styles.input);
+        const example = (
+            <StyledInput
+                style={styles.error}
+                type="text"
+                placeholder="Lorem ipsum"
+            />
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 3", () => {
+        const StyledInput = addStyle("input");
+
+        class DynamicStyles extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    error: false,
+                };
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(checked) {
+                this.setState({
+                    error: checked,
+                });
+            }
+
+            render() {
+                return (
+                    <View>
+                        <Checkbox
+                            label="Click here to add the error style to the input"
+                            checked={this.state.error}
+                            onChange={this.handleChange}
+                        />
+                        <StyledInput
+                            style={[
+                                styles.input,
+                                this.state.error && styles.error,
+                            ]}
+                            type="text"
+                            placeholder="Lorem ipsum"
+                        />
+                    </View>
+                );
+            }
+        }
+
+        const styles = StyleSheet.create({
+            // default style for all instances of StyledInput
+            input: {
+                border: `1px solid ${Color.offBlack16}`,
+                borderRadius: Spacing.xxxSmall,
+                fontSize: Spacing.medium,
+                padding: Spacing.xSmall,
+            },
+            error: {
+                background: fade(Color.red, 0.16),
+                borderColor: Color.red,
+            },
+        });
+        const example = <DynamicStyles />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 4", () => {
         const example = (
             <View>
                 <IDProvider scope="field">
@@ -44,7 +149,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 2", () => {
+    it("example 5", () => {
         const example = (
             <View>
                 <IDProvider scope="field" id="some-user-id">
@@ -61,7 +166,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 3", () => {
+    it("example 6", () => {
         const styles = StyleSheet.create({
             container: {
                 padding: 32,
@@ -92,7 +197,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 4", () => {
+    it("example 7", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -106,7 +211,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 5", () => {
+    it("example 8", () => {
         const example = (
             <View>
                 <View testId="foo">Foo</View>
@@ -117,7 +222,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 6", () => {
+    it("example 9", () => {
         let providerRef = null;
         const renders = [];
         const provider = (
@@ -165,7 +270,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 7", () => {
+    it("example 10", () => {
         let firstId = null;
         let secondId = null;
 
@@ -202,7 +307,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 8", () => {
+    it("example 11", () => {
         const children = ({get}) => (
             <View>
                 <Body>
@@ -227,7 +332,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 9", () => {
+    it("example 12", () => {
         // TODO(somewhatabstract): Update this to be nice once we can get BodyMonospace
         // to allow us to properly preserve whitespace or have an alternative. Or remove
         // this entirely when our styleguide renders our interface definitions.
@@ -251,7 +356,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 10", () => {
+    it("example 13", () => {
         const styles = StyleSheet.create({
             container: {
                 padding: 32,
@@ -282,7 +387,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 11", () => {
+    it("example 14", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -296,7 +401,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 12", () => {
+    it("example 15", () => {
         const example = (
             <WithSSRPlaceholder
                 placeholder={() => (
@@ -318,7 +423,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 13", () => {
+    it("example 16", () => {
         const example = (
             <WithSSRPlaceholder placeholder={null}>
                 {() => (
@@ -333,7 +438,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 14", () => {
+    it("example 17", () => {
         const trackingArray = [];
         const resultsId = "nossr-example-2-results";
 
@@ -411,7 +516,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 15", () => {
+    it("example 18", () => {
         const trackingArray = [];
         const resultsId = "nossr-example-3-results";
 
