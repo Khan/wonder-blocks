@@ -143,6 +143,28 @@ describe("MultiSelect", () => {
         expect(opener.text()).toEqual("All students");
     });
 
+    it("verifies testId is added to the opener", () => {
+        // Arrange
+        const wrapper = mount(
+            <MultiSelect
+                selectItemType="students"
+                selectedValues={["2"]}
+                onChange={onChange}
+                placeholder="Choose"
+                testId="some-test-id"
+            >
+                <OptionItem label="item 1" value="1" />
+                <OptionItem label="item 2" value="2" />
+            </MultiSelect>,
+        );
+
+        // Act
+        const opener = wrapper.find(SelectOpener).find("button");
+
+        // Assert
+        expect(opener.prop("data-test-id")).toBe("some-test-id");
+    });
+
     describe("Controlled component", () => {
         type Props = {|
             opened?: boolean,
