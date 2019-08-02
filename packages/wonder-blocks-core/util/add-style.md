@@ -1,9 +1,46 @@
-Adds a `style` property to components. A component can be either a custom React
-Component (e.g. Link, Button) or a JSX intrinsic (e.g. "div", "span").
-This helps you to manipulate and extend styles more easily by using the `styles`
-prop as an array of different style objects.
+Adds a `style` property to a component. A component can be either a custom React
+Component (e.g. Link, Button) or a DOM intrinsic (e.g. "div", "span"). This
+helps you to manipulate and extend styles more easily by using the `styles`
+prop. For more context on this, check the [StyleType](#styletype) type
+definition below.
 
-### Example: Adding default styles
+### Usage
+
+```js static
+addStyle(
+    Component: React.Element | "string",
+    defaultStyle?: StyleType
+): React.Element;
+```
+
+The `addStyle` function is a HOC that accepts a **React Component** or a **DOM**
+**intrinsic** ("div", "span", etc.) as its first argument and optional default
+styles as its second argument. This HOC returns a React Element with a `style`
+prop included ready to be rendered.
+
+#### Function arguments
+
+| Argument | Flow&nbsp;Type | Default | Description |
+| --- | --- | --- | --- |
+| `Component` | `React.Element`, `string` | _Required_ | The component that will be decorated. |
+| `defaultStyle` | `StyleType` | null | The initial styles to be applied. |
+
+### Types
+
+#### StyleType
+
+```js static
+CSSProperties | Falsy | Array<CSSProperties | Falsy>
+```
+
+#### CSSProperties
+
+[See source file](https://github.com/Khan/wonder-blocks/blob/master/flow-typed/aphrodite.flow.js#L13)
+
+
+### Examples
+
+#### 1. Adding default styles
 
 You can create a new styled component by using the `addStyle` function. Note
 here that you can also define default styles for this component by passing an
@@ -31,7 +68,7 @@ const StyledInput = addStyle("input", styles.input);
 <StyledInput type="text" placeholder="Lorem ipsum"/>;
 ```
 
-### Example: Overriding a default style
+#### 2. Overriding a default style
 
 After defining default styles, you can also customize the instance by adding
 and/or merging styles using the `style` prop in your newly created styled component.
@@ -62,7 +99,7 @@ const StyledInput = addStyle("input", styles.input);
 <StyledInput style={styles.error} type="text" placeholder="Lorem ipsum"/>;
 ```
 
-### Example: Adding styles dynamically
+#### 3. Adding styles dynamically
 
 This example shows that you can dynamically create styles by adding them to the
 `style` prop only when you need them.
