@@ -63,6 +63,11 @@ type Props = {|
      * When not set, the first tabbable element within the dialog will be used.
      */
     initialFocusId?: string,
+
+    /**
+     * Test ID used for e2e testing. It's set on the ModalBackdrop
+     */
+    testId?: string,
 |};
 
 type State = {|
@@ -179,6 +184,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
                         <FocusTrap style={styles.container}>
                             <ModalBackdrop
                                 initialFocusId={this.props.initialFocusId}
+                                testId={this.props.testId}
                                 onCloseModal={
                                     this.props.backdropDismissEnabled
                                         ? this.handleCloseModal

@@ -170,6 +170,14 @@ describe("Dropdown", () => {
         expect(dropdown.state("opened")).toBe(true);
     });
 
+    it("verifies testId is added to the opener", () => {
+        // Arrange, Act
+        const opener = dropdown.find(ClickableBehavior).find("button");
+
+        // Assert
+        expect(opener.prop("data-test-id")).toBe("teacher-menu");
+    });
+
     describe("use controlled components", () => {
         window.scrollTo = jest.fn();
         window.getComputedStyle = jest.fn();

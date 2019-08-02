@@ -20,11 +20,24 @@ type Props = {|
 
     /** Optional custom styles. */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     *
+     * In this case, this component is internal, so `testId` is composed with
+     * the `testId` passed down from the Dialog variant + a suffix to scope it
+     * to this component.
+     *
+     * @example
+     * For testId="some-random-id"
+     * The result will be: `some-random-id-modal-panel`
+     */
+    testId?: string,
 |};
 
 export default class CloseButton extends React.Component<Props> {
     render() {
-        const {light, onClick, style} = this.props;
+        const {light, onClick, style, testId} = this.props;
 
         return (
             <ModalContext.Consumer>
@@ -45,6 +58,7 @@ export default class CloseButton extends React.Component<Props> {
                             kind={light ? "primary" : "tertiary"}
                             light={light}
                             style={style}
+                            testId={testId}
                         />
                     );
                 }}
