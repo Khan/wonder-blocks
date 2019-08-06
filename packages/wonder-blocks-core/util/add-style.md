@@ -14,10 +14,10 @@ addStyle(
 ): React.Element;
 ```
 
-The `addStyle` function is a HOC returns a **React Component** or a **DOM**
+The `addStyle` function is a HOC that accepts a **React Component** or a **DOM**
 **intrinsic** ("div", "span", etc.) as its first argument and optional default
-styles as its second argument. This HOC returns a React Element with a `style`
-prop included ready to be rendered.
+styles as its second argument. This HOC returns a **React Component** with a
+`style` prop included ready to be rendered.
 
 #### Function arguments
 
@@ -39,6 +39,9 @@ export type StyleType =
     | Falsy
     | NestedArray<CSSProperties | Falsy>;
 ```
+
+**Note:** `StyleType` can contain a combination of style rules from an Aphrodite
+StyleSheet as well inline style objects (see example 4).
 
 #### CSSProperties
 
@@ -220,50 +223,28 @@ class CustomComponent extends React.Component {
 const styles = StyleSheet.create({
     // default styles
     default: {
-        background: Color.lightBlue,
+        background: Color.white,
         color: Color.white,
-        padding: Spacing.xxLarge,
+        padding: Spacing.medium,
     },
     // style to be passed as a prop
     customStyle: {
-        background: Color.darkBlue,
+        background: Color.lightBlue,
     },
 });
 
-class UsingStyleExample extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            showCustomStyle: false,
-        };
-        this.handleChange = this.handleChange.bind(this);
-    }
+<CustomComponent
+    style={[
+        // you can pass style rules from an Aphrodite StyleSheet
+        styles.customStyle,
+        // and pass inline styles as well
+        {
+            border: `1px solid ${Color.darkBlue}`,
+            padding: Spacing.xxLarge,
+        }
+    ]}
+/>
 
-    handleChange(checked) {
-        this.setState({
-            showCustomStyle: checked,
-        });
-    }
-
-    render() {
-        return (
-            <View>
-                <Checkbox
-                    label="Click here to toggle the custom style inside the custom component"
-                    checked={this.state.showCustomStyle}
-                    onChange={this.handleChange}
-                    style={{
-                        marginBottom: Spacing.medium,
-                    }}
-                />
-                <CustomComponent
-                    style={this.state.showCustomStyle && styles.customStyle}
-                />
-            </View>
-        );
-    }
-}
-<UsingStyleExample />
 ```
 
 **Warning:** In the case of React components from other packages, they may not
