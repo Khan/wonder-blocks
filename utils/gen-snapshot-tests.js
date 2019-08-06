@@ -321,20 +321,30 @@ function extractExamplesAndComponentsForFile(sourceFile, componentFileMap) {
     componentFileMap = componentFileMap || {};
 
     const src = fs.readFileSync(sourceFile, "utf8");
-    const match =
-        src.match(/export default class \s*(\w+)/) ||
-        src.match(/export default \s*\w+\(\s*(\w+)/);
+
+    const ast = parse(src, options);
+
+    // get the default exported module
+    const defaultExport = ast.program.body
+        .filter(
+            (node) =>
+                node.type === "ExportDefaultDeclaration" &&
+                (node.declaration.type === "FunctionDeclaration" ||
+                    node.declaration.type === "ClassDeclaration"),
+        )
+        .map((node) => node.declaration.id.name)
+        .join();
 
     // Guard against files without default exports.
-    if (!match) {
+    if (!defaultExport) {
         return {examples: [], componentFileMap};
     }
 
-    const alreadyCollated = componentFileMap[match[1]] === sourceFile;
+    const alreadyCollated = componentFileMap[defaultExport] === sourceFile;
     if (!alreadyCollated) {
         // Only gather examples for this component file if
         // we didn't see it already.
-        componentFileMap[match[1]] = sourceFile;
+        componentFileMap[defaultExport] = sourceFile;
 
         const componentDoc =
             path.join(
