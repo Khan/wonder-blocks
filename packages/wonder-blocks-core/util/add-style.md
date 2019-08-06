@@ -1,8 +1,9 @@
-Adds a `style` property to a component. A component can be either a custom React
-Component (e.g. Link, Button) or a DOM intrinsic (e.g. "div", "span"). This
-helps you to manipulate and extend styles more easily by using the `styles`
-prop. For more context on this, check the [StyleType](#styletype) type
-definition below.
+Adds a `style` property to a component. A component can be a Wonder Blocks
+Component (e.g. Link, Button), a custom React Component (see example 4. Using
+the `Style` prop) or
+a DOM intrinsic (e.g. "div", "span"). This helps you to manipulate and extend
+styles more easily by using the `styles` prop. For more context on this, check
+the [StyleType](#styletype) type definition below.
 
 ### Usage
 
@@ -13,7 +14,7 @@ addStyle(
 ): React.Element;
 ```
 
-The `addStyle` function is a HOC that accepts a **React Component** or a **DOM**
+The `addStyle` function is a HOC returns a **React Component** or a **DOM**
 **intrinsic** ("div", "span", etc.) as its first argument and optional default
 styles as its second argument. This HOC returns a React Element with a `style`
 prop included ready to be rendered.
@@ -30,7 +31,13 @@ prop included ready to be rendered.
 #### StyleType
 
 ```js static
-CSSProperties | Falsy | Array<CSSProperties | Falsy>
+type NestedArray<T> = $ReadOnlyArray<T | NestedArray<T>>;
+type Falsy = false | 0 | null | void;
+
+export type StyleType =
+    | CSSProperties
+    | Falsy
+    | NestedArray<CSSProperties | Falsy>;
 ```
 
 #### CSSProperties
@@ -71,7 +78,8 @@ const StyledInput = addStyle("input", styles.input);
 #### 2. Overriding a default style
 
 After defining default styles, you can also customize the instance by adding
-and/or merging styles using the `style` prop in your newly created styled component.
+and/or merging styles using the `style` prop in your newly created styled
+component.
 
 ```jsx
 import {StyleSheet} from "aphrodite";
@@ -165,3 +173,99 @@ const styles = StyleSheet.create({
 
 <DynamicStyles />
 ```
+
+#### 4. Using the `style` prop
+
+There are some cases where you don't need to use `addStyle`. For example, if you
+need to create a custom component that is using a Wonder Blocks component, you
+can create a `style` prop and pass it down to the WB component itself.
+
+**NOTE:** Make sure to import the `StyleType` type definition and assign it to
+the prop:
+
+```js static
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
+type Props = {
+    style: StyleType,
+    // add the other props here
+};
+```
+
+```jsx
+import {StyleSheet} from "aphrodite";
+import Color from "@khanacademy/wonder-blocks-color";
+import {Checkbox} from "@khanacademy/wonder-blocks-form";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {Title} from "@khanacademy/wonder-blocks-typography";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+
+// you'll need to import the type definition here
+// import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
+class CustomComponent extends React.Component {
+    render() {
+        return (
+            <View style={[
+                styles.default,
+                // this `style` prop should be of type `StyleType`
+                this.props.style,
+            ]}>
+                <Title>Lorem ipsum</Title>
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    // default styles
+    default: {
+        background: Color.lightBlue,
+        color: Color.white,
+        padding: Spacing.xxLarge,
+    },
+    // style to be passed as a prop
+    customStyle: {
+        background: Color.darkBlue,
+    },
+});
+
+class UsingStyleExample extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            showCustomStyle: false,
+        };
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(checked) {
+        this.setState({
+            showCustomStyle: checked,
+        });
+    }
+
+    render() {
+        return (
+            <View>
+                <Checkbox
+                    label="Click here to toggle the custom style inside the custom component"
+                    checked={this.state.showCustomStyle}
+                    onChange={this.handleChange}
+                    style={{
+                        marginBottom: Spacing.medium,
+                    }}
+                />
+                <CustomComponent
+                    style={this.state.showCustomStyle && styles.customStyle}
+                />
+            </View>
+        );
+    }
+}
+<UsingStyleExample />
+```
+
+**Warning:** In the case of React components from other packages, they may not
+handle `className` or `style` in which case wrapping them in `addStyle` won't do
+anything.
