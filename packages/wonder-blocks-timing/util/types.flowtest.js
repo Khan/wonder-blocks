@@ -58,8 +58,8 @@ const HOCComponent2: React.AbstractComponent<Props2> = withActionScheduler(
 
 /**
  * Case 3: Incorrect Usage
- * The withActionScheduler call is returning a component of type OwnProps2; the
- * variable assigned however is incorrectly specified as Props2.
+ * The withActionScheduler call is being passed a component that isn't set up
+ * to be used with it as it doesn't have all the props necessary.
  */
 type OwnProps3 = {|
     test: string,
