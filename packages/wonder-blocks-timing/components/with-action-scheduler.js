@@ -14,7 +14,7 @@ import type {IScheduleActions, WithActionScheduler} from "../util/types.js";
  * the additional action scheduler prop. To attach the additional prop to
  * these props use the `WithActionScheduler` type.
  */
-function withActionScheduler<TOwnProps: {||}>(
+function withActionScheduler<TOwnProps: {}>(
     Component: React.AbstractComponent<WithActionScheduler<TOwnProps>>,
 ): React.AbstractComponent<TOwnProps> {
     return (props: TOwnProps): React.Node => (
