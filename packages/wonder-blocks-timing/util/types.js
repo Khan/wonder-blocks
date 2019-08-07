@@ -234,7 +234,7 @@ export interface IScheduleActions {
  * order component will inject.
  */
 export type WithActionScheduler<TOwnProps: {}> = {|
-    ...TOwnProps,
+    ...$Exact<TOwnProps>,
 
     /**
      * An instance of the `IScheduleActions` API to use for scheduling

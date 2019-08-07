@@ -11,3 +11,17 @@
 
 [options]
 server.max_workers=1
+
+# $FlowFixMe
+# This suppression hould be used to suppress an issue that requires additional
+# effort to be resolved. That effort should be recorded in our issue tracking
+# system for follow-up. Usually, this suppression is added by tooling during
+# flow upgrades and should not be used directly by developers. If it is
+# necessary, make sure to raise the corresponding issue and add the issue
+# number to a TODO comment associated with the suppression.
+suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
+
+# $FlowExpectError
+# This suppression is used in flow test files to indicate that we expect
+# some code to raise a flow error.
+suppress_comment=\\(.\\|\n\\)*\\$FlowExpectError
