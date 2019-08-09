@@ -5576,6 +5576,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -5610,16 +5611,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#1865f2",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -5652,6 +5643,16 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#1865f2",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -5662,6 +5663,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -5696,16 +5698,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#1865f2",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -5738,6 +5730,16 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#1865f2",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -5748,6 +5750,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -5782,16 +5785,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#1b50b3",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -5800,7 +5793,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#1b50b3",
+      "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -5824,9 +5817,20 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#1b50b3",
+          "borderRadius": 2,
+          "bottom": "calc(50% - 11px)",
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
+        "color": "#1b50b3",
         "display": "flex",
         "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 16,
@@ -5834,6 +5838,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -5910,6 +5915,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -5944,16 +5950,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#ffffff",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -5986,6 +5982,16 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#ffffff",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -5996,6 +6002,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -6030,16 +6037,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#ffffff",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -6072,6 +6069,16 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#ffffff",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -6082,6 +6089,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -6116,16 +6124,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#b5cefb",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -6134,7 +6132,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#b5cefb",
+      "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -6158,9 +6156,20 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#b5cefb",
+          "borderRadius": 2,
+          "bottom": "calc(50% - 11px)",
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
+        "color": "#b5cefb",
         "display": "flex",
         "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 16,
@@ -6168,6 +6177,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -6244,6 +6254,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -6278,16 +6289,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#1865f2",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -6320,6 +6321,16 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#1865f2",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -6330,6 +6341,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -6364,16 +6376,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#1865f2",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -6406,6 +6408,16 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#1865f2",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -6416,6 +6428,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -6450,16 +6463,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#1b50b3",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -6468,7 +6471,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#1b50b3",
+      "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -6492,9 +6495,20 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#1b50b3",
+          "borderRadius": 2,
+          "bottom": "calc(50% - 11px)",
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
+        "color": "#1b50b3",
         "display": "flex",
         "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 14,
@@ -6502,6 +6516,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -6578,6 +6593,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -6612,16 +6628,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#ffffff",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -6654,6 +6660,16 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#ffffff",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -6664,6 +6680,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -6698,16 +6715,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#ffffff",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -6740,6 +6747,16 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#ffffff",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -6750,6 +6767,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -6784,16 +6802,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#b5cefb",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -6802,7 +6810,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#b5cefb",
+      "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -6826,9 +6834,20 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#b5cefb",
+          "borderRadius": 2,
+          "bottom": "calc(50% - 11px)",
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
+        "color": "#b5cefb",
         "display": "flex",
         "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 14,
@@ -6836,6 +6855,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -6912,6 +6932,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -6946,16 +6967,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#d92916",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -6988,6 +6999,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#d92916",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -6998,6 +7019,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -7032,16 +7054,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#d92916",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -7074,6 +7086,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#d92916",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -7084,6 +7106,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -7118,16 +7141,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#9e271d",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -7136,7 +7149,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#9e271d",
+      "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -7160,9 +7173,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#9e271d",
+          "borderRadius": 2,
+          "bottom": "calc(50% - 11px)",
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
+        "color": "#9e271d",
         "display": "flex",
         "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 16,
@@ -7170,6 +7194,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -7246,6 +7271,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -7280,16 +7306,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#ffffff",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -7322,6 +7338,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#ffffff",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -7332,6 +7358,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -7366,16 +7393,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#ffffff",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -7408,6 +7425,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#ffffff",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -7418,6 +7445,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -7452,16 +7480,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#f3bbb4",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -7470,7 +7488,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#f3bbb4",
+      "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 40,
@@ -7494,9 +7512,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#f3bbb4",
+          "borderRadius": 2,
+          "bottom": "calc(50% - 11px)",
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
+        "color": "#f3bbb4",
         "display": "flex",
         "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 16,
@@ -7504,6 +7533,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -7580,6 +7610,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -7614,16 +7645,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#d92916",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -7656,6 +7677,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#d92916",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -7666,6 +7697,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -7700,16 +7732,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#d92916",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -7742,6 +7764,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#d92916",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -7752,6 +7784,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -7786,16 +7819,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#9e271d",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -7804,7 +7827,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#9e271d",
+      "color": "#d92916",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -7828,9 +7851,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#9e271d",
+          "borderRadius": 2,
+          "bottom": "calc(50% - 11px)",
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
+        "color": "#9e271d",
         "display": "flex",
         "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 14,
@@ -7838,6 +7872,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -7914,6 +7949,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -7948,16 +7984,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#ffffff",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -7990,6 +8016,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#ffffff",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -8000,6 +8036,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -8034,16 +8071,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#ffffff",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -8076,6 +8103,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#ffffff",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -8086,6 +8123,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -8120,16 +8158,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
       "::MozFocusInner": Object {
         "border": 0,
       },
-      ":after": Object {
-        "background": "#f3bbb4",
-        "borderRadius": 2,
-        "bottom": "calc(50% - 11px)",
-        "content": "''",
-        "height": 2,
-        "position": "absolute",
-        "right": 0,
-        "width": "calc(100% - 0px)",
-      },
       ":focus": Object {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -8138,7 +8166,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
       "border": "none",
       "borderRadius": 4,
       "boxSizing": "border-box",
-      "color": "#f3bbb4",
+      "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
       "height": 32,
@@ -8162,9 +8190,20 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
     className=""
     style={
       Object {
+        ":after": Object {
+          "background": "#f3bbb4",
+          "borderRadius": 2,
+          "bottom": "calc(50% - 11px)",
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
+        "color": "#f3bbb4",
         "display": "flex",
         "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 14,
@@ -8172,6 +8211,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "whiteSpace": "nowrap",
       }
@@ -8248,6 +8288,7 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
         "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "visibility": "hidden",
         "whiteSpace": "nowrap",
@@ -8378,6 +8419,7 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
         "lineHeight": "18px",
         "overflow": "hidden",
         "pointerEvents": "none",
+        "position": "relative",
         "textOverflow": "ellipsis",
         "visibility": "hidden",
         "whiteSpace": "nowrap",

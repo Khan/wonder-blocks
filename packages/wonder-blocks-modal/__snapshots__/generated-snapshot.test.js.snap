@@ -2054,6 +2054,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                       "lineHeight": "20px",
                       "overflow": "hidden",
                       "pointerEvents": "none",
+                      "position": "relative",
                       "textOverflow": "ellipsis",
                       "whiteSpace": "nowrap",
                     }
@@ -2127,6 +2128,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                       "lineHeight": "20px",
                       "overflow": "hidden",
                       "pointerEvents": "none",
+                      "position": "relative",
                       "textOverflow": "ellipsis",
                       "whiteSpace": "nowrap",
                     }
@@ -2680,6 +2682,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                         "lineHeight": "20px",
                         "overflow": "hidden",
                         "pointerEvents": "none",
+                        "position": "relative",
                         "textOverflow": "ellipsis",
                         "whiteSpace": "nowrap",
                       }

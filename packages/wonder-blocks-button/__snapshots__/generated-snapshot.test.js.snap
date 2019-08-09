@@ -234,6 +234,7 @@ exports[`wonder-blocks-button example 1 1`] = `
           "lineHeight": "20px",
           "overflow": "hidden",
           "pointerEvents": "none",
+          "position": "relative",
           "textOverflow": "ellipsis",
           "whiteSpace": "nowrap",
         }
@@ -479,6 +480,7 @@ exports[`wonder-blocks-button example 2 1`] = `
           "lineHeight": "20px",
           "overflow": "hidden",
           "pointerEvents": "none",
+          "position": "relative",
           "textOverflow": "ellipsis",
           "whiteSpace": "nowrap",
         }
@@ -724,6 +726,7 @@ exports[`wonder-blocks-button example 3 1`] = `
           "lineHeight": "20px",
           "overflow": "hidden",
           "pointerEvents": "none",
+          "position": "relative",
           "textOverflow": "ellipsis",
           "whiteSpace": "nowrap",
         }
@@ -970,6 +973,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "lineHeight": "20px",
           "overflow": "hidden",
           "pointerEvents": "none",
+          "position": "relative",
           "textOverflow": "ellipsis",
           "whiteSpace": "nowrap",
         }
@@ -1192,6 +1196,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "lineHeight": "20px",
           "overflow": "hidden",
           "pointerEvents": "none",
+          "position": "relative",
           "textOverflow": "ellipsis",
           "whiteSpace": "nowrap",
         }
@@ -1437,6 +1442,7 @@ exports[`wonder-blocks-button example 5 1`] = `
           "lineHeight": "18px",
           "overflow": "hidden",
           "pointerEvents": "none",
+          "position": "relative",
           "textOverflow": "ellipsis",
           "whiteSpace": "nowrap",
         }
@@ -1672,6 +1678,7 @@ exports[`wonder-blocks-button example 6 1`] = `
           "lineHeight": "20px",
           "overflow": "hidden",
           "pointerEvents": "none",
+          "position": "relative",
           "textOverflow": "ellipsis",
           "whiteSpace": "nowrap",
         }
@@ -2415,6 +2422,7 @@ exports[`wonder-blocks-button example 9 1`] = `
             "lineHeight": "20px",
             "overflow": "hidden",
             "pointerEvents": "none",
+            "position": "relative",
             "textOverflow": "ellipsis",
             "whiteSpace": "nowrap",
           }
@@ -2720,6 +2728,7 @@ exports[`wonder-blocks-button example 9 1`] = `
             "lineHeight": "18px",
             "overflow": "hidden",
             "pointerEvents": "none",
+            "position": "relative",
             "textOverflow": "ellipsis",
             "whiteSpace": "nowrap",
           }
@@ -3353,6 +3362,7 @@ exports[`wonder-blocks-button example 13 1`] = `
             "lineHeight": "20px",
             "overflow": "hidden",
             "pointerEvents": "none",
+            "position": "relative",
             "textOverflow": "ellipsis",
             "whiteSpace": "nowrap",
           }

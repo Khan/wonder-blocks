@@ -76,7 +76,9 @@ export default class ButtonCore extends React.Component<Props> {
             icon && sharedStyles.withIcon,
             buttonStyles.default,
             disabled && buttonStyles.disabled,
-            !disabled &&
+            // apply focus effect only to default and secondary buttons
+            kind !== "tertiary" &&
+                !disabled &&
                 (pressed
                     ? buttonStyles.active
                     : (hovered || focused) && buttonStyles.focus),
@@ -94,7 +96,17 @@ export default class ButtonCore extends React.Component<Props> {
 
         const label = (
             <Label
-                style={[sharedStyles.text, spinner && sharedStyles.hiddenText]}
+                style={[
+                    sharedStyles.text,
+                    spinner && sharedStyles.hiddenText,
+                    kind === "tertiary" && sharedStyles.textWithFocus,
+                    // apply focus effect on the label instead
+                    kind === "tertiary" &&
+                        !disabled &&
+                        (pressed
+                            ? buttonStyles.active
+                            : (hovered || focused) && buttonStyles.focus),
+                ]}
             >
                 {icon && (
                     <Icon
@@ -189,6 +201,9 @@ const sharedStyles = StyleSheet.create({
         overflow: "hidden",
         textOverflow: "ellipsis",
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
+    },
+    textWithFocus: {
+        position: "relative", // allows the tertiary button border to use the label width
     },
     hiddenText: {
         visibility: "hidden",
@@ -291,7 +306,7 @@ const _generateStyles = (color, kind, light, iconWidth) => {
                     height: 2,
                     width: `calc(100% - ${iconWidth}px)`,
                     right: 0,
-                    bottom: "calc(50% - 11px)",
+                    bottom: 0,
                     background: light ? white : color,
                     borderRadius: 2,
                 },

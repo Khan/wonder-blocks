@@ -615,6 +615,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
               "lineHeight": "20px",
               "overflow": "hidden",
               "pointerEvents": "none",
+              "position": "relative",
               "textOverflow": "ellipsis",
               "whiteSpace": "nowrap",
             }
