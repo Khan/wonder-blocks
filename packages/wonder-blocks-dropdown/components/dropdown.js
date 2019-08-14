@@ -40,7 +40,7 @@ type Props = {|
     /**
      * The items present in the Dropdown
      */
-    menuItems: Array<Item> | Item,
+    menuItems: Array<Item | false | typeof undefined | null> | Item,
 
     /**
      * Closes the Dropdown when an OptionItem is selected, use this
