@@ -18,9 +18,7 @@ type Props = {|
     /**
      * The items in this select.
      */
-    children?: Array<
-        React.Element<OptionItem> | false | typeof undefined | null,
-    >,
+    children?: Array<?(React.Element<OptionItem> | false)>,
 
     /**
      * Callback for when the selection. Parameter is the value of the newly

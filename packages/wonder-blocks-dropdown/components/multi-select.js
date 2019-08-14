@@ -20,9 +20,7 @@ type Props = {|
     /**
      * The items in this select.
      */
-    children?: Array<
-        React.Element<OptionItem> | false | typeof undefined | null,
-    >,
+    children?: Array<?(React.Element<OptionItem> | false)>,
 
     /**
      * Whether this component is disabled. A disabled dropdown may not be opened
