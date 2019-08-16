@@ -21,7 +21,7 @@ type Props = {|
 export default class ModalFooter extends React.Component<Props> {
     static __IS_MODAL_FOOTER__ = true;
     static isClassOf(instance: any) {
-        return instance && instance.type && instance.type.__IS_MODAL_FOOTER__;
+        return instance?.type?.__IS_MODAL_FOOTER__;
     }
 
     render() {

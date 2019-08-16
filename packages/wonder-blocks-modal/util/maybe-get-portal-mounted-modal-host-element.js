@@ -9,7 +9,7 @@ import {ModalLauncherPortalAttributeName} from "./constants.js";
  * @returns {?Element} The nearest parent modal launcher portal.
  */
 function maybeGetNextAncestorModalLauncherPortal(element: ?(Element | Text)) {
-    let candidateElement = element && element.parentElement;
+    let candidateElement = element?.parentElement;
     while (
         candidateElement &&
         !candidateElement.hasAttribute(ModalLauncherPortalAttributeName)

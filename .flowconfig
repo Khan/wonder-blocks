@@ -9,7 +9,11 @@
 <PROJECT_ROOT>/node_modules/findup
 <PROJECT_ROOT>/node_modules/editions
 
+[lints]
+unnecessary-optional-chain=error
+
 [options]
+esproposal.optional_chaining=enable
 server.max_workers=1
 
 # $FlowFixMe

@@ -15,7 +15,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 export default class SeparatorItem extends React.Component<{}> {
     static __IS_SEPARATOR_ITEM__ = true;
     static isClassOf(instance: React.Element<any>) {
-        return instance && instance.type && instance.type.__IS_SEPARATOR_ITEM__;
+        return instance.type?.__IS_SEPARATOR_ITEM__;
     }
 
     render() {

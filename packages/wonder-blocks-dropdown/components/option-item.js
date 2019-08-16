@@ -82,7 +82,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     static contextTypes = {router: PropTypes.any};
     static __IS_OPTION_ITEM__ = true;
     static isClassOf(instance: React.Element<any>) {
-        return instance && instance.type && instance.type.__IS_OPTION_ITEM__;
+        return instance.type?.__IS_OPTION_ITEM__;
     }
 
     getCheckComponent() {

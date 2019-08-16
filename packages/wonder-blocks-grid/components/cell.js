@@ -65,7 +65,7 @@ export default class Cell extends React.Component<Props> {
 
     static __IS_CELL__ = true;
     static isClassOf(instance: React.Element<any>) {
-        return instance && instance.type && instance.type.__IS_CELL__;
+        return instance.type?.__IS_CELL__;
     }
 
     static getCols(props: Props, mediaSize: MediaSize) {

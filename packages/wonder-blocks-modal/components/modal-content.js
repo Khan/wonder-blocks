@@ -26,7 +26,7 @@ export default class ModalContent extends React.Component<Props> {
 
     static __IS_MODAL_CONTENT__ = true;
     static isClassOf(instance: any) {
-        return instance && instance.type && instance.type.__IS_MODAL_CONTENT__;
+        return instance?.type?.__IS_MODAL_CONTENT__;
     }
 
     render() {

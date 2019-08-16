@@ -55,8 +55,7 @@ class ScrollAncestorsIterator implements Iterator<Element> {
         let scrollCandidate: ?Element;
         do {
             scrollCandidate = this.parentElement;
-            this.parentElement =
-                this.parentElement && this.parentElement.parentElement;
+            this.parentElement = this.parentElement?.parentElement;
         } while (scrollCandidate && !canScroll(scrollCandidate));
 
         if (!scrollCandidate) {
