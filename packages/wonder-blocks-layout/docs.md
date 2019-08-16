@@ -58,29 +58,36 @@ or `large`.  Each value contains the following data:
 - `marginWidth: number`
 - `maxWidth: number`
 
-By default, `MediaLayout` uses `MEDIA_DEFAULT_SPEC` but others can be specified using
-`MediaLayoutContext.Provider`.  See media-layout-context.test.js for examples of how
-to do this.
+### Examples
+
+#### 1. Switching styles for different screen sizes
+
+By default, `MediaLayout` uses `MEDIA_DEFAULT_SPEC`. Here you can see a simple
+example that changes styles depending on the current spec.
 
 ```js
 import {StyleSheet} from "aphrodite";
+import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 
 const styleSheets = {
     large: StyleSheet.create({
         test: {
-            backgroundColor: "blue",
+            backgroundColor: Color.darkBlue,
+            color: Color.white,
         },
     }),
     medium: StyleSheet.create({
         test: {
-            backgroundColor: "green",
+            backgroundColor: Color.blue,
+            color: Color.white,
         },
     }),
     small: StyleSheet.create({
         test: {
-            backgroundColor: "orange",
+            backgroundColor: Color.lightBlue,
+            color: Color.white,
         },
     }),
 };
@@ -90,4 +97,137 @@ const styleSheets = {
         return <View style={styles.test}>Hello, world!</View>;
     }}
 </MediaLayout>
+```
+
+#### 2. Defining shared styles for all sizes
+
+You can use the `all` key to define styles for all the different sizes. This
+means that by using this key, all the sizes (small, medium, large) will use the
+styles defined in `all`, and in case there are duplicate properties, the
+specific sizes will take more importance.
+
+```js
+import {StyleSheet} from "aphrodite";
+import Color from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
+
+const styleSheets = {
+    all: StyleSheet.create({
+        // use shared styles for all sizes
+        test: {
+            color: Color.white,
+            padding: Spacing.medium,
+        },
+    }),
+
+    large: StyleSheet.create({
+        // override the `padding` prop` here
+        test: {
+            backgroundColor: Color.darkBlue,
+            padding: Spacing.xxLarge,
+        },
+    }),
+
+    medium: StyleSheet.create({
+        test: {
+            backgroundColor: Color.blue,
+        },
+    }),
+
+    small: StyleSheet.create({
+        test: {
+            backgroundColor: Color.lightBlue,
+        },
+    }),
+};
+
+<MediaLayout styleSheets={styleSheets}>
+    {({mediaSize, mediaSpec, styles}) => {
+        return <View style={styles.test}>Hello, world!</View>;
+    }}
+</MediaLayout>
+```
+
+#### 3. Using a different spec for Modals:
+
+There are cases when you will need to use a different spec, for example in
+Modals, where you can use `MEDIA_MODAL_SPEC` instead. You just need to use the
+`MediaLayoutContext.Provider` to specify this spec value.
+
+```js
+import {StyleSheet} from "aphrodite";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import Button from "@khanacademy/wonder-blocks-button";
+import {Body} from "@khanacademy/wonder-blocks-typography";
+import Color from "@khanacademy/wonder-blocks-color";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {MediaLayout, MediaLayoutContext, MEDIA_MODAL_SPEC} from "@khanacademy/wonder-blocks-layout";
+
+const styleSheets = {
+    large: StyleSheet.create({
+        example: {
+            alignItems: "center",
+            backgroundColor: Color.darkBlue,
+            padding: Spacing.medium,
+        },
+
+        footer: {
+            flexDirection: "row",
+        },
+
+        button: {
+            marginLeft: Spacing.medium,
+        }
+    }),
+
+    small: StyleSheet.create({
+        example: {
+            backgroundColor: Color.lightBlue,
+        },
+
+        footer: {
+            flexDirection: "column-reverse",
+            width: "100%",
+        },
+    }),
+};
+
+// If using flow, make sure to add the type `MediaLayoutContextValue`
+const contextValue = {
+    ssrSize: "large",
+    mediaSpec: MEDIA_MODAL_SPEC,
+};
+
+<MediaLayoutContext.Provider value={contextValue}>
+    <MediaLayout styleSheets={styleSheets}>
+        {({mediaSize, mediaSpec, styles}) => {
+            return (
+                <View style={styles.example}>
+                    <OnePaneDialog
+                        title="Title"
+                        subtitle="You're reading the subtitle!"
+                        content={
+                            <View style={styles.modalContent}>
+                                <Body tag="p">
+                                    {
+                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                                    }
+                                </Body>
+                            </View>
+                        }
+                        footer={
+                            <View style={styles.footer}>
+                                <Button style={styles.button} kind="tertiary">Back</Button>
+                                <Button style={styles.button}>Continue</Button>
+                            </View>
+                        }
+                    />
+                </View>
+            );
+        }}
+    </MediaLayout>
+</MediaLayoutContext.Provider>
 ```
