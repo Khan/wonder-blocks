@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-export type getRefFn = (?(React.Component<*> | Element)) => void;
+export type getRefFn = (?(React.Component<any> | Element)) => void;
 
 export type Offset = {|
     top: number,

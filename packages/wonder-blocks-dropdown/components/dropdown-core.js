@@ -54,7 +54,7 @@ type DropdownProps = {|
     /**
      * The component that opens the menu.
      */
-    opener: React.Element<*>,
+    opener: React.Element<any>,
 
     /**
      * Ref to the opener element.

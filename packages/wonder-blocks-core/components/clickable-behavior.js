@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 
 // NOTE: Potentially add to this as more cases come up.
 export type ClickableRole =
@@ -51,7 +51,7 @@ type Props = {|
     children: (
         state: ClickableState,
         handlers: ClickableHandlers,
-    ) => React$Element<*>,
+    ) => React.Node,
 
     /**
      * Whether the component is disabled.
@@ -125,10 +125,10 @@ export type ClickableHandlers = {|
     onTouchStart: () => mixed,
     onTouchEnd: () => mixed,
     onTouchCancel: () => mixed,
-    onKeyDown: (e: SyntheticKeyboardEvent<*>) => mixed,
-    onKeyUp: (e: SyntheticKeyboardEvent<*>) => mixed,
-    onFocus: (e: SyntheticFocusEvent<*>) => mixed,
-    onBlur: (e: SyntheticFocusEvent<*>) => mixed,
+    onKeyDown: (e: SyntheticKeyboardEvent<>) => mixed,
+    onKeyUp: (e: SyntheticKeyboardEvent<>) => mixed,
+    onFocus: (e: SyntheticFocusEvent<>) => mixed,
+    onBlur: (e: SyntheticFocusEvent<>) => mixed,
     tabIndex: number,
 |};
 
@@ -326,7 +326,7 @@ export default class ClickableBehavior extends React.Component<
         this.waitingForClick = true;
     };
 
-    handleKeyDown = (e: SyntheticKeyboardEvent<*>) => {
+    handleKeyDown = (e: SyntheticKeyboardEvent<>) => {
         const keyCode = e.which || e.keyCode;
         const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
             this.props.role,
@@ -348,7 +348,7 @@ export default class ClickableBehavior extends React.Component<
         }
     };
 
-    handleKeyUp = (e: SyntheticKeyboardEvent<*>) => {
+    handleKeyUp = (e: SyntheticKeyboardEvent<>) => {
         const keyCode = e.which || e.keyCode;
         const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
             this.props.role,
@@ -374,11 +374,11 @@ export default class ClickableBehavior extends React.Component<
         }
     };
 
-    handleFocus = (e: SyntheticFocusEvent<*>) => {
+    handleFocus = (e: SyntheticFocusEvent<>) => {
         this.setState({focused: true});
     };
 
-    handleBlur = (e: SyntheticFocusEvent<*>) => {
+    handleBlur = (e: SyntheticFocusEvent<>) => {
         this.setState({focused: false, pressed: false});
     };
 
