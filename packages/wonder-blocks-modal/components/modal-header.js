@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
+import {typeof Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
@@ -67,7 +67,7 @@ type WithBreadcrumbs = {|
     /**
      * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
      */
-    breadcrumbs: React.Element<typeof Breadcrumbs>,
+    breadcrumbs: React.Element<Breadcrumbs>,
 |};
 
 type Props = Common | WithSubtitle | WithBreadcrumbs;

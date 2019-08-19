@@ -12,8 +12,8 @@ import type {
     PopperElementProps,
 } from "@khanacademy/wonder-blocks-tooltip";
 
-import PopoverContent from "./popover-content.js";
-import PopoverContentCore from "./popover-content-core.js";
+import typeof PopoverContent from "./popover-content.js";
+import typeof PopoverContentCore from "./popover-content-core.js";
 
 type Props = {|
     ...AriaProps,
@@ -27,9 +27,7 @@ type Props = {|
     /**
      * The content to render inside the dialog.
      */
-    children:
-        | React.Element<typeof PopoverContent>
-        | React.Element<typeof PopoverContentCore>,
+    children: React.Element<PopoverContent> | React.Element<PopoverContentCore>,
 
     /**
      * The unique identifier to give to the popover content.

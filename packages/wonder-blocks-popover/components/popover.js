@@ -12,8 +12,8 @@ import type {
     PopperElementProps,
 } from "@khanacademy/wonder-blocks-tooltip";
 
-import PopoverContent from "./popover-content.js";
-import PopoverContentCore from "./popover-content-core.js";
+import typeof PopoverContent from "./popover-content.js";
+import typeof PopoverContentCore from "./popover-content-core.js";
 import PopoverContext from "./popover-context.js";
 import PopoverAnchor from "./popover-anchor.js";
 import PopoverDialog from "./popover-dialog.js";
@@ -42,11 +42,11 @@ type Props = {|
      * callback can be called to close the popover.
      */
     content:
-        | React.Element<typeof PopoverContent>
-        | React.Element<typeof PopoverContentCore>
+        | React.Element<PopoverContent>
+        | React.Element<PopoverContentCore>
         | (({close: () => void}) =>
-              | React.Element<typeof PopoverContentCore>
-              | React.Element<typeof PopoverContent>),
+              | React.Element<PopoverContentCore>
+              | React.Element<PopoverContent>),
 
     /**
      * Where the popover should try to appear in relation to the trigger element.
