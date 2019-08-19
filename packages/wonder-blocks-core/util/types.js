@@ -142,48 +142,48 @@ export type AriaProps = {|
 |};
 
 type MouseEvents = {|
-    onMouseDown?: (e: SyntheticMouseEvent<*>) => mixed,
-    onMouseUp?: (e: SyntheticMouseEvent<*>) => mixed,
-    onMouseMove?: (e: SyntheticMouseEvent<*>) => mixed,
-    onClick?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDoubleClick?: (e: SyntheticMouseEvent<*>) => mixed,
-    onMouseEnter?: (e: SyntheticMouseEvent<*>) => mixed,
-    onMouseLeave?: (e: SyntheticMouseEvent<*>) => mixed,
-    onMouseOut?: (e: SyntheticMouseEvent<*>) => mixed,
-    onMouseOver?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDrag?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDragEnd?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDragEnter?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDragExit?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDragLeave?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDragOver?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDragStart?: (e: SyntheticMouseEvent<*>) => mixed,
-    onDrop?: (e: SyntheticMouseEvent<*>) => mixed,
+    onMouseDown?: (e: SyntheticMouseEvent<>) => mixed,
+    onMouseUp?: (e: SyntheticMouseEvent<>) => mixed,
+    onMouseMove?: (e: SyntheticMouseEvent<>) => mixed,
+    onClick?: (e: SyntheticMouseEvent<>) => mixed,
+    onDoubleClick?: (e: SyntheticMouseEvent<>) => mixed,
+    onMouseEnter?: (e: SyntheticMouseEvent<>) => mixed,
+    onMouseLeave?: (e: SyntheticMouseEvent<>) => mixed,
+    onMouseOut?: (e: SyntheticMouseEvent<>) => mixed,
+    onMouseOver?: (e: SyntheticMouseEvent<>) => mixed,
+    onDrag?: (e: SyntheticMouseEvent<>) => mixed,
+    onDragEnd?: (e: SyntheticMouseEvent<>) => mixed,
+    onDragEnter?: (e: SyntheticMouseEvent<>) => mixed,
+    onDragExit?: (e: SyntheticMouseEvent<>) => mixed,
+    onDragLeave?: (e: SyntheticMouseEvent<>) => mixed,
+    onDragOver?: (e: SyntheticMouseEvent<>) => mixed,
+    onDragStart?: (e: SyntheticMouseEvent<>) => mixed,
+    onDrop?: (e: SyntheticMouseEvent<>) => mixed,
 |};
 
 type KeyboardEvents = {|
-    onKeyDown?: (e: SyntheticKeyboardEvent<*>) => mixed,
-    onKeyPress?: (e: SyntheticKeyboardEvent<*>) => mixed,
-    onKeyUp?: (e: SyntheticKeyboardEvent<*>) => mixed,
+    onKeyDown?: (e: SyntheticKeyboardEvent<>) => mixed,
+    onKeyPress?: (e: SyntheticKeyboardEvent<>) => mixed,
+    onKeyUp?: (e: SyntheticKeyboardEvent<>) => mixed,
 |};
 
 type InputEvents = {|
-    onChange?: (e: SyntheticInputEvent<*>) => mixed,
-    onInput?: (e: SyntheticInputEvent<*>) => mixed,
-    onInvalid?: (e: SyntheticInputEvent<*>) => mixed,
-    onSubmit?: (e: SyntheticInputEvent<*>) => mixed,
+    onChange?: (e: SyntheticInputEvent<>) => mixed,
+    onInput?: (e: SyntheticInputEvent<>) => mixed,
+    onInvalid?: (e: SyntheticInputEvent<>) => mixed,
+    onSubmit?: (e: SyntheticInputEvent<>) => mixed,
 |};
 
 type TouchEvents = {|
-    onTouchCancel?: (e: SyntheticTouchEvent<*>) => mixed,
-    onTouchEnd?: (e: SyntheticTouchEvent<*>) => mixed,
-    onTouchMove?: (e: SyntheticTouchEvent<*>) => mixed,
-    onTouchStart?: (e: SyntheticTouchEvent<*>) => mixed,
+    onTouchCancel?: (e: SyntheticTouchEvent<>) => mixed,
+    onTouchEnd?: (e: SyntheticTouchEvent<>) => mixed,
+    onTouchMove?: (e: SyntheticTouchEvent<>) => mixed,
+    onTouchStart?: (e: SyntheticTouchEvent<>) => mixed,
 |};
 
 type FocusEvents = {|
-    onFocus?: (e: SyntheticFocusEvent<*>) => mixed,
-    onBlur?: (e: SyntheticFocusEvent<*>) => mixed,
+    onFocus?: (e: SyntheticFocusEvent<>) => mixed,
+    onBlur?: (e: SyntheticFocusEvent<>) => mixed,
 |};
 
 type EventHandlers = {|

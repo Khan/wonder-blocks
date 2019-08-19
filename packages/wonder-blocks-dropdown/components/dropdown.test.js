@@ -16,7 +16,7 @@ type Props = {|
     onToggle?: (opened: boolean) => mixed,
 |};
 type State = {|
-    selectedValues: Array<*>,
+    selectedValues: Array<string>,
     opened?: boolean,
 |};
 

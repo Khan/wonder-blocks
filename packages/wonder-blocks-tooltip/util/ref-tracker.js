@@ -15,7 +15,7 @@ export default class RefTracker {
     _lastRef: ?HTMLElement;
     _targetFn: ?(?HTMLElement) => void;
 
-    updateRef = (ref: ?(React.Component<*> | Element)) => {
+    updateRef = (ref: ?(React.Component<any> | Element)) => {
         if (ref) {
             // We only want to update the reference if it is
             // actually changed. Otherwise, we can trigger another render that

@@ -1,6 +1,6 @@
 // @flow
-import * as React from "react";
 import {mount as enzymeMount} from "enzyme";
+import type {ReactWrapper} from "enzyme";
 
 /**
  * Enzyme doesn't unmount mounted things and all tests share the same DOM
@@ -21,11 +21,11 @@ const unmountAll = () => {
     }
 };
 
-const mount = (nodes: React.Node) => {
-    const wrapper = enzymeMount(nodes);
+function mount<T>(nodes: React$Element<T>): ReactWrapper<T> {
+    const wrapper = enzymeMount<T>(nodes);
     const identity = ACTIVE_WRAPPERS.length;
     ACTIVE_WRAPPERS[identity] = wrapper;
     return wrapper;
-};
+}
 
 export {mount, unmountAll};
