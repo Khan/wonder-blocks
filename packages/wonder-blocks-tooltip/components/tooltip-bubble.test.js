@@ -5,7 +5,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import TooltipBubble from "./tooltip-bubble.js";
-import TooltipContent from "./tooltip-content.js";
+import typeof TooltipContent from "./tooltip-content.js";
 
 const sleep = (duration = 0) =>
     new Promise((resolve, reject) => setTimeout(resolve, duration));
@@ -35,7 +35,7 @@ describe("TooltipBubble", () => {
             // we are isolating behaviors a bit more.
             const fakeContent = (((
                 <View id="content">Some content</View>
-            ): any): React.Element<typeof TooltipContent>);
+            ): any): React.Element<TooltipContent>);
             const nodes = (
                 <View>
                     <TooltipBubble
