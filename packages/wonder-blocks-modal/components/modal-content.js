@@ -26,6 +26,8 @@ export default class ModalContent extends React.Component<Props> {
 
     static __IS_MODAL_CONTENT__ = true;
     static isClassOf(instance: any) {
+        // modal-panel.js can pass a React.Node so we have to null
+        // check instance itself as well as the rest of the path.
         return instance?.type?.__IS_MODAL_CONTENT__;
     }
 

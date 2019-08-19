@@ -21,6 +21,8 @@ type Props = {|
 export default class ModalFooter extends React.Component<Props> {
     static __IS_MODAL_FOOTER__ = true;
     static isClassOf(instance: any) {
+        // modal-content.js can pass a React.Node so we have to null
+        // check instance itself as well as the rest of the path.
         return instance?.type?.__IS_MODAL_FOOTER__;
     }
 
