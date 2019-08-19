@@ -26,7 +26,7 @@ Installs project dependencies
 
 Runs the docs in dev mode
 
-Now you can open `http://localhost:6060` to view the docs. This page will
+Now you can open http://localhost:6060 to view the docs. This page will
 automatically update as you make changes to components.
 
 ## Contributing
