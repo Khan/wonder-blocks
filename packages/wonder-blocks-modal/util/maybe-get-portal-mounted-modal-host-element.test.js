@@ -30,10 +30,12 @@ describe("maybeGetPortalMountedModalHostElement", () => {
             </div>
         );
         const wrapper = mount(nodes);
-        const candidateElement = wrapper.find("button")[0];
+        const candidateElement = wrapper.find("button").at(0);
 
         // Act
-        const result = maybeGetPortalMountedModalHostElement(candidateElement);
+        const result = maybeGetPortalMountedModalHostElement(
+            candidateElement.getDOMNode(),
+        );
 
         // Assert
         expect(result).toBeFalsy();
@@ -61,11 +63,11 @@ describe("maybeGetPortalMountedModalHostElement", () => {
             );
 
             const wrapper = mount(modal);
-            const candidateElement = wrapper.find("button")[0];
+            const candidateElement = wrapper.find("button").at(0);
 
             // Act
             const result = maybeGetPortalMountedModalHostElement(
-                candidateElement,
+                candidateElement.getDOMNode(),
             );
 
             // Assert

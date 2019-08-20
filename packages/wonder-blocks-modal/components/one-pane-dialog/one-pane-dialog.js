@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
+import {typeof Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -104,7 +104,7 @@ type WithBreadcrumbs = {|
     /**
      * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
      */
-    breadcrumbs?: React.Element<typeof Breadcrumbs>,
+    breadcrumbs?: React.Element<Breadcrumbs>,
 |};
 
 type Props = Common | WithSubtitle | WithBreadcrumbs;
@@ -127,9 +127,7 @@ export default class OnePaneDialog extends React.Component<Props> {
             return (
                 <ModalHeader
                     title={title}
-                    breadcrumbs={
-                        (breadcrumbs: React.Element<typeof Breadcrumbs>)
-                    }
+                    breadcrumbs={(breadcrumbs: React.Element<Breadcrumbs>)}
                     titleId={uniqueId}
                 />
             );

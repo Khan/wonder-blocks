@@ -9,6 +9,10 @@
 <PROJECT_ROOT>/node_modules/findup
 <PROJECT_ROOT>/node_modules/editions
 
+[lints]
+deprecated-type=error
+deprecated-utility=error
+
 [options]
 server.max_workers=1
 

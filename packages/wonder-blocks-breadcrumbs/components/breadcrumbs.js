@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import BreadcrumbsItem from "./breadcrumbs-item.js";
+import typeof BreadcrumbsItem from "./breadcrumbs-item.js";
 
 type Props = {|
     ...AriaProps,
@@ -12,7 +12,7 @@ type Props = {|
     /**
      * This is the content for the collection of Breadcrumbs
      */
-    children: React.ChildrenArray<React.Element<typeof BreadcrumbsItem>>,
+    children: React.ChildrenArray<React.Element<BreadcrumbsItem>>,
 
     /**
      * Test ID used for e2e testing.

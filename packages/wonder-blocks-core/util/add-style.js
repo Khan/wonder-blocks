@@ -7,7 +7,7 @@ import {processStyleList} from "./util.js";
 import type {StyleType} from "./types.js";
 
 // TODO(kevinb): have an a version which uses exact object types
-export default function addStyle<T: React.AbstractComponent<*> | string>(
+export default function addStyle<T: React.AbstractComponent<any> | string>(
     Component: T,
     defaultStyle?: StyleType,
 ): React.AbstractComponent<React.ElementConfig<T> & {style: StyleType}> {
