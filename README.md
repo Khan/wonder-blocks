@@ -31,6 +31,10 @@ automatically update as you make changes to components.
 
 ## Contributing
 
+**Note for external contributors:** We are not accepting external contributions
+at this time. We are working to make this happen in the future, and we will let
+you know when this is possible!
+
 For a more detailed explanation about how to develop Wonder Blocks components,
 please refer to the [internal documentation](https://khanacademy.atlassian.net/wiki/spaces/FRONTEND/pages/100827261/Developing+wonder-blocks)
 
