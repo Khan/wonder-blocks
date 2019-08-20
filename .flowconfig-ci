@@ -14,6 +14,11 @@ deprecated-type=error
 deprecated-utility=error
 
 [options]
+# We use a single work on CI because the free tier of CircleCI that we use
+# to run the tests only have access to a single core.  This avoids issues
+# with Flow failing to start sometimes.
+server.max_workers=1
+
 # $FlowFixMe
 # This suppression hould be used to suppress an issue that requires additional
 # effort to be resolved. That effort should be recorded in our issue tracking
