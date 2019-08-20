@@ -103,7 +103,7 @@ const styleSheets = {
 
 You can use the `all` key to define styles for all the different sizes. This
 means that by using this key, all the sizes (small, medium, large) will use the
-styles defined in `all`, and in case there are duplicate properties, the
+styles defined in `all`, and in case there are duplicate properties, more
 specific sizes will take more importance.
 
 ```js
@@ -144,87 +144,102 @@ const styleSheets = {
 };
 
 <MediaLayout styleSheets={styleSheets}>
-    {({mediaSize, mediaSpec, styles}) => {
+    {({styles}) => {
         return <View style={styles.test}>Hello, world!</View>;
     }}
 </MediaLayout>
 ```
 
-#### 3. Using a different spec for Modals:
+#### 3. Using a custom spec:
 
-There are cases when you will need to use a different spec, for example in
-Modals, where you can use `MEDIA_MODAL_SPEC` instead. You just need to use the
+There are cases when you might need to use a custom media query spec. For that
+situation you can define your own custom `MEDIA_SPEC`. You just need to use the
 `MediaLayoutContext.Provider` to specify this spec value.
+
+**NOTE:** Make sure to import the `MediaSpec` and `MediaLayoutContextValue` type
+definitions:
+
+```js static
+// 1. Import the required types
+import type {MediaSpec, MediaLayoutContextValue} from "@khanacademy/wonder-blocks-layout";
+
+// 2. Add the `MediaSpect` type to the MEDIA_CUSTOM_SPEC object
+const MEDIA_CUSTOM_SPEC: MediaSpec = {
+    ...
+};
+
+// 3. Make sure to add the type `MediaLayoutContextValue`
+const contextValue: MediaLayoutContextValue = {
+    ssrSize: "large",
+    mediaSpec: MEDIA_CUSTOM_SPEC,
+};
+```
 
 ```js
 import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
-import Button from "@khanacademy/wonder-blocks-button";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {Body, HeadingLarge, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {MediaLayout, MediaLayoutContext, MEDIA_MODAL_SPEC} from "@khanacademy/wonder-blocks-layout";
+import {MediaLayout, MediaLayoutContext} from "@khanacademy/wonder-blocks-layout";
+
+// If you're using flow, make sure to import these types by uncommenting the following line
+// import type {MediaSpec, MediaLayoutContextValue} from "@khanacademy/wonder-blocks-layout";
 
 const styleSheets = {
     large: StyleSheet.create({
         example: {
             alignItems: "center",
             backgroundColor: Color.darkBlue,
-            padding: Spacing.medium,
+            color: Color.white,
+            padding: Spacing.xxxLarge,
         },
-
-        footer: {
-            flexDirection: "row",
-        },
-
-        button: {
-            marginLeft: Spacing.medium,
-        }
     }),
 
     small: StyleSheet.create({
         example: {
             backgroundColor: Color.lightBlue,
-        },
-
-        footer: {
-            flexDirection: "column-reverse",
-            width: "100%",
+            padding: Spacing.small,
         },
     }),
 };
 
-// If using flow, make sure to add the type `MediaLayoutContextValue`
+// Custom media spec definition
+// Make sure to add the type `MediaSpec`
+const MEDIA_CUSTOM_SPEC = {
+    small: {
+        query: "(max-width: 767px)",
+        totalColumns: 4,
+        gutterWidth: Spacing.medium,
+        marginWidth: Spacing.medium,
+    },
+    large: {
+        query: "(min-width: 768px)",
+        totalColumns: 12,
+        gutterWidth: Spacing.xLarge,
+        marginWidth: Spacing.xxLarge,
+    },
+};
+
+// Make sure to add the type `MediaLayoutContextValue`
 const contextValue = {
     ssrSize: "large",
-    mediaSpec: MEDIA_MODAL_SPEC,
+    mediaSpec: MEDIA_CUSTOM_SPEC,
 };
 
 <MediaLayoutContext.Provider value={contextValue}>
     <MediaLayout styleSheets={styleSheets}>
-        {({mediaSize, mediaSpec, styles}) => {
+        {({mediaSize, styles}) => {
+            const HeadingComponent = (mediaSize === "small") ? HeadingSmall : HeadingLarge;
+
             return (
                 <View style={styles.example}>
-                    <OnePaneDialog
-                        title="Title"
-                        subtitle="You're reading the subtitle!"
-                        content={
-                            <View style={styles.modalContent}>
-                                <Body tag="p">
-                                    {
-                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
-                                    }
-                                </Body>
-                            </View>
+                    <HeadingComponent>Current mediaSpec: {mediaSize}</HeadingComponent>
+                    <Body tag="p">
+                        {
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
                         }
-                        footer={
-                            <View style={styles.footer}>
-                                <Button style={styles.button} kind="tertiary">Back</Button>
-                                <Button style={styles.button}>Continue</Button>
-                            </View>
-                        }
-                    />
+                    </Body>
                 </View>
             );
         }}
