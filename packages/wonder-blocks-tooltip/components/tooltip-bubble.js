@@ -6,7 +6,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import TooltipContent from "./tooltip-content.js";
+import typeof TooltipContent from "./tooltip-content.js";
 import TooltipTail from "./tooltip-tail.js";
 
 import type {getRefFn, Offset, Placement} from "../util/types.js";
@@ -36,7 +36,7 @@ export type Props = {|
     id: string,
 
     /** The `TooltipContent` element that will be rendered in the bubble. */
-    children: React.Element<typeof TooltipContent>,
+    children: React.Element<TooltipContent>,
 
     onActiveChanged: (active: boolean) => mixed,
 

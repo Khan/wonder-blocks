@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import Link from "@khanacademy/wonder-blocks-link";
+import typeof Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 type Props = {|
@@ -13,7 +13,7 @@ type Props = {|
     /**
      * This is the content for the collection of Breadcrumbs
      */
-    children: string | React.Element<typeof Link>,
+    children: string | React.Element<Link>,
 
     /**
      * When true, the separator is shown; otherwise, the separator is not shown.

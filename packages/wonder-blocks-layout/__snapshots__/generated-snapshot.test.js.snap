@@ -494,10 +494,11 @@ exports[`wonder-blocks-layout example 2 1`] = `
   style={
     Object {
       "alignItems": "stretch",
-      "backgroundColor": "blue",
+      "backgroundColor": "#0a2a66",
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",
+      "color": "#ffffff",
       "display": "flex",
       "flexDirection": "column",
       "margin": 0,
@@ -514,6 +515,32 @@ exports[`wonder-blocks-layout example 2 1`] = `
 `;
 
 exports[`wonder-blocks-layout example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "backgroundColor": "#0a2a66",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 48,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  Hello, world!
+</div>
+`;
+
+exports[`wonder-blocks-layout example 4 1`] = `
 <div
   className=""
   style={
@@ -584,7 +611,7 @@ exports[`wonder-blocks-layout example 3 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-layout example 4 1`] = `
+exports[`wonder-blocks-layout example 5 1`] = `
 <div
   className=""
   style={

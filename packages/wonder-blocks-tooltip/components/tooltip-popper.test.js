@@ -4,14 +4,14 @@ import * as ReactDOM from "react-dom";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
-import TooltipBubble from "./tooltip-bubble.js";
+import typeof TooltipBubble from "./tooltip-bubble.js";
 import TooltipPopper from "./tooltip-popper.js";
 
 /**
  * A little wrapper for the TooltipPopper so that we can provide an anchor
  * element reference and test that the children get rendered.
  */
-class TestHarness extends React.Component<*, {ref: ?HTMLElement}> {
+class TestHarness extends React.Component<any, {ref: ?HTMLElement}> {
     state = {
         ref: null,
     };
@@ -26,7 +26,7 @@ class TestHarness extends React.Component<*, {ref: ?HTMLElement}> {
     render() {
         const fakeBubble = (((
             <View ref={(ref) => this.props.resultRef(ref)}>Fake bubble</View>
-        ): any): React.Element<typeof TooltipBubble>);
+        ): any): React.Element<TooltipBubble>);
         return (
             <View>
                 <View ref={(ref) => this.updateRef(ref)}>Anchor</View>

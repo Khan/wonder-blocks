@@ -47,17 +47,20 @@ describe("wonder-blocks-layout", () => {
         const styleSheets = {
             large: StyleSheet.create({
                 test: {
-                    backgroundColor: "blue",
+                    backgroundColor: Color.darkBlue,
+                    color: Color.white,
                 },
             }),
             medium: StyleSheet.create({
                 test: {
-                    backgroundColor: "green",
+                    backgroundColor: Color.blue,
+                    color: Color.white,
                 },
             }),
             small: StyleSheet.create({
                 test: {
-                    backgroundColor: "orange",
+                    backgroundColor: Color.lightBlue,
+                    color: Color.white,
                 },
             }),
         };
@@ -73,6 +76,44 @@ describe("wonder-blocks-layout", () => {
     });
 
     it("example 3", () => {
+        const styleSheets = {
+            all: StyleSheet.create({
+                // use shared styles for all sizes
+                test: {
+                    color: Color.white,
+                    padding: Spacing.medium,
+                },
+            }),
+            large: StyleSheet.create({
+                // override the `padding` prop` here
+                test: {
+                    backgroundColor: Color.darkBlue,
+                    padding: Spacing.xxLarge,
+                },
+            }),
+            medium: StyleSheet.create({
+                test: {
+                    backgroundColor: Color.blue,
+                },
+            }),
+            small: StyleSheet.create({
+                test: {
+                    backgroundColor: Color.lightBlue,
+                },
+            }),
+        };
+        const example = (
+            <MediaLayout styleSheets={styleSheets}>
+                {({styles}) => {
+                    return <View style={styles.test}>Hello, world!</View>;
+                }}
+            </MediaLayout>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 4", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -91,7 +132,7 @@ describe("wonder-blocks-layout", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 4", () => {
+    it("example 5", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
