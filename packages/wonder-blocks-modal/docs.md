@@ -86,7 +86,7 @@ const onePaneDialog = ({closeModal}) => (
 
 ### Example: Disabling backdrop dismission
 
-By default, `ModalLauncher` allows you to close the modal by clicking on the overlay/backdrop window. Somethimes you might need to disable it, and to to this, you can set `backgropDismissEnabled` to `false`.
+By default, `ModalLauncher` allows you to close the modal by clicking on the overlay/backdrop window. Somethimes you might need to disable it, and to to this, you can set `backdropDismissEnabled` to `false`.
 
 ```js
 import {StyleSheet} from "aphrodite";
