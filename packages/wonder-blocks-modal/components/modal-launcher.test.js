@@ -3,7 +3,6 @@ import React from "react";
 import {shallow} from "enzyme";
 
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
-import expectRenderError from "../../../utils/testing/expect-render-error.js";
 import ModalLauncher from "./modal-launcher.js";
 import OnePaneDialog from "./one-pane-dialog/one-pane-dialog.js";
 
@@ -161,33 +160,6 @@ describe("ModalLauncher", () => {
 
         // Now that the modal is closed, there should be no ScrollDisabler.
         expect(wrapper.find("ScrollDisabler")).toHaveLength(0);
-    });
-
-    test("using `opened` and `children` should throw", () => {
-        expectRenderError(
-            <ModalLauncher
-                modal={exampleModal}
-                opened={false}
-                onClose={() => {}}
-            >
-                {({openModal}) => <button onClick={openModal} />}
-            </ModalLauncher>,
-            "'children' and 'opened' can't be used together",
-        );
-    });
-
-    test("using `opened` without `onClose` should throw", () => {
-        expectRenderError(
-            <ModalLauncher modal={exampleModal} opened={false} />,
-            "'onClose' should be used with 'opened'",
-        );
-    });
-
-    test("using neither `opened` nor `children` should throw", () => {
-        expectRenderError(
-            <ModalLauncher modal={exampleModal} />,
-            "either 'children' or 'opened' must be set",
-        );
     });
 
     test("If backdropDismissEnabled set to false, clicking the backdrop does not trigger `onClose`", () => {
