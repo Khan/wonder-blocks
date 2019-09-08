@@ -112,9 +112,6 @@ export default class ModalLauncher extends React.Component<Props, State> {
     };
 
     static getDerivedStateFromProps(props: Props, state: State) {
-        if (typeof props.opened === "boolean" && !props.onClose) {
-            throw new Error("'onClose' should be used with 'opened'");
-        }
         return {
             opened:
                 typeof props.opened === "boolean" ? props.opened : state.opened,
