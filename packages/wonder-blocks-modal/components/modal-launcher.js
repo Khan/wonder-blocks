@@ -63,7 +63,7 @@ type ControlledProps = {|
     opened: boolean,
 
     /**
-     * Called when the modal needs notifies the parent component that it should
+     * Called when the modal needs to notify the parent component that it should
      * be closed.
      *
      * This prop must be used when the component is being used as a controlled
