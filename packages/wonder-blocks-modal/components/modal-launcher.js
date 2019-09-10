@@ -112,6 +112,18 @@ export default class ModalLauncher extends React.Component<Props, State> {
     };
 
     static getDerivedStateFromProps(props: Props, state: State) {
+        if (typeof props.opened === "boolean" && props.children) {
+            // eslint-disable-next-line no-console
+            console.warn("'children' and 'opened' can't be used together");
+        }
+        if (typeof props.opened === "boolean" && !props.onClose) {
+            // eslint-disable-next-line no-console
+            console.warn("'onClose' should be used with 'opened'");
+        }
+        if (typeof props.opened !== "boolean" && !props.children) {
+            // eslint-disable-next-line no-console
+            console.warn("either 'children' or 'opened' must be set");
+        }
         return {
             opened:
                 typeof props.opened === "boolean" ? props.opened : state.opened,

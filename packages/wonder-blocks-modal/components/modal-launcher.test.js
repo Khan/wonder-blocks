@@ -162,6 +162,59 @@ describe("ModalLauncher", () => {
         expect(wrapper.find("ScrollDisabler")).toHaveLength(0);
     });
 
+    test("using `opened` and `children` should warn", () => {
+        // Arrange
+        jest.spyOn(console, "warn");
+
+        // Act
+        shallow(
+            // $FlowExpectError
+            <ModalLauncher
+                modal={exampleModal}
+                opened={false}
+                onClose={() => {}}
+            >
+                {({openModal}) => <button onClick={openModal} />}
+            </ModalLauncher>,
+        );
+
+        // Assert
+        // eslint-disable-next-line no-console
+        expect(console.warn).toHaveBeenCalledWith(
+            "'children' and 'opened' can't be used together",
+        );
+    });
+
+    test("using `opened` without `onClose` should throw", () => {
+        // Arrange
+        jest.spyOn(console, "warn");
+
+        // Act
+        // $FlowExpectError
+        shallow(<ModalLauncher modal={exampleModal} opened={false} />);
+
+        // Assert
+        // eslint-disable-next-line no-console
+        expect(console.warn).toHaveBeenCalledWith(
+            "'onClose' should be used with 'opened'",
+        );
+    });
+
+    test("using neither `opened` nor `children` should throw", () => {
+        // Arrange
+        jest.spyOn(console, "warn");
+
+        // Act
+        // $FlowExpectError
+        shallow(<ModalLauncher modal={exampleModal} />);
+
+        // Assert
+        // eslint-disable-next-line no-console
+        expect(console.warn).toHaveBeenCalledWith(
+            "either 'children' or 'opened' must be set",
+        );
+    });
+
     test("If backdropDismissEnabled set to false, clicking the backdrop does not trigger `onClose`", () => {
         const onClose = jest.fn();
 
