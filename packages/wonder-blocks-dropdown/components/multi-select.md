@@ -445,3 +445,59 @@ class ControlledMultiSelectExample extends React.Component {
 
 <ControlledMultiSelectExample />
 ```
+
+### Multi select with search filter
+
+When there are many options, you could use a search filter in the MultiSelect. The search filter will be performed toward the labels of the option items.
+
+```js
+import {MultiSelect, ActionItem, SeparatorItem, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+});
+
+const optionItems = new Array(10).fill(null).map((_, i) => (<OptionItem
+    key={i}
+    value={(i + 1).toString()}
+    label={`School ${i + 1} in Wizarding World`}
+/>));
+
+class ExampleWithShortcuts extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selectedValues: [],
+        };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(update) {
+        this.setState({
+           selectedValues: update,
+        });
+    }
+
+    render() {
+        return <MultiSelect
+            shortcuts={true}
+            isFilterableByLabel={true}
+            onChange={this.handleChange}
+            selectedValues={this.state.selectedValues}
+            selectItemType="schools"
+            dropdownStyle={{maxHeight: "50vh"}}
+        >
+            {optionItems}
+        </MultiSelect>;
+    }
+}
+
+<View style={styles.row}>
+    <ExampleWithShortcuts />
+</View>
+```

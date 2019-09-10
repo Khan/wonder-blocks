@@ -77,6 +77,13 @@ type Props = {|
     implicitAllEnabled?: boolean,
 
     /**
+     * When this is true, the dropdown body shows a search text input at the
+     * top. The items will be filtered by the input.
+     * Selected items will be moved to the top.
+     */
+    isFilterableByLabel?: boolean,
+
+    /**
      * Whether to display shortcuts for Select All and Select None.
      */
     shortcuts?: boolean,
@@ -118,6 +125,11 @@ type State = {|
      * Whether or not last open state change was triggered by a keyboard click.
      */
     keyboard?: boolean,
+    /**
+     * The text input to filter the items by their label. Defaults to an empty
+     * string.
+     */
+    searchText: string,
 |};
 
 /**
@@ -144,6 +156,7 @@ export default class MultiSelect extends React.Component<Props, State> {
 
         this.state = {
             open: false,
+            searchText: "",
         };
     }
 
@@ -285,9 +298,14 @@ export default class MultiSelect extends React.Component<Props, State> {
     }
 
     getMenuItems(): Array<DropdownItem> {
-        const {children, selectedValues} = this.props;
+        const {children, selectedValues, isFilterableByLabel} = this.props;
+        const {searchText} = this.state;
         return React.Children.toArray(children)
-            .filter(Boolean)
+            .filter((option) =>
+                option && isFilterableByLabel
+                    ? option.props.label.includes(searchText)
+                    : true,
+            )
             .map((option) => {
                 const {disabled, value} = option.props;
                 return {
@@ -304,6 +322,10 @@ export default class MultiSelect extends React.Component<Props, State> {
 
     handleOpenerRef = (node: any) => {
         this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
+    };
+
+    handleSearchTextChanged = (e: SyntheticInputEvent<>) => {
+        this.setState({searchText: e.target.value});
     };
 
     render() {
@@ -326,11 +348,12 @@ export default class MultiSelect extends React.Component<Props, State> {
             selectedValues,
             selectItemType,
             implicitAllEnabled,
+            isFilterableByLabel,
             shortcuts,
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
-        const {open} = this.state;
+        const {open, searchText} = this.state;
 
         const menuText = this.getMenuText();
 
@@ -357,6 +380,10 @@ export default class MultiSelect extends React.Component<Props, State> {
                 role="listbox"
                 alignment={alignment}
                 dropdownStyle={[selectDropdownStyle, dropdownStyle]}
+                searchText={searchText}
+                handleSearchTextChanged={
+                    isFilterableByLabel ? this.handleSearchTextChanged : null
+                }
                 items={items}
                 keyboard={this.state.keyboard}
                 light={light}
