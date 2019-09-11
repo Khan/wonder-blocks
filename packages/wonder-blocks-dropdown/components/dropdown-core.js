@@ -10,6 +10,7 @@ import Color, {fade} from "@khanacademy/wonder-blocks-color";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 // NOTE(jeff): Here we share some code for use with PopperJS. Long term,
@@ -503,13 +504,38 @@ export default class DropdownCore extends React.Component<
         }
     }
 
+    renderSearchTextInput() {
+        const {items, searchText, handleSearchTextChanged} = this.props;
+        const noResult =
+            handleSearchTextChanged && searchText && items.length === 0;
+        // TODO(jangmi): Use TextField once we have it.
+        // https://khanacademy.atlassian.net/browse/WB-578
+        // TODO(jangmi): Use translated strings for "Filter", "No results"
+        return (
+            <View>
+                <input
+                    type="text"
+                    value={searchText}
+                    onChange={handleSearchTextChanged}
+                    onClick={() => this.handleClickFocus(0)}
+                    ref={this.state.itemRefs[0].ref}
+                    placeholder="Filter"
+                />
+                {noResult && (
+                    <LabelMedium style={styles.noResult}>
+                        No results
+                    </LabelMedium>
+                )}
+            </View>
+        );
+    }
+
     renderItems(outOfBoundaries: ?boolean) {
         const {
             items,
             dropdownStyle,
             light,
             openerElement,
-            searchText,
             handleSearchTextChanged,
         } = this.props;
 
@@ -539,19 +565,7 @@ export default class DropdownCore extends React.Component<
                     dropdownStyle,
                 ]}
             >
-                {/*
-                    TODO(jangmi): Use TextField once we have it.
-                    https://khanacademy.atlassian.net/browse/WB-578
-                */}
-                {displaySearchTextInput && (
-                    <input
-                        type="text"
-                        value={searchText}
-                        onChange={handleSearchTextChanged}
-                        onClick={() => this.handleClickFocus(0)}
-                        ref={this.state.itemRefs[0].ref}
-                    />
-                )}
+                {displaySearchTextInput && this.renderSearchTextInput()}
                 {items.map((item, index) => {
                     if (SeparatorItem.isClassOf(item.component)) {
                         return item.component;
@@ -668,5 +682,10 @@ const styles = StyleSheet.create({
 
     hidden: {
         visibility: "hidden",
+    },
+
+    noResult: {
+        color: Color.offBlack64,
+        alignSelf: "center",
     },
 });
