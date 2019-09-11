@@ -512,7 +512,7 @@ export default class DropdownCore extends React.Component<
         // https://khanacademy.atlassian.net/browse/WB-578
         // TODO(jangmi): Use translated strings for "Filter", "No results"
         return (
-            <View>
+            <React.Fragment>
                 <input
                     type="text"
                     value={searchText}
@@ -526,7 +526,7 @@ export default class DropdownCore extends React.Component<
                         No results
                     </LabelMedium>
                 )}
-            </View>
+            </React.Fragment>
         );
     }
 

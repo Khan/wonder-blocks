@@ -308,7 +308,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             );
         }
 
-        return filteredChildren.map((option) => {
+        filteredChildren = filteredChildren.map((option) => {
             const {disabled, value} = option.props;
             return {
                 component: option,
@@ -320,6 +320,22 @@ export default class MultiSelect extends React.Component<Props, State> {
                 },
             };
         });
+
+        if (isFilterableByLabel) {
+            filteredChildren.sort((a, b) => {
+                const aIsSelected = a.populatedProps.selected;
+                const bIsSelected = b.populatedProps.selected;
+                if (aIsSelected === bIsSelected) {
+                    return 0;
+                } else if (aIsSelected) {
+                    return -1;
+                } else {
+                    return 1;
+                }
+            });
+        }
+
+        return filteredChildren;
     }
 
     handleOpenerRef = (node: any) => {
