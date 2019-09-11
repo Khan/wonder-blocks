@@ -3,7 +3,6 @@ import React from "react";
 import {shallow} from "enzyme";
 
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
-import expectRenderError from "../../../utils/testing/expect-render-error.js";
 import ModalLauncher from "./modal-launcher.js";
 import OnePaneDialog from "./one-pane-dialog/one-pane-dialog.js";
 
@@ -163,8 +162,13 @@ describe("ModalLauncher", () => {
         expect(wrapper.find("ScrollDisabler")).toHaveLength(0);
     });
 
-    test("using `opened` and `children` should throw", () => {
-        expectRenderError(
+    test("using `opened` and `children` should warn", () => {
+        // Arrange
+        jest.spyOn(console, "warn");
+
+        // Act
+        shallow(
+            // $FlowExpectError
             <ModalLauncher
                 modal={exampleModal}
                 opened={false}
@@ -172,20 +176,41 @@ describe("ModalLauncher", () => {
             >
                 {({openModal}) => <button onClick={openModal} />}
             </ModalLauncher>,
+        );
+
+        // Assert
+        // eslint-disable-next-line no-console
+        expect(console.warn).toHaveBeenCalledWith(
             "'children' and 'opened' can't be used together",
         );
     });
 
     test("using `opened` without `onClose` should throw", () => {
-        expectRenderError(
-            <ModalLauncher modal={exampleModal} opened={false} />,
+        // Arrange
+        jest.spyOn(console, "warn");
+
+        // Act
+        // $FlowExpectError
+        shallow(<ModalLauncher modal={exampleModal} opened={false} />);
+
+        // Assert
+        // eslint-disable-next-line no-console
+        expect(console.warn).toHaveBeenCalledWith(
             "'onClose' should be used with 'opened'",
         );
     });
 
     test("using neither `opened` nor `children` should throw", () => {
-        expectRenderError(
-            <ModalLauncher modal={exampleModal} />,
+        // Arrange
+        jest.spyOn(console, "warn");
+
+        // Act
+        // $FlowExpectError
+        shallow(<ModalLauncher modal={exampleModal} />);
+
+        // Assert
+        // eslint-disable-next-line no-console
+        expect(console.warn).toHaveBeenCalledWith(
             "either 'children' or 'opened' must be set",
         );
     });
