@@ -9,7 +9,7 @@ import ScrollDisabler from "./scroll-disabler.js";
 import type {ModalElement} from "../util/types.js";
 import ModalContext from "./modal-context.js";
 
-type Props = {|
+type CommonProps = {|
     /**
      * The modal to render.
      *
@@ -26,32 +26,11 @@ type Props = {|
     modal: ModalElement | (({closeModal: () => void}) => ModalElement),
 
     /**
-     * Use the children-as-function pattern to pass a openModal function for
-     * use anywhere within children. This provides a lot of flexibility in
-     * terms of what actions may trigger the ModalLauncher to launch the modal.
-     *
-     * Note: Don't call `openModal` while rendering! It should be used to
-     * respond to user intearction, like `onClick`.
-     */
-    children?: ({openModal: () => void}) => React.Node,
-
-    /**
      * If the parent needs to be notified when the modal is closed, use this
      * prop. You probably want to use this instead of `onClose` on the modals
      * themselves, since this will capture a more complete set of close events.
      */
     onClose?: () => mixed,
-
-    /**
-     * Renders the modal when true, renders nothing when false.
-     *
-     * Using this prop makes the component behave as an uncontrolled component.
-     * The parent is responsible for managing the opening/closing of the modal
-     * when using this prop.  `onClose` should always be used and `children`
-     * should never be used with this prop.  Not doing so will result in an
-     * error being thrown.
-     */
-    opened?: boolean,
 
     /**
      * Enables the backdrop to dismiss the modal on click/tap
@@ -69,6 +48,36 @@ type Props = {|
      */
     testId?: string,
 |};
+
+type ControlledProps = {|
+    ...CommonProps,
+    /**
+     * Renders the modal when true, renders nothing when false.
+     *
+     * Using this prop makes the component behave as a controlled component.
+     * The parent is responsible for managing the opening/closing of the modal
+     * when using this prop.  `onClose` should always be used and `children`
+     * should never be used with this prop.  Not doing so will result in an
+     * error being thrown.
+     */
+    opened: boolean,
+
+    /**
+     * Called when the modal needs to notify the parent component that it should
+     * be closed.
+     *
+     * This prop must be used when the component is being used as a controlled
+     * component.
+     */
+    onClose: () => mixed,
+|};
+
+type UncontrolledProps = {|
+    ...CommonProps,
+    children: ({openModal: () => mixed}) => React.Node,
+|};
+
+type Props = ControlledProps | UncontrolledProps;
 
 type State = {|
     /** Whether the modal should currently be open. */
@@ -104,13 +113,16 @@ export default class ModalLauncher extends React.Component<Props, State> {
 
     static getDerivedStateFromProps(props: Props, state: State) {
         if (typeof props.opened === "boolean" && props.children) {
-            throw new Error("'children' and 'opened' can't be used together");
+            // eslint-disable-next-line no-console
+            console.warn("'children' and 'opened' can't be used together");
         }
         if (typeof props.opened === "boolean" && !props.onClose) {
-            throw new Error("'onClose' should be used with 'opened'");
+            // eslint-disable-next-line no-console
+            console.warn("'onClose' should be used with 'opened'");
         }
         if (typeof props.opened !== "boolean" && !props.children) {
-            throw new Error("either 'children' or 'opened' must be set");
+            // eslint-disable-next-line no-console
+            console.warn("either 'children' or 'opened' must be set");
         }
         return {
             opened:
@@ -121,9 +133,8 @@ export default class ModalLauncher extends React.Component<Props, State> {
     state = {opened: false};
 
     componentDidUpdate(prevProps: Props) {
-        const {opened} = this.props;
         // ensures the element is stored only when the modal is opened
-        if (!prevProps.opened && opened) {
+        if (!prevProps.opened && this.props.opened) {
             this._saveLastElementFocused();
         }
     }
