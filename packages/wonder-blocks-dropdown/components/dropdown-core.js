@@ -29,10 +29,6 @@ type DropdownProps = {|
     items: Array<DropdownItem>,
 
     /**
-     * The search text that filters the item labels by.
-     */
-    searchText: string,
-    /**
      * A handler to set the searchText of the parent. When this is provided,
      * a search text input will be displayed at the top of the dropdown body.
      */
@@ -149,7 +145,6 @@ export default class DropdownCore extends React.Component<
         alignment: "left",
         initialFocusedIndex: 0,
         light: false,
-        searchText: "",
         handleSearchTextChanged: null,
     };
 
@@ -505,9 +500,8 @@ export default class DropdownCore extends React.Component<
     }
 
     renderSearchTextInput() {
-        const {items, searchText, handleSearchTextChanged} = this.props;
-        const noResult =
-            handleSearchTextChanged && searchText && items.length === 0;
+        const {items, handleSearchTextChanged} = this.props;
+        const noResult = handleSearchTextChanged && items.length === 0;
         // TODO(jangmi): Use TextField once we have it.
         // https://khanacademy.atlassian.net/browse/WB-578
         // TODO(jangmi): Use translated strings for "Filter", "No results"
@@ -515,7 +509,6 @@ export default class DropdownCore extends React.Component<
             <React.Fragment>
                 <input
                     type="text"
-                    value={searchText}
                     onChange={handleSearchTextChanged}
                     onClick={() => this.handleClickFocus(0)}
                     ref={this.state.itemRefs[0].ref}

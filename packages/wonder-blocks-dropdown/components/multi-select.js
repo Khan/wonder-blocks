@@ -175,6 +175,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         this.setState({
             open: opened,
             keyboard,
+            searchText: "",
         });
 
         if (this.props.onToggle) {
@@ -371,7 +372,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
-        const {open, searchText} = this.state;
+        const {open} = this.state;
 
         const allChildren = React.Children.toArray(children).filter((child) =>
             Boolean(child),
@@ -403,7 +404,6 @@ export default class MultiSelect extends React.Component<Props, State> {
                 role="listbox"
                 alignment={alignment}
                 dropdownStyle={[selectDropdownStyle, dropdownStyle]}
-                searchText={searchText}
                 handleSearchTextChanged={
                     isFilterableByLabel ? this.handleSearchTextChanged : null
                 }
