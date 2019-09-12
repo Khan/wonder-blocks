@@ -361,7 +361,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
-        const {open} = this.state;
+        const {open, searchText} = this.state;
 
         const allChildren = React.Children.toArray(children).filter(Boolean);
         const numOptions = allChildren.length;
@@ -386,7 +386,10 @@ export default class MultiSelect extends React.Component<Props, State> {
         const filteredItems = this.getMenuItems(allChildren);
 
         const searchHandler = isFilterable
-            ? {onSearchTextChanged: this.handleSearchTextChanged}
+            ? {
+                  onSearchTextChanged: this.handleSearchTextChanged,
+                  searchText,
+              }
             : {};
 
         return (

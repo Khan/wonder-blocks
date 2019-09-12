@@ -19,6 +19,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 // $FlowIgnoreMe
 import visibilityModifierDefaultConfig from "../../../shared-unpackaged/visibility-modifier.js"; // eslint-disable-line import/no-restricted-paths
 import SeparatorItem from "./separator-item.js";
+import SearchTextInput from "./search-text-input.js";
 import {keyCodes} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
 
@@ -33,6 +34,7 @@ type DropdownProps = {|
      * a search text input will be displayed at the top of the dropdown body.
      */
     onSearchTextChanged?: (searchText: string) => mixed,
+    searchText?: string,
 
     /**
      * An index that represents the index of the focused element when the menu
@@ -410,6 +412,15 @@ export default class DropdownCore extends React.Component<
         // Handle all other key behavior
         switch (keyCode) {
             case keyCodes.tab:
+                // When we display the search text input with dismiss icon,
+                // tab should move the focus to the dismiss icon.
+                if (
+                    showSearchTextInput &&
+                    this.focusedIndex === 0 &&
+                    this.props.searchText
+                ) {
+                    return;
+                }
                 this.restoreTabOrder();
                 onOpenChanged(false, true);
                 return;
@@ -460,7 +471,7 @@ export default class DropdownCore extends React.Component<
         }
     };
 
-    handleClickFocus(index: number) {
+    handleClickFocus = (index: number) => {
         // Turn itemsClicked on so pressing up or down would focus the
         // appropriate item in handleKeyDown
         this.itemsClicked = true;
@@ -468,7 +479,7 @@ export default class DropdownCore extends React.Component<
         this.focusedOriginalIndex = this.state.itemRefs[
             this.focusedIndex
         ].originalIndex;
-    }
+    };
 
     handleDropdownMouseUp = (event: SyntheticMouseEvent<>) => {
         if (event.nativeEvent.stopImmediatePropagation) {
@@ -494,26 +505,26 @@ export default class DropdownCore extends React.Component<
         }
     }
 
-    handleSearchTextChanged = (e: SyntheticInputEvent<>) => {
-        const {onSearchTextChanged} = this.props;
-        if (onSearchTextChanged) {
-            onSearchTextChanged(e.target.value);
-        }
-    };
+    maybeRenderSearchTextInput() {
+        const {items, onSearchTextChanged, searchText} = this.props;
 
-    renderSearchTextInput() {
-        const {items, onSearchTextChanged} = this.props;
+        if (!onSearchTextChanged || typeof searchText !== "string") {
+            return null;
+        }
+
         const noResult = onSearchTextChanged && items.length === 0;
-        // TODO(jangmi): Extract text input as a new component
         // TODO(jangmi): Use translated strings for "Filter", "No results"
         return (
             <React.Fragment>
-                <input
-                    type="text"
-                    onChange={this.handleSearchTextChanged}
-                    onClick={() => this.handleClickFocus(0)}
-                    ref={this.state.itemRefs[0].ref}
-                    placeholder="Filter"
+                <SearchTextInput
+                    onChange={onSearchTextChanged}
+                    onClick={() => {
+                        this.handleClickFocus(0);
+                        this.focusCurrentItem();
+                    }}
+                    itemRef={this.state.itemRefs[0].ref}
+                    searchText={searchText}
+                    style={styles.searchInput}
                 />
                 {noResult && (
                     <LabelMedium style={styles.noResult}>
@@ -559,7 +570,7 @@ export default class DropdownCore extends React.Component<
                     dropdownStyle,
                 ]}
             >
-                {showSearchTextInput && this.renderSearchTextInput()}
+                {this.maybeRenderSearchTextInput()}
                 {items.map((item, index) => {
                     if (SeparatorItem.isClassOf(item.component)) {
                         return item.component;
@@ -681,5 +692,9 @@ const styles = StyleSheet.create({
     noResult: {
         color: Color.offBlack64,
         alignSelf: "center",
+    },
+    searchInput: {
+        margin: Spacing.xSmall,
+        marginTop: Spacing.xxxSmall,
     },
 });
