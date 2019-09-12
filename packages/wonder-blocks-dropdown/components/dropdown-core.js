@@ -32,7 +32,7 @@ type DropdownProps = {|
      * A handler to set the searchText of the parent. When this is provided,
      * a search text input will be displayed at the top of the dropdown body.
      */
-    handleSearchTextChanged: ?(e: SyntheticInputEvent<>) => void,
+    onSearchTextChanged?: (searchText: string) => mixed,
 
     /**
      * An index that represents the index of the focused element when the menu
@@ -145,7 +145,6 @@ export default class DropdownCore extends React.Component<
         alignment: "left",
         initialFocusedIndex: 0,
         light: false,
-        handleSearchTextChanged: null,
     };
 
     // Figure out if the same items are focusable. If an item has been added or
@@ -176,12 +175,12 @@ export default class DropdownCore extends React.Component<
             const itemRefs = [];
             // If the searchTextChange handler is provided, the first focusable
             // item is the search text input element.
-            if (props.handleSearchTextChanged) {
+            if (props.onSearchTextChanged) {
                 const ref = React.createRef<null | HTMLDivElement>();
                 itemRefs.push({ref, originalIndex: 0});
             }
 
-            const shiftItemIndexBy = props.handleSearchTextChanged ? 1 : 0;
+            const shiftItemIndexBy = props.onSearchTextChanged ? 1 : 0;
 
             for (let i = 0; i < props.items.length; i++) {
                 if (props.items[i].focusable) {
@@ -379,10 +378,10 @@ export default class DropdownCore extends React.Component<
             initialFocusedIndex,
             onOpenChanged,
             open,
-            handleSearchTextChanged: displaySearchTextInput,
+            onSearchTextChanged,
         } = this.props;
         const keyCode = event.which || event.keyCode;
-
+        const showSearchTextInput = !!onSearchTextChanged;
         // If menu isn't open and user presses down, open the menu
         if (!open) {
             if (keyCode === keyCodes.down) {
@@ -417,7 +416,7 @@ export default class DropdownCore extends React.Component<
             case keyCodes.space:
                 // When we display search text input and the focus is on that
                 // input, we should let the user type space.
-                if (displaySearchTextInput && this.focusedIndex === 0) {
+                if (showSearchTextInput && this.focusedIndex === 0) {
                     return;
                 }
                 // Prevent space from scrolling down the page
@@ -436,18 +435,14 @@ export default class DropdownCore extends React.Component<
 
     // Some keys should be handled during the keyup event instead.
     handleKeyUp = (event: SyntheticKeyboardEvent<>) => {
-        const {
-            onOpenChanged,
-            open,
-            handleSearchTextChanged: displaySearchTextInput,
-        } = this.props;
+        const {onOpenChanged, open, onSearchTextChanged} = this.props;
         const keyCode = event.which || event.keyCode;
-
+        const showSearchTextInput = !!onSearchTextChanged;
         switch (keyCode) {
             case keyCodes.space:
                 // When we display search text input and the focus is on that
                 // input, we should let the user type space.
-                if (displaySearchTextInput && this.focusedIndex === 0) {
+                if (showSearchTextInput && this.focusedIndex === 0) {
                     return;
                 }
                 // Prevent space from scrolling down the page
@@ -499,17 +494,23 @@ export default class DropdownCore extends React.Component<
         }
     }
 
+    handleSearchTextChanged = (e: SyntheticInputEvent<>) => {
+        const {onSearchTextChanged} = this.props;
+        if (onSearchTextChanged) {
+            onSearchTextChanged(e.target.value);
+        }
+    };
+
     renderSearchTextInput() {
-        const {items, handleSearchTextChanged} = this.props;
-        const noResult = handleSearchTextChanged && items.length === 0;
-        // TODO(jangmi): Use TextField once we have it.
-        // https://khanacademy.atlassian.net/browse/WB-578
+        const {items, onSearchTextChanged} = this.props;
+        const noResult = onSearchTextChanged && items.length === 0;
+        // TODO(jangmi): Extract text input as a new component
         // TODO(jangmi): Use translated strings for "Filter", "No results"
         return (
             <React.Fragment>
                 <input
                     type="text"
-                    onChange={handleSearchTextChanged}
+                    onChange={this.handleSearchTextChanged}
                     onClick={() => this.handleClickFocus(0)}
                     ref={this.state.itemRefs[0].ref}
                     placeholder="Filter"
@@ -529,7 +530,7 @@ export default class DropdownCore extends React.Component<
             dropdownStyle,
             light,
             openerElement,
-            handleSearchTextChanged,
+            onSearchTextChanged,
         } = this.props;
 
         // The dropdown width is at least the width of the opener.
@@ -541,8 +542,8 @@ export default class DropdownCore extends React.Component<
         const itemRole = this.getItemRole();
 
         // The first item to focus is the search text input if it exists.
-        const displaySearchTextInput = !!handleSearchTextChanged;
-        let focusCounter = displaySearchTextInput ? 1 : 0;
+        const showSearchTextInput = !!onSearchTextChanged;
+        let focusCounter = showSearchTextInput ? 1 : 0;
 
         return (
             <View
@@ -558,7 +559,7 @@ export default class DropdownCore extends React.Component<
                     dropdownStyle,
                 ]}
             >
-                {displaySearchTextInput && this.renderSearchTextInput()}
+                {showSearchTextInput && this.renderSearchTextInput()}
                 {items.map((item, index) => {
                     if (SeparatorItem.isClassOf(item.component)) {
                         return item.component;

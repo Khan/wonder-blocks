@@ -1492,9 +1492,9 @@ describe("wonder-blocks-dropdown", () => {
                 this.handleChange = this.handleChange.bind(this);
             }
 
-            handleChange(update) {
+            handleChange(selectedValues) {
                 this.setState({
-                    selectedValues: update,
+                    selectedValues,
                 });
             }
 
@@ -1502,7 +1502,7 @@ describe("wonder-blocks-dropdown", () => {
                 return (
                     <MultiSelect
                         shortcuts={true}
-                        isFilterableByLabel={true}
+                        isFilterable={true}
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                         selectItemType="schools"

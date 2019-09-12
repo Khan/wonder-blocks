@@ -82,7 +82,7 @@ type Props = {|
      * Selected items will be moved to the top and shortcuts won't be added
      * even if shortcuts prop is set to true.
      */
-    isFilterableByLabel?: boolean,
+    isFilterable?: boolean,
 
     /**
      * Whether to display shortcuts for Select All and Select None.
@@ -299,13 +299,16 @@ export default class MultiSelect extends React.Component<Props, State> {
     getMenuItems(
         children: Array<React.Element<OptionItem>>,
     ): Array<DropdownItem> {
-        const {selectedValues, isFilterableByLabel} = this.props;
+        const {selectedValues, isFilterable} = this.props;
         const {searchText} = this.state;
         let filteredChildren = children;
 
-        if (isFilterableByLabel && searchText) {
+        if (isFilterable && searchText) {
+            const lowercasedSearchText = searchText.toLowerCase();
             filteredChildren = filteredChildren.filter(
-                (option) => option.props.label.indexOf(searchText) > -1,
+                ({props}) =>
+                    props.label.toLowerCase().indexOf(lowercasedSearchText) >
+                    -1,
             );
         }
 
@@ -322,20 +325,6 @@ export default class MultiSelect extends React.Component<Props, State> {
             };
         });
 
-        if (isFilterableByLabel) {
-            filteredChildren.sort((a, b) => {
-                const aIsSelected = a.populatedProps.selected;
-                const bIsSelected = b.populatedProps.selected;
-                if (aIsSelected === bIsSelected) {
-                    return 0;
-                } else if (aIsSelected) {
-                    return -1;
-                } else {
-                    return 1;
-                }
-            });
-        }
-
         return filteredChildren;
     }
 
@@ -343,8 +332,8 @@ export default class MultiSelect extends React.Component<Props, State> {
         this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
     };
 
-    handleSearchTextChanged = (e: SyntheticInputEvent<>) => {
-        this.setState({searchText: e.target.value});
+    handleSearchTextChanged = (searchText: string) => {
+        this.setState({searchText});
     };
 
     render() {
@@ -367,16 +356,14 @@ export default class MultiSelect extends React.Component<Props, State> {
             selectedValues,
             selectItemType,
             implicitAllEnabled,
-            isFilterableByLabel,
+            isFilterable,
             shortcuts,
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
         const {open} = this.state;
 
-        const allChildren = React.Children.toArray(children).filter((child) =>
-            Boolean(child),
-        );
+        const allChildren = React.Children.toArray(children).filter(Boolean);
         const numOptions = allChildren.length;
         const menuText = this.getMenuText(allChildren);
 
@@ -396,21 +383,21 @@ export default class MultiSelect extends React.Component<Props, State> {
             </SelectOpener>
         );
 
-        const shortcutItems = this.getShortcuts(numOptions);
-        const filteredMenuItems = this.getMenuItems(allChildren);
+        const filteredItems = this.getMenuItems(allChildren);
+
+        const searchHandler = isFilterable
+            ? {onSearchTextChanged: this.handleSearchTextChanged}
+            : {};
 
         return (
             <DropdownCore
                 role="listbox"
                 alignment={alignment}
                 dropdownStyle={[selectDropdownStyle, dropdownStyle]}
-                handleSearchTextChanged={
-                    isFilterableByLabel ? this.handleSearchTextChanged : null
-                }
                 items={
-                    isFilterableByLabel
-                        ? filteredMenuItems
-                        : [...shortcutItems, ...filteredMenuItems]
+                    isFilterable
+                        ? filteredItems
+                        : [...this.getShortcuts(numOptions), ...filteredItems]
                 }
                 keyboard={this.state.keyboard}
                 light={light}
@@ -419,6 +406,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 opener={opener}
                 openerElement={this.openerElement}
                 style={style}
+                {...searchHandler}
             />
         );
     }

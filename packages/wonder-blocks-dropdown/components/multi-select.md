@@ -477,16 +477,14 @@ class ExampleWithShortcuts extends React.Component {
         this.handleChange = this.handleChange.bind(this);
     }
 
-    handleChange(update) {
-        this.setState({
-           selectedValues: update,
-        });
+    handleChange(selectedValues) {
+        this.setState({selectedValues});
     }
 
     render() {
         return <MultiSelect
             shortcuts={true}
-            isFilterableByLabel={true}
+            isFilterable={true}
             onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
             selectItemType="schools"
