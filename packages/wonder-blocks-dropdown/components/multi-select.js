@@ -82,8 +82,7 @@ type Props = {|
     /**
      * When this is true, the dropdown body shows a search text input at the
      * top. The items will be filtered by the input.
-     * Selected items will be moved to the top and shortcuts won't be added
-     * even if shortcuts prop is set to true.
+     * Selected items will be moved to the top when the dropdown is re-opened.
      */
     isFilterable?: boolean,
 
@@ -259,7 +258,9 @@ export default class MultiSelect extends React.Component<Props, State> {
     getShortcuts(numOptions: number): Array<DropdownItem> {
         const {selectedValues, shortcuts} = this.props;
 
-        if (shortcuts) {
+        // When there's search text input from user, we want to hide the
+        // shortcuts
+        if (shortcuts && !this.state.searchText) {
             const selectAllDisabled = numOptions === selectedValues.length;
             const selectAll = {
                 component: (
@@ -336,19 +337,24 @@ export default class MultiSelect extends React.Component<Props, State> {
             }
         }
 
-        if (lastSelectedChildren.length) {
-            return [
-                ...lastSelectedChildren.map(this.mapOptionItemToDropdownItem),
-                {
-                    component: <SeparatorItem key="shortcuts-separator" />,
-                    focusable: false,
-                    populatedProps: {},
-                },
-                ...restOfTheChildren.map(this.mapOptionItemToDropdownItem),
-            ];
+        const lastSelectedItems = lastSelectedChildren.map(
+            this.mapOptionItemToDropdownItem,
+        );
+
+        // We want to add SeparatorItem in between last selected items and the
+        // rest of the items only when both of them exists.
+        if (lastSelectedChildren.length && restOfTheChildren.length) {
+            lastSelectedItems.push({
+                component: <SeparatorItem key="selected-separator" />,
+                focusable: false,
+                populatedProps: {},
+            });
         }
 
-        return restOfTheChildren.map(this.mapOptionItemToDropdownItem);
+        return [
+            ...lastSelectedItems,
+            ...restOfTheChildren.map(this.mapOptionItemToDropdownItem),
+        ];
     }
 
     mapOptionItemToDropdownItem = (
@@ -440,11 +446,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                     selectDropdownStyle,
                     dropdownStyle,
                 ]}
-                items={
-                    isFilterable
-                        ? filteredItems
-                        : [...this.getShortcuts(numOptions), ...filteredItems]
-                }
+                items={[...this.getShortcuts(numOptions), ...filteredItems]}
                 keyboard={this.state.keyboard}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}

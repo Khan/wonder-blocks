@@ -110,6 +110,9 @@ const styles = StyleSheet.create({
     dismissIcon: {
         margin: 0,
         color: Color.offBlack50,
+        ":hover": {
+            border: "none",
+        },
     },
     inputStyleReset: {
         display: "flex",
