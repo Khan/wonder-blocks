@@ -488,7 +488,6 @@ class ExampleWithShortcuts extends React.Component {
             onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
             selectItemType="schools"
-            dropdownStyle={{maxHeight: "50vh"}}
         >
             {optionItems}
         </MultiSelect>;

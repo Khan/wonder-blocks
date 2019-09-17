@@ -62,7 +62,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
                 <Icon
                     icon={icons.search}
                     size="medium"
-                    color={Color.offBlack64}
+                    color={Color.offBlack50}
                     style={styles.searchIcon}
                 />
                 <input
@@ -98,6 +98,7 @@ const styles = StyleSheet.create({
         borderRadius: 4,
         alignItems: "center",
         height: 40,
+        minHeight: 40,
     },
     focused: {
         border: `1px solid ${Color.blue}`,
@@ -108,6 +109,7 @@ const styles = StyleSheet.create({
     },
     dismissIcon: {
         margin: 0,
+        color: Color.offBlack50,
     },
     inputStyleReset: {
         display: "flex",

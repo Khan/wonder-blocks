@@ -14,3 +14,8 @@ export const selectDropdownStyle = {
     marginTop: Spacing.xSmall,
     marginBottom: Spacing.xSmall,
 };
+
+export const filterableDropdownStyle = {
+    minHeight: 100,
+    maxHeight: 384,
+};

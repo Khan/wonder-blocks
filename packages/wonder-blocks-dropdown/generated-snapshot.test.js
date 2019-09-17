@@ -1506,9 +1506,6 @@ describe("wonder-blocks-dropdown", () => {
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                         selectItemType="schools"
-                        dropdownStyle={{
-                            maxHeight: "50vh",
-                        }}
                     >
                         {optionItems}
                     </MultiSelect>

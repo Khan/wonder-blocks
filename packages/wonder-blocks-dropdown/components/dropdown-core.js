@@ -692,6 +692,7 @@ const styles = StyleSheet.create({
     noResult: {
         color: Color.offBlack64,
         alignSelf: "center",
+        marginTop: Spacing.xxSmall,
     },
     searchInput: {
         margin: Spacing.xSmall,

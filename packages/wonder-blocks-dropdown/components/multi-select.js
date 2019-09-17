@@ -9,7 +9,10 @@ import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
 import SelectOpener from "./select-opener.js";
 import SeparatorItem from "./separator-item.js";
-import {selectDropdownStyle} from "../util/constants.js";
+import {
+    selectDropdownStyle,
+    filterableDropdownStyle,
+} from "../util/constants.js";
 
 import typeof OptionItem from "./option-item.js";
 import type {DropdownItem} from "../util/types.js";
@@ -131,6 +134,7 @@ type State = {|
      * string.
      */
     searchText: string,
+    lastSelectedValues: Array<string>,
 |};
 
 /**
@@ -158,6 +162,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         this.state = {
             open: false,
             searchText: "",
+            lastSelectedValues: [],
         };
     }
 
@@ -176,6 +181,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             open: opened,
             keyboard,
             searchText: "",
+            lastSelectedValues: this.props.selectedValues,
         });
 
         if (this.props.onToggle) {
@@ -299,11 +305,19 @@ export default class MultiSelect extends React.Component<Props, State> {
     getMenuItems(
         children: Array<React.Element<OptionItem>>,
     ): Array<DropdownItem> {
-        const {selectedValues, isFilterable} = this.props;
-        const {searchText} = this.state;
+        const {isFilterable} = this.props;
+        // If it's not filterable, no need to do any extra besides map the
+        // option items to dropdown items.
+        if (!isFilterable) {
+            return children.map(this.mapOptionItemToDropdownItem);
+        }
+
+        const {searchText, lastSelectedValues} = this.state;
+
         let filteredChildren = children;
 
-        if (isFilterable && searchText) {
+        // Filter the children with the search text if any.
+        if (searchText) {
             const lowercasedSearchText = searchText.toLowerCase();
             filteredChildren = filteredChildren.filter(
                 ({props}) =>
@@ -312,21 +326,46 @@ export default class MultiSelect extends React.Component<Props, State> {
             );
         }
 
-        filteredChildren = filteredChildren.map((option) => {
-            const {disabled, value} = option.props;
-            return {
-                component: option,
-                focusable: !disabled,
-                populatedProps: {
-                    onToggle: this.handleToggle,
-                    selected: selectedValues.includes(value),
-                    variant: "checkbox",
-                },
-            };
-        });
+        const lastSelectedChildren = [];
+        const restOfTheChildren = [];
+        for (const child of filteredChildren) {
+            if (lastSelectedValues.includes(child.props.value)) {
+                lastSelectedChildren.push(child);
+            } else {
+                restOfTheChildren.push(child);
+            }
+        }
 
-        return filteredChildren;
+        if (lastSelectedChildren.length) {
+            return [
+                ...lastSelectedChildren.map(this.mapOptionItemToDropdownItem),
+                {
+                    component: <SeparatorItem key="shortcuts-separator" />,
+                    focusable: false,
+                    populatedProps: {},
+                },
+                ...restOfTheChildren.map(this.mapOptionItemToDropdownItem),
+            ];
+        }
+
+        return restOfTheChildren.map(this.mapOptionItemToDropdownItem);
     }
+
+    mapOptionItemToDropdownItem = (
+        option: React.Element<OptionItem>,
+    ): DropdownItem => {
+        const {selectedValues} = this.props;
+        const {disabled, value} = option.props;
+        return {
+            component: option,
+            focusable: !disabled,
+            populatedProps: {
+                onToggle: this.handleToggle,
+                selected: selectedValues.includes(value),
+                variant: "checkbox",
+            },
+        };
+    };
 
     handleOpenerRef = (node: any) => {
         this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
@@ -396,7 +435,11 @@ export default class MultiSelect extends React.Component<Props, State> {
             <DropdownCore
                 role="listbox"
                 alignment={alignment}
-                dropdownStyle={[selectDropdownStyle, dropdownStyle]}
+                dropdownStyle={[
+                    isFilterable && filterableDropdownStyle,
+                    selectDropdownStyle,
+                    dropdownStyle,
+                ]}
                 items={
                     isFilterable
                         ? filteredItems
