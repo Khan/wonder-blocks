@@ -211,10 +211,9 @@ export default class MultiSelect extends React.Component<Props, State> {
 
     handleSelectAll = () => {
         const {children, onChange} = this.props;
-        const selected = React.Children.map(
-            children,
-            (option) => option.props.value,
-        );
+        const selected = React.Children.toArray(children)
+            .filter(Boolean)
+            .map((option) => option.props.value);
         onChange(selected);
     };
 
