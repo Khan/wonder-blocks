@@ -4,6 +4,7 @@ import * as ReactDOM from "react-dom";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import OptionItem from "./option-item.js";
+import SearchTextInput from "./search-text-input.js";
 import DropdownCore from "./dropdown-core.js";
 import {keyCodes} from "../util/constants.js";
 
@@ -484,5 +485,31 @@ describe("DropdownCore", () => {
 
         option1.simulate("click");
         expect(onClick1).toHaveBeenCalledTimes(1);
+    });
+
+    it("shows SearchTextInput when onSearchTextChanged and searchText is provided", () => {
+        // Arrange, Act
+        const handleSearchTextChanged = jest.fn();
+        dropdown.setProps({
+            onSearchTextChanged: (text) => handleSearchTextChanged(text),
+            searchText: "",
+            open: true,
+        });
+        // Assert
+        expect(dropdown.find(SearchTextInput).exists()).toBe(true);
+    });
+
+    it("Displays no results when no items are left with filter", () => {
+        // Arrange, Act
+        const handleSearchTextChanged = jest.fn();
+        dropdown.setProps({
+            onSearchTextChanged: (text) => handleSearchTextChanged(text),
+            searchText: "ab",
+            items: [],
+            open: true,
+        });
+
+        // Assert
+        expect(dropdown.find("InnerPopper").text()).toContain("No results");
     });
 });
