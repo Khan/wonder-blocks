@@ -36,6 +36,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
 
     handleDismiss = () => {
         const {onClick, onChange} = this.props;
+        // Empty the search text and focus the SearchTextInput
         onChange("");
         onClick();
     };

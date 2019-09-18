@@ -133,6 +133,11 @@ type State = {|
      * string.
      */
     searchText: string,
+    /**
+     * The selected values that are set when the dropdown is opened. We use
+     * this to move the selected items to the top when the dropdown is
+     * re-opened.
+     */
     lastSelectedValues: Array<string>,
 |};
 
@@ -258,8 +263,7 @@ export default class MultiSelect extends React.Component<Props, State> {
     getShortcuts(numOptions: number): Array<DropdownItem> {
         const {selectedValues, shortcuts} = this.props;
 
-        // When there's search text input from user, we want to hide the
-        // shortcuts
+        // When there's search text input to filter, shortcuts should be hidden
         if (shortcuts && !this.state.searchText) {
             const selectAllDisabled = numOptions === selectedValues.length;
             const selectAll = {
@@ -307,7 +311,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         children: Array<React.Element<OptionItem>>,
     ): Array<DropdownItem> {
         const {isFilterable} = this.props;
-        // If it's not filterable, no need to do any extra besides map the
+        // If it's not filterable, no need to do any extra besides mapping the
         // option items to dropdown items.
         if (!isFilterable) {
             return children.map(this.mapOptionItemToDropdownItem);
@@ -317,7 +321,7 @@ export default class MultiSelect extends React.Component<Props, State> {
 
         let filteredChildren = children;
 
-        // Filter the children with the search text if any.
+        // Filter the children with the searchText if any.
         if (searchText) {
             const lowercasedSearchText = searchText.toLowerCase();
             filteredChildren = filteredChildren.filter(
@@ -430,7 +434,7 @@ export default class MultiSelect extends React.Component<Props, State> {
 
         const filteredItems = this.getMenuItems(allChildren);
 
-        const searchHandler = isFilterable
+        const searchProps = isFilterable
             ? {
                   onSearchTextChanged: this.handleSearchTextChanged,
                   searchText,
@@ -454,7 +458,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 opener={opener}
                 openerElement={this.openerElement}
                 style={style}
-                {...searchHandler}
+                {...searchProps}
             />
         );
     }

@@ -30,8 +30,9 @@ type DropdownProps = {|
     items: Array<DropdownItem>,
 
     /**
-     * A handler to set the searchText of the parent. When this is provided,
-     * a search text input will be displayed at the top of the dropdown body.
+     * An optional handler to set the searchText of the parent. When this is
+     * provided, SearchTextInput will be displayed at the top of the dropdown
+     * body.
      */
     onSearchTextChanged?: (searchText: string) => mixed,
     searchText?: string,
@@ -381,9 +382,9 @@ export default class DropdownCore extends React.Component<
             onOpenChanged,
             open,
             onSearchTextChanged,
+            searchText,
         } = this.props;
         const keyCode = event.which || event.keyCode;
-        const showSearchTextInput = !!onSearchTextChanged;
         // If menu isn't open and user presses down, open the menu
         if (!open) {
             if (keyCode === keyCodes.down) {
@@ -409,11 +410,15 @@ export default class DropdownCore extends React.Component<
             }
         }
 
+        const showSearchTextInput =
+            !!onSearchTextChanged && typeof searchText === "string";
         // Handle all other key behavior
         switch (keyCode) {
             case keyCodes.tab:
-                // When we display the search text input with dismiss icon,
-                // tab should move the focus to the dismiss icon.
+                // When we show SearchTextInput and that is focused and the
+                // searchText is entered at least one character, dismiss button
+                // is displayed. When user presses tab, we should move focus
+                // to the dismiss button.
                 if (
                     showSearchTextInput &&
                     this.focusedIndex === 0 &&
@@ -425,8 +430,8 @@ export default class DropdownCore extends React.Component<
                 onOpenChanged(false, true);
                 return;
             case keyCodes.space:
-                // When we display search text input and the focus is on that
-                // input, we should let the user type space.
+                // When we display SearchTextInput and the focus is on it,
+                // we should let the user type space.
                 if (showSearchTextInput && this.focusedIndex === 0) {
                     return;
                 }
@@ -446,13 +451,19 @@ export default class DropdownCore extends React.Component<
 
     // Some keys should be handled during the keyup event instead.
     handleKeyUp = (event: SyntheticKeyboardEvent<>) => {
-        const {onOpenChanged, open, onSearchTextChanged} = this.props;
+        const {
+            onOpenChanged,
+            open,
+            onSearchTextChanged,
+            searchText,
+        } = this.props;
         const keyCode = event.which || event.keyCode;
-        const showSearchTextInput = !!onSearchTextChanged;
+        const showSearchTextInput =
+            !!onSearchTextChanged && typeof searchText === "string";
         switch (keyCode) {
             case keyCodes.space:
-                // When we display search text input and the focus is on that
-                // input, we should let the user type space.
+                // When we display SearchTextInput and the focus is on it,
+                // we should let the user type space.
                 if (showSearchTextInput && this.focusedIndex === 0) {
                     return;
                 }
@@ -542,6 +553,7 @@ export default class DropdownCore extends React.Component<
             light,
             openerElement,
             onSearchTextChanged,
+            searchText,
         } = this.props;
 
         // The dropdown width is at least the width of the opener.
@@ -552,8 +564,10 @@ export default class DropdownCore extends React.Component<
 
         const itemRole = this.getItemRole();
 
-        // The first item to focus is the search text input if it exists.
-        const showSearchTextInput = !!onSearchTextChanged;
+        // If SearchTextInput is visible, we consider that as the first
+        // focusable item.
+        const showSearchTextInput =
+            !!onSearchTextChanged && typeof searchText === "string";
         let focusCounter = showSearchTextInput ? 1 : 0;
 
         return (
