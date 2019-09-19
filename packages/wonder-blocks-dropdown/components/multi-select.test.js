@@ -436,4 +436,43 @@ describe("MultiSelect", () => {
         const item3 = select.find(OptionItem).at(0);
         expect(item3.text()).toEqual("item 3");
     });
+
+    it("Type something in SearchTextInput should update searchText in MultiSelect", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+        select.setState({open: true});
+        const searchInput = select.find(SearchTextInput).find("input");
+
+        // Act
+        searchInput.simulate("change", {target: {value: "Item 1"}});
+
+        // Assert
+        expect(select.state("searchText")).toEqual("Item 1");
+    });
+
+    it("Click dismiss button should clear the searchText in MultiSelect", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+        select.setState({open: true, searchText: "Should be cleared"});
+        const dismissBtn = select.find(IconButton);
+
+        // Act
+        dismissBtn.simulate("click");
+
+        // Assert
+        expect(select.state("searchText")).toEqual("");
+    });
+
+    it("Open MultiSelect should clear the searchText", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+        select.setState({searchText: "some text"});
+        const opener = select.find(SelectOpener);
+
+        // Act
+        opener.simulate("click");
+
+        // Assert
+        expect(select.state("searchText")).toEqual("");
+    });
 });

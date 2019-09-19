@@ -512,4 +512,57 @@ describe("DropdownCore", () => {
         // Assert
         expect(dropdown.find("InnerPopper").text()).toContain("No results");
     });
+
+    it("When SearchTextInput has input and focused, tab key should not close the select", () => {
+        // Arrange
+        const handleSearchTextChanged = jest.fn();
+        const handleOpen = jest.fn();
+
+        dropdown.setProps({
+            onOpenChanged: (open) => handleOpen(open),
+            onSearchTextChanged: (text) => handleSearchTextChanged(text),
+            searchText: "ab",
+            open: true,
+        });
+        // SearchTextInput should be focused (since keyboard is true)
+        const searchInput = dropdown.find(SearchTextInput);
+        expect(dropdown.instance().focusedIndex).toBe(0);
+        expect(searchInput.state("focused")).toBe(true);
+
+        // Act
+        dropdown.simulate("keydown", {keyCode: keyCodes.tab});
+
+        // Assert
+        expect(handleOpen).toHaveBeenCalledTimes(0);
+        expect(dropdown.instance().focusedIndex).toBe(0);
+    });
+
+    it("When SearchTextInput exists and focused, space key pressing should be allowed", () => {
+        // Arrange
+        const handleSearchTextChanged = jest.fn();
+        const preventDefaultMock = jest.fn();
+        dropdown.setProps({
+            onSearchTextChanged: (text) => handleSearchTextChanged(text),
+            searchText: "",
+            items: [],
+            open: true,
+        });
+
+        // SearchTextInput should be focused (since keyboard is true)
+        const searchInput = dropdown.find(SearchTextInput).find("input");
+        expect(dropdown.instance().focusedIndex).toBe(0);
+
+        // Act
+        searchInput.simulate("keydown", {
+            keyCode: keyCodes.space,
+            preventDefault: preventDefaultMock,
+        });
+        searchInput.simulate("keyup", {
+            keyCode: keyCodes.space,
+            preventDefault: preventDefaultMock,
+        });
+
+        // Assert
+        expect(preventDefaultMock).toHaveBeenCalledTimes(0);
+    });
 });
