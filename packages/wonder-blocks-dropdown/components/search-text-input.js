@@ -51,6 +51,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
 
     render() {
         const {onClick, itemRef, searchText, style} = this.props;
+        // TODO(jangmi): Use translated strings for "Filter", "Clear search"
         return (
             <View
                 onClick={onClick}
@@ -65,6 +66,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
                     size="medium"
                     color={Color.offBlack50}
                     style={styles.searchIcon}
+                    aria-hidden="true"
                 />
                 <input
                     type="text"
@@ -85,6 +87,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
                         kind="tertiary"
                         onClick={this.handleDismiss}
                         style={styles.dismissIcon}
+                        aria-label="Clear search"
                     />
                 )}
             </View>

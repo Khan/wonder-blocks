@@ -30,11 +30,17 @@ type DropdownProps = {|
     items: Array<DropdownItem>,
 
     /**
-     * An optional handler to set the searchText of the parent. When this is
-     * provided, SearchTextInput will be displayed at the top of the dropdown
-     * body.
+     * An optional handler to set the searchText of the parent. When this and
+     * the searchText are provided, SearchTextInput will be displayed at the
+     * top of the dropdown body.
      */
     onSearchTextChanged?: (searchText: string) => mixed,
+
+    /**
+     * An optional string that the user entered to search the items. When this
+     * and the onSearchTextChanged are provided, SearchTextInput will be
+     * displayed at the top of the dropdown body.
+     */
     searchText?: string,
 
     /**
@@ -422,7 +428,7 @@ export default class DropdownCore extends React.Component<
                 if (
                     showSearchTextInput &&
                     this.focusedIndex === 0 &&
-                    this.props.searchText
+                    searchText
                 ) {
                     return;
                 }
@@ -524,7 +530,7 @@ export default class DropdownCore extends React.Component<
         }
 
         const noResult = onSearchTextChanged && items.length === 0;
-        // TODO(jangmi): Use translated strings for "Filter", "No results"
+        // TODO(jangmi): Use translated string for "No results"
         return (
             <React.Fragment>
                 <SearchTextInput
