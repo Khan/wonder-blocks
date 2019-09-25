@@ -2,7 +2,7 @@
 
 `Spring` and `Strut` are two components that can make certain layouts easier to implement.
 `Spring` is infinitely compressible and expands to fill available space while `Strut`
-is uncompressible and occupies a fixed amount of space specified by its `size` prop.
+is incompressible and occupies a fixed amount of space specified by its `size` prop.
 
 ```js
 import {StyleSheet} from "aphrodite";
@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
 
 ## MediaLayout
 
-`MediaLayout` is a container component takes in a `styleSheets` object whose keys are
-media sizes.  I listens for changes to the current media size and passes the current
-`mediaSize`, `mediaSpec`, and `styles` to `children` which is a render function taking
-those three values as object.
+`MediaLayout` is a container component that accepts a `styleSheets` object, whose keys are
+media sizes.  It listens for changes to the current media size and passes the current
+`mediaSize`, `mediaSpec`, and `styles` to `children`, which is a render function taking
+those three values as an object.
 
 Valid keys for the `styleSheets` object are (in order of precedence):
 - `small`, `medium`, `large`
