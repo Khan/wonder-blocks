@@ -15,6 +15,8 @@ export const selectDropdownStyle = {
     marginBottom: Spacing.xSmall,
 };
 
+// Filterable dropdown has minimum dimensions requested from Design.
+// Note that these can be overridden by the provided style if needed.
 export const filterableDropdownStyle = {
     minHeight: 100,
     maxHeight: 384,

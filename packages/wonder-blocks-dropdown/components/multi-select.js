@@ -124,15 +124,18 @@ type State = {|
      * Whether or not the dropdown is open.
      */
     open: boolean,
+
     /**
      * Whether or not last open state change was triggered by a keyboard click.
      */
     keyboard?: boolean,
+
     /**
      * The text input to filter the items by their label. Defaults to an empty
      * string.
      */
     searchText: string,
+
     /**
      * The selected values that are set when the dropdown is opened. We use
      * this to move the selected items to the top when the dropdown is
@@ -318,17 +321,14 @@ export default class MultiSelect extends React.Component<Props, State> {
 
         const {searchText, lastSelectedValues} = this.state;
 
-        let filteredChildren = children;
+        const lowercasedSearchText = searchText.toLowerCase();
 
         // Filter the children with the searchText if any.
-        if (searchText) {
-            const lowercasedSearchText = searchText.toLowerCase();
-            filteredChildren = filteredChildren.filter(
-                ({props}) =>
-                    props.label.toLowerCase().indexOf(lowercasedSearchText) >
-                    -1,
-            );
-        }
+        const filteredChildren = children.filter(
+            ({props}) =>
+                !searchText ||
+                props.label.toLowerCase().indexOf(lowercasedSearchText) > -1,
+        );
 
         const lastSelectedChildren = [];
         const restOfTheChildren = [];
@@ -433,13 +433,6 @@ export default class MultiSelect extends React.Component<Props, State> {
 
         const filteredItems = this.getMenuItems(allChildren);
 
-        const searchProps = isFilterable
-            ? {
-                  onSearchTextChanged: this.handleSearchTextChanged,
-                  searchText,
-              }
-            : {};
-
         return (
             <DropdownCore
                 role="listbox"
@@ -457,7 +450,10 @@ export default class MultiSelect extends React.Component<Props, State> {
                 opener={opener}
                 openerElement={this.openerElement}
                 style={style}
-                {...searchProps}
+                onSearchTextChanged={
+                    isFilterable ? this.handleSearchTextChanged : null
+                }
+                searchText={isFilterable ? searchText : null}
             />
         );
     }

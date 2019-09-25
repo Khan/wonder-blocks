@@ -49,6 +49,21 @@ export default class SearchTextInput extends React.Component<Props, State> {
         this.setState({focused: true});
     };
 
+    maybeRenderDismissIconButton() {
+        const {searchText} = this.props;
+        if (searchText.length > 0) {
+            return (
+                <IconButton
+                    icon={icons.dismiss}
+                    kind="tertiary"
+                    onClick={this.handleDismiss}
+                    style={styles.dismissIcon}
+                    aria-label="Clear search"
+                />
+            );
+        }
+    }
+
     render() {
         const {onClick, itemRef, searchText, style} = this.props;
         // TODO(jangmi): Use translated strings for "Filter", "Clear search"
@@ -64,7 +79,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
                 <Icon
                     icon={icons.search}
                     size="medium"
-                    color={Color.offBlack50}
+                    color={Color.offBlack64}
                     style={styles.searchIcon}
                     aria-hidden="true"
                 />
@@ -81,15 +96,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
                         typographyStyles.LabelMedium,
                     )}
                 />
-                {searchText.length > 0 && (
-                    <IconButton
-                        icon={icons.dismiss}
-                        kind="tertiary"
-                        onClick={this.handleDismiss}
-                        style={styles.dismissIcon}
-                        aria-label="Clear search"
-                    />
-                )}
+                {this.maybeRenderDismissIconButton()}
             </View>
         );
     }
@@ -101,6 +108,10 @@ const styles = StyleSheet.create({
         border: `1px solid ${Color.offBlack16}`,
         borderRadius: 4,
         alignItems: "center",
+        // The height of the text input is 40 in design spec and we need to
+        // specify the height as well as minHeight to make sure the search text
+        // input takes enough height to render. (otherwise, it will get
+        // squashed)
         height: 40,
         minHeight: 40,
     },
@@ -113,7 +124,6 @@ const styles = StyleSheet.create({
     },
     dismissIcon: {
         margin: 0,
-        color: Color.offBlack50,
         ":hover": {
             border: "none",
         },

@@ -302,10 +302,12 @@ describe("MultiSelect", () => {
         // Arrange
         select.setProps({isFilterable: true});
         select.setState({open: true});
-
-        // Act, Assert
         expect(select.find(IconButton).exists()).toBe(false);
+
+        // Act
         select.setState({searchText: "text"});
+
+        // Assert
         expect(select.find(IconButton).exists()).toBe(true);
     });
 
@@ -358,66 +360,47 @@ describe("MultiSelect", () => {
         ).toBe(false);
     });
 
-    it("arrow up/down moves focus from the search text input like other items", () => {
+    it("Pressing arrow up from search input moves focus to previous focusable item", () => {
         // Arrange
         select.setProps({isFilterable: true});
         select.setState({open: true});
         const searchInput = select.find(SearchTextInput);
-
-        const selectAll = select
-            .find(ActionItem)
-            .at(0)
-            .find(ClickableBehavior);
-        const selectNone = select
-            .find(ActionItem)
-            .at(1)
-            .find(ClickableBehavior);
-
-        const item1 = select
-            .find(OptionItem)
-            .at(0)
-            .find(ClickableBehavior);
-        const item3 = select
+        const lastOption = select
             .find(OptionItem)
             .at(2)
             .find(ClickableBehavior);
-
-        // Act and Assert
         // The focus is on opener. Press up (or down) should focus the input
         select.simulate("keydown", {keyCode: keyCodes.up});
         select.simulate("keyup", {keyCode: keyCodes.up});
         expect(searchInput.state("focused")).toBe(true);
 
-        // one more up should move focus to the last item
+        // Act
         select.simulate("keydown", {keyCode: keyCodes.up});
         select.simulate("keyup", {keyCode: keyCodes.up});
-        expect(item3.state("focused")).toBe(true);
 
-        // two more up should move focus twice
-        select.simulate("keydown", {keyCode: keyCodes.up});
-        select.simulate("keyup", {keyCode: keyCodes.up});
-        select.simulate("keydown", {keyCode: keyCodes.up});
-        select.simulate("keyup", {keyCode: keyCodes.up});
-        expect(item1.state("focused")).toBe(true);
+        // Assert
+        expect(lastOption.state("focused")).toBe(true);
+    });
 
-        // one more up should move focus to the select none
-        select.simulate("keydown", {keyCode: keyCodes.up});
-        select.simulate("keyup", {keyCode: keyCodes.up});
-        expect(selectNone.state("focused")).toBe(true);
-
-        // one more up should move focus to the select all
-        select.simulate("keydown", {keyCode: keyCodes.up});
-        select.simulate("keyup", {keyCode: keyCodes.up});
-        expect(selectAll.state("focused")).toBe(true);
-
-        // one more up should move focus to the input again.
-        select.simulate("keydown", {keyCode: keyCodes.up});
-        select.simulate("keyup", {keyCode: keyCodes.up});
-        expect(searchInput.state("focused")).toBe(true);
-
-        // Press keyboard down arrow should move the focus down
+    it("Pressing arrow down from search input moves focus to previous focusable item", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+        select.setState({open: true});
+        const searchInput = select.find(SearchTextInput);
+        const selectAll = select
+            .find(ActionItem)
+            .at(0)
+            .find(ClickableBehavior);
+        // The focus is on opener. Press up (or down) should focus the input
         select.simulate("keydown", {keyCode: keyCodes.down});
         select.simulate("keyup", {keyCode: keyCodes.down});
+        expect(searchInput.state("focused")).toBe(true);
+
+        // Act
+        select.simulate("keydown", {keyCode: keyCodes.down});
+        select.simulate("keyup", {keyCode: keyCodes.down});
+
+        // Assert
         expect(selectAll.state("focused")).toBe(true);
     });
 

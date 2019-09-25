@@ -488,20 +488,25 @@ describe("DropdownCore", () => {
     });
 
     it("shows SearchTextInput when onSearchTextChanged and searchText is provided", () => {
-        // Arrange, Act
+        // Arrange
         const handleSearchTextChanged = jest.fn();
+
+        // Act
         dropdown.setProps({
             onSearchTextChanged: (text) => handleSearchTextChanged(text),
             searchText: "",
             open: true,
         });
+
         // Assert
         expect(dropdown.find(SearchTextInput).exists()).toBe(true);
     });
 
     it("Displays no results when no items are left with filter", () => {
-        // Arrange, Act
+        // Arrange
         const handleSearchTextChanged = jest.fn();
+
+        // Act
         dropdown.setProps({
             onSearchTextChanged: (text) => handleSearchTextChanged(text),
             searchText: "ab",
@@ -547,7 +552,6 @@ describe("DropdownCore", () => {
             items: [],
             open: true,
         });
-
         // SearchTextInput should be focused (since keyboard is true)
         const searchInput = dropdown.find(SearchTextInput).find("input");
         expect(dropdown.instance().focusedIndex).toBe(0);

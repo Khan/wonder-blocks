@@ -31,17 +31,17 @@ type DropdownProps = {|
 
     /**
      * An optional handler to set the searchText of the parent. When this and
-     * the searchText are provided, SearchTextInput will be displayed at the
-     * top of the dropdown body.
+     * the searchText exist, SearchTextInput will be displayed at the top of
+     * the dropdown body.
      */
-    onSearchTextChanged?: (searchText: string) => mixed,
+    onSearchTextChanged?: ?(searchText: string) => mixed,
 
     /**
      * An optional string that the user entered to search the items. When this
-     * and the onSearchTextChanged are provided, SearchTextInput will be
-     * displayed at the top of the dropdown body.
+     * and the onSearchTextChanged exist, SearchTextInput will be displayed at
+     * the top of the dropdown body.
      */
-    searchText?: string,
+    searchText?: ?string,
 
     /**
      * An index that represents the index of the focused element when the menu
@@ -522,15 +522,23 @@ export default class DropdownCore extends React.Component<
         }
     }
 
+    maybeRenderNoResults() {
+        const {items} = this.props;
+        // TODO(jangmi): Use translated string for "No results"
+        if (items.length === 0) {
+            return (
+                <LabelMedium style={styles.noResult}>No results</LabelMedium>
+            );
+        }
+    }
+
     maybeRenderSearchTextInput() {
-        const {items, onSearchTextChanged, searchText} = this.props;
+        const {onSearchTextChanged, searchText} = this.props;
 
         if (!onSearchTextChanged || typeof searchText !== "string") {
             return null;
         }
 
-        const noResult = onSearchTextChanged && items.length === 0;
-        // TODO(jangmi): Use translated string for "No results"
         return (
             <React.Fragment>
                 <SearchTextInput
@@ -543,11 +551,7 @@ export default class DropdownCore extends React.Component<
                     searchText={searchText}
                     style={styles.searchInput}
                 />
-                {noResult && (
-                    <LabelMedium style={styles.noResult}>
-                        No results
-                    </LabelMedium>
-                )}
+                {this.maybeRenderNoResults()}
             </React.Fragment>
         );
     }
