@@ -1,12 +1,15 @@
 //@flow
 import React from "react";
-import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
+import {ClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import SelectOpener from "./select-opener.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
 import MultiSelect from "./multi-select.js";
 import {keyCodes} from "../util/constants.js";
+import SearchTextInput from "./search-text-input.js";
 
 describe("MultiSelect", () => {
     let select;
@@ -32,6 +35,7 @@ describe("MultiSelect", () => {
                 <OptionItem label="item 1" value="1" />
                 <OptionItem label="item 2" value="2" />
                 <OptionItem label="item 3" value="3" />
+                {false && <OptionItem label="item 4" value="4" />}
             </MultiSelect>,
         );
     });
@@ -280,5 +284,178 @@ describe("MultiSelect", () => {
             // Assert
             expect(wrapper.find(MultiSelect).prop("opened")).toBe(false);
         });
+    });
+
+    it("displays SearchTextInput when isFilterable is true", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+        select.setState({open: true});
+
+        // Act
+        const searchInput = select.find(SearchTextInput);
+
+        // Assert
+        expect(searchInput.exists()).toBe(true);
+    });
+
+    it("displays SearchTextInput with dismiss button when search text exists", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+        select.setState({open: true});
+        expect(select.find(IconButton).exists()).toBe(false);
+
+        // Act
+        select.setState({searchText: "text"});
+
+        // Assert
+        expect(select.find(IconButton).exists()).toBe(true);
+    });
+
+    it("filters the items by the search input (case insensitive)", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+
+        // Act
+        select.setState({
+            open: true,
+            searchText: "Item 1",
+        });
+
+        // Assert
+        expect(
+            select
+                .find(OptionItem)
+                .at(0)
+                .text(),
+        ).toEqual("item 1");
+        expect(
+            select
+                .find(OptionItem)
+                .at(1)
+                .exists(),
+        ).toBe(false);
+    });
+
+    it("Hides shortcuts when there are any text in search text input", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+
+        // Act
+        select.setState({open: true});
+        expect(
+            select
+                .find(ActionItem)
+                .at(0)
+                .exists(),
+        ).toBe(true);
+
+        // Assert
+        select.setState({searchText: "2"});
+
+        expect(
+            select
+                .find(ActionItem)
+                .at(0)
+                .exists(),
+        ).toBe(false);
+    });
+
+    it("Pressing arrow up from search input moves focus to previous focusable item", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+        select.setState({open: true});
+        const searchInput = select.find(SearchTextInput);
+        const lastOption = select
+            .find(OptionItem)
+            .at(2)
+            .find(ClickableBehavior);
+        // The focus is on opener. Press up (or down) should focus the input
+        select.simulate("keydown", {keyCode: keyCodes.up});
+        select.simulate("keyup", {keyCode: keyCodes.up});
+        expect(searchInput.state("focused")).toBe(true);
+
+        // Act
+        select.simulate("keydown", {keyCode: keyCodes.up});
+        select.simulate("keyup", {keyCode: keyCodes.up});
+
+        // Assert
+        expect(lastOption.state("focused")).toBe(true);
+    });
+
+    it("Pressing arrow down from search input moves focus to previous focusable item", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+        select.setState({open: true});
+        const searchInput = select.find(SearchTextInput);
+        const selectAll = select
+            .find(ActionItem)
+            .at(0)
+            .find(ClickableBehavior);
+        // The focus is on opener. Press up (or down) should focus the input
+        select.simulate("keydown", {keyCode: keyCodes.down});
+        select.simulate("keyup", {keyCode: keyCodes.down});
+        expect(searchInput.state("focused")).toBe(true);
+
+        // Act
+        select.simulate("keydown", {keyCode: keyCodes.down});
+        select.simulate("keyup", {keyCode: keyCodes.down});
+
+        // Assert
+        expect(selectAll.state("focused")).toBe(true);
+    });
+
+    it("Selected items are at the top of the items when isFilterable is true", () => {
+        // Arrange
+        const opener = select.find(SelectOpener);
+        select.setProps({
+            isFilterable: true,
+            selectedValues: ["3"],
+        });
+
+        // Act
+        opener.simulate("click");
+
+        // Assert
+        const item3 = select.find(OptionItem).at(0);
+        expect(item3.text()).toEqual("item 3");
+    });
+
+    it("Type something in SearchTextInput should update searchText in MultiSelect", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+        select.setState({open: true});
+        const searchInput = select.find(SearchTextInput).find("input");
+
+        // Act
+        searchInput.simulate("change", {target: {value: "Item 1"}});
+
+        // Assert
+        expect(select.state("searchText")).toEqual("Item 1");
+    });
+
+    it("Click dismiss button should clear the searchText in MultiSelect", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+        select.setState({open: true, searchText: "Should be cleared"});
+        const dismissBtn = select.find(IconButton);
+
+        // Act
+        dismissBtn.simulate("click");
+
+        // Assert
+        expect(select.state("searchText")).toEqual("");
+    });
+
+    it("Open MultiSelect should clear the searchText", () => {
+        // Arrange
+        select.setProps({isFilterable: true});
+        select.setState({searchText: "some text"});
+        const opener = select.find(SelectOpener);
+
+        // Act
+        opener.simulate("click");
+
+        // Assert
+        expect(select.state("searchText")).toEqual("");
     });
 });

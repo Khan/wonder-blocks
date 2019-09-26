@@ -9,7 +9,10 @@ import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
 import SelectOpener from "./select-opener.js";
 import SeparatorItem from "./separator-item.js";
-import {selectDropdownStyle} from "../util/constants.js";
+import {
+    selectDropdownStyle,
+    filterableDropdownStyle,
+} from "../util/constants.js";
 
 import typeof OptionItem from "./option-item.js";
 import type {DropdownItem} from "../util/types.js";
@@ -77,6 +80,13 @@ type Props = {|
     implicitAllEnabled?: boolean,
 
     /**
+     * When this is true, the dropdown body shows a search text input at the
+     * top. The items will be filtered by the input.
+     * Selected items will be moved to the top when the dropdown is re-opened.
+     */
+    isFilterable?: boolean,
+
+    /**
      * Whether to display shortcuts for Select All and Select None.
      */
     shortcuts?: boolean,
@@ -114,10 +124,24 @@ type State = {|
      * Whether or not the dropdown is open.
      */
     open: boolean,
+
     /**
      * Whether or not last open state change was triggered by a keyboard click.
      */
     keyboard?: boolean,
+
+    /**
+     * The text input to filter the items by their label. Defaults to an empty
+     * string.
+     */
+    searchText: string,
+
+    /**
+     * The selected values that are set when the dropdown is opened. We use
+     * this to move the selected items to the top when the dropdown is
+     * re-opened.
+     */
+    lastSelectedValues: Array<string>,
 |};
 
 /**
@@ -144,6 +168,8 @@ export default class MultiSelect extends React.Component<Props, State> {
 
         this.state = {
             open: false,
+            searchText: "",
+            lastSelectedValues: [],
         };
     }
 
@@ -161,6 +187,8 @@ export default class MultiSelect extends React.Component<Props, State> {
         this.setState({
             open: opened,
             keyboard,
+            searchText: "",
+            lastSelectedValues: this.props.selectedValues,
         });
 
         if (this.props.onToggle) {
@@ -186,10 +214,9 @@ export default class MultiSelect extends React.Component<Props, State> {
 
     handleSelectAll = () => {
         const {children, onChange} = this.props;
-        const selected = React.Children.map(
-            children,
-            (option) => option.props.value,
-        );
+        const selected = React.Children.toArray(children)
+            .filter(Boolean)
+            .map((option) => option.props.value);
         onChange(selected);
     };
 
@@ -200,9 +227,8 @@ export default class MultiSelect extends React.Component<Props, State> {
 
     // TODO(sophie): need to configure for i18n for the word "All" and
     // potentially the concept of plurals
-    getMenuText() {
+    getMenuText(children: Array<React.Element<OptionItem>>) {
         const {
-            children,
             placeholder,
             implicitAllEnabled,
             selectItemType,
@@ -223,25 +249,24 @@ export default class MultiSelect extends React.Component<Props, State> {
                 // If there is one item selected, we display its label. If for
                 // some reason we can't find the selected item, we use the
                 // display text for the case where nothing is selected.
-                const selectedItem = React.Children.toArray(children).find(
+                const selectedItem = children.find(
                     (option) => option.props.value === selectedValues[0],
                 );
                 return selectedItem
                     ? selectedItem.props.label
                     : noSelectionText;
-            case React.Children.count(children):
+            case children.length:
                 return allSelectedText;
             default:
                 return `${selectedValues.length} ${selectItemType}`;
         }
     }
 
-    getShortcuts(): Array<DropdownItem> {
-        const {children, selectedValues, shortcuts} = this.props;
+    getShortcuts(numOptions: number): Array<DropdownItem> {
+        const {selectedValues, shortcuts} = this.props;
 
-        if (shortcuts) {
-            const numOptions = React.Children.count(children);
-
+        // When there's search text input to filter, shortcuts should be hidden
+        if (shortcuts && !this.state.searchText) {
             const selectAllDisabled = numOptions === selectedValues.length;
             const selectAll = {
                 component: (
@@ -284,26 +309,79 @@ export default class MultiSelect extends React.Component<Props, State> {
         }
     }
 
-    getMenuItems(): Array<DropdownItem> {
-        const {children, selectedValues} = this.props;
-        return React.Children.toArray(children)
-            .filter(Boolean)
-            .map((option) => {
-                const {disabled, value} = option.props;
-                return {
-                    component: option,
-                    focusable: !disabled,
-                    populatedProps: {
-                        onToggle: this.handleToggle,
-                        selected: selectedValues.includes(value),
-                        variant: "checkbox",
-                    },
-                };
+    getMenuItems(
+        children: Array<React.Element<OptionItem>>,
+    ): Array<DropdownItem> {
+        const {isFilterable} = this.props;
+        // If it's not filterable, no need to do any extra besides mapping the
+        // option items to dropdown items.
+        if (!isFilterable) {
+            return children.map(this.mapOptionItemToDropdownItem);
+        }
+
+        const {searchText, lastSelectedValues} = this.state;
+
+        const lowercasedSearchText = searchText.toLowerCase();
+
+        // Filter the children with the searchText if any.
+        const filteredChildren = children.filter(
+            ({props}) =>
+                !searchText ||
+                props.label.toLowerCase().indexOf(lowercasedSearchText) > -1,
+        );
+
+        const lastSelectedChildren = [];
+        const restOfTheChildren = [];
+        for (const child of filteredChildren) {
+            if (lastSelectedValues.includes(child.props.value)) {
+                lastSelectedChildren.push(child);
+            } else {
+                restOfTheChildren.push(child);
+            }
+        }
+
+        const lastSelectedItems = lastSelectedChildren.map(
+            this.mapOptionItemToDropdownItem,
+        );
+
+        // We want to add SeparatorItem in between last selected items and the
+        // rest of the items only when both of them exists.
+        if (lastSelectedChildren.length && restOfTheChildren.length) {
+            lastSelectedItems.push({
+                component: <SeparatorItem key="selected-separator" />,
+                focusable: false,
+                populatedProps: {},
             });
+        }
+
+        return [
+            ...lastSelectedItems,
+            ...restOfTheChildren.map(this.mapOptionItemToDropdownItem),
+        ];
     }
+
+    mapOptionItemToDropdownItem = (
+        option: React.Element<OptionItem>,
+    ): DropdownItem => {
+        const {selectedValues} = this.props;
+        const {disabled, value} = option.props;
+        return {
+            component: option,
+            focusable: !disabled,
+            populatedProps: {
+                onToggle: this.handleToggle,
+                selected: selectedValues.includes(value),
+                variant: "checkbox",
+            },
+        };
+    };
 
     handleOpenerRef = (node: any) => {
         this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
+    };
+
+    handleSearchTextChanged = (searchText: string) => {
+        this.setState({searchText});
     };
 
     render() {
@@ -326,20 +404,21 @@ export default class MultiSelect extends React.Component<Props, State> {
             selectedValues,
             selectItemType,
             implicitAllEnabled,
+            isFilterable,
             shortcuts,
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
-        const {open} = this.state;
+        const {open, searchText} = this.state;
 
-        const menuText = this.getMenuText();
-
-        const items = [...this.getShortcuts(), ...this.getMenuItems()];
+        const allChildren = React.Children.toArray(children).filter(Boolean);
+        const numOptions = allChildren.length;
+        const menuText = this.getMenuText(allChildren);
 
         const opener = (
             <SelectOpener
                 {...sharedProps}
-                disabled={items.length === 0 || disabled}
+                disabled={numOptions === 0 || disabled}
                 id={id}
                 isPlaceholder={menuText === placeholder}
                 light={light}
@@ -352,12 +431,18 @@ export default class MultiSelect extends React.Component<Props, State> {
             </SelectOpener>
         );
 
+        const filteredItems = this.getMenuItems(allChildren);
+
         return (
             <DropdownCore
                 role="listbox"
                 alignment={alignment}
-                dropdownStyle={[selectDropdownStyle, dropdownStyle]}
-                items={items}
+                dropdownStyle={[
+                    isFilterable && filterableDropdownStyle,
+                    selectDropdownStyle,
+                    dropdownStyle,
+                ]}
+                items={[...this.getShortcuts(numOptions), ...filteredItems]}
                 keyboard={this.state.keyboard}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
@@ -365,6 +450,10 @@ export default class MultiSelect extends React.Component<Props, State> {
                 opener={opener}
                 openerElement={this.openerElement}
                 style={style}
+                onSearchTextChanged={
+                    isFilterable ? this.handleSearchTextChanged : null
+                }
+                searchText={isFilterable ? searchText : null}
             />
         );
     }

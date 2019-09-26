@@ -1465,4 +1465,60 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
+    it("example 27", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+        const optionItems = new Array(10)
+            .fill(null)
+            .map((_, i) => (
+                <OptionItem
+                    key={i}
+                    value={(i + 1).toString()}
+                    label={`School ${i + 1} in Wizarding World`}
+                />
+            ));
+
+        class ExampleWithShortcuts extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: [],
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(selectedValues) {
+                this.setState({
+                    selectedValues,
+                });
+            }
+
+            render() {
+                return (
+                    <MultiSelect
+                        shortcuts={true}
+                        isFilterable={true}
+                        onChange={this.handleChange}
+                        selectedValues={this.state.selectedValues}
+                        selectItemType="schools"
+                    >
+                        {optionItems}
+                    </MultiSelect>
+                );
+            }
+        }
+
+        const example = (
+            <View style={styles.row}>
+                <ExampleWithShortcuts />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });
