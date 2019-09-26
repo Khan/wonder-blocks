@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: "row",
         border: `1px solid ${Color.offBlack16}`,
-        borderRadius: 4,
+        borderRadius: Spacing.xxxSmall,
         alignItems: "center",
         // The height of the text input is 40 in design spec and we need to
         // specify the height as well as minHeight to make sure the search text
