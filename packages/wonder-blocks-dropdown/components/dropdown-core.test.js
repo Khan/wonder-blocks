@@ -7,6 +7,7 @@ import OptionItem from "./option-item.js";
 import SearchTextInput from "./search-text-input.js";
 import DropdownCore from "./dropdown-core.js";
 import {keyCodes} from "../util/constants.js";
+import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 
 describe("DropdownCore", () => {
     window.scrollTo = jest.fn();
@@ -568,5 +569,31 @@ describe("DropdownCore", () => {
 
         // Assert
         expect(preventDefaultMock).toHaveBeenCalledTimes(0);
+    });
+
+    it("should render a virtualized list if there are more than 100 items", () => {
+        // Arrange
+        const items = new Array(100).fill(null).map((item, i) => ({
+            component: (
+                <OptionItem
+                    key={i}
+                    value={(i + 1).toString()}
+                    label={`School ${i + 1} in Wizarding World`}
+                />
+            ),
+            focusable: true,
+            onClick: jest.fn(),
+            role: "option",
+            populatedProps: {},
+        }));
+
+        // Act
+        dropdown.setProps({
+            items: items,
+            open: true,
+        });
+
+        // Assert
+        expect(dropdown.find(DropdownCoreVirtualized)).toExist();
     });
 });

@@ -18,6 +18,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 // own non-wonder-blocks package.
 // $FlowIgnoreMe
 import visibilityModifierDefaultConfig from "../../../shared-unpackaged/visibility-modifier.js"; // eslint-disable-line import/no-restricted-paths
+import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 import SeparatorItem from "./separator-item.js";
 import SearchTextInput from "./search-text-input.js";
 import {keyCodes} from "../util/constants.js";
@@ -556,6 +557,22 @@ export default class DropdownCore extends React.Component<
         );
     }
 
+    renderAllItems(itemsList: Array<DropdownItem>): React.Node {
+        return itemsList.map((item, index) => {
+            if (SeparatorItem.isClassOf(item.component)) {
+                return item.component;
+            } else {
+                return React.cloneElement(item.component, {
+                    ...item.populatedProps,
+                    key: index,
+                    ref: item.ref,
+                    role: item.role,
+                    onClick: item.onClick,
+                });
+            }
+        });
+    }
+
     renderItems(outOfBoundaries: ?boolean) {
         const {
             items,
@@ -567,7 +584,9 @@ export default class DropdownCore extends React.Component<
         } = this.props;
 
         // The dropdown width is at least the width of the opener.
-        const openerStyle = window.getComputedStyle(openerElement);
+        // It's only used if the element exists in the DOM
+        const openerStyle =
+            openerElement && window.getComputedStyle(openerElement);
         const minDropdownWidth = openerStyle
             ? openerStyle.getPropertyValue("width")
             : 0;
@@ -579,6 +598,34 @@ export default class DropdownCore extends React.Component<
         const showSearchTextInput =
             !!onSearchTextChanged && typeof searchText === "string";
         let focusCounter = showSearchTextInput ? 1 : 0;
+
+        // preprocess items data to pass it to the renderer
+        const itemsList = items.map((item, index) => {
+            if (!SeparatorItem.isClassOf(item.component) && item.focusable) {
+                focusCounter += 1;
+            }
+
+            const focusIndex = focusCounter - 1;
+
+            return {
+                ...item,
+                role: itemRole,
+                ref: item.focusable
+                    ? this.state.itemRefs[focusIndex]
+                        ? this.state.itemRefs[focusIndex].ref
+                        : null
+                    : null,
+                onClick: () => {
+                    this.handleClickFocus(focusIndex);
+                    if (item.component.props.onClick) {
+                        item.component.props.onClick();
+                    }
+                    if (item.populatedProps.onClick) {
+                        item.populatedProps.onClick();
+                    }
+                },
+            };
+        });
 
         return (
             <View
@@ -595,34 +642,17 @@ export default class DropdownCore extends React.Component<
                 ]}
             >
                 {this.maybeRenderSearchTextInput()}
-                {items.map((item, index) => {
-                    if (SeparatorItem.isClassOf(item.component)) {
-                        return item.component;
-                    } else {
-                        if (item.focusable) {
-                            focusCounter += 1;
-                        }
-                        const focusIndex = focusCounter - 1;
-                        return React.cloneElement(item.component, {
-                            ...item.populatedProps,
-                            key: index,
-                            ref:
-                                item.focusable &&
-                                this.state.itemRefs[focusIndex].ref,
-                            role: itemRole,
-                            onClick: () => {
-                                this.handleClickFocus(focusIndex);
-                                if (item.component.props.onClick) {
-                                    //$FlowFixMe
-                                    item.component.props.onClick();
-                                }
-                                if (item.populatedProps.onClick) {
-                                    item.populatedProps.onClick();
-                                }
-                            },
-                        });
-                    }
-                })}
+
+                {itemsList.length < 100 ? (
+                    this.renderAllItems(itemsList)
+                ) : (
+                    <DropdownCoreVirtualized
+                        data={itemsList}
+                        // values defined in the design specs
+                        height={360}
+                        width={288}
+                    />
+                )}
             </View>
         );
     }

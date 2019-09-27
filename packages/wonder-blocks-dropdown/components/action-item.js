@@ -10,6 +10,8 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 const {blue, white, offBlack, offBlack32} = Color;
 
 type ActionProps = {|
@@ -75,6 +77,13 @@ type ActionProps = {|
      * Aria role to use, defaults to "menuitem".
      */
     role: "menuitem" | "option",
+
+    /**
+     * In case we use react-window, this needs to be added in order to inject
+     * styles to calculate the position
+     * @ignore
+     */
+    style?: StyleType,
 |};
 
 const StyledAnchor = addStyle("a");
@@ -108,6 +117,7 @@ export default class ActionItem extends React.Component<ActionProps> {
             label,
             onClick,
             role,
+            style,
             testId,
         } = this.props;
         const {router} = this.context;
@@ -135,6 +145,8 @@ export default class ActionItem extends React.Component<ActionProps> {
                             (pressed
                                 ? styles.active
                                 : (hovered || focused) && styles.focus),
+                        // pass optional styles from react-window (if applies)
+                        style,
                     ];
 
                     const props = {

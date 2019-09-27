@@ -14,4 +14,8 @@ export type DropdownItem = {|
     component: React.Element<ActionItem | OptionItem | SeparatorItem>,
     focusable: boolean,
     populatedProps: any,
+    // extra props used by DropdownCore
+    onClick?: () => mixed,
+    ref?: any,
+    role?: string,
 |};

@@ -1472,7 +1472,7 @@ describe("wonder-blocks-dropdown", () => {
                 flexDirection: "row",
             },
         });
-        const optionItems = new Array(10)
+        const optionItems = new Array(100)
             .fill(null)
             .map((_, i) => (
                 <OptionItem
