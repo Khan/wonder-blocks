@@ -32,7 +32,7 @@ const genWebpackConfig = function(subPkgRoot) {
             ),
             path: path.join(process.cwd()),
         },
-        externals: [...pkgPeerDeps, pkgDeps],
+        externals: [...pkgPeerDeps, ...pkgDeps],
         module: {
             rules: [
                 {
