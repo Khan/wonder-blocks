@@ -56,14 +56,6 @@ type Props = {|
  * using the specified column width.
  */
 export default class Cell extends React.Component<Props> {
-    static defaultProps = {
-        smallCols: 0,
-        mediumCols: 0,
-        largeCols: 0,
-        cols: 0,
-    };
-
-    static __IS_CELL__ = true;
     static isClassOf(instance: React.Element<any>) {
         return instance && instance.type && instance.type.__IS_CELL__;
     }
@@ -103,6 +95,15 @@ export default class Cell extends React.Component<Props> {
         const cols = Cell.getCols(props, mediaSize);
         return cols !== null && cols !== 0;
     }
+
+    static defaultProps = {
+        smallCols: 0,
+        mediumCols: 0,
+        largeCols: 0,
+        cols: 0,
+    };
+
+    static __IS_CELL__ = true;
 
     render() {
         const {children, style} = this.props;
