@@ -1,5 +1,5 @@
 [version]
-0.108.0
+0.109.0
 
 [ignore]
 <PROJECT_ROOT>/node_modules
@@ -26,7 +26,16 @@ deprecated-utility=error
 # number to a TODO comment associated with the suppression.
 suppress_comment=\\(.\\|\n\\)*\\$FlowFixMe
 
-# $FlowExpectError
+# $ExpectError
 # This suppression is used in flow test files to indicate that we expect
 # some code to raise a flow error.
-suppress_comment=\\(.\\|\n\\)*\\$FlowExpectError
+suppress_comment=\\(.\\|\n\\)*\\$ExpectError
+
+# $FlowIgnore
+# Every now and then, flow cannot understand our code the way we can. We just
+# know better and we have to tell flow to trust us. Since this isn't something
+# we expect to "fix", we can annotate them to just have flow ignore them.
+# Using this suppression makes it clear that we know there's an error but it's
+# ok to ignore it. Make sure the suppression has associated commentary to state
+# why it's okay to ignore the flow error.
+suppress_comment=\\(.\\|\n\\)*\\$FlowIgnore

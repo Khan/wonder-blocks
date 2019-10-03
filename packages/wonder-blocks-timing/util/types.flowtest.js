@@ -50,7 +50,7 @@ const InnerComponent2: React.AbstractComponent<Props2> = (
  * `schedule` is missing in `OwnProps2` [1] but exists in `WithActionScheduler`
  * [2] in type argument  `Config` [3].
  *
- * $FlowExpectError
+ * $ExpectError
  */
 const HOCComponent2: React.AbstractComponent<Props2> = withActionScheduler(
     InnerComponent2,
@@ -75,7 +75,7 @@ const HOCComponent3: React.AbstractComponent<OwnProps3> = withActionScheduler(
      * `Component` because property `schedule` is missing in `OwnProps3` [1]
      * but exists in  `WithActionScheduler` [2] in type argument  `Config` [3].
      *
-     * $FlowExpectError
+     * $ExpectError
      */
     InnerComponent3,
 );
