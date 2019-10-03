@@ -79,13 +79,12 @@ type SelectOpenerProps = {|
  * An opener that opens select boxes.
  */
 export default class SelectOpener extends React.Component<SelectOpenerProps> {
+    static contextTypes = {router: PropTypes.any};
     static defaultProps = {
         disabled: false,
         light: false,
         isPlaceholder: false,
     };
-
-    static contextTypes = {router: PropTypes.any};
 
     handleClick = (e: SyntheticEvent<>) => {
         const {open} = this.props;

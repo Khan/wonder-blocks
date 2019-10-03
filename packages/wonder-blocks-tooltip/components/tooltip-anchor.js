@@ -89,7 +89,6 @@ export default class TooltipAnchor extends React.Component<Props, State>
     _unsubscribeFromTracker: ?() => void;
     _timeoutID: ?TimeoutID;
 
-    static ariaContentId = "aria-content";
     static defaultProps = {
         forceAnchorFocusivity: true,
     };
@@ -167,6 +166,8 @@ export default class TooltipAnchor extends React.Component<Props, State>
             document.removeEventListener("keyup", this._handleKeyUp);
         }
     }
+
+    static ariaContentId = "aria-content";
 
     activeStateStolen = () => {
         // Something wants the active state.

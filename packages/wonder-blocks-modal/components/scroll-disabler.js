@@ -18,7 +18,6 @@ const needsHackyMobileSafariScrollDisabler = (() => {
 })();
 
 class ScrollDisabler extends Component<{}> {
-    static numModalsOpened = 0;
     static oldOverflow: string;
     static oldPosition: string;
     static oldScrollY: number;
@@ -77,6 +76,8 @@ class ScrollDisabler extends Component<{}> {
             window.scrollTo(0, ScrollDisabler.oldScrollY);
         }
     }
+
+    static numModalsOpened = 0;
 
     render() {
         return null;
