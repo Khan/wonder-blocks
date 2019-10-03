@@ -91,7 +91,7 @@
   },
   "dependencies": {
     "aphrodite": "^1.2.5",
-    "inquirer": "^6.0.0",
+    "inquirer": "^7.0.0",
     "popper.js": "^1.14.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.3",

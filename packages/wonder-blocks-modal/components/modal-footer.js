@@ -19,10 +19,10 @@ type Props = {|
  * - The footer is completely flexible. Meaning the developer needs to add its own custom layout to match design specs.
  */
 export default class ModalFooter extends React.Component<Props> {
-    static __IS_MODAL_FOOTER__ = true;
     static isClassOf(instance: any) {
         return instance && instance.type && instance.type.__IS_MODAL_FOOTER__;
     }
+    static __IS_MODAL_FOOTER__ = true;
 
     render() {
         const {children} = this.props;

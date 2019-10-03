@@ -109,7 +109,6 @@ type State = {|
 |};
 
 export default class Tooltip extends React.Component<Props, State> {
-    static ariaContentId = "aria-content";
     static defaultProps = {
         forceAnchorFocusivity: true,
         placement: "top",
@@ -120,6 +119,7 @@ export default class Tooltip extends React.Component<Props, State> {
         anchorElement: null,
         timeoutID: null,
     };
+    static ariaContentId = "aria-content";
 
     _updateAnchorElement(ref: ?Element) {
         if (ref && ref !== this.state.anchorElement) {

@@ -151,6 +151,8 @@ export type SharedProps = {|
  * ```
  */
 export default class Button extends React.Component<SharedProps> {
+    static contextTypes = {router: PropTypes.any};
+
     static defaultProps = {
         color: "default",
         kind: "primary",
@@ -159,8 +161,6 @@ export default class Button extends React.Component<SharedProps> {
         disabled: false,
         spinner: false,
     };
-
-    static contextTypes = {router: PropTypes.any};
 
     render() {
         const {

@@ -11,6 +11,7 @@
 !<PROJECT_ROOT>/node_modules/popper.js
 !<PROJECT_ROOT>/node_modules/warning
 !<PROJECT_ROOT>/node_modules/typed-styles
+!<PROJECT_ROOT>/node_modules/create-react-context
 
 [lints]
 deprecated-type=error
