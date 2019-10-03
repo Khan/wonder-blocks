@@ -87,9 +87,9 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
 
     componentDidMount() {
         // TODO(WB-534): handle changes to mediaSpec prop
-        const entries = ((Object.entries(this.props.mediaSpec): any): Array<
-            [MediaSize, {query: string}],
-        >);
+        const entries: Array<[MediaSize, {query: string}]> = (Object.entries(
+            this.props.mediaSpec,
+        ): any);
 
         for (const [size, spec] of entries) {
             const mql = mediaQueryLists[spec.query];
@@ -119,9 +119,9 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
         if (this.state.size) {
             return this.state.size;
         } else {
-            const entries = ((Object.entries(this.props.mediaSpec): any): Array<
+            const entries: Array<
                 [MediaSize, {query: string}],
-            >);
+            > = (Object.entries(this.props.mediaSpec): any);
 
             for (const [size, spec] of entries) {
                 const mql = mediaQueryLists[spec.query];
