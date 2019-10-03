@@ -168,7 +168,7 @@ describe("ModalLauncher", () => {
 
         // Act
         shallow(
-            // $FlowExpectError
+            // $FlowIgnore
             <ModalLauncher
                 modal={exampleModal}
                 opened={false}
@@ -190,7 +190,7 @@ describe("ModalLauncher", () => {
         jest.spyOn(console, "warn");
 
         // Act
-        // $FlowExpectError
+        // $FlowIgnore
         shallow(<ModalLauncher modal={exampleModal} opened={false} />);
 
         // Assert
@@ -205,7 +205,7 @@ describe("ModalLauncher", () => {
         jest.spyOn(console, "warn");
 
         // Act
-        // $FlowExpectError
+        // $FlowIgnore
         shallow(<ModalLauncher modal={exampleModal} />);
 
         // Assert

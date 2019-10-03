@@ -55,6 +55,7 @@ describe("TooltipTail", () => {
             // recreating so that we can write a fake placement value
             // for testing.
             const oldProps = tailInstance.props;
+            // $FlowIgnore
             delete tailInstance.props;
             tailInstance.props = {
                 ...oldProps,
@@ -81,6 +82,7 @@ describe("TooltipTail", () => {
             // recreating so that we can write a fake placement value
             // for testing.
             const oldProps = tailInstance.props;
+            // $FlowIgnore
             delete tailInstance.props;
             tailInstance.props = {
                 ...oldProps,
