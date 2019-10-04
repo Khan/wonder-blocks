@@ -49,7 +49,7 @@
     "@khanacademy/vite-server": "^0.0.7",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
-    "babel-jest": "^23.6.0",
+    "babel-jest": "^24.9.0",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-dynamic-import-node": "^2.1.0",
     "codecov": "^3.0.4",
