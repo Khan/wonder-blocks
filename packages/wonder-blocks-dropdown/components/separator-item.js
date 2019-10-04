@@ -22,10 +22,11 @@ export default class SeparatorItem extends React.Component<{|
      */
     style?: StyleType,
 |}> {
-    static __IS_SEPARATOR_ITEM__ = true;
     static isClassOf(instance: React.Element<any>) {
         return instance && instance.type && instance.type.__IS_SEPARATOR_ITEM__;
     }
+
+    static __IS_SEPARATOR_ITEM__ = true;
 
     render() {
         return (

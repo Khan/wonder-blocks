@@ -151,12 +151,6 @@ export default class DropdownCore extends React.Component<
     itemsClicked: boolean;
     popperElement: ?HTMLElement;
 
-    static defaultProps = {
-        alignment: "left",
-        initialFocusedIndex: 0,
-        light: false,
-    };
-
     // Figure out if the same items are focusable. If an item has been added or
     // removed, this method will return false.
     static sameItemsFocusable(
@@ -173,6 +167,12 @@ export default class DropdownCore extends React.Component<
         }
         return true;
     }
+
+    static defaultProps = {
+        alignment: "left",
+        initialFocusedIndex: 0,
+        light: false,
+    };
 
     // This is here to avoid calling React.createRef on each rerender. Instead,
     // we create the itemRefs only if it's the first time or if the set of items

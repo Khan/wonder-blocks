@@ -140,14 +140,13 @@ export type SharedProps = {|
  * ```
  */
 export default class IconButton extends React.Component<SharedProps> {
+    static contextTypes = {router: PropTypes.any};
     static defaultProps = {
         color: "default",
         kind: "primary",
         light: false,
         disabled: false,
     };
-
-    static contextTypes = {router: PropTypes.any};
 
     render() {
         const {onClick, href, skipClientNav, ...sharedProps} = this.props;

@@ -115,14 +115,13 @@ export type SharedProps = {|
  * ```
  */
 export default class Link extends React.Component<SharedProps> {
+    static contextTypes = {router: PropTypes.any};
     static defaultProps = {
         caret: false,
         kind: "primary",
         light: false,
         visitable: false,
     };
-
-    static contextTypes = {router: PropTypes.any};
 
     render() {
         const {
