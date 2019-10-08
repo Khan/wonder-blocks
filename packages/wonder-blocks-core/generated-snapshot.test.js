@@ -479,7 +479,7 @@ describe("wonder-blocks-core", () => {
                     second forced render is still occurring for nested
                     WithSSRPlaceholder components, which would be a bug.
                 </Body>
-                <ul id={resultsId} />
+                <ul id={resultsId}></ul>
                 <Body>
                     And below this is the actual WithSSRPlaceholder nesting,
                     which should just show the child render.
@@ -555,7 +555,7 @@ describe("wonder-blocks-core", () => {
                     placeholder, 2 x root children render, and 2 x child
                     children render.
                 </Body>
-                <ul id={resultsId} />
+                <ul id={resultsId}></ul>
                 <Body>
                     And below this are the WithSSRPlaceholder component trees,
                     which should just show their child renders.

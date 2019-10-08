@@ -98,9 +98,7 @@ const styles = StyleSheet.create({
         borderRadius: Spacing.xxxSmall,
         border: `solid 1px ${Colors.offBlack16}`,
         backgroundColor: Colors.white,
-        boxShadow: `0 ${Spacing.xSmall}px ${Spacing.xSmall}px 0 ${
-            Colors.offBlack8
-        }`,
+        boxShadow: `0 ${Spacing.xSmall}px ${Spacing.xSmall}px 0 ${Colors.offBlack8}`,
         margin: 0,
         maxWidth: Spacing.medium * 18, // 288px
         padding: Spacing.large,
