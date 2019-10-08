@@ -207,6 +207,56 @@ exports[`wonder-blocks-core example 4 1`] = `
   style={
     Object {
       "alignItems": "stretch",
+      "background": "#37c5fd",
+      "border": "1px solid #0a2a66",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 48,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <h1
+    className=""
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 36,
+          "lineHeight": "40px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 900,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    Lorem ipsum
+  </h1>
+</div>
+`;
+
+exports[`wonder-blocks-core example 5 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",
@@ -235,7 +285,7 @@ exports[`wonder-blocks-core example 4 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 5 1`] = `
+exports[`wonder-blocks-core example 6 1`] = `
 <div
   className=""
   style={
@@ -269,7 +319,7 @@ exports[`wonder-blocks-core example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 6 1`] = `
+exports[`wonder-blocks-core example 7 1`] = `
 <div
   className=""
   style={
@@ -328,7 +378,7 @@ exports[`wonder-blocks-core example 6 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 7 1`] = `
+exports[`wonder-blocks-core example 8 1`] = `
 <div
   className=""
   style={
@@ -385,7 +435,7 @@ exports[`wonder-blocks-core example 7 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 8 1`] = `
+exports[`wonder-blocks-core example 9 1`] = `
 <div
   className=""
   style={
@@ -442,7 +492,7 @@ exports[`wonder-blocks-core example 8 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 9 1`] = `
+exports[`wonder-blocks-core example 10 1`] = `
 <div
   className=""
   style={
@@ -661,7 +711,7 @@ exports[`wonder-blocks-core example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 10 1`] = `
+exports[`wonder-blocks-core example 11 1`] = `
 <div
   className=""
   style={
@@ -854,7 +904,7 @@ exports[`wonder-blocks-core example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 11 1`] = `
+exports[`wonder-blocks-core example 12 1`] = `
 <div
   className=""
   style={
@@ -987,7 +1037,7 @@ exports[`wonder-blocks-core example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 12 1`] = `
+exports[`wonder-blocks-core example 13 1`] = `
 <div
   className=""
   style={
@@ -1104,7 +1154,7 @@ exports[`wonder-blocks-core example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 13 1`] = `
+exports[`wonder-blocks-core example 14 1`] = `
 <div
   className=""
   style={
@@ -1163,7 +1213,7 @@ exports[`wonder-blocks-core example 13 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 14 1`] = `
+exports[`wonder-blocks-core example 15 1`] = `
 <div
   className=""
   style={
@@ -1220,7 +1270,7 @@ exports[`wonder-blocks-core example 14 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 15 1`] = `
+exports[`wonder-blocks-core example 16 1`] = `
 <div
   className=""
   style={
@@ -1244,7 +1294,7 @@ exports[`wonder-blocks-core example 15 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 16 1`] = `
+exports[`wonder-blocks-core example 17 1`] = `
 <div
   className=""
   style={
@@ -1268,7 +1318,7 @@ exports[`wonder-blocks-core example 16 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 17 1`] = `
+exports[`wonder-blocks-core example 18 1`] = `
 <div
   className=""
   style={
@@ -1347,7 +1397,7 @@ exports[`wonder-blocks-core example 17 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-core example 18 1`] = `
+exports[`wonder-blocks-core example 19 1`] = `
 <div
   className=""
   style={

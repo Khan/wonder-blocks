@@ -13,7 +13,17 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Button from "@khanacademy/wonder-blocks-button";
-import {Spring, Strut, MediaLayout} from "@khanacademy/wonder-blocks-layout";
+import {
+    Spring,
+    Strut,
+    MediaLayout,
+    MediaLayoutContext,
+} from "@khanacademy/wonder-blocks-layout";
+import {
+    Body,
+    HeadingLarge,
+    HeadingSmall,
+} from "@khanacademy/wonder-blocks-typography";
 
 describe("wonder-blocks-layout", () => {
     it("example 1", () => {
@@ -114,6 +124,72 @@ describe("wonder-blocks-layout", () => {
     });
 
     it("example 4", () => {
+        // If you're using flow, make sure to import these types by uncommenting the following line
+        // import type {MediaSpec, MediaLayoutContextValue} from "@khanacademy/wonder-blocks-layout";
+        const styleSheets = {
+            large: StyleSheet.create({
+                example: {
+                    alignItems: "center",
+                    backgroundColor: Color.darkBlue,
+                    color: Color.white,
+                    padding: Spacing.xxxLarge,
+                },
+            }),
+            small: StyleSheet.create({
+                example: {
+                    backgroundColor: Color.lightBlue,
+                    padding: Spacing.small,
+                },
+            }),
+        }; // Custom media spec definition
+        // Make sure to add the type `MediaSpec`
+
+        const MEDIA_CUSTOM_SPEC = {
+            small: {
+                query: "(max-width: 767px)",
+                totalColumns: 4,
+                gutterWidth: Spacing.medium,
+                marginWidth: Spacing.medium,
+            },
+            large: {
+                query: "(min-width: 768px)",
+                totalColumns: 12,
+                gutterWidth: Spacing.xLarge,
+                marginWidth: Spacing.xxLarge,
+            },
+        }; // Make sure to add the type `MediaLayoutContextValue`
+
+        const contextValue = {
+            ssrSize: "large",
+            mediaSpec: MEDIA_CUSTOM_SPEC,
+        };
+        const example = (
+            <MediaLayoutContext.Provider value={contextValue}>
+                <MediaLayout styleSheets={styleSheets}>
+                    {({mediaSize, styles}) => {
+                        const HeadingComponent =
+                            mediaSize === "small" ? HeadingSmall : HeadingLarge;
+                        return (
+                            <View style={styles.example}>
+                                <HeadingComponent>
+                                    Current mediaSpec: {mediaSize}
+                                </HeadingComponent>
+                                <Body tag="p">
+                                    {
+                                        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+                                    }
+                                </Body>
+                            </View>
+                        );
+                    }}
+                </MediaLayout>
+            </MediaLayoutContext.Provider>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 5", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -132,7 +208,7 @@ describe("wonder-blocks-layout", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 5", () => {
+    it("example 6", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
