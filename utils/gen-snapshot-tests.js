@@ -303,6 +303,11 @@ function readExamplesFromDocument(documentPath) {
          * scripts or CSS snippets, etc.
          */
         .filter((token) => token.lang)
+        /**
+         * We don't want static code portions. These are not used for examples
+         * and likely won't parse fully for snapshots due to flow-types, etc.
+         */
+        .filter((token) => token.lang.indexOf(" static") < 0)
         .map((token) => token.text);
 
     return examples;

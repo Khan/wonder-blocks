@@ -21,6 +21,7 @@ import {
 } from "@khanacademy/wonder-blocks-core";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {
+    Title,
     Body,
     HeadingSmall,
     BodyMonospace,
@@ -133,6 +134,52 @@ describe("wonder-blocks-core", () => {
     });
 
     it("example 4", () => {
+        // you'll need to import the type definition here
+        // import type {StyleType} from "@khanacademy/wonder-blocks-core";
+        class CustomComponent extends React.Component {
+            render() {
+                return (
+                    <View
+                        style={[
+                            styles.default, // this `style` prop should be of type `StyleType`
+                            this.props.style,
+                        ]}
+                    >
+                        <Title>Lorem ipsum</Title>
+                    </View>
+                );
+            }
+        }
+
+        const styles = StyleSheet.create({
+            // default styles
+            default: {
+                background: Color.white,
+                color: Color.white,
+                padding: Spacing.medium,
+            },
+            // style to be passed as a prop
+            customStyle: {
+                background: Color.lightBlue,
+            },
+        });
+        const example = (
+            <CustomComponent
+                style={[
+                    // you can pass style rules from an Aphrodite StyleSheet
+                    styles.customStyle, // and pass inline styles as well
+                    {
+                        border: `1px solid ${Color.darkBlue}`,
+                        padding: Spacing.xxLarge,
+                    },
+                ]}
+            />
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 5", () => {
         const example = (
             <View>
                 <IDProvider scope="field">
@@ -149,7 +196,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 5", () => {
+    it("example 6", () => {
         const example = (
             <View>
                 <IDProvider scope="field" id="some-user-id">
@@ -166,7 +213,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 6", () => {
+    it("example 7", () => {
         const styles = StyleSheet.create({
             container: {
                 padding: 32,
@@ -197,7 +244,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 7", () => {
+    it("example 8", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -211,7 +258,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 8", () => {
+    it("example 9", () => {
         const example = (
             <View>
                 <View testId="foo">Foo</View>
@@ -222,7 +269,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 9", () => {
+    it("example 10", () => {
         let providerRef = null;
         const renders = [];
         const provider = (
@@ -270,7 +317,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 10", () => {
+    it("example 11", () => {
         let firstId = null;
         let secondId = null;
 
@@ -307,7 +354,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 11", () => {
+    it("example 12", () => {
         const children = ({get}) => (
             <View>
                 <Body>
@@ -332,7 +379,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 12", () => {
+    it("example 13", () => {
         // TODO(somewhatabstract): Update this to be nice once we can get BodyMonospace
         // to allow us to properly preserve whitespace or have an alternative. Or remove
         // this entirely when our styleguide renders our interface definitions.
@@ -356,7 +403,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 13", () => {
+    it("example 14", () => {
         const styles = StyleSheet.create({
             container: {
                 padding: 32,
@@ -387,7 +434,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 14", () => {
+    it("example 15", () => {
         const example = (
             <View>
                 <View onClick={() => alert("Clicked!")}>Click me!</View>
@@ -401,7 +448,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 15", () => {
+    it("example 16", () => {
         const example = (
             <WithSSRPlaceholder
                 placeholder={() => (
@@ -423,7 +470,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 16", () => {
+    it("example 17", () => {
         const example = (
             <WithSSRPlaceholder placeholder={null}>
                 {() => (
@@ -438,7 +485,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 17", () => {
+    it("example 18", () => {
         const trackingArray = [];
         const resultsId = "nossr-example-2-results";
 
@@ -516,7 +563,7 @@ describe("wonder-blocks-core", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 18", () => {
+    it("example 19", () => {
         const trackingArray = [];
         const resultsId = "nossr-example-3-results";
 
