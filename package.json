@@ -86,7 +86,7 @@
     "rollup-plugin-babel": "^4.0.0-beta.2",
     "unescape": "^1.0.1",
     "webpack": "^4.6.0",
-    "webpack-blocks": "^1.0.0",
+    "webpack-blocks": "^2.0.1",
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {
