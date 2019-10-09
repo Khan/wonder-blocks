@@ -12,6 +12,8 @@ import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
+
 const {blue, white, offBlack, offBlack32} = Color;
 
 type ActionProps = {|
@@ -203,8 +205,8 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         alignItems: "center",
         display: "flex",
-        height: 40,
-        minHeight: 40,
+        height: DROPDOWN_ITEM_HEIGHT,
+        minHeight: DROPDOWN_ITEM_HEIGHT,
         paddingLeft: Spacing.medium,
         paddingRight: Spacing.medium,
         // This removes the 300ms click delay on mobile browsers by indicating that

@@ -30,17 +30,15 @@ export default class SeparatorItem extends React.Component<{|
 
     render() {
         return (
-            //  wrapper to use styles from react-window (if applies)
-            <View style={this.props.style}>
-                <View style={styles.separator} />
-            </View>
+            // pass optional styles from react-window (if applies)
+            <View style={[styles.separator, this.props.style]} />
         );
     }
 }
 
 const styles = StyleSheet.create({
     separator: {
-        backgroundColor: Color.offBlack16,
+        boxShadow: `0 -1px ${Color.offBlack16}`,
         height: 1,
         minHeight: 1,
         marginTop: Spacing.xxxSmall,

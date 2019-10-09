@@ -11,6 +11,7 @@ import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
 
 const StyledButton = addStyle("button");
 
@@ -173,7 +174,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "space-between",
         color: offBlack,
-        height: 40,
+        height: DROPDOWN_ITEM_HEIGHT,
         // This asymmetry arises from the Icon on the right side, which has
         // extra padding built in. To have the component look more balanced,
         // we need to take off some paddingRight here.

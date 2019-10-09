@@ -7,7 +7,8 @@ import OptionItem from "./option-item.js";
 import SearchTextInput from "./search-text-input.js";
 import DropdownCore from "./dropdown-core.js";
 import {keyCodes} from "../util/constants.js";
-import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
+
+jest.useFakeTimers();
 
 describe("DropdownCore", () => {
     window.scrollTo = jest.fn();
@@ -342,12 +343,15 @@ describe("DropdownCore", () => {
         // Should select option2
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
+        jest.runAllTimers(); // wait for react-window to scroll to the desired position
         expect(dropdown.instance().focusedIndex).toBe(1);
         expect(dropdown.instance().focusedOriginalIndex).toBe(2);
 
         // Should select option0
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
+        jest.runAllTimers(); // wait for react-window to scroll to the desired position
+
         expect(dropdown.instance().focusedIndex).toBe(0);
         expect(dropdown.instance().focusedOriginalIndex).toBe(0);
     });
@@ -488,21 +492,6 @@ describe("DropdownCore", () => {
         expect(onClick1).toHaveBeenCalledTimes(1);
     });
 
-    it("shows SearchTextInput when onSearchTextChanged and searchText is provided", () => {
-        // Arrange
-        const handleSearchTextChanged = jest.fn();
-
-        // Act
-        dropdown.setProps({
-            onSearchTextChanged: (text) => handleSearchTextChanged(text),
-            searchText: "",
-            open: true,
-        });
-
-        // Assert
-        expect(dropdown.find(SearchTextInput).exists()).toBe(true);
-    });
-
     it("Displays no results when no items are left with filter", () => {
         // Arrange
         const handleSearchTextChanged = jest.fn();
@@ -511,7 +500,19 @@ describe("DropdownCore", () => {
         dropdown.setProps({
             onSearchTextChanged: (text) => handleSearchTextChanged(text),
             searchText: "ab",
-            items: [],
+            items: [
+                {
+                    component: (
+                        <SearchTextInput
+                            key="search-text-input"
+                            onChange={handleSearchTextChanged}
+                            searchText={""}
+                        />
+                    ),
+                    focusable: true,
+                    populatedProps: {},
+                },
+            ],
             open: true,
         });
 
@@ -529,9 +530,23 @@ describe("DropdownCore", () => {
             onSearchTextChanged: (text) => handleSearchTextChanged(text),
             searchText: "ab",
             open: true,
+            items: [
+                {
+                    component: (
+                        <SearchTextInput
+                            key="search-text-input"
+                            onChange={handleSearchTextChanged}
+                            searchText={""}
+                        />
+                    ),
+                    focusable: true,
+                    populatedProps: {},
+                },
+            ],
         });
         // SearchTextInput should be focused (since keyboard is true)
         const searchInput = dropdown.find(SearchTextInput);
+
         expect(dropdown.instance().focusedIndex).toBe(0);
         expect(searchInput.state("focused")).toBe(true);
 
@@ -550,7 +565,19 @@ describe("DropdownCore", () => {
         dropdown.setProps({
             onSearchTextChanged: (text) => handleSearchTextChanged(text),
             searchText: "",
-            items: [],
+            items: [
+                {
+                    component: (
+                        <SearchTextInput
+                            key="search-text-input"
+                            onChange={handleSearchTextChanged}
+                            searchText={""}
+                        />
+                    ),
+                    focusable: true,
+                    populatedProps: {},
+                },
+            ],
             open: true,
         });
         // SearchTextInput should be focused (since keyboard is true)
@@ -569,31 +596,5 @@ describe("DropdownCore", () => {
 
         // Assert
         expect(preventDefaultMock).toHaveBeenCalledTimes(0);
-    });
-
-    it("should render a virtualized list if there are more than 100 items", () => {
-        // Arrange
-        const items = new Array(100).fill(null).map((item, i) => ({
-            component: (
-                <OptionItem
-                    key={i}
-                    value={(i + 1).toString()}
-                    label={`School ${i + 1} in Wizarding World`}
-                />
-            ),
-            focusable: true,
-            onClick: jest.fn(),
-            role: "option",
-            populatedProps: {},
-        }));
-
-        // Act
-        dropdown.setProps({
-            items: items,
-            open: true,
-        });
-
-        // Assert
-        expect(dropdown.find(DropdownCoreVirtualized)).toExist();
     });
 });

@@ -7,6 +7,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
+import SearchTextInput from "./search-text-input.js";
 import SelectOpener from "./select-opener.js";
 import SeparatorItem from "./separator-item.js";
 import {
@@ -262,6 +263,26 @@ export default class MultiSelect extends React.Component<Props, State> {
         }
     }
 
+    getSearchField(): Array<DropdownItem> {
+        if (!this.props.isFilterable) {
+            return [];
+        }
+
+        return [
+            {
+                component: (
+                    <SearchTextInput
+                        key="search-text-input"
+                        onChange={this.handleSearchTextChanged}
+                        searchText={this.state.searchText}
+                    />
+                ),
+                focusable: true,
+                populatedProps: {},
+            },
+        ];
+    }
+
     getShortcuts(numOptions: number): Array<DropdownItem> {
         const {selectedValues, shortcuts} = this.props;
 
@@ -442,7 +463,11 @@ export default class MultiSelect extends React.Component<Props, State> {
                     selectDropdownStyle,
                     dropdownStyle,
                 ]}
-                items={[...this.getShortcuts(numOptions), ...filteredItems]}
+                items={[
+                    ...this.getSearchField(),
+                    ...this.getShortcuts(numOptions),
+                    ...filteredItems,
+                ]}
                 keyboard={this.state.keyboard}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
@@ -453,7 +478,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 onSearchTextChanged={
                     isFilterable ? this.handleSearchTextChanged : null
                 }
-                searchText={isFilterable ? searchText : null}
+                searchText={isFilterable ? searchText : ""}
             />
         );
     }

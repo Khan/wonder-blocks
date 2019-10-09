@@ -5,6 +5,7 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 import {Popper} from "react-popper";
 import {StyleSheet} from "aphrodite";
+import {VariableSizeList as List} from "react-window";
 
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
@@ -16,12 +17,11 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 // NOTE(jeff): Here we share some code for use with PopperJS. Long term,
 // we should either contribute this code to the PopperJS component, or its
 // own non-wonder-blocks package.
-// $FlowIgnoreMe
 import visibilityModifierDefaultConfig from "../../../shared-unpackaged/visibility-modifier.js"; // eslint-disable-line import/no-restricted-paths
 import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 import SeparatorItem from "./separator-item.js";
 import SearchTextInput from "./search-text-input.js";
-import {keyCodes} from "../util/constants.js";
+import {keyCodes, searchInputStyle} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
 
 type DropdownProps = {|
@@ -150,6 +150,10 @@ export default class DropdownCore extends React.Component<
     // Whether any items have been selected since the menu was opened
     itemsClicked: boolean;
     popperElement: ?HTMLElement;
+    // Keeps a reference of the virtualized list instance
+    listRef: {
+        current: null | React.ElementRef<typeof List>,
+    };
 
     // Figure out if the same items are focusable. If an item has been added or
     // removed, this method will return false.
@@ -183,19 +187,10 @@ export default class DropdownCore extends React.Component<
             !DropdownCore.sameItemsFocusable(state.prevItems, props.items)
         ) {
             const itemRefs = [];
-            // If the searchTextChange handler is provided, the first focusable
-            // item is the search text input element.
-            if (props.onSearchTextChanged) {
-                const ref = React.createRef<null | HTMLDivElement>();
-                itemRefs.push({ref, originalIndex: 0});
-            }
-
-            const shiftItemIndexBy = props.onSearchTextChanged ? 1 : 0;
-
             for (let i = 0; i < props.items.length; i++) {
                 if (props.items[i].focusable) {
                     const ref = React.createRef<null | HTMLDivElement>();
-                    itemRefs.push({ref, originalIndex: i + shiftItemIndexBy});
+                    itemRefs.push({ref, originalIndex: i});
                 }
             }
             return {
@@ -221,6 +216,8 @@ export default class DropdownCore extends React.Component<
             itemRefs: [],
             sameItemsFocusable: false,
         };
+
+        this.listRef = React.createRef();
     }
 
     componentDidMount() {
@@ -337,6 +334,11 @@ export default class DropdownCore extends React.Component<
     };
 
     focusCurrentItem() {
+        // check if there are focusable elements in the DOM
+        if (this.state.itemRefs.length === 0) {
+            return;
+        }
+
         // Because the dropdown menu is portalled, focusing this element
         // will scroll the window all the way to the top of the screen.
         const x = window.scrollX;
@@ -361,7 +363,13 @@ export default class DropdownCore extends React.Component<
         } else {
             this.focusedIndex -= 1;
         }
-        this.focusCurrentItem();
+
+        // force react-window to scroll on the correct position
+        this.listRef.current &&
+            this.listRef.current.scrollToItem(this.focusedIndex);
+
+        // wait for windowed items to be recalculated
+        setTimeout(() => this.focusCurrentItem(), 0);
     }
 
     focusNextItem() {
@@ -370,7 +378,13 @@ export default class DropdownCore extends React.Component<
         } else {
             this.focusedIndex += 1;
         }
-        this.focusCurrentItem();
+
+        // force react-window to scroll on the correct position
+        this.listRef.current &&
+            this.listRef.current.scrollToItem(this.focusedIndex);
+
+        // wait for windowed items to be recalculated
+        setTimeout(() => this.focusCurrentItem(), 0);
     }
 
     restoreTabOrder() {
@@ -524,88 +538,55 @@ export default class DropdownCore extends React.Component<
     }
 
     maybeRenderNoResults() {
-        const {items} = this.props;
+        const {items, onSearchTextChanged, searchText} = this.props;
+        const showSearchTextInput =
+            !!onSearchTextChanged && typeof searchText === "string";
+
+        const includeSearchCount = showSearchTextInput ? 1 : 0;
+
+        // Verify if there are items to be rendered or not
+        const numResults = items.length - includeSearchCount;
+
         // TODO(jangmi): Use translated string for "No results"
-        if (items.length === 0) {
+        if (numResults === 0) {
             return (
                 <LabelMedium style={styles.noResult}>No results</LabelMedium>
             );
         }
     }
 
-    maybeRenderSearchTextInput() {
-        const {onSearchTextChanged, searchText} = this.props;
-
-        if (!onSearchTextChanged || typeof searchText !== "string") {
-            return null;
-        }
-
-        return (
-            <React.Fragment>
-                <SearchTextInput
-                    onChange={onSearchTextChanged}
-                    onClick={() => {
-                        this.handleClickFocus(0);
-                        this.focusCurrentItem();
-                    }}
-                    itemRef={this.state.itemRefs[0].ref}
-                    searchText={searchText}
-                    style={styles.searchInput}
-                />
-                {this.maybeRenderNoResults()}
-            </React.Fragment>
-        );
-    }
-
-    renderAllItems(itemsList: Array<DropdownItem>): React.Node {
-        return itemsList.map((item, index) => {
-            if (SeparatorItem.isClassOf(item.component)) {
-                return item.component;
-            } else {
-                return React.cloneElement(item.component, {
-                    ...item.populatedProps,
-                    key: index,
-                    ref: item.ref,
-                    role: item.role,
-                    onClick: item.onClick,
-                });
-            }
-        });
-    }
-
-    renderItems(outOfBoundaries: ?boolean) {
-        const {
-            items,
-            dropdownStyle,
-            light,
-            openerElement,
-            onSearchTextChanged,
-            searchText,
-        } = this.props;
-
-        // The dropdown width is at least the width of the opener.
-        // It's only used if the element exists in the DOM
-        const openerStyle =
-            openerElement && window.getComputedStyle(openerElement);
-        const minDropdownWidth = openerStyle
-            ? openerStyle.getPropertyValue("width")
-            : 0;
-
+    /**
+     * Process the items and wrap them into an array that react-window can
+     * interpret
+     */
+    parseItemsList(): Array<DropdownItem> {
+        let focusCounter = 0;
         const itemRole = this.getItemRole();
 
-        // If SearchTextInput is visible, we consider that as the first
-        // focusable item.
-        const showSearchTextInput =
-            !!onSearchTextChanged && typeof searchText === "string";
-        let focusCounter = showSearchTextInput ? 1 : 0;
-
-        // preprocess items data to pass it to the renderer
-        const itemsList = items.map((item, index) => {
+        return this.props.items.map((item, index) => {
             if (!SeparatorItem.isClassOf(item.component) && item.focusable) {
                 focusCounter += 1;
             }
 
             const focusIndex = focusCounter - 1;
+
+            if (SearchTextInput.isClassOf(item.component)) {
+                return {
+                    ...item,
+                    // override to avoid losing focus when pressing a key
+                    onClick: () => {
+                        this.handleClickFocus(0);
+                        this.focusCurrentItem();
+                    },
+                    populatedProps: {
+                        style: searchInputStyle,
+                        // pass the current ref down to the input element
+                        itemRef: this.state.itemRefs[focusIndex]
+                            ? this.state.itemRefs[focusIndex].ref
+                            : null,
+                    },
+                };
+            }
 
             return {
                 ...item,
@@ -626,6 +607,21 @@ export default class DropdownCore extends React.Component<
                 },
             };
         });
+    }
+
+    renderItems(outOfBoundaries: ?boolean) {
+        const {dropdownStyle, light, openerElement} = this.props;
+
+        // The dropdown width is at least the width of the opener.
+        // It's only used if the element exists in the DOM
+        const openerStyle =
+            openerElement && window.getComputedStyle(openerElement);
+        const minDropdownWidth = openerStyle
+            ? openerStyle.getPropertyValue("width")
+            : 0;
+
+        // preprocess items data to pass it to the renderer
+        const itemsList = this.parseItemsList();
 
         return (
             <View
@@ -641,18 +637,12 @@ export default class DropdownCore extends React.Component<
                     dropdownStyle,
                 ]}
             >
-                {this.maybeRenderSearchTextInput()}
+                <DropdownCoreVirtualized
+                    data={itemsList}
+                    listRef={this.listRef}
+                />
 
-                {itemsList.length < 100 ? (
-                    this.renderAllItems(itemsList)
-                ) : (
-                    <DropdownCoreVirtualized
-                        data={itemsList}
-                        // values defined in the design specs
-                        height={360}
-                        width={288}
-                    />
-                )}
+                {this.maybeRenderNoResults()}
             </View>
         );
     }
@@ -706,6 +696,7 @@ export default class DropdownCore extends React.Component<
 
     render() {
         const {open, opener, style} = this.props;
+
         return (
             <View
                 onKeyDown={this.handleKeyDown}
@@ -747,9 +738,5 @@ const styles = StyleSheet.create({
         color: Color.offBlack64,
         alignSelf: "center",
         marginTop: Spacing.xxSmall,
-    },
-    searchInput: {
-        margin: Spacing.xSmall,
-        marginTop: Spacing.xxxSmall,
     },
 });

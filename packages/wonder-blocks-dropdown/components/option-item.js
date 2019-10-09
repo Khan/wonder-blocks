@@ -11,6 +11,7 @@ import {View, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
 import Check from "./check.js";
 import Checkbox from "./checkbox.js";
 
@@ -166,8 +167,8 @@ const styles = StyleSheet.create({
         backgroundColor: white,
         color: offBlack,
         alignItems: "center",
-        height: 40,
-        minHeight: 40,
+        height: DROPDOWN_ITEM_HEIGHT,
+        minHeight: DROPDOWN_ITEM_HEIGHT,
         border: 0,
         outline: 0,
         paddingLeft: Spacing.xSmall,
@@ -195,6 +196,9 @@ const styles = StyleSheet.create({
         whiteSpace: "nowrap",
         userSelect: "none",
         marginLeft: Spacing.xSmall,
+        // added to truncate strings that are longer than expected
+        overflow: "hidden",
+        textOverflow: "ellipsis",
     },
 
     hide: {

@@ -451,7 +451,7 @@ class ControlledMultiSelectExample extends React.Component {
 When there are many options, you could use a search filter in the MultiSelect.
 The search filter will be performed toward the labels of the option items.
 
-*NOTE:* If there are more than 100 options, the component will automatically use
+*NOTE:* The component automatically uses
 [react-window](https://github.com/bvaughn/react-window) to improve performance
 when rendering these elements.
 

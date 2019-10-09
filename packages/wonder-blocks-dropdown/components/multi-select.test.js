@@ -11,6 +11,8 @@ import MultiSelect from "./multi-select.js";
 import {keyCodes} from "../util/constants.js";
 import SearchTextInput from "./search-text-input.js";
 
+jest.useFakeTimers();
+
 describe("MultiSelect", () => {
     let select;
     const allChanges = [];
@@ -362,7 +364,7 @@ describe("MultiSelect", () => {
 
     it("Pressing arrow up from search input moves focus to previous focusable item", () => {
         // Arrange
-        select.setProps({isFilterable: true});
+        select.setProps({isFilterable: true, shortcuts: false});
         select.setState({open: true});
         const searchInput = select.find(SearchTextInput);
         const lastOption = select
@@ -377,6 +379,8 @@ describe("MultiSelect", () => {
         // Act
         select.simulate("keydown", {keyCode: keyCodes.up});
         select.simulate("keyup", {keyCode: keyCodes.up});
+
+        jest.runAllTimers(); // wait for react-window to scroll to the desired position
 
         // Assert
         expect(lastOption.state("focused")).toBe(true);
@@ -399,6 +403,9 @@ describe("MultiSelect", () => {
         // Act
         select.simulate("keydown", {keyCode: keyCodes.down});
         select.simulate("keyup", {keyCode: keyCodes.down});
+
+        // wait for react-window to scroll to the desired position
+        jest.runAllTimers();
 
         // Assert
         expect(selectAll.state("focused")).toBe(true);

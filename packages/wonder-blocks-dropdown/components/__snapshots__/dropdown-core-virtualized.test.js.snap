@@ -1,1008 +1,227 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`DropdownCoreVirtualized should render a virtualized list 1`] = `
-<div
-  onScroll={[Function]}
-  style={
-    Object {
-      "WebkitOverflowScrolling": "touch",
-      "direction": "ltr",
-      "height": 360,
-      "overflow": "auto",
-      "position": "relative",
-      "width": 288,
-      "willChange": "transform",
-    }
-  }
->
-  <div
-    style={
-      Object {
-        "height": 4890,
-        "pointerEvents": undefined,
-        "width": "100%",
-      }
-    }
-  >
-    <div
-      aria-selected="false"
-      className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      role="option"
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": 0,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "default",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 40,
-          "left": 0,
-          "margin": 0,
-          "minHeight": 40,
-          "minWidth": 0,
-          "outline": 0,
-          "padding": 0,
-          "paddingLeft": 8,
-          "paddingRight": 16,
-          "position": "absolute",
-          "top": 0,
-          "whiteSpace": "nowrap",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-      tabIndex={0}
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgba(33,36,44,0.50)",
-            "borderRadius": 3,
-            "borderStyle": "solid",
-            "borderWidth": 1,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 16,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-            "marginLeft": 8,
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        School 1 in Wizarding World
-      </span>
-    </div>
-    <div
-      aria-selected="false"
-      className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      role="option"
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": 0,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "default",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 40,
-          "left": 0,
-          "margin": 0,
-          "minHeight": 40,
-          "minWidth": 0,
-          "outline": 0,
-          "padding": 0,
-          "paddingLeft": 8,
-          "paddingRight": 16,
-          "position": "absolute",
-          "top": 40,
-          "whiteSpace": "nowrap",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-      tabIndex={0}
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgba(33,36,44,0.50)",
-            "borderRadius": 3,
-            "borderStyle": "solid",
-            "borderWidth": 1,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 16,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-            "marginLeft": 8,
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        School 2 in Wizarding World
-      </span>
-    </div>
-    <div
-      aria-selected="false"
-      className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      role="option"
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": 0,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "default",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 40,
-          "left": 0,
-          "margin": 0,
-          "minHeight": 40,
-          "minWidth": 0,
-          "outline": 0,
-          "padding": 0,
-          "paddingLeft": 8,
-          "paddingRight": 16,
-          "position": "absolute",
-          "top": 80,
-          "whiteSpace": "nowrap",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-      tabIndex={0}
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgba(33,36,44,0.50)",
-            "borderRadius": 3,
-            "borderStyle": "solid",
-            "borderWidth": 1,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 16,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-            "marginLeft": 8,
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        School 3 in Wizarding World
-      </span>
-    </div>
-    <div
-      aria-selected="false"
-      className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      role="option"
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": 0,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "default",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 40,
-          "left": 0,
-          "margin": 0,
-          "minHeight": 40,
-          "minWidth": 0,
-          "outline": 0,
-          "padding": 0,
-          "paddingLeft": 8,
-          "paddingRight": 16,
-          "position": "absolute",
-          "top": 120,
-          "whiteSpace": "nowrap",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-      tabIndex={0}
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgba(33,36,44,0.50)",
-            "borderRadius": 3,
-            "borderStyle": "solid",
-            "borderWidth": 1,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 16,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-            "marginLeft": 8,
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        School 4 in Wizarding World
-      </span>
-    </div>
-    <div
-      aria-selected="false"
-      className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      role="option"
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": 0,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "default",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 40,
-          "left": 0,
-          "margin": 0,
-          "minHeight": 40,
-          "minWidth": 0,
-          "outline": 0,
-          "padding": 0,
-          "paddingLeft": 8,
-          "paddingRight": 16,
-          "position": "absolute",
-          "top": 160,
-          "whiteSpace": "nowrap",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-      tabIndex={0}
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgba(33,36,44,0.50)",
-            "borderRadius": 3,
-            "borderStyle": "solid",
-            "borderWidth": 1,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 16,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-            "marginLeft": 8,
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        School 5 in Wizarding World
-      </span>
-    </div>
-    <div
-      aria-selected="false"
-      className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      role="option"
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": 0,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "default",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 40,
-          "left": 0,
-          "margin": 0,
-          "minHeight": 40,
-          "minWidth": 0,
-          "outline": 0,
-          "padding": 0,
-          "paddingLeft": 8,
-          "paddingRight": 16,
-          "position": "absolute",
-          "top": 200,
-          "whiteSpace": "nowrap",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-      tabIndex={0}
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgba(33,36,44,0.50)",
-            "borderRadius": 3,
-            "borderStyle": "solid",
-            "borderWidth": 1,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 16,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-            "marginLeft": 8,
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        School 6 in Wizarding World
-      </span>
-    </div>
-    <div
-      aria-selected="false"
-      className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      role="option"
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": 0,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "default",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 40,
-          "left": 0,
-          "margin": 0,
-          "minHeight": 40,
-          "minWidth": 0,
-          "outline": 0,
-          "padding": 0,
-          "paddingLeft": 8,
-          "paddingRight": 16,
-          "position": "absolute",
-          "top": 240,
-          "whiteSpace": "nowrap",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-      tabIndex={0}
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgba(33,36,44,0.50)",
-            "borderRadius": 3,
-            "borderStyle": "solid",
-            "borderWidth": 1,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 16,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-            "marginLeft": 8,
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        School 7 in Wizarding World
-      </span>
-    </div>
-    <div
-      aria-selected="false"
-      className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      role="option"
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": 0,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "default",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 40,
-          "left": 0,
-          "margin": 0,
-          "minHeight": 40,
-          "minWidth": 0,
-          "outline": 0,
-          "padding": 0,
-          "paddingLeft": 8,
-          "paddingRight": 16,
-          "position": "absolute",
-          "top": 280,
-          "whiteSpace": "nowrap",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-      tabIndex={0}
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgba(33,36,44,0.50)",
-            "borderRadius": 3,
-            "borderStyle": "solid",
-            "borderWidth": 1,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 16,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-            "marginLeft": 8,
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        School 8 in Wizarding World
-      </span>
-    </div>
-    <div
-      aria-selected="false"
-      className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      role="option"
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": 0,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "default",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 40,
-          "left": 0,
-          "margin": 0,
-          "minHeight": 40,
-          "minWidth": 0,
-          "outline": 0,
-          "padding": 0,
-          "paddingLeft": 8,
-          "paddingRight": 16,
-          "position": "absolute",
-          "top": 320,
-          "whiteSpace": "nowrap",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-      tabIndex={0}
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgba(33,36,44,0.50)",
-            "borderRadius": 3,
-            "borderStyle": "solid",
-            "borderWidth": 1,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 16,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-            "marginLeft": 8,
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        School 9 in Wizarding World
-      </span>
-    </div>
-    <div
-      aria-selected="false"
-      className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      role="option"
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": 0,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "default",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 40,
-          "left": 0,
-          "margin": 0,
-          "minHeight": 40,
-          "minWidth": 0,
-          "outline": 0,
-          "padding": 0,
-          "paddingLeft": 8,
-          "paddingRight": 16,
-          "position": "absolute",
-          "top": 360,
-          "whiteSpace": "nowrap",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-      tabIndex={0}
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgba(33,36,44,0.50)",
-            "borderRadius": 3,
-            "borderStyle": "solid",
-            "borderWidth": 1,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 16,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-            "marginLeft": 8,
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        School 10 in Wizarding World
-      </span>
-    </div>
-    <div
-      aria-selected="false"
-      className=""
-      onBlur={[Function]}
-      onClick={[Function]}
-      onDragStart={[Function]}
-      onFocus={[Function]}
-      onKeyDown={[Function]}
-      onKeyUp={[Function]}
-      onMouseDown={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-      onMouseUp={[Function]}
-      onTouchCancel={[Function]}
-      onTouchEnd={[Function]}
-      onTouchStart={[Function]}
-      role="option"
-      style={
-        Object {
-          "alignItems": "center",
-          "backgroundColor": "#ffffff",
-          "border": 0,
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "color": "#21242c",
-          "cursor": "default",
-          "display": "flex",
-          "flexDirection": "row",
-          "height": 40,
-          "left": 0,
-          "margin": 0,
-          "minHeight": 40,
-          "minWidth": 0,
-          "outline": 0,
-          "padding": 0,
-          "paddingLeft": 8,
-          "paddingRight": 16,
-          "position": "absolute",
-          "top": 400,
-          "whiteSpace": "nowrap",
-          "width": "100%",
-          "zIndex": 0,
-        }
-      }
-      tabIndex={0}
-    >
-      <div
-        className=""
-        style={
-          Object {
-            "alignItems": "stretch",
-            "backgroundColor": "#ffffff",
-            "borderColor": "rgba(33,36,44,0.50)",
-            "borderRadius": 3,
-            "borderStyle": "solid",
-            "borderWidth": 1,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexDirection": "column",
-            "margin": 0,
-            "minHeight": 16,
-            "minWidth": 16,
-            "padding": 0,
-            "position": "relative",
-            "zIndex": 0,
-          }
-        }
-      />
-      <span
-        className=""
-        style={
-          Object {
-            "MozOsxFontSmoothing": "grayscale",
-            "WebkitFontSmoothing": "antialiased",
-            "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-            "fontSize": 16,
-            "fontWeight": 700,
-            "lineHeight": "20px",
-            "marginLeft": 8,
-            "userSelect": "none",
-            "whiteSpace": "nowrap",
-          }
-        }
-      >
-        School 11 in Wizarding World
-      </span>
-    </div>
-  </div>
-</div>
+exports[`DropdownCoreVirtualized should render the non-virtualized list on first load 1`] = `
+Array [
+  <SeparatorItem />,
+  <OptionItem
+    disabled={false}
+    key="1"
+    label="School 1 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="1"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="2"
+    label="School 2 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="2"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="3"
+    label="School 3 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="3"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="4"
+    label="School 4 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="4"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="5"
+    label="School 5 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="5"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="6"
+    label="School 6 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="6"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="7"
+    label="School 7 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="7"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="8"
+    label="School 8 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="8"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="9"
+    label="School 9 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="9"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="10"
+    label="School 10 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="10"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="11"
+    label="School 11 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="11"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="12"
+    label="School 12 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="12"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="13"
+    label="School 13 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="13"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="14"
+    label="School 14 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="14"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="15"
+    label="School 15 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="15"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="16"
+    label="School 16 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="16"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="17"
+    label="School 17 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="17"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="18"
+    label="School 18 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="18"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="19"
+    label="School 19 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="19"
+    variant="checkbox"
+  />,
+  <OptionItem
+    disabled={false}
+    key="20"
+    label="School 20 in Wizarding World"
+    onClick={[MockFunction]}
+    onToggle={[Function]}
+    role="option"
+    selected={false}
+    value="20"
+    variant="checkbox"
+  />,
+]
 `;
