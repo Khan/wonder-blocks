@@ -158,7 +158,7 @@ describe("wonder-blocks-color", () => {
                     style={{
                         width: 256,
                     }}
-                />
+                ></View>
                 <Swatch
                     color={Color.teal}
                     name="teal"

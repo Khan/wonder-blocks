@@ -72,7 +72,7 @@ describe("wonder-blocks-timing", () => {
                             <MyNaughtyComponent targetId={id} />
                         </Unmounter>
                         <View>
-                            <View id={id} />
+                            <View id={id}></View>
                         </View>
                     </View>
                 )}
@@ -144,7 +144,7 @@ describe("wonder-blocks-timing", () => {
                             <MyGoodComponentWithScheduler targetId={id} />
                         </Unmounter>
                         <View>
-                            <View id={id} />
+                            <View id={id}></View>
                         </View>
                     </View>
                 )}

@@ -43,7 +43,7 @@ describe("wonder-blocks-icon", () => {
             >
                 <thead>
                     <tr>
-                        <th className={css(styles.tableBorder)} />
+                        <th className={css(styles.tableBorder)}></th>
                         {headings.map((heading) => (
                             <th
                                 className={css(styles.tableBorder)}
