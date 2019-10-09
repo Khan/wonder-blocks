@@ -43,7 +43,7 @@
     "@babel/plugin-transform-flow-strip-types": "7.6.3",
     "@babel/preset-env": "7.0.0",
     "@babel/preset-flow": "7.0.0",
-    "@babel/preset-react": "7.0.0",
+    "@babel/preset-react": "7.6.3",
     "@khanacademy/babel-plugin-vite": "^0.0.7",
     "@khanacademy/jest-environment-vite": "^0.0.7",
     "@khanacademy/vite-server": "^0.0.7",
