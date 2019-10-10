@@ -216,6 +216,7 @@ describe("ModalLauncher", () => {
     });
 
     test("If backdropDismissEnabled set to false, clicking the backdrop does not trigger `onClose`", () => {
+        // Arrange
         const onClose = jest.fn();
 
         // We use `mount` instead of `shallow` here, because the component's
@@ -229,9 +230,11 @@ describe("ModalLauncher", () => {
             />,
         );
 
-        expect(onClose).not.toHaveBeenCalled();
+        // Act
+        const backdrop = wrapper.find("[data-modal-launcher-portal]").first();
+        backdrop.simulate("click");
 
-        wrapper.simulate("click");
+        // Assert
         expect(onClose).not.toHaveBeenCalled();
     });
 
