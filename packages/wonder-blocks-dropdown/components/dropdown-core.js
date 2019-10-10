@@ -334,11 +334,6 @@ export default class DropdownCore extends React.Component<
     };
 
     focusCurrentItem() {
-        // check if there are focusable elements in the DOM
-        if (this.state.itemRefs.length === 0) {
-            return;
-        }
-
         // Because the dropdown menu is portalled, focusing this element
         // will scroll the window all the way to the top of the screen.
         const x = window.scrollX;

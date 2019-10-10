@@ -88,10 +88,15 @@ describe("DropdownCore", () => {
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
         expect(dropdown.instance().focusedIndex).toBe(0);
 
-        // navigate up back to last item
+        // navigate up back two times
+        // to last item
         dropdown.simulate("keydown", {keyCode: keyCodes.up});
         dropdown.simulate("keyup", {keyCode: keyCodes.up});
         expect(dropdown.instance().focusedIndex).toBe(2);
+        // to the previous one
+        dropdown.simulate("keydown", {keyCode: keyCodes.up});
+        dropdown.simulate("keyup", {keyCode: keyCodes.up});
+        expect(dropdown.instance().focusedIndex).toBe(1);
     });
 
     it("doesn't close on touch interaction with option", () => {
