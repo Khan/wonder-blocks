@@ -92,13 +92,11 @@ describe("DropdownCoreVirtualized", () => {
             },
         ];
 
-        const wrapper = mount(
-            <DropdownCoreVirtualized
-                data={[...initialItems, ...optionItems]}
-            />,
-        );
+        const wrapper = mount(<DropdownCoreVirtualized data={initialItems} />);
 
         // Act
+        // append items to update container height
+        wrapper.setProps({data: [...initialItems, ...optionItems]});
         // add a fixed width to render the virtualized version
         wrapper.setState({width: 300});
 
