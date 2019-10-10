@@ -10,6 +10,8 @@ import {keyCodes} from "../util/constants.js";
 
 jest.useFakeTimers();
 
+jest.mock("./dropdown-core-virtualized.js");
+
 describe("DropdownCore", () => {
     window.scrollTo = jest.fn();
     window.getComputedStyle = jest.fn();
@@ -337,6 +339,7 @@ describe("DropdownCore", () => {
             keyboard: true,
             open: true,
         });
+        jest.runAllTimers(); // wait for react-window to scroll to the desired position
 
         expect(dropdown.instance().focusedIndex).toBe(0);
 

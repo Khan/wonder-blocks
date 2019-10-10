@@ -3,66 +3,13 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 import {VariableSizeList as List} from "react-window";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
-
+import DropdownVirtualizedItem from "./dropdown-core-virtualized-item.js";
 import SearchTextInput from "./search-text-input.js";
 import SeparatorItem from "./separator-item.js";
 
 import type {DropdownItem} from "../util/types.js";
 
 import {DROPDOWN_ITEM_HEIGHT, SEARCH_ITEM_HEIGHT} from "../util/constants.js";
-
-// copied from https://github.com/bvaughn/react-window/blob/master/src/createListComponent.js#L17
-type ItemProps = {|
-    /**
-     * The complete list of items that will be virtualized.
-     */
-    data: Array<DropdownItem>,
-
-    /**
-     * The current item index.
-     */
-    index: number,
-
-    /**
-     * Whether the item is scrolling or not.
-     */
-    isScrolling?: boolean,
-
-    /**
-     * Custom styles passed from react-window
-     */
-    style: StyleType,
-|};
-
-/**
- * A virtualized list item - It's created by decorating the DropdownItem
- * (ActionItem, OptionItem, SeparatorItem) with custom styles to let
- * react-window make its own calculations.
- */
-class DropdownVirtualizedItem extends React.Component<ItemProps> {
-    render() {
-        const {data, index, style} = this.props;
-        const item = data[index];
-
-        if (SeparatorItem.isClassOf(item.component)) {
-            // add react-window style to the separator to preserve the correct
-            // position
-            return React.cloneElement(item.component, {style});
-        } else {
-            const {component, populatedProps, onClick, role, ref} = item;
-
-            return React.cloneElement(component, {
-                style,
-                ...populatedProps,
-                key: index,
-                onClick,
-                ref: item.focusable && ref,
-                role,
-            });
-        }
-    }
-}
 
 type Props = {|
     /**
@@ -104,28 +51,19 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
     };
 
     componentDidMount() {
-        const rootNode = ((ReactDOM.findDOMNode(this): any): ?HTMLElement);
-
-        // after the non-virtualized items are rendered, we get the container
-        //  width to pass it to react-window's List
-        if (rootNode) {
-            // eslint-disable-next-line react/no-did-mount-set-state
-            this.setState({
-                width: rootNode.getBoundingClientRect().width,
-            });
-        }
+        // Wait for styles to be applied. This way, we can get a more precise
+        // value of the container dimensions.
+        setTimeout(() => {
+            this.setWidth();
+        }, 0);
     }
 
-    componentDidUpdate(prevProps: Props, prevState: State) {
+    componentDidUpdate(prevProps: Props) {
         const {data, listRef} = this.props;
 
         // if the items size has changed, then recalculate each item position
         if (prevProps.data.length !== data.length) {
-            // calculate dropdown's height depending on the type of items
-            const height = this.getHeight();
-
-            // eslint-disable-next-line react/no-did-update-set-state
-            this.setState({height});
+            this.setHeight();
 
             if (listRef && listRef.current) {
                 // the ref can't associate this instance method
@@ -133,6 +71,30 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
                 listRef.current.resetAfterIndex(1);
             }
         }
+    }
+
+    /**
+     * Update container width
+     */
+    setWidth() {
+        const rootNode = ((ReactDOM.findDOMNode(this): any): ?HTMLElement);
+
+        // after the non-virtualized items are rendered, we get the container
+        //  width to pass it to react-window's List
+        if (rootNode) {
+            this.setState({
+                width: rootNode.getBoundingClientRect().width,
+            });
+        }
+    }
+
+    /**
+     * Update container height
+     */
+    setHeight() {
+        // calculate dropdown's height depending on the type of items
+        const height = this.getHeight();
+        this.setState({height});
     }
 
     /**
@@ -182,23 +144,31 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
     renderInitialItems(): Array<React.Node> {
         const {data} = this.props;
 
-        return data.map((item, index) => {
-            if (SeparatorItem.isClassOf(item.component)) {
-                // add react-window style to the separator to preserve the correct
-                // position
-                return React.cloneElement(item.component);
-            } else {
-                const {component, populatedProps, onClick, role, ref} = item;
+        const allComponents = data.map((e) => e.component);
 
-                return React.cloneElement(component, {
-                    ...populatedProps,
-                    key: index,
-                    onClick,
-                    ref: item.focusable && ref,
-                    role,
-                });
-            }
-        });
+        // 1. get the children opaque data structure to sort each item by its
+        //    label length
+        const longestItems = React.Children.toArray(allComponents)
+            .filter(Boolean)
+            .sort((a, b) => {
+                // 2. only sort elements that contain a `label` prop
+                if (b.props.label && a.props.label) {
+                    return b.props.label.length - a.props.label.length;
+                }
+
+                return -1;
+            })
+            // 3. only render the possible visible items to minimize layout
+            //    jumps
+            .slice(0, MAX_VISIBLE_ITEMS);
+
+        // Append longest items to calculate the container width.
+        // We need to hide these sorted elements to avoid any FOUC.
+        return longestItems.map((item) =>
+            React.cloneElement(item, {
+                style: {visibility: "hidden"},
+            }),
+        );
     }
 
     renderVirtualizedList(): React.Node {
@@ -227,7 +197,7 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
             // first load, render non virtualized items to calculate width
             return this.renderInitialItems();
         } else {
-            // render optimized list
+            // then render the virtualized list
             return this.renderVirtualizedList();
         }
     }

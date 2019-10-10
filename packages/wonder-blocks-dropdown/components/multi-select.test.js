@@ -13,6 +13,8 @@ import SearchTextInput from "./search-text-input.js";
 
 jest.useFakeTimers();
 
+jest.mock("./dropdown-core-virtualized.js");
+
 describe("MultiSelect", () => {
     let select;
     const allChanges = [];

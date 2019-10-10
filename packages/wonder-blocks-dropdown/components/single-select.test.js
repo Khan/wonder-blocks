@@ -7,6 +7,8 @@ import OptionItem from "./option-item.js";
 import SingleSelect from "./single-select.js";
 import {keyCodes} from "../util/constants.js";
 
+jest.mock("./dropdown-core-virtualized.js");
+
 describe("SingleSelect", () => {
     let select;
     const onChange = jest.fn();

@@ -20,6 +20,8 @@ type State = {|
     opened?: boolean,
 |};
 
+jest.mock("./dropdown-core-virtualized.js");
+
 describe("Dropdown", () => {
     window.scrollTo = jest.fn();
     window.getComputedStyle = jest.fn();

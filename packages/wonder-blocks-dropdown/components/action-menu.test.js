@@ -9,6 +9,8 @@ import ActionMenu from "./action-menu.js";
 import {keyCodes} from "../util/constants.js";
 import Dropdown from "./dropdown.js";
 
+jest.mock("./dropdown-core-virtualized.js");
+
 describe("ActionMenu", () => {
     const onClick = jest.fn();
     const onToggle = jest.fn();
