@@ -29,11 +29,11 @@ describe("MultiSelect", () => {
         // Jest doesn't fake out the animation frame API, so we're going to do
         // it here and map it to timeouts, that way we can use the fake timer
         // API to test our animation frame things.
-        jest.spyOn(global, "requestAnimationFrame").mockImplementation(
-            (fn, ...args) => setTimeout(fn, 0),
+        jest.spyOn(global, "requestAnimationFrame").mockImplementation((fn) =>
+            setTimeout(fn, 0),
         );
-        jest.spyOn(global, "cancelAnimationFrame").mockImplementation(
-            (id, ...args) => clearTimeout(id),
+        jest.spyOn(global, "cancelAnimationFrame").mockImplementation((id) =>
+            clearTimeout(id),
         );
 
         select = mount(

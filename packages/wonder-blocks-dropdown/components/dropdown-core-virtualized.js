@@ -236,4 +236,4 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
     }
 }
 
-export default withActionScheduler/*:: <OwnProps> */(DropdownCoreVirtualized);
+export default withActionScheduler<OwnProps>(DropdownCoreVirtualized);

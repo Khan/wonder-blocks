@@ -1477,7 +1477,7 @@ describe("wonder-blocks-dropdown", () => {
                     key={i}
                     value={(i + 1).toString()}
                     label={`School ${i +
-                        1} in Wizarding World Some more really lonsdafsdf dfds fdfsffdg labels?`}
+                        1} in Wizarding World Some more really long labels?`}
                 />
             ));
 

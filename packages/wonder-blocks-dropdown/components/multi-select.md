@@ -470,7 +470,7 @@ const styles = StyleSheet.create({
 const optionItems = new Array(1000).fill(null).map((_, i) => (<OptionItem
     key={i}
     value={(i + 1).toString()}
-    label={`School ${i + 1} in Wizarding World Some more really lonsdafsdf dfds fdfsffdg labels?`}
+    label={`School ${i + 1} in Wizarding World Some more really long labels?`}
 />));
 
 class ExampleWithShortcuts extends React.Component {
