@@ -33,8 +33,6 @@ import {Strut, Spring} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 
-import DropdownCore from "./components/dropdown-core.js";
-
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
         const dropdownItems = [
@@ -1472,13 +1470,14 @@ describe("wonder-blocks-dropdown", () => {
                 flexDirection: "row",
             },
         });
-        const optionItems = new Array(100)
+        const optionItems = new Array(1000)
             .fill(null)
             .map((_, i) => (
                 <OptionItem
                     key={i}
                     value={(i + 1).toString()}
-                    label={`School ${i + 1} in Wizarding World`}
+                    label={`School ${i +
+                        1} in Wizarding World Some more really lonsdafsdf dfds fdfsffdg labels?`}
                 />
             ));
 

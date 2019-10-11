@@ -30,5 +30,7 @@ export const searchInputStyle = {
 // The default item height
 export const DROPDOWN_ITEM_HEIGHT = 40;
 
+export const SEPARATOR_ITEM_HEIGHT = 9;
+
 export const SEARCH_ITEM_HEIGHT =
     DROPDOWN_ITEM_HEIGHT + searchInputStyle.margin + searchInputStyle.marginTop;

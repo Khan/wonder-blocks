@@ -19,11 +19,9 @@ describe("ActionMenu", () => {
 
     beforeEach(() => {
         ClickableBehavior = getClickableBehavior();
-        window.scrollTo = jest.fn();
     });
 
     afterEach(() => {
-        window.scrollTo.mockClear();
         unmountAll();
     });
 

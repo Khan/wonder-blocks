@@ -1,4 +1,4 @@
-//@flow
+// @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
@@ -8,17 +8,32 @@ import SearchTextInput from "./search-text-input.js";
 import DropdownCore from "./dropdown-core.js";
 import {keyCodes} from "../util/constants.js";
 
-jest.useFakeTimers();
-
 jest.mock("./dropdown-core-virtualized.js");
 
+const elementAtIndex = (wrapper, index) =>
+    wrapper
+        .find(`[data-test-id="item-${index}"]`)
+        .first()
+        .getDOMNode();
+
 describe("DropdownCore", () => {
-    window.scrollTo = jest.fn();
     window.getComputedStyle = jest.fn();
 
     let dropdown;
 
     beforeEach(() => {
+        jest.useFakeTimers();
+
+        // Jest doesn't fake out the animation frame API, so we're going to do
+        // it here and map it to timeouts, that way we can use the fake timer
+        // API to test our animation frame things.
+        jest.spyOn(global, "requestAnimationFrame").mockImplementation(
+            (fn, ...args) => setTimeout(fn, 0),
+        );
+        jest.spyOn(global, "cancelAnimationFrame").mockImplementation(
+            (id, ...args) => clearTimeout(id),
+        );
+
         const dummyOpener = <button />;
         const openChanged = jest.fn();
         dropdown = mount(
@@ -28,21 +43,36 @@ describe("DropdownCore", () => {
                 items={[
                     {
                         component: (
-                            <OptionItem label="item 0" value="0" key="0" />
+                            <OptionItem
+                                testId="item-0"
+                                label="item 0"
+                                value="0"
+                                key="0"
+                            />
                         ),
                         focusable: true,
                         populatedProps: {},
                     },
                     {
                         component: (
-                            <OptionItem label="item 1" value="1" key="1" />
+                            <OptionItem
+                                testId="item-1"
+                                label="item 1"
+                                value="1"
+                                key="1"
+                            />
                         ),
                         focusable: true,
                         populatedProps: {},
                     },
                     {
                         component: (
-                            <OptionItem label="item 2" value="2" key="2" />
+                            <OptionItem
+                                testId="item-2"
+                                label="item 2"
+                                value="2"
+                                key="2"
+                            />
                         ),
                         focusable: true,
                         populatedProps: {},
@@ -62,6 +92,7 @@ describe("DropdownCore", () => {
 
     afterEach(() => {
         unmountAll();
+        jest.restoreAllMocks();
     });
 
     it("handles basic keyboard navigation as expected", () => {
@@ -73,30 +104,36 @@ describe("DropdownCore", () => {
             open: true,
         });
 
-        expect(dropdown.instance().focusedIndex).toBe(0);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
 
         // navigate down three times
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        expect(dropdown.instance().focusedIndex).toBe(1);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
 
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        expect(dropdown.instance().focusedIndex).toBe(2);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 2));
 
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        expect(dropdown.instance().focusedIndex).toBe(0);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
 
         // navigate up back two times
         // to last item
         dropdown.simulate("keydown", {keyCode: keyCodes.up});
         dropdown.simulate("keyup", {keyCode: keyCodes.up});
-        expect(dropdown.instance().focusedIndex).toBe(2);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 2));
         // to the previous one
         dropdown.simulate("keydown", {keyCode: keyCodes.up});
         dropdown.simulate("keyup", {keyCode: keyCodes.up});
-        expect(dropdown.instance().focusedIndex).toBe(1);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
     });
 
     it("doesn't close on touch interaction with option", () => {
@@ -264,12 +301,14 @@ describe("DropdownCore", () => {
             open: true,
         });
 
-        expect(dropdown.instance().focusedIndex).toBe(2);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 2));
 
         // navigate down
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        expect(dropdown.instance().focusedIndex).toBe(0);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
     });
 
     it("focuses correct item when opened with click, then switching to keyboard", () => {
@@ -281,7 +320,8 @@ describe("DropdownCore", () => {
 
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        expect(dropdown.instance().focusedIndex).toBe(1);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
     });
 
     it("focuses correct item after clicking on option, then switching to keyboard", () => {
@@ -299,7 +339,8 @@ describe("DropdownCore", () => {
         // When starting to use keyboard behavior, should move to next item
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        expect(dropdown.instance().focusedIndex).toBe(2);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 2));
     });
 
     it("focuses correct item with clicking/pressing with initial focused of not 0", () => {
@@ -318,7 +359,8 @@ describe("DropdownCore", () => {
         // When starting to use keyboard behavior, should move to next item
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        expect(dropdown.instance().focusedIndex).toBe(2);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 2));
     });
 
     it("focuses correct item with a disabled item", () => {
@@ -326,17 +368,38 @@ describe("DropdownCore", () => {
             initialFocusedIndex: 0,
             items: [
                 {
-                    component: <OptionItem label="item 0" value="0" key="0" />,
+                    component: (
+                        <OptionItem
+                            testId="item-0"
+                            label="item 0"
+                            value="0"
+                            key="0"
+                        />
+                    ),
                     focusable: true,
                     populatedProps: {},
                 },
                 {
-                    component: <OptionItem label="item 1" value="1" key="1" />,
+                    component: (
+                        <OptionItem
+                            testId="item-1"
+                            label="item 1"
+                            value="1"
+                            key="1"
+                        />
+                    ),
                     focusable: false,
                     populatedProps: {},
                 },
                 {
-                    component: <OptionItem label="item 2" value="2" key="2" />,
+                    component: (
+                        <OptionItem
+                            testId="item-2"
+                            label="item 2"
+                            value="2"
+                            key="2"
+                        />
+                    ),
                     focusable: true,
                     populatedProps: {},
                 },
@@ -344,24 +407,21 @@ describe("DropdownCore", () => {
             keyboard: true,
             open: true,
         });
-        jest.runAllTimers(); // wait for react-window to scroll to the desired position
 
-        expect(dropdown.instance().focusedIndex).toBe(0);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
 
         // Should select option2
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers(); // wait for react-window to scroll to the desired position
-        expect(dropdown.instance().focusedIndex).toBe(1);
-        expect(dropdown.instance().focusedOriginalIndex).toBe(2);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 2));
 
         // Should select option0
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers(); // wait for react-window to scroll to the desired position
-
-        expect(dropdown.instance().focusedIndex).toBe(0);
-        expect(dropdown.instance().focusedOriginalIndex).toBe(0);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
     });
 
     it("focuses correct item after different items become focusable", () => {
@@ -371,27 +431,50 @@ describe("DropdownCore", () => {
             open: true,
         });
 
-        expect(dropdown.instance().focusedIndex).toBe(0);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
 
         // Should select option1
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        expect(dropdown.instance().focusedIndex).toBe(1);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
 
         dropdown.setProps({
             items: [
                 {
-                    component: <OptionItem label="item 0" value="0" key="0" />,
+                    component: (
+                        <OptionItem
+                            testId="item-0"
+                            label="item 0"
+                            value="0"
+                            key="0"
+                        />
+                    ),
                     focusable: false,
                     populatedProps: {},
                 },
                 {
-                    component: <OptionItem label="item 1" value="1" key="1" />,
+                    component: (
+                        <OptionItem
+                            testId="item-1"
+                            label="item 1"
+                            value="1"
+                            key="1"
+                        />
+                    ),
                     focusable: true,
                     populatedProps: {},
                 },
                 {
-                    component: <OptionItem label="item 2" value="2" key="2" />,
+                    component: (
+                        <OptionItem
+                            testId="item-2"
+                            label="item 2"
+                            value="2"
+                            key="2"
+                        />
+                    ),
                     focusable: true,
                     populatedProps: {},
                 },
@@ -399,7 +482,8 @@ describe("DropdownCore", () => {
         });
 
         // Should figure out that option1, which is now at index 0, is selected
-        expect(dropdown.instance().focusedIndex).toBe(0);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
     });
 
     it("focuses first item after currently focused item is no longer focusable", () => {
@@ -408,26 +492,49 @@ describe("DropdownCore", () => {
             open: true,
         });
 
-        expect(dropdown.instance().focusedIndex).toBe(0);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
 
         const option0 = dropdown.find("OptionItem").at(0);
         option0.simulate("click");
-        expect(dropdown.instance().focusedIndex).toBe(0);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
 
         dropdown.setProps({
             items: [
                 {
-                    component: <OptionItem label="item 0" value="0" key="0" />,
+                    component: (
+                        <OptionItem
+                            testId="item-0"
+                            label="item 0"
+                            value="0"
+                            key="0"
+                        />
+                    ),
                     focusable: false,
                     populatedProps: {},
                 },
                 {
-                    component: <OptionItem label="item 1" value="1" key="1" />,
+                    component: (
+                        <OptionItem
+                            testId="item-1"
+                            label="item 1"
+                            value="1"
+                            key="1"
+                        />
+                    ),
                     focusable: true,
                     populatedProps: {},
                 },
                 {
-                    component: <OptionItem label="item 2" value="2" key="2" />,
+                    component: (
+                        <OptionItem
+                            testId="item-2"
+                            label="item 2"
+                            value="2"
+                            key="2"
+                        />
+                    ),
                     focusable: true,
                     populatedProps: {},
                 },
@@ -435,25 +542,8 @@ describe("DropdownCore", () => {
         });
 
         // Should figure out that option1 is now selected
-        expect(dropdown.instance().focusedIndex).toBe(0);
-        expect(dropdown.instance().focusedOriginalIndex).toBe(1);
-    });
-
-    it("doesn't immediately turn on keyboard navigation on item selection", () => {
-        dropdown.setProps({
-            initialFocusedIndex: 0,
-            keyboard: false,
-            open: true,
-        });
-
-        expect(dropdown.instance().focusedIndex).toBe(0);
-
-        const option0 = dropdown.find("OptionItem").at(0);
-        option0.simulate("click");
-
-        // Keyboard nav isn't on, but itemsClicked is
-        expect(dropdown.instance().keyboardNavOn).toBe(false);
-        expect(dropdown.instance().itemsClicked).toBe(true);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
     });
 
     it("calls correct onclick for an option item", () => {
@@ -542,6 +632,7 @@ describe("DropdownCore", () => {
                 {
                     component: (
                         <SearchTextInput
+                            testId="item-0"
                             key="search-text-input"
                             onChange={handleSearchTextChanged}
                             searchText={""}
@@ -554,16 +645,17 @@ describe("DropdownCore", () => {
         });
         // SearchTextInput should be focused (since keyboard is true)
         const searchInput = dropdown.find(SearchTextInput);
+        jest.runAllTimers();
 
-        expect(dropdown.instance().focusedIndex).toBe(0);
         expect(searchInput.state("focused")).toBe(true);
 
         // Act
         dropdown.simulate("keydown", {keyCode: keyCodes.tab});
+        jest.runAllTimers();
 
         // Assert
         expect(handleOpen).toHaveBeenCalledTimes(0);
-        expect(dropdown.instance().focusedIndex).toBe(0);
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
     });
 
     it("When SearchTextInput exists and focused, space key pressing should be allowed", () => {
@@ -577,6 +669,7 @@ describe("DropdownCore", () => {
                 {
                     component: (
                         <SearchTextInput
+                            testId="item-0"
                             key="search-text-input"
                             onChange={handleSearchTextChanged}
                             searchText={""}
@@ -590,7 +683,8 @@ describe("DropdownCore", () => {
         });
         // SearchTextInput should be focused (since keyboard is true)
         const searchInput = dropdown.find(SearchTextInput).find("input");
-        expect(dropdown.instance().focusedIndex).toBe(0);
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
 
         // Act
         searchInput.simulate("keydown", {

@@ -2,6 +2,9 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 import {VariableSizeList as List} from "react-window";
+import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
+
+import type {WithActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
 import DropdownVirtualizedItem from "./dropdown-core-virtualized-item.js";
 import SearchTextInput from "./search-text-input.js";
@@ -9,9 +12,13 @@ import SeparatorItem from "./separator-item.js";
 
 import type {DropdownItem} from "../util/types.js";
 
-import {DROPDOWN_ITEM_HEIGHT, SEARCH_ITEM_HEIGHT} from "../util/constants.js";
+import {
+    DROPDOWN_ITEM_HEIGHT,
+    SEARCH_ITEM_HEIGHT,
+    SEPARATOR_ITEM_HEIGHT,
+} from "../util/constants.js";
 
-type Props = {|
+type OwnProps = {|
     /**
      * The complete list of items that will be virtualized.
      */
@@ -24,7 +31,14 @@ type Props = {|
     listRef?: {
         current: null | React.ElementRef<typeof List>,
     },
+
+    /**
+     * An optional fixed width that will be passed to the react-window instance
+     */
+    width?: ?number,
 |};
+
+type Props = WithActionScheduler<OwnProps>;
 
 type State = {|
     /**
@@ -32,6 +46,11 @@ type State = {|
      * calculate each item position
      */
     width: ?number,
+
+    /**
+     * The list height that needs to be passed in order to let react-window
+     * calculate the container size
+     */
     height: ?number,
 |};
 
@@ -41,21 +60,28 @@ type State = {|
 const MAX_VISIBLE_ITEMS = 10;
 
 /**
+ * Maximum horizontal size allowed for the container
+ */
+const MAX_ALLOWED_WIDTH = 512;
+
+/**
  * A react-window's List wrapper that instantiates the virtualized list and
  * dynamically calculates the item height depending on the type
  */
 class DropdownCoreVirtualized extends React.Component<Props, State> {
     state = {
         height: this.getHeight(),
-        width: null,
+        width: this.props.width,
     };
 
     componentDidMount() {
+        const {schedule} = this.props;
+
         // Wait for styles to be applied. This way, we can get a more precise
         // value of the container dimensions.
-        setTimeout(() => {
+        schedule.animationFrame(() => {
             this.setWidth();
-        }, 0);
+        });
     }
 
     componentDidUpdate(prevProps: Props) {
@@ -82,8 +108,14 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
         // after the non-virtualized items are rendered, we get the container
         //  width to pass it to react-window's List
         if (rootNode) {
+            const clientWidth = rootNode.getBoundingClientRect().width;
+            const width =
+                clientWidth < MAX_ALLOWED_WIDTH
+                    ? clientWidth
+                    : MAX_ALLOWED_WIDTH;
+
             this.setState({
-                width: rootNode.getBoundingClientRect().width,
+                width,
             });
         }
     }
@@ -108,14 +140,14 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
             .slice(0, MAX_VISIBLE_ITEMS)
             .reduce((sum, item) => {
                 if (SeparatorItem.isClassOf(item.component)) {
-                    return sum + 9;
+                    return sum + SEPARATOR_ITEM_HEIGHT;
                 } else if (SearchTextInput.isClassOf(item.component)) {
                     // search text input height
                     return sum + SEARCH_ITEM_HEIGHT;
                 } else {
                     return sum + DROPDOWN_ITEM_HEIGHT;
                 }
-            }, 5);
+            }, 0);
     }
 
     /**
@@ -127,7 +159,7 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
 
         if (SeparatorItem.isClassOf(item.component)) {
             // this is the separator's height (1px) + vertical margin (8px)
-            return 9;
+            return SEPARATOR_ITEM_HEIGHT;
         } else if (SearchTextInput.isClassOf(item.component)) {
             // search text input height
             return SEARCH_ITEM_HEIGHT;
@@ -194,13 +226,14 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
 
     render() {
         if (!this.state.width) {
-            // first load, render non virtualized items to calculate width
+            // if we don't pass a fixed value, then we need to render
+            // non-virtualized items to calculate width
             return this.renderInitialItems();
         } else {
-            // then render the virtualized list
+            // width has been provided, then render the virtualized list
             return this.renderVirtualizedList();
         }
     }
 }
 
-export default DropdownCoreVirtualized;
+export default withActionScheduler/*:: <OwnProps> */(DropdownCoreVirtualized);

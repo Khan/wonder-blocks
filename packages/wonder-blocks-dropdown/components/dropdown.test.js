@@ -23,11 +23,21 @@ type State = {|
 jest.mock("./dropdown-core-virtualized.js");
 
 describe("Dropdown", () => {
-    window.scrollTo = jest.fn();
     window.getComputedStyle = jest.fn();
     let dropdown;
 
     beforeEach(() => {
+        jest.useFakeTimers();
+        // Jest doesn't fake out the animation frame API, so we're going to do
+        // it here and map it to timeouts, that way we can use the fake timer
+        // API to test our animation frame things.
+        jest.spyOn(global, "requestAnimationFrame").mockImplementation(
+            (fn, ...args) => setTimeout(fn, 0),
+        );
+        jest.spyOn(global, "cancelAnimationFrame").mockImplementation(
+            (id, ...args) => clearTimeout(id),
+        );
+
         dropdown = mount(
             <Dropdown
                 testId="teacher-menu"
@@ -74,6 +84,7 @@ describe("Dropdown", () => {
 
     afterEach(() => {
         unmountAll();
+        jest.restoreAllMocks();
     });
 
     it("opens when the anchor is clicked", () => {
@@ -85,37 +96,6 @@ describe("Dropdown", () => {
 
         // Assert
         expect(dropdown.state("opened")).toBe(true);
-    });
-
-    it("should navigate to the first item when pressing down", () => {
-        // Arrange
-        const anchor = dropdown.find(IconButton);
-        anchor.simulate("click");
-        const dropdownCore = dropdown.find(DropdownCore);
-
-        // Act & Assert
-        dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
-        dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
-
-        // Assert
-        expect(dropdownCore.instance().focusedIndex).toBe(0);
-    });
-    it("should navigate from one item to the next when pressing down", () => {
-        // Arrange
-        const anchor = dropdown.find(IconButton);
-        anchor.simulate("click");
-        const dropdownCore = dropdown.find(DropdownCore);
-
-        // Act
-        dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
-        dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
-        dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
-        dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
-        dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
-        dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
-
-        // Assert
-        expect(dropdownCore.instance().focusedIndex).toBe(2);
     });
 
     it("closes itself on escape", () => {
@@ -181,7 +161,6 @@ describe("Dropdown", () => {
     });
 
     describe("use controlled components", () => {
-        window.scrollTo = jest.fn();
         window.getComputedStyle = jest.fn();
         class ControlledComponent extends React.Component<Props, State> {
             state = {
@@ -233,6 +212,7 @@ describe("Dropdown", () => {
         afterEach(() => {
             unmountAll();
         });
+
         it("updates selectedValues when OptionItem clicked", () => {
             // Arrange
             const controlledComponent = mount(<ControlledComponent />);
@@ -242,7 +222,6 @@ describe("Dropdown", () => {
             // Act
             dropdownCore.simulate("keydown", {keyCode: keyCodes.down});
             dropdownCore.simulate("keyup", {keyCode: keyCodes.down});
-            expect(dropdownCore.instance().focusedIndex).toBe(0);
 
             const optionItem = controlledComponent.find(OptionItem).at(1);
             optionItem.simulate("click");

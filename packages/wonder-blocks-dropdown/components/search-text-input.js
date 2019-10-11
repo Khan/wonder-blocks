@@ -42,6 +42,11 @@ type Props = {|
      * Custom styles for the main wrapper
      */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 type State = {|
@@ -70,7 +75,9 @@ export default class SearchTextInput extends React.Component<Props, State> {
         const {onClick, onChange} = this.props;
         // Empty the search text and focus the SearchTextInput
         onChange("");
-        onClick && onClick();
+        if (onClick) {
+            onClick();
+        }
     };
 
     handleBlur = (e: SyntheticInputEvent<>) => {
@@ -97,7 +104,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
     }
 
     render() {
-        const {onClick, itemRef, searchText, style} = this.props;
+        const {onClick, itemRef, searchText, style, testId} = this.props;
         // TODO(jangmi): Use translated strings for "Filter", "Clear search"
         return (
             <View
@@ -127,6 +134,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
                         styles.inputStyleReset,
                         typographyStyles.LabelMedium,
                     )}
+                    data-test-id={testId}
                 />
                 {this.maybeRenderDismissIconButton()}
             </View>

@@ -12,8 +12,10 @@ import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {WithActionScheduler} from "@khanacademy/wonder-blocks-timing";
 // NOTE(jeff): Here we share some code for use with PopperJS. Long term,
 // we should either contribute this code to the PopperJS component, or its
 // own non-wonder-blocks package.
@@ -24,7 +26,31 @@ import SearchTextInput from "./search-text-input.js";
 import {keyCodes, searchInputStyle} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
 
-type DropdownProps = {|
+// we need to define a DefaultProps type to allow the HOC expose the default
+// values to the parent components that are instantiating this component
+// @see https://flow.org/en/docs/react/hoc/#toc-exporting-wrapped-components
+type DefaultProps = {|
+    /**
+     * An index that represents the index of the focused element when the menu
+     * is opened.
+     */
+    initialFocusedIndex: number,
+
+    /**
+     * Whether this menu should be left-aligned or right-aligned with the
+     * opener component. Defaults to left-aligned.
+     */
+    alignment: "left" | "right",
+
+    /**
+     * Whether to display the "light" version of this component instead, for
+     * use when the item is used on a dark background.
+     */
+    light: boolean,
+|};
+
+type OwnProps = {|
+    ...DefaultProps,
     /**
      * Items for the menu.
      */
@@ -43,12 +69,6 @@ type DropdownProps = {|
      * the top of the dropdown body.
      */
     searchText?: ?string,
-
-    /**
-     * An index that represents the index of the focused element when the menu
-     * is opened.
-     */
-    initialFocusedIndex: number,
 
     /**
      * Whether the user used the keyboard to open this menu. This activates
@@ -79,18 +99,6 @@ type DropdownProps = {|
     openerElement: ?HTMLElement,
 
     /**
-     * Whether this menu should be left-aligned or right-aligned with the
-     * opener component. Defaults to left-aligned.
-     */
-    alignment: "left" | "right",
-
-    /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the item is used on a dark background.
-     */
-    light: boolean,
-
-    /**
      * Styling specific to the dropdown component that isn't part of the opener,
      * passed by the specific implementation of the dropdown menu,
      */
@@ -106,6 +114,8 @@ type DropdownProps = {|
      */
     role: "listbox" | "menu",
 |};
+
+type Props = WithActionScheduler<OwnProps>;
 
 type State = {|
     /**
@@ -134,10 +144,7 @@ type State = {|
  * part of the dropdown menu. Renders the dropdown as a portal to avoid clipping
  * in overflow: auto containers.
  */
-export default class DropdownCore extends React.Component<
-    DropdownProps,
-    State,
-> {
+class DropdownCore extends React.Component<Props, State> {
     // Keeps track of the index of the focused item, out of a list of focusable items
     focusedIndex: number;
     // Keeps track of the index of the focused item in the context of all the
@@ -172,7 +179,7 @@ export default class DropdownCore extends React.Component<
         return true;
     }
 
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         alignment: "left",
         initialFocusedIndex: 0,
         light: false,
@@ -181,7 +188,7 @@ export default class DropdownCore extends React.Component<
     // This is here to avoid calling React.createRef on each rerender. Instead,
     // we create the itemRefs only if it's the first time or if the set of items
     // that are focusable has changed.
-    static getDerivedStateFromProps(props: DropdownProps, state: State) {
+    static getDerivedStateFromProps(props: Props, state: State) {
         if (
             (state.itemRefs.length === 0 && props.open) ||
             !DropdownCore.sameItemsFocusable(state.prevItems, props.items)
@@ -206,7 +213,7 @@ export default class DropdownCore extends React.Component<
         }
     }
 
-    constructor(props: DropdownProps) {
+    constructor(props: Props) {
         super(props);
 
         this.focusedIndex = this.props.initialFocusedIndex;
@@ -225,7 +232,7 @@ export default class DropdownCore extends React.Component<
         this.initialFocusItem();
     }
 
-    componentDidUpdate(prevProps: DropdownProps) {
+    componentDidUpdate(prevProps: Props) {
         const {open} = this.props;
 
         if (prevProps.open !== open) {
@@ -260,7 +267,7 @@ export default class DropdownCore extends React.Component<
                     this.itemsClicked = false;
                     if (this.keyboardNavOn) {
                         // If keyboard navigation was already on, use that
-                        this.focusCurrentItem();
+                        this.scheduleToFocusCurrentItem();
                     } else {
                         // Otherwise shift focus to the original focus item
                         // (the opener) to listen for further keyboard events
@@ -291,7 +298,7 @@ export default class DropdownCore extends React.Component<
             // that the user opened the menu via the keyboard
             if (keyboard) {
                 this.keyboardNavOn = true;
-                this.focusCurrentItem();
+                this.scheduleToFocusCurrentItem();
             }
         } else if (!open) {
             // If the dropdown has been closed, reset the keyboardNavOn boolean
@@ -333,11 +340,12 @@ export default class DropdownCore extends React.Component<
         }
     };
 
+    scheduleToFocusCurrentItem() {
+        // wait for windowed items to be recalculated
+        this.props.schedule.animationFrame(() => this.focusCurrentItem());
+    }
+
     focusCurrentItem() {
-        // Because the dropdown menu is portalled, focusing this element
-        // will scroll the window all the way to the top of the screen.
-        const x = window.scrollX;
-        const y = window.scrollY;
         const node = ((ReactDOM.findDOMNode(
             this.state.itemRefs[this.focusedIndex].ref.current,
         ): any): HTMLElement);
@@ -349,7 +357,6 @@ export default class DropdownCore extends React.Component<
                 this.focusedIndex
             ].originalIndex;
         }
-        window.scrollTo(x, y);
     }
 
     focusPreviousItem() {
@@ -360,11 +367,11 @@ export default class DropdownCore extends React.Component<
         }
 
         // force react-window to scroll on the correct position
-        this.listRef.current &&
+        if (this.listRef.current) {
             this.listRef.current.scrollToItem(this.focusedIndex);
+        }
 
-        // wait for windowed items to be recalculated
-        setTimeout(() => this.focusCurrentItem(), 0);
+        this.scheduleToFocusCurrentItem();
     }
 
     focusNextItem() {
@@ -375,11 +382,11 @@ export default class DropdownCore extends React.Component<
         }
 
         // force react-window to scroll on the correct position
-        this.listRef.current &&
+        if (this.listRef.current) {
             this.listRef.current.scrollToItem(this.focusedIndex);
+        }
 
-        // wait for windowed items to be recalculated
-        setTimeout(() => this.focusCurrentItem(), 0);
+        this.scheduleToFocusCurrentItem();
     }
 
     restoreTabOrder() {
@@ -421,7 +428,7 @@ export default class DropdownCore extends React.Component<
             if (!this.itemsClicked) {
                 event.preventDefault();
                 this.focusedIndex = initialFocusedIndex;
-                this.focusCurrentItem();
+                this.scheduleToFocusCurrentItem();
                 return;
             }
         }
@@ -735,3 +742,7 @@ const styles = StyleSheet.create({
         marginTop: Spacing.xxSmall,
     },
 });
+
+export default withActionScheduler<React.Config<OwnProps, DefaultProps>>(
+    DropdownCore,
+);

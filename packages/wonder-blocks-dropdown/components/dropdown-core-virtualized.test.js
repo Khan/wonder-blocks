@@ -1,6 +1,7 @@
 //@flow
 import * as React from "react";
 import {VariableSizeList as List} from "react-window";
+// import {shallow} from "enzyme";
 import {mount} from "../../../utils/testing/mount.js";
 
 import OptionItem from "./option-item.js";
@@ -8,9 +9,25 @@ import SeparatorItem from "./separator-item.js";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 import SearchTextInput from "./search-text-input.js";
 
-jest.useFakeTimers();
-
 describe("DropdownCoreVirtualized", () => {
+    beforeEach(() => {
+        jest.useFakeTimers();
+
+        // Jest doesn't fake out the animation frame API, so we're going to do
+        // it here and map it to timeouts, that way we can use the fake timer
+        // API to test our animation frame things.
+        jest.spyOn(global, "requestAnimationFrame").mockImplementation(
+            (fn, ...args) => setTimeout(fn, 0),
+        );
+        jest.spyOn(global, "cancelAnimationFrame").mockImplementation(
+            (id, ...args) => clearTimeout(id),
+        );
+    });
+
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     it("should sort the items on first load", () => {
         // Arrange
         const optionItems = ["a", "bb", "ccc"].map((item, i) => ({
@@ -92,13 +109,13 @@ describe("DropdownCoreVirtualized", () => {
             },
         ];
 
-        const wrapper = mount(<DropdownCoreVirtualized data={initialItems} />);
+        const wrapper = mount(
+            <DropdownCoreVirtualized data={initialItems} width={300} />,
+        );
 
         // Act
         // append items to update container height
         wrapper.setProps({data: [...initialItems, ...optionItems]});
-        // add a fixed width to render the virtualized version
-        wrapper.setState({width: 300});
 
         // Assert
         expect(wrapper.find(List)).toExist();
