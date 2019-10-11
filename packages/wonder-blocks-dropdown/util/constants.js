@@ -21,3 +21,16 @@ export const filterableDropdownStyle = {
     minHeight: 100,
     maxHeight: 384,
 };
+
+export const searchInputStyle = {
+    margin: Spacing.xSmall,
+    marginTop: Spacing.xxxSmall,
+};
+
+// The default item height
+export const DROPDOWN_ITEM_HEIGHT = 40;
+
+export const SEPARATOR_ITEM_HEIGHT = 9;
+
+export const SEARCH_ITEM_HEIGHT =
+    DROPDOWN_ITEM_HEIGHT + searchInputStyle.margin + searchInputStyle.marginTop;

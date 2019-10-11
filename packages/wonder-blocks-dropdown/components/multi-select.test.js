@@ -11,6 +11,10 @@ import MultiSelect from "./multi-select.js";
 import {keyCodes} from "../util/constants.js";
 import SearchTextInput from "./search-text-input.js";
 
+jest.useFakeTimers();
+
+jest.mock("./dropdown-core-virtualized.js");
+
 describe("MultiSelect", () => {
     let select;
     const allChanges = [];
@@ -20,7 +24,18 @@ describe("MultiSelect", () => {
     const onChange = jest.fn();
 
     beforeEach(() => {
-        window.scrollTo = jest.fn();
+        jest.useFakeTimers();
+
+        // Jest doesn't fake out the animation frame API, so we're going to do
+        // it here and map it to timeouts, that way we can use the fake timer
+        // API to test our animation frame things.
+        jest.spyOn(global, "requestAnimationFrame").mockImplementation((fn) =>
+            setTimeout(fn, 0),
+        );
+        jest.spyOn(global, "cancelAnimationFrame").mockImplementation((id) =>
+            clearTimeout(id),
+        );
+
         select = mount(
             <MultiSelect
                 onChange={(selectedValues) => {
@@ -41,8 +56,8 @@ describe("MultiSelect", () => {
     });
 
     afterEach(() => {
-        window.scrollTo.mockClear();
         unmountAll();
+        jest.restoreAllMocks();
     });
 
     it("closes/opens the select on mouse click, space, and enter", () => {
@@ -362,7 +377,7 @@ describe("MultiSelect", () => {
 
     it("Pressing arrow up from search input moves focus to previous focusable item", () => {
         // Arrange
-        select.setProps({isFilterable: true});
+        select.setProps({isFilterable: true, shortcuts: false});
         select.setState({open: true});
         const searchInput = select.find(SearchTextInput);
         const lastOption = select
@@ -372,11 +387,13 @@ describe("MultiSelect", () => {
         // The focus is on opener. Press up (or down) should focus the input
         select.simulate("keydown", {keyCode: keyCodes.up});
         select.simulate("keyup", {keyCode: keyCodes.up});
+        jest.runAllTimers();
         expect(searchInput.state("focused")).toBe(true);
 
         // Act
         select.simulate("keydown", {keyCode: keyCodes.up});
         select.simulate("keyup", {keyCode: keyCodes.up});
+        jest.runAllTimers();
 
         // Assert
         expect(lastOption.state("focused")).toBe(true);
@@ -394,11 +411,13 @@ describe("MultiSelect", () => {
         // The focus is on opener. Press up (or down) should focus the input
         select.simulate("keydown", {keyCode: keyCodes.down});
         select.simulate("keyup", {keyCode: keyCodes.down});
+        jest.runAllTimers();
         expect(searchInput.state("focused")).toBe(true);
 
         // Act
         select.simulate("keydown", {keyCode: keyCodes.down});
         select.simulate("keyup", {keyCode: keyCodes.down});
+        jest.runAllTimers();
 
         // Assert
         expect(selectAll.state("focused")).toBe(true);

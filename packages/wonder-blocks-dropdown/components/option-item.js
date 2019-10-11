@@ -9,6 +9,9 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {View, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
+import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
 import Check from "./check.js";
 import Checkbox from "./checkbox.js";
 
@@ -64,6 +67,13 @@ type OptionProps = {|
      * @ignore
      */
     variant?: "check" | "checkbox",
+
+    /**
+     * In case we use react-window, this needs to be added in order to inject
+     * styles to calculate the position
+     * @ignore
+     */
+    style?: StyleType,
 |};
 
 /**
@@ -101,7 +111,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     };
 
     render() {
-        const {disabled, label, role, selected, testId} = this.props;
+        const {disabled, label, role, selected, testId, style} = this.props;
 
         const ClickableBehavior = getClickableBehavior();
         const CheckComponent = this.getCheckComponent();
@@ -121,6 +131,8 @@ export default class OptionItem extends React.Component<OptionProps> {
                             ? styles.active
                             : (hovered || focused) && styles.focus,
                         disabled && styles.disabled,
+                        // pass optional styles from react-window (if applies)
+                        style,
                     ];
 
                     return (
@@ -155,8 +167,8 @@ const styles = StyleSheet.create({
         backgroundColor: white,
         color: offBlack,
         alignItems: "center",
-        height: 40,
-        minHeight: 40,
+        height: DROPDOWN_ITEM_HEIGHT,
+        minHeight: DROPDOWN_ITEM_HEIGHT,
         border: 0,
         outline: 0,
         paddingLeft: Spacing.xSmall,
@@ -184,6 +196,9 @@ const styles = StyleSheet.create({
         whiteSpace: "nowrap",
         userSelect: "none",
         marginLeft: Spacing.xSmall,
+        // added to truncate strings that are longer than expected
+        overflow: "hidden",
+        textOverflow: "ellipsis",
     },
 
     hide: {

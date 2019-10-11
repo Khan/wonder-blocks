@@ -12,12 +12,41 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
+import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
+
 type Props = {|
+    /**
+     * the text input
+     */
     searchText: string,
+
+    /**
+     * Called when the input value is changed
+     */
     onChange: (searchText: string) => mixed,
-    onClick: () => mixed,
-    itemRef: {current: any},
+
+    /**
+     * Handler that is triggered when this component is clicked. For example,
+     * use this to adjust focus in parent component. This gets called when we
+     * click the dismiss icon button within the SearchTextInput.
+     */
+    onClick?: () => mixed,
+
+    /**
+     * Used to handle the focus order in its parent component. The itemRef is
+     * applied to the input directly.
+     */
+    itemRef?: {current: any},
+
+    /**
+     * Custom styles for the main wrapper
+     */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 type State = {|
@@ -25,9 +54,17 @@ type State = {|
 |};
 
 export default class SearchTextInput extends React.Component<Props, State> {
+    static isClassOf(instance: React.Element<any>) {
+        return (
+            instance && instance.type && instance.type.__IS_SEARCH_TEXT_INPUT__
+        );
+    }
+
     state = {
         focused: false,
     };
+
+    static __IS_SEARCH_TEXT_INPUT__ = true;
 
     handleChange = (e: SyntheticInputEvent<>) => {
         e.preventDefault();
@@ -38,7 +75,9 @@ export default class SearchTextInput extends React.Component<Props, State> {
         const {onClick, onChange} = this.props;
         // Empty the search text and focus the SearchTextInput
         onChange("");
-        onClick();
+        if (onClick) {
+            onClick();
+        }
     };
 
     handleBlur = (e: SyntheticInputEvent<>) => {
@@ -65,7 +104,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
     }
 
     render() {
-        const {onClick, itemRef, searchText, style} = this.props;
+        const {onClick, itemRef, searchText, style, testId} = this.props;
         // TODO(jangmi): Use translated strings for "Filter", "Clear search"
         return (
             <View
@@ -95,6 +134,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
                         styles.inputStyleReset,
                         typographyStyles.LabelMedium,
                     )}
+                    data-test-id={testId}
                 />
                 {this.maybeRenderDismissIconButton()}
             </View>
@@ -112,8 +152,8 @@ const styles = StyleSheet.create({
         // specify the height as well as minHeight to make sure the search text
         // input takes enough height to render. (otherwise, it will get
         // squashed)
-        height: 40,
-        minHeight: 40,
+        height: DROPDOWN_ITEM_HEIGHT,
+        minHeight: DROPDOWN_ITEM_HEIGHT,
     },
     focused: {
         border: `1px solid ${Color.blue}`,

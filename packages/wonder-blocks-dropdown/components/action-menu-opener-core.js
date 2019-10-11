@@ -11,6 +11,8 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps, ClickableState} from "@khanacademy/wonder-blocks-core";
 
+import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
+
 type Props = {|
     ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,
 
@@ -111,7 +113,7 @@ const sharedStyles = StyleSheet.create({
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        height: 40,
+        height: DROPDOWN_ITEM_HEIGHT,
         border: "none",
         borderRadius: Spacing.xxxSmall,
         cursor: "pointer",

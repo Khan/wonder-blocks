@@ -448,7 +448,13 @@ class ControlledMultiSelectExample extends React.Component {
 
 ### Multi select with search filter
 
-When there are many options, you could use a search filter in the MultiSelect. The search filter will be performed toward the labels of the option items.
+When there are many options, you could use a search filter in the MultiSelect.
+The search filter will be performed toward the labels of the option items.
+
+*NOTE:* The component automatically uses
+[react-window](https://github.com/bvaughn/react-window) to improve performance
+when rendering these elements and is capable of handling many hundreds of items
+without performance problems.
 
 ```js
 import {MultiSelect, ActionItem, SeparatorItem, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
@@ -461,10 +467,10 @@ const styles = StyleSheet.create({
     },
 });
 
-const optionItems = new Array(10).fill(null).map((_, i) => (<OptionItem
+const optionItems = new Array(1000).fill(null).map((_, i) => (<OptionItem
     key={i}
     value={(i + 1).toString()}
-    label={`School ${i + 1} in Wizarding World`}
+    label={`School ${i + 1} in Wizarding World Some more really long labels?`}
 />));
 
 class ExampleWithShortcuts extends React.Component {
@@ -498,3 +504,4 @@ class ExampleWithShortcuts extends React.Component {
     <ExampleWithShortcuts />
 </View>
 ```
+
