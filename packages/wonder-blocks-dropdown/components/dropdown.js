@@ -179,41 +179,50 @@ export default class Dropdown extends React.Component<Props, State> {
 
     _getMenuItems = (): Array<DropdownItem> => {
         const {selectedValues} = this.props;
-        return React.Children.toArray(this.props.menuItems)
-            .filter(Boolean)
-            .map((item) => {
-                const {value, disabled} = item.props;
-                const itemObject = {
-                    component: item,
-                    focusable:
-                        ActionItem.isClassOf(item) || OptionItem.isClassOf(item)
-                            ? !disabled
-                            : false,
-                    populatedProps: {},
+
+        const allChildren = React.Children.toArray(this.props.menuItems).filter(
+            Boolean,
+        );
+
+        // verify if there's at least one OptionItem element to indent the
+        // possible Action items
+        const isOptionItemIncluded = allChildren.some((item) =>
+            OptionItem.isClassOf(item),
+        );
+
+        return allChildren.map((item) => {
+            const {value, disabled} = item.props;
+            const itemObject = {
+                component: item,
+                focusable:
+                    ActionItem.isClassOf(item) || OptionItem.isClassOf(item)
+                        ? !disabled
+                        : false,
+                populatedProps: {},
+            };
+            if (ActionItem.isClassOf(item)) {
+                return {
+                    ...itemObject,
+                    populatedProps: {
+                        indent: isOptionItemIncluded,
+                        onClick: this.handleItemSelected,
+                    },
                 };
-                if (ActionItem.isClassOf(item)) {
-                    return {
-                        ...itemObject,
-                        populatedProps: {
-                            indent: true,
-                            onClick: this.handleItemSelected,
-                        },
-                    };
-                } else if (OptionItem.isClassOf(item)) {
-                    return {
-                        ...itemObject,
-                        populatedProps: {
-                            onToggle: this.handleOptionSelected,
-                            selected: selectedValues
-                                ? selectedValues.includes(value)
-                                : false,
-                            variant: "check",
-                        },
-                    };
-                } else {
-                    return itemObject;
-                }
-            });
+            } else if (OptionItem.isClassOf(item)) {
+                return {
+                    ...itemObject,
+                    populatedProps: {
+                        onToggle: this.handleOptionSelected,
+                        selected: selectedValues
+                            ? selectedValues.includes(value)
+                            : false,
+                        variant: "check",
+                    },
+                };
+            } else {
+                return itemObject;
+            }
+        });
     };
 
     renderAnchorChildren(

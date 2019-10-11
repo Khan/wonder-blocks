@@ -289,7 +289,13 @@ class DropdownCore extends React.Component<Props, State> {
     // Figure out focus states for the dropdown after it has changed from open
     // to closed or vice versa
     initialFocusItem() {
-        const {keyboard, initialFocusedIndex, open} = this.props;
+        const {
+            keyboard,
+            initialFocusedIndex,
+            open,
+            onSearchTextChanged,
+            searchText,
+        } = this.props;
 
         if (open) {
             // Reset focused index
@@ -298,6 +304,14 @@ class DropdownCore extends React.Component<Props, State> {
             // that the user opened the menu via the keyboard
             if (keyboard) {
                 this.keyboardNavOn = true;
+                this.scheduleToFocusCurrentItem();
+            }
+
+            const showSearchTextInput =
+                !!onSearchTextChanged && typeof searchText === "string";
+
+            // focus on the search field (if is enabled)
+            if (showSearchTextInput) {
                 this.scheduleToFocusCurrentItem();
             }
         } else if (!open) {
