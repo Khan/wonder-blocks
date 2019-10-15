@@ -203,7 +203,7 @@ describe("wonder-blocks-tooltip", () => {
     });
 
     it("example 7", () => {
-        const example = <TooltipContent>Just the content</TooltipContent>;
+        const example = <TooltipContent>Only the content</TooltipContent>;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

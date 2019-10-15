@@ -1,12 +1,12 @@
 The `TooltipContent` component is provided for situations where the `Tooltip` needs to be customized beyond the default stylings. `TooltipContent` supports all `wonder-blocks-typography` components.
 
-### Just text content
+### Only text content
 
 This shows the default which is text rendered using `LabelMedium`.
 
 ```jsx
 <TooltipContent>
-    Just the content
+    Only the content
 </TooltipContent>
 ```
 

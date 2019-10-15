@@ -299,7 +299,7 @@ const modalInitialFocus = ({closeModal}) => (
 
 ### Example: Flexible dialogs
 
-This example illustrates how we can easily update the Modal's contents by wrapping it into a new component/container. **Modal** is built in a way that provides great flexibility and makes it work with different variations and/or layouts (see Custom Two-Pane Dialog example).
+This example illustrates how we can update the Modal's contents by wrapping it into a new component/container. **Modal** is built in a way that provides great flexibility and makes it work with different variations and/or layouts (see Custom Two-Pane Dialog example).
 
 ```js
 import {StyleSheet} from "aphrodite";

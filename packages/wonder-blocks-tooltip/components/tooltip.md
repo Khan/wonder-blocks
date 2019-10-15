@@ -8,7 +8,7 @@
 
 ### Complex anchor & title tooltip & placement default (top)
 
-In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus. However, that needs a custom accessibility implementation too (for that, we should use `UniqueIDProvider`, but we'll cheat here and just give our own identifier).
+In this example, we're no longer forcing the anchor root to be focusable, since the text input can take focus. However, that needs a custom accessibility implementation too (for that, we should use `UniqueIDProvider`, but we'll cheat here and give our own identifier).
 
 ```js
 import {View} from "@khanacademy/wonder-blocks-core";

@@ -1,6 +1,6 @@
 The Grid system is a collection of building-block primitives which you can use to construct a predictable layout that works across viewports. A grid will have a number of "columns" in it and individual Cells can span and align to those columns, creating a consistent layout. All of the grid components are meant to be used somewhere within a [MediaLayout](#medialayout) component. [MediaLayout](#medialayout) is designed to be used as a high-level component, holding large portions of the page (likely the entire contents).
 
-It's sometimes easiest to just see an example of how it works, like in the following demo. Try resizing your browser and see how to layout changes based on the width of the viewport (some columns will change in size, some will disappear entirely).
+It's sometimes easiest to see an example of how it works, like in the following demo. Try resizing your browser and see how to layout changes based on the width of the viewport (some columns will change in size, some will disappear entirely).
 
 ```jsx
 import {Cell, Row} from "@khanacademy/wonder-blocks-grid";

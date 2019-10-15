@@ -80,7 +80,7 @@ class MyNaughtyComponent extends React.Component {
 ```
 
 But if we use `withActionScheduler` and the `interval` method, everything is
-just fine. Unmount the component, and the logging stops.
+fine. Unmount the component, and the logging stops.
 
 ```jsx
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
@@ -297,7 +297,7 @@ The `IAnimationFrame` interface provides additional calls to manipulate an anima
 
 ### Migration from standard API
 
-Migrating from the standard API is as simple as:
+Migrating from the standard API can be done by:
 
 1. Wrapping your component with the `withActionScheduler` HOC (and, if using Flow, using the `WithActionScheduler<TOwnProps>` type to extend your components props)
 2. Using the new `schedule` prop in your component instead of `setTimeout`, `setInterval` and `requestAnimationFrame`
