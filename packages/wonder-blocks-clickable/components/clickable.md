@@ -1,6 +1,6 @@
 ### Creating a Clickable component
 
-You can make custom components Clickable by simply returning them in function of the Clickable child. The eventState parameter the function takes allows access to states pressed, hovered and clicked, which you may use to create custom styles.
+You can make custom components Clickable by returning them in a function of the Clickable child. The eventState parameter the function takes allows access to states pressed, hovered and clicked, which you may use to create custom styles.
 
 ```jsx
 import {StyleSheet} from "aphrodite";

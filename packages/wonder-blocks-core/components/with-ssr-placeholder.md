@@ -8,7 +8,7 @@ import {View, WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";
 </WithSSRPlaceholder>
 ```
 
-This example shows how you can use a `null` placeholder to just display nothing during server-side render.
+This example shows how you can use a `null` placeholder to display nothing during server-side render.
 
 ```jsx
 import {View, WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";

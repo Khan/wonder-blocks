@@ -188,7 +188,7 @@ This example shows the default popover variant. By default, it only includes
 `emphasized`, `closeButtonVisible` and `actions`.
 
 **NOTE:** If you use `actions`, you can use it with the following alternatives:
-1) Passing a Node that contains the actions to be executed. In this case, you'll
+1) Passing a Node that contains the actions to be run. In this case, you'll
    need to manage the internal logic of each action.
 2) Passing a function as children and using the `close` property passed it as
    the `onClick` handler on each action inside this example.

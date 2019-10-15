@@ -62,7 +62,7 @@ or `large`.  Each value contains the following data:
 
 #### 1. Switching styles for different screen sizes
 
-By default, `MediaLayout` uses `MEDIA_DEFAULT_SPEC`. Here you can see a simple
+By default, `MediaLayout` uses `MEDIA_DEFAULT_SPEC`. Here you can see an
 example that changes styles depending on the current spec.
 
 ```js
@@ -153,7 +153,7 @@ const styleSheets = {
 #### 3. Using a custom spec:
 
 There are cases when you might need to use a custom media query spec. For that
-situation you can define your own custom `MEDIA_SPEC`. You just need to use the
+situation you can define your own custom `MEDIA_SPEC`. You need to use the
 `MediaLayoutContext.Provider` to specify this spec value.
 
 **NOTE:** Make sure to import the `MediaSpec` and `MediaLayoutContextValue` type

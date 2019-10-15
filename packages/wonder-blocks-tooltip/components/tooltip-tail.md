@@ -1,4 +1,4 @@
-The `TooltipTail` renders the tail, including appropriate padding from the anchor location and corners of the tooltip bubble (so as not to crash the bubble corners).
+The `TooltipTail` renders the tail, including appropriate padding from the anchor location and corners of the tooltip bubble (so as space out the bubble corners).
 
 Each example is shown next to a bar that indicates the padding either side of the tail and the tail width itself. The bar also indicates how far away from the anchor element the tail will render.
 

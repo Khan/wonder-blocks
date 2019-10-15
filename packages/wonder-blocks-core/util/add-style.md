@@ -2,7 +2,7 @@ Adds a `style` property to a component. A component can be a Wonder Blocks
 Component (e.g. Link, Button), a custom React Component (see example 4. Using
 the `Style` prop) or
 a DOM intrinsic (e.g. "div", "span"). This helps you to manipulate and extend
-styles more easily by using the `styles` prop. For more context on this, check
+styles by using the `styles` prop. For more context on this, check
 the [StyleType](#styletype) type definition below.
 
 ### Usage

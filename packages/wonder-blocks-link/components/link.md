@@ -22,7 +22,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 ### Example: Link with Typography element
 
-You can also use a Typography element instead of just plain text.
+You can also use a Typography element instead of plain text.
 
 ```js
 import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
