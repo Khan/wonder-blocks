@@ -488,8 +488,7 @@ to resize to fit the content whereas `width` does not. This is important
 for international sites since sometimes strings for UI elements can be much
 longer in other languages. Both of the buttons below have a "natural" width
 of 144px. The one on the right is wider but it accommodates the full string
-instead of wrapping it. Note that if the parent container of the button doesn't
-have enough room to accommodate the width of the button, the text will truncate.
+instead of wrapping it.
 ```jsx
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -519,6 +518,43 @@ const styles = StyleSheet.create({
         style={styles.button}
     >
         label in a different language
+    </Button>
+</View>
+```
+
+If the parent container of the button doesn't have enough room to accommodate
+the width of the button, the text will truncate. This should ideally never
+happen, but it's sometimes a necessary fallback.
+```jsx
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        width: 300,
+    },
+    gap: {
+        height: 16,
+    },
+    button: {
+        marginRight: 10,
+        minWidth: 144,
+    },
+});
+
+<View style={styles.row}>
+    <Button
+        style={styles.button}
+        kind="secondary"
+    >
+        label
+    </Button>
+    <Button
+        style={styles.button}
+    >
+        label too long for the parent container
     </Button>
 </View>
 ```

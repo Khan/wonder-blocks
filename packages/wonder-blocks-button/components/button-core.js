@@ -194,12 +194,12 @@ const sharedStyles = StyleSheet.create({
         height: 32,
     },
     text: {
-        display: "flex",
         alignItems: "center",
         fontWeight: "bold",
         whiteSpace: "nowrap",
         overflow: "hidden",
         textOverflow: "ellipsis",
+        display: "inline-block", // allows the button text to truncate
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
     },
     textWithFocus: {
