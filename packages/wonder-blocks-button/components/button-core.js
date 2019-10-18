@@ -98,6 +98,7 @@ export default class ButtonCore extends React.Component<Props> {
             <Label
                 style={[
                     sharedStyles.text,
+                    icon && sharedStyles.textWithIcon,
                     spinner && sharedStyles.hiddenText,
                     kind === "tertiary" && sharedStyles.textWithFocus,
                     // apply focus effect on the label instead
@@ -201,6 +202,9 @@ const sharedStyles = StyleSheet.create({
         textOverflow: "ellipsis",
         display: "inline-block", // allows the button text to truncate
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
+    },
+    textWithIcon: {
+        display: "flex", // allows the text and icon to sit nicely together
     },
     textWithFocus: {
         position: "relative", // allows the tertiary button border to use the label width
