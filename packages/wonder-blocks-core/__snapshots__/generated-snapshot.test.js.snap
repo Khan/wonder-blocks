@@ -588,7 +588,7 @@ exports[`wonder-blocks-core example 10 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "alignItems": "center",
-            "display": "flex",
+            "display": "inline-block",
             "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
