@@ -457,6 +457,34 @@ describe("wonder-blocks-button", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
+                width: 300,
+            },
+            gap: {
+                height: 16,
+            },
+            button: {
+                marginRight: 10,
+                minWidth: 144,
+            },
+        });
+        const example = (
+            <View style={styles.row}>
+                <Button style={styles.button} kind="secondary">
+                    label
+                </Button>
+                <Button style={styles.button}>
+                    label too long for the parent container
+                </Button>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 14", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
             },
             button: {
                 marginRight: 10,
@@ -476,7 +504,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 14", () => {
+    it("example 15", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",

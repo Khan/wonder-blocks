@@ -78,7 +78,7 @@ exports[`wonder-blocks-button example 1 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -154,7 +154,7 @@ exports[`wonder-blocks-button example 1 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -227,7 +227,7 @@ exports[`wonder-blocks-button example 1 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -324,7 +324,7 @@ exports[`wonder-blocks-button example 2 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -400,7 +400,7 @@ exports[`wonder-blocks-button example 2 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -473,7 +473,7 @@ exports[`wonder-blocks-button example 2 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -570,7 +570,7 @@ exports[`wonder-blocks-button example 3 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -646,7 +646,7 @@ exports[`wonder-blocks-button example 3 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -719,7 +719,7 @@ exports[`wonder-blocks-button example 3 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -817,7 +817,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -893,7 +893,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -966,7 +966,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1040,7 +1040,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1116,7 +1116,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1189,7 +1189,7 @@ exports[`wonder-blocks-button example 4 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1286,7 +1286,7 @@ exports[`wonder-blocks-button example 5 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 14,
           "fontWeight": "bold",
@@ -1362,7 +1362,7 @@ exports[`wonder-blocks-button example 5 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 14,
           "fontWeight": "bold",
@@ -1435,7 +1435,7 @@ exports[`wonder-blocks-button example 5 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 14,
           "fontWeight": "bold",
@@ -1527,7 +1527,7 @@ exports[`wonder-blocks-button example 6 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1603,7 +1603,7 @@ exports[`wonder-blocks-button example 6 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1671,7 +1671,7 @@ exports[`wonder-blocks-button example 6 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1763,7 +1763,7 @@ exports[`wonder-blocks-button example 7 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1831,7 +1831,7 @@ exports[`wonder-blocks-button example 7 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -1928,7 +1928,7 @@ exports[`wonder-blocks-button example 8 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -2056,7 +2056,7 @@ exports[`wonder-blocks-button example 8 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 14,
           "fontWeight": "bold",
@@ -2839,7 +2839,7 @@ exports[`wonder-blocks-button example 10 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -2953,7 +2953,7 @@ exports[`wonder-blocks-button example 11 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "alignItems": "center",
-            "display": "flex",
+            "display": "inline-block",
             "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
@@ -3065,7 +3065,7 @@ exports[`wonder-blocks-button example 11 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "alignItems": "center",
-            "display": "flex",
+            "display": "inline-block",
             "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
@@ -3166,7 +3166,7 @@ exports[`wonder-blocks-button example 12 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -3240,7 +3240,7 @@ exports[`wonder-blocks-button example 12 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
@@ -3259,6 +3259,181 @@ exports[`wonder-blocks-button example 12 1`] = `
 `;
 
 exports[`wonder-blocks-button example 13 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "width": 300,
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "none",
+        "border": "none",
+        "borderColor": "rgba(33,36,44,0.50)",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "color": "#1865f2",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "marginRight": 10,
+        "minWidth": 144,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "inline-block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      label
+    </span>
+  </button>
+  <button
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "marginRight": 10,
+        "minWidth": 144,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "inline-block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      label too long for the parent container
+    </span>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-button example 14 1`] = `
 <div
   className=""
   style={
@@ -3355,7 +3530,7 @@ exports[`wonder-blocks-button example 13 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "alignItems": "center",
-            "display": "flex",
+            "display": "inline-block",
             "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
@@ -3428,7 +3603,7 @@ exports[`wonder-blocks-button example 13 1`] = `
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "alignItems": "center",
-            "display": "flex",
+            "display": "inline-block",
             "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
@@ -3447,7 +3622,7 @@ exports[`wonder-blocks-button example 13 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 14 1`] = `
+exports[`wonder-blocks-button example 15 1`] = `
 <div
   className=""
   style={
@@ -3525,7 +3700,7 @@ exports[`wonder-blocks-button example 14 1`] = `
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
-          "display": "flex",
+          "display": "inline-block",
           "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
