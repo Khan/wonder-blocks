@@ -120,7 +120,14 @@ export default class OptionItem extends React.Component<OptionProps> {
             selected,
             testId,
             style,
-            "aria-label": ariaLabel,
+            // eslint-disable-next-line no-unused-vars
+            value,
+            /* eslint-disable no-unused-vars */
+            onClick,
+            onToggle,
+            variant,
+            /* eslint-enable no-unused-vars */
+            ...sharedProps
         } = this.props;
 
         const ClickableBehavior = getClickableBehavior();
@@ -147,9 +154,9 @@ export default class OptionItem extends React.Component<OptionProps> {
 
                     return (
                         <View
+                            {...sharedProps}
                             testId={testId}
                             style={defaultStyle}
-                            aria-label={ariaLabel}
                             aria-selected={selected ? "true" : "false"}
                             role={role}
                             {...handlers}
