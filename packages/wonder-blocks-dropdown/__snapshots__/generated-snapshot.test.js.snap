@@ -2584,7 +2584,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "color": "rgba(33,36,44,0.64)",
+          "color": "#21242c",
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "space-between",
@@ -2620,7 +2620,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
           }
         }
       >
-        Accessible SingleSelect
+        First element
       </span>
       <svg
         aria-hidden="true"
@@ -3615,7 +3615,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "color": "rgba(33,36,44,0.64)",
+          "color": "#21242c",
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "space-between",
@@ -3651,7 +3651,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
           }
         }
       >
-        Accessible MultiSelect
+        First element
       </span>
       <svg
         aria-hidden="true"

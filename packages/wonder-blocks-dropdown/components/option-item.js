@@ -6,16 +6,18 @@ import PropTypes from "prop-types";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {View, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
 import Check from "./check.js";
 import Checkbox from "./checkbox.js";
 
 type OptionProps = {|
+    ...AriaProps,
+
     /**
      * Display text of the option item.
      */
@@ -111,7 +113,22 @@ export default class OptionItem extends React.Component<OptionProps> {
     };
 
     render() {
-        const {disabled, label, role, selected, testId, style} = this.props;
+        const {
+            disabled,
+            label,
+            role,
+            selected,
+            testId,
+            style,
+            // eslint-disable-next-line no-unused-vars
+            value,
+            /* eslint-disable no-unused-vars */
+            onClick,
+            onToggle,
+            variant,
+            /* eslint-enable no-unused-vars */
+            ...sharedProps
+        } = this.props;
 
         const ClickableBehavior = getClickableBehavior();
         const CheckComponent = this.getCheckComponent();
@@ -137,6 +154,7 @@ export default class OptionItem extends React.Component<OptionProps> {
 
                     return (
                         <View
+                            {...sharedProps}
                             testId={testId}
                             style={defaultStyle}
                             aria-selected={selected ? "true" : "false"}
@@ -148,9 +166,9 @@ export default class OptionItem extends React.Component<OptionProps> {
                                 selected={selected}
                                 {...state}
                             />
-                            <LabelLarge style={styles.label}>
+                            <LabelMedium style={styles.label}>
                                 {label}
-                            </LabelLarge>
+                            </LabelMedium>
                         </View>
                     );
                 }}

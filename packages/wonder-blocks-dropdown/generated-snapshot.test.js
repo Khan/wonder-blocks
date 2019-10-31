@@ -962,8 +962,18 @@ describe("wonder-blocks-dropdown", () => {
                     aria-labelledby="label-for-single-select"
                     id="unique-single-select"
                     placeholder="Accessible SingleSelect"
+                    selectedValue="one"
                 >
-                    <OptionItem label="some value" value="" />
+                    <OptionItem
+                        label="First element"
+                        aria-label="First element, selected"
+                        value="one"
+                    />
+                    <OptionItem
+                        label="Second element"
+                        aria-label="Second element, unselelected"
+                        value="two"
+                    />
                 </SingleSelect>
             </View>
         );
@@ -1346,8 +1356,18 @@ describe("wonder-blocks-dropdown", () => {
                     aria-labelledby="label-for-multi-select"
                     id="unique-multi-select"
                     placeholder="Accessible MultiSelect"
+                    selectedValues={["one"]}
                 >
-                    <OptionItem label="some value" value="" />
+                    <OptionItem
+                        label="First element"
+                        aria-label="First element, selected"
+                        value="one"
+                    />
+                    <OptionItem
+                        label="Second element"
+                        aria-label="Second element, unselelected"
+                        value="two"
+                    />
                 </MultiSelect>
             </View>
         );

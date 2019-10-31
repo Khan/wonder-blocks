@@ -308,7 +308,13 @@ const styles = StyleSheet.create({
 
 If you need to associate this component with another element (e.g. `<label>`),
 make sure to pass the `aria-labelledby` and/or `id` props to the `SingleSelect` component.
-This way, the `opener` will receive this value and it will associate both elements.
+This way, the `opener` will receive this value and it will associate both
+elements.
+
+Also, if you need screen readers to understand any relevant information on every
+option item, you can use `aria-label` on each item. e.g. You can use it to let
+screen readers know the current selected/unselected status of the item when it
+receives focus.
 
 ```js
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
@@ -327,8 +333,10 @@ import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
         aria-labelledby="label-for-single-select"
         id="unique-single-select"
         placeholder="Accessible SingleSelect"
+        selectedValue="one"
     >
-        <OptionItem label="some value" value="" />
+        <OptionItem label="First element" aria-label="First element, selected" value="one" />
+        <OptionItem label="Second element" aria-label="Second element, unselelected" value="two" />
     </SingleSelect>
 </View>
 ```

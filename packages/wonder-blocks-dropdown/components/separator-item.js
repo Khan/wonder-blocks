@@ -31,7 +31,10 @@ export default class SeparatorItem extends React.Component<{|
     render() {
         return (
             // pass optional styles from react-window (if applies)
-            <View style={[styles.separator, this.props.style]} />
+            <View
+                style={[styles.separator, this.props.style]}
+                aria-hidden="true"
+            />
         );
     }
 }
