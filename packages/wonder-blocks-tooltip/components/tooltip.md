@@ -1,6 +1,8 @@
 ### Text anchor & text tooltip & placement right
 
 ```js
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
+
 <Tooltip content="This is a text tooltip on the right" placement="right">
     Some text
 </Tooltip>
