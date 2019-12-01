@@ -10,6 +10,7 @@ import type {
     ClickableHandlers,
     ClickableState,
 } from "@khanacademy/wonder-blocks-core";
+import type {StyleDeclaration} from "aphrodite";
 import type {SharedProps} from "./link.js";
 
 type Props = {|
@@ -101,33 +102,38 @@ const _generateStyles = (kind, light, visitable) => {
     const defaultTextColor =
         kind === "primary" ? (light ? white : blue) : offBlack;
 
+    const focusColor: string = light ? white : blue;
+    const activeColor: string = light
+        ? mix(fade(blue, 0.32), white)
+        : mix(offBlack32, blue);
+
     const defaultVisited = visitable
         ? {
               ":visited": {
                   color: linkPurple,
               },
           }
-        : {};
+        : Object.freeze({});
     const activeVisited = visitable
         ? {
               ":visited": {
                   color: mix(offBlack32, linkPurple),
               },
           }
-        : {};
+        : Object.freeze({});
 
-    const newStyles = {
+    const newStyles: StyleDeclaration = {
         default: {
             color: defaultTextColor,
             ...defaultVisited,
         },
         focus: {
             textDecoration: "underline currentcolor solid",
-            color: light ? white : blue,
+            color: focusColor,
             ...defaultVisited,
         },
         active: {
-            color: light ? mix(fade(blue, 0.32), white) : mix(offBlack32, blue),
+            color: activeColor,
             textDecoration: "underline currentcolor solid",
             ...activeVisited,
         },

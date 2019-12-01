@@ -83,7 +83,15 @@ function getElementIntersectionAgainstParent(
         ((boundsElement: any).currentStyle: ?CSSStyleDeclaration) ||
         window.getComputedStyle(boundsElement);
 
-    const boundsRect = {...boundsElement.getBoundingClientRect()};
+    const boundingRect = boundsElement.getBoundingClientRect();
+    const boundsRect: Rect = {
+        top: boundingRect.top,
+        bottom: boundingRect.bottom,
+        left: boundingRect.left,
+        right: boundingRect.right,
+        width: boundingRect.width,
+        height: boundingRect.height,
+    };
 
     // In webapp we set height: 100% on html, body and overflow-y: scroll on body.
     // This results in the height reported by getBoundingClientRect being the height
