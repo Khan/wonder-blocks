@@ -1,0 +1,27 @@
+{
+  "name": "@khanacademy/wonder-blocks-data",
+  "version": "1.0.0",
+  "design": "v1",
+  "private": true,
+  "publishConfig": {
+    "access": "private"
+  },
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "source": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@khanacademy/wonder-blocks-core": "^2.4.3"
+  },
+  "peerDependencies": {
+    "react": "^16.4.1"
+  },
+  "devDependencies": {
+    "wb-dev-build-settings": "^0.0.3"
+  },
+  "author": "",
+  "license": "MIT"
+}
