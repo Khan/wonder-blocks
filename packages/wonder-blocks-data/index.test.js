@@ -9,7 +9,7 @@ describe("@khanacademy/wonder-blocks-data", () => {
 
         // Assert
         expect(Object.keys(result).sort()).toEqual(
-            ["RequestHandler", "TrackData"].sort(),
+            ["RequestHandler", "TrackData", "initializeCache"].sort(),
         );
     });
 });

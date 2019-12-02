@@ -1,6 +1,16 @@
 // @flow
 export type Behavior = "static" | "refresh";
 
+type HandlerSubcache = {
+    [key: string]: any,
+    ...,
+};
+
+export type ResponseCache = {
+    [key: string]: HandlerSubcache,
+    ...,
+};
+
 /**
  * A handler for data requests.
  */
