@@ -2,7 +2,7 @@
 import * as React from "react";
 import {Server} from "@khanacademy/wonder-blocks-core";
 
-import {TrackerContext, trackDataRequest} from "../util/request-tracking.js";
+import requestTracker, {TrackerContext} from "../util/request-tracking.js";
 
 type TrackDataProps = {|
     children: React.Node,
@@ -24,7 +24,7 @@ export default class TrackData extends React.Component<TrackDataProps> {
 
     render() {
         return (
-            <TrackerContext.Provider value={trackDataRequest}>
+            <TrackerContext.Provider value={requestTracker.trackDataRequest}>
                 {this.props.children}
             </TrackerContext.Provider>
         );
