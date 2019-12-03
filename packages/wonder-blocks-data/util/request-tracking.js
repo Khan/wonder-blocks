@@ -27,6 +27,11 @@ export const TrackerContext: React.Context<?TrackerFn> = new React.createContext
     null,
 );
 
+/**
+ * Implements request tracking and fulfillment.
+ *
+ * INTERNAL USE ONLY
+ */
 export class RequestTracker {
     /**
      * These are the caches for tracked requests and their handlers.
