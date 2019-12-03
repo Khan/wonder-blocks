@@ -77,9 +77,6 @@ type Common = {|
      * not provided, a unique id will be generated.
      */
     titleId?: string,
-
-    // subtitle: void,
-    // breadcrumbs: void,
 |};
 
 type WithSubtitle = {|
