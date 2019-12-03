@@ -1,7 +1,8 @@
 // @flow
 import * as React from "react";
+import {cacheData, clone} from "./response-cache.js";
 
-import type {IRequestHandler} from "./types.js";
+import type {ResponseCache, IRequestHandler} from "./types.js";
 
 type TrackerFn = (handler: IRequestHandler<any, any>, options: any) => void;
 
@@ -94,4 +95,112 @@ export function tempGetTrackedRequestsAndHandlers() {
         trackedHandlers,
         trackedRequests,
     };
+}
+
+/**
+ * There are two circumstances to handle errors. When calling the
+ * handler to fulfil a request and when the subsequent promise
+ * fails. We don't want to throw. This is server-side. A log message
+ * is all we need. That way the other requests still occur.
+ */
+const errorHandler = (error: any, handlerType: string, request: any): void =>
+    // eslint-disable-next-line no-console
+    console.error(
+        `Request fulfilment failed for ${handlerType}:${JSON.stringify(
+            request,
+        )}:\n${error}`,
+    );
+
+const fulfilAndCache = <TOptions, TData>(
+    handler: IRequestHandler<TOptions, TData>,
+    options: TOptions,
+) => {
+    /**
+     * Let's make sure that one bad apple does not spoil the barrel.
+     * This should ensure that in the face of errors, not everything
+     * falls apart, and should help with debugging bad requests during
+     * SSR.
+     */
+    try {
+        return handler
+            .fulfilRequest(options)
+            .then((data) => cacheData(handler, options, data))
+            .catch((error) => errorHandler(error, handler.type, options));
+    } catch (e) {
+        errorHandler(e, handler.type, options);
+    }
+
+    /**
+     * If it failed, we'll return null so that our calling code knows to just
+     * skip this one.
+     */
+    return null;
+};
+
+/**
+ * Initiate fulfilment of all tracked requests.
+ *
+ * This loops over the requests that were tracked using TrackData, and asks
+ * the respective handlers to fulfil those requests in the order they were
+ * tracked.
+ *
+ * Calling this method marks tracked requests as fulfilled; requests are
+ * removed from the list of tracked requests by calling this method.
+ *
+ * @returns {Promise<ResponseCache>} A frozen cache of the data that was cached
+ * as a result of fulfilling the tracked requests.
+ */
+export function fulfilAllDataRequests(): Promise<$ReadOnly<ResponseCache>> {
+    const promises = [];
+
+    for (const handlerType of Object.keys(trackedHandlers)) {
+        const handler = trackedHandlers[handlerType];
+        delete trackedHandlers[handlerType];
+
+        // For each handler, we will perform the request fulfilments!
+        const requests = trackedRequests[handlerType];
+        delete trackedRequests[handlerType];
+        for (const requestKey of Object.keys(requests)) {
+            /**
+             * First, we remove this from the list of tracked requests, because
+             * we are fulfilling it.
+             */
+            const requestOptions = requests[requestKey];
+            delete requests[requestKey];
+
+            /**
+             * Each option in the requestOptions represents a refresh.
+             * We have to apply these in sequence.
+             */
+            const promise = requestOptions.reduce(
+                (prev: ?Promise<any>, cur: any) => {
+                    if (prev == null) {
+                        return fulfilAndCache(handler, cur);
+                    }
+                    /**
+                     * Chain the fulfilment of this request off the last.
+                     */
+                    return prev.then((r) => fulfilAndCache(handler, cur));
+                },
+                null,
+            );
+
+            if (promise != null) {
+                promises.push(promise);
+            }
+        }
+    }
+
+    /**
+     * If this is called but results in no promises, then we just return an
+     * empty frozen cache.
+     */
+    if (promises.length === 0) {
+        return Promise.resolve(Object.freeze({}));
+    }
+
+    /**
+     * The calling code does not need to see all the data that we retrieved.
+     */
+    return Promise.all(promises).then(() => clone());
 }
