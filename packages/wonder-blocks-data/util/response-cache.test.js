@@ -37,7 +37,7 @@ describe("./response-cache.js", () => {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
                 cacheHitBehavior: () => "static",
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
             };
 
             // Act
@@ -82,7 +82,7 @@ describe("./response-cache.js", () => {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
                 cacheHitBehavior: () => "static",
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
             };
             const sourceData = {
                 MY_HANDLER: {
@@ -130,7 +130,7 @@ describe("./response-cache.js", () => {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
                 cacheHitBehavior: () => "static",
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
             };
 
             // Act
@@ -148,7 +148,7 @@ describe("./response-cache.js", () => {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
                 cacheHitBehavior: () => "static",
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
             };
             initialize({
                 MY_HANDLER: {
@@ -173,7 +173,7 @@ describe("./response-cache.js", () => {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
                 cacheHitBehavior: () => "static",
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
             };
 
             // Act
@@ -190,7 +190,7 @@ describe("./response-cache.js", () => {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
                 cacheHitBehavior: () => "static",
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
             };
             initialize({
                 MY_HANDLER: {
@@ -212,7 +212,7 @@ describe("./response-cache.js", () => {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
                 cacheHitBehavior: () => "static",
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
             };
             initialize({
                 MY_HANDLER: {

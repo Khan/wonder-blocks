@@ -3,7 +3,7 @@
 Wonder Blocks Data caches data in its response cache. This cache can be
 initialized with data using the `initializeCache` method. The `initializeData`
 method can only be called once to populate the cache. Usually, the data to be
-passed to `initializeCache` will be obtained by calling `fulfilAllDataRequests`
+passed to `initializeCache` will be obtained by calling `fulfillAllDataRequests`
 after tracking data requests (see [TrackData](#trackdata)) during server-side
 rendering.
 
