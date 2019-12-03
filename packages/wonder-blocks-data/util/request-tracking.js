@@ -125,6 +125,14 @@ export class RequestTracker {
     }
 
     /**
+     * Reset our tracking info.
+     */
+    reset() {
+        this._trackedHandlers = {};
+        this._trackedRequests = {};
+    }
+
+    /**
      * Initiate fulfillment of all tracked requests.
      *
      * This loops over the requests that were tracked using TrackData, and asks
@@ -137,16 +145,14 @@ export class RequestTracker {
      * @returns {Promise<ResponseCache>} A frozen cache of the data that was cached
      * as a result of fulfilling the tracked requests.
      */
-    fulfillAllDataRequests(): Promise<$ReadOnly<ResponseCache>> {
+    fulfillTrackedRequests(): Promise<$ReadOnly<ResponseCache>> {
         const promises = [];
 
         for (const handlerType of Object.keys(this._trackedHandlers)) {
             const handler = this._trackedHandlers[handlerType];
-            delete this._trackedHandlers[handlerType];
 
             // For each handler, we will perform the request fulfillments!
             const requests = this._trackedRequests[handlerType];
-            delete this._trackedRequests[handlerType];
             for (const requestKey of Object.keys(requests)) {
                 /**
                  * Each entry int he request represents a refresh of the
@@ -174,6 +180,11 @@ export class RequestTracker {
                 }
             }
         }
+
+        /**
+         * Clear out our tracked info.
+         */
+        this.reset();
 
         /**
          * If this is called but results in no promises, then we just return an

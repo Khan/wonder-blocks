@@ -252,4 +252,8 @@ describe("./response-cache.js", () => {
             expect(result).toStrictEqual({data: "data!"});
         });
     });
+
+    describe("#clone", () => {
+        it.todo("NEEDS TESTS");
+    });
 });

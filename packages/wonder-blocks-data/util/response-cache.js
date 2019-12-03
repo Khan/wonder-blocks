@@ -116,4 +116,8 @@ export class ResponseCache {
     }
 }
 
+/**
+ * The default cache instance used by Wonder Blocks Data package utils and
+ * components.
+ */
 export default new ResponseCache();

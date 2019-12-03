@@ -218,5 +218,13 @@ describe("./request-tracking.js", () => {
                 });
             });
         });
+
+        describe("#reset", () => {
+            it.todo("NEEDS TESTS");
+        });
+
+        describe("#fulfillTrackedRequests", () => {
+            it.todo("NEEDS TESTS");
+        });
     });
 });
