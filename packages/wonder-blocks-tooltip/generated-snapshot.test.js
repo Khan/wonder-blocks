@@ -8,8 +8,8 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import {View, Text} from "@khanacademy/wonder-blocks-core";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
+import {View, Text} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
 import {Body, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
