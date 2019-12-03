@@ -50,7 +50,7 @@ describe("./request-tracking.js", () => {
             // Arrange
             const {trackDataRequest} = getRequestTracking();
             const fakeHandler: IRequestHandler<any, any> = {
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
                 getKey: jest.fn(),
                 cacheHitBehavior: jest.fn().mockReturnValue("static"),
                 type: "MY_TYPE",
@@ -68,7 +68,7 @@ describe("./request-tracking.js", () => {
             // Arrange
             const {trackDataRequest} = getRequestTracking();
             const fakeHandler: IRequestHandler<any, any> = {
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
                 getKey: jest.fn(),
                 cacheHitBehavior: jest.fn().mockReturnValue(("made up!": any)),
                 type: "MY_TYPE",
@@ -91,7 +91,7 @@ describe("./request-tracking.js", () => {
                 tempGetTrackedRequestsAndHandlers,
             } = getRequestTracking();
             const fakeHandler: IRequestHandler<any, any> = {
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
                 getKey: jest.fn().mockReturnValue("MY_KEY"),
                 cacheHitBehavior: jest.fn().mockReturnValue("static"),
                 type: "MY_TYPE",
@@ -113,7 +113,7 @@ describe("./request-tracking.js", () => {
                 tempGetTrackedRequestsAndHandlers,
             } = getRequestTracking();
             const fakeHandler: IRequestHandler<any, any> = {
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
                 getKey: jest.fn().mockReturnValue("MY_KEY"),
                 cacheHitBehavior: jest.fn().mockReturnValue("static"),
                 type: "MY_TYPE",
@@ -137,7 +137,7 @@ describe("./request-tracking.js", () => {
                 tempGetTrackedRequestsAndHandlers,
             } = getRequestTracking();
             const fakeHandler: IRequestHandler<any, any> = {
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
                 getKey: jest.fn().mockReturnValue("MY_KEY"),
                 cacheHitBehavior: jest.fn().mockReturnValue("static"),
                 type: "MY_TYPE",
@@ -163,13 +163,13 @@ describe("./request-tracking.js", () => {
                 tempGetTrackedRequestsAndHandlers,
             } = getRequestTracking();
             const fakeHandler1: IRequestHandler<any, any> = {
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
                 getKey: jest.fn().mockReturnValue("MY_KEY"),
                 cacheHitBehavior: jest.fn().mockReturnValue("static"),
                 type: "MY_TYPE",
             };
             const fakeHandler2: IRequestHandler<any, any> = {
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
                 getKey: jest.fn().mockReturnValue("MY_KEY"),
                 cacheHitBehavior: jest.fn().mockReturnValue("static"),
                 type: "MY_TYPE",
@@ -193,7 +193,7 @@ describe("./request-tracking.js", () => {
                 tempGetTrackedRequestsAndHandlers,
             } = getRequestTracking();
             const fakeHandler: IRequestHandler<any, any> = {
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
                 getKey: jest.fn().mockReturnValue("MY_KEY"),
                 cacheHitBehavior: jest.fn().mockReturnValue("refresh"),
                 type: "MY_TYPE",
@@ -217,7 +217,7 @@ describe("./request-tracking.js", () => {
                 tempGetTrackedRequestsAndHandlers,
             } = getRequestTracking();
             const fakeHandler: IRequestHandler<any, any> = {
-                fulfilRequest: jest.fn(),
+                fulfillRequest: jest.fn(),
                 getKey: jest.fn().mockReturnValue("MY_KEY"),
                 cacheHitBehavior: jest.fn().mockReturnValue("refresh"),
                 type: "MY_TYPE",

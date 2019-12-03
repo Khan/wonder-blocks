@@ -3,7 +3,7 @@ This is a base class from which to derive your own implementations of `IRequestH
 Though there is a default implementation of `getKey`, it is recommended that you
 implement a more specific version for your use case.
 
-The `fulfilRequest` method of this base class is not implemented and will throw
+The `fulfillRequest` method of this base class is not implemented and will throw
 an error.
 
 By default, the `cacheHitBehavior` method will return `static`. You can override
