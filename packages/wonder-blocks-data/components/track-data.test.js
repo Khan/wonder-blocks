@@ -5,7 +5,7 @@ import {shallow} from "enzyme";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import TrackData from "./track-data.js";
-import {TrackerContext, trackDataRequest} from "../util/request-tracking.js";
+import requestTracker, {TrackerContext} from "../util/request-tracking.js";
 
 jest.mock("@khanacademy/wonder-blocks-core");
 
@@ -55,6 +55,6 @@ describe("./track-data.jsx", () => {
         });
 
         // Assert
-        expect(result).toBe(trackDataRequest);
+        expect(result).toBe(requestTracker.trackDataRequest);
     });
 });
