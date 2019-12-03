@@ -72,3 +72,12 @@ export function initialize(sourceCache: ResponseCache): void {
         );
     }
 }
+
+/**
+ * Deep clone the cache.
+ */
+export function clone(): $ReadOnly<ResponseCache> {
+    const serializedInitCache = JSON.stringify(responseCache);
+    const cloneInitCache = JSON.parse(serializedInitCache);
+    return Object.freeze(cloneInitCache);
+}
