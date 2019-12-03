@@ -32,7 +32,7 @@ describe("./response-cache.js", () => {
     describe("#initialize", () => {
         it("should initialize the cache with the given data", () => {
             // Arrange
-            const {initialize, getData} = getResponseCache();
+            const {initialize, getEntry} = getResponseCache();
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
@@ -43,13 +43,13 @@ describe("./response-cache.js", () => {
             // Act
             initialize({
                 MY_HANDLER: {
-                    MY_KEY: "THE_DATA",
+                    MY_KEY: {data: "THE_DATA"},
                 },
             });
-            const result = getData(fakeHandler, "options");
+            const result = getEntry(fakeHandler, "options");
 
             // Assert
-            expect(result).toBe("THE_DATA");
+            expect(result).toStrictEqual({data: "THE_DATA"});
         });
 
         it("should throw if the cache is already intialized", () => {
@@ -57,7 +57,7 @@ describe("./response-cache.js", () => {
             const {initialize} = getResponseCache();
             initialize({
                 MY_HANDLER: {
-                    MY_KEY: "THE_DATA",
+                    MY_KEY: {data: "THE_DATA"},
                 },
             });
 
@@ -65,7 +65,7 @@ describe("./response-cache.js", () => {
             const underTest = () =>
                 initialize({
                     MY_HANDLER: {
-                        MY_OTHER_KEY: "MORE_DATA",
+                        MY_OTHER_KEY: {data: "MORE_DATA"},
                     },
                 });
 
@@ -77,7 +77,7 @@ describe("./response-cache.js", () => {
 
         it("should deep clone the cached data", () => {
             // Arrange
-            const {initialize, getData} = getResponseCache();
+            const {initialize, getEntry} = getResponseCache();
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
@@ -86,18 +86,18 @@ describe("./response-cache.js", () => {
             };
             const sourceData = {
                 MY_HANDLER: {
-                    MY_KEY: "THE_DATA",
+                    MY_KEY: {data: "THE_DATA"},
                 },
             };
 
             // Act
             initialize(sourceData);
             // Try to mutate the cache.
-            sourceData["MY_HANDLER"]["MY_KEY"] = "SOME_NEW_DATA";
-            const result = getData(fakeHandler, "options");
+            sourceData["MY_HANDLER"]["MY_KEY"] = {data: "SOME_NEW_DATA"};
+            const result = getEntry(fakeHandler, "options");
 
             // Assert
-            expect(result).toBe("THE_DATA");
+            expect(result).toStrictEqual({data: "THE_DATA"});
         });
 
         it("should throw if the cloning fails", () => {
@@ -111,7 +111,7 @@ describe("./response-cache.js", () => {
             const underTest = () =>
                 initialize({
                     BAD: {
-                        BAD: "FOOD",
+                        BAD: {data: "FOOD"},
                     },
                 });
 
@@ -123,9 +123,9 @@ describe("./response-cache.js", () => {
     });
 
     describe("#cacheData", () => {
-        it("should add the data to the cache", () => {
+        it("should add the entry to the cache", () => {
             // Arrange
-            const {cacheData, getData} = getResponseCache();
+            const {cacheData, getEntry} = getResponseCache();
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
@@ -135,15 +135,15 @@ describe("./response-cache.js", () => {
 
             // Act
             cacheData(fakeHandler, "options", "data");
-            const result = getData(fakeHandler, "options");
+            const result = getEntry(fakeHandler, "options");
 
             // Assert
-            expect(result).toBe("data");
+            expect(result).toStrictEqual({data: "data"});
         });
 
-        it("should replace the data in the handler subcache", () => {
+        it("should replace the entry in the handler subcache", () => {
             // Arrange
-            const {initialize, cacheData, getData} = getResponseCache();
+            const {initialize, cacheData, getEntry} = getResponseCache();
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
@@ -152,23 +152,23 @@ describe("./response-cache.js", () => {
             };
             initialize({
                 MY_HANDLER: {
-                    MY_KEY: "data",
+                    MY_KEY: {error: new Error("Oh no!")},
                 },
             });
 
             // Act
             cacheData(fakeHandler, "options", "other_data");
-            const result = getData(fakeHandler, "options");
+            const result = getEntry(fakeHandler, "options");
 
             // Assert
-            expect(result).toBe("other_data");
+            expect(result).toStrictEqual({data: "other_data"});
         });
     });
 
-    describe("#getData", () => {
-        it("should return null if the handler subcache is absent", () => {
+    describe("#cacheError", () => {
+        it("should add the entry to the cache", () => {
             // Arrange
-            const {getData} = getResponseCache();
+            const {cacheError, getEntry} = getResponseCache();
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
@@ -177,15 +177,58 @@ describe("./response-cache.js", () => {
             };
 
             // Act
-            const result = getData(fakeHandler, "options");
+            cacheError(fakeHandler, "options", new Error("Ooops!"));
+            const result = getEntry(fakeHandler, "options");
+
+            // Assert
+            expect(result).toStrictEqual({error: new Error("Ooops!")});
+        });
+
+        it("should replace the entry in the handler subcache", () => {
+            // Arrange
+            const {initialize, cacheError, getEntry} = getResponseCache();
+            const fakeHandler: IRequestHandler<string, string> = {
+                getKey: () => "MY_KEY",
+                type: "MY_HANDLER",
+                cacheHitBehavior: () => "static",
+                fulfillRequest: jest.fn(),
+            };
+            initialize({
+                MY_HANDLER: {
+                    MY_KEY: {data: {some: "data"}},
+                },
+            });
+
+            // Act
+            cacheError(fakeHandler, "options", new Error("Oh no!"));
+            const result = getEntry(fakeHandler, "options");
+
+            // Assert
+            expect(result).toStrictEqual({error: new Error("Oh no!")});
+        });
+    });
+
+    describe("#getEntry", () => {
+        it("should return null if the handler subcache is absent", () => {
+            // Arrange
+            const {getEntry} = getResponseCache();
+            const fakeHandler: IRequestHandler<string, string> = {
+                getKey: () => "MY_KEY",
+                type: "MY_HANDLER",
+                cacheHitBehavior: () => "static",
+                fulfillRequest: jest.fn(),
+            };
+
+            // Act
+            const result = getEntry(fakeHandler, "options");
 
             // Assert
             expect(result).toBeNull();
         });
 
-        it("should return undefined if the request key is absent from the subcache", () => {
+        it("should return null if the request key is absent from the subcache", () => {
             // Arrange
-            const {initialize, getData} = getResponseCache();
+            const {initialize, getEntry} = getResponseCache();
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
@@ -194,20 +237,20 @@ describe("./response-cache.js", () => {
             };
             initialize({
                 MY_HANDLER: {
-                    SOME_OTHER_KEY: "data we don't want",
+                    SOME_OTHER_KEY: {data: "data we don't want"},
                 },
             });
 
             // Act
-            const result = getData(fakeHandler, "options");
+            const result = getEntry(fakeHandler, "options");
 
             // Assert
-            expect(result).toBeUndefined();
+            expect(result).toBeNull();
         });
 
-        it("should return the cached data", () => {
+        it("should return the cached entry", () => {
             // Arrange
-            const {initialize, getData} = getResponseCache();
+            const {initialize, getEntry} = getResponseCache();
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
@@ -216,15 +259,15 @@ describe("./response-cache.js", () => {
             };
             initialize({
                 MY_HANDLER: {
-                    MY_KEY: "data!",
+                    MY_KEY: {data: "data!"},
                 },
             });
 
             // Act
-            const result = getData(fakeHandler, "options");
+            const result = getEntry(fakeHandler, "options");
 
             // Assert
-            expect(result).toBe("data!");
+            expect(result).toStrictEqual({data: "data!"});
         });
     });
 });

@@ -1,8 +1,16 @@
 // @flow
 export type Behavior = "static" | "refresh";
 
+export type CacheEntry =
+    | {|
+          error: Error,
+      |}
+    | {|
+          data: any,
+      |};
+
 type HandlerSubcache = {
-    [key: string]: any,
+    [key: string]: CacheEntry,
     ...,
 };
 

@@ -1,10 +1,25 @@
 // @flow
-import type {ResponseCache, IRequestHandler} from "./types.js";
+import type {CacheEntry, ResponseCache, IRequestHandler} from "./types.js";
 
 /**
  * The response cache itself. Not to be exposed directly.
  */
 const responseCache: ResponseCache = ({}: any);
+
+function setCacheEntry<TOptions, TData>(
+    handler: IRequestHandler<TOptions, TData>,
+    options: TOptions,
+    entry: CacheEntry,
+): void {
+    const requestType = handler.type;
+
+    // Ensure we have a cache location for this handler type.
+    responseCache[requestType] = responseCache[requestType] || {};
+
+    // Cache the data.
+    const key = handler.getKey(options);
+    responseCache[requestType][key] = entry;
+}
 
 /**
  * Add data to our response cache.
@@ -16,14 +31,15 @@ export function cacheData<TOptions, TData>(
     options: TOptions,
     data: TData,
 ): void {
-    const requestType = handler.type;
+    setCacheEntry(handler, options, {data});
+}
 
-    // Ensure we have a cache location for this handler type.
-    responseCache[requestType] = responseCache[requestType] || {};
-
-    // Cache the data.
-    const key = handler.getKey(options);
-    responseCache[requestType][key] = data;
+export function cacheError<TOptions, TData>(
+    handler: IRequestHandler<TOptions, TData>,
+    options: TOptions,
+    error: Error,
+): void {
+    setCacheEntry(handler, options, {error});
 }
 
 /**
@@ -31,10 +47,10 @@ export function cacheData<TOptions, TData>(
  *
  * INTERNAL USE ONLY
  */
-export function getData<TOptions, TData>(
+export function getEntry<TOptions, TData>(
     handler: IRequestHandler<TOptions, TData>,
     options: TOptions,
-): ?TData {
+): ?CacheEntry {
     const requestType = handler.type;
 
     // Get the subcache for the handler.
@@ -45,7 +61,8 @@ export function getData<TOptions, TData>(
 
     // Get the response.
     const key = handler.getKey(options);
-    return handlerCache[key];
+    const entry = handlerCache[key];
+    return entry == null ? null : entry;
 }
 
 /**
