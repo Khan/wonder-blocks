@@ -33,7 +33,7 @@ export default class RequestHandler<TOptions, TData>
         }
     }
 
-    fulfilRequest(options: TOptions): Promise<TData> {
+    fulfillRequest(options: TOptions): Promise<TData> {
         throw new Error("Not implemented");
     }
 }

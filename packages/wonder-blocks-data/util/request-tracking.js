@@ -34,7 +34,7 @@ const trackedRequests: RequestCache = {};
  * Track a request.
  *
  * This method caches a request and its handler for use during server-side
- * rendering to allow us to fulfil requests before producing a final render.
+ * rendering to allow us to fulfill requests before producing a final render.
  */
 export function trackDataRequest(
     handler: IRequestHandler<any, any>,
@@ -68,7 +68,7 @@ export function trackDataRequest(
 
         case "refresh":
             /**
-             * For refresh requests, we need to track and fulfil each one.
+             * For refresh requests, we need to track and fulfill each one.
              */
             const current = trackedRequests[type][key] || [];
             trackedRequests[type][key] = [...current, options];
