@@ -85,10 +85,10 @@ export function trackDataRequest(
 }
 
 /**
- * This method is temporary. Will be replaced with the fulfilAll... call when
+ * This method is temporary. Will be replaced with the fulfillAll... call when
  * that is implemented.
  *
- * TODO(jeff): Delete this when the fulfilment method is implemented.
+ * TODO(jeff): Delete this when the fulfillment method is implemented.
  */
 export function tempGetTrackedRequestsAndHandlers() {
     return {
@@ -99,19 +99,19 @@ export function tempGetTrackedRequestsAndHandlers() {
 
 /**
  * There are two circumstances to handle errors. When calling the
- * handler to fulfil a request and when the subsequent promise
+ * handler to fulfill a request and when the subsequent promise
  * fails. We don't want to throw. This is server-side. A log message
  * is all we need. That way the other requests still occur.
  */
 const errorHandler = (error: any, handlerType: string, request: any): void =>
     // eslint-disable-next-line no-console
     console.error(
-        `Request fulfilment failed for ${handlerType}:${JSON.stringify(
+        `Request fulfillment failed for ${handlerType}:${JSON.stringify(
             request,
         )}:\n${error}`,
     );
 
-const fulfilAndCache = <TOptions, TData>(
+const fulfillAndCache = <TOptions, TData>(
     handler: IRequestHandler<TOptions, TData>,
     options: TOptions,
 ) => {
@@ -123,7 +123,7 @@ const fulfilAndCache = <TOptions, TData>(
      */
     try {
         return handler
-            .fulfilRequest(options)
+            .fulfillRequest(options)
             .then((data) => cacheData(handler, options, data))
             .catch((error) => errorHandler(error, handler.type, options));
     } catch (e) {
@@ -138,10 +138,10 @@ const fulfilAndCache = <TOptions, TData>(
 };
 
 /**
- * Initiate fulfilment of all tracked requests.
+ * Initiate fulfillment of all tracked requests.
  *
  * This loops over the requests that were tracked using TrackData, and asks
- * the respective handlers to fulfil those requests in the order they were
+ * the respective handlers to fulfill those requests in the order they were
  * tracked.
  *
  * Calling this method marks tracked requests as fulfilled; requests are
@@ -150,14 +150,14 @@ const fulfilAndCache = <TOptions, TData>(
  * @returns {Promise<ResponseCache>} A frozen cache of the data that was cached
  * as a result of fulfilling the tracked requests.
  */
-export function fulfilAllDataRequests(): Promise<$ReadOnly<ResponseCache>> {
+export function fulfillAllDataRequests(): Promise<$ReadOnly<ResponseCache>> {
     const promises = [];
 
     for (const handlerType of Object.keys(trackedHandlers)) {
         const handler = trackedHandlers[handlerType];
         delete trackedHandlers[handlerType];
 
-        // For each handler, we will perform the request fulfilments!
+        // For each handler, we will perform the request fulfillments!
         const requests = trackedRequests[handlerType];
         delete trackedRequests[handlerType];
         for (const requestKey of Object.keys(requests)) {
@@ -170,13 +170,13 @@ export function fulfilAllDataRequests(): Promise<$ReadOnly<ResponseCache>> {
             const promise = requests[requestKey].reduce(
                 (prev: ?Promise<any>, cur: any) => {
                     if (prev == null) {
-                        return fulfilAndCache(handler, cur);
+                        return fulfillAndCache(handler, cur);
                     }
                     /**
-                     * Chain the fulfilment of this request off the last.
-                     * This ensures that fulfilment side-effects occur in order.
+                     * Chain the fulfillment of this request off the last.
+                     * This ensures that fulfillment side-effects occur in order.
                      */
-                    return prev.then(() => fulfilAndCache(handler, cur));
+                    return prev.then(() => fulfillAndCache(handler, cur));
                 },
             );
 
@@ -195,7 +195,7 @@ export function fulfilAllDataRequests(): Promise<$ReadOnly<ResponseCache>> {
     }
 
     /**
-     * Let's wait for everything to fulfil, and then clone the cached data.
+     * Let's wait for everything to fulfill, and then clone the cached data.
      */
     return Promise.all(promises).then(() => clone());
 }
