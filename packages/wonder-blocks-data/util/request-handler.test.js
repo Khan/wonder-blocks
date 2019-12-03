@@ -93,13 +93,13 @@ describe("./request-handler.js", () => {
         });
     });
 
-    describe("#fulfilRequest", () => {
+    describe("#fulfillRequest", () => {
         it("should throw that it is not implemented", () => {
             // Arrange
             const handler = new RequestHandler("MY_TYPE");
 
             // Act
-            const underTest = () => handler.fulfilRequest({});
+            const underTest = () => handler.fulfillRequest({});
 
             // Assert
             expect(underTest).toThrowErrorMatchingInlineSnapshot(

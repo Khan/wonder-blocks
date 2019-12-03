@@ -6,12 +6,12 @@ export type Behavior = "static" | "refresh";
  */
 export interface IRequestHandler<TOptions, TData> {
     /**
-     * Fulfil a given request.
+     * Fulfill a given request.
      *
      * @param {TOptions} options Options tha the request may need.
      * @return {Promise<TData>} A promise of the requested data.
      */
-    fulfilRequest(options: TOptions): Promise<TData>;
+    fulfillRequest(options: TOptions): Promise<TData>;
 
     /**
      * The handler type; this is used to uniquely identify this handler from
