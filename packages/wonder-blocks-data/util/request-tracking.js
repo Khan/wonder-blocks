@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {cacheData, clone} from "./response-cache.js";
+import {cacheData, clone, cacheError} from "./response-cache.js";
 
 import type {ResponseCache, IRequestHandler} from "./types.js";
 
@@ -97,20 +97,6 @@ export function tempGetTrackedRequestsAndHandlers() {
     };
 }
 
-/**
- * There are two circumstances to handle errors. When calling the
- * handler to fulfill a request and when the subsequent promise
- * fails. We don't want to throw. This is server-side. A log message
- * is all we need. That way the other requests still occur.
- */
-const errorHandler = (error: any, handlerType: string, request: any): void =>
-    // eslint-disable-next-line no-console
-    console.error(
-        `Request fulfillment failed for ${handlerType}:${JSON.stringify(
-            request,
-        )}:\n${error}`,
-    );
-
 const fulfillAndCache = <TOptions, TData>(
     handler: IRequestHandler<TOptions, TData>,
     options: TOptions,
@@ -125,9 +111,9 @@ const fulfillAndCache = <TOptions, TData>(
         return handler
             .fulfillRequest(options)
             .then((data) => cacheData(handler, options, data))
-            .catch((error) => errorHandler(error, handler.type, options));
-    } catch (e) {
-        errorHandler(e, handler.type, options);
+            .catch((error: Error) => cacheError(handler, options, error));
+    } catch (error) {
+        cacheError(handler, options, error);
     }
 
     /**

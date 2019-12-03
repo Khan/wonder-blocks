@@ -1,6 +1,19 @@
 // @flow
 export type Behavior = "static" | "refresh";
 
+// type Result<TData> =
+//     | {|
+//           loading: true,
+//       |}
+//     | {|
+//           loading: false,
+//           data: TData,
+//       |}
+//     | {|
+//           loading: false,
+//           error: Error,
+//       |};
+
 export type CacheEntry =
     | {|
           error: Error,
