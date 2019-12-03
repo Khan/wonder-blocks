@@ -162,27 +162,22 @@ export function fulfilAllDataRequests(): Promise<$ReadOnly<ResponseCache>> {
         delete trackedRequests[handlerType];
         for (const requestKey of Object.keys(requests)) {
             /**
-             * First, we remove this from the list of tracked requests, because
-             * we are fulfilling it.
-             */
-            const requestOptions = requests[requestKey];
-            delete requests[requestKey];
-
-            /**
-             * Each option in the requestOptions represents a refresh.
+             * Each entry int he request represents a refresh of the
+             * cache value.
+             *
              * We have to apply these in sequence.
              */
-            const promise = requestOptions.reduce(
+            const promise = requests[requestKey].reduce(
                 (prev: ?Promise<any>, cur: any) => {
                     if (prev == null) {
                         return fulfilAndCache(handler, cur);
                     }
                     /**
                      * Chain the fulfilment of this request off the last.
+                     * This ensures that fulfilment side-effects occur in order.
                      */
-                    return prev.then((r) => fulfilAndCache(handler, cur));
+                    return prev.then(() => fulfilAndCache(handler, cur));
                 },
-                null,
             );
 
             if (promise != null) {
@@ -193,14 +188,14 @@ export function fulfilAllDataRequests(): Promise<$ReadOnly<ResponseCache>> {
 
     /**
      * If this is called but results in no promises, then we just return an
-     * empty frozen cache.
+     * empty cache.
      */
     if (promises.length === 0) {
         return Promise.resolve(Object.freeze({}));
     }
 
     /**
-     * The calling code does not need to see all the data that we retrieved.
+     * Let's wait for everything to fulfil, and then clone the cached data.
      */
     return Promise.all(promises).then(() => clone());
 }
