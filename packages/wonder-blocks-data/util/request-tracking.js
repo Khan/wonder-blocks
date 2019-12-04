@@ -28,12 +28,23 @@ export const TrackerContext: React.Context<?TrackerFn> = new React.createContext
 );
 
 /**
+ * The default instance is stored here.
+ * It's created below in the Default() static property.
+ */
+let _default: RequestTracker;
+
+/**
  * Implements request tracking and fulfillment.
  *
  * INTERNAL USE ONLY
  */
 export class RequestTracker {
-    static Default = new RequestTracker();
+    static get Default() {
+        if (!_default) {
+            _default = new RequestTracker();
+        }
+        return _default;
+    }
 
     /**
      * These are the caches for tracked requests, their handlers, and responses.
@@ -60,10 +71,17 @@ export class RequestTracker {
         try {
             return handler
                 .fulfillRequest(options)
-                .then((data) => cacheData(handler, options, data))
-                .catch((error) => cacheError(handler, options, error));
+                .then((data) => {
+                    cacheData(handler, options, data);
+                    return undefined;
+                })
+                .catch((error) => {
+                    cacheError(handler, options, error);
+                    return undefined;
+                });
         } catch (error) {
-            return Promise.resolve(cacheError(handler, options, error));
+            cacheError(handler, options, error);
+            return Promise.resolve(undefined);
         }
     }
 
@@ -148,10 +166,13 @@ export class RequestTracker {
             const requests = this._trackedRequests[handlerType];
             for (const requestKey of Object.keys(requests)) {
                 /**
-                 * Each entry int he request represents a refresh of the
+                 * Each entry in the request represents a refresh of the
                  * cache value.
                  *
-                 * We have to apply these in sequence.
+                 * Although the handler may already enforce ordering of refresh
+                 * calls, let's play it safe and assume it wont.
+                 *
+                 * So, we apply these in sequence.
                  */
                 const promise = requests[requestKey].reduce(
                     (prev: ?Promise<any>, cur: any): ?Promise<any> => {
