@@ -249,6 +249,14 @@ describe("./request-tracking.js", () => {
             it("should cache data and errors for all requests", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
+                /**
+                 * We're going to check a few things here:
+                 * - Handlers that crash when making the request
+                 * - Handlers that reject the promise
+                 * - Static handlers that resolve
+                 * - Refresh handlers that resolve (and that every tracked
+                 *   refresh request occurs)
+                 */
                 const fakeBadRequestHandler: IRequestHandler<string, any> = {
                     fulfillRequest: () =>
                         new Promise((resolve, reject) => reject("OH NO!")),
