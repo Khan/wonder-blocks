@@ -22,6 +22,8 @@ function deepClone<T: {...}>(source: T | $ReadOnly<T>): $ReadOnly<T> {
  * INTERNAL USE ONLY
  */
 export class ResponseCache {
+    static Default = new ResponseCache();
+
     _cache: Cache = {};
 
     constructor(source?: ?Cache = undefined) {
@@ -50,7 +52,7 @@ export class ResponseCache {
      *
      * This can only be called if the cache is not already in use.
      */
-    initialize(source: Cache) {
+    initialize = (source: Cache): void => {
         if (Object.keys(this._cache).length !== 0) {
             throw new Error(
                 "Cannot initialize data response cache more than once",
@@ -70,37 +72,38 @@ export class ResponseCache {
                 `An error occurred trying to initialize the data response cache: ${e}`,
             );
         }
-    }
+    };
 
     /**
      * Cache data for a specific response.
      */
-    cacheData<TOptions, TData>(
+    cacheData = <TOptions, TData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
         data: TData,
-    ): void {
+    ): void => {
         this._setCacheEntry(handler, options, {data});
-    }
+    };
 
     /**
      * Cache an error for a specific response.
      */
-    cacheError<TOptions, TData>(
+    cacheError = <TOptions, TData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
-        error: Error,
-    ): void {
-        this._setCacheEntry(handler, options, {error});
-    }
+        error: Error | string,
+    ): void => {
+        const errorMessage = typeof error === "string" ? error : error.message;
+        this._setCacheEntry(handler, options, {error: errorMessage});
+    };
 
     /**
      * Retrieve data from our cache.
      */
-    getEntry<TOptions, TData>(
+    getEntry = <TOptions, TData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
-    ): ?CacheEntry {
+    ): ?CacheEntry => {
         const requestType = handler.type;
 
         // Get the subcache for the handler.
@@ -113,12 +116,12 @@ export class ResponseCache {
         const key = handler.getKey(options);
         const entry = handlerCache[key];
         return entry == null ? null : entry;
-    }
+    };
 
     /**
      * Deep clone the cache.
      */
-    clone(): $ReadOnly<Cache> {
+    clone = (): $ReadOnly<Cache> => {
         try {
             return deepClone(this._cache);
         } catch (e) {
@@ -126,11 +129,5 @@ export class ResponseCache {
                 `An error occurred while trying to clone the cache: ${e}`,
             );
         }
-    }
+    };
 }
-
-/**
- * The default cache instance used by Wonder Blocks Data package utils and
- * components.
- */
-export default new ResponseCache();

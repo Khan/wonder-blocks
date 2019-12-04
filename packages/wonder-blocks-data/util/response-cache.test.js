@@ -131,7 +131,7 @@ describe("./response-cache.js", () => {
             // Arrange
             const cache = new ResponseCache({
                 MY_HANDLER: {
-                    MY_KEY: {error: new Error("Oh no!")},
+                    MY_KEY: {error: "Oh no!"},
                 },
             });
             const fakeHandler: IRequestHandler<string, string> = {
@@ -166,7 +166,7 @@ describe("./response-cache.js", () => {
             const result = cache.getEntry(fakeHandler, "options");
 
             // Assert
-            expect(result).toStrictEqual({error: new Error("Ooops!")});
+            expect(result).toStrictEqual({error: "Ooops!"});
         });
 
         it("should replace the entry in the handler subcache", () => {
@@ -188,7 +188,7 @@ describe("./response-cache.js", () => {
             const result = cache.getEntry(fakeHandler, "options");
 
             // Assert
-            expect(result).toStrictEqual({error: new Error("Oh no!")});
+            expect(result).toStrictEqual({error: "Oh no!"});
         });
     });
 
@@ -254,7 +254,7 @@ describe("./response-cache.js", () => {
     });
 
     describe("#clone", () => {
-        it("should deep clone the cached data", () => {
+        it("should deep clone the cached data and errors", () => {
             // Arrange
             const initCache = {
                 MY_HANDLER: {
@@ -263,20 +263,36 @@ describe("./response-cache.js", () => {
             };
             const cache = new ResponseCache(initCache);
             const fakeHandler: IRequestHandler<string, string> = {
-                getKey: () => "MY_KEY",
+                getKey: (options) => options,
                 type: "MY_HANDLER",
                 cacheHitBehavior: () => "static",
                 fulfillRequest: jest.fn(),
             };
+            // Let's add to the initialized state to check that everything
+            // is cloning as we expect.
+            cache.cacheData(fakeHandler, "OPTIONS1", "DATA");
+            cache.cacheError(fakeHandler, "OPTIONS2", new Error("OH NO!"));
 
             // Act
             const result = cache.clone();
-            // Update the cache.
-            cache.cacheData(fakeHandler, "OPTIONS", "SOME_NEW_DATA");
+            // Update the cache so that it should be different from the clone.
+            cache.cacheData(fakeHandler, "OPTIONS1", "SOME_NEW_DATA");
 
             // Assert
             // Clone is the same as the initialization data.
-            expect(result).toStrictEqual(initCache);
+            expect(result).toStrictEqual({
+                MY_HANDLER: {
+                    MY_KEY: {
+                        data: "THE_DATA",
+                    },
+                    OPTIONS1: {
+                        data: "DATA",
+                    },
+                    OPTIONS2: {
+                        error: "OH NO!",
+                    },
+                },
+            });
         });
 
         it("should throw if the cloning fails", () => {

@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
-import responseCache from "./response-cache.js";
+import {ResponseCache} from "./response-cache.js";
 
-import type {ResponseCache, IRequestHandler} from "./types.js";
+import type {ResponseCache as Cache, IRequestHandler} from "./types.js";
 
 type TrackerFn = (handler: IRequestHandler<any, any>, options: any) => void;
 
@@ -33,17 +33,24 @@ export const TrackerContext: React.Context<?TrackerFn> = new React.createContext
  * INTERNAL USE ONLY
  */
 export class RequestTracker {
+    static Default = new RequestTracker();
+
     /**
-     * These are the caches for tracked requests and their handlers.
+     * These are the caches for tracked requests, their handlers, and responses.
      */
     _trackedHandlers: HandlerCache = {};
     _trackedRequests: RequestCache = {};
+    _responseCache: ResponseCache;
+
+    constructor(responseCache?: ?ResponseCache = undefined) {
+        this._responseCache = responseCache || ResponseCache.Default;
+    }
 
     _fulfillAndCache<TOptions, TData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
-    ) {
-        const {cacheData, cacheError} = responseCache;
+    ): Promise<void> {
+        const {cacheData, cacheError} = this._responseCache;
         /**
          * Let's make sure that one bad apple does not spoil the barrel.
          * This should ensure that in the face of errors, not everything
@@ -54,16 +61,10 @@ export class RequestTracker {
             return handler
                 .fulfillRequest(options)
                 .then((data) => cacheData(handler, options, data))
-                .catch((error: Error) => cacheError(handler, options, error));
+                .catch((error) => cacheError(handler, options, error));
         } catch (error) {
-            cacheError(handler, options, error);
+            return Promise.resolve(cacheError(handler, options, error));
         }
-
-        /**
-         * If it failed, we'll return null so that our calling code knows to just
-         * skip this one.
-         */
-        return null;
     }
 
     /**
@@ -117,19 +118,6 @@ export class RequestTracker {
     }
 
     /**
-     * This method is temporary. Will be replaced with the fulfilAll... call when
-     * that is implemented.
-     *
-     * TODO(jeff): Delete this when the fulfilment method is implemented.
-     */
-    tempGetTrackedRequestsAndHandlers() {
-        return {
-            trackedHandlers: this._trackedHandlers,
-            trackedRequests: this._trackedRequests,
-        };
-    }
-
-    /**
      * Reset our tracking info.
      */
     reset() {
@@ -147,10 +135,10 @@ export class RequestTracker {
      * Calling this method marks tracked requests as fulfilled; requests are
      * removed from the list of tracked requests by calling this method.
      *
-     * @returns {Promise<ResponseCache>} A frozen cache of the data that was cached
+     * @returns {Promise<Cache>} A frozen cache of the data that was cached
      * as a result of fulfilling the tracked requests.
      */
-    fulfillTrackedRequests(): Promise<$ReadOnly<ResponseCache>> {
+    fulfillTrackedRequests(): Promise<$ReadOnly<Cache>> {
         const promises = [];
 
         for (const handlerType of Object.keys(this._trackedHandlers)) {
@@ -166,7 +154,7 @@ export class RequestTracker {
                  * We have to apply these in sequence.
                  */
                 const promise = requests[requestKey].reduce(
-                    (prev: ?Promise<any>, cur: any) => {
+                    (prev: ?Promise<any>, cur: any): ?Promise<any> => {
                         if (prev == null) {
                             return this._fulfillAndCache(handler, cur);
                         }
@@ -178,6 +166,7 @@ export class RequestTracker {
                             this._fulfillAndCache(handler, cur),
                         );
                     },
+                    null,
                 );
 
                 if (promise != null) {
@@ -202,13 +191,6 @@ export class RequestTracker {
         /**
          * Let's wait for everything to fulfill, and then clone the cached data.
          */
-        return Promise.all(promises).then(() => responseCache.clone());
+        return Promise.all(promises).then(() => this._responseCache.clone());
     }
 }
-
-/**
- * The default export is the instance of the request tracker that each of our
- * other pieces use. This way everything uses the same interface but we have the
- * class with which to perform testing.
- */
-export default new RequestTracker();

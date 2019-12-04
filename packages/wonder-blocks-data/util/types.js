@@ -16,7 +16,7 @@ export type Behavior = "static" | "refresh";
 
 export type CacheEntry =
     | {|
-          error: Error,
+          error: string,
       |}
     | {|
           data: any,
