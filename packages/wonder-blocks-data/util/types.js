@@ -1,29 +1,30 @@
 // @flow
 export type Behavior = "static" | "refresh";
 
-// type Result<TData> =
-//     | {|
-//           loading: true,
-//       |}
-//     | {|
-//           loading: false,
-//           data: TData,
-//       |}
-//     | {|
-//           loading: false,
-//           error: Error,
-//       |};
-
-export type CacheEntry =
+export type Result<TData> =
     | {|
-          error: string,
+          loading: true,
+          data?: void,
+          error?: void,
       |}
     | {|
-          data: any,
+          loading: false,
+          data?: TData,
+          error?: string,
+      |};
+
+export type CacheEntry<TData> =
+    | {|
+          error: string,
+          data?: ?void,
+      |}
+    | {|
+          data: TData,
+          error?: ?void,
       |};
 
 type HandlerSubcache = {
-    [key: string]: CacheEntry,
+    [key: string]: CacheEntry<any>,
     ...,
 };
 

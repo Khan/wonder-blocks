@@ -17,12 +17,23 @@ function deepClone<T: {...}>(source: T | $ReadOnly<T>): $ReadOnly<T> {
 }
 
 /**
+ * The default instance is stored here.
+ * It's created below in the Default() static property.
+ */
+let _default: ResponseCache;
+
+/**
  * Implements the response cache.
  *
  * INTERNAL USE ONLY
  */
 export class ResponseCache {
-    static Default = new ResponseCache();
+    static get Default() {
+        if (!_default) {
+            _default = new ResponseCache();
+        }
+        return _default;
+    }
 
     _cache: Cache = {};
 
@@ -35,8 +46,8 @@ export class ResponseCache {
     _setCacheEntry<TOptions, TData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
-        entry: CacheEntry,
-    ): void {
+        entry: CacheEntry<TData>,
+    ): CacheEntry<TData> {
         const requestType = handler.type;
 
         // Ensure we have a cache location for this handler type.
@@ -45,6 +56,7 @@ export class ResponseCache {
         // Cache the data.
         const key = handler.getKey(options);
         this._cache[requestType][key] = entry;
+        return entry;
     }
 
     /**
@@ -81,8 +93,8 @@ export class ResponseCache {
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
         data: TData,
-    ): void => {
-        this._setCacheEntry(handler, options, {data});
+    ): CacheEntry<TData> => {
+        return this._setCacheEntry(handler, options, {data});
     };
 
     /**
@@ -92,9 +104,9 @@ export class ResponseCache {
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
         error: Error | string,
-    ): void => {
+    ): CacheEntry<TData> => {
         const errorMessage = typeof error === "string" ? error : error.message;
-        this._setCacheEntry(handler, options, {error: errorMessage});
+        return this._setCacheEntry(handler, options, {error: errorMessage});
     };
 
     /**
@@ -103,7 +115,7 @@ export class ResponseCache {
     getEntry = <TOptions, TData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
-    ): ?CacheEntry => {
+    ): ?CacheEntry<TData> => {
         const requestType = handler.type;
 
         // Get the subcache for the handler.
