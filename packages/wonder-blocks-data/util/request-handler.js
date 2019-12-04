@@ -11,10 +11,21 @@ export default class RequestHandler<TOptions, TData>
     implements IRequestHandler<TOptions, TData> {
     _type: string;
     _defaultCacheHitBehavior: Behavior;
+    _fulfillRequest: (options: TOptions) => Promise<TData>;
 
-    constructor(type: string, defaultCacheHitBehavior: Behavior = "static") {
+    _requestsInFlight: {
+        [key: string]: Promise<TData>,
+        ...,
+    } = {};
+
+    constructor(
+        type: string,
+        fulfillRequest: (options: TOptions) => Promise<TData>,
+        defaultCacheHitBehavior: Behavior = "static",
+    ) {
         this._type = type;
         this._defaultCacheHitBehavior = defaultCacheHitBehavior;
+        this._fulfillRequest = fulfillRequest;
     }
 
     get type() {
@@ -34,6 +45,45 @@ export default class RequestHandler<TOptions, TData>
     }
 
     fulfillRequest(options: TOptions): Promise<TData> {
-        throw new Error("Not implemented");
+        const behavior = this.cacheHitBehavior(options);
+
+        /**
+         * If we already made this request, just return that promise.
+         */
+        const requestKey = this.getKey(options);
+        const existingRequest = this._requestsInFlight[requestKey];
+
+        switch (behavior) {
+            case "static":
+                /**
+                 * If we already made this request, just return that promise.
+                 */
+                if (existingRequest != null) {
+                    return existingRequest;
+                }
+
+                /**
+                 * It's a new request. Make it, cache it, and return it.
+                 */
+                const newRequest = this._fulfillRequest(options);
+                this._requestsInFlight[requestKey] = newRequest;
+                return newRequest;
+
+            case "refresh":
+                /**
+                 * We are doing a refresh, but these should occur in order,
+                 * so let's chain it off the existing one, if it exists.
+                 */
+                const request =
+                    existingRequest == null
+                        ? existingRequest.then(() =>
+                              this._fulfillRequest(options),
+                          )
+                        : this._fulfillRequest(options);
+                return request;
+
+            default:
+                throw new Error(`Unknown cache hit behavior: ${behavior}`);
+        }
     }
 }
