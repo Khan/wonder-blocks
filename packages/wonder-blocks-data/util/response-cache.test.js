@@ -254,6 +254,45 @@ describe("./response-cache.js", () => {
     });
 
     describe("#clone", () => {
-        it.todo("NEEDS TESTS");
+        it("should deep clone the cached data", () => {
+            // Arrange
+            const initCache = {
+                MY_HANDLER: {
+                    MY_KEY: {data: "THE_DATA"},
+                },
+            };
+            const cache = new ResponseCache(initCache);
+            const fakeHandler: IRequestHandler<string, string> = {
+                getKey: () => "MY_KEY",
+                type: "MY_HANDLER",
+                cacheHitBehavior: () => "static",
+                fulfillRequest: jest.fn(),
+            };
+
+            // Act
+            const result = cache.clone();
+            // Update the cache.
+            cache.cacheData(fakeHandler, "OPTIONS", "SOME_NEW_DATA");
+
+            // Assert
+            // Clone is the same as the initialization data.
+            expect(result).toStrictEqual(initCache);
+        });
+
+        it("should throw if the cloning fails", () => {
+            // Arrange
+            const cache = new ResponseCache();
+            jest.spyOn(JSON, "stringify").mockImplementation(() => {
+                throw new Error("BANG!");
+            });
+
+            // Act
+            const underTest = () => cache.clone();
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                `"An error occurred while trying to clone the cache: Error: BANG!"`,
+            );
+        });
     });
 });

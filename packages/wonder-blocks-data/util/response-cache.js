@@ -5,6 +5,17 @@ import type {
     IRequestHandler,
 } from "./types.js";
 
+function deepClone<T: {...}>(source: T | $ReadOnly<T>): $ReadOnly<T> {
+    /**
+     * We want to deep clone the source cache to dodge mutations by external
+     * references. So we serialize the source cache to JSON and parse it
+     * back into a new object.
+     */
+    const serializedInitCache = JSON.stringify(source);
+    const cloneInitCache = JSON.parse(serializedInitCache);
+    return Object.freeze(cloneInitCache);
+}
+
 /**
  * Implements the response cache.
  *
@@ -48,13 +59,11 @@ export class ResponseCache {
 
         try {
             /**
-             * We want to deep clone the source cache to dodge mutations by external
-             * references. However, Object.assign only performs a shallow clone.
-             * So we serialize the source cache to JSON and parse it back into a new
-             * object, then assign it's values to our internal cache.
+             * Object.assign only performs a shallow clone.
+             * So we deep clone it and then assign the clone values to our
+             * internal cache.
              */
-            const serializedInitCache = JSON.stringify(source);
-            const cloneInitCache = JSON.parse(serializedInitCache);
+            const cloneInitCache = deepClone(source);
             Object.assign(this._cache, cloneInitCache);
         } catch (e) {
             throw new Error(
@@ -110,9 +119,13 @@ export class ResponseCache {
      * Deep clone the cache.
      */
     clone(): $ReadOnly<Cache> {
-        const serializedInitCache = JSON.stringify(this._cache);
-        const cloneInitCache = JSON.parse(serializedInitCache);
-        return Object.freeze(cloneInitCache);
+        try {
+            return deepClone(this._cache);
+        } catch (e) {
+            throw new Error(
+                `An error occurred while trying to clone the cache: ${e}`,
+            );
+        }
     }
 }
 
