@@ -1,7 +1,7 @@
 // @flow
-import responseCache from "./util/response-cache.js";
+import {ResponseCache} from "./util/response-cache.js";
 
-export const initializeCache = responseCache.initialize;
+export const initializeCache = ResponseCache.Default.initialize;
 
 export type {Behavior, IRequestHandler} from "./util/types.js";
 
