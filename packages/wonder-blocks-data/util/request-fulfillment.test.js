@@ -13,6 +13,7 @@ describe("RequestFulfillment", () => {
 
         // Assert
         expect(defaultInstance).toBe(RequestFulfillment.Default);
+        expect(defaultInstance).toBeInstanceOf(RequestFulfillment);
     });
 
     describe("#fulfill", () => {
