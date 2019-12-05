@@ -1,6 +1,4 @@
 // @flow
-export type Behavior = "static" | "refresh";
-
 export type Result<TData> =
     | {|
           loading: true,
@@ -52,9 +50,12 @@ export interface IRequestHandler<TOptions, TData> {
     get type(): string;
 
     /**
-     * Get the cache hit behavior of this handler for a given request.
+     * Determine if the cached data should be invalidated.
+     *
+     * If this returns true, the framework will fulfill a new request by
+     * calling `fulfillRequest`.
      */
-    cacheHitBehavior(options: TOptions): Behavior;
+    invalidateCache(options: TOptions): boolean;
 
     /**
      * Get the key to use for a given request. This should be idempotent for a

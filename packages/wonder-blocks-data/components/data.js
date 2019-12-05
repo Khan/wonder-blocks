@@ -115,14 +115,10 @@ export default class Data<TOptions, TData> extends React.Component<
         const {getEntry, cacheData, cacheError} = ResponseCache.Default;
 
         const cachedData = getEntry(handler, options);
-        if (
-            !Server.isServerSide() &&
-            (cachedData == null ||
-                handler.cacheHitBehavior(options) === "refresh")
-        ) {
+        if (!Server.isServerSide() && cachedData == null) {
             /**
-             * We're not on the server and the cache missed, or we're supposed
-             * to refresh the cache.
+             * We're not on the server and the cache missed, or the cache is
+             * invalid.
              * Therefore, we need to request data.
              *
              * We have to do this here from the constructor so that this

@@ -17,9 +17,7 @@ describe("./request-handler.js", () => {
     describe("#get type", () => {
         it("should return value passed in construction", () => {
             // Arrange
-            const handler = new RequestHandler("MY_TYPE", () =>
-                Promise.resolve("DATA"),
-            );
+            const handler = new RequestHandler("MY_TYPE");
 
             // Act
             const result = handler.type;
@@ -32,9 +30,7 @@ describe("./request-handler.js", () => {
     describe("#getKey", () => {
         it("should return a key for given options", () => {
             // Arrange
-            const handler = new RequestHandler("MY_TYPE", () =>
-                Promise.resolve("DATA"),
-            );
+            const handler = new RequestHandler("MY_TYPE");
 
             // Act
             const result = handler.getKey({some: "options"});
@@ -47,9 +43,7 @@ describe("./request-handler.js", () => {
 
         it("should return a key for undefined options", () => {
             // Arrange
-            const handler = new RequestHandler("MY_TYPE", () =>
-                Promise.resolve("DATA"),
-            );
+            const handler = new RequestHandler("MY_TYPE");
 
             // Act
             const result = handler.getKey(undefined);
@@ -60,9 +54,7 @@ describe("./request-handler.js", () => {
 
         it("should throw if JSON.stringify fails", () => {
             // Arrange
-            const handler = new RequestHandler("MY_TYPE", () =>
-                Promise.resolve("DATA"),
-            );
+            const handler = new RequestHandler("MY_TYPE");
             jest.spyOn(JSON, "stringify").mockImplementation(() => {
                 throw new Error("OH NOES!");
             });
@@ -77,40 +69,31 @@ describe("./request-handler.js", () => {
         });
     });
 
-    describe("#cacheHitBehavior", () => {
-        it("should return static when no value provide in constructor", () => {
+    describe("#invalidateCache", () => {
+        it("should return false", () => {
             // Arrange
-            const handler = new RequestHandler("MY_TYPE", () =>
-                Promise.resolve("DATA"),
-            );
+            const handler = new RequestHandler("MY_TYPE");
 
             // Act
-            const result = handler.cacheHitBehavior({});
+            const result = handler.invalidateCache({});
 
             // Assert
-            expect(result).toBe("static");
-        });
-
-        it.each("static", "refresh")("should return %s", (behavior) => {
-            // Arrange
-            const handler = new RequestHandler(
-                "MY_TYPE",
-                () => Promise.resolve("DATA"),
-                behavior,
-            );
-
-            // Act
-            const result = handler.cacheHitBehavior({});
-
-            // Assert
-            expect(result).toBe(behavior);
+            expect(result).toBeFalsy();
         });
     });
 
     describe("#fulfillRequest", () => {
-        it.todo("should return promise of data");
-        it.todo("should return inflight request for repeated static requests");
-        it.todo("should execute refresh requests in order");
-        it.todo("should throw if unexpected cache behavior");
+        it("should throw", () => {
+            // Arrange
+            const handler = new RequestHandler("MY_TYPE");
+
+            // Act
+            const underTest = () => handler.fulfillRequest("options");
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                `"Not implemented"`,
+            );
+        });
     });
 });

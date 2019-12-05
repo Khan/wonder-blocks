@@ -6,7 +6,7 @@ import type {ResponseCache as Cache} from "./util/types.js";
 
 export opaque type ResponseCache = Cache;
 
-export type {Result, Behavior, IRequestHandler} from "./util/types.js";
+export type {Result, IRequestHandler} from "./util/types.js";
 
 export const initializeCache = ResCache.Default.initialize;
 export const fulfillAllDataRequests =

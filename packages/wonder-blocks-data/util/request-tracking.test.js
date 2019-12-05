@@ -45,7 +45,7 @@ describe("./request-tracking.js", () => {
                 const fakeHandler: IRequestHandler<any, any> = {
                     fulfillRequest: jest.fn(() => Promise.resolve(null)),
                     getKey: jest.fn(),
-                    cacheHitBehavior: jest.fn().mockReturnValue("static"),
+                    invalidateCache: () => false,
                     type: "MY_TYPE",
                 };
                 const options = {these: "are options"};
@@ -57,36 +57,13 @@ describe("./request-tracking.js", () => {
                 expect(fakeHandler.getKey).toHaveBeenCalledWith(options);
             });
 
-            it("should throw if encountering an unknown behavior", () => {
+            it("should track a request", async () => {
                 // Arrange
-                const requestTracker = createRequestTracker();
+                const requestTracker = new RequestTracker();
                 const fakeHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve(null)),
-                    getKey: jest.fn(),
-                    cacheHitBehavior: jest
-                        .fn()
-                        .mockReturnValue(("made up!": any)),
-                    type: "MY_TYPE",
-                };
-                const options = {these: "are options"};
-
-                // Act
-                const underTest = () =>
-                    requestTracker.trackDataRequest(fakeHandler, options);
-
-                // Assert
-                expect(underTest).toThrowErrorMatchingInlineSnapshot(
-                    `"Invalid behavior: made up!"`,
-                );
-            });
-
-            it("should track the request and handler", async () => {
-                // Arrange
-                const requestTracker = createRequestTracker();
-                const fakeHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve("DATA")),
+                    fulfillRequest: jest.fn(),
                     getKey: jest.fn().mockReturnValue("MY_KEY"),
-                    cacheHitBehavior: jest.fn().mockReturnValue("static"),
+                    invalidateCache: () => false,
                     type: "MY_TYPE",
                 };
                 const options = {these: "are options"};
@@ -99,15 +76,16 @@ describe("./request-tracking.js", () => {
                 expect(fakeHandler.fulfillRequest).toHaveBeenCalledWith(
                     options,
                 );
+                expect(fakeHandler.fulfillRequest).toHaveBeenCalledTimes(1);
             });
 
-            it("should not change the cache if the static request already tracked", async () => {
+            it("should track each matching request once", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
                 const fakeHandler: IRequestHandler<any, any> = {
                     fulfillRequest: jest.fn(() => Promise.resolve(null)),
                     getKey: jest.fn().mockReturnValue("MY_KEY"),
-                    cacheHitBehavior: jest.fn().mockReturnValue("static"),
+                    invalidateCache: () => false,
                     type: "MY_TYPE",
                 };
                 const options1 = {these: "are options"};
@@ -130,15 +108,15 @@ describe("./request-tracking.js", () => {
                 const requestTracker = createRequestTracker();
                 const handlerType = "MY_TYPE";
                 const fakeHandler1: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve(null)),
-                    getKey: jest.fn().mockReturnValue("KEY_1"),
-                    cacheHitBehavior: jest.fn().mockReturnValue("static"),
+                    fulfillRequest: jest.fn(),
+                    getKey: jest.fn().mockReturnValue("MY_KEY1"),
+                    invalidateCache: () => false,
                     type: handlerType,
                 };
                 const fakeHandler2: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve(null)),
-                    getKey: jest.fn().mockReturnValue("KEY_2"),
-                    cacheHitBehavior: jest.fn().mockReturnValue("static"),
+                    fulfillRequest: jest.fn(),
+                    getKey: jest.fn().mockReturnValue("MY_KEY2"),
+                    invalidateCache: () => false,
                     type: handlerType,
                 };
                 const options1 = {these: "are options"};
@@ -158,26 +136,6 @@ describe("./request-tracking.js", () => {
                     options2,
                 );
                 expect(fakeHandler2.fulfillRequest).not.toHaveBeenCalled();
-            });
-
-            it("should add refresh request, even if already tracked", async () => {
-                // Arrange
-                const requestTracker = createRequestTracker();
-                const fakeHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve(null)),
-                    getKey: jest.fn().mockReturnValue("MY_KEY"),
-                    cacheHitBehavior: jest.fn().mockReturnValue("refresh"),
-                    type: "MY_TYPE",
-                };
-                const options = {these: "are options"};
-
-                // Act
-                requestTracker.trackDataRequest(fakeHandler, options);
-                requestTracker.trackDataRequest(fakeHandler, options);
-                await requestTracker.fulfillTrackedRequests();
-
-                // Assert
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledTimes(2);
             });
         });
 
@@ -201,7 +159,7 @@ describe("./request-tracking.js", () => {
                         throw new Error("OH NO!");
                     },
                     getKey: jest.fn().mockReturnValue("MY_KEY"),
-                    cacheHitBehavior: jest.fn().mockReturnValue("static"),
+                    invalidateCache: () => false,
                     type: "MY_TYPE",
                 };
                 requestTracker.trackDataRequest(fakeBadHandler, "OPTIONS");
@@ -226,7 +184,7 @@ describe("./request-tracking.js", () => {
                     fulfillRequest: () =>
                         new Promise((resolve, reject) => reject("OH NO!")),
                     getKey: (o) => o,
-                    cacheHitBehavior: jest.fn().mockReturnValue("static"),
+                    invalidateCache: () => false,
                     type: "BAD_REQUEST",
                 };
                 requestTracker.trackDataRequest(
@@ -261,7 +219,7 @@ describe("./request-tracking.js", () => {
                     fulfillRequest: () =>
                         new Promise((resolve, reject) => reject("OH NO!")),
                     getKey: (o) => o,
-                    cacheHitBehavior: jest.fn().mockReturnValue("static"),
+                    invalidateCache: () => false,
                     type: "BAD_REQUEST",
                 };
                 const fakeBadHandler: IRequestHandler<string, any> = {
@@ -269,10 +227,10 @@ describe("./request-tracking.js", () => {
                         throw new Error("OH NO!");
                     },
                     getKey: (o) => o,
-                    cacheHitBehavior: jest.fn().mockReturnValue("static"),
+                    invalidateCache: () => false,
                     type: "BAD_HANDLER",
                 };
-                const fakeRefreshHandler: IRequestHandler<string, any> = {
+                const fakeValidHandler: IRequestHandler<string, any> = {
                     fulfillRequest: (() => {
                         let counter = 0;
                         return (o) => {
@@ -281,24 +239,16 @@ describe("./request-tracking.js", () => {
                         };
                     })(),
                     getKey: (o) => o,
-                    cacheHitBehavior: jest.fn().mockReturnValue("refresh"),
-                    type: "REFRESH",
-                };
-                const fakeStaticHandler: IRequestHandler<string, any> = {
-                    fulfillRequest: (o) => Promise.resolve("DATA"),
-                    getKey: (o) => o,
-                    cacheHitBehavior: jest.fn().mockReturnValue("static"),
-                    type: "STATIC",
+                    invalidateCache: () => false,
+                    type: "VALID",
                 };
                 requestTracker.trackDataRequest(
                     fakeBadRequestHandler,
                     "OPTIONS1",
                 );
                 requestTracker.trackDataRequest(fakeBadHandler, "OPTIONS2");
-                requestTracker.trackDataRequest(fakeRefreshHandler, "OPTIONS3");
-                requestTracker.trackDataRequest(fakeRefreshHandler, "OPTIONS3");
-                requestTracker.trackDataRequest(fakeRefreshHandler, "OPTIONS3");
-                requestTracker.trackDataRequest(fakeStaticHandler, "OPTIONS4");
+                requestTracker.trackDataRequest(fakeValidHandler, "OPTIONS3");
+                requestTracker.trackDataRequest(fakeValidHandler, "OPTIONS4");
 
                 // Act
                 const result = await requestTracker.fulfillTrackedRequests();
@@ -315,14 +265,12 @@ describe("./request-tracking.js", () => {
                             error: "OH NO!",
                         },
                     },
-                    REFRESH: {
+                    VALID: {
                         OPTIONS3: {
-                            data: "DATA:3",
+                            data: "DATA:1",
                         },
-                    },
-                    STATIC: {
                         OPTIONS4: {
-                            data: "DATA",
+                            data: "DATA:2",
                         },
                     },
                 });
@@ -335,7 +283,7 @@ describe("./request-tracking.js", () => {
                 const fakeStaticHandler: IRequestHandler<string, any> = {
                     fulfillRequest: fakeFulfiller,
                     getKey: (o) => o,
-                    cacheHitBehavior: jest.fn().mockReturnValue("static"),
+                    invalidateCache: () => false,
                     type: "STATIC",
                 };
                 requestTracker.trackDataRequest(fakeStaticHandler, "1");
@@ -359,7 +307,7 @@ describe("./request-tracking.js", () => {
                 const fakeHandler: IRequestHandler<any, any> = {
                     fulfillRequest: jest.fn(() => Promise.resolve(null)),
                     getKey: jest.fn().mockReturnValue("MY_KEY"),
-                    cacheHitBehavior: jest.fn().mockReturnValue("refresh"),
+                    invalidateCache: () => false,
                     type: "MY_TYPE",
                 };
                 requestTracker.trackDataRequest(fakeHandler, "OPTIONS");
