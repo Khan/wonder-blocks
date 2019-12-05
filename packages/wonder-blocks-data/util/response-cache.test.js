@@ -251,6 +251,27 @@ describe("./response-cache.js", () => {
             // Assert
             expect(result).toStrictEqual({data: "data!"});
         });
+
+        it("should delete the cached entry if invalidateCache returns true", () => {
+            // Arrange
+            const cache = new ResponseCache({
+                MY_HANDLER: {
+                    MY_KEY: {data: "data!"},
+                },
+            });
+            const fakeHandler: IRequestHandler<string, string> = {
+                getKey: () => "MY_KEY",
+                type: "MY_HANDLER",
+                invalidateCache: () => true,
+                fulfillRequest: jest.fn(),
+            };
+
+            // Act
+            const result = cache.getEntry(fakeHandler, "options");
+
+            // Assert
+            expect(result).toBeNull();
+        });
     });
 
     describe("#clone", () => {
