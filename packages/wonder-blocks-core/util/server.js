@@ -1,7 +1,7 @@
 // @flow
 let serverSide = false;
 
-export default Object.freeze({
+export default {
     /**
      * Check if we are running in server-side mode.
      *
@@ -16,4 +16,4 @@ export default Object.freeze({
     setServerSide: () => {
         serverSide = true;
     },
-});
+};
