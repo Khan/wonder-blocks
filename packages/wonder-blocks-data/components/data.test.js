@@ -220,6 +220,39 @@ describe("./data.js", () => {
                 });
             });
 
+            it("should render with an error if the request rejects", async () => {
+                // Arrange
+                const fulfillSpy = jest
+                    .spyOn(RequestFulfillment.Default, "fulfill")
+                    .mockReturnValue(Promise.reject("CATASTROPHE!"));
+
+                const fakeHandler: IRequestHandler<string, string> = {
+                    fulfillRequest: () => Promise.resolve("YAY!"),
+                    getKey: (o) => o,
+                    invalidateCache: () => false,
+                    type: "MY_HANDLER",
+                };
+                const fakeChildrenFn = jest.fn(() => null);
+
+                // Act
+                mount(
+                    <Data handler={fakeHandler} options={"options"}>
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+                /**
+                 * We wait for the fulfillment to reject.
+                 */
+                await fulfillSpy.mock.results[0].value.catch(() => {});
+
+                // Assert
+                expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
+                expect(fakeChildrenFn).toHaveBeenLastCalledWith({
+                    loading: false,
+                    error: "CATASTROPHE!",
+                });
+            });
+
             it("should start loading if the handler changes and request not cached", async () => {
                 // Arrange
                 const fulfillSpy = jest.spyOn(

@@ -111,7 +111,7 @@ export default class Data<TOptions, TData> extends React.Component<
                         this.setState({
                             loading: false,
                             data: null,
-                            error: e.message,
+                            error: typeof e === "string" ? e : e.message,
                         });
                     }
                     return null;
