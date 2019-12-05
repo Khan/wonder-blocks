@@ -55,8 +55,8 @@ export class ResponseCache {
 
         // Cache the data.
         const key = handler.getKey(options);
-        this._cache[requestType][key] = entry;
-        return entry;
+        this._cache[requestType][key] = Object.freeze(entry);
+        return this._cache[requestType][key];
     }
 
     /**
@@ -115,7 +115,7 @@ export class ResponseCache {
     getEntry = <TOptions, TData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
-    ): ?CacheEntry<TData> => {
+    ): ?$ReadOnly<CacheEntry<TData>> => {
         const requestType = handler.type;
 
         // Get the subcache for the handler.
@@ -124,8 +124,12 @@ export class ResponseCache {
             return null;
         }
 
-        // Get the response.
         const key = handler.getKey(options);
+        if (handler.invalidateCache(options)) {
+            delete handlerCache[key];
+        }
+
+        // Get the response.
         const entry = handlerCache[key];
         return entry == null ? null : entry;
     };
