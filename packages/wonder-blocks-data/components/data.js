@@ -2,6 +2,7 @@
 import * as React from "react";
 import {Server} from "@khanacademy/wonder-blocks-core";
 
+import {RequestFulfillment} from "../util/request-fulfillment.js";
 import {ResponseCache} from "../util/response-cache.js";
 import {TrackerContext} from "../util/request-tracking.js";
 
@@ -96,11 +97,7 @@ export default class Data<TOptions, TData> extends React.Component<
              * We have to do this here from the constructor so that this
              * data request is tracked when performing server-side rendering.
              */
-            // eslint-disable-next-line promise/catch-or-return
-            handler
-                .fulfillRequest(options)
-                .then((data) => cacheData(handler, options, data))
-                .catch((error) => cacheError(handler, options, error))
+            RequestFulfillment.Default.fulfill(handler, options)
                 .then((cacheEntry) => {
                     /**
                      * We get here, we should have updated the cache.
@@ -113,6 +110,19 @@ export default class Data<TOptions, TData> extends React.Component<
                             loading: false,
                             data: cacheEntry.data,
                             error: cacheEntry.error,
+                        });
+                    }
+                    return null;
+                })
+                .catch((e) => {
+                    /**
+                     * We should never get here, but if we do.
+                     */
+                    if (this._mounted && this._propsMatch(propsAtFulfillment)) {
+                        this.setState({
+                            loading: false,
+                            data: null,
+                            error: e.message,
                         });
                     }
                     return null;
