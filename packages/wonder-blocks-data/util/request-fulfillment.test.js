@@ -4,8 +4,18 @@ import {RequestFulfillment} from "./request-fulfillment.js";
 
 import type {IRequestHandler} from "./types.js";
 
-describe("./request-fulfillment.js", () => {
-    describe("RequestFulfillment", () => {
+describe("RequestFulfillment", () => {
+    it("should provide static default instance", () => {
+        // Arrange
+
+        // Act
+        const defaultInstance = RequestFulfillment.Default;
+
+        // Assert
+        expect(defaultInstance).toBe(RequestFulfillment.Default);
+    });
+
+    describe("#fulfill", () => {
         it("should cache errors caused directly by handlers", async () => {
             // Arrange
             const responseCache = new ResponseCache();
