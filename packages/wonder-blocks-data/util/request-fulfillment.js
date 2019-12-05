@@ -48,7 +48,7 @@ export class RequestFulfillment {
     fulfill = <TOptions, TData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
-    ): ?Promise<CacheEntry<TData>> => {
+    ): Promise<CacheEntry<TData>> => {
         const handlerRequests = this._getHandlerSubcache(handler);
         const key = handler.getKey(options);
 
