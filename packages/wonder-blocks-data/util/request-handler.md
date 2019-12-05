@@ -1,16 +1,13 @@
-This is a base class from which to derive your own implementations of `IRequestHandler`.
-
-Though there is a default implementation of `getKey`, it is recommended that you
-implement a more specific version for your use case.
-
-The `fulfillRequest` method of this base class is not implemented and will throw
-an error.
-
-By default, the `cacheHitBehavior` method will return `static`. You can override
-this default by passing a value as the second argument to the constructor. If you
-wish to make this dynamic, then provide your own implementation of the `cacheHitBehavior`
-method.
+This class implements the `IRequestHandler` interface. It is to be used as a
+base class to implement your own request handler.
 
 The constructor requires a `type` to identify your handler. This should be unique
 among the handlers that are used across your application, otherwise, requests
 may be fulfilled by the wrong handler.
+
+The `fulfillRequest` method of this class is not implemented and will throw if
+called.
+
+A default implemnetation of `getKey` is provided that serializes the options of
+a request to a string and uses that as the cache key. You may want to override
+this behavior to simplify the key or to omit some values from the key.
