@@ -41,32 +41,21 @@ export default class Data<TOptions, TData> extends React.Component<
         nextState: $ReadOnly<State<TData>>,
     ): boolean {
         /**
-         * We only want to update if our state changed, or we were given
-         * a set of options or handkler that means a new cache key.
+         * We only bother updating if our state changed.
+         *
+         * And we only update the state if props changed
+         * or we got new data/error.
          */
+        if (!this._propsMatch(nextProps)) {
+            const newState = this._buildStateAndfulfillNeeds();
+            this.setState(newState);
+        }
+
         return (
-            !this._propsMatch(nextProps) ||
             this.state.loading !== nextState.loading ||
             this.state.data !== nextState.data ||
             this.state.error !== nextState.error
         );
-    }
-
-    componentDidUpdate(prevProps: Props<TOptions, TData>) {
-        /**
-         * We only bother updating things if our props changed in a meaningful
-         * manner.
-         */
-        if (!this._propsMatch(prevProps)) {
-            const newState = this._buildStateAndfulfillNeeds();
-
-            /**
-             * It's ok to setState from componentDidUpdate as long as it is
-             * guarded with a check to avoid infinite loops, which this is.
-             */
-            // eslint-disable-next-line react/no-did-update-set-state
-            this.setState(newState);
-        }
     }
 
     componentWillUnmount() {
@@ -85,7 +74,7 @@ export default class Data<TOptions, TData> extends React.Component<
     _buildStateAndfulfillNeeds(): State<TData> {
         const propsAtFulfillment = this.props;
         const {handler, options} = propsAtFulfillment;
-        const {getEntry, cacheData, cacheError} = ResponseCache.Default;
+        const {getEntry} = ResponseCache.Default;
 
         const cachedData = getEntry(handler, options);
         if (!Server.isServerSide() && cachedData == null) {
@@ -166,11 +155,12 @@ export default class Data<TOptions, TData> extends React.Component<
         };
     }
 
-    _renderContent(): React.Node {
-        return this.props.children(this._resultFromState());
+    _renderContent(result: Result<TData>): React.Node {
+        const {children} = this.props;
+        return children(result);
     }
 
-    _renderWithTrackingContext(): React.Node {
+    _renderWithTrackingContext(result: Result<TData>): React.Node {
         return (
             <TrackerContext.Consumer>
                 {(track) => {
@@ -180,17 +170,18 @@ export default class Data<TOptions, TData> extends React.Component<
                     if (track != null) {
                         track(this.props.handler, this.props.options);
                     }
-                    return this._renderContent();
+                    return this._renderContent(result);
                 }}
             </TrackerContext.Consumer>
         );
     }
 
     render() {
-        if (Server.isServerSide()) {
-            return this._renderWithTrackingContext();
+        const result = this._resultFromState();
+        if (result.loading && Server.isServerSide()) {
+            return this._renderWithTrackingContext(result);
         }
 
-        return this._renderContent();
+        return this._renderContent(result);
     }
 }
