@@ -81,34 +81,6 @@ export default class Data<TOptions, TData> extends React.Component<
         );
     }
 
-    _buildStateFromCache(): State<TData> {
-        const {handler, options} = this.props;
-        const cachedData = ResponseCache.Default.getEntry(handler, options);
-
-        if (cachedData == null) {
-            return {
-                loading: true,
-                data: null,
-                error: null,
-            };
-        }
-
-        if (cachedData.data != null) {
-            return {
-                loading: false,
-                data: cachedData.data,
-                error: null,
-            };
-        }
-
-        // Must be an error.
-        return {
-            loading: false,
-            data: null,
-            error: cachedData.error,
-        };
-    }
-
     _buildStateAndfulfillNeeds(): State<TData> {
         const propsAtFulfillment = this.props;
         const {handler, options} = propsAtFulfillment;
