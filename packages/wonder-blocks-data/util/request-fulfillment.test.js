@@ -81,6 +81,29 @@ describe("./request-fulfillment.js", () => {
             });
         });
 
+        it("should return a promise of the result", async () => {
+            // Arrange
+            const responseCache = new ResponseCache();
+            const requestFulfillment = new RequestFulfillment(responseCache);
+            const fakeRequestHandler: IRequestHandler<string, any> = {
+                fulfillRequest: () => Promise.resolve("DATA!"),
+                getKey: (o) => o,
+                invalidateCache: () => false,
+                type: "VALID_REQUEST",
+            };
+
+            // Act
+            const result = await requestFulfillment.fulfill(
+                fakeRequestHandler,
+                "OPTIONS",
+            );
+
+            // Assert
+            expect(result).toStrictEqual({
+                data: "DATA!",
+            });
+        });
+
         it("should reuse inflight requests", () => {
             // Arrange
             const responseCache = new ResponseCache();

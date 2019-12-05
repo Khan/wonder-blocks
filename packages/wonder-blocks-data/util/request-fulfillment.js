@@ -1,7 +1,7 @@
 // @flow
 import {ResponseCache} from "./response-cache.js";
 
-import type {IRequestHandler} from "./types.js";
+import type {CacheEntry, IRequestHandler} from "./types.js";
 
 type Subcache = {
     [key: string]: Promise<any>,
@@ -48,7 +48,7 @@ export class RequestFulfillment {
     fulfill = <TOptions, TData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
-    ): ?Promise<void> => {
+    ): ?Promise<CacheEntry<TData>> => {
         const handlerRequests = this._getHandlerSubcache(handler);
         const key = handler.getKey(options);
 
@@ -67,31 +67,30 @@ export class RequestFulfillment {
         try {
             const request = handler
                 .fulfillRequest(options)
-                .then((data) => {
+                .then((data: TData) => {
+                    delete handlerRequests[key];
                     /**
                      * Let's cache the data!
                      */
-                    cacheData(handler, options, data);
-                    delete handlerRequests[key];
-                    return undefined;
+                    return cacheData<TOptions, TData>(handler, options, data);
                 })
-                .catch((error) => {
+                .catch((error: string | Error) => {
+                    delete handlerRequests[key];
                     /**
                      * Let's cache the error!
                      */
-                    cacheError(handler, options, error);
-                    delete handlerRequests[key];
-                    return undefined;
+                    return cacheError<TOptions, TData>(handler, options, error);
                 });
             handlerRequests[key] = request;
             return request;
         } catch (e) {
-            cacheError(handler, options, e);
             /**
              * In this case, we don't cache an inflight request, because there
-             * really isn't one. Just return null and move on.
+             * really isn't one.
              */
-            return null;
+            return Promise.resolve(
+                cacheError<TOptions, TData>(handler, options, e),
+            );
         }
     };
 }
