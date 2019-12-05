@@ -10,19 +10,9 @@ import type {IRequestHandler} from "./types.js";
 export default class RequestHandler<TOptions, TData>
     implements IRequestHandler<TOptions, TData> {
     _type: string;
-    _fulfillRequest: (options: TOptions) => Promise<TData>;
 
-    _requestsInFlight: {
-        [key: string]: Promise<TData>,
-        ...,
-    } = {};
-
-    constructor(
-        type: string,
-        fulfillRequest: (options: TOptions) => Promise<TData>,
-    ) {
+    constructor(type: string) {
         this._type = type;
-        this._fulfillRequest = fulfillRequest;
     }
 
     get type() {

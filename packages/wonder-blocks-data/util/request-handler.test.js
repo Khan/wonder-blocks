@@ -17,9 +17,7 @@ describe("./request-handler.js", () => {
     describe("#get type", () => {
         it("should return value passed in construction", () => {
             // Arrange
-            const handler = new RequestHandler("MY_TYPE", () =>
-                Promise.resolve("DATA"),
-            );
+            const handler = new RequestHandler("MY_TYPE");
 
             // Act
             const result = handler.type;
@@ -32,9 +30,7 @@ describe("./request-handler.js", () => {
     describe("#getKey", () => {
         it("should return a key for given options", () => {
             // Arrange
-            const handler = new RequestHandler("MY_TYPE", () =>
-                Promise.resolve("DATA"),
-            );
+            const handler = new RequestHandler("MY_TYPE");
 
             // Act
             const result = handler.getKey({some: "options"});
@@ -47,9 +43,7 @@ describe("./request-handler.js", () => {
 
         it("should return a key for undefined options", () => {
             // Arrange
-            const handler = new RequestHandler("MY_TYPE", () =>
-                Promise.resolve("DATA"),
-            );
+            const handler = new RequestHandler("MY_TYPE");
 
             // Act
             const result = handler.getKey(undefined);
@@ -60,9 +54,7 @@ describe("./request-handler.js", () => {
 
         it("should throw if JSON.stringify fails", () => {
             // Arrange
-            const handler = new RequestHandler("MY_TYPE", () =>
-                Promise.resolve("DATA"),
-            );
+            const handler = new RequestHandler("MY_TYPE");
             jest.spyOn(JSON, "stringify").mockImplementation(() => {
                 throw new Error("OH NOES!");
             });
@@ -80,9 +72,7 @@ describe("./request-handler.js", () => {
     describe("#invalidateCache", () => {
         it("should return false", () => {
             // Arrange
-            const handler = new RequestHandler("MY_TYPE", () =>
-                Promise.resolve("DATA"),
-            );
+            const handler = new RequestHandler("MY_TYPE");
 
             // Act
             const result = handler.invalidateCache({});
@@ -95,8 +85,7 @@ describe("./request-handler.js", () => {
     describe("#fulfillRequest", () => {
         it("should throw", () => {
             // Arrange
-            const promise = new Promise((resolve, reject) => {});
-            const handler = new RequestHandler("MY_TYPE", () => promise);
+            const handler = new RequestHandler("MY_TYPE");
 
             // Act
             const underTest = () => handler.fulfillRequest("options");
