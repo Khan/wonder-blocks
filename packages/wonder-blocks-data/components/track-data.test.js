@@ -7,8 +7,6 @@ import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import TrackData from "./track-data.js";
 import {RequestTracker, TrackerContext} from "../util/request-tracking.js";
 
-jest.mock("@khanacademy/wonder-blocks-core");
-
 describe("./track-data.jsx", () => {
     afterEach(() => {
         unmountAll();

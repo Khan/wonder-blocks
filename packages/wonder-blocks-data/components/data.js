@@ -119,6 +119,14 @@ export default class Data<TOptions, TData> extends React.Component<
                 });
         }
 
+        /**
+         * This is the default response for the server and for the initial
+         * client-side render if we have cachedData.
+         *
+         * This ensures we don't make promises we don't want when doing
+         * server-side rendering. Instead, we either have data from the cache
+         * or we don't.
+         */
         return {
             loading: cachedData == null,
             data: cachedData && cachedData.data,
@@ -156,6 +164,9 @@ export default class Data<TOptions, TData> extends React.Component<
         return (
             <TrackerContext.Consumer>
                 {(track) => {
+                    /**
+                     * If data tracking wasn't enabled, don't do it.
+                     */
                     if (track != null) {
                         track(this.props.handler, this.props.options);
                     }
