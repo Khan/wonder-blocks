@@ -259,17 +259,28 @@ describe("./response-cache.js", () => {
                     MY_KEY: {data: "data!"},
                 },
             });
-            const fakeHandler: IRequestHandler<string, string> = {
+            const fakeInvalidatorHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
                 invalidateCache: () => true,
                 fulfillRequest: jest.fn(),
             };
+            const fakeHandler: IRequestHandler<string, string> = {
+                getKey: () => "MY_KEY",
+                type: "MY_HANDLER",
+                invalidateCache: () => false,
+                fulfillRequest: jest.fn(),
+            };
 
             // Act
+            const invalidated = cache.getEntry(
+                fakeInvalidatorHandler,
+                "options",
+            );
             const result = cache.getEntry(fakeHandler, "options");
 
             // Assert
+            expect(invalidated).toBeNull();
             expect(result).toBeNull();
         });
     });
