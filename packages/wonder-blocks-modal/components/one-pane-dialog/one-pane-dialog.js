@@ -77,16 +77,6 @@ type Common = {|
      * not provided, a unique id will be generated.
      */
     titleId?: string,
-
-    /**
-     * Without these, flow complains about subtitle and breadcrumbs not being
-     * available on props at all b/c these are exact object types, flow looks
-     * for subtitle in each of Common, WithSubtitle and WithBreadcrumbs. I also
-     * tried making the types inexact and flow still complains when destructuring
-     * which is a little odd.
-     */
-    subtitle?: void,
-    breadcrumbs?: void,
 |};
 
 type WithSubtitle = {|
@@ -95,7 +85,7 @@ type WithSubtitle = {|
     /**
      * The subtitle of the modal, appearing in the titlebar, below the title.
      */
-    subtitle?: string,
+    subtitle: string,
 |};
 
 type WithBreadcrumbs = {|
@@ -104,7 +94,7 @@ type WithBreadcrumbs = {|
     /**
      * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
      */
-    breadcrumbs?: React.Element<Breadcrumbs>,
+    breadcrumbs: React.Element<Breadcrumbs>,
 |};
 
 type Props = Common | WithSubtitle | WithBreadcrumbs;
@@ -121,7 +111,12 @@ export default class OnePaneDialog extends React.Component<Props> {
     };
 
     renderHeader(uniqueId: string): React.Element<typeof ModalHeader> {
-        const {title, subtitle, breadcrumbs, testId} = this.props;
+        const {
+            title,
+            breadcrumbs = undefined,
+            subtitle = undefined,
+            testId,
+        } = this.props;
 
         if (breadcrumbs) {
             return (

@@ -66,12 +66,6 @@ type CommonProps = {|
      * the same time with icon.
      */
     image?: React.Element<"img"> | React.Element<"svg">,
-
-    /**
-     * Without this, flow complains about emphasized not being available on
-     * props at all b/c these are exact object types.
-     */
-    emphasized?: void,
 |};
 
 type WithEmphasized = {|
@@ -186,7 +180,7 @@ export default class PopoverContent extends React.Component<Props> {
             closeButtonLabel,
             closeButtonVisible,
             content,
-            emphasized,
+            emphasized = undefined,
             icon,
             image,
             style,
