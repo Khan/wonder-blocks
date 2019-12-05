@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {ResponseCache} from "./response-cache.js";
+import {RequestFulfillment} from "./request-fulfillment.js";
 
 import type {ResponseCache as Cache, IRequestHandler} from "./types.js";
 
@@ -52,37 +53,11 @@ export class RequestTracker {
     _trackedHandlers: HandlerCache = {};
     _trackedRequests: RequestCache = {};
     _responseCache: ResponseCache;
+    _requestFulfillment: RequestFulfillment;
 
     constructor(responseCache?: ?ResponseCache = undefined) {
         this._responseCache = responseCache || ResponseCache.Default;
-    }
-
-    _fulfillAndCache<TOptions, TData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ): Promise<void> {
-        const {cacheData, cacheError} = this._responseCache;
-        /**
-         * Let's make sure that one bad apple does not spoil the barrel.
-         * This should ensure that in the face of errors, not everything
-         * falls apart, and should help with debugging bad requests during
-         * SSR.
-         */
-        try {
-            return handler
-                .fulfillRequest(options)
-                .then((data) => {
-                    cacheData(handler, options, data);
-                    return undefined;
-                })
-                .catch((error) => {
-                    cacheError(handler, options, error);
-                    return undefined;
-                });
-        } catch (error) {
-            cacheError(handler, options, error);
-            return Promise.resolve(undefined);
-        }
+        this._requestFulfillment = new RequestFulfillment(responseCache);
     }
 
     /**
@@ -141,11 +116,10 @@ export class RequestTracker {
             // For each handler, we will perform the request fulfillments!
             const requests = this._trackedRequests[handlerType];
             for (const requestKey of Object.keys(requests)) {
-                const promise = this._fulfillAndCache(
+                const promise = this._requestFulfillment.fulfill(
                     handler,
                     requests[requestKey],
                 );
-
                 if (promise != null) {
                     promises.push(promise);
                 }
@@ -156,14 +130,6 @@ export class RequestTracker {
          * Clear out our tracked info.
          */
         this.reset();
-
-        /**
-         * If this is called but results in no promises, then we just return an
-         * empty cache.
-         */
-        if (promises.length === 0) {
-            return Promise.resolve(Object.freeze({}));
-        }
 
         /**
          * Let's wait for everything to fulfill, and then clone the cached data.
