@@ -13,7 +13,7 @@ type HandlerCache = {
 
 type RequestCache = {
     [handlerType: string]: {
-        [key: string]: Array<any>,
+        [key: string]: any,
     },
     ...,
 };
@@ -104,34 +104,10 @@ export class RequestTracker {
         }
 
         /**
-         * Get the cache hit behavior so we can determine what to do.
+         * If we don't already have this tracked, then let's track it.
          */
-        const behavior = handler.cacheHitBehavior(options);
-        switch (behavior) {
-            case "static":
-                /**
-                 * For static requests, if something is already doing this,
-                 * then we just let it.
-                 */
-                if (this._trackedRequests[type][key] == null) {
-                    this._trackedRequests[type][key] = [options];
-                }
-                break;
-
-            case "refresh":
-                /**
-                 * For refresh requests, we need to track and fulfill each one.
-                 */
-                const current = this._trackedRequests[type][key] || [];
-                this._trackedRequests[type][key] = [...current, options];
-                break;
-
-            default:
-                /**
-                 * Defensive just in case we ever add new behaviors and forget to
-                 * update this code.
-                 */
-                throw new Error(`Invalid behavior: ${behavior}`);
+        if (this._trackedRequests[type][key] == null) {
+            this._trackedRequests[type][key] = options;
         }
     }
 
@@ -165,29 +141,9 @@ export class RequestTracker {
             // For each handler, we will perform the request fulfillments!
             const requests = this._trackedRequests[handlerType];
             for (const requestKey of Object.keys(requests)) {
-                /**
-                 * Each entry in the request represents a refresh of the
-                 * cache value.
-                 *
-                 * Although the handler may already enforce ordering of refresh
-                 * calls, let's play it safe and assume it wont.
-                 *
-                 * So, we apply these in sequence.
-                 */
-                const promise = requests[requestKey].reduce(
-                    (prev: ?Promise<any>, cur: any): ?Promise<any> => {
-                        if (prev == null) {
-                            return this._fulfillAndCache(handler, cur);
-                        }
-                        /**
-                         * Chain the fulfillment of this request off the last.
-                         * This ensures that fulfillment side-effects occur in order.
-                         */
-                        return prev.then(() =>
-                            this._fulfillAndCache(handler, cur),
-                        );
-                    },
-                    null,
+                const promise = this._fulfillAndCache(
+                    handler,
+                    requests[requestKey],
                 );
 
                 if (promise != null) {
