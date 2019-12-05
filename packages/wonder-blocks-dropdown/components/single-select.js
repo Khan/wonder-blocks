@@ -52,7 +52,7 @@ type Props = {|
     /**
      * Value of the currently selected item.
      */
-    selectedValue?: string,
+    selectedValue?: ?string,
 
     /**
      * Whether this dropdown should be left-aligned or right-aligned with the
