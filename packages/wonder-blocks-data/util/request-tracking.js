@@ -66,7 +66,10 @@ export class RequestTracker {
      * This method caches a request and its handler for use during server-side
      * rendering to allow us to fulfill requests before producing a final render.
      */
-    trackDataRequest(handler: IRequestHandler<any, any>, options: any): void {
+    trackDataRequest = (
+        handler: IRequestHandler<any, any>,
+        options: any,
+    ): void => {
         const key = handler.getKey(options);
         const type = handler.type;
 
@@ -84,15 +87,15 @@ export class RequestTracker {
         if (this._trackedRequests[type][key] == null) {
             this._trackedRequests[type][key] = options;
         }
-    }
+    };
 
     /**
      * Reset our tracking info.
      */
-    reset() {
+    reset = () => {
         this._trackedHandlers = {};
         this._trackedRequests = {};
-    }
+    };
 
     /**
      * Initiate fulfillment of all tracked requests.
@@ -107,7 +110,7 @@ export class RequestTracker {
      * @returns {Promise<Cache>} A frozen cache of the data that was cached
      * as a result of fulfilling the tracked requests.
      */
-    fulfillTrackedRequests(): Promise<$ReadOnly<Cache>> {
+    fulfillTrackedRequests = (): Promise<$ReadOnly<Cache>> => {
         const promises = [];
 
         for (const handlerType of Object.keys(this._trackedHandlers)) {
@@ -140,5 +143,5 @@ export class RequestTracker {
          * Let's wait for everything to fulfill, and then clone the cached data.
          */
         return Promise.all(promises).then(() => this._responseCache.clone());
-    }
+    };
 }
