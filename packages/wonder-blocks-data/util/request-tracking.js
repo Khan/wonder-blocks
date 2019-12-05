@@ -52,34 +52,10 @@ export class RequestTracker {
         }
 
         /**
-         * Get the cache hit behavior so we can determine what to do.
+         * If we don't already have this tracked, then let's track it.
          */
-        const behavior = handler.cacheHitBehavior(options);
-        switch (behavior) {
-            case "static":
-                /**
-                 * For static requests, if something is already doing this,
-                 * then we just let it.
-                 */
-                if (this._trackedRequests[type][key] == null) {
-                    this._trackedRequests[type][key] = [options];
-                }
-                break;
-
-            case "refresh":
-                /**
-                 * For refresh requests, we need to track and fulfill each one.
-                 */
-                const current = this._trackedRequests[type][key] || [];
-                this._trackedRequests[type][key] = [...current, options];
-                break;
-
-            default:
-                /**
-                 * Defensive just in case we ever add new behaviors and forget to
-                 * update this code.
-                 */
-                throw new Error(`Invalid behavior: ${behavior}`);
+        if (this._trackedRequests[type][key] == null) {
+            this._trackedRequests[type][key] = [options];
         }
     }
 
