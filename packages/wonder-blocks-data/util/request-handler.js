@@ -76,10 +76,11 @@ export default class RequestHandler<TOptions, TData>
                  */
                 const request =
                     existingRequest == null
-                        ? existingRequest.then(() =>
+                        ? this._fulfillRequest(options)
+                        : existingRequest.then(() =>
                               this._fulfillRequest(options),
-                          )
-                        : this._fulfillRequest(options);
+                          );
+                this._requestsInFlight[requestKey] = request;
                 return request;
 
             default:

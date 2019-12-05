@@ -108,9 +108,93 @@ describe("./request-handler.js", () => {
     });
 
     describe("#fulfillRequest", () => {
-        it.todo("should return promise of data");
-        it.todo("should return inflight request for repeated static requests");
-        it.todo("should execute refresh requests in order");
-        it.todo("should throw if unexpected cache behavior");
+        it("should call passed fulfillment method", async () => {
+            // Arrange
+            const fakeFulfillmentFn = jest.fn(() => Promise.resolve("DATA"));
+            const handler = new RequestHandler("MY_TYPE", fakeFulfillmentFn);
+
+            // Act
+            await handler.fulfillRequest("options");
+
+            // Assert
+            expect(fakeFulfillmentFn).toHaveBeenCalledWith("options");
+            expect(fakeFulfillmentFn).toHaveBeenCalledTimes(1);
+        });
+
+        it("should return inflight request for repeated static requests", () => {
+            // Arrange
+            const promise = new Promise((resolve, reject) => {});
+            const handler = new RequestHandler("MY_TYPE", () => promise);
+            const p1 = handler.fulfillRequest("options");
+
+            // Act
+            const p2 = handler.fulfillRequest("options");
+
+            // Assert
+            expect(p1).toBe(promise);
+            expect(p2).toBe(promise);
+        });
+
+        it("should execute refresh requests in order", async () => {
+            // Arrange
+            const order = [];
+            const fulfillmentFn = (timeout: number) =>
+                new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        order.push(timeout);
+                        resolve(timeout);
+                    }, timeout);
+                });
+
+            class MyRequestHandler extends RequestHandler<number, number> {
+                /**
+                 * We want all our promises to be the same request, so let's
+                 * provide our own key function.
+                 */
+                getKey = () => "SAME_KEY";
+            }
+            const handler = new MyRequestHandler(
+                "MY_TYPE",
+                fulfillmentFn,
+                "refresh",
+            );
+
+            // Act
+            /**
+             * These promises will resolve in the opposite order on their own,
+             * based on their timeout values. However, they should be applied in
+             * order when behavior is "refresh" occurs.
+             */
+            /* eslint-disable promise/catch-or-return */
+            handler.fulfillRequest(200);
+            handler.fulfillRequest(100);
+            await handler.fulfillRequest(50);
+            /* eslint-enable promise/catch-or-return */
+
+            // Assert
+            expect(order).toStrictEqual([200, 100, 50]);
+        });
+
+        it("should throw if unexpected cache behavior", () => {
+            // Arrange
+            const promise = new Promise((resolve, reject) => {});
+            const handler = new RequestHandler(
+                "MY_TYPE",
+                () => promise,
+                /**
+                 * We're passing the wrong thing on purpose for the test
+                 * $FlowIgnore
+                 */
+                "madethisup",
+            );
+
+            // Act
+            const underTest = () => handler.fulfillRequest("options");
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                `"Unknown cache hit behavior: madethisup"`,
+            );
+        });
     });
 });
