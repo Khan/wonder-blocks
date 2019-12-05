@@ -12,7 +12,7 @@ type HandlerCache = {
 
 type RequestCache = {
     [handlerType: string]: {
-        [key: string]: Array<any>,
+        [key: string]: any,
     },
     ...,
 };
@@ -55,7 +55,7 @@ export class RequestTracker {
          * If we don't already have this tracked, then let's track it.
          */
         if (this._trackedRequests[type][key] == null) {
-            this._trackedRequests[type][key] = [options];
+            this._trackedRequests[type][key] = options;
         }
     }
 

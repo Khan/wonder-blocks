@@ -90,7 +90,7 @@ describe("./request-tracking.js", () => {
 
                 // Assert
                 expect(trackedRequests).toHaveProperty("MY_TYPE", {
-                    MY_KEY: [options],
+                    MY_KEY: options,
                 });
             });
 
@@ -115,7 +115,7 @@ describe("./request-tracking.js", () => {
 
                 // Assert
                 expect(trackedRequests).toHaveProperty("MY_TYPE", {
-                    MY_KEY: [options1],
+                    MY_KEY: options1,
                 });
             });
 
