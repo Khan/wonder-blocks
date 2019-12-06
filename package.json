@@ -46,7 +46,7 @@
     "@babel/preset-flow": "7.7.4",
     "@babel/preset-react": "7.7.4",
     "@khanacademy/babel-plugin-vite": "^0.0.7",
-    "@khanacademy/eslint-config": "0.0.3",
+    "@khanacademy/eslint-config": "0.0.4",
     "@khanacademy/jest-environment-vite": "^0.0.7",
     "@khanacademy/vite-server": "^0.0.7",
     "alex": "^8.0.0",
