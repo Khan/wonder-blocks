@@ -36,7 +36,7 @@ type Props = {|
      * Used to handle the focus order in its parent component. The itemRef is
      * applied to the input directly.
      */
-    itemRef?: {current: any},
+    itemRef?: {|current: any|},
 
     /**
      * Custom styles for the main wrapper

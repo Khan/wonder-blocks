@@ -10,10 +10,16 @@ import type {StyleType} from "./types.js";
 export default function addStyle<T: React.AbstractComponent<any> | string>(
     Component: T,
     defaultStyle?: StyleType,
-): React.AbstractComponent<React.ElementConfig<T> & {style: StyleType}> {
-    function StyleComponent(
-        props: React.ElementConfig<T> & {style: StyleType},
-    ) {
+): React.AbstractComponent<{
+    ...React.ElementConfig<T>,
+    style: StyleType,
+    ...
+}> {
+    function StyleComponent(props: {
+        ...React.ElementConfig<T>,
+        style: StyleType,
+        ...
+    }) {
         const {style, ...tmpOtherProps} = props;
         // NOTE(jeresig): We need to cast the remaining props to be the right
         // value to ensure that they're typed properly.

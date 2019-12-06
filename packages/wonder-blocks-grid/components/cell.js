@@ -29,11 +29,11 @@ type Props = {|
      */
     children:
         | React.Node
-        | (({
+        | (({|
               mediaSize: MediaSize,
               totalColumns: number,
               cols: number,
-          }) => React.Node),
+          |}) => React.Node),
 
     /** The styling to apply to the cell. */
     style?: StyleType,
