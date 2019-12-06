@@ -25,6 +25,7 @@ describe("./server.js", () => {
 
     it("#setServerSide should leave server-side mode as true", () => {
         // Arrange
+        Server.setServerSide();
 
         // Act
         Server.setServerSide();
