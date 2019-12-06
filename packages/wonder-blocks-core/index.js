@@ -22,6 +22,7 @@ export {
 export {
     default as getElementIntersection,
 } from "./util/get-element-intersection.js";
+export {default as Server} from "./util/server.js";
 
 export type {
     AriaProps,
