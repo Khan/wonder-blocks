@@ -18,6 +18,7 @@ describe("@khanacademy/wonder-blocks-core", () => {
                 "getClickableBehavior",
                 "getElementIntersection",
                 "IDProvider",
+                "Server",
                 "UniqueIDProvider",
             ].sort(),
         );
