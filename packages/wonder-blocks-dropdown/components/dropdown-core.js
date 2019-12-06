@@ -123,7 +123,7 @@ type State = {|
      * Refs to use for keyboard focus, contains only those for focusable items.
      * Also keeps track of the original index of the item.
      */
-    itemRefs: Array<{ref: {current: any}, originalIndex: number}>,
+    itemRefs: Array<{|ref: {|current: any|}, originalIndex: number|}>,
 
     /**
      * Because getDerivedStateFromProps doesn't store previous props (in the
@@ -159,9 +159,9 @@ class DropdownCore extends React.Component<Props, State> {
     itemsClicked: boolean;
     popperElement: ?HTMLElement;
     // Keeps a reference of the virtualized list instance
-    listRef: {
+    listRef: {|
         current: null | React.ElementRef<typeof List>,
-    };
+    |};
 
     // Figure out if the same items are focusable. If an item has been added or
     // removed, this method will return false.
@@ -340,7 +340,7 @@ class DropdownCore extends React.Component<Props, State> {
         document.removeEventListener("touchend", this.handleInteract);
     }
 
-    handleInteract = (event: {target: any}) => {
+    handleInteract = (event: {target: any, ...}) => {
         const {open, onOpenChanged} = this.props;
         const target: Node = event.target;
         const thisElement = ReactDOM.findDOMNode(this);

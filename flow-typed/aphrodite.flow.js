@@ -366,6 +366,7 @@ declare module "aphrodite" {
      */
     declare type StyleDeclaration = {
         [key: string]: _CSSProperties,
+        ...,
     };
 
     declare interface StyleSheetStatic {

@@ -28,7 +28,9 @@ export default class RequestHandler<TOptions, TData>
 
     getKey(options: TOptions): string {
         try {
-            return String(JSON.stringify(options));
+            return options === undefined
+                ? "undefined"
+                : (JSON.stringify(options): any);
         } catch (e) {
             throw new Error(`Failed to auto-generate key: ${e}`);
         }
