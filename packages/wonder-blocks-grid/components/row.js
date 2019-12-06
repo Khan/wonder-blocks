@@ -13,11 +13,6 @@ import styles from "../util/styles.js";
 import Gutter from "./gutter.js";
 import Cell from "./cell.js";
 
-type ChildrenArgs = {|
-    mediaSize: MediaSize,
-    totalColumns: number,
-|};
-
 type Props = {|
     /**
      * Which media should this cell be renderer on.  Defaults to all.
@@ -31,7 +26,12 @@ type Props = {|
      * Can also accept a function which receives the `mediaSize` and
      * `totalColumns` and should return some React Nodes to render.
      */
-    children: React.Node | ((ChildrenArgs) => React.Node),
+    children:
+        | React.Node
+        | (({|
+              mediaSize: MediaSize,
+              totalColumns: number,
+          |}) => React.Node),
 
     /** The styling to apply to the row. */
     style?: StyleType,
