@@ -8,6 +8,8 @@ describe("@khanacademy/wonder-blocks-data", () => {
         const result = await importedModule;
 
         // Assert
-        expect(Object.keys(result).sort()).toEqual(["RequestHandler"].sort());
+        expect(Object.keys(result).sort()).toEqual(
+            ["RequestHandler", "TrackData"].sort(),
+        );
     });
 });
