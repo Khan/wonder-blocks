@@ -7,7 +7,7 @@
   "scripts": {
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules",
     "alex": "alex packages/",
-    "lint": "eslint --config ./eslint/eslintrc packages",
+    "lint": "eslint --config .eslintrc.js packages",
     "lint:watch": "esw --watch --config ./eslint/eslintrc packages",
     "build:cjs": "webpack --config build-settings/webpack.config.js --display-modules && node utils/package-flow-types.js",
     "build:es6": "rollup -c build-settings/rollup.config.js",
@@ -46,6 +46,7 @@
     "@babel/preset-flow": "7.7.4",
     "@babel/preset-react": "7.7.4",
     "@khanacademy/babel-plugin-vite": "^0.0.7",
+    "@khanacademy/eslint-config": "0.0.3",
     "@khanacademy/jest-environment-vite": "^0.0.7",
     "@khanacademy/vite-server": "^0.0.7",
     "alex": "^8.0.0",
