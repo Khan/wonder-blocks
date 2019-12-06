@@ -1,10 +1,25 @@
 ## fulfillAllDataRequests
 
-TODO
+When performing server-side rendering (SSR), the data requests that are being
+made via the `Data` component can be tracked by rendering the React tree
+inside the `TrackData` component. After this has occurred, the tracked requests
+can be fulfilled using `fulfillAllDataRequests`.
+
+This method returns a promise that resolves to a copy of the data that was
+cached by fulfilling the tracked requests. In the process, it clears the
+record of tracked requests so that new requests can be tracked and fulfilled
+if so required.
+
+The returned copy of the data cache can be used with the `initializeCache`
+method to prepare the data cache before a subsequent render. This is useful on
+the server to then SSR a more complete result, and again on the client, to
+rehydrate that result.
 
 ### Usage
 
-TODO
+```js static
+fulfillAllDataRequests(): Promise<$ReadOnly<ResponseCache>>;
+```
 
 ## initializeCache
 
@@ -20,14 +35,14 @@ This method can also be used to initialize the response cache for tests.
 ### Usage
 
 ```js static
-initializeCache(sourceCache: ResponseCache): void;
+initializeCache(sourceCache: $ReadOnly<ResponseCache>): void;
 ```
 
 #### Function arguments
 
 | Argument | Flow&nbsp;Type | Default | Description |
 | --- | --- | --- | --- |
-| `sourceData` | `ResponseCache` | _Required_ | The source cache that will be used to initialize the response cache. |
+| `sourceData` | `$ReadOnly<ResponseCache>` | _Required_ | The source cache that will be used to initialize the response cache. |
 
 ## Types
 
