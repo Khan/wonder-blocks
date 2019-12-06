@@ -2,9 +2,8 @@
   "name": "@khanacademy/wonder-blocks-data",
   "version": "1.0.0",
   "design": "v1",
-  "private": true,
   "publishConfig": {
-    "access": "private"
+    "access": "public"
   },
   "description": "",
   "main": "dist/index.js",
