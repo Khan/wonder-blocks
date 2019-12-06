@@ -217,7 +217,7 @@ describe("wonder-blocks-data", () => {
             }
 
             render() {
-                if (jest) {
+                if (typeof jest !== "undefined") {
                     /**
                      * The snapshot test just sees the error getting thrown, not the
                      * awesome error boundary, so we have to hack around it to keep
@@ -302,7 +302,7 @@ describe("wonder-blocks-data", () => {
             }
 
             _renderErrorOrContent() {
-                if (jest) {
+                if (typeof jest !== "undefined") {
                     /**
                      * The snapshot test just sees the error getting thrown, not the
                      * awesome error boundary, so we have to hack around it to keep
