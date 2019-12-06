@@ -46,7 +46,7 @@ type Props = {|
     content:
         | React.Element<PopoverContent>
         | React.Element<PopoverContentCore>
-        | (({close: () => void, ...}) =>
+        | (({|close: () => void|}) =>
               | React.Element<PopoverContentCore>
               | React.Element<PopoverContent>),
 

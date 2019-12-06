@@ -9,8 +9,8 @@ import ReactDOM from "react-dom";
 export default (element: React.Node, expectedError: string) => {
     // Noop error boundary for testing.
     class TestBoundary extends React.Component<
-        {children: React.Node, ...},
-        {didError: boolean, ...},
+        {|children: React.Node|},
+        {|didError: boolean|},
     > {
         constructor(props) {
             super(props);

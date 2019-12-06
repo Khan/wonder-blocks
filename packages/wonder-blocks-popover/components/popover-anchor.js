@@ -24,7 +24,7 @@ type Props = {|
      */
     children:
         | React.Element<any>
-        | (({open: () => void, ...}) => React.Element<any>),
+        | (({|open: () => void|}) => React.Element<any>),
 
     /**
      * The unique identifier to give to the anchor.

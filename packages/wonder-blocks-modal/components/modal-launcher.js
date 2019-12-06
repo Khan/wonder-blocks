@@ -23,7 +23,7 @@ type CommonProps = {|
      * Note: Don't call `closeModal` while rendering! It should be used to
      * respond to user intearction, like `onClick`.
      */
-    modal: ModalElement | (({closeModal: () => void, ...}) => ModalElement),
+    modal: ModalElement | (({|closeModal: () => void|}) => ModalElement),
 
     /**
      * If the parent needs to be notified when the modal is closed, use this
@@ -74,7 +74,7 @@ type ControlledProps = {|
 
 type UncontrolledProps = {|
     ...CommonProps,
-    children: ({openModal: () => mixed, ...}) => React.Node,
+    children: ({|openModal: () => mixed|}) => React.Node,
 |};
 
 type Props = ControlledProps | UncontrolledProps;
@@ -219,10 +219,9 @@ export default class ModalLauncher extends React.Component<Props, State> {
 }
 
 /** A component that, when mounted, calls `onClose` when Escape is pressed. */
-class ModalLauncherKeypressListener extends React.Component<{
+class ModalLauncherKeypressListener extends React.Component<{|
     onClose: () => mixed,
-    ...
-}> {
+|}> {
     componentDidMount() {
         window.addEventListener("keyup", this._handleKeyup);
     }
