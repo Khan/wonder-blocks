@@ -8,9 +8,9 @@ import type {DropdownItem} from "../../util/types.js";
 
 type Props = {|
     data: Array<DropdownItem>,
-    listRef?: {
+    listRef?: {|
         current: null | React.ElementRef<typeof List>,
-    },
+    |},
 |};
 
 /**

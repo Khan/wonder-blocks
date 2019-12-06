@@ -17,7 +17,7 @@ const needsHackyMobileSafariScrollDisabler = (() => {
     return userAgent.indexOf("iPad") > -1 || userAgent.indexOf("iPhone") > -1;
 })();
 
-class ScrollDisabler extends Component<{}> {
+class ScrollDisabler extends Component<{...}> {
     static oldOverflow: string;
     static oldPosition: string;
     static oldScrollY: number;

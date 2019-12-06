@@ -34,7 +34,7 @@ export function checkQuery(
     );
 }
 
-type Listener = ({matches: boolean}) => void;
+type Listener = ({|matches: boolean|}) => void;
 
 /**
  *

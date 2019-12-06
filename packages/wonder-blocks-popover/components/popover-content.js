@@ -33,7 +33,7 @@ type CommonProps = {|
      * This provides a lot of flexibility in terms of what actions may trigger
      * the Popover to close the popover dialog.
      */
-    actions?: React.Node | (({close: () => mixed}) => React.Node),
+    actions?: React.Node | (({close: () => mixed, ...}) => React.Node),
 
     /**
      * Close button label for use in screen readers
