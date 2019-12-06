@@ -199,7 +199,7 @@ type EventHandlers = {|
 // NOTE(jeresig): We want to leave the props for these open so that we can
 // handle uncommon props for elements (e.g. htmlFor for labels).
 // eslint-disable-next-line flowtype/require-exact-type
-export type TextViewSharedProps = {
+export type TextViewSharedProps = {|
     /**
      * Text to appear on the button.
      */
@@ -228,7 +228,7 @@ export type TextViewSharedProps = {
     ...AriaProps,
 
     ...EventHandlers,
-};
+|};
 
 /**
  * Interface implemented by types that can provide identifiers.

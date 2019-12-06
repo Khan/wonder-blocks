@@ -11,7 +11,7 @@ import TooltipPopper from "./tooltip-popper.js";
  * A little wrapper for the TooltipPopper so that we can provide an anchor
  * element reference and test that the children get rendered.
  */
-class TestHarness extends React.Component<any, {ref: ?HTMLElement}> {
+class TestHarness extends React.Component<any, {|ref: ?HTMLElement|}> {
     state = {
         ref: null,
     };

@@ -17,14 +17,14 @@ declare module "react-router-dom" {
         children?: React$Node,
     |}> {}
 
-    declare export class Link extends React$Component<{
+    declare export class Link extends React$Component<{|
         className?: string,
         to: string | LocationShape,
         replace?: boolean,
         children?: React$Node,
-    }> {}
+    |}> {}
 
-    declare export class NavLink extends React$Component<{
+    declare export class NavLink extends React$Component<{|
         to: string | LocationShape,
         activeClassName?: string,
         className?: string,
@@ -34,28 +34,28 @@ declare module "react-router-dom" {
         children?: React$Node,
         exact?: boolean,
         strict?: boolean,
-    }> {}
+    |}> {}
 
     // NOTE: Below are duplicated from react-router. If updating these, please
     // update the react-router and react-router-native types as well.
-    declare export type Location = {
+    declare export type Location = {|
         pathname: string,
         search: string,
         hash: string,
         state?: any,
         key?: string,
-    };
+    |};
 
-    declare export type LocationShape = {
+    declare export type LocationShape = {|
         pathname?: string,
         search?: string,
         hash?: string,
         state?: any,
-    };
+    |};
 
     declare export type HistoryAction = "PUSH" | "REPLACE" | "POP";
 
-    declare export type RouterHistory = {
+    declare export type RouterHistory = {|
         length: number,
         location: Location,
         action: HistoryAction,
@@ -74,14 +74,14 @@ declare module "react-router-dom" {
         // createMemoryHistory
         index?: number,
         entries?: Array<Location>,
-    };
+    |};
 
-    declare export type Match = {
-        params: {[key: string]: ?string},
+    declare export type Match = {|
+        params: {[key: string]: ?string, ...},
         isExact: boolean,
         path: string,
         url: string,
-    };
+    |};
 
     declare export type ContextRouter = {|
         history: RouterHistory,
@@ -90,21 +90,21 @@ declare module "react-router-dom" {
         staticContext?: StaticRouterContext,
     |};
 
-    declare type ContextRouterVoid = {
+    declare type ContextRouterVoid = {|
         history: RouterHistory | void,
         location: Location | void,
         match: Match | void,
         staticContext?: StaticRouterContext | void,
-    };
+    |};
 
     declare export type GetUserConfirmation = (
         message: string,
         callback: (confirmed: boolean) => void,
     ) => void;
 
-    declare export type StaticRouterContext = {
+    declare export type StaticRouterContext = {|
         url?: string,
-    };
+    |};
 
     declare export class StaticRouter extends React$Component<{|
         basename?: string,
@@ -156,7 +156,7 @@ declare module "react-router-dom" {
     |}> {}
 
     declare export function withRouter<
-        P: {},
+        P: {...},
         Component: React$ComponentType<P>,
     >(
         WrappedComponent: Component,
@@ -164,12 +164,12 @@ declare module "react-router-dom" {
         $Diff<React$ElementConfig<Component>, ContextRouterVoid>,
     >;
 
-    declare type MatchPathOptions = {
+    declare type MatchPathOptions = {|
         path?: string,
         exact?: boolean,
         sensitive?: boolean,
         strict?: boolean,
-    };
+    |};
 
     declare export function matchPath(
         pathname: string,
