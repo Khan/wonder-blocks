@@ -1,3 +1,4 @@
+/* eslint-disable import/no-commonjs */
 const {createConfig, babel, postcss} = require("webpack-blocks");
 
 const babelConfig = require("./build-settings/babel.config.js");
@@ -42,10 +43,20 @@ module.exports = {
                 "packages/wonder-blocks-core/util/add-style.js",
                 "packages/wonder-blocks-core/components/clickable-behavior.js",
                 "packages/wonder-blocks-core/components/id-provider.js",
+                "packages/wonder-blocks-core/util/server.js",
                 "packages/wonder-blocks-core/components/text.js",
                 "packages/wonder-blocks-core/components/unique-id-provider.js",
                 "packages/wonder-blocks-core/components/view.js",
                 "packages/wonder-blocks-core/components/with-ssr-placeholder.js",
+            ],
+        },
+        {
+            private: true,
+            name: "Data",
+            content: "packages/wonder-blocks-data/docs.md",
+            components: [
+                "packages/wonder-blocks-data/components/track-data.js",
+                "packages/wonder-blocks-data/util/request-handler.js",
             ],
         },
         {
