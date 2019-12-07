@@ -10,6 +10,7 @@ describe("@khanacademy/wonder-blocks-data", () => {
         // Assert
         expect(Object.keys(result).sort()).toEqual(
             [
+                "Data",
                 "RequestHandler",
                 "TrackData",
                 "fulfillAllDataRequests",
