@@ -64,7 +64,7 @@ export class ResponseCache {
      *
      * This can only be called if the cache is not already in use.
      */
-    initialize = (source: Cache): void => {
+    initialize = (source: $ReadOnly<Cache>): void => {
         if (Object.keys(this._cache).length !== 0) {
             throw new Error(
                 "Cannot initialize data response cache more than once",

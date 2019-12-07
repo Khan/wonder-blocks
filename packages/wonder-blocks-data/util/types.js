@@ -1,4 +1,16 @@
 // @flow
+export type Result<TData> =
+    | {|
+          loading: true,
+          data?: void,
+          error?: void,
+      |}
+    | {|
+          loading: false,
+          data?: TData,
+          error?: string,
+      |};
+
 export type CacheEntry<TData> =
     | {|
           error: string,
