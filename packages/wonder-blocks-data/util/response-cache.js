@@ -37,7 +37,7 @@ export class ResponseCache {
 
     _cache: Cache = {};
 
-    constructor(source?: ?Cache = undefined) {
+    constructor(source: ?Cache = undefined) {
         if (source != null) {
             this.initialize(source);
         }
