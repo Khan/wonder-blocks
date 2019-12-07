@@ -51,7 +51,6 @@ module.exports = {
             ],
         },
         {
-            private: true,
             name: "Data",
             content: "packages/wonder-blocks-data/docs.md",
             components: [
