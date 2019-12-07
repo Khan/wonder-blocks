@@ -23,7 +23,7 @@ class ErrorBoundary extends React.Component {
     }
 
     render() {
-        if (jest) {
+        if (typeof jest !== "undefined") {
             /**
              * The snapshot test just sees the error getting thrown, not the
              * awesome error boundary, so we have to hack around it to keep
@@ -112,7 +112,7 @@ class Example extends React.Component {
     };
 
     _renderErrorOrContent() {
-        if (jest) {
+        if (typeof jest !== "undefined") {
             /**
              * The snapshot test just sees the error getting thrown, not the
              * awesome error boundary, so we have to hack around it to keep

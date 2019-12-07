@@ -18,11 +18,12 @@ const queries = [
     ...Object.values(MEDIA_MODAL_SPEC).map((spec: any) => spec.query),
 ];
 
-const mediaQueryLists: {[key: string]: MediaQueryList} = {};
+const mediaQueryLists: {[key: string]: MediaQueryList, ...} = {};
 
 // eslint-disable-next-line flowtype/require-exact-type
 export type MockStyleSheet = {
     [key: string]: StyleType,
+    ...,
 };
 
 type Props = {|
@@ -37,11 +38,11 @@ type Props = {|
      *                  stylesheet for this mediaSize (as specified in the
      *                  styleSheets prop).
      */
-    children: ({
+    children: ({|
         mediaSize: MediaSize,
         mediaSpec: MediaSpec,
         styles: MockStyleSheet,
-    }) => React.Node,
+    |}) => React.Node,
 
     /**
      * Aphrodite stylesheets to pass through to the styles prop. The
@@ -53,6 +54,7 @@ type Props = {|
         mdOrLarger?: StyleDeclaration,
         mdOrSmaller?: StyleDeclaration,
         [mediaSize: MediaSize]: StyleDeclaration,
+        ...
     },
 |};
 
@@ -87,7 +89,7 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
 
     componentDidMount() {
         // TODO(WB-534): handle changes to mediaSpec prop
-        const entries: Array<[MediaSize, {query: string}]> = (Object.entries(
+        const entries: Array<[MediaSize, {|query: string|}]> = (Object.entries(
             this.props.mediaSpec,
         ): any);
 
@@ -120,7 +122,7 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
             return this.state.size;
         } else {
             const entries: Array<
-                [MediaSize, {query: string}],
+                [MediaSize, {|query: string|}],
             > = (Object.entries(this.props.mediaSpec): any);
 
             for (const [size, spec] of entries) {

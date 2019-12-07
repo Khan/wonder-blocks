@@ -18,7 +18,6 @@ export default class TrackData extends React.Component<TrackDataProps> {
                 "This component is not for use during client-side rendering",
             );
         }
-
         return (
             <TrackerContext.Provider
                 value={RequestTracker.Default.trackDataRequest}

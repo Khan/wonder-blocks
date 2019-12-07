@@ -15,6 +15,7 @@ type HandlerCache = {
 type RequestCache = {
     [handlerType: string]: {
         [key: string]: any,
+        ...,
     },
     ...,
 };
@@ -55,7 +56,7 @@ export class RequestTracker {
     _responseCache: ResponseCache;
     _requestFulfillment: RequestFulfillment;
 
-    constructor(responseCache?: ?ResponseCache = undefined) {
+    constructor(responseCache: ?ResponseCache = undefined) {
         this._responseCache = responseCache || ResponseCache.Default;
         this._requestFulfillment = new RequestFulfillment(responseCache);
     }
@@ -136,6 +137,20 @@ export class RequestTracker {
 
         /**
          * Clear out our tracked info.
+         *
+         * We call this now for a simpler API.
+         *
+         * If we reset the tracked calls after all promises resolve, any
+         * requst tracking done while promises are in flight would be lost.
+         *
+         * If we don't reset at all, then we have to expose the `reset` call
+         * for consumers to use, or they'll only ever be able to accumulate
+         * more and more tracked requests, having to fulfill them all every
+         * time.
+         *
+         * Calling it here means we can have multiple "track -> request" cycles
+         * in a row and in an easy to reason about manner.
+         *
          */
         this.reset();
 

@@ -1,17 +1,8 @@
-{
-    "extends": [
-        "./eslint/eslintrc"
-    ],
-    "plugins": [
-        "import",
-        "promise",
-        "monorepo"
-    ],
-    "rules": {
-        "flowtype/require-exact-type": [
-            "error",
-            "always"
-        ],
+module.exports = {
+    extends: ["@khanacademy"],
+    plugins: ["import", "promise", "monorepo"],
+    rules: {
+        "flowtype/require-exact-type": ["error", "always"],
         "flowtype/no-types-missing-file-annotation": "error",
         "import/no-unresolved": "error",
         "import/named": "error",
@@ -28,11 +19,8 @@
         "import/order": [
             "error",
             {
-                "groups": [
-                    "builtin",
-                    "external"
-                ]
-            }
+                groups: ["builtin", "external"],
+            },
         ],
         "import/newline-after-import": "error",
         "import/no-unassigned-import": "error",
@@ -41,8 +29,8 @@
             "error",
             "always",
             {
-                "ignorePackages": true
-            }
+                ignorePackages: true,
+            },
         ],
         "promise/always-return": "error",
         "promise/no-return-wrap": "error",
@@ -64,17 +52,17 @@
         "import/no-restricted-paths": [
             "error",
             {
-                "zones": [
+                zones: [
                     {
-                        "target": "./packages/(?!.*test.js).*",
-                        "from": "utils"
+                        target: "./packages/(?!.*test.js).*",
+                        from: "utils",
                     },
                     {
-                        "target": "./packages/wonder-blocks.*",
-                        "from": "./shared-unpackaged"
-                    }
-                ]
-            }
-        ]
-    }
-}
+                        target: "./packages/wonder-blocks.*",
+                        from: "./shared-unpackaged",
+                    },
+                ],
+            },
+        ],
+    },
+};

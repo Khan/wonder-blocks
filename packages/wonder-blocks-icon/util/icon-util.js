@@ -27,10 +27,10 @@ export const viewportPixelsForSize = (size: IconSize): number =>
 export const getPathForIcon = (
     icon: IconAsset,
     size: IconSize,
-): {
+): {|
     assetSize: IconSize,
     path: string,
-} => {
+|} => {
     if (icon[size]) {
         // Great, we have the IconSize we actually requested
         return {assetSize: size, path: icon[size]};

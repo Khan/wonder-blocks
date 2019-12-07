@@ -12,6 +12,7 @@ import type {TextViewSharedProps} from "../util/types.js";
 type Props = {
     ...TextViewSharedProps,
     tag: string,
+    ...
 };
 
 const isHeaderRegex = /^h[1-6]$/;

@@ -84,7 +84,7 @@ describe("./request-tracking.js", () => {
                 const requestTracker = createRequestTracker();
                 const fakeHandler: IRequestHandler<any, any> = {
                     fulfillRequest: jest.fn(() => Promise.resolve(null)),
-                    getKey: jest.fn().mockReturnValue("MY_KEY"),
+                    getKey: (options) => JSON.stringify(options),
                     invalidateCache: () => false,
                     type: "MY_TYPE",
                 };
@@ -211,9 +211,7 @@ describe("./request-tracking.js", () => {
                  * We're going to check a few things here:
                  * - Handlers that crash when making the request
                  * - Handlers that reject the promise
-                 * - Static handlers that resolve
-                 * - Refresh handlers that resolve (and that every tracked
-                 *   refresh request occurs)
+                 * - Handlers that resolve
                  */
                 const fakeBadRequestHandler: IRequestHandler<string, any> = {
                     fulfillRequest: () =>

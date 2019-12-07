@@ -113,11 +113,10 @@ that method. That way we'd have data ready for us here!
 ```jsx
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Data, RequestHandler} from "@khanacademy/wonder-blocks-data";
+import {initializeCache, Data, RequestHandler} from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-
 
 /**
  * For snapshot tests, we'll be run in an isolated manner, so we need to also

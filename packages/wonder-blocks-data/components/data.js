@@ -8,9 +8,38 @@ import {TrackerContext} from "../util/request-tracking.js";
 
 import type {Result, IRequestHandler} from "../util/types.js";
 
-type Props<TOptions, TData> = {|
+type Props<
+    /**
+     * The type of options that the handler requires to define a request.
+     */
+    TOptions,
+    /**
+     * The type of data resolved by the handler's fulfillRequest method.
+     */
+    TData,
+> = {|
+    /**
+     * An `IRequestHandler` instance of the type this component will use to
+     * resolve its requests.
+     *
+     * The framework deduplicates handlers based on their `type` property.
+     * Handlers with the same `type` property are assumed to be the same.
+     */
     handler: IRequestHandler<TOptions, TData>,
+
+    /**
+     * The handler-specific options that define what requestt is to be made.
+     *
+     * Changing these options will only cause the data to update if the key
+     * from `handler.getKey(options)` changes.
+     */
     options: TOptions,
+
+    /**
+     * A function that will render the content of this component using the
+     * loading state and data or error that gets retrieved from cache or loaded
+     * via the request if no cached value is available.
+     */
     children: (result: Result<TData>) => React.Node,
 |};
 
@@ -79,8 +108,9 @@ export default class Data<TOptions, TData> extends React.Component<
         const cachedData = getEntry(handler, options);
         if (!Server.isServerSide() && cachedData == null) {
             /**
-             * We're not on the server and the cache missed, or the cache is
-             * invalid.
+             * We're not on the server and the cache missed (either due to
+             * missing data or deliberate cache invalidation).
+             *
              * Therefore, we need to request data.
              *
              * We have to do this here from the constructor so that this
@@ -107,6 +137,10 @@ export default class Data<TOptions, TData> extends React.Component<
                     /**
                      * We should never get here, but if we do.
                      */
+                    // eslint-disable-next-line no-console
+                    console.error(
+                        `Unexpected error occurred during data fulfillment: ${e}`,
+                    );
                     if (this._mounted && this._propsMatch(propsAtFulfillment)) {
                         this.setState({
                             loading: false,
