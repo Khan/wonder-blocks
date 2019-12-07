@@ -15,6 +15,4 @@ export type {
     WithActionScheduler,
 };
 
-export {
-    default as withActionScheduler,
-} from "./components/with-action-scheduler.js";
+export {default as withActionScheduler} from "./components/with-action-scheduler.js";
