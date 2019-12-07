@@ -28,9 +28,9 @@ type OwnProps = {|
      * The VariableSizeList ref that needs to be passed to access to
      * react-window's instance methods
      */
-    listRef?: {
+    listRef?: {|
         current: null | React.ElementRef<typeof List>,
-    },
+    |},
 
     /**
      * An optional fixed width that will be passed to the react-window instance

@@ -26,7 +26,7 @@ export class RequestFulfillment {
     _responseCache: ResponseCache;
     _requests: RequestCache = {};
 
-    constructor(responseCache?: ?ResponseCache = undefined) {
+    constructor(responseCache: ?ResponseCache = undefined) {
         this._responseCache = responseCache || ResponseCache.Default;
     }
 

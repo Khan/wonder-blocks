@@ -30,6 +30,7 @@ type ValidViewTags = "div" | "article" | "aside" | "nav" | "section";
 type Props = {
     ...TextViewSharedProps,
     tag: ValidViewTags,
+    ...
 };
 
 const StyledDiv = addStyle<"div">("div", styles.default);
