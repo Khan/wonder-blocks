@@ -1,7 +1,10 @@
 // @flow
 import {ResponseCache} from "./util/response-cache.js";
+import {RequestTracker} from "./util/request-tracking.js";
 
 export const initializeCache = ResponseCache.Default.initialize;
+export const fulfillAllDataRequests =
+    RequestTracker.Default.fulfillTrackedRequests;
 
 export type {IRequestHandler} from "./util/types.js";
 

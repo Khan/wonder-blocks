@@ -1,3 +1,11 @@
+## fulfillAllDataRequests
+
+TODO
+
+### Usage
+
+TODO
+
 ## initializeCache
 
 Wonder Blocks Data caches data in its response cache. This cache can be
@@ -21,13 +29,21 @@ initializeCache(sourceCache: ResponseCache): void;
 | --- | --- | --- | --- |
 | `sourceData` | `ResponseCache` | _Required_ | The source cache that will be used to initialize the response cache. |
 
-### Types
+## Types
 
-#### ResponseCache
+### ResponseCache
 
 ```js static
+type CacheEntry =
+    | {|
+        data: any,
+      |}
+    | {|
+        error: string,
+      |};
+
 type HandlerSubcache = {
-    [key: string]: any,
+    [key: string]: CacheEntry,
     ...,
 };
 
@@ -43,12 +59,14 @@ shown below.
 ```js static
 const responseCache = {
     HANDLER_TYPE_A: {
-        DATA_ID_1: "DATA STRING",
-        DATA_ID_2: ["array", "of", "data"],
+        DATA_ID_1: {error: "It go 💥boom 😢"},
+        DATA_ID_2: {data: ["array", "of", "data"]},
     },
     HANDLER_TYPE_B: {
         DATA_ID_3: {
-            some: "data",
+            data: {
+                some: "data",
+            },
         },
     },
 };

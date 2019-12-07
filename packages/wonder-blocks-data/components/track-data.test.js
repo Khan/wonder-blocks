@@ -5,7 +5,7 @@ import {shallow} from "enzyme";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
 import TrackData from "./track-data.js";
-import requestTracker, {TrackerContext} from "../util/request-tracking.js";
+import {RequestTracker, TrackerContext} from "../util/request-tracking.js";
 
 describe("./track-data.jsx", () => {
     afterEach(() => {
@@ -53,6 +53,6 @@ describe("./track-data.jsx", () => {
         });
 
         // Assert
-        expect(result).toBe(requestTracker.trackDataRequest);
+        expect(result).toBe(RequestTracker.Default.trackDataRequest);
     });
 });
