@@ -1,0 +1,377 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`wonder-blocks-data example 1 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      This request will succeed and give us data!
+    </span>
+    Loading...
+  </div>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 12,
+        "MsFlexPreferredSize": 12,
+        "WebkitFlexBasis": 12,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 12,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 12,
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      This request will go boom and give us an error!
+    </span>
+    Loading...
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-data example 2 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      This cache has data!
+    </span>
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Inconsolata, monospace",
+          "fontSize": 17,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      I'm DATA from the cache
+    </span>
+  </div>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 12,
+        "MsFlexPreferredSize": 12,
+        "WebkitFlexBasis": 12,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 12,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 12,
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      This cache has error!
+    </span>
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "color": "#d92916",
+          "display": "block",
+          "fontFamily": "Inconsolata, monospace",
+          "fontSize": 17,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      ERROR: 
+      I'm an ERROR from the cache
+    </span>
+  </div>
+</div>
+`;
+
+exports[`wonder-blocks-data example 3 1`] = `"Sorry, no snapshot for you"`;
+
+exports[`wonder-blocks-data example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "inline-block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Enable Server-side Mode
+    </span>
+  </button>
+  Sorry, no snapshot for you
+</div>
+`;

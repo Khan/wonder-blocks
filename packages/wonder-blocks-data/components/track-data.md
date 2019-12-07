@@ -1,0 +1,208 @@
+The `TrackData` component is a server-side only component. It should be used as
+a parent to the components whose data requests you want to fulfill during
+server-side rendering.
+
+#### Client-side behavior
+
+If used outside of server-side mode (as set using `Server.setServerSide`), this
+component will throw, as demonstrated below.
+
+```jsx
+import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
+import {Server, View} from "@khanacademy/wonder-blocks-core";
+import {TrackData} from "@khanacademy/wonder-blocks-data";
+
+class ErrorBoundary extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
+
+    static getDerivedStateFromError(error) {
+        return {error: error.message};
+    }
+
+    render() {
+        if (typeof jest !== "undefined") {
+            /**
+             * The snapshot test just sees the error getting thrown, not the
+             * awesome error boundary, so we have to hack around it to keep
+             * this live example, but not get test failures.
+             */
+            return "Sorry, no snapshot for you";
+        }
+
+        if (this.state.error) {
+            return (
+                <View>
+                    {this.state.error}
+                </View>
+            );
+        }
+        return this.props.children;
+    }
+}
+
+<ErrorBoundary>
+    <View>
+        <TrackData>
+            <Body>This only renders if we're in server-side mode and the page hot reloaded</Body>
+        </TrackData>
+    </View>
+</ErrorBoundary>
+```
+
+#### Server-side behavior
+
+When used server-side, this component tracks any data requests made through
+the `Data` component during a render cycle. This data can then be obtained
+using the `fulfillAllDataRequests` method. The data can then be used in an
+additional render cycle to render with that data.
+
+```jsx
+import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import Button from "@khanacademy/wonder-blocks-button";
+import {Server, View} from "@khanacademy/wonder-blocks-core";
+import {Data, TrackData, RequestHandler, fulfillAllDataRequests} from "@khanacademy/wonder-blocks-data";
+
+class MyPretendHandler extends RequestHandler {
+    constructor() {
+        super("MY_PRETEND_HANDLER");
+    }
+
+    fulfillRequest(options) {
+        return new Promise((resolve, reject) =>
+            setTimeout(() => resolve("DATA!"), 3000),
+        );
+    }
+}
+
+class Example extends React.Component {
+    constructor() {
+        super();
+        /**
+         * For this demonstration, we need to hack the return of isServerSide solely
+         * for the scope of this component.
+         */
+        this.state = {};
+        this._handler = new MyPretendHandler();
+    }
+
+    static getDerivedStateFromError(error) {
+        return {error};
+    }
+
+    componentDidMount() {
+        this._mounted = true;
+    }
+
+    componentWillUnmount() {
+        this._mounted = false;
+    }
+
+    setClientMode() {
+        window.location.reload();
+    }
+
+    setServerMode() {
+        Server.setServerSide();
+        this.setState({refresh: Date.now(), error: null});
+    };
+
+    _renderErrorOrContent() {
+        if (typeof jest !== "undefined") {
+            /**
+             * The snapshot test just sees the error getting thrown, not the
+             * awesome error boundary, so we have to hack around it to keep
+             * this live example, but not get test failures.
+             */
+            return "Sorry, no snapshot for you";
+        }
+
+        if (this.state.error) {
+            return (
+                <React.Fragment>
+                    <Strut size={Spacing.small} />
+                    <Body>We can't show you anything useful in client-side mode</Body>
+                </React.Fragment>
+            );
+        }
+
+        const data = this.state.data
+            ? JSON.stringify(this.state.data, undefined, "  ")
+            : "Data requested...";
+        return (
+            <React.Fragment>
+                <Strut size={Spacing.small} />
+                <TrackData>
+                    <Data handler={this._handler} options={{}}>
+                        {({loading, data, error}) => (
+                            <View>
+                                <BodyMonospace>{`Loading: ${loading}`}</BodyMonospace>
+                                <BodyMonospace>{`Data: ${JSON.stringify(data)}`}</BodyMonospace>
+                            </View>
+                        )}
+                    </Data>
+                </TrackData>
+                <Strut size={Spacing.small} />
+                <View>
+                    <Body>
+                        The above components requested data, but we're server-side,
+                        so all that happened is we tracked the request.
+                        In this example, we've also called `fulfillAllDataRequests`
+                        to fetch that tracked data.
+                    </Body>
+                    <Strut size={Spacing.small} />
+                    <Body>
+                        In about 3 seconds, it will appear below. Notice that
+                        when it does, the above still doesn't update. That's
+                        because during SSR, the data is not updated in the
+                        rendered tree.
+                    </Body>
+                    <Strut size={Spacing.small} />
+                    <Body>
+                        If you click to remount after the data appears, we'll
+                        rerender with the now cached data, and above should
+                        update accordingly.
+                    </Body>
+                    <Strut size={Spacing.small} />
+                    <BodyMonospace>{data}</BodyMonospace>
+                </View>
+            </React.Fragment>
+        );
+    }
+
+    render() {
+        try {
+            return (
+                <View key={this.state.refresh}>
+                    {Server.isServerSide()
+                        ? (
+                            <React.Fragment>
+                                <Button kind={"secondary"} onClick={() => this.setClientMode()}>Back to Client-side Mode (reloads page)</Button>
+                                <Strut size={Spacing.small} />
+                                <Button kind={"secondary"} onClick={() => this.setServerMode()}>Re-mount</Button>
+                            </React.Fragment>
+                        ) : (
+                            <Button kind={"primary"} onClick={() => this.setServerMode()}>Enable Server-side Mode</Button>
+                        )
+                    }
+                    {this._renderErrorOrContent()}
+                </View>
+            );
+        } finally {
+            if (!this.state.data && Server.isServerSide()) {
+                setTimeout(() => fulfillAllDataRequests().then((data) => {
+                    if (this._mounted) {
+                        this.setState({data});
+                    }
+                }), 0);
+            }
+        }
+    }
+}
+
+<Example />
+```
