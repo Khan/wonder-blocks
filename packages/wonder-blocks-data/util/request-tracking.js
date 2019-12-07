@@ -15,6 +15,7 @@ type HandlerCache = {
 type RequestCache = {
     [handlerType: string]: {
         [key: string]: any,
+        ...,
     },
     ...,
 };
