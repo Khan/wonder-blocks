@@ -1,5 +1,5 @@
 [version]
-0.110.1
+0.111.3
 
 [ignore]
 <PROJECT_ROOT>/node_modules
@@ -14,6 +14,9 @@
 !<PROJECT_ROOT>/node_modules/warning
 !<PROJECT_ROOT>/node_modules/typed-styles
 !<PROJECT_ROOT>/node_modules/create-react-context
+
+[declarations]
+<PROJECT_ROOT>/node_modules/react-window
 
 [lints]
 deprecated-type=error

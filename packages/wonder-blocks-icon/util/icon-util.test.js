@@ -9,7 +9,7 @@ const DUMMY_ICON_MEDIUM_ONLY = {
     medium: "[MEDIUM SVG PATH]",
 };
 
-const DUMMY_ICON_WITH_EVERYTHING_ON_IT = {
+const DUMMY_ICON_WITH_EVERYTHING_ON_IT: IconAsset = {
     small: "[SMALL SVG PATH]",
     medium: "[MEDIUM SVG PATH]",
     large: "[LARGE SVG PATH]",
