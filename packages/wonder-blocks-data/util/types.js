@@ -1,4 +1,24 @@
 // @flow
+export type CacheEntry<TData> =
+    | {|
+          error: string,
+          data?: ?void,
+      |}
+    | {|
+          data: TData,
+          error?: ?void,
+      |};
+
+type HandlerSubcache = {
+    [key: string]: CacheEntry<any>,
+    ...,
+};
+
+export type ResponseCache = {
+    [key: string]: HandlerSubcache,
+    ...,
+};
+
 /**
  * A handler for data requests.
  */
