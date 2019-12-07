@@ -15,6 +15,9 @@
 !<PROJECT_ROOT>/node_modules/typed-styles
 !<PROJECT_ROOT>/node_modules/create-react-context
 
+[declarations]
+<PROJECT_ROOT>/node_modules/react-window
+
 [lints]
 deprecated-type=error
 deprecated-utility=error
