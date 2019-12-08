@@ -54,7 +54,7 @@ type CacheEntry =
         data: any,
       |}
     | {|
-        error: Error,
+        error: string,
       |};
 
 type HandlerSubcache = {
@@ -74,7 +74,7 @@ shown below.
 ```js static
 const responseCache = {
     HANDLER_TYPE_A: {
-        DATA_ID_1: {error: new Error("It go 💥boom 😢")},
+        DATA_ID_1: {error: "It go 💥boom 😢"},
         DATA_ID_2: {data: ["array", "of", "data"]},
     },
     HANDLER_TYPE_B: {
