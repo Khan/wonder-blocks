@@ -995,7 +995,7 @@ exports[`wonder-blocks-popover example 7 1`] = `
               "alignItems": "center",
               "background": "none",
               "border": "none",
-              "borderColor": "rgba(255,255,255,0.64)",
+              "borderColor": "rgba(255,255,255,0.50)",
               "borderRadius": 4,
               "borderStyle": "solid",
               "borderWidth": 1,

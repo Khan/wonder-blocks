@@ -228,7 +228,7 @@ const _generateStyles = (color, kind, light, iconWidth) => {
         return styles[buttonType];
     }
 
-    const {white, white64, offBlack32, offBlack50, darkBlue} = Color;
+    const {white, white50, white64, offBlack32, offBlack50, darkBlue} = Color;
     const fadedColor = mix(fade(color, 0.32), white);
     const activeColor = mix(offBlack32, color);
 
@@ -266,7 +266,7 @@ const _generateStyles = (color, kind, light, iconWidth) => {
             default: {
                 background: "none",
                 color: light ? white : color,
-                borderColor: light ? white64 : offBlack50,
+                borderColor: light ? white50 : offBlack50,
                 borderStyle: "solid",
                 borderWidth: 1,
             },
@@ -290,7 +290,7 @@ const _generateStyles = (color, kind, light, iconWidth) => {
                 paddingRight: 15,
             },
             disabled: {
-                color: light ? fadedColor : offBlack32,
+                color: light ? white50 : offBlack32,
                 borderColor: light ? fadedColor : offBlack32,
                 cursor: "default",
             },
