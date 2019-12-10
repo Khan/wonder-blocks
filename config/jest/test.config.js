@@ -16,8 +16,8 @@ module.exports = {
     testMatch: ["<rootDir>/**/*.test.js"],
     setupFilesAfterEnv: ["<rootDir>/config/jest/test-setup.js"],
     moduleNameMapper: {
-        "^@khanacademy/(.*)$":
-            "<rootDir>/node_modules/@khanacademy/$1/index.js",
+        "^@khanacademy/wonder-blocks-(.*)$":
+            "<rootDir>/node_modules/@khanacademy/wonder-blocks-$1/index.js",
     },
     collectCoverageFrom: [
         "packages/**/*.js",
