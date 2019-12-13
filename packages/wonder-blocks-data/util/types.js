@@ -55,7 +55,10 @@ export interface IRequestHandler<TOptions, TData> {
      * If this returns true, the framework will fulfill a new request by
      * calling `fulfillRequest`.
      */
-    invalidateCache(options: TOptions): boolean;
+    invalidateCache(
+        options: TOptions,
+        cachedEntry: ?CacheEntry<TData>,
+    ): boolean;
 
     /**
      * Get the key to use for a given request. This should be idempotent for a

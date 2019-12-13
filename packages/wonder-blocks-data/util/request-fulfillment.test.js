@@ -34,7 +34,7 @@ describe("RequestFulfillment", () => {
             await requestFulfillment.fulfill(fakeBadHandler, "OPTIONS");
 
             // Assert
-            expect(responseCache.clone()).toStrictEqual({
+            expect(responseCache.cloneCachedData()).toStrictEqual({
                 MY_TYPE: {
                     MY_KEY: {
                         error: "OH NO!",
@@ -59,7 +59,7 @@ describe("RequestFulfillment", () => {
             await requestFulfillment.fulfill(fakeBadRequestHandler, "OPTIONS");
 
             // Assert
-            expect(responseCache.clone()).toStrictEqual({
+            expect(responseCache.cloneCachedData()).toStrictEqual({
                 BAD_REQUEST: {
                     OPTIONS: {
                         error: "OH NO!",
@@ -83,7 +83,7 @@ describe("RequestFulfillment", () => {
             await requestFulfillment.fulfill(fakeRequestHandler, "OPTIONS");
 
             // Assert
-            expect(responseCache.clone()).toStrictEqual({
+            expect(responseCache.cloneCachedData()).toStrictEqual({
                 VALID_REQUEST: {
                     OPTIONS: {
                         data: "DATA!",

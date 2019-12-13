@@ -70,12 +70,34 @@ describe("./request-handler.js", () => {
     });
 
     describe("#invalidateCache", () => {
-        it("should return false", () => {
+        it("should return true if no current cached entry", () => {
             // Arrange
             const handler = new RequestHandler("MY_TYPE");
 
             // Act
-            const result = handler.invalidateCache({});
+            const result = handler.invalidateCache({}, null);
+
+            // Assert
+            expect(result).toBeTruthy();
+        });
+
+        it("should return true if cached entry has error", () => {
+            // Arrange
+            const handler = new RequestHandler("MY_TYPE");
+
+            // Act
+            const result = handler.invalidateCache({}, {error: "oops!"});
+
+            // Assert
+            expect(result).toBeTruthy();
+        });
+
+        it("should return false if cached entry is data", () => {
+            // Arrange
+            const handler = new RequestHandler("MY_TYPE");
+
+            // Act
+            const result = handler.invalidateCache({}, {data: "yay! data"});
 
             // Assert
             expect(result).toBeFalsy();

@@ -306,7 +306,7 @@ describe("./response-cache.js", () => {
             cache.cacheError(fakeHandler, "OPTIONS2", new Error("OH NO!"));
 
             // Act
-            const result = cache.clone();
+            const result = cache.cloneCachedData();
             // Update the cache so that it should be different from the clone.
             cache.cacheData(fakeHandler, "OPTIONS1", "SOME_NEW_DATA");
 
@@ -335,7 +335,7 @@ describe("./response-cache.js", () => {
             });
 
             // Act
-            const underTest = () => cache.clone();
+            const underTest = () => cache.cloneCachedData();
 
             // Assert
             expect(underTest).toThrowErrorMatchingInlineSnapshot(
