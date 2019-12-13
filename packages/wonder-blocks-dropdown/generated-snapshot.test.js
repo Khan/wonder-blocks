@@ -23,6 +23,7 @@ import {icons} from "@khanacademy/wonder-blocks-icon";
 import {
     Title,
     HeadingSmall,
+    LabelMedium,
     LabelLarge,
 } from "@khanacademy/wonder-blocks-typography";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -626,6 +627,64 @@ describe("wonder-blocks-dropdown", () => {
     });
 
     it("example 11", () => {
+        const example = (
+            <ActionMenu
+                disabled={false}
+                menuText="Betsy Appleseed"
+                testId="teacher-menu"
+                opener={(eventState) => (
+                    <LabelMedium
+                        onClick={() => {
+                            console.log("custom click!!!!!");
+                        }}
+                    >
+                        hey
+                    </LabelMedium>
+                )}
+            >
+                <ActionItem
+                    label="Profile"
+                    href="http://khanacademy.org/profile"
+                    testId="profile"
+                />
+                <ActionItem
+                    label="Settings"
+                    onClick={() => console.log("user clicked on settings")}
+                    testId="settings"
+                />
+                <ActionItem
+                    label="Help"
+                    disabled={true}
+                    onClick={() => console.log("this item is disabled...")}
+                    testId="help"
+                />
+                <SeparatorItem />
+                <ActionItem
+                    label="Log out"
+                    href="http://khanacademy.org/logout"
+                    testId="logout"
+                />
+                <OptionItem
+                    label="Show homework assignments"
+                    value="homework"
+                    onClick={() =>
+                        console.log(`Show homework assignments toggled`)
+                    }
+                />
+                <OptionItem
+                    label="Show in-class assignments"
+                    value="in-class"
+                    onClick={() =>
+                        console.log(`Show in-class assignments toggled`)
+                    }
+                />
+            </ActionMenu>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 12", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -698,7 +757,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 12", () => {
+    it("example 13", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -758,7 +817,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 13", () => {
+    it("example 14", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -810,7 +869,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 14", () => {
+    it("example 15", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -863,7 +922,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 15", () => {
+    it("example 16", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -933,7 +992,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 16", () => {
+    it("example 17", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -948,7 +1007,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 17", () => {
+    it("example 18", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -981,7 +1040,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 18", () => {
+    it("example 19", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1039,7 +1098,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 19", () => {
+    it("example 20", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1107,7 +1166,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 20", () => {
+    it("example 21", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1169,7 +1228,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 21", () => {
+    it("example 22", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1233,7 +1292,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 22", () => {
+    it("example 23", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 alignItems: "center",
@@ -1327,7 +1386,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 23", () => {
+    it("example 24", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1342,7 +1401,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 24", () => {
+    it("example 25", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -1375,7 +1434,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 25", () => {
+    it("example 26", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1425,7 +1484,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 26", () => {
+    it("example 27", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1484,7 +1543,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 27", () => {
+    it("example 28", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",

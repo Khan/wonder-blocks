@@ -1,13 +1,12 @@
 //@flow
 import React from "react";
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
 import SeparatorItem from "./separator-item.js";
 import ActionMenu from "./action-menu.js";
+import DropdownOpener from "./dropdown-opener.js";
 import {keyCodes} from "../util/constants.js";
-import Dropdown from "./dropdown.js";
 
 jest.mock("./dropdown-core-virtualized.js");
 
@@ -15,21 +14,17 @@ describe("ActionMenu", () => {
     const onClick = jest.fn();
     const onToggle = jest.fn();
     const onChange = jest.fn();
-    let ClickableBehavior;
-
-    beforeEach(() => {
-        ClickableBehavior = getClickableBehavior();
-    });
 
     afterEach(() => {
         unmountAll();
     });
 
-    it("closes/opens the menu on mouse click, space, and enter", () => {
+    it("opens the menu on mouse click", () => {
+        // Arrange
         const menu = mount(
             <ActionMenu
                 menuText={"Action menu!"}
-                testId="fail-test"
+                testId="openTest"
                 onChange={onChange}
                 selectedValues={[]}
             >
@@ -39,22 +34,116 @@ describe("ActionMenu", () => {
             </ActionMenu>,
         );
 
-        const opener = menu.find(ClickableBehavior);
-        expect(menu.state("opened")).toEqual(false);
-
-        // Open menu with mouse
+        // Act
+        const opener = menu.find(DropdownOpener);
         opener.simulate("click");
-        expect(menu.find(Dropdown).state("opened")).toEqual(true);
 
-        // Close menu with space
-        opener.simulate("keydown", {keyCode: keyCodes.space});
-        opener.simulate("keyup", {keyCode: keyCodes.space});
-        expect(menu.find(Dropdown).state("opened")).toEqual(false);
+        // Assert
+        expect(menu.state("opened")).toBe(true);
+    });
 
-        // Open menu again with enter
+    it("opens the menu on enter", () => {
+        // Arrange
+        const menu = mount(
+            <ActionMenu
+                menuText={"Action menu!"}
+                testId="openTest"
+                onChange={onChange}
+                selectedValues={[]}
+            >
+                <ActionItem label="Action" onClick={onClick} />
+                <SeparatorItem />
+                <OptionItem label="Toggle" value="toggle" onClick={onToggle} />
+            </ActionMenu>,
+        );
+
+        // Act
+        const opener = menu.find(DropdownOpener);
         opener.simulate("keydown", {keyCode: keyCodes.enter});
         opener.simulate("keyup", {keyCode: keyCodes.enter});
-        expect(menu.find(Dropdown).state("opened")).toEqual(true);
+
+        // Assert
+        expect(menu.state("opened")).toBe(true);
+    });
+
+    it("closes itself on escape", () => {
+        // Arrange
+        const menu = mount(
+            <ActionMenu
+                menuText={"Action menu!"}
+                testId="openTest"
+                onChange={onChange}
+                selectedValues={[]}
+            >
+                <ActionItem label="Action" onClick={onClick} />
+                <SeparatorItem />
+                <OptionItem label="Toggle" value="toggle" onClick={onToggle} />
+            </ActionMenu>,
+        );
+
+        // Act
+        const opener = menu.find(DropdownOpener);
+        // open using the mouse
+        opener.simulate("click");
+        // use keyboard to simulate the ESC key
+        opener.simulate("keydown", {keyCode: keyCodes.escape});
+        opener.simulate("keyup", {keyCode: keyCodes.escape});
+
+        // Assert
+        expect(menu.state("opened")).toBe(false);
+    });
+
+    it("closes itself on tab", () => {
+        // Arrange
+        const menu = mount(
+            <ActionMenu
+                menuText={"Action menu!"}
+                testId="openTest"
+                onChange={onChange}
+                selectedValues={[]}
+            >
+                <ActionItem label="Action" onClick={onClick} />
+                <SeparatorItem />
+                <OptionItem label="Toggle" value="toggle" onClick={onToggle} />
+            </ActionMenu>,
+        );
+
+        // Act
+        const opener = menu.find(DropdownOpener);
+        // open using the mouse
+        opener.simulate("click");
+        // use keyboard to simulate the TAB key
+        opener.simulate("keydown", {keyCode: keyCodes.tab});
+        opener.simulate("keyup", {keyCode: keyCodes.tab});
+
+        // Assert
+        expect(menu.state("opened")).toBe(false);
+    });
+
+    it("closes itself on an external mouse click", () => {
+        // Arrange
+        const menu = mount(
+            <ActionMenu
+                menuText={"Action menu!"}
+                testId="openTest"
+                onChange={onChange}
+                selectedValues={[]}
+            >
+                <ActionItem label="Action" onClick={onClick} />
+                <SeparatorItem />
+                <OptionItem label="Toggle" value="toggle" onClick={onToggle} />
+            </ActionMenu>,
+        );
+
+        // Act
+        const opener = menu.find(DropdownOpener);
+        // open using the mouse
+        opener.simulate("click");
+        // trigger body click
+        document.dispatchEvent(new MouseEvent("mouseup"));
+
+        // Assert
+        expect(menu.state("opened")).toBe(false);
     });
 
     it("triggers actions", () => {
@@ -70,7 +159,7 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.find(ClickableBehavior).simulate("click");
+        menu.find(DropdownOpener).simulate("click");
 
         // Act
         // toggle second OptionItem
@@ -94,7 +183,7 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.find(ClickableBehavior).simulate("click");
+        menu.find(DropdownOpener).simulate("click");
 
         // Act
         const optionItem = menu.find(OptionItem).at(0);
@@ -117,7 +206,7 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.find(ClickableBehavior).simulate("click");
+        menu.find(DropdownOpener).simulate("click");
 
         // Act
         // toggle second OptionItem
@@ -139,7 +228,7 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.find(ClickableBehavior).simulate("click");
+        menu.find(DropdownOpener).simulate("click");
 
         // Act, Assert
         expect(() => {
@@ -163,7 +252,7 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.find(ClickableBehavior).simulate("click");
+        menu.find(DropdownOpener).simulate("click");
 
         // Act
         // toggle second OptionItem
@@ -181,7 +270,7 @@ describe("ActionMenu", () => {
                 <ActionItem label="Action" />
             </ActionMenu>,
         );
-        menu.find(ClickableBehavior).simulate("click");
+        menu.find(DropdownOpener).simulate("click");
 
         // Assert
         expect(menu.find(ActionItem)).toHaveLength(1);
@@ -190,7 +279,7 @@ describe("ActionMenu", () => {
     it("can have a menu with no items", () => {
         // Arrange, Act
         const menu = mount(<ActionMenu menuText={"Action menu!"} />);
-        menu.find(ClickableBehavior).simulate("click");
+        menu.find(DropdownOpener).simulate("click");
 
         // Assert
         expect(menu.find(ActionItem)).toHaveLength(0);
@@ -205,7 +294,7 @@ describe("ActionMenu", () => {
                 {showDeleteAction && <ActionItem label="Delete" />}
             </ActionMenu>,
         );
-        menu.find(ClickableBehavior).simulate("click");
+        menu.find(DropdownOpener).simulate("click");
 
         // Assert
         expect(menu.find(ActionItem)).toHaveLength(1);
@@ -221,7 +310,7 @@ describe("ActionMenu", () => {
         );
 
         // Act
-        const opener = menu.find(ClickableBehavior).find("button");
+        const opener = menu.find(DropdownOpener).find("button");
 
         // Assert
         expect(opener.prop("data-test-id")).toBe("some-test-id");
@@ -308,7 +397,7 @@ describe("ActionMenu", () => {
 
             // Act
             // click on the anchor
-            wrapper.find(ClickableBehavior).simulate("click");
+            wrapper.find(DropdownOpener).simulate("click");
 
             // Assert
             expect(wrapper.find(ActionMenu).prop("opened")).toBe(true);
@@ -329,6 +418,58 @@ describe("ActionMenu", () => {
 
             // Assert
             expect(wrapper.find(ActionMenu).prop("opened")).toBe(false);
+        });
+    });
+
+    describe("Custom Opener", () => {
+        it("opens the menu when clicking on the custom opener", () => {
+            // Arrange
+            const menu = mount(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    testId="openTest"
+                    onChange={onChange}
+                    selectedValues={[]}
+                    opener={(eventState) => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = menu.find(DropdownOpener);
+            opener.simulate("click");
+
+            // Assert
+            expect(menu.state("opened")).toBe(true);
+        });
+
+        it("calls the custom onClick handler", () => {
+            // Arrange
+            const onClickMock = jest.fn();
+
+            const menu = mount(
+                <ActionMenu
+                    menuText={"Action menu!"}
+                    testId="openTest"
+                    onChange={onChange}
+                    selectedValues={[]}
+                    opener={(eventState) => (
+                        <button aria-label="Search" onClick={onClickMock} />
+                    )}
+                >
+                    <ActionItem label="Action" onClick={onClick} />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = menu.find(DropdownOpener);
+            opener.simulate("click");
+
+            // Assert
+            expect(onClickMock).toHaveBeenCalledTimes(1);
         });
     });
 });

@@ -1,11 +1,20 @@
 // @flow
 
 import * as React from "react";
+import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import Dropdown from "./dropdown.js";
+import type {
+    AriaProps,
+    ClickableState,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
+import DropdownOpener from "./dropdown-opener.js";
+import ActionItem from "./action-item.js";
+import OptionItem from "./option-item.js";
+import DropdownCore from "./dropdown-core.js";
+
 import ActionMenuOpenerCore from "./action-menu-opener-core.js";
-import type {Item} from "../util/types.js";
+import type {Item, DropdownItem} from "../util/types.js";
 
 type Props = {|
     ...AriaProps,
@@ -70,6 +79,13 @@ type Props = {|
      * Optional styling for the entire dropdown component.
      */
     style?: StyleType,
+
+    /**
+     * The child function that returns the anchor the ActionMenu will be
+     * activated by. This function takes eventState, which allows the opener
+     * element to access pointer event state.
+     */
+    opener?: (eventState: ClickableState) => React.Element<any>,
 |};
 
 type State = {|
@@ -95,6 +111,7 @@ export default class ActionMenu extends React.Component<Props, State> {
     };
 
     state = {
+        keyboard: false,
         opened: false,
     };
 
@@ -109,13 +126,20 @@ export default class ActionMenu extends React.Component<Props, State> {
         };
     }
 
-    /**
-     * Update the internal state and notify the parent component when menu is
-     * toggled
-     */
-    handleToggleMenu = (opened: boolean) => {
+    handleItemSelected = () => {
+        // close menu
+        this.handleOpenChanged(false);
+
+        // Bring focus back to the opener element.
+        if (this.openerElement) {
+            this.openerElement.focus();
+        }
+    };
+
+    handleOpenChanged = (opened: boolean, keyboard?: boolean) => {
         this.setState({
-            opened: opened,
+            opened,
+            keyboard,
         });
 
         if (this.props.onToggle) {
@@ -123,55 +147,132 @@ export default class ActionMenu extends React.Component<Props, State> {
         }
     };
 
-    render() {
-        const {
-            alignment,
-            disabled,
-            menuText,
-            testId,
-            dropdownStyle,
-            // the following props are being included here to avoid
-            // passing them down to the opener as part of sharedProps
-            /* eslint-disable no-unused-vars */
-            children,
-            onChange,
-            onToggle,
-            opened,
-            selectedValues,
-            style,
-            "aria-disabled": ariaDisabled, // WB-535 avoids passing this prop to the opener
-            /* eslint-enable no-unused-vars */
-            ...sharedProps
-        } = this.props;
-        const menuItems = React.Children.toArray(this.props.children);
+    handleOptionSelected = (selectedValue: string) => {
+        const {onChange, selectedValues} = this.props;
+
+        // If either of these are not defined, return.
+        if (!onChange || !selectedValues) {
+            return;
+        }
+
+        if (selectedValues.includes(selectedValue)) {
+            const index = selectedValues.indexOf(selectedValue);
+            const updatedSelection = [
+                ...selectedValues.slice(0, index),
+                ...selectedValues.slice(index + 1),
+            ];
+            onChange(updatedSelection);
+        } else {
+            // Item was newly selected
+            onChange([...selectedValues, selectedValue]);
+        }
+        this.handleItemSelected();
+    };
+
+    getMenuItems(): Array<DropdownItem> {
+        const {children, selectedValues} = this.props;
+        const allChildren = React.Children.toArray(children).filter(Boolean);
+
+        // verify if there's at least one OptionItem element to indent the
+        // possible Action items
+        const isOptionItemIncluded = allChildren.some((item) =>
+            OptionItem.isClassOf(item),
+        );
+
+        return allChildren.map((item) => {
+            const {value, disabled} = item.props;
+            const itemObject = {
+                component: item,
+                focusable:
+                    ActionItem.isClassOf(item) || OptionItem.isClassOf(item)
+                        ? !disabled
+                        : false,
+                populatedProps: {},
+            };
+            if (ActionItem.isClassOf(item)) {
+                return {
+                    ...itemObject,
+                    populatedProps: {
+                        indent: isOptionItemIncluded,
+                        onClick: this.handleItemSelected,
+                    },
+                };
+            } else if (OptionItem.isClassOf(item)) {
+                return {
+                    ...itemObject,
+                    populatedProps: {
+                        onToggle: this.handleOptionSelected,
+                        selected: selectedValues
+                            ? selectedValues.includes(value)
+                            : false,
+                        variant: "check",
+                    },
+                };
+            } else {
+                return itemObject;
+            }
+        });
+    }
+
+    onHandleOpenerRef = (node: any) => {
+        this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
+    };
+
+    handleClick = (e: SyntheticEvent<>) => {
+        this.handleOpenChanged(!this.state.opened, e.type === "keyup");
+    };
+
+    renderOpener(numItems: number) {
+        const {disabled, menuText, opened, opener, testId} = this.props;
 
         return (
-            <Dropdown
-                style={style}
-                onChange={onChange}
-                onToggle={this.handleToggleMenu}
-                opened={this.state.opened}
-                alignment={alignment}
-                menuItems={menuItems}
-                selectedValues={selectedValues}
-                disabled={menuItems.length === 0 || disabled}
-                dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
+            <DropdownOpener
+                onClick={this.handleClick}
+                disabled={numItems === 0 || disabled}
+                anchorRef={this.onHandleOpenerRef}
+                testId={testId}
             >
-                {(eventState) => (
-                    <ActionMenuOpenerCore
-                        {...sharedProps}
-                        {...eventState}
-                        testId={testId}
-                        opened={this.state.opened}
-                        disabled={menuItems.length === 0 || disabled}
-                    >
-                        {menuText}
-                    </ActionMenuOpenerCore>
-                )}
-            </Dropdown>
+                {opener
+                    ? opener
+                    : (eventState) => {
+                          return (
+                              <ActionMenuOpenerCore
+                                  {...eventState}
+                                  disabled={disabled}
+                                  opened={opened}
+                                  testId={testId}
+                              >
+                                  {menuText}
+                              </ActionMenuOpenerCore>
+                          );
+                      }}
+            </DropdownOpener>
+        );
+    }
+
+    render() {
+        const {alignment, dropdownStyle, style} = this.props;
+
+        const items = this.getMenuItems();
+        const dropdownOpener = this.renderOpener(items.length);
+
+        return (
+            <DropdownCore
+                role="menu"
+                style={style}
+                opener={dropdownOpener}
+                alignment={alignment}
+                open={this.state.opened}
+                items={items}
+                keyboard={this.state.keyboard}
+                openerElement={this.openerElement}
+                onOpenChanged={this.handleOpenChanged}
+                dropdownStyle={[styles.menuTopSpace, dropdownStyle]}
+            />
         );
     }
 }
+
 const styles = StyleSheet.create({
     caret: {
         marginLeft: 4,

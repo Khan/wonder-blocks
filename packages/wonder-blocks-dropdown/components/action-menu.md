@@ -268,3 +268,38 @@ class ControlledActionMenuExample extends React.Component {
 
 <ControlledActionMenuExample />
 ```
+
+### Example: ActionMenu with custom opener
+
+```js
+import {ActionMenu, ActionItem, OptionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+
+<ActionMenu
+    disabled={false}
+    menuText="Betsy Appleseed"
+    testId="teacher-menu"
+    opener={(eventState) => (
+        <LabelMedium
+            onClick={()=>{console.log('custom click!!!!!')}}
+        >hey</LabelMedium>
+    )}
+>
+    <ActionItem label="Profile" href="http://khanacademy.org/profile" testId="profile" />
+    <ActionItem label="Settings" onClick={() => console.log("user clicked on settings")} testId="settings" />
+    <ActionItem label="Help" disabled={true} onClick={() => console.log("this item is disabled...")} testId="help" />
+    <SeparatorItem />
+    <ActionItem label="Log out" href="http://khanacademy.org/logout" testId="logout" />
+    <OptionItem
+        label="Show homework assignments" value="homework"
+        onClick={() => console.log(`Show homework assignments toggled`)}
+    />
+    <OptionItem
+        label="Show in-class assignments" value="in-class"
+        onClick={() => console.log(`Show in-class assignments toggled`)}
+    />
+</ActionMenu>
+```
