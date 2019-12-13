@@ -148,9 +148,9 @@ class MyHandler extends RequestHandler {
         );
     }
 
-    invalidateCache(options, cachedEntry) {
+    refreshCache(options, cachedEntry) {
         /**
-         * For our purposes, the cache is always valid.
+         * For our purposes, the cache never needs a refresh.
          */
         return false;
     }

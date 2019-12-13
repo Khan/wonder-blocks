@@ -160,9 +160,9 @@ describe("wonder-blocks-data", () => {
                 );
             }
 
-            invalidateCache(options, cachedEntry) {
+            refreshCache(options, cachedEntry) {
                 /**
-                 * For our purposes, the cache is always valid.
+                 * For our purposes, the cache never needs a refresh.
                  */
                 return false;
             }
