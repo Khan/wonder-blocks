@@ -2942,6 +2942,99 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
 exports[`wonder-blocks-dropdown example 20 1`] = `
 <div
   className=""
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "width": "fit-content",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-label="Search"
+    className=""
+    data-test-id="single-select-custom-opener"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "none",
+        "border": "none",
+        "boxSizing": "border-box",
+        "color": "#1865f2",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": -8,
+        "outline": "none",
+        "padding": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "width": 40,
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <svg
+      className=""
+      height={24}
+      style={
+        Object {
+          "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
+          "verticalAlign": "text-bottom",
+        }
+      }
+      viewBox="0 0 24 24"
+      width={24}
+    >
+      <path
+        d="M17.293 8.293a1 1 0 0 1 1.414 1.414l-6 6a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L12 13.586l5.293-5.293z"
+        fill="currentColor"
+      />
+    </svg>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 21 1`] = `
+<div
+  className=""
   style={
     Object {
       "alignItems": "stretch",
@@ -3076,7 +3169,7 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 21 1`] = `
+exports[`wonder-blocks-dropdown example 22 1`] = `
 <div
   className=""
   style={
@@ -3212,7 +3305,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 22 1`] = `
+exports[`wonder-blocks-dropdown example 23 1`] = `
 <div
   className=""
   style={
@@ -3348,7 +3441,7 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 23 1`] = `
+exports[`wonder-blocks-dropdown example 24 1`] = `
 <div
   className=""
   style={
@@ -3443,7 +3536,7 @@ exports[`wonder-blocks-dropdown example 23 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 24 1`] = `
+exports[`wonder-blocks-dropdown example 25 1`] = `
 <div
   className=""
   style={
@@ -3580,7 +3673,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 25 1`] = `
+exports[`wonder-blocks-dropdown example 26 1`] = `
 <div
   className=""
   style={
@@ -3736,7 +3829,7 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 26 1`] = `
+exports[`wonder-blocks-dropdown example 27 1`] = `
 <div
   className=""
   style={
@@ -3872,7 +3965,7 @@ exports[`wonder-blocks-dropdown example 26 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 27 1`] = `
+exports[`wonder-blocks-dropdown example 28 1`] = `
 <div
   className=""
   style={
@@ -4106,7 +4199,7 @@ exports[`wonder-blocks-dropdown example 27 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 28 1`] = `
+exports[`wonder-blocks-dropdown example 29 1`] = `
 <div
   className=""
   style={

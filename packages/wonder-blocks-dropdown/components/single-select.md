@@ -413,3 +413,30 @@ class ControlledSingleSelectExample extends React.Component {
 
 <ControlledSingleSelectExample />
 ```
+
+### Example: SingleSelect with custom opener
+
+In case you need to use a custom opener with the SingleSelect, you can use the `opener` property to achieve this:
+
+```js
+import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+
+<SingleSelect
+    placeholder="Choose a juice"
+    opener={(eventState) => (
+        <IconButton
+            icon={icons.caretDown}
+            aria-label="Search"
+            onClick={()=>{console.log('custom click!!!!!')}}
+        />
+    )}
+    testId="single-select-custom-opener"
+>
+    <OptionItem label="Banana juice" value="banana" />
+    <OptionItem label="Guava juice" value="guava" disabled />
+    <OptionItem label="White grape juice" value="grape" />
+</SingleSelect>
+```

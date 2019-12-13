@@ -1099,6 +1099,30 @@ describe("wonder-blocks-dropdown", () => {
     });
 
     it("example 20", () => {
+        const example = (
+            <SingleSelect
+                placeholder="Choose a juice"
+                opener={(eventState) => (
+                    <IconButton
+                        icon={icons.caretDown}
+                        aria-label="Search"
+                        onClick={() => {
+                            console.log("custom click!!!!!");
+                        }}
+                    />
+                )}
+                testId="single-select-custom-opener"
+            >
+                <OptionItem label="Banana juice" value="banana" />
+                <OptionItem label="Guava juice" value="guava" disabled />
+                <OptionItem label="White grape juice" value="grape" />
+            </SingleSelect>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 21", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1166,7 +1190,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 21", () => {
+    it("example 22", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1228,7 +1252,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 22", () => {
+    it("example 23", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1292,7 +1316,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 23", () => {
+    it("example 24", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 alignItems: "center",
@@ -1386,7 +1410,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 24", () => {
+    it("example 25", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1401,7 +1425,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 25", () => {
+    it("example 26", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -1434,7 +1458,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 26", () => {
+    it("example 27", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1484,7 +1508,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 27", () => {
+    it("example 28", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1543,7 +1567,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 28", () => {
+    it("example 29", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
