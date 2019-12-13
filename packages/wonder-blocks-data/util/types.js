@@ -26,7 +26,7 @@ type HandlerSubcache = {
     ...,
 };
 
-export type ResponseCache = {
+export type Cache = {
     [key: string]: HandlerSubcache,
     ...,
 };

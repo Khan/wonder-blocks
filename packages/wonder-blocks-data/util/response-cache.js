@@ -1,9 +1,5 @@
 // @flow
-import type {
-    CacheEntry,
-    ResponseCache as Cache,
-    IRequestHandler,
-} from "./types.js";
+import type {CacheEntry, Cache, IRequestHandler} from "./types.js";
 
 function deepClone<T: {...}>(source: T | $ReadOnly<T>): $ReadOnly<T> {
     /**
