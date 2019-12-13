@@ -1697,7 +1697,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
     }
     tabIndex={0}
   >
-    hey
+    This is a label
   </span>
 </div>
 `;

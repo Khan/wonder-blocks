@@ -638,7 +638,7 @@ describe("wonder-blocks-dropdown", () => {
                             console.log("custom click!!!!!");
                         }}
                     >
-                        hey
+                        This is a label
                     </LabelMedium>
                 )}
             >

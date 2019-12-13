@@ -271,6 +271,8 @@ class ControlledActionMenuExample extends React.Component {
 
 ### Example: ActionMenu with custom opener
 
+In case you need to use a custom opener, you can use the `opener` property to achieve this:
+
 ```js
 import {ActionMenu, ActionItem, OptionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -285,7 +287,7 @@ import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
     opener={(eventState) => (
         <LabelMedium
             onClick={()=>{console.log('custom click!!!!!')}}
-        >hey</LabelMedium>
+        >This is a label</LabelMedium>
     )}
 >
     <ActionItem label="Profile" href="http://khanacademy.org/profile" testId="profile" />
