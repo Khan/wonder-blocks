@@ -19,15 +19,17 @@ export default class RequestHandler<TOptions, TData>
         return this._type;
     }
 
-    invalidateCache(
+    refreshCache(
         options: TOptions,
-        cachedEntry: ?CacheEntry<TData>,
+        cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
     ): boolean {
         /**
-         * By default, the cache is invalid if the current entry is an error.
-         * This means that an error will mean a re-request on render.
+         * By default, the cache needs a refresh if the current entry is an
+         * error.
+         *
+         * This means that an error will cause a re-request on render.
          * Useful if the server rendered an error, as it means the client
-         * will update after a new request.
+         * will update after rehydration.
          */
         return cachedEntry == null || cachedEntry.error != null;
     }

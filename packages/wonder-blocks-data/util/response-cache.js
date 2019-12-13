@@ -125,13 +125,9 @@ export class ResponseCache {
         }
 
         const key = handler.getKey(options);
-        const entry = handlerCache[key];
-        if (handler.invalidateCache(options, entry)) {
-            delete handlerCache[key];
-            return null;
-        }
 
         // Get the response.
+        const entry = handlerCache[key];
         return entry == null ? null : entry;
     };
 

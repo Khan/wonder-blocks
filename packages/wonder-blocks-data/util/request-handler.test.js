@@ -69,13 +69,13 @@ describe("./request-handler.js", () => {
         });
     });
 
-    describe("#invalidateCache", () => {
+    describe("#refreshCache", () => {
         it("should return true if no current cached entry", () => {
             // Arrange
             const handler = new RequestHandler("MY_TYPE");
 
             // Act
-            const result = handler.invalidateCache({}, null);
+            const result = handler.refreshCache({}, null);
 
             // Assert
             expect(result).toBeTruthy();
@@ -86,7 +86,7 @@ describe("./request-handler.js", () => {
             const handler = new RequestHandler("MY_TYPE");
 
             // Act
-            const result = handler.invalidateCache({}, {error: "oops!"});
+            const result = handler.refreshCache({}, {error: "oops!"});
 
             // Assert
             expect(result).toBeTruthy();
@@ -97,7 +97,7 @@ describe("./request-handler.js", () => {
             const handler = new RequestHandler("MY_TYPE");
 
             // Act
-            const result = handler.invalidateCache({}, {data: "yay! data"});
+            const result = handler.refreshCache({}, {data: "yay! data"});
 
             // Assert
             expect(result).toBeFalsy();

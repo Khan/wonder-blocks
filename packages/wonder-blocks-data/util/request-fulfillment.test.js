@@ -26,7 +26,7 @@ describe("RequestFulfillment", () => {
                     throw new Error("OH NO!");
                 },
                 getKey: jest.fn().mockReturnValue("MY_KEY"),
-                invalidateCache: () => false,
+                refreshCache: () => false,
                 type: "MY_TYPE",
             };
 
@@ -51,7 +51,7 @@ describe("RequestFulfillment", () => {
                 fulfillRequest: () =>
                     new Promise((resolve, reject) => reject("OH NO!")),
                 getKey: (o) => o,
-                invalidateCache: () => false,
+                refreshCache: () => false,
                 type: "BAD_REQUEST",
             };
 
@@ -75,7 +75,7 @@ describe("RequestFulfillment", () => {
             const fakeRequestHandler: IRequestHandler<string, any> = {
                 fulfillRequest: () => Promise.resolve("DATA!"),
                 getKey: (o) => o,
-                invalidateCache: () => false,
+                refreshCache: () => false,
                 type: "VALID_REQUEST",
             };
 
@@ -99,7 +99,7 @@ describe("RequestFulfillment", () => {
             const fakeRequestHandler: IRequestHandler<string, any> = {
                 fulfillRequest: () => Promise.resolve("DATA!"),
                 getKey: (o) => o,
-                invalidateCache: () => false,
+                refreshCache: () => false,
                 type: "VALID_REQUEST",
             };
 
@@ -122,7 +122,7 @@ describe("RequestFulfillment", () => {
             const fakeRequestHandler: IRequestHandler<string, any> = {
                 fulfillRequest: () => Promise.resolve("DATA!"),
                 getKey: (o) => o,
-                invalidateCache: () => false,
+                refreshCache: () => false,
                 type: "VALID_REQUEST",
             };
 
@@ -147,7 +147,7 @@ describe("RequestFulfillment", () => {
             const fakeRequestHandler: IRequestHandler<string, any> = {
                 fulfillRequest: () => Promise.resolve("DATA!"),
                 getKey: (o) => o,
-                invalidateCache: () => false,
+                refreshCache: () => false,
                 type: "VALID_REQUEST",
             };
 

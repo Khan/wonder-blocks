@@ -50,14 +50,14 @@ export interface IRequestHandler<TOptions, TData> {
     get type(): string;
 
     /**
-     * Determine if the cached data should be invalidated.
+     * Determine if the cached data should be refreshed.
      *
      * If this returns true, the framework will fulfill a new request by
      * calling `fulfillRequest`.
      */
-    invalidateCache(
+    refreshCache(
         options: TOptions,
-        cachedEntry: ?CacheEntry<TData>,
+        cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
     ): boolean;
 
     /**
