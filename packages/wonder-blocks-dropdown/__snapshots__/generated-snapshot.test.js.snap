@@ -2963,8 +2963,7 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
     }
   }
 >
-  <button
-    aria-label="Search"
+  <h2
     className=""
     data-test-id="single-select-custom-opener"
     disabled={false}
@@ -2983,53 +2982,27 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::MozFocusInner": Object {
-          "border": 0,
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
         },
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
         },
-        "alignItems": "center",
-        "background": "none",
-        "border": "none",
-        "boxSizing": "border-box",
-        "color": "#1865f2",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "margin": -8,
-        "outline": "none",
-        "padding": 0,
-        "position": "relative",
-        "textDecoration": "none",
-        "touchAction": "manipulation",
-        "width": 40,
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
       }
     }
     tabIndex={0}
-    type="button"
   >
-    <svg
-      className=""
-      height={24}
-      style={
-        Object {
-          "display": "inline-block",
-          "flexGrow": 0,
-          "flexShrink": 0,
-          "verticalAlign": "text-bottom",
-        }
-      }
-      viewBox="0 0 24 24"
-      width={24}
-    >
-      <path
-        d="M17.293 8.293a1 1 0 0 1 1.414 1.414l-6 6a1 1 0 0 1-1.414 0l-6-6a1 1 0 0 1 1.414-1.414L12 13.586l5.293-5.293z"
-        fill="currentColor"
-      />
-    </svg>
-  </button>
+    This is a heading
+  </h2>
 </div>
 `;
 

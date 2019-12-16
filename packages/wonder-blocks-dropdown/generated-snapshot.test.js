@@ -25,6 +25,7 @@ import {
     HeadingSmall,
     LabelMedium,
     LabelLarge,
+    HeadingLarge,
 } from "@khanacademy/wonder-blocks-typography";
 import Color from "@khanacademy/wonder-blocks-color";
 import {StyleSheet} from "aphrodite";
@@ -1117,19 +1118,37 @@ describe("wonder-blocks-dropdown", () => {
     });
 
     it("example 20", () => {
+        const styles = StyleSheet.create({
+            focused: {
+                color: Color.purple,
+            },
+            hovered: {
+                textDecoration: "underline",
+                color: Color.purple,
+                cursor: "pointer",
+            },
+            pressed: {
+                color: Color.blue,
+            },
+        });
         const example = (
             <SingleSelect
                 placeholder="Choose a juice"
                 opener={(eventState) => (
-                    <IconButton
-                        icon={icons.caretDown}
-                        aria-label="Search"
+                    <HeadingLarge
                         onClick={() => {
                             console.log("custom click!!!!!");
                         }}
-                    />
+                        testId="single-select-custom-opener"
+                        style={[
+                            eventState.focused && styles.focused,
+                            eventState.hovered && styles.hovered,
+                            eventState.pressed && styles.pressed,
+                        ]}
+                    >
+                        This is a heading
+                    </HeadingLarge>
                 )}
-                testId="single-select-custom-opener"
             >
                 <OptionItem label="Banana juice" value="banana" />
                 <OptionItem label="Guava juice" value="guava" disabled />

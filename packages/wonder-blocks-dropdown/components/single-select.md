@@ -416,24 +416,51 @@ class ControlledSingleSelectExample extends React.Component {
 
 ### Example: SingleSelect with custom opener
 
-In case you need to use a custom opener with the SingleSelect, you can use the `opener` property to achieve this:
+In case you need to use a custom opener with the SingleSelect, you can use the
+`opener` property to achieve this. In this example, the `opener` prop accepts a
+function with the `eventState` argument that lets you customize the style for
+different states, such as `pressed`, `hovered` and `focused`.
+
+**Note:** If you need to use a custom ID for testing the opener, make sure to
+pass the `testId` prop inside the opener component/element.
 
 ```js
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {StyleSheet} from "aphrodite";
+
+const styles = StyleSheet.create({
+    focused: {
+        color: Color.purple,
+    },
+    hovered: {
+        textDecoration: "underline",
+        color: Color.purple,
+        cursor: "pointer",
+    },
+    pressed: {
+        color: Color.blue,
+    },
+});
 
 <SingleSelect
     placeholder="Choose a juice"
     opener={(eventState) => (
-        <IconButton
-            icon={icons.caretDown}
-            aria-label="Search"
+        <HeadingLarge
             onClick={()=>{console.log('custom click!!!!!')}}
-        />
+            testId="single-select-custom-opener"
+            style={[
+                eventState.focused && styles.focused,
+                eventState.hovered && styles.hovered,
+                eventState.pressed && styles.pressed
+            ]}
+        >
+            This is a heading
+        </HeadingLarge>
     )}
-    testId="single-select-custom-opener"
+
 >
     <OptionItem label="Banana juice" value="banana" />
     <OptionItem label="Guava juice" value="guava" disabled />
