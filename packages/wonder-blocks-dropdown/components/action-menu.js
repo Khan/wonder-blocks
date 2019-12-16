@@ -229,6 +229,7 @@ export default class ActionMenu extends React.Component<Props, State> {
             <DropdownOpener
                 onClick={this.handleClick}
                 disabled={numItems === 0 || disabled}
+                text={menuText}
                 ref={this.handleOpenerRef}
                 testId={opener ? undefined : testId}
             >

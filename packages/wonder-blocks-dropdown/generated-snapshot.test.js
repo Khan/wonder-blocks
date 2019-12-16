@@ -23,7 +23,6 @@ import {icons} from "@khanacademy/wonder-blocks-icon";
 import {
     Title,
     HeadingSmall,
-    LabelMedium,
     LabelLarge,
     HeadingLarge,
 } from "@khanacademy/wonder-blocks-typography";
@@ -630,12 +629,12 @@ describe("wonder-blocks-dropdown", () => {
     it("example 11", () => {
         const styles = StyleSheet.create({
             focused: {
-                backgroundColor: Color.purple,
-                color: Color.white,
+                color: Color.purple,
             },
             hovered: {
                 textDecoration: "underline",
-                color: Color.teal,
+                color: Color.purple,
+                cursor: "pointer",
             },
             pressed: {
                 color: Color.blue,
@@ -644,9 +643,9 @@ describe("wonder-blocks-dropdown", () => {
         const example = (
             <ActionMenu
                 disabled={false}
-                menuText="Betsy Appleseed"
-                opener={(eventState) => (
-                    <LabelMedium
+                menuText="Custom opener"
+                opener={(eventState, text) => (
+                    <LabelLarge
                         onClick={() => {
                             console.log("custom click!!!!!");
                         }}
@@ -657,8 +656,8 @@ describe("wonder-blocks-dropdown", () => {
                             eventState.pressed && styles.pressed,
                         ]}
                     >
-                        This is a label
-                    </LabelMedium>
+                        {text}
+                    </LabelLarge>
                 )}
             >
                 <ActionItem
@@ -1163,7 +1162,7 @@ describe("wonder-blocks-dropdown", () => {
                         onChange={this.handleChange}
                         onToggle={this.handleToggleMenu}
                         selectedValue={this.state.selectedValue}
-                        opener={(eventState) => (
+                        opener={(eventState, text) => (
                             <HeadingLarge
                                 onClick={() => {
                                     console.log("custom click!!!!!");
@@ -1175,7 +1174,7 @@ describe("wonder-blocks-dropdown", () => {
                                     eventState.pressed && styles.pressed,
                                 ]}
                             >
-                                This is a heading
+                                {text}
                             </HeadingLarge>
                         )}
                     >
@@ -1743,9 +1742,10 @@ describe("wonder-blocks-dropdown", () => {
                         onChange={this.handleChange}
                         opened={this.state.opened}
                         onToggle={this.handleToggleMenu}
+                        placeholder="MultiSelect with custom opener"
                         selectedValues={this.state.selectedValues}
                         testId="multi-select-custom-opener"
-                        opener={(eventState) => (
+                        opener={(eventState, text) => (
                             <HeadingLarge
                                 onClick={() => {
                                     console.log("custom click!!!!!");
@@ -1757,7 +1757,7 @@ describe("wonder-blocks-dropdown", () => {
                                     eventState.pressed && styles.pressed,
                                 ]}
                             >
-                                MultiSelect with custom opener
+                                {text}
                             </HeadingLarge>
                         )}
                     >

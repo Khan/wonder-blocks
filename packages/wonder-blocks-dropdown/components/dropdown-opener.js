@@ -14,10 +14,12 @@ type Props = {|
 
     /**
      * The child function that returns the anchor the Dropdown will be activated
-     * by. This function takes `eventState`, which allows the opener element to
-     * access pointer event state.
+     * by. This function takes two arguments:
+     *
+     * - `eventState`: allows the opener element to access pointer event state.
+     * - `text`: Passes the menu's text/label defined in the parent component.
      */
-    children: (eventState: ClickableState) => React.Element<any>,
+    children: (eventState: ClickableState, text: string) => React.Element<any>,
 
     /**
      * Whether the opener is disabled. If disabled, disallows interaction.
@@ -33,6 +35,11 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Text for the opener that can be passed to the child as an argument.
+     */
+    text: string,
 |};
 
 class DropdownOpener extends React.Component<Props> {
@@ -40,25 +47,34 @@ class DropdownOpener extends React.Component<Props> {
         disabled: false,
     };
 
+    getTestIdFromProps = (childrenProps: any) => {
+        return childrenProps.testId || childrenProps["data-test-id"];
+    };
+
     renderAnchorChildren(
         eventState: ClickableState,
         handlers: ClickableHandlers,
     ) {
-        const renderedChildren = this.props.children(eventState);
+        const {disabled, testId, text} = this.props;
+        const renderedChildren = this.props.children(eventState, text);
+        const childrenProps = renderedChildren.props;
+        const childrenTestId = this.getTestIdFromProps(childrenProps);
 
         return React.cloneElement(renderedChildren, {
             ...handlers,
-            disabled: this.props.disabled,
-            "data-test-id": this.props.testId,
-            onClick: renderedChildren.props.onClick
+            disabled,
+            onClick: childrenProps.onClick
                 ? (e: SyntheticMouseEvent<>) => {
                       // This is done to avoid overriding a
                       // custom onClick handler inside the
                       // children node
-                      renderedChildren.props.onClick(e);
+                      childrenProps.onClick(e);
                       handlers.onClick(e);
                   }
                 : handlers.onClick,
+            // try to get the testId from the child element
+            // If it's not set, try to fallback to the parent's testId
+            "data-test-id": childrenTestId || testId,
         });
     }
 
