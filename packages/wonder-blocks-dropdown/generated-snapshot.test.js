@@ -627,16 +627,34 @@ describe("wonder-blocks-dropdown", () => {
     });
 
     it("example 11", () => {
+        const styles = StyleSheet.create({
+            focused: {
+                backgroundColor: Color.purple,
+                color: Color.white,
+            },
+            hovered: {
+                textDecoration: "underline",
+                color: Color.teal,
+            },
+            pressed: {
+                color: Color.blue,
+            },
+        });
         const example = (
             <ActionMenu
                 disabled={false}
                 menuText="Betsy Appleseed"
-                testId="teacher-menu"
                 opener={(eventState) => (
                     <LabelMedium
                         onClick={() => {
                             console.log("custom click!!!!!");
                         }}
+                        testId="teacher-menu-custom-opener"
+                        style={[
+                            eventState.focused && styles.focused,
+                            eventState.hovered && styles.hovered,
+                            eventState.pressed && styles.pressed,
+                        ]}
                     >
                         This is a label
                     </LabelMedium>

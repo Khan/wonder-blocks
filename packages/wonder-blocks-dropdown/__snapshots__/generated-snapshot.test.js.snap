@@ -1670,6 +1670,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
 >
   <span
     className=""
+    data-test-id="teacher-menu-custom-opener"
     disabled={false}
     onBlur={[Function]}
     onClick={[Function]}

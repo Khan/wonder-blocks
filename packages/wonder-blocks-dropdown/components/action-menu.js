@@ -230,7 +230,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                 onClick={this.handleClick}
                 disabled={numItems === 0 || disabled}
                 anchorRef={this.onHandleOpenerRef}
-                testId={testId}
+                testId={opener ? undefined : testId}
             >
                 {opener
                     ? opener
