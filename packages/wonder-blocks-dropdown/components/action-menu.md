@@ -271,23 +271,52 @@ class ControlledActionMenuExample extends React.Component {
 
 ### Example: ActionMenu with custom opener
 
-In case you need to use a custom opener, you can use the `opener` property to achieve this:
+In case you need to use a custom opener, you can use the `opener` property to
+achieve this. In this example, the `opener` prop accepts a function with the
+`eventState` argument that lets you customize the style for different states,
+such as `pressed`, `hovered` and `focused`.
+
+**Note:** If you need to use a custom ID for testing the opener, make sure to
+pass the `testId` prop inside the opener component/element.
 
 ```js
 import {ActionMenu, ActionItem, OptionItem, SeparatorItem} from "@khanacademy/wonder-blocks-dropdown";
+import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {StyleSheet} from "aphrodite";
+
+const styles = StyleSheet.create({
+    focused: {
+        backgroundColor: Color.purple,
+        color: Color.white,
+    },
+    hovered: {
+        textDecoration: "underline",
+        color: Color.teal,
+    },
+    pressed: {
+        color: Color.blue,
+    },
+});
 
 <ActionMenu
     disabled={false}
     menuText="Betsy Appleseed"
-    testId="teacher-menu"
     opener={(eventState) => (
         <LabelMedium
             onClick={()=>{console.log('custom click!!!!!')}}
-        >This is a label</LabelMedium>
+            testId="teacher-menu-custom-opener"
+            style={[
+                eventState.focused && styles.focused,
+                eventState.hovered && styles.hovered,
+                eventState.pressed && styles.pressed
+            ]}
+        >
+            This is a label
+        </LabelMedium>
     )}
 >
     <ActionItem label="Profile" href="http://khanacademy.org/profile" testId="profile" />

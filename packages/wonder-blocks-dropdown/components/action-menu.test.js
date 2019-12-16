@@ -430,7 +430,7 @@ describe("ActionMenu", () => {
                     testId="openTest"
                     onChange={onChange}
                     selectedValues={[]}
-                    opener={(eventState) => (
+                    opener={() => (
                         <button aria-label="Search" onClick={jest.fn()} />
                     )}
                 >

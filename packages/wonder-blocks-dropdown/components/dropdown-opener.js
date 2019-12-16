@@ -36,7 +36,7 @@ type Props = {|
     testId?: string,
 
     /**
-     * Callback used to pass the childs Ref back up to the parent element
+     * Callback used to pass the child's Ref back up to the parent element
      */
     anchorRef: (?HTMLElement) => mixed,
 |};
