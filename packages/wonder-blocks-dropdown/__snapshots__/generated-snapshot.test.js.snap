@@ -4308,3 +4308,69 @@ exports[`wonder-blocks-dropdown example 29 1`] = `
   </div>
 </div>
 `;
+
+exports[`wonder-blocks-dropdown example 30 1`] = `
+<div
+  className=""
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "width": "fit-content",
+      "zIndex": 0,
+    }
+  }
+>
+  <h2
+    className=""
+    data-test-id="multi-select-custom-opener"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+    tabIndex={0}
+  >
+    MultiSelect with custom opener
+  </h2>
+</div>
+`;
