@@ -1131,30 +1131,67 @@ describe("wonder-blocks-dropdown", () => {
                 color: Color.blue,
             },
         });
-        const example = (
-            <SingleSelect
-                placeholder="Choose a juice"
-                opener={(eventState) => (
-                    <HeadingLarge
-                        onClick={() => {
-                            console.log("custom click!!!!!");
-                        }}
-                        testId="single-select-custom-opener"
-                        style={[
-                            eventState.focused && styles.focused,
-                            eventState.hovered && styles.hovered,
-                            eventState.pressed && styles.pressed,
-                        ]}
+
+        class SingleSelectWithCustomOpener extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    opened: false,
+                    selectedValue: null,
+                };
+                this.handleChange = this.handleChange.bind(this);
+                this.handleToggleMenu = this.handleToggleMenu.bind(this);
+            }
+
+            handleChange(selected) {
+                this.setState({
+                    selectedValue: selected,
+                });
+            }
+
+            handleToggleMenu(opened) {
+                this.setState({
+                    opened,
+                });
+            }
+
+            render() {
+                return (
+                    <SingleSelect
+                        placeholder="Choose a juice"
+                        opened={this.state.opened}
+                        onChange={this.handleChange}
+                        onToggle={this.handleToggleMenu}
+                        selectedValue={this.state.selectedValue}
+                        opener={(eventState) => (
+                            <HeadingLarge
+                                onClick={() => {
+                                    console.log("custom click!!!!!");
+                                }}
+                                testId="single-select-custom-opener"
+                                style={[
+                                    eventState.focused && styles.focused,
+                                    eventState.hovered && styles.hovered,
+                                    eventState.pressed && styles.pressed,
+                                ]}
+                            >
+                                This is a heading
+                            </HeadingLarge>
+                        )}
                     >
-                        This is a heading
-                    </HeadingLarge>
-                )}
-            >
-                <OptionItem label="Banana juice" value="banana" />
-                <OptionItem label="Guava juice" value="guava" disabled />
-                <OptionItem label="White grape juice" value="grape" />
-            </SingleSelect>
-        );
+                        <OptionItem label="Banana juice" value="banana" />
+                        <OptionItem
+                            label="Guava juice"
+                            value="guava"
+                            disabled
+                        />
+                        <OptionItem label="White grape juice" value="grape" />
+                    </SingleSelect>
+                );
+            }
+        }
+
+        const example = <SingleSelectWithCustomOpener />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

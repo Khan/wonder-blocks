@@ -209,7 +209,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             });
     }
 
-    onHandleOpenerRef = (node: any) => {
+    handleOpenerRef = (node: any) => {
         this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
     };
 
@@ -251,7 +251,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             <DropdownOpener
                 onClick={this.handleClick}
                 disabled={numItems === 0 || disabled}
-                anchorRef={this.onHandleOpenerRef}
+                ref={this.handleOpenerRef}
                 testId={testId}
             >
                 {opener}
@@ -265,7 +265,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
                 open={this.state.open}
-                ref={this.onHandleOpenerRef}
+                ref={this.handleOpenerRef}
                 testId={testId}
             >
                 {menuText}
@@ -276,9 +276,7 @@ export default class SingleSelect extends React.Component<Props, State> {
 
     render() {
         const {alignment, dropdownStyle, light, style} = this.props;
-
         const items = this.getMenuItems();
-
         const opener = this.renderOpener(items.length);
 
         return (

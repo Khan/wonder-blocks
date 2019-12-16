@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 
 import {ClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
@@ -34,22 +33,12 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
-
-    /**
-     * Callback used to pass the child's Ref back up to the parent element
-     */
-    anchorRef: (?HTMLElement) => mixed,
 |};
 
 class DropdownOpener extends React.Component<Props> {
     static defaultProps = {
         disabled: false,
     };
-
-    componentDidMount() {
-        const anchorNode = ((ReactDOM.findDOMNode(this): any): ?HTMLElement);
-        this.props.anchorRef(anchorNode);
-    }
 
     renderAnchorChildren(
         eventState: ClickableState,
