@@ -26,7 +26,7 @@ describe("RequestFulfillment", () => {
                     throw new Error("OH NO!");
                 },
                 getKey: jest.fn().mockReturnValue("MY_KEY"),
-                invalidateCache: () => false,
+                shouldRefreshCache: () => false,
                 type: "MY_TYPE",
             };
 
@@ -34,7 +34,7 @@ describe("RequestFulfillment", () => {
             await requestFulfillment.fulfill(fakeBadHandler, "OPTIONS");
 
             // Assert
-            expect(responseCache.clone()).toStrictEqual({
+            expect(responseCache.cloneCachedData()).toStrictEqual({
                 MY_TYPE: {
                     MY_KEY: {
                         error: "OH NO!",
@@ -51,7 +51,7 @@ describe("RequestFulfillment", () => {
                 fulfillRequest: () =>
                     new Promise((resolve, reject) => reject("OH NO!")),
                 getKey: (o) => o,
-                invalidateCache: () => false,
+                shouldRefreshCache: () => false,
                 type: "BAD_REQUEST",
             };
 
@@ -59,7 +59,7 @@ describe("RequestFulfillment", () => {
             await requestFulfillment.fulfill(fakeBadRequestHandler, "OPTIONS");
 
             // Assert
-            expect(responseCache.clone()).toStrictEqual({
+            expect(responseCache.cloneCachedData()).toStrictEqual({
                 BAD_REQUEST: {
                     OPTIONS: {
                         error: "OH NO!",
@@ -75,7 +75,7 @@ describe("RequestFulfillment", () => {
             const fakeRequestHandler: IRequestHandler<string, any> = {
                 fulfillRequest: () => Promise.resolve("DATA!"),
                 getKey: (o) => o,
-                invalidateCache: () => false,
+                shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
             };
 
@@ -83,7 +83,7 @@ describe("RequestFulfillment", () => {
             await requestFulfillment.fulfill(fakeRequestHandler, "OPTIONS");
 
             // Assert
-            expect(responseCache.clone()).toStrictEqual({
+            expect(responseCache.cloneCachedData()).toStrictEqual({
                 VALID_REQUEST: {
                     OPTIONS: {
                         data: "DATA!",
@@ -99,7 +99,7 @@ describe("RequestFulfillment", () => {
             const fakeRequestHandler: IRequestHandler<string, any> = {
                 fulfillRequest: () => Promise.resolve("DATA!"),
                 getKey: (o) => o,
-                invalidateCache: () => false,
+                shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
             };
 
@@ -122,7 +122,7 @@ describe("RequestFulfillment", () => {
             const fakeRequestHandler: IRequestHandler<string, any> = {
                 fulfillRequest: () => Promise.resolve("DATA!"),
                 getKey: (o) => o,
-                invalidateCache: () => false,
+                shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
             };
 
@@ -147,7 +147,7 @@ describe("RequestFulfillment", () => {
             const fakeRequestHandler: IRequestHandler<string, any> = {
                 fulfillRequest: () => Promise.resolve("DATA!"),
                 getKey: (o) => o,
-                invalidateCache: () => false,
+                shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
             };
 
