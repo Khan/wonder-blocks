@@ -944,8 +944,6 @@ describe("MultiSelect", () => {
             // Arrange
             const labels: $Shape<Labels> = {
                 selectNoneLabel: "Deseleccionar todas las escuelas",
-                selectAllLabel: (numOptions) =>
-                    `Seleccionar todas las escuelas (${numOptions})`,
             };
             const wrapper = mount(
                 <MultiSelect
