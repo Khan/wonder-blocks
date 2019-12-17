@@ -3,9 +3,14 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    AriaProps,
+    ClickableState,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
 import DropdownCore from "./dropdown-core.js";
+import DropdownOpener from "./dropdown-opener.js";
 import SelectOpener from "./select-opener.js";
 import {selectDropdownStyle} from "../util/constants.js";
 
@@ -86,6 +91,13 @@ type Props = {|
      * Optional styling to add to the dropdown wrapper.
      */
     dropdownStyle?: StyleType,
+
+    /**
+     * The child function that returns the anchor the ActionMenu will be
+     * activated by. This function takes eventState, which allows the opener
+     * element to access pointer event state.
+     */
+    opener?: (eventState: ClickableState) => React.Element<any>,
 |};
 
 type State = {|
@@ -201,24 +213,29 @@ export default class SingleSelect extends React.Component<Props, State> {
         this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
     };
 
-    render() {
+    handleClick = (e: SyntheticEvent<>) => {
+        return this.handleOpenChanged(!this.state.open, e.type === "keyup");
+    };
+
+    renderOpener(numItems: number) {
         const {
-            alignment,
             children,
             disabled,
-            dropdownStyle,
             id,
             light,
+            opener,
             placeholder,
             selectedValue,
-            style,
             testId,
             // the following props are being included here to avoid
             // passing them down to the opener as part of sharedProps
             /* eslint-disable no-unused-vars */
+            alignment,
+            dropdownStyle,
             onChange,
             onToggle,
             opened,
+            style,
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
@@ -230,12 +247,18 @@ export default class SingleSelect extends React.Component<Props, State> {
         // item in the menu, use the placeholder.
         const menuText = selectedItem ? selectedItem.props.label : placeholder;
 
-        const items = this.getMenuItems();
-
-        const opener = (
+        const dropdownOpener = opener ? (
+            <DropdownOpener
+                onClick={this.handleClick}
+                disabled={numItems === 0 || disabled}
+                ref={this.handleOpenerRef}
+            >
+                {opener}
+            </DropdownOpener>
+        ) : (
             <SelectOpener
                 {...sharedProps}
-                disabled={items.length === 0 || disabled}
+                disabled={numItems === 0 || disabled}
                 id={id}
                 isPlaceholder={!selectedItem}
                 light={light}
@@ -247,6 +270,13 @@ export default class SingleSelect extends React.Component<Props, State> {
                 {menuText}
             </SelectOpener>
         );
+        return dropdownOpener;
+    }
+
+    render() {
+        const {alignment, dropdownStyle, light, style} = this.props;
+        const items = this.getMenuItems();
+        const opener = this.renderOpener(items.length);
 
         return (
             <DropdownCore

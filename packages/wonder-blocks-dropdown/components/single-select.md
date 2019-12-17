@@ -413,3 +413,91 @@ class ControlledSingleSelectExample extends React.Component {
 
 <ControlledSingleSelectExample />
 ```
+
+### Example: SingleSelect with custom opener
+
+In case you need to use a custom opener with the SingleSelect, you can use the
+`opener` property to achieve this. In this example, the `opener` prop accepts a
+function with the `eventState` argument that lets you customize the style for
+different states, such as `pressed`, `hovered` and `focused`.
+
+**Note:** If you need to use a custom ID for testing the opener, make sure to
+pass the `testId` prop inside the opener component/element.
+
+```js
+import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import Color from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {StyleSheet} from "aphrodite";
+
+const styles = StyleSheet.create({
+    focused: {
+        color: Color.purple,
+    },
+    hovered: {
+        textDecoration: "underline",
+        color: Color.purple,
+        cursor: "pointer",
+    },
+    pressed: {
+        color: Color.blue,
+    },
+});
+
+class SingleSelectWithCustomOpener extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            opened: false,
+            selectedValue: null,
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleToggleMenu = this.handleToggleMenu.bind(this);
+    }
+
+    handleChange(selected) {
+        this.setState({
+            selectedValue: selected,
+        });
+    }
+
+    handleToggleMenu(opened) {
+        this.setState({
+            opened,
+        });
+    }
+
+    render() {
+        return (
+            <SingleSelect
+                placeholder="Choose a juice"
+                opened={this.state.opened}
+                onChange={this.handleChange}
+                onToggle={this.handleToggleMenu}
+                selectedValue={this.state.selectedValue}
+                opener={(eventState) => (
+                    <HeadingLarge
+                        onClick={()=>{console.log('custom click!!!!!')}}
+                        testId="single-select-custom-opener"
+                        style={[
+                            eventState.focused && styles.focused,
+                            eventState.hovered && styles.hovered,
+                            eventState.pressed && styles.pressed
+                        ]}
+                    >
+                        This is a heading
+                    </HeadingLarge>
+                )}
+
+            >
+                <OptionItem label="Banana juice" value="banana" />
+                <OptionItem label="Guava juice" value="guava" disabled />
+                <OptionItem label="White grape juice" value="grape" />
+            </SingleSelect>
+        );
+    }
+}
+
+<SingleSelectWithCustomOpener />
+```

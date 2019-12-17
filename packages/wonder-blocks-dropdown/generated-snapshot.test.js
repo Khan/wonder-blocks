@@ -23,7 +23,9 @@ import {icons} from "@khanacademy/wonder-blocks-icon";
 import {
     Title,
     HeadingSmall,
+    LabelMedium,
     LabelLarge,
+    HeadingLarge,
 } from "@khanacademy/wonder-blocks-typography";
 import Color from "@khanacademy/wonder-blocks-color";
 import {StyleSheet} from "aphrodite";
@@ -627,6 +629,82 @@ describe("wonder-blocks-dropdown", () => {
 
     it("example 11", () => {
         const styles = StyleSheet.create({
+            focused: {
+                backgroundColor: Color.purple,
+                color: Color.white,
+            },
+            hovered: {
+                textDecoration: "underline",
+                color: Color.teal,
+            },
+            pressed: {
+                color: Color.blue,
+            },
+        });
+        const example = (
+            <ActionMenu
+                disabled={false}
+                menuText="Betsy Appleseed"
+                opener={(eventState) => (
+                    <LabelMedium
+                        onClick={() => {
+                            console.log("custom click!!!!!");
+                        }}
+                        testId="teacher-menu-custom-opener"
+                        style={[
+                            eventState.focused && styles.focused,
+                            eventState.hovered && styles.hovered,
+                            eventState.pressed && styles.pressed,
+                        ]}
+                    >
+                        This is a label
+                    </LabelMedium>
+                )}
+            >
+                <ActionItem
+                    label="Profile"
+                    href="http://khanacademy.org/profile"
+                    testId="profile"
+                />
+                <ActionItem
+                    label="Settings"
+                    onClick={() => console.log("user clicked on settings")}
+                    testId="settings"
+                />
+                <ActionItem
+                    label="Help"
+                    disabled={true}
+                    onClick={() => console.log("this item is disabled...")}
+                    testId="help"
+                />
+                <SeparatorItem />
+                <ActionItem
+                    label="Log out"
+                    href="http://khanacademy.org/logout"
+                    testId="logout"
+                />
+                <OptionItem
+                    label="Show homework assignments"
+                    value="homework"
+                    onClick={() =>
+                        console.log(`Show homework assignments toggled`)
+                    }
+                />
+                <OptionItem
+                    label="Show in-class assignments"
+                    value="in-class"
+                    onClick={() =>
+                        console.log(`Show in-class assignments toggled`)
+                    }
+                />
+            </ActionMenu>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 12", () => {
+        const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
             },
@@ -698,7 +776,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 12", () => {
+    it("example 13", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -758,7 +836,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 13", () => {
+    it("example 14", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -810,7 +888,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 14", () => {
+    it("example 15", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -863,7 +941,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 15", () => {
+    it("example 16", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -933,7 +1011,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 16", () => {
+    it("example 17", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -948,7 +1026,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 17", () => {
+    it("example 18", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -981,7 +1059,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 18", () => {
+    it("example 19", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1039,7 +1117,86 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 19", () => {
+    it("example 20", () => {
+        const styles = StyleSheet.create({
+            focused: {
+                color: Color.purple,
+            },
+            hovered: {
+                textDecoration: "underline",
+                color: Color.purple,
+                cursor: "pointer",
+            },
+            pressed: {
+                color: Color.blue,
+            },
+        });
+
+        class SingleSelectWithCustomOpener extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    opened: false,
+                    selectedValue: null,
+                };
+                this.handleChange = this.handleChange.bind(this);
+                this.handleToggleMenu = this.handleToggleMenu.bind(this);
+            }
+
+            handleChange(selected) {
+                this.setState({
+                    selectedValue: selected,
+                });
+            }
+
+            handleToggleMenu(opened) {
+                this.setState({
+                    opened,
+                });
+            }
+
+            render() {
+                return (
+                    <SingleSelect
+                        placeholder="Choose a juice"
+                        opened={this.state.opened}
+                        onChange={this.handleChange}
+                        onToggle={this.handleToggleMenu}
+                        selectedValue={this.state.selectedValue}
+                        opener={(eventState) => (
+                            <HeadingLarge
+                                onClick={() => {
+                                    console.log("custom click!!!!!");
+                                }}
+                                testId="single-select-custom-opener"
+                                style={[
+                                    eventState.focused && styles.focused,
+                                    eventState.hovered && styles.hovered,
+                                    eventState.pressed && styles.pressed,
+                                ]}
+                            >
+                                This is a heading
+                            </HeadingLarge>
+                        )}
+                    >
+                        <OptionItem label="Banana juice" value="banana" />
+                        <OptionItem
+                            label="Guava juice"
+                            value="guava"
+                            disabled
+                        />
+                        <OptionItem label="White grape juice" value="grape" />
+                    </SingleSelect>
+                );
+            }
+        }
+
+        const example = <SingleSelectWithCustomOpener />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 21", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1107,7 +1264,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 20", () => {
+    it("example 22", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1169,7 +1326,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 21", () => {
+    it("example 23", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1233,7 +1390,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 22", () => {
+    it("example 24", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 alignItems: "center",
@@ -1327,7 +1484,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 23", () => {
+    it("example 25", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1342,7 +1499,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 24", () => {
+    it("example 26", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -1375,7 +1532,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 25", () => {
+    it("example 27", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1425,7 +1582,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 26", () => {
+    it("example 28", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1484,7 +1641,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 27", () => {
+    it("example 29", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
