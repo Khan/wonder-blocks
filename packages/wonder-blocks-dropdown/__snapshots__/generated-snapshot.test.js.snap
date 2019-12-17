@@ -1648,6 +1648,64 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
 exports[`wonder-blocks-dropdown example 11 1`] = `
 <div
   className=""
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "width": "fit-content",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    data-test-id="teacher-menu-custom-opener"
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+    tabIndex={0}
+  >
+    This is a label
+  </span>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 12 1`] = `
+<div
+  className=""
   style={
     Object {
       "alignItems": "stretch",
@@ -1783,7 +1841,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 12 1`] = `
+exports[`wonder-blocks-dropdown example 13 1`] = `
 <div
   className=""
   style={
@@ -1920,7 +1978,7 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 13 1`] = `
+exports[`wonder-blocks-dropdown example 14 1`] = `
 <div
   className=""
   style={
@@ -2056,7 +2114,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 14 1`] = `
+exports[`wonder-blocks-dropdown example 15 1`] = `
 <div
   className=""
   style={
@@ -2193,7 +2251,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 15 1`] = `
+exports[`wonder-blocks-dropdown example 16 1`] = `
 <div
   className=""
   style={
@@ -2355,7 +2413,7 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 16 1`] = `
+exports[`wonder-blocks-dropdown example 17 1`] = `
 <div
   className=""
   style={
@@ -2492,7 +2550,7 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 17 1`] = `
+exports[`wonder-blocks-dropdown example 18 1`] = `
 <div
   className=""
   style={
@@ -2648,7 +2706,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 18 1`] = `
+exports[`wonder-blocks-dropdown example 19 1`] = `
 <div
   className=""
   style={
@@ -2882,7 +2940,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 19 1`] = `
+exports[`wonder-blocks-dropdown example 20 1`] = `
 <div
   className=""
   style={
@@ -3019,7 +3077,7 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 20 1`] = `
+exports[`wonder-blocks-dropdown example 21 1`] = `
 <div
   className=""
   style={
@@ -3155,7 +3213,7 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 21 1`] = `
+exports[`wonder-blocks-dropdown example 22 1`] = `
 <div
   className=""
   style={
@@ -3291,7 +3349,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 22 1`] = `
+exports[`wonder-blocks-dropdown example 23 1`] = `
 <div
   className=""
   style={
@@ -3386,7 +3444,7 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 23 1`] = `
+exports[`wonder-blocks-dropdown example 24 1`] = `
 <div
   className=""
   style={
@@ -3523,7 +3581,7 @@ exports[`wonder-blocks-dropdown example 23 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 24 1`] = `
+exports[`wonder-blocks-dropdown example 25 1`] = `
 <div
   className=""
   style={
@@ -3679,7 +3737,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 25 1`] = `
+exports[`wonder-blocks-dropdown example 26 1`] = `
 <div
   className=""
   style={
@@ -3815,7 +3873,7 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 26 1`] = `
+exports[`wonder-blocks-dropdown example 27 1`] = `
 <div
   className=""
   style={
@@ -4049,7 +4107,7 @@ exports[`wonder-blocks-dropdown example 26 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-dropdown example 27 1`] = `
+exports[`wonder-blocks-dropdown example 28 1`] = `
 <div
   className=""
   style={
