@@ -471,5 +471,83 @@ describe("ActionMenu", () => {
             // Assert
             expect(onClickMock).toHaveBeenCalledTimes(1);
         });
+
+        it("verifies testId is passed from the custom opener", () => {
+            // Arrange
+            const menu = mount(
+                <ActionMenu
+                    onChange={onChange}
+                    menuText="Action menu!"
+                    opener={() => (
+                        <button
+                            data-test-id="custom-opener"
+                            aria-label="Custom opener"
+                        />
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = menu.find(DropdownOpener).find("button");
+
+            // Assert
+            expect(opener.prop("data-test-id")).toBe("custom-opener");
+        });
+
+        it("verifies testId is not passed from the parent element", () => {
+            // Arrange
+            const menu = mount(
+                <ActionMenu
+                    onChange={onChange}
+                    menuText="Action menu!"
+                    testId="custom-opener"
+                    opener={() => <button aria-label="Custom opener" />}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = menu.find(DropdownOpener).find("button");
+
+            // Assert
+            expect(opener.prop("data-test-id")).not.toBeDefined();
+        });
+
+        it("passes the menu text to the custom opener", () => {
+            // Arrange
+            const menu = mount(
+                <ActionMenu
+                    menuText="Action menu!"
+                    testId="openTest"
+                    onChange={onChange}
+                    selectedValues={[]}
+                    opener={(eventState, text) => (
+                        <button
+                            onClick={jest.fn()}
+                            data-test-id="custom-opener"
+                        >
+                            {text}
+                        </button>
+                    )}
+                >
+                    <OptionItem label="Toggle A" value="toggle_a" />
+                    <OptionItem label="Toggle B" value="toggle_b" />
+                </ActionMenu>,
+            );
+
+            // Act
+            const opener = menu.find(DropdownOpener);
+            // open dropdown
+            opener.simulate("click");
+            const openerElement = menu.find(`[data-test-id="custom-opener"]`);
+
+            // Assert
+            expect(openerElement).toHaveText("Action menu!");
+        });
     });
 });

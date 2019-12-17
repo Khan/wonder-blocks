@@ -531,5 +531,192 @@ describe("MultiSelect", () => {
             // Assert
             expect(onClickMock).toHaveBeenCalledTimes(1);
         });
+
+        it("verifies testId is passed from the custom opener", () => {
+            // Arrange
+            const menu = mount(
+                <MultiSelect
+                    onChange={onChange}
+                    placeholder="Choose"
+                    selectItemType="items"
+                    opener={() => (
+                        <button
+                            data-test-id="custom-opener"
+                            aria-label="Custom opener"
+                        />
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = menu.find(DropdownOpener).find("button");
+
+            // Assert
+            expect(opener.prop("data-test-id")).toBe("custom-opener");
+        });
+
+        it("verifies testId is not passed from the parent element", () => {
+            // Arrange
+            const menu = mount(
+                <MultiSelect
+                    onChange={onChange}
+                    placeholder="Choose"
+                    selectItemType="items"
+                    testId="custom-opener"
+                    opener={() => <button aria-label="Custom opener" />}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = menu.find(DropdownOpener).find("button");
+
+            // Assert
+            expect(opener.prop("data-test-id")).not.toBeDefined();
+        });
+
+        it("passes the current label to the custom opener (no items selected)", () => {
+            // Arrange
+            const menu = mount(
+                <MultiSelect
+                    placeholder="Custom placeholder"
+                    selectItemType="items"
+                    testId="openTest"
+                    onChange={jest.fn()}
+                    opener={(eventState, text) => (
+                        <button
+                            onClick={jest.fn()}
+                            data-test-id="custom-opener"
+                        >
+                            {text}
+                        </button>
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = menu.find(DropdownOpener);
+            // open dropdown
+            opener.simulate("click");
+            const openerElement = menu.find(`[data-test-id="custom-opener"]`);
+
+            // Assert
+            expect(openerElement).toHaveText("Custom placeholder");
+        });
+
+        it("passes the current label to the custom opener (1 item selected)", () => {
+            // Arrange
+            const menu = mount(
+                <MultiSelect
+                    placeholder="Custom placeholder"
+                    selectItemType="items"
+                    testId="openTest"
+                    onChange={jest.fn()}
+                    opener={(eventState, text) => (
+                        <button
+                            onClick={jest.fn()}
+                            data-test-id="custom-opener"
+                        >
+                            {text}
+                        </button>
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = menu.find(DropdownOpener);
+            // open dropdown
+            opener.simulate("click");
+            // select the first item manually via selectedValues on MultiSelect
+            menu.setProps({selectedValues: ["1"]});
+            const openerElement = menu.find(`[data-test-id="custom-opener"]`);
+
+            // Assert
+            expect(openerElement).toHaveText("item 1");
+        });
+
+        it("passes the current label to the custom opener (2 items selected)", () => {
+            // Arrange
+            const menu = mount(
+                <MultiSelect
+                    placeholder="Custom placeholder"
+                    selectItemType="items"
+                    testId="openTest"
+                    onChange={jest.fn()}
+                    opener={(eventState, text) => (
+                        <button
+                            onClick={jest.fn()}
+                            data-test-id="custom-opener"
+                        >
+                            {text}
+                        </button>
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = menu.find(DropdownOpener);
+            // open dropdown
+            opener.simulate("click");
+            // select the first and second items manually via selectedValues on
+            // MultiSelect
+            menu.setProps({selectedValues: ["1", "2"]});
+            const openerElement = menu.find(`[data-test-id="custom-opener"]`);
+
+            // Assert
+            expect(openerElement).toHaveText("2 items");
+        });
+
+        it("passes the current label to the custom opener (all items selected)", () => {
+            // Arrange
+            const menu = mount(
+                <MultiSelect
+                    placeholder="Custom placeholder"
+                    selectItemType="items"
+                    testId="openTest"
+                    onChange={jest.fn()}
+                    opener={(eventState, text) => (
+                        <button
+                            onClick={jest.fn()}
+                            data-test-id="custom-opener"
+                        >
+                            {text}
+                        </button>
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = menu.find(DropdownOpener);
+            // open dropdown
+            opener.simulate("click");
+            // select all items manually via selectedValues on MultiSelect
+            menu.setProps({selectedValues: ["1", "2", "3"]});
+            const openerElement = menu.find(`[data-test-id="custom-opener"]`);
+
+            // Assert
+            expect(openerElement).toHaveText("All items");
+        });
     });
 });

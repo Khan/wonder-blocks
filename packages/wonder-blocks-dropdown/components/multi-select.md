@@ -517,8 +517,13 @@ class ExampleWithShortcuts extends React.Component {
 
 In case you need to use a custom opener with the MultiSelect, you can use the
 `opener` property to achieve this. In this example, the `opener` prop accepts a
-function with the `eventState` argument that lets you customize the style for
-different states, such as `pressed`, `hovered` and `focused`.
+function with the following arguments:
+
+- `eventState`: lets you customize the style for different states, such as
+  `pressed`, `hovered` and `focused`.
+- `text`: Passes the menu label defined in the parent component. By default,
+  `text` will be initialized with the value of the `placeholder` prop set in the
+  `MultiSelect` component.
 
 **Note:** If you need to use a custom ID for testing the opener, make sure to
 pass the `testId` prop inside the opener component/element.
@@ -574,9 +579,10 @@ class CustomOpenerExample extends React.Component {
                 onChange={this.handleChange}
                 opened={this.state.opened}
                 onToggle={this.handleToggleMenu}
+                placeholder="MultiSelect with custom opener"
                 selectedValues={this.state.selectedValues}
                 testId="multi-select-custom-opener"
-                opener={(eventState) => (
+                opener={(eventState, text) => (
                     <HeadingLarge
                         onClick={()=>{console.log('custom click!!!!!')}}
                         testId="multi-select-custom-opener"
@@ -586,7 +592,7 @@ class CustomOpenerExample extends React.Component {
                             eventState.pressed && styles.pressed
                         ]}
                     >
-                        MultiSelect with custom opener
+                        {text}
                     </HeadingLarge>
                 )}
             >

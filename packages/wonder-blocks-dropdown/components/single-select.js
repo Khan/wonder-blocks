@@ -252,6 +252,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 onClick={this.handleClick}
                 disabled={numItems === 0 || disabled}
                 ref={this.handleOpenerRef}
+                text={menuText}
             >
                 {opener}
             </DropdownOpener>

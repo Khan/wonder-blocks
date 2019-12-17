@@ -1692,13 +1692,13 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
         "display": "block",
         "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
         "fontSize": 16,
-        "fontWeight": 400,
+        "fontWeight": 700,
         "lineHeight": "20px",
       }
     }
     tabIndex={0}
   >
-    This is a label
+    Custom opener
   </span>
 </div>
 `;
@@ -3001,7 +3001,7 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
     }
     tabIndex={0}
   >
-    This is a heading
+    Choose a juice
   </h2>
 </div>
 `;
