@@ -15,12 +15,15 @@ interface IRequestHandler<TOptions, TData> {
     get type(): string;
 
     /**
-     * Determine if the cached data should be invalidated.
+     * Determine if the cached data should be refreshed.
      *
-     * If this returns true, the framework will invalidate the cached value
-     * such that a new request is required.
+     * If this returns true, the framework will use the currently cached value
+     * but also request a new value.
      */
-    invalidateCache(options: TOptions): boolean;
+    shouldRefreshCache(
+        options: TOptions,
+        cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
+    ): boolean;
 
     /**
      * Get the key to use for a given request. This should be idempotent for a
@@ -41,11 +44,10 @@ A default implementation of `getKey` is provided that serializes the options of
 a request to a string and uses that as the cache key. You may want to override
 this behavior to simplify the key or to omit some values from the key.
 
-Finally, the `invalidateCache` method is provided for cases where a handler
-may want control over cache validity. By default, once something is in the
-cache, it stays there as-is. However, in some cases, handlers may want to make
-sure cached entries aren't stale, and so may return `true` from the
-`invalidateCache` method to instruct the framework to ignore the cache and make
-a new request. If a handler permanently returns `true` from this call then the
-cache will never be used and a new request will be made each time the request
-result is required.
+Finally, the `shouldRefreshCache` method is provided for cases where a handler
+may want control over cache freshness. By default, this will return `true` for
+error results or a missing value. However, in some cases, handlers may want to
+make sure cached entries are not stale, and so may return `true` from the
+`shouldRefreshCache` method to instruct the framework to make a new request.
+The existing cached value will still be used, but an updated value will be
+requested.
