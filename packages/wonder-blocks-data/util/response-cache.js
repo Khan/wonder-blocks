@@ -1,9 +1,5 @@
 // @flow
-import type {
-    CacheEntry,
-    ResponseCache as Cache,
-    IRequestHandler,
-} from "./types.js";
+import type {CacheEntry, Cache, IRequestHandler} from "./types.js";
 
 function deepClone<T: {...}>(source: T | $ReadOnly<T>): $ReadOnly<T> {
     /**
@@ -125,9 +121,6 @@ export class ResponseCache {
         }
 
         const key = handler.getKey(options);
-        if (handler.invalidateCache(options)) {
-            delete handlerCache[key];
-        }
 
         // Get the response.
         const entry = handlerCache[key];
@@ -137,7 +130,7 @@ export class ResponseCache {
     /**
      * Deep clone the cache.
      */
-    clone = (): $ReadOnly<Cache> => {
+    cloneCachedData = (): $ReadOnly<Cache> => {
         try {
             return deepClone(this._cache);
         } catch (e) {
