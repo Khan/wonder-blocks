@@ -17,7 +17,6 @@ describe("@khanacademy/wonder-blocks-dropdown", () => {
                 "OptionItem",
                 "SeparatorItem",
                 "SingleSelect",
-                "Dropdown",
             ].sort(),
         );
     });
