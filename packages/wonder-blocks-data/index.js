@@ -6,10 +6,10 @@ import type {Cache} from "./util/types.js";
 
 export type {Result, IRequestHandler} from "./util/types.js";
 
-export opaque type ResponseCache = Cache;
+export type ResponseCache = $ReadOnly<Cache>;
 export const initializeCache = (source: ResponseCache): void =>
     ResCache.Default.initialize(source);
-export const fulfillAllDataRequests = (): ResponseCache =>
+export const fulfillAllDataRequests = (): Promise<ResponseCache> =>
     RequestTracker.Default.fulfillTrackedRequests();
 
 export {default as RequestHandler} from "./util/request-handler.js";
