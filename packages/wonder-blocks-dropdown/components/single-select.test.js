@@ -2,6 +2,7 @@
 import React from "react";
 import {mount, unmountAll} from "../../../utils/testing/mount.js";
 
+import DropdownOpener from "./dropdown-opener.js";
 import SelectOpener from "./select-opener.js";
 import OptionItem from "./option-item.js";
 import SingleSelect from "./single-select.js";
@@ -221,6 +222,60 @@ describe("SingleSelect", () => {
 
             // Assert
             expect(wrapper.find(SingleSelect).prop("opened")).toBe(false);
+        });
+    });
+
+    describe("Custom Opener", () => {
+        it("opens the menu when clicking on the custom opener", () => {
+            // Arrange
+            const wrapper = mount(
+                <SingleSelect
+                    onChange={jest.fn()}
+                    placeholder="custom opener"
+                    testId="openTest"
+                    opener={(eventState) => (
+                        <button aria-label="Search" onClick={jest.fn()} />
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(DropdownOpener);
+            opener.simulate("click");
+
+            // Assert
+            expect(wrapper.state("open")).toBe(true);
+        });
+
+        it("calls the custom onClick handler", () => {
+            // Arrange
+            const onClickMock = jest.fn();
+
+            const wrapper = mount(
+                <SingleSelect
+                    onChange={jest.fn()}
+                    placeholder="custom opener"
+                    testId="openTest"
+                    opener={(eventState) => (
+                        <button aria-label="Search" onClick={onClickMock} />
+                    )}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(DropdownOpener);
+            opener.simulate("click");
+
+            // Assert
+            expect(onClickMock).toHaveBeenCalledTimes(1);
         });
     });
 });

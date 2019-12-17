@@ -214,7 +214,7 @@ export default class ActionMenu extends React.Component<Props, State> {
         });
     }
 
-    onHandleOpenerRef = (node: any) => {
+    handleOpenerRef = (node: any) => {
         this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
     };
 
@@ -229,7 +229,7 @@ export default class ActionMenu extends React.Component<Props, State> {
             <DropdownOpener
                 onClick={this.handleClick}
                 disabled={numItems === 0 || disabled}
-                anchorRef={this.onHandleOpenerRef}
+                ref={this.handleOpenerRef}
                 testId={opener ? undefined : testId}
             >
                 {opener
