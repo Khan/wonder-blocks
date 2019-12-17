@@ -1494,4 +1494,61 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
+    it("example 27", () => {
+        const optionItems = new Array(10)
+            .fill(null)
+            .map((_, i) => (
+                <OptionItem
+                    key={i}
+                    value={(i + 1).toString()}
+                    label={`School ${i + 1} in Wizarding World`}
+                />
+            ));
+
+        class ExampleWithTranslatedValues extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: [],
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(selectedValues) {
+                this.setState({
+                    selectedValues,
+                });
+            }
+
+            render() {
+                return (
+                    <MultiSelect
+                        shortcuts={true}
+                        isFilterable={true}
+                        onChange={this.handleChange}
+                        selectedValues={this.state.selectedValues}
+                        selectItemType="schools"
+                        translatedLabels={{
+                            clearSearch: "Limpiar busqueda",
+                            filter: "Filtrar",
+                            noResults: "No hay resultados",
+                            selectAllLabel: "Seleccionar todas las escuelas",
+                            selectNoneLabel: "Deseleccionar todas las escuelas",
+                            noneSelected: "0 escuelas",
+                            allSelected: "Todas las escuelas",
+                            someSelected: "3 escuelas",
+                        }}
+                    >
+                        {optionItems}
+                    </MultiSelect>
+                );
+            }
+        }
+
+        const example = <ExampleWithTranslatedValues />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });

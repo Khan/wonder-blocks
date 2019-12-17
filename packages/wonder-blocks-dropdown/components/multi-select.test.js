@@ -719,4 +719,252 @@ describe("MultiSelect", () => {
             expect(openerElement).toHaveText("All items");
         });
     });
+
+    describe("Translated labels", () => {
+        it("passes the translated label to the opener", () => {
+            // Arrange
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    selectItemType="items"
+                    testId="translated-multi-select"
+                    translatedLabels={{
+                        noneSelected: "0 escuelas",
+                    }}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper
+                .find(`[data-test-id="translated-multi-select"]`)
+                .last();
+
+            // Assert
+            expect(opener).toHaveText("0 escuelas");
+        });
+
+        it("passes the translated label to the opener (2 items selected)", () => {
+            // Arrange
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    selectItemType="items"
+                    testId="translated-multi-select"
+                    translatedLabels={{
+                        someSelected: "2 escuelas",
+                    }}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // select the first and second items manually via selectedValues on
+            // MultiSelect
+            wrapper.setProps({selectedValues: ["1", "2"]});
+            const openerElement = wrapper
+                .find(`[data-test-id="translated-multi-select"]`)
+                .last();
+
+            // Assert
+            expect(openerElement).toHaveText("2 escuelas");
+        });
+
+        it("passes the translated label to the opener (all items selected)", () => {
+            // Arrange
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    selectItemType="items"
+                    testId="translated-multi-select"
+                    translatedLabels={{
+                        allSelected: "Todas las escuelas",
+                    }}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // select all items manually via selectedValues on MultiSelect
+            wrapper.setProps({selectedValues: ["1", "2", "3"]});
+            const openerElement = wrapper
+                .find(`[data-test-id="translated-multi-select"]`)
+                .last();
+
+            // Assert
+            expect(openerElement).toHaveText("Todas las escuelas");
+        });
+
+        it("passes the translated label to the dismiss icon", () => {
+            // Arrange
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    selectItemType="items"
+                    isFilterable={true}
+                    testId="translated-multi-select"
+                    translatedLabels={{
+                        clearSearch: "Limpiar busqueda",
+                    }}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // search text
+            wrapper.setState({searchText: "text"});
+            // get icon instance
+            const searchIcon = wrapper.find(SearchTextInput).find(IconButton);
+
+            // Assert
+            expect(searchIcon).toHaveProp("aria-label", "Limpiar busqueda");
+        });
+
+        it("passes the translated label to the search input field", () => {
+            // Arrange
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    selectItemType="items"
+                    isFilterable={true}
+                    testId="translated-multi-select"
+                    translatedLabels={{
+                        filter: "Filtrar",
+                    }}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // search text
+            wrapper.setState({searchText: "text"});
+            // get text field instance
+            const searchInput = wrapper.find(SearchTextInput).find("input");
+
+            // Assert
+            expect(searchInput).toHaveProp("placeholder", "Filtrar");
+        });
+
+        it("passes the translated label to the no results label", () => {
+            // Arrange
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    selectItemType="items"
+                    isFilterable={true}
+                    testId="translated-multi-select"
+                    translatedLabels={{
+                        noResults: "No hay resultados",
+                    }}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // search text
+            wrapper.setState({searchText: "text"});
+            // get dropdown instance
+            const noResultsLabel = wrapper.find(
+                `[data-test-id="dropdown-core-no-results"]`,
+            );
+
+            // Assert
+            expect(noResultsLabel).toHaveText("No hay resultados");
+        });
+
+        it("passes the translated label to the select all shortcut", () => {
+            // Arrange
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    selectItemType="items"
+                    isFilterable={true}
+                    shortcuts={true}
+                    testId="translated-multi-select"
+                    translatedLabels={{
+                        selectAllLabel: "Seleccionar todas las escuelas",
+                    }}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // `select all` shortcut
+            const selectAllItem = wrapper.find(ActionItem).at(0);
+
+            // Assert
+            expect(selectAllItem).toHaveText("Seleccionar todas las escuelas");
+        });
+
+        it("passes the translated label to the select none shortcut", () => {
+            // Arrange
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    selectItemType="items"
+                    isFilterable={true}
+                    shortcuts={true}
+                    testId="translated-multi-select"
+                    translatedLabels={{
+                        selectNoneLabel: "Deseleccionar todas las escuelas",
+                    }}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // `select none` shortcut
+            const selectNoneItem = wrapper.find(ActionItem).at(1);
+
+            // Assert
+            expect(selectNoneItem).toHaveText(
+                "Deseleccionar todas las escuelas",
+            );
+        });
+    });
 });

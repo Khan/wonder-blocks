@@ -27,6 +27,10 @@ import SearchTextInput from "./search-text-input.js";
 import {keyCodes, searchInputStyle} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
 
+type TranslatedLabels = {|
+    noResults?: string,
+|};
+
 // we need to define a DefaultProps type to allow the HOC expose the default
 // values to the parent components that are instantiating this component
 // @see https://flow.org/en/docs/react/hoc/#toc-exporting-wrapped-components
@@ -114,6 +118,11 @@ type OwnProps = {|
      * The aria "role" applied to the dropdown container.
      */
     role: "listbox" | "menu",
+
+    /**
+     * The object containing the translated labels used inside this component.
+     */
+    translatedLabels?: TranslatedLabels,
 |};
 
 type Props = WithActionScheduler<OwnProps>;
@@ -555,19 +564,32 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     maybeRenderNoResults() {
-        const {items, onSearchTextChanged, searchText} = this.props;
+        const {
+            items,
+            onSearchTextChanged,
+            searchText,
+            translatedLabels,
+        } = this.props;
         const showSearchTextInput =
             !!onSearchTextChanged && typeof searchText === "string";
+        // translations
+        const {noResults} = translatedLabels || {};
 
         const includeSearchCount = showSearchTextInput ? 1 : 0;
 
         // Verify if there are items to be rendered or not
         const numResults = items.length - includeSearchCount;
 
-        // TODO(jangmi): Use translated string for "No results"
+        const noResultsLabel = noResults || "No results";
+
         if (numResults === 0) {
             return (
-                <LabelMedium style={styles.noResult}>No results</LabelMedium>
+                <LabelMedium
+                    style={styles.noResult}
+                    testId="dropdown-core-no-results"
+                >
+                    {noResultsLabel}
+                </LabelMedium>
             );
         }
     }

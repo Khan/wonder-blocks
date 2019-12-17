@@ -23,6 +23,17 @@ import {
 import typeof OptionItem from "./option-item.js";
 import type {DropdownItem} from "../util/types.js";
 
+type TranslatedLabels = {|
+    clearSearch?: string,
+    filter?: string,
+    noResults?: string,
+    selectAllLabel?: string,
+    selectNoneLabel?: string,
+    noneSelected?: string,
+    someSelected?: string,
+    allSelected?: string,
+|};
+
 type Props = {|
     ...AriaProps,
 
@@ -130,6 +141,11 @@ type Props = {|
      * element to access pointer event state.
      */
     opener?: (eventState: ClickableState) => React.Element<any>,
+
+    /**
+     * The object containing the translated labels used inside this component.
+     */
+    translatedLabels?: TranslatedLabels,
 |};
 
 type State = {|
@@ -238,22 +254,28 @@ export default class MultiSelect extends React.Component<Props, State> {
         onChange([]);
     };
 
-    // TODO(sophie): need to configure for i18n for the word "All" and
-    // potentially the concept of plurals
     getMenuText(children: Array<React.Element<OptionItem>>) {
         const {
             placeholder,
             implicitAllEnabled,
             selectItemType,
             selectedValues,
+            translatedLabels,
         } = this.props;
-        const allSelectedText = `All ${selectItemType}`;
+
+        // get translations
+        const {noneSelected, someSelected, allSelected} =
+            translatedLabels || {};
+
+        const allSelectedText = allSelected
+            ? allSelected
+            : `All ${selectItemType}`;
 
         // When implicit all enabled, use the allSelectedText when no selection
         // but otherwise, use the placeholder if it exists
         const noSelectionText = implicitAllEnabled
             ? allSelectedText
-            : placeholder || `0 ${selectItemType}`;
+            : placeholder || noneSelected || `0 ${selectItemType}`;
 
         switch (selectedValues.length) {
             case 0:
@@ -271,7 +293,9 @@ export default class MultiSelect extends React.Component<Props, State> {
             case children.length:
                 return allSelectedText;
             default:
-                return `${selectedValues.length} ${selectItemType}`;
+                return (
+                    someSelected || `${selectedValues.length} ${selectItemType}`
+                );
         }
     }
 
@@ -280,6 +304,8 @@ export default class MultiSelect extends React.Component<Props, State> {
             return [];
         }
 
+        const {clearSearch, filter} = this.props.translatedLabels || {};
+
         return [
             {
                 component: (
@@ -287,6 +313,10 @@ export default class MultiSelect extends React.Component<Props, State> {
                         key="search-text-input"
                         onChange={this.handleSearchTextChanged}
                         searchText={this.state.searchText}
+                        translatedLabels={{
+                            clearSearch,
+                            filter,
+                        }}
                     />
                 ),
                 focusable: true,
@@ -296,17 +326,17 @@ export default class MultiSelect extends React.Component<Props, State> {
     }
 
     getShortcuts(numOptions: number): Array<DropdownItem> {
-        const {selectedValues, shortcuts} = this.props;
+        const {selectedValues, shortcuts, translatedLabels} = this.props;
 
         // When there's search text input to filter, shortcuts should be hidden
         if (shortcuts && !this.state.searchText) {
             const selectAllDisabled = numOptions === selectedValues.length;
+            const {selectAllLabel, selectNoneLabel} = translatedLabels || {};
             const selectAll = {
                 component: (
                     <ActionItem
                         disabled={selectAllDisabled}
-                        // TODO(sophie): translate for i18n
-                        label={`Select all (${numOptions})`}
+                        label={selectAllLabel || `Select all (${numOptions})`}
                         indent={true}
                         onClick={this.handleSelectAll}
                     />
@@ -320,8 +350,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 component: (
                     <ActionItem
                         disabled={selectNoneDisabled}
-                        // TODO(sophie): translate for i18n
-                        label="Select none"
+                        label={selectNoneLabel || "Select none"}
                         indent={true}
                         onClick={this.handleSelectNone}
                     />
@@ -443,6 +472,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             selectedValues,
             shortcuts,
             style,
+            translatedLabels,
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
@@ -486,8 +516,11 @@ export default class MultiSelect extends React.Component<Props, State> {
             dropdownStyle,
             children,
             isFilterable,
+            translatedLabels,
         } = this.props;
         const {open, searchText} = this.state;
+        // translations
+        const {noResults} = translatedLabels || {};
 
         const allChildren = React.Children.toArray(children).filter(Boolean);
         const numOptions = allChildren.length;
@@ -519,6 +552,9 @@ export default class MultiSelect extends React.Component<Props, State> {
                     isFilterable ? this.handleSearchTextChanged : null
                 }
                 searchText={isFilterable ? searchText : ""}
+                translatedLabels={{
+                    noResults,
+                }}
             />
         );
     }

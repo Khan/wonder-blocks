@@ -14,6 +14,11 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
 
+type TranslatedLabels = {|
+    clearSearch?: string,
+    filter?: string,
+|};
+
 type Props = {|
     /**
      * the text input
@@ -47,6 +52,11 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+
+    /**
+     * The object containing the translated labels used inside this component.
+     */
+    translatedLabels?: TranslatedLabels,
 |};
 
 type State = {|
@@ -90,6 +100,8 @@ export default class SearchTextInput extends React.Component<Props, State> {
 
     maybeRenderDismissIconButton() {
         const {searchText} = this.props;
+        const {clearSearch} = this.props.translatedLabels || {};
+
         if (searchText.length > 0) {
             return (
                 <IconButton
@@ -97,7 +109,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
                     kind="tertiary"
                     onClick={this.handleDismiss}
                     style={styles.dismissIcon}
-                    aria-label="Clear search"
+                    aria-label={clearSearch || "Clear search"}
                 />
             );
         }
@@ -105,7 +117,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
 
     render() {
         const {onClick, itemRef, searchText, style, testId} = this.props;
-        // TODO(jangmi): Use translated strings for "Filter", "Clear search"
+        const {filter} = this.props.translatedLabels || {};
         return (
             <View
                 onClick={onClick}
@@ -128,7 +140,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
                     ref={itemRef}
-                    placeholder="Filter"
+                    placeholder={filter || "Filter"}
                     value={searchText}
                     className={css(
                         styles.inputStyleReset,
