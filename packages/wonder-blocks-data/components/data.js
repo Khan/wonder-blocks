@@ -108,7 +108,8 @@ export default class Data<TOptions, TData> extends React.Component<
         const cachedData = getEntry(handler, options);
         if (
             !Server.isServerSide() &&
-            (cachedData == null || handler.refreshCache(options, cachedData))
+            (cachedData == null ||
+                handler.shouldRefreshCache(options, cachedData))
         ) {
             /**
              * We're not on the server, the cache missed, or our handler says

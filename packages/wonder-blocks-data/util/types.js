@@ -55,7 +55,7 @@ export interface IRequestHandler<TOptions, TData> {
      * If this returns true, the framework will fulfill a new request by
      * calling `fulfillRequest`.
      */
-    refreshCache(
+    shouldRefreshCache(
         options: TOptions,
         cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
     ): boolean;

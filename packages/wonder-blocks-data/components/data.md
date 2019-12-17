@@ -148,7 +148,7 @@ class MyHandler extends RequestHandler {
         );
     }
 
-    refreshCache(options, cachedEntry) {
+    shouldRefreshCache(options, cachedEntry) {
         /**
          * For our purposes, the cache never needs a refresh.
          */

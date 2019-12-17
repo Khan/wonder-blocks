@@ -54,7 +54,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("data"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -77,7 +77,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: jest.fn(() => Promise.resolve("data")),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -101,7 +101,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("data"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -128,7 +128,7 @@ describe("./data.js", () => {
                         () => new Promise((resolve, reject) => {}),
                     ),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -162,7 +162,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.reject(new Error("OH NOES!")),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -196,7 +196,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("YAY! DATA!"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -229,7 +229,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("YAY!"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -263,13 +263,13 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.reject(new Error("OH NOES!")),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "TYPE1",
                 };
                 const fakeHandler2: IRequestHandler<string, string> = {
                     fulfillRequest: () => new Promise(() => {}),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "TYPE2",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -306,7 +306,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("HELLO!"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -348,7 +348,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("data"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -371,7 +371,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: jest.fn(),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -387,12 +387,12 @@ describe("./data.js", () => {
                 expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
             });
 
-            it("should request data if refreshCache returns true", () => {
+            it("should request data if shouldRefreshCache returns true", () => {
                 // Arrange
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: jest.fn(() => Promise.resolve("data")),
                     getKey: (o) => o,
-                    refreshCache: () => true,
+                    shouldRefreshCache: () => true,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -416,7 +416,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("data"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -440,13 +440,13 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.reject(new Error("OH NOES!")),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "TYPE1",
                 };
                 const fakeHandler2: IRequestHandler<string, string> = {
                     fulfillRequest: () => new Promise(() => {}),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "TYPE2",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -479,7 +479,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("Not called!"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -529,7 +529,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: jest.fn(() => Promise.resolve("data")),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -550,7 +550,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("data"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -579,7 +579,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("data"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -614,7 +614,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: jest.fn(() => Promise.resolve("data")),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -635,7 +635,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("data"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -664,7 +664,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("data"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
@@ -694,7 +694,7 @@ describe("./data.js", () => {
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("data"),
                     getKey: (o) => o,
-                    refreshCache: () => false,
+                    shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);

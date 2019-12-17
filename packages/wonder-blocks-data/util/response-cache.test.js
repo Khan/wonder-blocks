@@ -23,7 +23,7 @@ describe("./response-cache.js", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                refreshCache: () => false,
+                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
             };
 
@@ -67,7 +67,7 @@ describe("./response-cache.js", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                refreshCache: () => false,
+                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
             };
             const sourceData = {
@@ -115,7 +115,7 @@ describe("./response-cache.js", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                refreshCache: () => false,
+                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
             };
 
@@ -137,7 +137,7 @@ describe("./response-cache.js", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                refreshCache: () => false,
+                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
             };
 
@@ -157,7 +157,7 @@ describe("./response-cache.js", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                refreshCache: () => false,
+                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
             };
 
@@ -179,7 +179,7 @@ describe("./response-cache.js", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                refreshCache: () => false,
+                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
             };
 
@@ -199,7 +199,7 @@ describe("./response-cache.js", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                refreshCache: () => false,
+                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
             };
 
@@ -220,7 +220,7 @@ describe("./response-cache.js", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                refreshCache: () => false,
+                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
             };
 
@@ -241,7 +241,7 @@ describe("./response-cache.js", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                refreshCache: () => false,
+                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
             };
 
@@ -265,7 +265,7 @@ describe("./response-cache.js", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: (options) => options,
                 type: "MY_HANDLER",
-                refreshCache: () => false,
+                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
             };
             // Let's add to the initialized state to check that everything

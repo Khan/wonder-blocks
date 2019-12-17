@@ -19,7 +19,7 @@ export default class RequestHandler<TOptions, TData>
         return this._type;
     }
 
-    refreshCache(
+    shouldRefreshCache(
         options: TOptions,
         cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
     ): boolean {
