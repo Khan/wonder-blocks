@@ -1697,4 +1697,81 @@ describe("wonder-blocks-dropdown", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
+    it("example 30", () => {
+        const styles = StyleSheet.create({
+            focused: {
+                color: Color.purple,
+            },
+            hovered: {
+                textDecoration: "underline",
+                color: Color.purple,
+                cursor: "pointer",
+            },
+            pressed: {
+                color: Color.blue,
+            },
+        });
+
+        class CustomOpenerExample extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    opened: false,
+                    selectedValues: [],
+                };
+                this.handleChange = this.handleChange.bind(this);
+                this.handleToggleMenu = this.handleToggleMenu.bind(this);
+            }
+
+            handleChange(update) {
+                this.setState({
+                    selectedValues: update,
+                });
+            }
+
+            handleToggleMenu(opened) {
+                this.setState({
+                    opened,
+                });
+            }
+
+            render() {
+                return (
+                    <MultiSelect
+                        selectItemType="fruits"
+                        onChange={this.handleChange}
+                        opened={this.state.opened}
+                        onToggle={this.handleToggleMenu}
+                        selectedValues={this.state.selectedValues}
+                        testId="multi-select-custom-opener"
+                        opener={(eventState) => (
+                            <HeadingLarge
+                                onClick={() => {
+                                    console.log("custom click!!!!!");
+                                }}
+                                testId="multi-select-custom-opener"
+                                style={[
+                                    eventState.focused && styles.focused,
+                                    eventState.hovered && styles.hovered,
+                                    eventState.pressed && styles.pressed,
+                                ]}
+                            >
+                                MultiSelect with custom opener
+                            </HeadingLarge>
+                        )}
+                    >
+                        <OptionItem label="Nectarine" value="nectarine" />
+                        <OptionItem label="Plum" value="plum" />
+                        <OptionItem label="Cantaloupe" value="cantaloupe" />
+                        <OptionItem label="Pineapples" value="pineapples" />
+                    </MultiSelect>
+                );
+            }
+        }
+
+        const example = <CustomOpenerExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });

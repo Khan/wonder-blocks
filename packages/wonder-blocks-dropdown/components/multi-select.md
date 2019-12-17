@@ -513,3 +513,91 @@ class ExampleWithShortcuts extends React.Component {
 </View>
 ```
 
+### Example: MultiSelect with custom opener
+
+In case you need to use a custom opener with the MultiSelect, you can use the
+`opener` property to achieve this. In this example, the `opener` prop accepts a
+function with the `eventState` argument that lets you customize the style for
+different states, such as `pressed`, `hovered` and `focused`.
+
+**Note:** If you need to use a custom ID for testing the opener, make sure to
+pass the `testId` prop inside the opener component/element.
+
+```js
+import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import Color from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {StyleSheet} from "aphrodite";
+
+const styles = StyleSheet.create({
+    focused: {
+        color: Color.purple,
+    },
+    hovered: {
+        textDecoration: "underline",
+        color: Color.purple,
+        cursor: "pointer",
+    },
+    pressed: {
+        color: Color.blue,
+    },
+});
+
+class CustomOpenerExample extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            opened: false,
+            selectedValues: [],
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleToggleMenu = this.handleToggleMenu.bind(this);
+    }
+
+    handleChange(update) {
+        this.setState({
+           selectedValues: update,
+        });
+    }
+
+    handleToggleMenu(opened) {
+        this.setState({
+            opened,
+        });
+    }
+
+    render() {
+        return (
+            <MultiSelect
+                selectItemType="fruits"
+                onChange={this.handleChange}
+                opened={this.state.opened}
+                onToggle={this.handleToggleMenu}
+                selectedValues={this.state.selectedValues}
+                testId="multi-select-custom-opener"
+                opener={(eventState) => (
+                    <HeadingLarge
+                        onClick={()=>{console.log('custom click!!!!!')}}
+                        testId="multi-select-custom-opener"
+                        style={[
+                            eventState.focused && styles.focused,
+                            eventState.hovered && styles.hovered,
+                            eventState.pressed && styles.pressed
+                        ]}
+                    >
+                        MultiSelect with custom opener
+                    </HeadingLarge>
+                )}
+            >
+                <OptionItem label="Nectarine" value="nectarine" />
+                <OptionItem label="Plum" value="plum" />
+                <OptionItem label="Cantaloupe" value="cantaloupe" />
+                <OptionItem label="Pineapples" value="pineapples" />
+            </MultiSelect>
+        );
+    }
+}
+
+<CustomOpenerExample />
+```

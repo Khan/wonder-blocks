@@ -3,10 +3,15 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {
+    AriaProps,
+    ClickableState,
+    StyleType,
+} from "@khanacademy/wonder-blocks-core";
 
 import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
+import DropdownOpener from "./dropdown-opener.js";
 import SearchTextInput from "./search-text-input.js";
 import SelectOpener from "./select-opener.js";
 import SeparatorItem from "./separator-item.js";
@@ -118,6 +123,13 @@ type Props = {|
      * Optional styling to add to the dropdown wrapper.
      */
     dropdownStyle?: StyleType,
+
+    /**
+     * The child function that returns the anchor the MultiSelect will be
+     * activated by. This function takes eventState, which allows the opener
+     * element to access pointer event state.
+     */
+    opener?: (eventState: ClickableState) => React.Element<any>,
 |};
 
 type State = {|
@@ -405,38 +417,48 @@ export default class MultiSelect extends React.Component<Props, State> {
         this.setState({searchText});
     };
 
-    render() {
+    handleClick = (e: SyntheticEvent<>) => {
+        this.handleOpenChanged(!this.state.open, e.type === "keyup");
+    };
+
+    renderOpener(allChildren: Array<React.Element<OptionItem>>) {
         const {
-            alignment,
             disabled,
             id,
             light,
+            opener,
             placeholder,
-            style,
             testId,
-            dropdownStyle,
             // the following props are being included here to avoid
             // passing them down to the opener as part of sharedProps
             /* eslint-disable no-unused-vars */
-            children,
+            alignment,
+            dropdownStyle,
+            implicitAllEnabled,
+            isFilterable,
             onChange,
             onToggle,
             opened,
-            selectedValues,
             selectItemType,
-            implicitAllEnabled,
-            isFilterable,
+            selectedValues,
             shortcuts,
+            style,
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
-        const {open, searchText} = this.state;
 
-        const allChildren = React.Children.toArray(children).filter(Boolean);
-        const numOptions = allChildren.length;
         const menuText = this.getMenuText(allChildren);
+        const numOptions = allChildren.length;
 
-        const opener = (
+        const dropdownOpener = opener ? (
+            <DropdownOpener
+                onClick={this.handleClick}
+                disabled={numOptions === 0 || disabled}
+                ref={this.handleOpenerRef}
+            >
+                {opener}
+            </DropdownOpener>
+        ) : (
             <SelectOpener
                 {...sharedProps}
                 disabled={numOptions === 0 || disabled}
@@ -444,7 +466,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 isPlaceholder={menuText === placeholder}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
-                open={open}
+                open={this.state.open}
                 ref={this.handleOpenerRef}
                 testId={testId}
             >
@@ -452,7 +474,24 @@ export default class MultiSelect extends React.Component<Props, State> {
             </SelectOpener>
         );
 
+        return dropdownOpener;
+    }
+
+    render() {
+        const {
+            alignment,
+            light,
+            style,
+            dropdownStyle,
+            children,
+            isFilterable,
+        } = this.props;
+        const {open, searchText} = this.state;
+
+        const allChildren = React.Children.toArray(children).filter(Boolean);
+        const numOptions = allChildren.length;
         const filteredItems = this.getMenuItems(allChildren);
+        const opener = this.renderOpener(allChildren);
 
         return (
             <DropdownCore
