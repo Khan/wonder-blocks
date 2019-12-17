@@ -159,6 +159,13 @@ describe("wonder-blocks-data", () => {
                     "If you're seeing this error, the examples are broken and data isn't in the cache that should be.",
                 );
             }
+
+            shouldRefreshCache(options, cachedEntry) {
+                /**
+                 * For our purposes, the cache never needs a refresh.
+                 */
+                return false;
+            }
         }
 
         const handler = new MyHandler();
