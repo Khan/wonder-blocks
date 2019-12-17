@@ -24,11 +24,11 @@ import visibilityModifierDefaultConfig from "../../../shared-unpackaged/visibili
 import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 import SeparatorItem from "./separator-item.js";
 import SearchTextInput from "./search-text-input.js";
-import {keyCodes, searchInputStyle} from "../util/constants.js";
+import {defaultLabels, keyCodes, searchInputStyle} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
 
-type TranslatedLabels = {|
-    noResults?: string,
+type Labels = {|
+    noResults: string,
 |};
 
 // we need to define a DefaultProps type to allow the HOC expose the default
@@ -46,6 +46,11 @@ type DefaultProps = {|
      * opener component. Defaults to left-aligned.
      */
     alignment: "left" | "right",
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels: Labels,
 
     /**
      * Whether to display the "light" version of this component instead, for
@@ -118,11 +123,6 @@ type OwnProps = {|
      * The aria "role" applied to the dropdown container.
      */
     role: "listbox" | "menu",
-
-    /**
-     * The object containing the translated labels used inside this component.
-     */
-    translatedLabels?: TranslatedLabels,
 |};
 
 type Props = WithActionScheduler<OwnProps>;
@@ -192,6 +192,9 @@ class DropdownCore extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         alignment: "left",
         initialFocusedIndex: 0,
+        labels: {
+            noResults: defaultLabels.noResults,
+        },
         light: false,
     };
 
@@ -568,19 +571,15 @@ class DropdownCore extends React.Component<Props, State> {
             items,
             onSearchTextChanged,
             searchText,
-            translatedLabels,
+            labels: {noResults},
         } = this.props;
         const showSearchTextInput =
             !!onSearchTextChanged && typeof searchText === "string";
-        // translations
-        const {noResults} = translatedLabels || {};
 
         const includeSearchCount = showSearchTextInput ? 1 : 0;
 
         // Verify if there are items to be rendered or not
         const numResults = items.length - includeSearchCount;
-
-        const noResultsLabel = noResults || "No results";
 
         if (numResults === 0) {
             return (
@@ -588,7 +587,7 @@ class DropdownCore extends React.Component<Props, State> {
                     style={styles.noResult}
                     testId="dropdown-core-no-results"
                 >
-                    {noResultsLabel}
+                    {noResults}
                 </LabelMedium>
             );
         }
