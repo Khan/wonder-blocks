@@ -3,7 +3,7 @@ import * as React from "react";
 import {ResponseCache} from "./response-cache.js";
 import {RequestFulfillment} from "./request-fulfillment.js";
 
-import type {ResponseCache as Cache, IRequestHandler} from "./types.js";
+import type {Cache, IRequestHandler} from "./types.js";
 
 type TrackerFn = (handler: IRequestHandler<any, any>, options: any) => void;
 
@@ -157,6 +157,8 @@ export class RequestTracker {
         /**
          * Let's wait for everything to fulfill, and then clone the cached data.
          */
-        return Promise.all(promises).then(() => this._responseCache.clone());
+        return Promise.all(promises).then(() =>
+            this._responseCache.cloneCachedData(),
+        );
     };
 }
