@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
-  "version": "1.8.3",
+  "version": "2.0.0",
   "design": "v1",
   "description": "Dropdown variants for Wonder Blocks.",
   "main": "dist/index.js",
