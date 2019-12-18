@@ -21,7 +21,7 @@ type Labels = {|
 
 type Props = {|
     /**
-     * The object containing the translated labels used inside this component.
+     * The object containing the custom labels used inside this component.
      */
     labels: Labels,
 
@@ -61,6 +61,11 @@ type Props = {|
 
 type State = {|
     focused: boolean,
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels: Labels,
 |};
 
 export default class SearchTextInput extends React.Component<Props, State> {
@@ -79,7 +84,21 @@ export default class SearchTextInput extends React.Component<Props, State> {
 
     state = {
         focused: false,
+        labels: {
+            clearSearch: defaultLabels.clearSearch,
+            filter: defaultLabels.filter,
+            ...this.props.labels,
+        },
     };
+
+    componentDidUpdate(prevProps: Props) {
+        if (this.props.labels !== prevProps.labels) {
+            // eslint-disable-next-line react/no-did-update-set-state
+            this.setState({
+                labels: {...this.state.labels, ...this.props.labels},
+            });
+        }
+    }
 
     static __IS_SEARCH_TEXT_INPUT__ = true;
 
@@ -106,10 +125,8 @@ export default class SearchTextInput extends React.Component<Props, State> {
     };
 
     maybeRenderDismissIconButton() {
-        const {
-            searchText,
-            labels: {clearSearch},
-        } = this.props;
+        const {searchText} = this.props;
+        const {clearSearch} = this.state.labels;
 
         if (searchText.length > 0) {
             return (
@@ -125,14 +142,8 @@ export default class SearchTextInput extends React.Component<Props, State> {
     }
 
     render() {
-        const {
-            onClick,
-            itemRef,
-            labels: {filter},
-            searchText,
-            style,
-            testId,
-        } = this.props;
+        const {onClick, itemRef, searchText, style, testId} = this.props;
+        const {filter} = this.state.labels;
 
         return (
             <View

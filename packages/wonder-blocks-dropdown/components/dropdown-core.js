@@ -147,6 +147,11 @@ type State = {|
      * resetting focusedIndex and focusedOriginalIndex when an update happens.
      */
     sameItemsFocusable: boolean,
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels: Labels,
 |};
 
 /**
@@ -235,6 +240,10 @@ class DropdownCore extends React.Component<Props, State> {
             prevItems: this.props.items,
             itemRefs: [],
             sameItemsFocusable: false,
+            labels: {
+                noResults: defaultLabels.noResults,
+                ...props.labels,
+            },
         };
 
         this.listRef = React.createRef();
@@ -291,6 +300,13 @@ class DropdownCore extends React.Component<Props, State> {
                 } else {
                     this.focusedIndex = newFocusableIndex;
                 }
+            }
+
+            if (this.props.labels !== prevProps.labels) {
+                // eslint-disable-next-line react/no-did-update-set-state
+                this.setState({
+                    labels: {...this.state.labels, ...this.props.labels},
+                });
             }
         }
     }

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 //@flow
 import React from "react";
 
@@ -970,6 +971,41 @@ describe("MultiSelect", () => {
             expect(selectNoneItem).toHaveText(
                 "Deseleccionar todas las escuelas",
             );
+        });
+
+        it("verifies a custom label is updated when props change", () => {
+            // Arrange
+            const labels: $Shape<Labels> = {
+                selectNoneLabel: "Deseleccionar todas las escuelas",
+            };
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    shortcuts={true}
+                    labels={labels}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // update label value
+            wrapper.setProps({
+                labels: {
+                    selectNoneLabel: "Ninguna seleccionada",
+                },
+            });
+            // `select none` shortcut
+            const selectNoneItem = wrapper.find(ActionItem).at(1);
+
+            // Assert
+            expect(selectNoneItem).toHaveText("Ninguna seleccionada");
         });
     });
 });

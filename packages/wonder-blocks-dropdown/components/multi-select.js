@@ -120,8 +120,8 @@ type Props = {|
     id?: string,
 
     /**
-     * When this is true, the menu text shows "All items" when no item is
-     * selected.
+     * When this is true, the menu text shows either "All items" or the value
+     * set in `props.labels.allSelected` when no item is selected.
      */
     implicitAllEnabled?: boolean,
 
@@ -195,6 +195,11 @@ type State = {|
      * re-opened.
      */
     lastSelectedValues: Array<string>,
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels: Labels,
 |};
 
 /**
@@ -224,9 +229,9 @@ export default class MultiSelect extends React.Component<Props, State> {
             open: false,
             searchText: "",
             lastSelectedValues: [],
+            // merge custom labels with the default ones
+            labels: {...defaultLabels, ...props.labels},
         };
-        // merge custom labels with the default ones
-        this.labels = {...defaultLabels, ...props.labels};
     }
 
     /**
@@ -237,6 +242,15 @@ export default class MultiSelect extends React.Component<Props, State> {
         return {
             open: typeof props.opened === "boolean" ? props.opened : state.open,
         };
+    }
+
+    componentDidUpdate(prevProps: Props) {
+        if (this.props.labels !== prevProps.labels) {
+            // eslint-disable-next-line react/no-did-update-set-state
+            this.setState({
+                labels: {...this.state.labels, ...this.props.labels},
+            });
+        }
     }
 
     handleOpenChanged = (opened: boolean, keyboard?: boolean) => {
@@ -283,10 +297,10 @@ export default class MultiSelect extends React.Component<Props, State> {
 
     getMenuText(children: Array<React.Element<OptionItem>>) {
         const {implicitAllEnabled, selectedValues} = this.props;
-        const {noneSelected, someSelected, allSelected} = this.labels;
+        const {noneSelected, someSelected, allSelected} = this.state.labels;
 
-        // When implicit all enabled, use the allSelected when no selection
-        // but otherwise, use the placeholder if it exists
+        // When implicit all enabled, use `labels.allSelected` when no selection
+        // otherwise, use the `labels.noneSelected` value
         const noSelectionText = implicitAllEnabled ? allSelected : noneSelected;
 
         switch (selectedValues.length) {
@@ -314,7 +328,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             return [];
         }
 
-        const {clearSearch, filter} = this.labels;
+        const {clearSearch, filter} = this.state.labels;
 
         return [
             {
@@ -337,7 +351,7 @@ export default class MultiSelect extends React.Component<Props, State> {
 
     getShortcuts(numOptions: number): Array<DropdownItem> {
         const {selectedValues, shortcuts} = this.props;
-        const {selectAllLabel, selectNoneLabel} = this.labels;
+        const {selectAllLabel, selectNoneLabel} = this.state.labels;
 
         // When there's search text input to filter, shortcuts should be hidden
         if (shortcuts && !this.state.searchText) {
@@ -484,7 +498,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
-        const {noneSelected} = this.labels;
+        const {noneSelected} = this.state.labels;
 
         const menuText = this.getMenuText(allChildren);
         const numOptions = allChildren.length;
@@ -527,7 +541,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             isFilterable,
         } = this.props;
         const {open, searchText} = this.state;
-        const {noResults} = this.labels;
+        const {noResults} = this.state.labels;
 
         const allChildren = React.Children.toArray(children).filter(Boolean);
         const numOptions = allChildren.length;
