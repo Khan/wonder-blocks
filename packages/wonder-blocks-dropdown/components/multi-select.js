@@ -3,11 +3,7 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
-import type {
-    AriaProps,
-    ClickableState,
-    StyleType,
-} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
@@ -16,15 +12,91 @@ import SearchTextInput from "./search-text-input.js";
 import SelectOpener from "./select-opener.js";
 import SeparatorItem from "./separator-item.js";
 import {
+    defaultLabels,
     selectDropdownStyle,
     filterableDropdownStyle,
 } from "../util/constants.js";
 
 import typeof OptionItem from "./option-item.js";
-import type {DropdownItem} from "../util/types.js";
+import type {DropdownItem, OpenerProps} from "../util/types.js";
+
+export type Labels = {|
+    /**
+     * Label for describing the dismiss icon on the search filter.
+     */
+    clearSearch: string,
+
+    /**
+     * Label for the search placeholder.
+     */
+    filter: string,
+
+    /**
+     * Label for when the filter returns no results.
+     */
+    noResults: string,
+
+    /**
+     * Label for the "select all" shortcut option.
+     */
+    selectAllLabel: (numOptions: number) => string,
+
+    /**
+     * Label for the "select none" shortcut option
+     */
+
+    selectNoneLabel: string,
+
+    /**
+     * Label for the opening component when there are no items selected.
+     */
+    noneSelected: string,
+
+    /**
+     * Label for the opening component when there are some items selected.
+     */
+    someSelected: (numOptions: number) => string,
+
+    /**
+     * Label for the opening component when all the items have been selected.
+     */
+    allSelected: string,
+|};
+
+type DefaultProps = {|
+    /**
+     * Whether this dropdown should be left-aligned or right-aligned with the
+     * opener component. Defaults to left-aligned.
+     */
+    alignment: "left" | "right",
+
+    /**
+     * Whether this component is disabled. A disabled dropdown may not be opened
+     * and does not support interaction. Defaults to false.
+     */
+    disabled: boolean,
+
+    /**
+     * Whether to display the "light" version of this component instead, for
+     * use when the component is used on a dark background.
+     */
+    light: boolean,
+
+    /**
+     * The values of the items that are currently selected.
+     */
+    selectedValues: Array<string>,
+
+    /**
+     * Whether to display shortcuts for Select All and Select None.
+     */
+    shortcuts: boolean,
+|};
 
 type Props = {|
     ...AriaProps,
+
+    ...DefaultProps,
 
     /**
      * The items in this select.
@@ -32,10 +104,9 @@ type Props = {|
     children?: Array<?(React.Element<OptionItem> | false)>,
 
     /**
-     * Whether this component is disabled. A disabled dropdown may not be opened
-     * and does not support interaction. Defaults to false.
+     * Optional styling to add to the dropdown wrapper.
      */
-    disabled: boolean,
+    dropdownStyle?: StyleType,
 
     /**
      * Unique identifier attached to the field control. If used, we need to
@@ -45,43 +116,8 @@ type Props = {|
     id?: string,
 
     /**
-     * Callback for when the selection changes. Parameter is an updated array of
-     * the values that are now selected.
-     */
-    onChange: (selectedValues: Array<string>) => mixed,
-
-    /**
-     * Can be used to override the state of the ActionMenu by parent elements
-     */
-    opened?: boolean,
-
-    /**
-     * In controlled mode, use this prop in case the parent needs to be notified
-     * when the menu opens/closes.
-     */
-    onToggle?: (opened: boolean) => mixed,
-
-    /**
-     * The values of the items that are currently selected.
-     */
-    selectedValues: Array<string>,
-
-    /**
-     * Type of the option.
-     * For example, if selectItemType is "students" and there are two students
-     * selected, the SelectOpener would display "2 students"
-     */
-    selectItemType: string,
-
-    /**
-     * Optional placeholder for the opening component when there are no items
-     * selected and not implicit all enabled.
-     */
-    placeholder?: string,
-
-    /**
-     * When this is true, the menu text shows "All {selectItemType}" when no
-     * item is selected.
+     * When this is true, the menu text shows either "All items" or the value
+     * set in `props.labels.allSelected` when no item is selected.
      */
     implicitAllEnabled?: boolean,
 
@@ -93,21 +129,33 @@ type Props = {|
     isFilterable?: boolean,
 
     /**
-     * Whether to display shortcuts for Select All and Select None.
+     * The object containing the custom labels used inside this component.
      */
-    shortcuts?: boolean,
+    labels?: Labels,
 
     /**
-     * Whether this dropdown should be left-aligned or right-aligned with the
-     * opener component. Defaults to left-aligned.
+     * Callback for when the selection changes. Parameter is an updated array of
+     * the values that are now selected.
      */
-    alignment: "left" | "right",
+    onChange: (selectedValues: Array<string>) => mixed,
 
     /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the component is used on a dark background.
+     * In controlled mode, use this prop in case the parent needs to be notified
+     * when the menu opens/closes.
      */
-    light: boolean,
+    onToggle?: (opened: boolean) => mixed,
+
+    /**
+     * Can be used to override the state of the ActionMenu by parent elements
+     */
+    opened?: boolean,
+
+    /**
+     * The child function that returns the anchor the MultiSelect will be
+     * activated by. This function takes eventState, which allows the opener
+     * element to access pointer event state.
+     */
+    opener?: (openerProps: OpenerProps) => React.Element<any>,
 
     /**
      * Optional styling to add to the opener component wrapper.
@@ -118,18 +166,6 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
-
-    /**
-     * Optional styling to add to the dropdown wrapper.
-     */
-    dropdownStyle?: StyleType,
-
-    /**
-     * The child function that returns the anchor the MultiSelect will be
-     * activated by. This function takes eventState, which allows the opener
-     * element to access pointer event state.
-     */
-    opener?: (eventState: ClickableState) => React.Element<any>,
 |};
 
 type State = {|
@@ -155,6 +191,11 @@ type State = {|
      * re-opened.
      */
     lastSelectedValues: Array<string>,
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels: Labels,
 |};
 
 /**
@@ -167,8 +208,9 @@ type State = {|
  */
 export default class MultiSelect extends React.Component<Props, State> {
     openerElement: ?HTMLElement;
+    labels: Labels;
 
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         alignment: "left",
         disabled: false,
         light: false,
@@ -183,7 +225,11 @@ export default class MultiSelect extends React.Component<Props, State> {
             open: false,
             searchText: "",
             lastSelectedValues: [],
+            // merge custom labels with the default ones
+            labels: {...defaultLabels, ...props.labels},
         };
+        // merge custom labels with the default ones
+        this.labels = {...defaultLabels, ...props.labels};
     }
 
     /**
@@ -194,6 +240,15 @@ export default class MultiSelect extends React.Component<Props, State> {
         return {
             open: typeof props.opened === "boolean" ? props.opened : state.open,
         };
+    }
+
+    componentDidUpdate(prevProps: Props) {
+        if (this.props.labels !== prevProps.labels) {
+            // eslint-disable-next-line react/no-did-update-set-state
+            this.setState({
+                labels: {...this.state.labels, ...this.props.labels},
+            });
+        }
     }
 
     handleOpenChanged = (opened: boolean, keyboard?: boolean) => {
@@ -238,22 +293,13 @@ export default class MultiSelect extends React.Component<Props, State> {
         onChange([]);
     };
 
-    // TODO(sophie): need to configure for i18n for the word "All" and
-    // potentially the concept of plurals
     getMenuText(children: Array<React.Element<OptionItem>>) {
-        const {
-            placeholder,
-            implicitAllEnabled,
-            selectItemType,
-            selectedValues,
-        } = this.props;
-        const allSelectedText = `All ${selectItemType}`;
+        const {implicitAllEnabled, selectedValues} = this.props;
+        const {noneSelected, someSelected, allSelected} = this.state.labels;
 
-        // When implicit all enabled, use the allSelectedText when no selection
-        // but otherwise, use the placeholder if it exists
-        const noSelectionText = implicitAllEnabled
-            ? allSelectedText
-            : placeholder || `0 ${selectItemType}`;
+        // When implicit all enabled, use `labels.allSelected` when no selection
+        // otherwise, use the `labels.noneSelected` value
+        const noSelectionText = implicitAllEnabled ? allSelected : noneSelected;
 
         switch (selectedValues.length) {
             case 0:
@@ -269,9 +315,9 @@ export default class MultiSelect extends React.Component<Props, State> {
                     ? selectedItem.props.label
                     : noSelectionText;
             case children.length:
-                return allSelectedText;
+                return allSelected;
             default:
-                return `${selectedValues.length} ${selectItemType}`;
+                return someSelected(selectedValues.length);
         }
     }
 
@@ -280,6 +326,8 @@ export default class MultiSelect extends React.Component<Props, State> {
             return [];
         }
 
+        const {clearSearch, filter} = this.state.labels;
+
         return [
             {
                 component: (
@@ -287,6 +335,10 @@ export default class MultiSelect extends React.Component<Props, State> {
                         key="search-text-input"
                         onChange={this.handleSearchTextChanged}
                         searchText={this.state.searchText}
+                        labels={{
+                            clearSearch,
+                            filter,
+                        }}
                     />
                 ),
                 focusable: true,
@@ -297,6 +349,7 @@ export default class MultiSelect extends React.Component<Props, State> {
 
     getShortcuts(numOptions: number): Array<DropdownItem> {
         const {selectedValues, shortcuts} = this.props;
+        const {selectAllLabel, selectNoneLabel} = this.state.labels;
 
         // When there's search text input to filter, shortcuts should be hidden
         if (shortcuts && !this.state.searchText) {
@@ -305,8 +358,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 component: (
                     <ActionItem
                         disabled={selectAllDisabled}
-                        // TODO(sophie): translate for i18n
-                        label={`Select all (${numOptions})`}
+                        label={selectAllLabel(numOptions)}
                         indent={true}
                         onClick={this.handleSelectAll}
                     />
@@ -320,8 +372,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 component: (
                     <ActionItem
                         disabled={selectNoneDisabled}
-                        // TODO(sophie): translate for i18n
-                        label="Select none"
+                        label={selectNoneLabel}
                         indent={true}
                         onClick={this.handleSelectNone}
                     />
@@ -427,7 +478,6 @@ export default class MultiSelect extends React.Component<Props, State> {
             id,
             light,
             opener,
-            placeholder,
             testId,
             // the following props are being included here to avoid
             // passing them down to the opener as part of sharedProps
@@ -436,16 +486,17 @@ export default class MultiSelect extends React.Component<Props, State> {
             dropdownStyle,
             implicitAllEnabled,
             isFilterable,
+            labels,
             onChange,
             onToggle,
             opened,
-            selectItemType,
             selectedValues,
             shortcuts,
             style,
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
+        const {noneSelected} = this.state.labels;
 
         const menuText = this.getMenuText(allChildren);
         const numOptions = allChildren.length;
@@ -464,7 +515,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 {...sharedProps}
                 disabled={numOptions === 0 || disabled}
                 id={id}
-                isPlaceholder={menuText === placeholder}
+                isPlaceholder={menuText === noneSelected}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
                 open={this.state.open}
@@ -488,6 +539,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             isFilterable,
         } = this.props;
         const {open, searchText} = this.state;
+        const {noResults} = this.state.labels;
 
         const allChildren = React.Children.toArray(children).filter(Boolean);
         const numOptions = allChildren.length;
@@ -519,6 +571,9 @@ export default class MultiSelect extends React.Component<Props, State> {
                     isFilterable ? this.handleSearchTextChanged : null
                 }
                 searchText={isFilterable ? searchText : ""}
+                labels={{
+                    noResults,
+                }}
             />
         );
     }

@@ -364,16 +364,16 @@ describe("wonder-blocks-dropdown", () => {
             <ActionMenu
                 disabled={false}
                 menuText="Custom opener"
-                opener={(eventState, text) => (
+                opener={({focused, hovered, pressed, text}) => (
                     <LabelLarge
                         onClick={() => {
                             console.log("custom click!!!!!");
                         }}
                         testId="teacher-menu-custom-opener"
                         style={[
-                            eventState.focused && styles.focused,
-                            eventState.hovered && styles.hovered,
-                            eventState.pressed && styles.pressed,
+                            focused && styles.focused,
+                            hovered && styles.hovered,
+                            pressed && styles.pressed,
                         ]}
                     >
                         {text}
@@ -882,16 +882,16 @@ describe("wonder-blocks-dropdown", () => {
                         onChange={this.handleChange}
                         onToggle={this.handleToggleMenu}
                         selectedValue={this.state.selectedValue}
-                        opener={(eventState, text) => (
+                        opener={({focused, hovered, pressed, text}) => (
                             <HeadingLarge
                                 onClick={() => {
                                     console.log("custom click!!!!!");
                                 }}
                                 testId="single-select-custom-opener"
                                 style={[
-                                    eventState.focused && styles.focused,
-                                    eventState.hovered && styles.hovered,
-                                    eventState.pressed && styles.pressed,
+                                    focused && styles.focused,
+                                    hovered && styles.hovered,
+                                    pressed && styles.pressed,
                                 ]}
                             >
                                 {text}
@@ -948,9 +948,12 @@ describe("wonder-blocks-dropdown", () => {
                         onChange={this.handleChange}
                         placeholder="Color palette"
                         selectedValues={this.state.selectedValues}
-                        selectItemType="colors"
                         style={styles.setWidth}
                         testId="palette"
+                        labels={{
+                            someSelected: (numSelectedValues) =>
+                                `${numSelectedValues} colors`,
+                        }}
                     >
                         <OptionItem
                             label="Red"
@@ -1019,9 +1022,12 @@ describe("wonder-blocks-dropdown", () => {
                         onChange={this.handleChange}
                         placeholder="Solar system"
                         selectedValues={this.state.selectedValues}
-                        selectItemType="planets"
                         style={styles.setWidth}
                         dropdownStyle={styles.dropdownHeight}
+                        labels={{
+                            someSelected: (numSelectedValues) =>
+                                `${numSelectedValues} planets`,
+                        }}
                     >
                         <OptionItem label="Mercury" value="1" />
                         <OptionItem label="Venus" value="2" />
@@ -1075,7 +1081,14 @@ describe("wonder-blocks-dropdown", () => {
                         shortcuts={true}
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
-                        selectItemType="interns"
+                        labels={{
+                            selectNoneLabel: "Select none",
+                            selectAllLabel: (numOptions) =>
+                                `Select all interns (${numOptions})`,
+                            someSelected: (numSelectedValues) =>
+                                `${numSelectedValues} interns`,
+                            allSelected: "All interns selected",
+                        }}
                     >
                         <OptionItem label="Anesu" value="very mobile" />
                         <OptionItem label="Ioana" value="lives in roma" />
@@ -1149,7 +1162,10 @@ describe("wonder-blocks-dropdown", () => {
                     <MultiSelect
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
-                        selectItemType="Great Houses"
+                        labels={{
+                            someSelected: (numSelectedValues) =>
+                                `${numSelectedValues} great houses`,
+                        }}
                         style={styles.setWidth}
                     >
                         <OptionItem label="Stark" value="1" />
@@ -1279,7 +1295,11 @@ describe("wonder-blocks-dropdown", () => {
                 return (
                     <MultiSelect
                         implicitAllEnabled={true}
-                        selectItemType="fruits"
+                        labels={{
+                            someSelected: (numSelectedValues) =>
+                                `${numSelectedValues} fruits`,
+                            allSelected: "All fruits selected",
+                        }}
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
                     >
@@ -1335,7 +1355,12 @@ describe("wonder-blocks-dropdown", () => {
                 return (
                     <View style={styles.row}>
                         <MultiSelect
-                            selectItemType="fruits"
+                            labels={{
+                                noneSelected: "Select one",
+                                someSelected: (numSelectedValues) =>
+                                    `${numSelectedValues} fruits`,
+                                allSelected: "All fruits selected",
+                            }}
                             onChange={this.handleChange}
                             opened={this.state.opened}
                             onToggle={this.handleToggleMenu}
@@ -1400,7 +1425,14 @@ describe("wonder-blocks-dropdown", () => {
                         isFilterable={true}
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
-                        selectItemType="schools"
+                        labels={{
+                            noneSelected: "Select a school",
+                            someSelected: (numSelectedValues) =>
+                                `${numSelectedValues} schools`,
+                            allSelected: "All schools selected",
+                            selectAllLabel: (numOptions) =>
+                                `Select all (${numOptions})`,
+                        }}
                     >
                         {optionItems}
                     </MultiSelect>
@@ -1458,23 +1490,27 @@ describe("wonder-blocks-dropdown", () => {
             render() {
                 return (
                     <MultiSelect
-                        selectItemType="fruits"
+                        labels={{
+                            noneSelected: "Choose a fruit",
+                            someSelected: (numSelectedValues) =>
+                                `${numSelectedValues} fruits`,
+                            allSelected: "All fruits selected",
+                        }}
                         onChange={this.handleChange}
                         opened={this.state.opened}
                         onToggle={this.handleToggleMenu}
-                        placeholder="MultiSelect with custom opener"
                         selectedValues={this.state.selectedValues}
                         testId="multi-select-custom-opener"
-                        opener={(eventState, text) => (
+                        opener={({focused, hovered, pressed, text}) => (
                             <HeadingLarge
                                 onClick={() => {
                                     console.log("custom click!!!!!");
                                 }}
                                 testId="multi-select-custom-opener"
                                 style={[
-                                    eventState.focused && styles.focused,
-                                    eventState.hovered && styles.hovered,
-                                    eventState.pressed && styles.pressed,
+                                    focused && styles.focused,
+                                    hovered && styles.hovered,
+                                    pressed && styles.pressed,
                                 ]}
                             >
                                 {text}
@@ -1491,6 +1527,64 @@ describe("wonder-blocks-dropdown", () => {
         }
 
         const example = <CustomOpenerExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 27", () => {
+        const optionItems = new Array(10)
+            .fill(null)
+            .map((_, i) => (
+                <OptionItem
+                    key={i}
+                    value={(i + 1).toString()}
+                    label={`School ${i + 1} in Wizarding World`}
+                />
+            ));
+
+        class ExampleWithTranslatedValues extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValues: [],
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(selectedValues) {
+                this.setState({
+                    selectedValues,
+                });
+            }
+
+            render() {
+                return (
+                    <MultiSelect
+                        shortcuts={true}
+                        isFilterable={true}
+                        onChange={this.handleChange}
+                        selectedValues={this.state.selectedValues}
+                        labels={{
+                            clearSearch: "Limpiar busqueda",
+                            filter: "Filtrar",
+                            noResults: "Sin resultados",
+                            selectAllLabel: (numOptions) =>
+                                `Seleccionar todas (${numOptions})`,
+                            selectNoneLabel: "No seleccionar ninguno",
+                            noneSelected: "0 escuelas seleccionadas",
+                            allSelected: "Todas las escuelas",
+                            someSelected: (numSelectedValues) =>
+                                `${numSelectedValues} escuelas seleccionadas`,
+                        }}
+                    >
+                        {optionItems}
+                    </MultiSelect>
+                );
+            }
+        }
+
+        const example = <ExampleWithTranslatedValues />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

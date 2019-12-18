@@ -9,6 +9,8 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-core";
 
+import type {OpenerProps} from "../util/types.js";
+
 type Props = {|
     ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,
 
@@ -19,7 +21,7 @@ type Props = {|
      * - `eventState`: allows the opener element to access pointer event state.
      * - `text`: Passes the menu's text/label defined in the parent component.
      */
-    children: (eventState: ClickableState, text: string) => React.Element<any>,
+    children: (openerProps: OpenerProps) => React.Element<any>,
 
     /**
      * Whether the opener is disabled. If disabled, disallows interaction.
@@ -56,7 +58,7 @@ class DropdownOpener extends React.Component<Props> {
         handlers: ClickableHandlers,
     ) {
         const {disabled, testId, text} = this.props;
-        const renderedChildren = this.props.children(eventState, text);
+        const renderedChildren = this.props.children({...eventState, text});
         const childrenProps = renderedChildren.props;
         const childrenTestId = this.getTestIdFromProps(childrenProps);
 

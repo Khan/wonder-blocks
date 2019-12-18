@@ -1,6 +1,8 @@
 // @flow
 
 import * as React from "react";
+import type {ClickableState} from "@khanacademy/wonder-blocks-core";
+
 import typeof ActionItem from "../components/action-item.js";
 import typeof OptionItem from "../components/option-item.js";
 import typeof SearchTextInput from "../components/search-text-input.js";
@@ -21,4 +23,10 @@ export type DropdownItem = {|
     onClick?: () => mixed,
     ref?: any,
     role?: string,
+|};
+
+// Custom opener arguments
+export type OpenerProps = {|
+    ...ClickableState,
+    text: string,
 |};

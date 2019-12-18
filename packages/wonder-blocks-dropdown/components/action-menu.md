@@ -307,14 +307,14 @@ const styles = StyleSheet.create({
 <ActionMenu
     disabled={false}
     menuText="Custom opener"
-    opener={(eventState, text) => (
+    opener={({focused, hovered, pressed, text}) => (
         <LabelLarge
             onClick={()=>{console.log('custom click!!!!!')}}
             testId="teacher-menu-custom-opener"
             style={[
-                eventState.focused && styles.focused,
-                eventState.hovered && styles.hovered,
-                eventState.pressed && styles.pressed
+                focused && styles.focused,
+                hovered && styles.hovered,
+                pressed && styles.pressed
             ]}
         >
             {text}

@@ -24,8 +24,12 @@ import visibilityModifierDefaultConfig from "../../../shared-unpackaged/visibili
 import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 import SeparatorItem from "./separator-item.js";
 import SearchTextInput from "./search-text-input.js";
-import {keyCodes, searchInputStyle} from "../util/constants.js";
+import {defaultLabels, keyCodes, searchInputStyle} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
+
+type Labels = {|
+    noResults: string,
+|};
 
 // we need to define a DefaultProps type to allow the HOC expose the default
 // values to the parent components that are instantiating this component
@@ -42,6 +46,11 @@ type DefaultProps = {|
      * opener component. Defaults to left-aligned.
      */
     alignment: "left" | "right",
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels: Labels,
 
     /**
      * Whether to display the "light" version of this component instead, for
@@ -138,6 +147,11 @@ type State = {|
      * resetting focusedIndex and focusedOriginalIndex when an update happens.
      */
     sameItemsFocusable: boolean,
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels: Labels,
 |};
 
 /**
@@ -183,6 +197,9 @@ class DropdownCore extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         alignment: "left",
         initialFocusedIndex: 0,
+        labels: {
+            noResults: defaultLabels.noResults,
+        },
         light: false,
     };
 
@@ -223,6 +240,10 @@ class DropdownCore extends React.Component<Props, State> {
             prevItems: this.props.items,
             itemRefs: [],
             sameItemsFocusable: false,
+            labels: {
+                noResults: defaultLabels.noResults,
+                ...props.labels,
+            },
         };
 
         this.listRef = React.createRef();
@@ -279,6 +300,13 @@ class DropdownCore extends React.Component<Props, State> {
                 } else {
                     this.focusedIndex = newFocusableIndex;
                 }
+            }
+
+            if (this.props.labels !== prevProps.labels) {
+                // eslint-disable-next-line react/no-did-update-set-state
+                this.setState({
+                    labels: {...this.state.labels, ...this.props.labels},
+                });
             }
         }
     }
@@ -555,7 +583,12 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     maybeRenderNoResults() {
-        const {items, onSearchTextChanged, searchText} = this.props;
+        const {
+            items,
+            onSearchTextChanged,
+            searchText,
+            labels: {noResults},
+        } = this.props;
         const showSearchTextInput =
             !!onSearchTextChanged && typeof searchText === "string";
 
@@ -564,10 +597,14 @@ class DropdownCore extends React.Component<Props, State> {
         // Verify if there are items to be rendered or not
         const numResults = items.length - includeSearchCount;
 
-        // TODO(jangmi): Use translated string for "No results"
         if (numResults === 0) {
             return (
-                <LabelMedium style={styles.noResult}>No results</LabelMedium>
+                <LabelMedium
+                    style={styles.noResult}
+                    testId="dropdown-core-no-results"
+                >
+                    {noResults}
+                </LabelMedium>
             );
         }
     }

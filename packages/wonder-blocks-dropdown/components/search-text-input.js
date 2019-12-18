@@ -12,9 +12,19 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
+import {defaultLabels, DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
+
+type Labels = {|
+    clearSearch: string,
+    filter: string,
+|};
 
 type Props = {|
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels: Labels,
+
     /**
      * the text input
      */
@@ -51,6 +61,11 @@ type Props = {|
 
 type State = {|
     focused: boolean,
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels: Labels,
 |};
 
 export default class SearchTextInput extends React.Component<Props, State> {
@@ -60,9 +75,30 @@ export default class SearchTextInput extends React.Component<Props, State> {
         );
     }
 
+    static defaultProps = {
+        labels: {
+            clearSearch: defaultLabels.clearSearch,
+            filter: defaultLabels.filter,
+        },
+    };
+
     state = {
         focused: false,
+        labels: {
+            clearSearch: defaultLabels.clearSearch,
+            filter: defaultLabels.filter,
+            ...this.props.labels,
+        },
     };
+
+    componentDidUpdate(prevProps: Props) {
+        if (this.props.labels !== prevProps.labels) {
+            // eslint-disable-next-line react/no-did-update-set-state
+            this.setState({
+                labels: {...this.state.labels, ...this.props.labels},
+            });
+        }
+    }
 
     static __IS_SEARCH_TEXT_INPUT__ = true;
 
@@ -90,6 +126,8 @@ export default class SearchTextInput extends React.Component<Props, State> {
 
     maybeRenderDismissIconButton() {
         const {searchText} = this.props;
+        const {clearSearch} = this.state.labels;
+
         if (searchText.length > 0) {
             return (
                 <IconButton
@@ -97,7 +135,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
                     kind="tertiary"
                     onClick={this.handleDismiss}
                     style={styles.dismissIcon}
-                    aria-label="Clear search"
+                    aria-label={clearSearch}
                 />
             );
         }
@@ -105,7 +143,8 @@ export default class SearchTextInput extends React.Component<Props, State> {
 
     render() {
         const {onClick, itemRef, searchText, style, testId} = this.props;
-        // TODO(jangmi): Use translated strings for "Filter", "Clear search"
+        const {filter} = this.state.labels;
+
         return (
             <View
                 onClick={onClick}
@@ -128,7 +167,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
                     ref={itemRef}
-                    placeholder="Filter"
+                    placeholder={filter}
                     value={searchText}
                     className={css(
                         styles.inputStyleReset,

@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 //@flow
 import React from "react";
 
@@ -11,6 +12,8 @@ import OptionItem from "./option-item.js";
 import MultiSelect from "./multi-select.js";
 import {keyCodes} from "../util/constants.js";
 import SearchTextInput from "./search-text-input.js";
+
+import type {Labels} from "./multi-select.js";
 
 jest.useFakeTimers();
 
@@ -37,16 +40,23 @@ describe("MultiSelect", () => {
             clearTimeout(id),
         );
 
+        const labels: $Shape<Labels> = {
+            selectAllLabel: (numOptions) => `Sellect all (${numOptions})`,
+            noneSelected: "Choose",
+            someSelected: (numSelectedValues) =>
+                `${numSelectedValues} students`,
+            allSelected: "All students",
+        };
+
         select = mount(
             <MultiSelect
                 onChange={(selectedValues) => {
                     saveUpdate(selectedValues);
                     onChange();
                 }}
-                placeholder="Choose"
-                selectItemType="students"
                 selectedValues={["2"]}
                 shortcuts={true}
+                labels={labels}
             >
                 <OptionItem label="item 1" value="1" />
                 <OptionItem label="item 2" value="2" />
@@ -167,10 +177,8 @@ describe("MultiSelect", () => {
         // Arrange
         const wrapper = mount(
             <MultiSelect
-                selectItemType="students"
                 selectedValues={["2"]}
                 onChange={onChange}
-                placeholder="Choose"
                 testId="some-test-id"
             >
                 <OptionItem label="item 1" value="1" />
@@ -195,6 +203,12 @@ describe("MultiSelect", () => {
             opened?: boolean,
         |};
 
+        const labels: $Shape<Labels> = {
+            selectAllLabel: (numOptions) => `Select all (${numOptions})`,
+            allSelected: "All fruits",
+            someSelected: (numSelectedValues) => `${numSelectedValues} fruits`,
+        };
+
         class ControlledComponent extends React.Component<Props, State> {
             state = {
                 opened: this.props.opened,
@@ -212,7 +226,7 @@ describe("MultiSelect", () => {
                 return (
                     <React.Fragment>
                         <MultiSelect
-                            selectItemType="fruits"
+                            labels={labels}
                             onChange={onChange}
                             opened={this.state.opened}
                             onToggle={this.handleToggleMenu}
@@ -485,8 +499,6 @@ describe("MultiSelect", () => {
             const wrapper = mount(
                 <MultiSelect
                     onChange={jest.fn()}
-                    placeholder="custom opener"
-                    selectItemType="items"
                     opener={(eventState) => (
                         <button aria-label="Search" onClick={jest.fn()} />
                     )}
@@ -512,9 +524,7 @@ describe("MultiSelect", () => {
             const wrapper = mount(
                 <MultiSelect
                     onChange={jest.fn()}
-                    placeholder="custom opener"
-                    selectItemType="items"
-                    opener={(eventState) => (
+                    opener={() => (
                         <button aria-label="Search" onClick={onClickMock} />
                     )}
                 >
@@ -537,8 +547,6 @@ describe("MultiSelect", () => {
             const menu = mount(
                 <MultiSelect
                     onChange={onChange}
-                    placeholder="Choose"
-                    selectItemType="items"
                     opener={() => (
                         <button
                             data-test-id="custom-opener"
@@ -563,8 +571,6 @@ describe("MultiSelect", () => {
             const menu = mount(
                 <MultiSelect
                     onChange={onChange}
-                    placeholder="Choose"
-                    selectItemType="items"
                     testId="custom-opener"
                     opener={() => <button aria-label="Custom opener" />}
                 >
@@ -582,13 +588,15 @@ describe("MultiSelect", () => {
 
         it("passes the current label to the custom opener (no items selected)", () => {
             // Arrange
+            const labels: $Shape<Labels> = {
+                noneSelected: "No items selected",
+            };
             const menu = mount(
                 <MultiSelect
-                    placeholder="Custom placeholder"
-                    selectItemType="items"
+                    labels={labels}
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={(eventState, text) => (
+                    opener={({text}) => (
                         <button
                             onClick={jest.fn()}
                             data-test-id="custom-opener"
@@ -610,18 +618,16 @@ describe("MultiSelect", () => {
             const openerElement = menu.find(`[data-test-id="custom-opener"]`);
 
             // Assert
-            expect(openerElement).toHaveText("Custom placeholder");
+            expect(openerElement).toHaveText("No items selected");
         });
 
         it("passes the current label to the custom opener (1 item selected)", () => {
             // Arrange
             const menu = mount(
                 <MultiSelect
-                    placeholder="Custom placeholder"
-                    selectItemType="items"
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={(eventState, text) => (
+                    opener={({text}) => (
                         <button
                             onClick={jest.fn()}
                             data-test-id="custom-opener"
@@ -652,11 +658,9 @@ describe("MultiSelect", () => {
             // Arrange
             const menu = mount(
                 <MultiSelect
-                    placeholder="Custom placeholder"
-                    selectItemType="items"
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={(eventState, text) => (
+                    opener={({text}) => (
                         <button
                             onClick={jest.fn()}
                             data-test-id="custom-opener"
@@ -688,11 +692,9 @@ describe("MultiSelect", () => {
             // Arrange
             const menu = mount(
                 <MultiSelect
-                    placeholder="Custom placeholder"
-                    selectItemType="items"
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={(eventState, text) => (
+                    opener={({text}) => (
                         <button
                             onClick={jest.fn()}
                             data-test-id="custom-opener"
@@ -717,6 +719,293 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(openerElement).toHaveText("All items");
+        });
+    });
+
+    describe("Custom labels", () => {
+        it("passes the custom label to the opener", () => {
+            // Arrange
+            const labels: $Shape<Labels> = {
+                noneSelected: "0 escuelas",
+            };
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    testId="translated-multi-select"
+                    labels={labels}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper
+                .find(`[data-test-id="translated-multi-select"]`)
+                .last();
+
+            // Assert
+            expect(opener).toHaveText("0 escuelas");
+        });
+
+        it("passes the custom label to the opener (2 items selected)", () => {
+            // Arrange
+            const labels: $Shape<Labels> = {
+                someSelected: (numSelectedValues) =>
+                    `${numSelectedValues} escuelas`,
+            };
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    testId="translated-multi-select"
+                    labels={labels}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // select the first and second items manually via selectedValues on
+            // MultiSelect
+            wrapper.setProps({selectedValues: ["1", "2"]});
+            const openerElement = wrapper
+                .find(`[data-test-id="translated-multi-select"]`)
+                .last();
+
+            // Assert
+            expect(openerElement).toHaveText("2 escuelas");
+        });
+
+        it("passes the custom label to the opener (all items selected)", () => {
+            // Arrange
+            const labels: $Shape<Labels> = {
+                allSelected: "Todas las escuelas",
+            };
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    testId="translated-multi-select"
+                    labels={labels}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // select all items manually via selectedValues on MultiSelect
+            wrapper.setProps({selectedValues: ["1", "2", "3"]});
+            const openerElement = wrapper
+                .find(`[data-test-id="translated-multi-select"]`)
+                .last();
+
+            // Assert
+            expect(openerElement).toHaveText("Todas las escuelas");
+        });
+
+        it("passes the custom label to the dismiss icon", () => {
+            // Arrange
+            const labels: $Shape<Labels> = {
+                clearSearch: "Limpiar busqueda",
+            };
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    testId="translated-multi-select"
+                    labels={labels}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // search text
+            wrapper.setState({searchText: "text"});
+            // get icon instance
+            const searchIcon = wrapper.find(SearchTextInput).find(IconButton);
+
+            // Assert
+            expect(searchIcon).toHaveProp("aria-label", "Limpiar busqueda");
+        });
+
+        it("passes the custom label to the search input field", () => {
+            // Arrange
+            const labels: $Shape<Labels> = {
+                filter: "Filtrar",
+            };
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    testId="translated-multi-select"
+                    labels={labels}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // search text
+            wrapper.setState({searchText: "text"});
+            // get text field instance
+            const searchInput = wrapper.find(SearchTextInput).find("input");
+
+            // Assert
+            expect(searchInput).toHaveProp("placeholder", "Filtrar");
+        });
+
+        it("passes the custom label to the no results label", () => {
+            // Arrange
+            const labels: $Shape<Labels> = {
+                noResults: "No hay resultados",
+            };
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    testId="translated-multi-select"
+                    labels={labels}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // search text
+            wrapper.setState({searchText: "text"});
+            // get dropdown instance
+            const noResultsLabel = wrapper.find(
+                `[data-test-id="dropdown-core-no-results"]`,
+            );
+
+            // Assert
+            expect(noResultsLabel).toHaveText("No hay resultados");
+        });
+
+        it("passes the custom label to the select all shortcut", () => {
+            // Arrange
+            const labels: $Shape<Labels> = {
+                selectAllLabel: (numOptions) =>
+                    `Seleccionar todas las escuelas (${numOptions})`,
+            };
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    shortcuts={true}
+                    testId="translated-multi-select"
+                    labels={labels}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // `select all` shortcut
+            const selectAllItem = wrapper.find(ActionItem).at(0);
+
+            // Assert
+            expect(selectAllItem).toHaveText(
+                "Seleccionar todas las escuelas (3)",
+            );
+        });
+
+        it("passes the custom label to the select none shortcut", () => {
+            // Arrange
+            const labels: $Shape<Labels> = {
+                selectNoneLabel: "Deseleccionar todas las escuelas",
+            };
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    shortcuts={true}
+                    testId="translated-multi-select"
+                    labels={labels}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // `select none` shortcut
+            const selectNoneItem = wrapper.find(ActionItem).at(1);
+
+            // Assert
+            expect(selectNoneItem).toHaveText(
+                "Deseleccionar todas las escuelas",
+            );
+        });
+
+        it("verifies a custom label is updated when props change", () => {
+            // Arrange
+            const labels: $Shape<Labels> = {
+                selectNoneLabel: "Deseleccionar todas las escuelas",
+            };
+            const wrapper = mount(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    shortcuts={true}
+                    labels={labels}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = wrapper.find(SelectOpener);
+            // open dropdown
+            opener.simulate("click");
+            // update label value
+            wrapper.setProps({
+                labels: {
+                    selectNoneLabel: "Ninguna seleccionada",
+                },
+            });
+            // `select none` shortcut
+            const selectNoneItem = wrapper.find(ActionItem).at(1);
+
+            // Assert
+            expect(selectNoneItem).toHaveText("Ninguna seleccionada");
         });
     });
 });

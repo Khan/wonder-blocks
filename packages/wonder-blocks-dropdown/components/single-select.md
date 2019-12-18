@@ -481,14 +481,14 @@ class SingleSelectWithCustomOpener extends React.Component {
                 onChange={this.handleChange}
                 onToggle={this.handleToggleMenu}
                 selectedValue={this.state.selectedValue}
-                opener={(eventState, text) => (
+                opener={({focused, hovered, pressed, text}) => (
                     <HeadingLarge
                         onClick={()=>{console.log('custom click!!!!!')}}
                         testId="single-select-custom-opener"
                         style={[
-                            eventState.focused && styles.focused,
-                            eventState.hovered && styles.hovered,
-                            eventState.pressed && styles.pressed
+                            focused && styles.focused,
+                            hovered && styles.hovered,
+                            pressed && styles.pressed
                         ]}
                     >
                         {text}

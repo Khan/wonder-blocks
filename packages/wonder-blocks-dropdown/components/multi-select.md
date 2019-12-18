@@ -39,9 +39,11 @@ class ExampleNoneSelected extends React.Component {
             onChange={this.handleChange}
             placeholder="Color palette"
             selectedValues={this.state.selectedValues}
-            selectItemType="colors"
             style={styles.setWidth}
             testId="palette"
+            labels={{
+                someSelected: (numSelectedValues) => `${numSelectedValues} colors`,
+            }}
         >
             <OptionItem label="Red" value="1" testId="red"
                 onClick={() => console.log("Roses are red")}
@@ -103,9 +105,11 @@ class ExampleScrolling extends React.Component {
             onChange={this.handleChange}
             placeholder="Solar system"
             selectedValues={this.state.selectedValues}
-            selectItemType="planets"
             style={styles.setWidth}
             dropdownStyle={styles.dropdownHeight}
+            labels={{
+                someSelected: (numSelectedValues) => `${numSelectedValues} planets`,
+            }}
         >
             <OptionItem label="Mercury" value="1" />
             <OptionItem label="Venus" value="2" />
@@ -162,7 +166,12 @@ class ExampleWithShortcuts extends React.Component {
             shortcuts={true}
             onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
-            selectItemType="interns"
+            labels={{
+                selectNoneLabel: "Select none",
+                selectAllLabel: (numOptions) => `Select all interns (${numOptions})`,
+                someSelected: (numSelectedValues) => `${numSelectedValues} interns`,
+                allSelected: "All interns selected"
+            }}
         >
             <OptionItem label="Anesu" value="very mobile" />
             <OptionItem label="Ioana" value="lives in roma" />
@@ -231,7 +240,9 @@ class SimpleMultiSelect extends React.Component {
         return <MultiSelect
             onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
-            selectItemType="Great Houses"
+            labels={{
+                someSelected: (numSelectedValues) => `${numSelectedValues} great houses`,
+            }}
             style={styles.setWidth}
         >
             <OptionItem label="Stark" value="1" />
@@ -363,7 +374,10 @@ class ImplicitAllEnabledExample extends React.Component {
     render() {
         return <MultiSelect
             implicitAllEnabled={true}
-            selectItemType="fruits"
+            labels={{
+                someSelected: (numSelectedValues) => `${numSelectedValues} fruits`,
+                allSelected: "All fruits selected",
+            }}
             onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
         >
@@ -431,7 +445,11 @@ class ControlledMultiSelectExample extends React.Component {
         return (
             <View style={styles.row}>
                 <MultiSelect
-                    selectItemType="fruits"
+                    labels={{
+                        noneSelected: "Select one",
+                        someSelected: (numSelectedValues) => `${numSelectedValues} fruits`,
+                        allSelected: "All fruits selected",
+                    }}
                     onChange={this.handleChange}
                     opened={this.state.opened}
                     onToggle={this.handleToggleMenu}
@@ -501,7 +519,12 @@ class ExampleWithShortcuts extends React.Component {
             isFilterable={true}
             onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
-            selectItemType="schools"
+            labels={{
+                noneSelected: "Select a school",
+                someSelected: (numSelectedValues) => `${numSelectedValues} schools`,
+                allSelected: "All schools selected",
+                selectAllLabel: (numOptions) => `Select all (${numOptions})`,
+            }}
         >
             {optionItems}
         </MultiSelect>;
@@ -522,8 +545,8 @@ function with the following arguments:
 - `eventState`: lets you customize the style for different states, such as
   `pressed`, `hovered` and `focused`.
 - `text`: Passes the menu label defined in the parent component. By default,
-  `text` will be initialized with the value of the `placeholder` prop set in the
-  `MultiSelect` component.
+  `text` will be initialized with the value of the `labels.noneSelected` prop
+  set in the `MultiSelect` component.
 
 **Note:** If you need to use a custom ID for testing the opener, make sure to
 pass the `testId` prop inside the opener component/element.
@@ -575,21 +598,24 @@ class CustomOpenerExample extends React.Component {
     render() {
         return (
             <MultiSelect
-                selectItemType="fruits"
+                labels={{
+                    noneSelected: "Choose a fruit",
+                    someSelected: (numSelectedValues) => `${numSelectedValues} fruits`,
+                    allSelected: "All fruits selected",
+                }}
                 onChange={this.handleChange}
                 opened={this.state.opened}
                 onToggle={this.handleToggleMenu}
-                placeholder="MultiSelect with custom opener"
                 selectedValues={this.state.selectedValues}
                 testId="multi-select-custom-opener"
-                opener={(eventState, text) => (
+                opener={({focused, hovered, pressed, text}) => (
                     <HeadingLarge
                         onClick={()=>{console.log('custom click!!!!!')}}
                         testId="multi-select-custom-opener"
                         style={[
-                            eventState.focused && styles.focused,
-                            eventState.hovered && styles.hovered,
-                            eventState.pressed && styles.pressed
+                            focused && styles.focused,
+                            hovered && styles.hovered,
+                            pressed && styles.pressed
                         ]}
                     >
                         {text}
@@ -606,4 +632,83 @@ class CustomOpenerExample extends React.Component {
 }
 
 <CustomOpenerExample />
+```
+
+### Multi select with custom labels
+This example illustrates how you can pass custom labels to the `MultiSelect`
+component.
+
+```js static
+labels={|
+    clearSearch: string,
+    filter: string,
+    noResults: string,
+    selectAllLabel: (numOptions: number) => string,
+    selectNoneLabel: string,
+    noneSelected: string,
+    someSelected: (numSelectedValues: number) => string,
+    allSelected: string,
+|}
+```
+
+*NOTE:* These labels can be optionally passed using `$Shape`:
+
+```js static
+import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
+
+// here you can use any or all the keys contained in `Labels`
+const labels: $Shape<Labels> = {
+    noneSelected: "0 schools",
+    allSelected: "All schools",
+    someSelected: (numSelectedValues) => `${numSelectedValues} schools`,
+};
+```
+
+```js
+import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+
+const optionItems = new Array(10).fill(null).map((_, i) => (<OptionItem
+    key={i}
+    value={(i + 1).toString()}
+    label={`School ${i + 1} in Wizarding World`}
+/>));
+
+class ExampleWithTranslatedValues extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selectedValues: [],
+        };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(selectedValues) {
+        this.setState({selectedValues});
+    }
+
+    render() {
+        return <MultiSelect
+            shortcuts={true}
+            isFilterable={true}
+            onChange={this.handleChange}
+            selectedValues={this.state.selectedValues}
+            labels={{
+                clearSearch: "Limpiar busqueda",
+                filter: "Filtrar",
+                noResults: "Sin resultados",
+                selectAllLabel: (numOptions) => `Seleccionar todas (${numOptions})`,
+                selectNoneLabel: "No seleccionar ninguno",
+                noneSelected: "0 escuelas seleccionadas",
+                allSelected: "Todas las escuelas",
+                someSelected: (numSelectedValues) => `${numSelectedValues} escuelas seleccionadas`,
+            }}
+        >
+            {optionItems}
+        </MultiSelect>;
+    }
+}
+
+
+<ExampleWithTranslatedValues />
 ```

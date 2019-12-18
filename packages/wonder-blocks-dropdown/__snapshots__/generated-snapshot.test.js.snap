@@ -2630,6 +2630,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
+      placeholder="Color palette"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -2678,7 +2679,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
           }
         }
       >
-        Color palette
+        0 items
       </span>
       <svg
         aria-hidden="true"
@@ -2766,6 +2767,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
+      placeholder="Solar system"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -2814,7 +2816,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
           }
         }
       >
-        Solar system
+        0 items
       </span>
       <svg
         aria-hidden="true"
@@ -3133,6 +3135,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
+      placeholder="empty"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -3182,7 +3185,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
           }
         }
       >
-        empty
+        0 items
       </span>
       <svg
         aria-hidden="true"
@@ -3290,6 +3293,7 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
+      placeholder="Accessible MultiSelect"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -3474,7 +3478,7 @@ exports[`wonder-blocks-dropdown example 23 1`] = `
           }
         }
       >
-        All fruits
+        All fruits selected
       </span>
       <svg
         aria-hidden="true"
@@ -3574,7 +3578,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "color": "#21242c",
+          "color": "rgba(33,36,44,0.64)",
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "space-between",
@@ -3610,7 +3614,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
           }
         }
       >
-        0 fruits
+        Select one
       </span>
       <svg
         aria-hidden="true"
@@ -3808,7 +3812,7 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
           "borderStyle": "solid",
           "borderWidth": 1,
           "boxSizing": "border-box",
-          "color": "#21242c",
+          "color": "rgba(33,36,44,0.64)",
           "display": "inline-flex",
           "height": 40,
           "justifyContent": "space-between",
@@ -3844,7 +3848,7 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
           }
         }
       >
-        0 schools
+        Select a school
       </span>
       <svg
         aria-hidden="true"
@@ -3933,7 +3937,123 @@ exports[`wonder-blocks-dropdown example 26 1`] = `
     }
     tabIndex={0}
   >
-    MultiSelect with custom opener
+    Choose a fruit
   </h2>
+</div>
+`;
+
+exports[`wonder-blocks-dropdown example 27 1`] = `
+<div
+  className=""
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "width": "fit-content",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-expanded="false"
+    aria-haspopup="listbox"
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        "alignItems": "center",
+        "backgroundColor": "#ffffff",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "color": "rgba(33,36,44,0.64)",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "space-between",
+        "margin": 0,
+        "outline": "none",
+        "paddingLeft": 16,
+        "paddingRight": 12,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "whiteSpace": "nowrap",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "lineHeight": "20px",
+          "marginRight": 8,
+          "overflow": "hidden",
+          "textOverflow": "ellipsis",
+          "userSelect": "none",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      0 escuelas seleccionadas
+    </span>
+    <svg
+      aria-hidden="true"
+      className=""
+      height={16}
+      style={
+        Object {
+          "display": "inline-block",
+          "flexGrow": 0,
+          "flexShrink": 0,
+          "minWidth": 16,
+          "verticalAlign": "text-bottom",
+        }
+      }
+      viewBox="0 0 16 16"
+      width={16}
+    >
+      <path
+        d="M8 8.586l3.293-3.293a1 1 0 0 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 0 1 1.414-1.414L8 8.586z"
+        fill="rgba(33,36,44,0.64)"
+      />
+    </svg>
+  </button>
 </div>
 `;
