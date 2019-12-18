@@ -1,5 +1,5 @@
 // @flow
-import type {IRequestHandler} from "./types.js";
+import type {CacheEntry, IRequestHandler} from "./types.js";
 
 /**
  * Base implementation for creating a request handler.
@@ -19,11 +19,19 @@ export default class RequestHandler<TOptions, TData>
         return this._type;
     }
 
-    invalidateCache(options: TOptions): boolean {
+    shouldRefreshCache(
+        options: TOptions,
+        cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
+    ): boolean {
         /**
-         * By default, the cache is always valid.
+         * By default, the cache needs a refresh if the current entry is an
+         * error.
+         *
+         * This means that an error will cause a re-request on render.
+         * Useful if the server rendered an error, as it means the client
+         * will update after rehydration.
          */
-        return false;
+        return cachedEntry == null || cachedEntry.error != null;
     }
 
     getKey(options: TOptions): string {

@@ -26,7 +26,7 @@ type HandlerSubcache = {
     ...,
 };
 
-export type ResponseCache = {
+export type Cache = {
     [key: string]: HandlerSubcache,
     ...,
 };
@@ -50,12 +50,15 @@ export interface IRequestHandler<TOptions, TData> {
     get type(): string;
 
     /**
-     * Determine if the cached data should be invalidated.
+     * Determine if the cached data should be refreshed.
      *
      * If this returns true, the framework will fulfill a new request by
      * calling `fulfillRequest`.
      */
-    invalidateCache(options: TOptions): boolean;
+    shouldRefreshCache(
+        options: TOptions,
+        cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
+    ): boolean;
 
     /**
      * Get the key to use for a given request. This should be idempotent for a
