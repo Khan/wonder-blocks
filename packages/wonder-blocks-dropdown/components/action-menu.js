@@ -3,18 +3,14 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
-import type {
-    AriaProps,
-    ClickableState,
-    StyleType,
-} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import DropdownOpener from "./dropdown-opener.js";
 import ActionItem from "./action-item.js";
 import OptionItem from "./option-item.js";
 import DropdownCore from "./dropdown-core.js";
 
 import ActionMenuOpenerCore from "./action-menu-opener-core.js";
-import type {Item, DropdownItem} from "../util/types.js";
+import type {Item, DropdownItem, OpenerProps} from "../util/types.js";
 
 type Props = {|
     ...AriaProps,
@@ -85,7 +81,7 @@ type Props = {|
      * activated by. This function takes eventState, which allows the opener
      * element to access pointer event state.
      */
-    opener?: (eventState: ClickableState) => React.Element<any>,
+    opener?: (openerProps: OpenerProps) => React.Element<any>,
 |};
 
 type State = {|
@@ -235,7 +231,12 @@ export default class ActionMenu extends React.Component<Props, State> {
             >
                 {opener
                     ? opener
-                    : (eventState) => {
+                    : (openerProps) => {
+                          const {
+                              // eslint-disable-next-line no-unused-vars
+                              text,
+                              ...eventState
+                          } = openerProps;
                           return (
                               <ActionMenuOpenerCore
                                   {...eventState}

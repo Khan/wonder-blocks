@@ -524,7 +524,7 @@ describe("MultiSelect", () => {
             const wrapper = mount(
                 <MultiSelect
                     onChange={jest.fn()}
-                    opener={(eventState) => (
+                    opener={() => (
                         <button aria-label="Search" onClick={onClickMock} />
                     )}
                 >
@@ -596,7 +596,7 @@ describe("MultiSelect", () => {
                     labels={labels}
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={(eventState, text) => (
+                    opener={({text}) => (
                         <button
                             onClick={jest.fn()}
                             data-test-id="custom-opener"
@@ -627,7 +627,7 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={(eventState, text) => (
+                    opener={({text}) => (
                         <button
                             onClick={jest.fn()}
                             data-test-id="custom-opener"
@@ -660,7 +660,7 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={(eventState, text) => (
+                    opener={({text}) => (
                         <button
                             onClick={jest.fn()}
                             data-test-id="custom-opener"
@@ -694,7 +694,7 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={(eventState, text) => (
+                    opener={({text}) => (
                         <button
                             onClick={jest.fn()}
                             data-test-id="custom-opener"

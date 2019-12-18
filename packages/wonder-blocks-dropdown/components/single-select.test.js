@@ -334,7 +334,7 @@ describe("SingleSelect", () => {
                     placeholder="Custom placeholder"
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={(eventState, text) => (
+                    opener={({text}) => (
                         <button
                             onClick={jest.fn()}
                             data-test-id="custom-opener"
@@ -365,7 +365,7 @@ describe("SingleSelect", () => {
                     placeholder="Custom placeholder"
                     testId="openTest"
                     onChange={jest.fn()}
-                    opener={(eventState, text) => (
+                    opener={({text}) => (
                         <button
                             onClick={jest.fn()}
                             data-test-id="custom-opener"

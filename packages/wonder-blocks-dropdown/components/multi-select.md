@@ -608,14 +608,14 @@ class CustomOpenerExample extends React.Component {
                 onToggle={this.handleToggleMenu}
                 selectedValues={this.state.selectedValues}
                 testId="multi-select-custom-opener"
-                opener={(eventState, text) => (
+                opener={({focused, hovered, pressed, text}) => (
                     <HeadingLarge
                         onClick={()=>{console.log('custom click!!!!!')}}
                         testId="multi-select-custom-opener"
                         style={[
-                            eventState.focused && styles.focused,
-                            eventState.hovered && styles.hovered,
-                            eventState.pressed && styles.pressed
+                            focused && styles.focused,
+                            hovered && styles.hovered,
+                            pressed && styles.pressed
                         ]}
                     >
                         {text}

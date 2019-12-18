@@ -3,11 +3,7 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
-import type {
-    AriaProps,
-    ClickableState,
-    StyleType,
-} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
@@ -22,7 +18,7 @@ import {
 } from "../util/constants.js";
 
 import typeof OptionItem from "./option-item.js";
-import type {DropdownItem} from "../util/types.js";
+import type {DropdownItem, OpenerProps} from "../util/types.js";
 
 export type Labels = {|
     /**
@@ -159,7 +155,7 @@ type Props = {|
      * activated by. This function takes eventState, which allows the opener
      * element to access pointer event state.
      */
-    opener?: (eventState: ClickableState) => React.Element<any>,
+    opener?: (openerProps: OpenerProps) => React.Element<any>,
 
     /**
      * Optional styling to add to the opener component wrapper.
@@ -232,6 +228,8 @@ export default class MultiSelect extends React.Component<Props, State> {
             // merge custom labels with the default ones
             labels: {...defaultLabels, ...props.labels},
         };
+        // merge custom labels with the default ones
+        this.labels = {...defaultLabels, ...props.labels};
     }
 
     /**

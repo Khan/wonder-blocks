@@ -364,16 +364,16 @@ describe("wonder-blocks-dropdown", () => {
             <ActionMenu
                 disabled={false}
                 menuText="Custom opener"
-                opener={(eventState, text) => (
+                opener={({focused, hovered, pressed, text}) => (
                     <LabelLarge
                         onClick={() => {
                             console.log("custom click!!!!!");
                         }}
                         testId="teacher-menu-custom-opener"
                         style={[
-                            eventState.focused && styles.focused,
-                            eventState.hovered && styles.hovered,
-                            eventState.pressed && styles.pressed,
+                            focused && styles.focused,
+                            hovered && styles.hovered,
+                            pressed && styles.pressed,
                         ]}
                     >
                         {text}
@@ -882,16 +882,16 @@ describe("wonder-blocks-dropdown", () => {
                         onChange={this.handleChange}
                         onToggle={this.handleToggleMenu}
                         selectedValue={this.state.selectedValue}
-                        opener={(eventState, text) => (
+                        opener={({focused, hovered, pressed, text}) => (
                             <HeadingLarge
                                 onClick={() => {
                                     console.log("custom click!!!!!");
                                 }}
                                 testId="single-select-custom-opener"
                                 style={[
-                                    eventState.focused && styles.focused,
-                                    eventState.hovered && styles.hovered,
-                                    eventState.pressed && styles.pressed,
+                                    focused && styles.focused,
+                                    hovered && styles.hovered,
+                                    pressed && styles.pressed,
                                 ]}
                             >
                                 {text}
@@ -1501,16 +1501,16 @@ describe("wonder-blocks-dropdown", () => {
                         onToggle={this.handleToggleMenu}
                         selectedValues={this.state.selectedValues}
                         testId="multi-select-custom-opener"
-                        opener={(eventState, text) => (
+                        opener={({focused, hovered, pressed, text}) => (
                             <HeadingLarge
                                 onClick={() => {
                                     console.log("custom click!!!!!");
                                 }}
                                 testId="multi-select-custom-opener"
                                 style={[
-                                    eventState.focused && styles.focused,
-                                    eventState.hovered && styles.hovered,
-                                    eventState.pressed && styles.pressed,
+                                    focused && styles.focused,
+                                    hovered && styles.hovered,
+                                    pressed && styles.pressed,
                                 ]}
                             >
                                 {text}

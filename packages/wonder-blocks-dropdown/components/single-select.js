@@ -3,11 +3,7 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
-import type {
-    AriaProps,
-    ClickableState,
-    StyleType,
-} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import DropdownCore from "./dropdown-core.js";
 import DropdownOpener from "./dropdown-opener.js";
@@ -15,7 +11,7 @@ import SelectOpener from "./select-opener.js";
 import {selectDropdownStyle} from "../util/constants.js";
 
 import typeof OptionItem from "./option-item.js";
-import type {DropdownItem} from "../util/types.js";
+import type {DropdownItem, OpenerProps} from "../util/types.js";
 
 type Props = {|
     ...AriaProps,
@@ -97,7 +93,7 @@ type Props = {|
      * activated by. This function takes eventState, which allows the opener
      * element to access pointer event state.
      */
-    opener?: (eventState: ClickableState) => React.Element<any>,
+    opener?: (openerProps: OpenerProps) => React.Element<any>,
 |};
 
 type State = {|
