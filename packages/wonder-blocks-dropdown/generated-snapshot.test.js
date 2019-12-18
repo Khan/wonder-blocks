@@ -9,304 +9,24 @@ import renderer from "react-test-renderer";
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
 import {
-    Dropdown,
-    ActionItem,
-    OptionItem,
-    SeparatorItem,
     ActionMenu,
+    ActionItem,
+    SeparatorItem,
+    OptionItem,
     SingleSelect,
     MultiSelect,
 } from "@khanacademy/wonder-blocks-dropdown";
 import {View, Text} from "@khanacademy/wonder-blocks-core";
-import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {icons} from "@khanacademy/wonder-blocks-icon";
-import {
-    Title,
-    HeadingSmall,
-    LabelLarge,
-    HeadingLarge,
-} from "@khanacademy/wonder-blocks-typography";
-import Color from "@khanacademy/wonder-blocks-color";
 import {StyleSheet} from "aphrodite";
+import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
-import Clickable from "@khanacademy/wonder-blocks-clickable";
-import {Strut, Spring} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
+import Color from "@khanacademy/wonder-blocks-color";
+import {LabelLarge, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 
 describe("wonder-blocks-dropdown", () => {
     it("example 1", () => {
-        const dropdownItems = [
-            <ActionItem
-                label="Profile"
-                href="http://khanacademy.org/profile"
-                testId="profile"
-            />,
-            <ActionItem
-                label="Teacher dashboard"
-                href="http://khanacademy.org/coach/dashboard"
-                testId="dashboard"
-            />,
-            <ActionItem
-                label="Settings"
-                onClick={() => console.log("user clicked on settings")}
-                testId="settings"
-            />,
-            <ActionItem
-                label="Help"
-                disabled={true}
-                onClick={() => console.log("this item is disabled...")}
-                testId="help"
-            />,
-            <ActionItem
-                label="Feedback"
-                disabled={true}
-                href="/feedback"
-                testId="feedback"
-            />,
-            <SeparatorItem />,
-            <ActionItem
-                label="Log out"
-                href="http://khanacademy.org/logout"
-                testId="logout"
-            />,
-            <OptionItem
-                label="Show homework assignments"
-                value="homework"
-                onClick={() => console.log(`Show homework assignments toggled`)}
-            />,
-            <OptionItem
-                label="Show in-class assignments"
-                value="in-class"
-                onClick={() => console.log(`Show in-class assignments toggled`)}
-            />,
-        ];
-        const example = (
-            <Dropdown
-                disabled={false}
-                menuText="Betsy Appleseed"
-                testId="teacher-menu"
-                menuItems={dropdownItems}
-            >
-                {(eventState) => (
-                    <IconButton icon={icons.caretDown} aria-label="search" />
-                )}
-            </Dropdown>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    it("example 2", () => {
-        // Custom styles for mouse events can be defined like so
-        const styles = StyleSheet.create({
-            focused: {
-                border: "none",
-            },
-            hovered: {
-                textDecoration: "underline",
-            },
-            pressed: {
-                color: Color.teal,
-            },
-            cursor: {
-                cursor: "pointer",
-                outline: "none",
-            },
-        });
-        const dropdownItems = [
-            <ActionItem label="Change password" />,
-            <ActionItem label="Manage email" />,
-            <ActionItem label="Set up 2FA" />,
-            <ActionItem label="Get Help" />,
-            <SeparatorItem />,
-            <ActionItem label="Log out" />,
-        ];
-        const example = (
-            <View>
-                <Dropdown testId="teacher-menu" menuItems={dropdownItems}>
-                    {(eventState) => (
-                        <Title
-                            style={[
-                                styles.cursor,
-                                eventState.focused && styles.focused,
-                                eventState.hovered && styles.hovered,
-                                eventState.pressed && styles.pressed,
-                            ]}
-                        >
-                            Settings ⌄
-                        </Title>
-                    )}
-                </Dropdown>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    it("example 3", () => {
-        const styles = StyleSheet.create({
-            focused: {
-                border: "none",
-            },
-            hovered: {
-                textDecoration: "underline",
-            },
-            cursor: {
-                cursor: "pointer",
-                outline: "none",
-            },
-        });
-
-        class MixedDropdownExample extends React.Component {
-            constructor() {
-                super();
-                this.state = {
-                    selectedValues: ["kumail"],
-                };
-                this.handleChange = this.handleChange.bind(this);
-            }
-
-            handleChange(update) {
-                this.setState({
-                    selectedValues: update,
-                });
-            }
-
-            render() {
-                const dropdownItems = [
-                    <ActionItem label="Add new +" />,
-                    <SeparatorItem />,
-                    <OptionItem label="Alex" value="alex" />,
-                    <OptionItem label="Cathy" value="cathy" />,
-                    <OptionItem label="Kumail" value="kumail" />,
-                    <OptionItem label="Salman" value="salman" />,
-                    <OptionItem label="Yan" value="yan" />,
-                    <OptionItem label="Yash" value="yash" />,
-                ];
-                return (
-                    <Dropdown
-                        selectionType={"single"}
-                        menuItems={dropdownItems}
-                        onChange={this.handleChange}
-                        selectedValues={this.state.selectedValues}
-                    >
-                        {(eventState) => (
-                            <HeadingSmall
-                                style={[
-                                    styles.cursor,
-                                    eventState.focused && styles.focused,
-                                    eventState.hovered && styles.hovered,
-                                ]}
-                            >
-                                Manage students
-                            </HeadingSmall>
-                        )}
-                    </Dropdown>
-                );
-            }
-        }
-
-        const example = (
-            <View>
-                <MixedDropdownExample />
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    it("example 4", () => {
-        const styles = StyleSheet.create({
-            focused: {
-                border: "none",
-            },
-            hovered: {
-                textDecoration: "underline",
-            },
-            cursor: {
-                cursor: "pointer",
-                outline: "none",
-            },
-            row: {
-                flexDirection: "row",
-            },
-        });
-
-        class ControlledDropdownExample extends React.Component {
-            constructor() {
-                super();
-                this.state = {
-                    opened: false,
-                    selectedValues: ["kumail"],
-                };
-                this.handleChange = this.handleChange.bind(this);
-                this.handleToggleMenu = this.handleToggleMenu.bind(this);
-            }
-
-            handleChange(update) {
-                this.setState({
-                    selectedValues: update,
-                });
-            }
-
-            handleToggleMenu(opened) {
-                this.setState({
-                    opened,
-                });
-            }
-
-            render() {
-                const dropdownItems = [
-                    <ActionItem
-                        label="Add new +"
-                        onClick={() => console.log("Add new clicked...")}
-                    />,
-                    <SeparatorItem />,
-                    <OptionItem label="Alex" value="alex" />,
-                    <OptionItem label="Cathy" value="cathy" />,
-                    <OptionItem label="Kumail" value="kumail" />,
-                    <OptionItem label="Salman" value="salman" />,
-                    <OptionItem label="Yan" value="yan" />,
-                    <OptionItem label="Yash" value="yash" />,
-                ];
-                return (
-                    <View style={styles.row}>
-                        <Dropdown
-                            selectionType={"single"}
-                            menuItems={dropdownItems}
-                            onChange={this.handleChange}
-                            onToggle={this.handleToggleMenu}
-                            opened={this.state.opened}
-                            selectedValues={this.state.selectedValues}
-                        >
-                            {(eventState) => (
-                                <HeadingSmall
-                                    style={[
-                                        styles.cursor,
-                                        eventState.focused && styles.focused,
-                                        eventState.hovered && styles.hovered,
-                                    ]}
-                                >
-                                    Open custom dropdown
-                                </HeadingSmall>
-                            )}
-                        </Dropdown>
-                        <Strut size={Spacing.medium} />
-                        <Button onClick={() => this.handleToggleMenu(true)}>
-                            Open dropdown programatically
-                        </Button>
-                    </View>
-                );
-            }
-        }
-
-        const example = <ControlledDropdownExample />;
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    it("example 5", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -360,7 +80,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 6", () => {
+    it("example 2", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -404,7 +124,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 7", () => {
+    it("example 3", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -489,7 +209,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 8", () => {
+    it("example 4", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -504,7 +224,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 9", () => {
+    it("example 5", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -560,7 +280,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 10", () => {
+    it("example 6", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -626,7 +346,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 11", () => {
+    it("example 7", () => {
         const styles = StyleSheet.create({
             focused: {
                 color: Color.purple,
@@ -702,7 +422,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 12", () => {
+    it("example 8", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -775,7 +495,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 13", () => {
+    it("example 9", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -835,7 +555,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 14", () => {
+    it("example 10", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -887,7 +607,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 15", () => {
+    it("example 11", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -940,7 +660,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 16", () => {
+    it("example 12", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1010,7 +730,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 17", () => {
+    it("example 13", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1025,7 +745,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 18", () => {
+    it("example 14", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -1058,7 +778,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 19", () => {
+    it("example 15", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1116,7 +836,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 20", () => {
+    it("example 16", () => {
         const styles = StyleSheet.create({
             focused: {
                 color: Color.purple,
@@ -1195,7 +915,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 21", () => {
+    it("example 17", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1263,7 +983,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 22", () => {
+    it("example 18", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1325,7 +1045,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 23", () => {
+    it("example 19", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1389,7 +1109,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 24", () => {
+    it("example 20", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 alignItems: "center",
@@ -1483,7 +1203,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 25", () => {
+    it("example 21", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1498,7 +1218,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 26", () => {
+    it("example 22", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -1531,7 +1251,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 27", () => {
+    it("example 23", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1581,7 +1301,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 28", () => {
+    it("example 24", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1640,7 +1360,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 29", () => {
+    it("example 25", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1697,7 +1417,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 30", () => {
+    it("example 26", () => {
         const styles = StyleSheet.create({
             focused: {
                 color: Color.purple,
