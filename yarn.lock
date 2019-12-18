@@ -1085,10 +1085,10 @@
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/@khanacademy/babel-plugin-vite/-/babel-plugin-vite-0.0.7.tgz#999f08ee79d38f83c3702017caa1427ed08be35c"
 
-"@khanacademy/eslint-config@0.0.4":
-  version "0.0.4"
-  resolved "https://registry.yarnpkg.com/@khanacademy/eslint-config/-/eslint-config-0.0.4.tgz#2fb79fb773f893b64f704cc6cf74b4ae79ac44aa"
-  integrity sha512-aKtH0PKpCxqZqBOrkkLVmjS1ABbhRG4tVnBkflxoqZzilDd+YkVT6osZBAPLpMlZTgSVx7wDCAnmDIJYrv94Rw==
+"@khanacademy/eslint-config@0.0.5":
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/@khanacademy/eslint-config/-/eslint-config-0.0.5.tgz#690c8b29f764720fb6366694252d73b5aa344574"
+  integrity sha512-hyHAHJEH6bEcrl6vgFdb2AJG1DcMpSEmrcdydpELo6r6G/vSUW7XuVnylwAWN1a8Fd/Op+1v2FdW2cvoUr3bnw==
 
 "@khanacademy/jest-environment-vite@^0.0.7":
   version "0.0.7"
