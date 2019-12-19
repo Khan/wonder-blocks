@@ -42,7 +42,7 @@
     "@babel/plugin-proposal-object-rest-spread": "7.7.4",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/plugin-transform-flow-strip-types": "7.7.4",
-    "@babel/preset-env": "7.7.6",
+    "@babel/preset-env": "7.7.7",
     "@babel/preset-flow": "7.7.4",
     "@babel/preset-react": "7.7.4",
     "@khanacademy/babel-plugin-vite": "^0.0.7",
