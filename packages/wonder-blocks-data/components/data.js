@@ -58,7 +58,7 @@ export default class Data<TOptions, TData> extends React.Component<
     constructor(props: Props<TOptions, TData>) {
         super(props);
 
-        this.state = this._buildStateAndfulfillNeeds();
+        this.state = this._buildStateAndfulfillNeeds(props);
     }
 
     componentDidMount() {
@@ -76,7 +76,7 @@ export default class Data<TOptions, TData> extends React.Component<
          * or we got new data/error.
          */
         if (!this._propsMatch(nextProps)) {
-            const newState = this._buildStateAndfulfillNeeds();
+            const newState = this._buildStateAndfulfillNeeds(nextProps);
             this.setState(newState);
         }
 
@@ -100,12 +100,13 @@ export default class Data<TOptions, TData> extends React.Component<
         );
     }
 
-    _buildStateAndfulfillNeeds(): State<TData> {
-        const propsAtFulfillment = this.props;
+    _buildStateAndfulfillNeeds(
+        propsAtFulfillment: $ReadOnly<Props<TOptions, TData>>,
+    ): State<TData> {
         const {handler, options} = propsAtFulfillment;
         const {getEntry} = ResponseCache.Default;
 
-        const cachedData = getEntry(handler, options);
+        const cachedData = getEntry<TOptions, TData>(handler, options);
         if (
             !Server.isServerSide() &&
             (cachedData == null ||
