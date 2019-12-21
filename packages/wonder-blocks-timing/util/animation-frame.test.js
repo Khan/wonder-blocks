@@ -113,16 +113,17 @@ describe("AnimationFrame", () => {
         it("should invoke requestAnimationFrame to call the given action", () => {
             // Arrange
             const action = jest.fn();
-            const animationFrame = new AnimationFrame(() => action());
+            const animationFrame = new AnimationFrame((time) => action(time));
             animationFrame.set();
             // Flow doesn't know we added jest mocks to this $FlowFixMe
             const scheduledAction = requestAnimationFrame.mock.calls[0][0];
 
             // Act
-            scheduledAction();
+            scheduledAction(2001);
 
             // Assert
             expect(action).toHaveBeenCalledTimes(1);
+            expect(action).toHaveBeenCalledWith(2001);
         });
 
         it("should clear any pending request", () => {
@@ -171,6 +172,7 @@ describe("AnimationFrame", () => {
 
         it("should invoke the action if resolve is true", () => {
             // Arrange
+            jest.spyOn(performance, "now").mockReturnValue(42);
             const action = jest.fn();
             const animationFrame = new AnimationFrame(action);
             animationFrame.set();
@@ -181,6 +183,7 @@ describe("AnimationFrame", () => {
 
             // Assert
             expect(action).toHaveBeenCalledTimes(1);
+            expect(action).toHaveBeenCalledWith(42);
         });
 
         it("should not invoke the action if resolve is false", () => {

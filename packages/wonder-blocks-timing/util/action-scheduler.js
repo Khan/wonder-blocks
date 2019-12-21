@@ -42,7 +42,7 @@ export default class ActionScheduler implements IScheduleActions {
     }
 
     animationFrame(
-        action: () => void,
+        action: (DOMHighResTimeStamp) => void,
         autoSchedule?: boolean,
         resolveOnClear?: boolean,
     ): IAnimationFrame {
