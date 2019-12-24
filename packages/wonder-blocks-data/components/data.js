@@ -28,7 +28,7 @@ type Props<
     handler: IRequestHandler<TOptions, TData>,
 
     /**
-     * The handler-specific options that define what requestt is to be made.
+     * The handler-specific options that define what request is to be made.
      *
      * Changing these options will only cause the data to update if the key
      * from `handler.getKey(options)` changes.
