@@ -3,43 +3,17 @@ import * as React from "react";
 import {Server} from "@khanacademy/wonder-blocks-core";
 
 import {RequestFulfillment} from "../util/request-fulfillment.js";
-import {ResponseCache} from "../util/response-cache.js";
 import {TrackerContext} from "../util/request-tracking.js";
 
-import type {Result, IRequestHandler} from "../util/types.js";
+import type {CacheEntry, Result, IRequestHandler} from "../util/types.js";
 
-type Props<
-    /**
-     * The type of options that the handler requires to define a request.
-     */
-    TOptions,
-    /**
-     * The type of data resolved by the handler's fulfillRequest method.
-     */
-    TData,
-> = {|
-    /**
-     * An `IRequestHandler` instance of the type this component will use to
-     * resolve its requests.
-     *
-     * The framework deduplicates handlers based on their `type` property.
-     * Handlers with the same `type` property are assumed to be the same.
-     */
+type Props<TOptions, TData> = {|
     handler: IRequestHandler<TOptions, TData>,
-
-    /**
-     * The handler-specific options that define what request is to be made.
-     *
-     * Changing these options will only cause the data to update if the key
-     * from `handler.getKey(options)` changes.
-     */
     options: TOptions,
-
-    /**
-     * A function that will render the content of this component using the
-     * loading state and data or error that gets retrieved from cache or loaded
-     * via the request if no cached value is available.
-     */
+    getEntry: (
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ) => ?$ReadOnly<CacheEntry<TData>>,
     children: (result: Result<TData>) => React.Node,
 |};
 
@@ -49,7 +23,13 @@ type State<TData> = {|
     error: ?string,
 |};
 
-export default class Data<TOptions, TData> extends React.Component<
+/**
+ * This component is responsible for actually handling the data request.
+ * It is wrapped by Data in order to be exported for use.
+ *
+ * INTERNAL USE ONLY
+ */
+export default class InternalData<TOptions, TData> extends React.Component<
     Props<TOptions, TData>,
     State<TData>,
 > {
@@ -103,10 +83,8 @@ export default class Data<TOptions, TData> extends React.Component<
     _buildStateAndfulfillNeeds(
         propsAtFulfillment: $ReadOnly<Props<TOptions, TData>>,
     ): State<TData> {
-        const {handler, options} = propsAtFulfillment;
-        const {getEntry} = ResponseCache.Default;
-
-        const cachedData = getEntry<TOptions, TData>(handler, options);
+        const {getEntry, handler, options} = propsAtFulfillment;
+        const cachedData = getEntry(handler, options);
         if (
             !Server.isServerSide() &&
             (cachedData == null ||

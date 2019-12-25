@@ -22,6 +22,9 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Button from "@khanacademy/wonder-blocks-button";
 
+import InterceptCache from "./components/intercept-cache.js";
+import InterceptData from "./components/intercept-data.js";
+
 describe("wonder-blocks-data", () => {
     it("example 1", () => {
         /**

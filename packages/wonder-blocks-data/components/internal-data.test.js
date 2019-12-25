@@ -10,11 +10,11 @@ import TrackData from "./track-data.js";
 import {RequestFulfillment} from "../util/request-fulfillment.js";
 import {ResponseCache} from "../util/response-cache.js";
 import {RequestTracker} from "../util/request-tracking.js";
-import Data from "./data.js";
+import InternalData from "./internal-data.js";
 
 import type {IRequestHandler} from "../util/types.js";
 
-describe("Data", () => {
+describe("InternalData", () => {
     beforeEach(() => {
         const responseCache = new ResponseCache();
         jest.spyOn(ResponseCache, "Default", "get").mockReturnValue(
@@ -39,14 +39,31 @@ describe("Data", () => {
         });
 
         describe("without cached data", () => {
-            beforeEach(() => {
-                /**
-                 * Each of these test cases will never have cached data
-                 * retrieved.
-                 */
-                jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue(
-                    null,
+            it("should initialize state as loading", () => {
+                // Arrange
+                const fakeHandler: IRequestHandler<string, string> = {
+                    fulfillRequest: () => Promise.resolve("data"),
+                    getKey: (o) => o,
+                    shouldRefreshCache: () => false,
+                    type: "MY_HANDLER",
+                };
+                const fakeChildrenFn = jest.fn(() => null);
+
+                // Act
+                const wrapper = shallow(
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
+                        {fakeChildrenFn}
+                    </InternalData>,
                 );
+
+                // Assert
+                expect(wrapper).toHaveState("loading", true);
+                expect(wrapper).toHaveState("data", null);
+                expect(wrapper).toHaveState("error", null);
             });
 
             it("should make request for data on construction", () => {
@@ -61,9 +78,13 @@ describe("Data", () => {
 
                 // Act
                 mount(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
 
                 // Assert
@@ -85,9 +106,13 @@ describe("Data", () => {
 
                 // Act
                 mount(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
 
                 // Assert
@@ -113,12 +138,20 @@ describe("Data", () => {
                 // Act
                 mount(
                     <View>
-                        <Data handler={fakeHandler} options={"options"}>
+                        <InternalData
+                            handler={fakeHandler}
+                            options={"options"}
+                            getEntry={jest.fn(() => null)}
+                        >
                             {fakeChildrenFn}
-                        </Data>
-                        <Data handler={fakeHandler} options={"options"}>
+                        </InternalData>
+                        <InternalData
+                            handler={fakeHandler}
+                            options={"options"}
+                            getEntry={jest.fn(() => null)}
+                        >
                             {fakeChildrenFn}
-                        </Data>
+                        </InternalData>
                     </View>,
                 );
 
@@ -146,9 +179,13 @@ describe("Data", () => {
 
                 // Act
                 mount(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
                 /**
                  * We wait for the fulfillment to resolve.
@@ -180,9 +217,13 @@ describe("Data", () => {
 
                 // Act
                 mount(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
                 /**
                  * We wait for the fulfillment to resolve.
@@ -213,9 +254,13 @@ describe("Data", () => {
 
                 // Act
                 mount(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
                 /**
                  * We wait for the fulfillment to reject.
@@ -251,9 +296,13 @@ describe("Data", () => {
                 };
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = mount(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
                 // Make sure we render as laoded.
                 await fulfillSpy.mock.results[0].value;
@@ -288,9 +337,13 @@ describe("Data", () => {
                 };
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = mount(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
                 await fulfillSpy.mock.results[0].value;
                 fulfillSpy.mockClear();
@@ -310,14 +363,34 @@ describe("Data", () => {
         });
 
         describe("with cache data", () => {
-            beforeEach(() => {
-                /**
-                 * Each of these test cases will start out with some cached data
-                 * retrieved.
-                 */
-                jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue({
+            it("should initialize state with data from cache", () => {
+                // Arrange
+                const fakeHandler: IRequestHandler<string, string> = {
+                    fulfillRequest: () => Promise.resolve("data"),
+                    getKey: (o) => o,
+                    shouldRefreshCache: () => false,
+                    type: "MY_HANDLER",
+                };
+                const fakeChildrenFn = jest.fn(() => null);
+                const getEntryFn = jest.fn(() => ({
                     data: "YAY! DATA!",
-                });
+                }));
+
+                // Act
+                const wrapper = shallow(
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={getEntryFn}
+                    >
+                        {fakeChildrenFn}
+                    </InternalData>,
+                );
+
+                // Assert
+                expect(wrapper).toHaveState("loading", false);
+                expect(wrapper).toHaveState("data", "YAY! DATA!");
+                expect(wrapper).toHaveState("error", undefined);
             });
 
             it("should not request data on construction", () => {
@@ -329,12 +402,19 @@ describe("Data", () => {
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
+                const getEntryFn = jest.fn(() => ({
+                    data: "YAY! DATA!",
+                }));
 
                 // Act
                 shallow(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={getEntryFn}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
 
                 // Assert
@@ -350,12 +430,19 @@ describe("Data", () => {
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
+                const getEntryFn = jest.fn(() => ({
+                    data: "YAY! DATA!",
+                }));
 
                 // Act
                 mount(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={getEntryFn}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
 
                 // Assert
@@ -374,12 +461,19 @@ describe("Data", () => {
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
+                const getEntryFn = jest.fn(() => ({
+                    data: "YAY! DATA!",
+                }));
 
                 // Act
                 mount(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={getEntryFn}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
 
                 // Assert
@@ -404,14 +498,21 @@ describe("Data", () => {
                     type: "TYPE2",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
+                const getEntryFn = jest.fn(() => ({
+                    data: "YAY! DATA!",
+                }));
                 const wrapper = mount(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={getEntryFn}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
                 // Clear out calls so everything is from the props change.
                 fakeChildrenFn.mockClear();
-                jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue({
+                getEntryFn.mockReturnValue({
                     data: "NEW DATA!",
                 });
 
@@ -437,13 +538,20 @@ describe("Data", () => {
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
+                const getEntryFn = jest.fn(() => ({
+                    data: "YAY! DATA!",
+                }));
                 const wrapper = mount(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={getEntryFn}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
                 fakeChildrenFn.mockClear();
-                jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue({
+                getEntryFn.mockReturnValue({
                     data: "NEW DATA!",
                 });
 
@@ -468,16 +576,6 @@ describe("Data", () => {
         });
 
         describe("without cached data", () => {
-            beforeEach(() => {
-                /**
-                 * Each of these test cases will never have cached data
-                 * retrieved.
-                 */
-                jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue(
-                    null,
-                );
-            });
-
             it("should not request data", () => {
                 // Arrange
                 const fakeHandler: IRequestHandler<string, string> = {
@@ -490,9 +588,13 @@ describe("Data", () => {
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
 
                 // Assert
@@ -511,9 +613,13 @@ describe("Data", () => {
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
 
                 // Assert
@@ -541,9 +647,13 @@ describe("Data", () => {
                 // Act
                 ReactDOMServer.renderToString(
                     <TrackData>
-                        <Data handler={fakeHandler} options={"options"}>
+                        <InternalData
+                            handler={fakeHandler}
+                            options={"options"}
+                            getEntry={jest.fn(() => null)}
+                        >
                             {fakeChildrenFn}
-                        </Data>
+                        </InternalData>
                     </TrackData>,
                 );
 
@@ -553,16 +663,6 @@ describe("Data", () => {
         });
 
         describe("with cached data", () => {
-            beforeEach(() => {
-                /**
-                 * Each of these test cases will start out with some cached data
-                 * retrieved.
-                 */
-                jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue({
-                    data: "YAY! DATA!",
-                });
-            });
-
             it("should not request data", () => {
                 // Arrange
                 const fakeHandler: IRequestHandler<string, string> = {
@@ -572,12 +672,19 @@ describe("Data", () => {
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
+                const getEntryFn = jest.fn(() => ({
+                    data: "YAY! DATA!",
+                }));
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={getEntryFn}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
 
                 // Assert
@@ -593,12 +700,19 @@ describe("Data", () => {
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
+                const getEntryFn = jest.fn(() => ({
+                    data: "YAY! DATA!",
+                }));
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={getEntryFn}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
 
                 // Assert
@@ -612,9 +726,6 @@ describe("Data", () => {
 
             it("should render children with error", () => {
                 // Arrange
-                jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue({
-                    error: "OH NO! IT GO BOOM",
-                });
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: () => Promise.resolve("data"),
                     getKey: (o) => o,
@@ -622,12 +733,19 @@ describe("Data", () => {
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
+                const getEntryFn = jest.fn(() => ({
+                    error: "OH NO! IT GO BOOM",
+                }));
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={getEntryFn}
+                    >
                         {fakeChildrenFn}
-                    </Data>,
+                    </InternalData>,
                 );
 
                 // Assert
@@ -652,13 +770,20 @@ describe("Data", () => {
                     type: "MY_HANDLER",
                 };
                 const fakeChildrenFn = jest.fn(() => null);
+                const getEntryFn = jest.fn(() => ({
+                    data: "YAY! DATA!",
+                }));
 
                 // Act
                 ReactDOMServer.renderToString(
                     <TrackData>
-                        <Data handler={fakeHandler} options={"options"}>
+                        <InternalData
+                            handler={fakeHandler}
+                            options={"options"}
+                            getEntry={getEntryFn}
+                        >
                             {fakeChildrenFn}
-                        </Data>
+                        </InternalData>
                     </TrackData>,
                 );
 

@@ -17,6 +17,8 @@ describe("@khanacademy/wonder-blocks-data", () => {
         expect(Object.keys(result).sort()).toEqual(
             [
                 "Data",
+                "InterceptCache",
+                "InterceptData",
                 "RequestHandler",
                 "TrackData",
                 "fulfillAllDataRequests",

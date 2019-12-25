@@ -1,0 +1,101 @@
+// @flow
+import * as React from "react";
+
+import InterceptContext from "./intercept-context.js";
+
+import type {
+    IRequestHandler,
+    InterceptFulfillRequestFn,
+    InterceptShouldRefreshCacheFn,
+} from "../util/types.js";
+
+type BaseProps<TOptions, TData> = {|
+    /**
+     * A handler of the type to be intercepted.
+     */
+    handler: IRequestHandler<TOptions, TData>,
+
+    /**
+     * The children to render within this component. Any requests by `Data`
+     * components that use a handler of the same type as the handler for this
+     * component that are rendered within these children will be intercepted by
+     * this component (unless another `InterceptData` component overrides this
+     * one).
+     */
+    children: React.Node,
+|};
+
+type FulfillRequestProps<TOptions, TData> = {|
+    /**
+     * Called to fulfill a request.
+     * If this returns null, the request will be fulfilled by the
+     * handler of the original request being intercepted.
+     */
+    fulfillRequest: InterceptFulfillRequestFn<TOptions, TData>,
+|};
+
+type ShouldRefreshCacheProps<TOptions, TData> = {|
+    /**
+     * Called to determine if the cache should be refreshed.
+     * If this returns null, the handler being intercepted will be asked if
+     * the cache should be refreshed.
+     */
+    shouldRefreshCache: InterceptShouldRefreshCacheFn<TOptions, TData>,
+|};
+
+type Props<TOptions, TData> =
+    | {|
+          ...BaseProps<TOptions, TData>,
+          ...FulfillRequestProps<TOptions, TData>,
+          ...ShouldRefreshCacheProps<TOptions, TData>,
+      |}
+    | {|
+          ...BaseProps<TOptions, TData>,
+          ...FulfillRequestProps<TOptions, TData>,
+      |}
+    | {|
+          ...BaseProps<TOptions, TData>,
+          ...ShouldRefreshCacheProps<TOptions, TData>,
+      |};
+
+/**
+ * This component provides a mechanism to intercept the data requests for the
+ * type of a given handler and provide alternative results. This is mostly
+ * useful for testing.
+ *
+ * Results from this interceptor will end up in the cache. If you
+ * wish to only override the cache, use `InterceptCache` instead.
+ *
+ * This component is not suitable for use in production code as it will
+ * prevent predictable functioning of the Wonder Blocks Data framework.
+ *
+ * These components do not chain. If a different `InterceptData` instance is
+ * rendered within this one that intercepts the same handler type, then that
+ * new instance will replace this interceptor for its children. All methods
+ * will be replaced.
+ */
+export default class InterceptData<TOptions, TData> extends React.Component<
+    Props<TOptions, TData>,
+> {
+    render() {
+        const handlerType = this.props.handler.type;
+        return (
+            <InterceptContext.Consumer>
+                {(value) => {
+                    const interceptor = {
+                        ...value[handlerType],
+                        fulfillRequest: this.props.fulfillRequest || null,
+                        shouldRefreshCache:
+                            this.props.shouldRefreshCache || null,
+                    };
+                    value[handlerType] = interceptor;
+                    return (
+                        <InterceptContext.Provider value={value}>
+                            {this.props.children}
+                        </InterceptContext.Provider>
+                    );
+                }}
+            </InterceptContext.Consumer>
+        );
+    }
+}
