@@ -44,6 +44,39 @@ describe("InterceptCache", () => {
         );
     });
 
+    it("should override parent InterceptData", () => {
+        // Arrange
+        const fakeHandler: IRequestHandler<string, string> = {
+            fulfillRequest: () => Promise.resolve("data"),
+            getKey: (o) => o,
+            shouldRefreshCache: () => false,
+            type: "MY_HANDLER",
+        };
+        const getEntry1Fn = jest.fn();
+        const getEntry2Fn = jest.fn();
+        const captureContextFn = jest.fn();
+
+        // Act
+        mount(
+            <InterceptCache handler={fakeHandler} getEntry={getEntry1Fn}>
+                <InterceptCache handler={fakeHandler} getEntry={getEntry2Fn}>
+                    <InterceptContext.Consumer>
+                        {captureContextFn}
+                    </InterceptContext.Consumer>
+                </InterceptCache>
+            </InterceptCache>,
+        );
+
+        // Assert
+        expect(captureContextFn).toHaveBeenCalledWith(
+            expect.objectContaining({
+                MY_HANDLER: {
+                    getEntry: getEntry2Fn,
+                },
+            }),
+        );
+    });
+
     it("should not change InterceptData methods on existing interceptor", () => {
         // Arrange
         const fakeHandler: IRequestHandler<string, string> = {

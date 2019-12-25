@@ -39,8 +39,8 @@ type Props<TOptions, TData> = {|
  * This does not modify the cache in any way. If you want to intercept
  * requests and cache based on the intercept, then use `InterceptData`.
  *
- * This component is not suitable for use in production code as it will
- * prevent predictable functioning of the Wonder Blocks Data framework.
+ * This component is generally not suitable for use in production code as it
+ * can prevent predictable functioning of the Wonder Blocks Data framework.
  *
  * These components do not chain. If a different `InterceptCache` instance is
  * rendered within this one that intercepts the same handler type, then that
@@ -58,9 +58,13 @@ export default class InterceptCache<TOptions, TData> extends React.Component<
                         ...value[handlerType],
                     };
                     interceptor.getEntry = this.props.getEntry;
-                    value[handlerType] = interceptor;
                     return (
-                        <InterceptContext.Provider value={value}>
+                        <InterceptContext.Provider
+                            value={{
+                                ...value,
+                                [handlerType]: interceptor,
+                            }}
+                        >
                             {this.props.children}
                         </InterceptContext.Provider>
                     );

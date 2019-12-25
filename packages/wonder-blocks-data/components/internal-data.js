@@ -25,7 +25,7 @@ type State<TData> = {|
 
 /**
  * This component is responsible for actually handling the data request.
- * It is wrapped by Data in order to be exported for use.
+ * It is wrapped by Data in order to support intercepts and be exported for use.
  *
  * INTERNAL USE ONLY
  */

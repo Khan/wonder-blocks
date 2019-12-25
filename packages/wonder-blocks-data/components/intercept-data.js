@@ -66,8 +66,11 @@ type Props<TOptions, TData> =
  * Results from this interceptor will end up in the cache. If you
  * wish to only override the cache, use `InterceptCache` instead.
  *
- * This component is not suitable for use in production code as it will
- * prevent predictable functioning of the Wonder Blocks Data framework.
+ * This component is not recommended for use in production code as it
+ * can prevent predictable functioning of the Wonder Blocks Data framework.
+ * One possible side-effect is that inflight requests from the interceptor could
+ * be picked up by `Data` component requests of the same handler type from
+ * outside the children of this component.
  *
  * These components do not chain. If a different `InterceptData` instance is
  * rendered within this one that intercepts the same handler type, then that
@@ -88,9 +91,13 @@ export default class InterceptData<TOptions, TData> extends React.Component<
                         shouldRefreshCache:
                             this.props.shouldRefreshCache || null,
                     };
-                    value[handlerType] = interceptor;
                     return (
-                        <InterceptContext.Provider value={value}>
+                        <InterceptContext.Provider
+                            value={{
+                                ...value,
+                                [handlerType]: interceptor,
+                            }}
+                        >
                             {this.props.children}
                         </InterceptContext.Provider>
                     );
