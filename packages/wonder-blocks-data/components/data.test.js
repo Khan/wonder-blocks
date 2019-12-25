@@ -346,7 +346,6 @@ describe("Data", () => {
                     // Assert
                     expect(fakeGetEntryFn).toHaveBeenCalledWith(
                         "options",
-                        "options",
                         null,
                     );
                 });
@@ -624,11 +623,9 @@ describe("Data", () => {
                     );
 
                     // Assert
-                    expect(fakeGetEntryFn).toHaveBeenCalledWith(
-                        "options",
-                        "options",
-                        {data: "YAY! DATA!"},
-                    );
+                    expect(fakeGetEntryFn).toHaveBeenCalledWith("options", {
+                        data: "YAY! DATA!",
+                    });
                 });
 
                 it("should defer to the main cache if interceptor returns null", () => {
@@ -910,7 +907,6 @@ describe("Data", () => {
 
                     // Assert
                     expect(fakeGetEntryFn).toHaveBeenCalledWith(
-                        "options",
                         "options",
                         null,
                     );
@@ -1240,11 +1236,9 @@ describe("Data", () => {
                     );
 
                     // Assert
-                    expect(fakeGetEntryFn).toHaveBeenCalledWith(
-                        "options",
-                        "options",
-                        {data: "YAY! DATA!"},
-                    );
+                    expect(fakeGetEntryFn).toHaveBeenCalledWith("options", {
+                        data: "YAY! DATA!",
+                    });
                 });
 
                 it("should defer to the main cache if interceptor returns null", () => {

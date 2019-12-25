@@ -50,21 +50,20 @@ export default class InterceptCache<TOptions, TData> extends React.Component<
     Props<TOptions, TData>,
 > {
     render() {
-        const handlerType = this.props.handler.type;
         return (
             <InterceptContext.Consumer>
                 {(value) => {
+                    const handlerType = this.props.handler.type;
                     const interceptor = {
                         ...value[handlerType],
+                        getEntry: this.props.getEntry,
                     };
-                    interceptor.getEntry = this.props.getEntry;
+                    const newValue = {
+                        ...value,
+                        [handlerType]: interceptor,
+                    };
                     return (
-                        <InterceptContext.Provider
-                            value={{
-                                ...value,
-                                [handlerType]: interceptor,
-                            }}
-                        >
+                        <InterceptContext.Provider value={newValue}>
                             {this.props.children}
                         </InterceptContext.Provider>
                     );

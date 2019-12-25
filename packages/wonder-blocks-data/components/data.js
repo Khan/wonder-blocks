@@ -114,8 +114,7 @@ export default class Data<TOptions, TData> extends React.Component<
             );
 
             // 2. See if our interceptor wants to override it.
-            const key = handler.getKey(options);
-            const interceptedData = getEntry(key, options, cacheEntry);
+            const interceptedData = getEntry(options, cacheEntry);
 
             // 3. Return the appropriate response.
             return interceptedData != null ? interceptedData : cacheEntry;

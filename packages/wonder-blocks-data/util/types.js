@@ -27,7 +27,6 @@ type HandlerSubcache = {
 };
 
 export type InterceptCacheFn<TOptions, TData> = (
-    key: string,
     options: TOptions,
     cacheEntry: ?$ReadOnly<CacheEntry<TData>>,
 ) => ?$ReadOnly<CacheEntry<TData>>;
