@@ -124,25 +124,7 @@ exports[`wonder-blocks-data example 1 1`] = `
 `;
 
 exports[`wonder-blocks-data example 2 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "column",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
+Array [
   <div
     className=""
     style={
@@ -194,7 +176,7 @@ exports[`wonder-blocks-data example 2 1`] = `
     >
       I'm DATA from the cache
     </span>
-  </div>
+  </div>,
   <div
     aria-hidden="true"
     className=""
@@ -220,7 +202,7 @@ exports[`wonder-blocks-data example 2 1`] = `
         "zIndex": 0,
       }
     }
-  />
+  />,
   <div
     className=""
     style={
@@ -274,8 +256,8 @@ exports[`wonder-blocks-data example 2 1`] = `
       ERROR: 
       I'm an ERROR from the cache
     </span>
-  </div>
-</div>
+  </div>,
+]
 `;
 
 exports[`wonder-blocks-data example 3 1`] = `

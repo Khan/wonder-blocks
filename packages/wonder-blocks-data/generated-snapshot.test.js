@@ -11,7 +11,6 @@ jest.mock("react-dom");
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View, Server} from "@khanacademy/wonder-blocks-core";
 import {
-    initializeCache,
     Data,
     RequestHandler,
     InterceptCache,
@@ -27,27 +26,6 @@ import Button from "@khanacademy/wonder-blocks-button";
 
 describe("wonder-blocks-data", () => {
     it("example 1", () => {
-        /**
-         * We need some data in the cache for some examples later, and we have to
-         * initialize the cache before it is used, so let's do that here.
-         *
-         * We're assuming we're the first thing to start playing with our data cache.
-         */
-        try {
-            initializeCache({
-                CACHE_HIT_HANDLER: {
-                    '"DATA"': {
-                        data: "I'm DATA from the cache",
-                    },
-                    '"ERROR"': {
-                        error: "I'm an ERROR from the cache",
-                    },
-                },
-            });
-        } catch (e) {
-            // It's OK, probably hot loaded and tried to init again.
-        }
-
         class MyValidHandler extends RequestHandler {
             constructor() {
                 super("CACHE_MISS_HANDLER_VALID");
@@ -129,26 +107,6 @@ describe("wonder-blocks-data", () => {
     });
 
     it("example 2", () => {
-        /**
-         * For snapshot tests, we'll be run in an isolated manner, so we need to also
-         * make sure our cache is initialized. This will error for the web docs, but
-         * enable our snapshot tests to snapshot what we want them to.
-         */
-        try {
-            initializeCache({
-                CACHE_HIT_HANDLER: {
-                    '"DATA"': {
-                        data: "I'm DATA from the cache",
-                    },
-                    '"ERROR"': {
-                        error: "I'm an ERROR from the cache",
-                    },
-                },
-            });
-        } catch (e) {
-            // It's OK, probably hot loaded and tried to init again.
-        }
-
         class MyHandler extends RequestHandler {
             constructor() {
                 super("CACHE_HIT_HANDLER");
@@ -172,8 +130,21 @@ describe("wonder-blocks-data", () => {
         }
 
         const handler = new MyHandler();
+
+        const getEntryInterceptor = function(options) {
+            if (options === "DATA") {
+                return {
+                    data: "I'm DATA from the cache",
+                };
+            }
+
+            return {
+                error: "I'm an ERROR from the cache",
+            };
+        };
+
         const example = (
-            <View>
+            <InterceptCache handler={handler} getEntry={getEntryInterceptor}>
                 <View>
                     <Body>This cache has data!</Body>
                     <Data handler={handler} options={"DATA"}>
@@ -207,7 +178,7 @@ describe("wonder-blocks-data", () => {
                         }}
                     </Data>
                 </View>
-            </View>
+            </InterceptCache>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
