@@ -203,7 +203,7 @@ export interface IScheduleActions {
      * animation and requests that the browser call a specified function to
      * update an animation before the next repaint.
      *
-     * @param {() => void} action The action to be invoked before the repaint.
+     * @param {DOMHighResTimeStamp => void} action The action to be invoked before the repaint.
      * @param {boolean} [autoSchedule] Whether or not to make the request as soon
      * as this call is made, or wait until `set` is explicitly called. Defaults
      * to `true`.
@@ -215,7 +215,7 @@ export interface IScheduleActions {
      * @memberof IScheduleActions
      */
     animationFrame(
-        action: () => void,
+        action: (time: DOMHighResTimeStamp) => void,
         autoSchedule?: boolean,
         resolveOnClear?: boolean,
     ): IAnimationFrame;

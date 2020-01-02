@@ -12,19 +12,22 @@ import type {IAnimationFrame} from "./types.js";
  */
 export default class AnimationFrame implements IAnimationFrame {
     _animationFrameId: ?AnimationFrameID;
-    _action: () => mixed;
+    _action: (DOMHighResTimeStamp) => mixed;
 
     /**
      * Creates an animation frame request that will invoke the given action.
      * The request is not made until set is called.
      *
-     * @param {() => mixed} action The action to be invoked.
+     * @param {DOMHighResTimeStamp => mixed} action The action to be invoked.
      * @param {boolean} [autoSchedule] When true, the request is made immediately on
      * instanstiation; otherwise, `set` must be called to make the request.
      * Defaults to `true`.
      * @memberof AnimationFrame
      */
-    constructor(action: () => mixed, autoSchedule?: boolean) {
+    constructor(
+        action: (DOMHighResTimeStamp) => mixed,
+        autoSchedule?: boolean,
+    ) {
         if (typeof action !== "function") {
             throw new Error("Action must be a function");
         }
@@ -60,7 +63,9 @@ export default class AnimationFrame implements IAnimationFrame {
         if (this.isSet) {
             this.clear(false);
         }
-        this._animationFrameId = requestAnimationFrame(() => this.clear(true));
+        this._animationFrameId = requestAnimationFrame((time) =>
+            this.clear(true, time),
+        );
     }
 
     /**
@@ -76,7 +81,7 @@ export default class AnimationFrame implements IAnimationFrame {
      * @returns {void}
      * @memberof AnimationFrame
      */
-    clear(resolve?: boolean): void {
+    clear(resolve?: boolean, time?: DOMHighResTimeStamp): void {
         const animationFrameId = this._animationFrameId;
         this._animationFrameId = null;
         if (animationFrameId == null) {
@@ -84,7 +89,7 @@ export default class AnimationFrame implements IAnimationFrame {
         }
         cancelAnimationFrame(animationFrameId);
         if (resolve) {
-            this._action();
+            this._action(time || performance.now());
         }
     }
 }
