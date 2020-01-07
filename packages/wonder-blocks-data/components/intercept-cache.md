@@ -4,9 +4,11 @@ it can only be called once and it requires knowledge of the cache structure.
 
 Instead of jumping through those hoops, you can use the `InterceptCache`
 component and provide an override method that will get called when looking up
-cached values. This component takes three props; children to be rendered,
-the handler for data caches that are to be intercepted, and a function for
-processing the intercept.
+cached values. This component takes three props:
+
+- children to be rendered
+- the handler for data caches that are to be intercepted
+- a function for processing the intercept
 
 The intercept function has the form:
 

@@ -393,7 +393,7 @@ describe("InternalData", () => {
                 expect(wrapper).toHaveState("error", undefined);
             });
 
-            it("should not request data on construction", () => {
+            it("should not request data if shouldRefreshCache returns false", () => {
                 // Arrange
                 const fakeHandler: IRequestHandler<string, string> = {
                     fulfillRequest: jest.fn(),
