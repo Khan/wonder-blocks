@@ -26,6 +26,31 @@ type HandlerSubcache = {
     ...,
 };
 
+export type InterceptCacheFn<TOptions, TData> = (
+    options: TOptions,
+    cacheEntry: ?$ReadOnly<CacheEntry<TData>>,
+) => ?$ReadOnly<CacheEntry<TData>>;
+
+export type InterceptFulfillRequestFn<TOptions, TData> = (
+    options: TOptions,
+) => ?Promise<TData>;
+
+export type InterceptShouldRefreshCacheFn<TOptions, TData> = (
+    options: TOptions,
+    cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
+) => ?boolean;
+
+export type Interceptor = {|
+    getEntry?: ?InterceptCacheFn<any, any>,
+    fulfillRequest?: ?InterceptFulfillRequestFn<any, any>,
+    shouldRefreshCache?: ?InterceptShouldRefreshCacheFn<any, any>,
+|};
+
+export type InterceptContextData = {
+    [key: string]: Interceptor,
+    ...,
+};
+
 export type Cache = {
     [key: string]: HandlerSubcache,
     ...,

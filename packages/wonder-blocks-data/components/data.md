@@ -17,28 +17,10 @@ data or an error, we re-render.
 ```jsx
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {initializeCache, Data, RequestHandler} from "@khanacademy/wonder-blocks-data";
+import {Data, RequestHandler} from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-
-/**
- * We need some data in the cache for some examples later, and we have to
- * initialize the cache before it is used, so let's do that here.
- *
- * We're assuming we're the first thing to start playing with our data cache.
- */
-try {
-    initializeCache({
-        CACHE_HIT_HANDLER: {
-            '\"DATA\"': { data: "I'm DATA from the cache" },
-            '\"ERROR\"': { error: "I'm an ERROR from the cache" },
-        },
-    });
-} catch (e) {
-    // It's OK, probably hot loaded and tried to init again.
-}
-
 
 class MyValidHandler extends RequestHandler {
     constructor() {
@@ -113,26 +95,10 @@ that method. That way we'd have data ready for us here!
 ```jsx
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {initializeCache, Data, RequestHandler} from "@khanacademy/wonder-blocks-data";
+import {InterceptCache, Data, RequestHandler} from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-
-/**
- * For snapshot tests, we'll be run in an isolated manner, so we need to also
- * make sure our cache is initialized. This will error for the web docs, but
- * enable our snapshot tests to snapshot what we want them to.
- */
-try {
-    initializeCache({
-        CACHE_HIT_HANDLER: {
-            '\"DATA\"': { data: "I'm DATA from the cache" },
-            '\"ERROR\"': { error: "I'm an ERROR from the cache" },
-        },
-    });
-} catch (e) {
-    // It's OK, probably hot loaded and tried to init again.
-}
 
 class MyHandler extends RequestHandler {
     constructor() {
@@ -157,8 +123,14 @@ class MyHandler extends RequestHandler {
 }
 
 const handler = new MyHandler();
+const getEntryInterceptor = function(options) {
+    if (options === "DATA") {
+        return  { data: "I'm DATA from the cache" };
+    }
+    return {error: "I'm an ERROR from the cache" };
+};
 
-<View>
+<InterceptCache handler={handler} getEntry={getEntryInterceptor}>
     <View>
         <Body>This cache has data!</Body>
         <Data handler={handler} options={"DATA"}>
@@ -188,7 +160,7 @@ const handler = new MyHandler();
             }}
         </Data>
     </View>
-</View>
+</InterceptCache>
 ```
 
 #### Server-side behavior

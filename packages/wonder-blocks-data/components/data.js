@@ -1,12 +1,17 @@
 // @flow
 import * as React from "react";
-import {Server} from "@khanacademy/wonder-blocks-core";
 
-import {RequestFulfillment} from "../util/request-fulfillment.js";
 import {ResponseCache} from "../util/response-cache.js";
-import {TrackerContext} from "../util/request-tracking.js";
+import InternalData from "./internal-data.js";
 
-import type {Result, IRequestHandler} from "../util/types.js";
+import InterceptContext from "./intercept-context.js";
+
+import type {
+    CacheEntry,
+    Interceptor,
+    Result,
+    IRequestHandler,
+} from "../util/types.js";
 
 type Props<
     /**
@@ -43,184 +48,102 @@ type Props<
     children: (result: Result<TData>) => React.Node,
 |};
 
-type State<TData> = {|
-    loading: boolean,
-    data: ?TData,
-    error: ?string,
-|};
-
+/**
+ * We have the ability to override handlers and the cache for testing and such
+ * so we export this component, and it then wraps the real data component.
+ */
 export default class Data<TOptions, TData> extends React.Component<
     Props<TOptions, TData>,
-    State<TData>,
 > {
-    _mounted: boolean;
-
-    constructor(props: Props<TOptions, TData>) {
-        super(props);
-
-        this.state = this._buildStateAndfulfillNeeds(props);
-    }
-
-    componentDidMount() {
-        this._mounted = true;
-    }
-
-    shouldComponentUpdate(
-        nextProps: $ReadOnly<Props<TOptions, TData>>,
-        nextState: $ReadOnly<State<TData>>,
-    ): boolean {
-        /**
-         * We only bother updating if our state changed.
-         *
-         * And we only update the state if props changed
-         * or we got new data/error.
-         */
-        if (!this._propsMatch(nextProps)) {
-            const newState = this._buildStateAndfulfillNeeds(nextProps);
-            this.setState(newState);
+    _getHandlerFromInterceptor(
+        interceptor: ?Interceptor,
+    ): IRequestHandler<TOptions, TData> {
+        const {handler} = this.props;
+        if (!interceptor) {
+            return handler;
         }
 
-        return (
-            this.state.loading !== nextState.loading ||
-            this.state.data !== nextState.data ||
-            this.state.error !== nextState.error
-        );
-    }
+        const {fulfillRequest, shouldRefreshCache} = interceptor;
+        const fulfillRequestFn = fulfillRequest
+            ? (options: TOptions): Promise<TData> => {
+                  const interceptedResult = fulfillRequest(options);
+                  return interceptedResult != null
+                      ? interceptedResult
+                      : handler.fulfillRequest(options);
+              }
+            : handler.fulfillRequest;
+        const shouldRefreshCacheFn = shouldRefreshCache
+            ? (
+                  options: TOptions,
+                  cacheEntry: ?$ReadOnly<CacheEntry<TData>>,
+              ): boolean => {
+                  const interceptedResult = shouldRefreshCache(
+                      options,
+                      cacheEntry,
+                  );
+                  return interceptedResult != null
+                      ? interceptedResult
+                      : handler.shouldRefreshCache(options, cacheEntry);
+              }
+            : handler.shouldRefreshCache;
 
-    componentWillUnmount() {
-        this._mounted = false;
-    }
-
-    _propsMatch(otherProps: $Shape<Props<TOptions, TData>>): boolean {
-        const {handler, options} = this.props;
-        const {handler: prevHandler, options: prevOptions} = otherProps;
-        return (
-            handler === prevHandler &&
-            handler.getKey(options) === prevHandler.getKey(prevOptions)
-        );
-    }
-
-    _buildStateAndfulfillNeeds(
-        propsAtFulfillment: $ReadOnly<Props<TOptions, TData>>,
-    ): State<TData> {
-        const {handler, options} = propsAtFulfillment;
-        const {getEntry} = ResponseCache.Default;
-
-        const cachedData = getEntry<TOptions, TData>(handler, options);
-        if (
-            !Server.isServerSide() &&
-            (cachedData == null ||
-                handler.shouldRefreshCache(options, cachedData))
-        ) {
-            /**
-             * We're not on the server, the cache missed, or our handler says
-             * we should refresh the cache.
-             *
-             * Therefore, we need to request data.
-             *
-             * We have to do this here from the constructor so that this
-             * data request is tracked when performing server-side rendering.
-             */
-            RequestFulfillment.Default.fulfill(handler, options)
-                .then((cacheEntry) => {
-                    /**
-                     * We get here, we should have updated the cache.
-                     * However, we need to update the component, but we
-                     * should only do that if the props are the same as they
-                     * were when this was called.
-                     */
-                    if (this._mounted && this._propsMatch(propsAtFulfillment)) {
-                        this.setState({
-                            loading: false,
-                            data: cacheEntry.data,
-                            error: cacheEntry.error,
-                        });
-                    }
-                    return null;
-                })
-                .catch((e) => {
-                    /**
-                     * We should never get here, but if we do.
-                     */
-                    // eslint-disable-next-line no-console
-                    console.error(
-                        `Unexpected error occurred during data fulfillment: ${e}`,
-                    );
-                    if (this._mounted && this._propsMatch(propsAtFulfillment)) {
-                        this.setState({
-                            loading: false,
-                            data: null,
-                            error: typeof e === "string" ? e : e.message,
-                        });
-                    }
-                    return null;
-                });
-        }
-
-        /**
-         * This is the default response for the server and for the initial
-         * client-side render if we have cachedData.
-         *
-         * This ensures we don't make promises we don't want when doing
-         * server-side rendering. Instead, we either have data from the cache
-         * or we don't.
-         */
         return {
-            loading: cachedData == null,
-            data: cachedData && cachedData.data,
-            error: cachedData && cachedData.error,
+            fulfillRequest: fulfillRequestFn,
+            shouldRefreshCache: shouldRefreshCacheFn,
+            getKey: handler.getKey,
+            type: handler.type,
         };
     }
 
-    _resultFromState(): Result<TData> {
-        const {loading, data, error} = this.state;
-
-        if (!loading) {
-            if (data != null) {
-                return {
-                    loading: false,
-                    data,
-                };
-            } else if (error != null) {
-                return {
-                    loading: false,
-                    error,
-                };
-            }
+    _getCacheLookupFnFromInterceptor(
+        interceptor: ?Interceptor,
+    ): $PropertyType<ResponseCache, "getEntry"> {
+        const getEntry = interceptor && interceptor.getEntry;
+        if (!getEntry) {
+            return ResponseCache.Default.getEntry;
         }
 
-        return {
-            loading: true,
+        return <TOptions, TData>(
+            handler: IRequestHandler<TOptions, TData>,
+            options: TOptions,
+        ) => {
+            // 1. Lookup the current cache value.
+            const cacheEntry = ResponseCache.Default.getEntry<TOptions, TData>(
+                handler,
+                options,
+            );
+
+            // 2. See if our interceptor wants to override it.
+            const interceptedData = getEntry(options, cacheEntry);
+
+            // 3. Return the appropriate response.
+            return interceptedData != null ? interceptedData : cacheEntry;
         };
-    }
-
-    _renderContent(result: Result<TData>): React.Node {
-        const {children} = this.props;
-        return children(result);
-    }
-
-    _renderWithTrackingContext(result: Result<TData>): React.Node {
-        return (
-            <TrackerContext.Consumer>
-                {(track) => {
-                    /**
-                     * If data tracking wasn't enabled, don't do it.
-                     */
-                    if (track != null) {
-                        track(this.props.handler, this.props.options);
-                    }
-                    return this._renderContent(result);
-                }}
-            </TrackerContext.Consumer>
-        );
     }
 
     render() {
-        const result = this._resultFromState();
-        if (result.loading && Server.isServerSide()) {
-            return this._renderWithTrackingContext(result);
-        }
-
-        return this._renderContent(result);
+        return (
+            <InterceptContext.Consumer>
+                {(value) => {
+                    const handlerType = this.props.handler.type;
+                    const interceptor = value[handlerType];
+                    const handler = this._getHandlerFromInterceptor(
+                        interceptor,
+                    );
+                    const getEntry = this._getCacheLookupFnFromInterceptor(
+                        interceptor,
+                    );
+                    return (
+                        <InternalData
+                            handler={handler}
+                            options={this.props.options}
+                            getEntry={getEntry}
+                        >
+                            {(result) => this.props.children(result)}
+                        </InternalData>
+                    );
+                }}
+            </InterceptContext.Consumer>
+        );
     }
 }

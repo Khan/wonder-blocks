@@ -124,25 +124,7 @@ exports[`wonder-blocks-data example 1 1`] = `
 `;
 
 exports[`wonder-blocks-data example 2 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "stretch",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "column",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
+Array [
   <div
     className=""
     style={
@@ -194,7 +176,7 @@ exports[`wonder-blocks-data example 2 1`] = `
     >
       I'm DATA from the cache
     </span>
-  </div>
+  </div>,
   <div
     aria-hidden="true"
     className=""
@@ -220,7 +202,7 @@ exports[`wonder-blocks-data example 2 1`] = `
         "zIndex": 0,
       }
     }
-  />
+  />,
   <div
     className=""
     style={
@@ -274,13 +256,230 @@ exports[`wonder-blocks-data example 2 1`] = `
       ERROR: 
       I'm an ERROR from the cache
     </span>
-  </div>
+  </div>,
+]
+`;
+
+exports[`wonder-blocks-data example 3 1`] = `
+Array [
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      This intercepted cache has data!
+    </span>
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Inconsolata, monospace",
+          "fontSize": 17,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      I'm DATA from the cache interceptor
+    </span>
+  </div>,
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 12,
+        "MsFlexPreferredSize": 12,
+        "WebkitFlexBasis": 12,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 12,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 12,
+        "zIndex": 0,
+      }
+    }
+  />,
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "display": "block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      This intercepted cache has error!
+    </span>
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "color": "#d92916",
+          "display": "block",
+          "fontFamily": "Inconsolata, monospace",
+          "fontSize": 17,
+          "fontWeight": 400,
+          "lineHeight": "22px",
+        }
+      }
+    >
+      ERROR: 
+      I'm an ERROR from the cache interceptor
+    </span>
+  </div>,
+]
+`;
+
+exports[`wonder-blocks-data example 4 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    This received intercepted data!
+  </span>
+  If you see this, the example is broken!
 </div>
 `;
 
-exports[`wonder-blocks-data example 3 1`] = `"Sorry, no snapshot for you"`;
+exports[`wonder-blocks-data example 5 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    This re-renders once a second. On the render, the cache is refreshed and so we see an update.
+  </span>
+  If you see this, the example is broken!
+</div>
+`;
 
-exports[`wonder-blocks-data example 4 1`] = `
+exports[`wonder-blocks-data example 6 1`] = `"Sorry, no snapshot for you"`;
+
+exports[`wonder-blocks-data example 7 1`] = `
 <div
   className=""
   style={

@@ -2,9 +2,7 @@
 import {ResponseCache as ResCache} from "./util/response-cache.js";
 import {RequestTracker} from "./util/request-tracking.js";
 
-import type {Cache} from "./util/types.js";
-
-export type {Result, IRequestHandler} from "./util/types.js";
+export type {Cache, CacheEntry, Result, IRequestHandler} from "./util/types.js";
 
 export type ResponseCache = $ReadOnly<Cache>;
 export const initializeCache = (source: ResponseCache): void =>
@@ -15,3 +13,5 @@ export const fulfillAllDataRequests = (): Promise<ResponseCache> =>
 export {default as RequestHandler} from "./util/request-handler.js";
 export {default as TrackData} from "./components/track-data.js";
 export {default as Data} from "./components/data.js";
+export {default as InterceptData} from "./components/intercept-data.js";
+export {default as InterceptCache} from "./components/intercept-cache.js";

@@ -11,40 +11,21 @@ jest.mock("react-dom");
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View, Server} from "@khanacademy/wonder-blocks-core";
 import {
-    initializeCache,
     Data,
     RequestHandler,
+    InterceptCache,
+    InterceptData,
     TrackData,
     fulfillAllDataRequests,
 } from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 import Button from "@khanacademy/wonder-blocks-button";
 
 describe("wonder-blocks-data", () => {
     it("example 1", () => {
-        /**
-         * We need some data in the cache for some examples later, and we have to
-         * initialize the cache before it is used, so let's do that here.
-         *
-         * We're assuming we're the first thing to start playing with our data cache.
-         */
-        try {
-            initializeCache({
-                CACHE_HIT_HANDLER: {
-                    '"DATA"': {
-                        data: "I'm DATA from the cache",
-                    },
-                    '"ERROR"': {
-                        error: "I'm an ERROR from the cache",
-                    },
-                },
-            });
-        } catch (e) {
-            // It's OK, probably hot loaded and tried to init again.
-        }
-
         class MyValidHandler extends RequestHandler {
             constructor() {
                 super("CACHE_MISS_HANDLER_VALID");
@@ -126,26 +107,6 @@ describe("wonder-blocks-data", () => {
     });
 
     it("example 2", () => {
-        /**
-         * For snapshot tests, we'll be run in an isolated manner, so we need to also
-         * make sure our cache is initialized. This will error for the web docs, but
-         * enable our snapshot tests to snapshot what we want them to.
-         */
-        try {
-            initializeCache({
-                CACHE_HIT_HANDLER: {
-                    '"DATA"': {
-                        data: "I'm DATA from the cache",
-                    },
-                    '"ERROR"': {
-                        error: "I'm an ERROR from the cache",
-                    },
-                },
-            });
-        } catch (e) {
-            // It's OK, probably hot loaded and tried to init again.
-        }
-
         class MyHandler extends RequestHandler {
             constructor() {
                 super("CACHE_HIT_HANDLER");
@@ -169,8 +130,21 @@ describe("wonder-blocks-data", () => {
         }
 
         const handler = new MyHandler();
+
+        const getEntryInterceptor = function(options) {
+            if (options === "DATA") {
+                return {
+                    data: "I'm DATA from the cache",
+                };
+            }
+
+            return {
+                error: "I'm an ERROR from the cache",
+            };
+        };
+
         const example = (
-            <View>
+            <InterceptCache handler={handler} getEntry={getEntryInterceptor}>
                 <View>
                     <Body>This cache has data!</Body>
                     <Data handler={handler} options={"DATA"}>
@@ -204,13 +178,224 @@ describe("wonder-blocks-data", () => {
                         }}
                     </Data>
                 </View>
-            </View>
+            </InterceptCache>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it("example 3", () => {
+        class MyHandler extends RequestHandler {
+            constructor() {
+                super("INTERCEPT_CACHE_HANDLER");
+            }
+            /**
+             * fulfillRequest should not get called as we already have data cached.
+             */
+
+            fulfillRequest(options) {
+                throw new Error(
+                    "If you're seeing this error, the examples are broken.",
+                );
+            }
+
+            shouldRefreshCache(options, cachedEntry) {
+                /**
+                 * For our purposes, the cache never needs a refresh.
+                 */
+                return false;
+            }
+        }
+
+        const handler = new MyHandler();
+
+        const getEntryIntercept = function(options) {
+            if (options === "ERROR") {
+                return {
+                    error: "I'm an ERROR from the cache interceptor",
+                };
+            }
+
+            return {
+                data: "I'm DATA from the cache interceptor",
+            };
+        };
+
+        const example = (
+            <InterceptCache handler={handler} getEntry={getEntryIntercept}>
+                <View>
+                    <Body>This intercepted cache has data!</Body>
+                    <Data handler={handler} options={"DATA"}>
+                        {({loading, data}) => {
+                            if (loading) {
+                                return "If you see this, the example is broken!";
+                            }
+
+                            return <BodyMonospace>{data}</BodyMonospace>;
+                        }}
+                    </Data>
+                </View>
+                <Strut size={Spacing.small} />
+                <View>
+                    <Body>This intercepted cache has error!</Body>
+                    <Data handler={handler} options={"ERROR"}>
+                        {({loading, error}) => {
+                            if (loading) {
+                                return "If you see this, the example is broken!";
+                            }
+
+                            return (
+                                <BodyMonospace
+                                    style={{
+                                        color: Color.red,
+                                    }}
+                                >
+                                    ERROR: {error}
+                                </BodyMonospace>
+                            );
+                        }}
+                    </Data>
+                </View>
+            </InterceptCache>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 4", () => {
+        class MyHandler extends RequestHandler {
+            constructor() {
+                super("INTERCEPT_DATA_HANDLER1");
+            }
+
+            fulfillRequest(options) {
+                return Promise.reject(new Error("You should not see this!"));
+            }
+        }
+
+        const handler = new MyHandler();
+
+        const fulfillRequestInterceptor = function(options) {
+            if (options === "DATA") {
+                return Promise.resolve("INTERCEPTED DATA!");
+            }
+
+            return null;
+        };
+
+        const example = (
+            <InterceptData
+                handler={handler}
+                fulfillRequest={fulfillRequestInterceptor}
+            >
+                <View>
+                    <Body>This received intercepted data!</Body>
+                    <Data handler={handler} options={"DATA"}>
+                        {({loading, data}) => {
+                            if (loading) {
+                                return "If you see this, the example is broken!";
+                            }
+
+                            return <BodyMonospace>{data}</BodyMonospace>;
+                        }}
+                    </Data>
+                </View>
+            </InterceptData>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 5", () => {
+        class MyHandler extends RequestHandler {
+            constructor() {
+                super("INTERCEPT_DATA_HANDLER2");
+                let _counter = 0;
+
+                this.fulfillRequest = function(options) {
+                    return Promise.resolve(`DATA ${_counter++}`);
+                };
+            }
+
+            shouldRefreshData(options) {
+                return false;
+            }
+        }
+
+        const handler = new MyHandler();
+
+        const shouldRefreshCacheInterceptor = function(options) {
+            if (options === "DATA") {
+                return true;
+            }
+
+            return null;
+        };
+
+        class SchedulableExample extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    stamp: Date.now(),
+                };
+            }
+
+            componentDidMount() {
+                this.props.schedule.interval(
+                    () =>
+                        this.setState({
+                            stamp: Date.now(),
+                        }),
+                    1000,
+                );
+            }
+
+            render() {
+                /**
+                 * The key on the View is what causes the re-render.
+                 *
+                 * The re-render causes the `Data` component to render again.
+                 * That causes it to check if it should refresh the cache.
+                 * and that in turn causes a new data request that updates the value
+                 * being rendered.
+                 *
+                 * Without the key to cause the re-render, no additional request would
+                 * be made.
+                 */
+                return (
+                    <InterceptData
+                        handler={handler}
+                        shouldRefreshCache={shouldRefreshCacheInterceptor}
+                    >
+                        <View key={this.state.stamp}>
+                            <Body>
+                                This re-renders once a second. On the render,
+                                the cache is refreshed and so we see an update.
+                            </Body>
+                            <Data handler={handler} options={"DATA"}>
+                                {({loading, data}) => {
+                                    if (loading) {
+                                        return "If you see this, the example is broken!";
+                                    }
+
+                                    return (
+                                        <BodyMonospace>{data}</BodyMonospace>
+                                    );
+                                }}
+                            </Data>
+                        </View>
+                    </InterceptData>
+                );
+            }
+        }
+
+        const Example = withActionScheduler(SchedulableExample);
+        const example = <Example />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 6", () => {
         class ErrorBoundary extends React.Component {
             constructor(props) {
                 super(props);
@@ -257,7 +442,7 @@ describe("wonder-blocks-data", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 4", () => {
+    it("example 7", () => {
         class MyPretendHandler extends RequestHandler {
             constructor() {
                 super("MY_PRETEND_HANDLER");
