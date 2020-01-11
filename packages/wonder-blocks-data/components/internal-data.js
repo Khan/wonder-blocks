@@ -150,26 +150,45 @@ export default class InternalData<TOptions, TData> extends React.Component<
         };
     }
 
-    _resultFromState(): Result<TData> {
+    _resultFromState(): [
+        Result<TData>,
+        ?$ReadOnly<{|errorAccessed: boolean|}>,
+    ] {
         const {loading, data, error} = this.state;
 
         if (!loading) {
             if (data != null) {
-                return {
-                    loading: false,
-                    data,
-                };
+                return [
+                    {
+                        loading: false,
+                        data,
+                    },
+                    undefined,
+                ];
             } else if (error != null) {
-                return {
-                    loading: false,
-                    error,
+                const auditLog = {
+                    errorAccessed: false,
                 };
+
+                return [
+                    {
+                        loading: false,
+                        get error() {
+                            auditLog.errorAccessed = true;
+                            return error;
+                        },
+                    },
+                    auditLog,
+                ];
             }
         }
 
-        return {
-            loading: true,
-        };
+        return [
+            {
+                loading: true,
+            },
+            undefined,
+        ];
     }
 
     _renderContent(result: Result<TData>): React.Node {
@@ -193,12 +212,23 @@ export default class InternalData<TOptions, TData> extends React.Component<
         );
     }
 
-    render() {
-        const result = this._resultFromState();
+    _renderResult(result: Result<TData>): React.Node {
         if (result.loading && Server.isServerSide()) {
             return this._renderWithTrackingContext(result);
         }
 
         return this._renderContent(result);
+    }
+
+    render() {
+        const [result, auditLog] = this._resultFromState();
+        const rendered = this._renderResult(result);
+        if (auditLog && auditLog.errorAccessed === false) {
+            const error = result.error || "";
+            throw new Error(
+                `Data request resulted in an error but error was ignored. ${error}`,
+            );
+        }
+        return rendered;
     }
 }

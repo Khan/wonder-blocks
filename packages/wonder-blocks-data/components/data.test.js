@@ -145,7 +145,11 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
-                const fakeChildrenFn = jest.fn(() => null);
+                /**
+                 * Need to dereference error or our auditing of accessing error
+                 * will fail the test.
+                 */
+                const fakeChildrenFn = jest.fn((result) => result.error || "");
 
                 // Act
                 mount(
@@ -212,7 +216,11 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
-                const fakeChildrenFn = jest.fn(() => null);
+                /**
+                 * Need to dereference error or our auditing of accessing error
+                 * will fail the test.
+                 */
+                const fakeChildrenFn = jest.fn((result) => result.error || "");
                 const consoleSpy = jest
                     .spyOn(console, "error")
                     .mockImplementation(() => {
@@ -260,7 +268,11 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "TYPE2",
                 };
-                const fakeChildrenFn = jest.fn(() => null);
+                /**
+                 * Need to dereference error or our auditing of accessing error
+                 * will fail the test.
+                 */
+                const fakeChildrenFn = jest.fn((result) => result.error || "");
                 const wrapper = mount(
                     <Data handler={fakeHandler} options={"options"}>
                         {fakeChildrenFn}
@@ -387,7 +399,13 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                     };
-                    const fakeChildrenFn = jest.fn(() => null);
+                    /**
+                     * Need to dereference error or our auditing of accessing error
+                     * will fail the test.
+                     */
+                    const fakeChildrenFn = jest.fn(
+                        (result) => result.error || "",
+                    );
                     const fakeGetEntryFn = jest.fn(() => ({
                         error: "BOOMY BOOM!",
                     }));
@@ -666,7 +684,13 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                     };
-                    const fakeChildrenFn = jest.fn(() => null);
+                    /**
+                     * Need to dereference error or our auditing of accessing error
+                     * will fail the test.
+                     */
+                    const fakeChildrenFn = jest.fn(
+                        (result) => result.error || "",
+                    );
                     const fakeGetEntryFn = jest.fn(() => ({
                         error: "BOOMY BOOM!",
                     }));
@@ -920,7 +944,13 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                     };
-                    const fakeChildrenFn = jest.fn(() => null);
+                    /**
+                     * Need to dereference error or our auditing of accessing error
+                     * will fail the test.
+                     */
+                    const fakeChildrenFn = jest.fn(
+                        (result) => result.error || "",
+                    );
                     const fakeGetEntryFn = jest.fn(() => ({
                         error: "BOOMY BOOM!",
                     }));
@@ -1163,7 +1193,11 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
-                const fakeChildrenFn = jest.fn(() => null);
+                /**
+                 * Need to dereference error or our auditing of accessing error
+                 * will fail the test.
+                 */
+                const fakeChildrenFn = jest.fn((result) => result.error || "");
 
                 // Act
                 ReactDOMServer.renderToString(
@@ -1279,7 +1313,13 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                     };
-                    const fakeChildrenFn = jest.fn(() => null);
+                    /**
+                     * Need to dereference error or our auditing of accessing error
+                     * will fail the test.
+                     */
+                    const fakeChildrenFn = jest.fn(
+                        (result) => result.error || "",
+                    );
                     const fakeGetEntryFn = jest.fn(() => ({
                         error: "BOOMY BOOM!",
                     }));

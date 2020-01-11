@@ -175,7 +175,11 @@ describe("InternalData", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
-                const fakeChildrenFn = jest.fn(() => null);
+                /**
+                 * Need to dereference error or our auditing of accessing error
+                 * will fail the test.
+                 */
+                const fakeChildrenFn = jest.fn((result) => result.error || "");
 
                 // Act
                 mount(
@@ -250,7 +254,11 @@ describe("InternalData", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
-                const fakeChildrenFn = jest.fn(() => null);
+                /**
+                 * Need to dereference error or our auditing of accessing error
+                 * will fail the test.
+                 */
+                const fakeChildrenFn = jest.fn((result) => result.error || "");
 
                 // Act
                 mount(
@@ -294,7 +302,11 @@ describe("InternalData", () => {
                     shouldRefreshCache: () => false,
                     type: "TYPE2",
                 };
-                const fakeChildrenFn = jest.fn(() => null);
+                /**
+                 * Need to dereference error or our auditing of accessing error
+                 * will fail the test.
+                 */
+                const fakeChildrenFn = jest.fn((result) => result.error || "");
                 const wrapper = mount(
                     <InternalData
                         handler={fakeHandler}
@@ -732,7 +744,11 @@ describe("InternalData", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                 };
-                const fakeChildrenFn = jest.fn(() => null);
+                /**
+                 * Need to make sure we access the error or we're going to get
+                 * yelled at.
+                 */
+                const fakeChildrenFn = jest.fn((result) => result.error || "");
                 const getEntryFn = jest.fn(() => ({
                     error: "OH NO! IT GO BOOM",
                 }));
