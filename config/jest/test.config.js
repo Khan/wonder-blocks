@@ -22,6 +22,7 @@ module.exports = {
     collectCoverageFrom: [
         "packages/**/*.js",
         "!packages/**/*.vite_test.js",
+        "!packages/**/*.stories.js",
         "!packages/**/dist/**/*.js",
         "!<rootDir>/node_modules/",
         "!packages/**/node_modules/",
