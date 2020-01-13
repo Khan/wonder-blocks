@@ -45,7 +45,7 @@ export const basicButtons = () => (
 );
 
 export const darkBackgroundButtons = () => (
-    <View>
+    <View style={{backgroundColor: Color.darkBlue}}>
         <View style={{flexDirection: "row"}}>
             <Button light={true}>Hello, world!</Button>
             <Strut size={16} />
@@ -90,7 +90,7 @@ export const darkBackgroundButtons = () => (
 
 darkBackgroundButtons.story = {
     parameters: {
-        backgrounds: [{name: "red", value: Color.darkBlue, default: true}],
+        backgrounds: [{name: "darkBlue", value: Color.darkBlue, default: true}],
     },
 };
 
