@@ -2,6 +2,7 @@ node_modules
 coverage
 flow-coverage
 dist
+storybook-static
 !.vscode
 styleguide.prod.config.js
 .DS_Store
