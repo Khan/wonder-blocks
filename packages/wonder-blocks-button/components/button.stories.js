@@ -90,7 +90,7 @@ export const darkBackgroundButtons = () => (
 
 darkBackgroundButtons.story = {
     parameters: {
-        backgrounds: [{name: "red", value: Color.darkBlue, default: true}],
+        backgrounds: [{name: "darkBlue", value: Color.darkBlue, default: true}],
     },
 };
 
