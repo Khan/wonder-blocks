@@ -45,3 +45,9 @@ Figma](https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks) or
 moved to Figma.  Please check Figma first — if a design isn't there please check
 Zeplin.  Moving forward we will be transitioning away from Zeplin, but in the
 interim you may need to check both.
+
+## Thanks
+
+<a href="https://www.chromaticqa.com/"><img src="https://cdn-images-1.medium.com/letterbox/147/36/50/50/1*oHHjTjInDOBxIuYHDY2gFA.png?source=logoAvatar-d7276495b101---37816ec27d7a" width="120"/></a>
+
+Thanks to [Chromatic](https://www.chromaticqa.com/) for providing the visual testing platform that help us catch unexpected changes on time.
