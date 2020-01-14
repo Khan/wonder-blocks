@@ -196,7 +196,7 @@ withOpener.story = {
             defaultViewport: null,
         },
         chromatic: {
-            // Don't take screenshots of this story
+            // Don't take screenshots of this story since it would only show a button.
             disable: true,
         },
     },
