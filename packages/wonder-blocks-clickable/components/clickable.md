@@ -17,17 +17,21 @@ const styles = StyleSheet.create({
     pressed: {
         color: Color.blue,
     },
+    focused: {
+        outline: `solid 4px ${Color.offBlack64}`,
+    },
 });
 
 <View>
     <Clickable onClick={() => alert("You clicked some text!")}>
         {
-            eventState =>
-            <View style={[eventState.hovered && styles.hovered]}>
-                <Body style={[
-                    eventState.hovered && styles.hovered,
-                    eventState.pressed && styles.pressed
-                    ]}>
+            ({hovered, focused, pressed}) =>
+            <View style={[
+                hovered && styles.hovered,
+                focused && styles.focused,
+                pressed && styles.pressed,
+            ]}>
+                <Body>
                     This text is clickable!
                 </Body>
             </View>

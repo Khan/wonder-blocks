@@ -12,10 +12,11 @@ import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     /**
-     * The child of Clickable must be a funciton which returns the component
-     * which should be made Clickable.
+     * The child of Clickable must be a function which returns the component
+     * which should be made Clickable.  The function is passed an object with
+     * three boolean properties: hovered, focused, and pressed.
      */
-    children: (eventState: ClickableState) => React.Node,
+    children: (ClickableState) => React.Node,
 
     /**
      * An onClick function which Clickable can execute when clicked
@@ -73,7 +74,17 @@ const StyledLink = addStyle<typeof Link>(Link);
  * Example usage:
  * ```jsx
  * <Clickable onClick={() => alert("You clicked me!")}>
- *     {(eventState) => <h1> Click Me! </h1>}
+ *     {({hovered, focused, pressed}) =>
+ *         <div
+ *             style={[
+ *                 hovered && styles.hovered,
+ *                 focused && styles.focused,
+ *                 pressed && styles.pressed,
+ *             ]}
+ *         >
+ *             Click Me!
+ *         </div>
+ *     }
  * </Clickable>
  * ```
  */
