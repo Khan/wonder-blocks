@@ -26,20 +26,22 @@ describe("wonder-blocks-clickable", () => {
             pressed: {
                 color: Color.blue,
             },
+            focused: {
+                outline: `solid 4px ${Color.offBlack64}`,
+            },
         });
         const example = (
             <View>
                 <Clickable onClick={() => alert("You clicked some text!")}>
-                    {(eventState) => (
-                        <View style={[eventState.hovered && styles.hovered]}>
-                            <Body
-                                style={[
-                                    eventState.hovered && styles.hovered,
-                                    eventState.pressed && styles.pressed,
-                                ]}
-                            >
-                                This text is clickable!
-                            </Body>
+                    {({hovered, focused, pressed}) => (
+                        <View
+                            style={[
+                                hovered && styles.hovered,
+                                focused && styles.focused,
+                                pressed && styles.pressed,
+                            ]}
+                        >
+                            <Body>This text is clickable!</Body>
                         </View>
                     )}
                 </Clickable>
