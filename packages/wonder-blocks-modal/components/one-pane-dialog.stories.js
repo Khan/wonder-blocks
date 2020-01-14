@@ -1,6 +1,8 @@
 /* eslint-disable no-alert */
 // @flow
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
+
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -73,7 +75,27 @@ export const simple = () => {
     );
 };
 
-export const headerAndFooter = () => {
+const styles = StyleSheet.create({
+    above: {
+        background: "url(/modal-above.png)",
+        width: 874,
+        height: 551,
+        position: "absolute",
+        top: 40,
+        left: -140,
+    },
+
+    below: {
+        background: "url(/modal-below.png)",
+        width: 868,
+        height: 521,
+        position: "absolute",
+        top: -100,
+        left: -300,
+    },
+});
+
+export const kitchenSink = () => {
     const modal = (
         <OnePaneDialog
             title="Single-line title"
@@ -102,6 +124,8 @@ export const headerAndFooter = () => {
             }
             footer={<Button>Button (no-op)</Button>}
             closeButtonVisible={true}
+            above={<View style={styles.above} />}
+            below={<View style={styles.below} />}
         />
     );
 
