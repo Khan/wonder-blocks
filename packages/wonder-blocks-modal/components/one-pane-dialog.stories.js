@@ -19,7 +19,7 @@ const customViewports = {
     tablet: {
         name: "tablet",
         styles: {
-            width: "650px",
+            width: "640px",
             height: "960px",
         },
     },
@@ -38,6 +38,9 @@ export default {
         viewport: {
             viewports: customViewports,
             defaultViewport: "desktop",
+        },
+        chromatic: {
+            viewports: [320, 640, 1024],
         },
     },
 };
