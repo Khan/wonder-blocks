@@ -10,6 +10,8 @@ import Button from "@khanacademy/wonder-blocks-button";
 import OnePaneDialog from "./one-pane-dialog/one-pane-dialog.js";
 import ModalLauncher from "./modal-launcher.js";
 
+import type {ModalElement} from "../util/types.js";
+
 const customViewports = {
     phone: {
         name: "phone",
@@ -137,4 +139,65 @@ export const kitchenSink = () => {
             onClose={() => alert("This would close the modal.")}
         />
     );
+};
+
+export const withOpener = () => {
+    type MyModalProps = {|
+        closeModal: () => void,
+    |};
+
+    const MyModal = ({closeModal}: MyModalProps): ModalElement => (
+        <OnePaneDialog
+            title="Single-line title"
+            subtitle="Subtitle that provides additional context to the title"
+            testId="one-pane-dialog-above"
+            content={
+                <View>
+                    <Body>
+                        {
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
+                        }
+                    </Body>
+                    <br />
+                    <Body>
+                        {
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
+                        }
+                    </Body>
+                    <br />
+                    <Body>
+                        {
+                            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est."
+                        }
+                    </Body>
+                </View>
+            }
+            footer={<Button>Button (no-op)</Button>}
+            closeButtonVisible={true}
+            above={<View style={styles.above} />}
+            below={<View style={styles.below} />}
+        />
+    );
+
+    return (
+        <ModalLauncher
+            modal={MyModal}
+            testId="modal-launcher-default-example"
+            onClose={() => alert("This would close the modal.")}
+        >
+            {({openModal}) => <Button onClick={openModal}>Click me</Button>}
+        </ModalLauncher>
+    );
+};
+
+withOpener.story = {
+    parameters: {
+        viewport: {
+            defaultViewport: null,
+        },
+        chromatic: {
+            // Don't take screenshots of this story
+            disable: true,
+        },
+    },
 };
