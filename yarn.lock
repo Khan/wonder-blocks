@@ -13179,9 +13179,9 @@ react-sizeme@^2.6.7:
     throttle-debounce "^2.1.0"
 
 react-styleguidist@^10.0.0:
-  version "10.5.0"
-  resolved "https://registry.yarnpkg.com/react-styleguidist/-/react-styleguidist-10.5.0.tgz#a23c31c0606d18a88c6e4f6d35a992a6a5343185"
-  integrity sha512-J5uWMGZGESHHDedBjPyA8TPQZmGyVaLTexqOse/Uebny2JLyV26jpXPp9Rm5xFhbAXWgBqO0b9IWO3onoolYoA==
+  version "10.6.0"
+  resolved "https://registry.yarnpkg.com/react-styleguidist/-/react-styleguidist-10.6.0.tgz#10ca4b3dba22b4c40045633d7c1fddecd6f7ae67"
+  integrity sha512-vpuAOZkgVPGc2Oh/Q/TJ+RI7HVAL+EtcEKORCr9KDJ7nnTS4CfpbJ4AsyVVx9etEnMc5cVylvXw5TvGVl93M/A==
   dependencies:
     "@vxna/mini-html-webpack-template" "^1.0.0"
     acorn "~6.4.0"
