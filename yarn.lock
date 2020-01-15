@@ -350,12 +350,12 @@
     "@babel/plugin-syntax-dynamic-import" "^7.8.0"
 
 "@babel/plugin-proposal-export-default-from@^7.0.0":
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-export-default-from/-/plugin-proposal-export-default-from-7.8.0.tgz#9c103163f88afdc8f4ff356660ea12bb1747795b"
-  integrity sha512-k0HergJLYZ+frWmRL0OSc1QcRa5GDApfI+U4rH3COh9u3Rf+BNzIeLYJDvUoA05xsJ0rWKW873RtRwQ3dTtm4w==
+  version "7.8.3"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-proposal-export-default-from/-/plugin-proposal-export-default-from-7.8.3.tgz#4cb7c2fdeaed490b60d9bfd3dc8a20f81f9c2e7c"
+  integrity sha512-PYtv2S2OdCdp7GSPDg5ndGZFm9DmWFvuLoS5nBxZCgOBggluLnhTScspJxng96alHQzPyrrHxvC9/w4bFuspeA==
   dependencies:
-    "@babel/helper-plugin-utils" "^7.8.0"
-    "@babel/plugin-syntax-export-default-from" "^7.8.0"
+    "@babel/helper-plugin-utils" "^7.8.3"
+    "@babel/plugin-syntax-export-default-from" "^7.8.3"
 
 "@babel/plugin-proposal-json-strings@^7.7.4", "@babel/plugin-proposal-json-strings@^7.8.0":
   version "7.8.0"
@@ -419,12 +419,12 @@
   dependencies:
     "@babel/helper-plugin-utils" "^7.8.0"
 
-"@babel/plugin-syntax-export-default-from@^7.8.0":
-  version "7.8.0"
-  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-export-default-from/-/plugin-syntax-export-default-from-7.8.0.tgz#ed105a660827d01d8a7705aedff4c1d96c68cb0d"
-  integrity sha512-ru0hrZCPALuFU26mcYgiP2rhoTR6LVqMoFZCAKwbPUXlxLxkzSTCkd0eWmZMU+s17IP7fMrIieaRImLl/qL7Tw==
+"@babel/plugin-syntax-export-default-from@^7.8.3":
+  version "7.8.3"
+  resolved "https://registry.yarnpkg.com/@babel/plugin-syntax-export-default-from/-/plugin-syntax-export-default-from-7.8.3.tgz#f1e55ce850091442af4ba9c2550106035b29d678"
+  integrity sha512-a1qnnsr73KLNIQcQlcQ4ZHxqqfBKM6iNQZW2OMTyxNbA2WC7SHWHtGVpFzWtQAuS2pspkWVzdEBXXx8Ik0Za4w==
   dependencies:
-    "@babel/helper-plugin-utils" "^7.8.0"
+    "@babel/helper-plugin-utils" "^7.8.3"
 
 "@babel/plugin-syntax-flow@^7.8.3":
   version "7.8.3"
