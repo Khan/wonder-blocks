@@ -30,6 +30,7 @@
     "start": "concurrently --kill-others-on-fail \"yarn run styleguidist\" \"webpack --config build-settings/webpack.config.js -w\" \"rollup -c build-settings/rollup.config.js -w\"",
     "test:common": "yarn run build:all && yarn run lint && yarn run alex && yarn run gen-snapshot-tests && yarn run flow",
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
+    "test:fast": "yarn build:cjs && yarn jest --findRelatedTests `git diff --cached --name-only --diff-filter=ACM | grep '\\.js$'`",
     "test": "yarn run test:common && yarn run jest",
     "watch:cjs": "webpack --config build-settings/webpack.config.js -w"
   },
@@ -110,8 +111,8 @@
   ],
   "pre-commit": [
     "lint",
-    "test",
     "git-add-snapshot-tests",
+    "test:fast",
     "pretty-quick"
   ]
 }
