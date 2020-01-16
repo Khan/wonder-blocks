@@ -64,7 +64,7 @@ export const buttonsWithKnobs = () => {
     );
 };
 
-withKnobs.story = {
+buttonsWithKnobs.story = {
     parameters: {
         options: {
             showAddonPanel: true,
