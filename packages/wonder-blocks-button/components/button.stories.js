@@ -1,12 +1,76 @@
 // @flow
 import React from "react";
+import {action} from "@storybook/addon-actions";
+import {withKnobs, text, radios, object, boolean} from "@storybook/addon-knobs";
+import {jsxDecorator} from "storybook-addon-jsx";
+
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
 
 import Button from "./button.js";
 
-export default {title: "Button"};
+export default {
+    title: "Button",
+    decorators: [withKnobs, jsxDecorator],
+
+    parameters: {
+        options: {
+            showAddonPanel: false,
+        },
+    },
+};
+
+export const buttonWithKnobs = () => {
+    const children = text("children", "Hello, world!");
+    const kind = radios(
+        "kind",
+        {
+            "primary (default)": "primary",
+            secondary: "secondary",
+            tertiary: "tertiary",
+        },
+        "primary",
+    );
+    const color = radios(
+        "color",
+        {
+            "default (default)": "default",
+            destructive: "destructive",
+        },
+        "default",
+    );
+    const size = radios(
+        "size",
+        {"medium (default)": "medium", small: "small"},
+        "medium",
+    );
+    const light = boolean("light", false);
+    const disabled = boolean("disabled", false);
+    const style = object("style", {maxWidth: 200});
+
+    return (
+        <Button
+            kind={kind}
+            color={color}
+            size={size}
+            light={light}
+            disabled={disabled}
+            style={style}
+            onClick={action("onClick")}
+        >
+            {children}
+        </Button>
+    );
+};
+
+buttonWithKnobs.story = {
+    parameters: {
+        options: {
+            showAddonPanel: true,
+        },
+    },
+};
 
 export const basicButtons = () => (
     <View>
