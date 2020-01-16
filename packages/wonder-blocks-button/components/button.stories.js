@@ -21,7 +21,7 @@ export default {
     },
 };
 
-export const buttonWithKnobs = () => {
+export const buttonsWithKnobs = () => {
     const children = text("children", "Hello, world!");
     const kind = radios(
         "kind",
@@ -64,10 +64,14 @@ export const buttonWithKnobs = () => {
     );
 };
 
-buttonWithKnobs.story = {
+withKnobs.story = {
     parameters: {
         options: {
             showAddonPanel: true,
+        },
+        chromatic: {
+            // We already have screenshots of other stories that cover more of the button states
+            disable: true,
         },
     },
 };
