@@ -4,7 +4,7 @@ import ReactDOM from "react-dom";
 import {VariableSizeList as List} from "react-window";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
-import type {WithActionScheduler} from "@khanacademy/wonder-blocks-timing";
+import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 
 import DropdownVirtualizedItem from "./dropdown-core-virtualized-item.js";
 import SearchTextInput from "./search-text-input.js";
@@ -18,7 +18,7 @@ import {
     SEPARATOR_ITEM_HEIGHT,
 } from "../util/constants.js";
 
-type OwnProps = {|
+type Props = {|
     /**
      * The complete list of items that will be virtualized.
      */
@@ -36,9 +36,9 @@ type OwnProps = {|
      * An optional fixed width that will be passed to the react-window instance
      */
     width?: ?number,
-|};
 
-type Props = WithActionScheduler<OwnProps>;
+    ...WithActionSchedulerProps,
+|};
 
 type State = {|
     /**
@@ -236,4 +236,4 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
     }
 }
 
-export default withActionScheduler<OwnProps>(DropdownCoreVirtualized);
+export default withActionScheduler(DropdownCoreVirtualized);
