@@ -18,11 +18,9 @@
     "flow": "flow",
     "gen-snapshot-tests": "node utils/gen-snapshot-tests.js && prettier --write packages/*/generated-snapshot.test.js",
     "gen-styleguide-prod-config": "node utils/gen-styleguide-prod-config.js && prettier --write styleguide.prod.config.js",
-    "git-add-snapshot-tests": "git add packages/*/generated-snapshot.test.js",
     "jest": "jest --config config/jest/test.config.js",
     "lint:watch": "esw --watch --config ./eslint/eslintrc packages",
     "lint": "eslint --config .eslintrc.js packages",
-    "pretty-quick": "pretty-quick --staged",
     "publish": "node utils/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:cjs && yarn build:es6 && lerna publish",
     "start:prod": "yarn run build:styleguidist && yarn run styleguidist --config styleguide.prod.config.js",
     "start-storybook": "start-storybook -s ./static",
@@ -30,7 +28,6 @@
     "start": "concurrently --kill-others-on-fail \"yarn run styleguidist\" \"webpack --config build-settings/webpack.config.js -w\" \"rollup -c build-settings/rollup.config.js -w\"",
     "test:common": "yarn run build:all && yarn run lint && yarn run alex && yarn run gen-snapshot-tests && yarn run flow",
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
-    "test:fast": "yarn build:cjs && yarn jest --findRelatedTests `git diff --cached --name-only --diff-filter=ACM | grep '\\.js$'`",
     "test": "yarn run test:common && yarn run jest",
     "watch:cjs": "webpack --config build-settings/webpack.config.js -w"
   },
@@ -77,8 +74,8 @@
     "jest": "^24.8.0",
     "jest-enzyme": "^7.0.2",
     "lerna": "^3.16.5",
+    "lint-staged": "^9.5.0",
     "marked": "0.7.0",
-    "pre-commit": "^1.2.2",
     "prettier": "^1.17.1",
     "pretty-quick": "^2.0.0",
     "react-docgen": "^5.0.0",
@@ -109,10 +106,20 @@
     "packages/*",
     "build-settings"
   ],
-  "pre-commit": [
-    "lint",
-    "git-add-snapshot-tests",
-    "test:fast",
-    "pretty-quick"
-  ]
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.md": [
+      "yarn gen-snapshot-tests",
+      "git add packages/*/generated-snapshot.test.js"
+    ],
+    "*.js": [
+      "eslint --config .eslintrc.js",
+      "yarn jest --findRelatedTests",
+      "pretty-quick"
+    ]
+  }
 }
