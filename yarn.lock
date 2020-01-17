@@ -2016,16 +2016,16 @@
     util-deprecate "^1.0.2"
 
 "@storybook/addon-viewport@^5.3.2":
-  version "5.3.4"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-viewport/-/addon-viewport-5.3.4.tgz#2849fdaf16c67437853771c509a784beb4e3e8b8"
-  integrity sha512-HHUOno7WWY0z36h5EcGK2eAtyEoo7/0r8dMWIhTzQ1fCPbtuoZQlNPeREyd9j7yb394SjbbMzHjjsLAhYg1+1Q==
+  version "5.3.6"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-viewport/-/addon-viewport-5.3.6.tgz#cf41f616eb2784004bcc790f1cdf570f2d947798"
+  integrity sha512-cWLVovkhf1dijQVafU9OMXQLVhbldLxbCRjtH2KLlxM+jt5T5Y/44VDnCwP3BFcuIyyvw+llGfVawxmSzLI11w==
   dependencies:
-    "@storybook/addons" "5.3.4"
-    "@storybook/api" "5.3.4"
-    "@storybook/client-logger" "5.3.4"
-    "@storybook/components" "5.3.4"
-    "@storybook/core-events" "5.3.4"
-    "@storybook/theming" "5.3.4"
+    "@storybook/addons" "5.3.6"
+    "@storybook/api" "5.3.6"
+    "@storybook/client-logger" "5.3.6"
+    "@storybook/components" "5.3.6"
+    "@storybook/core-events" "5.3.6"
+    "@storybook/theming" "5.3.6"
     core-js "^3.0.1"
     global "^4.3.2"
     memoizerific "^1.11.3"
