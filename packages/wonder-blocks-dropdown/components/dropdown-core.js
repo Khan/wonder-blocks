@@ -15,7 +15,7 @@ import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {WithActionScheduler} from "@khanacademy/wonder-blocks-timing";
+import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 // NOTE(jeff): Here we share some code for use with PopperJS. Long term,
 // we should either contribute this code to the PopperJS component, or its
 // own non-wonder-blocks package.
@@ -59,7 +59,7 @@ type DefaultProps = {|
     light: boolean,
 |};
 
-type OwnProps = {|
+type Props = {|
     ...DefaultProps,
     /**
      * Items for the menu.
@@ -123,9 +123,9 @@ type OwnProps = {|
      * The aria "role" applied to the dropdown container.
      */
     role: "listbox" | "menu",
-|};
 
-type Props = WithActionScheduler<OwnProps>;
+    ...WithActionSchedulerProps,
+|};
 
 type State = {|
     /**
@@ -795,6 +795,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default withActionScheduler<React.Config<OwnProps, DefaultProps>>(
-    DropdownCore,
-);
+export default withActionScheduler(DropdownCore);

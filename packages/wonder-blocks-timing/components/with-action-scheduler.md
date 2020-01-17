@@ -7,10 +7,9 @@ For more details on using this component and the [`IScheduleActions`](#ischedule
 see the [API overview](#timing-api-overview).
 
 ### Flow Types
-If you are using Flow typing, you can use the `WithActionScheduler<TProps>`
-generic type to build the props for the component that you will pass to the
-`withActionScheduler` function, where `TProps` represents all the props your
-component uses other than the `schedule` prop that will get added.
+If you are using Flow typing, you can use the `WithActionSchedulerProps` type
+to build the props for the component that you will pass to the `withActionScheduler`
+function by spreading the type into your component's `Props` type.
 
 The added `schedule` prop is of type [`IScheduleActions`](#ischeduleactions). This is what the
 `withActionScheduler` function injects to your component.

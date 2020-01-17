@@ -299,7 +299,8 @@ The `IAnimationFrame` interface provides additional calls to manipulate an anima
 
 Migrating from the standard API can be done by:
 
-1. Wrapping your component with the `withActionScheduler` HOC (and, if using Flow, using the `WithActionScheduler<TOwnProps>` type to extend your components props)
+1. Wrapping your component with the `withActionScheduler` HOC (and, if using Flow, using the `WithActionSchedulerProps` type to extend your components props by spreading the type into
+ your component's `Props` type)
 2. Using the new `schedule` prop in your component instead of `setTimeout`, `setInterval` and `requestAnimationFrame`
 
 #### Migration Example
@@ -351,17 +352,14 @@ class MyLegacyComponent extends React.Component<Props, State> {
 We can rewrite it to use the Wonder Blocks Timing API like this:
 
 ```js static
-/**
- * These are the props that consumers of your component will see.
- */
-type OwnProps = {||};
-
-/**
- * These are the props that your component actually uses. We use the
- * WithActionScheduler<TOwnProps> generic type to augment `OwnProps` with the
- * props injected by the withActionScheduler HOC.
- */
-type Props = WithActionScheduler<OwnProps>;
+type Props = {|
+    /**
+     * These props will be injected into your component.  They won't appear
+     * as part of the public props of the component since `withActionSceduler`
+     * will excluding them from the props of the component it returns.
+     */
+    ...withActionSchedulerProps
+|};
 
 type State = {
     timerFired: boolean,
@@ -394,7 +392,5 @@ class MyWonderBlocksComponentImpl extends React.Component<Props, State> {
  * The component that you would export as a drop-in replacement for your
  * legacy component.
  */
-const MyWonderBlocksComponent: React.AbstractComponent<
-    OwnProps,
-> = withActionScheduler(MyWonderBlocksComponentImpl);
+const MyWonderBlocksComponent = withActionScheduler(MyWonderBlocksComponentImpl);
 ```
