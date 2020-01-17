@@ -3,7 +3,13 @@ import * as React from "react";
 
 import ActionSchedulerProvider from "./action-scheduler-provider.js";
 
-import type {IScheduleActions, WithActionScheduler} from "../util/types.js";
+import type {
+    IScheduleActions,
+    WithActionSchedulerProps,
+    WithActionScheduler,
+} from "../util/types.js";
+
+type WithoutActionScheduler<T> = $Exact<$Diff<T, WithActionSchedulerProps>>;
 
 /**
  * A higher order component that attaches the given component to an
@@ -14,16 +20,17 @@ import type {IScheduleActions, WithActionScheduler} from "../util/types.js";
  * the additional action scheduler prop. To attach the additional prop to
  * these props use the `WithActionScheduler` type.
  */
-function withActionScheduler<TOwnProps: {...}>(
-    Component: React.AbstractComponent<WithActionScheduler<TOwnProps>>,
-): React.AbstractComponent<TOwnProps> {
-    return (props: TOwnProps): React.Node => (
+export default function withActionScheduler<
+    Config: {...},
+    Component: React.ComponentType<WithActionScheduler<Config>>,
+>(
+    WrappedComponent: Component,
+): React.ComponentType<WithoutActionScheduler<React.ElementConfig<Component>>> {
+    return React.forwardRef((props, ref) => (
         <ActionSchedulerProvider>
             {(schedule: IScheduleActions) => (
-                <Component {...props} schedule={schedule} />
+                <WrappedComponent {...props} ref={ref} schedule={schedule} />
             )}
         </ActionSchedulerProvider>
-    );
+    ));
 }
-
-export default withActionScheduler;
