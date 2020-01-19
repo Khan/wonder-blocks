@@ -51,21 +51,20 @@ export class ResponseCache {
 
         // We don't support custom caches during SSR.
         const customCache = Server.isServerSide() ? null : handler.cache;
+        const frozenEntry = Object.freeze(entry);
 
         // If we have a custom cache, use that and skip our own.
         if (customCache != null) {
-            const frozenEntry = Object.freeze(entry);
             customCache.store(handler, options, frozenEntry);
-            return frozenEntry;
+        } else {
+            // Ensure we have a cache location for this handler type.
+            this._cache[requestType] = this._cache[requestType] || {};
+
+            // Cache the data.
+            const key = handler.getKey(options);
+            this._cache[requestType][key] = frozenEntry;
         }
-
-        // Ensure we have a cache location for this handler type.
-        this._cache[requestType] = this._cache[requestType] || {};
-
-        // Cache the data.
-        const key = handler.getKey(options);
-        this._cache[requestType][key] = Object.freeze(entry);
-        return this._cache[requestType][key];
+        return frozenEntry;
     }
 
     /**
