@@ -57,7 +57,18 @@ export type Cache = {
 };
 
 export interface ICache<TOptions, TData> {
-    store(handler: IRequestHandler<TOptions, TData>, options: TOptions): void;
+    /**
+     * Stores a value in the cache for the given handler and options.
+     */
+    store(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+        entry: CacheEntry<TData>,
+    ): void;
+
+    /**
+     * Retrieves a value from the cache for the given handler and options.
+     */
     retrieve(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
