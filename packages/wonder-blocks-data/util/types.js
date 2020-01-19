@@ -57,6 +57,12 @@ export type Cache = {
 };
 
 export interface ICache<TOptions, TData> {
+    store(handler: IRequestHandler<TOptions, TData>, options: TOptions): void;
+    retrieve(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ): ?CacheEntry<TData>;
+
     /**
      * Remove the cached entry for the given handler and options.
      *
