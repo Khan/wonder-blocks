@@ -1,9 +1,29 @@
-The `Data` component is the client-side piece of our data architecture that
-most folks will use. It describes a data requirement in terms of a handler and
-some options. Handlers must implement the `IRequestHandler` interface.
+The `Data` component is the frontend piece of our data architecture that
+most folks will use. It describes a data requirement in terms of a handler, and
+some options. Handlers must implement the
+`IRequestHandler` interface.
 
 Among other things, the handler is responsible for fulfilling the request when
 asked to do so.
+
+#### Caching
+
+The Wonder Blocks Data framework utilizes a core internal in-memory cache for
+supporting server-side rendering (SSR) and client-side provision of data
+obtained during SSR to support hydration of the SSR result.
+
+In addition to this internal cache, a custom cache can be provided by a request
+handler. Custom caches allow for different client-side caching
+strategies (such as using local storage instead of memory). Any custom cache
+provided is ignored during SSR.
+
+When retrieving data from cache, the framework will invoke the custom cache with
+any in-memory cache entry the framework has for the value being requested.
+The custom cache can then opt to:
+
+1. Include that value in its own cache
+2. Delete it from the in-memory cache
+3. Return `null`, a different cached entry, or the same entry
 
 #### Client-side behavior
 

@@ -56,6 +56,33 @@ export type Cache = {
     ...,
 };
 
+export interface ICache<TOptions, TData> {
+    /**
+     * Remove the cached entry for the given handler and options.
+     *
+     * If the item exists in the cache, the cached entry is deleted and the
+     * entry is returned. Otherwise, this returns null.
+     */
+    remove(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ): ?$ReadOnly<CacheEntry<TData>>;
+
+    /**
+     * Remove all cached entries for the given handler that, optionally, match
+     * a given predicate.
+     *
+     * Returns the number of entries that were cleared from the cache.
+     */
+    removeAll(
+        handler: IRequestHandler<TOptions, TData>,
+        predicate?: (
+            options: TOptions,
+            cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
+        ) => boolean,
+    ): number;
+}
+
 /**
  * A handler for data requests.
  */
@@ -73,6 +100,12 @@ export interface IRequestHandler<TOptions, TData> {
      * any other handler.
      */
     get type(): string;
+
+    /**
+     * A custom cache to use with data that this handler requests.
+     * This only affects client-side caching of data.
+     */
+    get cache(): ?ICache<TOptions, TData>;
 
     /**
      * Determine if the cached data should be refreshed.

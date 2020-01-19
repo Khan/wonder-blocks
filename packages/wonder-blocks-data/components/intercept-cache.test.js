@@ -21,6 +21,7 @@ describe("InterceptCache", () => {
             getKey: (o) => o,
             shouldRefreshCache: () => false,
             type: "MY_HANDLER",
+            cache: null,
         };
         const getEntryFn = jest.fn();
         const captureContextFn = jest.fn();
@@ -51,6 +52,7 @@ describe("InterceptCache", () => {
             getKey: (o) => o,
             shouldRefreshCache: () => false,
             type: "MY_HANDLER",
+            cache: null,
         };
         const getEntry1Fn = jest.fn();
         const getEntry2Fn = jest.fn();
@@ -84,6 +86,7 @@ describe("InterceptCache", () => {
             getKey: (o) => o,
             shouldRefreshCache: () => false,
             type: "MY_HANDLER",
+            cache: null,
         };
         const fulfillRequestFn = jest.fn();
         const shouldRefreshCacheFn = jest.fn();

@@ -59,6 +59,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -83,6 +84,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -110,6 +112,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -144,6 +147,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -178,6 +182,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -211,6 +216,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
                 const consoleSpy = jest
@@ -253,12 +259,14 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "TYPE1",
+                    cache: null,
                 };
                 const fakeHandler2: IRequestHandler<string, string> = {
                     fulfillRequest: () => new Promise(() => {}),
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "TYPE2",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = mount(
@@ -296,6 +304,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = mount(
@@ -327,6 +336,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -357,6 +367,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -386,6 +397,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => ({
@@ -421,6 +433,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fulfillRequestFn = jest.fn(() =>
@@ -465,6 +478,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -486,6 +500,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => true,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -510,6 +525,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -534,12 +550,14 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "TYPE1",
+                    cache: null,
                 };
                 const fakeHandler2: IRequestHandler<string, string> = {
                     fulfillRequest: () => new Promise(() => {}),
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "TYPE2",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = mount(
@@ -573,6 +591,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = mount(
@@ -606,6 +625,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -635,6 +655,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -665,6 +686,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => ({
@@ -699,6 +721,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: jest.fn(() => false),
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const shouldRefreshCacheFn = jest.fn(() => true);
@@ -732,6 +755,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => true,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fulfillRequestFn = jest.fn(() =>
@@ -763,6 +787,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const shouldRefreshCacheFn = jest.fn(() => true);
@@ -815,6 +840,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -836,6 +862,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -865,6 +892,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -889,6 +917,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -919,6 +948,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => ({
@@ -956,6 +986,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => ({
@@ -989,6 +1020,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fulfillRequestFn = jest.fn(() =>
@@ -1023,6 +1055,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const shouldRefreshCacheFn = jest.fn(() => true);
@@ -1062,6 +1095,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const shouldRefreshCacheFn = jest.fn(() => true);
@@ -1112,6 +1146,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -1133,6 +1168,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -1162,6 +1198,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -1192,6 +1229,7 @@ describe("Data", () => {
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
+                    cache: null,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -1219,6 +1257,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -1248,6 +1287,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -1278,6 +1318,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => ({
@@ -1314,6 +1355,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => ({
@@ -1347,6 +1389,7 @@ describe("Data", () => {
                         getKey: (o) => o,
                         shouldRefreshCache: jest.fn(() => true),
                         type: "MY_HANDLER",
+                        cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fulfillRequestFn = jest.fn(() =>

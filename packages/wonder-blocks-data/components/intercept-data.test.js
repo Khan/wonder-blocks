@@ -31,6 +31,7 @@ describe("InterceptData", () => {
             getKey: (o) => o,
             shouldRefreshCache: () => false,
             type: "MY_HANDLER",
+            cache: null,
         };
         props.handler = fakeHandler;
         const captureContextFn = jest.fn();
@@ -62,6 +63,7 @@ describe("InterceptData", () => {
             getKey: (o) => o,
             shouldRefreshCache: () => false,
             type: "MY_HANDLER",
+            cache: null,
         };
         const fulfillRequest1Fn = jest.fn();
         const shouldRefreshCache1Fn = jest.fn();
@@ -106,6 +108,7 @@ describe("InterceptData", () => {
             getKey: (o) => o,
             shouldRefreshCache: () => false,
             type: "MY_HANDLER",
+            cache: null,
         };
         const fulfillRequestFn = jest.fn();
         const getEntryFn = jest.fn();
