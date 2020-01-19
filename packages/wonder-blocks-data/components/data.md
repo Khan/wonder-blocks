@@ -17,13 +17,14 @@ handler. Custom caches allow for different client-side caching
 strategies (such as using local storage instead of memory). Any custom cache
 provided is ignored during SSR.
 
-When retrieving data from cache, the framework will invoke the custom cache with
-any in-memory cache entry the framework has for the value being requested.
-The custom cache can then opt to:
+When retrieving data from cache, the framework will ask the custom cache for its
+entry. If the custom cache returns an entry, that is used. If the custom cache
+returns `null`, the framework will look for a corresponding in-memory entry with
+which the framework has been initialzied, and if there, store the entry in the
+custom cache and then return it.
 
-1. Include that value in its own cache
-2. Delete it from the in-memory cache
-3. Return `null`, a different cached entry, or the same entry
+`remove` and `removeAll` methods are also provided for removing values from the
+in-memory cache.
 
 #### Client-side behavior
 
@@ -107,7 +108,8 @@ const invalid = new MyInvalidHandler();
 If the cache already contains data or an error for our request, then the `Data`
 component will render it immediately. The cache data is placed there either
 by prior successful requests as in the above Cache Miss example, or via calling
-`initializeCache` before any requests have been made.
+`initializeCache` before any requests have been made. A cache hit may also
+occur due to the use of the `InterceptCache` component.
 
 For the example below, we called `initializeData` data in our examples for
 that method. That way we'd have data ready for us here!
