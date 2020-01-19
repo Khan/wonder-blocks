@@ -1,4 +1,5 @@
 // @flow
+import {Server} from "@khanacademy/wonder-blocks-core";
 import type {CacheEntry, Cache, IRequestHandler} from "./types.js";
 
 function deepClone<T: {...}>(source: T | $ReadOnly<T>): $ReadOnly<T> {
@@ -47,6 +48,16 @@ export class ResponseCache {
         entry: CacheEntry<TData>,
     ): CacheEntry<TData> {
         const requestType = handler.type;
+
+        // We don't support custom caches during SSR.
+        const customCache = Server.isServerSide() ? null : handler.cache;
+
+        // If we have a custom cache, use that and skip our own.
+        if (customCache != null) {
+            const frozenEntry = Object.freeze(entry);
+            customCache.store(handler, options, frozenEntry);
+            return frozenEntry;
+        }
 
         // Ensure we have a cache location for this handler type.
         this._cache[requestType] = this._cache[requestType] || {};
@@ -116,17 +127,33 @@ export class ResponseCache {
     ): ?$ReadOnly<CacheEntry<TData>> => {
         const requestType = handler.type;
 
-        // Get the subcache for the handler.
+        const key = handler.getKey(options);
+
+        // We don't use custom caches during SSR.
+        const customCache = Server.isServerSide() ? null : handler.cache;
+        const entry = customCache && customCache.retrieve(handler, options);
+        if (entry != null) {
+            // Custom cache has an entry, so use it.
+            return entry;
+        }
+
+        // Get the internal subcache for the handler.
         const handlerCache = this._cache[requestType];
         if (!handlerCache) {
             return null;
         }
 
-        const key = handler.getKey(options);
-
         // Get the response.
-        const entry = handlerCache[key];
-        return entry == null ? null : entry;
+        const internalEntry = handlerCache[key];
+        if (internalEntry == null) {
+            return null;
+        }
+
+        // If we have a custom cache on the handler, make sure it has the entry.
+        if (customCache != null) {
+            customCache.store(handler, options, internalEntry);
+        }
+        return internalEntry;
     };
 
     /**
