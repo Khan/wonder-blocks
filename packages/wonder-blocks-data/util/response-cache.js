@@ -42,6 +42,11 @@ export class ResponseCache {
         }
     }
 
+    // TODO(somewhatabstract): remove/removeAll and tests
+    // TODO(somewhatabstract): tests for store to custom on retrieve
+    // TODO(somewhatabstract): tests for store to custom on store
+    // TODO(somewhatabstract): tets for retrieve from custom on retrieve
+
     _setCacheEntry<TOptions, TData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
