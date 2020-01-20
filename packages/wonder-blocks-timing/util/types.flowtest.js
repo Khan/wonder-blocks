@@ -6,7 +6,7 @@
 import * as React from "react";
 import withActionScheduler from "../components/with-action-scheduler.js";
 
-import type {WithActionScheduler} from "./types.js";
+import type {WithActionSchedulerProps} from "./types.js";
 
 /**
  * Test WithActionScheduler and withActionScheduler usage.
@@ -16,34 +16,26 @@ import type {WithActionScheduler} from "./types.js";
  * Given a react component with action scheduler props, we receive an
  * abstract component of `OwnProps1`.
  */
-type OwnProps1 = {|
+type Props1 = {|
     test: string,
+    ...WithActionSchedulerProps,
 |};
 
-type Props1 = WithActionScheduler<OwnProps1>;
+const InnerComponent1 = (props: Props1): React.Node => props.test;
 
-const InnerComponent1: React.AbstractComponent<Props1> = (
-    props: Props1,
-): React.Node => props.test;
-
-const HOCComponent1: React.AbstractComponent<OwnProps1> = withActionScheduler(
-    InnerComponent1,
-);
+const HOCComponent1 = withActionScheduler(InnerComponent1);
 
 /**
  * Case 2: Incorrect Usage
  * The withActionScheduler call is returning a component of type OwnProps2; the
  * variable assigned however is incorrectly specified as Props2.
  */
-type OwnProps2 = {|
+type Props2 = {|
     test: string,
+    ...WithActionSchedulerProps,
 |};
 
-type Props2 = WithActionScheduler<OwnProps2>;
-
-const InnerComponent2: React.AbstractComponent<Props2> = (
-    props: Props2,
-): React.Node => props.test;
+const InnerComponent2 = (props: Props2): React.Node => props.test;
 
 /**
  * Cannot assign `withActionScheduler(...)` to `HOCComponent2` because property
@@ -52,24 +44,21 @@ const InnerComponent2: React.AbstractComponent<Props2> = (
  *
  * $ExpectError
  */
-const HOCComponent2: React.AbstractComponent<Props2> = withActionScheduler(
-    InnerComponent2,
-);
+const HOCComponent2 = withActionScheduler(InnerComponent2);
 
 /**
  * Case 3: Incorrect Usage
  * The withActionScheduler call is being passed a component that isn't set up
  * to be used with it as it doesn't have all the props necessary.
  */
-type OwnProps3 = {|
+type Props3 = {|
     test: string,
+    ...WithActionSchedulerProps,
 |};
 
-const InnerComponent3: React.AbstractComponent<OwnProps3> = (
-    props: OwnProps3,
-): React.Node => props.test;
+const InnerComponent3 = (props: Props3): React.Node => props.test;
 
-const HOCComponent3: React.AbstractComponent<OwnProps3> = withActionScheduler(
+const HOCComponent3 = withActionScheduler(
     /**
      * Cannot call `withActionScheduler` with `InnerComponent3` bound to
      * `Component` because property `schedule` is missing in `OwnProps3` [1]
