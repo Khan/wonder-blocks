@@ -1,8 +1,7 @@
 // @flow
 import React from "react";
 import {action} from "@storybook/addon-actions";
-import {withKnobs, text, radios, object, boolean} from "@storybook/addon-knobs";
-import {jsxDecorator} from "storybook-addon-jsx";
+import {text, radios, object, boolean} from "@storybook/addon-knobs";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -12,13 +11,6 @@ import Button from "./button.js";
 
 export default {
     title: "Button",
-    decorators: [withKnobs, jsxDecorator],
-
-    parameters: {
-        options: {
-            showAddonPanel: false,
-        },
-    },
 };
 
 export const buttonsWithKnobs = () => {
@@ -64,7 +56,7 @@ export const buttonsWithKnobs = () => {
     );
 };
 
-withKnobs.story = {
+buttonsWithKnobs.story = {
     parameters: {
         options: {
             showAddonPanel: true,

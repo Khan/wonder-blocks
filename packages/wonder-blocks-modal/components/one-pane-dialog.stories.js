@@ -46,9 +46,6 @@ export default {
         chromatic: {
             viewports: [320, 640, 1024],
         },
-        options: {
-            showAddonPanel: false,
-        },
     },
 };
 
