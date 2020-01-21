@@ -124,14 +124,7 @@ export class RequestTracker {
                     handler,
                     requests[requestKey],
                 );
-
-                /**
-                 * We shouldn't get bad results here, but we might, so let's
-                 * be defensive.
-                 */
-                if (promise != null) {
-                    promises.push(promise);
-                }
+                promises.push(promise);
             }
         }
 

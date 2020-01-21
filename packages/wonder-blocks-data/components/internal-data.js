@@ -153,22 +153,29 @@ export default class InternalData<TOptions, TData> extends React.Component<
     _resultFromState(): Result<TData> {
         const {loading, data, error} = this.state;
 
-        if (!loading) {
-            if (data != null) {
-                return {
-                    loading: false,
-                    data,
-                };
-            } else if (error != null) {
-                return {
-                    loading: false,
-                    error,
-                };
-            }
+        if (loading) {
+            return {
+                loading: true,
+            };
+        }
+
+        if (data != null) {
+            return {
+                loading: false,
+                data,
+            };
+        }
+
+        if (error == null) {
+            // We should never get here ever.
+            throw new Error(
+                "Loaded result has invalid state where data and error are missing",
+            );
         }
 
         return {
-            loading: true,
+            loading: false,
+            error,
         };
     }
 

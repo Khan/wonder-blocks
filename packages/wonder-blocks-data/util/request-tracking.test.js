@@ -284,6 +284,29 @@ describe("./request-tracking.js", () => {
                 });
             });
 
+            it("should cope gracefully with null fulfillments", async () => {
+                // Arrange
+                const requestTracker = createRequestTracker();
+                jest.spyOn(
+                    requestTracker._requestFulfillment,
+                    "fulfill",
+                ).mockReturnValue(null);
+                const fakeValidHandler: IRequestHandler<string, any> = {
+                    fulfillRequest: () => Promise.resolve("DATA"),
+                    getKey: (o) => o,
+                    shouldRefreshCache: () => false,
+                    type: "VALID",
+                    cache: null,
+                };
+                requestTracker.trackDataRequest(fakeValidHandler, "OPTIONS1");
+
+                // Act
+                const result = await requestTracker.fulfillTrackedRequests();
+
+                // Assert
+                expect(result).toStrictEqual({});
+            });
+
             it("should clear the tracked requests", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
