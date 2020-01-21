@@ -131,7 +131,7 @@ export default class MemoryCache<TOptions, TData: ValidData>
             key: string,
             cachedEntry: $ReadOnly<CacheEntry<TData>>,
         ) => boolean,
-    ) => {
+    ): number => {
         const requestType = handler.type;
 
         // Get the internal subcache for the handler.
