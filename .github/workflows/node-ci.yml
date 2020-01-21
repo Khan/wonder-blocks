@@ -4,6 +4,7 @@ on: [push]
 
 jobs:
   chromatic:
+    if: github.actor != "dependabot"
     runs-on: ubuntu-latest
     env:
       CI: true
