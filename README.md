@@ -11,7 +11,7 @@ More information: https://wonder-blocks.netlify.com/
 
 ### Prerequisites
 
-- [Node.JS v8](https://nodejs.org/download/release/v8.16.1/)
+- [Node.JS v10](https://nodejs.org/download/release/v10.18.1/)
 - [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
 ### Installation
