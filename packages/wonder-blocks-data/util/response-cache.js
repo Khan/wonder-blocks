@@ -223,7 +223,7 @@ export class ResponseCache {
         handler: IRequestHandler<TOptions, TData>,
         predicate?: (
             key: string,
-            cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
+            cachedEntry: $ReadOnly<CacheEntry<TData>>,
         ) => boolean,
     ): number => {
         const requestType = handler.type;
@@ -255,6 +255,8 @@ export class ResponseCache {
 
     /**
      * Deep clone the cache.
+     *
+     * By design, this does not clone anything held in custom caches.
      */
     cloneCachedData = (): $ReadOnly<Cache> => {
         try {

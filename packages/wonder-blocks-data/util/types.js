@@ -95,7 +95,7 @@ export interface ICache<TOptions, TData> {
         handler: IRequestHandler<TOptions, TData>,
         predicate?: (
             key: string,
-            cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
+            cachedEntry: $ReadOnly<CacheEntry<TData>>,
         ) => boolean,
     ): number;
 }
