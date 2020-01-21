@@ -4,6 +4,7 @@ import * as React from "react";
 import InterceptContext from "./intercept-context.js";
 
 import type {
+    ValidData,
     IRequestHandler,
     InterceptFulfillRequestFn,
     InterceptShouldRefreshCacheFn,
@@ -77,9 +78,10 @@ type Props<TOptions, TData> =
  * new instance will replace this interceptor for its children. All methods
  * will be replaced.
  */
-export default class InterceptData<TOptions, TData> extends React.Component<
-    Props<TOptions, TData>,
-> {
+export default class InterceptData<
+    TOptions,
+    TData: ValidData,
+> extends React.Component<Props<TOptions, TData>> {
     render() {
         return (
             <InterceptContext.Consumer>
