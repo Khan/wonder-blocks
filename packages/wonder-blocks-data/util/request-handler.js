@@ -10,9 +10,11 @@ import type {CacheEntry, IRequestHandler, ICache} from "./types.js";
 export default class RequestHandler<TOptions, TData>
     implements IRequestHandler<TOptions, TData> {
     _type: string;
+    _cache: ?ICache<TOptions, TData>;
 
-    constructor(type: string) {
+    constructor(type: string, cache?: ICache<TOptions, TData>) {
         this._type = type;
+        this._cache = cache || null;
     }
 
     get type(): string {
@@ -20,7 +22,7 @@ export default class RequestHandler<TOptions, TData>
     }
 
     get cache(): ?ICache<TOptions, TData> {
-        return null;
+        return this._cache;
     }
 
     shouldRefreshCache(
