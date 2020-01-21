@@ -1,22 +1,8 @@
 [version]
 0.111.3
 
-[ignore]
-<PROJECT_ROOT>/node_modules
-!<PROJECT_ROOT>/node_modules/@khanacademy
-!<PROJECT_ROOT>/node_modules/memoize-one
-!<PROJECT_ROOT>/node_modules/prop-types
-!<PROJECT_ROOT>/node_modules/react-dom
-!<PROJECT_ROOT>/node_modules/react-popper
-!<PROJECT_ROOT>/node_modules/react-test-renderer
-!<PROJECT_ROOT>/node_modules/react-window
-!<PROJECT_ROOT>/node_modules/popper.js
-!<PROJECT_ROOT>/node_modules/warning
-!<PROJECT_ROOT>/node_modules/typed-styles
-!<PROJECT_ROOT>/node_modules/create-react-context
-
 [declarations]
-<PROJECT_ROOT>/node_modules/react-window
+<PROJECT_ROOT>/node_modules
 
 [lints]
 deprecated-type=error
