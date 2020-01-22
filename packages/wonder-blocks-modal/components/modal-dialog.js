@@ -77,6 +77,7 @@ export default class ModalDialog extends React.Component<Props> {
                             {below && <View style={styles.below}>{below}</View>}
                             <View
                                 role="dialog"
+                                aria-modal={true}
                                 aria-labelledby={ariaLabelledBy}
                                 style={styles.dialog}
                                 testId={testId}

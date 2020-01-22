@@ -684,6 +684,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
       </div>
       <div
         aria-labelledby="uid-modal-0-wb-id"
+        aria-modal={true}
         className=""
         role="dialog"
         style={
@@ -1056,6 +1057,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
     >
       <div
         aria-labelledby="uid-modal-1-wb-id"
+        aria-modal={true}
         className=""
         data-test-id="one-pane-dialog-above"
         role="dialog"
@@ -1585,6 +1587,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
     >
       <div
         aria-labelledby="uid-modal-2-wb-id"
+        aria-modal={true}
         className=""
         role="dialog"
         style={
@@ -2292,6 +2295,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
     >
       <div
         aria-labelledby="uid-modal-3-wb-id"
+        aria-modal={true}
         className=""
         role="dialog"
         style={
@@ -2920,6 +2924,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
         />
       </div>
       <div
+        aria-modal={true}
         className=""
         role="dialog"
         style={
