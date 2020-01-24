@@ -4,8 +4,8 @@ on: [push]
 
 jobs:
   chromatic:
-    runs-on: ubuntu-latest
     if: "!contains(github.ref, 'dependabot/')"
+    runs-on: ubuntu-latest
     env:
       CI: true
     steps:
