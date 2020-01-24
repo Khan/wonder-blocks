@@ -16,6 +16,9 @@ jobs:
         run: echo ${{github.ref}}
       - name: Echo head.ref
         run: echo ${{github.payload.pull_request.head.ref}}
+      - name: Decider
+        if: contains(github.ref, 'dependabot/')
+        run: Echo "abort"
       # - name: Use Node.js 12.x
       #   uses: actions/setup-node@v1
       #   with:
