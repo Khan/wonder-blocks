@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   chromatic:
-    if: github.actor != 'dependabot-preview'
+    if: github.actor != 'kevinbarabash'
     runs-on: ubuntu-latest
     env:
       CI: true
