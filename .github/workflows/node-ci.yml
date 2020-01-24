@@ -4,7 +4,7 @@ on: [push]
 
 jobs:
   chromatic:
-    if: "!contains(github.ref, 'dependabot/')"
+    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
     runs-on: ubuntu-latest
     env:
       CI: true
