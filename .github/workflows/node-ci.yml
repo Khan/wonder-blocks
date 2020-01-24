@@ -12,8 +12,8 @@ jobs:
       - uses: actions/checkout@v1
       - name: Echo actor
         run: echo ${{github.actor}}
-      - name: Echo head_ref
-        run: echo ${{github.head_ref}}
+      - name: Echo ref
+        run: echo ${{github.ref}}
       # - name: Use Node.js 12.x
       #   uses: actions/setup-node@v1
       #   with:
