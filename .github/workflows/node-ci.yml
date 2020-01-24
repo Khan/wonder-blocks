@@ -1,13 +1,11 @@
 name: Node CI
 
-on:
-  push:
-    branches:
-      - '!dependabot/**'
+on: [push]
 
 jobs:
   chromatic:
     runs-on: ubuntu-latest
+    if: "!contains(github.ref, 'dependabot/')"
     env:
       CI: true
     steps:
