@@ -2247,16 +2247,16 @@
     uuid "^3.3.2"
 
 "@storybook/addon-backgrounds@^5.3.0":
-  version "5.3.8"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-backgrounds/-/addon-backgrounds-5.3.8.tgz#43274efa5e90be18bf2f4953cbd32a7876ef444e"
-  integrity sha512-3PBZMdr+u3qtkv8WQ4C1W+stZYPbHkKzbLoWKqv748fsdkCHXN8P2eTLCyxvPsEy89ZXUJmzR3SQwghrO6GWcQ==
+  version "5.3.9"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-backgrounds/-/addon-backgrounds-5.3.9.tgz#64ccfd74c215fc1660ad385a6289a99503565e17"
+  integrity sha512-jYMkhGQhocMRRLtTNikATavix9r+K65AUUWjne8Q2IDSNT6qtdmnknxW2mPB8zpdr6RpU5zpXGnvBxwyKvONPg==
   dependencies:
-    "@storybook/addons" "5.3.8"
-    "@storybook/api" "5.3.8"
-    "@storybook/client-logger" "5.3.8"
-    "@storybook/components" "5.3.8"
-    "@storybook/core-events" "5.3.8"
-    "@storybook/theming" "5.3.8"
+    "@storybook/addons" "5.3.9"
+    "@storybook/api" "5.3.9"
+    "@storybook/client-logger" "5.3.9"
+    "@storybook/components" "5.3.9"
+    "@storybook/core-events" "5.3.9"
+    "@storybook/theming" "5.3.9"
     core-js "^3.0.1"
     memoizerific "^1.11.3"
     react "^16.8.3"
@@ -2477,7 +2477,7 @@
   dependencies:
     core-js "^3.0.1"
 
-"@storybook/components@5.3.8", "@storybook/components@^5.2.5":
+"@storybook/components@5.3.8":
   version "5.3.8"
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-5.3.8.tgz#1d21a02ea0058fa8ee20d44248550f9f5b500114"
   integrity sha512-V8ByPSGruChH0CeTFrABGWmY8EfFOukbYSH+Rul/AG2+xg7l0Mx8LJIeq63Yc3XAvAeRyvbwf1rLe3F5l4/QZA==
@@ -2504,7 +2504,7 @@
     simplebar-react "^1.0.0-alpha.6"
     ts-dedent "^1.1.0"
 
-"@storybook/components@5.3.9":
+"@storybook/components@5.3.9", "@storybook/components@^5.2.5":
   version "5.3.9"
   resolved "https://registry.yarnpkg.com/@storybook/components/-/components-5.3.9.tgz#1fbc688770889ddadb8c603f5a4dbcf987f3eb0f"
   integrity sha512-R4xDR3pIYu7yPHex6DG3PPC3ekLgQuG03ZMQEgCfmWdl2wKXcLtEfQPYLRpC59xnQobfR3wqWgqrGchW54HPow==
