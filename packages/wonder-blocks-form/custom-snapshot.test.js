@@ -8,28 +8,31 @@ import RadioCore from "./components/radio-core.js";
 const states = ["default", "error", "disabled"];
 const clickableStates = ["default", "hovered", "pressed"];
 const checkedStates = [false, true];
+const requiredStates = [false, true];
 
 describe("CheckboxCore", () => {
     states.forEach((state) => {
         clickableStates.forEach((clickableState) => {
             checkedStates.forEach((checked) => {
-                test(`type:${state} state:${clickableState} checked:${String(
-                    checked,
-                )}`, () => {
-                    const disabled = state === "disabled";
-                    const tree = renderer
-                        .create(
-                            <CheckboxCore
-                                checked={checked}
-                                disabled={disabled}
-                                error={state === "error"}
-                                hovered={clickableState === "hovered"}
-                                pressed={clickableState === "pressed"}
-                                focused={clickableState === "focused"}
-                            />,
-                        )
-                        .toJSON();
-                    expect(tree).toMatchSnapshot();
+                requiredStates.forEach((required) => {
+                    test(`type:${state} state:${clickableState} checked:${String(
+                        checked,
+                    )} required:${String(required)}`, () => {
+                        const disabled = state === "disabled";
+                        const tree = renderer
+                            .create(
+                                <CheckboxCore
+                                    checked={checked}
+                                    disabled={disabled}
+                                    error={state === "error"}
+                                    hovered={clickableState === "hovered"}
+                                    pressed={clickableState === "pressed"}
+                                    focused={clickableState === "focused"}
+                                />,
+                            )
+                            .toJSON();
+                        expect(tree).toMatchSnapshot();
+                    });
                 });
             });
         });
