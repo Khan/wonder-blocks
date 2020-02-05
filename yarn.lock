@@ -2159,16 +2159,16 @@
     uuid "^3.3.2"
 
 "@storybook/addon-backgrounds@^5.3.0":
-  version "5.3.10"
-  resolved "https://registry.yarnpkg.com/@storybook/addon-backgrounds/-/addon-backgrounds-5.3.10.tgz#1eb4ecadf738cffa947733a04103608bdfa0aeb8"
-  integrity sha512-SYax8fHkBp/fTxaVkjzsp6lMtqRLyK2JlwyTfdZlE96JiCC/eg3e3inQo1J5VO5jwkUoSzRbTQUnZEpDa9xl0Q==
+  version "5.3.12"
+  resolved "https://registry.yarnpkg.com/@storybook/addon-backgrounds/-/addon-backgrounds-5.3.12.tgz#f1315faa8984e7de876a174d12b1c39b5a67d8c3"
+  integrity sha512-Iqb3ilxkNioi4gLua4jidQXdATL/Ep7PcAxwx8sLm6wfw5pUKAzz941/8gXuYjx6/Azp9HqNTHTNwjnx+0gJOw==
   dependencies:
-    "@storybook/addons" "5.3.10"
-    "@storybook/api" "5.3.10"
-    "@storybook/client-logger" "5.3.10"
-    "@storybook/components" "5.3.10"
-    "@storybook/core-events" "5.3.10"
-    "@storybook/theming" "5.3.10"
+    "@storybook/addons" "5.3.12"
+    "@storybook/api" "5.3.12"
+    "@storybook/client-logger" "5.3.12"
+    "@storybook/components" "5.3.12"
+    "@storybook/core-events" "5.3.12"
+    "@storybook/theming" "5.3.12"
     core-js "^3.0.1"
     memoizerific "^1.11.3"
     react "^16.8.3"
