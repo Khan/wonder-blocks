@@ -15593,9 +15593,9 @@ storybook-chromatic@^2.2.2:
     uuid "^3.3.2"
 
 storybook-chromatic@^3.4.1:
-  version "3.5.0"
-  resolved "https://registry.yarnpkg.com/storybook-chromatic/-/storybook-chromatic-3.5.0.tgz#aeac6a7b9ed3dcafc20c0cc31b58dcda2d36fb92"
-  integrity sha512-K9mrq9JDzZIevOfoZzrwdbKOUw0iLxFs3Vo5sA2gbLi0F41OYDR6JMPJY/A2eOGtUuB4mrXlRM6I0e/vHoaoZw==
+  version "3.5.1"
+  resolved "https://registry.yarnpkg.com/storybook-chromatic/-/storybook-chromatic-3.5.1.tgz#40430509eedbd3fe3dd9f351600736cb227d917f"
+  integrity sha512-5tKfoWO+EhuAhBR9b2E/TRTwGWlPRlMMqvBpGG2t0nkcxwoPIS47SyefAHTzU6DJB6h/tD1HGUcQ9SB52fJdKw==
   dependencies:
     "@babel/preset-react" "^7.8.3"
     "@babel/runtime" "^7.8.3"
