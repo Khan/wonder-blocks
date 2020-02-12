@@ -606,27 +606,27 @@ describe("./response-cache.js", () => {
 
         it("should return true if something was removed from custom cache", () => {
             // Arrange
-            const cache = new ResponseCache({
-                MY_HANDLER: {
-                    MY_OTHER_KEY: {data: "data!"},
-                },
-            });
+            const cache = new ResponseCache();
             const customCache = {
                 store: jest.fn(),
                 retrieve: jest.fn(),
+                /**
+                 * We're testing that this mocked valiue propagates to the
+                 * framework response cache `remove` call.
+                 */
                 remove: jest.fn().mockReturnValue(true),
                 removeAll: jest.fn(),
             };
             const fakeHandler: IRequestHandler<string, string> = {
-                getKey: () => "MY_KEY",
-                type: "MY_HANDLER",
+                getKey: () => "IGNORED",
+                type: "IGNORED",
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: customCache,
             };
 
             // Act
-            const result = cache.remove(fakeHandler, "optionsA");
+            const result = cache.remove(fakeHandler, "PRETEND_KEY");
 
             // Assert
             expect(result).toBeTruthy();
