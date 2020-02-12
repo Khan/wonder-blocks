@@ -458,7 +458,7 @@ describe("Data", () => {
                     expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
                 });
 
-                it("should invoke handler if interceptor returns null", () => {
+                it("should invoke handler method if interceptor method returns null", () => {
                     // Arrange
                     const fakeHandler: IRequestHandler<string, string> = {
                         fulfillRequest: jest.fn(() => Promise.resolve("data")),
