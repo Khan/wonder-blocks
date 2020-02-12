@@ -2,6 +2,8 @@
 import {ResponseCache as ResCache} from "./util/response-cache.js";
 import {RequestTracker} from "./util/request-tracking.js";
 
+import type {CacheEntry, IRequestHandler} from "./util/types.js";
+
 export type {Cache, CacheEntry, Result, IRequestHandler} from "./util/types.js";
 
 export type ResponseCache = $ReadOnly<Cache>;
@@ -11,6 +13,19 @@ export const initializeCache = (source: ResponseCache): void =>
 
 export const fulfillAllDataRequests = (): Promise<ResponseCache> =>
     RequestTracker.Default.fulfillTrackedRequests();
+
+export const removeFromCache = <TOptions, TData>(
+    handler: IRequestHandler<TOptions, TData>,
+    options: TOptions,
+): boolean => ResCache.Default.remove<TOptions, TData>(handler, options);
+
+export const removeAllFromCache = <TOptions, TData>(
+    handler: IRequestHandler<TOptions, TData>,
+    predicate?: (
+        key: string,
+        cacheEntry: ?$ReadOnly<CacheEntry<TData>>,
+    ) => boolean,
+): number => ResCache.Default.removeAll<TOptions, TData>(handler, predicate);
 
 /**
  * TODO(somewhatabstract): Export each cache type we implement.

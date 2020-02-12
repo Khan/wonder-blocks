@@ -77,13 +77,13 @@ export interface ICache<TOptions, TData> {
     /**
      * Remove the cached entry for the given handler and options.
      *
-     * If the item exists in the cache, the cached entry is deleted and the
-     * entry is returned. Otherwise, this returns null.
+     * If the item exists in the cache, the cached entry is deleted and true
+     * is returned. Otherwise, this returns false.
      */
     remove(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
-    ): ?$ReadOnly<CacheEntry<TData>>;
+    ): boolean;
 
     /**
      * Remove all cached entries for the given handler that, optionally, match
@@ -94,8 +94,8 @@ export interface ICache<TOptions, TData> {
     removeAll(
         handler: IRequestHandler<TOptions, TData>,
         predicate?: (
-            options: TOptions,
-            cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
+            key: string,
+            cachedEntry: $ReadOnly<CacheEntry<TData>>,
         ) => boolean,
     ): number;
 }
