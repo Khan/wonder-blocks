@@ -28,6 +28,7 @@ describe("RequestFulfillment", () => {
                 getKey: jest.fn().mockReturnValue("MY_KEY"),
                 shouldRefreshCache: () => false,
                 type: "MY_TYPE",
+                cache: null,
             };
 
             // Act
@@ -53,6 +54,7 @@ describe("RequestFulfillment", () => {
                 getKey: (o) => o,
                 shouldRefreshCache: () => false,
                 type: "BAD_REQUEST",
+                cache: null,
             };
 
             // Act
@@ -77,6 +79,7 @@ describe("RequestFulfillment", () => {
                 getKey: (o) => o,
                 shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
+                cache: null,
             };
 
             // Act
@@ -101,6 +104,7 @@ describe("RequestFulfillment", () => {
                 getKey: (o) => o,
                 shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
+                cache: null,
             };
 
             // Act
@@ -124,6 +128,7 @@ describe("RequestFulfillment", () => {
                 getKey: (o) => o,
                 shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
+                cache: null,
             };
 
             // Act
@@ -149,6 +154,7 @@ describe("RequestFulfillment", () => {
                 getKey: (o) => o,
                 shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
+                cache: null,
             };
 
             // Act

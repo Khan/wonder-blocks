@@ -30,7 +30,10 @@ passed to `initializeCache` will be obtained by calling `fulfillAllDataRequests`
 after tracking data requests (see [TrackData](#trackdata)) during server-side
 rendering.
 
-This method can also be used to initialize the response cache for tests.
+Though method could also be used to initialize the response cache for tests,
+it is recommended that the `InterceptCache` component be used instead, since
+it can be used repeatedly whereas `initializeCache`, by design, can only be
+called while the cache is uninitialized and unused.
 
 ### Usage
 
@@ -43,6 +46,44 @@ initializeCache(sourceCache: $ReadOnly<ResponseCache>): void;
 | Argument | Flow&nbsp;Type | Default | Description |
 | --- | --- | --- | --- |
 | `sourceData` | `$ReadOnly<ResponseCache>` | _Required_ | The source cache that will be used to initialize the response cache. |
+
+## removeFromCache
+
+Removes an entry from the framework cache and any custom cache associated to the given handler. The given handler and options identify the entry to be removed.
+
+If an item is removed, this returns `true`; otherwise, `false`.
+
+### Usage
+
+```js static
+removeFromCache(handler: IRequestHandler<TOptions, TData>, options: TOptions): boolean;
+```
+
+#### Function arguments
+
+| Argument | Flow&nbsp;Type | Default | Description |
+| --- | --- | --- | --- |
+| `handler` | `IRequestHandler<TOptions, TData>` | _Required_ | The handler type for the data to be removed. |
+| `options` | `TOptions` | _Required_ | The options that identify the cached request data to be removed. |
+
+## removeAllFromCache
+
+Removes all entries that match a given predicate from the framework cache and any custom cache associated to the given handler. If no predicate is given, all cached entries for the given handler are removed.
+
+This returns the count of entries removed.
+
+### Usage
+
+```js static
+removeAllFromCache(handler: IRequestHandler<TOptions, TData>, predicate: (key: string, entry: $ReadOnly<CacheEntry<TData>>) => boolean): number;
+```
+
+#### Function arguments
+
+| Argument | Flow&nbsp;Type | Default | Description |
+| --- | --- | --- | --- |
+| `handler` | `IRequestHandler<TOptions, TData>` | _Required_ | The handler type for the data to be removed. |
+| `predicate` | `(key: string, entry: $ReadOnly<CacheEntry<TData>>) => boolean)` | _Optional_ | A predicate to identify which entries to remove. If absent, all data for the handler type is removed; if present, any entries for which the predicate returns `true` will be returned. |
 
 ## Types
 

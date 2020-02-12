@@ -11,6 +11,7 @@ import type {
     Interceptor,
     Result,
     IRequestHandler,
+    ValidData,
 } from "../util/types.js";
 
 type Props<
@@ -52,7 +53,7 @@ type Props<
  * We have the ability to override handlers and the cache for testing and such
  * so we export this component, and it then wraps the real data component.
  */
-export default class Data<TOptions, TData> extends React.Component<
+export default class Data<TOptions, TData: ValidData> extends React.Component<
     Props<TOptions, TData>,
 > {
     _getHandlerFromInterceptor(
@@ -92,6 +93,7 @@ export default class Data<TOptions, TData> extends React.Component<
             shouldRefreshCache: shouldRefreshCacheFn,
             getKey: handler.getKey,
             type: handler.type,
+            cache: handler.cache,
         };
     }
 
@@ -103,7 +105,7 @@ export default class Data<TOptions, TData> extends React.Component<
             return ResponseCache.Default.getEntry;
         }
 
-        return <TOptions, TData>(
+        return <TOptions, TData: ValidData>(
             handler: IRequestHandler<TOptions, TData>,
             options: TOptions,
         ) => {

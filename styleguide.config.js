@@ -59,6 +59,7 @@ module.exports = {
                 "packages/wonder-blocks-data/components/intercept-data.js",
                 "packages/wonder-blocks-data/components/track-data.js",
                 "packages/wonder-blocks-data/util/request-handler.js",
+                "packages/wonder-blocks-data/util/no-cache.js",
             ],
         },
         {

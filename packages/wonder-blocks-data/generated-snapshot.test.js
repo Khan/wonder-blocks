@@ -24,6 +24,8 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 import Button from "@khanacademy/wonder-blocks-button";
 
+import NoCache from "./util/no-cache.js";
+
 describe("wonder-blocks-data", () => {
     it("example 1", () => {
         class MyValidHandler extends RequestHandler {

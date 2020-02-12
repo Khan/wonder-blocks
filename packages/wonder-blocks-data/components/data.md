@@ -1,9 +1,30 @@
-The `Data` component is the client-side piece of our data architecture that
-most folks will use. It describes a data requirement in terms of a handler and
-some options. Handlers must implement the `IRequestHandler` interface.
+The `Data` component is the frontend piece of our data architecture that
+most folks will use. It describes a data requirement in terms of a handler, and
+some options. Handlers must implement the
+`IRequestHandler` interface.
 
 Among other things, the handler is responsible for fulfilling the request when
 asked to do so.
+
+#### Caching
+
+The Wonder Blocks Data framework utilizes a core internal in-memory cache for
+supporting server-side rendering (SSR) and client-side provision of data
+obtained during SSR to support hydration of the SSR result.
+
+In addition to this internal cache, a custom cache can be provided by a request
+handler. Custom caches allow for different client-side caching
+strategies (such as using local storage instead of memory). Any custom cache
+provided is ignored during SSR.
+
+When retrieving data from cache, the framework will ask the custom cache for its
+entry. If the custom cache returns an entry, that is used. If the custom cache
+returns `null`, the framework will look for a corresponding in-memory entry with
+which the framework has been initialzied, and if there, store the entry in the
+custom cache and then return it.
+
+`removeFromCache` and `removeAllFromCache` methods are also provided for
+removing values from the in-memory amnd custom caches.
 
 #### Client-side behavior
 
@@ -87,7 +108,8 @@ const invalid = new MyInvalidHandler();
 If the cache already contains data or an error for our request, then the `Data`
 component will render it immediately. The cache data is placed there either
 by prior successful requests as in the above Cache Miss example, or via calling
-`initializeCache` before any requests have been made.
+`initializeCache` before any requests have been made. A cache hit may also
+occur due to the use of the `InterceptCache` component.
 
 For the example below, we called `initializeData` data in our examples for
 that method. That way we'd have data ready for us here!
