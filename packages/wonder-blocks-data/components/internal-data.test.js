@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 // @flow
 import * as React from "react";
 
@@ -244,7 +245,7 @@ describe("InternalData", () => {
                 });
             });
 
-            it("should render with an error if the request rejects", async () => {
+            it("should render with an error if the request rejects with string", async () => {
                 // Arrange
                 const fulfillSpy = jest
                     .spyOn(RequestFulfillment.Default, "fulfill")
@@ -277,6 +278,123 @@ describe("InternalData", () => {
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
                 expect(fakeChildrenFn).toHaveBeenLastCalledWith({
+                    loading: false,
+                    error: "CATASTROPHE!",
+                });
+            });
+
+            it("should render with an error if the request rejects with Error", async () => {
+                // Arrange
+                const fulfillSpy = jest
+                    .spyOn(RequestFulfillment.Default, "fulfill")
+                    .mockReturnValue(Promise.reject(new Error("CATASTROPHE!")));
+
+                const fakeHandler: IRequestHandler<string, string> = {
+                    fulfillRequest: () => Promise.resolve("YAY!"),
+                    getKey: (o) => o,
+                    shouldRefreshCache: () => false,
+                    type: "MY_HANDLER",
+                    cache: null,
+                };
+                const fakeChildrenFn = jest.fn(() => null);
+
+                // Act
+                mount(
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
+                        {fakeChildrenFn}
+                    </InternalData>,
+                );
+                /**
+                 * We wait for the fulfillment to reject.
+                 */
+                await fulfillSpy.mock.results[0].value.catch(() => {});
+
+                // Assert
+                expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
+                expect(fakeChildrenFn).toHaveBeenLastCalledWith({
+                    loading: false,
+                    error: "CATASTROPHE!",
+                });
+            });
+
+            it("should not setState if no longer mounted when request resolves", async () => {
+                // Arrange
+                const fulfillSpy = jest.spyOn(
+                    RequestFulfillment.Default,
+                    "fulfill",
+                );
+
+                const fakeHandler: IRequestHandler<string, string> = {
+                    fulfillRequest: () => Promise.resolve("YAY! DATA!"),
+                    getKey: (o) => o,
+                    shouldRefreshCache: () => false,
+                    type: "MY_HANDLER",
+                    cache: null,
+                };
+                const fakeChildrenFn = jest.fn(() => null);
+
+                // Act
+                const wrapper = mount(
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
+                        {fakeChildrenFn}
+                    </InternalData>,
+                );
+                wrapper.unmount();
+                /**
+                 * We wait for the fulfillment to resolve.
+                 */
+                await fulfillSpy.mock.results[0].value;
+
+                // Assert
+                expect(fakeChildrenFn).toHaveBeenCalledTimes(1);
+                expect(fakeChildrenFn).not.toHaveBeenLastCalledWith({
+                    loading: false,
+                    data: "YAY! DATA!",
+                });
+            });
+
+            it("should not setState if no longer mounted when request rejects", async () => {
+                // Arrange
+                const fulfillSpy = jest
+                    .spyOn(RequestFulfillment.Default, "fulfill")
+                    .mockReturnValue(Promise.reject("CATASTROPHE!"));
+
+                const fakeHandler: IRequestHandler<string, string> = {
+                    fulfillRequest: () => Promise.resolve("YAY!"),
+                    getKey: (o) => o,
+                    shouldRefreshCache: () => false,
+                    type: "MY_HANDLER",
+                    cache: null,
+                };
+                const fakeChildrenFn = jest.fn(() => null);
+
+                // Act
+                const wrapper = mount(
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={jest.fn(() => null)}
+                    >
+                        {fakeChildrenFn}
+                    </InternalData>,
+                );
+                wrapper.unmount();
+                /**
+                 * We wait for the fulfillment to reject.
+                 */
+                await fulfillSpy.mock.results[0].value.catch(() => {});
+
+                // Assert
+                expect(fakeChildrenFn).toHaveBeenCalledTimes(1);
+                expect(fakeChildrenFn).not.toHaveBeenLastCalledWith({
                     loading: false,
                     error: "CATASTROPHE!",
                 });
@@ -495,6 +613,68 @@ describe("InternalData", () => {
                     loading: false,
                     data: "YAY! DATA!",
                 });
+            });
+
+            it("should render first time with the cached error", () => {
+                // Arrange
+                const fakeHandler: IRequestHandler<string, string> = {
+                    fulfillRequest: () => Promise.resolve("data"),
+                    getKey: (o) => o,
+                    shouldRefreshCache: () => false,
+                    type: "MY_HANDLER",
+                    cache: null,
+                };
+                const fakeChildrenFn = jest.fn(() => null);
+                const getEntryFn = jest.fn(() => ({
+                    error: "OH NO!",
+                }));
+
+                // Act
+                mount(
+                    <InternalData
+                        handler={fakeHandler}
+                        options={"options"}
+                        getEntry={getEntryFn}
+                    >
+                        {fakeChildrenFn}
+                    </InternalData>,
+                );
+
+                // Assert
+                expect(fakeChildrenFn).toHaveBeenCalledWith({
+                    loading: false,
+                    error: "OH NO!",
+                });
+            });
+
+            it("should throw if cached data is invalid", () => {
+                // Arrange
+                const fakeHandler: IRequestHandler<string, string> = {
+                    fulfillRequest: () => Promise.resolve("data"),
+                    getKey: (o) => o,
+                    shouldRefreshCache: () => false,
+                    type: "MY_HANDLER",
+                    cache: null,
+                };
+                const fakeChildrenFn = jest.fn(() => null);
+                const getEntryFn = jest.fn(() => ({}: any));
+
+                // Act
+                const underTest = () =>
+                    mount(
+                        <InternalData
+                            handler={fakeHandler}
+                            options={"options"}
+                            getEntry={getEntryFn}
+                        >
+                            {fakeChildrenFn}
+                        </InternalData>,
+                    );
+
+                // Assert
+                expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                    `"Loaded result has invalid state where data and error are missing"`,
+                );
             });
 
             it("should render with new data if the handler changes and request cached", () => {
