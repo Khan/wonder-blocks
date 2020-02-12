@@ -24,6 +24,7 @@ describe("@khanacademy/wonder-blocks-data", () => {
                 "Data",
                 "InterceptCache",
                 "InterceptData",
+                "NoCache",
                 "RequestHandler",
                 "TrackData",
                 "fulfillAllDataRequests",

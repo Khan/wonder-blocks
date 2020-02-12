@@ -23,8 +23,8 @@ returns `null`, the framework will look for a corresponding in-memory entry with
 which the framework has been initialzied, and if there, store the entry in the
 custom cache and then return it.
 
-`remove` and `removeAll` methods are also provided for removing values from the
-in-memory cache.
+`removeFromCache` and `removeAllFromCache` methods are also provided for
+removing values from the in-memory amnd custom caches.
 
 #### Client-side behavior
 

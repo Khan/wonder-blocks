@@ -38,3 +38,4 @@ export {default as TrackData} from "./components/track-data.js";
 export {default as Data} from "./components/data.js";
 export {default as InterceptData} from "./components/intercept-data.js";
 export {default as InterceptCache} from "./components/intercept-cache.js";
+export {default as NoCache} from "./util/no-cache.js";
