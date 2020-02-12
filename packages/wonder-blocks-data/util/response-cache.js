@@ -25,7 +25,7 @@ export class ResponseCache {
 
     _cache: MemoryCache<any, any>;
 
-    constructor(memoryCache: ?MemoryCache<any, any> = undefined) {
+    constructor(memoryCache: ?MemoryCache<any, any> = null) {
         this._cache = memoryCache || new MemoryCache();
     }
 

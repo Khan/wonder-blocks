@@ -33,7 +33,7 @@ export default class MemoryCache<TOptions, TData: ValidData>
     implements ICache<TOptions, TData> {
     _cache: Cache;
 
-    constructor(source: ?$ReadOnly<Cache> = undefined) {
+    constructor(source: ?$ReadOnly<Cache> = null) {
         this._cache = {};
         if (source != null) {
             try {
