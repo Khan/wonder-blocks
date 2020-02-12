@@ -30,7 +30,10 @@ passed to `initializeCache` will be obtained by calling `fulfillAllDataRequests`
 after tracking data requests (see [TrackData](#trackdata)) during server-side
 rendering.
 
-This method can also be used to initialize the response cache for tests.
+Though method could also be used to initialize the response cache for tests,
+it is recommended that the `InterceptCache` component be used instead, since
+it can be used repeatedly whereas `initializeCache`, by design, can only be
+called while the cache is uninitialized and unused.
 
 ### Usage
 

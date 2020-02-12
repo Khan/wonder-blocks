@@ -1,5 +1,5 @@
 // @flow
-import type {CacheEntry, IRequestHandler} from "./types.js";
+import type {CacheEntry, IRequestHandler, ICache} from "./types.js";
 
 /**
  * Base implementation for creating a request handler.
@@ -10,13 +10,19 @@ import type {CacheEntry, IRequestHandler} from "./types.js";
 export default class RequestHandler<TOptions, TData>
     implements IRequestHandler<TOptions, TData> {
     _type: string;
+    _cache: ?ICache<TOptions, TData>;
 
-    constructor(type: string) {
+    constructor(type: string, cache?: ICache<TOptions, TData>) {
         this._type = type;
+        this._cache = cache || null;
     }
 
-    get type() {
+    get type(): string {
         return this._type;
+    }
+
+    get cache(): ?ICache<TOptions, TData> {
+        return this._cache;
     }
 
     shouldRefreshCache(

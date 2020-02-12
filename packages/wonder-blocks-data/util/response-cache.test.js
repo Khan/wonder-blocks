@@ -25,6 +25,7 @@ describe("./response-cache.js", () => {
                 type: "MY_HANDLER",
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
+                cache: null,
             };
 
             // Act
@@ -69,6 +70,7 @@ describe("./response-cache.js", () => {
                 type: "MY_HANDLER",
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
+                cache: null,
             };
             const sourceData = {
                 MY_HANDLER: {
@@ -117,6 +119,7 @@ describe("./response-cache.js", () => {
                 type: "MY_HANDLER",
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
+                cache: null,
             };
 
             // Act
@@ -139,6 +142,7 @@ describe("./response-cache.js", () => {
                 type: "MY_HANDLER",
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
+                cache: null,
             };
 
             // Act
@@ -159,6 +163,7 @@ describe("./response-cache.js", () => {
                 type: "MY_HANDLER",
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
+                cache: null,
             };
 
             // Act
@@ -181,6 +186,7 @@ describe("./response-cache.js", () => {
                 type: "MY_HANDLER",
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
+                cache: null,
             };
 
             // Act
@@ -201,6 +207,7 @@ describe("./response-cache.js", () => {
                 type: "MY_HANDLER",
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
+                cache: null,
             };
 
             // Act
@@ -222,6 +229,7 @@ describe("./response-cache.js", () => {
                 type: "MY_HANDLER",
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
+                cache: null,
             };
 
             // Act
@@ -243,6 +251,7 @@ describe("./response-cache.js", () => {
                 type: "MY_HANDLER",
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
+                cache: null,
             };
 
             // Act
@@ -267,6 +276,7 @@ describe("./response-cache.js", () => {
                 type: "MY_HANDLER",
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
+                cache: null,
             };
             // Let's add to the initialized state to check that everything
             // is cloning as we expect.

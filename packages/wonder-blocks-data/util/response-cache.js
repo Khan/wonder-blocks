@@ -6,6 +6,8 @@ function deepClone<T: {...}>(source: T | $ReadOnly<T>): $ReadOnly<T> {
      * We want to deep clone the source cache to dodge mutations by external
      * references. So we serialize the source cache to JSON and parse it
      * back into a new object.
+     *
+     * NOTE: This doesn't work for get/set property accessors.
      */
     const serializedInitCache = JSON.stringify(source);
     const cloneInitCache = JSON.parse(serializedInitCache);

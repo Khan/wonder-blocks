@@ -92,6 +92,7 @@ export default class Data<TOptions, TData> extends React.Component<
             shouldRefreshCache: shouldRefreshCacheFn,
             getKey: handler.getKey,
             type: handler.type,
+            cache: handler.cache,
         };
     }
 
