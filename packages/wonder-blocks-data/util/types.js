@@ -1,5 +1,7 @@
 // @flow
-export type Result<TData> =
+export type ValidData = string | boolean | number | {...};
+
+export type Result<TData: ValidData> =
     | {|
           loading: true,
           data?: void,
@@ -11,7 +13,7 @@ export type Result<TData> =
           error?: string,
       |};
 
-export type CacheEntry<TData> =
+export type CacheEntry<TData: ValidData> =
     | {|
           error: string,
           data?: ?void,
@@ -26,16 +28,16 @@ type HandlerSubcache = {
     ...,
 };
 
-export type InterceptCacheFn<TOptions, TData> = (
+export type InterceptCacheFn<TOptions, TData: ValidData> = (
     options: TOptions,
     cacheEntry: ?$ReadOnly<CacheEntry<TData>>,
 ) => ?$ReadOnly<CacheEntry<TData>>;
 
-export type InterceptFulfillRequestFn<TOptions, TData> = (
+export type InterceptFulfillRequestFn<TOptions, TData: ValidData> = (
     options: TOptions,
 ) => ?Promise<TData>;
 
-export type InterceptShouldRefreshCacheFn<TOptions, TData> = (
+export type InterceptShouldRefreshCacheFn<TOptions, TData: ValidData> = (
     options: TOptions,
     cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
 ) => ?boolean;
@@ -56,7 +58,7 @@ export type Cache = {
     ...,
 };
 
-export interface ICache<TOptions, TData> {
+export interface ICache<TOptions, TData: ValidData> {
     /**
      * Stores a value in the cache for the given handler and options.
      */
@@ -72,7 +74,7 @@ export interface ICache<TOptions, TData> {
     retrieve(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
-    ): ?CacheEntry<TData>;
+    ): ?$ReadOnly<CacheEntry<TData>>;
 
     /**
      * Remove the cached entry for the given handler and options.
@@ -103,7 +105,7 @@ export interface ICache<TOptions, TData> {
 /**
  * A handler for data requests.
  */
-export interface IRequestHandler<TOptions, TData> {
+export interface IRequestHandler<TOptions, TData: ValidData> {
     /**
      * Fulfill a given request.
      *

@@ -2,7 +2,7 @@
 import {ResponseCache as ResCache} from "./util/response-cache.js";
 import {RequestTracker} from "./util/request-tracking.js";
 
-import type {CacheEntry, IRequestHandler} from "./util/types.js";
+import type {ValidData, CacheEntry, IRequestHandler} from "./util/types.js";
 
 export type {Cache, CacheEntry, Result, IRequestHandler} from "./util/types.js";
 
@@ -14,12 +14,12 @@ export const initializeCache = (source: ResponseCache): void =>
 export const fulfillAllDataRequests = (): Promise<ResponseCache> =>
     RequestTracker.Default.fulfillTrackedRequests();
 
-export const removeFromCache = <TOptions, TData>(
+export const removeFromCache = <TOptions, TData: ValidData>(
     handler: IRequestHandler<TOptions, TData>,
     options: TOptions,
 ): boolean => ResCache.Default.remove<TOptions, TData>(handler, options);
 
-export const removeAllFromCache = <TOptions, TData>(
+export const removeAllFromCache = <TOptions, TData: ValidData>(
     handler: IRequestHandler<TOptions, TData>,
     predicate?: (
         key: string,

@@ -1,7 +1,7 @@
 // @flow
 import {ResponseCache} from "./response-cache.js";
 
-import type {CacheEntry, IRequestHandler} from "./types.js";
+import type {ValidData, CacheEntry, IRequestHandler} from "./types.js";
 
 type Subcache = {
     [key: string]: Promise<any>,
@@ -30,7 +30,7 @@ export class RequestFulfillment {
         this._responseCache = responseCache || ResponseCache.Default;
     }
 
-    _getHandlerSubcache = <TOptions, TData>(
+    _getHandlerSubcache = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
     ): Subcache => {
         if (!this._requests[handler.type]) {
@@ -45,7 +45,7 @@ export class RequestFulfillment {
      * This will return an inflight request if one exists, otherwise it will
      * make a new request. Inflight requests are deleted once they resolve.
      */
-    fulfill = <TOptions, TData>(
+    fulfill = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
     ): Promise<CacheEntry<TData>> => {

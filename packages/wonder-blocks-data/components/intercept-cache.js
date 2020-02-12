@@ -3,7 +3,11 @@ import * as React from "react";
 
 import InterceptContext from "./intercept-context.js";
 
-import type {IRequestHandler, InterceptCacheFn} from "../util/types.js";
+import type {
+    ValidData,
+    IRequestHandler,
+    InterceptCacheFn,
+} from "../util/types.js";
 
 type Props<TOptions, TData> = {|
     /**
@@ -46,9 +50,10 @@ type Props<TOptions, TData> = {|
  * rendered within this one that intercepts the same handler type, then that
  * new instance will replace this interceptor for its children.
  */
-export default class InterceptCache<TOptions, TData> extends React.Component<
-    Props<TOptions, TData>,
-> {
+export default class InterceptCache<
+    TOptions,
+    TData: ValidData,
+> extends React.Component<Props<TOptions, TData>> {
     render() {
         return (
             <InterceptContext.Consumer>
