@@ -1,3 +1,14 @@
+
+`NoCache` is a cache implementation to use when no caching is wanted.
+
+Use this with your request handler if you want to support server-side
+rendering of your data requests, but want to ensure data is never cached
+on the client-side.
+
+This is better than having `shouldRefreshCache` always return `true` in the
+handler as this ensures that cache space and memory are never used for the
+requested data after hydration has finished.
+
 The `ICache` interface is included below for reference in case you would like
 to implement your own caching strategy.
 
@@ -46,7 +57,7 @@ interface ICache<TOptions, TData: ValidData> {
     ): number;
 ```
 
-Use this with your request handler if you want to support server-side
+Use `NoCache` with your request handler if you want to support server-side
 rendering of your data requests, but also want to ensure data is never cached
 on the client-side.
 
