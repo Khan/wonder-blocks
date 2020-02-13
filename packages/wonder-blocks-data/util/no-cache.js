@@ -2,7 +2,7 @@
 import type {ValidData, ICache, CacheEntry, IRequestHandler} from "./types.js";
 
 /**
- * A cache implementation to use when no caching is wanted.
+ * This is a cache implementation to use when no caching is wanted.
  *
  * Use this with your request handler if you want to support server-side
  * rendering of your data requests, but want to ensure data is never cached
