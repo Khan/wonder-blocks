@@ -50,8 +50,9 @@ type Props<
 |};
 
 /**
- * We have the ability to override handlers and the cache for testing and such
- * so we export this component, and it then wraps the real data component.
+ * This component is the main component of Wonder Blocks Data. With this, data
+ * requirements can be placed in a React application in a manner that will
+ * support server-side rendering and efficient caching.
  */
 export default class Data<TOptions, TData: ValidData> extends React.Component<
     Props<TOptions, TData>,

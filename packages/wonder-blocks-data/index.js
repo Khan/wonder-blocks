@@ -4,7 +4,13 @@ import {RequestTracker} from "./util/request-tracking.js";
 
 import type {ValidData, CacheEntry, IRequestHandler} from "./util/types.js";
 
-export type {Cache, CacheEntry, Result, IRequestHandler} from "./util/types.js";
+export type {
+    Cache,
+    CacheEntry,
+    Result,
+    IRequestHandler,
+    ICache,
+} from "./util/types.js";
 
 export type ResponseCache = $ReadOnly<Cache>;
 
