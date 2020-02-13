@@ -24,7 +24,7 @@ which the framework has been initialzied, and if there, store the entry in the
 custom cache and then return it.
 
 `removeFromCache` and `removeAllFromCache` methods are also provided for
-removing values from the in-memory amnd custom caches.
+removing values from the in-memory and custom caches.
 
 #### Client-side behavior
 
