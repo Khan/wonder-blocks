@@ -47,7 +47,7 @@ There is also an optional constructor argument, `cache`, which can be used to
 provide a custom cache for use with data the handler fulfills. Custom caches
 must implement the `ICache<TOptions, TData>` interface. If this is omitted, the
 core Wonder Blocks Data in-memory cache will be used. If you want to avoid
-caching in memory, see `NoCache`, whith is a caching strategy that eliminates
+caching in memory, see `NoCache`, which is a caching strategy that eliminates
 the use of caching entirely.
 
 The `fulfillRequest` method of this class is not implemented and will throw if
