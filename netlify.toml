@@ -1,2 +1,2 @@
 [build]
-  ignore = ./netlify_check.sh
+  ignore = "./netlify_check.sh"
