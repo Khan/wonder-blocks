@@ -1,2 +1,2 @@
 [build]
-  ignore = git log -1 --pretty=%B | grep dependabot
+  ignore = "./netlify_check.sh"
