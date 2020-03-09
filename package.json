@@ -83,7 +83,7 @@
     "pretty-quick": "^2.0.0",
     "react-docgen": "^5.0.0",
     "react-router-enzyme-context": "^1.2.0",
-    "react-styleguidist": "^10.0.0",
+    "react-styleguidist": "^11.0.0",
     "react-test-renderer": "^16.4.1",
     "rollup": "^1.23.1",
     "rollup-plugin-auto-external": "^2.0.0",
