@@ -113,6 +113,11 @@ export type ClickableState = {|
      * See component documentation for more details.
      */
     pressed: boolean,
+
+    /**
+     * Where the input originated
+     */
+    inputType: null | "touch" | "mouse" | "keyboard",
 |};
 
 export type ClickableHandlers = {|
@@ -158,6 +163,7 @@ const startState = {
     hovered: false,
     focused: false,
     pressed: false,
+    inputType: null,
 };
 
 /**
@@ -282,21 +288,26 @@ export default class ClickableBehavior extends React.Component<
         // When the left button is pressed already, we want it to be pressed
         if (e.buttons === 1) {
             this.dragging = true;
-            this.setState({pressed: true});
+            this.setState({pressed: true, inputType: "mouse"});
         } else if (!this.waitingForClick) {
-            this.setState({hovered: true});
+            this.setState({hovered: true, inputType: "mouse"});
         }
     };
 
     handleMouseLeave = () => {
         if (!this.waitingForClick) {
             this.dragging = false;
-            this.setState({hovered: false, pressed: false, focused: false});
+            this.setState({
+                hovered: false,
+                pressed: false,
+                focused: false,
+                inputType: "mouse",
+            });
         }
     };
 
     handleMouseDown = () => {
-        this.setState({pressed: true});
+        this.setState({pressed: true, inputType: "mouse"});
     };
 
     handleMouseUp = (e: SyntheticMouseEvent<>) => {
@@ -304,7 +315,7 @@ export default class ClickableBehavior extends React.Component<
             this.dragging = false;
             this.handleClick(e);
         }
-        this.setState({pressed: false, focused: false});
+        this.setState({pressed: false, focused: false, inputType: "mouse"});
     };
 
     handleDragStart = (e: SyntheticMouseEvent<>) => {
@@ -313,16 +324,16 @@ export default class ClickableBehavior extends React.Component<
     };
 
     handleTouchStart = () => {
-        this.setState({pressed: true});
+        this.setState({pressed: true, inputType: "touch"});
     };
 
     handleTouchEnd = () => {
-        this.setState({pressed: false});
+        this.setState({pressed: false, inputType: "touch"});
         this.waitingForClick = true;
     };
 
     handleTouchCancel = () => {
-        this.setState({pressed: false});
+        this.setState({pressed: false, inputType: "touch"});
         this.waitingForClick = true;
     };
 
@@ -340,7 +351,7 @@ export default class ClickableBehavior extends React.Component<
             // call the supplied onClick and handle potential navigation in
             // handleKeyUp instead.
             e.preventDefault();
-            this.setState({pressed: true});
+            this.setState({pressed: true, inputType: "keyboard"});
         } else if (!triggerOnEnter && keyCode === keyCodes.enter) {
             // If the component isn't supposed to trigger on enter, we have to
             // keep track of the enter keydown to negate the onClick callback
@@ -375,11 +386,11 @@ export default class ClickableBehavior extends React.Component<
     };
 
     handleFocus = (e: SyntheticFocusEvent<>) => {
-        this.setState({focused: true});
+        this.setState({focused: true, inputType: "keyboard"});
     };
 
     handleBlur = (e: SyntheticFocusEvent<>) => {
-        this.setState({focused: false, pressed: false});
+        this.setState({focused: false, pressed: false, inputType: "keyboard"});
     };
 
     maybeNavigate = () => {

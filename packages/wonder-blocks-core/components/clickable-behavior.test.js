@@ -51,8 +51,10 @@ describe("ClickableBehavior", () => {
             buttons: 0,
         });
         expect(button.state("hovered")).toEqual(true);
+        expect(button.state("inputType")).toEqual("mouse");
         button.simulate("mouseleave");
         expect(button.state("hovered")).toEqual(false);
+        expect(button.state("inputType")).toEqual("mouse");
     });
 
     it("changes only pressed state on mouse enter/leave while dragging", () => {
@@ -69,14 +71,17 @@ describe("ClickableBehavior", () => {
         button.simulate("mousedown");
         button.simulate("dragstart", {preventDefault: jest.fn()});
         expect(button.state("pressed")).toEqual(true);
+        expect(button.state("inputType")).toEqual("mouse");
 
         button.simulate("mouseleave");
         expect(button.state("pressed")).toEqual(false);
+        expect(button.state("inputType")).toEqual("mouse");
 
         button.simulate("mouseenter", {
             buttons: 1,
         });
         expect(button.state("pressed")).toEqual(true);
+        expect(button.state("inputType")).toEqual("mouse");
     });
 
     it("changes pressed state on mouse down/up", () => {
@@ -91,8 +96,10 @@ describe("ClickableBehavior", () => {
         expect(button.state("pressed")).toEqual(false);
         button.simulate("mousedown");
         expect(button.state("pressed")).toEqual(true);
+        expect(button.state("inputType")).toEqual("mouse");
         button.simulate("mouseup");
         expect(button.state("pressed")).toEqual(false);
+        expect(button.state("inputType")).toEqual("mouse");
     });
 
     it("changes pressed state on touch start/end/cancel", () => {
@@ -107,14 +114,19 @@ describe("ClickableBehavior", () => {
         expect(button.state("pressed")).toEqual(false);
         button.simulate("touchstart");
         expect(button.state("pressed")).toEqual(true);
+        expect(button.state("inputType")).toEqual("touch");
         button.simulate("touchend");
         expect(button.state("pressed")).toEqual(false);
+        expect(button.state("inputType")).toEqual("touch");
 
         expect(button.state("pressed")).toEqual(false);
+        expect(button.state("inputType")).toEqual("touch");
         button.simulate("touchstart");
         expect(button.state("pressed")).toEqual(true);
+        expect(button.state("inputType")).toEqual("touch");
         button.simulate("touchcancel");
         expect(button.state("pressed")).toEqual(false);
+        expect(button.state("inputType")).toEqual("touch");
     });
 
     it("enters focused state on key press after click", () => {
@@ -137,6 +149,7 @@ describe("ClickableBehavior", () => {
         });
         button.simulate("click");
         expect(button.state("focused")).toEqual(true);
+        expect(button.state("inputType")).toEqual("keyboard");
     });
 
     it("exits focused state on click after key press", () => {
@@ -194,6 +207,7 @@ describe("ClickableBehavior", () => {
         expect(button.state("pressed")).toEqual(true);
         button.simulate("keyup", {keyCode: keyCodes.enter});
         expect(button.state("pressed")).toEqual(false);
+        expect(button.state("inputType")).toEqual("keyboard");
     });
 
     it("changes pressed state on only enter key down/up for a link", () => {
