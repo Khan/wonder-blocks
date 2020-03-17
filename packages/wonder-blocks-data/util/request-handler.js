@@ -1,5 +1,5 @@
 // @flow
-import type {CacheEntry, IRequestHandler} from "./types.js";
+import type {ValidData, CacheEntry, IRequestHandler, ICache} from "./types.js";
 
 /**
  * Base implementation for creating a request handler.
@@ -7,16 +7,22 @@ import type {CacheEntry, IRequestHandler} from "./types.js";
  * Provides a base implementation of the `IRequestHandler` base class for
  * use with the Wonder Blocks Data framework.
  */
-export default class RequestHandler<TOptions, TData>
+export default class RequestHandler<TOptions, TData: ValidData>
     implements IRequestHandler<TOptions, TData> {
     _type: string;
+    _cache: ?ICache<TOptions, TData>;
 
-    constructor(type: string) {
+    constructor(type: string, cache?: ICache<TOptions, TData>) {
         this._type = type;
+        this._cache = cache || null;
     }
 
-    get type() {
+    get type(): string {
         return this._type;
+    }
+
+    get cache(): ?ICache<TOptions, TData> {
+        return this._cache;
     }
 
     shouldRefreshCache(
