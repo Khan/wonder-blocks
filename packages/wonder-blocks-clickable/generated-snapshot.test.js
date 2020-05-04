@@ -88,4 +88,40 @@ describe("wonder-blocks-clickable", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
+    it("example 3", () => {
+        const styles = StyleSheet.create({
+            hovered: {
+                textDecoration: "underline",
+                backgroundColor: Color.teal,
+            },
+            pressed: {
+                color: Color.blue,
+            },
+            focused: {
+                outline: `solid 4px ${Color.lightBlue}`,
+            },
+        });
+        const example = (
+            <View>
+                <Clickable href="https://khanacademy.org" skipClientNav={true}>
+                    {({hovered, focused, pressed}) => (
+                        <View
+                            style={[
+                                hovered && styles.hovered,
+                                focused && styles.focused,
+                                pressed && styles.pressed,
+                            ]}
+                        >
+                            <Body>
+                                This text should navigate using the keyboard
+                            </Body>
+                        </View>
+                    )}
+                </Clickable>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });

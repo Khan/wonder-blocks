@@ -88,3 +88,49 @@ const styles = StyleSheet.create({
     </View>
 </MemoryRouter>
 ```
+
+### Navigating with the Keyboard
+
+Clickable adds support to keyboard navigation. This way, your components are
+accessible and emulate better the browser's behavior.
+
+*NOTE:* If you want to navigate to an external URL and/or reload the window, make
+sure to use `href` and `skipClientNav={true}`.
+
+```jsx
+import {StyleSheet} from "aphrodite";
+import Clickable from "@khanacademy/wonder-blocks-clickable";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
+import {Body} from "@khanacademy/wonder-blocks-typography";
+
+const styles = StyleSheet.create({
+    hovered: {
+        textDecoration: "underline",
+        backgroundColor: Color.teal,
+    },
+    pressed: {
+        color: Color.blue,
+    },
+    focused: {
+        outline: `solid 4px ${Color.lightBlue}`,
+    },
+});
+
+<View>
+    <Clickable href="https://khanacademy.org" skipClientNav={true}>
+        {
+            ({hovered, focused, pressed}) =>
+            <View style={[
+                hovered && styles.hovered,
+                focused && styles.focused,
+                pressed && styles.pressed,
+            ]}>
+                <Body>
+                    This text should navigate using the keyboard
+                </Body>
+            </View>
+        }
+    </Clickable>
+</View>
+```
