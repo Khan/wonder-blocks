@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
 });
 
 <View>
-    <Clickable href="https://khanacademy.org" skipClientNav={true}>
+    <Clickable href="https://www.khanacademy.org/about/tos" skipClientNav={true}>
         {
             ({hovered, focused, pressed}) =>
             <View style={[

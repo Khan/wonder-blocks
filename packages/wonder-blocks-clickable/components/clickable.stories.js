@@ -13,7 +13,10 @@ export default {
 
 export const keyboardNavigation = () => (
     <View>
-        <Clickable href="https://khanacademy.org" skipClientNav={true}>
+        <Clickable
+            href="https://www.khanacademy.org/about/tos"
+            skipClientNav={true}
+        >
             {({hovered, focused, pressed}) => (
                 <View
                     style={[
@@ -28,6 +31,15 @@ export const keyboardNavigation = () => (
         </Clickable>
     </View>
 );
+
+keyboardNavigation.story = {
+    parameters: {
+        chromatic: {
+            // we don't need screenshots because this story only tests behavior.
+            disable: true,
+        },
+    },
+};
 
 const styles = StyleSheet.create({
     hovered: {
