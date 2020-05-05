@@ -237,7 +237,7 @@ exports[`wonder-blocks-clickable example 3 1`] = `
   <a
     aria-label=""
     className=""
-    href="https://khanacademy.org"
+    href="https://www.khanacademy.org/about/tos"
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
