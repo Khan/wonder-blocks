@@ -112,4 +112,35 @@ describe("Clickable", () => {
         // Assert
         expect(wrapper.find("#foo").exists()).toBe(false);
     });
+
+    test("should verify if href is passed to Clickablebehavior", () => {
+        // Arrange, Act
+        const wrapper = mount(
+            <Clickable testId="button" href="/foo" skipClientNav={true}>
+                {(eventState) => <h1>Click Me!</h1>}
+            </Clickable>,
+        );
+
+        // Assert
+        expect(wrapper.find("ClickableBehavior")).toHaveProp({href: "/foo"});
+    });
+
+    test("should navigate to a specific link using the keyboard", () => {
+        // Arrange
+        window.location.assign = jest.fn();
+
+        const wrapper = mount(
+            <Clickable testId="button" href="/foo" skipClientNav={true}>
+                {(eventState) => <h1>Click Me!</h1>}
+            </Clickable>,
+        );
+
+        // Act
+        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        // simulate Enter
+        buttonWrapper.simulate("keyup", {keyCode: 13});
+
+        // Assert
+        expect(window.location.assign).toHaveBeenCalledWith("/foo");
+    });
 });

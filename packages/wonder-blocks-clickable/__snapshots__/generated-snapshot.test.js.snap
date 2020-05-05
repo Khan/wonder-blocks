@@ -213,3 +213,102 @@ exports[`wonder-blocks-clickable example 2 1`] = `
   </a>
 </div>
 `;
+
+exports[`wonder-blocks-clickable example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <a
+    aria-label=""
+    className=""
+    href="https://www.khanacademy.org/about/tos"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    style={
+      Object {
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
+        "border": "none",
+        "boxSizing": "border-box",
+        "color": "inherit",
+        "font": "inherit",
+        "lineHeight": "normal",
+        "margin": 0,
+        "outline": "none",
+        "overflow": "visible",
+        "padding": 0,
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+        "width": "auto",
+      }
+    }
+    tabIndex={0}
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
+        }
+      >
+        This text should navigate using the keyboard
+      </span>
+    </div>
+  </a>
+</div>
+`;

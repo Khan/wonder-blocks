@@ -136,14 +136,15 @@ export default class Clickable extends React.Component<Props> {
     };
 
     render() {
+        const {href, onClick, skipClientNav} = this.props;
         const ClickableBehavior = getClickableBehavior(
-            this.props.href,
-            this.props.skipClientNav,
+            href,
+            skipClientNav,
             this.context.router,
         );
 
         return (
-            <ClickableBehavior onClick={this.props.onClick}>
+            <ClickableBehavior href={href} onClick={onClick}>
                 {(state, handlers) =>
                     this.getCorrectTag(state, {
                         // eslint-disable-next-line react/prop-types
