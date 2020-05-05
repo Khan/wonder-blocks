@@ -64,10 +64,7 @@ describe("DropdownCoreVirtualized", () => {
         jest.runAllTimers();
 
         // Act
-        const firstLabel = wrapper
-            .find(OptionItem)
-            .first()
-            .text();
+        const firstLabel = wrapper.find(OptionItem).first().text();
 
         // Assert
         // make sure we are rendering the longest item first
