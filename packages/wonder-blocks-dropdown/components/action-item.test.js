@@ -37,11 +37,7 @@ describe("ActionItem", () => {
         const wrapper = shallow(<ActionItem href="/foo" />, options.get());
 
         expect(
-            wrapper
-                .renderProp("children")({}, {})
-                .first()
-                .shallow()
-                .find(Link),
+            wrapper.renderProp("children")({}, {}).first().shallow().find(Link),
         ).toHaveLength(1);
     });
 });

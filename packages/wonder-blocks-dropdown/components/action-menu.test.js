@@ -382,10 +382,7 @@ describe("ActionMenu", () => {
             // open the menu from the outside
             wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
             // click on first item
-            wrapper
-                .find(ActionItem)
-                .at(0)
-                .simulate("click");
+            wrapper.find(ActionItem).at(0).simulate("click");
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(false);
@@ -411,10 +408,7 @@ describe("ActionMenu", () => {
             // open the menu from the outside
             wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
             // pick an option to close the menu
-            wrapper
-                .find(ActionItem)
-                .at(0)
-                .simulate("click");
+            wrapper.find(ActionItem).at(0).simulate("click");
 
             // Assert
             expect(wrapper.find(ActionMenu).prop("opened")).toBe(false);

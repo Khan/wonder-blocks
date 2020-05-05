@@ -11,10 +11,7 @@ import {keyCodes} from "../util/constants.js";
 jest.mock("./dropdown-core-virtualized.js");
 
 const elementAtIndex = (wrapper, index) =>
-    wrapper
-        .find(`[data-test-id="item-${index}"]`)
-        .first()
-        .getDOMNode();
+    wrapper.find(`[data-test-id="item-${index}"]`).first().getDOMNode();
 
 describe("DropdownCore", () => {
     window.getComputedStyle = jest.fn();

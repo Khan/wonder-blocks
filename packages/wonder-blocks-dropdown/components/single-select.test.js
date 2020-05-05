@@ -175,10 +175,7 @@ describe("SingleSelect", () => {
             // open the menu from the outside
             wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
             // click on first item
-            wrapper
-                .find(OptionItem)
-                .at(0)
-                .simulate("click");
+            wrapper.find(OptionItem).at(0).simulate("click");
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(false);
