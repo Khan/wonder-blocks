@@ -1397,8 +1397,9 @@ describe("wonder-blocks-dropdown", () => {
                 <OptionItem
                     key={i}
                     value={(i + 1).toString()}
-                    label={`School ${i +
-                        1} in Wizarding World Some more really long labels?`}
+                    label={`School ${
+                        i + 1
+                    } in Wizarding World Some more really long labels?`}
                 />
             ));
 

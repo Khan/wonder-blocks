@@ -195,6 +195,7 @@ exports[`wonder-blocks-link example 2 1`] = `
   <a
     className=""
     href="#nonexistent-link"
+    id="typography-link"
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}

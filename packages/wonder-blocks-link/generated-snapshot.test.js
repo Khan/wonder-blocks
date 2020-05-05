@@ -62,7 +62,7 @@ describe("wonder-blocks-link", () => {
     it("example 2", () => {
         const example = (
             <View>
-                <Link href="#nonexistent-link">
+                <Link href="#nonexistent-link" id="typography-link">
                     <HeadingSmall>Heading inside a Link element</HeadingSmall>
                 </Link>
             </View>
