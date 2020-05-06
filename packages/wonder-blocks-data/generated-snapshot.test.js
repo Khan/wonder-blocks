@@ -133,7 +133,7 @@ describe("wonder-blocks-data", () => {
 
         const handler = new MyHandler();
 
-        const getEntryInterceptor = function(options) {
+        const getEntryInterceptor = function (options) {
             if (options === "DATA") {
                 return {
                     data: "I'm DATA from the cache",
@@ -211,7 +211,7 @@ describe("wonder-blocks-data", () => {
 
         const handler = new MyHandler();
 
-        const getEntryIntercept = function(options) {
+        const getEntryIntercept = function (options) {
             if (options === "ERROR") {
                 return {
                     error: "I'm an ERROR from the cache interceptor",
@@ -277,7 +277,7 @@ describe("wonder-blocks-data", () => {
 
         const handler = new MyHandler();
 
-        const fulfillRequestInterceptor = function(options) {
+        const fulfillRequestInterceptor = function (options) {
             if (options === "DATA") {
                 return Promise.resolve("INTERCEPTED DATA!");
             }
@@ -314,7 +314,7 @@ describe("wonder-blocks-data", () => {
                 super("INTERCEPT_DATA_HANDLER2");
                 let _counter = 0;
 
-                this.fulfillRequest = function(options) {
+                this.fulfillRequest = function (options) {
                     return Promise.resolve(`DATA ${_counter++}`);
                 };
             }
@@ -326,7 +326,7 @@ describe("wonder-blocks-data", () => {
 
         const handler = new MyHandler();
 
-        const shouldRefreshCacheInterceptor = function(options) {
+        const shouldRefreshCacheInterceptor = function (options) {
             if (options === "DATA") {
                 return true;
             }

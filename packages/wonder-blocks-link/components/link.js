@@ -27,6 +27,11 @@ export type SharedProps = {|
     caret: boolean,
 
     /**
+     * An optional id attribute.
+     */
+    id?: string,
+
+    /**
      * Kind of Link. Note: Secondary light Links are not supported.
      */
     kind: "primary" | "secondary",
