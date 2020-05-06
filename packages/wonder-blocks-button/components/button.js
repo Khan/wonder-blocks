@@ -69,6 +69,11 @@ export type SharedProps = {|
     disabled: boolean,
 
     /**
+     * An optional id attribute.
+     */
+    id?: string,
+
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string,
