@@ -51,6 +51,7 @@ export default class ButtonCore extends React.Component<Props> {
             testId,
             spinner,
             icon,
+            id,
             ...handlers
         } = this.props;
         const {router} = this.context;
@@ -87,6 +88,7 @@ export default class ButtonCore extends React.Component<Props> {
 
         const commonProps = {
             "data-test-id": testId,
+            id: id,
             role: "button",
             style: [defaultStyle, style],
             ...handlers,

@@ -87,6 +87,7 @@ describe("Button", () => {
     });
 
     test("disallow navigation when href and disabled are both set", () => {
+        // Arrange
         const wrapper = mount(
             <MemoryRouter>
                 <div>
@@ -108,5 +109,27 @@ describe("Button", () => {
 
         // Assert
         expect(wrapper.find("#foo").exists()).toBe(false);
+    });
+
+    it("should set label on the underlying button", () => {
+        // Arrange
+        const wrapper = mount(
+            <Button id="foo" onClick={() => {}}>
+                Click me!
+            </Button>,
+        );
+
+        expect(wrapper.find("button")).toHaveProp({id: "foo"});
+    });
+
+    it("should set label on the underlying link", () => {
+        // Arrange
+        const wrapper = mount(
+            <Button id="foo" href="/bar">
+                Click me!
+            </Button>,
+        );
+
+        expect(wrapper.find("a")).toHaveProp({id: "foo"});
     });
 });
