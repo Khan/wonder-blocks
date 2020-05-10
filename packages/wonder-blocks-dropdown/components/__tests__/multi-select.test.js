@@ -352,18 +352,8 @@ describe("MultiSelect", () => {
         });
 
         // Assert
-        expect(
-            select
-                .find(OptionItem)
-                .at(0)
-                .text(),
-        ).toEqual("item 1");
-        expect(
-            select
-                .find(OptionItem)
-                .at(1)
-                .exists(),
-        ).toBe(false);
+        expect(select.find(OptionItem).at(0).text()).toEqual("item 1");
+        expect(select.find(OptionItem).at(1).exists()).toBe(false);
     });
 
     it("Hides shortcuts when there are any text in search text input", () => {
@@ -372,22 +362,12 @@ describe("MultiSelect", () => {
 
         // Act
         select.setState({open: true});
-        expect(
-            select
-                .find(ActionItem)
-                .at(0)
-                .exists(),
-        ).toBe(true);
+        expect(select.find(ActionItem).at(0).exists()).toBe(true);
 
         // Assert
         select.setState({searchText: "2"});
 
-        expect(
-            select
-                .find(ActionItem)
-                .at(0)
-                .exists(),
-        ).toBe(false);
+        expect(select.find(ActionItem).at(0).exists()).toBe(false);
     });
 
     it("Pressing arrow up from search input moves focus to previous focusable item", () => {
@@ -419,10 +399,7 @@ describe("MultiSelect", () => {
         select.setProps({isFilterable: true});
         select.setState({open: true});
         const searchInput = select.find(SearchTextInput);
-        const selectAll = select
-            .find(ActionItem)
-            .at(0)
-            .find(ClickableBehavior);
+        const selectAll = select.find(ActionItem).at(0).find(ClickableBehavior);
         // The focus is on opener. Press up (or down) should focus the input
         select.simulate("keydown", {keyCode: keyCodes.down});
         select.simulate("keyup", {keyCode: keyCodes.down});
