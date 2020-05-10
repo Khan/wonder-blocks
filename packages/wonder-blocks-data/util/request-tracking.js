@@ -9,15 +9,15 @@ type TrackerFn = (handler: IRequestHandler<any, any>, options: any) => void;
 
 type HandlerCache = {
     [type: string]: IRequestHandler<any, any>,
-    ...
+    ...,
 };
 
 type RequestCache = {
     [handlerType: string]: {
         [key: string]: any,
-        ...
+        ...,
     },
-    ...
+    ...,
 };
 
 /**

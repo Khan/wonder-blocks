@@ -25,7 +25,7 @@ export type CacheEntry<TData: ValidData> =
 
 type HandlerSubcache = {
     [key: string]: CacheEntry<any>,
-    ...
+    ...,
 };
 
 export type InterceptCacheFn<TOptions, TData: ValidData> = (
@@ -50,12 +50,12 @@ export type Interceptor = {|
 
 export type InterceptContextData = {
     [key: string]: Interceptor,
-    ...
+    ...,
 };
 
 export type Cache = {
     [key: string]: HandlerSubcache,
-    ...
+    ...,
 };
 
 export interface ICache<TOptions, TData: ValidData> {

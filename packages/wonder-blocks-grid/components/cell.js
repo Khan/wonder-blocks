@@ -138,9 +138,8 @@ export default class Cell extends React.Component<Props> {
                     // subtracting all of the gutter spaces inbetween the cells
                     // (gutterWidth * (totalColumns - 1)) and the width of the two margins
                     // (marginWidth * 2).
-                    const contentWidth = `(100% - ${
-                        gutterWidth * (totalColumns - 1)
-                    }px - ${marginWidth * 2}px)`;
+                    const contentWidth = `(100% - ${gutterWidth *
+                        (totalColumns - 1)}px - ${marginWidth * 2}px)`;
 
                     // Now that we have the full width we can calculate the width of this
                     // particular cell by multiplying the full width (allCellWidth) by
@@ -148,9 +147,8 @@ export default class Cell extends React.Component<Props> {
                     // add back in the missing gutter widths:
                     // (gutterWidth * (cols - 1)). This gives us to full width of
                     // this particular cell.
-                    const calcWidth = `calc(${contentWidth} * ${
-                        cols / totalColumns
-                    } + ${gutterWidth * (cols - 1)}px)`;
+                    const calcWidth = `calc(${contentWidth} * ${cols /
+                        totalColumns} + ${gutterWidth * (cols - 1)}px)`;
 
                     // If the contents are a function then we call it with the mediaSize,
                     // totalColumns, and cols properties and render the return value.

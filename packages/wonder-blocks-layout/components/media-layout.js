@@ -23,7 +23,7 @@ const mediaQueryLists: {[key: string]: MediaQueryList, ...} = {};
 // eslint-disable-next-line flowtype/require-exact-type
 export type MockStyleSheet = {
     [key: string]: StyleType,
-    ...
+    ...,
 };
 
 type Props = {|
