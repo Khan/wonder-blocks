@@ -85,7 +85,7 @@
     "react-router-enzyme-context": "^1.2.0",
     "react-styleguidist": "^11.0.5",
     "react-test-renderer": "^16.4.1",
-    "rollup": "^1.23.1",
+    "rollup": "^2.9.1",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-babel": "^4.0.0-beta.2",
     "storybook-addon-jsx": "^7.1.13",
