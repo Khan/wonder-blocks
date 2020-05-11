@@ -26,9 +26,7 @@ class ScrollDisabler extends Component<Props> {
     static oldWidth: string;
     static oldTop: string;
 
-    constructor(props: Props) {
-        super(props);
-
+    componentDidMount() {
         if (ScrollDisabler.numModalsOpened === 0) {
             const body = document.body;
             if (!body) {
