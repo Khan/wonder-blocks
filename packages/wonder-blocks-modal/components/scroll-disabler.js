@@ -17,14 +17,16 @@ const needsHackyMobileSafariScrollDisabler = (() => {
     return userAgent.indexOf("iPad") > -1 || userAgent.indexOf("iPhone") > -1;
 })();
 
-class ScrollDisabler extends Component<{||}> {
+type Props = {||};
+
+class ScrollDisabler extends Component<Props> {
     static oldOverflow: string;
     static oldPosition: string;
     static oldScrollY: number;
     static oldWidth: string;
     static oldTop: string;
 
-    componentWillMount() {
+    componentDidMount() {
         if (ScrollDisabler.numModalsOpened === 0) {
             const body = document.body;
             if (!body) {

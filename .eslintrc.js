@@ -1,6 +1,11 @@
 module.exports = {
     extends: ["@khanacademy"],
     plugins: ["import", "promise", "monorepo"],
+    settings: {
+        react: {
+            version: "detect",
+        },
+    },
     rules: {
         "flowtype/require-exact-type": ["error", "always"],
         "flowtype/no-types-missing-file-annotation": "error",
@@ -45,6 +50,7 @@ module.exports = {
         "react/no-string-refs": "error",
         "react/no-this-in-sfc": "error",
         "react/no-unescaped-entities": "error",
+        "react/no-deprecated": "error",
         "react/react-in-jsx-scope": "error",
         "react/require-render-return": "error",
         "monorepo/no-internal-import": "error",
