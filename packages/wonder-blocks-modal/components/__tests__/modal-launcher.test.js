@@ -4,7 +4,7 @@ import {shallow} from "enzyme";
 
 import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 import ModalLauncher from "../modal-launcher.js";
-import OnePaneDialog from "../one-pane-dialog/one-pane-dialog.js";
+import OnePaneDialog from "../one-pane-dialog.js";
 
 const sleep = (duration: number = 0) =>
     new Promise((resolve, reject) => setTimeout(resolve, duration));

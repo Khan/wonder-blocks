@@ -3,7 +3,7 @@ import * as React from "react";
 
 import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 
-import OnePaneDialog from "./one-pane-dialog.js";
+import OnePaneDialog from "../one-pane-dialog.js";
 
 describe("OnePaneDialog", () => {
     beforeEach(() => {

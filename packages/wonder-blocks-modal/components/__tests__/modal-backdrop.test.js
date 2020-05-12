@@ -3,7 +3,7 @@ import * as React from "react";
 import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 
 import ModalBackdrop from "../modal-backdrop.js";
-import OnePaneDialog from "../one-pane-dialog/one-pane-dialog.js";
+import OnePaneDialog from "../one-pane-dialog.js";
 
 const sleep = (duration: number = 0) =>
     new Promise((resolve, reject) => setTimeout(resolve, duration));

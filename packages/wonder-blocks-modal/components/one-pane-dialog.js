@@ -6,9 +6,9 @@ import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {IDProvider} from "@khanacademy/wonder-blocks-core";
-import ModalDialog from "../modal-dialog.js";
-import ModalPanel from "../modal-panel.js";
-import ModalHeader from "../modal-header.js";
+import ModalDialog from "./modal-dialog.js";
+import ModalPanel from "./modal-panel.js";
+import ModalHeader from "./modal-header.js";
 
 type Common = {|
     ...AriaProps,
