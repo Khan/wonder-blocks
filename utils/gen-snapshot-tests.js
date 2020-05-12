@@ -1,3 +1,4 @@
+/* eslint-disable import/no-commonjs */
 /**
  * This script generates generated-snapshot.test.js files from examples in
  * docs.md files in every packages/wonder-blocks-* directory.
@@ -16,6 +17,7 @@ const generate = require("@babel/generator").default;
 const traverse = require("@babel/traverse").default;
 const t = require("@babel/types");
 const chalk = require("chalk");
+const mkdirp = require("mkdirp");
 
 const {
     getComponentFilesFromSection,
@@ -146,6 +148,10 @@ function transformDeclarations(declarations) {
             namedExports += `{ ${specifiers.join(", ")} }`;
         }
 
+        if (module.startsWith(".")) {
+            module = path.join("..", module);
+        }
+
         return acc + `import ${namedExports} from "${module}";\n`;
     }, "");
 }
@@ -247,7 +253,10 @@ function generateTestFile(root, examples, componentFileMap) {
         for (const [componentName, filename] of Object.entries(
             componentFileMap,
         )) {
-            const relFilename = path.relative(root, filename);
+            const relFilename = path.relative(
+                path.join(root, "__tests__"),
+                filename,
+            );
 
             // include private components
             if (!transformedDeclarations.includes(componentName)) {
@@ -263,7 +272,8 @@ function generateTestFile(root, examples, componentFileMap) {
 
     const data = lines.join("\n");
 
-    const outPath = path.join(root, "generated-snapshot.test.js");
+    mkdirp.sync(path.join(root, "__tests__"));
+    const outPath = path.join(root, "__tests__", "generated-snapshot.test.js");
     fs.writeFileSync(outPath, data, "utf8");
 
     const [s, ns] = process.hrtime(hrstart);
