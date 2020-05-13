@@ -144,7 +144,7 @@ module.exports = {
                 {
                     name: "Modals",
                     components: [
-                        "packages/wonder-blocks-modal/components/one-pane-dialog/one-pane-dialog.js",
+                        "packages/wonder-blocks-modal/components/one-pane-dialog.js",
                     ],
                 },
                 {
