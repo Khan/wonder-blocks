@@ -18,7 +18,9 @@ describe("NoCache", () => {
 
             // Act
             const underTest = () =>
-                cache.store(fakeHandler, "options", {data: "data"});
+                cache.store<string, string>(fakeHandler, "options", {
+                    data: "data",
+                });
 
             // Assert
             expect(underTest).not.toThrow();

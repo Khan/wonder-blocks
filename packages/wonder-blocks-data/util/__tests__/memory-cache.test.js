@@ -76,7 +76,7 @@ describe("MemoryCache", () => {
             };
 
             // Act
-            cache.store(fakeHandler, "options", {data: "data"});
+            cache.store<string, string>(fakeHandler, "options", {data: "data"});
             const result = cache.retrieve(fakeHandler, "options");
 
             // Assert
@@ -99,7 +99,9 @@ describe("MemoryCache", () => {
             };
 
             // Act
-            cache.store(fakeHandler, "options", {data: "other_data"});
+            cache.store<string, string>(fakeHandler, "options", {
+                data: "other_data",
+            });
             const result = cache.retrieve(fakeHandler, "options");
 
             // Assert
