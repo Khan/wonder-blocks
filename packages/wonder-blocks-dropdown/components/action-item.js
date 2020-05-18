@@ -35,6 +35,11 @@ type ActionProps = {|
     href?: string,
 
     /**
+     * A target destination window for a link to open in.
+     */
+    target?: string,
+
+    /**
      * Whether to avoid using client-side navigation.
      *
      * If the URL passed to href is local to the client-side, e.g.
@@ -114,6 +119,7 @@ export default class ActionItem extends React.Component<ActionProps> {
             skipClientNav,
             disabled,
             href,
+            target,
             indent,
             label,
             onClick,
@@ -174,7 +180,11 @@ export default class ActionItem extends React.Component<ActionProps> {
                                 {children}
                             </StyledLink>
                         ) : (
-                            <StyledAnchor {...props} href={href}>
+                            <StyledAnchor
+                                {...props}
+                                href={href}
+                                target={target}
+                            >
                                 {children}
                             </StyledAnchor>
                         );

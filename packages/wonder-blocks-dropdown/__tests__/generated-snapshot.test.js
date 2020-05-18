@@ -43,6 +43,7 @@ describe("wonder-blocks-dropdown", () => {
                     <ActionItem
                         label="Profile"
                         href="http://khanacademy.org/profile"
+                        target="_blank"
                         testId="profile"
                     />
                     <ActionItem
