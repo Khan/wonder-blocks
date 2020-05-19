@@ -59,17 +59,22 @@ export default class View extends React.Component<Props> {
 
     render() {
         const {testId, tag, ...restProps} = this.props;
+        const props = {
+            ...restProps,
+            "data-test-id": testId,
+        };
+
         switch (tag) {
             case "article":
-                return <StyledArticle data-test-id={testId} {...restProps} />;
+                return <StyledArticle {...props} />;
             case "aside":
-                return <StyledAside data-test-id={testId} {...restProps} />;
+                return <StyledAside {...props} />;
             case "nav":
-                return <StyledNav data-test-id={testId} {...restProps} />;
+                return <StyledNav {...props} />;
             case "section":
-                return <StyledSection data-test-id={testId} {...restProps} />;
+                return <StyledSection {...props} />;
             case "div":
-                return <StyledDiv data-test-id={testId} {...restProps} />;
+                return <StyledDiv {...props} />;
             default:
                 // eslint-disable-next-line no-unused-expressions
                 (tag: empty);
