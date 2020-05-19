@@ -1,5 +1,7 @@
 // @flow
-export type Result<TData> =
+export type ValidData = string | boolean | number | {...};
+
+export type Result<TData: ValidData> =
     | {|
           loading: true,
           data?: void,
@@ -11,7 +13,7 @@ export type Result<TData> =
           error?: string,
       |};
 
-export type CacheEntry<TData> =
+export type CacheEntry<TData: ValidData> =
     | {|
           error: string,
           data?: ?void,
@@ -23,19 +25,19 @@ export type CacheEntry<TData> =
 
 type HandlerSubcache = {
     [key: string]: CacheEntry<any>,
-    ...,
+    ...
 };
 
-export type InterceptCacheFn<TOptions, TData> = (
+export type InterceptCacheFn<TOptions, TData: ValidData> = (
     options: TOptions,
     cacheEntry: ?$ReadOnly<CacheEntry<TData>>,
 ) => ?$ReadOnly<CacheEntry<TData>>;
 
-export type InterceptFulfillRequestFn<TOptions, TData> = (
+export type InterceptFulfillRequestFn<TOptions, TData: ValidData> = (
     options: TOptions,
 ) => ?Promise<TData>;
 
-export type InterceptShouldRefreshCacheFn<TOptions, TData> = (
+export type InterceptShouldRefreshCacheFn<TOptions, TData: ValidData> = (
     options: TOptions,
     cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
 ) => ?boolean;
@@ -48,18 +50,62 @@ export type Interceptor = {|
 
 export type InterceptContextData = {
     [key: string]: Interceptor,
-    ...,
+    ...
 };
 
 export type Cache = {
     [key: string]: HandlerSubcache,
-    ...,
+    ...
 };
+
+export interface ICache<TOptions, TData: ValidData> {
+    /**
+     * Stores a value in the cache for the given handler and options.
+     */
+    store(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+        entry: CacheEntry<TData>,
+    ): void;
+
+    /**
+     * Retrieves a value from the cache for the given handler and options.
+     */
+    retrieve(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ): ?$ReadOnly<CacheEntry<TData>>;
+
+    /**
+     * Remove the cached entry for the given handler and options.
+     *
+     * If the item exists in the cache, the cached entry is deleted and true
+     * is returned. Otherwise, this returns false.
+     */
+    remove(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ): boolean;
+
+    /**
+     * Remove all cached entries for the given handler that, optionally, match
+     * a given predicate.
+     *
+     * Returns the number of entries that were cleared from the cache.
+     */
+    removeAll(
+        handler: IRequestHandler<TOptions, TData>,
+        predicate?: (
+            key: string,
+            cachedEntry: $ReadOnly<CacheEntry<TData>>,
+        ) => boolean,
+    ): number;
+}
 
 /**
  * A handler for data requests.
  */
-export interface IRequestHandler<TOptions, TData> {
+export interface IRequestHandler<TOptions, TData: ValidData> {
     /**
      * Fulfill a given request.
      *
@@ -73,6 +119,12 @@ export interface IRequestHandler<TOptions, TData> {
      * any other handler.
      */
     get type(): string;
+
+    /**
+     * A custom cache to use with data that this handler requests.
+     * This only affects client-side caching of data.
+     */
+    get cache(): ?ICache<TOptions, TData>;
 
     /**
      * Determine if the cached data should be refreshed.

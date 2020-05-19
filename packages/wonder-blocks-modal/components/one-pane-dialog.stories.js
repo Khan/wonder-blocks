@@ -7,7 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import Button from "@khanacademy/wonder-blocks-button";
 
-import OnePaneDialog from "./one-pane-dialog/one-pane-dialog.js";
+import OnePaneDialog from "./one-pane-dialog.js";
 import ModalLauncher from "./modal-launcher.js";
 
 import type {ModalElement} from "../util/types.js";

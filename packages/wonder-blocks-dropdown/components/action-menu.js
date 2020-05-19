@@ -241,7 +241,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                               <ActionMenuOpenerCore
                                   {...eventState}
                                   disabled={disabled}
-                                  opened={opened}
+                                  opened={!!opened}
                                   testId={testId}
                               >
                                   {menuText}

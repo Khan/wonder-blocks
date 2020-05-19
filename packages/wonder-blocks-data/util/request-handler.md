@@ -15,6 +15,12 @@ interface IRequestHandler<TOptions, TData> {
     get type(): string;
 
     /**
+     * A custom cache to use with data that this handler requests.
+     * This only affects client-side caching of data.
+     */
+    get cache(): ?ICache<TOptions, TData>;
+
+    /**
      * Determine if the cached data should be refreshed.
      *
      * If this returns true, the framework will use the currently cached value
@@ -36,6 +42,13 @@ interface IRequestHandler<TOptions, TData> {
 The constructor requires a `type` to identify your handler. This should be unique
 among the handlers that are used across your application, otherwise, requests
 may be fulfilled by the wrong handler.
+
+There is also an optional constructor argument, `cache`, which can be used to
+provide a custom cache for use with data the handler fulfills. Custom caches
+must implement the `ICache<TOptions, TData>` interface. If this is omitted, the
+core Wonder Blocks Data in-memory cache will be used. If you want to avoid
+caching in memory, see `NoCache`, which is a caching strategy that eliminates
+the use of caching entirely.
 
 The `fulfillRequest` method of this class is not implemented and will throw if
 called. Subclasses will need to implement this method.

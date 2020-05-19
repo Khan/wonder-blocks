@@ -59,6 +59,7 @@ module.exports = {
                 "packages/wonder-blocks-data/components/intercept-data.js",
                 "packages/wonder-blocks-data/components/track-data.js",
                 "packages/wonder-blocks-data/util/request-handler.js",
+                "packages/wonder-blocks-data/util/no-cache.js",
             ],
         },
         {
@@ -143,7 +144,7 @@ module.exports = {
                 {
                     name: "Modals",
                     components: [
-                        "packages/wonder-blocks-modal/components/one-pane-dialog/one-pane-dialog.js",
+                        "packages/wonder-blocks-modal/components/one-pane-dialog.js",
                     ],
                 },
                 {

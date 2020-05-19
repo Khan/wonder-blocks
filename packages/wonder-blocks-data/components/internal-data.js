@@ -5,7 +5,12 @@ import {Server} from "@khanacademy/wonder-blocks-core";
 import {RequestFulfillment} from "../util/request-fulfillment.js";
 import {TrackerContext} from "../util/request-tracking.js";
 
-import type {CacheEntry, Result, IRequestHandler} from "../util/types.js";
+import type {
+    ValidData,
+    CacheEntry,
+    Result,
+    IRequestHandler,
+} from "../util/types.js";
 
 type Props<TOptions, TData> = {|
     handler: IRequestHandler<TOptions, TData>,
@@ -29,10 +34,10 @@ type State<TData> = {|
  *
  * INTERNAL USE ONLY
  */
-export default class InternalData<TOptions, TData> extends React.Component<
-    Props<TOptions, TData>,
-    State<TData>,
-> {
+export default class InternalData<
+    TOptions,
+    TData: ValidData,
+> extends React.Component<Props<TOptions, TData>, State<TData>> {
     _mounted: boolean;
 
     constructor(props: Props<TOptions, TData>) {
@@ -153,22 +158,29 @@ export default class InternalData<TOptions, TData> extends React.Component<
     _resultFromState(): Result<TData> {
         const {loading, data, error} = this.state;
 
-        if (!loading) {
-            if (data != null) {
-                return {
-                    loading: false,
-                    data,
-                };
-            } else if (error != null) {
-                return {
-                    loading: false,
-                    error,
-                };
-            }
+        if (loading) {
+            return {
+                loading: true,
+            };
+        }
+
+        if (data != null) {
+            return {
+                loading: false,
+                data,
+            };
+        }
+
+        if (error == null) {
+            // We should never get here ever.
+            throw new Error(
+                "Loaded result has invalid state where data and error are missing",
+            );
         }
 
         return {
-            loading: true,
+            loading: false,
+            error,
         };
     }
 
