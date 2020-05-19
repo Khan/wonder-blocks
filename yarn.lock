@@ -15726,14 +15726,15 @@ store2@^2.7.1:
   integrity sha512-tWEpK0snS2RPUq1i3R6OahfJNjWCQYNxq0+by1amCSuw0mXtymJpzmZIeYpA1UAa+7B0grCpNYIbDcd7AgTbFg==
 
 storybook-addon-jsx@^7.1.13:
-  version "7.1.14"
-  resolved "https://registry.yarnpkg.com/storybook-addon-jsx/-/storybook-addon-jsx-7.1.14.tgz#ec1a3512741b069381e280e00a03397b774a4f69"
-  integrity sha512-ei+nhJz5KB55W247MSxrszc+D3R8xhkZ796bYSikct0L6ug1kVy4KS/cltWYE0pycbpNRGMGALFNgfYfVsF3jg==
+  version "7.2.0"
+  resolved "https://registry.yarnpkg.com/storybook-addon-jsx/-/storybook-addon-jsx-7.2.0.tgz#06f3345c2e98180336f9a32b523d51eef07ff7b4"
+  integrity sha512-DW0oYXINrfcKPH/48vjKFHwg4DnujWCuqjjJtd/YeDla50fELf5SxvW4Qyp9Gd77ccDnFZKokWNCfuS5tMxtsw==
   dependencies:
     "@storybook/components" "^5.2.5"
     copy-to-clipboard "^3.0.8"
     js-beautify "^1.8.8"
     react-element-to-jsx-string "^14.3.1"
+    storybook-pretty-props "^1.0.3"
 
 storybook-chromatic@^2.2.2:
   version "2.2.2"
@@ -15808,6 +15809,11 @@ storybook-chromatic@^3.4.1:
     util-deprecate "^1.0.2"
     uuid "^3.4.0"
     yarn-or-npm "^3.0.1"
+
+storybook-pretty-props@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/storybook-pretty-props/-/storybook-pretty-props-1.0.3.tgz#604974b998ffc680212bb7f3abc44fbfc9149119"
+  integrity sha512-iySc0X6K1QHqDV2JzU0DhWWARWhyJGI/11BYlHEymlFYfmewmxK4g/Z/ebj0YrwURAItwxMJUfsN2oDbiV0D8A==
 
 stream-browserify@^2.0.1:
   version "2.0.1"
