@@ -4,16 +4,28 @@ import {StyleSheet} from "aphrodite";
 
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 
+import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
+
 export default {
     title: "MultiSelect",
 };
 
-class MultiSelectWithCustomStyles extends React.Component {
+// Custom MultiSelect labels
+const dropdownLabels: $Shape<Labels> = {
+    noneSelected: "Solar system",
+    someSelected: (numSelectedValues) => `${numSelectedValues} planets`,
+};
+
+type State = {|
+    selectedValues: Array<string>,
+|};
+
+class MultiSelectWithCustomStyles extends React.Component<{||}, State> {
     state = {
         selectedValues: [],
     };
 
-    handleChange = (update) => {
+    handleChange = (update: Array<string>) => {
         this.setState({
             selectedValues: update,
         });
@@ -26,11 +38,7 @@ class MultiSelectWithCustomStyles extends React.Component {
                 selectedValues={this.state.selectedValues}
                 style={styles.setWidth}
                 dropdownStyle={styles.customDropdown}
-                labels={{
-                    noneSelected: "Solar system",
-                    someSelected: (numSelectedValues) =>
-                        `${numSelectedValues} planets`,
-                }}
+                labels={dropdownLabels}
             >
                 <OptionItem label="Mercury" value="1" />
                 <OptionItem label="Venus" value="2" />
