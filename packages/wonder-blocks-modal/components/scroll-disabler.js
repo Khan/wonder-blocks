@@ -79,7 +79,10 @@ class ScrollDisabler extends Component<Props> {
                 body.style.width = ScrollDisabler.oldWidth;
                 body.style.top = ScrollDisabler.oldTop;
             }
-            window.scrollTo(0, ScrollDisabler.oldScrollY);
+
+            if (typeof window !== "undefined" && window.scrollTo) {
+                window.scrollTo(0, ScrollDisabler.oldScrollY);
+            }
         }
     }
 
