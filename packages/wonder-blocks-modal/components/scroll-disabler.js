@@ -13,6 +13,10 @@
 import {Component} from "react";
 
 const needsHackyMobileSafariScrollDisabler = (() => {
+    if (typeof window === "undefined") {
+        return false;
+    }
+
     const userAgent = window.navigator.userAgent;
     return userAgent.indexOf("iPad") > -1 || userAgent.indexOf("iPhone") > -1;
 })();
@@ -75,7 +79,10 @@ class ScrollDisabler extends Component<Props> {
                 body.style.width = ScrollDisabler.oldWidth;
                 body.style.top = ScrollDisabler.oldTop;
             }
-            window.scrollTo(0, ScrollDisabler.oldScrollY);
+
+            if (typeof window !== "undefined" && window.scrollTo) {
+                window.scrollTo(0, ScrollDisabler.oldScrollY);
+            }
         }
     }
 
