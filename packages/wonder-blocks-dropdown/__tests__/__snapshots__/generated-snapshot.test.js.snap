@@ -2630,7 +2630,6 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      placeholder="Color palette"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -2679,7 +2678,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
           }
         }
       >
-        0 items
+        Color palette
       </span>
       <svg
         aria-hidden="true"
@@ -2744,7 +2743,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
         "minWidth": 170,
         "padding": 0,
         "position": "relative",
-        "width": "fit-content",
+        "width": "100%",
         "zIndex": 0,
       }
     }
@@ -2767,7 +2766,6 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      placeholder="Solar system"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -2816,7 +2814,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
           }
         }
       >
-        0 items
+        Solar system
       </span>
       <svg
         aria-hidden="true"
@@ -3135,7 +3133,6 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      placeholder="empty"
       style={
         Object {
           "::MozFocusInner": Object {
@@ -3185,7 +3182,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
           }
         }
       >
-        0 items
+        empty
       </span>
       <svg
         aria-hidden="true"
@@ -3293,7 +3290,6 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
       onTouchCancel={[Function]}
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
-      placeholder="Accessible MultiSelect"
       style={
         Object {
           "::MozFocusInner": Object {

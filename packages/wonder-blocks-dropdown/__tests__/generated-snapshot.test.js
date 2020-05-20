@@ -947,11 +947,11 @@ describe("wonder-blocks-dropdown", () => {
                 return (
                     <MultiSelect
                         onChange={this.handleChange}
-                        placeholder="Color palette"
                         selectedValues={this.state.selectedValues}
                         style={styles.setWidth}
                         testId="palette"
                         labels={{
+                            noneSelected: "Color palette",
                             someSelected: (numSelectedValues) =>
                                 `${numSelectedValues} colors`,
                         }}
@@ -994,8 +994,9 @@ describe("wonder-blocks-dropdown", () => {
             },
             setWidth: {
                 minWidth: 170,
+                width: "100%",
             },
-            dropdownHeight: {
+            customDropdown: {
                 maxHeight: 200,
             },
         });
@@ -1021,11 +1022,11 @@ describe("wonder-blocks-dropdown", () => {
                 return (
                     <MultiSelect
                         onChange={this.handleChange}
-                        placeholder="Solar system"
                         selectedValues={this.state.selectedValues}
                         style={styles.setWidth}
-                        dropdownStyle={styles.dropdownHeight}
+                        dropdownStyle={styles.customDropdown}
                         labels={{
+                            noneSelected: "Solar system",
                             someSelected: (numSelectedValues) =>
                                 `${numSelectedValues} planets`,
                         }}
@@ -1228,7 +1229,11 @@ describe("wonder-blocks-dropdown", () => {
         });
         const example = (
             <View style={styles.row}>
-                <MultiSelect placeholder="empty" />
+                <MultiSelect
+                    labels={{
+                        noneSelected: "empty",
+                    }}
+                />
             </View>
         );
         const tree = renderer.create(example).toJSON();
@@ -1248,7 +1253,11 @@ describe("wonder-blocks-dropdown", () => {
                 <MultiSelect
                     aria-labelledby="label-for-multi-select"
                     id="unique-multi-select"
-                    placeholder="Accessible MultiSelect"
+                    labels={{
+                        noneSelected: "Accessible MultiSelect",
+                        someSelected: (numSelectedValues) =>
+                            `${numSelectedValues} planets`,
+                    }}
                     selectedValues={["one"]}
                 >
                     <OptionItem

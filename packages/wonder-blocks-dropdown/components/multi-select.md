@@ -37,11 +37,11 @@ class ExampleNoneSelected extends React.Component {
     render() {
         return <MultiSelect
             onChange={this.handleChange}
-            placeholder="Color palette"
             selectedValues={this.state.selectedValues}
             style={styles.setWidth}
             testId="palette"
             labels={{
+                noneSelected: "Color palette",
                 someSelected: (numSelectedValues) => `${numSelectedValues} colors`,
             }}
         >
@@ -77,8 +77,9 @@ const styles = StyleSheet.create({
     },
     setWidth: {
         minWidth: 170,
+        width: "100%",
     },
-    dropdownHeight: {
+    customDropdown: {
         maxHeight: 200,
     },
 });
@@ -103,11 +104,11 @@ class ExampleScrolling extends React.Component {
     render() {
         return <MultiSelect
             onChange={this.handleChange}
-            placeholder="Solar system"
             selectedValues={this.state.selectedValues}
             style={styles.setWidth}
-            dropdownStyle={styles.dropdownHeight}
+            dropdownStyle={styles.customDropdown}
             labels={{
+                noneSelected: "Solar system",
                 someSelected: (numSelectedValues) => `${numSelectedValues} planets`,
             }}
         >
@@ -297,7 +298,7 @@ const styles = StyleSheet.create({
 });
 
 <View style={styles.row}>
-    <MultiSelect placeholder="empty" />
+    <MultiSelect labels={{noneSelected: "empty"}} />
 </View>
 ```
 
@@ -329,7 +330,10 @@ import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
     <MultiSelect
         aria-labelledby="label-for-multi-select"
         id="unique-multi-select"
-        placeholder="Accessible MultiSelect"
+        labels={{
+            noneSelected: "Accessible MultiSelect",
+            someSelected: (numSelectedValues) => `${numSelectedValues} planets`,
+        }}
         selectedValues={["one"]}
     >
         <OptionItem label="First element" aria-label="First element, selected" value="one" />
