@@ -60,11 +60,6 @@ type State = {|
 const MAX_VISIBLE_ITEMS = 10;
 
 /**
- * Maximum horizontal size allowed for the container
- */
-const MAX_ALLOWED_WIDTH = 512;
-
-/**
  * A react-window's List wrapper that instantiates the virtualized list and
  * dynamically calculates the item height depending on the type
  */
@@ -108,11 +103,7 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
         // after the non-virtualized items are rendered, we get the container
         //  width to pass it to react-window's List
         if (rootNode) {
-            const clientWidth = rootNode.getBoundingClientRect().width;
-            const width =
-                clientWidth < MAX_ALLOWED_WIDTH
-                    ? clientWidth
-                    : MAX_ALLOWED_WIDTH;
+            const width = rootNode.getBoundingClientRect().width;
 
             this.setState({
                 width,

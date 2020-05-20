@@ -8,11 +8,11 @@
  *
  * Also modified for our standards (and commented a bit).
  */
-const getElementStyle = function(node: Element, prop) {
+const getElementStyle = function (node: Element, prop) {
     return getComputedStyle(node).getPropertyValue(prop);
 };
 
-const getElementOverflow = function(node: Element) {
+const getElementOverflow = function (node: Element) {
     return (
         getElementStyle(node, "overflow") +
         getElementStyle(node, "overflow-y") +
@@ -20,7 +20,7 @@ const getElementOverflow = function(node: Element) {
     );
 };
 
-const canScroll = function(node: Element) {
+const canScroll = function (node: Element) {
     return /(auto|scroll)/.test(getElementOverflow(node));
 };
 

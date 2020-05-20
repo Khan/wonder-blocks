@@ -19,7 +19,7 @@ type Props = {|
     value: string,
 
     /** User-defined. Whether this choice option is disabled. Default false. */
-    disabled?: boolean,
+    disabled: boolean,
 
     /** User-defined. Optional id for testing purposes. */
     testId?: string,
@@ -31,7 +31,7 @@ type Props = {|
      * Auto-populated by parent. Whether this choice is checked.
      * @ignore
      */
-    checked?: boolean,
+    checked: boolean,
 
     /**
      * Auto-populated by parent. Whether this choice is in error mode (everything
@@ -57,7 +57,7 @@ type Props = {|
      * Auto-populated by parent. Returns the new checked state of the component.
      * @ignore
      */
-    onChange?: (newCheckedState: boolean) => mixed,
+    onChange: (newCheckedState: boolean) => mixed,
 
     /**
      * Auto-populated by parent.
@@ -76,7 +76,9 @@ type Props = {|
  * optional label and description props.
  */ export default class Choice extends React.Component<Props> {
     static defaultProps = {
+        checked: false,
         disabled: false,
+        onChange: () => {},
     };
 
     getChoiceComponent(variant: ?string) {

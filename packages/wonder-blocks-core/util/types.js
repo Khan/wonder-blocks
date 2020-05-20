@@ -139,6 +139,7 @@ export type AriaProps = {|
     "aria-valuemin"?: number,
     "aria-valuenow"?: number,
     "aria-valuetext"?: string,
+    "aria-modal"?: "false" | "true",
 |};
 
 type MouseEvents = {|

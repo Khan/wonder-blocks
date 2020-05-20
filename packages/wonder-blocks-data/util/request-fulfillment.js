@@ -5,12 +5,12 @@ import type {ValidData, CacheEntry, IRequestHandler} from "./types.js";
 
 type Subcache = {
     [key: string]: Promise<any>,
-    ...,
+    ...
 };
 
 type RequestCache = {
     [handlerType: string]: Subcache,
-    ...,
+    ...
 };
 
 let _default: RequestFulfillment;

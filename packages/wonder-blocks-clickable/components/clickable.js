@@ -96,11 +96,16 @@ export default class Clickable extends React.Component<Props> {
         "aria-label": "",
     };
 
-    getCorrectTag = (clickableState: ClickableState, commonProps: mixed) => {
+    getCorrectTag = (
+        clickableState: ClickableState,
+        commonProps: {[string]: any, ...},
+    ) => {
         const activeHref = this.props.href && !this.props.disabled;
         const useClient = this.context.router && !this.props.skipClientNav;
 
-        if (activeHref && useClient) {
+        // NOTE: checking this.props.href here is redundant, but flow
+        // needs it to refine this.props.href to a string.
+        if (activeHref && useClient && this.props.href) {
             return (
                 <StyledLink
                     {...commonProps}
@@ -136,14 +141,15 @@ export default class Clickable extends React.Component<Props> {
     };
 
     render() {
+        const {href, onClick, skipClientNav} = this.props;
         const ClickableBehavior = getClickableBehavior(
-            this.props.href,
-            this.props.skipClientNav,
+            href,
+            skipClientNav,
             this.context.router,
         );
 
         return (
-            <ClickableBehavior onClick={this.props.onClick}>
+            <ClickableBehavior href={href} onClick={onClick}>
                 {(state, handlers) =>
                     this.getCorrectTag(state, {
                         // eslint-disable-next-line react/prop-types

@@ -13,18 +13,24 @@
 import {Component} from "react";
 
 const needsHackyMobileSafariScrollDisabler = (() => {
+    if (typeof window === "undefined") {
+        return false;
+    }
+
     const userAgent = window.navigator.userAgent;
     return userAgent.indexOf("iPad") > -1 || userAgent.indexOf("iPhone") > -1;
 })();
 
-class ScrollDisabler extends Component<{||}> {
+type Props = {||};
+
+class ScrollDisabler extends Component<Props> {
     static oldOverflow: string;
     static oldPosition: string;
     static oldScrollY: number;
     static oldWidth: string;
     static oldTop: string;
 
-    componentWillMount() {
+    componentDidMount() {
         if (ScrollDisabler.numModalsOpened === 0) {
             const body = document.body;
             if (!body) {
@@ -73,7 +79,10 @@ class ScrollDisabler extends Component<{||}> {
                 body.style.width = ScrollDisabler.oldWidth;
                 body.style.top = ScrollDisabler.oldTop;
             }
-            window.scrollTo(0, ScrollDisabler.oldScrollY);
+
+            if (typeof window !== "undefined" && window.scrollTo) {
+                window.scrollTo(0, ScrollDisabler.oldScrollY);
+            }
         }
     }
 
