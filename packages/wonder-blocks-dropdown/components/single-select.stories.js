@@ -29,11 +29,11 @@ class SingleSelectWithCustomStyles extends React.Component<{||}, State> {
         selectedValue: "",
     };
 
-    handleChange(selected: string) {
+    handleChange = (selected: string) => {
         this.setState({
             selectedValue: selected,
         });
-    }
+    };
 
     render() {
         return (
