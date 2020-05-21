@@ -395,7 +395,7 @@ describe("SingleSelect", () => {
         });
     });
 
-    xdescribe("isFilterable", () => {
+    describe("isFilterable", () => {
         it("displays SearchTextInput when isFilterable is true", () => {
             // Arrange
             const wrapper = mount(
