@@ -7,7 +7,7 @@ import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 
 export default {
-    title: "MultiSelect",
+    title: "Dropdown / MultiSelect",
 };
 
 // Custom MultiSelect labels
