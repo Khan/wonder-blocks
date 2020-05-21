@@ -238,7 +238,7 @@ const styles = StyleSheet.create({
     darkBackgroundWrapper: {
         flexDirection: "row",
         justifyContent: "flex-end",
-        backgroundColor: Color.darkBlue,
+        background: Color.darkBlue,
         width: 350,
         height: 200,
         paddingRight: 10,
@@ -505,4 +505,74 @@ class SingleSelectWithCustomOpener extends React.Component {
 }
 
 <SingleSelectWithCustomOpener />
+```
+
+### Single select with search filter
+
+When there are many options, you could use a search filter in the SingleSelect.
+The search filter will be performed toward the labels of the option items.
+
+*NOTE:* The component automatically uses
+[react-window](https://github.com/bvaughn/react-window) to improve performance
+when rendering these elements and is capable of handling many hundreds of items
+without performance problems.
+
+
+```js
+import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    fullBleed: {
+        width: "100%",
+    },
+});
+
+
+const optionItems = new Array(1000).fill(null).map((_, i) => (<OptionItem
+    key={i}
+    value={(i + 1).toString()}
+    label={`School ${i + 1} in Wizarding World Some more really long labels?`}
+/>));
+
+class ExampleWithFilter extends React.Component {
+    constructor() {
+        super();
+        this.state = {
+            selectedValue: "banana",
+        };
+        // Styleguidist doesn't support arrow functions in class field properties
+        this.handleChange = this.handleChange.bind(this);
+    }
+
+    handleChange(selected) {
+        console.log(`${selected} was selected!`);
+        this.setState({
+            selectedValue: selected,
+        });
+    }
+
+    render() {
+        return (
+            <SingleSelect
+                onChange={this.handleChange}
+                isFilterable={true}
+                placeholder="Select a school"
+                selectedValue={this.state.selectedValue}
+                dropdownStyle={styles.fullBleed}
+                style={styles.fullBleed}
+            >
+                {optionItems}
+            </SingleSelect>
+        );
+    }
+}
+
+<View style={styles.row}>
+    <ExampleWithFilter />
+</View>
 ```

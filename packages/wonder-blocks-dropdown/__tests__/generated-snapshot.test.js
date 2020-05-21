@@ -669,7 +669,7 @@ describe("wonder-blocks-dropdown", () => {
             darkBackgroundWrapper: {
                 flexDirection: "row",
                 justifyContent: "flex-end",
-                backgroundColor: Color.darkBlue,
+                background: Color.darkBlue,
                 width: 350,
                 height: 200,
                 paddingRight: 10,
@@ -921,6 +921,69 @@ describe("wonder-blocks-dropdown", () => {
             row: {
                 flexDirection: "row",
             },
+            fullBleed: {
+                width: "100%",
+            },
+        });
+        const optionItems = new Array(1000)
+            .fill(null)
+            .map((_, i) => (
+                <OptionItem
+                    key={i}
+                    value={(i + 1).toString()}
+                    label={`School ${
+                        i + 1
+                    } in Wizarding World Some more really long labels?`}
+                />
+            ));
+
+        class ExampleWithFilter extends React.Component {
+            constructor() {
+                super();
+                this.state = {
+                    selectedValue: "banana",
+                }; // Styleguidist doesn't support arrow functions in class field properties
+
+                this.handleChange = this.handleChange.bind(this);
+            }
+
+            handleChange(selected) {
+                console.log(`${selected} was selected!`);
+                this.setState({
+                    selectedValue: selected,
+                });
+            }
+
+            render() {
+                return (
+                    <SingleSelect
+                        onChange={this.handleChange}
+                        isFilterable={true}
+                        placeholder="Select a school"
+                        selectedValue={this.state.selectedValue}
+                        dropdownStyle={styles.fullBleed}
+                        style={styles.fullBleed}
+                    >
+                        {optionItems}
+                    </SingleSelect>
+                );
+            }
+        }
+
+        const example = (
+            <View style={styles.row}>
+                <ExampleWithFilter />
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 18", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
             setWidth: {
                 minWidth: 170,
             },
@@ -987,7 +1050,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 18", () => {
+    it("example 19", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1053,7 +1116,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 19", () => {
+    it("example 20", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1124,7 +1187,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 20", () => {
+    it("example 21", () => {
         const styles = StyleSheet.create({
             wrapper: {
                 alignItems: "center",
@@ -1221,7 +1284,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 21", () => {
+    it("example 22", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1240,7 +1303,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 22", () => {
+    it("example 23", () => {
         const example = (
             <View>
                 <LabelLarge
@@ -1277,7 +1340,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 23", () => {
+    it("example 24", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1331,7 +1394,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 24", () => {
+    it("example 25", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1395,7 +1458,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 25", () => {
+    it("example 26", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -1460,7 +1523,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 26", () => {
+    it("example 27", () => {
         const styles = StyleSheet.create({
             focused: {
                 color: Color.purple,
@@ -1542,7 +1605,7 @@ describe("wonder-blocks-dropdown", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 27", () => {
+    it("example 28", () => {
         const optionItems = new Array(10)
             .fill(null)
             .map((_, i) => (

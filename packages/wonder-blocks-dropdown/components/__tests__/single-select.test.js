@@ -1,5 +1,6 @@
 //@flow
 import React from "react";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 
 import DropdownOpener from "../dropdown-opener.js";
@@ -7,6 +8,9 @@ import SelectOpener from "../select-opener.js";
 import OptionItem from "../option-item.js";
 import SingleSelect from "../single-select.js";
 import {keyCodes} from "../../util/constants.js";
+import SearchTextInput from "../search-text-input.js";
+
+jest.useFakeTimers();
 
 jest.mock("../dropdown-core-virtualized.js");
 
@@ -15,6 +19,8 @@ describe("SingleSelect", () => {
     const onChange = jest.fn();
 
     beforeEach(() => {
+        jest.useFakeTimers();
+
         window.scrollTo = jest.fn();
         select = mount(
             <SingleSelect onChange={onChange} placeholder="Choose">
@@ -386,6 +392,149 @@ describe("SingleSelect", () => {
 
             // Assert
             expect(openerElement).toHaveText("Toggle B");
+        });
+    });
+
+    xdescribe("isFilterable", () => {
+        it("displays SearchTextInput when isFilterable is true", () => {
+            // Arrange
+            const wrapper = mount(
+                <SingleSelect
+                    onChange={onChange}
+                    isFilterable={true}
+                    placeholder="Choose"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+            wrapper.setState({open: true});
+
+            // Act
+            const searchInput = wrapper.find(SearchTextInput);
+
+            // Assert
+            expect(searchInput.exists()).toBe(true);
+        });
+
+        it("displays SearchTextInput with dismiss button when search text exists", () => {
+            // Arrange
+            const wrapper = mount(
+                <SingleSelect
+                    onChange={onChange}
+                    isFilterable={true}
+                    placeholder="Choose"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Act
+            wrapper.setState({open: true, searchText: "text"});
+
+            // Assert
+            expect(wrapper.find(IconButton).exists()).toBe(true);
+        });
+
+        it("filters the items by the search input (case insensitive)", () => {
+            // Arrange
+            const wrapper = mount(
+                <SingleSelect
+                    onChange={onChange}
+                    isFilterable={true}
+                    placeholder="Choose"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Act
+            wrapper.setState({
+                open: true,
+                searchText: "Item 2",
+            });
+
+            // Assert
+            expect(wrapper.find(OptionItem).at(0).text()).toEqual("item 2");
+            expect(wrapper.find(OptionItem).at(1).exists()).toBe(false);
+        });
+
+        it("Type something in SearchTextInput should update searchText in SingleSelect", () => {
+            // Arrange
+            const wrapper = mount(
+                <SingleSelect
+                    onChange={onChange}
+                    isFilterable={true}
+                    placeholder="Choose"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            wrapper.setState({open: true});
+            const searchInput = wrapper.find(SearchTextInput).find("input");
+
+            // Act
+            searchInput.simulate("change", {target: {value: "Item 1"}});
+
+            // Assert
+            expect(wrapper).toHaveState({searchText: "Item 1"});
+        });
+
+        it("Click dismiss button should clear the searchText in SingleSelect", () => {
+            // Arrange
+            // Arrange
+            const wrapper = mount(
+                <SingleSelect
+                    onChange={onChange}
+                    isFilterable={true}
+                    placeholder="Choose"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            wrapper.setState({open: true, searchText: "Should be cleared"});
+            const dismissBtn = wrapper.find(IconButton);
+
+            // Act
+            dismissBtn.simulate("click");
+
+            // Assert
+            expect(wrapper).toHaveState({searchText: ""});
+        });
+
+        it("Open SingleSelect should clear the searchText", () => {
+            // Arrange
+            const wrapper = mount(
+                <SingleSelect
+                    onChange={onChange}
+                    isFilterable={true}
+                    placeholder="Choose"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            wrapper.setState({searchText: "some text"});
+            const opener = wrapper.find(SelectOpener);
+
+            // Act
+            opener.simulate("click");
+
+            // Assert
+            expect(wrapper).toHaveState({searchText: ""});
         });
     });
 });
