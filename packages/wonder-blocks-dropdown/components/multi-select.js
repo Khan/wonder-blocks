@@ -196,6 +196,12 @@ type State = {|
      * The object containing the custom labels used inside this component.
      */
     labels: Labels,
+
+    /**
+     * The DOM reference to the opener element. This is mainly used to set focus
+     * to this element, and also to pass the reference to Popper.js.
+     */
+    openerElement: ?HTMLElement,
 |};
 
 /**
@@ -207,7 +213,6 @@ type State = {|
  * happens every time there is a change in the selection of the items.
  */
 export default class MultiSelect extends React.Component<Props, State> {
-    openerElement: ?HTMLElement;
     labels: Labels;
 
     static defaultProps: DefaultProps = {
@@ -227,6 +232,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             lastSelectedValues: [],
             // merge custom labels with the default ones
             labels: {...defaultLabels, ...props.labels},
+            openerElement: null,
         };
         // merge custom labels with the default ones
         this.labels = {...defaultLabels, ...props.labels};
@@ -461,7 +467,8 @@ export default class MultiSelect extends React.Component<Props, State> {
     };
 
     handleOpenerRef = (node: any) => {
-        this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
+        const openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
+        this.setState({openerElement});
     };
 
     handleSearchTextChanged = (searchText: string) => {
@@ -565,7 +572,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 onOpenChanged={this.handleOpenChanged}
                 open={open}
                 opener={opener}
-                openerElement={this.openerElement}
+                openerElement={this.state.openerElement}
                 style={style}
                 onSearchTextChanged={
                     isFilterable ? this.handleSearchTextChanged : null

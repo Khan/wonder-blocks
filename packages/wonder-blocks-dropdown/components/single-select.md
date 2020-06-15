@@ -58,68 +58,6 @@ class ExampleWithPlaceholder extends React.Component {
 </View>
 ```
 
-### Single select with custom dropdown style
-
-This example shows how we can add custom styles to the dropdown.
-
-```js
-import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {StyleSheet} from "aphrodite";
-
-const styles = StyleSheet.create({
-    row: {
-        flexDirection: "row",
-    },
-    setWidth: {
-        minWidth: 170,
-        maxWidth: 190,
-    },
-    dropdown: {
-        maxHeight: 240,
-    },
-});
-
-class ExampleWithDropdownStyles extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            selectedValue: null,
-        };
-        this.handleChange = this.handleChange.bind(this);
-    }
-
-    handleChange(selected) {
-        console.log(`${selected} was selected!`);
-        this.setState({
-            selectedValue: selected,
-        });
-    }
-
-    render() {
-        return <SingleSelect
-            onChange={this.handleChange}
-            placeholder="Choose a pet"
-            selectedValue={this.state.selectedValue}
-            style={styles.setWidth}
-        >
-            <OptionItem label="Cat" value="1" />
-            <OptionItem label="Dog" value="2" />
-            <OptionItem label="Goldfish" value="3" />
-            <OptionItem label="Hamster" value="4" />
-            <OptionItem label="Rabbit" value="5" />
-            <OptionItem label="Rock" value="6" />
-            <OptionItem label="Snake" value="7" />
-            <OptionItem label="Tarantula" value="8" />
-        </SingleSelect>;
-    }
-}
-
-<View style={styles.row}>
-    <ExampleWithDropdownStyles />
-</View>
-```
-
 ### Single select with starting selected item and disabled item
 
 This select starts with a starting selected item. One of the items is disabled
@@ -238,7 +176,7 @@ const styles = StyleSheet.create({
     darkBackgroundWrapper: {
         flexDirection: "row",
         justifyContent: "flex-end",
-        background: Color.darkBlue,
+        backgroundColor: Color.darkBlue,
         width: 350,
         height: 200,
         paddingRight: 10,
@@ -507,16 +445,11 @@ class SingleSelectWithCustomOpener extends React.Component {
 <SingleSelectWithCustomOpener />
 ```
 
-### Single select with search filter
+### Single select with search filter and custom styles
 
 When there are many options, you could use a search filter in the SingleSelect.
-The search filter will be performed toward the labels of the option items.
-
-*NOTE:* The component automatically uses
-[react-window](https://github.com/bvaughn/react-window) to improve performance
-when rendering these elements and is capable of handling many hundreds of items
-without performance problems.
-
+The search filter will be performed toward the labels of the option items. Note
+that this example shows how we can add custom styles to the dropdown as well.
 
 ```js
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
@@ -532,36 +465,45 @@ const styles = StyleSheet.create({
     },
 });
 
+const fruits = ["banana", "strawberry", "pear", "orange"];
 
 const optionItems = new Array(1000).fill(null).map((_, i) => (<OptionItem
     key={i}
     value={(i + 1).toString()}
-    label={`School ${i + 1} in Wizarding World Some more really long labels?`}
+    label={`Fruit # ${i + 1} ${fruits[i%fruits.length]}`}
 />));
 
 class ExampleWithFilter extends React.Component {
     constructor() {
         super();
         this.state = {
-            selectedValue: "banana",
+            opened: true,
+            selectedValue: null,
         };
-        // Styleguidist doesn't support arrow functions in class field properties
         this.handleChange = this.handleChange.bind(this);
+        this.handleToggleMenu = this.handleToggleMenu.bind(this);
     }
 
     handleChange(selected) {
-        console.log(`${selected} was selected!`);
         this.setState({
             selectedValue: selected,
+        });
+    }
+
+    handleToggleMenu(opened) {
+        this.setState({
+            opened,
         });
     }
 
     render() {
         return (
             <SingleSelect
+                opened={this.state.opened}
+                onToggle={this.handleToggleMenu}
                 onChange={this.handleChange}
                 isFilterable={true}
-                placeholder="Select a school"
+                placeholder="Select a fruit"
                 selectedValue={this.state.selectedValue}
                 dropdownStyle={styles.fullBleed}
                 style={styles.fullBleed}

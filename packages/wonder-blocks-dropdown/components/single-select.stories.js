@@ -8,25 +8,35 @@ export default {
     title: "Dropdown / SingleSelect",
 };
 
+const fruits = ["banana", "strawberry", "pear", "orange"];
+
 const optionItems = new Array(1000)
     .fill(null)
     .map((_, i) => (
         <OptionItem
             key={i}
             value={(i + 1).toString()}
-            label={`School ${
-                i + 1
-            } in Wizarding World Some more really long labels?`}
+            label={`Fruit # ${i + 1} ${fruits[i % fruits.length]}`}
         />
     ));
 
-type State = {|
-    selectedValue: string,
+type Props = {|
+    opened: boolean,
 |};
 
-class SingleSelectWithCustomStyles extends React.Component<{||}, State> {
+type State = {|
+    selectedValue: string,
+    opened: boolean,
+|};
+
+class SingleSelectWithFilter extends React.Component<Props, State> {
+    static defaultProps = {
+        opened: false,
+    };
+
     state = {
-        selectedValue: "",
+        selectedValue: "2",
+        opened: this.props.opened,
     };
 
     handleChange = (selected: string) => {
@@ -35,12 +45,20 @@ class SingleSelectWithCustomStyles extends React.Component<{||}, State> {
         });
     };
 
+    handleToggleMenu = (opened: boolean) => {
+        this.setState({
+            opened,
+        });
+    };
+
     render() {
         return (
             <SingleSelect
                 onChange={this.handleChange}
                 isFilterable={true}
-                placeholder="Select a school"
+                opened={this.state.opened}
+                onToggle={this.handleToggleMenu}
+                placeholder="Select a fruit"
                 selectedValue={this.state.selectedValue}
                 dropdownStyle={styles.fullBleed}
                 style={styles.fullBleed}
@@ -60,9 +78,9 @@ const styles = StyleSheet.create({
     },
 });
 
-export const customStyles = () => <SingleSelectWithCustomStyles />;
+export const WithFilter = () => <SingleSelectWithFilter />;
 
-customStyles.story = {
+WithFilter.story = {
     parameters: {
         chromatic: {
             // we don't need screenshots because this story only tests behavior.
@@ -70,3 +88,5 @@ customStyles.story = {
         },
     },
 };
+
+export const WithFilterOpened = () => <SingleSelectWithFilter opened={true} />;

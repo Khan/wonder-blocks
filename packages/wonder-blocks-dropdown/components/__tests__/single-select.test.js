@@ -10,8 +10,6 @@ import SingleSelect from "../single-select.js";
 import {keyCodes} from "../../util/constants.js";
 import SearchTextInput from "../search-text-input.js";
 
-jest.useFakeTimers();
-
 jest.mock("../dropdown-core-virtualized.js");
 
 describe("SingleSelect", () => {
@@ -418,27 +416,6 @@ describe("SingleSelect", () => {
             expect(searchInput.exists()).toBe(true);
         });
 
-        it("displays SearchTextInput with dismiss button when search text exists", () => {
-            // Arrange
-            const wrapper = mount(
-                <SingleSelect
-                    onChange={onChange}
-                    isFilterable={true}
-                    placeholder="Choose"
-                >
-                    <OptionItem label="item 1" value="1" />
-                    <OptionItem label="item 2" value="2" />
-                    <OptionItem label="item 3" value="3" />
-                </SingleSelect>,
-            );
-
-            // Act
-            wrapper.setState({open: true, searchText: "text"});
-
-            // Assert
-            expect(wrapper.find(IconButton).exists()).toBe(true);
-        });
-
         it("filters the items by the search input (case insensitive)", () => {
             // Arrange
             const wrapper = mount(
@@ -489,7 +466,6 @@ describe("SingleSelect", () => {
         });
 
         it("Click dismiss button should clear the searchText in SingleSelect", () => {
-            // Arrange
             // Arrange
             const wrapper = mount(
                 <SingleSelect

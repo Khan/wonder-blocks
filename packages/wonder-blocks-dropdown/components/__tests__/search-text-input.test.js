@@ -72,6 +72,29 @@ describe("SearchTextInput", () => {
         expect(onChangeMock).toHaveBeenCalledWith("query");
     });
 
+    it("displays the dismiss button when search text exists", () => {
+        // Arrange
+        const wrapper = shallow(
+            <SearchTextInput
+                searchText="query"
+                testId="search-text-input"
+                onChange={() => jest.fn()}
+                onClick={() => jest.fn()}
+            />,
+        );
+
+        const input = wrapper.find(`[data-test-id="search-text-input"]`);
+
+        // Act
+        input.simulate("change", {
+            target: {value: "query"},
+            preventDefault: jest.fn(),
+        });
+
+        // Assert
+        expect(wrapper.find("IconButton")).toExist();
+    });
+
     it("search should be dismissed if the close icon is clicked", () => {
         // Arrange
         const onClickMock = jest.fn();
@@ -79,7 +102,6 @@ describe("SearchTextInput", () => {
         const wrapper = shallow(
             <SearchTextInput
                 searchText="query"
-                testId="search-text-input"
                 onChange={() => jest.fn()}
                 onClick={onClickMock}
             />,
@@ -101,7 +123,6 @@ describe("SearchTextInput", () => {
         const wrapper = shallow(
             <SearchTextInput
                 searchText="query"
-                testId="search-text-input"
                 onChange={() => jest.fn()}
                 labels={{
                     clearSearch: "Clear",

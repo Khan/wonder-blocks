@@ -16,18 +16,34 @@ const dropdownLabels: $Shape<Labels> = {
     someSelected: (numSelectedValues) => `${numSelectedValues} planets`,
 };
 
+type Props = {|
+    opened: boolean,
+|};
+
 type State = {|
+    opened: boolean,
     selectedValues: Array<string>,
 |};
 
-class MultiSelectWithCustomStyles extends React.Component<{||}, State> {
+class MultiSelectWithCustomStyles extends React.Component<Props, State> {
+    static defaultProps = {
+        opened: false,
+    };
+
     state = {
         selectedValues: [],
+        opened: this.props.opened,
     };
 
     handleChange = (update: Array<string>) => {
         this.setState({
             selectedValues: update,
+        });
+    };
+
+    handleToggleMenu = (opened: boolean) => {
+        this.setState({
+            opened,
         });
     };
 
@@ -39,6 +55,8 @@ class MultiSelectWithCustomStyles extends React.Component<{||}, State> {
                 style={styles.setWidth}
                 dropdownStyle={styles.customDropdown}
                 labels={dropdownLabels}
+                opened={this.state.opened}
+                onToggle={this.handleToggleMenu}
             >
                 <OptionItem label="Mercury" value="1" />
                 <OptionItem label="Venus" value="2" />
@@ -63,6 +81,10 @@ customStyles.story = {
         },
     },
 };
+
+export const customStylesOpened = () => (
+    <MultiSelectWithCustomStyles opened={true} />
+);
 
 const styles = StyleSheet.create({
     setWidth: {

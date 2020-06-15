@@ -122,17 +122,28 @@ type State = {|
      * string.
      */
     searchText: string,
+
+    /**
+     * The DOM reference to the opener element. This is mainly used to set focus
+     * to this element, and also to pass the reference to Popper.js.
+     */
+    openerElement: ?HTMLElement,
 |};
 
 /**
  * The single select allows the selection of one item. Clients are responsible
  * for keeping track of the selected item in the select.
  *
- * The single select dropdown closes after the selection of an item. If the
- * same item is selected, there is no callback.
+ * The single select dropdown closes after the selection of an item. If the same
+ * item is selected, there is no callback.
+ *
+ * *NOTE:* The component automatically uses
+ * [react-window](https://github.com/bvaughn/react-window) to improve
+ * performance when rendering these elements and is capable of handling many
+ * hundreds of items without performance problems.
+ *
  */
 export default class SingleSelect extends React.Component<Props, State> {
-    openerElement: ?HTMLElement;
     selectedIndex: number;
 
     static defaultProps = {
@@ -149,6 +160,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         this.state = {
             open: false,
             searchText: "",
+            openerElement: null,
         };
     }
 
@@ -181,8 +193,8 @@ export default class SingleSelect extends React.Component<Props, State> {
         }
 
         // Bring focus back to the opener element.
-        if (this.state.open && this.openerElement) {
-            this.openerElement.focus();
+        if (this.state.open && this.state.openerElement) {
+            this.state.openerElement.focus();
         }
 
         this.setState({
@@ -225,6 +237,21 @@ export default class SingleSelect extends React.Component<Props, State> {
         });
     };
 
+    filterChildren(
+        children: Array<React.Element<OptionItem>>,
+    ): Array<React.Element<OptionItem>> {
+        const {searchText} = this.state;
+
+        const lowercasedSearchText = searchText.toLowerCase();
+
+        // Filter the children with the searchText if any.
+        return children.filter(
+            ({props}) =>
+                !searchText ||
+                props.label.toLowerCase().indexOf(lowercasedSearchText) > -1,
+        );
+    }
+
     getMenuItems(
         children: Array<React.Element<OptionItem>>,
     ): Array<DropdownItem> {
@@ -232,46 +259,31 @@ export default class SingleSelect extends React.Component<Props, State> {
 
         // If it's not filterable, no need to do any extra besides mapping the
         // option items to dropdown items.
-        if (!isFilterable) {
-            this.mapOptionItemsToDropdownItems(children);
-        }
-
-        const {searchText} = this.state;
-
-        const lowercasedSearchText = searchText.toLowerCase();
-
-        // Filter the children with the searchText if any.
-        const filteredChildren = children.filter(
-            ({props}) =>
-                !searchText ||
-                props.label.toLowerCase().indexOf(lowercasedSearchText) > -1,
+        return this.mapOptionItemsToDropdownItems(
+            isFilterable ? this.filterChildren(children) : children,
         );
-
-        return this.mapOptionItemsToDropdownItems(filteredChildren);
     }
 
-    getSearchField(): Array<DropdownItem> {
+    getSearchField(): ?DropdownItem {
         if (!this.props.isFilterable) {
-            return [];
+            return null;
         }
 
-        return [
-            {
-                component: (
-                    <SearchTextInput
-                        key="search-text-input"
-                        onChange={this.handleSearchTextChanged}
-                        searchText={this.state.searchText}
-                        labels={{
-                            clearSearch: defaultLabels.clearSearch,
-                            filter: defaultLabels.filter,
-                        }}
-                    />
-                ),
-                focusable: true,
-                populatedProps: {},
-            },
-        ];
+        return {
+            component: (
+                <SearchTextInput
+                    key="search-text-input"
+                    onChange={this.handleSearchTextChanged}
+                    searchText={this.state.searchText}
+                    labels={{
+                        clearSearch: defaultLabels.clearSearch,
+                        filter: defaultLabels.filter,
+                    }}
+                />
+            ),
+            focusable: true,
+            populatedProps: {},
+        };
     }
 
     handleSearchTextChanged = (searchText: string) => {
@@ -279,7 +291,8 @@ export default class SingleSelect extends React.Component<Props, State> {
     };
 
     handleOpenerRef = (node: any) => {
-        this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
+        const openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
+        this.setState({openerElement});
     };
 
     handleClick = (e: SyntheticEvent<>) => {
@@ -357,6 +370,10 @@ export default class SingleSelect extends React.Component<Props, State> {
         const allChildren = React.Children.toArray(children).filter(Boolean);
         const filteredItems = this.getMenuItems(allChildren);
         const opener = this.renderOpener(allChildren.length);
+        const searchField = this.getSearchField();
+        const items = searchField
+            ? [searchField, ...filteredItems]
+            : filteredItems;
 
         return (
             <DropdownCore
@@ -368,13 +385,13 @@ export default class SingleSelect extends React.Component<Props, State> {
                     dropdownStyle,
                 ]}
                 initialFocusedIndex={this.selectedIndex}
-                items={[...this.getSearchField(), ...filteredItems]}
+                items={items}
                 keyboard={this.state.keyboard}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
                 open={this.state.open}
                 opener={opener}
-                openerElement={this.openerElement}
+                openerElement={this.state.openerElement}
                 style={style}
                 onSearchTextChanged={
                     isFilterable ? this.handleSearchTextChanged : null
