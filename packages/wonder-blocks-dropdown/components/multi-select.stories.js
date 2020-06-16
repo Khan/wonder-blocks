@@ -50,7 +50,7 @@ class MultiSelectWithCustomStyles extends React.Component<Props, State> {
 
     render() {
         return (
-            <View>
+            <View style={styles.wrapper}>
                 <MultiSelect
                     onChange={this.handleChange}
                     selectedValues={this.state.selectedValues}
