@@ -2,6 +2,7 @@
 import React from "react";
 import {StyleSheet} from "aphrodite";
 
+import {View} from "@khanacademy/wonder-blocks-core";
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 
 export default {
@@ -53,18 +54,20 @@ class SingleSelectWithFilter extends React.Component<Props, State> {
 
     render() {
         return (
-            <SingleSelect
-                onChange={this.handleChange}
-                isFilterable={true}
-                opened={this.state.opened}
-                onToggle={this.handleToggleMenu}
-                placeholder="Select a fruit"
-                selectedValue={this.state.selectedValue}
-                dropdownStyle={styles.fullBleed}
-                style={styles.fullBleed}
-            >
-                {optionItems}
-            </SingleSelect>
+            <View style={styles.wrapper}>
+                <SingleSelect
+                    onChange={this.handleChange}
+                    isFilterable={true}
+                    opened={this.state.opened}
+                    onToggle={this.handleToggleMenu}
+                    placeholder="Select a fruit"
+                    selectedValue={this.state.selectedValue}
+                    dropdownStyle={styles.fullBleed}
+                    style={styles.fullBleed}
+                >
+                    {optionItems}
+                </SingleSelect>
+            </View>
         );
     }
 }
@@ -75,6 +78,10 @@ const styles = StyleSheet.create({
     },
     fullBleed: {
         width: "100%",
+    },
+    wrapper: {
+        height: "800px",
+        width: "1200px",
     },
 });
 

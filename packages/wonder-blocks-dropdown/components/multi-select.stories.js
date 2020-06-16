@@ -2,6 +2,7 @@
 import React from "react";
 import {StyleSheet} from "aphrodite";
 
+import {View} from "@khanacademy/wonder-blocks-core";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 
 import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
@@ -49,24 +50,26 @@ class MultiSelectWithCustomStyles extends React.Component<Props, State> {
 
     render() {
         return (
-            <MultiSelect
-                onChange={this.handleChange}
-                selectedValues={this.state.selectedValues}
-                style={styles.setWidth}
-                dropdownStyle={styles.customDropdown}
-                labels={dropdownLabels}
-                opened={this.state.opened}
-                onToggle={this.handleToggleMenu}
-            >
-                <OptionItem label="Mercury" value="1" />
-                <OptionItem label="Venus" value="2" />
-                <OptionItem label="Earth" value="3" disabled />
-                <OptionItem label="Mars" value="4" />
-                <OptionItem label="Jupiter" value="5" />
-                <OptionItem label="Saturn" value="6" />
-                <OptionItem label="Neptune" value="7" />
-                <OptionItem label="Uranus" value="8" />
-            </MultiSelect>
+            <View>
+                <MultiSelect
+                    onChange={this.handleChange}
+                    selectedValues={this.state.selectedValues}
+                    style={styles.setWidth}
+                    dropdownStyle={styles.customDropdown}
+                    labels={dropdownLabels}
+                    opened={this.state.opened}
+                    onToggle={this.handleToggleMenu}
+                >
+                    <OptionItem label="Mercury" value="1" />
+                    <OptionItem label="Venus" value="2" />
+                    <OptionItem label="Earth" value="3" disabled />
+                    <OptionItem label="Mars" value="4" />
+                    <OptionItem label="Jupiter" value="5" />
+                    <OptionItem label="Saturn" value="6" />
+                    <OptionItem label="Neptune" value="7" />
+                    <OptionItem label="Uranus" value="8" />
+                </MultiSelect>
+            </View>
         );
     }
 }
@@ -93,5 +96,9 @@ const styles = StyleSheet.create({
     },
     customDropdown: {
         maxHeight: 200,
+    },
+    wrapper: {
+        height: "800px",
+        width: "1200px",
     },
 });
