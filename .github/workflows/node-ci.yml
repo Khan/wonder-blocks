@@ -13,7 +13,7 @@ jobs:
       - name: Use Node.js 12.x
         uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 12.16.x
       - name: Get yarn cache
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -35,5 +35,5 @@ jobs:
       - uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          appCode: ${{ secrets.CHROMATIC_APP_CODE }}
+          projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
           autoAcceptChanges: "master"
