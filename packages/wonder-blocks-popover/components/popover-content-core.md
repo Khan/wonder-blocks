@@ -38,7 +38,9 @@ const styles = StyleSheet.create({
     <PopoverContentCore
         color="darkBlue"
         style={styles.customPopover}
+        closeButtonVisible={true}
         onClose={() => alert("close popover!")}
+        testId="example-popover"
     >
         <View>
             <HeadingSmall>Custom popover title</HeadingSmall>
