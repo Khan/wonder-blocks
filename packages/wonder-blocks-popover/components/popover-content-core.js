@@ -85,6 +85,7 @@ export default class PopoverContentCore extends React.Component<Props> {
                         aria-label={closeButtonLabel}
                         light={closeButtonLight || color !== "white"}
                         style={styles.closeButton}
+                        testId={`${testId || "popover"}-close-btn`}
                     />
                 )}
                 {children}

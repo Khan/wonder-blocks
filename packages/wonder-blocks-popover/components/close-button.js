@@ -20,6 +20,11 @@ type Props = {|
      * Custom styles applied to the IconButton
      */
     style?: StyleType,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 /**
@@ -34,7 +39,7 @@ export default class CloseButton extends React.Component<Props> {
     };
 
     render() {
-        const {light, "aria-label": ariaLabel, style} = this.props;
+        const {light, "aria-label": ariaLabel, style, testId} = this.props;
         return (
             <PopoverContext.Consumer>
                 {({close}) => {
@@ -46,6 +51,7 @@ export default class CloseButton extends React.Component<Props> {
                             kind={light ? "primary" : "tertiary"}
                             light={light}
                             style={style}
+                            testId={testId}
                         />
                     );
                 }}
