@@ -47,7 +47,7 @@
     "@storybook/addon-actions": "^5.3.3",
     "@storybook/addon-backgrounds": "^5.3.0",
     "@storybook/addon-knobs": "^5.3.3",
-    "@storybook/addon-viewport": "^5.3.2",
+    "@storybook/addon-viewport": "^6.0.7",
     "@storybook/addons": "^5.3.0",
     "@storybook/react": "^5.3.0",
     "alex": "^8.0.0",
