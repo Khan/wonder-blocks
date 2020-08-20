@@ -1,9 +1,8 @@
 // @flow
 // A menu that consists of action items
-import PopperJS from "popper.js";
-import {View} from "@khanacademy/wonder-blocks-core";
 import * as React from "react";
 import ReactDOM from "react-dom";
+import PopperJS from "popper.js";
 import {Popper} from "react-popper";
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
@@ -11,7 +10,7 @@ import {VariableSizeList as List} from "react-window";
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-
+import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
