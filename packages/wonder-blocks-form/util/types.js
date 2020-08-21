@@ -22,6 +22,8 @@ export type ChoiceCoreProps = {|
      * guarantee that the ID is unique within everything rendered on a page.
      * Used to match <label> with <input> elements for screenreaders. */
     id?: string,
+    /** Optionally state that filling in or checking the input is required */
+    required?: boolean,
     /** Optional test ID for e2e testing */
     testId?: string,
 |};
