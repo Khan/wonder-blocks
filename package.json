@@ -45,7 +45,7 @@
     "@babel/preset-react": "7.9.4",
     "@khanacademy/eslint-config": "0.0.5",
     "@storybook/addon-actions": "^5.3.3",
-    "@storybook/addon-backgrounds": "^5.3.0",
+    "@storybook/addon-backgrounds": "^6.0.19",
     "@storybook/addon-knobs": "^5.3.3",
     "@storybook/addon-viewport": "^5.3.2",
     "@storybook/addons": "^5.3.0",
