@@ -12,7 +12,7 @@ export default function addStyle<T: React.AbstractComponent<any> | string>(
     defaultStyle?: StyleType,
 ): React.AbstractComponent<{
     ...React.ElementConfig<T>,
-    style: StyleType,
+    style?: StyleType,
     ...
 }> {
     function StyleComponent(props: {
