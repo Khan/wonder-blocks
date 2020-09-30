@@ -79,7 +79,7 @@
     "jest-enzyme": "^7.0.2",
     "lerna": "^3.16.5",
     "lint-staged": "^10.2.2",
-    "marked": "1.1.0",
+    "marked": "1.2.0",
     "mkdirp": "^1.0.4",
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1",
