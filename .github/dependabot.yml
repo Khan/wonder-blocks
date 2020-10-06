@@ -4,5 +4,5 @@ updates:
     directory: "/"
     schedule:
       interval: "daily"
-    commit_message:
+    commit-message:
       prefix: "[skip netlify]"
