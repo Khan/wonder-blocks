@@ -136,6 +136,18 @@ export type SharedProps = {|
      * href is not
      */
     onClick?: (e: SyntheticEvent<>) => mixed,
+
+    /**
+     * Block navigation, including client-side navigation until the promise
+     * has resolved successfully.
+     */
+    beforeNav?: (e: SyntheticEvent<>) => Promise<mixed>,
+
+    /**
+     * Allow client-side navigation in the background.  Block server-side
+     * navigation until the promise is either resolved or rejected.
+     */
+    safeWithNav?: (e: SyntheticEvent<>) => Promise<mixed>,
 |};
 
 /**
@@ -175,6 +187,8 @@ export default class Button extends React.Component<SharedProps> {
             skipClientNav,
             spinner,
             disabled,
+            beforeNav,
+            safeWithNav,
             ...sharedProps
         } = this.props;
 
@@ -189,6 +203,8 @@ export default class Button extends React.Component<SharedProps> {
                 disabled={spinner || disabled}
                 href={href}
                 onClick={onClick}
+                beforeNav={beforeNav}
+                safeWithNav={safeWithNav}
                 role="button"
             >
                 {(state, handlers) => {

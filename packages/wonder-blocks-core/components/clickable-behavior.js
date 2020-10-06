@@ -72,10 +72,24 @@ type Props = {|
      */
     href?: string,
 
+    skipClientNav?: boolean,
+
     /**
      * A function to be executed `onclick`.
      */
     onClick?: (e: SyntheticEvent<>) => mixed,
+
+    /**
+     * Block navigation, including client-side navigation until the promise
+     * has resolved successfully.
+     */
+    beforeNav?: (e: SyntheticEvent<>) => Promise<mixed>,
+
+    /**
+     * Allow client-side navigation in the background.  Block server-side
+     * navigation until the promise is either resolved or rejected.
+     */
+    safeWithNav?: (e: SyntheticEvent<>) => Promise<mixed>,
 
     /**
      * Passed in by withRouter HOC.
@@ -269,12 +283,43 @@ export default class ClickableBehavior extends React.Component<
         this.dragging = false;
     }
 
-    handleClick = (e: SyntheticMouseEvent<>) => {
+    handleClick = async (e: SyntheticMouseEvent<>) => {
+        const {
+            onClick,
+            beforeNav,
+            safeWithNav,
+            skipClientNav,
+            history,
+        } = this.props;
+
         if (this.enterClick) {
             return;
-        } else if (this.props.onClick) {
+        } else if (onClick) {
             this.waitingForClick = false;
-            this.props.onClick(e);
+            onClick(e);
+        } else if (beforeNav) {
+            // block navigation
+            e.preventDefault();
+            try {
+                await beforeNav(e);
+                this.maybeNavigate();
+            } catch (error) {
+                // don't navigate
+            }
+        } else if (safeWithNav) {
+            if (history && !skipClientNav) {
+                safeWithNav(e);
+            } else {
+                // block navigation
+                e.preventDefault();
+                try {
+                    await safeWithNav(e);
+                } catch (error) {
+                    // ignore the error since we're navigating
+                } finally {
+                    this.maybeNavigate();
+                }
+            }
         }
     };
 
@@ -383,9 +428,9 @@ export default class ClickableBehavior extends React.Component<
     };
 
     maybeNavigate = () => {
-        const {history, href} = this.props;
+        const {history, href, skipClientNav} = this.props;
         if (href) {
-            if (history) {
+            if (history && !skipClientNav) {
                 history.push(href);
             } else {
                 window.location.assign(href);
