@@ -13,6 +13,7 @@ type Props = {|
     hovered: boolean,
     focused: boolean,
     pressed: boolean,
+    waiting: boolean,
 |};
 
 const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;

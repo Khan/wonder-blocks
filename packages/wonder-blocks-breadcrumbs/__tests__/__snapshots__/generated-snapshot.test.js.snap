@@ -52,6 +52,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
           }
         }
         tabIndex={0}
+        waiting={false}
       >
         Home
       </a>
@@ -110,6 +111,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
           }
         }
         tabIndex={0}
+        waiting={false}
       >
         About
       </a>

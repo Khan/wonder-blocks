@@ -25,8 +25,6 @@ type Props = {|
     ...SharedProps,
     ...ClickableHandlers,
     ...ClickableState,
-    href?: string,
-    target?: string,
 |};
 
 const StyledAnchor = addStyle<"a">("a");
@@ -54,6 +52,7 @@ export default class ButtonCore extends React.Component<Props> {
             spinner,
             icon,
             id,
+            waiting,
             ...handlers
         } = this.props;
         const {router} = this.context;
@@ -128,7 +127,7 @@ export default class ButtonCore extends React.Component<Props> {
         const contents = (
             <React.Fragment>
                 {label}
-                {spinner && (
+                {(spinner || waiting) && (
                     <CircularSpinner
                         style={sharedStyles.spinner}
                         size={{medium: "small", small: "xsmall"}[size]}

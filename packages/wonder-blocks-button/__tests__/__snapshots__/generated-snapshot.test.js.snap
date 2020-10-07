@@ -1459,401 +1459,6 @@ exports[`wonder-blocks-button example 6 1`] = `
   className=""
   style={
     Object {
-      "alignItems": "stretch",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "row",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  <a
-    className=""
-    href="#button-1"
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragStart={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-    role="button"
-    style={
-      Object {
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "#1865f2",
-        "border": "none",
-        "borderRadius": 4,
-        "boxSizing": "border-box",
-        "color": "#ffffff",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "marginRight": 10,
-        "outline": "none",
-        "paddingBottom": 0,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 0,
-        "position": "relative",
-        "textDecoration": "none",
-        "touchAction": "manipulation",
-        "userSelect": "none",
-      }
-    }
-    tabIndex={0}
-  >
-    <span
-      className=""
-      style={
-        Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
-          "alignItems": "center",
-          "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-          "fontSize": 16,
-          "fontWeight": "bold",
-          "lineHeight": "20px",
-          "overflow": "hidden",
-          "pointerEvents": "none",
-          "textOverflow": "ellipsis",
-          "whiteSpace": "nowrap",
-        }
-      }
-    >
-      href
-    </span>
-  </a>
-  <button
-    className=""
-    disabled={false}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragStart={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-    role="button"
-    style={
-      Object {
-        "::MozFocusInner": Object {
-          "border": 0,
-        },
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "none",
-        "border": "none",
-        "borderColor": "rgba(33,36,44,0.50)",
-        "borderRadius": 4,
-        "borderStyle": "solid",
-        "borderWidth": 1,
-        "boxSizing": "border-box",
-        "color": "#1865f2",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "margin": 0,
-        "marginRight": 10,
-        "outline": "none",
-        "paddingBottom": 0,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 0,
-        "position": "relative",
-        "textDecoration": "none",
-        "touchAction": "manipulation",
-        "userSelect": "none",
-      }
-    }
-    tabIndex={0}
-    type="button"
-  >
-    <span
-      className=""
-      style={
-        Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
-          "alignItems": "center",
-          "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-          "fontSize": 16,
-          "fontWeight": "bold",
-          "lineHeight": "20px",
-          "overflow": "hidden",
-          "pointerEvents": "none",
-          "textOverflow": "ellipsis",
-          "whiteSpace": "nowrap",
-        }
-      }
-    >
-      onClick
-    </span>
-  </button>
-  <a
-    className=""
-    href="#button-1"
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragStart={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-    role="button"
-    style={
-      Object {
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "none",
-        "border": "none",
-        "borderRadius": 4,
-        "boxSizing": "border-box",
-        "color": "#1865f2",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "marginRight": 10,
-        "outline": "none",
-        "paddingBottom": 0,
-        "paddingLeft": 0,
-        "paddingRight": 0,
-        "paddingTop": 0,
-        "position": "relative",
-        "textDecoration": "none",
-        "touchAction": "manipulation",
-        "userSelect": "none",
-      }
-    }
-    tabIndex={0}
-  >
-    <span
-      className=""
-      style={
-        Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
-          "alignItems": "center",
-          "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-          "fontSize": 16,
-          "fontWeight": "bold",
-          "lineHeight": "20px",
-          "overflow": "hidden",
-          "pointerEvents": "none",
-          "position": "relative",
-          "textOverflow": "ellipsis",
-          "whiteSpace": "nowrap",
-        }
-      }
-    >
-      both
-    </span>
-  </a>
-</div>
-`;
-
-exports[`wonder-blocks-button example 7 1`] = `
-<div
-  className=""
-  style={
-    Object {
-      "alignItems": "center",
-      "borderStyle": "solid",
-      "borderWidth": 0,
-      "boxSizing": "border-box",
-      "display": "flex",
-      "flexDirection": "row",
-      "margin": 0,
-      "minHeight": 0,
-      "minWidth": 0,
-      "padding": 0,
-      "position": "relative",
-      "zIndex": 0,
-    }
-  }
->
-  <a
-    className=""
-    href="/foo"
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragStart={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-    role="button"
-    style={
-      Object {
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "#1865f2",
-        "border": "none",
-        "borderRadius": 4,
-        "boxSizing": "border-box",
-        "color": "#ffffff",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "marginRight": 10,
-        "outline": "none",
-        "paddingBottom": 0,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 0,
-        "position": "relative",
-        "textDecoration": "none",
-        "touchAction": "manipulation",
-        "userSelect": "none",
-      }
-    }
-    tabIndex={0}
-  >
-    <span
-      className=""
-      style={
-        Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
-          "alignItems": "center",
-          "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-          "fontSize": 16,
-          "fontWeight": "bold",
-          "lineHeight": "20px",
-          "overflow": "hidden",
-          "pointerEvents": "none",
-          "textOverflow": "ellipsis",
-          "whiteSpace": "nowrap",
-        }
-      }
-    >
-      Uses Client-side Nav
-    </span>
-  </a>
-  <a
-    className=""
-    href="/foo"
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragStart={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-    role="button"
-    style={
-      Object {
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "#1865f2",
-        "border": "none",
-        "borderRadius": 4,
-        "boxSizing": "border-box",
-        "color": "#ffffff",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 40,
-        "justifyContent": "center",
-        "marginRight": 10,
-        "outline": "none",
-        "paddingBottom": 0,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 0,
-        "position": "relative",
-        "textDecoration": "none",
-        "touchAction": "manipulation",
-        "userSelect": "none",
-      }
-    }
-    tabIndex={0}
-  >
-    <span
-      className=""
-      style={
-        Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
-          "alignItems": "center",
-          "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-          "fontSize": 16,
-          "fontWeight": "bold",
-          "lineHeight": "20px",
-          "overflow": "hidden",
-          "pointerEvents": "none",
-          "textOverflow": "ellipsis",
-          "whiteSpace": "nowrap",
-        }
-      }
-    >
-      Avoids Client-side Nav
-    </span>
-  </a>
-</div>
-`;
-
-exports[`wonder-blocks-button example 8 1`] = `
-<div
-  className=""
-  style={
-    Object {
       "alignItems": "center",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -2128,7 +1733,561 @@ exports[`wonder-blocks-button example 8 1`] = `
 </div>
 `;
 
+exports[`wonder-blocks-button example 7 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <a
+    className=""
+    href="#button-1"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginRight": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "inline-block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      href
+    </span>
+  </a>
+  <button
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "none",
+        "border": "none",
+        "borderColor": "rgba(33,36,44,0.50)",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "color": "#1865f2",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "margin": 0,
+        "marginRight": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "inline-block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      onClick
+    </span>
+  </button>
+  <a
+    className=""
+    href="#button-1"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "none",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#1865f2",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginRight": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 0,
+        "paddingRight": 0,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "inline-block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "position": "relative",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      both
+    </span>
+  </a>
+</div>
+`;
+
+exports[`wonder-blocks-button example 8 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <a
+    className=""
+    href="/foo"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginRight": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "inline-block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Uses Client-side Nav
+    </span>
+  </a>
+  <a
+    className=""
+    href="/foo"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginRight": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "inline-block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Avoids Client-side Nav
+    </span>
+  </a>
+</div>
+`;
+
 exports[`wonder-blocks-button example 9 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "center",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <a
+    className=""
+    href="/foo"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginRight": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "inline-block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Async action, client-side nav
+    </span>
+  </a>
+  <a
+    className=""
+    href="/foo"
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "#1865f2",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "#ffffff",
+        "cursor": "pointer",
+        "display": "inline-flex",
+        "height": 40,
+        "justifyContent": "center",
+        "marginRight": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 16,
+        "paddingRight": 16,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={0}
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "inline-block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 16,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Async action, server-side nav
+    </span>
+  </a>
+</div>
+`;
+
+exports[`wonder-blocks-button example 10 1`] = `
 <div
   className=""
   style={
@@ -2762,7 +2921,7 @@ exports[`wonder-blocks-button example 9 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 10 1`] = `
+exports[`wonder-blocks-button example 11 1`] = `
 <div
   className=""
   style={
@@ -2857,7 +3016,7 @@ exports[`wonder-blocks-button example 10 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 11 1`] = `
+exports[`wonder-blocks-button example 12 1`] = `
 <div
   className=""
   style={
@@ -3084,7 +3243,7 @@ exports[`wonder-blocks-button example 11 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 12 1`] = `
+exports[`wonder-blocks-button example 13 1`] = `
 <div
   className=""
   style={
@@ -3258,7 +3417,7 @@ exports[`wonder-blocks-button example 12 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 13 1`] = `
+exports[`wonder-blocks-button example 14 1`] = `
 <div
   className=""
   style={
@@ -3433,7 +3592,7 @@ exports[`wonder-blocks-button example 13 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 14 1`] = `
+exports[`wonder-blocks-button example 15 1`] = `
 <div
   className=""
   style={
@@ -3622,7 +3781,7 @@ exports[`wonder-blocks-button example 14 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-button example 15 1`] = `
+exports[`wonder-blocks-button example 16 1`] = `
 <div
   className=""
   style={

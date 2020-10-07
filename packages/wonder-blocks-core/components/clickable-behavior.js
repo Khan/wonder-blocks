@@ -80,15 +80,19 @@ type Props = {|
     onClick?: (e: SyntheticEvent<>) => mixed,
 
     /**
-     * Run asynchronous actions before navigating.  If the promise returned
-     * rejects then navigation will be cancelled.
+     * Run async code before navigating.  If the promise returned rejects then
+     * navigation will not occur.
+     *
+     * If both safeWithNav and beforeNav are provided, beforeNav will be run
+     * first and safeWithNav will only be run if beforeNav doesn't not reject.
      */
     beforeNav?: (e: SyntheticEvent<>) => Promise<mixed>,
 
     /**
-     * Allow client-side navigation in the background.  Server-side navigation
-     * is blocked until the promise is either resolved or rejected.  Errors are
-     * ignored so that navigation is guaranteed to succeed.
+     * Run async code in the background while client-side navigating. If the
+     * navigation is server-side, the callback must either be resolved or
+     * rejected before the navigation will occur. Errors are ignored so that
+     * navigation is guaranteed to succeed.
      */
     safeWithNav?: (e: SyntheticEvent<>) => Promise<mixed>,
 
@@ -128,6 +132,15 @@ export type ClickableState = {|
      * See component documentation for more details.
      */
     pressed: boolean,
+
+    /**
+     * When we're waiting for beforeNav or safeWithNav to complete an async
+     * action, this will be true.
+     *
+     * NOTE: We only wait for safeWithNav to complete when doing server-side
+     * navigation.
+     */
+    waiting: boolean,
 |};
 
 export type ClickableHandlers = {|
@@ -173,6 +186,7 @@ const startState = {
     hovered: false,
     focused: false,
     pressed: false,
+    waiting: false,
 };
 
 /**
@@ -296,32 +310,38 @@ export default class ClickableBehavior extends React.Component<
 
         if (onClick) {
             onClick(e);
-        } else {
-            try {
-                if (beforeNav) {
-                    await beforeNav(e);
-                }
+        }
 
-                if (safeWithNav) {
-                    if (history && !skipClientNav) {
-                        safeWithNav(e);
-                    } else {
-                        try {
-                            await safeWithNav(e);
-                        } catch (error) {
-                            // We ignore the error here so that we always
-                            // navigate when using safeWithNav regardless of
-                            // whether we're doing a client-side nav or not.
-                        }
+        try {
+            if (beforeNav) {
+                this.setState({waiting: true});
+                await beforeNav(e);
+            }
+
+            if (safeWithNav) {
+                if (!this.state.waiting) {
+                    this.setState({waiting: true});
+                }
+                if (history && !skipClientNav) {
+                    safeWithNav(e);
+                } else {
+                    try {
+                        await safeWithNav(e);
+                    } catch (error) {
+                        // We ignore the error here so that we always
+                        // navigate when using safeWithNav regardless of
+                        // whether we're doing a client-side nav or not.
                     }
                 }
-            } catch (error) {
-                shouldNavigate = false;
             }
+        } catch (error) {
+            shouldNavigate = false;
         }
 
         if (shouldNavigate) {
             this.maybeNavigate();
+        } else {
+            this.setState({waiting: false});
         }
     }
 
@@ -452,8 +472,11 @@ export default class ClickableBehavior extends React.Component<
         if (href) {
             if (history && !skipClientNav) {
                 history.push(href);
+                this.setState({waiting: false});
             } else {
                 window.location.assign(href);
+                // We don't bother clearing the waiting state, the server-side
+                // navigation will do that for us by loading a new page.
             }
         }
     };

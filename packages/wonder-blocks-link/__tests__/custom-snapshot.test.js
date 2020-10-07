@@ -33,6 +33,7 @@ describe("LinkCore", () => {
                             focused: state === "focused",
                             hovered: state === "hovered",
                             pressed: state === "pressed",
+                            waiting: false,
                         };
                         test(`kind:${kind} href:${href} light:${String(
                             light,

@@ -37,6 +37,7 @@ describe("ButtonCore", () => {
                             focused: state === "focused",
                             hovered: state === "hovered",
                             pressed: state === "pressed",
+                            waiting: false,
                         };
                         test(`kind:${kind} color:${color} size:${size} light:${String(
                             light,
@@ -75,6 +76,7 @@ describe("ButtonCore", () => {
                     focused: false,
                     hovered: false,
                     pressed: false,
+                    waiting: false,
                 };
                 const tree = renderer
                     .create(

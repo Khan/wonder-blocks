@@ -80,8 +80,6 @@ export type SharedProps = {|
 
     /**
      * URL to navigate to.
-     *
-     * Note: Either href or onClick must be defined
      */
     href?: string,
 
@@ -105,6 +103,37 @@ export type SharedProps = {|
     skipClientNav?: boolean,
 
     /**
+     * Function to call when button is clicked.
+     *
+     * This callback should be used for things like marking BigBingo
+     * conversions. It should NOT be used to redirect to a different URL or to
+     * prevent navigation via e.preventDefault(). The event passed to this
+     * handler will have its preventDefault() and stopPropagation() methods
+     * stubbed out.
+     *
+     * Note: onClick is optional if href is present, but must be defined if
+     * href is not
+     */
+    onClick?: (e: SyntheticEvent<>) => mixed,
+
+    /**
+     * Run async code before navigating. If the promise returned rejects then
+     * navigation will not occur.
+     *
+     * If both safeWithNav and beforeNav are provided, beforeNav will be run
+     * first and safeWithNav will only be run if beforeNav doesn't not reject.
+     */
+    beforeNav?: (e: SyntheticEvent<>) => Promise<mixed>,
+
+    /**
+     * Run async code in the background while client-side navigating. If the
+     * navigation is server-side, the callback must either be resolved or
+     * rejected before the navigation will occur. Errors are ignored so that
+     * navigation is guaranteed to succeed.
+     */
+    safeWithNav?: (e: SyntheticEvent<>) => Promise<mixed>,
+
+    /**
      * Optional custom styles.
      */
     style?: StyleType,
@@ -118,53 +147,6 @@ export type SharedProps = {|
     }>>,
     */
 |};
-
-type Props =
-    | {|
-          ...SharedProps,
-
-          /**
-           * Function to call when button is clicked.
-           *
-           * This callback should be used for things like marking BigBingo
-           * conversions. It should NOT be used to redirect to a different URL or to
-           * prevent navigation via e.preventDefault(). The event passed to this
-           * handler will have its preventDefault() and stopPropagation() methods
-           * stubbed out.
-           *
-           * Note: onClick is optional if href is present, but must be defined if
-           * href is not
-           */
-          onClick: (e: SyntheticEvent<>) => mixed,
-      |}
-    | {|
-          ...SharedProps,
-
-          /**
-           * URL to navigate to.
-           *
-           * Note: Either href or onClick must be defined
-           */
-          href: string,
-
-          /**
-           * A target destination window for a link to open in.
-           */
-          target?: string,
-
-          /**
-           * Run asynchronous actions before navigating.  If the promise returned
-           * rejects then navigation will be cancelled.
-           */
-          beforeNav?: (e: SyntheticEvent<>) => Promise<mixed>,
-
-          /**
-           * Allow client-side navigation in the background.  Server-side navigation
-           * is blocked until the promise is either resolved or rejected.  Errors are
-           * ignored so that navigation is guaranteed to succeed.
-           */
-          safeWithNav?: (e: SyntheticEvent<>) => Promise<mixed>,
-      |};
 
 /**
  * Reusable button component.
@@ -183,7 +165,7 @@ type Props =
  * </Button>
  * ```
  */
-export default class Button extends React.Component<Props> {
+export default class Button extends React.Component<SharedProps> {
     static contextTypes = {router: PropTypes.any};
 
     static defaultProps = {
@@ -197,14 +179,14 @@ export default class Button extends React.Component<Props> {
 
     render() {
         const {
-            href = undefined,
+            href,
             children,
             skipClientNav,
             spinner,
             disabled,
-            onClick = undefined,
-            beforeNav = undefined,
-            safeWithNav = undefined,
+            onClick,
+            beforeNav,
+            safeWithNav,
             ...sharedButtonCoreProps
         } = this.props;
 
@@ -230,31 +212,17 @@ export default class Button extends React.Component<Props> {
             );
         };
 
-        const commonClickableProps = {
-            disabled: spinner || disabled,
-            href,
-            role: "button",
-        };
-
-        // We have to do this because otherwise flow finds multiple "possibly"
-        // correct paths to check and decides not to bother since it's too
-        // computation expensive to do so.
-        if (onClick) {
-            return (
-                <ClickableBehavior {...commonClickableProps} onClick={onClick}>
-                    {renderProp}
-                </ClickableBehavior>
-            );
-        } else {
-            return (
-                <ClickableBehavior
-                    {...commonClickableProps}
-                    beforeNav={beforeNav}
-                    safeWithNav={safeWithNav}
-                >
-                    {renderProp}
-                </ClickableBehavior>
-            );
-        }
+        return (
+            <ClickableBehavior
+                disabled={spinner || disabled}
+                href={href}
+                role="button"
+                onClick={onClick}
+                beforeNav={beforeNav}
+                safeWithNav={safeWithNav}
+            >
+                {renderProp}
+            </ClickableBehavior>
+        );
     }
 }
