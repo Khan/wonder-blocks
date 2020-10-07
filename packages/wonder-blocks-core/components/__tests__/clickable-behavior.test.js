@@ -33,7 +33,7 @@ describe("ClickableBehavior", () => {
             </ClickableBehavior>,
         );
         expect(onClick).not.toHaveBeenCalled();
-        button.simulate("click");
+        button.simulate("click", {preventDefault: jest.fn()});
         expect(onClick).toHaveBeenCalled();
     });
 
@@ -135,7 +135,7 @@ describe("ClickableBehavior", () => {
             keyCode: keyCodes.space,
             preventDefault: jest.fn(),
         });
-        button.simulate("click");
+        button.simulate("click", {preventDefault: jest.fn()});
         expect(button.state("focused")).toEqual(true);
     });
 
@@ -158,11 +158,11 @@ describe("ClickableBehavior", () => {
             keyCode: keyCodes.space,
             preventDefault: jest.fn(),
         });
-        button.simulate("click");
+        button.simulate("click", {preventDefault: jest.fn()});
         expect(button.state("focused")).toEqual(true);
         button.simulate("mousedown");
         button.simulate("mouseup");
-        button.simulate("click");
+        button.simulate("click", {preventDefault: jest.fn()});
         expect(button.state("focused")).toEqual(false);
     });
 
@@ -367,7 +367,7 @@ describe("ClickableBehavior", () => {
 
         button.simulate("touchstart", {keyCode: keyCodes.space});
         button.simulate("touchend", {keyCode: keyCodes.space});
-        button.simulate("click");
+        button.simulate("click", {preventDefault: jest.fn()});
         expect(onClick).toHaveBeenCalledTimes(4);
     });
 
@@ -518,7 +518,7 @@ describe("ClickableBehavior", () => {
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
         clickableDiv.simulate("mouseup");
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
-        clickableDiv.simulate("click");
+        clickableDiv.simulate("click", {preventDefault: jest.fn()});
         expectedNumberTimesCalled += 1;
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
 
@@ -534,7 +534,7 @@ describe("ClickableBehavior", () => {
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
         clickableDiv.simulate("mouseup");
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
-        clickableDiv.simulate("click");
+        clickableDiv.simulate("click", {preventDefault: jest.fn()});
         expectedNumberTimesCalled += 1;
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
     });
@@ -557,13 +557,13 @@ describe("ClickableBehavior", () => {
 
         button.simulate("mousedown");
         button.simulate("dragstart", {preventDefault: jest.fn()});
-        button.simulate("mouseup");
+        button.simulate("mouseup", {preventDefault: jest.fn()});
         expect(onClick).toHaveBeenCalledTimes(1);
 
         button.simulate("mouseenter", {
             buttons: 1,
         });
-        button.simulate("mouseup");
+        button.simulate("mouseup", {preventDefault: jest.fn()});
         expect(onClick).toHaveBeenCalledTimes(2);
     });
 
@@ -584,7 +584,7 @@ describe("ClickableBehavior", () => {
         // Enter press should not do anything
         checkbox.simulate("keydown", {keyCode: keyCodes.enter});
         // This element still wants to have a click on enter press
-        checkbox.simulate("click");
+        checkbox.simulate("click", {preventDefault: jest.fn()});
         checkbox.simulate("keyup", {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(0);
     });

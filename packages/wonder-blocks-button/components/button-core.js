@@ -25,6 +25,8 @@ type Props = {|
     ...SharedProps,
     ...ClickableHandlers,
     ...ClickableState,
+    href?: string,
+    target?: string,
 |};
 
 const StyledAnchor = addStyle<"a">("a");

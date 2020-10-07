@@ -124,7 +124,7 @@ export const kitchenSink = () => {
                     </Body>
                 </View>
             }
-            footer={<Button>Button (no-op)</Button>}
+            footer={<Button onClick={() => {}}>Button (no-op)</Button>}
             closeButtonVisible={true}
             above={<View style={styles.above} />}
             below={<View style={styles.below} />}
@@ -172,7 +172,7 @@ export const withOpener = () => {
                     </Body>
                 </View>
             }
-            footer={<Button>Button (no-op)</Button>}
+            footer={<Button onClick={() => {}}>Button (no-op)</Button>}
             closeButtonVisible={true}
             above={<View style={styles.above} />}
             below={<View style={styles.below} />}

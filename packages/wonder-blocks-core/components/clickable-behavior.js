@@ -106,6 +106,38 @@ type Props = {|
     role?: ClickableRole,
 |};
 
+// TODO(kevinb): switch to this once all component using ClickableBehavior have
+// switch to use disjoin props for href/target and onClick/beforeNav/sideNav
+// type Props =
+//     | {|
+//           ...CommonProps,
+
+//           /**
+//            * A function to be executed `onclick`.
+//            */
+//           onClick: (e: SyntheticEvent<>) => mixed,
+//       |}
+//     | {|
+//           ...CommonProps,
+
+//           /**
+//            * Block navigation, including client-side navigation until the promise
+//            * has resolved successfully.
+//            */
+//           beforeNav: (e: SyntheticEvent<>) => Promise<mixed>,
+//       |}
+//     | {|
+//           ...CommonProps,
+//           /**
+//            * Allow client-side navigation in the background.  Block server-side
+//            * navigation until the promise is either resolved or rejected.
+//            */
+//           safeWithNav: (e: SyntheticEvent<>) => Promise<mixed>,
+//       |}
+//     | {|
+//           ...CommonProps,
+//       |};
+
 export type ClickableState = {|
     /**
      * Whether the component is hovered.
@@ -283,44 +315,59 @@ export default class ClickableBehavior extends React.Component<
         this.dragging = false;
     }
 
-    handleClick = async (e: SyntheticMouseEvent<>) => {
+    async runCallbackAndMaybeNavigate(e: SyntheticEvent<>) {
         const {
-            onClick,
-            beforeNav,
-            safeWithNav,
+            onClick = undefined,
+            beforeNav = undefined,
+            safeWithNav = undefined,
             skipClientNav,
             history,
         } = this.props;
+        let shouldNavigate = true;
 
-        if (this.enterClick) {
-            return;
-        } else if (onClick) {
-            this.waitingForClick = false;
+        if (onClick) {
             onClick(e);
         } else if (beforeNav) {
-            // block navigation
-            e.preventDefault();
             try {
                 await beforeNav(e);
-                this.maybeNavigate();
             } catch (error) {
-                // don't navigate
+                shouldNavigate = false;
             }
         } else if (safeWithNav) {
             if (history && !skipClientNav) {
                 safeWithNav(e);
             } else {
-                // block navigation
-                e.preventDefault();
                 try {
                     await safeWithNav(e);
                 } catch (error) {
                     // ignore the error since we're navigating
-                } finally {
-                    this.maybeNavigate();
                 }
             }
         }
+
+        if (shouldNavigate) {
+            this.maybeNavigate();
+        }
+    }
+
+    handleClick = (e: SyntheticMouseEvent<>) => {
+        const {
+            onClick = undefined,
+            beforeNav = undefined,
+            safeWithNav = undefined,
+        } = this.props;
+
+        if (this.enterClick) {
+            return;
+        }
+
+        e.preventDefault();
+
+        if (onClick || beforeNav || safeWithNav) {
+            this.waitingForClick = false;
+        }
+
+        this.runCallbackAndMaybeNavigate(e);
     };
 
     handleMouseEnter = (e: SyntheticMouseEvent<>) => {
@@ -410,40 +457,8 @@ export default class ClickableBehavior extends React.Component<
             }
 
             this.setState({pressed: false, focused: true});
-            const {
-                onClick,
-                beforeNav,
-                safeWithNav,
-                skipClientNav,
-                history,
-            } = this.props;
 
-            if (onClick) {
-                onClick(e);
-                this.maybeNavigate();
-            } else if (beforeNav) {
-                try {
-                    await beforeNav(e);
-                    this.maybeNavigate();
-                } catch (error) {
-                    // don't navigate
-                }
-            } else if (safeWithNav) {
-                if (history && !skipClientNav) {
-                    safeWithNav(e);
-                    this.maybeNavigate();
-                } else {
-                    try {
-                        await safeWithNav(e);
-                    } catch (error) {
-                        // ignore the error since we're navigating
-                    } finally {
-                        this.maybeNavigate();
-                    }
-                }
-            } else {
-                this.maybeNavigate();
-            }
+            this.runCallbackAndMaybeNavigate(e);
         } else if (!triggerOnEnter && keyCode === keyCodes.enter) {
             this.enterClick = false;
         }
