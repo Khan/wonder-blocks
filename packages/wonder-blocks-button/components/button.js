@@ -153,46 +153,17 @@ type Props =
           target?: string,
 
           /**
-           * Block navigation, including client-side navigation until the promise
-           * has resolved successfully.
+           * Run asynchronous actions before navigating.  If the promise returned
+           * rejects then navigation will be cancelled.
            */
-          beforeNav: (e: SyntheticEvent<>) => Promise<mixed>,
-      |}
-    | {|
-          ...SharedProps,
+          beforeNav?: (e: SyntheticEvent<>) => Promise<mixed>,
 
           /**
-           * URL to navigate to.
-           *
-           * Note: Either href or onClick must be defined
+           * Allow client-side navigation in the background.  Server-side navigation
+           * is blocked until the promise is either resolved or rejected.  Errors are
+           * ignored so that navigation is guaranteed to succeed.
            */
-          href: string,
-
-          /**
-           * A target destination window for a link to open in.
-           */
-          target?: string,
-
-          /**
-           * Allow client-side navigation in the background.  Block server-side
-           * navigation until the promise is either resolved or rejected.
-           */
-          safeWithNav: (e: SyntheticEvent<>) => Promise<mixed>,
-      |}
-    | {|
-          ...SharedProps,
-
-          /**
-           * A target destination window for a link to open in.
-           */
-          target?: string,
-
-          /**
-           * URL to navigate to.
-           *
-           * Note: Either href or onClick must be defined
-           */
-          href: string,
+          safeWithNav?: (e: SyntheticEvent<>) => Promise<mixed>,
       |};
 
 /**
@@ -274,27 +245,13 @@ export default class Button extends React.Component<Props> {
                     {renderProp}
                 </ClickableBehavior>
             );
-        } else if (beforeNav) {
+        } else {
             return (
                 <ClickableBehavior
                     {...commonClickableProps}
                     beforeNav={beforeNav}
-                >
-                    {renderProp}
-                </ClickableBehavior>
-            );
-        } else if (safeWithNav) {
-            return (
-                <ClickableBehavior
-                    {...commonClickableProps}
                     safeWithNav={safeWithNav}
                 >
-                    {renderProp}
-                </ClickableBehavior>
-            );
-        } else {
-            return (
-                <ClickableBehavior {...commonClickableProps}>
                     {renderProp}
                 </ClickableBehavior>
             );

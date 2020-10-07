@@ -42,7 +42,7 @@ describe("Button", () => {
         expect(wrapper.find("#foo").exists()).toBe(true);
     });
 
-    test("beforeNav rejection blocks client-side navigation ", async () => {
+    test("beforeNav rejection blocks client-side navigation", async () => {
         // Arrange
         const wrapper = mount(
             <MemoryRouter>
@@ -71,6 +71,39 @@ describe("Button", () => {
 
         // Assert
         expect(wrapper.find("#foo").exists()).toBe(false);
+    });
+
+    test("beforeNav rejection blocks calling safeWithNav", async () => {
+        // Arrange
+        const safeWithNavMock = jest.fn();
+        const wrapper = mount(
+            <MemoryRouter>
+                <div>
+                    <Button
+                        testId="button"
+                        href="/foo"
+                        beforeNav={(e) => Promise.reject()}
+                        safeWithNav={safeWithNavMock}
+                    >
+                        Click me!
+                    </Button>
+                    <Switch>
+                        <Route path="/foo">
+                            <div id="foo">Hello, world!</div>
+                        </Route>
+                    </Switch>
+                </div>
+            </MemoryRouter>,
+        );
+
+        // Act
+        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        buttonWrapper.simulate("click", {button: 0});
+        await wait(0);
+        buttonWrapper.update();
+
+        // Assert
+        expect(safeWithNavMock).not.toHaveBeenCalled();
     });
 
     test("beforeNav resolution results in client-side navigation", async () => {
@@ -104,6 +137,39 @@ describe("Button", () => {
         expect(wrapper.find("#foo").exists()).toBe(true);
     });
 
+    test("beforeNav resolution results in safeWithNav being called", async () => {
+        // Arrange
+        const safeWithNavMock = jest.fn();
+        const wrapper = mount(
+            <MemoryRouter>
+                <div>
+                    <Button
+                        testId="button"
+                        href="/foo"
+                        beforeNav={(e) => Promise.resolve()}
+                        safeWithNav={safeWithNavMock}
+                    >
+                        Click me!
+                    </Button>
+                    <Switch>
+                        <Route path="/foo">
+                            <div id="foo">Hello, world!</div>
+                        </Route>
+                    </Switch>
+                </div>
+            </MemoryRouter>,
+        );
+
+        // Act
+        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        buttonWrapper.simulate("click", {button: 0});
+        await wait(0);
+        buttonWrapper.update();
+
+        // Assert
+        expect(safeWithNavMock).toHaveBeenCalled();
+    });
+
     test("safeWithNav with skipClientNav=true waits for promise resolution", async () => {
         // Arrange
         jest.spyOn(window.location, "assign");
@@ -130,6 +196,42 @@ describe("Button", () => {
         // Act
         const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
         buttonWrapper.simulate("click", {button: 0});
+        await wait(0);
+        buttonWrapper.update();
+
+        // Assert
+        expect(window.location.assign).toHaveBeenCalledWith("/foo");
+    });
+
+    test("beforeNav resolution and safeWithNav with skipClientNav=true waits for promise resolution", async () => {
+        // Arrange
+        jest.spyOn(window.location, "assign");
+        const wrapper = mount(
+            <MemoryRouter>
+                <div>
+                    <Button
+                        testId="button"
+                        href="/foo"
+                        beforeNav={(e) => Promise.resolve()}
+                        safeWithNav={(e) => Promise.resolve()}
+                        skipClientNav={true}
+                    >
+                        Click me!
+                    </Button>
+                    <Switch>
+                        <Route path="/foo">
+                            <div id="foo">Hello, world!</div>
+                        </Route>
+                    </Switch>
+                </div>
+            </MemoryRouter>,
+        );
+
+        // Act
+        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        buttonWrapper.simulate("click", {button: 0});
+        await wait(0);
+        buttonWrapper.update();
         await wait(0);
         buttonWrapper.update();
 
@@ -197,6 +299,42 @@ describe("Button", () => {
         // Act
         const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
         buttonWrapper.simulate("click", {button: 0});
+
+        // Assert
+        expect(safeWithNavMock).toHaveBeenCalled();
+        expect(window.location.assign).toHaveBeenCalledWith("/foo");
+    });
+
+    test("safeWithNav with beforeNav resolution and skipClientNav=false calls safeWithNav but doesn't wait to navigate", async () => {
+        // Arrange
+        jest.spyOn(window.location, "assign");
+        const safeWithNavMock = jest.fn();
+        const wrapper = mount(
+            <MemoryRouter>
+                <div>
+                    <Button
+                        testId="button"
+                        href="/foo"
+                        beforeNav={() => Promise.resolve()}
+                        safeWithNav={safeWithNavMock}
+                        skipClientNav={false}
+                    >
+                        Click me!
+                    </Button>
+                    <Switch>
+                        <Route path="/foo">
+                            <div id="foo">Hello, world!</div>
+                        </Route>
+                    </Switch>
+                </div>
+            </MemoryRouter>,
+        );
+
+        // Act
+        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        buttonWrapper.simulate("click", {button: 0});
+        await wait(0);
+        buttonWrapper.update();
 
         // Assert
         expect(safeWithNavMock).toHaveBeenCalled();

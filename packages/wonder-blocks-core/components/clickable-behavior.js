@@ -80,14 +80,15 @@ type Props = {|
     onClick?: (e: SyntheticEvent<>) => mixed,
 
     /**
-     * Block navigation, including client-side navigation until the promise
-     * has resolved successfully.
+     * Run asynchronous actions before navigating.  If the promise returned
+     * rejects then navigation will be cancelled.
      */
     beforeNav?: (e: SyntheticEvent<>) => Promise<mixed>,
 
     /**
-     * Allow client-side navigation in the background.  Block server-side
-     * navigation until the promise is either resolved or rejected.
+     * Allow client-side navigation in the background.  Server-side navigation
+     * is blocked until the promise is either resolved or rejected.  Errors are
+     * ignored so that navigation is guaranteed to succeed.
      */
     safeWithNav?: (e: SyntheticEvent<>) => Promise<mixed>,
 
@@ -105,38 +106,6 @@ type Props = {|
      */
     role?: ClickableRole,
 |};
-
-// TODO(kevinb): switch to this once all component using ClickableBehavior have
-// switch to use disjoin props for href/target and onClick/beforeNav/sideNav
-// type Props =
-//     | {|
-//           ...CommonProps,
-
-//           /**
-//            * A function to be executed `onclick`.
-//            */
-//           onClick: (e: SyntheticEvent<>) => mixed,
-//       |}
-//     | {|
-//           ...CommonProps,
-
-//           /**
-//            * Block navigation, including client-side navigation until the promise
-//            * has resolved successfully.
-//            */
-//           beforeNav: (e: SyntheticEvent<>) => Promise<mixed>,
-//       |}
-//     | {|
-//           ...CommonProps,
-//           /**
-//            * Allow client-side navigation in the background.  Block server-side
-//            * navigation until the promise is either resolved or rejected.
-//            */
-//           safeWithNav: (e: SyntheticEvent<>) => Promise<mixed>,
-//       |}
-//     | {|
-//           ...CommonProps,
-//       |};
 
 export type ClickableState = {|
     /**
@@ -327,21 +296,27 @@ export default class ClickableBehavior extends React.Component<
 
         if (onClick) {
             onClick(e);
-        } else if (beforeNav) {
+        } else {
             try {
-                await beforeNav(e);
+                if (beforeNav) {
+                    await beforeNav(e);
+                }
+
+                if (safeWithNav) {
+                    if (history && !skipClientNav) {
+                        safeWithNav(e);
+                    } else {
+                        try {
+                            await safeWithNav(e);
+                        } catch (error) {
+                            // We ignore the error here so that we always
+                            // navigate when using safeWithNav regardless of
+                            // whether we're doing a client-side nav or not.
+                        }
+                    }
+                }
             } catch (error) {
                 shouldNavigate = false;
-            }
-        } else if (safeWithNav) {
-            if (history && !skipClientNav) {
-                safeWithNav(e);
-            } else {
-                try {
-                    await safeWithNav(e);
-                } catch (error) {
-                    // ignore the error since we're navigating
-                }
             }
         }
 
