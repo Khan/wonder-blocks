@@ -1,8 +1,10 @@
 // @flow
 import React from "react";
+import {MemoryRouter, Switch, Route} from "react-router-dom";
 import {shallow} from "enzyme";
 import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 
+import getClickableBehavior from "../../util/get-clickable-behavior.js";
 import ClickableBehavior from "../clickable-behavior.js";
 
 const keyCodes = {
@@ -10,6 +12,12 @@ const keyCodes = {
     enter: 13,
     space: 32,
 };
+
+const wait = (delay: number = 0) =>
+    new Promise((resolve, reject) => {
+        // eslint-disable-next-line no-restricted-syntax
+        return setTimeout(resolve, delay);
+    });
 
 describe("ClickableBehavior", () => {
     beforeEach(() => {
@@ -388,48 +396,107 @@ describe("ClickableBehavior", () => {
         expect(button.state("focused")).toEqual(false);
     });
 
-    it("both navigates and calls onClick for an anchor link", () => {
-        const onClick = jest.fn();
-        // Use mount instead of a shallow render to trigger event defaults
-        const link = mount(
-            <ClickableBehavior
-                href="https://khanacademy.org/"
-                onClick={(e) => onClick(e)}
-                role="link"
-            >
-                {(state, handlers) => {
-                    // The base element here doesn't matter in this testing
-                    // environment, but the simulated events in the test are in
-                    // line with what browsers do for this element.
-                    return (
-                        <a href="https://khanacademy.org/" {...handlers}>
-                            Label
-                        </a>
-                    );
-                }}
-            </ClickableBehavior>,
-        );
+    describe("server-side navigation", () => {
+        it("both navigates and calls onClick for an anchor link", () => {
+            const onClick = jest.fn();
+            // Use mount instead of a shallow render to trigger event defaults
+            const link = mount(
+                <ClickableBehavior
+                    href="https://khanacademy.org/"
+                    onClick={(e) => onClick(e)}
+                    role="link"
+                >
+                    {(state, handlers) => {
+                        // The base element here doesn't matter in this testing
+                        // environment, but the simulated events in the test are in
+                        // line with what browsers do for this element.
+                        return (
+                            <a href="https://khanacademy.org/" {...handlers}>
+                                Label
+                            </a>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
 
-        // Space press should not trigger the onClick
-        link.simulate("keydown", {keyCode: keyCodes.space});
-        link.simulate("keyup", {keyCode: keyCodes.space});
-        expect(onClick).toHaveBeenCalledTimes(0);
+            // Space press should not trigger the onClick
+            link.simulate("keydown", {keyCode: keyCodes.space});
+            link.simulate("keyup", {keyCode: keyCodes.space});
+            expect(onClick).toHaveBeenCalledTimes(0);
 
-        // Navigation didn't happen with space
-        expect(window.location.assign).toHaveBeenCalledTimes(0);
+            // Navigation didn't happen with space
+            expect(window.location.assign).toHaveBeenCalledTimes(0);
 
-        // Enter press should trigger the onClick after keyup
-        link.simulate("keydown", {keyCode: keyCodes.enter});
-        expect(onClick).toHaveBeenCalledTimes(0);
+            // Enter press should trigger the onClick after keyup
+            link.simulate("keydown", {keyCode: keyCodes.enter});
+            expect(onClick).toHaveBeenCalledTimes(0);
 
-        // Navigation doesn't happen until after enter is released
-        expect(window.location.assign).toHaveBeenCalledTimes(0);
+            // Navigation doesn't happen until after enter is released
+            expect(window.location.assign).toHaveBeenCalledTimes(0);
 
-        link.simulate("keyup", {keyCode: keyCodes.enter});
-        expect(onClick).toHaveBeenCalledTimes(1);
+            link.simulate("keyup", {keyCode: keyCodes.enter});
+            expect(onClick).toHaveBeenCalledTimes(1);
 
-        // Navigation happened after enter click
-        expect(window.location.assign).toHaveBeenCalledTimes(1);
+            // Navigation happened after enter click
+            expect(window.location.assign).toHaveBeenCalledTimes(1);
+        });
+
+        it("waits for safeWithNav to resolve before navigation", async () => {
+            // Arrange
+            const link = mount(
+                <ClickableBehavior
+                    href="https://khanacademy.org/"
+                    safeWithNav={() => Promise.resolve()}
+                    role="link"
+                >
+                    {(state, handlers) => {
+                        // The base element here doesn't matter in this testing
+                        // environment, but the simulated events in the test are in
+                        // line with what browsers do for this element.
+                        return (
+                            <a href="https://khanacademy.org/" {...handlers}>
+                                Label
+                            </a>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
+
+            // Act
+            link.simulate("click", {preventDefault: jest.fn()});
+            await wait(0);
+
+            // Assert
+            expect(window.location.assign).toHaveBeenCalledTimes(1);
+        });
+
+        it("should show waiting UI before safeWithNav resolves", async () => {
+            // Arrange
+            const link = mount(
+                <ClickableBehavior
+                    href="https://khanacademy.org/"
+                    safeWithNav={() => Promise.resolve()}
+                    role="link"
+                >
+                    {(state, handlers) => {
+                        // The base element here doesn't matter in this testing
+                        // environment, but the simulated events in the test are in
+                        // line with what browsers do for this element.
+                        return (
+                            <a href="https://khanacademy.org/" {...handlers}>
+                                {state.waiting ? "waiting" : "Label"}
+                            </a>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
+
+            // Act
+            link.simulate("click", {preventDefault: jest.fn()});
+
+            // Assert
+            expect(link).toIncludeText("waiting");
+        });
     });
 
     it("calls onClick correctly for a component that doesn't respond to enter", () => {
@@ -587,5 +654,259 @@ describe("ClickableBehavior", () => {
         checkbox.simulate("click", {preventDefault: jest.fn()});
         checkbox.simulate("keyup", {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(0);
+    });
+
+    describe("client-side navgiation", () => {
+        const ClickableBehaviorWithRouter = getClickableBehavior(
+            "/foo",
+            false,
+            true, // router
+        );
+
+        it("handles client-side navigation when there's a router context", () => {
+            // Arrange
+            const wrapper = mount(
+                <MemoryRouter>
+                    <div>
+                        <ClickableBehaviorWithRouter
+                            href="/foo"
+                            onClick={(e) => {}}
+                            role="checkbox"
+                        >
+                            {(state, handlers) => {
+                                // The base element here doesn't matter in this testing
+                                // environment, but the simulated events in the test are in
+                                // line with what browsers do for this element.
+                                return (
+                                    <button id="test-button" {...handlers}>
+                                        label
+                                    </button>
+                                );
+                            }}
+                        </ClickableBehaviorWithRouter>
+                        <Switch>
+                            <Route path="/foo">
+                                <div>Hello, world!</div>
+                            </Route>
+                        </Switch>
+                    </div>
+                </MemoryRouter>,
+            );
+
+            // Act
+            const button = wrapper.find("#test-button").first();
+            button.simulate("click", {preventDefault: jest.fn()});
+
+            // Assert
+            expect(wrapper).toIncludeText("Hello, world!");
+        });
+
+        describe("beforeNav", () => {
+            it("waits for beforeNav to resolve before client-side navigating", async () => {
+                // Arrange
+                const wrapper = mount(
+                    <MemoryRouter>
+                        <div>
+                            <ClickableBehaviorWithRouter
+                                href="/foo"
+                                onClick={(e) => {}}
+                                role="checkbox"
+                                beforeNav={() => Promise.resolve()}
+                            >
+                                {(state, handlers) => {
+                                    // The base element here doesn't matter in this testing
+                                    // environment, but the simulated events in the test are in
+                                    // line with what browsers do for this element.
+                                    return (
+                                        <button id="test-button" {...handlers}>
+                                            {state.waiting
+                                                ? "waiting"
+                                                : "label"}
+                                        </button>
+                                    );
+                                }}
+                            </ClickableBehaviorWithRouter>
+                            <Switch>
+                                <Route path="/foo">
+                                    <div>Hello, world!</div>
+                                </Route>
+                            </Switch>
+                        </div>
+                    </MemoryRouter>,
+                );
+
+                // Act
+                const button = wrapper.find("#test-button").first();
+                button.simulate("click", {preventDefault: jest.fn()});
+                await wait(0);
+
+                // Assert
+                expect(wrapper).toIncludeText("Hello, world!");
+            });
+
+            it("shows waiting state before navigating", async () => {
+                // Arrange
+                const wrapper = mount(
+                    <MemoryRouter>
+                        <div>
+                            <ClickableBehaviorWithRouter
+                                href="/foo"
+                                onClick={(e) => {}}
+                                role="checkbox"
+                                beforeNav={() => Promise.resolve()}
+                            >
+                                {(state, handlers) => {
+                                    // The base element here doesn't matter in this testing
+                                    // environment, but the simulated events in the test are in
+                                    // line with what browsers do for this element.
+                                    return (
+                                        <button id="test-button" {...handlers}>
+                                            {state.waiting
+                                                ? "waiting"
+                                                : "label"}
+                                        </button>
+                                    );
+                                }}
+                            </ClickableBehaviorWithRouter>
+                            <Switch>
+                                <Route path="/foo">
+                                    <div>Hello, world!</div>
+                                </Route>
+                            </Switch>
+                        </div>
+                    </MemoryRouter>,
+                );
+
+                // Act
+                const button = wrapper.find("#test-button").first();
+                button.simulate("click", {preventDefault: jest.fn()});
+
+                // Assert
+                expect(wrapper).toIncludeText("waiting");
+            });
+
+            it("does not navigate if beforeNav rejects", async () => {
+                // Arrange
+                const wrapper = mount(
+                    <MemoryRouter>
+                        <div>
+                            <ClickableBehaviorWithRouter
+                                href="/foo"
+                                onClick={(e) => {}}
+                                role="checkbox"
+                                beforeNav={() => Promise.reject()}
+                            >
+                                {(state, handlers) => {
+                                    // The base element here doesn't matter in this testing
+                                    // environment, but the simulated events in the test are in
+                                    // line with what browsers do for this element.
+                                    return (
+                                        <button id="test-button" {...handlers}>
+                                            label
+                                        </button>
+                                    );
+                                }}
+                            </ClickableBehaviorWithRouter>
+                            <Switch>
+                                <Route path="/foo">
+                                    <div>Hello, world!</div>
+                                </Route>
+                            </Switch>
+                        </div>
+                    </MemoryRouter>,
+                );
+
+                // Act
+                const button = wrapper.find("#test-button").first();
+                button.simulate("click", {preventDefault: jest.fn()});
+                await wait(0);
+
+                // Assert
+                expect(wrapper).not.toIncludeText("Hello, world!");
+            });
+
+            it("calls safeWithNav if provided if beforeNav resolves", async () => {
+                // Arrange
+                const safeWithNavMock = jest.fn();
+                const wrapper = mount(
+                    <MemoryRouter>
+                        <div>
+                            <ClickableBehaviorWithRouter
+                                href="/foo"
+                                onClick={(e) => {}}
+                                role="checkbox"
+                                beforeNav={() => Promise.resolve()}
+                                safeWithNav={safeWithNavMock}
+                            >
+                                {(state, handlers) => {
+                                    // The base element here doesn't matter in this testing
+                                    // environment, but the simulated events in the test are in
+                                    // line with what browsers do for this element.
+                                    return (
+                                        <button id="test-button" {...handlers}>
+                                            {state.waiting
+                                                ? "waiting"
+                                                : "label"}
+                                        </button>
+                                    );
+                                }}
+                            </ClickableBehaviorWithRouter>
+                            <Switch>
+                                <Route path="/foo">
+                                    <div>Hello, world!</div>
+                                </Route>
+                            </Switch>
+                        </div>
+                    </MemoryRouter>,
+                );
+
+                // Act
+                const button = wrapper.find("#test-button").first();
+                button.simulate("click", {preventDefault: jest.fn()});
+                await wait(0);
+
+                // Assert
+                expect(safeWithNavMock).toHaveBeenCalled();
+            });
+        });
+
+        it("doesn't wait for safeWithNav to resolve before client-side navigating", async () => {
+            // Arrange
+            const wrapper = mount(
+                <MemoryRouter>
+                    <div>
+                        <ClickableBehaviorWithRouter
+                            href="/foo"
+                            onClick={(e) => {}}
+                            role="checkbox"
+                            safeWithNav={() => Promise.resolve()}
+                        >
+                            {(state, handlers) => {
+                                // The base element here doesn't matter in this testing
+                                // environment, but the simulated events in the test are in
+                                // line with what browsers do for this element.
+                                return (
+                                    <button id="test-button" {...handlers}>
+                                        label
+                                    </button>
+                                );
+                            }}
+                        </ClickableBehaviorWithRouter>
+                        <Switch>
+                            <Route path="/foo">
+                                <div>Hello, world!</div>
+                            </Route>
+                        </Switch>
+                    </div>
+                </MemoryRouter>,
+            );
+
+            // Act
+            const button = wrapper.find("#test-button").first();
+            button.simulate("click", {preventDefault: jest.fn()});
+
+            // Assert
+            expect(wrapper).toIncludeText("Hello, world!");
+        });
     });
 });
