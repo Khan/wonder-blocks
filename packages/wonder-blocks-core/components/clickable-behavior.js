@@ -393,7 +393,7 @@ export default class ClickableBehavior extends React.Component<
         }
     };
 
-    handleKeyUp = (e: SyntheticKeyboardEvent<>) => {
+    handleKeyUp = async (e: SyntheticKeyboardEvent<>) => {
         const keyCode = e.which || e.keyCode;
         const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
             this.props.role,
@@ -410,10 +410,40 @@ export default class ClickableBehavior extends React.Component<
             }
 
             this.setState({pressed: false, focused: true});
-            if (this.props.onClick) {
-                this.props.onClick(e);
+            const {
+                onClick,
+                beforeNav,
+                safeWithNav,
+                skipClientNav,
+                history,
+            } = this.props;
+
+            if (onClick) {
+                onClick(e);
+                this.maybeNavigate();
+            } else if (beforeNav) {
+                try {
+                    await beforeNav(e);
+                    this.maybeNavigate();
+                } catch (error) {
+                    // don't navigate
+                }
+            } else if (safeWithNav) {
+                if (history && !skipClientNav) {
+                    safeWithNav(e);
+                    this.maybeNavigate();
+                } else {
+                    try {
+                        await safeWithNav(e);
+                    } catch (error) {
+                        // ignore the error since we're navigating
+                    } finally {
+                        this.maybeNavigate();
+                    }
+                }
+            } else {
+                this.maybeNavigate();
             }
-            this.maybeNavigate();
         } else if (!triggerOnEnter && keyCode === keyCodes.enter) {
             this.enterClick = false;
         }
