@@ -103,6 +103,25 @@ export type SharedProps = {|
     skipClientNav?: boolean,
 
     /**
+     * Optional custom styles.
+     */
+    style?: StyleType,
+    // TODO(yejia): use this if ADR #47 has been implemented
+    /*
+    style?: Style<Exact<{
+        width?: number | string
+        position: Position,
+        ...MarginStyles,
+        ...FlexItemStyles,
+    }>>,
+    */
+
+    // NOTE(jeresig): Currently React Docgen (used by Styleguidist) doesn't
+    // support ... inside of an exact object type. Thus we had to move the
+    // following propers into this SharedProps, even though they should be
+    // external. Once that's fixed we can split them back apart.
+
+    /**
      * Function to call when button is clicked.
      *
      * This callback should be used for things like marking BigBingo
@@ -132,20 +151,6 @@ export type SharedProps = {|
      * navigation is guaranteed to succeed.
      */
     safeWithNav?: (e: SyntheticEvent<>) => Promise<mixed>,
-
-    /**
-     * Optional custom styles.
-     */
-    style?: StyleType,
-    // TODO(yejia): use this if ADR #47 has been implemented
-    /*
-    style?: Style<Exact<{
-        width?: number | string
-        position: Position,
-        ...MarginStyles,
-        ...FlexItemStyles,
-    }>>,
-    */
 |};
 
 /**
