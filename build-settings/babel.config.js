@@ -1,21 +1,11 @@
 /* eslint-disable import/no-commonjs */
 module.exports = {
-    presets: [
-        "@babel/preset-flow",
-        "@babel/preset-react",
-        [
-            "@babel/preset-env",
-            {
-                corejs: {
-                    version: 3,
-                },
-            },
-        ],
-    ],
+    presets: ["@babel/preset-flow", "@babel/preset-react", "@babel/preset-env"],
     plugins: [
         "@babel/plugin-proposal-class-properties",
         "@babel/plugin-proposal-object-rest-spread",
         "@babel/plugin-proposal-export-default-from",
+        "babel-plugin-dynamic-import-node",
     ],
     env: {
         test: {
@@ -31,7 +21,6 @@ module.exports = {
                     },
                 ],
             ],
-            plugins: ["babel-plugin-dynamic-import-node"],
         },
     },
 };

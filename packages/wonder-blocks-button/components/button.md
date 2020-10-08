@@ -417,6 +417,46 @@ const styles = StyleSheet.create({
 </MemoryRouter>
 ```
 
+#### Example: Prevent navigation by calling e.preventDefault()
+
+Sometimes you may need to perform an async action either before or during
+navigation.  This can be accomplished with `beforeNav` and `safeWithNav`
+respectively.
+```jsx
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
+import {MemoryRouter, Route, Switch} from "react-router-dom";
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    button: {
+        marginRight: 10,
+    }
+});
+
+// NOTE: In actual code you would use BrowserRouter instead
+<MemoryRouter>
+    <View style={styles.row}>
+        <Button
+            href="/foo"
+            style={styles.button}
+            onClick={e => e.preventDefault()}
+        >
+            This button prevent navigation.
+        </Button>
+        <Switch>
+            <Route path="/foo">
+                <View id="foo">Hello, world!</View>
+            </Route>
+        </Switch>
+    </View>
+</MemoryRouter>
+```
+
 #### Example: style
 
 Buttons can have a `style` props which supports width, position, margin,

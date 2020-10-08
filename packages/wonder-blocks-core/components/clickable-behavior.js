@@ -308,8 +308,8 @@ export default class ClickableBehavior extends React.Component<
         } = this.props;
         let shouldNavigate = true;
 
-        // Reset defaultPrevented after calling e.preventDefault()
-        // in handleClick and handleKeyUp.
+        // While defaultPrevented is read-only on DOM events, that isn't the
+        // case for SynethicEvents.
         e.defaultPrevented = false;
 
         if (onClick) {

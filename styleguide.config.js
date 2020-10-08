@@ -1,9 +1,11 @@
 /* eslint-disable import/no-commonjs */
+const path = require("path");
 const {createConfig, babel, postcss} = require("webpack-blocks");
 
 const babelConfig = require("./build-settings/babel.config.js");
 
 module.exports = {
+    require: [path.resolve(__dirname, "styleguide.setup.js")],
     webpackConfig: createConfig([babel(babelConfig), postcss()]),
     styleguideDir: "docs",
     assetsDir: "static",
