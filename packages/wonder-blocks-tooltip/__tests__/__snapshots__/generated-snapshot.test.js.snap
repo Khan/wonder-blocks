@@ -543,6 +543,7 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
     }
     tabIndex={0}
     type="button"
+    waiting={false}
   >
     <svg
       className=""

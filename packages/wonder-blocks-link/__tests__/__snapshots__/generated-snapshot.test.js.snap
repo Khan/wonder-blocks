@@ -47,6 +47,7 @@ exports[`wonder-blocks-link example 1 1`] = `
         }
       }
       tabIndex={0}
+      waiting={false}
     >
       Primary Link
     </a>
@@ -85,6 +86,7 @@ exports[`wonder-blocks-link example 1 1`] = `
           }
         }
         tabIndex={0}
+        waiting={false}
       >
         Secondary Link
       </a>
@@ -121,6 +123,7 @@ exports[`wonder-blocks-link example 1 1`] = `
         }
       }
       tabIndex={0}
+      waiting={false}
     >
       Visitable Primary Link
     </a>
@@ -163,6 +166,7 @@ exports[`wonder-blocks-link example 1 1`] = `
         }
       }
       tabIndex={0}
+      waiting={false}
     >
       Primary Link
     </a>
@@ -218,6 +222,7 @@ exports[`wonder-blocks-link example 2 1`] = `
       }
     }
     tabIndex={0}
+    waiting={false}
   >
     <h4
       className=""

@@ -256,13 +256,39 @@ const styles = StyleSheet.create({
 </View>
 ```
 
+#### Example: spinner
+
+Buttons can show a `spinner`.  This is useful when indicating to a user that
+their input has been recognized but that the operation will take some time.
+While the `spinner` property is set to `true` the button is disabled.
+
+```jsx
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    button: {
+        marginRight: 10,
+    }
+});
+
+<View style={styles.row}>
+    <Button spinner={true} aria-label="loading" style={styles.button} href="/foo">
+        Click me!
+    </Button>
+    <Button spinner={true} aria-label="loading" size="small" style={styles.button}>
+        Click me!
+    </Button>
+</View>
+```
+
 #### Example: Navigation
 
-Buttons can have an `href` or an `onClick` handler or both.
-
-Being able to use both is necessary to support marking conversions in A/B
-tests.  There is however no built-in facility for doing A/B testing in
-`wonder-blocks` itself.
 ```jsx
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -339,16 +365,16 @@ const styles = StyleSheet.create({
 </MemoryRouter>
 ```
 
-#### Example: spinner
+#### Example: Navigation with async action
 
-Buttons can show a `spinner`.  This is useful when indicating to a user that
-their input has been recognized but that the operation will take some time.
-While the `spinner` property is set to `true` the button is disabled.
-
+Sometimes you may need to perform an async action either before or during
+navigation.  This can be accomplished with `beforeNav` and `safeWithNav`
+respectively.
 ```jsx
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {StyleSheet} from "aphrodite";
+import {MemoryRouter, Route, Switch} from "react-router-dom";
 
 const styles = StyleSheet.create({
     row: {
@@ -360,14 +386,75 @@ const styles = StyleSheet.create({
     }
 });
 
-<View style={styles.row}>
-    <Button spinner={true} aria-label="loading" style={styles.button} href="/foo">
-        Click me!
-    </Button>
-    <Button spinner={true} aria-label="loading" size="small" style={styles.button}>
-        Click me!
-    </Button>
-</View>
+// NOTE: In actual code you would use BrowserRouter instead
+<MemoryRouter>
+    <View style={styles.row}>
+        <Button
+            href="/foo"
+            style={styles.button}
+            beforeNav={() => new Promise((resolve, reject) => {
+                setTimeout(resolve, 1000);
+            })}
+        >
+            Async action, client-side nav
+        </Button>
+        <Button
+            href="/foo"
+            style={styles.button}
+            skipClientNav={true}
+            beforeNav={() => new Promise((resolve, reject) => {
+                setTimeout(resolve, 1000);
+            })}
+        >
+            Async action, server-side nav
+        </Button>
+        <Switch>
+            <Route path="/foo">
+                <View id="foo">Hello, world!</View>
+            </Route>
+        </Switch>
+    </View>
+</MemoryRouter>
+```
+
+#### Example: Prevent navigation by calling e.preventDefault()
+
+Sometimes you may need to perform an async action either before or during
+navigation.  This can be accomplished with `beforeNav` and `safeWithNav`
+respectively.
+```jsx
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
+import {MemoryRouter, Route, Switch} from "react-router-dom";
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    button: {
+        marginRight: 10,
+    }
+});
+
+// NOTE: In actual code you would use BrowserRouter instead
+<MemoryRouter>
+    <View style={styles.row}>
+        <Button
+            href="/foo"
+            style={styles.button}
+            onClick={e => e.preventDefault()}
+        >
+            This button prevent navigation.
+        </Button>
+        <Switch>
+            <Route path="/foo">
+                <View id="foo">Hello, world!</View>
+            </Route>
+        </Switch>
+    </View>
+</MemoryRouter>
 ```
 
 #### Example: style

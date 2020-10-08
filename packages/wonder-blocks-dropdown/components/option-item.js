@@ -164,7 +164,9 @@ export default class OptionItem extends React.Component<OptionProps> {
                             <CheckComponent
                                 disabled={disabled}
                                 selected={selected}
-                                {...state}
+                                pressed={pressed}
+                                hovered={hovered}
+                                focused={focused}
                             />
                             <LabelMedium style={styles.label}>
                                 {label}

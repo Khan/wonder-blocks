@@ -706,6 +706,7 @@ exports[`wonder-blocks-popover example 6 1`] = `
       }
       tabIndex={0}
       type="button"
+      waiting={false}
     >
       <svg
         className=""
@@ -1397,6 +1398,7 @@ exports[`wonder-blocks-popover example 9 1`] = `
       }
       tabIndex={0}
       type="button"
+      waiting={false}
     >
       <svg
         className=""
@@ -1626,6 +1628,7 @@ exports[`wonder-blocks-popover example 10 1`] = `
       }
       tabIndex={0}
       type="button"
+      waiting={false}
     >
       <svg
         className=""

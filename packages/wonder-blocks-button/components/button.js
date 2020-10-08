@@ -80,8 +80,6 @@ export type SharedProps = {|
 
     /**
      * URL to navigate to.
-     *
-     * Note: Either href or onClick must be defined
      */
     href?: string,
 
@@ -136,6 +134,23 @@ export type SharedProps = {|
      * href is not
      */
     onClick?: (e: SyntheticEvent<>) => mixed,
+
+    /**
+     * Run async code before navigating. If the promise returned rejects then
+     * navigation will not occur.
+     *
+     * If both safeWithNav and beforeNav are provided, beforeNav will be run
+     * first and safeWithNav will only be run if beforeNav does not reject.
+     */
+    beforeNav?: () => Promise<mixed>,
+
+    /**
+     * Run async code in the background while client-side navigating. If the
+     * navigation is server-side, the callback must be settled before the
+     * navigation will occur. Errors are ignored so that navigation is
+     * guaranteed to succeed.
+     */
+    safeWithNav?: () => Promise<mixed>,
 |};
 
 /**
@@ -169,13 +184,15 @@ export default class Button extends React.Component<SharedProps> {
 
     render() {
         const {
-            onClick,
             href,
             children,
             skipClientNav,
             spinner,
             disabled,
-            ...sharedProps
+            onClick,
+            beforeNav,
+            safeWithNav,
+            ...sharedButtonCoreProps
         } = this.props;
 
         const ClickableBehavior = getClickableBehavior(
@@ -184,28 +201,32 @@ export default class Button extends React.Component<SharedProps> {
             this.context.router,
         );
 
+        const renderProp = (state, handlers) => {
+            return (
+                <ButtonCore
+                    {...sharedButtonCoreProps}
+                    {...state}
+                    {...handlers}
+                    disabled={disabled}
+                    spinner={spinner}
+                    skipClientNav={skipClientNav}
+                    href={href}
+                >
+                    {children}
+                </ButtonCore>
+            );
+        };
+
         return (
             <ClickableBehavior
                 disabled={spinner || disabled}
                 href={href}
-                onClick={onClick}
                 role="button"
+                onClick={onClick}
+                beforeNav={beforeNav}
+                safeWithNav={safeWithNav}
             >
-                {(state, handlers) => {
-                    return (
-                        <ButtonCore
-                            {...sharedProps}
-                            {...state}
-                            {...handlers}
-                            disabled={disabled}
-                            spinner={spinner}
-                            skipClientNav={skipClientNav}
-                            href={href}
-                        >
-                            {children}
-                        </ButtonCore>
-                    );
-                }}
+                {renderProp}
             </ClickableBehavior>
         );
     }

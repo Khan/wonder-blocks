@@ -26,6 +26,7 @@ describe("CheckboxCore", () => {
                                 hovered={clickableState === "hovered"}
                                 pressed={clickableState === "pressed"}
                                 focused={clickableState === "focused"}
+                                waiting={false}
                             />,
                         )
                         .toJSON();
@@ -53,6 +54,7 @@ describe("RadioCore", () => {
                                 hovered={clickableState === "hovered"}
                                 pressed={clickableState === "pressed"}
                                 focused={clickableState === "focused"}
+                                waiting={false}
                             />,
                         )
                         .toJSON();

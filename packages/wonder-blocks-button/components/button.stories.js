@@ -71,33 +71,41 @@ buttonsWithKnobs.story = {
 export const basicButtons = () => (
     <View>
         <View style={{flexDirection: "row"}}>
-            <Button>Hello, world!</Button>
+            <Button onClick={() => {}}>Hello, world!</Button>
             <Strut size={16} />
-            <Button kind="secondary">Hello, world!</Button>
-            <Strut size={16} />
-            <Button kind="tertiary">Hello, world!</Button>
-        </View>
-        <Strut size={16} />
-        <View style={{flexDirection: "row"}}>
-            <Button disabled={true}>Hello, world!</Button>
-            <Strut size={16} />
-            <Button disabled={true} kind="secondary">
+            <Button onClick={() => {}} kind="secondary">
                 Hello, world!
             </Button>
             <Strut size={16} />
-            <Button disabled={true} kind="tertiary">
+            <Button onClick={() => {}} kind="tertiary">
                 Hello, world!
             </Button>
         </View>
         <Strut size={16} />
         <View style={{flexDirection: "row"}}>
-            <Button color="destructive">Hello, world!</Button>
-            <Strut size={16} />
-            <Button kind="secondary" color="destructive">
+            <Button onClick={() => {}} disabled={true}>
                 Hello, world!
             </Button>
             <Strut size={16} />
-            <Button kind="tertiary" color="destructive">
+            <Button onClick={() => {}} disabled={true} kind="secondary">
+                Hello, world!
+            </Button>
+            <Strut size={16} />
+            <Button onClick={() => {}} disabled={true} kind="tertiary">
+                Hello, world!
+            </Button>
+        </View>
+        <Strut size={16} />
+        <View style={{flexDirection: "row"}}>
+            <Button onClick={() => {}} color="destructive">
+                Hello, world!
+            </Button>
+            <Strut size={16} />
+            <Button onClick={() => {}} kind="secondary" color="destructive">
+                Hello, world!
+            </Button>
+            <Strut size={16} />
+            <Button onClick={() => {}} kind="tertiary" color="destructive">
                 Hello, world!
             </Button>
         </View>
@@ -107,41 +115,63 @@ export const basicButtons = () => (
 export const darkBackgroundButtons = () => (
     <View style={{backgroundColor: Color.darkBlue}}>
         <View style={{flexDirection: "row"}}>
-            <Button light={true}>Hello, world!</Button>
-            <Strut size={16} />
-            <Button light={true} kind="secondary">
+            <Button onClick={() => {}} light={true}>
                 Hello, world!
             </Button>
             <Strut size={16} />
-            <Button light={true} kind="tertiary">
+            <Button onClick={() => {}} light={true} kind="secondary">
+                Hello, world!
+            </Button>
+            <Strut size={16} />
+            <Button onClick={() => {}} light={true} kind="tertiary">
                 Hello, world!
             </Button>
         </View>
         <Strut size={16} />
         <View style={{flexDirection: "row"}}>
-            <Button light={true} disabled={true}>
+            <Button onClick={() => {}} light={true} disabled={true}>
                 Hello, world!
             </Button>
             <Strut size={16} />
-            <Button light={true} disabled={true} kind="secondary">
+            <Button
+                onClick={() => {}}
+                light={true}
+                disabled={true}
+                kind="secondary"
+            >
                 Hello, world!
             </Button>
             <Strut size={16} />
-            <Button light={true} disabled={true} kind="tertiary">
+            <Button
+                onClick={() => {}}
+                light={true}
+                disabled={true}
+                kind="tertiary"
+            >
                 Hello, world!
             </Button>
         </View>
         <Strut size={16} />
         <View style={{flexDirection: "row"}}>
-            <Button light={true} color="destructive">
+            <Button onClick={() => {}} light={true} color="destructive">
                 Hello, world!
             </Button>
             <Strut size={16} />
-            <Button light={true} kind="secondary" color="destructive">
+            <Button
+                onClick={() => {}}
+                light={true}
+                kind="secondary"
+                color="destructive"
+            >
                 Hello, world!
             </Button>
             <Strut size={16} />
-            <Button light={true} kind="tertiary" color="destructive">
+            <Button
+                onClick={() => {}}
+                light={true}
+                kind="tertiary"
+                color="destructive"
+            >
                 Hello, world!
             </Button>
         </View>
@@ -156,26 +186,28 @@ darkBackgroundButtons.story = {
 
 export const smallButtons = () => (
     <View style={{flexDirection: "row"}}>
-        <Button size="small">Hello, world!</Button>
-        <Strut size={16} />
-        <Button size="small" kind="secondary">
+        <Button onClick={() => {}} size="small">
             Hello, world!
         </Button>
         <Strut size={16} />
-        <Button size="small" kind="tertiary">
+        <Button onClick={() => {}} size="small" kind="secondary">
+            Hello, world!
+        </Button>
+        <Strut size={16} />
+        <Button onClick={() => {}} size="small" kind="tertiary">
             Hello, world!
         </Button>
     </View>
 );
 
 export const longLabelsAreEllipsized = () => (
-    <Button style={{maxWidth: 200}}>
+    <Button onClick={() => {}} style={{maxWidth: 200}}>
         label too long for the parent container
     </Button>
 );
 
 export const buttonWithSpinner = () => (
-    <Button spinner={true} aria-label={"waiting"}>
+    <Button onClick={() => {}} spinner={true} aria-label={"waiting"}>
         Hello, world
     </Button>
 );

@@ -245,6 +245,40 @@ describe("wonder-blocks-button", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
+                alignItems: "center",
+            },
+            button: {
+                marginRight: 10,
+            },
+        });
+        const example = (
+            <View style={styles.row}>
+                <Button
+                    spinner={true}
+                    aria-label="loading"
+                    style={styles.button}
+                    href="/foo"
+                >
+                    Click me!
+                </Button>
+                <Button
+                    spinner={true}
+                    aria-label="loading"
+                    size="small"
+                    style={styles.button}
+                >
+                    Click me!
+                </Button>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 7", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
             },
             button: {
                 marginRight: 10,
@@ -276,7 +310,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 7", () => {
+    it("example 8", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -308,7 +342,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 8", () => {
+    it("example 9", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -317,32 +351,80 @@ describe("wonder-blocks-button", () => {
             button: {
                 marginRight: 10,
             },
-        });
+        }); // NOTE: In actual code you would use BrowserRouter instead
+
         const example = (
-            <View style={styles.row}>
-                <Button
-                    spinner={true}
-                    aria-label="loading"
-                    style={styles.button}
-                    href="/foo"
-                >
-                    Click me!
-                </Button>
-                <Button
-                    spinner={true}
-                    aria-label="loading"
-                    size="small"
-                    style={styles.button}
-                >
-                    Click me!
-                </Button>
-            </View>
+            <MemoryRouter>
+                <View style={styles.row}>
+                    <Button
+                        href="/foo"
+                        style={styles.button}
+                        beforeNav={() =>
+                            new Promise((resolve, reject) => {
+                                setTimeout(resolve, 1000);
+                            })
+                        }
+                    >
+                        Async action, client-side nav
+                    </Button>
+                    <Button
+                        href="/foo"
+                        style={styles.button}
+                        skipClientNav={true}
+                        beforeNav={() =>
+                            new Promise((resolve, reject) => {
+                                setTimeout(resolve, 1000);
+                            })
+                        }
+                    >
+                        Async action, server-side nav
+                    </Button>
+                    <Switch>
+                        <Route path="/foo">
+                            <View id="foo">Hello, world!</View>
+                        </Route>
+                    </Switch>
+                </View>
+            </MemoryRouter>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 9", () => {
+    it("example 10", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                alignItems: "center",
+            },
+            button: {
+                marginRight: 10,
+            },
+        }); // NOTE: In actual code you would use BrowserRouter instead
+
+        const example = (
+            <MemoryRouter>
+                <View style={styles.row}>
+                    <Button
+                        href="/foo"
+                        style={styles.button}
+                        onClick={(e) => e.preventDefault()}
+                    >
+                        This button prevent navigation.
+                    </Button>
+                    <Switch>
+                        <Route path="/foo">
+                            <View id="foo">Hello, world!</View>
+                        </Route>
+                    </Switch>
+                </View>
+            </MemoryRouter>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 11", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -386,7 +468,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 10", () => {
+    it("example 12", () => {
         const example = (
             <View>
                 <Button>Label</Button>
@@ -396,7 +478,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 11", () => {
+    it("example 13", () => {
         const styles = StyleSheet.create({
             column: {
                 alignItems: "flex-start",
@@ -426,7 +508,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 12", () => {
+    it("example 14", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -453,7 +535,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 13", () => {
+    it("example 15", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -481,7 +563,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 14", () => {
+    it("example 16", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -504,7 +586,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 15", () => {
+    it("example 17", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",

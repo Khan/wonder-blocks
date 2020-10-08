@@ -41,6 +41,7 @@ describe("IconButtonCore", () => {
                             focused: state === "focused",
                             hovered: state === "hovered",
                             pressed: state === "pressed",
+                            waiting: false,
                         };
                         test(`kind:${kind} color:${color} size:${size} light:${String(
                             light,

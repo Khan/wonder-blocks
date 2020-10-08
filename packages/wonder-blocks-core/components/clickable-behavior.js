@@ -72,10 +72,29 @@ type Props = {|
      */
     href?: string,
 
+    skipClientNav?: boolean,
+
     /**
      * A function to be executed `onclick`.
      */
     onClick?: (e: SyntheticEvent<>) => mixed,
+
+    /**
+     * Run async code before navigating.  If the promise returned rejects then
+     * navigation will not occur.
+     *
+     * If both safeWithNav and beforeNav are provided, beforeNav will be run
+     * first and safeWithNav will only be run if beforeNav does not reject.
+     */
+    beforeNav?: () => Promise<mixed>,
+
+    /**
+     * Run async code in the background while client-side navigating. If the
+     * navigation is server-side, the callback must be settled before the
+     * navigation will occur. Errors are ignored so that navigation is
+     * guaranteed to succeed.
+     */
+    safeWithNav?: () => Promise<mixed>,
 
     /**
      * Passed in by withRouter HOC.
@@ -113,6 +132,15 @@ export type ClickableState = {|
      * See component documentation for more details.
      */
     pressed: boolean,
+
+    /**
+     * When we're waiting for beforeNav or safeWithNav to complete an async
+     * action, this will be true.
+     *
+     * NOTE: We only wait for safeWithNav to complete when doing server-side
+     * navigation.
+     */
+    waiting: boolean,
 |};
 
 export type ClickableHandlers = {|
@@ -158,6 +186,7 @@ const startState = {
     hovered: false,
     focused: false,
     pressed: false,
+    waiting: false,
 };
 
 /**
@@ -269,13 +298,81 @@ export default class ClickableBehavior extends React.Component<
         this.dragging = false;
     }
 
+    async runCallbackAndMaybeNavigate(e: SyntheticEvent<>) {
+        const {
+            onClick = undefined,
+            beforeNav = undefined,
+            safeWithNav = undefined,
+            skipClientNav,
+            history,
+        } = this.props;
+        let shouldNavigate = true;
+
+        if (onClick) {
+            onClick(e);
+        }
+
+        // If onClick() has called e.preventDefault() then we shouldn't
+        // navigate.
+        if (e.defaultPrevented) {
+            shouldNavigate = false;
+        }
+
+        // Prevent navigation.
+        e.preventDefault();
+
+        try {
+            if (beforeNav) {
+                this.setState({waiting: true});
+                await beforeNav();
+            }
+
+            if (safeWithNav) {
+                if (history && !skipClientNav) {
+                    if (!this.state.waiting) {
+                        // We only show the spinner for safeWithNav when doing
+                        // a server-side navigation since since the spinner is
+                        // indicating that we're waiting for navigation to occur.
+                        this.setState({waiting: true});
+                    }
+                    safeWithNav();
+                } else {
+                    try {
+                        await safeWithNav();
+                    } catch (error) {
+                        // We ignore the error here so that we always
+                        // navigate when using safeWithNav regardless of
+                        // whether we're doing a client-side nav or not.
+                    }
+                }
+            }
+        } catch (error) {
+            shouldNavigate = false;
+        }
+
+        if (shouldNavigate) {
+            this.maybeNavigate();
+        } else {
+            this.setState({waiting: false});
+        }
+    }
+
     handleClick = (e: SyntheticMouseEvent<>) => {
+        const {
+            onClick = undefined,
+            beforeNav = undefined,
+            safeWithNav = undefined,
+        } = this.props;
+
         if (this.enterClick) {
             return;
-        } else if (this.props.onClick) {
-            this.waitingForClick = false;
-            this.props.onClick(e);
         }
+
+        if (onClick || beforeNav || safeWithNav) {
+            this.waitingForClick = false;
+        }
+
+        this.runCallbackAndMaybeNavigate(e);
     };
 
     handleMouseEnter = (e: SyntheticMouseEvent<>) => {
@@ -348,7 +445,7 @@ export default class ClickableBehavior extends React.Component<
         }
     };
 
-    handleKeyUp = (e: SyntheticKeyboardEvent<>) => {
+    handleKeyUp = async (e: SyntheticKeyboardEvent<>) => {
         const keyCode = e.which || e.keyCode;
         const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
             this.props.role,
@@ -357,18 +454,9 @@ export default class ClickableBehavior extends React.Component<
             (triggerOnEnter && keyCode === keyCodes.enter) ||
             (triggerOnSpace && keyCode === keyCodes.space)
         ) {
-            // NOTE: In Firefox, the keyup event needs to be preventDefault-ed
-            // for space.
-            // https://stackoverflow.com/questions/24383722/unable-to-prevent-spacebar-default-action-in-firefox
-            if (keyCode === keyCodes.space) {
-                e.preventDefault();
-            }
-
             this.setState({pressed: false, focused: true});
-            if (this.props.onClick) {
-                this.props.onClick(e);
-            }
-            this.maybeNavigate();
+
+            this.runCallbackAndMaybeNavigate(e);
         } else if (!triggerOnEnter && keyCode === keyCodes.enter) {
             this.enterClick = false;
         }
@@ -383,12 +471,15 @@ export default class ClickableBehavior extends React.Component<
     };
 
     maybeNavigate = () => {
-        const {history, href} = this.props;
+        const {history, href, skipClientNav} = this.props;
         if (href) {
-            if (history) {
+            if (history && !skipClientNav) {
                 history.push(href);
+                this.setState({waiting: false});
             } else {
                 window.location.assign(href);
+                // We don't bother clearing the waiting state, the server-side
+                // navigation will do that for us by loading a new page.
             }
         }
     };
