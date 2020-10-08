@@ -260,7 +260,7 @@ describe("Button", () => {
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
-        expect(wrapper.find("CircularSpinner")).not.toExist();
+        expect(wrapper.find("CircularSpinner")).toExist();
     });
 
     test("beforeNav resolution and safeWithNav with skipClientNav=true waits for promise resolution", async () => {

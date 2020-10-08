@@ -498,7 +498,7 @@ describe("ClickableBehavior", () => {
             expect(window.location.assign).toHaveBeenCalledTimes(1);
         });
 
-        it("should not show waiting UI before safeWithNav resolves", async () => {
+        it("should show waiting UI before safeWithNav resolves", async () => {
             // Arrange
             const link = mount(
                 <ClickableBehavior
@@ -523,7 +523,7 @@ describe("ClickableBehavior", () => {
             link.simulate("click", {preventDefault: jest.fn()});
 
             // Assert
-            expect(link).not.toIncludeText("waiting");
+            expect(link).toIncludeText("waiting");
         });
 
         it("If onClick calls e.preventDefault() then we won't navigate", () => {

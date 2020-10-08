@@ -134,24 +134,34 @@ export type SharedProps = {|
      * href is not
      */
     onClick?: (e: SyntheticEvent<>) => mixed,
-
-    /**
-     * Run async code before navigating. If the promise returned rejects then
-     * navigation will not occur.
-     *
-     * If both safeWithNav and beforeNav are provided, beforeNav will be run
-     * first and safeWithNav will only be run if beforeNav does not reject.
-     */
-    beforeNav?: () => Promise<mixed>,
-
-    /**
-     * Run async code in the background while client-side navigating. If the
-     * navigation is server-side, the callback must be settled before the
-     * navigation will occur. Errors are ignored so that navigation is
-     * guaranteed to succeed.
-     */
-    safeWithNav?: () => Promise<mixed>,
 |};
+
+type Props =
+    | {|
+          ...SharedProps,
+      |}
+    | {|
+          ...SharedProps,
+
+          href: string,
+
+          /**
+           * Run async code before navigating. If the promise returned rejects then
+           * navigation will not occur.
+           *
+           * If both safeWithNav and beforeNav are provided, beforeNav will be run
+           * first and safeWithNav will only be run if beforeNav does not reject.
+           */
+          beforeNav?: () => Promise<mixed>,
+
+          /**
+           * Run async code in the background while client-side navigating. If the
+           * navigation is server-side, the callback must be settled before the
+           * navigation will occur. Errors are ignored so that navigation is
+           * guaranteed to succeed.
+           */
+          safeWithNav?: () => Promise<mixed>,
+      |};
 
 /**
  * Reusable button component.
@@ -170,7 +180,7 @@ export type SharedProps = {|
  * </Button>
  * ```
  */
-export default class Button extends React.Component<SharedProps> {
+export default class Button extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
 
     static defaultProps = {
@@ -190,8 +200,8 @@ export default class Button extends React.Component<SharedProps> {
             spinner,
             disabled,
             onClick,
-            beforeNav,
-            safeWithNav,
+            beforeNav = undefined,
+            safeWithNav = undefined,
             ...sharedButtonCoreProps
         } = this.props;
 

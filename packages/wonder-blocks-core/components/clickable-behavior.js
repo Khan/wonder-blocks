@@ -329,15 +329,16 @@ export default class ClickableBehavior extends React.Component<
 
             if (safeWithNav) {
                 if (history && !skipClientNav) {
-                    if (!this.state.waiting) {
-                        // We only show the spinner for safeWithNav when doing
-                        // a server-side navigation since since the spinner is
-                        // indicating that we're waiting for navigation to occur.
-                        this.setState({waiting: true});
-                    }
+                    // client-side nav
                     safeWithNav();
                 } else {
                     try {
+                        if (!this.state.waiting) {
+                            // We only show the spinner for safeWithNav when doing
+                            // a server-side navigation since since the spinner is
+                            // indicating that we're waiting for navigation to occur.
+                            this.setState({waiting: true});
+                        }
                         await safeWithNav();
                     } catch (error) {
                         // We ignore the error here so that we always
