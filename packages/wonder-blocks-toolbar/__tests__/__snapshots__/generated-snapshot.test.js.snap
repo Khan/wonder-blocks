@@ -2046,7 +2046,6 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
           }
         }
         tabIndex={0}
-        waiting={false}
       >
         <span
           className=""
