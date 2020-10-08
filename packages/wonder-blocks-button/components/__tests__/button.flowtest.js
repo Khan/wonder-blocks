@@ -32,3 +32,6 @@ import Button from "../button.js";
 >
     Hello, world!
 </Button>;
+
+// It's also fine to use href by itself
+<Button href="/foo">Hello, world!</Button>;
