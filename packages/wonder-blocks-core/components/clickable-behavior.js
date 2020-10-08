@@ -84,17 +84,17 @@ type Props = {|
      * navigation will not occur.
      *
      * If both safeWithNav and beforeNav are provided, beforeNav will be run
-     * first and safeWithNav will only be run if beforeNav doesn't not reject.
+     * first and safeWithNav will only be run if beforeNav does not reject.
      */
-    beforeNav?: (e: SyntheticEvent<>) => Promise<mixed>,
+    beforeNav?: () => Promise<mixed>,
 
     /**
      * Run async code in the background while client-side navigating. If the
-     * navigation is server-side, the callback must either be resolved or
-     * rejected before the navigation will occur. Errors are ignored so that
-     * navigation is guaranteed to succeed.
+     * navigation is server-side, the callback must be settled before the
+     * navigation will occur. Errors are ignored so that navigation is
+     * guaranteed to succeed.
      */
-    safeWithNav?: (e: SyntheticEvent<>) => Promise<mixed>,
+    safeWithNav?: () => Promise<mixed>,
 
     /**
      * Passed in by withRouter HOC.
@@ -308,25 +308,42 @@ export default class ClickableBehavior extends React.Component<
         } = this.props;
         let shouldNavigate = true;
 
+        // Reset defaultPrevented after calling e.preventDefault()
+        // in handleClick and handleKeyUp.
+        e.defaultPrevented = false;
+
         if (onClick) {
             onClick(e);
         }
 
+        // If onClick() has called e.preventDefault() then we shouldn't
+        // navigate.
+        if (e.defaultPrevented) {
+            shouldNavigate = false;
+        }
+
+        // We call preventDefault() again since we want to trigger the
+        // redirect manually after beforeNav and/or safeWithNav run.
+        e.preventDefault();
+
         try {
             if (beforeNav) {
                 this.setState({waiting: true});
-                await beforeNav(e);
+                await beforeNav();
             }
 
             if (safeWithNav) {
-                if (!this.state.waiting) {
-                    this.setState({waiting: true});
-                }
                 if (history && !skipClientNav) {
-                    safeWithNav(e);
+                    if (!this.state.waiting) {
+                        // We only show the spinner for safeWithNav when doing
+                        // a server-side navigation since since the spinner is
+                        // indicating that we're waiting for navigation to occur.
+                        this.setState({waiting: true});
+                    }
+                    safeWithNav();
                 } else {
                     try {
-                        await safeWithNav(e);
+                        await safeWithNav();
                     } catch (error) {
                         // We ignore the error here so that we always
                         // navigate when using safeWithNav regardless of

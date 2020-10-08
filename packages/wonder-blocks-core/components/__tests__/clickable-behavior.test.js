@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 // @flow
 import React from "react";
 import {MemoryRouter, Switch, Route} from "react-router-dom";
@@ -200,7 +201,10 @@ describe("ClickableBehavior", () => {
             preventDefault: jest.fn(),
         });
         expect(button.state("pressed")).toEqual(true);
-        button.simulate("keyup", {keyCode: keyCodes.enter});
+        button.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.enter,
+        });
         expect(button.state("pressed")).toEqual(false);
     });
 
@@ -226,12 +230,18 @@ describe("ClickableBehavior", () => {
         expect(link.state("pressed")).toEqual(false);
         link.simulate("keydown", {keyCode: keyCodes.enter});
         expect(link.state("pressed")).toEqual(true);
-        link.simulate("keyup", {keyCode: keyCodes.enter});
+        link.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.enter,
+        });
         expect(link.state("pressed")).toEqual(false);
 
         link.simulate("keydown", {keyCode: keyCodes.space});
         expect(link.state("pressed")).toEqual(false);
-        link.simulate("keyup", {keyCode: keyCodes.space});
+        link.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.space,
+        });
         expect(link.state("pressed")).toEqual(false);
     });
 
@@ -300,7 +310,10 @@ describe("ClickableBehavior", () => {
         expect(button.state("pressed")).toEqual(false);
 
         expect(button.state("focused")).toEqual(false);
-        button.simulate("keyup", {keyCode: keyCodes.tab});
+        button.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.tab,
+        });
         expect(button.state("focused")).toEqual(false);
         button.simulate("keydown", {keyCode: keyCodes.tab});
         expect(button.state("focused")).toEqual(false);
@@ -308,7 +321,10 @@ describe("ClickableBehavior", () => {
         expect(button.state("pressed")).toEqual(false);
         button.simulate("keydown", {keyCode: keyCodes.space});
         expect(button.state("pressed")).toEqual(false);
-        button.simulate("keyup", {keyCode: keyCodes.space});
+        button.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.space,
+        });
         expect(button.state("pressed")).toEqual(false);
 
         button.simulate("keydown", {keyCode: keyCodes.space});
@@ -336,7 +352,10 @@ describe("ClickableBehavior", () => {
         expect(anchor.state("pressed")).toEqual(false);
         anchor.simulate("keydown", {keyCode: keyCodes.enter});
         expect(anchor.state("pressed")).toEqual(false);
-        anchor.simulate("keyup", {keyCode: keyCodes.enter});
+        anchor.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.enter,
+        });
         expect(anchor.state("pressed")).toEqual(false);
     });
 
@@ -370,7 +389,10 @@ describe("ClickableBehavior", () => {
             keyCode: keyCodes.enter,
             preventDefault: jest.fn(),
         });
-        button.simulate("keyup", {keyCode: keyCodes.enter});
+        button.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.enter,
+        });
         expect(onClick).toHaveBeenCalledTimes(3);
 
         button.simulate("touchstart", {keyCode: keyCodes.space});
@@ -421,7 +443,10 @@ describe("ClickableBehavior", () => {
 
             // Space press should not trigger the onClick
             link.simulate("keydown", {keyCode: keyCodes.space});
-            link.simulate("keyup", {keyCode: keyCodes.space});
+            link.simulate("keyup", {
+                preventDefault: jest.fn(),
+                keyCode: keyCodes.space,
+            });
             expect(onClick).toHaveBeenCalledTimes(0);
 
             // Navigation didn't happen with space
@@ -434,7 +459,10 @@ describe("ClickableBehavior", () => {
             // Navigation doesn't happen until after enter is released
             expect(window.location.assign).toHaveBeenCalledTimes(0);
 
-            link.simulate("keyup", {keyCode: keyCodes.enter});
+            link.simulate("keyup", {
+                preventDefault: jest.fn(),
+                keyCode: keyCodes.enter,
+            });
             expect(onClick).toHaveBeenCalledTimes(1);
 
             // Navigation happened after enter click
@@ -470,7 +498,7 @@ describe("ClickableBehavior", () => {
             expect(window.location.assign).toHaveBeenCalledTimes(1);
         });
 
-        it("should show waiting UI before safeWithNav resolves", async () => {
+        it("should not show waiting UI before safeWithNav resolves", async () => {
             // Arrange
             const link = mount(
                 <ClickableBehavior
@@ -495,7 +523,40 @@ describe("ClickableBehavior", () => {
             link.simulate("click", {preventDefault: jest.fn()});
 
             // Assert
-            expect(link).toIncludeText("waiting");
+            expect(link).not.toIncludeText("waiting");
+        });
+
+        it("If onClick calls e.preventDefault() then we won't navigate", () => {
+            // Arrange
+            const wrapper = mount(
+                <ClickableBehavior
+                    href="/foo"
+                    onClick={(e) => e.preventDefault()}
+                    role="checkbox"
+                >
+                    {(state, handlers) => {
+                        // The base element here doesn't matter in this testing
+                        // environment, but the simulated events in the test are in
+                        // line with what browsers do for this element.
+                        return (
+                            <button id="test-button" {...handlers}>
+                                label
+                            </button>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
+
+            // Act
+            const button = wrapper.find("#test-button").first();
+            button.simulate("click", {
+                preventDefault() {
+                    this.defaultPrevented = true;
+                },
+            });
+
+            // Assert
+            expect(window.location.assign).not.toHaveBeenCalled();
         });
     });
 
@@ -517,12 +578,18 @@ describe("ClickableBehavior", () => {
         // Enter press should not do anything
         checkbox.simulate("keydown", {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(0);
-        checkbox.simulate("keyup", {keyCode: keyCodes.enter});
+        checkbox.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.enter,
+        });
         expect(onClick).toHaveBeenCalledTimes(0);
 
         // Space press should trigger the onClick
         checkbox.simulate("keydown", {keyCode: keyCodes.space});
-        checkbox.simulate("keyup", {keyCode: keyCodes.space});
+        checkbox.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.space,
+        });
         expect(onClick).toHaveBeenCalledTimes(1);
     });
 
@@ -543,13 +610,19 @@ describe("ClickableBehavior", () => {
         // Enter press
         button.simulate("keydown", {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(0);
-        button.simulate("keyup", {keyCode: keyCodes.enter});
+        button.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.enter,
+        });
         expect(onClick).toHaveBeenCalledTimes(1);
 
         // Space press
         button.simulate("keydown", {keyCode: keyCodes.space});
         expect(onClick).toHaveBeenCalledTimes(1);
-        button.simulate("keyup", {keyCode: keyCodes.space});
+        button.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.space,
+        });
         expect(onClick).toHaveBeenCalledTimes(2);
     });
 
@@ -576,7 +649,10 @@ describe("ClickableBehavior", () => {
         // Enter press on a div
         clickableDiv.simulate("keydown", {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
-        clickableDiv.simulate("keyup", {keyCode: keyCodes.enter});
+        clickableDiv.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.enter,
+        });
         expectedNumberTimesCalled += 1;
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
 
@@ -592,7 +668,10 @@ describe("ClickableBehavior", () => {
         // Space press on a div
         clickableDiv.simulate("keydown", {keyCode: keyCodes.space});
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
-        clickableDiv.simulate("keyup", {keyCode: keyCodes.space});
+        clickableDiv.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.space,
+        });
         expectedNumberTimesCalled += 1;
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
 
@@ -652,7 +731,10 @@ describe("ClickableBehavior", () => {
         checkbox.simulate("keydown", {keyCode: keyCodes.enter});
         // This element still wants to have a click on enter press
         checkbox.simulate("click", {preventDefault: jest.fn()});
-        checkbox.simulate("keyup", {keyCode: keyCodes.enter});
+        checkbox.simulate("keyup", {
+            preventDefault: jest.fn(),
+            keyCode: keyCodes.enter,
+        });
         expect(onClick).toHaveBeenCalledTimes(0);
     });
 
@@ -907,6 +989,48 @@ describe("ClickableBehavior", () => {
 
             // Assert
             expect(wrapper).toIncludeText("Hello, world!");
+        });
+
+        it("If onClick calls e.preventDefault() then we won't navigate", () => {
+            // Arrange
+            const wrapper = mount(
+                <MemoryRouter>
+                    <div>
+                        <ClickableBehaviorWithRouter
+                            href="/foo"
+                            onClick={(e) => e.preventDefault()}
+                            role="checkbox"
+                        >
+                            {(state, handlers) => {
+                                // The base element here doesn't matter in this testing
+                                // environment, but the simulated events in the test are in
+                                // line with what browsers do for this element.
+                                return (
+                                    <button id="test-button" {...handlers}>
+                                        label
+                                    </button>
+                                );
+                            }}
+                        </ClickableBehaviorWithRouter>
+                        <Switch>
+                            <Route path="/foo">
+                                <div>Hello, world!</div>
+                            </Route>
+                        </Switch>
+                    </div>
+                </MemoryRouter>,
+            );
+
+            // Act
+            const button = wrapper.find("#test-button").first();
+            button.simulate("click", {
+                preventDefault() {
+                    this.defaultPrevented = true;
+                },
+            });
+
+            // Assert
+            expect(wrapper).not.toIncludeText("Hello, world!");
         });
     });
 });

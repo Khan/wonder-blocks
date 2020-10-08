@@ -140,17 +140,17 @@ export type SharedProps = {|
      * navigation will not occur.
      *
      * If both safeWithNav and beforeNav are provided, beforeNav will be run
-     * first and safeWithNav will only be run if beforeNav doesn't not reject.
+     * first and safeWithNav will only be run if beforeNav does not reject.
      */
-    beforeNav?: (e: SyntheticEvent<>) => Promise<mixed>,
+    beforeNav?: () => Promise<mixed>,
 
     /**
      * Run async code in the background while client-side navigating. If the
-     * navigation is server-side, the callback must either be resolved or
-     * rejected before the navigation will occur. Errors are ignored so that
-     * navigation is guaranteed to succeed.
+     * navigation is server-side, the callback must be settled before the
+     * navigation will occur. Errors are ignored so that navigation is
+     * guaranteed to succeed.
      */
-    safeWithNav?: (e: SyntheticEvent<>) => Promise<mixed>,
+    safeWithNav?: () => Promise<mixed>,
 |};
 
 /**

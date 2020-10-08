@@ -39,7 +39,7 @@ describe("Button", () => {
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
-        expect(wrapper.find("#foo").exists()).toBe(true);
+        expect(wrapper.find("#foo")).toExist();
     });
 
     test("beforeNav rejection blocks client-side navigation", async () => {
@@ -70,7 +70,7 @@ describe("Button", () => {
         buttonWrapper.update();
 
         // Assert
-        expect(wrapper.find("#foo").exists()).toBe(false);
+        expect(wrapper.find("#foo")).not.toExist();
     });
 
     test("beforeNav rejection blocks calling safeWithNav", async () => {
@@ -134,7 +134,7 @@ describe("Button", () => {
         buttonWrapper.update();
 
         // Assert
-        expect(wrapper.find("#foo").exists()).toBe(true);
+        expect(wrapper.find("#foo")).toExist();
     });
 
     test("beforeNav resolution results in safeWithNav being called", async () => {
@@ -196,7 +196,7 @@ describe("Button", () => {
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
-        expect(wrapper.find("CircularSpinner").exists()).toBe(true);
+        expect(wrapper.find("CircularSpinner")).toExist();
     });
 
     test("safeWithNav with skipClientNav=true waits for promise resolution", async () => {
@@ -260,7 +260,7 @@ describe("Button", () => {
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
-        expect(wrapper.find("CircularSpinner").exists()).toBe(true);
+        expect(wrapper.find("CircularSpinner")).not.toExist();
     });
 
     test("beforeNav resolution and safeWithNav with skipClientNav=true waits for promise resolution", async () => {
@@ -423,7 +423,7 @@ describe("Button", () => {
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
-        expect(wrapper.find("#foo").exists()).toBe(false);
+        expect(wrapper.find("#foo")).not.toExist();
     });
 
     test("client-side navigation with `skipClientNav` set to `true` fails", () => {
@@ -448,7 +448,7 @@ describe("Button", () => {
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
-        expect(wrapper.find("#foo").exists()).toBe(false);
+        expect(wrapper.find("#foo")).not.toExist();
     });
 
     test("disallow navigation when href and disabled are both set", () => {
@@ -473,7 +473,7 @@ describe("Button", () => {
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
-        expect(wrapper.find("#foo").exists()).toBe(false);
+        expect(wrapper.find("#foo")).not.toExist();
     });
 
     test("don't call beforeNav when href and disabled are both set", () => {
@@ -596,7 +596,7 @@ describe("Button", () => {
             });
 
             // Assert
-            expect(wrapper.find("#foo").exists()).toBe(true);
+            expect(wrapper.find("#foo")).toExist();
         });
 
         it("should navigate on pressing the enter key", () => {
@@ -628,7 +628,7 @@ describe("Button", () => {
             });
 
             // Assert
-            expect(wrapper.find("#foo").exists()).toBe(true);
+            expect(wrapper.find("#foo")).toExist();
         });
 
         test("beforeNav rejection blocks client-side navigation ", async () => {
@@ -666,7 +666,7 @@ describe("Button", () => {
             buttonWrapper.update();
 
             // Assert
-            expect(wrapper.find("#foo").exists()).toBe(false);
+            expect(wrapper.find("#foo")).not.toExist();
         });
 
         test("beforeNav resolution results in client-side navigation", async () => {
@@ -704,7 +704,7 @@ describe("Button", () => {
             buttonWrapper.update();
 
             // Assert
-            expect(wrapper.find("#foo").exists()).toBe(true);
+            expect(wrapper.find("#foo")).toExist();
         });
 
         test("safeWithNav with skipClientNav=true waits for promise resolution", async () => {
