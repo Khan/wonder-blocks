@@ -13,7 +13,14 @@ const wait = (delay: number = 0) =>
 
 describe("Link", () => {
     beforeEach(() => {
+        // Note: window.location.assign needs a mock function in the testing
+        // environment.
+        window.location.assign = jest.fn();
         unmountAll();
+    });
+
+    afterEach(() => {
+        window.location.assign.mockClear();
     });
 
     describe("client-side navigation", () => {
@@ -42,7 +49,7 @@ describe("Link", () => {
             expect(wrapper.find("#foo").exists()).toBe(true);
         });
 
-        test("navigation with unknown URL fails", () => {
+        test("navigation to without route does not render", () => {
             // Arrange
             const wrapper = mount(
                 <MemoryRouter>
@@ -309,6 +316,30 @@ describe("Link", () => {
 
             // Assert
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        });
+
+        test("doesn't redirect before beforeNav resolves when skipClientNav=true", () => {
+            // Arrange
+            jest.spyOn(window.location, "assign").mockImplementation(() => {});
+            const wrapper = mount(
+                <Link
+                    testId="link"
+                    href="/foo"
+                    beforeNav={() => Promise.resolve()}
+                    skipClientNav={true}
+                >
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
+            buttonWrapper.simulate("click", {
+                button: 0,
+            });
+
+            // Assert
+            expect(window.location.assign).not.toHaveBeenCalled();
         });
     });
 });
