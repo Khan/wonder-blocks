@@ -308,10 +308,6 @@ export default class ClickableBehavior extends React.Component<
         } = this.props;
         let shouldNavigate = true;
 
-        // While defaultPrevented is read-only on DOM events, that isn't the
-        // case for SynethicEvents.
-        e.defaultPrevented = false;
-
         if (onClick) {
             onClick(e);
         }
@@ -322,8 +318,7 @@ export default class ClickableBehavior extends React.Component<
             shouldNavigate = false;
         }
 
-        // We call preventDefault() again since we want to trigger the
-        // redirect manually after beforeNav and/or safeWithNav run.
+        // Prevent navigation.
         e.preventDefault();
 
         try {
@@ -372,8 +367,6 @@ export default class ClickableBehavior extends React.Component<
         if (this.enterClick) {
             return;
         }
-
-        e.preventDefault();
 
         if (onClick || beforeNav || safeWithNav) {
             this.waitingForClick = false;
@@ -461,13 +454,6 @@ export default class ClickableBehavior extends React.Component<
             (triggerOnEnter && keyCode === keyCodes.enter) ||
             (triggerOnSpace && keyCode === keyCodes.space)
         ) {
-            // NOTE: In Firefox, the keyup event needs to be preventDefault-ed
-            // for space.
-            // https://stackoverflow.com/questions/24383722/unable-to-prevent-spacebar-default-action-in-firefox
-            if (keyCode === keyCodes.space) {
-                e.preventDefault();
-            }
-
             this.setState({pressed: false, focused: true});
 
             this.runCallbackAndMaybeNavigate(e);
