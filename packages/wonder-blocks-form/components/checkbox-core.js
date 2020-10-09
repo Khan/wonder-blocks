@@ -48,6 +48,7 @@ export default class CheckboxCore extends React.Component<Props> {
             hovered,
             focused,
             pressed,
+            waiting: _,
             ...sharedProps
         } = this.props;
 

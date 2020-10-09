@@ -89,7 +89,6 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       }
       tabIndex={0}
       type="button"
-      waiting={false}
     >
       <div
         className=""
@@ -292,7 +291,6 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       }
       tabIndex={0}
       type="button"
-      waiting={false}
     >
       <div
         className=""
@@ -474,7 +472,6 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       }
       tabIndex={0}
       type="button"
-      waiting={false}
     >
       <div
         className=""
@@ -656,7 +653,6 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       }
       tabIndex={-1}
       type="button"
-      waiting={false}
     >
       <div
         className=""
@@ -839,7 +835,6 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       }
       tabIndex={0}
       type="button"
-      waiting={false}
     >
       <div
         className=""
@@ -1021,7 +1016,6 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
       }
       tabIndex={0}
       type="button"
-      waiting={false}
     >
       <div
         className=""

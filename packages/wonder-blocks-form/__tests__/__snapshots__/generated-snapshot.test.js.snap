@@ -100,7 +100,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           }
         }
         type="checkbox"
-        waiting={false}
       />
       <div
         aria-hidden="true"
@@ -209,7 +208,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           }
         }
         type="checkbox"
-        waiting={false}
       />
       <svg
         className=""
@@ -340,7 +338,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           }
         }
         type="checkbox"
-        waiting={false}
       />
       <div
         aria-hidden="true"
@@ -449,7 +446,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           }
         }
         type="checkbox"
-        waiting={false}
       />
       <svg
         className=""
@@ -581,7 +577,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           }
         }
         type="checkbox"
-        waiting={false}
       />
       <div
         aria-hidden="true"
@@ -692,7 +687,6 @@ exports[`wonder-blocks-form example 1 1`] = `
           }
         }
         type="checkbox"
-        waiting={false}
       />
       <svg
         className=""
@@ -847,7 +841,6 @@ exports[`wonder-blocks-form example 2 1`] = `
           }
         }
         type="checkbox"
-        waiting={false}
       />
       <div
         aria-hidden="true"
@@ -1083,7 +1076,6 @@ exports[`wonder-blocks-form example 3 1`] = `
           }
         }
         type="checkbox"
-        waiting={false}
       />
       <div
         aria-hidden="true"
@@ -1216,7 +1208,6 @@ exports[`wonder-blocks-form example 4 1`] = `
           }
         }
         type="radio"
-        waiting={false}
       />
       <div
         aria-hidden="true"
@@ -1326,7 +1317,6 @@ exports[`wonder-blocks-form example 4 1`] = `
           }
         }
         type="radio"
-        waiting={false}
       />
       <div
         aria-hidden="true"
@@ -1436,7 +1426,6 @@ exports[`wonder-blocks-form example 4 1`] = `
           }
         }
         type="radio"
-        waiting={false}
       />
       <div
         aria-hidden="true"
@@ -1546,7 +1535,6 @@ exports[`wonder-blocks-form example 4 1`] = `
           }
         }
         type="radio"
-        waiting={false}
       />
       <div
         aria-hidden="true"
@@ -1657,7 +1645,6 @@ exports[`wonder-blocks-form example 4 1`] = `
           }
         }
         type="radio"
-        waiting={false}
       />
       <div
         aria-hidden="true"
@@ -1768,7 +1755,6 @@ exports[`wonder-blocks-form example 4 1`] = `
           }
         }
         type="radio"
-        waiting={false}
       />
       <span
         style={
@@ -2014,7 +2000,6 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -2149,7 +2134,6 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -2303,7 +2287,6 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -2438,7 +2421,6 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -2573,7 +2555,6 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -2707,7 +2688,6 @@ exports[`wonder-blocks-form example 5 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <svg
             className=""
@@ -2957,7 +2937,6 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -3093,7 +3072,6 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -3229,7 +3207,6 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -3365,7 +3342,6 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -3501,7 +3477,6 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -3637,7 +3612,6 @@ exports[`wonder-blocks-form example 6 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -3848,7 +3822,6 @@ exports[`wonder-blocks-form example 7 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -3989,7 +3962,6 @@ exports[`wonder-blocks-form example 7 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -4130,7 +4102,6 @@ exports[`wonder-blocks-form example 7 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -4271,7 +4242,6 @@ exports[`wonder-blocks-form example 7 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -4412,7 +4382,6 @@ exports[`wonder-blocks-form example 7 1`] = `
               }
             }
             type="checkbox"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -4670,7 +4639,6 @@ exports[`wonder-blocks-form example 8 1`] = `
               }
             }
             type="radio"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -4806,7 +4774,6 @@ exports[`wonder-blocks-form example 8 1`] = `
               }
             }
             type="radio"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -4961,7 +4928,6 @@ exports[`wonder-blocks-form example 8 1`] = `
               }
             }
             type="radio"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -5096,7 +5062,6 @@ exports[`wonder-blocks-form example 8 1`] = `
               }
             }
             type="radio"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -5231,7 +5196,6 @@ exports[`wonder-blocks-form example 8 1`] = `
               }
             }
             type="radio"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -5442,7 +5406,6 @@ exports[`wonder-blocks-form example 9 1`] = `
               }
             }
             type="radio"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -5583,7 +5546,6 @@ exports[`wonder-blocks-form example 9 1`] = `
               }
             }
             type="radio"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -5724,7 +5686,6 @@ exports[`wonder-blocks-form example 9 1`] = `
               }
             }
             type="radio"
-            waiting={false}
           />
           <div
             aria-hidden="true"
@@ -5865,7 +5826,6 @@ exports[`wonder-blocks-form example 9 1`] = `
               }
             }
             type="radio"
-            waiting={false}
           />
           <div
             aria-hidden="true"

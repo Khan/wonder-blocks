@@ -39,6 +39,7 @@ const StyledInput = addStyle("input");
             hovered,
             focused,
             pressed,
+            waiting: _,
             ...sharedProps
         } = this.props;
         const stateStyles = _generateStyles(checked, error);

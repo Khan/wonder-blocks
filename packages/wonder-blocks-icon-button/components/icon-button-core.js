@@ -52,6 +52,7 @@ export default class IconButtonCore extends React.Component<Props> {
             pressed,
             style,
             testId,
+            waiting: _,
             ...handlers
         } = this.props;
         const {router} = this.context;

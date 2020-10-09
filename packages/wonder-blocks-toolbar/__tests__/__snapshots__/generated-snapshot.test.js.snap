@@ -396,7 +396,6 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         }
         tabIndex={0}
         type="button"
-        waiting={false}
       >
         <svg
           className=""
@@ -488,7 +487,6 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         }
         tabIndex={0}
         type="button"
-        waiting={false}
       >
         <svg
           className=""
@@ -740,7 +738,6 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
         }
         tabIndex={0}
         type="button"
-        waiting={false}
       >
         <svg
           className=""
@@ -991,7 +988,6 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
         }
         tabIndex={0}
         type="button"
-        waiting={false}
       >
         <svg
           className=""
@@ -1233,7 +1229,6 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
         }
         tabIndex={0}
         type="button"
-        waiting={false}
       >
         <svg
           className=""
@@ -1877,7 +1872,6 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         }
         tabIndex={0}
         type="button"
-        waiting={false}
       >
         <svg
           className=""
