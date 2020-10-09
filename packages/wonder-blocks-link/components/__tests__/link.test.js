@@ -240,7 +240,7 @@ describe("Link", () => {
         });
     });
 
-    describe("server-side navigation", () => {
+    describe("full page load navigation", () => {
         test("doesn't redirect if safeWithNav hasn't resolved yet when skipClientNav=true", () => {
             // Arrange
             jest.spyOn(window.location, "assign").mockImplementation(() => {});
