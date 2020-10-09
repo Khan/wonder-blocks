@@ -79,7 +79,8 @@ type State = {|
 
 const TRACKER = new ActiveTracker();
 
-export default class TooltipAnchor extends React.Component<Props, State>
+export default class TooltipAnchor
+    extends React.Component<Props, State>
     implements IActiveTrackerSubscriber {
     _weSetFocusivity: ?boolean;
     _anchorNode: ?Element;
