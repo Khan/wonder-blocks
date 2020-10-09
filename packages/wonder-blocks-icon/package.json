@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-icon",
-  "version": "1.2.9",
+  "version": "1.2.10",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -15,10 +15,10 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@khanacademy/wonder-blocks-core": "^2.6.0"
+    "@khanacademy/wonder-blocks-core": "^2.6.1"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-color": "^1.1.13",
+    "@khanacademy/wonder-blocks-color": "^1.1.14",
     "wb-dev-build-settings": "^0.0.3"
   },
   "peerDependencies": {
