@@ -298,13 +298,70 @@ export default class ClickableBehavior extends React.Component<
         this.dragging = false;
     }
 
-    async runCallbackAndMaybeNavigate(e: SyntheticEvent<>) {
+    navigateOrReset(shouldNavigate: boolean) {
+        if (shouldNavigate) {
+            const {history, href, skipClientNav} = this.props;
+            if (href) {
+                if (history && !skipClientNav) {
+                    history.push(href);
+                    this.setState({waiting: false});
+                } else {
+                    window.location.assign(href);
+                    // We don't bother clearing the waiting state, the full page
+                    // load navigation will do that for us by loading a new page.
+                }
+            }
+        } else {
+            this.setState({waiting: false});
+        }
+    }
+
+    handleSafeWithNav(
+        safeWithNav: () => Promise<mixed>,
+        shouldNavigate: boolean,
+    ) {
+        const {skipClientNav, history} = this.props;
+
+        if (history && !skipClientNav) {
+            // client-side nav
+            safeWithNav();
+
+            this.navigateOrReset(shouldNavigate);
+
+            return Promise.resolve();
+        } else {
+            if (!this.state.waiting) {
+                // We only show the spinner for safeWithNav when doing
+                // a full page load navigation since since the spinner is
+                // indicating that we're waiting for navigation to occur.
+                this.setState({waiting: true});
+            }
+            return safeWithNav()
+                .then(() => {
+                    if (!this.state.waiting) {
+                        // We only show the spinner for safeWithNav when doing
+                        // a full page load navigation since since the spinner is
+                        // indicating that we're waiting for navigation to occur.
+                        this.setState({waiting: true});
+                    }
+                    return;
+                })
+                .catch((error) => {
+                    // We ignore the error here so that we always
+                    // navigate when using safeWithNav regardless of
+                    // whether we're doing a client-side nav or not.
+                })
+                .finally(() => {
+                    this.navigateOrReset(shouldNavigate);
+                });
+        }
+    }
+
+    runCallbackAndMaybeNavigate(e: SyntheticEvent<>) {
         const {
             onClick = undefined,
             beforeNav = undefined,
             safeWithNav = undefined,
-            skipClientNav,
-            history,
         } = this.props;
         let shouldNavigate = true;
 
@@ -321,40 +378,24 @@ export default class ClickableBehavior extends React.Component<
         // Prevent navigation.
         e.preventDefault();
 
-        try {
-            if (beforeNav) {
-                this.setState({waiting: true});
-                await beforeNav();
-            }
-
-            if (safeWithNav) {
-                if (history && !skipClientNav) {
-                    // client-side nav
-                    safeWithNav();
-                } else {
-                    try {
-                        if (!this.state.waiting) {
-                            // We only show the spinner for safeWithNav when doing
-                            // a full page load navigation since since the spinner is
-                            // indicating that we're waiting for navigation to occur.
-                            this.setState({waiting: true});
-                        }
-                        await safeWithNav();
-                    } catch (error) {
-                        // We ignore the error here so that we always
-                        // navigate when using safeWithNav regardless of
-                        // whether we're doing a client-side nav or not.
+        if (beforeNav) {
+            this.setState({waiting: true});
+            beforeNav()
+                .then(() => {
+                    if (safeWithNav) {
+                        return this.handleSafeWithNav(
+                            safeWithNav,
+                            shouldNavigate,
+                        );
+                    } else {
+                        return this.navigateOrReset(shouldNavigate);
                     }
-                }
-            }
-        } catch (error) {
-            shouldNavigate = false;
-        }
-
-        if (shouldNavigate) {
-            this.maybeNavigate();
+                })
+                .catch(() => {});
+        } else if (safeWithNav) {
+            return this.handleSafeWithNav(safeWithNav, shouldNavigate);
         } else {
-            this.setState({waiting: false});
+            this.navigateOrReset(shouldNavigate);
         }
     }
 
@@ -446,7 +487,7 @@ export default class ClickableBehavior extends React.Component<
         }
     };
 
-    handleKeyUp = async (e: SyntheticKeyboardEvent<>) => {
+    handleKeyUp = (e: SyntheticKeyboardEvent<>) => {
         const keyCode = e.which || e.keyCode;
         const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
             this.props.role,
@@ -469,20 +510,6 @@ export default class ClickableBehavior extends React.Component<
 
     handleBlur = (e: SyntheticFocusEvent<>) => {
         this.setState({focused: false, pressed: false});
-    };
-
-    maybeNavigate = () => {
-        const {history, href, skipClientNav} = this.props;
-        if (href) {
-            if (history && !skipClientNav) {
-                history.push(href);
-                this.setState({waiting: false});
-            } else {
-                window.location.assign(href);
-                // We don't bother clearing the waiting state, the full page
-                // load navigation will do that for us by loading a new page.
-            }
-        }
     };
 
     render() {
