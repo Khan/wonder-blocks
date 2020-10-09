@@ -80,8 +80,8 @@ type Props = {|
     onClick?: (e: SyntheticEvent<>) => mixed,
 
     /**
-     * Run async code before navigating.  If the promise returned rejects then
-     * navigation will not occur.
+     * Run async code before navigating to the URL passed to `href`. If the
+     * promise returned rejects then navigation will not occur.
      *
      * If both safeWithNav and beforeNav are provided, beforeNav will be run
      * first and safeWithNav will only be run if beforeNav does not reject.
