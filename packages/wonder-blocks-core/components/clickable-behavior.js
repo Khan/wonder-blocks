@@ -335,7 +335,7 @@ export default class ClickableBehavior extends React.Component<
                     try {
                         if (!this.state.waiting) {
                             // We only show the spinner for safeWithNav when doing
-                            // a server-side navigation since since the spinner is
+                            // a full page load navigation since since the spinner is
                             // indicating that we're waiting for navigation to occur.
                             this.setState({waiting: true});
                         }
@@ -479,8 +479,8 @@ export default class ClickableBehavior extends React.Component<
                 this.setState({waiting: false});
             } else {
                 window.location.assign(href);
-                // We don't bother clearing the waiting state, the server-side
-                // navigation will do that for us by loading a new page.
+                // We don't bother clearing the waiting state, the full page
+                // load navigation will do that for us by loading a new page.
             }
         }
     };
