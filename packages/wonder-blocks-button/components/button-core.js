@@ -52,7 +52,7 @@ export default class ButtonCore extends React.Component<Props> {
             spinner,
             icon,
             id,
-            waiting,
+            waiting: _,
             ...handlers
         } = this.props;
         const {router} = this.context;
@@ -127,7 +127,7 @@ export default class ButtonCore extends React.Component<Props> {
         const contents = (
             <React.Fragment>
                 {label}
-                {(spinner || waiting) && (
+                {spinner && (
                     <CircularSpinner
                         style={sharedStyles.spinner}
                         size={{medium: "small", small: "xsmall"}[size]}

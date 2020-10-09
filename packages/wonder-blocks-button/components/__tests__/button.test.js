@@ -196,6 +196,9 @@ describe("Button", () => {
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
+        // We want the button to look exactly the same as if someone had passed
+        // `spinner={true}` as a prop.
+        expect(wrapper.find("ButtonCore")).toHaveProp({spinner: true});
         expect(wrapper.find("CircularSpinner")).toExist();
     });
 
