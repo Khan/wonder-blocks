@@ -27,7 +27,6 @@ exports[`CheckboxCore type:default state:default checked:false 1`] = `
     }
   }
   type="checkbox"
-  waiting={false}
 />
 `;
 
@@ -58,7 +57,6 @@ Array [
       }
     }
     type="checkbox"
-    waiting={false}
   />,
   <svg
     className=""
@@ -111,7 +109,6 @@ exports[`CheckboxCore type:default state:hovered checked:false 1`] = `
     }
   }
   type="checkbox"
-  waiting={false}
 />
 `;
 
@@ -143,7 +140,6 @@ Array [
       }
     }
     type="checkbox"
-    waiting={false}
   />,
   <svg
     className=""
@@ -196,7 +192,6 @@ exports[`CheckboxCore type:default state:pressed checked:false 1`] = `
     }
   }
   type="checkbox"
-  waiting={false}
 />
 `;
 
@@ -229,7 +224,6 @@ Array [
       }
     }
     type="checkbox"
-    waiting={false}
   />,
   <svg
     className=""
@@ -283,7 +277,6 @@ exports[`CheckboxCore type:disabled state:default checked:false 1`] = `
     }
   }
   type="checkbox"
-  waiting={false}
 />
 `;
 
@@ -316,7 +309,6 @@ Array [
       }
     }
     type="checkbox"
-    waiting={false}
   />,
   <svg
     className=""
@@ -370,7 +362,6 @@ exports[`CheckboxCore type:disabled state:hovered checked:false 1`] = `
     }
   }
   type="checkbox"
-  waiting={false}
 />
 `;
 
@@ -403,7 +394,6 @@ Array [
       }
     }
     type="checkbox"
-    waiting={false}
   />,
   <svg
     className=""
@@ -457,7 +447,6 @@ exports[`CheckboxCore type:disabled state:pressed checked:false 1`] = `
     }
   }
   type="checkbox"
-  waiting={false}
 />
 `;
 
@@ -490,7 +479,6 @@ Array [
       }
     }
     type="checkbox"
-    waiting={false}
   />,
   <svg
     className=""
@@ -543,7 +531,6 @@ exports[`CheckboxCore type:error state:default checked:false 1`] = `
     }
   }
   type="checkbox"
-  waiting={false}
 />
 `;
 
@@ -574,7 +561,6 @@ Array [
       }
     }
     type="checkbox"
-    waiting={false}
   />,
   <svg
     className=""
@@ -627,7 +613,6 @@ exports[`CheckboxCore type:error state:hovered checked:false 1`] = `
     }
   }
   type="checkbox"
-  waiting={false}
 />
 `;
 
@@ -659,7 +644,6 @@ Array [
       }
     }
     type="checkbox"
-    waiting={false}
   />,
   <svg
     className=""
@@ -712,7 +696,6 @@ exports[`CheckboxCore type:error state:pressed checked:false 1`] = `
     }
   }
   type="checkbox"
-  waiting={false}
 />
 `;
 
@@ -745,7 +728,6 @@ Array [
       }
     }
     type="checkbox"
-    waiting={false}
   />,
   <svg
     className=""
@@ -798,7 +780,6 @@ exports[`RadioCore type:default state:default checked:false 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -829,7 +810,6 @@ exports[`RadioCore type:default state:default checked:true 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -860,7 +840,6 @@ exports[`RadioCore type:default state:hovered checked:false 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -892,7 +871,6 @@ exports[`RadioCore type:default state:hovered checked:true 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -923,7 +901,6 @@ exports[`RadioCore type:default state:pressed checked:false 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -955,7 +932,6 @@ exports[`RadioCore type:default state:pressed checked:true 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -987,7 +963,6 @@ exports[`RadioCore type:disabled state:default checked:false 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -1020,7 +995,6 @@ Array [
       }
     }
     type="radio"
-    waiting={false}
   />,
   <span
     style={
@@ -1066,7 +1040,6 @@ exports[`RadioCore type:disabled state:hovered checked:false 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -1099,7 +1072,6 @@ Array [
       }
     }
     type="radio"
-    waiting={false}
   />,
   <span
     style={
@@ -1145,7 +1117,6 @@ exports[`RadioCore type:disabled state:pressed checked:false 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -1178,7 +1149,6 @@ Array [
       }
     }
     type="radio"
-    waiting={false}
   />,
   <span
     style={
@@ -1223,7 +1193,6 @@ exports[`RadioCore type:error state:default checked:false 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -1254,7 +1223,6 @@ exports[`RadioCore type:error state:default checked:true 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -1285,7 +1253,6 @@ exports[`RadioCore type:error state:hovered checked:false 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -1317,7 +1284,6 @@ exports[`RadioCore type:error state:hovered checked:true 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -1348,7 +1314,6 @@ exports[`RadioCore type:error state:pressed checked:false 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;
 
@@ -1380,6 +1345,5 @@ exports[`RadioCore type:error state:pressed checked:true 1`] = `
     }
   }
   type="radio"
-  waiting={false}
 />
 `;

@@ -277,7 +277,6 @@ exports[`wonder-blocks-modal example 3 1`] = `
       }
       tabIndex={0}
       type="button"
-      waiting={false}
     >
       <div
         className=""
@@ -781,7 +780,6 @@ exports[`wonder-blocks-modal example 6 1`] = `
             }
             tabIndex={0}
             type="button"
-            waiting={false}
           >
             <svg
               className=""
@@ -1158,7 +1156,6 @@ exports[`wonder-blocks-modal example 7 1`] = `
             }
             tabIndex={0}
             type="button"
-            waiting={false}
           >
             <svg
               className=""
@@ -1686,7 +1683,6 @@ exports[`wonder-blocks-modal example 8 1`] = `
             }
             tabIndex={0}
             type="button"
-            waiting={false}
           >
             <svg
               className=""
@@ -2395,7 +2391,6 @@ exports[`wonder-blocks-modal example 9 1`] = `
             }
             tabIndex={0}
             type="button"
-            waiting={false}
           >
             <svg
               className=""
@@ -3174,7 +3169,6 @@ exports[`wonder-blocks-modal example 10 1`] = `
               }
               tabIndex={0}
               type="button"
-              waiting={false}
             >
               <svg
                 className=""

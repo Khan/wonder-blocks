@@ -134,7 +134,6 @@ exports[`wonder-blocks-core example 3 1`] = `
           }
         }
         type="checkbox"
-        waiting={false}
       />
       <div
         aria-hidden="true"
