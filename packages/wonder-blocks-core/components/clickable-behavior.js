@@ -90,9 +90,9 @@ type Props = {|
 
     /**
      * Run async code in the background while client-side navigating. If the
-     * navigation is server-side, the callback must be settled before the
-     * navigation will occur. Errors are ignored so that navigation is
-     * guaranteed to succeed.
+     * browser does a full page load navigation, the callback promise must be
+     * settled before the navigation will occur. Errors are ignored so that
+     * navigation is guaranteed to succeed.
      */
     safeWithNav?: () => Promise<mixed>,
 
@@ -137,8 +137,8 @@ export type ClickableState = {|
      * When we're waiting for beforeNav or safeWithNav to complete an async
      * action, this will be true.
      *
-     * NOTE: We only wait for safeWithNav to complete when doing server-side
-     * navigation.
+     * NOTE: We only wait for safeWithNav to complete when doing a full page
+     * load navigation.
      */
     waiting: boolean,
 |};
@@ -329,15 +329,16 @@ export default class ClickableBehavior extends React.Component<
 
             if (safeWithNav) {
                 if (history && !skipClientNav) {
-                    if (!this.state.waiting) {
-                        // We only show the spinner for safeWithNav when doing
-                        // a server-side navigation since since the spinner is
-                        // indicating that we're waiting for navigation to occur.
-                        this.setState({waiting: true});
-                    }
+                    // client-side nav
                     safeWithNav();
                 } else {
                     try {
+                        if (!this.state.waiting) {
+                            // We only show the spinner for safeWithNav when doing
+                            // a full page load navigation since since the spinner is
+                            // indicating that we're waiting for navigation to occur.
+                            this.setState({waiting: true});
+                        }
                         await safeWithNav();
                     } catch (error) {
                         // We ignore the error here so that we always
@@ -478,8 +479,8 @@ export default class ClickableBehavior extends React.Component<
                 this.setState({waiting: false});
             } else {
                 window.location.assign(href);
-                // We don't bother clearing the waiting state, the server-side
-                // navigation will do that for us by loading a new page.
+                // We don't bother clearing the waiting state, the full page
+                // load navigation will do that for us by loading a new page.
             }
         }
     };
