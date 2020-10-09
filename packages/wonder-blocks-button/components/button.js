@@ -218,7 +218,7 @@ export default class Button extends React.Component<Props> {
                     {...state}
                     {...handlers}
                     disabled={disabled}
-                    spinner={spinner}
+                    spinner={spinner || state.waiting}
                     skipClientNav={skipClientNav}
                     href={href}
                 >
