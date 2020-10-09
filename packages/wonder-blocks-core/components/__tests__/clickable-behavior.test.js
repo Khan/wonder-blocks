@@ -418,7 +418,7 @@ describe("ClickableBehavior", () => {
         expect(button.state("focused")).toEqual(false);
     });
 
-    describe("server-side navigation", () => {
+    describe("full page load navigation", () => {
         it("both navigates and calls onClick for an anchor link", () => {
             const onClick = jest.fn();
             // Use mount instead of a shallow render to trigger event defaults

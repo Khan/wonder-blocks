@@ -90,9 +90,9 @@ type Props = {|
 
     /**
      * Run async code in the background while client-side navigating. If the
-     * navigation is server-side, the callback must be settled before the
-     * navigation will occur. Errors are ignored so that navigation is
-     * guaranteed to succeed.
+     * browser does a full page load navigation, the callback promise must be
+     * settled before the navigation will occur. Errors are ignored so that
+     * navigation is guaranteed to succeed.
      */
     safeWithNav?: () => Promise<mixed>,
 
@@ -137,8 +137,8 @@ export type ClickableState = {|
      * When we're waiting for beforeNav or safeWithNav to complete an async
      * action, this will be true.
      *
-     * NOTE: We only wait for safeWithNav to complete when doing server-side
-     * navigation.
+     * NOTE: We only wait for safeWithNav to complete when doing a full page
+     * load navigation.
      */
     waiting: boolean,
 |};

@@ -156,9 +156,9 @@ type Props =
 
           /**
            * Run async code in the background while client-side navigating. If the
-           * navigation is server-side, the callback must be settled before the
-           * navigation will occur. Errors are ignored so that navigation is
-           * guaranteed to succeed.
+           * browser does a full page load navigation, the callback promise must be
+           * settled before the navigation will occur. Errors are ignored so that
+           * navigation is guaranteed to succeed.
            */
           safeWithNav?: () => Promise<mixed>,
       |};
