@@ -200,7 +200,7 @@ export const smallButtons = () => (
     </View>
 );
 
-export const largeButtons = () => (
+export const xlargeButtons = () => (
     <View style={{flexDirection: "row"}}>
         <Button onClick={() => {}} size="xlarge">
             Hello, world!

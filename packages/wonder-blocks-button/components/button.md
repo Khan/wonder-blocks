@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
 
 #### Example: size
 
-Buttons have a `size` that's either `"medium"` (default), `"small"`, or `"large"`.
+Buttons have a `size` that's either `"medium"` (default), `"small"`, or `"xlarge"`.
 ```js
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
