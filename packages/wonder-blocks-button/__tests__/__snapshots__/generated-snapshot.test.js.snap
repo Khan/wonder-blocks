@@ -1218,7 +1218,7 @@ exports[`wonder-blocks-button example 5 1`] = `
       "borderWidth": 0,
       "boxSizing": "border-box",
       "display": "flex",
-      "flexDirection": "row",
+      "flexDirection": "column",
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
@@ -1228,229 +1228,738 @@ exports[`wonder-blocks-button example 5 1`] = `
     }
   }
 >
-  <button
+  <div
     className=""
-    disabled={false}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragStart={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-    role="button"
     style={
       Object {
-        "::MozFocusInner": Object {
-          "border": 0,
-        },
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "#1865f2",
-        "border": "none",
-        "borderRadius": 4,
-        "boxSizing": "border-box",
-        "color": "#ffffff",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 32,
-        "justifyContent": "center",
-        "margin": 0,
-        "marginRight": 10,
-        "outline": "none",
-        "paddingBottom": 0,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 0,
-        "position": "relative",
-        "textDecoration": "none",
-        "touchAction": "manipulation",
-        "userSelect": "none",
-      }
-    }
-    tabIndex={0}
-    type="button"
-  >
-    <span
-      className=""
-      style={
-        Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
-          "alignItems": "center",
-          "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-          "fontSize": 14,
-          "fontWeight": "bold",
-          "lineHeight": "18px",
-          "overflow": "hidden",
-          "pointerEvents": "none",
-          "textOverflow": "ellipsis",
-          "whiteSpace": "nowrap",
-        }
-      }
-    >
-      Label
-    </span>
-  </button>
-  <button
-    className=""
-    disabled={false}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragStart={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-    role="button"
-    style={
-      Object {
-        "::MozFocusInner": Object {
-          "border": 0,
-        },
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "none",
-        "border": "none",
-        "borderColor": "rgba(33,36,44,0.50)",
-        "borderRadius": 4,
+        "alignItems": "stretch",
         "borderStyle": "solid",
-        "borderWidth": 1,
+        "borderWidth": 0,
         "boxSizing": "border-box",
-        "color": "#1865f2",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 32,
-        "justifyContent": "center",
+        "display": "flex",
+        "flexDirection": "row",
         "margin": 0,
-        "marginRight": 10,
-        "outline": "none",
-        "paddingBottom": 0,
-        "paddingLeft": 16,
-        "paddingRight": 16,
-        "paddingTop": 0,
+        "marginBottom": 8,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
         "position": "relative",
-        "textDecoration": "none",
-        "touchAction": "manipulation",
-        "userSelect": "none",
+        "zIndex": 0,
       }
     }
-    tabIndex={0}
-    type="button"
   >
-    <span
+    <button
       className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
       style={
         Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
-          "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-          "fontSize": 14,
-          "fontWeight": "bold",
-          "lineHeight": "18px",
-          "overflow": "hidden",
-          "pointerEvents": "none",
-          "textOverflow": "ellipsis",
-          "whiteSpace": "nowrap",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
         }
       }
+      tabIndex={0}
+      type="button"
     >
-      Label
-    </span>
-  </button>
-  <button
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "inline-block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "lineHeight": "18px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Label
+      </span>
+    </button>
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderColor": "rgba(33,36,44,0.50)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "inline-block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "lineHeight": "18px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Label
+      </span>
+    </button>
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 32,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "inline-block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 14,
+            "fontWeight": "bold",
+            "lineHeight": "18px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "position": "relative",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Label
+      </span>
+    </button>
+  </div>
+  <div
     className=""
-    disabled={false}
-    onBlur={[Function]}
-    onClick={[Function]}
-    onDragStart={[Function]}
-    onFocus={[Function]}
-    onKeyDown={[Function]}
-    onKeyUp={[Function]}
-    onMouseDown={[Function]}
-    onMouseEnter={[Function]}
-    onMouseLeave={[Function]}
-    onMouseUp={[Function]}
-    onTouchCancel={[Function]}
-    onTouchEnd={[Function]}
-    onTouchStart={[Function]}
-    role="button"
     style={
       Object {
-        "::MozFocusInner": Object {
-          "border": 0,
-        },
-        ":focus": Object {
-          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
-        },
-        "alignItems": "center",
-        "background": "none",
-        "border": "none",
-        "borderRadius": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
         "boxSizing": "border-box",
-        "color": "#1865f2",
-        "cursor": "pointer",
-        "display": "inline-flex",
-        "height": 32,
-        "justifyContent": "center",
+        "display": "flex",
+        "flexDirection": "row",
         "margin": 0,
-        "marginRight": 10,
-        "outline": "none",
-        "paddingBottom": 0,
-        "paddingLeft": 0,
-        "paddingRight": 0,
-        "paddingTop": 0,
+        "marginBottom": 8,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
         "position": "relative",
-        "textDecoration": "none",
-        "touchAction": "manipulation",
-        "userSelect": "none",
+        "zIndex": 0,
       }
     }
-    tabIndex={0}
-    type="button"
   >
-    <span
+    <button
       className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
       style={
         Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
           "alignItems": "center",
-          "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-          "fontSize": 14,
-          "fontWeight": "bold",
-          "lineHeight": "18px",
-          "overflow": "hidden",
-          "pointerEvents": "none",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
           "position": "relative",
-          "textOverflow": "ellipsis",
-          "whiteSpace": "nowrap",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
         }
       }
+      tabIndex={0}
+      type="button"
     >
-      Label
-    </span>
-  </button>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "inline-block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Label
+      </span>
+    </button>
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderColor": "rgba(33,36,44,0.50)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 16,
+          "paddingRight": 16,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "inline-block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Label
+      </span>
+    </button>
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 40,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "inline-block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 16,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "position": "relative",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Label
+      </span>
+    </button>
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
+        "marginBottom": 8,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "#1865f2",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#ffffff",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 60,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 32,
+          "paddingRight": 32,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "inline-block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 18,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Label
+      </span>
+    </button>
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderColor": "rgba(33,36,44,0.50)",
+          "borderRadius": 4,
+          "borderStyle": "solid",
+          "borderWidth": 1,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 60,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 32,
+          "paddingRight": 32,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "inline-block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 18,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Label
+      </span>
+    </button>
+    <button
+      className=""
+      disabled={false}
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      role="button"
+      style={
+        Object {
+          "::MozFocusInner": Object {
+            "border": 0,
+          },
+          ":focus": Object {
+            "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+          },
+          "alignItems": "center",
+          "background": "none",
+          "border": "none",
+          "borderRadius": 4,
+          "boxSizing": "border-box",
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "display": "inline-flex",
+          "height": 60,
+          "justifyContent": "center",
+          "margin": 0,
+          "marginRight": 10,
+          "outline": "none",
+          "paddingBottom": 0,
+          "paddingLeft": 0,
+          "paddingRight": 0,
+          "paddingTop": 0,
+          "position": "relative",
+          "textDecoration": "none",
+          "touchAction": "manipulation",
+          "userSelect": "none",
+        }
+      }
+      tabIndex={0}
+      type="button"
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "alignItems": "center",
+            "display": "inline-block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 18,
+            "fontWeight": "bold",
+            "lineHeight": "20px",
+            "overflow": "hidden",
+            "pointerEvents": "none",
+            "position": "relative",
+            "textOverflow": "ellipsis",
+            "whiteSpace": "nowrap",
+          }
+        }
+      >
+        Label
+      </span>
+    </button>
+  </div>
 </div>
 `;
 
@@ -1474,6 +1983,134 @@ exports[`wonder-blocks-button example 6 1`] = `
     }
   }
 >
+  <button
+    aria-label="loading"
+    className=""
+    disabled={true}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="button"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        ":focus": Object {
+          "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+        },
+        "alignItems": "center",
+        "background": "rgba(33,36,44,0.32)",
+        "border": "none",
+        "borderRadius": 4,
+        "boxSizing": "border-box",
+        "color": "rgba(255,255,255,0.64)",
+        "cursor": "default",
+        "display": "inline-flex",
+        "height": 60,
+        "justifyContent": "center",
+        "margin": 0,
+        "marginRight": 10,
+        "outline": "none",
+        "paddingBottom": 0,
+        "paddingLeft": 32,
+        "paddingRight": 32,
+        "paddingTop": 0,
+        "position": "relative",
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+      }
+    }
+    tabIndex={-1}
+    type="button"
+  >
+    <span
+      className=""
+      style={
+        Object {
+          "MozOsxFontSmoothing": "grayscale",
+          "WebkitFontSmoothing": "antialiased",
+          "alignItems": "center",
+          "display": "inline-block",
+          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontSize": 18,
+          "fontWeight": "bold",
+          "lineHeight": "20px",
+          "overflow": "hidden",
+          "pointerEvents": "none",
+          "textOverflow": "ellipsis",
+          "visibility": "hidden",
+          "whiteSpace": "nowrap",
+        }
+      }
+    >
+      Click me!
+    </span>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "justifyContent": "center",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "absolute",
+          "zIndex": 0,
+        }
+      }
+    >
+      <svg
+        height={48}
+        viewBox="0 0 48 48"
+        width={48}
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          className=""
+          d="M44.19 23.455a1.91 1.91 0 1 1 3.801 0h.003c.004.18.006.363.006.545 0 13.255-10.745 24-24 24S0 37.255 0 24 10.745 0 24 0c.182 0 .364.002.545.006V.01a1.91 1.91 0 1 1 0 3.801v.015A20.564 20.564 0 0 0 24 3.818C12.854 3.818 3.818 12.854 3.818 24c0 11.146 9.036 20.182 20.182 20.182 11.146 0 20.182-9.036 20.182-20.182 0-.182-.003-.364-.007-.545h.015z"
+          fillRule="nonzero"
+          style={
+            Object {
+              "animationDuration": "1.1s",
+              "animationIterationCount": "infinite",
+              "animationName": Object {
+                "0%": Object {
+                  "transform": "rotate(0deg)",
+                },
+                "100%": Object {
+                  "transform": "rotate(360deg)",
+                },
+                "50%": Object {
+                  "transform": "rotate(180deg)",
+                },
+              },
+              "animationTimingFunction": "linear",
+              "fill": "#ffffff",
+              "transformOrigin": "50% 50%",
+            }
+          }
+        />
+      </svg>
+    </div>
+  </button>
   <button
     aria-label="loading"
     className=""
@@ -2457,7 +3094,7 @@ exports[`wonder-blocks-button example 11 1`] = `
           "marginRight": 10,
           "outline": "none",
           "paddingBottom": 0,
-          "paddingLeft": 12,
+          "paddingLeft": 16,
           "paddingRight": 16,
           "paddingTop": 0,
           "position": "relative",
@@ -2761,7 +3398,7 @@ exports[`wonder-blocks-button example 11 1`] = `
           "marginRight": 10,
           "outline": "none",
           "paddingBottom": 0,
-          "paddingLeft": 12,
+          "paddingLeft": 16,
           "paddingRight": 16,
           "paddingTop": 0,
           "position": "relative",

@@ -214,7 +214,7 @@ const styles = StyleSheet.create({
 
 #### Example: size
 
-Buttons have a `size` that's either `"medium"` (default) or `"small"`.
+Buttons have a `size` that's either `"medium"` (default), `"small"`, or `"large"`.
 ```js
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -223,36 +223,89 @@ import {StyleSheet} from "aphrodite";
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
+        marginBottom: 8,
     },
     button: {
         marginRight: 10,
     }
 });
 
-<View style={styles.row}>
-    <Button
-        style={styles.button}
-        onClick={(e) => window.alert("Hello, world!")}
-        size="small"
-    >
-        Label
-    </Button>
-    <Button
-        style={styles.button}
-        onClick={(e) => window.alert("Hello, world!")}
-        kind="secondary"
-        size="small"
-    >
-        Label
-    </Button>
-    <Button
-        style={styles.button}
-        onClick={(e) => window.alert("Hello, world!")}
-        kind="tertiary"
-        size="small"
-    >
-        Label
-    </Button>
+<View>
+    <View style={styles.row}>
+        <Button
+            style={styles.button}
+            onClick={(e) => window.alert("Hello, world!")}
+            size="small"
+        >
+            Label
+        </Button>
+        <Button
+            style={styles.button}
+            onClick={(e) => window.alert("Hello, world!")}
+            kind="secondary"
+            size="small"
+        >
+            Label
+        </Button>
+        <Button
+            style={styles.button}
+            onClick={(e) => window.alert("Hello, world!")}
+            kind="tertiary"
+            size="small"
+        >
+            Label
+        </Button>
+    </View>
+    <View style={styles.row}>
+        <Button
+            style={styles.button}
+            onClick={(e) => window.alert("Hello, world!")}
+            size="medium"
+        >
+            Label
+        </Button>
+        <Button
+            style={styles.button}
+            onClick={(e) => window.alert("Hello, world!")}
+            kind="secondary"
+            size="medium"
+        >
+            Label
+        </Button>
+        <Button
+            style={styles.button}
+            onClick={(e) => window.alert("Hello, world!")}
+            kind="tertiary"
+            size="medium"
+        >
+            Label
+        </Button>
+    </View>
+    <View style={styles.row}>
+        <Button
+            style={styles.button}
+            onClick={(e) => window.alert("Hello, world!")}
+            size="large"
+        >
+            Label
+        </Button>
+        <Button
+            style={styles.button}
+            onClick={(e) => window.alert("Hello, world!")}
+            kind="secondary"
+            size="large"
+        >
+            Label
+        </Button>
+        <Button
+            style={styles.button}
+            onClick={(e) => window.alert("Hello, world!")}
+            kind="tertiary"
+            size="large"
+        >
+            Label
+        </Button>
+    </View>
 </View>
 ```
 
@@ -278,6 +331,9 @@ const styles = StyleSheet.create({
 });
 
 <View style={styles.row}>
+    <Button spinner={true} aria-label="loading" size="large" style={styles.button}>
+        Click me!
+    </Button>
     <Button spinner={true} aria-label="loading" style={styles.button} href="/foo">
         Click me!
     </Button>
