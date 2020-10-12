@@ -139,7 +139,7 @@ export type SharedProps = {|
 // We structure the props in this way to ensure that whenever we're using
 // beforeNav or safeWithNav that we're also using href.  We also need to specify
 // a number of different variations to avoid ambigious situations where flow
-// finds more than one valide object type in the disjoint union.
+// finds more than one valid object type in the disjoint union.
 type Props =
     | {|
           ...SharedProps,
