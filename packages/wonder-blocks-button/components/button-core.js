@@ -86,7 +86,7 @@ export default class ButtonCore extends React.Component<Props> {
                     ? buttonStyles.active
                     : (hovered || focused) && buttonStyles.focus),
             size === "small" && sharedStyles.small,
-            size === "large" && sharedStyles.large,
+            size === "xlarge" && sharedStyles.xlarge,
         ];
 
         const commonProps = {
@@ -103,7 +103,7 @@ export default class ButtonCore extends React.Component<Props> {
             <Label
                 style={[
                     sharedStyles.text,
-                    size === "large" && sharedStyles.largeText,
+                    size === "xlarge" && sharedStyles.xlargeText,
                     icon && sharedStyles.textWithIcon,
                     spinner && sharedStyles.hiddenText,
                     kind === "tertiary" && sharedStyles.textWithFocus,
@@ -134,9 +134,11 @@ export default class ButtonCore extends React.Component<Props> {
                     <CircularSpinner
                         style={sharedStyles.spinner}
                         size={
-                            {medium: "small", small: "xsmall", large: "medium"}[
-                                size
-                            ]
+                            {
+                                medium: "small",
+                                small: "xsmall",
+                                xlarge: "medium",
+                            }[size]
                         }
                         light={kind === "primary"}
                     />
@@ -204,7 +206,7 @@ const sharedStyles = StyleSheet.create({
     small: {
         height: 32,
     },
-    large: {
+    xlarge: {
         height: 60,
     },
     text: {
@@ -216,7 +218,7 @@ const sharedStyles = StyleSheet.create({
         display: "inline-block", // allows the button text to truncate
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
     },
-    largeText: {
+    xlargeText: {
         fontSize: 18,
         lineHeight: "20px",
     },
@@ -249,7 +251,7 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
     const {white, white50, white64, offBlack32, offBlack50, darkBlue} = Color;
     const fadedColor = mix(fade(color, 0.32), white);
     const activeColor = mix(offBlack32, color);
-    const padding = size === "large" ? 32 : 16;
+    const padding = size === "xlarge" ? 32 : 16;
 
     let newStyles = {};
     if (kind === "primary") {

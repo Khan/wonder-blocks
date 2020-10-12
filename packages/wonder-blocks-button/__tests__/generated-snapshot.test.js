@@ -267,7 +267,7 @@ describe("wonder-blocks-button", () => {
                     <Button
                         style={styles.button}
                         onClick={(e) => window.alert("Hello, world!")}
-                        size="large"
+                        size="xlarge"
                     >
                         Label
                     </Button>
@@ -275,7 +275,7 @@ describe("wonder-blocks-button", () => {
                         style={styles.button}
                         onClick={(e) => window.alert("Hello, world!")}
                         kind="secondary"
-                        size="large"
+                        size="xlarge"
                     >
                         Label
                     </Button>
@@ -283,7 +283,7 @@ describe("wonder-blocks-button", () => {
                         style={styles.button}
                         onClick={(e) => window.alert("Hello, world!")}
                         kind="tertiary"
-                        size="large"
+                        size="xlarge"
                     >
                         Label
                     </Button>
@@ -309,7 +309,7 @@ describe("wonder-blocks-button", () => {
                 <Button
                     spinner={true}
                     aria-label="loading"
-                    size="large"
+                    size="xlarge"
                     style={styles.button}
                 >
                     Click me!

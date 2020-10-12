@@ -285,7 +285,7 @@ const styles = StyleSheet.create({
         <Button
             style={styles.button}
             onClick={(e) => window.alert("Hello, world!")}
-            size="large"
+            size="xlarge"
         >
             Label
         </Button>
@@ -293,7 +293,7 @@ const styles = StyleSheet.create({
             style={styles.button}
             onClick={(e) => window.alert("Hello, world!")}
             kind="secondary"
-            size="large"
+            size="xlarge"
         >
             Label
         </Button>
@@ -301,7 +301,7 @@ const styles = StyleSheet.create({
             style={styles.button}
             onClick={(e) => window.alert("Hello, world!")}
             kind="tertiary"
-            size="large"
+            size="xlarge"
         >
             Label
         </Button>
@@ -331,7 +331,7 @@ const styles = StyleSheet.create({
 });
 
 <View style={styles.row}>
-    <Button spinner={true} aria-label="loading" size="large" style={styles.button}>
+    <Button spinner={true} aria-label="loading" size="xlarge" style={styles.button}>
         Click me!
     </Button>
     <Button spinner={true} aria-label="loading" style={styles.button} href="/foo">

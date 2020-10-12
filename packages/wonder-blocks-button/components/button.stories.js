@@ -202,15 +202,15 @@ export const smallButtons = () => (
 
 export const largeButtons = () => (
     <View style={{flexDirection: "row"}}>
-        <Button onClick={() => {}} size="large">
+        <Button onClick={() => {}} size="xlarge">
             Hello, world!
         </Button>
         <Strut size={16} />
-        <Button onClick={() => {}} size="large" kind="secondary">
+        <Button onClick={() => {}} size="xlarge" kind="secondary">
             Hello, world!
         </Button>
         <Strut size={16} />
-        <Button onClick={() => {}} size="large" kind="tertiary">
+        <Button onClick={() => {}} size="xlarge" kind="tertiary">
             Hello, world!
         </Button>
     </View>
@@ -227,7 +227,7 @@ export const buttonWithSpinner = () => (
         <Button
             onClick={() => {}}
             spinner={true}
-            size="large"
+            size="xlarge"
             aria-label={"waiting"}
         >
             Hello, world
