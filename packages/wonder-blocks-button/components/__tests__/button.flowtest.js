@@ -35,3 +35,11 @@ import Button from "../button.js";
 
 // It's also fine to use href by itself
 <Button href="/foo">Hello, world!</Button>;
+
+const getUrl = () => "/foo";
+
+// This test purposefully uses a function to get a string to pass with href.
+// This can trigger errors if there are ambiguous cases in the disjoint union
+// type being used to describe the props.  It's unclear why this error isn't
+// trigger by passing a string directly as the href.
+<Button href={getUrl()}>Hello, world!</Button>;

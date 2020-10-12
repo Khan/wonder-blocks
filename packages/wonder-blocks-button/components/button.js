@@ -136,6 +136,10 @@ export type SharedProps = {|
     onClick?: (e: SyntheticEvent<>) => mixed,
 |};
 
+// We structure the props in this way to ensure that whenever we're using
+// beforeNav or safeWithNav that we're also using href.  We also need to specify
+// a number of different variations to avoid ambigious situations where flow
+// finds more than one valid object type in the disjoint union.
 type Props =
     | {|
           ...SharedProps,
@@ -152,7 +156,12 @@ type Props =
            * If both safeWithNav and beforeNav are provided, beforeNav will be run
            * first and safeWithNav will only be run if beforeNav does not reject.
            */
-          beforeNav?: () => Promise<mixed>,
+          beforeNav: () => Promise<mixed>,
+      |}
+    | {|
+          ...SharedProps,
+
+          href: string,
 
           /**
            * Run async code in the background while client-side navigating. If the
@@ -160,7 +169,29 @@ type Props =
            * settled before the navigation will occur. Errors are ignored so that
            * navigation is guaranteed to succeed.
            */
-          safeWithNav?: () => Promise<mixed>,
+          safeWithNav: () => Promise<mixed>,
+      |}
+    | {|
+          ...SharedProps,
+
+          href: string,
+
+          /**
+           * Run async code before navigating. If the promise returned rejects then
+           * navigation will not occur.
+           *
+           * If both safeWithNav and beforeNav are provided, beforeNav will be run
+           * first and safeWithNav will only be run if beforeNav does not reject.
+           */
+          beforeNav: () => Promise<mixed>,
+
+          /**
+           * Run async code in the background while client-side navigating. If the
+           * browser does a full page load navigation, the callback promise must be
+           * settled before the navigation will occur. Errors are ignored so that
+           * navigation is guaranteed to succeed.
+           */
+          safeWithNav: () => Promise<mixed>,
       |};
 
 /**
