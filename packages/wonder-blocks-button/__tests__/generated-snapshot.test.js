@@ -205,36 +205,89 @@ describe("wonder-blocks-button", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
+                marginBottom: 8,
             },
             button: {
                 marginRight: 10,
             },
         });
         const example = (
-            <View style={styles.row}>
-                <Button
-                    style={styles.button}
-                    onClick={(e) => window.alert("Hello, world!")}
-                    size="small"
-                >
-                    Label
-                </Button>
-                <Button
-                    style={styles.button}
-                    onClick={(e) => window.alert("Hello, world!")}
-                    kind="secondary"
-                    size="small"
-                >
-                    Label
-                </Button>
-                <Button
-                    style={styles.button}
-                    onClick={(e) => window.alert("Hello, world!")}
-                    kind="tertiary"
-                    size="small"
-                >
-                    Label
-                </Button>
+            <View>
+                <View style={styles.row}>
+                    <Button
+                        style={styles.button}
+                        onClick={(e) => window.alert("Hello, world!")}
+                        size="small"
+                    >
+                        Label
+                    </Button>
+                    <Button
+                        style={styles.button}
+                        onClick={(e) => window.alert("Hello, world!")}
+                        kind="secondary"
+                        size="small"
+                    >
+                        Label
+                    </Button>
+                    <Button
+                        style={styles.button}
+                        onClick={(e) => window.alert("Hello, world!")}
+                        kind="tertiary"
+                        size="small"
+                    >
+                        Label
+                    </Button>
+                </View>
+                <View style={styles.row}>
+                    <Button
+                        style={styles.button}
+                        onClick={(e) => window.alert("Hello, world!")}
+                        size="medium"
+                    >
+                        Label
+                    </Button>
+                    <Button
+                        style={styles.button}
+                        onClick={(e) => window.alert("Hello, world!")}
+                        kind="secondary"
+                        size="medium"
+                    >
+                        Label
+                    </Button>
+                    <Button
+                        style={styles.button}
+                        onClick={(e) => window.alert("Hello, world!")}
+                        kind="tertiary"
+                        size="medium"
+                    >
+                        Label
+                    </Button>
+                </View>
+                <View style={styles.row}>
+                    <Button
+                        style={styles.button}
+                        onClick={(e) => window.alert("Hello, world!")}
+                        size="xlarge"
+                    >
+                        Label
+                    </Button>
+                    <Button
+                        style={styles.button}
+                        onClick={(e) => window.alert("Hello, world!")}
+                        kind="secondary"
+                        size="xlarge"
+                    >
+                        Label
+                    </Button>
+                    <Button
+                        style={styles.button}
+                        onClick={(e) => window.alert("Hello, world!")}
+                        kind="tertiary"
+                        size="xlarge"
+                    >
+                        Label
+                    </Button>
+                </View>
             </View>
         );
         const tree = renderer.create(example).toJSON();
@@ -253,6 +306,14 @@ describe("wonder-blocks-button", () => {
         });
         const example = (
             <View style={styles.row}>
+                <Button
+                    spinner={true}
+                    aria-label="loading"
+                    size="xlarge"
+                    style={styles.button}
+                >
+                    Click me!
+                </Button>
                 <Button
                     spinner={true}
                     aria-label="loading"

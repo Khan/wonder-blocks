@@ -68,6 +68,7 @@ export default class ButtonCore extends React.Component<Props> {
             kind,
             light,
             iconWidth,
+            size,
         );
 
         const disabled = spinner || disabledProp;
@@ -85,6 +86,7 @@ export default class ButtonCore extends React.Component<Props> {
                     ? buttonStyles.active
                     : (hovered || focused) && buttonStyles.focus),
             size === "small" && sharedStyles.small,
+            size === "xlarge" && sharedStyles.xlarge,
         ];
 
         const commonProps = {
@@ -101,6 +103,7 @@ export default class ButtonCore extends React.Component<Props> {
             <Label
                 style={[
                     sharedStyles.text,
+                    size === "xlarge" && sharedStyles.xlargeText,
                     icon && sharedStyles.textWithIcon,
                     spinner && sharedStyles.hiddenText,
                     kind === "tertiary" && sharedStyles.textWithFocus,
@@ -130,7 +133,13 @@ export default class ButtonCore extends React.Component<Props> {
                 {spinner && (
                     <CircularSpinner
                         style={sharedStyles.spinner}
-                        size={{medium: "small", small: "xsmall"}[size]}
+                        size={
+                            {
+                                medium: "small",
+                                small: "xsmall",
+                                xlarge: "medium",
+                            }[size]
+                        }
                         light={kind === "primary"}
                     />
                 )}
@@ -197,6 +206,9 @@ const sharedStyles = StyleSheet.create({
     small: {
         height: 32,
     },
+    xlarge: {
+        height: 60,
+    },
     text: {
         alignItems: "center",
         fontWeight: "bold",
@@ -205,6 +217,10 @@ const sharedStyles = StyleSheet.create({
         textOverflow: "ellipsis",
         display: "inline-block", // allows the button text to truncate
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
+    },
+    xlargeText: {
+        fontSize: 18,
+        lineHeight: "20px",
     },
     textWithIcon: {
         display: "flex", // allows the text and icon to sit nicely together
@@ -225,8 +241,9 @@ const sharedStyles = StyleSheet.create({
 
 const styles = {};
 
-const _generateStyles = (color, kind, light, iconWidth) => {
-    const buttonType = color + kind + light.toString() + iconWidth.toString();
+const _generateStyles = (color, kind, light, iconWidth, size) => {
+    const buttonType =
+        color + kind + light.toString() + iconWidth.toString() + size;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
@@ -234,6 +251,7 @@ const _generateStyles = (color, kind, light, iconWidth) => {
     const {white, white50, white64, offBlack32, offBlack50, darkBlue} = Color;
     const fadedColor = mix(fade(color, 0.32), white);
     const activeColor = mix(offBlack32, color);
+    const padding = size === "xlarge" ? Spacing.xLarge : Spacing.medium;
 
     let newStyles = {};
     if (kind === "primary") {
@@ -241,6 +259,8 @@ const _generateStyles = (color, kind, light, iconWidth) => {
             default: {
                 background: light ? white : color,
                 color: light ? color : white,
+                paddingLeft: padding,
+                paddingRight: padding,
             },
             focus: {
                 // This assumes a background of white for the regular button and
@@ -272,6 +292,8 @@ const _generateStyles = (color, kind, light, iconWidth) => {
                 borderColor: light ? white50 : offBlack50,
                 borderStyle: "solid",
                 borderWidth: 1,
+                paddingLeft: iconWidth ? padding - 4 : padding,
+                paddingRight: padding,
             },
             focus: {
                 background: light ? "transparent" : white,
@@ -279,8 +301,8 @@ const _generateStyles = (color, kind, light, iconWidth) => {
                 borderWidth: 2,
                 // The left padding for the button with icon should have 4px
                 // less padding
-                paddingLeft: iconWidth ? 11 : 15,
-                paddingRight: 15,
+                paddingLeft: iconWidth ? padding - 5 : padding - 1,
+                paddingRight: padding - 1,
             },
             active: {
                 background: light ? activeColor : fadedColor,
@@ -289,8 +311,8 @@ const _generateStyles = (color, kind, light, iconWidth) => {
                 borderWidth: 2,
                 // The left padding for the button with icon should have 4px
                 // less padding
-                paddingLeft: iconWidth ? 11 : 15,
-                paddingRight: 15,
+                paddingLeft: iconWidth ? padding - 5 : padding - 1,
+                paddingRight: padding - 1,
             },
             disabled: {
                 color: light ? white50 : offBlack32,

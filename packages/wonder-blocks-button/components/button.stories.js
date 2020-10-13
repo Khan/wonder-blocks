@@ -34,7 +34,7 @@ export const buttonsWithKnobs = () => {
     );
     const size = radios(
         "size",
-        {"medium (default)": "medium", small: "small"},
+        {large: "large", "medium (default)": "medium", small: "small"},
         "medium",
     );
     const light = boolean("light", false);
@@ -200,6 +200,22 @@ export const smallButtons = () => (
     </View>
 );
 
+export const xlargeButtons = () => (
+    <View style={{flexDirection: "row"}}>
+        <Button onClick={() => {}} size="xlarge">
+            Hello, world!
+        </Button>
+        <Strut size={16} />
+        <Button onClick={() => {}} size="xlarge" kind="secondary">
+            Hello, world!
+        </Button>
+        <Strut size={16} />
+        <Button onClick={() => {}} size="xlarge" kind="tertiary">
+            Hello, world!
+        </Button>
+    </View>
+);
+
 export const longLabelsAreEllipsized = () => (
     <Button onClick={() => {}} style={{maxWidth: 200}}>
         label too long for the parent container
@@ -207,7 +223,27 @@ export const longLabelsAreEllipsized = () => (
 );
 
 export const buttonWithSpinner = () => (
-    <Button onClick={() => {}} spinner={true} aria-label={"waiting"}>
-        Hello, world
-    </Button>
+    <View style={{flexDirection: "row"}}>
+        <Button
+            onClick={() => {}}
+            spinner={true}
+            size="xlarge"
+            aria-label={"waiting"}
+        >
+            Hello, world
+        </Button>
+        <Strut size={16} />
+        <Button onClick={() => {}} spinner={true} aria-label={"waiting"}>
+            Hello, world
+        </Button>
+        <Strut size={16} />
+        <Button
+            onClick={() => {}}
+            spinner={true}
+            size="small"
+            aria-label={"waiting"}
+        >
+            Hello, world
+        </Button>
+    </View>
 );

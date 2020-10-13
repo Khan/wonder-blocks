@@ -59,9 +59,10 @@ export type SharedProps = {|
     light: boolean,
 
     /**
-     * The size of the button. "medium" = height: 40; "small" = height: 32
+     * The size of the button. "medium" = height: 40; "small" = height: 32;
+     * "xlarge" = height: 60;
      */
-    size: "medium" | "small",
+    size: "medium" | "small" | "xlarge",
 
     /**
      * Whether the button is disabled.
