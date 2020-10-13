@@ -10,7 +10,7 @@ import type {
 } from "@khanacademy/wonder-blocks-core";
 import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
-type Props = {|
+type CommonProps = {|
     /**
      * The child of Clickable must be a function which returns the component
      * which should be made Clickable.  The function is passed an object with
@@ -59,6 +59,60 @@ type Props = {|
      */
     testId?: string,
 |};
+
+type Props =
+    | {|
+          ...CommonProps,
+      |}
+    | {|
+          ...CommonProps,
+
+          href: string,
+
+          /**
+           * Run async code before navigating. If the promise returned rejects then
+           * navigation will not occur.
+           *
+           * If both safeWithNav and beforeNav are provided, beforeNav will be run
+           * first and safeWithNav will only be run if beforeNav does not reject.
+           */
+          beforeNav: () => Promise<mixed>,
+      |}
+    | {|
+          ...CommonProps,
+
+          href: string,
+
+          /**
+           * Run async code in the background while client-side navigating. If the
+           * browser does a full page load navigation, the callback promise must be
+           * settled before the navigation will occur. Errors are ignored so that
+           * navigation is guaranteed to succeed.
+           */
+          safeWithNav: () => Promise<mixed>,
+      |}
+    | {|
+          ...CommonProps,
+
+          href: string,
+
+          /**
+           * Run async code before navigating. If the promise returned rejects then
+           * navigation will not occur.
+           *
+           * If both safeWithNav and beforeNav are provided, beforeNav will be run
+           * first and safeWithNav will only be run if beforeNav does not reject.
+           */
+          beforeNav: () => Promise<mixed>,
+
+          /**
+           * Run async code in the background while client-side navigating. If the
+           * browser does a full page load navigation, the callback promise must be
+           * settled before the navigation will occur. Errors are ignored so that
+           * navigation is guaranteed to succeed.
+           */
+          safeWithNav: () => Promise<mixed>,
+      |};
 
 const StyledAnchor = addStyle<"a">("a");
 const StyledButton = addStyle<"button">("button");
@@ -141,7 +195,13 @@ export default class Clickable extends React.Component<Props> {
     };
 
     render() {
-        const {href, onClick, skipClientNav} = this.props;
+        const {
+            href,
+            onClick,
+            skipClientNav,
+            beforeNav = undefined,
+            safeWithNav = undefined,
+        } = this.props;
         const ClickableBehavior = getClickableBehavior(
             href,
             skipClientNav,
@@ -149,7 +209,12 @@ export default class Clickable extends React.Component<Props> {
         );
 
         return (
-            <ClickableBehavior href={href} onClick={onClick}>
+            <ClickableBehavior
+                href={href}
+                onClick={onClick}
+                beforeNav={beforeNav}
+                safeWithNav={safeWithNav}
+            >
                 {(state, handlers) =>
                     this.getCorrectTag(state, {
                         // eslint-disable-next-line react/prop-types
