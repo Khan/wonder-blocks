@@ -251,7 +251,7 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
     const {white, white50, white64, offBlack32, offBlack50, darkBlue} = Color;
     const fadedColor = mix(fade(color, 0.32), white);
     const activeColor = mix(offBlack32, color);
-    const padding = size === "xlarge" ? 32 : 16;
+    const padding = size === "xlarge" ? Spacing.xLarge : Spacing.medium;
 
     let newStyles = {};
     if (kind === "primary") {
