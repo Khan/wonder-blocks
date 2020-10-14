@@ -4,6 +4,7 @@ import {StyleSheet} from "aphrodite";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
 import type {
+    AriaProps,
     StyleType,
     ClickableRole,
     ClickableState,
@@ -11,6 +12,13 @@ import type {
 import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
 
 type CommonProps = {|
+    /**
+     * aria-label should be used when `spinner={true}` to let people using screen
+     * readers that the action taken by clicking the button will take some
+     * time to complete.
+     */
+    ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,
+
     /**
      * The child of Clickable must be a function which returns the component
      * which should be made Clickable.  The function is passed an object with
@@ -40,6 +48,35 @@ type CommonProps = {|
     disabled: boolean,
 
     /**
+     * An optional id attribute.
+     */
+    id?: string,
+
+    /**
+     * A target destination window for a link to open in.
+     */
+    target?: string,
+
+    /**
+     * Specifies the type of relationship between the current document and the
+     * linked document. Should only be used when `href` is specified.
+     */
+    rel?:
+        | "alternate"
+        | "author"
+        | "bookmark"
+        | "external"
+        | "help"
+        | "license"
+        | "next"
+        | "nofollow"
+        | "noreferrer"
+        | "noopener"
+        | "prev"
+        | "search"
+        | "tag",
+
+    /**
      * The role of the component, can be a role of type ClickableRole
      */
     role?: ClickableRole,
@@ -48,11 +85,6 @@ type CommonProps = {|
      * Avoids client-side routing in the presence of the href prop
      */
     skipClientNav?: boolean,
-
-    /**
-     * Use to label the component
-     */
-    "aria-label": string,
 
     /**
      * Test ID used for e2e testing.
@@ -201,6 +233,9 @@ export default class Clickable extends React.Component<Props> {
             skipClientNav,
             beforeNav = undefined,
             safeWithNav = undefined,
+            style,
+            testId,
+            ...restProps
         } = this.props;
         const ClickableBehavior = getClickableBehavior(
             href,
@@ -217,10 +252,9 @@ export default class Clickable extends React.Component<Props> {
             >
                 {(state, handlers) =>
                     this.getCorrectTag(state, {
-                        // eslint-disable-next-line react/prop-types
-                        "aria-label": this.props["aria-label"],
-                        "data-test-id": this.props.testId,
-                        style: [styles.reset, this.props.style],
+                        ...restProps,
+                        "data-test-id": testId,
+                        style: [styles.reset, style],
                         ...handlers,
                     })
                 }
