@@ -126,6 +126,7 @@ exports[`wonder-blocks-clickable example 2 1`] = `
   <a
     aria-label=""
     className=""
+    disabled={false}
     href="/foo"
     onBlur={[Function]}
     onClick={[Function]}
@@ -170,6 +171,7 @@ exports[`wonder-blocks-clickable example 2 1`] = `
   <a
     aria-label=""
     className=""
+    disabled={false}
     href="/foo"
     onBlur={[Function]}
     onClick={[Function]}
@@ -237,6 +239,7 @@ exports[`wonder-blocks-clickable example 3 1`] = `
   <a
     aria-label=""
     className=""
+    disabled={false}
     href="https://www.khanacademy.org/about/tos"
     onBlur={[Function]}
     onClick={[Function]}
