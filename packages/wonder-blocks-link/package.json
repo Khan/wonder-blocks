@@ -16,7 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "@khanacademy/wonder-blocks-color": "^1.1.14",
-    "@khanacademy/wonder-blocks-core": "^2.6.1"
+    "@khanacademy/wonder-blocks-core": "^2.6.1",
+    "@khanacademy/wonder-blocks-icon": "^1.2.10"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",

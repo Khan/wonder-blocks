@@ -10,6 +10,8 @@ import type {
     ClickableHandlers,
     ClickableState,
 } from "@khanacademy/wonder-blocks-core";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+
 import type {StyleDeclaration} from "aphrodite";
 import type {SharedProps} from "./link.js";
 
@@ -22,13 +24,14 @@ type Props = {|
 
 const StyledAnchor = addStyle<"a">("a");
 const StyledLink = addStyle<typeof Link>(Link);
+const StyledSvg = addStyle<"svg">("svg");
 
 export default class LinkCore extends React.Component<Props> {
     static contextTypes = {router: PropTypes.any};
 
     render() {
         const {
-            caret, // eslint-disable-line no-unused-vars
+            caret,
             children,
             skipClientNav,
             focused,
@@ -61,13 +64,25 @@ export default class LinkCore extends React.Component<Props> {
             ...handlers,
         };
 
+        const caretIcon = (
+            <StyledSvg
+                height="1em" // set the height to match the current font size
+                viewBox="1 0 14 16" // tweak the icon to be 1px closer to the link text
+                style={sharedStyles.caret}
+            >
+                <path fill="currentColor" d={icons.caretRight.small} />
+            </StyledSvg>
+        );
+
         return router && !skipClientNav ? (
             <StyledLink {...commonProps} to={href}>
                 {children}
+                {caret && caretIcon}
             </StyledLink>
         ) : (
             <StyledAnchor {...commonProps} href={href}>
                 {children}
+                {caret && caretIcon}
             </StyledAnchor>
         );
     }
@@ -80,6 +95,12 @@ const sharedStyles = StyleSheet.create({
         cursor: "pointer",
         textDecoration: "none",
         outline: "none",
+    },
+    caret: {
+        display: "inline-block",
+        verticalAlign: "text-bottom",
+        flexShrink: 0,
+        flexGrow: 0,
     },
 });
 

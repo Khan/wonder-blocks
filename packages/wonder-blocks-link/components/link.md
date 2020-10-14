@@ -35,3 +35,22 @@ import Link from "@khanacademy/wonder-blocks-link";
     </Link>
 </View>
 ```
+
+### Example: Link with caret
+
+```js
+import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Link from "@khanacademy/wonder-blocks-link";
+
+<View>
+    <HeadingSmall>
+        Heading.
+        <Link href="#nonexistent-link" caret={true}>Cta link!</Link>
+    </HeadingSmall>
+    <Body>
+        Regular copy.
+        <Link href="#nonexistent-link" caret={true}>Cta link!</Link>
+    </Body>
+</View>
+```

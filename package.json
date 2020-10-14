@@ -117,10 +117,6 @@
     }
   },
   "lint-staged": {
-    "*.md": [
-      "yarn gen-snapshot-tests",
-      "git add packages/*/__tests__/generated-snapshot.test.js"
-    ],
     "*.js": [
       "eslint --config .eslintrc.js",
       "yarn jest --findRelatedTests",

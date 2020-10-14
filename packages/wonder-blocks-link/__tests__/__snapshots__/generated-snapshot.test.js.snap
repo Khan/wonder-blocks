@@ -240,3 +240,152 @@ exports[`wonder-blocks-link example 2 1`] = `
   </a>
 </div>
 `;
+
+exports[`wonder-blocks-link example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <h4
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 20,
+        "fontWeight": 700,
+        "lineHeight": "24px",
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    Heading.
+    <a
+      className=""
+      href="#nonexistent-link"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "outline": "none",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
+    >
+      Cta link!
+      <svg
+        className=""
+        height="1em"
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="1 0 14 16"
+      >
+        <path
+          d="M8.586 8L5.293 4.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L8.586 8z"
+          fill="currentColor"
+        />
+      </svg>
+    </a>
+  </h4>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Regular copy.
+    <a
+      className=""
+      href="#nonexistent-link"
+      onBlur={[Function]}
+      onClick={[Function]}
+      onDragStart={[Function]}
+      onFocus={[Function]}
+      onKeyDown={[Function]}
+      onKeyUp={[Function]}
+      onMouseDown={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
+      onMouseUp={[Function]}
+      onTouchCancel={[Function]}
+      onTouchEnd={[Function]}
+      onTouchStart={[Function]}
+      style={
+        Object {
+          "color": "#1865f2",
+          "cursor": "pointer",
+          "outline": "none",
+          "textDecoration": "none",
+        }
+      }
+      tabIndex={0}
+    >
+      Cta link!
+      <svg
+        className=""
+        height="1em"
+        style={
+          Object {
+            "display": "inline-block",
+            "flexGrow": 0,
+            "flexShrink": 0,
+            "verticalAlign": "text-bottom",
+          }
+        }
+        viewBox="1 0 14 16"
+      >
+        <path
+          d="M8.586 8L5.293 4.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L8.586 8z"
+          fill="currentColor"
+        />
+      </svg>
+    </a>
+  </span>
+</div>
+`;

@@ -10,7 +10,7 @@ import renderer from "react-test-renderer";
 jest.mock("react-dom");
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {HeadingSmall, Body} from "@khanacademy/wonder-blocks-typography";
 import Link from "@khanacademy/wonder-blocks-link";
 
 describe("wonder-blocks-link", () => {
@@ -65,6 +65,27 @@ describe("wonder-blocks-link", () => {
                 <Link href="#nonexistent-link" id="typography-link">
                     <HeadingSmall>Heading inside a Link element</HeadingSmall>
                 </Link>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 3", () => {
+        const example = (
+            <View>
+                <HeadingSmall>
+                    Heading.
+                    <Link href="#nonexistent-link" caret={true}>
+                        Cta link!
+                    </Link>
+                </HeadingSmall>
+                <Body>
+                    Regular copy.
+                    <Link href="#nonexistent-link" caret={true}>
+                        Cta link!
+                    </Link>
+                </Body>
             </View>
         );
         const tree = renderer.create(example).toJSON();
