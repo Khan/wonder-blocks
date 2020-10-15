@@ -3,6 +3,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 
 import ButtonCore from "../components/button-core.js";
+import Button from "../components/button.js";
 
 const defaultHandlers = {
     onClick: () => void 0,
@@ -19,6 +20,20 @@ const defaultHandlers = {
     onFocus: () => void 0,
     onBlur: () => void 0,
 };
+
+describe("Button", () => {
+    test.each`
+        tabIndex
+        ${-1}
+        ${0}
+        ${1}
+    `("<Link tabIndex={$tabIndex}>", ({tabIndex}) => {
+        const tree = renderer
+            .create(<Button tabIndex={tabIndex}>Click me</Button>)
+            .toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+});
 
 describe("ButtonCore", () => {
     for (const kind of ["primary", "secondary", "tertiary"]) {

@@ -170,6 +170,7 @@ export default class Link extends React.Component<SharedProps> {
             href,
             skipClientNav,
             children,
+            tabIndex,
             ...sharedProps
         } = this.props;
 
@@ -188,7 +189,7 @@ export default class Link extends React.Component<SharedProps> {
                 beforeNav={beforeNav}
                 safeWithNav={safeWithNav}
             >
-                {(state, handlers) => {
+                {(state, {tabIndex: clickableTabIndex, ...handlers}) => {
                     return (
                         <LinkCore
                             {...sharedProps}
@@ -196,6 +197,10 @@ export default class Link extends React.Component<SharedProps> {
                             {...handlers}
                             skipClientNav={skipClientNav}
                             href={href}
+                            // If tabIndex is provide to the component we allow
+                            // it to override the tabIndex provide to use by
+                            // ClickableBehavior.
+                            tabIndex={tabIndex || clickableTabIndex}
                         >
                             {children}
                         </LinkCore>
