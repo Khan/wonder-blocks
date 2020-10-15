@@ -43,7 +43,6 @@ describe("LinkCore", () => {
                                     <LinkCore
                                         href="#"
                                         kind={kind}
-                                        caret={false}
                                         light={light}
                                         visitable={visitable}
                                         {...stateProps}
@@ -60,4 +59,35 @@ describe("LinkCore", () => {
             }
         }
     }
+
+    test.each`
+        tabIndex
+        ${-1}
+        ${0}
+        ${1}
+    `("tabIndex $tabIndex", () => {
+        const state = "";
+        const stateProps = {
+            focused: state === "focused",
+            hovered: state === "hovered",
+            pressed: state === "pressed",
+            waiting: false,
+        };
+
+        const tree = renderer
+            .create(
+                <LinkCore
+                    kind="primary"
+                    visitable={true}
+                    light={false}
+                    href="#"
+                    {...stateProps}
+                    {...defaultHandlers}
+                >
+                    Click me
+                </LinkCore>,
+            )
+            .toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });

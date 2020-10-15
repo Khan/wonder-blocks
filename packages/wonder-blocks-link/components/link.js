@@ -21,12 +21,6 @@ export type SharedProps = {|
     href: string,
 
     /**
-     * Whether to display a caret after the text.
-     */
-    // TODO(yejia): Add once we have an Icon component
-    caret: boolean,
-
-    /**
      * An optional id attribute.
      */
     id?: string,
@@ -70,6 +64,11 @@ export type SharedProps = {|
         | "prev"
         | "search"
         | "tag",
+
+    /**
+     * Set the tabindex attribute on the rendered element.
+     */
+    tabIndex?: number,
 
     /**
      * Test ID used for e2e testing.
@@ -158,7 +157,6 @@ export type SharedProps = {|
 export default class Link extends React.Component<SharedProps> {
     static contextTypes = {router: PropTypes.any};
     static defaultProps = {
-        caret: false,
         kind: "primary",
         light: false,
         visitable: false,
