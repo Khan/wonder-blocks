@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-link",
-  "version": "3.4.2",
+  "version": "3.4.3",
   "design": "v1",
   "publishConfig": {
     "access": "public"
