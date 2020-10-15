@@ -1,5 +1,98 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Link <Link tabIndex={-1}> 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    Object {
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "outline": "none",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={-1}
+>
+  Click me
+</a>
+`;
+
+exports[`Link <Link tabIndex={0}> 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    Object {
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "outline": "none",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`Link <Link tabIndex={1}> 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    Object {
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "outline": "none",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={1}
+>
+  Click me
+</a>
+`;
+
 exports[`LinkCore kind:primary href:# light:false visitable:false focused 1`] = `
 <a
   className=""

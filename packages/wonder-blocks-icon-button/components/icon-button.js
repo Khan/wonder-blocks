@@ -75,6 +75,35 @@ export type SharedProps = {|
     href?: string,
 
     /**
+     * A target destination window for a link to open in.
+     */
+    target?: string,
+
+    /**
+     * Specifies the type of relationship between the current document and the
+     * linked document. Should only be used when `href` is specified.
+     */
+    rel?:
+        | "alternate"
+        | "author"
+        | "bookmark"
+        | "external"
+        | "help"
+        | "license"
+        | "next"
+        | "nofollow"
+        | "noreferrer"
+        | "noopener"
+        | "prev"
+        | "search"
+        | "tag",
+
+    /**
+     * Set the tabindex attribute on the rendered element.
+     */
+    tabIndex?: number,
+
+    /**
      * Whether to avoid using client-side navigation.
      *
      * If the URL passed to href is local to the client-side, e.g.
@@ -149,7 +178,13 @@ export default class IconButton extends React.Component<SharedProps> {
     };
 
     render() {
-        const {onClick, href, skipClientNav, ...sharedProps} = this.props;
+        const {
+            onClick,
+            href,
+            skipClientNav,
+            tabIndex,
+            ...sharedProps
+        } = this.props;
 
         const ClickableBehavior = getClickableBehavior(
             href,
@@ -164,7 +199,7 @@ export default class IconButton extends React.Component<SharedProps> {
                 onClick={onClick}
                 role="button"
             >
-                {(state, handlers) => {
+                {(state, {tabIndex: clickableTabIndex, ...handlers}) => {
                     return (
                         <IconButtonCore
                             {...sharedProps}
@@ -172,6 +207,10 @@ export default class IconButton extends React.Component<SharedProps> {
                             {...handlers}
                             skipClientNav={skipClientNav}
                             href={href}
+                            // If tabIndex is provide to the component we allow
+                            // it to override the tabIndex provide to use by
+                            // ClickableBehavior.
+                            tabIndex={tabIndex || clickableTabIndex}
                         />
                     );
                 }}

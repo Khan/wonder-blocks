@@ -3,6 +3,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 
 import LinkCore from "../components/link-core.js";
+import Link from "../components/link.js";
 
 const defaultHandlers = {
     onClick: () => void 0,
@@ -20,6 +21,24 @@ const defaultHandlers = {
     onBlur: () => void 0,
     tabIndex: 0,
 };
+
+describe("Link", () => {
+    test.each`
+        tabIndex
+        ${-1}
+        ${0}
+        ${1}
+    `("<Link tabIndex={$tabIndex}>", ({tabIndex}) => {
+        const tree = renderer
+            .create(
+                <Link href="#" tabIndex={tabIndex}>
+                    Click me
+                </Link>,
+            )
+            .toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+});
 
 describe("LinkCore", () => {
     for (const kind of ["primary", "secondary"]) {
@@ -43,7 +62,6 @@ describe("LinkCore", () => {
                                     <LinkCore
                                         href="#"
                                         kind={kind}
-                                        caret={false}
                                         light={light}
                                         visitable={visitable}
                                         {...stateProps}

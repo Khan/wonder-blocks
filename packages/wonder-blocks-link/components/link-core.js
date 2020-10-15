@@ -28,7 +28,6 @@ export default class LinkCore extends React.Component<Props> {
 
     render() {
         const {
-            caret, // eslint-disable-line no-unused-vars
             children,
             skipClientNav,
             focused,
@@ -41,7 +40,7 @@ export default class LinkCore extends React.Component<Props> {
             style,
             testId,
             waiting: _,
-            ...handlers
+            ...restProps
         } = this.props;
         const {router} = this.context;
 
@@ -58,7 +57,7 @@ export default class LinkCore extends React.Component<Props> {
         const commonProps = {
             "data-test-id": testId,
             style: [defaultStyles, style],
-            ...handlers,
+            ...restProps,
         };
 
         return router && !skipClientNav ? (

@@ -110,6 +110,11 @@ export type SharedProps = {|
     target?: string,
 
     /**
+     * Set the tabindex attribute on the rendered element.
+     */
+    tabIndex?: number,
+
+    /**
      * Whether to avoid using client-side navigation.
      *
      * If the URL passed to href is local to the client-side, e.g.
@@ -254,6 +259,7 @@ export default class Button extends React.Component<Props> {
             onClick,
             beforeNav = undefined,
             safeWithNav = undefined,
+            tabIndex,
             ...sharedButtonCoreProps
         } = this.props;
 
@@ -263,7 +269,10 @@ export default class Button extends React.Component<Props> {
             this.context.router,
         );
 
-        const renderProp = (state, handlers) => {
+        const renderProp = (
+            state,
+            {tabIndex: clickableTabIndex, ...handlers},
+        ) => {
             return (
                 <ButtonCore
                     {...sharedButtonCoreProps}
@@ -273,6 +282,10 @@ export default class Button extends React.Component<Props> {
                     spinner={spinner || state.waiting}
                     skipClientNav={skipClientNav}
                     href={href}
+                    // If tabIndex is provide to the component we allow
+                    // it to override the tabIndex provide to use by
+                    // ClickableBehavior.
+                    tabIndex={tabIndex || clickableTabIndex}
                 >
                     {children}
                 </ButtonCore>
