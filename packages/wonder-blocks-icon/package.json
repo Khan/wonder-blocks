@@ -18,7 +18,6 @@
     "@khanacademy/wonder-blocks-core": "^2.6.1"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-color": "^1.1.14",
     "wb-dev-build-settings": "^0.0.3"
   },
   "peerDependencies": {
