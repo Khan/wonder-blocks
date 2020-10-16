@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -447,5 +447,58 @@ describe("Clickable", () => {
         // Assert
         expect(safeWithNavMock).toHaveBeenCalled();
         expect(window.location.assign).toHaveBeenCalledWith("/foo");
+    });
+
+    describe("raw events", () => {
+        /**
+         * Clickable expect a function as children so we create a simple wrapper to
+         * allow a React.Node to be passed instead.
+         */
+        const ClickableWrapper = ({
+            children,
+            ...restProps
+        }: {|
+            children: React.Node,
+            onKeyDown?: (e: SyntheticKeyboardEvent<>) => mixed,
+            onKeyUp?: (e: SyntheticKeyboardEvent<>) => mixed,
+        |}) => {
+            return <Clickable {...restProps}>{() => children}</Clickable>;
+        };
+
+        test("onKeyDown", () => {
+            // Arrange
+            const keyMock = jest.fn();
+            const wrapper = mount(
+                <ClickableWrapper onKeyDown={keyMock}>
+                    Click me!
+                </ClickableWrapper>,
+            );
+
+            // Act
+            wrapper.find("Clickable").simulate("keydown", {keyCode: 32});
+
+            // Assert
+            expect(keyMock).toHaveBeenCalledWith(
+                expect.objectContaining({keyCode: 32}),
+            );
+        });
+
+        test("onKeyUp", () => {
+            // Arrange
+            const keyMock = jest.fn();
+            const wrapper = mount(
+                <ClickableWrapper onKeyDown={keyMock}>
+                    Click me!
+                </ClickableWrapper>,
+            );
+
+            // Act
+            wrapper.find("Clickable").simulate("keydown", {keyCode: 32});
+
+            // Assert
+            expect(keyMock).toHaveBeenCalledWith(
+                expect.objectContaining({keyCode: 32}),
+            );
+        });
     });
 });

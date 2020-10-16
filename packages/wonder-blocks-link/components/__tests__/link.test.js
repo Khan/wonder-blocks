@@ -29,9 +29,7 @@ describe("Link", () => {
             const wrapper = mount(
                 <MemoryRouter>
                     <div>
-                        <Link testId="link" href="/foo">
-                            Click me!
-                        </Link>
+                        <Link href="/foo">Click me!</Link>
                         <Switch>
                             <Route path="/foo">
                                 <div id="foo">Hello, world!</div>
@@ -42,8 +40,8 @@ describe("Link", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
-            buttonWrapper.simulate("click", {button: 0});
+            const linkWrapper = wrapper.find("Link").first();
+            linkWrapper.simulate("click", {button: 0});
 
             // Assert
             expect(wrapper.find("#foo").exists()).toBe(true);
@@ -54,9 +52,7 @@ describe("Link", () => {
             const wrapper = mount(
                 <MemoryRouter>
                     <div>
-                        <Link testId="link" href="/unknown">
-                            Click me!
-                        </Link>
+                        <Link href="/unknown">Click me!</Link>
                         <Switch>
                             <Route path="/foo">
                                 <div id="foo">Hello, world!</div>
@@ -67,8 +63,8 @@ describe("Link", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
-            buttonWrapper.simulate("click", {button: 0});
+            const linkWrapper = wrapper.find("Link").first();
+            linkWrapper.simulate("click", {button: 0});
 
             // Assert
             expect(wrapper.find("#foo").exists()).toBe(false);
@@ -79,11 +75,7 @@ describe("Link", () => {
             const wrapper = mount(
                 <MemoryRouter>
                     <div>
-                        <Link
-                            testId="link"
-                            href="/foo"
-                            beforeNav={() => Promise.resolve()}
-                        >
+                        <Link href="/foo" beforeNav={() => Promise.resolve()}>
                             Click me!
                         </Link>
                         <Switch>
@@ -96,8 +88,8 @@ describe("Link", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
-            buttonWrapper.simulate("click", {
+            const linkWrapper = wrapper.find("Link").first();
+            linkWrapper.simulate("click", {
                 button: 0,
             });
             await wait(0);
@@ -112,11 +104,7 @@ describe("Link", () => {
             const wrapper = mount(
                 <MemoryRouter>
                     <div>
-                        <Link
-                            testId="link"
-                            href="/foo"
-                            beforeNav={() => Promise.resolve()}
-                        >
+                        <Link href="/foo" beforeNav={() => Promise.resolve()}>
                             Click me!
                         </Link>
                         <Switch>
@@ -129,8 +117,8 @@ describe("Link", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
-            buttonWrapper.simulate("click", {
+            const linkWrapper = wrapper.find("Link").first();
+            linkWrapper.simulate("click", {
                 button: 0,
             });
 
@@ -143,11 +131,7 @@ describe("Link", () => {
             const wrapper = mount(
                 <MemoryRouter>
                     <div>
-                        <Link
-                            testId="link"
-                            href="/foo"
-                            beforeNav={() => Promise.reject()}
-                        >
+                        <Link href="/foo" beforeNav={() => Promise.reject()}>
                             Click me!
                         </Link>
                         <Switch>
@@ -160,8 +144,8 @@ describe("Link", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
-            buttonWrapper.simulate("click", {
+            const linkWrapper = wrapper.find("Link").first();
+            linkWrapper.simulate("click", {
                 button: 0,
             });
             await wait(0);
@@ -178,7 +162,6 @@ describe("Link", () => {
                 <MemoryRouter>
                     <div>
                         <Link
-                            testId="link"
                             href="/foo"
                             beforeNav={() => Promise.resolve()}
                             safeWithNav={safeWithNavMock}
@@ -195,8 +178,8 @@ describe("Link", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
-            buttonWrapper.simulate("click", {
+            const linkWrapper = wrapper.find("Link").first();
+            linkWrapper.simulate("click", {
                 button: 0,
             });
             await wait(0);
@@ -213,7 +196,6 @@ describe("Link", () => {
                 <MemoryRouter>
                     <div>
                         <Link
-                            testId="link"
                             href="/foo"
                             beforeNav={() => Promise.resolve()}
                             safeWithNav={safeWithNavMock}
@@ -230,8 +212,8 @@ describe("Link", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
-            buttonWrapper.simulate("click", {
+            const linkWrapper = wrapper.find("Link").first();
+            linkWrapper.simulate("click", {
                 button: 0,
             });
 
@@ -246,7 +228,6 @@ describe("Link", () => {
             jest.spyOn(window.location, "assign").mockImplementation(() => {});
             const wrapper = mount(
                 <Link
-                    testId="link"
                     href="/foo"
                     safeWithNav={() => Promise.resolve()}
                     skipClientNav={true}
@@ -256,8 +237,8 @@ describe("Link", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
-            buttonWrapper.simulate("click", {
+            const linkWrapper = wrapper.find("Link").first();
+            linkWrapper.simulate("click", {
                 button: 0,
             });
 
@@ -270,7 +251,6 @@ describe("Link", () => {
             jest.spyOn(window.location, "assign").mockImplementation(() => {});
             const wrapper = mount(
                 <Link
-                    testId="link"
                     href="/foo"
                     safeWithNav={() => Promise.resolve()}
                     skipClientNav={true}
@@ -280,8 +260,8 @@ describe("Link", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
-            buttonWrapper.simulate("click", {
+            const linkWrapper = wrapper.find("Link").first();
+            linkWrapper.simulate("click", {
                 button: 0,
             });
             await wait(0);
@@ -296,7 +276,6 @@ describe("Link", () => {
             jest.spyOn(window.location, "assign").mockImplementation(() => {});
             const wrapper = mount(
                 <Link
-                    testId="link"
                     href="/foo"
                     beforeNav={() => Promise.resolve()}
                     safeWithNav={() => Promise.resolve()}
@@ -307,8 +286,8 @@ describe("Link", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
-            buttonWrapper.simulate("click", {
+            const linkWrapper = wrapper.find("Link").first();
+            linkWrapper.simulate("click", {
                 button: 0,
             });
             await wait(0);
@@ -323,7 +302,6 @@ describe("Link", () => {
             jest.spyOn(window.location, "assign").mockImplementation(() => {});
             const wrapper = mount(
                 <Link
-                    testId="link"
                     href="/foo"
                     beforeNav={() => Promise.resolve()}
                     skipClientNav={true}
@@ -333,8 +311,8 @@ describe("Link", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find(`[data-test-id="link"]`).first();
-            buttonWrapper.simulate("click", {
+            const linkWrapper = wrapper.find("Link").first();
+            linkWrapper.simulate("click", {
                 button: 0,
             });
 
