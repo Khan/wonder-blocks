@@ -22,7 +22,6 @@
     "react": "^16.4.1"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-color": "^1.1.14",
     "wb-dev-build-settings": "^0.0.3"
   }
 }
