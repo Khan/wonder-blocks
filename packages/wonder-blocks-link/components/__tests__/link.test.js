@@ -320,4 +320,42 @@ describe("Link", () => {
             expect(window.location.assign).not.toHaveBeenCalled();
         });
     });
+
+    describe("raw events", () => {
+        test("onKeyDown", () => {
+            // Arrange
+            const keyMock = jest.fn();
+            const wrapper = mount(
+                <Link href="/" onKeyDown={keyMock}>
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            wrapper.find(Link).simulate("keydown", {keyCode: 32});
+
+            // Assert
+            expect(keyMock).toHaveBeenCalledWith(
+                expect.objectContaining({keyCode: 32}),
+            );
+        });
+
+        test("onKeyUp", () => {
+            // Arrange
+            const keyMock = jest.fn();
+            const wrapper = mount(
+                <Link href="/" onKeyDown={keyMock}>
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            wrapper.find(Link).simulate("keydown", {keyCode: 32});
+
+            // Assert
+            expect(keyMock).toHaveBeenCalledWith(
+                expect.objectContaining({keyCode: 32}),
+            );
+        });
+    });
 });

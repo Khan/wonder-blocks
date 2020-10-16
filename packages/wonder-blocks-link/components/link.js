@@ -135,6 +135,16 @@ export type SharedProps = {|
      * navigation is guaranteed to succeed.
      */
     safeWithNav?: () => Promise<mixed>,
+
+    /**
+     * Respond to raw "keydown" event.
+     */
+    onKeyDown?: (e: SyntheticKeyboardEvent<>) => mixed,
+
+    /**
+     * Respond to raw "keyup" event.
+     */
+    onKeyUp?: (e: SyntheticKeyboardEvent<>) => mixed,
 |};
 
 /**
@@ -171,6 +181,8 @@ export default class Link extends React.Component<SharedProps> {
             skipClientNav,
             children,
             tabIndex,
+            onKeyDown,
+            onKeyUp,
             ...sharedProps
         } = this.props;
 
@@ -188,6 +200,8 @@ export default class Link extends React.Component<SharedProps> {
                 onClick={onClick}
                 beforeNav={beforeNav}
                 safeWithNav={safeWithNav}
+                onKeyDown={onKeyDown}
+                onKeyUp={onKeyUp}
             >
                 {(state, {tabIndex: clickableTabIndex, ...handlers}) => {
                     return (
