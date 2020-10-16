@@ -109,6 +109,16 @@ type Props = {|
      * enter and space keys.
      */
     role?: ClickableRole,
+
+    /**
+     * Respond to raw "keydown" event.
+     */
+    onKeyDown?: (e: SyntheticKeyboardEvent<>) => mixed,
+
+    /**
+     * Respond to raw "keyup" event.
+     */
+    onKeyUp?: (e: SyntheticKeyboardEvent<>) => mixed,
 |};
 
 export type ClickableState = {|
@@ -466,9 +476,14 @@ export default class ClickableBehavior extends React.Component<
     };
 
     handleKeyDown = (e: SyntheticKeyboardEvent<>) => {
+        const {onKeyDown, role} = this.props;
+        if (onKeyDown) {
+            onKeyDown(e);
+        }
+
         const keyCode = e.which || e.keyCode;
         const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
-            this.props.role,
+            role,
         );
         if (
             (triggerOnEnter && keyCode === keyCodes.enter) ||
@@ -488,9 +503,14 @@ export default class ClickableBehavior extends React.Component<
     };
 
     handleKeyUp = (e: SyntheticKeyboardEvent<>) => {
+        const {onKeyUp, role} = this.props;
+        if (onKeyUp) {
+            onKeyUp(e);
+        }
+
         const keyCode = e.which || e.keyCode;
         const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
-            this.props.role,
+            role,
         );
         if (
             (triggerOnEnter && keyCode === keyCodes.enter) ||

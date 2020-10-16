@@ -90,6 +90,16 @@ type CommonProps = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Respond to raw "keydown" event.
+     */
+    onKeyDown?: (e: SyntheticKeyboardEvent<>) => mixed,
+
+    /**
+     * Respond to raw "keyup" event.
+     */
+    onKeyUp?: (e: SyntheticKeyboardEvent<>) => mixed,
 |};
 
 type Props =
@@ -235,6 +245,8 @@ export default class Clickable extends React.Component<Props> {
             safeWithNav = undefined,
             style,
             testId,
+            onKeyDown,
+            onKeyUp,
             ...restProps
         } = this.props;
         const ClickableBehavior = getClickableBehavior(
@@ -249,6 +261,8 @@ export default class Clickable extends React.Component<Props> {
                 onClick={onClick}
                 beforeNav={beforeNav}
                 safeWithNav={safeWithNav}
+                onKeyDown={onKeyDown}
+                onKeyUp={onKeyUp}
             >
                 {(state, handlers) =>
                     this.getCorrectTag(state, {

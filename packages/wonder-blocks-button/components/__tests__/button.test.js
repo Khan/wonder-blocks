@@ -22,9 +22,7 @@ describe("Button", () => {
         const wrapper = mount(
             <MemoryRouter>
                 <div>
-                    <Button testId="button" href="/foo">
-                        Click me!
-                    </Button>
+                    <Button href="/foo">Click me!</Button>
                     <Switch>
                         <Route path="/foo">
                             <div id="foo">Hello, world!</div>
@@ -35,7 +33,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
@@ -47,11 +45,7 @@ describe("Button", () => {
         const wrapper = mount(
             <MemoryRouter>
                 <div>
-                    <Button
-                        testId="button"
-                        href="/foo"
-                        beforeNav={(e) => Promise.reject()}
-                    >
+                    <Button href="/foo" beforeNav={(e) => Promise.reject()}>
                         Click me!
                     </Button>
                     <Switch>
@@ -64,7 +58,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
         await wait(0);
         buttonWrapper.update();
@@ -80,7 +74,6 @@ describe("Button", () => {
             <MemoryRouter>
                 <div>
                     <Button
-                        testId="button"
                         href="/foo"
                         beforeNav={(e) => Promise.reject()}
                         safeWithNav={safeWithNavMock}
@@ -97,7 +90,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
         await wait(0);
         buttonWrapper.update();
@@ -111,11 +104,7 @@ describe("Button", () => {
         const wrapper = mount(
             <MemoryRouter>
                 <div>
-                    <Button
-                        testId="button"
-                        href="/foo"
-                        beforeNav={(e) => Promise.resolve()}
-                    >
+                    <Button href="/foo" beforeNav={(e) => Promise.resolve()}>
                         Click me!
                     </Button>
                     <Switch>
@@ -128,7 +117,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
         await wait(0);
         buttonWrapper.update();
@@ -144,7 +133,6 @@ describe("Button", () => {
             <MemoryRouter>
                 <div>
                     <Button
-                        testId="button"
                         href="/foo"
                         beforeNav={(e) => Promise.resolve()}
                         safeWithNav={safeWithNavMock}
@@ -161,7 +149,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
         await wait(0);
         buttonWrapper.update();
@@ -175,11 +163,7 @@ describe("Button", () => {
         const wrapper = mount(
             <MemoryRouter>
                 <div>
-                    <Button
-                        testId="button"
-                        href="/foo"
-                        beforeNav={(e) => Promise.resolve()}
-                    >
+                    <Button href="/foo" beforeNav={(e) => Promise.resolve()}>
                         Click me!
                     </Button>
                     <Switch>
@@ -192,7 +176,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
@@ -209,7 +193,6 @@ describe("Button", () => {
             <MemoryRouter>
                 <div>
                     <Button
-                        testId="button"
                         href="/foo"
                         safeWithNav={(e) => Promise.resolve()}
                         skipClientNav={true}
@@ -226,7 +209,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
         await wait(0);
         buttonWrapper.update();
@@ -242,7 +225,6 @@ describe("Button", () => {
             <MemoryRouter>
                 <div>
                     <Button
-                        testId="button"
                         href="/foo"
                         safeWithNav={(e) => Promise.resolve()}
                         skipClientNav={true}
@@ -259,7 +241,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
@@ -273,7 +255,6 @@ describe("Button", () => {
             <MemoryRouter>
                 <div>
                     <Button
-                        testId="button"
                         href="/foo"
                         beforeNav={(e) => Promise.resolve()}
                         safeWithNav={(e) => Promise.resolve()}
@@ -291,7 +272,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
         await wait(0);
         buttonWrapper.update();
@@ -309,7 +290,6 @@ describe("Button", () => {
             <MemoryRouter>
                 <div>
                     <Button
-                        testId="button"
                         href="/foo"
                         safeWithNav={(e) => Promise.reject()}
                         skipClientNav={true}
@@ -326,7 +306,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
         await wait(0);
         buttonWrapper.update();
@@ -343,7 +323,6 @@ describe("Button", () => {
             <MemoryRouter>
                 <div>
                     <Button
-                        testId="button"
                         href="/foo"
                         safeWithNav={safeWithNavMock}
                         skipClientNav={false}
@@ -360,7 +339,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
@@ -376,7 +355,6 @@ describe("Button", () => {
             <MemoryRouter>
                 <div>
                     <Button
-                        testId="button"
                         href="/foo"
                         beforeNav={() => Promise.resolve()}
                         safeWithNav={safeWithNavMock}
@@ -394,7 +372,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
         await wait(0);
         buttonWrapper.update();
@@ -409,9 +387,7 @@ describe("Button", () => {
         const wrapper = mount(
             <MemoryRouter>
                 <div>
-                    <Button testId="button" href="/unknown">
-                        Click me!
-                    </Button>
+                    <Button href="/unknown">Click me!</Button>
                     <Switch>
                         <Route path="/foo">
                             <div id="foo">Hello, world!</div>
@@ -422,7 +398,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
@@ -434,7 +410,7 @@ describe("Button", () => {
         const wrapper = mount(
             <MemoryRouter>
                 <div>
-                    <Button testId="button" href="/foo" skipClientNav>
+                    <Button href="/foo" skipClientNav>
                         Click me!
                     </Button>
                     <Switch>
@@ -447,7 +423,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
@@ -459,7 +435,7 @@ describe("Button", () => {
         const wrapper = mount(
             <MemoryRouter>
                 <div>
-                    <Button testId="button" href="/foo" disabled={true}>
+                    <Button href="/foo" disabled={true}>
                         Click me!
                     </Button>
                     <Switch>
@@ -472,7 +448,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
@@ -486,7 +462,6 @@ describe("Button", () => {
             <MemoryRouter>
                 <div>
                     <Button
-                        testId="button"
                         href="/foo"
                         disabled={true}
                         beforeNav={beforeNavMock}
@@ -503,7 +478,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
@@ -517,7 +492,6 @@ describe("Button", () => {
             <MemoryRouter>
                 <div>
                     <Button
-                        testId="button"
                         href="/foo"
                         disabled={true}
                         safeWithNav={safeWithNavMock}
@@ -534,7 +508,7 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find(`[data-test-id="button"]`).first();
+        const buttonWrapper = wrapper.find("Button");
         buttonWrapper.simulate("click", {button: 0});
 
         // Assert
@@ -575,9 +549,7 @@ describe("Button", () => {
             const wrapper = mount(
                 <MemoryRouter>
                     <div>
-                        <Button testId="button" href="/foo">
-                            Click me!
-                        </Button>
+                        <Button href="/foo">Click me!</Button>
                         <Switch>
                             <Route path="/foo">
                                 <div id="foo">Hello, world!</div>
@@ -588,9 +560,7 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper
-                .find(`[data-test-id="button"]`)
-                .first();
+            const buttonWrapper = wrapper.find("Button");
             buttonWrapper.simulate("keydown", {
                 keyCode: keyCodes.space,
             });
@@ -607,9 +577,7 @@ describe("Button", () => {
             const wrapper = mount(
                 <MemoryRouter>
                     <div>
-                        <Button testId="button" href="/foo">
-                            Click me!
-                        </Button>
+                        <Button href="/foo">Click me!</Button>
                         <Switch>
                             <Route path="/foo">
                                 <div id="foo">Hello, world!</div>
@@ -620,9 +588,7 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper
-                .find(`[data-test-id="button"]`)
-                .first();
+            const buttonWrapper = wrapper.find("Button");
             buttonWrapper.simulate("keydown", {
                 keyCode: keyCodes.enter,
             });
@@ -639,11 +605,7 @@ describe("Button", () => {
             const wrapper = mount(
                 <MemoryRouter>
                     <div>
-                        <Button
-                            testId="button"
-                            href="/foo"
-                            beforeNav={(e) => Promise.reject()}
-                        >
+                        <Button href="/foo" beforeNav={(e) => Promise.reject()}>
                             Click me!
                         </Button>
                         <Switch>
@@ -656,9 +618,7 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper
-                .find(`[data-test-id="button"]`)
-                .first();
+            const buttonWrapper = wrapper.find("Button");
             buttonWrapper.simulate("keydown", {
                 keyCode: keyCodes.enter,
             });
@@ -678,7 +638,6 @@ describe("Button", () => {
                 <MemoryRouter>
                     <div>
                         <Button
-                            testId="button"
                             href="/foo"
                             beforeNav={(e) => Promise.resolve()}
                         >
@@ -694,9 +653,7 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper
-                .find(`[data-test-id="button"]`)
-                .first();
+            const buttonWrapper = wrapper.find("Button");
             buttonWrapper.simulate("keydown", {
                 keyCode: keyCodes.enter,
             });
@@ -717,7 +674,6 @@ describe("Button", () => {
                 <MemoryRouter>
                     <div>
                         <Button
-                            testId="button"
                             href="/foo"
                             safeWithNav={(e) => Promise.resolve()}
                             skipClientNav={true}
@@ -734,9 +690,7 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper
-                .find(`[data-test-id="button"]`)
-                .first();
+            const buttonWrapper = wrapper.find("Button");
             buttonWrapper.simulate("keydown", {
                 keyCode: keyCodes.enter,
             });
@@ -757,7 +711,6 @@ describe("Button", () => {
                 <MemoryRouter>
                     <div>
                         <Button
-                            testId="button"
                             href="/foo"
                             safeWithNav={(e) => Promise.reject()}
                             skipClientNav={true}
@@ -774,9 +727,7 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper
-                .find(`[data-test-id="button"]`)
-                .first();
+            const buttonWrapper = wrapper.find("Button");
             buttonWrapper.simulate("keydown", {
                 keyCode: keyCodes.enter,
             });
@@ -798,7 +749,6 @@ describe("Button", () => {
                 <MemoryRouter>
                     <div>
                         <Button
-                            testId="button"
                             href="/foo"
                             safeWithNav={safeWithNavMock}
                             skipClientNav={false}
@@ -815,9 +765,7 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper
-                .find(`[data-test-id="button"]`)
-                .first();
+            const buttonWrapper = wrapper.find("Button");
             buttonWrapper.simulate("keydown", {
                 keyCode: keyCodes.enter,
             });

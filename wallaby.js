@@ -1,9 +1,10 @@
+/* eslint-disable import/no-commonjs */
 const babelConfig = require("./build-settings/babel.config.js");
 
-module.exports = function(wallaby) {
+module.exports = function (wallaby) {
     const tests = [
-        "packages/wonder-blocks-*/**/*.test.js",
-        "shared-unpackaged/**/*.test.js",
+        "./packages/**/__tests__/*.test.js",
+        "./shared-unpackaged/**/*.test.js",
     ];
 
     return {
@@ -12,13 +13,12 @@ module.exports = function(wallaby) {
         // Wallaby needs to know about all files that may be loaded because
         // of running a test.
         files: [
-            "packages/wonder-blocks-*/**/*.js",
+            "./packages/**/*.js",
             "shared-unpackaged/**/*.js",
             "utils/**/*.js",
             {pattern: "config/jest/*.js", instrument: false},
 
             // These paths are excluded.
-            "!shared-unpackaged/**/*.test.js",
             ...tests.map((test) => `!${test}`),
         ],
 
@@ -32,9 +32,7 @@ module.exports = function(wallaby) {
         // advanced logging features.  Wallaby can't parse the flow and
         // JSX in our source files so need to provide a babel configuration.
         compilers: {
-            "packages/wonder-blocks-*/**/*.js": wallaby.compilers.babel(
-                babelConfig,
-            ),
+            "packages/**/*.js": wallaby.compilers.babel(babelConfig),
             "shared-unpackaged/**/*.js": wallaby.compilers.babel(babelConfig),
             "utils/**/*.js": wallaby.compilers.babel(babelConfig),
         },
@@ -46,7 +44,7 @@ module.exports = function(wallaby) {
 
         testFramework: "jest",
 
-        setup: function(wallaby) {
+        setup: function (wallaby) {
             // We require "path" here because this setup function is run
             // in a different context and does not have access to variables
             // from its closure.
