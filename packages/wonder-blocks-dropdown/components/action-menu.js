@@ -77,6 +77,11 @@ type Props = {|
     style?: StyleType,
 
     /**
+     * Optional CSS classes for the entire dropdown component.
+     */
+    className?: string,
+
+    /**
      * The child function that returns the anchor the ActionMenu will be
      * activated by. This function takes eventState, which allows the opener
      * element to access pointer event state.
@@ -253,7 +258,7 @@ export default class ActionMenu extends React.Component<Props, State> {
     }
 
     render() {
-        const {alignment, dropdownStyle, style} = this.props;
+        const {alignment, dropdownStyle, style, className} = this.props;
 
         const items = this.getMenuItems();
         const dropdownOpener = this.renderOpener(items.length);
@@ -262,6 +267,7 @@ export default class ActionMenu extends React.Component<Props, State> {
             <DropdownCore
                 role="menu"
                 style={style}
+                className={className}
                 opener={dropdownOpener}
                 alignment={alignment}
                 open={this.state.opened}

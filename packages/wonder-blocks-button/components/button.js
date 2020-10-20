@@ -142,6 +142,11 @@ export type SharedProps = {|
     }>>,
     */
 
+    /**
+     * Adds CSS classes to the Button.
+     */
+    className?: string,
+
     // NOTE(jeresig): Currently React Docgen (used by Styleguidist) doesn't
     // support ... inside of an exact object type. Thus we had to move the
     // following propers into this SharedProps, even though they should be

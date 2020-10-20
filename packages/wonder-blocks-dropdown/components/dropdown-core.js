@@ -120,6 +120,11 @@ type Props = {|
     style?: StyleType,
 
     /**
+     * Optional CSS classes for the entire dropdown component.
+     */
+    className?: string,
+
+    /**
      * The aria "role" applied to the dropdown container.
      */
     role: "listbox" | "menu",
@@ -749,13 +754,14 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     render() {
-        const {open, opener, style} = this.props;
+        const {open, opener, style, className} = this.props;
 
         return (
             <View
                 onKeyDown={this.handleKeyDown}
                 onKeyUp={this.handleKeyUp}
                 style={[styles.menuWrapper, style]}
+                className={className}
             >
                 {opener}
                 {open && this.renderDropdown()}
