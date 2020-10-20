@@ -10,25 +10,35 @@ import type {IconAsset, IconSize} from "../util/icon-assets.js";
 
 type Props = {|
     ...AriaProps,
+
     /**
      * The color of the icon. Will default to `currentColor`, which means that
      * it will take on the CSS `color` value from the parent element.
      */
     color?: string,
+
     /**
      * One of our named icons from icon-assets.js
      */
     icon: IconAsset,
+
     /**
      * One of `small` (16px), `medium` (24px), `large` (48px),
      * or `xlarge` (96px).
      */
     size: IconSize,
+
     /**
      * Styles that can be processed by `addStyle` — bare style objects,
      * Aphrodite style objects, or arrays thereof.
      */
     style?: StyleType,
+
+    /**
+     * Adds CSS classes to the Icon.
+     */
+    className?: string,
+
     /**
      * Test ID used for e2e testing.
      */

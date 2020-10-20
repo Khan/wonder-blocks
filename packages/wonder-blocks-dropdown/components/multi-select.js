@@ -163,6 +163,11 @@ type Props = {|
     style?: StyleType,
 
     /**
+     * Adds CSS classes to the opener component wrapper.
+     */
+    className?: string,
+
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string,
@@ -500,6 +505,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             selectedValues,
             shortcuts,
             style,
+            className,
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
@@ -541,6 +547,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             alignment,
             light,
             style,
+            className,
             dropdownStyle,
             children,
             isFilterable,
@@ -574,6 +581,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 opener={opener}
                 openerElement={this.state.openerElement}
                 style={style}
+                className={className}
                 onSearchTextChanged={
                     isFilterable ? this.handleSearchTextChanged : null
                 }

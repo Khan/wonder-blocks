@@ -43,6 +43,11 @@ type CommonProps = {|
     style?: StyleType,
 
     /**
+     * Adds CSS classes to the Clickable.
+     */
+    className?: string,
+
+    /**
      * Disables or enables the child; defaults to false
      */
     disabled: boolean,

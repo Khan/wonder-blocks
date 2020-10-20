@@ -84,6 +84,11 @@ type Props = {|
     style?: StyleType,
 
     /**
+     * Adds CSS classes to the opener component wrapper.
+     */
+    className?: string,
+
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string,
@@ -319,6 +324,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             onToggle,
             opened,
             style,
+            className,
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
@@ -365,6 +371,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             isFilterable,
             light,
             style,
+            className,
         } = this.props;
         const {searchText} = this.state;
         const allChildren = React.Children.toArray(children).filter(Boolean);
@@ -393,6 +400,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 opener={opener}
                 openerElement={this.state.openerElement}
                 style={style}
+                className={className}
                 onSearchTextChanged={
                     isFilterable ? this.handleSearchTextChanged : null
                 }

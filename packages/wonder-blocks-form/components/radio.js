@@ -53,6 +53,11 @@ type ChoiceComponentProps = {|
     style?: StyleType,
 
     /**
+     * Adds CSS classes to the Checkbox.
+     */
+    className?: string,
+
+    /**
      * Optional test ID for e2e testing
      */
     testId?: string,

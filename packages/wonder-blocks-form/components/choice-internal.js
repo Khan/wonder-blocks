@@ -33,13 +33,24 @@ type Props = {|
      */
     id?: string,
 
-    /** Optional additional styling. */
+    /**
+     * Optional additional styling.
+     */
     style?: StyleType,
 
-    /** Optional id for testing purposes. */
+    /**
+     * Adds CSS classes to the Button.
+     */
+    className?: string,
+
+    /**
+     * Optional id for testing purposes.
+     */
     testId?: string,
 
-    /** Label for the field. */
+    /**
+     * Label for the field.
+     */
     label?: string,
 
     /** Optional description for the field. */
@@ -113,13 +124,14 @@ type Props = {|
             // eslint-disable-next-line no-unused-vars
             onChange,
             style,
+            className,
             variant,
             ...coreProps
         } = this.props;
         const ChoiceCore = this.getChoiceCoreComponent();
         const ClickableBehavior = getClickableBehavior();
         return (
-            <View style={style}>
+            <View style={style} className={className}>
                 <ClickableBehavior
                     disabled={coreProps.disabled}
                     onClick={this.handleClick}
