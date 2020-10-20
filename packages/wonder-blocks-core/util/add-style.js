@@ -20,23 +20,24 @@ export default function addStyle<T: React.AbstractComponent<any> | string>(
         style: StyleType,
         ...
     }) {
-        const {style, ...tmpOtherProps} = props;
+        const {className, style, ...tmpOtherProps} = props;
         // NOTE(jeresig): We need to cast the remaining props to be the right
         // value to ensure that they're typed properly.
         const otherProps: React.ElementConfig<T> = (tmpOtherProps: any);
         const reset =
             typeof Component === "string" ? overrides[Component] : null;
 
-        const {className, style: inlineStyles} = processStyleList([
-            reset,
-            defaultStyle,
-            style,
-        ]);
+        const {
+            className: aphroditeClassName,
+            style: inlineStyles,
+        } = processStyleList([reset, defaultStyle, style]);
 
         return (
             <Component
                 {...otherProps}
-                className={className}
+                className={[aphroditeClassName, className]
+                    .filter(Boolean)
+                    .join(" ")}
                 style={inlineStyles}
             />
         );
