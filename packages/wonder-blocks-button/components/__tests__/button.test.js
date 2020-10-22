@@ -816,5 +816,16 @@ describe("Button", () => {
             // Assert
             expect(submitFnMock).toHaveBeenCalled();
         });
+
+        test("submit button doesn't break if it's not in a form", () => {
+            // Arrange
+            const wrapper = mount(<Button type="submit">Click me!</Button>);
+
+            // Act
+            expect(() => {
+                // Assert
+                wrapper.find("button").simulate("click");
+            }).not.toThrow();
+        });
     });
 });
