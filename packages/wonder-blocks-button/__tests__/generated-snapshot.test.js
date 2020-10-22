@@ -532,7 +532,9 @@ describe("wonder-blocks-button", () => {
     it("example 12", () => {
         const example = (
             <View>
-                <Button>Label</Button>
+                <form onSubmit={() => alert("the form was submitted")}>
+                    <Button type="submit">Submit</Button>
+                </form>
             </View>
         );
         const tree = renderer.create(example).toJSON();
@@ -540,6 +542,16 @@ describe("wonder-blocks-button", () => {
     });
 
     it("example 13", () => {
+        const example = (
+            <View>
+                <Button>Label</Button>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 14", () => {
         const styles = StyleSheet.create({
             column: {
                 alignItems: "flex-start",
@@ -569,7 +581,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 14", () => {
+    it("example 15", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -596,7 +608,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 15", () => {
+    it("example 16", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -624,7 +636,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 16", () => {
+    it("example 17", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -647,7 +659,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 17", () => {
+    it("example 18", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",

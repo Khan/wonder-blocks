@@ -12,6 +12,12 @@ const wait = (delay: number = 0) =>
         return setTimeout(resolve, delay);
     });
 
+const keyCodes = {
+    tab: 9,
+    enter: 13,
+    space: 32,
+};
+
 describe("Button", () => {
     beforeEach(() => {
         unmountAll();
@@ -538,12 +544,6 @@ describe("Button", () => {
     });
 
     describe("client-side navigation with keyboard", () => {
-        const keyCodes = {
-            tab: 9,
-            enter: 13,
-            space: 32,
-        };
-
         it("should navigate on pressing the space key", () => {
             // Arrange
             const wrapper = mount(
@@ -776,6 +776,56 @@ describe("Button", () => {
             // Assert
             expect(safeWithNavMock).toHaveBeenCalled();
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        });
+    });
+
+    describe("type='submit'", () => {
+        test("submit button within form via click", () => {
+            // Arrange
+            const submitFnMock = jest.fn();
+            const wrapper = mount(
+                <form onSubmit={submitFnMock}>
+                    <Button type="submit">Click me!</Button>
+                </form>,
+            );
+
+            // Act
+            wrapper.find("button").simulate("click");
+
+            // Assert
+            expect(submitFnMock).toHaveBeenCalled();
+        });
+
+        test("submit button within form via keyboard", () => {
+            // Arrange
+            const submitFnMock = jest.fn();
+            const wrapper = mount(
+                <form onSubmit={submitFnMock}>
+                    <Button type="submit">Click me!</Button>
+                </form>,
+            );
+
+            // Act
+            wrapper.find("button").simulate("keydown", {
+                keyCode: keyCodes.enter,
+            });
+            wrapper.find("button").simulate("keyup", {
+                keyCode: keyCodes.enter,
+            });
+
+            // Assert
+            expect(submitFnMock).toHaveBeenCalled();
+        });
+
+        test("submit button doesn't break if it's not in a form", () => {
+            // Arrange
+            const wrapper = mount(<Button type="submit">Click me!</Button>);
+
+            // Act
+            expect(() => {
+                // Assert
+                wrapper.find("button").simulate("click");
+            }).not.toThrow();
         });
     });
 });

@@ -80,11 +80,6 @@ export type SharedProps = {|
     testId?: string,
 
     /**
-     * URL to navigate to.
-     */
-    href?: string,
-
-    /**
      * Specifies the type of relationship between the current document and the
      * linked document. Should only be used when `href` is specified.
      */
@@ -174,6 +169,19 @@ export type SharedProps = {|
 type Props =
     | {|
           ...SharedProps,
+
+          /**
+           * URL to navigate to.
+           */
+          href?: string,
+      |}
+    | {|
+          ...SharedProps,
+
+          /**
+           * Used for buttons within <form>s.
+           */
+          type: "submit",
       |}
     | {|
           ...SharedProps,
@@ -256,7 +264,8 @@ export default class Button extends React.Component<Props> {
 
     render() {
         const {
-            href,
+            href = undefined,
+            type = undefined,
             children,
             skipClientNav,
             spinner,
@@ -287,6 +296,7 @@ export default class Button extends React.Component<Props> {
                     spinner={spinner || state.waiting}
                     skipClientNav={skipClientNav}
                     href={href}
+                    type={type}
                     // If tabIndex is provide to the component we allow
                     // it to override the tabIndex provide to use by
                     // ClickableBehavior.
@@ -302,6 +312,7 @@ export default class Button extends React.Component<Props> {
                 disabled={spinner || disabled}
                 href={href}
                 role="button"
+                type={type}
                 onClick={onClick}
                 beforeNav={beforeNav}
                 safeWithNav={safeWithNav}

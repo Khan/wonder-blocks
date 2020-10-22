@@ -571,6 +571,19 @@ const kinds = ["primary", "secondary", "tertiary"];
 </View>
 ```
 
+#### Example: "submit" buttons in forms
+
+```jsx
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+
+<View>
+    <form onSubmit={() => alert("the form was submitted")}>
+        <Button type="submit">Submit</Button>
+    </form>
+</View>
+```
+
 ### Best Practices
 
 In vertical layouts, buttons will stretch horizontally to fill the available
