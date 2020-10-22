@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-data",
-  "version": "2.0.7",
+  "version": "2.0.8",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-core": "^2.7.0"
+    "@khanacademy/wonder-blocks-core": "^2.7.1"
   },
   "peerDependencies": {
     "react": "^16.4.1"
