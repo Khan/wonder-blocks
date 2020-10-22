@@ -43,3 +43,11 @@ const getUrl = () => "/foo";
 // type being used to describe the props.  It's unclear why this error isn't
 // trigger by passing a string directly as the href.
 <Button href={getUrl()}>Hello, world!</Button>;
+
+// $ExpectError: type="submit" can't be used with href since we render an anchor.
+<Button href="/foo" type="submit">
+    Hello, world!
+</Button>;
+
+// type="submit" on its own is fine.
+<Button type="submit">Hello, world!</Button>;

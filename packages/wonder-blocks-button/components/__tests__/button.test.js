@@ -778,4 +778,40 @@ describe("Button", () => {
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
         });
     });
+
+    describe("type='submit'", () => {
+        test("submit button within form", () => {
+            // Arrange
+            const submitFnMock = jest.fn();
+            const wrapper = mount(
+                <form onSubmit={submitFnMock}>
+                    <Button type="submit">Click me!</Button>
+                </form>,
+            );
+
+            // Act
+            // NOTE: This isn't a very good test since we'd rather simulate a
+            // click.  We can't though since enzyme's 'simulate' method doesn't
+            // actually simulate events.  Instead it calls the matching event
+            // handler on the component instance itself.
+            wrapper.find("button").simulate("submit");
+
+            // Assert
+            expect(submitFnMock).toHaveBeenCalled();
+        });
+
+        test("clicking a submit button doesn't prevent default", () => {
+            // Arrange
+            const preventDefaultMock = jest.fn();
+            const wrapper = mount(<Button type="submit">Click me!</Button>);
+
+            // Act
+            wrapper
+                .find("button")
+                .simulate("click", {preventDefault: preventDefaultMock});
+
+            // Assert
+            expect(preventDefaultMock).not.toHaveBeenCalled();
+        });
+    });
 });

@@ -372,6 +372,7 @@ export default class ClickableBehavior extends React.Component<
             onClick = undefined,
             beforeNav = undefined,
             safeWithNav = undefined,
+            href,
         } = this.props;
         let shouldNavigate = true;
 
@@ -385,8 +386,11 @@ export default class ClickableBehavior extends React.Component<
             shouldNavigate = false;
         }
 
-        // Prevent navigation.
-        e.preventDefault();
+        // Prevent navigation, but only if `href` if set.  This is so that forms
+        // containing a Button with `type="submit"` will still work.
+        if (href) {
+            e.preventDefault();
+        }
 
         if (beforeNav) {
             this.setState({waiting: true});

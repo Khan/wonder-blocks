@@ -25,6 +25,8 @@ type Props = {|
     ...SharedProps,
     ...ClickableHandlers,
     ...ClickableState,
+    href?: string,
+    type?: "submit",
 |};
 
 const StyledAnchor = addStyle<"a">("a");
@@ -42,13 +44,14 @@ export default class ButtonCore extends React.Component<Props> {
             disabled: disabledProp,
             focused,
             hovered,
-            href,
+            href = undefined,
             kind,
             light,
             pressed,
             size,
             style,
             testId,
+            type = undefined,
             spinner,
             icon,
             id,
@@ -159,7 +162,7 @@ export default class ButtonCore extends React.Component<Props> {
         } else {
             return (
                 <StyledButton
-                    type="button"
+                    type={type || "button"}
                     {...commonProps}
                     disabled={disabled}
                 >
