@@ -12,6 +12,12 @@ const wait = (delay: number = 0) =>
         return setTimeout(resolve, delay);
     });
 
+const keyCodes = {
+    tab: 9,
+    enter: 13,
+    space: 32,
+};
+
 describe("Button", () => {
     beforeEach(() => {
         unmountAll();
@@ -538,12 +544,6 @@ describe("Button", () => {
     });
 
     describe("client-side navigation with keyboard", () => {
-        const keyCodes = {
-            tab: 9,
-            enter: 13,
-            space: 32,
-        };
-
         it("should navigate on pressing the space key", () => {
             // Arrange
             const wrapper = mount(
@@ -780,7 +780,7 @@ describe("Button", () => {
     });
 
     describe("type='submit'", () => {
-        test("submit button within form", () => {
+        test("submit button within form via click", () => {
             // Arrange
             const submitFnMock = jest.fn();
             const wrapper = mount(
@@ -790,28 +790,31 @@ describe("Button", () => {
             );
 
             // Act
-            // NOTE: This isn't a very good test since we'd rather simulate a
-            // click.  We can't though since enzyme's 'simulate' method doesn't
-            // actually simulate events.  Instead it calls the matching event
-            // handler on the component instance itself.
-            wrapper.find("button").simulate("submit");
+            wrapper.find("button").simulate("click");
 
             // Assert
             expect(submitFnMock).toHaveBeenCalled();
         });
 
-        test("clicking a submit button doesn't prevent default", () => {
+        test("submit button within form via keyboard", () => {
             // Arrange
-            const preventDefaultMock = jest.fn();
-            const wrapper = mount(<Button type="submit">Click me!</Button>);
+            const submitFnMock = jest.fn();
+            const wrapper = mount(
+                <form onSubmit={submitFnMock}>
+                    <Button type="submit">Click me!</Button>
+                </form>,
+            );
 
             // Act
-            wrapper
-                .find("button")
-                .simulate("click", {preventDefault: preventDefaultMock});
+            wrapper.find("button").simulate("keydown", {
+                keyCode: keyCodes.enter,
+            });
+            wrapper.find("button").simulate("keyup", {
+                keyCode: keyCodes.enter,
+            });
 
             // Assert
-            expect(preventDefaultMock).not.toHaveBeenCalled();
+            expect(submitFnMock).toHaveBeenCalled();
         });
     });
 });

@@ -312,6 +312,7 @@ export default class Button extends React.Component<Props> {
                 disabled={spinner || disabled}
                 href={href}
                 role="button"
+                type={type}
                 onClick={onClick}
                 beforeNav={beforeNav}
                 safeWithNav={safeWithNav}

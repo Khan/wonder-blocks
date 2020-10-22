@@ -72,6 +72,11 @@ type Props = {|
      */
     href?: string,
 
+    /**
+     * This should only be used by button.js.
+     */
+    type?: "submit",
+
     skipClientNav?: boolean,
 
     /**
@@ -373,8 +378,10 @@ export default class ClickableBehavior extends React.Component<
             beforeNav = undefined,
             safeWithNav = undefined,
             href,
+            type,
         } = this.props;
         let shouldNavigate = true;
+        let canSubmit = true;
 
         if (onClick) {
             onClick(e);
@@ -384,12 +391,24 @@ export default class ClickableBehavior extends React.Component<
         // navigate.
         if (e.defaultPrevented) {
             shouldNavigate = false;
+            canSubmit = false;
         }
 
-        // Prevent navigation, but only if `href` if set.  This is so that forms
-        // containing a Button with `type="submit"` will still work.
-        if (href) {
-            e.preventDefault();
+        e.preventDefault();
+
+        if (!href && type === "submit" && canSubmit) {
+            let target = e.currentTarget;
+            while (target) {
+                if (target instanceof window.HTMLFormElement) {
+                    const event = new window.Event("submit");
+                    target.dispatchEvent(event);
+                    break;
+                }
+                // All events should be typed as SyntheticEvent<HTMLElement>.
+                // Updating all of the places will take some time so I'll do
+                // this later - $FlowFixMe.
+                target = target.parentElement;
+            }
         }
 
         if (beforeNav) {
