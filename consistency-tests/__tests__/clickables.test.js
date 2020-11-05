@@ -22,13 +22,17 @@ const ClickableWrapper = (props: any) => {
     return <Clickable {...restProps}>{(clickableState) => children}</Clickable>;
 };
 
+const IconButtonWrapper = (props: any) => (
+    <IconButton {...props} icon={icons.search} />
+);
+
 describe.each`
-    Component           | name            | extraProps
-    ${ActionItem}       | ${"ActionItem"} | ${{}}
-    ${Button}           | ${"Button"}     | ${{}}
-    ${ClickableWrapper} | ${"Clickable"}  | ${{}}
-    ${IconButton}       | ${"IconButton"} | ${{icon: icons.search}}
-    ${Link}             | ${"Link"}       | ${{}}
+    Component            | name
+    ${ActionItem}        | ${"ActionItem"}
+    ${Button}            | ${"Button"}
+    ${ClickableWrapper}  | ${"Clickable"}
+    ${IconButtonWrapper} | ${"IconButton"}
+    ${Link}              | ${"Link"}
 `("$name", ({Component, name, extraProps}) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
