@@ -188,6 +188,7 @@ export default class IconButton extends React.Component<SharedProps> {
             href,
             skipClientNav,
             tabIndex,
+            target,
             ...sharedProps
         } = this.props;
 
@@ -203,6 +204,7 @@ export default class IconButton extends React.Component<SharedProps> {
                 href={href}
                 onClick={onClick}
                 role="button"
+                target={target}
             >
                 {(state, {tabIndex: clickableTabIndex, ...handlers}) => {
                     return (
