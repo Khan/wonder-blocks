@@ -249,6 +249,7 @@ export default class Clickable extends React.Component<Props> {
             beforeNav = undefined,
             safeWithNav = undefined,
             style,
+            target,
             testId,
             onKeyDown,
             onKeyUp,
@@ -266,6 +267,7 @@ export default class Clickable extends React.Component<Props> {
                 onClick={onClick}
                 beforeNav={beforeNav}
                 safeWithNav={safeWithNav}
+                target={target}
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
             >

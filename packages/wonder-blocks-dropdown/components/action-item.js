@@ -141,6 +141,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                 onClick={onClick}
                 href={href}
                 role={role}
+                target={target}
             >
                 {(state, handlers) => {
                     const {pressed, hovered, focused} = state;

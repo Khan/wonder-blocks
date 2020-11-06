@@ -3,8 +3,9 @@ const babelConfig = require("./build-settings/babel.config.js");
 
 module.exports = function (wallaby) {
     const tests = [
-        "./packages/**/__tests__/*.test.js",
-        "./shared-unpackaged/**/*.test.js",
+        "packages/**/__tests__/*.test.js",
+        "shared-unpackaged/**/*.test.js",
+        "consistency-tests/__tests__/*.test.js",
     ];
 
     return {
@@ -13,8 +14,9 @@ module.exports = function (wallaby) {
         // Wallaby needs to know about all files that may be loaded because
         // of running a test.
         files: [
-            "./packages/**/*.js",
+            "packages/**/*.js",
             "shared-unpackaged/**/*.js",
+            "consistency-tests/**/*.js",
             "utils/**/*.js",
             {pattern: "config/jest/*.js", instrument: false},
 
@@ -34,6 +36,9 @@ module.exports = function (wallaby) {
         compilers: {
             "packages/**/*.js": wallaby.compilers.babel(babelConfig),
             "shared-unpackaged/**/*.js": wallaby.compilers.babel(babelConfig),
+            "consistency-tests/**/*.test.js": wallaby.compilers.babel(
+                babelConfig,
+            ),
             "utils/**/*.js": wallaby.compilers.babel(babelConfig),
         },
 

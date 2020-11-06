@@ -188,6 +188,7 @@ export default class Link extends React.Component<SharedProps> {
             tabIndex,
             onKeyDown,
             onKeyUp,
+            target,
             ...sharedProps
         } = this.props;
 
@@ -205,6 +206,7 @@ export default class Link extends React.Component<SharedProps> {
                 onClick={onClick}
                 beforeNav={beforeNav}
                 safeWithNav={safeWithNav}
+                target={target}
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
             >
