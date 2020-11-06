@@ -1,7 +1,7 @@
 // @flow
 
 import * as React from "react";
-import type {ClickableState} from "@khanacademy/wonder-blocks-core";
+import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
 
 import typeof ActionItem from "../components/action-item.js";
 import typeof OptionItem from "../components/option-item.js";

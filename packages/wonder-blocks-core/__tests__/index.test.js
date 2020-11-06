@@ -10,12 +10,10 @@ describe("@khanacademy/wonder-blocks-core", () => {
         // Assert
         expect(Object.keys(result).sort()).toEqual(
             [
-                "ClickableBehavior",
                 "Text",
                 "View",
                 "WithSSRPlaceholder",
                 "addStyle",
-                "getClickableBehavior",
                 "getElementIntersection",
                 "IDProvider",
                 "Server",

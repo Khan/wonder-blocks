@@ -3,13 +3,10 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import type {
-    AriaProps,
-    StyleType,
-    ClickableRole,
-    ClickableState,
-} from "@khanacademy/wonder-blocks-core";
-import {addStyle, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
+import getClickableBehavior from "../util/get-clickable-behavior.js";
+import type {ClickableRole, ClickableState} from "./clickable-behavior.js";
 
 type CommonProps = {|
     /**

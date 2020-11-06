@@ -2,8 +2,9 @@
 //@flow
 import React from "react";
 
-import {ClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import {ClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+
 import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 import DropdownOpener from "../dropdown-opener.js";
 import SelectOpener from "../select-opener.js";

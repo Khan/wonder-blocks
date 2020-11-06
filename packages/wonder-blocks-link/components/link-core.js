@@ -9,7 +9,7 @@ import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import type {
     ClickableHandlers,
     ClickableState,
-} from "@khanacademy/wonder-blocks-core";
+} from "@khanacademy/wonder-blocks-clickable";
 import type {StyleDeclaration} from "aphrodite";
 import type {SharedProps} from "./link.js";
 

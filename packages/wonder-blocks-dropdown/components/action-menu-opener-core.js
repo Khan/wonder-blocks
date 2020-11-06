@@ -9,7 +9,8 @@ import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import type {AriaProps, ClickableState} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
 
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
 

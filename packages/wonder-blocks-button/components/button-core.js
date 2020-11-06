@@ -18,7 +18,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {
     ClickableHandlers,
     ClickableState,
-} from "@khanacademy/wonder-blocks-core";
+} from "@khanacademy/wonder-blocks-clickable";
 import type {SharedProps} from "./button.js";
 
 type Props = {|
