@@ -22,14 +22,16 @@ const wait = (delay: number = 0) =>
 
 describe("ClickableBehavior", () => {
     beforeEach(() => {
-        // Note: window.location.assign needs a mock function in the testing
-        // environment.
+        // Note: window.location.assign and window.open need mock functions in
+        // the testing environment.
         window.location.assign = jest.fn();
+        window.open = jest.fn();
         unmountAll();
     });
 
     afterEach(() => {
         window.location.assign.mockClear();
+        window.open.mockClear();
     });
 
     it("renders a label", () => {
@@ -1032,5 +1034,30 @@ describe("ClickableBehavior", () => {
             // Assert
             expect(wrapper).not.toIncludeText("Hello, world!");
         });
+    });
+
+    it("opens a new tab when target='_blank'", () => {
+        const link = mount(
+            <ClickableBehavior
+                disabled={false}
+                href="https://www.khanacademy.org"
+                role="link"
+                target="_blank"
+            >
+                {(state, handlers) => {
+                    return (
+                        <a href="https://www.khanacademy.org" {...handlers}>
+                            Label
+                        </a>
+                    );
+                }}
+            </ClickableBehavior>,
+        );
+        link.simulate("click");
+
+        expect(window.open).toHaveBeenCalledWith(
+            "https://www.khanacademy.org",
+            "_blank",
+        );
     });
 });

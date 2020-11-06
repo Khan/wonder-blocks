@@ -274,6 +274,7 @@ export default class Button extends React.Component<Props> {
             beforeNav = undefined,
             safeWithNav = undefined,
             tabIndex,
+            target,
             ...sharedButtonCoreProps
         } = this.props;
 
@@ -316,6 +317,7 @@ export default class Button extends React.Component<Props> {
                 onClick={onClick}
                 beforeNav={beforeNav}
                 safeWithNav={safeWithNav}
+                target={target}
             >
                 {renderProp}
             </ClickableBehavior>

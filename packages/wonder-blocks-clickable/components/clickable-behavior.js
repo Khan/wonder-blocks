@@ -73,6 +73,12 @@ type Props = {|
     href?: string,
 
     /**
+     * A target destination window for a link to open in. Should only be used
+     * when `href` is specified.
+     */
+    target?: string,
+
+    /**
      * This should only be used by button.js.
      */
     type?: "submit",
@@ -315,13 +321,17 @@ export default class ClickableBehavior extends React.Component<
 
     navigateOrReset(shouldNavigate: boolean) {
         if (shouldNavigate) {
-            const {history, href, skipClientNav} = this.props;
+            const {history, href, skipClientNav, target} = this.props;
             if (href) {
                 if (history && !skipClientNav) {
                     history.push(href);
                     this.setState({waiting: false});
                 } else {
-                    window.location.assign(href);
+                    if (target === "_blank") {
+                        window.open(href, "_blank");
+                    } else {
+                        window.location.assign(href);
+                    }
                     // We don't bother clearing the waiting state, the full page
                     // load navigation will do that for us by loading a new page.
                 }
