@@ -13,7 +13,7 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {
     ClickableHandlers,
     ClickableState,
-} from "@khanacademy/wonder-blocks-core";
+} from "@khanacademy/wonder-blocks-clickable";
 import Icon from "@khanacademy/wonder-blocks-icon";
 import type {SharedProps} from "./icon-button.js";
 

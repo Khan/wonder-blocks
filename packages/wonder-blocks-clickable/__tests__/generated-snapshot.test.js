@@ -16,6 +16,8 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
+import ClickableBehavior from "./../components/clickable-behavior.js";
+
 describe("wonder-blocks-clickable", () => {
     it("example 1", () => {
         const styles = StyleSheet.create({

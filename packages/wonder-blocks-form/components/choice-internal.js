@@ -4,7 +4,8 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
-import {View, getClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";

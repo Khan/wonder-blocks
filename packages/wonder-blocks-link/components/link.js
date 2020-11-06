@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import PropTypes from "prop-types";
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";

@@ -29,8 +29,6 @@ import {
 import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
 
-import ClickableBehavior from "./../components/clickable-behavior.js";
-
 describe("wonder-blocks-core", () => {
     it("example 1", () => {
         const styles = StyleSheet.create({

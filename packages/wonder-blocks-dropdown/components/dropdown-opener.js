@@ -1,13 +1,13 @@
 // @flow
 import * as React from "react";
 
-import {ClickableBehavior} from "@khanacademy/wonder-blocks-core";
+import {ClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
+import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {
-    AriaProps,
     ClickableHandlers,
     ClickableState,
-} from "@khanacademy/wonder-blocks-core";
+} from "@khanacademy/wonder-blocks-clickable";
 
 import type {OpenerProps} from "../util/types.js";
 
