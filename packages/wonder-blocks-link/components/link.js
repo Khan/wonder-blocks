@@ -218,6 +218,7 @@ export default class Link extends React.Component<SharedProps> {
                             {...handlers}
                             skipClientNav={skipClientNav}
                             href={href}
+                            target={target}
                             // If tabIndex is provide to the component we allow
                             // it to override the tabIndex provide to use by
                             // ClickableBehavior.

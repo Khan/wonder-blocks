@@ -209,6 +209,7 @@ export default class Clickable extends React.Component<Props> {
                     {...commonProps}
                     to={this.props.href}
                     role={this.props.role}
+                    target={this.props.target}
                     aria-disabled={this.props.disabled ? "true" : undefined}
                 >
                     {this.props.children(clickableState)}
@@ -220,6 +221,7 @@ export default class Clickable extends React.Component<Props> {
                     {...commonProps}
                     href={this.props.href}
                     role={this.props.role}
+                    target={this.props.target}
                     aria-disabled={this.props.disabled ? "true" : undefined}
                 >
                     {this.props.children(clickableState)}

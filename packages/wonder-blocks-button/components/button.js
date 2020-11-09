@@ -297,6 +297,7 @@ export default class Button extends React.Component<Props> {
                     spinner={spinner || state.waiting}
                     skipClientNav={skipClientNav}
                     href={href}
+                    target={target}
                     type={type}
                     // If tabIndex is provide to the component we allow
                     // it to override the tabIndex provide to use by

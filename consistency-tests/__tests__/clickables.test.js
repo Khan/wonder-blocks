@@ -64,4 +64,19 @@ describe.each`
             "_blank",
         );
     });
+
+    it("sets the 'target' prop on the underlying element", () => {
+        const wrapper = mount(
+            <Component
+                href="https://www.khanacademy.org"
+                target="_blank"
+                {...extraProps}
+            >
+                Click me
+            </Component>,
+        );
+        wrapper.simulate("click");
+
+        expect(wrapper.find("a")).toHaveProp("target", "_blank");
+    });
 });
