@@ -1,16 +1,19 @@
 // @flow
 const Spacing = {
     // Named
-    xxxSmall: 4,
-    xxSmall: 6,
-    xSmall: 8,
-    small: 12,
-    medium: 16,
-    large: 24,
-    xLarge: 32,
-    xxLarge: 48,
-    xxxLarge: 64,
+    xxxxSmall_2: 2,
+    xxxSmall_4: 4,
+    xxSmall_6: 6,
+    xSmall_8: 8,
+    small_12: 12,
+    medium_16: 16,
+    large_24: 24,
+    xLarge_32: 32,
+    xxLarge_48: 48,
+    xxxLarge_64: 64,
 };
+
+
 
 export type VALID_PRIMARY_SPACING = 4 | 8 | 16 | 32 | 64;
 export type VALID_SECONDARY_SPACING = 6 | 12 | 24 | 48;
