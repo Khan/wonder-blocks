@@ -98,7 +98,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
                 >
                     {label}
                 </View>
-                <Strut size={Spacing.xxxSmall} />
+                <Strut size={Spacing.xxxSmall_4} />
                 <Icon
                     size="small"
                     color="currentColor"
@@ -117,7 +117,7 @@ const sharedStyles = StyleSheet.create({
         justifyContent: "center",
         height: DROPDOWN_ITEM_HEIGHT,
         border: "none",
-        borderRadius: Spacing.xxxSmall,
+        borderRadius: Spacing.xxxSmall_4,
         cursor: "pointer",
         outline: "none",
         textDecoration: "none",
@@ -134,7 +134,7 @@ const sharedStyles = StyleSheet.create({
         cursor: "auto",
     },
     small: {
-        height: Spacing.xLarge,
+        height: Spacing.xLarge_32,
     },
     text: {
         textAlign: "left",

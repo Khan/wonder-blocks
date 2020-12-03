@@ -62,15 +62,15 @@ exports[`wonder-blocks-data example 1 1`] = `
     className=""
     style={
       Object {
-        "MsFlexBasis": 12,
-        "MsFlexPreferredSize": 12,
-        "WebkitFlexBasis": 12,
+        "MsFlexBasis": undefined,
+        "MsFlexPreferredSize": undefined,
+        "WebkitFlexBasis": undefined,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 12,
+        "flexBasis": undefined,
         "flexDirection": "column",
         "flexShrink": 0,
         "margin": 0,
@@ -78,7 +78,7 @@ exports[`wonder-blocks-data example 1 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 12,
+        "width": undefined,
         "zIndex": 0,
       }
     }
@@ -182,15 +182,15 @@ Array [
     className=""
     style={
       Object {
-        "MsFlexBasis": 12,
-        "MsFlexPreferredSize": 12,
-        "WebkitFlexBasis": 12,
+        "MsFlexBasis": undefined,
+        "MsFlexPreferredSize": undefined,
+        "WebkitFlexBasis": undefined,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 12,
+        "flexBasis": undefined,
         "flexDirection": "column",
         "flexShrink": 0,
         "margin": 0,
@@ -198,7 +198,7 @@ Array [
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 12,
+        "width": undefined,
         "zIndex": 0,
       }
     }
@@ -319,15 +319,15 @@ Array [
     className=""
     style={
       Object {
-        "MsFlexBasis": 12,
-        "MsFlexPreferredSize": 12,
-        "WebkitFlexBasis": 12,
+        "MsFlexBasis": undefined,
+        "MsFlexPreferredSize": undefined,
+        "WebkitFlexBasis": undefined,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 12,
+        "flexBasis": undefined,
         "flexDirection": "column",
         "flexShrink": 0,
         "margin": 0,
@@ -335,7 +335,7 @@ Array [
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 12,
+        "width": undefined,
         "zIndex": 0,
       }
     }

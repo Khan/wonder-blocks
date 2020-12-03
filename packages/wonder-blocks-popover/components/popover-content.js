@@ -230,7 +230,7 @@ const styles = StyleSheet.create({
      * Shared styles
      */
     actions: {
-        marginTop: Spacing.large,
+        marginTop: Spacing.large_24,
         flexDirection: "row",
         alignItems: "center",
         justifyContent: "flex-end",
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
     },
 
     title: {
-        marginBottom: Spacing.xSmall,
+        marginBottom: Spacing.xSmall_8,
     },
 
     /**
@@ -250,10 +250,10 @@ const styles = StyleSheet.create({
     iconContainer: {
         alignItems: "center",
         justifyContent: "center",
-        height: Spacing.xxxLarge,
-        width: Spacing.xxxLarge,
-        minWidth: Spacing.xxxLarge,
-        marginRight: Spacing.medium,
+        height: Spacing.xxxLarge_64,
+        width: Spacing.xxxLarge_64,
+        minWidth: Spacing.xxxLarge_64,
+        marginRight: Spacing.medium_16,
         overflow: "hidden",
     },
 
@@ -269,16 +269,16 @@ const styles = StyleSheet.create({
      * Illustration styles
      */
     image: {
-        marginBottom: Spacing.large,
-        marginLeft: -Spacing.large,
-        marginRight: -Spacing.large,
-        marginTop: -Spacing.large,
-        width: `calc(100% + ${Spacing.large * 2}px)`,
+        marginBottom: Spacing.large_24,
+        marginLeft: -Spacing.large_24,
+        marginRight: -Spacing.large_24,
+        marginTop: -Spacing.large_24,
+        width: `calc(100% + ${Spacing.large_24 * 2}px)`,
     },
 
     imageToBottom: {
-        marginBottom: -Spacing.large,
-        marginTop: Spacing.large,
+        marginBottom: -Spacing.large_24,
+        marginTop: Spacing.large_24,
         order: 1,
     },
 });

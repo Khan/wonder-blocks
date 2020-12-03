@@ -11,8 +11,8 @@ export const keyCodes = {
 };
 
 export const selectDropdownStyle = {
-    marginTop: Spacing.xSmall,
-    marginBottom: Spacing.xSmall,
+    marginTop: Spacing.xSmall_8,
+    marginBottom: Spacing.xSmall_8,
 };
 
 // Filterable dropdown has minimum dimensions requested from Design.
@@ -23,8 +23,8 @@ export const filterableDropdownStyle = {
 };
 
 export const searchInputStyle = {
-    margin: Spacing.xSmall,
-    marginTop: Spacing.xxxSmall,
+    margin: Spacing.xSmall_8,
+    marginTop: Spacing.xxxSmall_4,
 };
 
 // The default item height

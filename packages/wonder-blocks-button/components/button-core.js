@@ -238,7 +238,7 @@ const sharedStyles = StyleSheet.create({
         position: "absolute",
     },
     icon: {
-        paddingRight: Spacing.xSmall,
+        paddingRight: Spacing.xSmall_8,
     },
 });
 
@@ -254,7 +254,7 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
     const {white, white50, white64, offBlack32, offBlack50, darkBlue} = Color;
     const fadedColor = mix(fade(color, 0.32), white);
     const activeColor = mix(offBlack32, color);
-    const padding = size === "xlarge" ? Spacing.xLarge : Spacing.medium;
+    const padding = size === "xlarge" ? Spacing.xLarge_32 : Spacing.medium_16;
 
     let newStyles = {};
     if (kind === "primary") {

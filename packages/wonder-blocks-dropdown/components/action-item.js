@@ -219,8 +219,8 @@ const styles = StyleSheet.create({
         display: "flex",
         height: DROPDOWN_ITEM_HEIGHT,
         minHeight: DROPDOWN_ITEM_HEIGHT,
-        paddingLeft: Spacing.medium,
-        paddingRight: Spacing.medium,
+        paddingLeft: Spacing.medium_16,
+        paddingRight: Spacing.medium_16,
         // This removes the 300ms click delay on mobile browsers by indicating that
         // "double-tap to zoom" shouldn't be used on this element.
         touchAction: "manipulation",
@@ -232,7 +232,7 @@ const styles = StyleSheet.create({
     },
 
     indent: {
-        marginLeft: Spacing.medium,
+        marginLeft: Spacing.medium_16,
     },
 
     // hover and focus states

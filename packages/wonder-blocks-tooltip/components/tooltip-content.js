@@ -58,7 +58,7 @@ export default class TooltipContent extends React.Component<Props> {
         return (
             <View style={containerStyle}>
                 {title}
-                {title && children && <Strut size={Spacing.xxxSmall} />}
+                {title && children && <Strut size={Spacing.xxxSmall_4} />}
                 {children}
             </View>
         );
@@ -67,10 +67,10 @@ export default class TooltipContent extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     withoutTitle: {
-        margin: `10px ${Spacing.medium}px`,
+        margin: `10px ${Spacing.medium_16}px`,
     },
 
     withTitle: {
-        margin: Spacing.medium,
+        margin: Spacing.medium_16,
     },
 });

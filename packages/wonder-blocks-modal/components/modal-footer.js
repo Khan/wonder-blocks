@@ -34,11 +34,11 @@ const styles = StyleSheet.create({
     footer: {
         flex: "0 0 auto",
         boxSizing: "border-box",
-        minHeight: Spacing.xxxLarge,
-        paddingLeft: Spacing.medium,
-        paddingRight: Spacing.medium,
-        paddingTop: Spacing.xSmall,
-        paddingBottom: Spacing.xSmall,
+        minHeight: Spacing.xxxLarge_64,
+        paddingLeft: Spacing.medium_16,
+        paddingRight: Spacing.medium_16,
+        paddingTop: Spacing.xSmall_8,
+        paddingBottom: Spacing.xSmall_8,
 
         display: "flex",
         flexDirection: "row",

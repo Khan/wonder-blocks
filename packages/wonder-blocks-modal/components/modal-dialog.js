@@ -137,7 +137,7 @@ const styleSheets = {
 
     small: StyleSheet.create({
         wrapper: {
-            padding: Spacing.medium,
+            padding: Spacing.medium_16,
             flexDirection: "column",
         },
     }),

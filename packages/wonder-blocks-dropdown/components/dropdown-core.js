@@ -778,8 +778,8 @@ const styles = StyleSheet.create({
     dropdown: {
         backgroundColor: Color.white,
         borderRadius: 4,
-        paddingTop: Spacing.xxxSmall,
-        paddingBottom: Spacing.xxxSmall,
+        paddingTop: Spacing.xxxSmall_4,
+        paddingBottom: Spacing.xxxSmall_4,
         border: `solid 1px ${Color.offBlack16}`,
         boxShadow: `0px 8px 8px 0px ${fade(Color.offBlack, 0.1)}`,
         overflowY: "auto",
@@ -797,7 +797,7 @@ const styles = StyleSheet.create({
     noResult: {
         color: Color.offBlack64,
         alignSelf: "center",
-        marginTop: Spacing.xxSmall,
+        marginTop: Spacing.xxSmall_6,
     },
 });
 

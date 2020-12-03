@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
     },
 
     text: {
-        marginRight: Spacing.xSmall,
+        marginRight: Spacing.xSmall_8,
         whiteSpace: "nowrap",
         userSelect: "none",
         overflow: "hidden",

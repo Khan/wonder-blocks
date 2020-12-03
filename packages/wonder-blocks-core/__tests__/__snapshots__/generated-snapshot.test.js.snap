@@ -8,9 +8,9 @@ exports[`wonder-blocks-core example 1 1`] = `
     Object {
       "background": "#ffffff",
       "border": "1px solid rgba(33,36,44,0.16)",
-      "borderRadius": 4,
-      "fontSize": 16,
-      "padding": 8,
+      "borderRadius": undefined,
+      "fontSize": undefined,
+      "padding": undefined,
     }
   }
   type="text"
@@ -26,9 +26,9 @@ exports[`wonder-blocks-core example 2 1`] = `
       "background": "rgba(217,41,22,0.16)",
       "border": "1px solid rgba(33,36,44,0.16)",
       "borderColor": "#d92916",
-      "borderRadius": 4,
-      "fontSize": 16,
-      "padding": 8,
+      "borderRadius": undefined,
+      "fontSize": undefined,
+      "padding": undefined,
     }
   }
   type="text"
@@ -191,9 +191,9 @@ exports[`wonder-blocks-core example 3 1`] = `
     style={
       Object {
         "border": "1px solid rgba(33,36,44,0.16)",
-        "borderRadius": 4,
-        "fontSize": 16,
-        "padding": 8,
+        "borderRadius": undefined,
+        "fontSize": undefined,
+        "padding": undefined,
       }
     }
     type="text"
@@ -218,7 +218,7 @@ exports[`wonder-blocks-core example 4 1`] = `
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
-      "padding": 48,
+      "padding": undefined,
       "position": "relative",
       "zIndex": 0,
     }

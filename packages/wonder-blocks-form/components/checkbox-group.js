@@ -121,7 +121,7 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
                         </LabelSmall>
                     )}
                     {(label || description || errorMessage) && (
-                        <Strut size={Spacing.small} />
+                        <Strut size={Spacing.small_12} />
                     )}
 
                     {React.Children.map(children, (child, index) => {

@@ -166,7 +166,7 @@ const styleSheets = {
             display: "flex",
             flexDirection: "column",
             minHeight: 66,
-            padding: `${Spacing.large}px ${Spacing.xLarge}px`,
+            padding: `${Spacing.large_24}px ${Spacing.xLarge_32}px`,
             position: "relative",
             width: "100%",
         },
@@ -178,19 +178,19 @@ const styleSheets = {
 
         breadcrumbs: {
             color: Color.offBlack64,
-            marginBottom: Spacing.xSmall,
+            marginBottom: Spacing.xSmall_8,
         },
 
         subtitle: {
             color: Color.offBlack64,
-            marginTop: Spacing.xSmall,
+            marginTop: Spacing.xSmall_8,
         },
     }),
 
     small: StyleSheet.create({
         header: {
-            paddingLeft: Spacing.medium,
-            paddingRight: Spacing.medium,
+            paddingLeft: Spacing.medium_16,
+            paddingRight: Spacing.medium_16,
         },
     }),
 };

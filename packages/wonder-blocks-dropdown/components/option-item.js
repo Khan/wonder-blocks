@@ -192,8 +192,8 @@ const styles = StyleSheet.create({
         minHeight: DROPDOWN_ITEM_HEIGHT,
         border: 0,
         outline: 0,
-        paddingLeft: Spacing.xSmall,
-        paddingRight: Spacing.medium,
+        paddingLeft: Spacing.xSmall_8,
+        paddingRight: Spacing.medium_16,
         whiteSpace: "nowrap",
         cursor: "default",
     },
@@ -216,7 +216,7 @@ const styles = StyleSheet.create({
     label: {
         whiteSpace: "nowrap",
         userSelect: "none",
-        marginLeft: Spacing.xSmall,
+        marginLeft: Spacing.xSmall_8,
         // added to truncate strings that are longer than expected
         overflow: "hidden",
         textOverflow: "ellipsis",
