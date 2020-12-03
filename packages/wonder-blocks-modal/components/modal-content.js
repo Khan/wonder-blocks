@@ -66,14 +66,14 @@ const styleSheets = {
         content: {
             flex: 1,
             minHeight: "100%",
-            padding: Spacing.xLarge,
+            padding: Spacing.xLarge_32,
             boxSizing: "border-box",
         },
     }),
 
     small: StyleSheet.create({
         content: {
-            padding: `${Spacing.xLarge}px ${Spacing.medium}px`,
+            padding: `${Spacing.xLarge_32}px ${Spacing.medium_16}px`,
         },
     }),
 };

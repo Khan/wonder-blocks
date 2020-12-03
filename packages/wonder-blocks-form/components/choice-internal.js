@@ -149,7 +149,7 @@ type Props = {|
                                 tabIndex={-1}
                             >
                                 <ChoiceCore {...coreProps} {...state} />
-                                <Strut size={Spacing.xSmall} />
+                                <Strut size={Spacing.xSmall_8} />
                                 {label && this.getLabel()}
                             </View>
                         );
@@ -179,8 +179,8 @@ const styles = StyleSheet.create({
     },
     description: {
         // 16 for icon + 8 for spacing strut
-        marginLeft: Spacing.medium + Spacing.xSmall,
-        marginTop: Spacing.xxxSmall,
+        marginLeft: Spacing.medium_16 + Spacing.xSmall_8,
+        marginTop: Spacing.xxxSmall_4,
         color: Color.offBlack64,
     },
 });

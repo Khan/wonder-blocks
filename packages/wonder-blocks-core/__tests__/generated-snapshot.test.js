@@ -36,9 +36,9 @@ describe("wonder-blocks-core", () => {
             input: {
                 background: Color.white,
                 border: `1px solid ${Color.offBlack16}`,
-                borderRadius: Spacing.xxxSmall,
-                fontSize: Spacing.medium,
-                padding: Spacing.xSmall,
+                borderRadius: Spacing.xxxSmall_4,
+                fontSize: Spacing.medium_16,
+                padding: Spacing.xSmall_8,
             },
         });
         const StyledInput = addStyle("input", styles.input);
@@ -53,9 +53,9 @@ describe("wonder-blocks-core", () => {
             input: {
                 background: Color.white,
                 border: `1px solid ${Color.offBlack16}`,
-                borderRadius: Spacing.xxxSmall,
-                fontSize: Spacing.medium,
-                padding: Spacing.xSmall,
+                borderRadius: Spacing.xxxSmall_4,
+                fontSize: Spacing.medium_16,
+                padding: Spacing.xSmall_8,
             },
             error: {
                 background: fade(Color.red, 0.16),
@@ -117,9 +117,9 @@ describe("wonder-blocks-core", () => {
             // default style for all instances of StyledInput
             input: {
                 border: `1px solid ${Color.offBlack16}`,
-                borderRadius: Spacing.xxxSmall,
-                fontSize: Spacing.medium,
-                padding: Spacing.xSmall,
+                borderRadius: Spacing.xxxSmall_4,
+                fontSize: Spacing.medium_16,
+                padding: Spacing.xSmall_8,
             },
             error: {
                 background: fade(Color.red, 0.16),
@@ -154,7 +154,7 @@ describe("wonder-blocks-core", () => {
             default: {
                 background: Color.white,
                 color: Color.white,
-                padding: Spacing.medium,
+                padding: Spacing.medium_16,
             },
             // style to be passed as a prop
             customStyle: {
@@ -168,7 +168,7 @@ describe("wonder-blocks-core", () => {
                     styles.customStyle, // and pass inline styles as well
                     {
                         border: `1px solid ${Color.darkBlue}`,
-                        padding: Spacing.xxLarge,
+                        padding: Spacing.xxLarge_48,
                     },
                 ]}
             />

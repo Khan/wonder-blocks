@@ -76,7 +76,7 @@ describe("wonder-blocks-data", () => {
                         }}
                     </Data>
                 </View>
-                <Strut size={Spacing.small} />
+                <Strut size={Spacing.small_12} />
                 <View>
                     <Body>This request will go boom and give us an error!</Body>
                     <Data
@@ -159,7 +159,7 @@ describe("wonder-blocks-data", () => {
                         }}
                     </Data>
                 </View>
-                <Strut size={Spacing.small} />
+                <Strut size={Spacing.small_12} />
                 <View>
                     <Body>This cache has error!</Body>
                     <Data handler={handler} options={"ERROR"}>
@@ -237,7 +237,7 @@ describe("wonder-blocks-data", () => {
                         }}
                     </Data>
                 </View>
-                <Strut size={Spacing.small} />
+                <Strut size={Spacing.small_12} />
                 <View>
                     <Body>This intercepted cache has error!</Body>
                     <Data handler={handler} options={"ERROR"}>
@@ -508,7 +508,7 @@ describe("wonder-blocks-data", () => {
                 if (this.state.error) {
                     return (
                         <React.Fragment>
-                            <Strut size={Spacing.small} />
+                            <Strut size={Spacing.small_12} />
                             <Body>
                                 We can't show you anything useful in client-side
                                 mode
@@ -522,7 +522,7 @@ describe("wonder-blocks-data", () => {
                     : "Data requested...";
                 return (
                     <React.Fragment>
-                        <Strut size={Spacing.small} />
+                        <Strut size={Spacing.small_12} />
                         <TrackData>
                             <Data handler={this._handler} options={{}}>
                                 {({loading, data, error}) => (
@@ -535,7 +535,7 @@ describe("wonder-blocks-data", () => {
                                 )}
                             </Data>
                         </TrackData>
-                        <Strut size={Spacing.small} />
+                        <Strut size={Spacing.small_12} />
                         <View>
                             <Body>
                                 The above components requested data, but we're
@@ -544,20 +544,20 @@ describe("wonder-blocks-data", () => {
                                 `fulfillAllDataRequests` to fetch that tracked
                                 data.
                             </Body>
-                            <Strut size={Spacing.small} />
+                            <Strut size={Spacing.small_12} />
                             <Body>
                                 In about 3 seconds, it will appear below. Notice
                                 that when it does, the above still doesn't
                                 update. That's because during SSR, the data is
                                 not updated in the rendered tree.
                             </Body>
-                            <Strut size={Spacing.small} />
+                            <Strut size={Spacing.small_12} />
                             <Body>
                                 If you click to remount after the data appears,
                                 we'll rerender with the now cached data, and
                                 above should update accordingly.
                             </Body>
-                            <Strut size={Spacing.small} />
+                            <Strut size={Spacing.small_12} />
                             <BodyMonospace>{data}</BodyMonospace>
                         </View>
                     </React.Fragment>
@@ -576,7 +576,7 @@ describe("wonder-blocks-data", () => {
                                     >
                                         Back to Client-side Mode (reloads page)
                                     </Button>
-                                    <Strut size={Spacing.small} />
+                                    <Strut size={Spacing.small_12} />
                                     <Button
                                         kind={"secondary"}
                                         onClick={() => this.setServerMode()}

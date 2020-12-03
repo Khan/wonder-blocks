@@ -172,8 +172,8 @@ const styles = StyleSheet.create({
 
     closeButton: {
         position: "absolute",
-        right: Spacing.medium,
-        top: Spacing.medium,
+        right: Spacing.medium_16,
+        top: Spacing.medium_16,
         // This is to allow the button to be tab-ordered before the modal
         // content but still be above the header and content.
         zIndex: 1,
@@ -185,6 +185,6 @@ const styles = StyleSheet.create({
     },
 
     hasFooter: {
-        paddingBottom: Spacing.xLarge,
+        paddingBottom: Spacing.xLarge_32,
     },
 });

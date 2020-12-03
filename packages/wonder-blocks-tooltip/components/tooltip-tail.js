@@ -192,7 +192,7 @@ export default class TooltipTail extends React.Component<Props> {
                  */}
                 <feGaussianBlur
                     in="SourceAlpha"
-                    stdDeviation={Spacing.xxSmall / 2}
+                    stdDeviation={Spacing.xxSmall_6 / 2}
                 />
 
                 {/* Here we adjust the alpha (feFuncA) linearly so as to blend
@@ -230,7 +230,7 @@ export default class TooltipTail extends React.Component<Props> {
     }
 
     _minDistanceFromCorners(placement: Placement) {
-        const minDistanceFromCornersForTopBottom = Spacing.medium;
+        const minDistanceFromCornersForTopBottom = Spacing.medium_16;
         const minDistanceFromCornersForLeftRight = 7;
 
         switch (placement) {
@@ -418,12 +418,12 @@ export default class TooltipTail extends React.Component<Props> {
  * (i.e. placement="top"). When the tail points to the left or right instead,
  * the width/height are inverted.
  */
-const DISTANCE_FROM_ANCHOR = Spacing.xSmall;
+const DISTANCE_FROM_ANCHOR = Spacing.xSmall_8;
 
-const MIN_DISTANCE_FROM_CORNERS = Spacing.xSmall;
+const MIN_DISTANCE_FROM_CORNERS = Spacing.xSmall_8;
 
-const ARROW_WIDTH = Spacing.large;
-const ARROW_HEIGHT = Spacing.small;
+const ARROW_WIDTH = Spacing.large_24;
+const ARROW_HEIGHT = Spacing.small_12;
 
 const styles = StyleSheet.create({
     /**

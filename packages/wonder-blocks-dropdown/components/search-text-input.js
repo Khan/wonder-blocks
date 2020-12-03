@@ -185,7 +185,7 @@ const styles = StyleSheet.create({
     inputContainer: {
         flexDirection: "row",
         border: `1px solid ${Color.offBlack16}`,
-        borderRadius: Spacing.xxxSmall,
+        borderRadius: Spacing.xxxSmall_4,
         alignItems: "center",
         // The height of the text input is 40 in design spec and we need to
         // specify the height as well as minHeight to make sure the search text
@@ -198,8 +198,8 @@ const styles = StyleSheet.create({
         border: `1px solid ${Color.blue}`,
     },
     searchIcon: {
-        marginLeft: Spacing.xSmall,
-        marginRight: Spacing.xSmall,
+        marginLeft: Spacing.xSmall_8,
+        marginRight: Spacing.xSmall_8,
     },
     dismissIcon: {
         margin: 0,

@@ -79,7 +79,7 @@ const getEntryIntercept = function(options) {
             }}
         </Data>
     </View>
-    <Strut size={Spacing.small} />
+    <Strut size={Spacing.small_12} />
     <View>
         <Body>This intercepted cache has error!</Body>
         <Data handler={handler} options={"ERROR"}>

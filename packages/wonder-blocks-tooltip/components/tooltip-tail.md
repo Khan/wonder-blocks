@@ -13,15 +13,15 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 const styles = StyleSheet.create({
     guideContainer: {
         flexDirection: "row",
-        height: Spacing.xxxSmall,
+        height: Spacing.xxxSmall_4,
     },
     padding: {
         backgroundColor: "bisque",
-        width: Spacing.xSmall,
+        width: Spacing.xSmall_8,
     },
     tail: {
         backgroundColor: "green",
-        width: Spacing.large,
+        width: Spacing.large_24,
     },
 });
 
@@ -49,15 +49,15 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     guideContainer: {
-        width: Spacing.xxxSmall,
+        width: Spacing.xxxSmall_4,
     },
     padding: {
         backgroundColor: "bisque",
-        height: Spacing.xSmall,
+        height: Spacing.xSmall_8,
     },
     tail: {
         backgroundColor: "green",
-        height: Spacing.large,
+        height: Spacing.large_24,
     },
 });
 
@@ -83,15 +83,15 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 const styles = StyleSheet.create({
     guideContainer: {
         flexDirection: "row",
-        height: Spacing.xxxSmall,
+        height: Spacing.xxxSmall_4,
     },
     padding: {
         backgroundColor: "bisque",
-        width: Spacing.xSmall,
+        width: Spacing.xSmall_8,
     },
     tail: {
         backgroundColor: "green",
-        width: Spacing.large,
+        width: Spacing.large_24,
     },
 });
 
@@ -119,15 +119,15 @@ const styles = StyleSheet.create({
         flexDirection: "row",
     },
     guideContainer: {
-        width: Spacing.xxxSmall,
+        width: Spacing.xxxSmall_4,
     },
     padding: {
         backgroundColor: "bisque",
-        height: Spacing.xSmall,
+        height: Spacing.xSmall_8,
     },
     tail: {
         backgroundColor: "green",
-        height: Spacing.large,
+        height: Spacing.large_24,
     },
 });
 

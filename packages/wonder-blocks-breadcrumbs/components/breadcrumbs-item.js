@@ -73,10 +73,10 @@ const styles = StyleSheet.create({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        marginRight: Spacing.xxxSmall,
+        marginRight: Spacing.xxxSmall_4,
     },
 
     separator: {
-        marginLeft: Spacing.xxxSmall,
+        marginLeft: Spacing.xxxSmall_4,
     },
 });

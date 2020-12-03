@@ -80,25 +80,25 @@ const customIcon = {
 
 const styles = StyleSheet.create({
     example: {
-        paddingTop: Spacing.medium * 15
+        paddingTop: Spacing.medium_16 * 15
     },
     customPopover: {
-        maxWidth: Spacing.medium * 25,
-        width: Spacing.medium * 25,
+        maxWidth: Spacing.medium_16 * 25,
+        width: Spacing.medium_16 * 25,
         textAlign: "center",
     },
     row: {
         flexDirection: "row",
         justifyContent: "center",
-        padding: `${Spacing.small}px 0`
+        padding: `${Spacing.small_12}px 0`
     },
     action: {
         backgroundColor: "transparent",
         border: "none",
         color: Color.white,
         cursor: "pointer",
-        margin: Spacing.small,
-        padding: Spacing.xxSmall,
+        margin: Spacing.small_12,
+        padding: Spacing.xxSmall_6,
         alignItems: "center",
         justifyContent: "center"
     },
@@ -165,7 +165,7 @@ class ControlledPopover extends React.Component {
                         Anchor element (it doesn't open the popover)
                     </Button>
                 </Popover>
-                <Strut size={Spacing.xLarge} />
+                <Strut size={Spacing.xLarge_32} />
                 <Button onClick={() => this.setState({popoverOpened: true})}>
                     Outside button (click here to re-open the popover)
                 </Button>
@@ -225,7 +225,7 @@ const styles = StyleSheet.create({
                         <Button onClick={close} light={true} kind="secondary">
                             Previous
                         </Button>
-                        <Strut size={Spacing.medium} />
+                        <Strut size={Spacing.medium_16} />
                         <Button onClick={close} light={true} kind="primary" id="initial-focus">
                             Next
                         </Button>

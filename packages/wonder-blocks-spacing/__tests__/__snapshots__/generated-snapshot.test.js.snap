@@ -61,7 +61,159 @@ exports[`wonder-blocks-spacing example 1 1`] = `
         }
       }
     >
-      xxxSmall
+      xxxxSmall_2
+      : 
+      2
+      px
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 8,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 64,
+          "zIndex": 0,
+        }
+      }
+    >
+      <div
+        className=""
+        style={
+          Object {
+            "alignItems": "stretch",
+            "backgroundColor": "black",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexDirection": "column",
+            "height": 4,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 2,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 8,
+          "zIndex": 0,
+        }
+      }
+    />
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "backgroundColor": "black",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "height": 2,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 4,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
+  <div
+    className=""
+    style={
+      Object {
+        "alignItems": "center",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "row",
+        "margin": 0,
+        "marginBottom": 6,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "textAlign": "right",
+          "width": 250,
+          "zIndex": 0,
+        }
+      }
+    >
+      xxxSmall_4
       : 
       4
       px
@@ -213,7 +365,7 @@ exports[`wonder-blocks-spacing example 1 1`] = `
         }
       }
     >
-      xxSmall
+      xxSmall_6
       : 
       6
       px
@@ -365,7 +517,7 @@ exports[`wonder-blocks-spacing example 1 1`] = `
         }
       }
     >
-      xSmall
+      xSmall_8
       : 
       8
       px
@@ -517,7 +669,7 @@ exports[`wonder-blocks-spacing example 1 1`] = `
         }
       }
     >
-      small
+      small_12
       : 
       12
       px
@@ -669,7 +821,7 @@ exports[`wonder-blocks-spacing example 1 1`] = `
         }
       }
     >
-      medium
+      medium_16
       : 
       16
       px
@@ -821,7 +973,7 @@ exports[`wonder-blocks-spacing example 1 1`] = `
         }
       }
     >
-      large
+      large_24
       : 
       24
       px
@@ -973,7 +1125,7 @@ exports[`wonder-blocks-spacing example 1 1`] = `
         }
       }
     >
-      xLarge
+      xLarge_32
       : 
       32
       px
@@ -1125,7 +1277,7 @@ exports[`wonder-blocks-spacing example 1 1`] = `
         }
       }
     >
-      xxLarge
+      xxLarge_48
       : 
       48
       px
@@ -1277,7 +1429,7 @@ exports[`wonder-blocks-spacing example 1 1`] = `
         }
       }
     >
-      xxxLarge
+      xxxLarge_64
       : 
       64
       px

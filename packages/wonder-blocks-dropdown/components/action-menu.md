@@ -257,7 +257,7 @@ class ControlledActionMenuExample extends React.Component {
                     <OptionItem label="Yan" value="yan" />
                     <OptionItem label="Yash" value="yash" />
                 </ActionMenu>
-                <Strut size={Spacing.medium} />
+                <Strut size={Spacing.medium_16} />
                 <Button onClick={() => this.handleToggleMenu(true)}>
                     Open ActionMenu programatically
                 </Button>

@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         boxShadow: `0 -1px ${Color.offBlack16}`,
         height: 1,
         minHeight: 1,
-        marginTop: Spacing.xxxSmall,
-        marginBottom: Spacing.xxxSmall,
+        marginTop: Spacing.xxxSmall_4,
+        marginBottom: Spacing.xxxSmall_4,
     },
 });

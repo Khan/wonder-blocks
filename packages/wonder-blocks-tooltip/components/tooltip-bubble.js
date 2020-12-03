@@ -151,10 +151,10 @@ const styles = StyleSheet.create({
 
     content: {
         maxWidth: 472,
-        borderRadius: Spacing.xxxSmall,
+        borderRadius: Spacing.xxxSmall_4,
         border: `solid 1px ${Colors.offBlack16}`,
         backgroundColor: Colors.white,
-        boxShadow: `0 ${Spacing.xSmall}px ${Spacing.xSmall}px 0 ${Colors.offBlack8}`,
+        boxShadow: `0 ${Spacing.xSmall_8}px ${Spacing.xSmall_8}px 0 ${Colors.offBlack8}`,
         justifyContent: "center",
     },
 });

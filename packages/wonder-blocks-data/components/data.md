@@ -85,7 +85,7 @@ const invalid = new MyInvalidHandler();
             }}
         </Data>
     </View>
-    <Strut size={Spacing.small} />
+    <Strut size={Spacing.small_12} />
     <View>
         <Body>This request will go boom and give us an error!</Body>
         <Data handler={invalid} options={{some: "options"}}>
@@ -167,7 +167,7 @@ const getEntryInterceptor = function(options) {
             }}
         </Data>
     </View>
-    <Strut size={Spacing.small} />
+    <Strut size={Spacing.small_12} />
     <View>
         <Body>This cache has error!</Body>
         <Data handler={handler} options={"ERROR"}>

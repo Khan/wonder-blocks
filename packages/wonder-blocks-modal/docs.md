@@ -18,12 +18,12 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const styles = StyleSheet.create({
     example: {
-        padding: Spacing.xLarge,
+        padding: Spacing.xLarge_32,
         alignItems: "center",
     },
 
     title: {
-        marginBottom: Spacing.medium,
+        marginBottom: Spacing.medium_16,
     },
 
     modalContent: {
@@ -99,7 +99,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const styles = StyleSheet.create({
     example: {
-        padding: Spacing.xLarge,
+        padding: Spacing.xLarge_32,
         alignItems: "center",
     },
 
@@ -246,7 +246,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const styles = StyleSheet.create({
     example: {
-        padding: Spacing.xLarge,
+        padding: Spacing.xLarge_32,
         alignItems: "center",
     }
 });
@@ -259,7 +259,7 @@ const modalInitialFocus = ({closeModal}) => (
                 <View>
                     <label>Label</label>
                     <input type="text" />
-                    <Strut size={Spacing.medium} />
+                    <Strut size={Spacing.medium_16} />
                     <Button id="initial-focus">
                         Button to receive initial focus
                     </Button>
@@ -271,7 +271,7 @@ const modalInitialFocus = ({closeModal}) => (
                 <Button kind="tertiary" onClick={closeModal}>
                     Cancel
                 </Button>
-                <Strut size={Spacing.medium} />
+                <Strut size={Spacing.medium_16} />
                 <Button>
                     Submit
                 </Button>
@@ -313,7 +313,7 @@ import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 const styles = StyleSheet.create({
     example: {
-        padding: Spacing.xLarge,
+        padding: Spacing.xLarge_32,
         alignItems: "center",
     },
     row: {

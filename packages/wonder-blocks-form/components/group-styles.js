@@ -16,17 +16,17 @@ const styles = StyleSheet.create({
     },
 
     description: {
-        marginTop: Spacing.xxxSmall,
+        marginTop: Spacing.xxxSmall_4,
         color: Color.offBlack64,
     },
 
     error: {
-        marginTop: Spacing.xxxSmall,
+        marginTop: Spacing.xxxSmall_4,
         color: Color.red,
     },
 
     defaultLineGap: {
-        marginTop: Spacing.xSmall,
+        marginTop: Spacing.xSmall_8,
     },
 });
 

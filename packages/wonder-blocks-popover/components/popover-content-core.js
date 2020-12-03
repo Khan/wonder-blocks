@@ -96,13 +96,13 @@ export default class PopoverContentCore extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     content: {
-        borderRadius: Spacing.xxxSmall,
+        borderRadius: Spacing.xxxSmall_4,
         border: `solid 1px ${Colors.offBlack16}`,
         backgroundColor: Colors.white,
-        boxShadow: `0 ${Spacing.xSmall}px ${Spacing.xSmall}px 0 ${Colors.offBlack8}`,
+        boxShadow: `0 ${Spacing.xSmall_8}px ${Spacing.xSmall_8}px 0 ${Colors.offBlack8}`,
         margin: 0,
-        maxWidth: Spacing.medium * 18, // 288px
-        padding: Spacing.large,
+        maxWidth: Spacing.medium_16 * 18, // 288px
+        padding: Spacing.large_24,
         overflow: "hidden",
         justifyContent: "center",
     },
@@ -124,8 +124,8 @@ const styles = StyleSheet.create({
      */
     closeButton: {
         position: "absolute",
-        right: Spacing.xSmall,
-        top: Spacing.xSmall,
+        right: Spacing.xSmall_8,
+        top: Spacing.xSmall_8,
         // Allows the button to be above the title and/or custom content
         zIndex: 1,
     },
