@@ -24,13 +24,13 @@ const styles = StyleSheet.create({
 
 <View style={styles.container}>
     <Button style={styles.button}>A</Button>
-    <Strut size={Spacing.small}/>
+    <Strut size={Spacing.small_12}/>
     <Button style={styles.button}>B</Button>
-    <Strut size={Spacing.small}/>
+    <Strut size={Spacing.small_12}/>
     <Button style={styles.button}>C</Button>
     <Spring/>
     <Button style={styles.button}>Cancel</Button>
-    <Strut size={Spacing.small}/>
+    <Strut size={Spacing.small_12}/>
     <Button style={styles.button}>Accept</Button>
 </View>
 ```
@@ -118,7 +118,7 @@ const styleSheets = {
         // use shared styles for all sizes
         test: {
             color: Color.white,
-            padding: Spacing.medium,
+            padding: Spacing.medium_16,
         },
     }),
 
@@ -126,7 +126,7 @@ const styleSheets = {
         // override the `padding` prop` here
         test: {
             backgroundColor: Color.darkBlue,
-            padding: Spacing.xxLarge,
+            padding: Spacing.xxLarge_48,
         },
     }),
 
@@ -192,14 +192,14 @@ const styleSheets = {
             alignItems: "center",
             backgroundColor: Color.darkBlue,
             color: Color.white,
-            padding: Spacing.xxxLarge,
+            padding: Spacing.xxxLarge_64,
         },
     }),
 
     small: StyleSheet.create({
         example: {
             backgroundColor: Color.lightBlue,
-            padding: Spacing.small,
+            padding: Spacing.small_12,
         },
     }),
 };
@@ -210,14 +210,14 @@ const MEDIA_CUSTOM_SPEC = {
     small: {
         query: "(max-width: 767px)",
         totalColumns: 4,
-        gutterWidth: Spacing.medium,
-        marginWidth: Spacing.medium,
+        gutterWidth: Spacing.medium_16,
+        marginWidth: Spacing.medium_16,
     },
     large: {
         query: "(min-width: 768px)",
         totalColumns: 12,
-        gutterWidth: Spacing.xLarge,
-        marginWidth: Spacing.xxLarge,
+        gutterWidth: Spacing.xLarge_32,
+        marginWidth: Spacing.xxLarge_48,
     },
 };
 

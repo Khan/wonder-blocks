@@ -333,7 +333,7 @@ describe("wonder-blocks-dropdown", () => {
                             <OptionItem label="Yan" value="yan" />
                             <OptionItem label="Yash" value="yash" />
                         </ActionMenu>
-                        <Strut size={Spacing.medium} />
+                        <Strut size={Spacing.medium_16} />
                         <Button onClick={() => this.handleToggleMenu(true)}>
                             Open ActionMenu programatically
                         </Button>
@@ -763,7 +763,7 @@ describe("wonder-blocks-dropdown", () => {
                             <OptionItem label="item 2" value="2" />
                             <OptionItem label="item 3" value="3" />
                         </SingleSelect>
-                        <Strut size={Spacing.medium} />
+                        <Strut size={Spacing.medium_16} />
                         <Button onClick={() => this.handleToggleMenu(true)}>
                             Open SingleSelect programatically
                         </Button>
@@ -1391,7 +1391,7 @@ describe("wonder-blocks-dropdown", () => {
                             <OptionItem label="Cantaloupe" value="cantaloupe" />
                             <OptionItem label="Pineapples" value="pineapples" />
                         </MultiSelect>
-                        <Strut size={Spacing.medium} />
+                        <Strut size={Spacing.medium_16} />
                         <Button onClick={() => this.handleToggleMenu(true)}>
                             Open SingleSelect programatically
                         </Button>

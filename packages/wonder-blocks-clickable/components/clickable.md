@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     h1: {
-        marginRight: Spacing.large,
+        marginRight: Spacing.large_24,
     }
 });
 

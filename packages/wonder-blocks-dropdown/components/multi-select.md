@@ -464,7 +464,7 @@ class ControlledMultiSelectExample extends React.Component {
                     <OptionItem label="Cantaloupe" value="cantaloupe" />
                     <OptionItem label="Pineapples" value="pineapples" />
                 </MultiSelect>
-                <Strut size={Spacing.medium} />
+                <Strut size={Spacing.medium_16} />
                 <Button onClick={() => this.handleToggleMenu(true)}>
                     Open SingleSelect programatically
                 </Button>

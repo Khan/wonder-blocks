@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         actions={
             <View style={styles.row}>
                 <Button light={true} kind="secondary">Previous</Button>
-                <Strut size={Spacing.medium} />
+                <Strut size={Spacing.medium_16} />
                 <Button light={true} kind="primary">Next</Button>
             </View>
         }

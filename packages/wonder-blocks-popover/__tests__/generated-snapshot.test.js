@@ -69,25 +69,25 @@ describe("wonder-blocks-popover", () => {
         };
         const styles = StyleSheet.create({
             example: {
-                paddingTop: Spacing.medium * 15,
+                paddingTop: Spacing.medium_16 * 15,
             },
             customPopover: {
-                maxWidth: Spacing.medium * 25,
-                width: Spacing.medium * 25,
+                maxWidth: Spacing.medium_16 * 25,
+                width: Spacing.medium_16 * 25,
                 textAlign: "center",
             },
             row: {
                 flexDirection: "row",
                 justifyContent: "center",
-                padding: `${Spacing.small}px 0`,
+                padding: `${Spacing.small_12}px 0`,
             },
             action: {
                 backgroundColor: "transparent",
                 border: "none",
                 color: Color.white,
                 cursor: "pointer",
-                margin: Spacing.small,
-                padding: Spacing.xxSmall,
+                margin: Spacing.small_12,
+                padding: Spacing.xxSmall_6,
                 alignItems: "center",
                 justifyContent: "center",
             },
@@ -178,7 +178,7 @@ describe("wonder-blocks-popover", () => {
                                 Anchor element (it doesn't open the popover)
                             </Button>
                         </Popover>
-                        <Strut size={Spacing.xLarge} />
+                        <Strut size={Spacing.xLarge_32} />
                         <Button
                             onClick={() =>
                                 this.setState({
@@ -231,7 +231,7 @@ describe("wonder-blocks-popover", () => {
                                     >
                                         Previous
                                     </Button>
-                                    <Strut size={Spacing.medium} />
+                                    <Strut size={Spacing.medium_16} />
                                     <Button
                                         onClick={close}
                                         light={true}
@@ -355,7 +355,7 @@ describe("wonder-blocks-popover", () => {
                             <Button light={true} kind="secondary">
                                 Previous
                             </Button>
-                            <Strut size={Spacing.medium} />
+                            <Strut size={Spacing.medium_16} />
                             <Button light={true} kind="primary">
                                 Next
                             </Button>
@@ -417,19 +417,19 @@ describe("wonder-blocks-popover", () => {
         };
         const styles = StyleSheet.create({
             customPopover: {
-                maxWidth: Spacing.medium * 25,
-                width: Spacing.medium * 25,
+                maxWidth: Spacing.medium_16 * 25,
+                width: Spacing.medium_16 * 25,
                 textAlign: "center",
             },
             row: {
                 flexDirection: "row",
                 justifyContent: "center",
-                padding: `${Spacing.small}px 0`,
+                padding: `${Spacing.small_12}px 0`,
             },
             action: {
                 cursor: "pointer",
-                margin: Spacing.small,
-                padding: Spacing.xxSmall,
+                margin: Spacing.small_12,
+                padding: Spacing.xxSmall_6,
                 alignItems: "center",
                 justifyContent: "center",
             },

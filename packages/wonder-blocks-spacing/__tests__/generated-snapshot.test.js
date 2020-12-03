@@ -18,7 +18,7 @@ describe("wonder-blocks-spacing", () => {
             row: {
                 flexDirection: "row",
                 alignItems: "center",
-                marginBottom: Spacing.xxSmall,
+                marginBottom: Spacing.xxSmall_6,
             },
         });
         const example = (
@@ -35,31 +35,31 @@ describe("wonder-blocks-spacing", () => {
                         </View>
                         <View
                             style={{
-                                width: Spacing.xSmall,
+                                width: Spacing.xSmall_8,
                             }}
                         />
                         <View
                             style={{
-                                width: Spacing.xxxLarge,
+                                width: Spacing.xxxLarge_64,
                             }}
                         >
                             <View
                                 style={{
                                     backgroundColor: "black",
                                     width: Spacing[spaceName],
-                                    height: Spacing.xxxSmall,
+                                    height: Spacing.xxxSmall_4,
                                 }}
                             />
                         </View>
                         <View
                             style={{
-                                width: Spacing.xSmall,
+                                width: Spacing.xSmall_8,
                             }}
                         />
                         <View
                             style={{
                                 backgroundColor: "black",
-                                width: Spacing.xxxSmall,
+                                width: Spacing.xxxSmall_4,
                                 height: Spacing[spaceName],
                             }}
                         />

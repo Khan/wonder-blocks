@@ -114,7 +114,7 @@ const defaultStyles = StyleSheet.create({
         justifyContent: "flex-end"
     },
     button: {
-        marginRight: Spacing.medium
+        marginRight: Spacing.medium_16
     }
 });
 
@@ -124,7 +124,7 @@ const smallStyles = StyleSheet.create({
         width: "100%"
     },
     button: {
-        marginBottom: Spacing.medium
+        marginBottom: Spacing.medium_16
     }
 });
 

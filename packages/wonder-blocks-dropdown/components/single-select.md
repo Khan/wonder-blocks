@@ -340,7 +340,7 @@ class ControlledSingleSelectExample extends React.Component {
                     <OptionItem label="item 2" value="2" />
                     <OptionItem label="item 3" value="3" />
                 </SingleSelect>
-                <Strut size={Spacing.medium} />
+                <Strut size={Spacing.medium_16} />
                 <Button onClick={() => this.handleToggleMenu(true)}>
                     Open SingleSelect programatically
                 </Button>

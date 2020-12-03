@@ -60,7 +60,7 @@ describe("wonder-blocks-clickable", () => {
                 alignItems: "center",
             },
             h1: {
-                marginRight: Spacing.large,
+                marginRight: Spacing.large_24,
             },
         }); // NOTE: In actual code you would use BrowserRouter instead
 

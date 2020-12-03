@@ -30,11 +30,11 @@ describe("wonder-blocks-modal", () => {
     it("example 1", () => {
         const styles = StyleSheet.create({
             example: {
-                padding: Spacing.xLarge,
+                padding: Spacing.xLarge_32,
                 alignItems: "center",
             },
             title: {
-                marginBottom: Spacing.medium,
+                marginBottom: Spacing.medium_16,
             },
             modalContent: {
                 margin: "0 auto",
@@ -97,7 +97,7 @@ describe("wonder-blocks-modal", () => {
     it("example 2", () => {
         const styles = StyleSheet.create({
             example: {
-                padding: Spacing.xLarge,
+                padding: Spacing.xLarge_32,
                 alignItems: "center",
             },
             modalContent: {
@@ -201,7 +201,7 @@ describe("wonder-blocks-modal", () => {
     it("example 4", () => {
         const styles = StyleSheet.create({
             example: {
-                padding: Spacing.xLarge,
+                padding: Spacing.xLarge_32,
                 alignItems: "center",
             },
         });
@@ -214,7 +214,7 @@ describe("wonder-blocks-modal", () => {
                         <View>
                             <label>Label</label>
                             <input type="text" />
-                            <Strut size={Spacing.medium} />
+                            <Strut size={Spacing.medium_16} />
                             <Button id="initial-focus">
                                 Button to receive initial focus
                             </Button>
@@ -226,7 +226,7 @@ describe("wonder-blocks-modal", () => {
                         <Button kind="tertiary" onClick={closeModal}>
                             Cancel
                         </Button>
-                        <Strut size={Spacing.medium} />
+                        <Strut size={Spacing.medium_16} />
                         <Button>Submit</Button>
                     </React.Fragment>
                 }
@@ -255,7 +255,7 @@ describe("wonder-blocks-modal", () => {
     it("example 5", () => {
         const styles = StyleSheet.create({
             example: {
-                padding: Spacing.xLarge,
+                padding: Spacing.xLarge_32,
                 alignItems: "center",
             },
             row: {
@@ -560,7 +560,7 @@ describe("wonder-blocks-modal", () => {
                 justifyContent: "flex-end",
             },
             button: {
-                marginRight: Spacing.medium,
+                marginRight: Spacing.medium_16,
             },
         });
         const smallStyles = StyleSheet.create({
@@ -569,7 +569,7 @@ describe("wonder-blocks-modal", () => {
                 width: "100%",
             },
             button: {
-                marginBottom: Spacing.medium,
+                marginBottom: Spacing.medium_16,
             },
         });
         const styleSheets = {

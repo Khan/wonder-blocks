@@ -113,8 +113,8 @@ exports[`wonder-blocks-popover example 2 1`] = `
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
-      "padding": "undefinedpx 0",
-      "paddingTop": NaN,
+      "padding": "12px 0",
+      "paddingTop": 240,
       "position": "relative",
       "zIndex": 0,
     }
@@ -134,7 +134,7 @@ exports[`wonder-blocks-popover example 2 1`] = `
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
-        "padding": "undefinedpx 0",
+        "padding": "12px 0",
         "position": "relative",
         "zIndex": 0,
       }
@@ -220,15 +220,15 @@ exports[`wonder-blocks-popover example 2 1`] = `
       className=""
       style={
         Object {
-          "MsFlexBasis": undefined,
-          "MsFlexPreferredSize": undefined,
-          "WebkitFlexBasis": undefined,
+          "MsFlexBasis": 32,
+          "MsFlexPreferredSize": 32,
+          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": undefined,
+          "flexBasis": 32,
           "flexDirection": "column",
           "flexShrink": 0,
           "margin": 0,
@@ -236,7 +236,7 @@ exports[`wonder-blocks-popover example 2 1`] = `
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": undefined,
+          "width": 32,
           "zIndex": 0,
         }
       }
@@ -1048,15 +1048,15 @@ exports[`wonder-blocks-popover example 7 1`] = `
           className=""
           style={
             Object {
-              "MsFlexBasis": undefined,
-              "MsFlexPreferredSize": undefined,
-              "WebkitFlexBasis": undefined,
+              "MsFlexBasis": 16,
+              "MsFlexPreferredSize": 16,
+              "WebkitFlexBasis": 16,
               "alignItems": "stretch",
               "borderStyle": "solid",
               "borderWidth": 0,
               "boxSizing": "border-box",
               "display": "flex",
-              "flexBasis": undefined,
+              "flexBasis": 16,
               "flexDirection": "column",
               "flexShrink": 0,
               "margin": 0,
@@ -1064,7 +1064,7 @@ exports[`wonder-blocks-popover example 7 1`] = `
               "minWidth": 0,
               "padding": 0,
               "position": "relative",
-              "width": undefined,
+              "width": 16,
               "zIndex": 0,
             }
           }
@@ -1542,7 +1542,7 @@ exports[`wonder-blocks-popover example 10 1`] = `
       "margin": 0,
       "minHeight": 0,
       "minWidth": 0,
-      "padding": "undefinedpx 0",
+      "padding": "12px 0",
       "position": "relative",
       "zIndex": 0,
     }
@@ -1565,14 +1565,14 @@ exports[`wonder-blocks-popover example 10 1`] = `
         "flexDirection": "column",
         "justifyContent": "center",
         "margin": 0,
-        "maxWidth": NaN,
+        "maxWidth": 400,
         "minHeight": 0,
         "minWidth": 0,
         "overflow": "hidden",
         "padding": 24,
         "position": "relative",
         "textAlign": "center",
-        "width": NaN,
+        "width": 400,
         "zIndex": 0,
       }
     }
@@ -1698,7 +1698,7 @@ exports[`wonder-blocks-popover example 10 1`] = `
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
-            "padding": "undefinedpx 0",
+            "padding": "12px 0",
             "position": "relative",
             "zIndex": 0,
           }
@@ -1716,10 +1716,10 @@ exports[`wonder-blocks-popover example 10 1`] = `
               "display": "flex",
               "flexDirection": "column",
               "justifyContent": "center",
-              "margin": undefined,
+              "margin": 12,
               "minHeight": 0,
               "minWidth": 0,
-              "padding": undefined,
+              "padding": 6,
               "position": "relative",
               "zIndex": 0,
             }
@@ -1773,10 +1773,10 @@ exports[`wonder-blocks-popover example 10 1`] = `
               "display": "flex",
               "flexDirection": "column",
               "justifyContent": "center",
-              "margin": undefined,
+              "margin": 12,
               "minHeight": 0,
               "minWidth": 0,
-              "padding": undefined,
+              "padding": 6,
               "position": "relative",
               "zIndex": 0,
             }
@@ -1830,10 +1830,10 @@ exports[`wonder-blocks-popover example 10 1`] = `
               "display": "flex",
               "flexDirection": "column",
               "justifyContent": "center",
-              "margin": undefined,
+              "margin": 12,
               "minHeight": 0,
               "minWidth": 0,
-              "padding": undefined,
+              "padding": 6,
               "position": "relative",
               "zIndex": 0,
             }

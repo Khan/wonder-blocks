@@ -124,7 +124,7 @@ class Example extends React.Component {
         if (this.state.error) {
             return (
                 <React.Fragment>
-                    <Strut size={Spacing.small} />
+                    <Strut size={Spacing.small_12} />
                     <Body>We can't show you anything useful in client-side mode</Body>
                 </React.Fragment>
             );
@@ -135,7 +135,7 @@ class Example extends React.Component {
             : "Data requested...";
         return (
             <React.Fragment>
-                <Strut size={Spacing.small} />
+                <Strut size={Spacing.small_12} />
                 <TrackData>
                     <Data handler={this._handler} options={{}}>
                         {({loading, data, error}) => (
@@ -146,7 +146,7 @@ class Example extends React.Component {
                         )}
                     </Data>
                 </TrackData>
-                <Strut size={Spacing.small} />
+                <Strut size={Spacing.small_12} />
                 <View>
                     <Body>
                         The above components requested data, but we're server-side,
@@ -154,20 +154,20 @@ class Example extends React.Component {
                         In this example, we've also called `fulfillAllDataRequests`
                         to fetch that tracked data.
                     </Body>
-                    <Strut size={Spacing.small} />
+                    <Strut size={Spacing.small_12} />
                     <Body>
                         In about 3 seconds, it will appear below. Notice that
                         when it does, the above still doesn't update. That's
                         because during SSR, the data is not updated in the
                         rendered tree.
                     </Body>
-                    <Strut size={Spacing.small} />
+                    <Strut size={Spacing.small_12} />
                     <Body>
                         If you click to remount after the data appears, we'll
                         rerender with the now cached data, and above should
                         update accordingly.
                     </Body>
-                    <Strut size={Spacing.small} />
+                    <Strut size={Spacing.small_12} />
                     <BodyMonospace>{data}</BodyMonospace>
                 </View>
             </React.Fragment>
@@ -182,7 +182,7 @@ class Example extends React.Component {
                         ? (
                             <React.Fragment>
                                 <Button kind={"secondary"} onClick={() => this.setClientMode()}>Back to Client-side Mode (reloads page)</Button>
-                                <Strut size={Spacing.small} />
+                                <Strut size={Spacing.small_12} />
                                 <Button kind={"secondary"} onClick={() => this.setServerMode()}>Re-mount</Button>
                             </React.Fragment>
                         ) : (

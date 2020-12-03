@@ -1112,15 +1112,15 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
     className=""
     style={
       Object {
-        "MsFlexBasis": undefined,
-        "MsFlexPreferredSize": undefined,
-        "WebkitFlexBasis": undefined,
+        "MsFlexBasis": 16,
+        "MsFlexPreferredSize": 16,
+        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": undefined,
+        "flexBasis": 16,
         "flexDirection": "column",
         "flexShrink": 0,
         "margin": 0,
@@ -1128,7 +1128,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": undefined,
+        "width": 16,
         "zIndex": 0,
       }
     }
@@ -2270,15 +2270,15 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
     className=""
     style={
       Object {
-        "MsFlexBasis": undefined,
-        "MsFlexPreferredSize": undefined,
-        "WebkitFlexBasis": undefined,
+        "MsFlexBasis": 16,
+        "MsFlexPreferredSize": 16,
+        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": undefined,
+        "flexBasis": 16,
         "flexDirection": "column",
         "flexShrink": 0,
         "margin": 0,
@@ -2286,7 +2286,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": undefined,
+        "width": 16,
         "zIndex": 0,
       }
     }
@@ -3639,15 +3639,15 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
     className=""
     style={
       Object {
-        "MsFlexBasis": undefined,
-        "MsFlexPreferredSize": undefined,
-        "WebkitFlexBasis": undefined,
+        "MsFlexBasis": 16,
+        "MsFlexPreferredSize": 16,
+        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": undefined,
+        "flexBasis": 16,
         "flexDirection": "column",
         "flexShrink": 0,
         "margin": 0,
@@ -3655,7 +3655,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": undefined,
+        "width": 16,
         "zIndex": 0,
       }
     }
