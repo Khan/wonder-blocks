@@ -117,7 +117,7 @@ import {
 
 ## Lato (Latin and Latin extended) for Vietnamese
 
-This is another example where we use Lato latin for Vietnamese. In this special
+This is another example where we use Lato latin for Vietnamese. In this specific
 case, we also use the extended glyphs so we can add full support to Vietnamese
 using this font.
 

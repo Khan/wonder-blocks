@@ -1151,3 +1151,25 @@ exports[`wonder-blocks-typography example 6 1`] = `
 };
 </span>
 `;
+
+exports[`wonder-blocks-typography example 7 1`] = `
+<span
+  className=""
+  style={
+    Object {
+      "MozOsxFontSmoothing": "grayscale",
+      "WebkitFontSmoothing": "antialiased",
+      "display": "block",
+      "fontFamily": "Inconsolata, monospace",
+      "fontSize": 17,
+      "fontWeight": 400,
+      "lineHeight": "22px",
+      "whiteSpace": "pre",
+    }
+  }
+>
+  const things = {
+    areTested: "This is my new Code element with my code.",
+};
+</span>
+`;
