@@ -70,7 +70,9 @@ import {Title} from "@khanacademy/wonder-blocks-typography";
 <Title aria-label="Accessible Title">Title</Title>
 ```
 
-## Lato is use for Latin and Cyrillic languages
+## Lato is used for Latin and Cyrillic languages
+
+This is a example where we use Lato for Russian:
 
 ```js
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -94,24 +96,72 @@ import {
 } from "@khanacademy/wonder-blocks-typography";
 
 <View>
-    <Title>Привет</Title>
-    <HeadingLarge>Привет</HeadingLarge>
-    <HeadingMedium>Привет</HeadingMedium>
-    <HeadingSmall>Привет</HeadingSmall>
-    <HeadingXSmall>Привет</HeadingXSmall>
-    <BodySerifBlock>Привет</BodySerifBlock>
-    <BodySerif>Привет</BodySerif>
-    <BodyMonospace>Привет</BodyMonospace>
-    <Body>Привет</Body>
-    <LabelLarge>Привет</LabelLarge>
-    <LabelMedium>Привет</LabelMedium>
-    <LabelSmall>Привет</LabelSmall>
-    <LabelXSmall>Привет</LabelXSmall>
-    <Tagline>Привет</Tagline>
-    <Caption>Привет</Caption>
-    <Footnote>Привет</Footnote>
+    <Title>Для каждого ученика, независимо от возраста. Реальные результаты!</Title>
+    <HeadingLarge>Для каждого ученика, независимо от возраста. Реальные результаты!</HeadingLarge>
+    <HeadingMedium>Для каждого ученика, независимо от возраста. Реальные результаты!</HeadingMedium>
+    <HeadingSmall>Для каждого ученика, независимо от возраста. Реальные результаты!</HeadingSmall>
+    <HeadingXSmall>Для каждого ученика, независимо от возраста. Реальные результаты!</HeadingXSmall>
+    <BodySerifBlock>Для каждого ученика, независимо от возраста. Реальные результаты!</BodySerifBlock>
+    <BodySerif>Для каждого ученика, независимо от возраста. Реальные результаты!</BodySerif>
+    <BodyMonospace>Для каждого ученика, независимо от возраста. Реальные результаты!</BodyMonospace>
+    <Body>Для каждого ученика, независимо от возраста. Реальные результаты!</Body>
+    <LabelLarge>Для каждого ученика, независимо от возраста. Реальные результаты!</LabelLarge>
+    <LabelMedium>Для каждого ученика, независимо от возраста. Реальные результаты!</LabelMedium>
+    <LabelSmall>Для каждого ученика, независимо от возраста. Реальные результаты!</LabelSmall>
+    <LabelXSmall>Для каждого ученика, независимо от возраста. Реальные результаты!</LabelXSmall>
+    <Tagline>Для каждого ученика, независимо от возраста. Реальные результаты!</Tagline>
+    <Caption>Для каждого ученика, независимо от возраста. Реальные результаты!</Caption>
+    <Footnote>Для каждого ученика, независимо от возраста. Реальные результаты!</Footnote>
 </View>
 ```
+
+## Lato (Latin and Latin extended) for Vietnamese
+
+This is another example where we use Lato latin for Vietnamese. In this special
+case, we also use the extended glyphs so we can add full support to Vietnamese
+using this font.
+
+```js
+import {View} from "@khanacademy/wonder-blocks-core";
+import {
+    Title,
+    HeadingLarge,
+    HeadingMedium,
+    HeadingSmall,
+    HeadingXSmall,
+    BodySerifBlock,
+    BodySerif,
+    BodyMonospace,
+    Body,
+    LabelLarge,
+    LabelMedium,
+    LabelSmall,
+    LabelXSmall,
+    Tagline,
+    Caption,
+    Footnote
+} from "@khanacademy/wonder-blocks-typography";
+
+<View>
+    <Title>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</Title>
+    <HeadingLarge>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</HeadingLarge>
+    <HeadingMedium>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</HeadingMedium>
+    <HeadingSmall>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</HeadingSmall>
+    <HeadingXSmall>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</HeadingXSmall>
+    <BodySerifBlock>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</BodySerifBlock>
+    <BodySerif>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</BodySerif>
+    <BodyMonospace>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</BodyMonospace>
+    <Body>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</Body>
+    <LabelLarge>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</LabelLarge>
+    <LabelMedium>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</LabelMedium>
+    <LabelSmall>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</LabelSmall>
+    <LabelXSmall>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</LabelXSmall>
+    <Tagline>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</Tagline>
+    <Caption>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</Caption>
+    <Footnote>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</Footnote>
+</View>
+```
+
 
 ## Noto for non-Latin languages
 
