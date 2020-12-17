@@ -423,7 +423,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </h1>
   <h2
     className=""
@@ -447,7 +447,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </h2>
   <h3
     className=""
@@ -471,7 +471,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </h3>
   <h4
     className=""
@@ -489,7 +489,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </h4>
   <h4
     className=""
@@ -509,7 +509,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </h4>
   <span
     className=""
@@ -525,7 +525,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </span>
   <span
     className=""
@@ -541,7 +541,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </span>
   <span
     className=""
@@ -557,7 +557,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </span>
   <span
     className=""
@@ -573,7 +573,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </span>
   <span
     className=""
@@ -589,7 +589,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </span>
   <span
     className=""
@@ -605,7 +605,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </span>
   <span
     className=""
@@ -621,7 +621,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </span>
   <span
     className=""
@@ -637,7 +637,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </span>
   <span
     className=""
@@ -653,7 +653,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </span>
   <span
     className=""
@@ -669,7 +669,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </span>
   <span
     className=""
@@ -685,12 +685,321 @@ exports[`wonder-blocks-typography example 4 1`] = `
       }
     }
   >
-    Привет
+    Для каждого ученика, независимо от возраста. Реальные результаты!
   </span>
 </div>
 `;
 
 exports[`wonder-blocks-typography example 5 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <h1
+    className=""
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 36,
+          "lineHeight": "40px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 900,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </h1>
+  <h2
+    className=""
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 28,
+          "lineHeight": "32px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </h2>
+  <h3
+    className=""
+    style={
+      Object {
+        "@media (maxWidth: 1023px)": Object {
+          "fontSize": 22,
+          "lineHeight": "26px",
+        },
+        "@media (minWidth: 1024px)": Object {
+          "fontSize": 24,
+          "lineHeight": "28px",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontWeight": 700,
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </h3>
+  <h4
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 20,
+        "fontWeight": 700,
+        "lineHeight": "24px",
+        "marginBottom": 0,
+        "marginTop": 0,
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </h4>
+  <h4
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 700,
+        "letterSpacing": 0.6,
+        "lineHeight": "16px",
+        "marginBottom": 0,
+        "marginTop": 0,
+        "textTransform": "uppercase",
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </h4>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontSize": 22,
+        "fontWeight": 400,
+        "lineHeight": "28px",
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontSize": 18,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Inconsolata, monospace",
+        "fontSize": 17,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "22px",
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 700,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "16px",
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 20,
+        "fontWeight": 400,
+        "lineHeight": "24px",
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </span>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 12,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.
+  </span>
+</div>
+`;
+
+exports[`wonder-blocks-typography example 6 1`] = `
 <div
   className=""
   style={
@@ -1130,7 +1439,7 @@ exports[`wonder-blocks-typography example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-typography example 6 1`] = `
+exports[`wonder-blocks-typography example 7 1`] = `
 <span
   className=""
   style={

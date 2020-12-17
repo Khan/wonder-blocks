@@ -235,10 +235,8 @@ module.exports = {
         head: {
             links: [
                 {
-                    // Load Lato from Google Fonts.
                     rel: "stylesheet",
-                    href:
-                        "https://fonts.googleapis.com/css?family=Lato:400,400i,700,900",
+                    href: "lato.css",
                 },
                 {
                     // Load Inconsolata from Google Fonts.
