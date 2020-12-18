@@ -1,8 +1,8 @@
 // @flow
 // A menu that consists of action items
-
 import * as React from "react";
 import ReactDOM from "react-dom";
+import PopperJS from "popper.js";
 import {Popper} from "react-popper";
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
@@ -20,7 +20,6 @@ import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 // we should either contribute this code to the PopperJS component, or its
 // own non-wonder-blocks package.
 // $FlowIgnore
-import visibilityModifierDefaultConfig from "../../../shared-unpackaged/visibility-modifier.js"; // eslint-disable-line import/no-restricted-paths
 import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 import SeparatorItem from "./separator-item.js";
 import SearchTextInput from "./search-text-input.js";
@@ -728,11 +727,59 @@ class DropdownCore extends React.Component<Props, State> {
                     placement={
                         alignment === "left" ? "bottom-start" : "bottom-end"
                     }
+                    positionFixed={true}
                     modifiers={{
-                        wbVisibility: visibilityModifierDefaultConfig,
+                        // STOPSHIP(WEB-962): We have to disable this custom
+                        // modifier in order to fix the cutoff issue.
+                        // wbVisibility: visibilityModifierDefaultConfig,
                         preventOverflow: {
                             boundariesElement: "viewport",
                             escapeWithReference: true,
+                        },
+                        offset: {
+                            enabled: true,
+                            // Execute the offset modifier only after running
+                            // preventOverflow and flip.
+                            order:
+                                PopperJS.Defaults.modifiers["flip"].order + 1,
+                            // Override the offset modifier to fix the overlap
+                            // issue.
+                            fn: (data, options) => {
+                                const {
+                                    offsets: {popper},
+                                } = data;
+                                const preventOverflow = data.instance.modifiers.find(
+                                    (modifier) =>
+                                        modifier.name === "preventOverflow",
+                                );
+                                const {top, height} = popper;
+
+                                // Popper is opened towards the top.
+                                if (data.flipped) {
+                                    // the element is overlapping the top
+                                    // boundary.
+                                    if (top < 0) {
+                                        popper.top = 0;
+                                    }
+                                    // Popper is opened towards the bottom.
+                                } else {
+                                    // Check if the popper is overlapping with
+                                    // the bottom boundary.
+                                    const difference =
+                                        preventOverflow.boundaries.height -
+                                        (top + height);
+                                    // There's some overlap, so we need to
+                                    // re-adjust the popper position to display
+                                    // it properly.
+                                    if (difference < 0) {
+                                        popper.top += difference;
+                                    }
+                                }
+
+                                // Update popper position (if overlaps)
+                                data.offsets.popper = popper;
+                                return data;
+                            },
                         },
                     }}
                 >
