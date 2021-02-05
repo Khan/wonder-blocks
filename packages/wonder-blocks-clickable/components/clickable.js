@@ -63,20 +63,7 @@ type CommonProps = {|
      * Specifies the type of relationship between the current document and the
      * linked document. Should only be used when `href` is specified.
      */
-    rel?:
-        | "alternate"
-        | "author"
-        | "bookmark"
-        | "external"
-        | "help"
-        | "license"
-        | "next"
-        | "nofollow"
-        | "noreferrer"
-        | "noopener"
-        | "prev"
-        | "search"
-        | "tag",
+    rel?: string,
 
     /**
      * The role of the component, can be a role of type ClickableRole
@@ -270,12 +257,12 @@ export default class Clickable extends React.Component<Props> {
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
             >
-                {(state, handlers) =>
+                {(state, childrenProps) =>
                     this.getCorrectTag(state, {
                         ...restProps,
                         "data-test-id": testId,
                         style: [styles.reset, style],
-                        ...handlers,
+                        ...childrenProps,
                     })
                 }
             </ClickableBehavior>

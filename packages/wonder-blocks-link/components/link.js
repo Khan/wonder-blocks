@@ -50,20 +50,7 @@ export type SharedProps = {|
      * Specifies the type of relationship between the current document and the
      * linked document. Should only be used when `href` is specified.
      */
-    rel?:
-        | "alternate"
-        | "author"
-        | "bookmark"
-        | "external"
-        | "help"
-        | "license"
-        | "next"
-        | "nofollow"
-        | "noreferrer"
-        | "noopener"
-        | "prev"
-        | "search"
-        | "tag",
+    rel?: string,
 
     /**
      * Set the tabindex attribute on the rendered element.
@@ -213,12 +200,12 @@ export default class Link extends React.Component<SharedProps> {
                 onKeyDown={onKeyDown}
                 onKeyUp={onKeyUp}
             >
-                {(state, {tabIndex: clickableTabIndex, ...handlers}) => {
+                {(state, {tabIndex: clickableTabIndex, ...childrenProps}) => {
                     return (
                         <LinkCore
                             {...sharedProps}
                             {...state}
-                            {...handlers}
+                            {...childrenProps}
                             skipClientNav={skipClientNav}
                             href={href}
                             target={target}

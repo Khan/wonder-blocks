@@ -16,14 +16,14 @@ import Icon from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {
-    ClickableHandlers,
+    ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import type {SharedProps} from "./button.js";
 
 type Props = {|
     ...SharedProps,
-    ...ClickableHandlers,
+    ...ChildrenProps,
     ...ClickableState,
     href?: string,
     type?: "submit",
@@ -56,7 +56,7 @@ export default class ButtonCore extends React.Component<Props> {
             icon,
             id,
             waiting: _,
-            ...handlers
+            ...restProps
         } = this.props;
         const {router} = this.context;
 
@@ -97,7 +97,7 @@ export default class ButtonCore extends React.Component<Props> {
             id: id,
             role: "button",
             style: [defaultStyle, style],
-            ...handlers,
+            ...restProps,
         };
 
         const Label = size === "small" ? LabelSmall : LabelLarge;

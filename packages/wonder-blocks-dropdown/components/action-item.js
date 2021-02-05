@@ -144,7 +144,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                 role={role}
                 target={target}
             >
-                {(state, handlers) => {
+                {(state, childrenProps) => {
                     const {pressed, hovered, focused} = state;
 
                     const defaultStyle = [
@@ -163,7 +163,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                         disabled,
                         role,
                         style: [defaultStyle],
-                        ...handlers,
+                        ...childrenProps,
                     };
 
                     const children = (

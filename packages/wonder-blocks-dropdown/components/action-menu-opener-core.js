@@ -61,7 +61,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
             testId,
             opened,
             "aria-label": ariaLabel,
-            ...handlers
+            ...restProps
         } = this.props;
 
         const buttonColor = SemanticColor.controlDefault;
@@ -88,7 +88,7 @@ export default class ActionMenuOpenerCore extends React.Component<Props> {
                 disabled={disabled}
                 style={defaultStyle}
                 type="button"
-                {...handlers}
+                {...restProps}
                 data-test-id={testId}
             >
                 <View

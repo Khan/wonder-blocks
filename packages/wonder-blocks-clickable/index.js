@@ -1,6 +1,6 @@
 // @flow
 import type {
-    ClickableHandlers,
+    ChildrenProps,
     ClickableState,
     ClickableRole,
 } from "./components/clickable-behavior.js";
@@ -11,4 +11,4 @@ export {default as getClickableBehavior} from "./util/get-clickable-behavior.js"
 
 export {Clickable as default};
 
-export type {ClickableHandlers, ClickableState, ClickableRole};
+export type {ChildrenProps, ClickableState, ClickableRole};

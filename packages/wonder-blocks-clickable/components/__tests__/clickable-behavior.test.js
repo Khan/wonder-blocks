@@ -38,8 +38,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -52,8 +52,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -70,8 +70,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -94,8 +94,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -110,8 +110,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -132,8 +132,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -155,8 +155,8 @@ describe("ClickableBehavior", () => {
 
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -181,8 +181,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -220,9 +220,12 @@ describe("ClickableBehavior", () => {
                 href="https://www.khanacademy.org"
                 role="link"
             >
-                {(state, handlers) => {
+                {(state, childrenProps) => {
                     return (
-                        <a href="https://www.khanacademy.org" {...handlers}>
+                        <a
+                            href="https://www.khanacademy.org"
+                            {...childrenProps}
+                        >
                             Label
                         </a>
                     );
@@ -251,8 +254,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -264,8 +267,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -277,8 +280,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={true} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -341,9 +344,12 @@ describe("ClickableBehavior", () => {
                 disabled={true}
                 href="https://www.khanacademy.org"
             >
-                {(state, handlers) => {
+                {(state, childrenProps) => {
                     return (
-                        <a href="https://www.khanacademy.org" {...handlers}>
+                        <a
+                            href="https://www.khanacademy.org"
+                            {...childrenProps}
+                        >
                             Label
                         </a>
                     );
@@ -365,8 +371,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -407,8 +413,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -430,12 +436,15 @@ describe("ClickableBehavior", () => {
                     onClick={(e) => onClick(e)}
                     role="link"
                 >
-                    {(state, handlers) => {
+                    {(state, childrenProps) => {
                         // The base element here doesn't matter in this testing
                         // environment, but the simulated events in the test are in
                         // line with what browsers do for this element.
                         return (
-                            <a href="https://khanacademy.org/" {...handlers}>
+                            <a
+                                href="https://khanacademy.org/"
+                                {...childrenProps}
+                            >
                                 Label
                             </a>
                         );
@@ -479,12 +488,15 @@ describe("ClickableBehavior", () => {
                     safeWithNav={() => Promise.resolve()}
                     role="link"
                 >
-                    {(state, handlers) => {
+                    {(state, childrenProps) => {
                         // The base element here doesn't matter in this testing
                         // environment, but the simulated events in the test are in
                         // line with what browsers do for this element.
                         return (
-                            <a href="https://khanacademy.org/" {...handlers}>
+                            <a
+                                href="https://khanacademy.org/"
+                                {...childrenProps}
+                            >
                                 Label
                             </a>
                         );
@@ -508,12 +520,15 @@ describe("ClickableBehavior", () => {
                     safeWithNav={() => Promise.resolve()}
                     role="link"
                 >
-                    {(state, handlers) => {
+                    {(state, childrenProps) => {
                         // The base element here doesn't matter in this testing
                         // environment, but the simulated events in the test are in
                         // line with what browsers do for this element.
                         return (
-                            <a href="https://khanacademy.org/" {...handlers}>
+                            <a
+                                href="https://khanacademy.org/"
+                                {...childrenProps}
+                            >
                                 {state.waiting ? "waiting" : "Label"}
                             </a>
                         );
@@ -536,12 +551,12 @@ describe("ClickableBehavior", () => {
                     onClick={(e) => e.preventDefault()}
                     role="checkbox"
                 >
-                    {(state, handlers) => {
+                    {(state, childrenProps) => {
                         // The base element here doesn't matter in this testing
                         // environment, but the simulated events in the test are in
                         // line with what browsers do for this element.
                         return (
-                            <button id="test-button" {...handlers}>
+                            <button id="test-button" {...childrenProps}>
                                 label
                             </button>
                         );
@@ -568,11 +583,11 @@ describe("ClickableBehavior", () => {
         const checkbox = mount(
             // triggerOnEnter may be false for some elements e.g. checkboxes
             <ClickableBehavior onClick={(e) => onClick(e)} role="checkbox">
-                {(state, handlers) => {
+                {(state, childrenProps) => {
                     // The base element here doesn't matter in this testing
                     // environment, but the simulated events in the test are in
                     // line with what browsers do for this element.
-                    return <input type="checkbox" {...handlers} />;
+                    return <input type="checkbox" {...childrenProps} />;
                 }}
             </ClickableBehavior>,
         );
@@ -600,11 +615,11 @@ describe("ClickableBehavior", () => {
         // Use mount instead of a shallow render to trigger event defaults
         const button = mount(
             <ClickableBehavior onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
+                {(state, childrenProps) => {
                     // The base element here doesn't matter in this testing
                     // environment, but the simulated events in the test are in
                     // line with what browsers do for this element.
-                    return <button {...handlers}>Label</button>;
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -628,7 +643,7 @@ describe("ClickableBehavior", () => {
         expect(onClick).toHaveBeenCalledTimes(2);
     });
 
-    // This tests the case where we attach the handlers to an element that is
+    // This tests the case where we attach the childrenProps to an element that is
     // not canonically clickable (like a div). The browser doesn't naturally
     // trigger keyboard click events for such an element.
     it("calls onClick listener on space/enter with a non-usually clickable element", () => {
@@ -636,11 +651,11 @@ describe("ClickableBehavior", () => {
         // Use mount instead of a shallow render to trigger event defaults
         const div = mount(
             <ClickableBehavior onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
+                {(state, childrenProps) => {
                     // The base element here doesn't matter in this testing
                     // environment, but the simulated events in the test are in
                     // line with what browsers do for this element.
-                    return <div {...handlers}>Label</div>;
+                    return <div {...childrenProps}>Label</div>;
                 }}
             </ClickableBehavior>,
         );
@@ -691,8 +706,8 @@ describe("ClickableBehavior", () => {
         const onClick = jest.fn();
         const button = shallow(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
-                {(state, handlers) => {
-                    return <button {...handlers}>Label</button>;
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
@@ -720,11 +735,11 @@ describe("ClickableBehavior", () => {
         // Use mount instead of a shallow render to trigger event defaults
         const checkbox = mount(
             <ClickableBehavior onClick={(e) => onClick(e)} role="checkbox">
-                {(state, handlers) => {
+                {(state, childrenProps) => {
                     // The base element here doesn't matter in this testing
                     // environment, but the simulated events in the test are in
                     // line with what browsers do for this element.
-                    return <input type="checkbox" {...handlers} />;
+                    return <input type="checkbox" {...childrenProps} />;
                 }}
             </ClickableBehavior>,
         );
@@ -757,12 +772,12 @@ describe("ClickableBehavior", () => {
                             onClick={(e) => {}}
                             role="checkbox"
                         >
-                            {(state, handlers) => {
+                            {(state, childrenProps) => {
                                 // The base element here doesn't matter in this testing
                                 // environment, but the simulated events in the test are in
                                 // line with what browsers do for this element.
                                 return (
-                                    <button id="test-button" {...handlers}>
+                                    <button id="test-button" {...childrenProps}>
                                         label
                                     </button>
                                 );
@@ -797,12 +812,15 @@ describe("ClickableBehavior", () => {
                                 role="checkbox"
                                 beforeNav={() => Promise.resolve()}
                             >
-                                {(state, handlers) => {
+                                {(state, childrenProps) => {
                                     // The base element here doesn't matter in this testing
                                     // environment, but the simulated events in the test are in
                                     // line with what browsers do for this element.
                                     return (
-                                        <button id="test-button" {...handlers}>
+                                        <button
+                                            id="test-button"
+                                            {...childrenProps}
+                                        >
                                             {state.waiting
                                                 ? "waiting"
                                                 : "label"}
@@ -839,12 +857,15 @@ describe("ClickableBehavior", () => {
                                 role="checkbox"
                                 beforeNav={() => Promise.resolve()}
                             >
-                                {(state, handlers) => {
+                                {(state, childrenProps) => {
                                     // The base element here doesn't matter in this testing
                                     // environment, but the simulated events in the test are in
                                     // line with what browsers do for this element.
                                     return (
-                                        <button id="test-button" {...handlers}>
+                                        <button
+                                            id="test-button"
+                                            {...childrenProps}
+                                        >
                                             {state.waiting
                                                 ? "waiting"
                                                 : "label"}
@@ -880,12 +901,15 @@ describe("ClickableBehavior", () => {
                                 role="checkbox"
                                 beforeNav={() => Promise.reject()}
                             >
-                                {(state, handlers) => {
+                                {(state, childrenProps) => {
                                     // The base element here doesn't matter in this testing
                                     // environment, but the simulated events in the test are in
                                     // line with what browsers do for this element.
                                     return (
-                                        <button id="test-button" {...handlers}>
+                                        <button
+                                            id="test-button"
+                                            {...childrenProps}
+                                        >
                                             label
                                         </button>
                                     );
@@ -922,12 +946,15 @@ describe("ClickableBehavior", () => {
                                 beforeNav={() => Promise.resolve()}
                                 safeWithNav={safeWithNavMock}
                             >
-                                {(state, handlers) => {
+                                {(state, childrenProps) => {
                                     // The base element here doesn't matter in this testing
                                     // environment, but the simulated events in the test are in
                                     // line with what browsers do for this element.
                                     return (
-                                        <button id="test-button" {...handlers}>
+                                        <button
+                                            id="test-button"
+                                            {...childrenProps}
+                                        >
                                             {state.waiting
                                                 ? "waiting"
                                                 : "label"}
@@ -965,12 +992,12 @@ describe("ClickableBehavior", () => {
                             role="checkbox"
                             safeWithNav={() => Promise.resolve()}
                         >
-                            {(state, handlers) => {
+                            {(state, childrenProps) => {
                                 // The base element here doesn't matter in this testing
                                 // environment, but the simulated events in the test are in
                                 // line with what browsers do for this element.
                                 return (
-                                    <button id="test-button" {...handlers}>
+                                    <button id="test-button" {...childrenProps}>
                                         label
                                     </button>
                                 );
@@ -1003,12 +1030,12 @@ describe("ClickableBehavior", () => {
                             onClick={(e) => e.preventDefault()}
                             role="checkbox"
                         >
-                            {(state, handlers) => {
+                            {(state, childrenProps) => {
                                 // The base element here doesn't matter in this testing
                                 // environment, but the simulated events in the test are in
                                 // line with what browsers do for this element.
                                 return (
-                                    <button id="test-button" {...handlers}>
+                                    <button id="test-button" {...childrenProps}>
                                         label
                                     </button>
                                 );
@@ -1046,9 +1073,12 @@ describe("ClickableBehavior", () => {
                     role="link"
                     target="_blank"
                 >
-                    {(state, handlers) => {
+                    {(state, childrenProps) => {
                         return (
-                            <a href="https://www.khanacademy.org" {...handlers}>
+                            <a
+                                href="https://www.khanacademy.org"
+                                {...childrenProps}
+                            >
                                 Label
                             </a>
                         );
@@ -1077,9 +1107,12 @@ describe("ClickableBehavior", () => {
                     target="_blank"
                     safeWithNav={safeWithNavMock}
                 >
-                    {(state, handlers) => {
+                    {(state, childrenProps) => {
                         return (
-                            <a href="https://www.khanacademy.org" {...handlers}>
+                            <a
+                                href="https://www.khanacademy.org"
+                                {...childrenProps}
+                            >
                                 Label
                             </a>
                         );
@@ -1108,9 +1141,12 @@ describe("ClickableBehavior", () => {
                     target="_blank"
                     safeWithNav={safeWithNavMock}
                 >
-                    {(state, handlers) => {
+                    {(state, childrenProps) => {
                         return (
-                            <a href="https://www.khanacademy.org" {...handlers}>
+                            <a
+                                href="https://www.khanacademy.org"
+                                {...childrenProps}
+                            >
                                 Label
                             </a>
                         );
@@ -1135,11 +1171,11 @@ describe("ClickableBehavior", () => {
                         role="link"
                         target="_blank"
                     >
-                        {(state, handlers) => {
+                        {(state, childrenProps) => {
                             return (
                                 <a
                                     href="https://www.khanacademy.org"
-                                    {...handlers}
+                                    {...childrenProps}
                                 >
                                     Label
                                 </a>
@@ -1171,11 +1207,11 @@ describe("ClickableBehavior", () => {
                         target="_blank"
                         safeWithNav={safeWithNavMock}
                     >
-                        {(state, handlers) => {
+                        {(state, childrenProps) => {
                             return (
                                 <a
                                     href="https://www.khanacademy.org"
-                                    {...handlers}
+                                    {...childrenProps}
                                 >
                                     Label
                                 </a>
@@ -1207,11 +1243,11 @@ describe("ClickableBehavior", () => {
                         target="_blank"
                         safeWithNav={safeWithNavMock}
                     >
-                        {(state, handlers) => {
+                        {(state, childrenProps) => {
                             return (
                                 <a
                                     href="https://www.khanacademy.org"
-                                    {...handlers}
+                                    {...childrenProps}
                                 >
                                     Label
                                 </a>
@@ -1226,6 +1262,54 @@ describe("ClickableBehavior", () => {
 
             // Assert
             expect(safeWithNavMock).toHaveBeenCalled();
+        });
+    });
+
+    describe("rel", () => {
+        it("should use the 'rel' that was passed in", () => {
+            // Arrange
+            const childrenMock = jest.fn().mockImplementation(() => null);
+            mount(
+                <ClickableBehavior
+                    href="https://www.khanacademy.org"
+                    rel="something_else"
+                    target="_blank"
+                >
+                    {childrenMock}
+                </ClickableBehavior>,
+            );
+
+            const childrenProps = childrenMock.mock.calls[0][1];
+            expect(childrenProps.rel).toEqual("something_else");
+        });
+
+        it("should use 'noopener noreferrer' as a default when target='_blank'", () => {
+            // Arrange
+            const childrenMock = jest.fn().mockImplementation(() => null);
+            mount(
+                <ClickableBehavior
+                    href="https://www.khanacademy.org"
+                    target="_blank"
+                >
+                    {childrenMock}
+                </ClickableBehavior>,
+            );
+
+            const childrenProps = childrenMock.mock.calls[0][1];
+            expect(childrenProps.rel).toEqual("noopener noreferrer");
+        });
+
+        it("should not use the default if target != '_blank'", () => {
+            // Arrange
+            const childrenMock = jest.fn().mockImplementation(() => null);
+            mount(
+                <ClickableBehavior href="https://www.khanacademy.org">
+                    {childrenMock}
+                </ClickableBehavior>,
+            );
+
+            const childrenProps = childrenMock.mock.calls[0][1];
+            expect(childrenProps.rel).toBeUndefined();
         });
     });
 });
