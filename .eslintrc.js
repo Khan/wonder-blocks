@@ -1,6 +1,6 @@
 module.exports = {
     extends: ["@khanacademy"],
-    plugins: ["import", "promise", "monorepo"],
+    plugins: ["import", "jest", "promise", "monorepo"],
     settings: {
         react: {
             version: "detect",
@@ -37,6 +37,7 @@ module.exports = {
                 ignorePackages: true,
             },
         ],
+        "jest/no-focused-tests": "error",
         "promise/always-return": "error",
         "promise/no-return-wrap": "error",
         "promise/param-names": "error",

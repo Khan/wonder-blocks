@@ -1036,28 +1036,196 @@ describe("ClickableBehavior", () => {
         });
     });
 
-    it("opens a new tab when target='_blank'", () => {
-        const link = mount(
-            <ClickableBehavior
-                disabled={false}
-                href="https://www.khanacademy.org"
-                role="link"
-                target="_blank"
-            >
-                {(state, handlers) => {
-                    return (
-                        <a href="https://www.khanacademy.org" {...handlers}>
-                            Label
-                        </a>
-                    );
-                }}
-            </ClickableBehavior>,
-        );
-        link.simulate("click");
+    describe("target='_blank'", () => {
+        it("opens a new tab", () => {
+            // Arrange
+            const link = mount(
+                <ClickableBehavior
+                    disabled={false}
+                    href="https://www.khanacademy.org"
+                    role="link"
+                    target="_blank"
+                >
+                    {(state, handlers) => {
+                        return (
+                            <a href="https://www.khanacademy.org" {...handlers}>
+                                Label
+                            </a>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
 
-        expect(window.open).toHaveBeenCalledWith(
-            "https://www.khanacademy.org",
-            "_blank",
-        );
+            // Act
+            link.simulate("click");
+
+            // Assert
+            expect(window.open).toHaveBeenCalledWith(
+                "https://www.khanacademy.org",
+                "_blank",
+            );
+        });
+
+        it("opens a new tab when using 'safeWithNav'", () => {
+            // Arrange
+            const safeWithNavMock = jest.fn().mockResolvedValue();
+            const link = mount(
+                <ClickableBehavior
+                    disabled={false}
+                    href="https://www.khanacademy.org"
+                    role="link"
+                    target="_blank"
+                    safeWithNav={safeWithNavMock}
+                >
+                    {(state, handlers) => {
+                        return (
+                            <a href="https://www.khanacademy.org" {...handlers}>
+                                Label
+                            </a>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
+
+            // Act
+            link.simulate("click");
+
+            // Assert
+            expect(window.open).toHaveBeenCalledWith(
+                "https://www.khanacademy.org",
+                "_blank",
+            );
+        });
+
+        it("calls 'safeWithNav'", () => {
+            // Arrange
+            const safeWithNavMock = jest.fn().mockResolvedValue();
+            const link = mount(
+                <ClickableBehavior
+                    disabled={false}
+                    href="https://www.khanacademy.org"
+                    role="link"
+                    target="_blank"
+                    safeWithNav={safeWithNavMock}
+                >
+                    {(state, handlers) => {
+                        return (
+                            <a href="https://www.khanacademy.org" {...handlers}>
+                                Label
+                            </a>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
+
+            // Act
+            link.simulate("click");
+
+            // Assert
+            expect(safeWithNavMock).toHaveBeenCalled();
+        });
+
+        it("opens a new tab when inside a router", () => {
+            // Arrange
+            const link = mount(
+                <MemoryRouter initialEntries={["/"]}>
+                    <ClickableBehavior
+                        disabled={false}
+                        href="https://www.khanacademy.org"
+                        role="link"
+                        target="_blank"
+                    >
+                        {(state, handlers) => {
+                            return (
+                                <a
+                                    href="https://www.khanacademy.org"
+                                    {...handlers}
+                                >
+                                    Label
+                                </a>
+                            );
+                        }}
+                    </ClickableBehavior>
+                </MemoryRouter>,
+            );
+
+            // Act
+            link.simulate("click");
+
+            // Assert
+            expect(window.open).toHaveBeenCalledWith(
+                "https://www.khanacademy.org",
+                "_blank",
+            );
+        });
+
+        it("opens a new tab when using 'safeWithNav' inside a router", () => {
+            // Arrange
+            const safeWithNavMock = jest.fn().mockResolvedValue();
+            const link = mount(
+                <MemoryRouter initialEntries={["/"]}>
+                    <ClickableBehavior
+                        disabled={false}
+                        href="https://www.khanacademy.org"
+                        role="link"
+                        target="_blank"
+                        safeWithNav={safeWithNavMock}
+                    >
+                        {(state, handlers) => {
+                            return (
+                                <a
+                                    href="https://www.khanacademy.org"
+                                    {...handlers}
+                                >
+                                    Label
+                                </a>
+                            );
+                        }}
+                    </ClickableBehavior>
+                </MemoryRouter>,
+            );
+
+            // Act
+            link.simulate("click");
+
+            // Assert
+            expect(window.open).toHaveBeenCalledWith(
+                "https://www.khanacademy.org",
+                "_blank",
+            );
+        });
+
+        it("calls 'safeWithNav' inside a router", () => {
+            // Arrange
+            const safeWithNavMock = jest.fn().mockResolvedValue();
+            const link = mount(
+                <MemoryRouter initialEntries={["/"]}>
+                    <ClickableBehavior
+                        disabled={false}
+                        href="https://www.khanacademy.org"
+                        role="link"
+                        target="_blank"
+                        safeWithNav={safeWithNavMock}
+                    >
+                        {(state, handlers) => {
+                            return (
+                                <a
+                                    href="https://www.khanacademy.org"
+                                    {...handlers}
+                                >
+                                    Label
+                                </a>
+                            );
+                        }}
+                    </ClickableBehavior>
+                </MemoryRouter>,
+            );
+
+            // Act
+            link.simulate("click");
+
+            // Assert
+            expect(safeWithNavMock).toHaveBeenCalled();
+        });
     });
 });

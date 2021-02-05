@@ -7,7 +7,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import LinkCore from "./link-core.js";
 
-export type SharedProps = {|
+type CommonProps = {|
     ...AriaProps,
 
     /**
@@ -40,11 +40,6 @@ export type SharedProps = {|
      * secondary or primary (light) links are not allowed to be visitable.
      */
     visitable: boolean,
-
-    /**
-     * A target destination window for a link to open in.
-     */
-    target?: string,
 
     /**
      * Specifies the type of relationship between the current document and the
@@ -125,15 +120,6 @@ export type SharedProps = {|
     onClick?: (e: SyntheticEvent<>) => mixed,
 
     /**
-     * Run async code before navigating to the URL passed to `href`. If the
-     * promise returned rejects then navigation will not occur.
-     *
-     * If both safeWithNav and beforeNav are provided, beforeNav will be run
-     * first and safeWithNav will only be run if beforeNav does not reject.
-     */
-    beforeNav?: () => Promise<mixed>,
-
-    /**
      * Run async code in the background while client-side navigating. If the
      * browser does a full page load navigation, the callback promise must be
      * settled before the navigation will occur. Errors are ignored so that
@@ -151,6 +137,35 @@ export type SharedProps = {|
      */
     onKeyUp?: (e: SyntheticKeyboardEvent<>) => mixed,
 |};
+
+export type SharedProps =
+    | {|
+          ...CommonProps,
+
+          /**
+           * A target destination window for a link to open in.  We only support
+           * "_blank" which opens the URL in a new tab.
+           */
+          target?: "_blank",
+      |}
+    | {|
+          ...CommonProps,
+
+          /**
+           * Run async code before navigating to the URL passed to `href`. If the
+           * promise returned rejects then navigation will not occur.
+           *
+           * If both safeWithNav and beforeNav are provided, beforeNav will be run
+           * first and safeWithNav will only be run if beforeNav does not reject.
+           *
+           * WARNING: Using this with `target="_blank"` will trigger built-in popup
+           * blockers in Firefox and Safari.  This is because we do navigation
+           * programmatically and `beforeNav` causes a delay which means that the
+           * browser can't make a directly link between a user action and the
+           * navigation.
+           */
+          beforeNav?: () => Promise<mixed>,
+      |};
 
 /**
  * Reusable link component.
@@ -180,7 +195,7 @@ export default class Link extends React.Component<SharedProps> {
     render() {
         const {
             onClick,
-            beforeNav,
+            beforeNav = undefined,
             safeWithNav,
             href,
             skipClientNav,
@@ -188,7 +203,7 @@ export default class Link extends React.Component<SharedProps> {
             tabIndex,
             onKeyDown,
             onKeyUp,
-            target,
+            target = undefined,
             ...sharedProps
         } = this.props;
 
@@ -198,37 +213,70 @@ export default class Link extends React.Component<SharedProps> {
             this.context.router,
         );
 
-        return (
-            <ClickableBehavior
-                disabled={false}
-                href={href}
-                role="link"
-                onClick={onClick}
-                beforeNav={beforeNav}
-                safeWithNav={safeWithNav}
-                target={target}
-                onKeyDown={onKeyDown}
-                onKeyUp={onKeyUp}
-            >
-                {(state, {tabIndex: clickableTabIndex, ...handlers}) => {
-                    return (
-                        <LinkCore
-                            {...sharedProps}
-                            {...state}
-                            {...handlers}
-                            skipClientNav={skipClientNav}
-                            href={href}
-                            target={target}
-                            // If tabIndex is provide to the component we allow
-                            // it to override the tabIndex provide to use by
-                            // ClickableBehavior.
-                            tabIndex={tabIndex || clickableTabIndex}
-                        >
-                            {children}
-                        </LinkCore>
-                    );
-                }}
-            </ClickableBehavior>
-        );
+        if (beforeNav) {
+            return (
+                <ClickableBehavior
+                    disabled={false}
+                    href={href}
+                    role="link"
+                    onClick={onClick}
+                    beforeNav={beforeNav}
+                    safeWithNav={safeWithNav}
+                    onKeyDown={onKeyDown}
+                    onKeyUp={onKeyUp}
+                >
+                    {(state, {tabIndex: clickableTabIndex, ...handlers}) => {
+                        return (
+                            <LinkCore
+                                {...sharedProps}
+                                {...state}
+                                {...handlers}
+                                skipClientNav={skipClientNav}
+                                href={href}
+                                target={target}
+                                // If tabIndex is provide to the component we allow
+                                // it to override the tabIndex provide to use by
+                                // ClickableBehavior.
+                                tabIndex={tabIndex || clickableTabIndex}
+                            >
+                                {children}
+                            </LinkCore>
+                        );
+                    }}
+                </ClickableBehavior>
+            );
+        } else {
+            return (
+                <ClickableBehavior
+                    disabled={false}
+                    href={href}
+                    role="link"
+                    onClick={onClick}
+                    safeWithNav={safeWithNav}
+                    target={target}
+                    onKeyDown={onKeyDown}
+                    onKeyUp={onKeyUp}
+                >
+                    {(state, {tabIndex: clickableTabIndex, ...handlers}) => {
+                        return (
+                            <LinkCore
+                                {...sharedProps}
+                                {...state}
+                                {...handlers}
+                                skipClientNav={skipClientNav}
+                                href={href}
+                                target={target}
+                                // If tabIndex is provide to the component we allow
+                                // it to override the tabIndex provide to use by
+                                // ClickableBehavior.
+                                tabIndex={tabIndex || clickableTabIndex}
+                            >
+                                {children}
+                            </LinkCore>
+                        );
+                    }}
+                </ClickableBehavior>
+            );
+        }
     }
 }
