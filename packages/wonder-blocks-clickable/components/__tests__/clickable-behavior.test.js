@@ -20,7 +20,7 @@ const wait = (delay: number = 0) =>
         return setTimeout(resolve, delay);
     });
 
-describe.only("ClickableBehavior", () => {
+describe("ClickableBehavior", () => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
         // the testing environment.
