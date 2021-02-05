@@ -349,7 +349,7 @@ export default class ClickableBehavior extends React.Component<
     ) {
         const {skipClientNav, history} = this.props;
 
-        if (history && !skipClientNav) {
+        if ((history && !skipClientNav) || this.props.target === "_blank") {
             // client-side nav
             safeWithNav();
 
@@ -362,11 +362,6 @@ export default class ClickableBehavior extends React.Component<
                 // a full page load navigation since since the spinner is
                 // indicating that we're waiting for navigation to occur.
                 this.setState({waiting: true});
-            }
-
-            if (this.props.target === "_blank") {
-                this.navigateOrReset(shouldNavigate);
-                return;
             }
 
             return safeWithNav()
