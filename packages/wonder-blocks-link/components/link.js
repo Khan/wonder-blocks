@@ -130,6 +130,9 @@ export type SharedProps = {|
      *
      * If both safeWithNav and beforeNav are provided, beforeNav will be run
      * first and safeWithNav will only be run if beforeNav does not reject.
+     *
+     * WARNING: Using this with `target="_blank"` will trigger built-in popup
+     * blockers in Firefox and Safari.
      */
     beforeNav?: () => Promise<mixed>,
 
