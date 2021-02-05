@@ -89,7 +89,7 @@ export type SharedProps = {|
      * A target destination window for a link to open in. Should only be used
      * when `href` is specified.
      */
-    target?: string,
+    target?: "_blank",
 
     /**
      * Set the tabindex attribute on the rendered element.
@@ -297,20 +297,36 @@ export default class Button extends React.Component<Props> {
             );
         };
 
-        return (
-            <ClickableBehavior
-                disabled={spinner || disabled}
-                href={href}
-                role="button"
-                type={type}
-                onClick={onClick}
-                beforeNav={beforeNav}
-                safeWithNav={safeWithNav}
-                target={target}
-                rel={rel}
-            >
-                {renderProp}
-            </ClickableBehavior>
-        );
+        if (beforeNav) {
+            return (
+                <ClickableBehavior
+                    disabled={spinner || disabled}
+                    href={href}
+                    role="button"
+                    type={type}
+                    onClick={onClick}
+                    beforeNav={beforeNav}
+                    safeWithNav={safeWithNav}
+                    rel={rel}
+                >
+                    {renderProp}
+                </ClickableBehavior>
+            );
+        } else {
+            return (
+                <ClickableBehavior
+                    disabled={spinner || disabled}
+                    href={href}
+                    role="button"
+                    type={type}
+                    onClick={onClick}
+                    safeWithNav={safeWithNav}
+                    target={target}
+                    rel={rel}
+                >
+                    {renderProp}
+                </ClickableBehavior>
+            );
+        }
     }
 }

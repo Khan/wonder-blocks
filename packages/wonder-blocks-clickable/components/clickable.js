@@ -55,11 +55,6 @@ type CommonProps = {|
     id?: string,
 
     /**
-     * A target destination window for a link to open in.
-     */
-    target?: string,
-
-    /**
      * Specifies the type of relationship between the current document and the
      * linked document. Should only be used when `href` is specified.
      */
@@ -94,6 +89,11 @@ type CommonProps = {|
 type Props =
     | {|
           ...CommonProps,
+
+          /**
+           * A target destination window for a link to open in.
+           */
+          target?: "_blank",
       |}
     | {|
           ...CommonProps,
@@ -121,6 +121,11 @@ type Props =
            * navigation is guaranteed to succeed.
            */
           safeWithNav: () => Promise<mixed>,
+
+          /**
+           * A target destination window for a link to open in.
+           */
+          target?: "_blank",
       |}
     | {|
           ...CommonProps,
@@ -196,7 +201,7 @@ export default class Clickable extends React.Component<Props> {
                     {...commonProps}
                     to={this.props.href}
                     role={this.props.role}
-                    target={this.props.target}
+                    target={this.props.target || undefined}
                     aria-disabled={this.props.disabled ? "true" : undefined}
                 >
                     {this.props.children(clickableState)}
@@ -208,7 +213,7 @@ export default class Clickable extends React.Component<Props> {
                     {...commonProps}
                     href={this.props.href}
                     role={this.props.role}
-                    target={this.props.target}
+                    target={this.props.target || undefined}
                     aria-disabled={this.props.disabled ? "true" : undefined}
                 >
                     {this.props.children(clickableState)}
@@ -235,7 +240,7 @@ export default class Clickable extends React.Component<Props> {
             beforeNav = undefined,
             safeWithNav = undefined,
             style,
-            target,
+            target = undefined,
             testId,
             onKeyDown,
             onKeyUp,
@@ -247,26 +252,47 @@ export default class Clickable extends React.Component<Props> {
             this.context.router,
         );
 
-        return (
-            <ClickableBehavior
-                href={href}
-                onClick={onClick}
-                beforeNav={beforeNav}
-                safeWithNav={safeWithNav}
-                target={target}
-                onKeyDown={onKeyDown}
-                onKeyUp={onKeyUp}
-            >
-                {(state, childrenProps) =>
-                    this.getCorrectTag(state, {
-                        ...restProps,
-                        "data-test-id": testId,
-                        style: [styles.reset, style],
-                        ...childrenProps,
-                    })
-                }
-            </ClickableBehavior>
-        );
+        if (beforeNav) {
+            return (
+                <ClickableBehavior
+                    href={href}
+                    onClick={onClick}
+                    beforeNav={beforeNav}
+                    safeWithNav={safeWithNav}
+                    onKeyDown={onKeyDown}
+                    onKeyUp={onKeyUp}
+                >
+                    {(state, childrenProps) =>
+                        this.getCorrectTag(state, {
+                            ...restProps,
+                            "data-test-id": testId,
+                            style: [styles.reset, style],
+                            ...childrenProps,
+                        })
+                    }
+                </ClickableBehavior>
+            );
+        } else {
+            return (
+                <ClickableBehavior
+                    href={href}
+                    onClick={onClick}
+                    safeWithNav={safeWithNav}
+                    onKeyDown={onKeyDown}
+                    onKeyUp={onKeyUp}
+                    target={target}
+                >
+                    {(state, childrenProps) =>
+                        this.getCorrectTag(state, {
+                            ...restProps,
+                            "data-test-id": testId,
+                            style: [styles.reset, style],
+                            ...childrenProps,
+                        })
+                    }
+                </ClickableBehavior>
+            );
+        }
     }
 }
 

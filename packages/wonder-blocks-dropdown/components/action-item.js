@@ -38,7 +38,7 @@ type ActionProps = {|
     /**
      * A target destination window for a link to open in.
      */
-    target?: string,
+    target?: "_blank",
 
     /**
      * Whether to avoid using client-side navigation.
