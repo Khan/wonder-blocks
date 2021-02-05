@@ -170,7 +170,10 @@ type Props =
            * first and safeWithNav will only be run if beforeNav does not reject.
            *
            * WARNING: Using this with `target="_blank"` will trigger built-in popup
-           * blockers in Firefox and Safari.
+           * blockers in Firefox and Safari.  This is becuase we do navigation
+           * programmatically and `beforeNav` causes a delay which means that the
+           * browser can't make a directly link between a user action and the
+           * navigation.
            */
           beforeNav?: () => Promise<mixed>,
       |};
