@@ -1,6 +1,12 @@
 ### Creating a Clickable component
 
-You can make custom components Clickable by returning them in a function of the Clickable child. The eventState parameter the function takes allows access to states pressed, hovered and clicked, which you may use to create custom styles.
+You can make custom components `Clickable` by returning them in a function of the
+`Clickable` child. The eventState parameter the function takes allows access to states
+pressed, hovered and clicked, which you may use to create custom styles.
+
+Clickable has a default focus ring style built-in.  If you are creating your own
+custom focus ring it should be disabled using by setting `hideDefaultFocusRing={true}`
+in the props passed to `Clickable`.
 
 ```jsx
 import {StyleSheet} from "aphrodite";
@@ -23,7 +29,10 @@ const styles = StyleSheet.create({
 });
 
 <View>
-    <Clickable onClick={() => alert("You clicked some text!")}>
+    <Clickable
+        onClick={() => alert("You clicked some text!")}
+        hideDefaultFocusRing={true}
+    >
         {
             ({hovered, focused, pressed}) =>
             <View style={[
@@ -118,7 +127,11 @@ const styles = StyleSheet.create({
 });
 
 <View>
-    <Clickable href="https://www.khanacademy.org/about/tos" skipClientNav={true}>
+    <Clickable
+        href="https://www.khanacademy.org/about/tos"
+        skipClientNav={true}
+        hideDefaultFocusRing={true}
+    >
         {
             ({hovered, focused, pressed}) =>
             <View style={[

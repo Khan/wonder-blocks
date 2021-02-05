@@ -34,7 +34,10 @@ describe("wonder-blocks-clickable", () => {
         });
         const example = (
             <View>
-                <Clickable onClick={() => alert("You clicked some text!")}>
+                <Clickable
+                    onClick={() => alert("You clicked some text!")}
+                    hideDefaultFocusRing={true}
+                >
                     {({hovered, focused, pressed}) => (
                         <View
                             style={[
@@ -109,6 +112,7 @@ describe("wonder-blocks-clickable", () => {
                 <Clickable
                     href="https://www.khanacademy.org/about/tos"
                     skipClientNav={true}
+                    hideDefaultFocusRing={true}
                 >
                     {({hovered, focused, pressed}) => (
                         <View
