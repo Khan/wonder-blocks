@@ -20,7 +20,7 @@ const wait = (delay: number = 0) =>
         return setTimeout(resolve, delay);
     });
 
-describe("ClickableBehavior", () => {
+describe.only("ClickableBehavior", () => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
         // the testing environment.
@@ -1036,28 +1036,117 @@ describe("ClickableBehavior", () => {
         });
     });
 
-    it("opens a new tab when target='_blank'", () => {
-        const link = mount(
-            <ClickableBehavior
-                disabled={false}
-                href="https://www.khanacademy.org"
-                role="link"
-                target="_blank"
-            >
-                {(state, handlers) => {
-                    return (
-                        <a href="https://www.khanacademy.org" {...handlers}>
-                            Label
-                        </a>
-                    );
-                }}
-            </ClickableBehavior>,
-        );
-        link.simulate("click");
+    describe("target='_blank'", () => {
+        it("opens a new tab", () => {
+            const link = mount(
+                <ClickableBehavior
+                    disabled={false}
+                    href="https://www.khanacademy.org"
+                    role="link"
+                    target="_blank"
+                >
+                    {(state, handlers) => {
+                        return (
+                            <a href="https://www.khanacademy.org" {...handlers}>
+                                Label
+                            </a>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
+            link.simulate("click");
 
-        expect(window.open).toHaveBeenCalledWith(
-            "https://www.khanacademy.org",
-            "_blank",
-        );
+            expect(window.open).toHaveBeenCalledWith(
+                "https://www.khanacademy.org",
+                "_blank",
+            );
+        });
+
+        it("opens a new tab when using 'safeWithNav'", () => {
+            const link = mount(
+                <ClickableBehavior
+                    disabled={false}
+                    href="https://www.khanacademy.org"
+                    role="link"
+                    target="_blank"
+                    safeWithNav={() => Promise.resolve()}
+                >
+                    {(state, handlers) => {
+                        return (
+                            <a href="https://www.khanacademy.org" {...handlers}>
+                                Label
+                            </a>
+                        );
+                    }}
+                </ClickableBehavior>,
+            );
+            link.simulate("click");
+
+            expect(window.open).toHaveBeenCalledWith(
+                "https://www.khanacademy.org",
+                "_blank",
+            );
+        });
+
+        it("opens a new tab when inside a router", () => {
+            const link = mount(
+                <MemoryRouter initialEntries={["/"]}>
+                    <ClickableBehavior
+                        disabled={false}
+                        href="https://www.khanacademy.org"
+                        role="link"
+                        target="_blank"
+                    >
+                        {(state, handlers) => {
+                            return (
+                                <a
+                                    href="https://www.khanacademy.org"
+                                    {...handlers}
+                                >
+                                    Label
+                                </a>
+                            );
+                        }}
+                    </ClickableBehavior>
+                </MemoryRouter>,
+            );
+            link.simulate("click");
+
+            expect(window.open).toHaveBeenCalledWith(
+                "https://www.khanacademy.org",
+                "_blank",
+            );
+        });
+
+        it("opens a new tab when using 'safeWithNav' inside a router", () => {
+            const link = mount(
+                <MemoryRouter initialEntries={["/"]}>
+                    <ClickableBehavior
+                        disabled={false}
+                        href="https://www.khanacademy.org"
+                        role="link"
+                        target="_blank"
+                        safeWithNav={() => Promise.resolve()}
+                    >
+                        {(state, handlers) => {
+                            return (
+                                <a
+                                    href="https://www.khanacademy.org"
+                                    {...handlers}
+                                >
+                                    Label
+                                </a>
+                            );
+                        }}
+                    </ClickableBehavior>
+                </MemoryRouter>,
+            );
+            link.simulate("click");
+
+            expect(window.open).toHaveBeenCalledWith(
+                "https://www.khanacademy.org",
+                "_blank",
+            );
+        });
     });
 });

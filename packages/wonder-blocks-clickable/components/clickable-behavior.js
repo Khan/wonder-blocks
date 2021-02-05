@@ -323,15 +323,14 @@ export default class ClickableBehavior extends React.Component<
         if (shouldNavigate) {
             const {history, href, skipClientNav, target} = this.props;
             if (href) {
-                if (history && !skipClientNav) {
+                if (target === "_blank") {
+                    window.open(href, "_blank");
+                    this.setState({waiting: false});
+                } else if (history && !skipClientNav) {
                     history.push(href);
                     this.setState({waiting: false});
                 } else {
-                    if (target === "_blank") {
-                        window.open(href, "_blank");
-                    } else {
-                        window.location.assign(href);
-                    }
+                    window.location.assign(href);
                     // We don't bother clearing the waiting state, the full page
                     // load navigation will do that for us by loading a new page.
                 }
@@ -361,6 +360,12 @@ export default class ClickableBehavior extends React.Component<
                 // indicating that we're waiting for navigation to occur.
                 this.setState({waiting: true});
             }
+
+            if (this.props.target === "_blank") {
+                this.navigateOrReset(shouldNavigate);
+                return;
+            }
+
             return safeWithNav()
                 .then(() => {
                     if (!this.state.waiting) {

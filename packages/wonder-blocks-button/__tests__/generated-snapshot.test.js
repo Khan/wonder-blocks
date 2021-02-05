@@ -440,6 +440,20 @@ describe("wonder-blocks-button", () => {
                     >
                         Async action, server-side nav
                     </Button>
+                    <Button
+                        href="https://google.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={styles.button}
+                        skipClientNav={true}
+                        beforeNav={() =>
+                            new Promise((resolve, reject) => {
+                                setTimeout(resolve, 1000);
+                            })
+                        }
+                    >
+                        Async action, open URL in new tab
+                    </Button>
                     <Switch>
                         <Route path="/foo">
                             <View id="foo">Hello, world!</View>
