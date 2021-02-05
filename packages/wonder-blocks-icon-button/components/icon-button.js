@@ -82,7 +82,7 @@ export type SharedProps = {|
     /**
      * A target destination window for a link to open in.
      */
-    target?: string,
+    target?: "_blank",
 
     /**
      * Specifies the type of relationship between the current document and the

@@ -41,7 +41,7 @@ const getAppropriateTriggersForRole = (role: ?ClickableRole) => {
     }
 };
 
-type Props = {|
+type CommonProps = {|
     /**
      * A function that returns the a React `Element`.
      *
@@ -73,12 +73,6 @@ type Props = {|
     href?: string,
 
     /**
-     * A target destination window for a link to open in. Should only be used
-     * when `href` is specified.
-     */
-    target?: string,
-
-    /**
      * This should only be used by button.js.
      */
     type?: "submit",
@@ -89,18 +83,6 @@ type Props = {|
      * A function to be executed `onclick`.
      */
     onClick?: (e: SyntheticEvent<>) => mixed,
-
-    /**
-     * Run async code before navigating to the URL passed to `href`. If the
-     * promise returned rejects then navigation will not occur.
-     *
-     * If both safeWithNav and beforeNav are provided, beforeNav will be run
-     * first and safeWithNav will only be run if beforeNav does not reject.
-     *
-     * WARNING: Using this with `target="_blank"` will trigger built-in popup
-     * blockers in Firefox and Safari.
-     */
-    beforeNav?: () => Promise<mixed>,
 
     /**
      * Run async code in the background while client-side navigating. If the
@@ -166,6 +148,32 @@ export type ClickableState = {|
      */
     waiting: boolean,
 |};
+
+type Props =
+    | {|
+          ...CommonProps,
+
+          /**
+           * A target destination window for a link to open in. Should only be used
+           * when `href` is specified.
+           */
+          target?: "_blank",
+      |}
+    | {|
+          ...CommonProps,
+
+          /**
+           * Run async code before navigating to the URL passed to `href`. If the
+           * promise returned rejects then navigation will not occur.
+           *
+           * If both safeWithNav and beforeNav are provided, beforeNav will be run
+           * first and safeWithNav will only be run if beforeNav does not reject.
+           *
+           * WARNING: Using this with `target="_blank"` will trigger built-in popup
+           * blockers in Firefox and Safari.
+           */
+          beforeNav?: () => Promise<mixed>,
+      |};
 
 export type ClickableHandlers = {|
     onClick: (e: SyntheticMouseEvent<>) => mixed,
@@ -324,7 +332,12 @@ export default class ClickableBehavior extends React.Component<
 
     navigateOrReset(shouldNavigate: boolean) {
         if (shouldNavigate) {
-            const {history, href, skipClientNav, target} = this.props;
+            const {
+                history,
+                href,
+                skipClientNav,
+                target = undefined,
+            } = this.props;
             if (href) {
                 if (target === "_blank") {
                     window.open(href, "_blank");
