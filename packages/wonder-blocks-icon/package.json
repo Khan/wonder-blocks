@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-icon",
-  "version": "1.2.15",
+  "version": "1.2.16",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -15,7 +15,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@khanacademy/wonder-blocks-core": "^3.0.1"
+    "@khanacademy/wonder-blocks-core": "^3.0.2"
   },
   "devDependencies": {
     "wb-dev-build-settings": "^0.0.3"
