@@ -3,8 +3,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import PropTypes from "prop-types";
 import {Link} from "react-router-dom";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+
 import {addStyle} from "@khanacademy/wonder-blocks-core";
+import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
+
 import getClickableBehavior from "../util/get-clickable-behavior.js";
 import type {ClickableRole, ClickableState} from "./clickable-behavior.js";
 
@@ -86,6 +89,12 @@ type CommonProps = {|
      * Respond to raw "keyup" event.
      */
     onKeyUp?: (e: SyntheticKeyboardEvent<>) => mixed,
+
+    /**
+     * Don't show the default focus ring.  This should be used when implementing
+     * a custom focus ring within your own component that uses Clickable.
+     */
+    hideDefaultFocusRing?: boolean,
 |};
 
 type Props =
@@ -246,6 +255,7 @@ export default class Clickable extends React.Component<Props> {
             testId,
             onKeyDown,
             onKeyUp,
+            hideDefaultFocusRing,
             ...restProps
         } = this.props;
         const ClickableBehavior = getClickableBehavior(
@@ -253,6 +263,13 @@ export default class Clickable extends React.Component<Props> {
             skipClientNav,
             this.context.router,
         );
+
+        const getStyle = (state: ClickableState): StyleType => [
+            styles.reset,
+            styles.link,
+            !hideDefaultFocusRing && state.focused && styles.focused,
+            style,
+        ];
 
         if (beforeNav) {
             return (
@@ -268,7 +285,7 @@ export default class Clickable extends React.Component<Props> {
                         this.getCorrectTag(state, {
                             ...restProps,
                             "data-test-id": testId,
-                            style: [styles.reset, style],
+                            style: getStyle(state),
                             ...childrenProps,
                         })
                     }
@@ -288,7 +305,7 @@ export default class Clickable extends React.Component<Props> {
                         this.getCorrectTag(state, {
                             ...restProps,
                             "data-test-id": testId,
-                            style: [styles.reset, style],
+                            style: getStyle(state),
                             ...childrenProps,
                         })
                     }
@@ -330,5 +347,11 @@ const styles = StyleSheet.create({
         /* Corrects font smoothing for webkit */
         WebkitFontSmoothing: "inherit",
         MozOsxFontSmoothing: "inherit",
+    },
+    link: {
+        cursor: "pointer",
+    },
+    focused: {
+        outline: `solid 2px ${Color.blue}`,
     },
 });
