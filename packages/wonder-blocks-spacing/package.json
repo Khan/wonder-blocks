@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-spacing",
-  "version": "2.1.15",
+  "version": "2.1.16",
   "design": "v1",
   "publishConfig": {
     "access": "public"
