@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@khanacademy/wonder-blocks-core": "^3.0.1",
-    "@khanacademy/wonder-blocks-spacing": "^2.1.16"
+    "@khanacademy/wonder-blocks-spacing": "^3.0.0"
   },
   "devDependencies": {
     "wb-dev-build-settings": "^0.0.3"

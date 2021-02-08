@@ -19,7 +19,7 @@
     "@khanacademy/wonder-blocks-core": "^3.0.1",
     "@khanacademy/wonder-blocks-icon": "^1.2.15",
     "@khanacademy/wonder-blocks-layout": "^1.3.26",
-    "@khanacademy/wonder-blocks-spacing": "^2.1.16",
+    "@khanacademy/wonder-blocks-spacing": "^3.0.0",
     "@khanacademy/wonder-blocks-typography": "^1.1.19"
   },
   "peerDependencies": {
