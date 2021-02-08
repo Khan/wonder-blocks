@@ -90,7 +90,7 @@ type CommonProps = {|
 
     /**
      * Don't show the default focus ring.  This should be used when implementing
-     * a custom focus ring withing your own component that uses Clickable.
+     * a custom focus ring within your own component that uses Clickable.
      */
     hideDefaultFocusRing?: boolean,
 |};
