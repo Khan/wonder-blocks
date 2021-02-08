@@ -56,7 +56,9 @@ type CommonProps = {|
 
     /**
      * Specifies the type of relationship between the current document and the
-     * linked document. Should only be used when `href` is specified.
+     * linked document. Should only be used when `href` is specified. This
+     * defaults to "noopener noreferrer" when `target="_blank"`, but can be
+     * overridden by setting this prop to something else.
      */
     rel?: string,
 

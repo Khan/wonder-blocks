@@ -79,7 +79,9 @@ type CommonProps = {|
 
     /**
      * Specifies the type of relationship between the current document and the
-     * linked document. Should only be used when `href` is specified.
+     * linked document. Should only be used when `href` is specified. This
+     * defaults to "noopener noreferrer" when `target="_blank"`, but can be
+     * overridden by setting this prop to something else.
      */
     rel?: string,
 
@@ -613,9 +615,10 @@ export default class ClickableBehavior extends React.Component<
                   tabIndex: 0,
               };
 
-        // When the link is set to open in a new window, we want to append some
+        // When the link is set to open in a new window, we want to set some
         // `rel` attributes. This is to ensure that the links we're sending folks
-        // to can't hijack the existing page.
+        // to can't hijack the existing page.  These defaults can be overriden
+        // by passing in a different value for the `rel` prop.
         // More info: https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/
         childrenProps.rel =
             this.props.rel ||
