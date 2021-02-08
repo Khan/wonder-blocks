@@ -56,22 +56,11 @@ type CommonProps = {|
 
     /**
      * Specifies the type of relationship between the current document and the
-     * linked document. Should only be used when `href` is specified.
+     * linked document. Should only be used when `href` is specified. This
+     * defaults to "noopener noreferrer" when `target="_blank"`, but can be
+     * overridden by setting this prop to something else.
      */
-    rel?:
-        | "alternate"
-        | "author"
-        | "bookmark"
-        | "external"
-        | "help"
-        | "license"
-        | "next"
-        | "nofollow"
-        | "noreferrer"
-        | "noopener"
-        | "prev"
-        | "search"
-        | "tag",
+    rel?: string,
 
     /**
      * The role of the component, can be a role of type ClickableRole
@@ -275,12 +264,12 @@ export default class Clickable extends React.Component<Props> {
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                 >
-                    {(state, handlers) =>
+                    {(state, childrenProps) =>
                         this.getCorrectTag(state, {
                             ...restProps,
                             "data-test-id": testId,
                             style: [styles.reset, style],
-                            ...handlers,
+                            ...childrenProps,
                         })
                     }
                 </ClickableBehavior>
@@ -295,12 +284,12 @@ export default class Clickable extends React.Component<Props> {
                     onKeyUp={onKeyUp}
                     target={target}
                 >
-                    {(state, handlers) =>
+                    {(state, childrenProps) =>
                         this.getCorrectTag(state, {
                             ...restProps,
                             "data-test-id": testId,
                             style: [styles.reset, style],
-                            ...handlers,
+                            ...childrenProps,
                         })
                     }
                 </ClickableBehavior>

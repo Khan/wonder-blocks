@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import type {
-    ClickableHandlers,
+    ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import type {StyleDeclaration} from "aphrodite";
@@ -15,7 +15,7 @@ import type {SharedProps} from "./link.js";
 
 type Props = {|
     ...SharedProps,
-    ...ClickableHandlers,
+    ...ChildrenProps,
     ...ClickableState,
     href: string,
 |};

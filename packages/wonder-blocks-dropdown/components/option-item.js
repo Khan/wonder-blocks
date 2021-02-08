@@ -140,7 +140,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                 onClick={this.handleClick}
                 role={role}
             >
-                {(state, handlers) => {
+                {(state, childrenProps) => {
                     const {pressed, hovered, focused} = state;
 
                     const defaultStyle = [
@@ -160,7 +160,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                             style={defaultStyle}
                             aria-selected={selected ? "true" : "false"}
                             role={role}
-                            {...handlers}
+                            {...childrenProps}
                         >
                             <CheckComponent
                                 disabled={disabled}

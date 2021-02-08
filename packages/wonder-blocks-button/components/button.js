@@ -81,22 +81,11 @@ export type SharedProps = {|
 
     /**
      * Specifies the type of relationship between the current document and the
-     * linked document. Should only be used when `href` is specified.
+     * linked document. Should only be used when `href` is specified. This
+     * defaults to "noopener noreferrer" when `target="_blank"`, but can be
+     * overridden by setting this prop to something else.
      */
-    rel?:
-        | "alternate"
-        | "author"
-        | "bookmark"
-        | "external"
-        | "help"
-        | "license"
-        | "next"
-        | "nofollow"
-        | "noreferrer"
-        | "noopener"
-        | "prev"
-        | "search"
-        | "tag",
+    rel?: string,
 
     /**
      * A target destination window for a link to open in. Should only be used
@@ -275,6 +264,7 @@ export default class Button extends React.Component<Props> {
             safeWithNav = undefined,
             tabIndex,
             target,
+            rel,
             ...sharedButtonCoreProps
         } = this.props;
 
@@ -286,13 +276,13 @@ export default class Button extends React.Component<Props> {
 
         const renderProp = (
             state,
-            {tabIndex: clickableTabIndex, ...handlers},
+            {tabIndex: clickableTabIndex, ...restChildProps},
         ) => {
             return (
                 <ButtonCore
                     {...sharedButtonCoreProps}
                     {...state}
-                    {...handlers}
+                    {...restChildProps}
                     disabled={disabled}
                     spinner={spinner || state.waiting}
                     skipClientNav={skipClientNav}
@@ -319,6 +309,7 @@ export default class Button extends React.Component<Props> {
                     onClick={onClick}
                     beforeNav={beforeNav}
                     safeWithNav={safeWithNav}
+                    rel={rel}
                 >
                     {renderProp}
                 </ClickableBehavior>
@@ -333,6 +324,7 @@ export default class Button extends React.Component<Props> {
                     onClick={onClick}
                     safeWithNav={safeWithNav}
                     target={target}
+                    rel={rel}
                 >
                     {renderProp}
                 </ClickableBehavior>

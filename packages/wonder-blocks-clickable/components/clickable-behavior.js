@@ -50,7 +50,7 @@ type CommonProps = {|
      */
     children: (
         state: ClickableState,
-        handlers: ClickableHandlers,
+        childrenProps: ChildrenProps,
     ) => React.Node,
 
     /**
@@ -76,6 +76,14 @@ type CommonProps = {|
      * This should only be used by button.js.
      */
     type?: "submit",
+
+    /**
+     * Specifies the type of relationship between the current document and the
+     * linked document. Should only be used when `href` is specified. This
+     * defaults to "noopener noreferrer" when `target="_blank"`, but can be
+     * overridden by setting this prop to something else.
+     */
+    rel?: string,
 
     skipClientNav?: boolean,
 
@@ -178,7 +186,7 @@ type Props =
           beforeNav?: () => Promise<mixed>,
       |};
 
-export type ClickableHandlers = {|
+export type ChildrenProps = {|
     onClick: (e: SyntheticMouseEvent<>) => mixed,
     onMouseEnter: (e: SyntheticMouseEvent<>) => mixed,
     onMouseLeave: () => mixed,
@@ -193,6 +201,7 @@ export type ClickableHandlers = {|
     onFocus: (e: SyntheticFocusEvent<>) => mixed,
     onBlur: (e: SyntheticFocusEvent<>) => mixed,
     tabIndex: number,
+    rel?: string,
 |};
 
 const disabledHandlers = {
@@ -260,8 +269,8 @@ const startState = {
  * for a more thorough explanation of expected behaviors and potential cavaets.
  *
  * `ClickableBehavior` accepts a function as `children` which is passed state
- * and an object containing event handlers. The `children` function should
- * return a clickable React Element of some sort.
+ * and an object containing event handlers and some other props. The `children`
+ * function should return a clickable React Element of some sort.
  *
  * Example:
  *
@@ -273,11 +282,11 @@ const startState = {
  *             disabled={this.props.disabled}
  *             onClick={this.props.onClick}
  *         >
- *             {({hovered}, handlers) =>
+ *             {({hovered}, childrenProps) =>
  *                 <RoundRect
  *                      textcolor='white'
  *                      backgroundColor={hovered ? 'red' : 'blue'}}
- *                      {...handlers}
+ *                      {...childrenProps}
  *                 >
  *                      {this.props.children}
  *                 </RoundRect>
@@ -585,7 +594,7 @@ export default class ClickableBehavior extends React.Component<
     };
 
     render() {
-        const handlers = this.props.disabled
+        const childrenProps: ChildrenProps = this.props.disabled
             ? disabledHandlers
             : {
                   onClick: this.handleClick,
@@ -605,7 +614,18 @@ export default class ClickableBehavior extends React.Component<
                   // things that aren't buttons or anchors.
                   tabIndex: 0,
               };
+
+        // When the link is set to open in a new window, we want to set some
+        // `rel` attributes. This is to ensure that the links we're sending folks
+        // to can't hijack the existing page.  These defaults can be overriden
+        // by passing in a different value for the `rel` prop.
+        // More info: https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/
+        childrenProps.rel =
+            this.props.rel ||
+            (this.props.target === "_blank"
+                ? "noopener noreferrer"
+                : undefined);
         const {children} = this.props;
-        return children && children(this.state, handlers);
+        return children && children(this.state, childrenProps);
     }
 }

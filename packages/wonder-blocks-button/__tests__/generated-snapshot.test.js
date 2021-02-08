@@ -443,7 +443,6 @@ describe("wonder-blocks-button", () => {
                     <Button
                         href="https://google.com"
                         target="_blank"
-                        rel="noopener noreferrer"
                         style={styles.button}
                         skipClientNav={true}
                         beforeNav={() =>

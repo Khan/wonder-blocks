@@ -111,7 +111,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
 
         return (
             <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
-                {(state, handlers) => {
+                {(state, childrenProps) => {
                     const stateStyles = _generateStyles(light, isPlaceholder);
                     const {hovered, focused, pressed} = state;
 
@@ -145,7 +145,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                             id={id}
                             style={style}
                             type="button"
-                            {...handlers}
+                            {...childrenProps}
                         >
                             <LabelMedium style={styles.text}>
                                 {children}

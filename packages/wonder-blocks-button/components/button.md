@@ -467,7 +467,6 @@ const styles = StyleSheet.create({
         <Button
             href="https://google.com"
             target="_blank"
-            rel="noopener noreferrer"
             style={styles.button}
             skipClientNav={true}
             beforeNav={() => new Promise((resolve, reject) => {

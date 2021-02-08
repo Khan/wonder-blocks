@@ -138,11 +138,11 @@ type Props = {|
                     onClick={this.handleClick}
                     role={variant}
                 >
-                    {(state, handlers) => {
+                    {(state, childrenProps) => {
                         return (
                             <View
                                 style={styles.wrapper}
-                                {...handlers}
+                                {...childrenProps}
                                 // We are resetting the tabIndex=0 from handlers
                                 // because the ChoiceCore component will receive
                                 // focus on basis of it being an input element.

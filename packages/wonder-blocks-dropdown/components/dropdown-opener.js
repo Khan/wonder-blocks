@@ -5,7 +5,7 @@ import {ClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {
-    ClickableHandlers,
+    ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 
@@ -55,7 +55,7 @@ class DropdownOpener extends React.Component<Props> {
 
     renderAnchorChildren(
         eventState: ClickableState,
-        handlers: ClickableHandlers,
+        clickableChildrenProps: ChildrenProps,
     ) {
         const {disabled, testId, text} = this.props;
         const renderedChildren = this.props.children({...eventState, text});
@@ -63,7 +63,7 @@ class DropdownOpener extends React.Component<Props> {
         const childrenTestId = this.getTestIdFromProps(childrenProps);
 
         return React.cloneElement(renderedChildren, {
-            ...handlers,
+            ...clickableChildrenProps,
             disabled,
             onClick: childrenProps.onClick
                 ? (e: SyntheticMouseEvent<>) => {
@@ -71,9 +71,9 @@ class DropdownOpener extends React.Component<Props> {
                       // custom onClick handler inside the
                       // children node
                       childrenProps.onClick(e);
-                      handlers.onClick(e);
+                      clickableChildrenProps.onClick(e);
                   }
-                : handlers.onClick,
+                : clickableChildrenProps.onClick,
             // try to get the testId from the child element
             // If it's not set, try to fallback to the parent's testId
             "data-test-id": childrenTestId || testId,

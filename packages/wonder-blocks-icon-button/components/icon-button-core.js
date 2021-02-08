@@ -11,7 +11,7 @@ import Color, {
 } from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {
-    ClickableHandlers,
+    ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import Icon from "@khanacademy/wonder-blocks-icon";
@@ -19,7 +19,7 @@ import type {SharedProps} from "./icon-button.js";
 
 type Props = {|
     ...SharedProps,
-    ...ClickableHandlers,
+    ...ChildrenProps,
     ...ClickableState,
 
     /**
@@ -53,7 +53,7 @@ export default class IconButtonCore extends React.Component<Props> {
             style,
             testId,
             waiting: _,
-            ...handlers
+            ...restProps
         } = this.props;
         const {router} = this.context;
 
@@ -80,7 +80,7 @@ export default class IconButtonCore extends React.Component<Props> {
         const commonProps = {
             "data-test-id": testId,
             style: [defaultStyle, style],
-            ...handlers,
+            ...restProps,
         };
 
         if (href && !disabled) {
