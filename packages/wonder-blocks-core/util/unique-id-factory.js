@@ -9,7 +9,7 @@ import type {IIdentifierFactory} from "./types.js";
 export default class UniqueIDFactory implements IIdentifierFactory {
     _uniqueFactoryName: string;
 
-    static _factoryUniquenessCounter = 0;
+    static _factoryUniquenessCounter: number = 0;
 
     /**
      * Creates a UniqueIDFactory instance.
@@ -35,7 +35,7 @@ export default class UniqueIDFactory implements IIdentifierFactory {
      * example, that it doesn't start with numbers). We don't need to do that
      * here because all identifiers are prefixed to avoid needing that check.
      */
-    _hasValidIdChars(value: ?string) {
+    _hasValidIdChars(value: ?string): boolean {
         if (typeof value !== "string") {
             return false;
         }
@@ -53,7 +53,7 @@ export default class UniqueIDFactory implements IIdentifierFactory {
      * key in this factory. This must contain only hyphen and alphanumeric
      * characters.
      */
-    get = (key: string) => {
+    get: (key: string) => string = (key) => {
         const normalizedKey = key.toLowerCase();
         if (!this._hasValidIdChars(key)) {
             throw new Error(`Invalid identifier key: ${key}`);

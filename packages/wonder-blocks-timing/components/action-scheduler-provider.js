@@ -29,7 +29,7 @@ export default class ActionSchedulerProvider extends React.Component<Props> {
 
     _actionScheduler: IScheduleActions = new ActionScheduler();
 
-    render() {
+    render(): React.Node {
         const {children} = this.props;
         return children(this._actionScheduler);
     }

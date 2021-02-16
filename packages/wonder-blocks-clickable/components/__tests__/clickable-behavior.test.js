@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 // @flow
-import React from "react";
+import * as React from "react";
 import {MemoryRouter, Switch, Route} from "react-router-dom";
 import {shallow} from "enzyme";
 import {mount, unmountAll} from "../../../../utils/testing/mount.js";

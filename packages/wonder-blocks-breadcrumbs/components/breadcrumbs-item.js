@@ -38,7 +38,7 @@ export default class BreadcrumbsItem extends React.Component<Props> {
      * Renders a separator after the content
      * It draws a circular bullet point using an SVG circle shape
      */
-    _renderSeparator() {
+    _renderSeparator(): React.Node {
         return (
             <StyledSvg
                 style={styles.separator}
@@ -52,7 +52,7 @@ export default class BreadcrumbsItem extends React.Component<Props> {
         );
     }
 
-    render() {
+    render(): React.Node {
         const {children, showSeparator, testId, ...otherProps} = this.props;
 
         return (

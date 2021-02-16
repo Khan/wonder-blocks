@@ -202,7 +202,7 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
         return mockStyleSheet;
     }
 
-    render() {
+    render(): React.Node {
         const {children, mediaSpec, ssrSize, overrideSize} = this.props;
 
         // We need to create the MediaQueryLists during the first render in order
@@ -235,7 +235,7 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
 
 // gen-snapshot-tests.js only understands `export default class ...`
 export default class MediaLayout extends React.Component<Props> {
-    render() {
+    render(): React.Node {
         // We listen to the MediaLayoutContext to see what defaults we're
         // being given (this can be overriden by wrapping this component in
         // a MediaLayoutContext.Consumer).

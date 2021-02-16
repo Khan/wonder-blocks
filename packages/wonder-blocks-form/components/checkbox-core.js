@@ -32,12 +32,12 @@ const checkboxCheck: IconAsset = {
  * The internal stateless ☑️ Checkbox
  */
 export default class CheckboxCore extends React.Component<Props> {
-    handleChange = () => {
+    handleChange: () => void = () => {
         // Empty because change is handled by ClickableBehavior
         return;
     };
 
-    render() {
+    render(): React.Node {
         const {
             checked,
             disabled,

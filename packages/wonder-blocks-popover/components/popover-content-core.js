@@ -49,18 +49,24 @@ type Props = {|
     testId?: string,
 |};
 
+type DefaultProps = {|
+    color: $PropertyType<Props, "color">,
+    closeButtonLight: $PropertyType<Props, "closeButtonLight">,
+    closeButtonVisible: $PropertyType<Props, "closeButtonVisible">,
+|};
+
 /**
  * This is the base popover container. It’s used internally by all the variants.
  * Also, it can be used to create flexible popovers.
  */
 export default class PopoverContentCore extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         color: "white",
         closeButtonLight: false,
         closeButtonVisible: false,
     };
 
-    render() {
+    render(): React.Node {
         const {
             children,
             closeButtonLight,

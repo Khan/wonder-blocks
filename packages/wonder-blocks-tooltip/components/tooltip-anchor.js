@@ -72,6 +72,10 @@ type Props = {|
     ids?: IIdentifierFactory,
 |};
 
+type DefaultProps = {|
+    forceAnchorFocusivity: $PropertyType<Props, "forceAnchorFocusivity">,
+|};
+
 type State = {|
     /** Is the anchor active or not? */
     active: boolean,
@@ -90,7 +94,7 @@ export default class TooltipAnchor
     _unsubscribeFromTracker: ?() => void;
     _timeoutID: ?TimeoutID;
 
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         forceAnchorFocusivity: true,
     };
 
@@ -168,9 +172,9 @@ export default class TooltipAnchor
         }
     }
 
-    static ariaContentId = "aria-content";
+    static ariaContentId: string = "aria-content";
 
-    activeStateStolen = () => {
+    activeStateStolen: () => void = () => {
         // Something wants the active state.
         // Do we have it? If so, let's remember that.
         // If we are already active, or we're inactive but have a timeoutID,
@@ -268,23 +272,23 @@ export default class TooltipAnchor
         this.props.onTimeoutChanged(instant ? null : this._timeoutID);
     }
 
-    _handleFocusIn = () => {
+    _handleFocusIn: () => void = () => {
         this._updateActiveState(this._hovered, true);
     };
 
-    _handleFocusOut = () => {
+    _handleFocusOut: () => void = () => {
         this._updateActiveState(this._hovered, false);
     };
 
-    _handleMouseEnter = () => {
+    _handleMouseEnter: () => void = () => {
         this._updateActiveState(true, this._focused);
     };
 
-    _handleMouseLeave = () => {
+    _handleMouseLeave: () => void = () => {
         this._updateActiveState(false, this._focused);
     };
 
-    _handleKeyUp = (e: KeyboardEvent) => {
+    _handleKeyUp: (e: KeyboardEvent) => void = (e) => {
         // We check the key as that's keyboard layout agnostic and also avoids
         // the minefield of deprecated number type properties like keyCode and
         // which, with the replacement code, which uses a string instead.
@@ -305,7 +309,7 @@ export default class TooltipAnchor
         }
     };
 
-    _renderAnchorableChildren() {
+    _renderAnchorableChildren(): React.Element<any> {
         const {children} = this.props;
         return typeof children === "string" ? (
             <WBText>{children}</WBText>
@@ -314,7 +318,7 @@ export default class TooltipAnchor
         );
     }
 
-    _renderAccessibleChildren(ids: IIdentifierFactory) {
+    _renderAccessibleChildren(ids: IIdentifierFactory): React.Node {
         const anchorableChildren = this._renderAnchorableChildren();
 
         return React.cloneElement(anchorableChildren, {
@@ -322,7 +326,7 @@ export default class TooltipAnchor
         });
     }
 
-    render() {
+    render(): React.Node {
         // We need to make sure we can anchor on our content.
         // If the content is just a string, we wrap it in a Text element
         // so as not to affect styling or layout but still have an element

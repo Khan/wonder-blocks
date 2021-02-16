@@ -20,6 +20,10 @@ import PopoverDialog from "./popover-dialog.js";
 import FocusManager from "./focus-manager.js";
 import PopoverKeypressListener from "./popover-keypress-listener.js";
 
+type PopoverContents =
+    | React.Element<PopoverContent>
+    | React.Element<PopoverContentCore>;
+
 type Props = {|
     ...AriaProps,
 
@@ -43,12 +47,7 @@ type Props = {|
      * If the popover needs to close itself, the close function provided to this
      * callback can be called to close the popover.
      */
-    content:
-        | React.Element<PopoverContent>
-        | React.Element<PopoverContentCore>
-        | (({|close: () => void|}) =>
-              | React.Element<PopoverContentCore>
-              | React.Element<PopoverContent>),
+    content: PopoverContents | (({|close: () => void|}) => PopoverContents),
 
     /**
      * Where the popover should try to appear in relation to the trigger element.
@@ -121,6 +120,10 @@ type State = {|
     placement: Placement,
 |};
 
+type DefaultProps = {|
+    placement: $PropertyType<Props, "placement">,
+|};
+
 /**
  * Popovers provide additional information that is related to a particular
  * element and/or content. They can include text, links, icons and
@@ -131,7 +134,7 @@ type State = {|
  * `PopoverContentCore` component according to the children it is wrapping.
  */
 export default class Popover extends React.Component<Props, State> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         placement: "top",
     };
 
@@ -139,14 +142,17 @@ export default class Popover extends React.Component<Props, State> {
      * Used to sync the `opened` state when Popover acts as a controlled
      * component
      */
-    static getDerivedStateFromProps(props: Props, state: State) {
+    static getDerivedStateFromProps(
+        props: Props,
+        state: State,
+    ): ?Partial<State> {
         return {
             opened:
                 typeof props.opened === "boolean" ? props.opened : state.opened,
         };
     }
 
-    state = {
+    state: State = {
         opened: !!this.props.opened,
         anchorElement: null,
         placement: this.props.placement,
@@ -155,7 +161,7 @@ export default class Popover extends React.Component<Props, State> {
     /**
      * Popover dialog closed
      */
-    handleClose = () => {
+    handleClose: () => void = () => {
         this.setState({opened: false}, () => {
             this.props.onClose && this.props.onClose();
         });
@@ -164,7 +170,7 @@ export default class Popover extends React.Component<Props, State> {
     /**
      * Popover dialog opened
      */
-    handleOpen = () => {
+    handleOpen: () => void = () => {
         if (this.props.dismissEnabled && this.state.opened) {
             this.setState({opened: false});
         } else {
@@ -172,14 +178,14 @@ export default class Popover extends React.Component<Props, State> {
         }
     };
 
-    updateRef = (ref: any) => {
+    updateRef: (ref: any) => void = (ref) => {
         const actualRef = ref && ReactDOM.findDOMNode(ref);
         if (actualRef && this.state.anchorElement !== actualRef) {
             this.setState({anchorElement: ((actualRef: any): ?HTMLElement)});
         }
     };
 
-    renderContent() {
+    renderContent(): PopoverContents {
         const {content} = this.props;
 
         return typeof content === "function"
@@ -189,7 +195,7 @@ export default class Popover extends React.Component<Props, State> {
             : content;
     }
 
-    renderPopper(uniqueId: string) {
+    renderPopper(uniqueId: string): React.Node {
         const {initialFocusId, placement} = this.props;
         const {anchorElement} = this.state;
 
@@ -217,7 +223,7 @@ export default class Popover extends React.Component<Props, State> {
         );
     }
 
-    getHost() {
+    getHost(): ?Element {
         // If we are in a modal, we find where we should be portalling the
         // popover by using the helper function from the modal package on the
         // trigger element. If we are not in a modal, we use body as the
@@ -228,7 +234,7 @@ export default class Popover extends React.Component<Props, State> {
         );
     }
 
-    render() {
+    render(): React.Node {
         const {children, dismissEnabled, id} = this.props;
         const {opened, placement} = this.state;
         const popperHost = this.getHost();

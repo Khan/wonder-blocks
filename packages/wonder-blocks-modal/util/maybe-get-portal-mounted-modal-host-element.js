@@ -29,6 +29,6 @@ function maybeGetNextAncestorModalLauncherPortal(element: ?(Element | Text)) {
  */
 export default function maybeGetPortalMountedModalHostElement(
     element: ?(Element | Text),
-) {
+): ?Element {
     return maybeGetNextAncestorModalLauncherPortal(element);
 }

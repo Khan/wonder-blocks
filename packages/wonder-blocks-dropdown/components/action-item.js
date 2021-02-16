@@ -94,6 +94,16 @@ type ActionProps = {|
     style?: StyleType,
 |};
 
+type DefaultProps = {|
+    disabled: $PropertyType<ActionProps, "disabled">,
+    indent: $PropertyType<ActionProps, "indent">,
+    role: $PropertyType<ActionProps, "role">,
+|};
+
+type ContextTypes = {|
+    router: PropTypes.Requirable<any>,
+|};
+
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
@@ -104,18 +114,18 @@ const StyledLink = addStyle(Link);
  * ActionMenu.
  */
 export default class ActionItem extends React.Component<ActionProps> {
-    static isClassOf(instance: React.Element<any>) {
+    static isClassOf(instance: React.Element<any>): boolean {
         return instance && instance.type && instance.type.__IS_ACTION_ITEM__;
     }
-    static contextTypes = {router: PropTypes.any};
-    static defaultProps = {
+    static contextTypes: ContextTypes = {router: PropTypes.any};
+    static defaultProps: DefaultProps = {
         disabled: false,
         indent: false,
         role: "menuitem",
     };
-    static __IS_ACTION_ITEM__ = true;
+    static __IS_ACTION_ITEM__: boolean = true;
 
-    render() {
+    render(): React.Node {
         const {
             skipClientNav,
             disabled,

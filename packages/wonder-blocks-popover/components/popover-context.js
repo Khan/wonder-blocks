@@ -33,4 +33,6 @@ const defaultContext: PopoverContextType = {
  * 2. Keeps a reference of the TooltipPopper's `placement` value. It can be one
  *    of the following values: "top", "bottom", "left" or "right".
  */
-export default React.createContext<PopoverContextType>(defaultContext);
+export default (React.createContext<PopoverContextType>(
+    defaultContext,
+): React.Context<PopoverContextType>);

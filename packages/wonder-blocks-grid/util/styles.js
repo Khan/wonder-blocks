@@ -1,9 +1,10 @@
 // @flow
 import {StyleSheet} from "aphrodite";
+import type {StyleDeclaration} from "aphrodite";
 
 const WIDE_SCREEN = "@media (min-width: 1168px)";
 
-const styles = StyleSheet.create({
+const styles: StyleDeclaration = StyleSheet.create({
     row: {
         flexDirection: "row",
         alignItems: "center",

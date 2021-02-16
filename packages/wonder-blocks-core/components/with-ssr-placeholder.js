@@ -11,7 +11,7 @@ type Props = {|
      * not server-side rendering, or (when server-side rendering) after
      * the initial rehydration has finished.
      */
-    children: () => ?React.Node,
+    children: () => React.Node,
 
     /**
      * What to render during server-side rendering, or null not to
@@ -22,7 +22,7 @@ type Props = {|
      * the server-side renderer and the rehydration -- or it defeats
      * the purpose of using the WithSSRPlaceholder component.
      */
-    placeholder: ?() => ?React.Node,
+    placeholder: ?() => React.Node,
 |};
 
 type State = {|
@@ -72,7 +72,7 @@ const RenderStateContext = React.createContext<RenderState>("root");
  * ```
  */
 export default class WithSSRPlaceholder extends React.Component<Props, State> {
-    state = {
+    state: State = {
         mounted: false,
     };
 
@@ -88,9 +88,9 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         }
     }
 
-    _isTheRootComponent = false;
+    _isTheRootComponent: boolean = false;
 
-    _renderAsRootComponent() {
+    _renderAsRootComponent(): React.Node {
         const {mounted} = this.state;
         const {children, placeholder} = this.props;
 
@@ -125,7 +125,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         return null;
     }
 
-    _maybeRender(renderState: RenderState) {
+    _maybeRender(renderState: RenderState): React.Node {
         const {children, placeholder} = this.props;
 
         switch (renderState) {
@@ -174,7 +174,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         }
     }
 
-    render() {
+    render(): React.Node {
         return (
             <RenderStateContext.Consumer>
                 {(value) => this._maybeRender(value)}

@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {action} from "@storybook/addon-actions";
 import {text, radios, object, boolean} from "@storybook/addon-knobs";
 
@@ -13,7 +13,7 @@ export default {
     title: "Button",
 };
 
-export const buttonsWithKnobs = () => {
+export const buttonsWithKnobs: React.ComponentType<Empty> = () => {
     const children = text("children", "Hello, world!");
     const kind = radios(
         "kind",
@@ -68,7 +68,7 @@ buttonsWithKnobs.story = {
     },
 };
 
-export const basicButtons = () => (
+export const basicButtons: React.ComponentType<Empty> = () => (
     <View>
         <View style={{flexDirection: "row"}}>
             <Button onClick={() => {}}>Hello, world!</Button>
@@ -112,7 +112,7 @@ export const basicButtons = () => (
     </View>
 );
 
-export const darkBackgroundButtons = () => (
+export const darkBackgroundButtons: React.ComponentType<Empty> = () => (
     <View style={{backgroundColor: Color.darkBlue}}>
         <View style={{flexDirection: "row"}}>
             <Button onClick={() => {}} light={true}>
@@ -184,7 +184,7 @@ darkBackgroundButtons.story = {
     },
 };
 
-export const smallButtons = () => (
+export const smallButtons: React.ComponentType<Empty> = () => (
     <View style={{flexDirection: "row"}}>
         <Button onClick={() => {}} size="small">
             Hello, world!
@@ -200,7 +200,7 @@ export const smallButtons = () => (
     </View>
 );
 
-export const xlargeButtons = () => (
+export const xlargeButtons: React.ComponentType<Empty> = () => (
     <View style={{flexDirection: "row"}}>
         <Button onClick={() => {}} size="xlarge">
             Hello, world!
@@ -216,13 +216,13 @@ export const xlargeButtons = () => (
     </View>
 );
 
-export const longLabelsAreEllipsized = () => (
+export const longLabelsAreEllipsized = (): React.ComponentType<Empty> => (
     <Button onClick={() => {}} style={{maxWidth: 200}}>
         label too long for the parent container
     </Button>
 );
 
-export const buttonWithSpinner = () => (
+export const buttonWithSpinner: React.ComponentType<Empty> = () => (
     <View style={{flexDirection: "row"}}>
         <Button
             onClick={() => {}}

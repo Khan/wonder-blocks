@@ -8,6 +8,8 @@ import type {InterceptContextData} from "../util/types.js";
  *
  * INTERNAL USE ONLY
  */
-const InterceptContext = React.createContext<InterceptContextData>({});
+const InterceptContext: React.Context<InterceptContextData> = React.createContext<InterceptContextData>(
+    {},
+);
 
 export default InterceptContext;

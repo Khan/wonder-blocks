@@ -8,13 +8,9 @@
 import PopperJs from "popper.js";
 
 export default class Popper {
-    static placements = PopperJs.placements;
-    static Defaults = PopperJs.Defaults;
+    static placements: typeof PopperJs.placements = PopperJs.placements;
+    static Defaults: typeof PopperJs.Defaults = PopperJs.Defaults;
 
-    constructor() {
-        return {
-            destroy: () => {},
-            scheduleUpdate: () => {},
-        };
-    }
+    destroy: () => void = () => {};
+    scheduleUpdate: () => void = () => {};
 }

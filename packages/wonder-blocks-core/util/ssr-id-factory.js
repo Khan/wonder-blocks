@@ -12,9 +12,9 @@ import type {IIdentifierFactory} from "./types.js";
  * server and the first client render.
  */
 class SsrIDFactory implements IIdentifierFactory {
-    static Default = new SsrIDFactory();
+    static Default: IIdentifierFactory = new SsrIDFactory();
 
-    get(id: string) {
+    get(id: string): string {
         return id;
     }
 }

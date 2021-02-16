@@ -241,6 +241,10 @@ export type WithActionSchedulerProps = {|
     schedule: IScheduleActions,
 |};
 
+export type WithoutActionScheduler<TProps: {...}> = $Exact<
+    $Rest<TProps, WithActionSchedulerProps>,
+>;
+
 /**
  * Extends the given props with props that the `withActionScheduler` higher
  * order component will inject.

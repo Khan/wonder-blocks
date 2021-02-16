@@ -1,5 +1,5 @@
 //@flow
-import React from "react";
+import * as React from "react";
 import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 
 import RadioGroup from "../radio-group.js";

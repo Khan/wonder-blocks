@@ -10,7 +10,7 @@
  *     relatively stable component that has now been stress-tested lots in prod.
  */
 
-import {Component} from "react";
+import * as React from "react";
 
 const needsHackyMobileSafariScrollDisabler = (() => {
     if (typeof window === "undefined") {
@@ -23,7 +23,7 @@ const needsHackyMobileSafariScrollDisabler = (() => {
 
 type Props = {||};
 
-class ScrollDisabler extends Component<Props> {
+class ScrollDisabler extends React.Component<Props> {
     static oldOverflow: string;
     static oldPosition: string;
     static oldScrollY: number;
@@ -86,9 +86,9 @@ class ScrollDisabler extends Component<Props> {
         }
     }
 
-    static numModalsOpened = 0;
+    static numModalsOpened: number = 0;
 
-    render() {
+    render(): React.Node {
         return null;
     }
 }

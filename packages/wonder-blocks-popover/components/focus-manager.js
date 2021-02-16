@@ -87,12 +87,12 @@ export default class FocusManager extends React.Component<Props> {
     /**
      * List of focusable elements within the popover content
      */
-    focusableElementsInPopover = [];
+    focusableElementsInPopover: Array<HTMLElement> = [];
 
     /**
      * Add keydown listeners
      */
-    addEventListeners = () => {
+    addEventListeners: () => void = () => {
         const {anchorElement} = this.props;
 
         if (anchorElement) {
@@ -118,7 +118,7 @@ export default class FocusManager extends React.Component<Props> {
     /**
      * Gets the next focusable element after the anchor element
      */
-    getNextFocusableElement = () => {
+    getNextFocusableElement: () => ?HTMLElement = () => {
         const {anchorElement} = this.props;
 
         if (!anchorElement || this.nextElementAfterPopover) {
@@ -148,7 +148,7 @@ export default class FocusManager extends React.Component<Props> {
     /**
      * Gets the list of focusable elements inside the popover
      */
-    getComponentRootNode = (node: any) => {
+    getComponentRootNode: () => void = (node: any) => {
         if (!node) {
             // The component is being umounted
             return;
@@ -172,7 +172,7 @@ export default class FocusManager extends React.Component<Props> {
      * Triggered when the focus is set to the first sentinel. This way, the
      * focus will be redirected to the anchor element.
      */
-    handleFocusPreviousFocusableElement = () => {
+    handleFocusPreviousFocusableElement: () => void = () => {
         if (this.props.anchorElement) {
             this.props.anchorElement.focus();
         }
@@ -182,7 +182,7 @@ export default class FocusManager extends React.Component<Props> {
      * Triggered when the focus is set to the last sentinel. This way, the focus
      * will be redirected to next element after the anchor element.
      */
-    handleFocusNextFocusableElement = () => {
+    handleFocusNextFocusableElement: () => void = () => {
         if (this.nextElementAfterPopover) {
             this.nextElementAfterPopover.focus();
         }
@@ -193,7 +193,7 @@ export default class FocusManager extends React.Component<Props> {
      * way, the focus is redirected to the first focusable element inside the
      * popover.
      */
-    handleKeydownPreviousFocusableElement = (e: KeyboardEvent) => {
+    handleKeydownPreviousFocusableElement: (e: KeyboardEvent) => void = (e) => {
         // It will try focus only if the user is pressing `tab`
         if (e.key === "Tab" && !e.shiftKey) {
             e.preventDefault();
@@ -205,7 +205,7 @@ export default class FocusManager extends React.Component<Props> {
      * Triggered when the focus is leaving the next focusable element. This way,
      * the focus is redirected to the last focusable element inside the popover.
      */
-    handleKeydownNextFocusableElement = (e: KeyboardEvent) => {
+    handleKeydownNextFocusableElement: (e: KeyboardEvent) => void = (e) => {
         // It will try focus only if the user is pressing `Shift+tab`
         if (e.key === "Tab" && e.shiftKey) {
             e.preventDefault();
@@ -214,7 +214,7 @@ export default class FocusManager extends React.Component<Props> {
         }
     };
 
-    render() {
+    render(): React.Node {
         const {children} = this.props;
 
         return (

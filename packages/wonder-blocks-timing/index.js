@@ -6,6 +6,7 @@ import type {
     ITimeout,
     WithActionScheduler,
     WithActionSchedulerProps,
+    WithoutActionScheduler,
 } from "./util/types.js";
 
 export type {
@@ -15,6 +16,7 @@ export type {
     ITimeout,
     WithActionScheduler,
     WithActionSchedulerProps,
+    WithoutActionScheduler,
 };
 
 export {default as withActionScheduler} from "./components/with-action-scheduler.js";

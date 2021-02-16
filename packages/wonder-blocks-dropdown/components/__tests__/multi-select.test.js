@@ -1,6 +1,6 @@
 /* eslint-disable max-lines */
 //@flow
-import React from "react";
+import * as React from "react";
 
 import {ClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
@@ -211,7 +211,7 @@ describe("MultiSelect", () => {
         };
 
         class ControlledComponent extends React.Component<Props, State> {
-            state = {
+            state: State = {
                 opened: this.props.opened,
             };
 
@@ -223,7 +223,7 @@ describe("MultiSelect", () => {
                 this.props.onToggle && this.props.onToggle(opened);
             };
 
-            render() {
+            render(): React.Node {
                 return (
                     <React.Fragment>
                         <MultiSelect

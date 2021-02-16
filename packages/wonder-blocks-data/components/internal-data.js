@@ -205,7 +205,7 @@ export default class InternalData<
         );
     }
 
-    render() {
+    render(): React.Node {
         const result = this._resultFromState();
         if (result.loading && Server.isServerSide()) {
             return this._renderWithTrackingContext(result);

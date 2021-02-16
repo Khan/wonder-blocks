@@ -10,6 +10,8 @@ deprecated-utility=error
 implicit-inexact-object=error
 
 [options]
+well_formed_exports=true
+
 # $FlowFixMe
 # This suppression hould be used to suppress an issue that requires additional
 # effort to be resolved. That effort should be recorded in our issue tracking

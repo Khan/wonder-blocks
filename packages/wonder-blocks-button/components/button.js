@@ -222,6 +222,19 @@ type Props =
           safeWithNav: () => Promise<mixed>,
       |};
 
+type ContextTypes = {|
+    router: PropTypes.Requireable<any>,
+|};
+
+type DefaultProps = {|
+    color: $PropertyType<Props, "color">,
+    kind: $PropertyType<Props, "kind">,
+    light: $PropertyType<Props, "light">,
+    size: $PropertyType<Props, "size">,
+    disabled: $PropertyType<Props, "disabled">,
+    spinner: $PropertyType<Props, "spinner">,
+|};
+
 /**
  * Reusable button component.
  *
@@ -240,9 +253,9 @@ type Props =
  * ```
  */
 export default class Button extends React.Component<Props> {
-    static contextTypes = {router: PropTypes.any};
+    static contextTypes: ContextTypes = {router: PropTypes.any};
 
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         color: "default",
         kind: "primary",
         light: false,
@@ -251,7 +264,7 @@ export default class Button extends React.Component<Props> {
         spinner: false,
     };
 
-    render() {
+    render(): React.Node {
         const {
             href = undefined,
             type = undefined,

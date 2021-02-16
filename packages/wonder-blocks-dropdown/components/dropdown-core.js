@@ -15,7 +15,10 @@ import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
+import type {
+    WithActionSchedulerProps,
+    WithoutActionScheduler,
+} from "@khanacademy/wonder-blocks-timing";
 // NOTE(jeff): Here we share some code for use with PopperJS. Long term,
 // we should either contribute this code to the PopperJS component, or its
 // own non-wonder-blocks package.
@@ -58,6 +61,9 @@ type DefaultProps = {|
      */
     light: boolean,
 |};
+
+type DropdownAriaRole = "listbox" | "menu";
+type ItemAriaRole = "option" | "menuitem";
 
 type Props = {|
     ...DefaultProps,
@@ -127,7 +133,7 @@ type Props = {|
     /**
      * The aria "role" applied to the dropdown container.
      */
-    role: "listbox" | "menu",
+    role: DropdownAriaRole,
 
     ...WithActionSchedulerProps,
 |};
@@ -187,7 +193,7 @@ class DropdownCore extends React.Component<Props, State> {
     static sameItemsFocusable(
         prevItems: Array<DropdownItem>,
         currentItems: Array<DropdownItem>,
-    ) {
+    ): boolean {
         if (prevItems.length !== currentItems.length) {
             return false;
         }
@@ -211,7 +217,10 @@ class DropdownCore extends React.Component<Props, State> {
     // This is here to avoid calling React.createRef on each rerender. Instead,
     // we create the itemRefs only if it's the first time or if the set of items
     // that are focusable has changed.
-    static getDerivedStateFromProps(props: Props, state: State) {
+    static getDerivedStateFromProps(
+        props: Props,
+        state: State,
+    ): ?Partial<State> {
         if (
             (state.itemRefs.length === 0 && props.open) ||
             !DropdownCore.sameItemsFocusable(state.prevItems, props.items)
@@ -373,9 +382,9 @@ class DropdownCore extends React.Component<Props, State> {
         document.removeEventListener("touchend", this.handleInteract);
     }
 
-    handleInteract = (event: {target: any, ...}) => {
+    handleInteract: (event: Event) => void = (event) => {
         const {open, onOpenChanged} = this.props;
-        const target: Node = event.target;
+        const target: Node = (event.target: $FlowFixMe);
         const thisElement = ReactDOM.findDOMNode(this);
         if (
             open &&
@@ -447,7 +456,7 @@ class DropdownCore extends React.Component<Props, State> {
         }
     }
 
-    handleKeyDown = (event: SyntheticKeyboardEvent<>) => {
+    handleKeyDown: (event: SyntheticKeyboardEvent<>) => void = (event) => {
         const {
             initialFocusedIndex,
             onOpenChanged,
@@ -521,7 +530,7 @@ class DropdownCore extends React.Component<Props, State> {
     };
 
     // Some keys should be handled during the keyup event instead.
-    handleKeyUp = (event: SyntheticKeyboardEvent<>) => {
+    handleKeyUp: (event: SyntheticKeyboardEvent<>) => void = (event) => {
         const {
             onOpenChanged,
             open,
@@ -553,7 +562,7 @@ class DropdownCore extends React.Component<Props, State> {
         }
     };
 
-    handleClickFocus = (index: number) => {
+    handleClickFocus: (index: number) => void = (index) => {
         // Turn itemsClicked on so pressing up or down would focus the
         // appropriate item in handleKeyDown
         this.itemsClicked = true;
@@ -563,7 +572,7 @@ class DropdownCore extends React.Component<Props, State> {
         ].originalIndex;
     };
 
-    handleDropdownMouseUp = (event: SyntheticMouseEvent<>) => {
+    handleDropdownMouseUp: (event: SyntheticMouseEvent<>) => void = (event) => {
         if (event.nativeEvent.stopImmediatePropagation) {
             event.nativeEvent.stopImmediatePropagation();
         } else {
@@ -572,7 +581,7 @@ class DropdownCore extends React.Component<Props, State> {
         }
     };
 
-    getItemRole() {
+    getItemRole(): ItemAriaRole {
         const {role} = this.props;
 
         switch (role) {
@@ -587,7 +596,7 @@ class DropdownCore extends React.Component<Props, State> {
         }
     }
 
-    maybeRenderNoResults() {
+    maybeRenderNoResults(): React.Node {
         const {
             items,
             onSearchTextChanged,
@@ -612,6 +621,7 @@ class DropdownCore extends React.Component<Props, State> {
                 </LabelMedium>
             );
         }
+        return null;
     }
 
     /**
@@ -668,7 +678,7 @@ class DropdownCore extends React.Component<Props, State> {
         });
     }
 
-    renderItems(outOfBoundaries: ?boolean) {
+    renderItems(outOfBoundaries: ?boolean): React.Node {
         const {dropdownStyle, light, openerElement} = this.props;
 
         // The dropdown width is at least the width of the opener.
@@ -706,7 +716,7 @@ class DropdownCore extends React.Component<Props, State> {
         );
     }
 
-    renderDropdown() {
+    renderDropdown(): React.Node {
         const {alignment, openerElement} = this.props;
         // If we are in a modal, we find where we should be portalling the menu
         // by using the helper function from the modal package on the opener
@@ -751,9 +761,11 @@ class DropdownCore extends React.Component<Props, State> {
                 modalHost,
             );
         }
+
+        return null;
     }
 
-    render() {
+    render(): React.Node {
         const {open, opener, style, className} = this.props;
 
         return (
@@ -801,4 +813,8 @@ const styles = StyleSheet.create({
     },
 });
 
-export default withActionScheduler(DropdownCore);
+type ExportProps = WithoutActionScheduler<React.ElementConfig<DropdownCore>>;
+
+export default (withActionScheduler(
+    DropdownCore,
+): React.ComponentType<ExportProps>);

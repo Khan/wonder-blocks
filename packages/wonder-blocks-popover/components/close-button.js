@@ -27,18 +27,23 @@ type Props = {|
     testId?: string,
 |};
 
+type DefaultProps = {|
+    light: $PropertyType<Props, "light">,
+    "aria-label": $PropertyType<Props, "aria-label">,
+|};
+
 /**
  * This is the visual component rendering the close button that is rendered
  * inside the PopoverContentCore. It’s rendered if closeButtonVisible is set
  * true.
  */
 export default class CloseButton extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         light: true,
         "aria-label": "Close Popover",
     };
 
-    render() {
+    render(): React.Node {
         const {light, "aria-label": ariaLabel, style, testId} = this.props;
         return (
             <PopoverContext.Consumer>

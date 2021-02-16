@@ -13,7 +13,7 @@ type Props = {|
  * Assumes parent is a View.
  */
 export default class Strut extends React.Component<Props> {
-    render() {
+    render(): React.Node {
         return <View aria-hidden="true" style={strutStyle(this.props.size)} />;
     }
 }

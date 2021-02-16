@@ -112,7 +112,7 @@ export default class ModalBackdrop extends React.Component<Props> {
      * _directly_ from the positioner, not bubbled up from its children), close
      * the modal.
      */
-    handleClick = (e: SyntheticEvent<>) => {
+    handleClick: (e: SyntheticEvent<>) => void = (e: SyntheticEvent<>) => {
         // Was the lowest-level click target (`e.target`) the positioner element
         // (`e.currentTarget`)?
         if (e.target === e.currentTarget) {
@@ -120,7 +120,7 @@ export default class ModalBackdrop extends React.Component<Props> {
         }
     };
 
-    render() {
+    render(): React.Node {
         const {children, testId} = this.props;
         const backdropProps = {
             [ModalLauncherPortalAttributeName]: true,

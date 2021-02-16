@@ -14,7 +14,11 @@ import type {ValidData, ICache, CacheEntry, IRequestHandler} from "./types.js";
  */
 export default class NoCache<TOptions, TData: ValidData>
     implements ICache<TOptions, TData> {
-    store = <TOptions, TData: ValidData>(
+    store: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+        entry: CacheEntry<TData>,
+    ) => void = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
         entry: CacheEntry<TData>,
@@ -22,17 +26,29 @@ export default class NoCache<TOptions, TData: ValidData>
         /* empty */
     };
 
-    retrieve = <TOptions, TData: ValidData>(
+    retrieve: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ) => ?CacheEntry<TData> = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
     ): ?CacheEntry<TData> => null;
 
-    remove = <TOptions, TData: ValidData>(
+    remove: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ) => boolean = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
     ): boolean => false;
 
-    removeAll = <TOptions, TData: ValidData>(
+    removeAll: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        predicate?: (
+            key: string,
+            cachedEntry: $ReadOnly<CacheEntry<TData>>,
+        ) => boolean,
+    ) => number = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         predicate?: (
             key: string,

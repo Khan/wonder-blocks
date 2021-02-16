@@ -81,6 +81,10 @@ type WithEmphasized = {|
 
 type Props = CommonProps | WithEmphasized;
 
+type DefaultProps = {|
+    closeButtonVisible: $PropertyType<Props, "closeButtonVisible">,
+|};
+
 // Created to add custom styles to the icon or image elements
 const StyledImage = addStyle("img");
 
@@ -89,7 +93,7 @@ const StyledImage = addStyle("img");
  * main responsibility is populate the contents depending on the variation used.
  */
 export default class PopoverContent extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         closeButtonVisible: false,
     };
 
@@ -120,7 +124,9 @@ export default class PopoverContent extends React.Component<Props> {
         }
     }
 
-    maybeRenderImage = ({placement}: PopoverContextType) => {
+    maybeRenderImage: (context: PopoverContextType) => React.Node = ({
+        placement,
+    }) => {
         const {image} = this.props;
 
         if (!image) {
@@ -139,7 +145,7 @@ export default class PopoverContent extends React.Component<Props> {
         );
     };
 
-    maybeRenderIcon = () => {
+    maybeRenderIcon: () => React.Node = () => {
         const {icon} = this.props;
 
         if (!icon) {
@@ -157,7 +163,7 @@ export default class PopoverContent extends React.Component<Props> {
         );
     };
 
-    maybeRenderActions = (close: () => mixed) => {
+    maybeRenderActions: (close: () => mixed) => React.Node = (close) => {
         const {actions} = this.props;
 
         if (!actions) {
@@ -175,7 +181,7 @@ export default class PopoverContent extends React.Component<Props> {
         );
     };
 
-    render() {
+    render(): React.Node {
         const {
             closeButtonLabel,
             closeButtonVisible,

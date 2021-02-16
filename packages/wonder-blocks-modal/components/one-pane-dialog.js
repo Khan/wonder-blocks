@@ -99,6 +99,10 @@ type WithBreadcrumbs = {|
 
 type Props = Common | WithSubtitle | WithBreadcrumbs;
 
+type DefaultProps = {|
+    closeButtonVisible: $PropertyType<Props, "closeButtonVisible">,
+|};
+
 /**
  * This is the standard layout for most straightforward modal experiences.
  *
@@ -106,7 +110,7 @@ type Props = Common | WithSubtitle | WithBreadcrumbs;
  * The content of the dialog itself is fully customizable, but the left/right/top/bottom padding is fixed.
  */
 export default class OnePaneDialog extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         closeButtonVisible: true,
     };
 
@@ -140,7 +144,7 @@ export default class OnePaneDialog extends React.Component<Props> {
         }
     }
 
-    render() {
+    render(): React.Node {
         const {
             onClose,
             footer,

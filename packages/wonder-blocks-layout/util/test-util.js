@@ -26,7 +26,7 @@ const queries = {
 export function checkQuery(
     queryString: $Values<typeof queries>,
     width: number,
-) {
+): boolean {
     return (
         (width < 768 && queryString === queries.small) ||
         (width >= 768 && width < 1024 && queryString === queries.medium) ||
@@ -35,12 +35,17 @@ export function checkQuery(
 }
 
 type Listener = ({|matches: boolean|}) => void;
+type MatchMedia = {|
+    matches: boolean,
+    addListener: (listener: Listener) => void,
+    removeListener: (listener: Listener) => void,
+|};
 
 /**
  *
  * @param {MediaQuery} query
  */
-export function matchMedia(query: $Values<typeof queries>) {
+export function matchMedia(query: $Values<typeof queries>): MatchMedia {
     const listeners = new Set<Listener>();
 
     window.addEventListener("resize", () => {

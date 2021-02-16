@@ -45,9 +45,9 @@ type Props = {|
  * with the associated input element, etc.
  */
 export default class IDProvider extends React.Component<Props> {
-    static defaultId = "wb-id";
+    static defaultId: string = "wb-id";
 
-    renderChildren(ids?: IIdentifierFactory) {
+    renderChildren(ids?: IIdentifierFactory): React.Node {
         const {id, children} = this.props;
         const uniqueId = ids ? ids.get(IDProvider.defaultId) : id;
 
@@ -58,7 +58,7 @@ export default class IDProvider extends React.Component<Props> {
         return children(uniqueId);
     }
 
-    render() {
+    render(): React.Node {
         const {id, scope} = this.props;
 
         if (id) {

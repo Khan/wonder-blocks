@@ -41,7 +41,7 @@ let _default: RequestTracker;
  * INTERNAL USE ONLY
  */
 export class RequestTracker {
-    static get Default() {
+    static get Default(): RequestTracker {
         if (!_default) {
             _default = new RequestTracker();
         }
@@ -67,10 +67,10 @@ export class RequestTracker {
      * This method caches a request and its handler for use during server-side
      * rendering to allow us to fulfill requests before producing a final render.
      */
-    trackDataRequest = (
+    trackDataRequest: (
         handler: IRequestHandler<any, any>,
         options: any,
-    ): void => {
+    ) => void = (handler: IRequestHandler<any, any>, options: any): void => {
         const key = handler.getKey(options);
         const type = handler.type;
 
@@ -93,7 +93,7 @@ export class RequestTracker {
     /**
      * Reset our tracking info.
      */
-    reset = () => {
+    reset: () => void = () => {
         this._trackedHandlers = {};
         this._trackedRequests = {};
     };
@@ -111,7 +111,9 @@ export class RequestTracker {
      * @returns {Promise<Cache>} A frozen cache of the data that was cached
      * as a result of fulfilling the tracked requests.
      */
-    fulfillTrackedRequests = (): Promise<$ReadOnly<Cache>> => {
+    fulfillTrackedRequests: () => Promise<$ReadOnly<Cache>> = (): Promise<
+        $ReadOnly<Cache>,
+    > => {
         const promises = [];
 
         for (const handlerType of Object.keys(this._trackedHandlers)) {

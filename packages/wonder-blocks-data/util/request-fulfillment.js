@@ -16,7 +16,7 @@ type RequestCache = {
 let _default: RequestFulfillment;
 
 export class RequestFulfillment {
-    static get Default() {
+    static get Default(): RequestFulfillment {
         if (!_default) {
             _default = new RequestFulfillment();
         }
@@ -30,7 +30,9 @@ export class RequestFulfillment {
         this._responseCache = responseCache || ResponseCache.Default;
     }
 
-    _getHandlerSubcache = <TOptions, TData: ValidData>(
+    _getHandlerSubcache: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+    ) => Subcache = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
     ): Subcache => {
         if (!this._requests[handler.type]) {
@@ -45,7 +47,10 @@ export class RequestFulfillment {
      * This will return an inflight request if one exists, otherwise it will
      * make a new request. Inflight requests are deleted once they resolve.
      */
-    fulfill = <TOptions, TData: ValidData>(
+    fulfill: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ) => Promise<CacheEntry<TData>> = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
     ): Promise<CacheEntry<TData>> => {

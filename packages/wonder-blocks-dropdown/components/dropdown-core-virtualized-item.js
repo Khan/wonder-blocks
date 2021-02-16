@@ -36,7 +36,7 @@ type Props = {|
  * react-window make its own calculations.
  */
 class DropdownVirtualizedItem extends React.Component<Props> {
-    render() {
+    render(): React.Node {
         const {data, index, style} = this.props;
         const item = data[index];
 

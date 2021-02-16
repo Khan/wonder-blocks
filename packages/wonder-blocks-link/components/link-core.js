@@ -20,13 +20,17 @@ type Props = {|
     href: string,
 |};
 
+type ContextTypes = {|
+    router: PropTypes.Requireable<any>,
+|};
+
 const StyledAnchor = addStyle<"a">("a");
 const StyledLink = addStyle<typeof Link>(Link);
 
 export default class LinkCore extends React.Component<Props> {
-    static contextTypes = {router: PropTypes.any};
+    static contextTypes: ContextTypes = {router: PropTypes.any};
 
-    render() {
+    render(): React.Node {
         const {
             children,
             skipClientNav,

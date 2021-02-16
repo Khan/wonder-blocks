@@ -34,7 +34,7 @@ export default class InitialFocus extends React.Component<Props> {
     /**
      * Gets the focusable element and applies focus to it
      */
-    setInitialFocusableElement = (node: HTMLElement) => {
+    setInitialFocusableElement: (node: HTMLElement) => void = (node) => {
         // 1. try to get element specified by the user
         // 2. get first occurence from list of focusable elements
         // 3. If no focusable elements are found, get the container itself
@@ -82,7 +82,7 @@ export default class InitialFocus extends React.Component<Props> {
         return focusableElements[0];
     }
 
-    render() {
+    render(): React.Node {
         return this.props.children;
     }
 }

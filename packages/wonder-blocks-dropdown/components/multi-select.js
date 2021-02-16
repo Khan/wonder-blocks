@@ -247,7 +247,10 @@ export default class MultiSelect extends React.Component<Props, State> {
      * Used to sync the `opened` state when this component acts as a controlled
      * component
      */
-    static getDerivedStateFromProps(props: Props, state: State) {
+    static getDerivedStateFromProps(
+        props: Props,
+        state: State,
+    ): ?Partial<State> {
         return {
             open: typeof props.opened === "boolean" ? props.opened : state.open,
         };
@@ -262,7 +265,10 @@ export default class MultiSelect extends React.Component<Props, State> {
         }
     }
 
-    handleOpenChanged = (opened: boolean, keyboard?: boolean) => {
+    handleOpenChanged: (opened: boolean, keyboard?: boolean) => void = (
+        opened,
+        keyboard,
+    ) => {
         this.setState({
             open: opened,
             keyboard,
@@ -275,7 +281,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         }
     };
 
-    handleToggle = (selectedValue: string) => {
+    handleToggle: (selectedValue: string) => void = (selectedValue) => {
         const {onChange, selectedValues} = this.props;
 
         if (selectedValues.includes(selectedValue)) {
@@ -291,7 +297,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         }
     };
 
-    handleSelectAll = () => {
+    handleSelectAll: () => void = () => {
         const {children, onChange} = this.props;
         const selected = React.Children.toArray(children)
             .filter(Boolean)
@@ -299,12 +305,12 @@ export default class MultiSelect extends React.Component<Props, State> {
         onChange(selected);
     };
 
-    handleSelectNone = () => {
+    handleSelectNone: () => void = () => {
         const {onChange} = this.props;
         onChange([]);
     };
 
-    getMenuText(children: Array<React.Element<OptionItem>>) {
+    getMenuText(children: Array<React.Element<OptionItem>>): string {
         const {implicitAllEnabled, selectedValues} = this.props;
         const {noneSelected, someSelected, allSelected} = this.state.labels;
 
@@ -455,9 +461,9 @@ export default class MultiSelect extends React.Component<Props, State> {
         ];
     }
 
-    mapOptionItemToDropdownItem = (
+    mapOptionItemToDropdownItem: (
         option: React.Element<OptionItem>,
-    ): DropdownItem => {
+    ) => DropdownItem = (option: React.Element<OptionItem>): DropdownItem => {
         const {selectedValues} = this.props;
         const {disabled, value} = option.props;
         return {
@@ -471,20 +477,22 @@ export default class MultiSelect extends React.Component<Props, State> {
         };
     };
 
-    handleOpenerRef = (node: any) => {
+    handleOpenerRef: (node: any) => void = (node: any) => {
         const openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
         this.setState({openerElement});
     };
 
-    handleSearchTextChanged = (searchText: string) => {
+    handleSearchTextChanged: (searchText: string) => void = (
+        searchText: string,
+    ) => {
         this.setState({searchText});
     };
 
-    handleClick = (e: SyntheticEvent<>) => {
+    handleClick: (e: SyntheticEvent<>) => void = (e: SyntheticEvent<>) => {
         this.handleOpenChanged(!this.state.open, e.type === "keyup");
     };
 
-    renderOpener(allChildren: Array<React.Element<OptionItem>>) {
+    renderOpener(allChildren: Array<React.Element<OptionItem>>): React.Node {
         const {
             disabled,
             id,
@@ -542,7 +550,7 @@ export default class MultiSelect extends React.Component<Props, State> {
         return dropdownOpener;
     }
 
-    render() {
+    render(): React.Node {
         const {
             alignment,
             light,

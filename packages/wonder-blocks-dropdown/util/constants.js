@@ -32,7 +32,7 @@ export const DROPDOWN_ITEM_HEIGHT = 40;
 
 export const SEPARATOR_ITEM_HEIGHT = 9;
 
-export const SEARCH_ITEM_HEIGHT =
+export const SEARCH_ITEM_HEIGHT: number =
     DROPDOWN_ITEM_HEIGHT + searchInputStyle.margin + searchInputStyle.marginTop;
 
 // The default labels that will be used by different components
@@ -41,8 +41,10 @@ export const defaultLabels = {
     filter: "Filter",
     noResults: "No results",
     selectNoneLabel: "Select none",
-    selectAllLabel: (numOptions: number) => `Select all (${numOptions})`,
+    selectAllLabel: (numOptions: number): string =>
+        `Select all (${numOptions})`,
     noneSelected: "0 items",
-    someSelected: (numSelectedValues: number) => `${numSelectedValues} items`,
+    someSelected: (numSelectedValues: number): string =>
+        `${numSelectedValues} items`,
     allSelected: "All items",
 };

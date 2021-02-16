@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -26,29 +26,33 @@ type State = {|
     selectedValues: Array<string>,
 |};
 
+type DefaultProps = {|
+    opened: $PropertyType<Props, "opened">,
+|};
+
 class MultiSelectWithCustomStyles extends React.Component<Props, State> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         opened: false,
     };
 
-    state = {
+    state: State = {
         selectedValues: [],
         opened: this.props.opened,
     };
 
-    handleChange = (update: Array<string>) => {
+    handleChange: (update: Array<string>) => void = (update) => {
         this.setState({
             selectedValues: update,
         });
     };
 
-    handleToggleMenu = (opened: boolean) => {
+    handleToggleMenu: (opened: boolean) => void = (opened) => {
         this.setState({
             opened,
         });
     };
 
-    render() {
+    render(): React.Node {
         return (
             <View style={styles.wrapper}>
                 <MultiSelect
@@ -74,7 +78,9 @@ class MultiSelectWithCustomStyles extends React.Component<Props, State> {
     }
 }
 
-export const customStyles = () => <MultiSelectWithCustomStyles />;
+export const customStyles: React.ComponentType<Empty> = () => (
+    <MultiSelectWithCustomStyles />
+);
 
 customStyles.story = {
     parameters: {
@@ -85,7 +91,7 @@ customStyles.story = {
     },
 };
 
-export const customStylesOpened = () => (
+export const customStylesOpened: React.ComponentType<Empty> = () => (
     <MultiSelectWithCustomStyles opened={true} />
 );
 

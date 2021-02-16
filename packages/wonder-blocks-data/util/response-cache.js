@@ -16,7 +16,7 @@ let _default: ResponseCache;
  * INTERNAL USE ONLY
  */
 export class ResponseCache {
-    static get Default() {
+    static get Default(): ResponseCache {
         if (!_default) {
             _default = new ResponseCache();
         }
@@ -52,7 +52,9 @@ export class ResponseCache {
      *
      * This can only be called if the cache is not already in use.
      */
-    initialize = (source: $ReadOnly<Cache>): void => {
+    initialize: (source: $ReadOnly<Cache>) => void = (
+        source: $ReadOnly<Cache>,
+    ): void => {
         if (this._cache.inUse) {
             throw new Error(
                 "Cannot initialize data response cache more than once",
@@ -71,7 +73,11 @@ export class ResponseCache {
     /**
      * Cache data for a specific response.
      */
-    cacheData = <TOptions, TData: ValidData>(
+    cacheData: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+        data: TData,
+    ) => CacheEntry<TData> = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
         data: TData,
@@ -82,7 +88,11 @@ export class ResponseCache {
     /**
      * Cache an error for a specific response.
      */
-    cacheError = <TOptions, TData: ValidData>(
+    cacheError: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+        error: Error | string,
+    ) => CacheEntry<TData> = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
         error: Error | string,
@@ -94,7 +104,10 @@ export class ResponseCache {
     /**
      * Retrieve data from our cache.
      */
-    getEntry = <TOptions, TData: ValidData>(
+    getEntry: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ) => ?$ReadOnly<CacheEntry<TData>> = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
     ): ?$ReadOnly<CacheEntry<TData>> => {
@@ -135,7 +148,10 @@ export class ResponseCache {
      *
      * Returns true if something was removed from any cache; otherwise, false.
      */
-    remove = <TOptions, TData: ValidData>(
+    remove: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ) => boolean = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
     ): boolean => {
@@ -163,7 +179,13 @@ export class ResponseCache {
      * keys, but of unique entries. So if the same key is removed from both the
      * framework and custom caches, that will be 2 records removed.
      */
-    removeAll = <TOptions, TData: ValidData>(
+    removeAll: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        predicate?: (
+            key: string,
+            cachedEntry: $ReadOnly<CacheEntry<TData>>,
+        ) => boolean,
+    ) => number = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         predicate?: (
             key: string,
@@ -185,7 +207,7 @@ export class ResponseCache {
      *
      * By design, this does not clone anything held in custom caches.
      */
-    cloneCachedData = (): $ReadOnly<Cache> => {
+    cloneCachedData: () => $ReadOnly<Cache> = (): $ReadOnly<Cache> => {
         return this._cache.cloneData();
     };
 }

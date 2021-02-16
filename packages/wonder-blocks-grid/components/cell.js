@@ -39,6 +39,13 @@ type Props = {|
     style?: StyleType,
 |};
 
+type DefaultProps = {|
+    smallCols: $PropertyType<Props, "smallCols">,
+    mediumCols: $PropertyType<Props, "mediumCols">,
+    largeCols: $PropertyType<Props, "largeCols">,
+    cols: $PropertyType<Props, "cols">,
+|};
+
 /**
  * A Cell is a container whose width is set based on the width of the
  * specified columns at the current grid size. You will specify the number
@@ -56,11 +63,11 @@ type Props = {|
  * using the specified column width.
  */
 export default class Cell extends React.Component<Props> {
-    static isClassOf(instance: React.Element<any>) {
+    static isClassOf(instance: React.Element<any>): boolean {
         return instance && instance.type && instance.type.__IS_CELL__;
     }
 
-    static getCols(props: Props, mediaSize: MediaSize) {
+    static getCols(props: Props, mediaSize: MediaSize): ?number {
         // If no option was specified then we just return undefined,
         // components may handle this case differently.
         // We go through all the ways in which a fixed width can be
@@ -91,21 +98,21 @@ export default class Cell extends React.Component<Props> {
 
     // HACK(kevinb): we use a stack method here because we can't get a ref to
     // each cell in a row without cloning them all.
-    static shouldDisplay(props: Props, mediaSize: MediaSize) {
+    static shouldDisplay(props: Props, mediaSize: MediaSize): boolean {
         const cols = Cell.getCols(props, mediaSize);
         return cols !== null && cols !== 0;
     }
 
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         smallCols: 0,
         mediumCols: 0,
         largeCols: 0,
         cols: 0,
     };
 
-    static __IS_CELL__ = true;
+    static __IS_CELL__: boolean = true;
 
-    render() {
+    render(): React.Node {
         const {children, style} = this.props;
 
         return (

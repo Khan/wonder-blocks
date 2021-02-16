@@ -14,6 +14,10 @@ type Props = {|
     mediaQuery: MediaQuery,
 |};
 
+type DefaultProps = {|
+    mediaQuery: $PropertyType<Props, "mediaQuery">,
+|};
+
 /**
  * Gutter is a component whose width is set based on the size of grid currently
  * being displayed. Used for spacing out cells from each other. The gutter
@@ -28,11 +32,11 @@ type Props = {|
  * props then the component will only be shown at those grid sizes.
  */
 export default class Gutter extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         mediaQuery: "all",
     };
 
-    render() {
+    render(): React.Node {
         return (
             <MediaLayout>
                 {({mediaSize, mediaSpec}) => {

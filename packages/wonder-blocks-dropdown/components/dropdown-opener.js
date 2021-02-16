@@ -44,19 +44,23 @@ type Props = {|
     text: string,
 |};
 
+type DefaultProps = {|
+    disabled: $PropertyType<Props, "disabled">,
+|};
+
 class DropdownOpener extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         disabled: false,
     };
 
-    getTestIdFromProps = (childrenProps: any) => {
+    getTestIdFromProps: (childrenProps: any) => string = (childrenProps) => {
         return childrenProps.testId || childrenProps["data-test-id"];
     };
 
     renderAnchorChildren(
         eventState: ClickableState,
         clickableChildrenProps: ChildrenProps,
-    ) {
+    ): React.Node {
         const {disabled, testId, text} = this.props;
         const renderedChildren = this.props.children({...eventState, text});
         const childrenProps = renderedChildren.props;
@@ -80,7 +84,7 @@ class DropdownOpener extends React.Component<Props> {
         });
     }
 
-    render() {
+    render(): React.Node {
         return (
             <ClickableBehavior
                 onClick={this.props.onClick}

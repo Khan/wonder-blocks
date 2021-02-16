@@ -28,7 +28,7 @@ type CheckProps = {|
 /**
  * The check component used by OptionItem.
  */
-export default function Check(props: CheckProps) {
+export default function Check(props: CheckProps): React.Node {
     const {disabled, selected, pressed, hovered, focused} = props;
     return (
         <Icon

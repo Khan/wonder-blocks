@@ -39,7 +39,7 @@ type CheckProps = {|
 /**
  * The checkbox component used by OptionItem.
  */
-export default function Checkbox(props: CheckProps) {
+export default function Checkbox(props: CheckProps): React.Node {
     const {disabled, selected, pressed, hovered, focused} = props;
     const activeBlue = mix(offBlack32, blue);
     const clickInteraction = pressed || hovered || focused;

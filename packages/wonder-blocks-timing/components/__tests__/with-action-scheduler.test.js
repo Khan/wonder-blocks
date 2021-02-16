@@ -28,7 +28,7 @@ describe("withActionScheduler", () => {
     it("should forward a ref", () => {
         // Arrange
         class Component extends React.Component<WithActionSchedulerProps> {
-            render() {
+            render(): React.Node {
                 return <div>Hello, world!</div>;
             }
         }

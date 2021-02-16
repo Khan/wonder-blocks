@@ -17,7 +17,7 @@ type Color = {|
 
 // Parse a color in #abcdef, rgb(...), or rgba(...) form into an object
 // with r,g,b,a keys.
-const parse = (color: string) => {
+const parse = (color: string): Color => {
     if (typeof color !== "string") {
         throw new Error(`Failed to parse color: ${color}`);
     }
@@ -56,7 +56,7 @@ const parse = (color: string) => {
 };
 
 // Stringify the color in an `rgba()` or `#abcdef` format.
-const format = (color: Color) => {
+const format = (color: Color): string => {
     const r = Math.round(color.r);
     const g = Math.round(color.g);
     const b = Math.round(color.b);
@@ -73,7 +73,7 @@ const format = (color: Color) => {
 };
 
 // Adjust the alpha value of a color.
-export const fade = (color: string, percentage: number) => {
+export const fade = (color: string, percentage: number): string => {
     if (percentage < 0 || percentage > 1) {
         throw new Error("Percentage must be between 0 and 1");
     }
@@ -86,7 +86,7 @@ export const fade = (color: string, percentage: number) => {
 
 // Mix a color into a background color, using the alpha channel of the base
 // color to determine the linear blend.
-export const mix = (color: string, background: string) => {
+export const mix = (color: string, background: string): string => {
     const colorObj = parse(color);
     const bgObj = parse(background);
 

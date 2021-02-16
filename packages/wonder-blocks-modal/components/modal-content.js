@@ -16,20 +16,24 @@ type Props = {|
     style?: StyleType,
 |};
 
+type DefaultProps = {|
+    scrollOverflow: $PropertyType<Props, "scrollOverflow">,
+|};
+
 /**
  * The Modal content included after the header
  */
 export default class ModalContent extends React.Component<Props> {
-    static isClassOf(instance: any) {
+    static isClassOf(instance: any): boolean {
         return instance && instance.type && instance.type.__IS_MODAL_CONTENT__;
     }
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         scrollOverflow: true,
     };
 
-    static __IS_MODAL_CONTENT__ = true;
+    static __IS_MODAL_CONTENT__: boolean = true;
 
-    render() {
+    render(): React.Node {
         const {scrollOverflow, style, children} = this.props;
 
         return (

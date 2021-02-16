@@ -79,7 +79,7 @@ export default class RadioGroup extends React.Component<RadioGroupProps> {
         this.props.onChange(changedValue);
     }
 
-    render() {
+    render(): React.Node {
         const {
             children,
             label,

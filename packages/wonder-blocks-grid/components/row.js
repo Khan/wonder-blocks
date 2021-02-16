@@ -37,6 +37,10 @@ type Props = {|
     style?: StyleType,
 |};
 
+type DefaultProps = {|
+    mediaQuery: $PropertyType<Props, "mediaQuery">,
+|};
+
 /**
  * A Row holds all of the Cells that make up the contents of the grid. A row
  * also provides the margins on the sides and inserts the gutter spacing
@@ -56,11 +60,11 @@ type Props = {|
  * props then the component will only be shown at those grid sizes.
  */
 export default class Row extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         mediaQuery: "all",
     };
 
-    render() {
+    render(): React.Node {
         const {style, children} = this.props;
 
         return (

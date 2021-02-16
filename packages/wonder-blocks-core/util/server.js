@@ -8,7 +8,7 @@ export default {
      * @returns {boolean} `true` if we are in server-side mode; otherwise,
      * `false`
      */
-    isServerSide: () => serverSide,
+    isServerSide: (): boolean => serverSide,
 
     /**
      * Set server-side mode to true.

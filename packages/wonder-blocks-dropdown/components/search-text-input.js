@@ -59,6 +59,10 @@ type Props = {|
     testId?: string,
 |};
 
+type DefaultProps = {|
+    labels: $PropertyType<Props, "labels">,
+|};
+
 type State = {|
     focused: boolean,
 
@@ -69,20 +73,20 @@ type State = {|
 |};
 
 export default class SearchTextInput extends React.Component<Props, State> {
-    static isClassOf(instance: React.Element<any>) {
+    static isClassOf(instance: React.Element<any>): boolean {
         return (
             instance && instance.type && instance.type.__IS_SEARCH_TEXT_INPUT__
         );
     }
 
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         labels: {
             clearSearch: defaultLabels.clearSearch,
             filter: defaultLabels.filter,
         },
     };
 
-    state = {
+    state: State = {
         focused: false,
         labels: {
             clearSearch: defaultLabels.clearSearch,
@@ -100,14 +104,14 @@ export default class SearchTextInput extends React.Component<Props, State> {
         }
     }
 
-    static __IS_SEARCH_TEXT_INPUT__ = true;
+    static __IS_SEARCH_TEXT_INPUT__: boolean = true;
 
-    handleChange = (e: SyntheticInputEvent<>) => {
+    handleChange: (e: SyntheticInputEvent<>) => void = (e) => {
         e.preventDefault();
         this.props.onChange(e.target.value);
     };
 
-    handleDismiss = () => {
+    handleDismiss: () => void = () => {
         const {onClick, onChange} = this.props;
         // Empty the search text and focus the SearchTextInput
         onChange("");
@@ -116,15 +120,15 @@ export default class SearchTextInput extends React.Component<Props, State> {
         }
     };
 
-    handleBlur = (e: SyntheticInputEvent<>) => {
+    handleBlur: (e: SyntheticInputEvent<>) => void = (e) => {
         this.setState({focused: false});
     };
 
-    handleFocus = (e: SyntheticInputEvent<>) => {
+    handleFocus: (e: SyntheticInputEvent<>) => void = (e) => {
         this.setState({focused: true});
     };
 
-    maybeRenderDismissIconButton() {
+    maybeRenderDismissIconButton(): React.Node {
         const {searchText} = this.props;
         const {clearSearch} = this.state.labels;
 
@@ -139,9 +143,10 @@ export default class SearchTextInput extends React.Component<Props, State> {
                 />
             );
         }
+        return null;
     }
 
-    render() {
+    render(): React.Node {
         const {onClick, itemRef, searchText, style, testId} = this.props;
         const {filter} = this.state.labels;
 

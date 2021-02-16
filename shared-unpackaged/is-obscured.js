@@ -6,7 +6,7 @@
  * overdrawn by another element. Note that this won't work if the given element
  * has `pointer-events: none`.
  */
-export default function isObscured(element: Element) {
+export default function isObscured(element: Element): boolean {
     // TODO(somewhatabstract): We should be smarter in this algorithm and
     // actually look at the intersection of the elements doing the obscuring
     // just as we already do with our scroll parent intersections. That way we

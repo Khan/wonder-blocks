@@ -49,7 +49,7 @@ export default {
     },
 };
 
-export const simple = () => {
+export const simple: React.ComponentType<Empty> = () => {
     const modal = (
         <OnePaneDialog
             testId="one-pane-dialog-above"
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export const kitchenSink = () => {
+export const kitchenSink: React.ComponentType<Empty> = () => {
     const modal = (
         <OnePaneDialog
             title="Single-line title"
@@ -141,7 +141,7 @@ export const kitchenSink = () => {
     );
 };
 
-export const withOpener = () => {
+export const withOpener: React.ComponentType<Empty> = () => {
     type MyModalProps = {|
         closeModal: () => void,
     |};
