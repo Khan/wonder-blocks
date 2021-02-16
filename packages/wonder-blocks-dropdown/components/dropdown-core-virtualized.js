@@ -202,10 +202,16 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
             // react-window has some issues for typing lists when passing refs
             // $FlowIgnore
             <List
+                // react-window doesn't accept maybe numbers. It wants numbers
+                // or strings.
+                // $FlowFixMe
                 height={height}
                 itemCount={data.length}
                 itemSize={this.getItemSize}
                 itemData={data}
+                // react-window doesn't accept maybe numbers. It wants numbers
+                // or strings.
+                // $FlowFixMe
                 width={width}
                 overscanCount={5}
                 ref={listRef}
