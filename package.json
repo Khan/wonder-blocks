@@ -73,7 +73,7 @@
     "eslint-plugin-react": "^7.18.0",
     "eslint-plugin-react-native-animation-linter": "^0.1.2",
     "eslint-watch": "^6.0.1",
-    "flow-bin": "0.123.0",
+    "flow-bin": "0.124.0",
     "glob": "^7.1.2",
     "husky": "^4.2.5",
     "jest": "^25.1.0",
