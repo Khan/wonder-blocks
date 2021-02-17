@@ -87,7 +87,7 @@ type DefaultProps = {|
         onChange: () => {},
     };
 
-    getChoiceComponent(variant: ?string): React.ComponentType<> {
+    getChoiceComponent(variant: ?string): typeof Radio | typeof Checkbox {
         if (variant === "checkbox") {
             return Checkbox;
         } else {

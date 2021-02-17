@@ -101,7 +101,7 @@ type DefaultProps = {|
 |};
 
 type ContextTypes = {|
-    router: PropTypes.Requirable<any>,
+    router: $FlowFixMe,
 |};
 
 const StyledAnchor = addStyle("a");
