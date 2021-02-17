@@ -11,6 +11,7 @@ implicit-inexact-object=error
 
 [options]
 well_formed_exports=true
+types_first=true
 
 # $FlowFixMe
 # This suppression hould be used to suppress an issue that requires additional
