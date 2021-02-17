@@ -127,7 +127,7 @@ export type SharedProps = {|
 |};
 
 type ContextTypes = {|
-    router: PropTypes.Requireable<any>,
+    router: $FlowFixMe,
 |};
 
 type DefaultProps = {|

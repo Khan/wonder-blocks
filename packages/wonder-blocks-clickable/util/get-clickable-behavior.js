@@ -30,7 +30,7 @@ export default function getClickableBehavior(
      * router object added to the React context object by react-router-dom.
      */
     router?: any,
-): React.ComponentType<> {
+): React.ComponentType<React.ElementConfig<typeof ClickableBehavior>> {
     if (router && skipClientNav !== true && href && !isExternalUrl(href)) {
         return ClickableBehaviorWithRouter;
     }

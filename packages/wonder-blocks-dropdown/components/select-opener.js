@@ -78,7 +78,7 @@ type SelectOpenerProps = {|
 |};
 
 type ContextTypes = {|
-    router: PropTypes.Requirable<any>,
+    router: $FlowFixMe,
 |};
 
 type DefaultProps = {|

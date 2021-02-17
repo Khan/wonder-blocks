@@ -99,7 +99,7 @@ type DefaultProps = {|
         onChange(!checked);
     };
 
-    getChoiceCoreComponent(): React.ComponentType<> {
+    getChoiceCoreComponent(): typeof RadioCore | typeof CheckboxCore {
         if (this.props.variant === "radio") {
             return RadioCore;
         } else {

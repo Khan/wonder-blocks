@@ -40,7 +40,7 @@ type Props = {|
 |};
 
 type ContextTypes = {|
-    router: PropTypes.Requirable<any>,
+    router: $FlowFixMe,
 |};
 
 const StyledButton = addStyle<"button">("button");

@@ -80,7 +80,7 @@ type OptionProps = {|
 |};
 
 type ContextTypes = {|
-    router: PropTypes.Requireable<any>,
+    router: $FlowFixMe,
 |};
 
 type DefaultProps = {|
@@ -108,7 +108,7 @@ export default class OptionItem extends React.Component<OptionProps> {
     };
     static __IS_OPTION_ITEM__: boolean = true;
 
-    getCheckComponent(): React.ComponentType<> {
+    getCheckComponent(): typeof Check | typeof Checkbox {
         if (this.props.variant === "check") {
             return Check;
         } else {

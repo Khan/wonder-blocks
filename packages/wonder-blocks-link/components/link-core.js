@@ -21,7 +21,7 @@ type Props = {|
 |};
 
 type ContextTypes = {|
-    router: PropTypes.Requireable<any>,
+    router: $FlowFixMe,
 |};
 
 const StyledAnchor = addStyle<"a">("a");
