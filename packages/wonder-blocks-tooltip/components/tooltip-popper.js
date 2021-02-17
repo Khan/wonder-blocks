@@ -36,10 +36,10 @@ type Props = {|
 |};
 
 export default class TooltipPopper extends React.Component<Props> {
-    _bubbleRefTracker = new RefTracker();
-    _tailRefTracker = new RefTracker();
+    _bubbleRefTracker: RefTracker = new RefTracker();
+    _tailRefTracker: RefTracker = new RefTracker();
 
-    _renderPositionedContent(popperProps: PopperChildrenProps) {
+    _renderPositionedContent(popperProps: PopperChildrenProps): React.Node {
         const {children} = this.props;
 
         // We'll hide some complexity from the children here and ensure
@@ -76,7 +76,7 @@ export default class TooltipPopper extends React.Component<Props> {
         return children(bubbleProps);
     }
 
-    render() {
+    render(): React.Node {
         const {anchorElement, placement} = this.props;
         return (
             <Popper

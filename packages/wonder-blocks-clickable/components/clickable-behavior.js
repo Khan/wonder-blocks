@@ -186,6 +186,10 @@ type Props =
           beforeNav?: () => Promise<mixed>,
       |};
 
+type DefaultProps = {|
+    disabled: $PropertyType<Props, "disabled">,
+|};
+
 export type ChildrenProps = {|
     onClick: (e: SyntheticMouseEvent<>) => mixed,
     onMouseEnter: (e: SyntheticMouseEvent<>) => mixed,
@@ -226,7 +230,7 @@ const keyCodes = {
     space: 32,
 };
 
-const startState = {
+const startState: ClickableState = {
     hovered: false,
     focused: false,
     pressed: false,
@@ -276,7 +280,7 @@ const startState = {
  *
  * ```js
  * class MyClickableComponent extends React.Component<Props> {
- *     render() {
+ *     render(): React.Node {
  *         const ClickableBehavior = getClickableBehavior();
  *         return <ClickableBehavior
  *             disabled={this.props.disabled}
@@ -319,11 +323,14 @@ export default class ClickableBehavior extends React.Component<
     enterClick: boolean;
     dragging: boolean;
 
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         disabled: false,
     };
 
-    static getDerivedStateFromProps(props: Props, state: ClickableState) {
+    static getDerivedStateFromProps(
+        props: Props,
+        state: ClickableState,
+    ): ?Partial<ClickableState> {
         // If new props are disabled, reset the hovered/focused/pressed states
         if (props.disabled) {
             return startState;
@@ -371,7 +378,7 @@ export default class ClickableBehavior extends React.Component<
     handleSafeWithNav(
         safeWithNav: () => Promise<mixed>,
         shouldNavigate: boolean,
-    ) {
+    ): Promise<void> {
         const {skipClientNav, history} = this.props;
 
         if ((history && !skipClientNav) || this.props.target === "_blank") {
@@ -410,7 +417,7 @@ export default class ClickableBehavior extends React.Component<
         }
     }
 
-    runCallbackAndMaybeNavigate(e: SyntheticEvent<>) {
+    runCallbackAndMaybeNavigate(e: SyntheticEvent<>): ?Promise<void> {
         const {
             onClick = undefined,
             beforeNav = undefined,
@@ -470,7 +477,7 @@ export default class ClickableBehavior extends React.Component<
         }
     }
 
-    handleClick = (e: SyntheticMouseEvent<>) => {
+    handleClick: (e: SyntheticMouseEvent<>) => void = (e) => {
         const {
             onClick = undefined,
             beforeNav = undefined,
@@ -488,7 +495,7 @@ export default class ClickableBehavior extends React.Component<
         this.runCallbackAndMaybeNavigate(e);
     };
 
-    handleMouseEnter = (e: SyntheticMouseEvent<>) => {
+    handleMouseEnter: (e: SyntheticMouseEvent<>) => void = (e) => {
         // When the left button is pressed already, we want it to be pressed
         if (e.buttons === 1) {
             this.dragging = true;
@@ -498,18 +505,18 @@ export default class ClickableBehavior extends React.Component<
         }
     };
 
-    handleMouseLeave = () => {
+    handleMouseLeave: () => void = () => {
         if (!this.waitingForClick) {
             this.dragging = false;
             this.setState({hovered: false, pressed: false, focused: false});
         }
     };
 
-    handleMouseDown = () => {
+    handleMouseDown: () => void = () => {
         this.setState({pressed: true});
     };
 
-    handleMouseUp = (e: SyntheticMouseEvent<>) => {
+    handleMouseUp: (e: SyntheticMouseEvent<>) => void = (e) => {
         if (this.dragging) {
             this.dragging = false;
             this.handleClick(e);
@@ -517,26 +524,26 @@ export default class ClickableBehavior extends React.Component<
         this.setState({pressed: false, focused: false});
     };
 
-    handleDragStart = (e: SyntheticMouseEvent<>) => {
+    handleDragStart: (e: SyntheticMouseEvent<>) => void = (e) => {
         this.dragging = true;
         e.preventDefault();
     };
 
-    handleTouchStart = () => {
+    handleTouchStart: () => void = () => {
         this.setState({pressed: true});
     };
 
-    handleTouchEnd = () => {
+    handleTouchEnd: () => void = () => {
         this.setState({pressed: false});
         this.waitingForClick = true;
     };
 
-    handleTouchCancel = () => {
+    handleTouchCancel: () => void = () => {
         this.setState({pressed: false});
         this.waitingForClick = true;
     };
 
-    handleKeyDown = (e: SyntheticKeyboardEvent<>) => {
+    handleKeyDown: (e: SyntheticKeyboardEvent<>) => void = (e) => {
         const {onKeyDown, role} = this.props;
         if (onKeyDown) {
             onKeyDown(e);
@@ -563,7 +570,7 @@ export default class ClickableBehavior extends React.Component<
         }
     };
 
-    handleKeyUp = (e: SyntheticKeyboardEvent<>) => {
+    handleKeyUp: (e: SyntheticKeyboardEvent<>) => void = (e) => {
         const {onKeyUp, role} = this.props;
         if (onKeyUp) {
             onKeyUp(e);
@@ -585,15 +592,15 @@ export default class ClickableBehavior extends React.Component<
         }
     };
 
-    handleFocus = (e: SyntheticFocusEvent<>) => {
+    handleFocus: (e: SyntheticFocusEvent<>) => void = (e) => {
         this.setState({focused: true});
     };
 
-    handleBlur = (e: SyntheticFocusEvent<>) => {
+    handleBlur: (e: SyntheticFocusEvent<>) => void = (e) => {
         this.setState({focused: false, pressed: false});
     };
 
-    render() {
+    render(): React.Node {
         const childrenProps: ChildrenProps = this.props.disabled
             ? disabledHandlers
             : {

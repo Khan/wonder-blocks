@@ -9,6 +9,7 @@
  * as a descendant of a BrowserRouter.
  * See https://reacttraining.com/react-router/web/guides/basic-components.
  */
+import * as React from "react";
 import {withRouter} from "react-router-dom";
 
 import ClickableBehavior from "../components/clickable-behavior.js";
@@ -29,7 +30,7 @@ export default function getClickableBehavior(
      * router object added to the React context object by react-router-dom.
      */
     router?: any,
-) {
+): React.ComponentType<> {
     if (router && skipClientNav !== true && href && !isExternalUrl(href)) {
         return ClickableBehaviorWithRouter;
     }

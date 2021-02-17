@@ -89,7 +89,7 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
         }
     }
 
-    render() {
+    render(): React.Node {
         const {
             children,
             label,

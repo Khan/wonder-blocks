@@ -54,7 +54,7 @@ type Props = {|
  * the `aria-labelledby` attribute however this is recommended. It should match the `id` of the dialog title.
  */
 export default class ModalDialog extends React.Component<Props> {
-    render() {
+    render(): React.Node {
         const {
             above,
             below,

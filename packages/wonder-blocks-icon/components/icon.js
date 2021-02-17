@@ -45,6 +45,11 @@ type Props = {|
     testId?: string,
 |};
 
+type DefaultProps = {|
+    color: $PropertyType<Props, "color">,
+    size: $PropertyType<Props, "size">,
+|};
+
 const StyledSVG = addStyle<"svg">("svg");
 
 /**
@@ -83,12 +88,12 @@ const StyledSVG = addStyle<"svg">("svg");
  * respectively.
  */
 export default class Icon extends React.PureComponent<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         color: "currentColor",
         size: "small",
     };
 
-    render() {
+    render(): React.Node {
         const {color, icon, size, style, ...sharedProps} = this.props;
 
         const {assetSize, path} = getPathForIcon(icon, size);

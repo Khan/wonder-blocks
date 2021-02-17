@@ -7,12 +7,13 @@ import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 import typeof TooltipBubble from "../tooltip-bubble.js";
 import TooltipPopper from "../tooltip-popper.js";
 
+type State = {|ref: ?HTMLElement|};
 /**
  * A little wrapper for the TooltipPopper so that we can provide an anchor
  * element reference and test that the children get rendered.
  */
-class TestHarness extends React.Component<any, {|ref: ?HTMLElement|}> {
-    state = {
+class TestHarness extends React.Component<any, State> {
+    state: State = {
         ref: null,
     };
 
@@ -23,7 +24,7 @@ class TestHarness extends React.Component<any, {|ref: ?HTMLElement|}> {
         }
     }
 
-    render() {
+    render(): React.Node {
         const fakeBubble = (((
             <View ref={(ref) => this.props.resultRef(ref)}>Fake bubble</View>
         ): any): React.Element<TooltipBubble>);

@@ -108,18 +108,23 @@ type State = {|
     timeoutID: ?TimeoutID,
 |};
 
+type DefaultProps = {|
+    forceAnchorFocusivity: $PropertyType<Props, "forceAnchorFocusivity">,
+    placement: $PropertyType<Props, "placement">,
+|};
+
 export default class Tooltip extends React.Component<Props, State> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         forceAnchorFocusivity: true,
         placement: "top",
     };
 
-    state = {
+    state: State = {
         active: false,
         anchorElement: null,
         timeoutID: null,
     };
-    static ariaContentId = "aria-content";
+    static ariaContentId: string = "aria-content";
 
     _updateAnchorElement(ref: ?Element) {
         if (ref && ref !== this.state.anchorElement) {
@@ -127,7 +132,7 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderBubbleContent() {
+    _renderBubbleContent(): React.Element<typeof TooltipContent> {
         const {title, content} = this.props;
         if (typeof content === "string") {
             return <TooltipContent title={title}>{content}</TooltipContent>;
@@ -138,7 +143,7 @@ export default class Tooltip extends React.Component<Props, State> {
         }
     }
 
-    _renderPopper(ids?: IIdentifierFactory) {
+    _renderPopper(ids?: IIdentifierFactory): React.Node {
         const {id} = this.props;
         const bubbleId = ids ? ids.get(Tooltip.ariaContentId) : id;
         if (!bubbleId) {
@@ -173,7 +178,7 @@ export default class Tooltip extends React.Component<Props, State> {
         );
     }
 
-    _getHost() {
+    _getHost(): ?Element {
         const {anchorElement} = this.state;
 
         return (
@@ -182,7 +187,7 @@ export default class Tooltip extends React.Component<Props, State> {
         );
     }
 
-    _renderTooltipAnchor(ids?: IIdentifierFactory) {
+    _renderTooltipAnchor(ids?: IIdentifierFactory): React.Node {
         const {children, forceAnchorFocusivity} = this.props;
         const {active} = this.state;
 
@@ -207,7 +212,7 @@ export default class Tooltip extends React.Component<Props, State> {
         );
     }
 
-    render() {
+    render(): React.Node {
         const {id} = this.props;
         if (id) {
             // Let's bypass the extra weight of an id provider since we don't

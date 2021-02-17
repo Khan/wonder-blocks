@@ -1,5 +1,6 @@
 // @flow
 import {StyleSheet} from "aphrodite";
+import type {StyleDeclaration} from "aphrodite";
 
 const Regular = 400;
 const Bold = 700;
@@ -17,7 +18,7 @@ const SansFamily = 'Lato, "Noto Sans", sans-serif';
 const SerifFamily = '"Noto Serif", serif';
 const InconsolataFamily = "Inconsolata, monospace";
 
-const styles = StyleSheet.create({
+const styles: StyleDeclaration = StyleSheet.create({
     Title: {
         ...common,
         fontFamily: SansFamily,

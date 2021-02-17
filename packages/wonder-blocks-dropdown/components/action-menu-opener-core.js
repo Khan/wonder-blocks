@@ -39,6 +39,10 @@ type Props = {|
     opened: boolean,
 |};
 
+type ContextTypes = {|
+    router: PropTypes.Requirable<any>,
+|};
+
 const StyledButton = addStyle<"button">("button");
 
 /**
@@ -48,9 +52,9 @@ const StyledButton = addStyle<"button">("button");
  * - the down caret icon is smaller that the one that would be used by ButtonCore
  */
 export default class ActionMenuOpenerCore extends React.Component<Props> {
-    static contextTypes = {router: PropTypes.any};
+    static contextTypes: ContextTypes = {router: PropTypes.any};
 
-    render() {
+    render(): React.Node {
         const {
             children,
             disabled: disabledProp,

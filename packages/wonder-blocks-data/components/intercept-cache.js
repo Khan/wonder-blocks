@@ -54,7 +54,7 @@ export default class InterceptCache<
     TOptions,
     TData: ValidData,
 > extends React.Component<Props<TOptions, TData>> {
-    render() {
+    render(): React.Node {
         return (
             <InterceptContext.Consumer>
                 {(value) => {

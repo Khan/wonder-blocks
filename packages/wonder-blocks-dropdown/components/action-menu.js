@@ -100,18 +100,23 @@ type State = {|
     keyboard?: boolean,
 |};
 
+type DefaultProps = {|
+    alignment: $PropertyType<Props, "alignment">,
+    disabled: $PropertyType<Props, "disabled">,
+|};
+
 /**
  * A menu that consists of various types of items.
  */
 export default class ActionMenu extends React.Component<Props, State> {
     openerElement: ?HTMLElement;
 
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         alignment: "left",
         disabled: false,
     };
 
-    state = {
+    state: State = {
         keyboard: false,
         opened: false,
     };
@@ -120,14 +125,17 @@ export default class ActionMenu extends React.Component<Props, State> {
      * Used to sync the `opened` state when this component acts as a controlled
      * component
      */
-    static getDerivedStateFromProps(props: Props, state: State) {
+    static getDerivedStateFromProps(
+        props: Props,
+        state: State,
+    ): ?Partial<State> {
         return {
             opened:
                 typeof props.opened === "boolean" ? props.opened : state.opened,
         };
     }
 
-    handleItemSelected = () => {
+    handleItemSelected: () => void = () => {
         // close menu
         this.handleOpenChanged(false);
 
@@ -137,7 +145,10 @@ export default class ActionMenu extends React.Component<Props, State> {
         }
     };
 
-    handleOpenChanged = (opened: boolean, keyboard?: boolean) => {
+    handleOpenChanged: (opened: boolean, keyboard?: boolean) => void = (
+        opened,
+        keyboard,
+    ) => {
         this.setState({
             opened,
             keyboard,
@@ -148,7 +159,7 @@ export default class ActionMenu extends React.Component<Props, State> {
         }
     };
 
-    handleOptionSelected = (selectedValue: string) => {
+    handleOptionSelected: (selectedValue: string) => void = (selectedValue) => {
         const {onChange, selectedValues} = this.props;
 
         // If either of these are not defined, return.
@@ -215,15 +226,15 @@ export default class ActionMenu extends React.Component<Props, State> {
         });
     }
 
-    handleOpenerRef = (node: any) => {
+    handleOpenerRef: (node: any) => void = (node) => {
         this.openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
     };
 
-    handleClick = (e: SyntheticEvent<>) => {
+    handleClick: (e: SyntheticEvent<>) => void = (e) => {
         this.handleOpenChanged(!this.state.opened, e.type === "keyup");
     };
 
-    renderOpener(numItems: number) {
+    renderOpener(numItems: number): React.Node {
         const {disabled, menuText, opened, opener, testId} = this.props;
 
         return (
@@ -257,7 +268,7 @@ export default class ActionMenu extends React.Component<Props, State> {
         );
     }
 
-    render() {
+    render(): React.Node {
         const {alignment, dropdownStyle, style, className} = this.props;
 
         const items = this.getMenuItems();

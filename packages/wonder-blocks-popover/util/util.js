@@ -7,6 +7,8 @@
 const FOCUSABLE_ELEMENTS =
     'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
-export function findFocusableNodes(root: HTMLElement | Document) {
+export function findFocusableNodes(
+    root: HTMLElement | Document,
+): Array<HTMLElement> {
     return [...root.querySelectorAll(FOCUSABLE_ELEMENTS)];
 }

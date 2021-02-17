@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
 import {mount, unmountAll} from "../../../../utils/testing/mount.js";

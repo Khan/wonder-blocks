@@ -161,6 +161,15 @@ type Props =
           safeWithNav: () => Promise<mixed>,
       |};
 
+type ContextTypes = {|
+    router: PropTypes.Requireable<any>,
+|};
+
+type DefaultProps = {|
+    disabled: $PropertyType<Props, "disabled">,
+    "aria-label": $PropertyType<Props, "aria-label">,
+|};
+
 const StyledAnchor = addStyle<"a">("a");
 const StyledButton = addStyle<"button">("button");
 const StyledLink = addStyle<typeof Link>(Link);
@@ -190,17 +199,17 @@ const StyledLink = addStyle<typeof Link>(Link);
  * ```
  */
 export default class Clickable extends React.Component<Props> {
-    static contextTypes = {router: PropTypes.any};
+    static contextTypes: ContextTypes = {router: PropTypes.any};
 
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         disabled: false,
         "aria-label": "",
     };
 
-    getCorrectTag = (
+    getCorrectTag: (
         clickableState: ClickableState,
         commonProps: {[string]: any, ...},
-    ) => {
+    ) => React.Node = (clickableState, commonProps) => {
         const activeHref = this.props.href && !this.props.disabled;
         const useClient = this.context.router && !this.props.skipClientNav;
 
@@ -243,7 +252,7 @@ export default class Clickable extends React.Component<Props> {
         }
     };
 
-    render() {
+    render(): React.Node {
         const {
             href,
             onClick,

@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {processStyleList} from "../util/util.js";
@@ -14,6 +14,10 @@ type Props = {
     tag: string,
     ...
 };
+
+type DefaultProps = {|
+    tag: $PropertyType<Props, "tag">,
+|};
 
 const isHeaderRegex = /^h[1-6]$/;
 
@@ -46,11 +50,11 @@ const styles = StyleSheet.create({
  * - An array combining the above
  */
 export default class Text extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         tag: "span",
     };
 
-    render() {
+    render(): React.Node {
         const {children, style, tag: Tag, testId, ...otherProps} = this.props;
 
         const isHeader = isHeaderRegex.test(Tag);

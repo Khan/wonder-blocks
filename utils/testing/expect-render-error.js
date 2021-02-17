@@ -19,7 +19,7 @@ export default (element: React.Node, expectedError: string) => {
         componentDidCatch(err) {
             this.setState({didError: true});
         }
-        render() {
+        render(): React.Node {
             return this.state.didError ? null : this.props.children;
         }
     }

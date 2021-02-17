@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import PropTypes from "prop-types";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
@@ -126,6 +126,17 @@ export type SharedProps = {|
     onClick?: (e: SyntheticEvent<>) => mixed,
 |};
 
+type ContextTypes = {|
+    router: PropTypes.Requireable<any>,
+|};
+
+type DefaultProps = {|
+    color: $PropertyType<SharedProps, "color">,
+    kind: $PropertyType<SharedProps, "kind">,
+    light: $PropertyType<SharedProps, "light">,
+    disabled: $PropertyType<SharedProps, "disabled">,
+|};
+
 /**
  * An IconButton is a button whose contents are an SVG image.
  *
@@ -163,15 +174,15 @@ export type SharedProps = {|
  * ```
  */
 export default class IconButton extends React.Component<SharedProps> {
-    static contextTypes = {router: PropTypes.any};
-    static defaultProps = {
+    static contextTypes: ContextTypes = {router: PropTypes.any};
+    static defaultProps: DefaultProps = {
         color: "default",
         kind: "primary",
         light: false,
         disabled: false,
     };
 
-    render() {
+    render(): React.Node {
         const {
             onClick,
             href,

@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -30,29 +30,33 @@ type State = {|
     opened: boolean,
 |};
 
+type DefaultProps = {|
+    opened: $PropertyType<Props, "opened">,
+|};
+
 class SingleSelectWithFilter extends React.Component<Props, State> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         opened: false,
     };
 
-    state = {
+    state: State = {
         selectedValue: "2",
         opened: this.props.opened,
     };
 
-    handleChange = (selected: string) => {
+    handleChange: (selected: string) => void = (selected) => {
         this.setState({
             selectedValue: selected,
         });
     };
 
-    handleToggleMenu = (opened: boolean) => {
+    handleToggleMenu: (opened: boolean) => void = (opened) => {
         this.setState({
             opened,
         });
     };
 
-    render() {
+    render(): React.Node {
         return (
             <View style={styles.wrapper}>
                 <SingleSelect
@@ -85,7 +89,9 @@ const styles = StyleSheet.create({
     },
 });
 
-export const WithFilter = () => <SingleSelectWithFilter />;
+export const WithFilter: React.ComponentType<Empty> = () => (
+    <SingleSelectWithFilter />
+);
 
 WithFilter.story = {
     parameters: {
@@ -96,4 +102,6 @@ WithFilter.story = {
     },
 };
 
-export const WithFilterOpened = () => <SingleSelectWithFilter opened={true} />;
+export const WithFilterOpened: React.ComponentType<Empty> = () => (
+    <SingleSelectWithFilter opened={true} />
+);

@@ -1,5 +1,5 @@
 //@flow
-import React from "react";
+import * as React from "react";
 import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 import ActionItem from "../action-item.js";
 import OptionItem from "../option-item.js";
@@ -326,7 +326,7 @@ describe("ActionMenu", () => {
             opened?: boolean,
         |};
         class ControlledComponent extends React.Component<Props, State> {
-            state = {
+            state: State = {
                 opened: this.props.opened,
             };
 
@@ -338,7 +338,7 @@ describe("ActionMenu", () => {
                 this.props.onToggle && this.props.onToggle(opened);
             };
 
-            render() {
+            render(): React.Node {
                 return (
                     <React.Fragment>
                         <ActionMenu

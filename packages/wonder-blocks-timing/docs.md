@@ -317,7 +317,7 @@ type State = {
 class MyLegacyComponent extends React.Component<Props, State> {
     _timeoutID: TimeoutID;
 
-    state = {
+    state: State = {
         timerFired: false;
     };
 
@@ -366,7 +366,7 @@ type State = {
 }
 
 class MyWonderBlocksComponentImpl extends React.Component<Props, State> {
-    state = {
+    state: State = {
         timerFired: false;
     };
 

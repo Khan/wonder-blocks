@@ -50,7 +50,7 @@ export default class PopoverAnchor extends React.Component<Props> {
         }
     }
 
-    render() {
+    render(): React.Node {
         const {
             children,
             id,

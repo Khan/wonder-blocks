@@ -20,6 +20,10 @@ type Props = {|
     testId?: string,
 |};
 
+type DefaultProps = {|
+    "aria-label": $PropertyType<Props, "aria-label">,
+|};
+
 const StyledList = addStyle("ol");
 
 /**
@@ -36,11 +40,11 @@ const StyledList = addStyle("ol");
 export default class Breadcrumbs extends React.Component<Props> {
     // Moved it here, in case we need to override the label for a different
     // language
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         "aria-label": "Breadcrumbs",
     };
 
-    render() {
+    render(): React.Node {
         const {children, testId, ...otherProps} = this.props;
         // using React.Children allows to deal with opaque data structures
         // e.g. children = 'string' vs children = []

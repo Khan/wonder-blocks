@@ -4,7 +4,9 @@ import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-const styles = StyleSheet.create({
+import type {StyleDeclaration} from "aphrodite";
+
+const styles: StyleDeclaration = StyleSheet.create({
     fieldset: {
         border: "none",
         padding: 0,

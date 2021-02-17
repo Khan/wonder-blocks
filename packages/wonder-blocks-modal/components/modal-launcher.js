@@ -72,6 +72,10 @@ type ControlledProps = {|
     onClose: () => mixed,
 |};
 
+type DefaultProps = {|
+    backdropDismissEnabled: $PropertyType<Props, "backdropDismissEnabled">,
+|};
+
 type UncontrolledProps = {|
     ...CommonProps,
     children: ({|openModal: () => mixed|}) => React.Node,
@@ -107,11 +111,14 @@ export default class ModalLauncher extends React.Component<Props, State> {
      */
     lastElementFocusedOutsideModal: ?HTMLElement;
 
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         backdropDismissEnabled: true,
     };
 
-    static getDerivedStateFromProps(props: Props, state: State) {
+    static getDerivedStateFromProps(
+        props: Props,
+        state: State,
+    ): ?Partial<State> {
         if (typeof props.opened === "boolean" && props.children) {
             // eslint-disable-next-line no-console
             console.warn("'children' and 'opened' can't be used together");
@@ -130,7 +137,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
         };
     }
 
-    state = {opened: false};
+    state: State = {opened: false};
 
     componentDidUpdate(prevProps: Props) {
         // ensures the element is stored only when the modal is opened
@@ -139,17 +146,17 @@ export default class ModalLauncher extends React.Component<Props, State> {
         }
     }
 
-    _saveLastElementFocused = () => {
+    _saveLastElementFocused: () => void = () => {
         // keep a reference of the element that triggers the modal
         this.lastElementFocusedOutsideModal = document.activeElement;
     };
 
-    _openModal = () => {
+    _openModal: () => void = () => {
         this._saveLastElementFocused();
         this.setState({opened: true});
     };
 
-    handleCloseModal = () => {
+    handleCloseModal: () => void = () => {
         this.setState({opened: false}, () => {
             this.props.onClose && this.props.onClose();
 
@@ -160,7 +167,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
         });
     };
 
-    _renderModal() {
+    _renderModal(): ModalElement {
         if (typeof this.props.modal === "function") {
             return this.props.modal({
                 closeModal: this.handleCloseModal,
@@ -170,7 +177,7 @@ export default class ModalLauncher extends React.Component<Props, State> {
         }
     }
 
-    render() {
+    render(): React.Node {
         const renderedChildren = this.props.children
             ? this.props.children({
                   openModal: this._openModal,
@@ -247,7 +254,7 @@ class ModalLauncherKeypressListener extends React.Component<{|
         }
     };
 
-    render() {
+    render(): React.Node {
         return null;
     }
 }

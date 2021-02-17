@@ -135,6 +135,12 @@ type State = {|
     openerElement: ?HTMLElement,
 |};
 
+type DefaultProps = {|
+    alignment: $PropertyType<Props, "alignment">,
+    disabled: $PropertyType<Props, "disabled">,
+    light: $PropertyType<Props, "light">,
+|};
+
 /**
  * The single select allows the selection of one item. Clients are responsible
  * for keeping track of the selected item in the select.
@@ -151,7 +157,7 @@ type State = {|
 export default class SingleSelect extends React.Component<Props, State> {
     selectedIndex: number;
 
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         alignment: "left",
         disabled: false,
         light: false,
@@ -173,13 +179,19 @@ export default class SingleSelect extends React.Component<Props, State> {
      * Used to sync the `opened` state when this component acts as a controlled
      * component
      */
-    static getDerivedStateFromProps(props: Props, state: State) {
+    static getDerivedStateFromProps(
+        props: Props,
+        state: State,
+    ): ?Partial<State> {
         return {
             open: typeof props.opened === "boolean" ? props.opened : state.open,
         };
     }
 
-    handleOpenChanged = (opened: boolean, keyboard?: boolean) => {
+    handleOpenChanged: (opened: boolean, keyboard?: boolean) => void = (
+        opened,
+        keyboard,
+    ) => {
         this.setState({
             open: opened,
             keyboard,
@@ -191,7 +203,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         }
     };
 
-    handleToggle = (selectedValue: string) => {
+    handleToggle: (selectedValue: string) => void = (selectedValue) => {
         // Call callback if selection changed.
         if (selectedValue !== this.props.selectedValue) {
             this.props.onChange(selectedValue);
@@ -211,9 +223,9 @@ export default class SingleSelect extends React.Component<Props, State> {
         }
     };
 
-    mapOptionItemsToDropdownItems = (
+    mapOptionItemsToDropdownItems: (
         children: Array<React.Element<OptionItem>>,
-    ): Array<DropdownItem> => {
+    ) => Array<DropdownItem> = (children) => {
         // Figure out which index should receive focus when this select opens
         // Needs to exclude counting items that are disabled
         let indexCounter = 0;
@@ -291,20 +303,20 @@ export default class SingleSelect extends React.Component<Props, State> {
         };
     }
 
-    handleSearchTextChanged = (searchText: string) => {
+    handleSearchTextChanged: (searchText: string) => void = (searchText) => {
         this.setState({searchText});
     };
 
-    handleOpenerRef = (node: any) => {
+    handleOpenerRef: (node: any) => void = (node) => {
         const openerElement = ((ReactDOM.findDOMNode(node): any): HTMLElement);
         this.setState({openerElement});
     };
 
-    handleClick = (e: SyntheticEvent<>) => {
-        return this.handleOpenChanged(!this.state.open, e.type === "keyup");
+    handleClick: (e: SyntheticEvent<>) => void = (e) => {
+        this.handleOpenChanged(!this.state.open, e.type === "keyup");
     };
 
-    renderOpener(numItems: number) {
+    renderOpener(numItems: number): React.Node {
         const {
             children,
             disabled,
@@ -363,7 +375,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         return dropdownOpener;
     }
 
-    render() {
+    render(): React.Node {
         const {
             alignment,
             children,

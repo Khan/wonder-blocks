@@ -63,7 +63,7 @@ type Props = {|
 export default class UniqueIDProvider extends React.Component<Props> {
     _idFactory: IIdentifierFactory;
 
-    _performRender(firstRender: boolean) {
+    _performRender(firstRender: boolean): React.Node {
         const {children, mockOnFirstRender, scope} = this.props;
 
         // If this is our first render, we're going to stop right here.
@@ -87,7 +87,7 @@ export default class UniqueIDProvider extends React.Component<Props> {
         return children(this._idFactory);
     }
 
-    render() {
+    render(): React.Node {
         // Here we use the WithSSRPlaceholder component to control
         // when we render and whether we provide a mock or real
         // identifier factory.

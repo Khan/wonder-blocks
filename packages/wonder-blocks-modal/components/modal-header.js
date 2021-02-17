@@ -62,6 +62,10 @@ type WithBreadcrumbs = {|
 
 type Props = Common | WithSubtitle | WithBreadcrumbs;
 
+type DefaultProps = {|
+    light: $PropertyType<Props, "light">,
+|};
+
 /**
  * This is a helper component that is never rendered by itself. It is always
  * pinned to the top of the dialog, is responsive using the same behavior as its
@@ -106,11 +110,11 @@ type Props = Common | WithSubtitle | WithBreadcrumbs;
  * ```
  */
 export default class ModalHeader extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         light: true,
     };
 
-    render() {
+    render(): React.Node {
         const {
             breadcrumbs = undefined,
             light,

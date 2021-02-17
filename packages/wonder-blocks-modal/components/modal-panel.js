@@ -68,6 +68,12 @@ type Props = {|
     testId?: string,
 |};
 
+type DefaultProps = {|
+    closeButtonVisible: $PropertyType<Props, "closeButtonVisible">,
+    scrollOverflow: $PropertyType<Props, "scrollOverflow">,
+    light: $PropertyType<Props, "light">,
+|};
+
 /**
  * ModalPanel is  the content container.
  *
@@ -89,13 +95,13 @@ type Props = {|
  * ```
  */
 export default class ModalPanel extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         closeButtonVisible: true,
         scrollOverflow: true,
         light: true,
     };
 
-    renderMainContent() {
+    renderMainContent(): React.Node {
         const {content, footer, scrollOverflow} = this.props;
 
         const mainContent = ModalContent.isClassOf(content) ? (
@@ -119,7 +125,7 @@ export default class ModalPanel extends React.Component<Props> {
         });
     }
 
-    render() {
+    render(): React.Node {
         const {
             closeButtonVisible,
             footer,

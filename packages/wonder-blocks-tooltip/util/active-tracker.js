@@ -41,7 +41,7 @@ export default class ActiveTracker {
     _subscribers: Array<IActiveTrackerSubscriber> = [];
     _active: boolean;
 
-    _getIndex(who: IActiveTrackerSubscriber) {
+    _getIndex(who: IActiveTrackerSubscriber): number {
         return this._subscribers.findIndex((v) => v === who);
     }
 
@@ -51,7 +51,7 @@ export default class ActiveTracker {
      * the there was a steal of active state from another anchor; otherwise, if
      * no other anchor had been active, returns false.
      */
-    steal(who: IActiveTrackerSubscriber) {
+    steal(who: IActiveTrackerSubscriber): boolean {
         const wasActive = !!this._active;
         this._active = true;
         for (const anchor of this._subscribers) {

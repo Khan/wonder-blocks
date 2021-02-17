@@ -53,4 +53,6 @@ const defaultContext: Context = {
     mediaSpec: MEDIA_DEFAULT_SPEC,
 };
 
-export default React.createContext<Context>(defaultContext);
+export default (React.createContext<Context>(
+    defaultContext,
+): React.Context<Context>);

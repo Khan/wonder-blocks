@@ -66,6 +66,12 @@ type Props = {|
     variant?: "radio" | "checkbox",
 |};
 
+type DefaultProps = {|
+    checked: $PropertyType<Props, "checked">,
+    disabled: $PropertyType<Props, "disabled">,
+    onChange: $PropertyType<Props, "onChange">,
+|};
+
 /**
  * This is a labeled 🔘 or ☑️ item. Choice is meant to be used as children of
  * CheckboxGroup and RadioGroup because many of its props are auto-populated
@@ -75,20 +81,20 @@ type Props = {|
  * If you wish to use just a single field, use Checkbox or Radio with the
  * optional label and description props.
  */ export default class Choice extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         checked: false,
         disabled: false,
         onChange: () => {},
     };
 
-    getChoiceComponent(variant: ?string) {
+    getChoiceComponent(variant: ?string): React.ComponentType<> {
         if (variant === "checkbox") {
             return Checkbox;
         } else {
             return Radio;
         }
     }
-    render() {
+    render(): React.Node {
         // we don't need this going into the ChoiceComponent
         // eslint-disable-next-line no-unused-vars
         const {value, variant, ...remainingProps} = this.props;

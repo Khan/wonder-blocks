@@ -1,5 +1,5 @@
 //@flow
-import React from "react";
+import * as React from "react";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {mount, unmountAll} from "../../../../utils/testing/mount.js";
 
@@ -120,7 +120,7 @@ describe("SingleSelect", () => {
         |};
 
         class ControlledComponent extends React.Component<Props, State> {
-            state = {
+            state: State = {
                 opened: this.props.opened,
             };
 
@@ -132,7 +132,7 @@ describe("SingleSelect", () => {
                 this.props.onToggle && this.props.onToggle(opened);
             };
 
-            render() {
+            render(): React.Node {
                 return (
                     <React.Fragment>
                         <SingleSelect

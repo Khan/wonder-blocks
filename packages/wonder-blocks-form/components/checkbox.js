@@ -70,6 +70,11 @@ type ChoiceComponentProps = {|
     groupName?: string,
 |};
 
+type DefaultProps = {|
+    disabled: $PropertyType<ChoiceComponentProps, "disabled">,
+    error: $PropertyType<ChoiceComponentProps, "error">,
+|};
+
 /**
  * ☑️ A nicely styled checkbox for all your checking needs. Can optionally take
  * label and description props.
@@ -78,12 +83,12 @@ type ChoiceComponentProps = {|
  * and CheckboxGroup components.
  */
 export default class Checkbox extends React.Component<ChoiceComponentProps> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         disabled: false,
         error: false,
     };
 
-    render() {
+    render(): React.Node {
         return <ChoiceInternal variant="checkbox" {...this.props} />;
     }
 }

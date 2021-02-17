@@ -58,15 +58,22 @@ type Props = {|
     testId?: string,
 |};
 
+type DefaultProps = {|
+    color: $PropertyType<Props, "color">,
+    leftContent: $PropertyType<Props, "leftContent">,
+    rightContent: $PropertyType<Props, "rightContent">,
+    size: $PropertyType<Props, "size">,
+|};
+
 export default class Toolbar extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         color: "light",
         leftContent: null,
         rightContent: null,
         size: "medium",
     };
 
-    render() {
+    render(): React.Node {
         const {
             color,
             leftContent,

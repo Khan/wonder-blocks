@@ -70,6 +70,11 @@ type ChoiceComponentProps = {|
     groupName?: string,
 |};
 
+type DefaultProps = {|
+    disabled: $PropertyType<ChoiceComponentProps, "disabled">,
+    error: $PropertyType<ChoiceComponentProps, "error">,
+|};
+
 /**
  * 🔘 A nicely styled radio button for all your non-AMFM radio button needs. Can
  * optionally take label and description props.
@@ -77,12 +82,12 @@ type ChoiceComponentProps = {|
  * This component should not really be used by itself because radio buttons are
  * often grouped together. See RadioGroup.
  */ export default class Radio extends React.Component<ChoiceComponentProps> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         disabled: false,
         error: false,
     };
 
-    render() {
+    render(): React.Node {
         return <ChoiceInternal variant="radio" {...this.props} />;
     }
 }

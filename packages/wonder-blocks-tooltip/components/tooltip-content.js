@@ -30,7 +30,7 @@ type Props = {|
  * tooltip bubble.
  */
 export default class TooltipContent extends React.Component<Props> {
-    _renderTitle() {
+    _renderTitle(): React.Node {
         const {title} = this.props;
         if (title) {
             if (typeof title === "string") {
@@ -42,7 +42,7 @@ export default class TooltipContent extends React.Component<Props> {
         return null;
     }
 
-    _renderChildren() {
+    _renderChildren(): React.Node {
         const {children} = this.props;
         if (typeof children === "string") {
             return <LabelMedium>{children}</LabelMedium>;
@@ -51,7 +51,7 @@ export default class TooltipContent extends React.Component<Props> {
         }
     }
 
-    render() {
+    render(): React.Node {
         const title = this._renderTitle();
         const children = this._renderChildren();
         const containerStyle = title ? styles.withTitle : styles.withoutTitle;

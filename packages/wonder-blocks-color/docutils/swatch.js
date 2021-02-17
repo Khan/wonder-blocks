@@ -19,18 +19,24 @@ type Props = {|
     segments: 1 | 2 | 3,
 |};
 
+type DefaultProps = {|
+    width: $PropertyType<Props, "width">,
+    segments: $PropertyType<Props, "segments">,
+    use: $PropertyType<Props, "use">,
+|};
+
 const constants = {
     segmentHeight: 64,
 };
 
 export default class Swatch extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         width: 256,
         segments: 3,
         use: null,
     };
 
-    getContent() {
+    getContent(): ?string {
         const {use} = this.props;
         if (use === "text") {
             return "Aa";
@@ -40,7 +46,7 @@ export default class Swatch extends React.Component<Props> {
             return null;
         }
     }
-    renderThreeSegments() {
+    renderThreeSegments(): React.Node {
         const {color} = this.props;
         const content = this.getContent();
         return (
@@ -62,7 +68,7 @@ export default class Swatch extends React.Component<Props> {
             </View>
         );
     }
-    renderTwoSegments() {
+    renderTwoSegments(): React.Node {
         const {color} = this.props;
         const content = this.getContent();
         return (
@@ -79,7 +85,7 @@ export default class Swatch extends React.Component<Props> {
             </View>
         );
     }
-    renderOneSegment() {
+    renderOneSegment(): React.Node {
         const {color, use} = this.props;
         const content = this.getContent();
         return (
@@ -101,7 +107,7 @@ export default class Swatch extends React.Component<Props> {
             </View>
         );
     }
-    render() {
+    render(): React.Node {
         const {name, desc, use, segments, width} = this.props;
         return (
             <View style={[styles.container, {width}]}>

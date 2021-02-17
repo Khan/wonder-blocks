@@ -33,6 +33,10 @@ type Props = {
     ...
 };
 
+type DefaultProps = {|
+    tag: $PropertyType<Props, "tag">,
+|};
+
 const StyledDiv = addStyle<"div">("div", styles.default);
 const StyledArticle = addStyle<"article">("article", styles.default);
 const StyledAside = addStyle<"aside">("aside", styles.default);
@@ -53,11 +57,11 @@ const StyledSection = addStyle<"section">("section", styles.default);
  * - An array combining the above
  */
 export default class View extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         tag: "div",
     };
 
-    render() {
+    render(): React.Node {
         const {testId, tag, ...restProps} = this.props;
         const props = {
             ...restProps,

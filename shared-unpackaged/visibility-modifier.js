@@ -14,10 +14,15 @@ import {getElementIntersection} from "@khanacademy/wonder-blocks-core";
 
 import isObscured from "./is-obscured.js";
 
+type ModifierData = {
+    [key: string]: any,
+    ...
+};
+
 /**
  * The function that implements the modifier.
  */
-function visibilityModifierFn(data: any) {
+function visibilityModifierFn(data: any): ModifierData {
     const anchorElement = data.instance.reference;
 
     // First, we see how the element intersects with its scroll parents.
@@ -70,6 +75,6 @@ function visibilityModifierFn(data: any) {
 export default {
     enabled: true,
     // We want this to run after the "hide" modifier, by default.
-    order: PopperJS.Defaults.modifiers["hide"].order + 1,
+    order: (PopperJS.Defaults.modifiers["hide"].order + 1: number),
     fn: visibilityModifierFn,
 };

@@ -79,25 +79,36 @@ type OptionProps = {|
     style?: StyleType,
 |};
 
+type ContextTypes = {|
+    router: PropTypes.Requireable<any>,
+|};
+
+type DefaultProps = {|
+    disabled: $PropertyType<OptionProps, "disabled">,
+    onToggle: $PropertyType<OptionProps, "onToggle">,
+    role: $PropertyType<OptionProps, "role">,
+    selected: $PropertyType<OptionProps, "selected">,
+|};
+
 /**
  * For option items that can be selected in a dropdown, selection denoted either
  * with a check ✔️ or a checkbox ☑️. Use as children in SingleSelect or
  * MultiSelect.
  */
 export default class OptionItem extends React.Component<OptionProps> {
-    static isClassOf(instance: React.Element<any>) {
+    static isClassOf(instance: React.Element<any>): boolean {
         return instance && instance.type && instance.type.__IS_OPTION_ITEM__;
     }
-    static contextTypes = {router: PropTypes.any};
-    static defaultProps = {
+    static contextTypes: ContextTypes = {router: PropTypes.any};
+    static defaultProps: DefaultProps = {
         disabled: false,
         onToggle: () => void 0,
         role: "option",
         selected: false,
     };
-    static __IS_OPTION_ITEM__ = true;
+    static __IS_OPTION_ITEM__: boolean = true;
 
-    getCheckComponent() {
+    getCheckComponent(): React.ComponentType<> {
         if (this.props.variant === "check") {
             return Check;
         } else {
@@ -105,7 +116,7 @@ export default class OptionItem extends React.Component<OptionProps> {
         }
     }
 
-    handleClick = () => {
+    handleClick: () => void = () => {
         const {onClick, onToggle, value} = this.props;
         onToggle(value);
         if (onClick) {
@@ -113,7 +124,7 @@ export default class OptionItem extends React.Component<OptionProps> {
         }
     };
 
-    render() {
+    render(): React.Node {
         const {
             disabled,
             label,

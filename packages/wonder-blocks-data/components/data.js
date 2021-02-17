@@ -124,7 +124,7 @@ export default class Data<TOptions, TData: ValidData> extends React.Component<
         };
     }
 
-    render() {
+    render(): React.Node {
         return (
             <InterceptContext.Consumer>
                 {(value) => {

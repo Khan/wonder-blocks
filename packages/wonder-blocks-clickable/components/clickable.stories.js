@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 
 import {StyleSheet} from "aphrodite";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
@@ -11,7 +11,7 @@ export default {
     title: "Clickable",
 };
 
-export const keyboardNavigation = () => (
+export const keyboardNavigation: React.ComponentType<Empty> = () => (
     <View>
         <Clickable
             href="https://www.khanacademy.org/about/tos"

@@ -36,7 +36,7 @@ type Props = {|
 |};
 
 export default class CloseButton extends React.Component<Props> {
-    render() {
+    render(): React.Node {
         const {light, onClick, style, testId} = this.props;
 
         return (

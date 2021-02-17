@@ -1,5 +1,5 @@
 [version]
-0.115.0
+0.125.1
 
 [declarations]
 <PROJECT_ROOT>/node_modules
@@ -10,6 +10,9 @@ deprecated-utility=error
 implicit-inexact-object=error
 
 [options]
+well_formed_exports=true
+types_first=true
+
 # $FlowFixMe
 # This suppression hould be used to suppress an issue that requires additional
 # effort to be resolved. That effort should be recorded in our issue tracking

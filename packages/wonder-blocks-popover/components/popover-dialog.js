@@ -64,7 +64,7 @@ export default class PopoverDialog extends React.Component<Props> {
         }
     }
 
-    render() {
+    render(): React.Node {
         const {
             placement,
             children,

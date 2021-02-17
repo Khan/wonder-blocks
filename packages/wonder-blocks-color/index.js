@@ -4,7 +4,35 @@ import {mix, fade} from "./util/utils.js";
 const offBlack = "#21242c";
 const white = "#ffffff";
 
-const Color = {
+type ColorType = {|
+    // Product
+    blue: string,
+    purple: string,
+    green: string,
+    gold: string,
+    red: string,
+
+    // Neutral
+    offBlack: string,
+    offBlack64: string,
+    offBlack50: string,
+    offBlack32: string,
+    offBlack16: string,
+    offBlack8: string,
+
+    offWhite: string,
+    white: string,
+    white64: string,
+    white50: string,
+
+    // Brand
+    darkBlue: string,
+    teal: string,
+    lightBlue: string,
+    pink: string,
+|};
+
+const Color: ColorType = {
     // Product
     blue: "#1865f2",
     purple: "#9059ff",

@@ -56,7 +56,7 @@ type State = {|
 |};
 
 export default class TooltipBubble extends React.Component<Props, State> {
-    state = {
+    state: State = {
         active: false,
     };
 
@@ -65,7 +65,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
         this.props.onActiveChanged(active);
     }
 
-    handleMouseEnter = () => {
+    handleMouseEnter: () => void = () => {
         if (this.props.anchorTimeoutID) {
             clearTimeout(this.props.anchorTimeoutID);
             this.props.onTimeoutChanged(null);
@@ -73,11 +73,11 @@ export default class TooltipBubble extends React.Component<Props, State> {
         this._setActiveState(true);
     };
 
-    handleMouseLeave = () => {
+    handleMouseLeave: () => void = () => {
         this.props.onActiveChanged(false);
     };
 
-    render() {
+    render(): React.Node {
         const {
             id,
             children,

@@ -77,23 +77,33 @@ type SelectOpenerProps = {|
     open: boolean,
 |};
 
+type ContextTypes = {|
+    router: PropTypes.Requirable<any>,
+|};
+
+type DefaultProps = {|
+    disabled: $PropertyType<SelectOpenerProps, "disabled">,
+    light: $PropertyType<SelectOpenerProps, "light">,
+    isPlaceholder: $PropertyType<SelectOpenerProps, "isPlaceholder">,
+|};
+
 /**
  * An opener that opens select boxes.
  */
 export default class SelectOpener extends React.Component<SelectOpenerProps> {
-    static contextTypes = {router: PropTypes.any};
-    static defaultProps = {
+    static contextTypes: ContextTypes = {router: PropTypes.any};
+    static defaultProps: DefaultProps = {
         disabled: false,
         light: false,
         isPlaceholder: false,
     };
 
-    handleClick = (e: SyntheticEvent<>) => {
+    handleClick: (e: SyntheticEvent<>) => void = (e) => {
         const {open} = this.props;
         this.props.onOpenChanged(!open, e.type === "keyup");
     };
 
-    render() {
+    render(): React.Node {
         const {
             children,
             disabled,

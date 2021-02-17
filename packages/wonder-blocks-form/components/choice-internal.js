@@ -64,6 +64,12 @@ type Props = {|
     variant: "radio" | "checkbox",
 |};
 
+type DefaultProps = {|
+    checked: $PropertyType<Props, "checked">,
+    disabled: $PropertyType<Props, "disabled">,
+    error: $PropertyType<Props, "error">,
+|};
+
 /**
  * This is a potentially labeled 🔘 or ☑️ item. This is an internal component
  * that's wrapped by Checkbox and Radio. Choice is a wrapper for Checkbox and
@@ -72,19 +78,19 @@ type Props = {|
  * example, we can make onChange a required prop on Checkbox but not on Choice
  * (because for Choice, that prop would be auto-populated by CheckboxGroup).
  */ export default class ChoiceInternal extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         checked: false,
         disabled: false,
         error: false,
     };
 
-    handleLabelClick = (event: SyntheticEvent<>) => {
+    handleLabelClick: (event: SyntheticEvent<>) => void = (event) => {
         // Browsers automatically use the for attribute to select the input,
         // but we use ClickableBehavior to handle this.
         event.preventDefault();
     };
 
-    handleClick = () => {
+    handleClick: () => void = () => {
         const {checked, onChange, variant} = this.props;
         // Radio buttons cannot be unchecked
         if (variant === "radio" && checked) {
@@ -93,14 +99,14 @@ type Props = {|
         onChange(!checked);
     };
 
-    getChoiceCoreComponent() {
+    getChoiceCoreComponent(): React.ComponentType<> {
         if (this.props.variant === "radio") {
             return RadioCore;
         } else {
             return CheckboxCore;
         }
     }
-    getLabel() {
+    getLabel(): React.Node {
         const {disabled, id, label} = this.props;
         return (
             <LabelMedium
@@ -112,13 +118,13 @@ type Props = {|
             </LabelMedium>
         );
     }
-    getDescription() {
+    getDescription(): React.Node {
         const {description} = this.props;
         return (
             <LabelSmall style={styles.description}>{description}</LabelSmall>
         );
     }
-    render() {
+    render(): React.Node {
         const {
             label,
             description,

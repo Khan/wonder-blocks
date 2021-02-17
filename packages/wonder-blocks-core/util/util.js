@@ -4,6 +4,11 @@ import type {CSSProperties} from "aphrodite";
 
 import type {StyleType} from "./types.js";
 
+type StyledExport = {|
+    style: CSSProperties | Empty,
+    className: string,
+|};
+
 function flatten(list?: StyleType): Array<CSSProperties> {
     const result: Array<CSSProperties> = [];
 
@@ -20,7 +25,7 @@ function flatten(list?: StyleType): Array<CSSProperties> {
     return result;
 }
 
-export function processStyleList(style?: StyleType) {
+export function processStyleList(style?: StyleType): StyledExport {
     const stylesheetStyles = [];
     const inlineStyles = [];
 

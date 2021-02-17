@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
 import PropTypes from "prop-types";
@@ -31,14 +31,18 @@ type Props = {|
     href?: string,
 |};
 
+type ContextTypes = {|
+    router: PropTypes.Requireable<any>,
+|};
+
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
 export default class IconButtonCore extends React.Component<Props> {
-    static contextTypes = {router: PropTypes.any};
+    static contextTypes: ContextTypes = {router: PropTypes.any};
 
-    render() {
+    render(): React.Node {
         const {
             skipClientNav,
             color,

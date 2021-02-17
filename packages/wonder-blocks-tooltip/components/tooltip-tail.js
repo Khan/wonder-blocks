@@ -6,6 +6,7 @@ import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {getRefFn, Placement, Offset} from "../util/types.js";
 
 export type Props = {|
@@ -28,16 +29,33 @@ export type Props = {|
     updateRef?: getRefFn,
 |};
 
+type DefaultProps = {|
+    color: $PropertyType<Props, "color">,
+|};
+
+type Dimensions = {|
+    trimlinePoints: [string, string],
+    points: [string, string, string],
+    height: number,
+    width: number,
+|};
+
+type FilterPosition = {|
+    y: string,
+    x: string,
+    offsetShadowX: number,
+|};
+
 // TODO(somewhatabstract): Replace this really basic unique ID work with
 // something SSR-friendly and more robust.
 let tempIdCounter = 0;
 
 export default class TooltipTail extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         color: "white",
     };
 
-    _calculateDimensionsFromPlacement() {
+    _calculateDimensionsFromPlacement(): Dimensions {
         const {placement} = this.props;
 
         // The trimline, which we draw to make the tail flush to the bubble,
@@ -118,7 +136,7 @@ export default class TooltipTail extends React.Component<Props> {
         }
     }
 
-    _getFilterPositioning() {
+    _getFilterPositioning(): ?FilterPosition {
         const {placement} = this.props;
         switch (placement) {
             case "top":
@@ -161,7 +179,7 @@ export default class TooltipTail extends React.Component<Props> {
      * elsewhere in the document. (The `height` value depends on
      * which way the arrow is turned!)
      */
-    _maybeRenderDropshadow(points: Array<string>) {
+    _maybeRenderDropshadow(points: [string, string, string]): React.Node {
         const position = this._getFilterPositioning();
         if (!position) {
             return null;
@@ -229,7 +247,7 @@ export default class TooltipTail extends React.Component<Props> {
         ];
     }
 
-    _minDistanceFromCorners(placement: Placement) {
+    _minDistanceFromCorners(placement: Placement): number {
         const minDistanceFromCornersForTopBottom = Spacing.medium_16;
         const minDistanceFromCornersForLeftRight = 7;
 
@@ -247,15 +265,15 @@ export default class TooltipTail extends React.Component<Props> {
         }
     }
 
-    _getFullTailWidth() {
+    _getFullTailWidth(): number {
         return ARROW_WIDTH + 2 * MIN_DISTANCE_FROM_CORNERS;
     }
 
-    _getFullTailHeight() {
+    _getFullTailHeight(): number {
         return ARROW_HEIGHT + DISTANCE_FROM_ANCHOR;
     }
 
-    _getContainerStyle() {
+    _getContainerStyle(): StyleType {
         const {placement} = this.props;
         /**
          * Ensure the container is sized properly for us to be placed correctly
@@ -308,7 +326,7 @@ export default class TooltipTail extends React.Component<Props> {
         }
     }
 
-    _getArrowStyle() {
+    _getArrowStyle(): StyleType {
         const {placement} = this.props;
         switch (placement) {
             case "top":
@@ -344,7 +362,7 @@ export default class TooltipTail extends React.Component<Props> {
         }
     }
 
-    _renderArrow() {
+    _renderArrow(): React.Node {
         const {
             trimlinePoints,
             points,
@@ -394,7 +412,7 @@ export default class TooltipTail extends React.Component<Props> {
         );
     }
 
-    render() {
+    render(): React.Node {
         const {offset, placement, updateRef} = this.props;
         return (
             <View

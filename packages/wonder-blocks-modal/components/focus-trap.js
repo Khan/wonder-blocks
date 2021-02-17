@@ -64,7 +64,7 @@ export default class FocusTrap extends React.Component<Props> {
         window.removeEventListener("focus", this.handleGlobalFocus, true);
     }
 
-    getModalRoot = (node: any) => {
+    getModalRoot: (node: any) => void = (node) => {
         if (!node) {
             // The component is being umounted
             return;
@@ -80,7 +80,7 @@ export default class FocusTrap extends React.Component<Props> {
     };
 
     /** Try to focus the given node. Return true iff successful. */
-    tryToFocus(node: Node) {
+    tryToFocus(node: Node): ?boolean {
         if (node instanceof HTMLElement) {
             this.ignoreFocusChanges = true;
             try {
@@ -100,7 +100,7 @@ export default class FocusTrap extends React.Component<Props> {
      * Return true if we succeed. Or, if the given node has no focusable
      * descendants, return false.
      */
-    focusFirstElementIn(currentParent: Node) {
+    focusFirstElementIn(currentParent: Node): boolean {
         const children = currentParent.childNodes;
         for (let i = 0; i < children.length; i++) {
             const child = children[i];
@@ -117,7 +117,7 @@ export default class FocusTrap extends React.Component<Props> {
      * Return true if we succeed. Or, if the given node has no focusable
      * descendants, return false.
      */
-    focusLastElementIn(currentParent: Node) {
+    focusLastElementIn(currentParent: Node): boolean {
         const children = currentParent.childNodes;
         for (let i = children.length - 1; i >= 0; i--) {
             const child = children[i];
@@ -129,7 +129,7 @@ export default class FocusTrap extends React.Component<Props> {
     }
 
     /** This method is called when any node on the page is focused. */
-    handleGlobalFocus = (e: FocusEvent) => {
+    handleGlobalFocus: (e: FocusEvent) => void = (e) => {
         // If we're busy applying our own programmatic focus, we ignore focus
         // changes, to avoid an infinite loop.
         if (this.ignoreFocusChanges) {
@@ -173,7 +173,7 @@ export default class FocusTrap extends React.Component<Props> {
         }
     };
 
-    render() {
+    render(): React.Node {
         const {style} = this.props;
 
         return (

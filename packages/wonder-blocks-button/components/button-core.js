@@ -29,14 +29,18 @@ type Props = {|
     type?: "submit",
 |};
 
+type ContextTypes = {|
+    router: PropTypes.Requireable<any>,
+|};
+
 const StyledAnchor = addStyle<"a">("a");
 const StyledButton = addStyle<"button">("button");
 const StyledLink = addStyle<typeof Link>(Link);
 
 export default class ButtonCore extends React.Component<Props> {
-    static contextTypes = {router: PropTypes.any};
+    static contextTypes: ContextTypes = {router: PropTypes.any};
 
-    render() {
+    render(): React.Node {
         const {
             children,
             skipClientNav,

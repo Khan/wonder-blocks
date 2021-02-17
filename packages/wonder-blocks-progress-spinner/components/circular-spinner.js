@@ -54,17 +54,22 @@ type Props = {|
     testId?: string,
 |};
 
+type DefaultProps = {|
+    light: $PropertyType<Props, "light">,
+    size: $PropertyType<Props, "size">,
+|};
+
 /**
  * A circular progress spinner. Used for indicating loading progress. Should
  * be used by default in most places where a loading indicator is needed.
  */
 export default class CircularSpinner extends React.Component<Props> {
-    static defaultProps = {
+    static defaultProps: DefaultProps = {
         size: "large",
         light: false,
     };
 
-    render() {
+    render(): React.Node {
         const {size, light, style} = this.props;
 
         const height = heights[size];

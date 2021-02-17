@@ -4,8 +4,10 @@ import ReactDOM from "react-dom";
 import {VariableSizeList as List} from "react-window";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
-import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
-
+import type {
+    WithActionSchedulerProps,
+    WithoutActionScheduler,
+} from "@khanacademy/wonder-blocks-timing";
 import DropdownVirtualizedItem from "./dropdown-core-virtualized-item.js";
 import SearchTextInput from "./search-text-input.js";
 import SeparatorItem from "./separator-item.js";
@@ -64,7 +66,7 @@ const MAX_VISIBLE_ITEMS = 10;
  * dynamically calculates the item height depending on the type
  */
 class DropdownCoreVirtualized extends React.Component<Props, State> {
-    state = {
+    state: State = {
         height: this.getHeight(),
         width: this.props.width,
     };
@@ -124,7 +126,7 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
      * The list height that is automatically calculated depending on the
      * component's type of each item (e.g. Separator, Option, Search, etc)
      */
-    getHeight() {
+    getHeight(): number {
         // calculate using the first 10 items on the array as we want to display
         // this number of elements in the visible area
         return this.props.data
@@ -144,7 +146,7 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
     /**
      * Calculates item height
      */
-    getItemSize = (index: number) => {
+    getItemSize: (index: number) => number = (index: number) => {
         // get the current item in the list
         const item = this.props.data[index];
 
@@ -202,10 +204,16 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
             // react-window has some issues for typing lists when passing refs
             // $FlowIgnore
             <List
+                // react-window doesn't accept maybe numbers. It wants numbers
+                // or strings.
+                // $FlowFixMe
                 height={height}
                 itemCount={data.length}
                 itemSize={this.getItemSize}
                 itemData={data}
+                // react-window doesn't accept maybe numbers. It wants numbers
+                // or strings.
+                // $FlowFixMe
                 width={width}
                 overscanCount={5}
                 ref={listRef}
@@ -215,7 +223,7 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
         );
     }
 
-    render() {
+    render(): React.Node {
         if (!this.state.width) {
             // if we don't pass a fixed value, then we need to render
             // non-virtualized items to calculate width
@@ -227,4 +235,10 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
     }
 }
 
-export default withActionScheduler(DropdownCoreVirtualized);
+type ExportProps = WithoutActionScheduler<
+    React.ElementConfig<typeof DropdownCoreVirtualized>,
+>;
+
+export default (withActionScheduler(
+    DropdownCoreVirtualized,
+): React.ComponentType<ExportProps>);

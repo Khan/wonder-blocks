@@ -22,7 +22,7 @@ export default class PopoverKeypressListener extends React.Component<Props> {
         window.removeEventListener("keyup", this._handleKeyup);
     }
 
-    _handleKeyup = (e: KeyboardEvent) => {
+    _handleKeyup: (e: KeyboardEvent) => void = (e) => {
         // We check the key as that's keyboard layout agnostic and also avoids
         // the minefield of deprecated number type properties like keyCode and
         // which, with the replacement code, which uses a string instead.
@@ -39,7 +39,7 @@ export default class PopoverKeypressListener extends React.Component<Props> {
         }
     };
 
-    render() {
+    render(): React.Node {
         return null;
     }
 }

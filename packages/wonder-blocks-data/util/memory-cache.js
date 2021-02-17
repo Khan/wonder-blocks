@@ -52,11 +52,15 @@ export default class MemoryCache<TOptions, TData: ValidData>
         }
     }
 
-    get inUse() {
+    get inUse(): boolean {
         return Object.keys(this._cache).length > 0;
     }
 
-    store = <TOptions, TData: ValidData>(
+    store: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+        entry: CacheEntry<TData>,
+    ) => void = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
         entry: CacheEntry<TData>,
@@ -75,7 +79,10 @@ export default class MemoryCache<TOptions, TData: ValidData>
         this._cache[requestType][key] = frozenEntry;
     };
 
-    retrieve = <TOptions, TData: ValidData>(
+    retrieve: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ) => ?CacheEntry<TData> = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
     ): ?CacheEntry<TData> => {
@@ -97,7 +104,10 @@ export default class MemoryCache<TOptions, TData: ValidData>
         return internalEntry;
     };
 
-    remove = <TOptions, TData: ValidData>(
+    remove: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ) => boolean = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
     ): boolean => {
@@ -125,7 +135,13 @@ export default class MemoryCache<TOptions, TData: ValidData>
         return true;
     };
 
-    removeAll = <TOptions, TData: ValidData>(
+    removeAll: <TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+        predicate?: (
+            key: string,
+            cachedEntry: $ReadOnly<CacheEntry<TData>>,
+        ) => boolean,
+    ) => number = <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         predicate?: (
             key: string,
@@ -154,7 +170,7 @@ export default class MemoryCache<TOptions, TData: ValidData>
         return removedCount;
     };
 
-    cloneData = (): $ReadOnly<Cache> => {
+    cloneData: () => $ReadOnly<Cache> = (): $ReadOnly<Cache> => {
         try {
             return deepClone(this._cache);
         } catch (e) {

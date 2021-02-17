@@ -3,3 +3,4 @@
 docs
 *.css
 *.yml
+flow-typed/npm

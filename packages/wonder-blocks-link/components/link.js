@@ -156,6 +156,16 @@ export type SharedProps =
           beforeNav?: () => Promise<mixed>,
       |};
 
+type ContextTypes = {|
+    router: PropTypes.Requireable<any>,
+|};
+
+type DefaultProps = {|
+    kind: $PropertyType<SharedProps, "kind">,
+    light: $PropertyType<SharedProps, "light">,
+    visitable: $PropertyType<SharedProps, "visitable">,
+|};
+
 /**
  * Reusable link component.
  *
@@ -174,14 +184,14 @@ export type SharedProps =
  * ```
  */
 export default class Link extends React.Component<SharedProps> {
-    static contextTypes = {router: PropTypes.any};
-    static defaultProps = {
+    static contextTypes: ContextTypes = {router: PropTypes.any};
+    static defaultProps: DefaultProps = {
         kind: "primary",
         light: false,
         visitable: false,
     };
 
-    render() {
+    render(): React.Node {
         const {
             onClick,
             beforeNav = undefined,

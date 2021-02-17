@@ -10,7 +10,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
  * Assumes parent is a View.
  */
 export default class Spring extends React.Component<{||}> {
-    render() {
+    render(): React.Node {
         return <View aria-hidden="true" style={styles.grow} />;
     }
 }
