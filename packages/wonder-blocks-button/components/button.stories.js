@@ -216,7 +216,7 @@ export const xlargeButtons: React.ComponentType<Empty> = () => (
     </View>
 );
 
-export const longLabelsAreEllipsized = (): React.ComponentType<Empty> => (
+export const longLabelsAreEllipsized: React.ComponentType<Empty> = () => (
     <Button onClick={() => {}} style={{maxWidth: 200}}>
         label too long for the parent container
     </Button>

@@ -11,16 +11,16 @@ import {flexBasis} from "../util/utils.js";
 
 type Props = {|
     /** The number of columns this cell should span on a Small Grid. */
-    smallCols?: number,
+    smallCols: number,
 
     /** The number of columns this cell should span on a Medium Grid. */
-    mediumCols?: number,
+    mediumCols: number,
 
     /** The number of columns this cell should span on a Large Grid. */
-    largeCols?: number,
+    largeCols: number,
 
     /** The number of columns this should should span by default. */
-    cols?: number | ((mediaSize: MediaSize) => number),
+    cols: number | ((mediaSize: MediaSize) => number),
 
     /**
      * The child components to populate inside the cell. Can also accept a
