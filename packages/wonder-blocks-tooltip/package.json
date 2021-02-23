@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-tooltip",
-  "version": "1.2.28",
+  "version": "1.2.29",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -18,7 +18,7 @@
     "@khanacademy/wonder-blocks-color": "^1.1.16",
     "@khanacademy/wonder-blocks-core": "^3.1.0",
     "@khanacademy/wonder-blocks-layout": "^1.3.28",
-    "@khanacademy/wonder-blocks-modal": "^2.1.30",
+    "@khanacademy/wonder-blocks-modal": "^2.1.31",
     "@khanacademy/wonder-blocks-spacing": "^3.0.1",
     "@khanacademy/wonder-blocks-typography": "^1.1.21"
   },
