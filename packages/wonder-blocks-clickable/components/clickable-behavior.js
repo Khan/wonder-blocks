@@ -445,7 +445,13 @@ export default class ClickableBehavior extends React.Component<
             let target = e.currentTarget;
             while (target) {
                 if (target instanceof window.HTMLFormElement) {
-                    const event = new window.Event("submit");
+                    // This event must be marked as cancelable otherwise calling
+                    // e.preventDefault() on it won't do anything in Firefox.
+                    // Chrome and Safari allow calling e.preventDefault() on
+                    // non-cancelable events, but really they shouldn't.
+                    const event = new window.Event("submit", {
+                        cancelable: true,
+                    });
                     target.dispatchEvent(event);
                     break;
                 }

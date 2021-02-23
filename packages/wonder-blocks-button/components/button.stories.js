@@ -247,3 +247,29 @@ export const buttonWithSpinner: React.ComponentType<Empty> = () => (
         </Button>
     </View>
 );
+
+export const submitButtonInForm: React.ComponentType<Empty> = () => (
+    <form
+        onSubmit={(e) => {
+            e.preventDefault();
+            window.alert("form submitted"); // eslint-disable-line no-alert
+        }}
+    >
+        <View>
+            Foo: <input id="foo" value="bar" />
+            <Button type="submit">Submit</Button>
+        </View>
+    </form>
+);
+
+submitButtonInForm.story = {
+    parameters: {
+        options: {
+            showAddonPanel: true,
+        },
+        chromatic: {
+            // We already have screenshots of other stories that cover more of the button states
+            disable: true,
+        },
+    },
+};
