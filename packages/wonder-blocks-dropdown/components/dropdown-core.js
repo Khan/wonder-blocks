@@ -813,7 +813,9 @@ const styles = StyleSheet.create({
     },
 });
 
-type ExportProps = WithoutActionScheduler<React.ElementConfig<DropdownCore>>;
+type ExportProps = WithoutActionScheduler<
+    React.ElementConfig<typeof DropdownCore>,
+>;
 
 export default (withActionScheduler(
     DropdownCore,
