@@ -50,7 +50,8 @@ describe("Tooltip", () => {
             jest.runOnlyPendingTimers();
 
             // Act
-            // Flow doesn't like jest mocks $FlowFixMe
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
             const result = TooltipBubble.mock.instances[0].props["children"];
 
             // Assert
@@ -76,7 +77,8 @@ describe("Tooltip", () => {
             jest.runOnlyPendingTimers();
 
             // Act
-            // Flow doesn't like jest mocks $FlowFixMe
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
             const result = TooltipBubble.mock.instances[0].props["children"];
 
             // Assert
@@ -110,7 +112,8 @@ describe("Tooltip", () => {
             jest.runOnlyPendingTimers();
 
             // Act
-            // Flow doesn't like jest mocks $FlowFixMe
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
             const result = TooltipBubble.mock.instances[0].props["children"];
 
             // Assert
@@ -144,7 +147,8 @@ describe("Tooltip", () => {
             jest.runOnlyPendingTimers();
 
             // Act
-            // Flow doesn't like jest mocks $FlowFixMe
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
             const result = TooltipBubble.mock.instances[0].props["children"];
 
             // Assert
@@ -176,7 +180,8 @@ describe("Tooltip", () => {
             jest.runOnlyPendingTimers();
 
             // Act
-            // Flow doesn't like jest mocks $FlowFixMe
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
             const result = TooltipBubble.mock.instances[0].props["children"];
 
             // Assert
@@ -205,7 +210,8 @@ describe("Tooltip", () => {
             jest.runOnlyPendingTimers();
 
             // Act
-            // Flow doesn't like jest mocks $FlowFixMe
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
             const result = TooltipBubble.mock.instances[0].props["id"];
 
             // Assert
@@ -230,7 +236,8 @@ describe("Tooltip", () => {
             jest.runOnlyPendingTimers();
 
             // Act
-            // Flow doesn't like jest mocks $FlowFixMe
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
             const result = TooltipBubble.mock.instances[0].props["id"];
 
             // Assert

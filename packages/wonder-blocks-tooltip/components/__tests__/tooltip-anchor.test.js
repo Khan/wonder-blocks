@@ -30,7 +30,8 @@ describe("TooltipAnchor", () => {
         );
         // We know there's one global instance of this import, so let's
         // reset it.
-        // Flow doesn't know this is a mock $FlowFixMe
+        // Flow doesn't know this is a mock
+        // $FlowFixMe[prop-missing]
         const mockTracker = ActiveTracker.mock.instances[0];
         mockTracker.steal.mockClear();
         mockTracker.giveup.mockClear();
@@ -248,7 +249,8 @@ describe("TooltipAnchor", () => {
             );
             // Let's tell the tooltip it isn't stealing and therefore it should
             // be using a delay to show the tooltip.
-            // Flow doesn't know this is a mock $FlowFixMe
+            // Flow doesn't know this is a mock
+            // $FlowFixMe[prop-missing]
             const mockTracker = ActiveTracker.mock.instances[0];
             mockTracker.steal.mockImplementationOnce(() => false);
 
@@ -297,7 +299,8 @@ describe("TooltipAnchor", () => {
             );
             // Let's tell the tooltip it is stealing and therefore it should
             // not be using a delay to show the tooltip.
-            // Flow doesn't know this is a mock $FlowFixMe
+            // Flow doesn't know this is a mock
+            // $FlowFixMe[prop-missing]
             const mockTracker = ActiveTracker.mock.instances[0];
             mockTracker.steal.mockImplementationOnce(() => true);
 
@@ -381,7 +384,8 @@ describe("TooltipAnchor", () => {
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker.js"
             );
-            // Flow doesn't know this is a mock $FlowFixMe
+            // Flow doesn't know this is a mock
+            // $FlowFixMe[prop-missing]
             const mockTracker = ActiveTracker.mock.instances[0];
 
             let activeState = false;
@@ -467,7 +471,8 @@ describe("TooltipAnchor", () => {
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker.js"
             );
-            // Flow doesn't know this is a mock $FlowFixMe
+            // Flow doesn't know this is a mock
+            // $FlowFixMe[prop-missing]
             const mockTracker = ActiveTracker.mock.instances[0];
             // Arrange
             let wrapper;
@@ -531,7 +536,8 @@ describe("TooltipAnchor", () => {
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            // Flow doesn't know we added jest mocks to this $FlowFixMe
+            // Flow doesn't know we added jest mocks to this
+            // $FlowFixMe[prop-missing]
             setTimeout.mockClear();
             ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
 
@@ -553,7 +559,8 @@ describe("TooltipAnchor", () => {
             );
             // Let's tell the tooltip it isn't stealing and therefore it should
             // be using a delay to show the tooltip.
-            // Flow doesn't know this is a mock $FlowFixMe
+            // Flow doesn't know this is a mock
+            // $FlowFixMe[prop-missing]
             const mockTracker = ActiveTracker.mock.instances[0];
             mockTracker.steal.mockImplementationOnce(() => false);
 
@@ -597,7 +604,8 @@ describe("TooltipAnchor", () => {
             );
             // Let's tell the tooltip it is stealing and therefore it should
             // not be using a delay to show the tooltip.
-            // Flow doesn't know this is a mock $FlowFixMe
+            // Flow doesn't know this is a mock
+            // $FlowFixMe[prop-missing]
             const mockTracker = ActiveTracker.mock.instances[0];
             mockTracker.steal.mockImplementationOnce(() => true);
 
@@ -675,7 +683,8 @@ describe("TooltipAnchor", () => {
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker.js"
             );
-            // Flow doesn't know this is a mock $FlowFixMe
+            // Flow doesn't know this is a mock
+            // $FlowFixMe[prop-missing]
             const mockTracker = ActiveTracker.mock.instances[0];
             let activeState = false;
             let currentTimeoutID = null;
@@ -758,7 +767,8 @@ describe("TooltipAnchor", () => {
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker.js"
             );
-            // Flow doesn't know this is a mock $FlowFixMe
+            // Flow doesn't know this is a mock
+            // $FlowFixMe[prop-missing]
             const mockTracker = ActiveTracker.mock.instances[0];
             // Arrange
             let wrapper;
@@ -822,7 +832,8 @@ describe("TooltipAnchor", () => {
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            // Flow doesn't know we added jest mocks to this $FlowFixMe
+            // Flow doesn't know we added jest mocks to this
+            // $FlowFixMe[prop-missing]
             setTimeout.mockClear();
             ref && ref.dispatchEvent(new FocusEvent("focusin"));
 

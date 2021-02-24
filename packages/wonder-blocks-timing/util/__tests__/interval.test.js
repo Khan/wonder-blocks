@@ -112,7 +112,8 @@ describe("Interval", () => {
             const action = jest.fn();
             const interval = new Interval(() => action(), 500);
             interval.set();
-            // Flow doesn't know we added jest mocks to this $FlowFixMe
+            // Flow doesn't know we added jest mocks to this
+            // $FlowFixMe[prop-missing]
             const scheduledAction = setInterval.mock.calls[0][0];
 
             // Act

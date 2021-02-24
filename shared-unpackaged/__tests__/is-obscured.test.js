@@ -22,7 +22,7 @@ describe("isObscured", () => {
             const og = ogElementFromPoint;
             ogElementFromPoint = null;
             // Reset the document method to avoid side-effects.
-            // Flow doesn't like us doing this to the document $FlowFixMe
+            // $FlowFixMe[cannot-write] Flow doesn't like us doing this to the document
             document.elementFromPoint = og;
         }
     });
@@ -52,7 +52,7 @@ describe("isObscured", () => {
         const element = ((ReactDOM.findDOMNode(ref): any): Element);
 
         // When not obscurred, elementFromPoint should return the element.
-        // Flow doesn't like us doing this to the document $FlowFixMe
+        // $FlowFixMe[cannot-write] Flow doesn't like us doing this to the document
         document.elementFromPoint = jest.fn().mockReturnValue(element);
 
         // Act
@@ -89,7 +89,7 @@ describe("isObscured", () => {
         const otherElement = ((ReactDOM.findDOMNode(otherRef): any): Element);
         // When not obscurred, elementFromPoint should return the element.
         // So let's return the element for one corner but not the other.
-        // Flow doesn't like us doing this to the document $FlowFixMe
+        // $FlowFixMe[cannot-write] Flow doesn't like us doing this to the document
         document.elementFromPoint = jest
             .fn()
             .mockImplementationOnce(() => element)
@@ -128,7 +128,7 @@ describe("isObscured", () => {
         const element = ((ReactDOM.findDOMNode(ref): any): Element);
         const otherElement = ((ReactDOM.findDOMNode(otherRef): any): Element);
         // When not obscurred, elementFromPoint should return the element.
-        // Flow doesn't like us doing this to the document $FlowFixMe
+        // $FlowFixMe[cannot-write] Flow doesn't like us doing this to the document
         document.elementFromPoint = jest.fn().mockReturnValue(otherElement);
 
         // Act
@@ -180,7 +180,7 @@ describe("isObscured", () => {
 
         // When not obscurred, elementFromPoint should return the element.
         // So let's return the element for one corner but not the other.
-        // Flow doesn't like us doing this to the document $FlowFixMe
+        // $FlowFixMe[cannot-write] Flow doesn't like us doing this to the document
         document.elementFromPoint = jest
             .fn()
             .mockImplementationOnce(() => parentElement)

@@ -112,7 +112,8 @@ describe("Timeout", () => {
             const action = jest.fn();
             const timeout = new Timeout(() => action(), 500);
             timeout.set();
-            // Flow doesn't know we added jest mocks to this $FlowFixMe
+            // Flow doesn't know we added jest mocks to this
+            // $FlowFixMe[prop-missing]
             const scheduledAction = setTimeout.mock.calls[0][0];
 
             // Act

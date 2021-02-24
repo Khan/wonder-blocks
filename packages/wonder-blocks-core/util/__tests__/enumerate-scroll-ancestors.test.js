@@ -15,7 +15,8 @@ describe("enumerateScrollAncestors", () => {
         const enumerator = enumerateScrollAncestors((null: any));
 
         // Act
-        // Flow doesn't want us to index  $FlowFixMe
+        // Flow doesn't want us to index
+        // $FlowFixMe[incompatible-use]
         const result = enumerator[Symbol.iterator]();
 
         // Assert

@@ -457,7 +457,8 @@ export default class ClickableBehavior extends React.Component<
                 }
                 // All events should be typed as SyntheticEvent<HTMLElement>.
                 // Updating all of the places will take some time so I'll do
-                // this later - $FlowFixMe.
+                // this later
+                // $FlowFixMe[prop-missing]
                 target = target.parentElement;
             }
         }

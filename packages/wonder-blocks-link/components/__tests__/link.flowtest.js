@@ -4,10 +4,10 @@ import * as React from "react";
 
 import Link from "../link.js";
 
-// $ExpectError: href must be used with beforeNav
+// $FlowExpectedError[incompatible-type]: href must be used with beforeNav
 <Link beforeNav={() => Promise.resolve()}>Hello, world!</Link>;
 
-// $ExpectError: href must be used with safeWithNav
+// $FlowExpectedError[incompatible-type]: href must be used with safeWithNav
 <Link safeWithNav={() => Promise.resolve()}>Hello, world!</Link>;
 
 // It's okay to use onClick with href
