@@ -4,10 +4,10 @@ import * as React from "react";
 
 import Button from "../button.js";
 
-// $ExpectError: href must be used with beforeNav
+// $FlowExpectedError[incompatible-type]: href must be used with beforeNav
 <Button beforeNav={() => Promise.resolve()}>Hello, world!</Button>;
 
-// $ExpectError: href must be used with safeWithNav
+// $FlowExpectedError[incompatible-type]: href must be used with safeWithNav
 <Button safeWithNav={() => Promise.resolve()}>Hello, world!</Button>;
 
 // It's okay to use onClick with href
@@ -44,7 +44,7 @@ const getUrl = () => "/foo";
 // trigger by passing a string directly as the href.
 <Button href={getUrl()}>Hello, world!</Button>;
 
-// $ExpectError: type="submit" can't be used with href since we render an anchor.
+// $FlowExpectedError[incompatible-type]: type="submit" can't be used with href since we render an anchor.
 <Button href="/foo" type="submit">
     Hello, world!
 </Button>;

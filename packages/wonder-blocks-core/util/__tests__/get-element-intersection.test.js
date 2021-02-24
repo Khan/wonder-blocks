@@ -13,7 +13,8 @@ function rect(top, right, bottom, left) {
 
 describe("getElementIntersection", () => {
     beforeEach(() => {
-        // Flow doesn't like jest mocks $FlowFixMe
+        // Flow doesn't like jest mocks
+        // $FlowFixMe[prop-missing]
         enumerateScrollAncestors.mockClear();
         unmountAll();
     });
@@ -77,7 +78,8 @@ describe("getElementIntersection", () => {
         test("element is within visible part of scroll ancestor, returns within", async () => {
             // Arrange
             // First, let's fake out some scroll parent.
-            // Flow doesn't like jest mocks $FlowFixMe
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
             enumerateScrollAncestors.mockImplementation(() => [
                 {
                     getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0)),
@@ -113,7 +115,8 @@ describe("getElementIntersection", () => {
             test("horizontal", async () => {
                 // Arrange
                 // First, let's fake out some scroll parent.
-                // Flow doesn't like jest mocks $FlowFixMe
+                // Flow doesn't like jest mocks
+                // $FlowFixMe[prop-missing]
                 enumerateScrollAncestors.mockImplementation(() => [
                     {
                         getBoundingClientRect: jest.fn(() =>
@@ -152,7 +155,8 @@ describe("getElementIntersection", () => {
             test("vertical", async () => {
                 // Arrange
                 // First, let's fake out some scroll parent.
-                // Flow doesn't like jest mocks $FlowFixMe
+                // Flow doesn't like jest mocks
+                // $FlowFixMe[prop-missing]
                 enumerateScrollAncestors.mockImplementation(() => [
                     {
                         getBoundingClientRect: jest.fn(() =>
@@ -193,7 +197,8 @@ describe("getElementIntersection", () => {
             test("horizontal", async () => {
                 // Arrange
                 // First, let's fake out some scroll parent.
-                // Flow doesn't like jest mocks $FlowFixMe
+                // Flow doesn't like jest mocks
+                // $FlowFixMe[prop-missing]
                 enumerateScrollAncestors.mockImplementation(() => [
                     {
                         getBoundingClientRect: jest.fn(() =>
@@ -232,7 +237,8 @@ describe("getElementIntersection", () => {
             test("vertical", async () => {
                 // Arrange
                 // First, let's fake out some scroll parent.
-                // Flow doesn't like jest mocks $FlowFixMe
+                // Flow doesn't like jest mocks
+                // $FlowFixMe[prop-missing]
                 enumerateScrollAncestors.mockImplementation(() => [
                     {
                         getBoundingClientRect: jest.fn(() =>
@@ -272,7 +278,8 @@ describe("getElementIntersection", () => {
         test("element is before and after visible part of scroll ancestor, returns combination", async () => {
             // Arrange
             // First, let's fake out some scroll parent.
-            // Flow doesn't like jest mocks $FlowFixMe
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
             enumerateScrollAncestors.mockImplementation(() => [
                 {
                     getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0)),
@@ -309,7 +316,8 @@ describe("getElementIntersection", () => {
         test("element is before or after, but parent overflow is visible, returns within", async () => {
             // Arrange
             // First, let's fake out some scroll parent.
-            // Flow doesn't like jest mocks $FlowFixMe
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
             enumerateScrollAncestors.mockImplementation(() => [
                 {
                     getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0)),
@@ -346,7 +354,8 @@ describe("getElementIntersection", () => {
         test("multiple scroll ancestors, stops enumeration on first before/after", async () => {
             // Arrange
             // First, let's fake out some scroll parent.
-            // Flow doesn't like jest mocks $FlowFixMe
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
             enumerateScrollAncestors.mockImplementation(() => [
                 {
                     getBoundingClientRect: jest.fn(() => rect(0, 100, 100, 0)),

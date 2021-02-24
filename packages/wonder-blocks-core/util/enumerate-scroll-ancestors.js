@@ -28,7 +28,8 @@ const canScroll = function (node: Element) {
 // interface definition, but it doesn't pick up on our computed property
 // defining it (tried handling this in other ways, but it just won't work).
 // So, we need this and the additional FlowFixMe a few lines down on the
-// iterator property itself. $FlowFixMe
+// iterator property itself.
+// $FlowFixMe[prop-missing]
 class ScrollAncestorsIterator implements Iterator<Element> {
     done: boolean = false;
     parentElement: ?Element;

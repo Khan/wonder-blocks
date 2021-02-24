@@ -115,7 +115,8 @@ describe("AnimationFrame", () => {
             const action = jest.fn();
             const animationFrame = new AnimationFrame((time) => action(time));
             animationFrame.set();
-            // Flow doesn't know we added jest mocks to this $FlowFixMe
+            // Flow doesn't know we added jest mocks to this
+            // $FlowFixMe[prop-missing]
             const scheduledAction = requestAnimationFrame.mock.calls[0][0];
 
             // Act

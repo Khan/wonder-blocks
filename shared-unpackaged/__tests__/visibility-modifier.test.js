@@ -11,7 +11,7 @@ jest.mock("@khanacademy/wonder-blocks-core", () => ({
 
 describe("Visibility PopperJS Modifier", () => {
     beforeEach(() => {
-        // Flow doesn't know this is a jest mock $FlowFixMe
+        //  $FlowFixMe[prop-missing] Flow doesn't know this is a jest mock
         Core.getElementIntersection.mockClear();
     });
 
@@ -42,7 +42,7 @@ describe("Visibility PopperJS Modifier", () => {
                     attributes: {},
                     hide: false,
                 };
-                // Flow doesn't know this is a jest mock $FlowFixMe
+                //  $FlowFixMe[prop-missing] Flow doesn't know this is a jest mock
                 Core.getElementIntersection.mockReturnValueOnce({
                     horizontal: "before",
                     vertical: "within",
@@ -66,7 +66,7 @@ describe("Visibility PopperJS Modifier", () => {
                     },
                     hide: true,
                 };
-                // Flow doesn't know this is a jest mock $FlowFixMe
+                //  $FlowFixMe[prop-missing] Flow doesn't know this is a jest mock
                 Core.getElementIntersection.mockReturnValueOnce({
                     horizontal: "within",
                     vertical: "before",
@@ -88,7 +88,7 @@ describe("Visibility PopperJS Modifier", () => {
                     attributes: {},
                     hide: false,
                 };
-                // Flow doesn't know this is a jest mock $FlowFixMe
+                //  $FlowFixMe[prop-missing] Flow doesn't know this is a jest mock
                 Core.getElementIntersection.mockReturnValueOnce({
                     horizontal: "after",
                     vertical: "after",
@@ -118,12 +118,12 @@ describe("Visibility PopperJS Modifier", () => {
             // some fixed/absolute/sticky thing is covering our anchor even
             // though it would overwise be visible within its scroll parents.
 
-            // Flow doesn't know this is a jest mock $FlowFixMe
+            //  $FlowFixMe[prop-missing] Flow doesn't know this is a jest mock
             Core.getElementIntersection.mockReturnValueOnce({
                 horizontal: "within",
                 vertical: "within",
             });
-            // Flow doesn't know this is a jest mock $FlowFixMe
+            //  $FlowFixMe[prop-missing] Flow doesn't know this is a jest mock
             isObscured.mockReturnValueOnce(true);
 
             // Act
@@ -144,12 +144,12 @@ describe("Visibility PopperJS Modifier", () => {
                 },
                 hide: true,
             };
-            // Flow doesn't know this is a jest mock $FlowFixMe
+            //  $FlowFixMe[prop-missing] Flow doesn't know this is a jest mock
             Core.getElementIntersection.mockReturnValue({
                 horizontal: "within",
                 vertical: "within",
             });
-            // Flow doesn't know this is a jest mock $FlowFixMe
+            // $FlowFixMe[prop-missing] Flow doesn't know this is a jest mock
             isObscured.mockReturnValue(false);
 
             // Act
