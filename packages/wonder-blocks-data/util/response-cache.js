@@ -2,7 +2,13 @@
 import {Server} from "@khanacademy/wonder-blocks-core";
 import MemoryCache from "./memory-cache.js";
 
-import type {ValidData, CacheEntry, Cache, IRequestHandler} from "./types.js";
+import type {
+    ValidData,
+    CacheEntry,
+    Cache,
+    IRequestHandler,
+    ResponseCache as ResCache,
+} from "./types.js";
 
 /**
  * The default instance is stored here.
@@ -52,9 +58,7 @@ export class ResponseCache {
      *
      * This can only be called if the cache is not already in use.
      */
-    initialize: (source: $ReadOnly<Cache>) => void = (
-        source: $ReadOnly<Cache>,
-    ): void => {
+    initialize: (source: ResCache) => void = (source) => {
         if (this._cache.inUse) {
             throw new Error(
                 "Cannot initialize data response cache more than once",

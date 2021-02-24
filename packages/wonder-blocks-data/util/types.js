@@ -143,3 +143,5 @@ export interface IRequestHandler<TOptions, TData: ValidData> {
      */
     getKey(options: TOptions): string;
 }
+
+export type ResponseCache = $ReadOnly<Cache>;

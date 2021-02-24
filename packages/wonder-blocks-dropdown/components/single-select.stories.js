@@ -5,6 +5,8 @@ import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 
+import type {StoryComponentType} from "@storybook/react";
+
 export default {
     title: "Dropdown / SingleSelect",
 };
@@ -89,7 +91,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export const WithFilter: React.ComponentType<Empty> = () => (
+export const WithFilter: StoryComponentType<Empty> = () => (
     <SingleSelectWithFilter />
 );
 
@@ -102,6 +104,6 @@ WithFilter.story = {
     },
 };
 
-export const WithFilterOpened: React.ComponentType<Empty> = () => (
+export const WithFilterOpened: StoryComponentType<Empty> = () => (
     <SingleSelectWithFilter opened={true} />
 );

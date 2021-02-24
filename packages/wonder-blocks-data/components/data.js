@@ -109,7 +109,7 @@ export default class Data<TOptions, TData: ValidData> extends React.Component<
         return <TOptions, TData: ValidData>(
             handler: IRequestHandler<TOptions, TData>,
             options: TOptions,
-        ) => {
+        ): ?$ReadOnly<CacheEntry<TData>> => {
             // 1. Lookup the current cache value.
             const cacheEntry = ResponseCache.Default.getEntry<TOptions, TData>(
                 handler,
@@ -136,14 +136,23 @@ export default class Data<TOptions, TData: ValidData> extends React.Component<
                     const getEntry = this._getCacheLookupFnFromInterceptor(
                         interceptor,
                     );
+
+                    /**
+                     * Need to share our types with InternalData so Flow
+                     * doesn't need to infer them and find mismatches.
+                     */
+                    class TypedInternalData extends InternalData<
+                        TOptions,
+                        TData,
+                    > {}
                     return (
-                        <InternalData
+                        <TypedInternalData
                             handler={handler}
                             options={this.props.options}
                             getEntry={getEntry}
                         >
                             {(result) => this.props.children(result)}
-                        </InternalData>
+                        </TypedInternalData>
                     );
                 }}
             </InterceptContext.Consumer>

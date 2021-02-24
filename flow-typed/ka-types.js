@@ -21,4 +21,4 @@ declare type Partial<T> = $ReadOnly<$Rest<T, {...}>>;
 
 // TODO(jeff, WEB-616): Remove this in favour of real React type for refs when
 // it is available.
-declare type RefObject<T> = {current: null | React.ElementRef<T>, ...};
+declare type RefObject<T> = {current: null | React$ElementRef<T>, ...};

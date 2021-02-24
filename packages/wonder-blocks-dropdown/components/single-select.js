@@ -316,7 +316,11 @@ export default class SingleSelect extends React.Component<Props, State> {
         this.handleOpenChanged(!this.state.open, e.type === "keyup");
     };
 
-    renderOpener(numItems: number): React.Node {
+    renderOpener(
+        numItems: number,
+    ):
+        | React.Element<typeof DropdownOpener>
+        | React.Element<typeof SelectOpener> {
         const {
             children,
             disabled,

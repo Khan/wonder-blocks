@@ -1,7 +1,5 @@
 // flow-typed signature: f5a484315a3dea13d273645306e4076a
 // flow-typed version: 7c5d14b3d4/jest_v23.x.x/flow_>=v0.39.x
-import type {ComponentType} from "react";
-
 type JestMockFn<TArguments: $ReadOnlyArray<*>, TReturn> = {|
     (...args: TArguments): TReturn,
     /**
@@ -267,7 +265,7 @@ type JestJQueryMatchersType = {
 
 // TODO(WEB-902): create flow types for jest-enzyme
 type JestEnzymeMatchersType = {
-    toContainMatchingElement(selector: string | ComponentType<*>): void,
+    toContainMatchingElement(selector: string | React$ComponentType<*>): void,
     ...
 };
 
