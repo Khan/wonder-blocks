@@ -7,13 +7,14 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
 
+import type {StoryComponentType} from "@storybook/react";
 import Button from "./button.js";
 
 export default {
     title: "Button",
 };
 
-export const buttonsWithKnobs: React.ComponentType<Empty> = () => {
+export const buttonsWithKnobs: StoryComponentType = () => {
     const children = text("children", "Hello, world!");
     const kind = radios(
         "kind",
@@ -68,7 +69,7 @@ buttonsWithKnobs.story = {
     },
 };
 
-export const basicButtons: React.ComponentType<Empty> = () => (
+export const basicButtons: StoryComponentType = () => (
     <View>
         <View style={{flexDirection: "row"}}>
             <Button onClick={() => {}}>Hello, world!</Button>
@@ -112,7 +113,7 @@ export const basicButtons: React.ComponentType<Empty> = () => (
     </View>
 );
 
-export const darkBackgroundButtons: React.ComponentType<Empty> = () => (
+export const darkBackgroundButtons: StoryComponentType = () => (
     <View style={{backgroundColor: Color.darkBlue}}>
         <View style={{flexDirection: "row"}}>
             <Button onClick={() => {}} light={true}>
@@ -184,7 +185,7 @@ darkBackgroundButtons.story = {
     },
 };
 
-export const smallButtons: React.ComponentType<Empty> = () => (
+export const smallButtons: StoryComponentType = () => (
     <View style={{flexDirection: "row"}}>
         <Button onClick={() => {}} size="small">
             Hello, world!
@@ -200,7 +201,7 @@ export const smallButtons: React.ComponentType<Empty> = () => (
     </View>
 );
 
-export const xlargeButtons: React.ComponentType<Empty> = () => (
+export const xlargeButtons: StoryComponentType = () => (
     <View style={{flexDirection: "row"}}>
         <Button onClick={() => {}} size="xlarge">
             Hello, world!
@@ -216,13 +217,13 @@ export const xlargeButtons: React.ComponentType<Empty> = () => (
     </View>
 );
 
-export const longLabelsAreEllipsized: React.ComponentType<Empty> = () => (
+export const longLabelsAreEllipsized: StoryComponentType = () => (
     <Button onClick={() => {}} style={{maxWidth: 200}}>
         label too long for the parent container
     </Button>
 );
 
-export const buttonWithSpinner: React.ComponentType<Empty> = () => (
+export const buttonWithSpinner: StoryComponentType = () => (
     <View style={{flexDirection: "row"}}>
         <Button
             onClick={() => {}}
@@ -248,7 +249,7 @@ export const buttonWithSpinner: React.ComponentType<Empty> = () => (
     </View>
 );
 
-export const submitButtonInForm: React.ComponentType<Empty> = () => (
+export const submitButtonInForm: StoryComponentType = () => (
     <form
         onSubmit={(e) => {
             e.preventDefault();

@@ -2,7 +2,12 @@
 import {ResponseCache as ResCache} from "./util/response-cache.js";
 import {RequestTracker} from "./util/request-tracking.js";
 
-import type {ValidData, CacheEntry, IRequestHandler} from "./util/types.js";
+import type {
+    ValidData,
+    CacheEntry,
+    IRequestHandler,
+    ResponseCache,
+} from "./util/types.js";
 
 export type {
     Cache,
@@ -10,9 +15,8 @@ export type {
     Result,
     IRequestHandler,
     ICache,
+    ResponseCache,
 } from "./util/types.js";
-
-export type ResponseCache = $ReadOnly<Cache>;
 
 export const initializeCache = (source: ResponseCache): void =>
     ResCache.Default.initialize(source);

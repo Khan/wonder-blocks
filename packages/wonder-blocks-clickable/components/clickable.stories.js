@@ -7,11 +7,13 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
+import type {StoryComponentType} from "@storybook/react";
+
 export default {
     title: "Clickable",
 };
 
-export const keyboardNavigation: React.ComponentType<Empty> = () => (
+export const keyboardNavigation: StoryComponentType = () => (
     <View>
         <Clickable
             href="https://www.khanacademy.org/about/tos"

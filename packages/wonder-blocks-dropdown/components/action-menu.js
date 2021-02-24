@@ -234,7 +234,7 @@ export default class ActionMenu extends React.Component<Props, State> {
         this.handleOpenChanged(!this.state.opened, e.type === "keyup");
     };
 
-    renderOpener(numItems: number): React.Node {
+    renderOpener(numItems: number): React.Element<typeof DropdownOpener> {
         const {disabled, menuText, opened, opener, testId} = this.props;
 
         return (

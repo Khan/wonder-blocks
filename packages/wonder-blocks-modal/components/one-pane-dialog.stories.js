@@ -7,6 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import Button from "@khanacademy/wonder-blocks-button";
 
+import type {StoryComponentType} from "@storybook/react";
 import OnePaneDialog from "./one-pane-dialog.js";
 import ModalLauncher from "./modal-launcher.js";
 
@@ -49,7 +50,7 @@ export default {
     },
 };
 
-export const simple: React.ComponentType<Empty> = () => {
+export const simple: StoryComponentType = () => {
     const modal = (
         <OnePaneDialog
             testId="one-pane-dialog-above"
@@ -97,7 +98,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export const kitchenSink: React.ComponentType<Empty> = () => {
+export const kitchenSink: StoryComponentType = () => {
     const modal = (
         <OnePaneDialog
             title="Single-line title"
@@ -141,7 +142,7 @@ export const kitchenSink: React.ComponentType<Empty> = () => {
     );
 };
 
-export const withOpener: React.ComponentType<Empty> = () => {
+export const withOpener: StoryComponentType = () => {
     type MyModalProps = {|
         closeModal: () => void,
     |};

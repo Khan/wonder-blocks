@@ -492,7 +492,11 @@ export default class MultiSelect extends React.Component<Props, State> {
         this.handleOpenChanged(!this.state.open, e.type === "keyup");
     };
 
-    renderOpener(allChildren: Array<React.Element<OptionItem>>): React.Node {
+    renderOpener(
+        allChildren: Array<React.Element<OptionItem>>,
+    ):
+        | React.Element<typeof DropdownOpener>
+        | React.Element<typeof SelectOpener> {
         const {
             disabled,
             id,

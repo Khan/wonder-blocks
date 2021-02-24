@@ -6,6 +6,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 
 import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
+import type {StoryComponentType} from "@storybook/react";
 
 export default {
     title: "Dropdown / MultiSelect",
@@ -78,7 +79,7 @@ class MultiSelectWithCustomStyles extends React.Component<Props, State> {
     }
 }
 
-export const customStyles: React.ComponentType<Empty> = () => (
+export const customStyles: StoryComponentType = () => (
     <MultiSelectWithCustomStyles />
 );
 
@@ -91,7 +92,7 @@ customStyles.story = {
     },
 };
 
-export const customStylesOpened: React.ComponentType<Empty> = () => (
+export const customStylesOpened: StoryComponentType = () => (
     <MultiSelectWithCustomStyles opened={true} />
 );
 
