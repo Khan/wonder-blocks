@@ -79,7 +79,7 @@ class MultiSelectWithCustomStyles extends React.Component<Props, State> {
     }
 }
 
-export const customStyles: StoryComponentType<Empty> = () => (
+export const customStyles: StoryComponentType = () => (
     <MultiSelectWithCustomStyles />
 );
 
@@ -92,7 +92,7 @@ customStyles.story = {
     },
 };
 
-export const customStylesOpened: StoryComponentType<Empty> = () => (
+export const customStylesOpened: StoryComponentType = () => (
     <MultiSelectWithCustomStyles opened={true} />
 );
 

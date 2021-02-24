@@ -13,7 +13,7 @@ export default {
     title: "Clickable",
 };
 
-export const keyboardNavigation: StoryComponentType<Empty> = () => (
+export const keyboardNavigation: StoryComponentType = () => (
     <View>
         <Clickable
             href="https://www.khanacademy.org/about/tos"

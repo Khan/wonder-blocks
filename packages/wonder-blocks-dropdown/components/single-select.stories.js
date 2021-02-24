@@ -91,9 +91,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export const WithFilter: StoryComponentType<Empty> = () => (
-    <SingleSelectWithFilter />
-);
+export const WithFilter: StoryComponentType = () => <SingleSelectWithFilter />;
 
 WithFilter.story = {
     parameters: {
@@ -104,6 +102,6 @@ WithFilter.story = {
     },
 };
 
-export const WithFilterOpened: StoryComponentType<Empty> = () => (
+export const WithFilterOpened: StoryComponentType = () => (
     <SingleSelectWithFilter opened={true} />
 );
