@@ -10,7 +10,7 @@ const createConfig = (pkgName) => ({
         file: `packages/${pkgName}/dist/es/index.js`,
         format: "esm",
     },
-    input: `packages/${pkgName}/index.js`,
+    input: `packages/${pkgName}/src/index.js`,
     plugins: [
         babel({
             presets,

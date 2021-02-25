@@ -13,7 +13,7 @@ const packages = fs
     .readdirSync(path.join(process.cwd(), "packages"))
     .map((dir) => path.join(process.cwd(), "packages", dir));
 
-const genWebpackConfig = function(subPkgRoot) {
+const genWebpackConfig = function (subPkgRoot) {
     const pkgJson = require(path.join(subPkgRoot, "./package.json"));
     const pkgDeps = pkgJson.dependencies
         ? Object.keys(pkgJson.dependencies)
@@ -23,7 +23,7 @@ const genWebpackConfig = function(subPkgRoot) {
         : [];
 
     return {
-        entry: path.join(subPkgRoot, "index.js"),
+        entry: path.join(subPkgRoot, "src/index.js"),
         output: {
             libraryTarget: "commonjs2",
             filename: path.relative(

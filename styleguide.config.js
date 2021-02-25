@@ -18,19 +18,20 @@ module.exports = {
             name: "Breadcrumbs",
             content: "packages/wonder-blocks-breadcrumbs/docs.md",
             components: [
-                "packages/wonder-blocks-breadcrumbs/components/breadcrumbs.js",
-                "packages/wonder-blocks-breadcrumbs/components/breadcrumbs-item.js",
+                "packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs.js",
+                "packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item.js",
             ],
         },
         {
             name: "Button",
             content: "packages/wonder-blocks-button/docs.md",
-            components: "packages/wonder-blocks-button/components/button.js",
+            components:
+                "packages/wonder-blocks-button/src/components/button.js",
         },
         {
             name: "Clickable",
             content: "packages/wonder-blocks-clickable/docs.md",
-            components: "packages/wonder-blocks-clickable/components/*.js",
+            components: "packages/wonder-blocks-clickable/src/components/*.js",
         },
         {
             name: "Color",
@@ -40,44 +41,44 @@ module.exports = {
             name: "Core",
             content: "packages/wonder-blocks-core/docs.md",
             components: [
-                "packages/wonder-blocks-core/util/add-style.js",
-                "packages/wonder-blocks-core/components/id-provider.js",
-                "packages/wonder-blocks-core/util/server.js",
-                "packages/wonder-blocks-core/components/text.js",
-                "packages/wonder-blocks-core/components/unique-id-provider.js",
-                "packages/wonder-blocks-core/components/view.js",
-                "packages/wonder-blocks-core/components/with-ssr-placeholder.js",
+                "packages/wonder-blocks-core/src/util/add-style.js",
+                "packages/wonder-blocks-core/src/components/id-provider.js",
+                "packages/wonder-blocks-core/src/util/server.js",
+                "packages/wonder-blocks-core/src/components/text.js",
+                "packages/wonder-blocks-core/src/components/unique-id-provider.js",
+                "packages/wonder-blocks-core/src/components/view.js",
+                "packages/wonder-blocks-core/src/components/with-ssr-placeholder.js",
             ],
         },
         {
             name: "Data",
             content: "packages/wonder-blocks-data/docs.md",
             components: [
-                "packages/wonder-blocks-data/components/data.js",
-                "packages/wonder-blocks-data/components/intercept-cache.js",
-                "packages/wonder-blocks-data/components/intercept-data.js",
-                "packages/wonder-blocks-data/components/track-data.js",
-                "packages/wonder-blocks-data/util/request-handler.js",
-                "packages/wonder-blocks-data/util/no-cache.js",
+                "packages/wonder-blocks-data/src/components/data.js",
+                "packages/wonder-blocks-data/src/components/intercept-cache.js",
+                "packages/wonder-blocks-data/src/components/intercept-data.js",
+                "packages/wonder-blocks-data/src/components/track-data.js",
+                "packages/wonder-blocks-data/src/util/request-handler.js",
+                "packages/wonder-blocks-data/src/util/no-cache.js",
             ],
         },
         {
             name: "Dropdown",
             content: "packages/wonder-blocks-dropdown/docs.md",
             components: [
-                "packages/wonder-blocks-dropdown/components/action-item.js",
-                "packages/wonder-blocks-dropdown/components/separator-item.js",
-                "packages/wonder-blocks-dropdown/components/option-item.js",
-                "packages/wonder-blocks-dropdown/components/action-menu.js",
-                "packages/wonder-blocks-dropdown/components/single-select.js",
-                "packages/wonder-blocks-dropdown/components/multi-select.js",
+                "packages/wonder-blocks-dropdown/src/components/action-item.js",
+                "packages/wonder-blocks-dropdown/src/components/separator-item.js",
+                "packages/wonder-blocks-dropdown/src/components/option-item.js",
+                "packages/wonder-blocks-dropdown/src/components/action-menu.js",
+                "packages/wonder-blocks-dropdown/src/components/single-select.js",
+                "packages/wonder-blocks-dropdown/src/components/multi-select.js",
             ],
             sections: [
                 {
                     name: "Internal Components",
                     private: true,
                     components: [
-                        "packages/wonder-blocks-dropdown/components/dropdown-core.js",
+                        "packages/wonder-blocks-dropdown/src/components/dropdown-core.js",
                     ],
                 },
             ],
@@ -86,20 +87,20 @@ module.exports = {
             name: "Form",
             content: "packages/wonder-blocks-form/docs.md",
             components: [
-                "packages/wonder-blocks-form/components/checkbox.js",
-                "packages/wonder-blocks-form/components/radio.js",
-                "packages/wonder-blocks-form/components/choice.js",
-                "packages/wonder-blocks-form/components/checkbox-group.js",
-                "packages/wonder-blocks-form/components/radio-group.js",
+                "packages/wonder-blocks-form/src/components/checkbox.js",
+                "packages/wonder-blocks-form/src/components/radio.js",
+                "packages/wonder-blocks-form/src/components/choice.js",
+                "packages/wonder-blocks-form/src/components/checkbox-group.js",
+                "packages/wonder-blocks-form/src/components/radio-group.js",
             ],
             sections: [
                 {
                     name: "Internal Components",
                     private: true,
                     components: [
-                        "packages/wonder-blocks-form/components/checkbox-core.js",
-                        "packages/wonder-blocks-form/components/radio-core.js",
-                        "packages/wonder-blocks-form/components/choice-internal.js",
+                        "packages/wonder-blocks-form/src/components/checkbox-core.js",
+                        "packages/wonder-blocks-form/src/components/radio-core.js",
+                        "packages/wonder-blocks-form/src/components/choice-internal.js",
                     ],
                 },
             ],
@@ -107,28 +108,28 @@ module.exports = {
         {
             name: "Grid",
             content: "packages/wonder-blocks-grid/docs.md",
-            components: "packages/wonder-blocks-grid/components/*.js",
+            components: "packages/wonder-blocks-grid/src/components/*.js",
         },
         {
             name: "Icon",
             content: "packages/wonder-blocks-icon/docs.md",
-            components: "packages/wonder-blocks-icon/components/icon.js",
+            components: "packages/wonder-blocks-icon/src/components/icon.js",
         },
         {
             name: "IconButton",
             content: "packages/wonder-blocks-icon-button/docs.md",
             components:
-                "packages/wonder-blocks-icon-button/components/icon-button.js",
+                "packages/wonder-blocks-icon-button/src/components/icon-button.js",
         },
         {
             name: "Layout",
             content: "packages/wonder-blocks-layout/docs.md",
-            components: "packages/wonder-blocks-layout/components/*.js",
+            components: "packages/wonder-blocks-layout/src/components/*.js",
         },
         {
             name: "Link",
             content: "packages/wonder-blocks-link/docs.md",
-            components: "packages/wonder-blocks-link/components/link.js",
+            components: "packages/wonder-blocks-link/src/components/link.js",
         },
         {
             name: "Modal",
@@ -137,23 +138,23 @@ module.exports = {
                 {
                     name: "Launcher",
                     components: [
-                        "packages/wonder-blocks-modal/components/modal-launcher.js",
+                        "packages/wonder-blocks-modal/src/components/modal-launcher.js",
                     ],
                 },
                 {
                     name: "Modals",
                     components: [
-                        "packages/wonder-blocks-modal/components/one-pane-dialog.js",
+                        "packages/wonder-blocks-modal/src/components/one-pane-dialog.js",
                     ],
                 },
                 {
                     name: "Building Blocks",
                     content: "packages/wonder-blocks-modal/building-blocks.md",
                     components: [
-                        "packages/wonder-blocks-modal/components/modal-dialog.js",
-                        "packages/wonder-blocks-modal/components/modal-panel.js",
-                        "packages/wonder-blocks-modal/components/modal-header.js",
-                        "packages/wonder-blocks-modal/components/modal-footer.js",
+                        "packages/wonder-blocks-modal/src/components/modal-dialog.js",
+                        "packages/wonder-blocks-modal/src/components/modal-panel.js",
+                        "packages/wonder-blocks-modal/src/components/modal-header.js",
+                        "packages/wonder-blocks-modal/src/components/modal-footer.js",
                     ],
                 },
             ],
@@ -162,18 +163,18 @@ module.exports = {
             name: "Popover",
             content: "packages/wonder-blocks-popover/docs.md",
             components: [
-                "packages/wonder-blocks-popover/components/popover.js",
-                "packages/wonder-blocks-popover/components/popover-content.js",
-                "packages/wonder-blocks-popover/components/popover-content-core.js",
+                "packages/wonder-blocks-popover/src/components/popover.js",
+                "packages/wonder-blocks-popover/src/components/popover-content.js",
+                "packages/wonder-blocks-popover/src/components/popover-content-core.js",
             ],
             sections: [
                 {
                     name: "Internal Components",
                     private: true,
                     components: [
-                        "packages/wonder-blocks-popover/components/close-button.js",
-                        "packages/wonder-blocks-popover/components/popover-anchor.js",
-                        "packages/wonder-blocks-popover/components/popover-dialog.js",
+                        "packages/wonder-blocks-popover/src/components/close-button.js",
+                        "packages/wonder-blocks-popover/src/components/popover-anchor.js",
+                        "packages/wonder-blocks-popover/src/components/popover-dialog.js",
                     ],
                 },
             ],
@@ -182,7 +183,7 @@ module.exports = {
             name: "ProgressSpinner",
             content: "packages/wonder-blocks-progress-spinner/docs.md",
             components:
-                "packages/wonder-blocks-progress-spinner/components/*.js",
+                "packages/wonder-blocks-progress-spinner/src/components/*.js",
         },
         {
             name: "Spacing",
@@ -195,29 +196,30 @@ module.exports = {
                 {
                     name: "withActionScheduler",
                     content:
-                        "packages/wonder-blocks-timing/components/with-action-scheduler.md",
+                        "packages/wonder-blocks-timing/src/components/with-action-scheduler.md",
                 },
             ],
         },
         {
             name: "Toolbar",
             content: "packages/wonder-blocks-toolbar/docs.md",
-            components: "packages/wonder-blocks-toolbar/components/toolbar.js",
+            components:
+                "packages/wonder-blocks-toolbar/src/components/toolbar.js",
         },
         {
             name: "Tooltip",
             content: "packages/wonder-blocks-tooltip/docs.md",
             components: [
-                "packages/wonder-blocks-tooltip/components/tooltip.js",
-                "packages/wonder-blocks-tooltip/components/tooltip-content.js",
+                "packages/wonder-blocks-tooltip/src/components/tooltip.js",
+                "packages/wonder-blocks-tooltip/src/components/tooltip-content.js",
             ],
             sections: [
                 {
                     name: "Internal Components",
                     private: true,
                     components: [
-                        "packages/wonder-blocks-tooltip/components/tooltip-tail.js",
-                        "packages/wonder-blocks-tooltip/components/tooltip-bubble.js",
+                        "packages/wonder-blocks-tooltip/src/components/tooltip-tail.js",
+                        "packages/wonder-blocks-tooltip/src/components/tooltip-bubble.js",
                     ],
                 },
             ],
@@ -225,7 +227,7 @@ module.exports = {
         {
             name: "Typography",
             content: "packages/wonder-blocks-typography/docs.md",
-            components: "packages/wonder-blocks-typography/components/*.js",
+            components: "packages/wonder-blocks-typography/src/components/*.js",
         },
     ],
 

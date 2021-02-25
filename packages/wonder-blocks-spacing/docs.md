@@ -3,7 +3,7 @@ Spacing is a collection of names assigned to specific dimensions. These are used
 ```js
 import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "./index.js";
+import Spacing from "./src/index.js";
 
 const styles = StyleSheet.create({
     row: {

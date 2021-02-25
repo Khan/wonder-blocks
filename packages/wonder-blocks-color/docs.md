@@ -6,9 +6,9 @@ Use only accessible colors against appropriate backgrounds for links, buttons, a
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Swatch from "./docutils/swatch.js";
+import Swatch from "./src/docutils/swatch.js";
 
-import Color from "./index.js";
+import Color from "./src/index.js";
 
 const styles = StyleSheet.create({
     container: {
@@ -60,9 +60,9 @@ Used for text and chrome components
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Swatch from "./docutils/swatch.js";
+import Swatch from "./src/docutils/swatch.js";
 
-import Color from "./index.js";
+import Color from "./src/index.js";
 
 const styles = StyleSheet.create({
     container: {
@@ -140,9 +140,9 @@ Use for designing anything centered around Khan Academy as a brand. Secondary br
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Swatch from "./docutils/swatch.js";
+import Swatch from "./src/docutils/swatch.js";
 
-import Color from "./index.js";
+import Color from "./src/index.js";
 
 const styles = StyleSheet.create({
     container: {
