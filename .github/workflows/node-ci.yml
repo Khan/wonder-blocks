@@ -32,6 +32,8 @@ jobs:
             ${{ runner.OS }}-node_modules-
       - name: yarn install
         run: yarn install
+      - name: yarn build:cjs
+        run: yarn build:cjs
       - uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
