@@ -140,19 +140,20 @@ export default class Data<TOptions, TData: ValidData> extends React.Component<
                     /**
                      * Need to share our types with InternalData so Flow
                      * doesn't need to infer them and find mismatches.
+                     * However, just deriving a new component creates issues
+                     * where InternalData starts rerendering too often.
+                     * Couldn't track down why, so suppressing the error
+                     * instead.
                      */
-                    class TypedInternalData extends InternalData<
-                        TOptions,
-                        TData,
-                    > {}
                     return (
-                        <TypedInternalData
+                        <InternalData
+                            // $FlowIgnore[incompatible-type-arg]
                             handler={handler}
                             options={this.props.options}
                             getEntry={getEntry}
                         >
                             {(result) => this.props.children(result)}
-                        </TypedInternalData>
+                        </InternalData>
                     );
                 }}
             </InterceptContext.Consumer>
