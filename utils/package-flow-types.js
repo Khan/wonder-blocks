@@ -20,6 +20,8 @@ for (const pkg of packages) {
         "dist",
         "index.js.flow",
     );
-    const contents = ["// @flow", 'export * from "../index.js";'].join("\n");
+    const contents = ["// @flow", 'export * from "../src/index.js";'].join(
+        "\n",
+    );
     fs.writeFileSync(filename, contents, "utf8");
 }

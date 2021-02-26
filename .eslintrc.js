@@ -6,6 +6,14 @@ module.exports = {
             version: "detect",
         },
     },
+    overrides: [
+        {
+            files: ["utils/*.js"],
+            rules: {
+                "import/no-commonjs": "off",
+            },
+        },
+    ],
     rules: {
         "flowtype/require-exact-type": ["error", "always"],
         "flowtype/no-types-missing-file-annotation": "error",

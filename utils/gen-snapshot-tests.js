@@ -149,7 +149,7 @@ function transformDeclarations(declarations) {
         }
 
         if (module.startsWith(".")) {
-            module = path.join("..", module);
+            module = path.join("..", "..", module);
         }
 
         return acc + `import ${namedExports} from "${module}";\n`;
@@ -254,7 +254,7 @@ function generateTestFile(root, examples, componentFileMap) {
             componentFileMap,
         )) {
             const relFilename = path.relative(
-                path.join(root, "__tests__"),
+                path.join(root, "src", "__tests__"),
                 filename,
             );
 
@@ -272,8 +272,13 @@ function generateTestFile(root, examples, componentFileMap) {
 
     const data = lines.join("\n");
 
-    mkdirp.sync(path.join(root, "__tests__"));
-    const outPath = path.join(root, "__tests__", "generated-snapshot.test.js");
+    mkdirp.sync(path.join(root, "src", "__tests__"));
+    const outPath = path.join(
+        root,
+        "src",
+        "__tests__",
+        "generated-snapshot.test.js",
+    );
     fs.writeFileSync(outPath, data, "utf8");
 
     const [s, ns] = process.hrtime(hrstart);
