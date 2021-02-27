@@ -198,7 +198,7 @@ export default class Link extends React.Component<Props> {
     render(): React.Node {
         const {
             onClick,
-            beforeNav = undefined,
+            beforeNav,
             safeWithNav,
             href,
             skipClientNav,
@@ -206,7 +206,7 @@ export default class Link extends React.Component<Props> {
             tabIndex,
             onKeyDown,
             onKeyUp,
-            target = undefined,
+            target,
             ...sharedProps
         } = this.props;
 
@@ -245,6 +245,7 @@ export default class Link extends React.Component<Props> {
                     href={(href: string)}
                     role="link"
                     disabled={false}
+                    target={target}
                     onClick={onClick}
                     beforeNav={beforeNav}
                     safeWithNav={safeWithNav}

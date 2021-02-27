@@ -2937,6 +2937,7 @@ exports[`wonder-blocks-button example 9 1`] = `
     onTouchCancel={[Function]}
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
+    rel="noopener noreferrer"
     role="button"
     style={
       Object {
