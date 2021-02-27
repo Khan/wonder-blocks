@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import addStyle from "../add-style.js";
 
@@ -20,7 +19,6 @@ describe("addStyle", () => {
     beforeEach(() => {
         SNAPSHOT_INLINE_APHRODITE = global.SNAPSHOT_INLINE_APHRODITE;
         global.SNAPSHOT_INLINE_APHRODITE = false;
-        unmountAll();
     });
 
     afterEach(() => {

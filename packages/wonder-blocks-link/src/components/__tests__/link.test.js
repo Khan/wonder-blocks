@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {mount} from "enzyme";
 
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 import Link from "../link.js";
 
 const wait = (delay: number = 0) =>
@@ -16,7 +16,6 @@ describe("Link", () => {
         // Note: window.location.assign needs a mock function in the testing
         // environment.
         window.location.assign = jest.fn();
-        unmountAll();
     });
 
     afterEach(() => {

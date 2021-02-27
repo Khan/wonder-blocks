@@ -1,15 +1,11 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import enumerateScrollAncestors from "../enumerate-scroll-ancestors.js";
 
 describe("enumerateScrollAncestors", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     test("@@iterator() method returns iterator", () => {
         // Arrange
         const enumerator = enumerateScrollAncestors((null: any));

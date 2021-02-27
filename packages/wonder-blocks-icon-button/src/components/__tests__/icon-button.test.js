@@ -1,18 +1,14 @@
 // @flow
 import * as React from "react";
-import {shallow} from "enzyme";
+import {mount, shallow} from "enzyme";
+
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 import expectRenderError from "../../../../../utils/testing/expect-render-error.js";
 import IconButton from "../icon-button.js";
 
 describe("IconButton", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     test("render an icon", (done) => {
         const wrapper = shallow(
             <IconButton

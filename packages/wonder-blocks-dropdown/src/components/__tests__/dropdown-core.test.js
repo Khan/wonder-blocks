@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import OptionItem from "../option-item.js";
 import SearchTextInput from "../search-text-input.js";
@@ -88,7 +88,6 @@ describe("DropdownCore", () => {
     });
 
     afterEach(() => {
-        unmountAll();
         jest.restoreAllMocks();
     });
 

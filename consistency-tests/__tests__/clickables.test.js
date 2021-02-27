@@ -6,6 +6,7 @@
  * checks that the common behaviors exist on all of these components.
  */
 import * as React from "react";
+import {mount} from "enzyme";
 
 import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -13,7 +14,6 @@ import Clickable from "@khanacademy/wonder-blocks-clickable";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import Link from "@khanacademy/wonder-blocks-link";
-import {mount, unmountAll} from "../../utils/testing/mount.js";
 
 // We create a wrapper around Clickable since it expects a render function for
 // is children while all of the other components do not.
@@ -39,7 +39,6 @@ describe.each`
         // the testing environment.
         window.location.assign = jest.fn();
         window.open = jest.fn();
-        unmountAll();
     });
 
     afterEach(() => {

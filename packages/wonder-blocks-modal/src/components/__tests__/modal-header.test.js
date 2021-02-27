@@ -1,12 +1,11 @@
 // @flow
 import * as React from "react";
-import {shallow} from "enzyme";
+import {mount, shallow} from "enzyme";
 
 import {
     Breadcrumbs,
     BreadcrumbsItem,
 } from "@khanacademy/wonder-blocks-breadcrumbs";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 
 import ModalHeader from "../modal-header.js";
 
@@ -17,10 +16,6 @@ const exampleBreadcrumbs: React.Element<typeof Breadcrumbs> = (
 );
 
 describe("ModalHeader", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     test("renders the title by default", () => {
         // Arrange, Act
         const wrapper = shallow(

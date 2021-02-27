@@ -1,6 +1,6 @@
 //@flow
 import * as React from "react";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import CheckboxGroup from "../checkbox-group.js";
 import Choice from "../choice.js";
@@ -23,10 +23,6 @@ describe("CheckboxGroup", () => {
                 <Choice label="c" value="c" aria-labelledby="test-c" />
             </CheckboxGroup>,
         );
-    });
-
-    afterEach(() => {
-        unmountAll();
     });
 
     it("has the correct items checked", () => {

@@ -1,12 +1,12 @@
 /* eslint-disable max-lines */
 // @flow
 import * as React from "react";
+import {mount, shallow} from "enzyme";
 
 // eslint-disable-next-line import/extensions
 import * as ReactDOMServer from "react-dom/server";
 import {Server, View} from "@khanacademy/wonder-blocks-core";
-import {shallow} from "enzyme";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+
 import TrackData from "../track-data.js";
 import {RequestFulfillment} from "../../util/request-fulfillment.js";
 import {ResponseCache} from "../../util/response-cache.js";
@@ -30,7 +30,6 @@ describe("InternalData", () => {
     });
 
     afterEach(() => {
-        unmountAll();
         jest.resetAllMocks();
     });
 

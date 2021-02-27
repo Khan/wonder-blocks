@@ -1,9 +1,10 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {mount} from "enzyme";
+
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 import typeof TooltipBubble from "../tooltip-bubble.js";
 import TooltipPopper from "../tooltip-popper.js";
 
@@ -43,10 +44,6 @@ class TestHarness extends React.Component<any, State> {
 }
 
 describe("TooltipPopper", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     // The TooltipPopper component is just a wrapper around react-popper.
     // PopperJS requires full visual rendering and we don't do that here as
     // we're not in a browser.

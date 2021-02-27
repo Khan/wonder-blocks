@@ -1,11 +1,11 @@
 /* eslint-disable max-lines */
 //@flow
 import * as React from "react";
+import {mount} from "enzyme";
 
 import {ClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 import DropdownOpener from "../dropdown-opener.js";
 import SelectOpener from "../select-opener.js";
 import ActionItem from "../action-item.js";
@@ -68,7 +68,6 @@ describe("MultiSelect", () => {
     });
 
     afterEach(() => {
-        unmountAll();
         jest.restoreAllMocks();
     });
 

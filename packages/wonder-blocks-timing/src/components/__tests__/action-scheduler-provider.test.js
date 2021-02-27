@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
-
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import ActionSchedulerProvider from "../action-scheduler-provider.js";
 import ActionScheduler from "../../util/action-scheduler.js";
@@ -9,10 +8,6 @@ import ActionScheduler from "../../util/action-scheduler.js";
 jest.mock("../../util/action-scheduler.js");
 
 describe("ActionSchedulerProvider", () => {
-    afterEach(() => {
-        unmountAll();
-    });
-
     it("should render children with action scheduler instance", () => {
         // Arrange
         const childrenMock = jest.fn().mockReturnValueOnce(null);

@@ -1,13 +1,10 @@
 // @flow
 import * as React from "react";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
+
 import PopoverAnchor from "../popover-anchor.js";
 
 describe("PopoverAnchor", () => {
-    afterEach(() => {
-        unmountAll();
-    });
-
     it("should set child node as ref", () => {
         // Arrange
         const updateRef = jest.fn();

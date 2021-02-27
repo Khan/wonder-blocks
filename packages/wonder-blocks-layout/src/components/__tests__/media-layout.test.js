@@ -2,14 +2,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {mount} from "enzyme";
 
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 import MediaLayout from "../media-layout.js";
 import {resizeWindow, matchMedia} from "../../util/test-util.js";
 
 describe("MediaLayout", () => {
     beforeEach(() => {
-        unmountAll();
         window.matchMedia = matchMedia;
     });
 

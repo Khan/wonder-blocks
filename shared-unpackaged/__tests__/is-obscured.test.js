@@ -1,10 +1,9 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {mount} from "enzyme";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-
-import {mount, unmountAll} from "../../utils/testing/mount.js";
 
 import isObscured from "../is-obscured.js";
 
@@ -13,8 +12,6 @@ describe("isObscured", () => {
     beforeEach(() => {
         // Some tests will want to mock this, so let's ensure we can reset it
         ogElementFromPoint = document.elementFromPoint;
-
-        unmountAll();
     });
 
     afterEach(() => {
