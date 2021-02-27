@@ -188,6 +188,7 @@ export default class IconButton extends React.Component<SharedProps> {
             href,
             skipClientNav,
             tabIndex,
+            rel,
             target,
             ...sharedProps
         } = this.props;
@@ -198,31 +199,50 @@ export default class IconButton extends React.Component<SharedProps> {
             this.context.router,
         );
 
-        return (
-            <ClickableBehavior
-                disabled={sharedProps.disabled}
-                href={href}
-                onClick={onClick}
-                role="button"
-                target={target}
-            >
-                {(state, {tabIndex: clickableTabIndex, ...childrenProps}) => {
-                    return (
-                        <IconButtonCore
-                            {...sharedProps}
-                            {...state}
-                            {...childrenProps}
-                            skipClientNav={skipClientNav}
-                            href={href}
-                            target={target}
-                            // If tabIndex is provide to the component we allow
-                            // it to override the tabIndex provide to use by
-                            // ClickableBehavior.
-                            tabIndex={tabIndex || clickableTabIndex}
-                        />
-                    );
-                }}
-            </ClickableBehavior>
-        );
+        const children = (
+            state,
+            {tabIndex: clickableTabIndex, ...childrenProps},
+        ) => {
+            return (
+                <IconButtonCore
+                    {...sharedProps}
+                    {...state}
+                    {...childrenProps}
+                    skipClientNav={skipClientNav}
+                    href={href}
+                    target={target}
+                    // If tabIndex is provide to the component we allow
+                    // it to override the tabIndex provide to use by
+                    // ClickableBehavior.
+                    tabIndex={tabIndex || clickableTabIndex}
+                />
+            );
+        };
+
+        if (href) {
+            return (
+                <ClickableBehavior
+                    // TODO: remove annotation after migrating to TypeScript
+                    href={(href: string)}
+                    role="button"
+                    disabled={sharedProps.disabled}
+                    onClick={onClick}
+                    target={target}
+                    rel={rel}
+                >
+                    {children}
+                </ClickableBehavior>
+            );
+        } else {
+            return (
+                <ClickableBehavior
+                    disabled={sharedProps.disabled}
+                    onClick={onClick}
+                    role="button"
+                >
+                    {children}
+                </ClickableBehavior>
+            );
+        }
     }
 }

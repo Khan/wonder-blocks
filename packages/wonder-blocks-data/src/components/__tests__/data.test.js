@@ -15,7 +15,11 @@ import InterceptCache from "../intercept-cache.js";
 import InterceptData from "../intercept-data.js";
 import Data from "../data.js";
 
-import type {IRequestHandler} from "../../util/types.js";
+import type {
+    IRequestHandler,
+    InterceptFulfillRequestFn,
+    InterceptShouldRefreshCacheFn,
+} from "../../util/types.js";
 
 describe("Data", () => {
     beforeEach(() => {
@@ -851,10 +855,14 @@ describe("Data", () => {
                         cache: null,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
-                    const shouldRefreshCacheFn = jest.fn(() => true);
-                    const fulfillRequestFn = jest.fn(() =>
-                        Promise.resolve("DATA!"),
-                    );
+                    const shouldRefreshCacheFn: InterceptShouldRefreshCacheFn<
+                        string,
+                        string,
+                    > = jest.fn(() => true);
+                    const fulfillRequestFn: InterceptFulfillRequestFn<
+                        string,
+                        string,
+                    > = jest.fn(() => Promise.resolve("DATA!"));
 
                     // Act
                     mount(

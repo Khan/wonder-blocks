@@ -32,12 +32,6 @@ type CommonProps = {|
     onClick?: (e: SyntheticEvent<>) => mixed,
 
     /**
-     * Optinal href which Clickable should direct to, uses client-side routing
-     * by default if react-router is present
-     */
-    href?: string,
-
-    /**
      * Styles to apply to the Clickable compoenent
      */
     style?: StyleType,
@@ -56,14 +50,6 @@ type CommonProps = {|
      * An optional id attribute.
      */
     id?: string,
-
-    /**
-     * Specifies the type of relationship between the current document and the
-     * linked document. Should only be used when `href` is specified. This
-     * defaults to "noopener noreferrer" when `target="_blank"`, but can be
-     * overridden by setting this prop to something else.
-     */
-    rel?: string,
 
     /**
      * The role of the component, can be a role of type ClickableRole
@@ -97,19 +83,26 @@ type CommonProps = {|
     hideDefaultFocusRing?: boolean,
 |};
 
-type Props =
+type ConditionalProps =
     | {|
-          ...CommonProps,
+          /**
+           * Optinal href which Clickable should direct to, uses client-side routing
+           * by default if react-router is present
+           */
+          href: string,
 
           /**
            * A target destination window for a link to open in.
            */
           target?: "_blank",
-      |}
-    | {|
-          ...CommonProps,
 
-          href: string,
+          /**
+           * Specifies the type of relationship between the current document and the
+           * linked document. Should only be used when `href` is specified. This
+           * defaults to "noopener noreferrer" when `target="_blank"`, but can be
+           * overridden by setting this prop to something else.
+           */
+          rel?: string,
 
           /**
            * Run async code before navigating. If the promise returned rejects then
@@ -118,12 +111,7 @@ type Props =
            * If both safeWithNav and beforeNav are provided, beforeNav will be run
            * first and safeWithNav will only be run if beforeNav does not reject.
            */
-          beforeNav: () => Promise<mixed>,
-      |}
-    | {|
-          ...CommonProps,
-
-          href: string,
+          beforeNav?: () => Promise<mixed>,
 
           /**
            * Run async code in the background while client-side navigating. If the
@@ -131,35 +119,19 @@ type Props =
            * settled before the navigation will occur. Errors are ignored so that
            * navigation is guaranteed to succeed.
            */
-          safeWithNav: () => Promise<mixed>,
-
-          /**
-           * A target destination window for a link to open in.
-           */
-          target?: "_blank",
+          safeWithNav?: () => Promise<mixed>,
       |}
     | {|
-          ...CommonProps,
-
-          href: string,
-
-          /**
-           * Run async code before navigating. If the promise returned rejects then
-           * navigation will not occur.
-           *
-           * If both safeWithNav and beforeNav are provided, beforeNav will be run
-           * first and safeWithNav will only be run if beforeNav does not reject.
-           */
-          beforeNav: () => Promise<mixed>,
-
-          /**
-           * Run async code in the background while client-side navigating. If the
-           * browser does a full page load navigation, the callback promise must be
-           * settled before the navigation will occur. Errors are ignored so that
-           * navigation is guaranteed to succeed.
-           */
-          safeWithNav: () => Promise<mixed>,
+          href?: empty,
+          target?: empty,
+          beforeNav?: empty,
+          safeWithNav?: empty,
       |};
+
+type Props = {|
+    ...CommonProps,
+    ...ConditionalProps,
+|};
 
 type ContextTypes = {|
     router: $FlowFixMe,
@@ -280,10 +252,12 @@ export default class Clickable extends React.Component<Props> {
             style,
         ];
 
-        if (beforeNav) {
+        if (href) {
             return (
                 <ClickableBehavior
-                    href={href}
+                    // TODO: remove annotation after migrating to TypeScript
+                    href={(href: string)}
+                    target={target}
                     onClick={onClick}
                     beforeNav={beforeNav}
                     safeWithNav={safeWithNav}
@@ -303,12 +277,9 @@ export default class Clickable extends React.Component<Props> {
         } else {
             return (
                 <ClickableBehavior
-                    href={href}
                     onClick={onClick}
-                    safeWithNav={safeWithNav}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
-                    target={target}
                 >
                     {(state, childrenProps) =>
                         this.getCorrectTag(state, {

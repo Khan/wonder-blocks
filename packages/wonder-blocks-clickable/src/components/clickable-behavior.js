@@ -62,22 +62,6 @@ type CommonProps = {|
     disabled: boolean,
 
     /**
-     * A URL.
-     *
-     * If specified, clicking on the component will navigate to the location
-     * provided.
-     * For keyboard navigation, the default is that both an enter and space
-     * press would also navigate to this location. See the triggerOnEnter and
-     * triggerOnSpace props for more details.
-     */
-    href?: string,
-
-    /**
-     * This should only be used by button.js.
-     */
-    type?: "submit",
-
-    /**
      * Specifies the type of relationship between the current document and the
      * linked document. Should only be used when `href` is specified. This
      * defaults to "noopener noreferrer" when `target="_blank"`, but can be
@@ -91,14 +75,6 @@ type CommonProps = {|
      * A function to be executed `onclick`.
      */
     onClick?: (e: SyntheticEvent<>) => mixed,
-
-    /**
-     * Run async code in the background while client-side navigating. If the
-     * browser does a full page load navigation, the callback promise must be
-     * settled before the navigation will occur. Errors are ignored so that
-     * navigation is guaranteed to succeed.
-     */
-    safeWithNav?: () => Promise<mixed>,
 
     /**
      * Passed in by withRouter HOC.
@@ -157,18 +133,24 @@ export type ClickableState = {|
     waiting: boolean,
 |};
 
-type Props =
+type ConditionaProps =
     | {|
-          ...CommonProps,
+          /**
+           * A URL.
+           *
+           * If specified, clicking on the component will navigate to the location
+           * provided.
+           * For keyboard navigation, the default is that both an enter and space
+           * press would also navigate to this location. See the triggerOnEnter and
+           * triggerOnSpace props for more details.
+           */
+          href: string,
 
           /**
            * A target destination window for a link to open in. Should only be used
            * when `href` is specified.
            */
           target?: "_blank",
-      |}
-    | {|
-          ...CommonProps,
 
           /**
            * Run async code before navigating to the URL passed to `href`. If the
@@ -184,7 +166,33 @@ type Props =
            * navigation.
            */
           beforeNav?: () => Promise<mixed>,
+
+          /**
+           * Run async code in the background while client-side navigating. If the
+           * browser does a full page load navigation, the callback promise must be
+           * settled before the navigation will occur. Errors are ignored so that
+           * navigation is guaranteed to succeed.
+           */
+          safeWithNav?: () => Promise<mixed>,
+
+          type?: empty,
+      |}
+    | {|
+          /**
+           * This should only be used by button.js.
+           */
+          type?: "submit",
+
+          href?: empty,
+          target?: empty,
+          beforeNav?: empty,
+          safeWithNav?: empty,
       |};
+
+type Props = {|
+    ...CommonProps,
+    ...ConditionaProps,
+|};
 
 type DefaultProps = {|
     disabled: $PropertyType<Props, "disabled">,
@@ -351,12 +359,7 @@ export default class ClickableBehavior extends React.Component<
 
     navigateOrReset(shouldNavigate: boolean) {
         if (shouldNavigate) {
-            const {
-                history,
-                href,
-                skipClientNav,
-                target = undefined,
-            } = this.props;
+            const {history, href, skipClientNav, target} = this.props;
             if (href) {
                 if (target === "_blank") {
                     window.open(href, "_blank");

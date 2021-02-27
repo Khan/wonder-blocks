@@ -36,12 +36,13 @@ import Button from "../button.js";
 // It's also fine to use href by itself
 <Button href="/foo">Hello, world!</Button>;
 
-const getUrl = () => "/foo";
+const getUrl: () => string = () => "/foo";
 
 // This test purposefully uses a function to get a string to pass with href.
 // This can trigger errors if there are ambiguous cases in the disjoint union
 // type being used to describe the props.  It's unclear why this error isn't
 // trigger by passing a string directly as the href.
+// $FlowFixMe[speculation-ambiguous]: this error will go after migrating to TypeScript
 <Button href={getUrl()}>Hello, world!</Button>;
 
 // $FlowExpectedError[incompatible-type]: type="submit" can't be used with href since we render an anchor.

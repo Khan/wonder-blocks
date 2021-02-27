@@ -27,6 +27,7 @@ type Props = {|
     ...ClickableState,
     href?: string,
     type?: "submit",
+    target?: "_blank",
 |};
 
 type ContextTypes = {|

@@ -79,5 +79,8 @@ module.exports = {
                 ],
             },
         ],
+
+        // customization of rules
+        "react/prop-types": "off", // we let Flow/TS keep track of valid props
     },
 };

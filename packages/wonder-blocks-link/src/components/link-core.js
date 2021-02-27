@@ -18,6 +18,7 @@ type Props = {|
     ...ChildrenProps,
     ...ClickableState,
     href: string,
+    target?: "_blank",
 |};
 
 type ContextTypes = {|

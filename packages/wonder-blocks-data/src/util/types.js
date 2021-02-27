@@ -4,8 +4,8 @@ export type ValidData = string | boolean | number | {...};
 export type Result<TData: ValidData> =
     | {|
           loading: true,
-          data?: void,
-          error?: void,
+          data?: empty,
+          error?: empty,
       |}
     | {|
           loading: false,
@@ -16,11 +16,11 @@ export type Result<TData: ValidData> =
 export type CacheEntry<TData: ValidData> =
     | {|
           error: string,
-          data?: ?void,
+          data?: ?empty,
       |}
     | {|
           data: TData,
-          error?: ?void,
+          error?: ?empty,
       |};
 
 type HandlerSubcache = {

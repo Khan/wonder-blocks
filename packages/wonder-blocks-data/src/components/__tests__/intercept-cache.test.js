@@ -6,7 +6,11 @@ import InterceptContext from "../intercept-context.js";
 import InterceptData from "../intercept-data.js";
 import InterceptCache from "../intercept-cache.js";
 
-import type {IRequestHandler} from "../../util/types.js";
+import type {
+    IRequestHandler,
+    InterceptFulfillRequestFn,
+    InterceptShouldRefreshCacheFn,
+} from "../../util/types.js";
 
 describe("InterceptCache", () => {
     afterEach(() => {
@@ -88,8 +92,14 @@ describe("InterceptCache", () => {
             type: "MY_HANDLER",
             cache: null,
         };
-        const fulfillRequestFn = jest.fn();
-        const shouldRefreshCacheFn = jest.fn();
+        const fulfillRequestFn: InterceptFulfillRequestFn<
+            string,
+            string,
+        > = jest.fn();
+        const shouldRefreshCacheFn: InterceptShouldRefreshCacheFn<
+            string,
+            string,
+        > = jest.fn();
         const getEntryFn = jest.fn();
         const captureContextFn = jest.fn();
 

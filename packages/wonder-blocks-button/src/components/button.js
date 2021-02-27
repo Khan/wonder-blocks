@@ -80,20 +80,6 @@ export type SharedProps = {|
     testId?: string,
 
     /**
-     * Specifies the type of relationship between the current document and the
-     * linked document. Should only be used when `href` is specified. This
-     * defaults to "noopener noreferrer" when `target="_blank"`, but can be
-     * overridden by setting this prop to something else.
-     */
-    rel?: string,
-
-    /**
-     * A target destination window for a link to open in. Should only be used
-     * when `href` is specified.
-     */
-    target?: "_blank",
-
-    /**
      * Set the tabindex attribute on the rendered element.
      */
     tabIndex?: number,
@@ -147,80 +133,73 @@ export type SharedProps = {|
      *
      * Note: onClick is optional if href is present, but must be defined if
      * href is not
+     *
+     * TODO: move this to ConditionalProps after migrating to TypeScript
      */
     onClick?: (e: SyntheticEvent<>) => mixed,
 |};
+
+type ConditionalProps =
+    | {|
+          /**
+           * URL to navigate to.
+           */
+          href: string,
+
+          /**
+           * A target destination window for a link to open in. Should only be used
+           * when `href` is specified.
+           */
+          target?: "_blank",
+
+          /**
+           * Specifies the type of relationship between the current document and the
+           * linked document. Should only be used when `href` is specified. This
+           * defaults to "noopener noreferrer" when `target="_blank"`, but can be
+           * overridden by setting this prop to something else.
+           */
+          rel?: string,
+
+          /**
+           * Run async code before navigating. If the promise returned rejects then
+           * navigation will not occur.
+           *
+           * If both safeWithNav and beforeNav are provided, beforeNav will be run
+           * first and safeWithNav will only be run if beforeNav does not reject.
+           */
+          beforeNav?: () => Promise<mixed>,
+
+          /**
+           * Run async code in the background while client-side navigating. If the
+           * browser does a full page load navigation, the callback promise must be
+           * settled before the navigation will occur. Errors are ignored so that
+           * navigation is guaranteed to succeed.
+           */
+          safeWithNav?: () => Promise<mixed>,
+
+          type?: empty,
+      |}
+    | {|
+          /**
+           * Used for buttons within <form>s.
+           */
+          type?: "submit",
+
+          href?: empty, // can't be used with submit
+          beforeNav?: empty, // must be used with href
+          safeWithNav?: empty, // must be used with href
+          target?: empty, // must be used with href
+          rel?: empty, // must be used with href
+      |};
 
 // We structure the props in this way to ensure that whenever we're using
 // beforeNav or safeWithNav that we're also using href.  We also need to specify
 // a number of different variations to avoid ambigious situations where flow
 // finds more than one valid object type in the disjoint union.
-type Props =
-    | {|
-          ...SharedProps,
-
-          /**
-           * URL to navigate to.
-           */
-          href?: string,
-      |}
-    | {|
-          ...SharedProps,
-
-          /**
-           * Used for buttons within <form>s.
-           */
-          type: "submit",
-      |}
-    | {|
-          ...SharedProps,
-
-          href: string,
-
-          /**
-           * Run async code before navigating. If the promise returned rejects then
-           * navigation will not occur.
-           *
-           * If both safeWithNav and beforeNav are provided, beforeNav will be run
-           * first and safeWithNav will only be run if beforeNav does not reject.
-           */
-          beforeNav: () => Promise<mixed>,
-      |}
-    | {|
-          ...SharedProps,
-
-          href: string,
-
-          /**
-           * Run async code in the background while client-side navigating. If the
-           * browser does a full page load navigation, the callback promise must be
-           * settled before the navigation will occur. Errors are ignored so that
-           * navigation is guaranteed to succeed.
-           */
-          safeWithNav: () => Promise<mixed>,
-      |}
-    | {|
-          ...SharedProps,
-
-          href: string,
-
-          /**
-           * Run async code before navigating. If the promise returned rejects then
-           * navigation will not occur.
-           *
-           * If both safeWithNav and beforeNav are provided, beforeNav will be run
-           * first and safeWithNav will only be run if beforeNav does not reject.
-           */
-          beforeNav: () => Promise<mixed>,
-
-          /**
-           * Run async code in the background while client-side navigating. If the
-           * browser does a full page load navigation, the callback promise must be
-           * settled before the navigation will occur. Errors are ignored so that
-           * navigation is guaranteed to succeed.
-           */
-          safeWithNav: () => Promise<mixed>,
-      |};
+type Props = {|
+    ...SharedProps,
+    ...ConditionalProps,
+|};
 
 type ContextTypes = {|
     router: $FlowFixMe,
@@ -266,15 +245,15 @@ export default class Button extends React.Component<Props> {
 
     render(): React.Node {
         const {
-            href = undefined,
-            type = undefined,
+            href,
+            type,
             children,
             skipClientNav,
             spinner,
             disabled,
             onClick,
-            beforeNav = undefined,
-            safeWithNav = undefined,
+            beforeNav,
+            safeWithNav,
             tabIndex,
             target,
             rel,
@@ -312,16 +291,17 @@ export default class Button extends React.Component<Props> {
             );
         };
 
-        if (beforeNav) {
+        if (href) {
             return (
                 <ClickableBehavior
+                    // TODO: remove annotation after migrating to TypeScript
+                    href={(href: string)}
                     disabled={spinner || disabled}
-                    href={href}
                     role="button"
-                    type={type}
                     onClick={onClick}
                     beforeNav={beforeNav}
                     safeWithNav={safeWithNav}
+                    target={target}
                     rel={rel}
                 >
                     {renderProp}
@@ -331,13 +311,9 @@ export default class Button extends React.Component<Props> {
             return (
                 <ClickableBehavior
                     disabled={spinner || disabled}
-                    href={href}
                     role="button"
                     type={type}
                     onClick={onClick}
-                    safeWithNav={safeWithNav}
-                    target={target}
-                    rel={rel}
                 >
                     {renderProp}
                 </ClickableBehavior>

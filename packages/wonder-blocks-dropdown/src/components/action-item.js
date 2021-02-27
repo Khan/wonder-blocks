@@ -146,74 +146,81 @@ export default class ActionItem extends React.Component<ActionProps> {
             router,
         );
 
-        return (
-            <ClickableBehavior
-                disabled={disabled}
-                onClick={onClick}
-                href={href}
-                role={role}
-                target={target}
-            >
-                {(state, childrenProps) => {
-                    const {pressed, hovered, focused} = state;
+        const children = (state, childrenProps) => {
+            const {pressed, hovered, focused} = state;
 
-                    const defaultStyle = [
-                        styles.shared,
-                        disabled && styles.disabled,
-                        !disabled &&
-                            (pressed
-                                ? styles.active
-                                : (hovered || focused) && styles.focus),
-                        // pass optional styles from react-window (if applies)
-                        style,
-                    ];
+            const defaultStyle = [
+                styles.shared,
+                disabled && styles.disabled,
+                !disabled &&
+                    (pressed
+                        ? styles.active
+                        : (hovered || focused) && styles.focus),
+                // pass optional styles from react-window (if applies)
+                style,
+            ];
 
-                    const props = {
-                        "data-test-id": testId,
-                        disabled,
-                        role,
-                        style: [defaultStyle],
-                        ...childrenProps,
-                    };
+            const props = {
+                "data-test-id": testId,
+                disabled,
+                role,
+                style: [defaultStyle],
+                ...childrenProps,
+            };
 
-                    const children = (
-                        <React.Fragment>
-                            <LabelMedium
-                                style={[indent && styles.indent, styles.label]}
-                            >
-                                {label}
-                            </LabelMedium>
-                        </React.Fragment>
-                    );
+            const children = (
+                <React.Fragment>
+                    <LabelMedium
+                        style={[indent && styles.indent, styles.label]}
+                    >
+                        {label}
+                    </LabelMedium>
+                </React.Fragment>
+            );
 
-                    if (href && !disabled) {
-                        return router && !skipClientNav ? (
-                            <StyledLink {...props} to={href}>
-                                {children}
-                            </StyledLink>
-                        ) : (
-                            <StyledAnchor
-                                {...props}
-                                href={href}
-                                target={target}
-                            >
-                                {children}
-                            </StyledAnchor>
-                        );
-                    } else {
-                        return (
-                            <StyledButton
-                                type="button"
-                                {...props}
-                                disabled={disabled}
-                            >
-                                {children}
-                            </StyledButton>
-                        );
-                    }
-                }}
-            </ClickableBehavior>
-        );
+            if (href && !disabled) {
+                return router && !skipClientNav ? (
+                    <StyledLink {...props} to={href}>
+                        {children}
+                    </StyledLink>
+                ) : (
+                    <StyledAnchor {...props} href={href} target={target}>
+                        {children}
+                    </StyledAnchor>
+                );
+            } else {
+                return (
+                    <StyledButton type="button" {...props} disabled={disabled}>
+                        {children}
+                    </StyledButton>
+                );
+            }
+        };
+
+        if (href) {
+            return (
+                <ClickableBehavior
+                    // TODO: remove annotation after migrating to TypeScript
+                    href={(href: string)}
+                    disabled={disabled}
+                    onClick={onClick}
+                    role={role}
+                    target={target}
+                >
+                    {children}
+                </ClickableBehavior>
+            );
+        } else {
+            return (
+                <ClickableBehavior
+                    disabled={disabled}
+                    onClick={onClick}
+                    role={role}
+                >
+                    {children}
+                </ClickableBehavior>
+            );
+        }
     }
 }
 

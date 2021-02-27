@@ -7,7 +7,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import LinkCore from "./link-core.js";
 
-type CommonProps = {|
+export type SharedProps = {|
     ...AriaProps,
 
     /**
@@ -127,19 +127,16 @@ type CommonProps = {|
     onKeyUp?: (e: SyntheticKeyboardEvent<>) => mixed,
 |};
 
-export type SharedProps =
+type ConditionalProps =
     | {|
-          ...CommonProps,
-
           /**
            * A target destination window for a link to open in.  We only support
            * "_blank" which opens the URL in a new tab.
            */
           target?: "_blank",
+          beforeNav?: empty,
       |}
     | {|
-          ...CommonProps,
-
           /**
            * Run async code before navigating to the URL passed to `href`. If the
            * promise returned rejects then navigation will not occur.
@@ -154,16 +151,23 @@ export type SharedProps =
            * navigation.
            */
           beforeNav?: () => Promise<mixed>,
+
+          target?: empty,
       |};
+
+type Props = {|
+    ...SharedProps,
+    ...ConditionalProps,
+|};
 
 type ContextTypes = {|
     router: $FlowFixMe,
 |};
 
 type DefaultProps = {|
-    kind: $PropertyType<SharedProps, "kind">,
-    light: $PropertyType<SharedProps, "light">,
-    visitable: $PropertyType<SharedProps, "visitable">,
+    kind: $PropertyType<Props, "kind">,
+    light: $PropertyType<Props, "light">,
+    visitable: $PropertyType<Props, "visitable">,
 |};
 
 /**
@@ -183,7 +187,7 @@ type DefaultProps = {|
  * </Link>
  * ```
  */
-export default class Link extends React.Component<SharedProps> {
+export default class Link extends React.Component<Props> {
     static contextTypes: ContextTypes = {router: PropTypes.any};
     static defaultProps: DefaultProps = {
         kind: "primary",
@@ -212,74 +216,54 @@ export default class Link extends React.Component<SharedProps> {
             this.context.router,
         );
 
-        if (beforeNav) {
+        const childrenFn = (
+            state,
+            {tabIndex: clickableTabIndex, ...childrenProps},
+        ) => {
+            return (
+                <LinkCore
+                    {...sharedProps}
+                    {...state}
+                    {...childrenProps}
+                    skipClientNav={skipClientNav}
+                    href={href}
+                    target={target}
+                    // If tabIndex is provide to the component we allow
+                    // it to override the tabIndex provide to use by
+                    // ClickableBehavior.
+                    tabIndex={tabIndex || clickableTabIndex}
+                >
+                    {children}
+                </LinkCore>
+            );
+        };
+
+        if (href) {
             return (
                 <ClickableBehavior
-                    disabled={false}
-                    href={href}
+                    // TODO: remove annotation after migrating to TypeScript
+                    href={(href: string)}
                     role="link"
+                    disabled={false}
                     onClick={onClick}
                     beforeNav={beforeNav}
                     safeWithNav={safeWithNav}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                 >
-                    {(
-                        state,
-                        {tabIndex: clickableTabIndex, ...childrenProps},
-                    ) => {
-                        return (
-                            <LinkCore
-                                {...sharedProps}
-                                {...state}
-                                {...childrenProps}
-                                skipClientNav={skipClientNav}
-                                href={href}
-                                target={target}
-                                // If tabIndex is provide to the component we allow
-                                // it to override the tabIndex provide to use by
-                                // ClickableBehavior.
-                                tabIndex={tabIndex || clickableTabIndex}
-                            >
-                                {children}
-                            </LinkCore>
-                        );
-                    }}
+                    {childrenFn}
                 </ClickableBehavior>
             );
         } else {
             return (
                 <ClickableBehavior
                     disabled={false}
-                    href={href}
                     role="link"
                     onClick={onClick}
-                    safeWithNav={safeWithNav}
-                    target={target}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                 >
-                    {(
-                        state,
-                        {tabIndex: clickableTabIndex, ...childrenProps},
-                    ) => {
-                        return (
-                            <LinkCore
-                                {...sharedProps}
-                                {...state}
-                                {...childrenProps}
-                                skipClientNav={skipClientNav}
-                                href={href}
-                                target={target}
-                                // If tabIndex is provide to the component we allow
-                                // it to override the tabIndex provide to use by
-                                // ClickableBehavior.
-                                tabIndex={tabIndex || clickableTabIndex}
-                            >
-                                {children}
-                            </LinkCore>
-                        );
-                    }}
+                    {childrenFn}
                 </ClickableBehavior>
             );
         }
