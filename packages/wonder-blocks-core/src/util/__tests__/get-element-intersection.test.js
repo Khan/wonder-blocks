@@ -1,7 +1,8 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
+
 import enumerateScrollAncestors from "../enumerate-scroll-ancestors.js";
 import getElementIntersection from "../get-element-intersection.js";
 
@@ -16,7 +17,6 @@ describe("getElementIntersection", () => {
         // Flow doesn't like jest mocks
         // $FlowFixMe[prop-missing]
         enumerateScrollAncestors.mockClear();
-        unmountAll();
     });
 
     test("element is null, returns unspecified intersection", () => {

@@ -1,14 +1,10 @@
 // @flow
 import * as React from "react";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 import Breadcrumbs from "../breadcrumbs.js";
 import BreadcrumbsItem from "../breadcrumbs-item.js";
 
 describe("Breadcrumbs", () => {
-    afterEach(() => {
-        unmountAll();
-    });
-
     it("should set aria-current to the last item", () => {
         // Arrange
         const wrapper = mount(

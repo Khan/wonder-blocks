@@ -1,6 +1,7 @@
 //@flow
 import * as React from "react";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
+
 import ActionItem from "../action-item.js";
 import OptionItem from "../option-item.js";
 import SeparatorItem from "../separator-item.js";
@@ -14,10 +15,6 @@ describe("ActionMenu", () => {
     const onClick = jest.fn();
     const onToggle = jest.fn();
     const onChange = jest.fn();
-
-    afterEach(() => {
-        unmountAll();
-    });
 
     it("opens the menu on mouse click", () => {
         // Arrange

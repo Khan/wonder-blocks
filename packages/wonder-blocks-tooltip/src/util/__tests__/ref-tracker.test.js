@@ -1,19 +1,15 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
+import {mount} from "enzyme";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 import RefTracker from "../ref-tracker.js";
 
 type CallbackFn = (?HTMLElement) => void;
 
 describe("RefTracker", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     describe("#setCallback", () => {
         test("called with falsy value, no throw", () => {
             // Arrange

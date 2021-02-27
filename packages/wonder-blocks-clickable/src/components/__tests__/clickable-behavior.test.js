@@ -2,8 +2,7 @@
 // @flow
 import * as React from "react";
 import {MemoryRouter, Switch, Route} from "react-router-dom";
-import {shallow} from "enzyme";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount, shallow} from "enzyme";
 
 import getClickableBehavior from "../../util/get-clickable-behavior.js";
 import ClickableBehavior from "../clickable-behavior.js";
@@ -26,7 +25,6 @@ describe("ClickableBehavior", () => {
         // the testing environment.
         window.location.assign = jest.fn();
         window.open = jest.fn();
-        unmountAll();
     });
 
     afterEach(() => {

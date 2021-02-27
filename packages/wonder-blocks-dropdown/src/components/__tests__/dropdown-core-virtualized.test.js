@@ -1,7 +1,7 @@
 //@flow
 import * as React from "react";
 import {VariableSizeList as List} from "react-window";
-import {mount} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import OptionItem from "../option-item.js";
 import SeparatorItem from "../separator-item.js";

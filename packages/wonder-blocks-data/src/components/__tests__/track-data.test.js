@@ -1,15 +1,13 @@
 // @flow
 import * as React from "react";
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {shallow} from "enzyme";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount, shallow} from "enzyme";
 
 import TrackData from "../track-data.js";
 import {RequestTracker, TrackerContext} from "../../util/request-tracking.js";
 
 describe("TrackData", () => {
     afterEach(() => {
-        unmountAll();
         jest.resetAllMocks();
     });
 

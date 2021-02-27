@@ -1,17 +1,12 @@
 // @flow
 import * as React from "react";
-
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import withActionScheduler from "../with-action-scheduler.js";
 
 import type {WithActionSchedulerProps} from "../../util/types.js";
 
 describe("withActionScheduler", () => {
-    afterEach(() => {
-        unmountAll();
-    });
-
     it("should provide wrapped component with IScheduleActions instance", () => {
         // Arrange
         const Component = (props) =>

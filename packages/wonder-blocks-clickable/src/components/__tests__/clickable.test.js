@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {mount} from "enzyme";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 import Clickable from "../clickable.js";
 
 const wait = (delay: number = 0) =>
@@ -13,10 +13,6 @@ const wait = (delay: number = 0) =>
     });
 
 describe("Clickable", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     test("client-side navigation", () => {
         // Arrange
         const wrapper = mount(

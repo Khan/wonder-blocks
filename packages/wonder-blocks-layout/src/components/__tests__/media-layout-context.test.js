@@ -1,11 +1,11 @@
 // @flow
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {mount} from "enzyme";
 
 import MediaLayout from "../media-layout.js";
 import MediaLayoutContext from "../media-layout-context.js";
 import {resizeWindow, matchMedia} from "../../util/test-util.js";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 
 import {
     MEDIA_DEFAULT_SPEC,
@@ -15,7 +15,6 @@ import {
 
 describe("MediaLayoutContext", () => {
     beforeEach(() => {
-        unmountAll();
         window.matchMedia = matchMedia;
     });
 

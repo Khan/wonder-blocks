@@ -1,6 +1,7 @@
 // @flow
 
 import * as React from "react";
+import {mount} from "enzyme";
 
 import {
     MEDIA_DEFAULT_SPEC,
@@ -8,13 +9,8 @@ import {
 } from "@khanacademy/wonder-blocks-layout";
 import Row from "../row.js";
 import Cell from "../cell.js";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 
 describe("Row", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     describe("large", () => {
         it("should render Cells with largeCols and cols", () => {
             // Arrange

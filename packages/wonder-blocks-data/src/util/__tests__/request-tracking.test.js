@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import {RequestTracker, TrackerContext} from "../request-tracking.js";
 import {ResponseCache} from "../response-cache.js";
@@ -9,10 +9,6 @@ import type {IRequestHandler} from "../types.js";
 
 describe("../request-tracking.js", () => {
     describe("TrackerContext", () => {
-        afterEach(() => {
-            unmountAll();
-        });
-
         it("should default to null", async () => {
             // Arrange
 

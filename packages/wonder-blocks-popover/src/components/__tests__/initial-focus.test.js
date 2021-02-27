@@ -1,17 +1,12 @@
 // @flow
 import * as React from "react";
-
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import InitialFocus from "../initial-focus.js";
 
 describe("InitialFocus", () => {
     beforeEach(() => {
         jest.useFakeTimers();
-    });
-
-    afterEach(() => {
-        unmountAll();
     });
 
     it("should try to focus on a given element by id", () => {

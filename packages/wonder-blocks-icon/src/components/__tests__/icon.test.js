@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
 import * as Core from "@khanacademy/wonder-blocks-core";
+import {mount} from "enzyme";
+
 import icons from "../../util/icon-assets.js";
 import {getPathForIcon, viewportPixelsForSize} from "../../util/icon-util.js";
-
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 
 // We mock things out so that we're in control of what really gets rendered.
 // Means we can test that we're using addStyle to generate the component
@@ -37,7 +37,6 @@ jest.mock("../../util/icon-util.js", () => ({
 describe("Icon", () => {
     beforeEach(() => {
         jest.clearAllMocks();
-        unmountAll();
     });
 
     test("creates a styled svg using addStyle", async () => {

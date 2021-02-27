@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server.js";
-
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import View from "../view.js";
 
@@ -12,10 +11,6 @@ import UniqueIDProvider from "../unique-id-provider.js";
 import WithSSRPlaceholder from "../with-ssr-placeholder.js";
 
 describe("UniqueIDProvider", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     describe("mockOnFirstRender is default (false)", () => {
         test("initial render is nothing on server", () => {
             // Arrange

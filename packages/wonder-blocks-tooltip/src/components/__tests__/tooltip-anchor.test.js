@@ -3,8 +3,8 @@
 // @flow
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {mount} from "enzyme";
 
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 import TooltipAnchor from "../tooltip-anchor.js";
 import {
     TooltipAppearanceDelay,
@@ -21,7 +21,6 @@ describe("TooltipAnchor", () => {
         if (typeof document.removeEventListener.mockReset === "function") {
             document.removeEventListener.mockRestore();
         }
-        unmountAll();
         jest.clearAllTimers();
         jest.useFakeTimers();
 

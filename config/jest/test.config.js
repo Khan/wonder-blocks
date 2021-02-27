@@ -18,6 +18,7 @@ module.exports = {
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-(.*)$":
             "<rootDir>/packages/wonder-blocks-$1/src/index.js",
+        "^enzyme$": "<rootDir>/utils/testing/enzyme-shim.js",
     },
     collectCoverageFrom: [
         "packages/**/*.js",

@@ -1,15 +1,10 @@
 // @flow
 import * as React from "react";
-
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import OnePaneDialog from "../one-pane-dialog.js";
 
 describe("OnePaneDialog", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     test("testId should be set in the Dialog element", () => {
         // Arrange
         const wrapper = mount(

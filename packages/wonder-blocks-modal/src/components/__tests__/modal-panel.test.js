@@ -1,19 +1,15 @@
 // @flow
 import * as React from "react";
+import {mount} from "enzyme";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import expectRenderError from "../../../../../utils/testing/expect-render-error.js";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 import ModalPanel from "../modal-panel.js";
 import ModalContext from "../modal-context.js";
 import CloseButton from "../close-button.js";
 
 describe("ModalPanel", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     test("ModalContext.Provider and onClose should warn", () => {
         expectRenderError(
             <ModalContext.Provider value={{closeModal: () => {}}}>
