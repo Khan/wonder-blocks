@@ -26,36 +26,39 @@ type BaseProps<TOptions, TData> = {|
     children: React.Node,
 |};
 
-// type FulfillRequestProps<TOptions, TData> = {|
-//     /**
-//      * Called to fulfill a request.
-//      * If this returns null, the request will be fulfilled by the
-//      * handler of the original request being intercepted.
-//      */
-//     fulfillRequest: InterceptFulfillRequestFn<TOptions, TData>,
-// |};
+type FulfillRequestProps<TOptions, TData> = {|
+    /**
+     * Called to fulfill a request.
+     * If this returns null, the request will be fulfilled by the
+     * handler of the original request being intercepted.
+     */
+    fulfillRequest: InterceptFulfillRequestFn<TOptions, TData>,
+|};
 
-// type ShouldRefreshCacheProps<TOptions, TData> = {|
-//     /**
-//      * Called to determine if the cache should be refreshed.
-//      * If this returns null, the handler being intercepted will be asked if
-//      * the cache should be refreshed.
-//      */
-//     shouldRefreshCache: InterceptShouldRefreshCacheFn<TOptions, TData>,
-// |};
+type ShouldRefreshCacheProps<TOptions, TData> = {|
+    /**
+     * Called to determine if the cache should be refreshed.
+     * If this returns null, the handler being intercepted will be asked if
+     * the cache should be refreshed.
+     */
+    shouldRefreshCache: InterceptShouldRefreshCacheFn<TOptions, TData>,
+|};
 
+// Most other ConditionalProps only have two branches.  This one has three
+// because the condition it enforces is different.  It requires at least one
+// of `fulfillRequest` and `shouldRefreshCache` be used.
 type ConditionalProps<TOptions, TData> =
     | {|
-          fulfillRequest: InterceptFulfillRequestFn<TOptions, TData>,
+          ...FulfillRequestProps<TOptions, TData>,
           shouldRefreshCache?: empty,
       |}
     | {|
           fulfillRequest?: empty,
-          shouldRefreshCache: InterceptShouldRefreshCacheFn<TOptions, TData>,
+          ...ShouldRefreshCacheProps<TOptions, TData>,
       |}
     | {|
-          fulfillRequest: InterceptFulfillRequestFn<TOptions, TData>,
-          shouldRefreshCache: InterceptShouldRefreshCacheFn<TOptions, TData>,
+          ...FulfillRequestProps<TOptions, TData>,
+          ...ShouldRefreshCacheProps<TOptions, TData>,
       |};
 
 type Props<TOptions, TData> = {|
