@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import PropTypes from "prop-types";
+import * as PropTypes from "prop-types";
 
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import Color, {SemanticColor, mix} from "@khanacademy/wonder-blocks-color";
