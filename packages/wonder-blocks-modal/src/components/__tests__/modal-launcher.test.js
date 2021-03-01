@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
-import {shallow} from "enzyme";
+import {mount, shallow} from "enzyme";
 
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 import ModalLauncher from "../modal-launcher.js";
 import OnePaneDialog from "../one-pane-dialog.js";
 
@@ -18,10 +17,6 @@ const exampleModal = (
 
 describe("ModalLauncher", () => {
     window.scrollTo = jest.fn();
-
-    beforeEach(() => {
-        unmountAll();
-    });
 
     test("Children can launch the modal", () => {
         const wrapper = mount(

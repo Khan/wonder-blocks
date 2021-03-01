@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
+import {mount} from "enzyme";
 
 import {TooltipTail} from "@khanacademy/wonder-blocks-tooltip";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 
 import PopoverDialog from "../popover-dialog.js";
 import PopoverContentCore from "../popover-content-core.js";
@@ -10,10 +10,6 @@ import PopoverContentCore from "../popover-content-core.js";
 jest.mock("@khanacademy/wonder-blocks-tooltip");
 
 describe("PopoverDialog", () => {
-    afterEach(() => {
-        unmountAll();
-    });
-
     it("should update the tail color to match the content's color", () => {
         // Arrange
         const onUpdateMock = jest.fn();

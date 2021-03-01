@@ -1,16 +1,11 @@
 // @flow
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server.js";
-
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import WithSSRPlaceholder from "../with-ssr-placeholder.js";
 
 describe("WithSSRPlaceholder", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     describe("client-side rendering", () => {
         test("calls placeholder render first, then the actual content render", async () => {
             // Arrange

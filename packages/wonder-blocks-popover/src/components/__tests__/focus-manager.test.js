@@ -1,17 +1,12 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import FocusManager from "../focus-manager.js";
 import {findFocusableNodes} from "../../util/util.js";
 
 describe("FocusManager", () => {
-    afterEach(() => {
-        unmountAll();
-    });
-
     it("should focus on the first focusable element inside the popover", async () => {
         // Arrange
         const ref = await new Promise((resolve) => {

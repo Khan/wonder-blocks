@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import ModalBackdrop from "../modal-backdrop.js";
 import OnePaneDialog from "../one-pane-dialog.js";
@@ -31,10 +31,6 @@ const exampleModalWithButtons = (
 );
 
 describe("ModalBackdrop", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     test("Clicking the backdrop triggers `onCloseModal`", () => {
         const onCloseModal = jest.fn();
 

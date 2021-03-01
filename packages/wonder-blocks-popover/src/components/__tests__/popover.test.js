@@ -1,17 +1,12 @@
 // @flow
 import * as React from "react";
-
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import Popover from "../popover.js";
 import PopoverContent from "../popover-content.js";
 import {PopoverContentCore} from "../../index.js";
 
 describe("Popover", () => {
-    afterEach(() => {
-        unmountAll();
-    });
-
     it("should set the anchor as the popover ref", () => {
         // Arrange
         const wrapper = mount(

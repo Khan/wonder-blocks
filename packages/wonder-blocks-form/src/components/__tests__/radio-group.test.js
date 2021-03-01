@@ -1,6 +1,6 @@
 //@flow
 import * as React from "react";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import RadioGroup from "../radio-group.js";
 import Choice from "../choice.js";
@@ -23,10 +23,6 @@ describe("RadioGroup", () => {
                 <Choice label="c" value="c" aria-labelledby="test-c" />
             </RadioGroup>,
         );
-    });
-
-    afterEach(() => {
-        unmountAll();
     });
 
     it("selects only one item at a time", () => {

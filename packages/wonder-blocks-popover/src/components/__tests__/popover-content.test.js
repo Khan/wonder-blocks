@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
-
-import {mount} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import PopoverContent from "../popover-content.js";
 import PopoverContext from "../popover-context.js";

@@ -1,7 +1,7 @@
 //@flow
 import * as React from "react";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import DropdownOpener from "../dropdown-opener.js";
 import SelectOpener from "../select-opener.js";
@@ -31,7 +31,6 @@ describe("SingleSelect", () => {
 
     afterEach(() => {
         window.scrollTo.mockClear();
-        unmountAll();
     });
 
     it("closes/opens the select on mouse click, space, and enter", () => {

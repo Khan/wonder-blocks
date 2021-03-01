@@ -1,15 +1,10 @@
 // @flow
 import * as React from "react";
-
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import PopoverKeypressListener from "../popover-keypress-listener.js";
 
 describe("PopoverKeypressListener", () => {
-    afterEach(() => {
-        unmountAll();
-    });
-
     it("should call onClose if Escape is pressed", () => {
         // Arrange
         const onCloseMock = jest.fn();

@@ -1,6 +1,12 @@
 // @flow
-import {mount as enzymeMount} from "enzyme";
+/**
+ * Shim to add auto-unmounting to enzyme.
+ */
+import * as React from "react";
 import type {ReactWrapper} from "enzyme";
+import * as enzyme from "enzyme/build";
+
+export * from "enzyme/build";
 
 /**
  * Enzyme doesn't unmount mounted things and all tests share the same DOM
@@ -10,7 +16,7 @@ import type {ReactWrapper} from "enzyme";
  */
 const ACTIVE_WRAPPERS = {};
 
-const unmountAll = () => {
+export const unmountAll = () => {
     const wrappersToUnmount = Object.keys(ACTIVE_WRAPPERS);
     for (const key of wrappersToUnmount) {
         const wrapper = ACTIVE_WRAPPERS[key];
@@ -21,11 +27,11 @@ const unmountAll = () => {
     }
 };
 
-function mount<T>(nodes: React$Element<T>): ReactWrapper<T> {
-    const wrapper = enzymeMount<T>(nodes);
+export function mount<T>(
+    nodes: React.Element<React.AbstractComponent<T>>,
+): ReactWrapper<T> {
+    const wrapper = enzyme.mount<T>(nodes);
     const identity = ACTIVE_WRAPPERS.length;
     ACTIVE_WRAPPERS[identity] = wrapper;
     return wrapper;
 }
-
-export {mount, unmountAll};

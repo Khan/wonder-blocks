@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
+import {mount} from "enzyme";
 
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
 import Tooltip from "../tooltip.js";
 import TooltipBubble from "../tooltip-bubble.js";
 import TooltipAnchor from "../tooltip-anchor.js";
@@ -9,7 +9,6 @@ import {TooltipDisappearanceDelay} from "../../util/constants.js";
 
 describe("tooltip integration tests", () => {
     beforeEach(() => {
-        unmountAll();
         jest.useFakeTimers();
         // jest.clearAllMocks().resetModules();
     });

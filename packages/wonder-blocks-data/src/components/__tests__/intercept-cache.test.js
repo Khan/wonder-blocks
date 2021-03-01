@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import InterceptContext from "../intercept-context.js";
 import InterceptData from "../intercept-data.js";
@@ -10,7 +10,6 @@ import type {IRequestHandler} from "../../util/types.js";
 
 describe("InterceptCache", () => {
     afterEach(() => {
-        unmountAll();
         jest.resetAllMocks();
     });
 

@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
-
-import {mount, unmountAll} from "../../../../../utils/testing/mount.js";
+import {mount} from "enzyme";
 
 import Button from "../button.js";
 
@@ -19,10 +18,6 @@ const keyCodes = {
 };
 
 describe("Button", () => {
-    beforeEach(() => {
-        unmountAll();
-    });
-
     test("client-side navigation", () => {
         // Arrange
         const wrapper = mount(
