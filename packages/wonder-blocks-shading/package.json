@@ -1,0 +1,28 @@
+{
+    "name": "@khanacademy/wonder-blocks-shading",
+    "version": "0.1.0",
+    "design": "v1",
+    "publishConfig": {
+      "access": "public"
+    },
+    "description": "",
+    "main": "dist/index.js",
+    "module": "dist/es/index.js",
+    "source": "src/index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+      "@khanacademy/wonder-blocks-color": "^1.1.16",
+      "@khanacademy/wonder-blocks-core": "^3.1.1"
+    },
+    "peerDependencies": {
+      "aphrodite": "^1.2.5",
+      "react": "^16.4.1"
+    },
+    "devDependencies": {
+      "wb-dev-build-settings": "^0.0.3"
+    }
+  }
