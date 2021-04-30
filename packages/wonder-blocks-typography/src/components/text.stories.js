@@ -10,7 +10,7 @@ export default {
 };
 
 export const heading: StoryComponentType = () => {
-    let children = text("children", "Hello, world!");
+    let children = text("children", "We believe in the joy of learning");
     const size = radios(
         "size",
         {
@@ -49,7 +49,7 @@ export const heading: StoryComponentType = () => {
 };
 
 export const compactHeading: StoryComponentType = () => {
-    let children = text("children", "Hello, world!");
+    let children = text("children", "We believe in the joy of learning");
     const size = radios(
         "size",
         {
@@ -85,7 +85,7 @@ export const compactHeading: StoryComponentType = () => {
 };
 
 export const label: StoryComponentType = () => {
-    let children = text("children", "Hello, world!");
+    let children = text("children", "Qui velit repellendus magnam");
     const size = radios(
         "size",
         {

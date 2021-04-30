@@ -31,6 +31,8 @@ const TypeMetrics = {
 const styleFragments = {
     Common: {
         display: "block",
+        MozOsxFontSmoothing: "grayscale",
+        WebkitFontSmoothing: "antialiased",
     },
     SerifRegular: {
         fontFamily: TypeMetrics.Serif.Family,
@@ -313,6 +315,7 @@ export const textStyle = (category: string, size: string, typeface: string) => {
     }
 
     const styles = {
+        ...styleFragments.Common,
         ...categoryStyles,
         ...sizeStyles,
         ...typefaceStyles,
