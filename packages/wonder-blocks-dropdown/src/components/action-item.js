@@ -10,7 +10,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {
     getClickableBehavior,
-    isExternalUrl,
+    isClientSideUrl,
 } from "@khanacademy/wonder-blocks-clickable";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
@@ -192,7 +192,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                     if (href && !disabled) {
                         return router &&
                             !skipClientNav &&
-                            !isExternalUrl(href) ? (
+                            isClientSideUrl(href) ? (
                             <StyledLink {...props} to={href}>
                                 {children}
                             </StyledLink>

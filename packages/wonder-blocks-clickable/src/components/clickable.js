@@ -10,7 +10,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 
 import getClickableBehavior from "../util/get-clickable-behavior.js";
 import type {ClickableRole, ClickableState} from "./clickable-behavior.js";
-import isExternalUrl from "../util/is-external-url.js";
+import {isClientSideUrl} from "../util/is-client-side-url.js";
 
 type CommonProps = {|
     /**
@@ -215,7 +215,7 @@ export default class Clickable extends React.Component<Props> {
         const useClient =
             this.context.router &&
             !this.props.skipClientNav &&
-            !isExternalUrl(this.props.href || "");
+            isClientSideUrl(this.props.href || "");
 
         // NOTE: checking this.props.href here is redundant, but flow
         // needs it to refine this.props.href to a string.

@@ -14,7 +14,7 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import Icon from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {isExternalUrl} from "@khanacademy/wonder-blocks-clickable";
+import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 
 import type {
     ChildrenProps,
@@ -155,7 +155,7 @@ export default class ButtonCore extends React.Component<Props> {
         );
 
         if (href && !disabled) {
-            return router && !skipClientNav && !isExternalUrl(href) ? (
+            return router && !skipClientNav && isClientSideUrl(href) ? (
                 <StyledLink {...commonProps} to={href}>
                     {contents}
                 </StyledLink>

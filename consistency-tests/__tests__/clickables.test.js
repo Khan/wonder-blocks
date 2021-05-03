@@ -72,18 +72,17 @@ describe.each`
         expect(wrapper.find("a")).toHaveProp("target", "_blank");
     });
 
-    it("renders a react-router Link if the URL is not external", () => {
+    it("renders a react-router Link if href is path", () => {
         const wrapper = mount(
             <MemoryRouter>
                 <Component href="/foo/bar">Click me</Component>
             </MemoryRouter>,
         );
-        wrapper.simulate("click");
 
         expect(wrapper.find(ReactRouterLink)).toExist();
     });
 
-    it("does not render a react-router Link if the URL is external", () => {
+    it("does not render a react-router Link if the href is an external URL", () => {
         const wrapper = mount(
             <MemoryRouter>
                 <Component href="https://www.khanacademy.org/foo/bar">
@@ -91,9 +90,31 @@ describe.each`
                 </Component>
             </MemoryRouter>,
         );
-        wrapper.simulate("click");
 
         expect(wrapper.find(ReactRouterLink)).not.toExist();
+        expect(wrapper.find("a")).toExist();
+    });
+
+    it("renders an <a> if the href is '#'", () => {
+        const wrapper = mount(
+            <MemoryRouter>
+                <Component href="#">Click me</Component>
+            </MemoryRouter>,
+        );
+
+        expect(wrapper.find(ReactRouterLink)).not.toExist();
+        expect(wrapper.find("a")).toExist();
+    });
+
+    it("renders an <a> if the href is 'javascript:void(0)'", () => {
+        const wrapper = mount(
+            <MemoryRouter>
+                <Component href="javascript:void(0)">Click me</Component>
+            </MemoryRouter>,
+        );
+
+        expect(wrapper.find(ReactRouterLink)).not.toExist();
+        expect(wrapper.find("a")).toExist();
     });
 });
 

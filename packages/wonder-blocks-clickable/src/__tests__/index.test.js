@@ -13,7 +13,7 @@ describe("@khanacademy/wonder-blocks-clickable", () => {
                 "ClickableBehavior",
                 "default",
                 "getClickableBehavior",
-                "isExternalUrl",
+                "isClientSideUrl",
             ].sort(),
         );
     });

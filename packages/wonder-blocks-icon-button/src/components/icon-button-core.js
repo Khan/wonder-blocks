@@ -10,7 +10,7 @@ import Color, {
     fade,
 } from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import {isExternalUrl} from "@khanacademy/wonder-blocks-clickable";
+import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import Icon from "@khanacademy/wonder-blocks-icon";
 
 import type {
@@ -90,7 +90,7 @@ export default class IconButtonCore extends React.Component<Props> {
         };
 
         if (href && !disabled) {
-            return router && !skipClientNav && !isExternalUrl(href) ? (
+            return router && !skipClientNav && isClientSideUrl(href) ? (
                 <StyledLink {...commonProps} to={href}>
                     {child}
                 </StyledLink>
