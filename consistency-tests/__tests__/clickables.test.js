@@ -34,7 +34,7 @@ describe.each`
     ${ClickableWrapper}  | ${"Clickable"}
     ${IconButtonWrapper} | ${"IconButton"}
     ${Link}              | ${"Link"}
-`("$name", ({Component, name}) => {
+`("$name with an href", ({Component, name}) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
         // the testing environment.
@@ -94,5 +94,49 @@ describe.each`
         wrapper.simulate("click");
 
         expect(wrapper.find(ReactRouterLink)).not.toExist();
+    });
+});
+
+// NOTE: Link doesn't work without an href so it isn't included in this suite
+describe.each`
+    Component            | name
+    ${ActionItem}        | ${"ActionItem"}
+    ${Button}            | ${"Button"}
+    ${ClickableWrapper}  | ${"Clickable"}
+    ${IconButtonWrapper} | ${"IconButton"}
+`("$name without an href", ({Component, name}) => {
+    beforeEach(() => {
+        // Note: window.location.assign and window.open need mock functions in
+        // the testing environment.
+        window.location.assign = jest.fn();
+        window.open = jest.fn();
+    });
+
+    afterEach(() => {
+        window.location.assign.mockClear();
+        window.open.mockClear();
+    });
+
+    it("renders a button", () => {
+        const wrapper = mount(
+            <MemoryRouter>
+                <Component onClick={() => {}}>Click me</Component>
+            </MemoryRouter>,
+        );
+
+        expect(wrapper.find("button")).toExist();
+    });
+
+    it("renders responds to click events", () => {
+        const clickHandler = jest.fn();
+        const wrapper = mount(
+            <MemoryRouter>
+                <Component onClick={clickHandler}>Click me</Component>
+            </MemoryRouter>,
+        );
+
+        wrapper.simulate("click");
+
+        expect(clickHandler).toHaveBeenCalled();
     });
 });
