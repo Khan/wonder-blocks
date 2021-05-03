@@ -7,6 +7,7 @@
  */
 import * as React from "react";
 import {mount} from "enzyme";
+import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
 
 import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -33,7 +34,7 @@ describe.each`
     ${ClickableWrapper}  | ${"Clickable"}
     ${IconButtonWrapper} | ${"IconButton"}
     ${Link}              | ${"Link"}
-`("$name", ({Component, name, extraProps}) => {
+`("$name with an href", ({Component, name}) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
         // the testing environment.
@@ -48,11 +49,7 @@ describe.each`
 
     it("opens a new tab when target='_blank'", () => {
         const wrapper = mount(
-            <Component
-                href="https://www.khanacademy.org"
-                target="_blank"
-                {...extraProps}
-            >
+            <Component href="https://www.khanacademy.org" target="_blank">
                 Click me
             </Component>,
         );
@@ -66,16 +63,101 @@ describe.each`
 
     it("sets the 'target' prop on the underlying element", () => {
         const wrapper = mount(
-            <Component
-                href="https://www.khanacademy.org"
-                target="_blank"
-                {...extraProps}
-            >
+            <Component href="https://www.khanacademy.org" target="_blank">
                 Click me
             </Component>,
         );
         wrapper.simulate("click");
 
         expect(wrapper.find("a")).toHaveProp("target", "_blank");
+    });
+
+    it("renders a react-router Link if href is path", () => {
+        const wrapper = mount(
+            <MemoryRouter>
+                <Component href="/foo/bar">Click me</Component>
+            </MemoryRouter>,
+        );
+
+        expect(wrapper.find(ReactRouterLink)).toExist();
+    });
+
+    it("does not render a react-router Link if the href is an external URL", () => {
+        const wrapper = mount(
+            <MemoryRouter>
+                <Component href="https://www.khanacademy.org/foo/bar">
+                    Click me
+                </Component>
+            </MemoryRouter>,
+        );
+
+        expect(wrapper.find(ReactRouterLink)).not.toExist();
+        expect(wrapper.find("a")).toExist();
+    });
+
+    it("renders an <a> if the href is '#'", () => {
+        const wrapper = mount(
+            <MemoryRouter>
+                <Component href="#">Click me</Component>
+            </MemoryRouter>,
+        );
+
+        expect(wrapper.find(ReactRouterLink)).not.toExist();
+        expect(wrapper.find("a")).toExist();
+    });
+
+    it("renders an <a> if the href is 'javascript:void(0)'", () => {
+        const wrapper = mount(
+            <MemoryRouter>
+                <Component href="javascript:void(0)">Click me</Component>
+            </MemoryRouter>,
+        );
+
+        expect(wrapper.find(ReactRouterLink)).not.toExist();
+        expect(wrapper.find("a")).toExist();
+    });
+});
+
+// NOTE: Link doesn't work without an href so it isn't included in this suite
+describe.each`
+    Component            | name
+    ${ActionItem}        | ${"ActionItem"}
+    ${Button}            | ${"Button"}
+    ${ClickableWrapper}  | ${"Clickable"}
+    ${IconButtonWrapper} | ${"IconButton"}
+`("$name without an href", ({Component, name}) => {
+    beforeEach(() => {
+        // Note: window.location.assign and window.open need mock functions in
+        // the testing environment.
+        window.location.assign = jest.fn();
+        window.open = jest.fn();
+    });
+
+    afterEach(() => {
+        window.location.assign.mockClear();
+        window.open.mockClear();
+    });
+
+    it("renders a button", () => {
+        const wrapper = mount(
+            <MemoryRouter>
+                <Component onClick={() => {}}>Click me</Component>
+            </MemoryRouter>,
+        );
+
+        expect(wrapper.find("button")).toExist();
+    });
+
+    it("responds to click events", () => {
+        const clickHandler = jest.fn();
+        const wrapper = mount(
+            <MemoryRouter>
+                <Component onClick={clickHandler}>Click me</Component>
+            </MemoryRouter>,
+        );
+
+        wrapper.simulate("click");
+
+        expect(clickHandler).toHaveBeenCalled();
     });
 });

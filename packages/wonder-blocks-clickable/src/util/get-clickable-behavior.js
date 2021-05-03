@@ -13,7 +13,7 @@ import * as React from "react";
 import {withRouter} from "react-router-dom";
 
 import ClickableBehavior from "../components/clickable-behavior.js";
-import isExternalUrl from "./is-external-url.js";
+import {isClientSideUrl} from "./is-client-side-url.js";
 
 const ClickableBehaviorWithRouter = withRouter(ClickableBehavior);
 
@@ -31,7 +31,7 @@ export default function getClickableBehavior(
      */
     router?: any,
 ): React.ComponentType<React.ElementConfig<typeof ClickableBehavior>> {
-    if (router && skipClientNav !== true && href && !isExternalUrl(href)) {
+    if (router && skipClientNav !== true && href && isClientSideUrl(href)) {
         // We cast to `any` here since the type of ClickableBehaviorWithRouter
         // is slightly different from the return type of this function.
         // TODO(WB-1037): Always return the wrapped version once all routes have

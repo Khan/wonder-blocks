@@ -10,6 +10,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 
 import getClickableBehavior from "../util/get-clickable-behavior.js";
 import type {ClickableRole, ClickableState} from "./clickable-behavior.js";
+import {isClientSideUrl} from "../util/is-client-side-url.js";
 
 type CommonProps = {|
     /**
@@ -211,7 +212,10 @@ export default class Clickable extends React.Component<Props> {
         commonProps: {[string]: any, ...},
     ) => React.Node = (clickableState, commonProps) => {
         const activeHref = this.props.href && !this.props.disabled;
-        const useClient = this.context.router && !this.props.skipClientNav;
+        const useClient =
+            this.context.router &&
+            !this.props.skipClientNav &&
+            isClientSideUrl(this.props.href || "");
 
         // NOTE: checking this.props.href here is redundant, but flow
         // needs it to refine this.props.href to a string.
@@ -265,6 +269,7 @@ export default class Clickable extends React.Component<Props> {
             onKeyDown,
             onKeyUp,
             hideDefaultFocusRing,
+            disabled,
             ...restProps
         } = this.props;
         const ClickableBehavior = getClickableBehavior(
@@ -289,6 +294,7 @@ export default class Clickable extends React.Component<Props> {
                     safeWithNav={safeWithNav}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
+                    disabled={disabled}
                 >
                     {(state, childrenProps) =>
                         this.getCorrectTag(state, {
@@ -309,6 +315,7 @@ export default class Clickable extends React.Component<Props> {
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                     target={target}
+                    disabled={disabled}
                 >
                     {(state, childrenProps) =>
                         this.getCorrectTag(state, {

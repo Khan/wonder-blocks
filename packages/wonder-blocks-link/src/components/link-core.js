@@ -6,6 +6,8 @@ import * as PropTypes from "prop-types";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
+
 import type {
     ChildrenProps,
     ClickableState,
@@ -64,7 +66,7 @@ export default class LinkCore extends React.Component<Props> {
             ...restProps,
         };
 
-        return router && !skipClientNav ? (
+        return router && !skipClientNav && isClientSideUrl(href) ? (
             <StyledLink {...commonProps} to={href}>
                 {children}
             </StyledLink>
