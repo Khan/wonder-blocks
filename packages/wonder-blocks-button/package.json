@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-button",
-  "version": "2.9.6",
+  "version": "2.9.7",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -15,13 +15,13 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@khanacademy/wonder-blocks-clickable": "^2.0.6",
-    "@khanacademy/wonder-blocks-color": "^1.1.16",
-    "@khanacademy/wonder-blocks-core": "^3.1.1",
-    "@khanacademy/wonder-blocks-icon": "^1.2.18",
-    "@khanacademy/wonder-blocks-progress-spinner": "^1.1.22",
-    "@khanacademy/wonder-blocks-spacing": "^3.0.1",
-    "@khanacademy/wonder-blocks-typography": "^1.1.22"
+    "@khanacademy/wonder-blocks-clickable": "^2.0.7",
+    "@khanacademy/wonder-blocks-color": "^1.1.17",
+    "@khanacademy/wonder-blocks-core": "^3.1.2",
+    "@khanacademy/wonder-blocks-icon": "^1.2.19",
+    "@khanacademy/wonder-blocks-progress-spinner": "^1.1.23",
+    "@khanacademy/wonder-blocks-spacing": "^3.0.2",
+    "@khanacademy/wonder-blocks-typography": "^1.1.23"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
@@ -30,6 +30,6 @@
     "react-router-dom": "^4.2.2"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.0.3"
+    "wb-dev-build-settings": "^0.0.4"
   }
 }
