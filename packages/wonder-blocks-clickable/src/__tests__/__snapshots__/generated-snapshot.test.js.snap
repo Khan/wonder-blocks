@@ -20,9 +20,10 @@ exports[`wonder-blocks-clickable example 1 1`] = `
     }
   }
 >
-  <a
+  <button
     aria-label=""
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -38,6 +39,9 @@ exports[`wonder-blocks-clickable example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
         "MozOsxFontSmoothing": "inherit",
         "WebkitFontSmoothing": "inherit",
         "background": "transparent",
@@ -58,6 +62,7 @@ exports[`wonder-blocks-clickable example 1 1`] = `
       }
     }
     tabIndex={0}
+    type="button"
   >
     <div
       className=""
@@ -95,7 +100,7 @@ exports[`wonder-blocks-clickable example 1 1`] = `
         This text is clickable!
       </span>
     </div>
-  </a>
+  </button>
 </div>
 `;
 

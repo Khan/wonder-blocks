@@ -211,16 +211,15 @@ export default class Clickable extends React.Component<Props> {
         clickableState: ClickableState,
         commonProps: {[string]: any, ...},
     ) => React.Node = (clickableState, commonProps) => {
+        const activeHref = this.props.href && !this.props.disabled;
         const useClient =
             this.context.router &&
             !this.props.skipClientNav &&
-            this.props.href &&
-            !this.props.disabled &&
-            !isExternalUrl(this.props.href);
+            !isExternalUrl(this.props.href || "");
 
         // NOTE: checking this.props.href here is redundant, but flow
         // needs it to refine this.props.href to a string.
-        if (useClient && this.props.href) {
+        if (activeHref && useClient && this.props.href) {
             return (
                 <StyledLink
                     {...commonProps}
@@ -232,7 +231,7 @@ export default class Clickable extends React.Component<Props> {
                     {this.props.children(clickableState)}
                 </StyledLink>
             );
-        } else if (!useClient) {
+        } else if (activeHref && !useClient) {
             return (
                 <StyledAnchor
                     {...commonProps}
