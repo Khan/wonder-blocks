@@ -127,7 +127,7 @@ describe.each`
         expect(wrapper.find("button")).toExist();
     });
 
-    it("renders responds to click events", () => {
+    it("responds to click events", () => {
         const clickHandler = jest.fn();
         const wrapper = mount(
             <MemoryRouter>
