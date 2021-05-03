@@ -3,8 +3,8 @@
  * Pre-publish checks to verify that our publish will go smoothly.
  */
 const path = require("path");
-const glob = require("glob");
 const {exec} = require("child_process");
+const glob = require("glob");
 
 const inquirer = require("inquirer");
 
@@ -46,7 +46,7 @@ const checkPackageModule = (pkgJson) =>
     checkPackageField(pkgJson, "module", "dist/es/index.js");
 
 const checkPackageSource = (pkgJson) =>
-    checkPackageField(pkgJson, "source", "index.js");
+    checkPackageField(pkgJson, "source", "src/index.js");
 
 const checkPackagePrivate = (pkgJson) => {
     if (pkgJson.private) {
@@ -103,6 +103,12 @@ glob(
                         if (!skipWarnings) {
                             process.exit(1);
                         }
+                        return;
+                    })
+                    .catch((e) => {
+                        console.warn("inquirer prompt failed");
+                        console.warn(e);
+                        process.exit(1);
                     });
             }
         });
