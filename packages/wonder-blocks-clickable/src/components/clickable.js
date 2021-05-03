@@ -10,6 +10,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 
 import getClickableBehavior from "../util/get-clickable-behavior.js";
 import type {ClickableRole, ClickableState} from "./clickable-behavior.js";
+import isExternalUrl from "../util/is-external-url.js";
 
 type CommonProps = {|
     /**
@@ -210,12 +211,16 @@ export default class Clickable extends React.Component<Props> {
         clickableState: ClickableState,
         commonProps: {[string]: any, ...},
     ) => React.Node = (clickableState, commonProps) => {
-        const activeHref = this.props.href && !this.props.disabled;
-        const useClient = this.context.router && !this.props.skipClientNav;
+        const useClient =
+            this.context.router &&
+            !this.props.skipClientNav &&
+            this.props.href &&
+            !this.props.disabled &&
+            !isExternalUrl(this.props.href);
 
         // NOTE: checking this.props.href here is redundant, but flow
         // needs it to refine this.props.href to a string.
-        if (activeHref && useClient && this.props.href) {
+        if (useClient && this.props.href) {
             return (
                 <StyledLink
                     {...commonProps}
@@ -227,7 +232,7 @@ export default class Clickable extends React.Component<Props> {
                     {this.props.children(clickableState)}
                 </StyledLink>
             );
-        } else if (activeHref && !useClient) {
+        } else if (!useClient) {
             return (
                 <StyledAnchor
                     {...commonProps}
@@ -265,6 +270,7 @@ export default class Clickable extends React.Component<Props> {
             onKeyDown,
             onKeyUp,
             hideDefaultFocusRing,
+            disabled,
             ...restProps
         } = this.props;
         const ClickableBehavior = getClickableBehavior(
@@ -289,6 +295,7 @@ export default class Clickable extends React.Component<Props> {
                     safeWithNav={safeWithNav}
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
+                    disabled={disabled}
                 >
                     {(state, childrenProps) =>
                         this.getCorrectTag(state, {
@@ -309,6 +316,7 @@ export default class Clickable extends React.Component<Props> {
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                     target={target}
+                    disabled={disabled}
                 >
                     {(state, childrenProps) =>
                         this.getCorrectTag(state, {

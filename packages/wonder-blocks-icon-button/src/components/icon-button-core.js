@@ -10,11 +10,13 @@ import Color, {
     fade,
 } from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {isExternalUrl} from "@khanacademy/wonder-blocks-clickable";
+import Icon from "@khanacademy/wonder-blocks-icon";
+
 import type {
     ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
-import Icon from "@khanacademy/wonder-blocks-icon";
 import type {SharedProps} from "./icon-button.js";
 
 type Props = {|
@@ -88,7 +90,7 @@ export default class IconButtonCore extends React.Component<Props> {
         };
 
         if (href && !disabled) {
-            return router && !skipClientNav ? (
+            return router && !skipClientNav && !isExternalUrl(href) ? (
                 <StyledLink {...commonProps} to={href}>
                     {child}
                 </StyledLink>

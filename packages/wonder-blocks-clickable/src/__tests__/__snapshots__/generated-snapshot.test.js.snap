@@ -20,10 +20,9 @@ exports[`wonder-blocks-clickable example 1 1`] = `
     }
   }
 >
-  <button
+  <a
     aria-label=""
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -39,9 +38,6 @@ exports[`wonder-blocks-clickable example 1 1`] = `
     onTouchStart={[Function]}
     style={
       Object {
-        "::MozFocusInner": Object {
-          "border": 0,
-        },
         "MozOsxFontSmoothing": "inherit",
         "WebkitFontSmoothing": "inherit",
         "background": "transparent",
@@ -62,7 +58,6 @@ exports[`wonder-blocks-clickable example 1 1`] = `
       }
     }
     tabIndex={0}
-    type="button"
   >
     <div
       className=""
@@ -100,7 +95,7 @@ exports[`wonder-blocks-clickable example 1 1`] = `
         This text is clickable!
       </span>
     </div>
-  </button>
+  </a>
 </div>
 `;
 
@@ -127,7 +122,6 @@ exports[`wonder-blocks-clickable example 2 1`] = `
   <a
     aria-label=""
     className=""
-    disabled={false}
     href="/foo"
     onBlur={[Function]}
     onClick={[Function]}
@@ -173,7 +167,6 @@ exports[`wonder-blocks-clickable example 2 1`] = `
   <a
     aria-label=""
     className=""
-    disabled={false}
     href="/foo"
     onBlur={[Function]}
     onClick={[Function]}
@@ -242,7 +235,6 @@ exports[`wonder-blocks-clickable example 3 1`] = `
   <a
     aria-label=""
     className=""
-    disabled={false}
     href="https://www.khanacademy.org/about/tos"
     onBlur={[Function]}
     onClick={[Function]}

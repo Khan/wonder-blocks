@@ -8,7 +8,10 @@ import * as PropTypes from "prop-types";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
+import {
+    getClickableBehavior,
+    isExternalUrl,
+} from "@khanacademy/wonder-blocks-clickable";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
@@ -187,7 +190,9 @@ export default class ActionItem extends React.Component<ActionProps> {
                     );
 
                     if (href && !disabled) {
-                        return router && !skipClientNav ? (
+                        return router &&
+                            !skipClientNav &&
+                            !isExternalUrl(href) ? (
                             <StyledLink {...props} to={href}>
                                 {children}
                             </StyledLink>

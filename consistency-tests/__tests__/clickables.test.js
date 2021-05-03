@@ -7,6 +7,7 @@
  */
 import * as React from "react";
 import {mount} from "enzyme";
+import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
 
 import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -33,7 +34,7 @@ describe.each`
     ${ClickableWrapper}  | ${"Clickable"}
     ${IconButtonWrapper} | ${"IconButton"}
     ${Link}              | ${"Link"}
-`("$name", ({Component, name, extraProps}) => {
+`("$name", ({Component, name}) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
         // the testing environment.
@@ -48,11 +49,7 @@ describe.each`
 
     it("opens a new tab when target='_blank'", () => {
         const wrapper = mount(
-            <Component
-                href="https://www.khanacademy.org"
-                target="_blank"
-                {...extraProps}
-            >
+            <Component href="https://www.khanacademy.org" target="_blank">
                 Click me
             </Component>,
         );
@@ -66,16 +63,36 @@ describe.each`
 
     it("sets the 'target' prop on the underlying element", () => {
         const wrapper = mount(
-            <Component
-                href="https://www.khanacademy.org"
-                target="_blank"
-                {...extraProps}
-            >
+            <Component href="https://www.khanacademy.org" target="_blank">
                 Click me
             </Component>,
         );
         wrapper.simulate("click");
 
         expect(wrapper.find("a")).toHaveProp("target", "_blank");
+    });
+
+    it("renders a react-router Link if the URL is not external", () => {
+        const wrapper = mount(
+            <MemoryRouter>
+                <Component href="/foo/bar">Click me</Component>
+            </MemoryRouter>,
+        );
+        wrapper.simulate("click");
+
+        expect(wrapper.find(ReactRouterLink)).toExist();
+    });
+
+    it("does not render a react-router Link if the URL is external", () => {
+        const wrapper = mount(
+            <MemoryRouter>
+                <Component href="https://www.khanacademy.org/foo/bar">
+                    Click me
+                </Component>
+            </MemoryRouter>,
+        );
+        wrapper.simulate("click");
+
+        expect(wrapper.find(ReactRouterLink)).not.toExist();
     });
 });

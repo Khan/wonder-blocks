@@ -9,7 +9,12 @@ describe("@khanacademy/wonder-blocks-clickable", () => {
 
         // Assert
         expect(Object.keys(result).sort()).toEqual(
-            ["ClickableBehavior", "default", "getClickableBehavior"].sort(),
+            [
+                "ClickableBehavior",
+                "default",
+                "getClickableBehavior",
+                "isExternalUrl",
+            ].sort(),
         );
     });
 });
