@@ -9,5 +9,8 @@ export const isClientSideUrl = (href: string): boolean => {
     if (typeof href !== "string") {
         return false;
     }
-    return !/^(https?:)?\/\//i.test(href) && !/^(#[\w-]*|[\w\-.]+:)/.test(href);
+    return (
+        !/^(https?:)?\/\//i.test(href) &&
+        !/^([^#]*#[\w-]*|[\w\-.]+:)/.test(href)
+    );
 };

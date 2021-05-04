@@ -27,9 +27,11 @@ describe("isClientSideUrl", () => {
         expect(isClientSideUrl("ms-help://kb12345.htm")).toEqual(false);
         expect(isClientSideUrl("z39.50s://0.0.0.0")).toEqual(false);
 
-        // anchor-only HREFs
+        // HREFs with anchors
         expect(isClientSideUrl("#")).toEqual(false);
         expect(isClientSideUrl("#foo")).toEqual(false);
+        expect(isClientSideUrl("/foo#bar")).toEqual(false);
+        expect(isClientSideUrl("foo/bar#baz")).toEqual(false);
 
         // internal URLs
         expect(isClientSideUrl("/foo//bar")).toEqual(true);
