@@ -6,21 +6,21 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 const TypeMetrics = {
     Sans: {
-        Family: "Lato",
+        Family: '"Lato", "Noto Sans", sans-serif',
         Weights: {
             Regular: 400,
             Strong: 700,
         },
     },
     Serif: {
-        Family: "Source Serif Pro",
+        Family: '"Source Serif Pro", "Noto Serif", serif',
         Weights: {
             Regular: 400,
             Strong: 600,
         },
     },
     Monospace: {
-        Family: "Inconsolata",
+        Family: '"Inconsolata", monospace',
         Weights: {
             Regular: 400,
             Strong: 700,
