@@ -39,7 +39,7 @@ describe("isClientSideUrl", () => {
         );
     });
 
-    test("handles edge cases", () => {
+    test("invalid values for 'href' should return false", () => {
         // $FlowIgnore: testing invalid input
         expect(isClientSideUrl(null)).toEqual(false);
         // $FlowIgnore: testing invalid input
