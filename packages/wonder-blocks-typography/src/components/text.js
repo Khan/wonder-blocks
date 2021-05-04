@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import {StyleSheet, css} from "aphrodite";
+import {css} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 const TypeMetrics = {
@@ -30,9 +30,10 @@ const TypeMetrics = {
 
 const styleFragments = {
     Common: {
-        display: "block",
         MozOsxFontSmoothing: "grayscale",
         WebkitFontSmoothing: "antialiased",
+        display: "block",
+        margin: 0,
     },
     SerifRegular: {
         fontFamily: TypeMetrics.Serif.Family,
@@ -320,9 +321,9 @@ export const textStyle = (category: string, size: string, typeface: string) => {
         ...sizeStyles,
         ...typefaceStyles,
     };
-    const style = StyleSheet.create({text: styles});
+    // const style = StyleSheet.create({text: styles});
 
-    return style.text;
+    return styles;
 };
 
 type TextProps = {|

@@ -1,12 +1,23 @@
 // @flow
 import * as React from "react";
-import {radios, select} from "@storybook/addon-knobs";
+import {radios} from "@storybook/addon-knobs";
 
 import type {StoryComponentType} from "@storybook/react";
+import {StyleSheet, css} from "aphrodite";
 import {TypeCategory, TypeSize, Typeface, textStyle, Text} from "./text.js";
 
 export default {
     title: "Text",
+};
+
+const typeSizeWidths = {
+    xxxLarge: 768,
+    xxLarge: 640,
+    xLarge: 600,
+    large: 512,
+    medium: 360,
+    small: 300,
+    xSmall: 300,
 };
 
 // See also: https://docs.google.com/spreadsheets/d/1a6NQn5ylp9dLA1UL9bWzBMiWvWlH_0Wt2eTiSm3MeTQ/edit#gid=0
@@ -206,7 +217,6 @@ const strings = {
     },
 };
 
-const defaultLanguage = "en";
 const languages = {};
 Object.keys(strings)
     .sort()
@@ -217,9 +227,40 @@ Object.keys(strings)
         languages[k] = v;
     });
 
+const sharedStyles = StyleSheet.create({
+    ul: {},
+});
+
+function String(props: TextProps): React.Node {
+    const {children, tag, style, width, language} = props;
+
+    const styles = StyleSheet.create({
+        li: {
+            listStyleType: "none",
+            marginTop: 32,
+            ":first-child": {
+                marginTop: 0,
+            },
+            width: width,
+        },
+        label: {
+            ...textStyle(TypeCategory.Label, TypeSize.XSmall, Typeface.Sans),
+            color: "#ff0088",
+            margin: 0,
+        },
+    });
+
+    return (
+        <li className={css(styles.li)}>
+            <label className={css(styles.label)}>{language}</label>
+            <Text tag={tag} style={style}>
+                {children}
+            </Text>
+        </li>
+    );
+}
+
 export const heading: StoryComponentType = () => {
-    const language = select("language", languages, defaultLanguage);
-    let string = strings[language].headingText;
     const size = radios(
         "size",
         {
@@ -243,23 +284,30 @@ export const heading: StoryComponentType = () => {
         Typeface.Serif,
     );
 
-    let style = null;
-    try {
-        style = textStyle(TypeCategory.Heading, size, typeface);
-    } catch (e) {
-        string = e.message;
-    }
+    const styles = StyleSheet.create({
+        string: textStyle(TypeCategory.Heading, size, typeface),
+    });
 
     return (
-        <Text tag="h1" style={style}>
-            {string}
-        </Text>
+        <ul className={css(sharedStyles.ul)}>
+            {Object.values(languages)
+                .sort()
+                .map((lCode, i) => (
+                    <String
+                        key={i}
+                        style={styles.string}
+                        tag="h1"
+                        width={typeSizeWidths[size]}
+                        language={strings[lCode].name}
+                    >
+                        {strings[lCode].headingText}
+                    </String>
+                ))}
+        </ul>
     );
 };
 
 export const compactHeading: StoryComponentType = () => {
-    const language = select("language", languages, defaultLanguage);
-    let string = strings[language].compactHeadingText;
     const size = radios(
         "size",
         {
@@ -280,23 +328,30 @@ export const compactHeading: StoryComponentType = () => {
         Typeface.Sans,
     );
 
-    let style = null;
-    try {
-        style = textStyle(TypeCategory.CompactHeading, size, typeface);
-    } catch (e) {
-        string = e.message;
-    }
+    const styles = StyleSheet.create({
+        string: textStyle(TypeCategory.CompactHeading, size, typeface),
+    });
 
     return (
-        <Text tag="p" style={style}>
-            {string}
-        </Text>
+        <ul className={css(sharedStyles.ul)}>
+            {Object.values(languages)
+                .sort()
+                .map((lCode, i) => (
+                    <String
+                        key={i}
+                        style={styles.string}
+                        tag="h2"
+                        width={typeSizeWidths[size]}
+                        language={strings[lCode].name}
+                    >
+                        {strings[lCode].compactHeadingText}
+                    </String>
+                ))}
+        </ul>
     );
 };
 
 export const label: StoryComponentType = () => {
-    const language = select("language", languages, defaultLanguage);
-    let string = strings[language].labelText;
     const size = radios(
         "size",
         {
@@ -318,23 +373,30 @@ export const label: StoryComponentType = () => {
         Typeface.Sans,
     );
 
-    let style = null;
-    try {
-        style = textStyle(TypeCategory.Label, size, typeface);
-    } catch (e) {
-        string = e.message;
-    }
+    const styles = StyleSheet.create({
+        string: textStyle(TypeCategory.Label, size, typeface),
+    });
 
     return (
-        <Text tag="p" style={style}>
-            {string}
-        </Text>
+        <ul className={css(sharedStyles.ul)}>
+            {Object.values(languages)
+                .sort()
+                .map((lCode, i) => (
+                    <String
+                        key={i}
+                        style={styles.string}
+                        tag="label"
+                        width={typeSizeWidths[size]}
+                        language={strings[lCode].name}
+                    >
+                        {strings[lCode].labelText}
+                    </String>
+                ))}
+        </ul>
     );
 };
 
 export const statement: StoryComponentType = () => {
-    const language = select("language", languages, defaultLanguage);
-    let string = strings[language].statementText;
     const size = radios(
         "size",
         {
@@ -354,23 +416,30 @@ export const statement: StoryComponentType = () => {
         Typeface.Serif,
     );
 
-    let style = null;
-    try {
-        style = textStyle(TypeCategory.Statement, size, typeface);
-    } catch (e) {
-        string = e.message;
-    }
+    const styles = StyleSheet.create({
+        string: textStyle(TypeCategory.Statement, size, typeface),
+    });
 
     return (
-        <Text tag="p" style={style}>
-            {string}
-        </Text>
+        <ul className={css(sharedStyles.ul)}>
+            {Object.values(languages)
+                .sort()
+                .map((lCode, i) => (
+                    <String
+                        key={i}
+                        style={styles.string}
+                        tag="p"
+                        width={typeSizeWidths[size]}
+                        language={strings[lCode].name}
+                    >
+                        {strings[lCode].statementText}
+                    </String>
+                ))}
+        </ul>
     );
 };
 
 export const paragraph: StoryComponentType = () => {
-    const language = select("language", languages, defaultLanguage);
-    let string = strings[language].paragraphText;
     const size = radios(
         "size",
         {
@@ -392,16 +461,25 @@ export const paragraph: StoryComponentType = () => {
         Typeface.Sans,
     );
 
-    let style = null;
-    try {
-        style = textStyle(TypeCategory.Paragraph, size, typeface);
-    } catch (e) {
-        string = e.message;
-    }
+    const styles = StyleSheet.create({
+        string: textStyle(TypeCategory.Paragraph, size, typeface),
+    });
 
     return (
-        <Text tag="p" style={style}>
-            {string}
-        </Text>
+        <ul className={css(sharedStyles.ul)}>
+            {Object.values(languages)
+                .sort()
+                .map((lCode, i) => (
+                    <String
+                        key={i}
+                        style={styles.string}
+                        tag="p"
+                        width={typeSizeWidths[size]}
+                        language={strings[lCode].name}
+                    >
+                        {strings[lCode].paragraphText}
+                    </String>
+                ))}
+        </ul>
     );
 };
