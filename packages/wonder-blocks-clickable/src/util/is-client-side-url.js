@@ -6,5 +6,8 @@
  * - true for all other values, e.g. /foo/bar
  */
 export const isClientSideUrl = (href: string): boolean => {
+    if (typeof href !== "string") {
+        return false;
+    }
     return !/^(https?:)?\/\//i.test(href) && !/^(#[\w-]*|[\w\-.]+:)/.test(href);
 };

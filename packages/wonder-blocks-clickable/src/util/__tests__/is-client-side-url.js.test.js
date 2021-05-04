@@ -38,4 +38,11 @@ describe("isClientSideUrl", () => {
             true,
         );
     });
+
+    test("handles edge cases", () => {
+        // $FlowIgnore: testing invalid input
+        expect(isClientSideUrl(null)).toEqual(false);
+        // $FlowIgnore: testing invalid input
+        expect(isClientSideUrl(undefined)).toEqual(false);
+    });
 });
