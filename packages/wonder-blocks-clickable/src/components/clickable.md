@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     <Clickable
         onClick={() => alert("You clicked some text!")}
         hideDefaultFocusRing={true}
+        role="tab"
     >
         {
             ({hovered, focused, pressed}) =>

@@ -37,6 +37,7 @@ describe("wonder-blocks-clickable", () => {
                 <Clickable
                     onClick={() => alert("You clicked some text!")}
                     hideDefaultFocusRing={true}
+                    role="tab"
                 >
                     {({hovered, focused, pressed}) => (
                         <View

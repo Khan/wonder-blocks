@@ -43,6 +43,27 @@ keyboardNavigation.story = {
     },
 };
 
+export const keyboardNavigationTab: StoryComponentType = () => (
+    <View>
+        <Clickable role="tab" aria-controls="panel-1" id="tab-1">
+            {({hovered, focused, pressed}) => (
+                <View
+                    style={[
+                        hovered && styles.hovered,
+                        focused && styles.focused,
+                        pressed && styles.pressed,
+                    ]}
+                >
+                    <Body>Open School Info</Body>
+                </View>
+            )}
+        </Clickable>
+        <View id="panel-1" role="tabpanel" tabindex="0" aria-labelledby="tab-1">
+            This is the information for the school.
+        </View>
+    </View>
+);
+
 const styles = StyleSheet.create({
     hovered: {
         textDecoration: "underline",
