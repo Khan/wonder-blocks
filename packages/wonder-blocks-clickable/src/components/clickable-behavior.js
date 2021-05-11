@@ -10,7 +10,8 @@ export type ClickableRole =
     | "listbox"
     | "option"
     | "menuitem"
-    | "menu";
+    | "menu"
+    | "tab";
 
 const getAppropriateTriggersForRole = (role: ?ClickableRole) => {
     switch (role) {
