@@ -46,31 +46,51 @@ exports[`wonder-blocks-grid example 1 1`] = `
     }
   >
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -215,31 +235,51 @@ exports[`wonder-blocks-grid example 1 1`] = `
       </div>
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -346,31 +386,51 @@ exports[`wonder-blocks-grid example 1 1`] = `
       </div>
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -494,31 +554,51 @@ exports[`wonder-blocks-grid example 1 1`] = `
       </div>
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
   </div>
 </div>
 `;
@@ -572,57 +652,97 @@ exports[`wonder-blocks-grid example 2 1`] = `
     }
   >
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
   </div>
   <div
     className=""
@@ -651,57 +771,97 @@ exports[`wonder-blocks-grid example 2 1`] = `
     }
   >
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
   </div>
   <div
     className=""
@@ -731,31 +891,51 @@ exports[`wonder-blocks-grid example 2 1`] = `
     }
   >
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -783,31 +963,51 @@ exports[`wonder-blocks-grid example 2 1`] = `
       Possible mastery points
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -830,31 +1030,51 @@ exports[`wonder-blocks-grid example 2 1`] = `
       Beginner / Points to Apprentice
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
   </div>
   <div
     className=""
@@ -881,31 +1101,51 @@ exports[`wonder-blocks-grid example 2 1`] = `
     }
   >
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -941,31 +1181,51 @@ exports[`wonder-blocks-grid example 2 1`] = `
       Polygons
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1041,31 +1301,51 @@ exports[`wonder-blocks-grid example 2 1`] = `
       </div>
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
   </div>
 </div>
 `;
@@ -1116,31 +1396,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
     }
   >
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1170,31 +1470,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
       1
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1224,31 +1544,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
       1
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1278,31 +1618,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
       1
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1332,31 +1692,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
       1
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1386,31 +1766,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
       1
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1440,31 +1840,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
       1
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1494,31 +1914,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
       1
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1548,31 +1988,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
       1
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1602,31 +2062,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
       1
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1656,31 +2136,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
       1
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1710,31 +2210,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
       1
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1764,31 +2284,51 @@ exports[`wonder-blocks-grid example 3 1`] = `
       1
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
   </div>
 </div>
 `;
@@ -1841,31 +2381,51 @@ exports[`wonder-blocks-grid example 4 1`] = `
     }
   >
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1905,31 +2465,51 @@ exports[`wonder-blocks-grid example 4 1`] = `
       </span>
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -1969,31 +2549,51 @@ exports[`wonder-blocks-grid example 4 1`] = `
       </span>
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
   </div>
 </div>
 `;
@@ -2048,31 +2648,51 @@ exports[`wonder-blocks-grid example 5 1`] = `
     }
   >
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -2132,31 +2752,51 @@ exports[`wonder-blocks-grid example 5 1`] = `
       </ul>
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 32,
-          "MsFlexPreferredSize": 32,
-          "WebkitFlexBasis": 32,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 32,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 32,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 32,
+            "MsFlexPreferredSize": 32,
+            "WebkitFlexBasis": 32,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 32,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 32,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <div
       className=""
       style={
@@ -2217,31 +2857,51 @@ exports[`wonder-blocks-grid example 5 1`] = `
       </p>
     </div>
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": 24,
-          "MsFlexPreferredSize": 24,
-          "WebkitFlexBasis": 24,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": 24,
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": 24,
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 24,
+            "MsFlexPreferredSize": 24,
+            "WebkitFlexBasis": 24,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 24,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 24,
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
   </div>
 </div>
 `;

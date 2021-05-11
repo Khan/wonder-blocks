@@ -87,31 +87,51 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     </svg>
   </button>
   <div
-    aria-hidden="true"
     className=""
     style={
       Object {
-        "MsFlexBasis": 16,
-        "MsFlexPreferredSize": 16,
-        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 16,
         "flexDirection": "column",
-        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 16,
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 16,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
   <button
     aria-label="search"
     className=""
@@ -179,31 +199,51 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     </svg>
   </button>
   <div
-    aria-hidden="true"
     className=""
     style={
       Object {
-        "MsFlexBasis": 16,
-        "MsFlexPreferredSize": 16,
-        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 16,
         "flexDirection": "column",
-        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 16,
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 16,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
   <a
     aria-label="search"
     className=""
@@ -267,31 +307,51 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     </svg>
   </a>
   <div
-    aria-hidden="true"
     className=""
     style={
       Object {
-        "MsFlexBasis": 16,
-        "MsFlexPreferredSize": 16,
-        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 16,
         "flexDirection": "column",
-        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 16,
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 16,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
   <button
     aria-label="search"
     className=""
@@ -359,31 +419,51 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     </svg>
   </button>
   <div
-    aria-hidden="true"
     className=""
     style={
       Object {
-        "MsFlexBasis": 16,
-        "MsFlexPreferredSize": 16,
-        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 16,
         "flexDirection": "column",
-        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 16,
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 16,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
   <button
     aria-label="search"
     className=""

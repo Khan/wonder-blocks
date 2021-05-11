@@ -136,31 +136,51 @@ exports[`wonder-blocks-core example 3 1`] = `
         type="checkbox"
       />
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
       <span
         className=""
         style={
@@ -626,31 +646,51 @@ exports[`wonder-blocks-core example 10 1`] = `
     />
   </div>
   <div
-    aria-hidden="true"
     className=""
     style={
       Object {
-        "MsFlexBasis": 16,
-        "MsFlexPreferredSize": 16,
-        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 16,
         "flexDirection": "column",
-        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 16,
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 16,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
   <h4
     className=""
     style={
@@ -804,31 +844,51 @@ exports[`wonder-blocks-core example 11 1`] = `
     </span>
   </div>
   <div
-    aria-hidden="true"
     className=""
     style={
       Object {
-        "MsFlexBasis": 16,
-        "MsFlexPreferredSize": 16,
-        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 16,
         "flexDirection": "column",
-        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 16,
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 16,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
   <h4
     className=""
     style={
@@ -1093,31 +1153,51 @@ exports[`wonder-blocks-core example 13 1`] = `
     }
   >
     <div
-      aria-hidden="true"
       className=""
       style={
         Object {
-          "MsFlexBasis": "2em",
-          "MsFlexPreferredSize": "2em",
-          "WebkitFlexBasis": "2em",
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
-          "flexBasis": "2em",
           "flexDirection": "column",
-          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
-          "width": "2em",
           "zIndex": 0,
         }
       }
-    />
+    >
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": "2em",
+            "MsFlexPreferredSize": "2em",
+            "WebkitFlexBasis": "2em",
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": "2em",
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": "2em",
+            "zIndex": 0,
+          }
+        }
+      />
+    </div>
     <span
       className=""
       style={

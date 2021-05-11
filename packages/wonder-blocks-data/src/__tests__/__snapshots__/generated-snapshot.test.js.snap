@@ -58,31 +58,51 @@ exports[`wonder-blocks-data example 1 1`] = `
     Loading...
   </div>
   <div
-    aria-hidden="true"
     className=""
     style={
       Object {
-        "MsFlexBasis": 12,
-        "MsFlexPreferredSize": 12,
-        "WebkitFlexBasis": 12,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 12,
         "flexDirection": "column",
-        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 12,
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 12,
+          "MsFlexPreferredSize": 12,
+          "WebkitFlexBasis": 12,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 12,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 12,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
   <div
     className=""
     style={
@@ -178,31 +198,51 @@ Array [
     </span>
   </div>,
   <div
-    aria-hidden="true"
     className=""
     style={
       Object {
-        "MsFlexBasis": 12,
-        "MsFlexPreferredSize": 12,
-        "WebkitFlexBasis": 12,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 12,
         "flexDirection": "column",
-        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 12,
         "zIndex": 0,
       }
     }
-  />,
+  >
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 12,
+          "MsFlexPreferredSize": 12,
+          "WebkitFlexBasis": 12,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 12,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 12,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>,
   <div
     className=""
     style={
@@ -315,31 +355,51 @@ Array [
     </span>
   </div>,
   <div
-    aria-hidden="true"
     className=""
     style={
       Object {
-        "MsFlexBasis": 12,
-        "MsFlexPreferredSize": 12,
-        "WebkitFlexBasis": 12,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 12,
         "flexDirection": "column",
-        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 12,
         "zIndex": 0,
       }
     }
-  />,
+  >
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 12,
+          "MsFlexPreferredSize": 12,
+          "WebkitFlexBasis": 12,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 12,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 12,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>,
   <div
     className=""
     style={

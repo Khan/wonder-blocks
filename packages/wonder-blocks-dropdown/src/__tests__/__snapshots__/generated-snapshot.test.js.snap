@@ -134,31 +134,51 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
         </span>
       </div>
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 4,
-            "MsFlexPreferredSize": 4,
-            "WebkitFlexBasis": 4,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 4,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 4,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 4,
+              "MsFlexPreferredSize": 4,
+              "WebkitFlexBasis": 4,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 4,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 4,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
       <svg
         className=""
         height={16}
@@ -336,31 +356,51 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         </span>
       </div>
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 4,
-            "MsFlexPreferredSize": 4,
-            "WebkitFlexBasis": 4,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 4,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 4,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 4,
+              "MsFlexPreferredSize": 4,
+              "WebkitFlexBasis": 4,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 4,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 4,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
       <svg
         className=""
         height={16}
@@ -517,31 +557,51 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         </span>
       </div>
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 4,
-            "MsFlexPreferredSize": 4,
-            "WebkitFlexBasis": 4,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 4,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 4,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 4,
+              "MsFlexPreferredSize": 4,
+              "WebkitFlexBasis": 4,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 4,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 4,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
       <svg
         className=""
         height={16}
@@ -698,31 +758,51 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
         </span>
       </div>
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 4,
-            "MsFlexPreferredSize": 4,
-            "WebkitFlexBasis": 4,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 4,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 4,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 4,
+              "MsFlexPreferredSize": 4,
+              "WebkitFlexBasis": 4,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 4,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 4,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
       <svg
         className=""
         height={16}
@@ -880,31 +960,51 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         </span>
       </div>
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 4,
-            "MsFlexPreferredSize": 4,
-            "WebkitFlexBasis": 4,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 4,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 4,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 4,
+              "MsFlexPreferredSize": 4,
+              "WebkitFlexBasis": 4,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 4,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 4,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
       <svg
         className=""
         height={16}
@@ -1061,31 +1161,51 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         </span>
       </div>
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 4,
-            "MsFlexPreferredSize": 4,
-            "WebkitFlexBasis": 4,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 4,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 4,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 4,
+              "MsFlexPreferredSize": 4,
+              "WebkitFlexBasis": 4,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 4,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 4,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
       <svg
         className=""
         height={16}
@@ -1108,31 +1228,51 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
     </button>
   </div>
   <div
-    aria-hidden="true"
     className=""
     style={
       Object {
-        "MsFlexBasis": 16,
-        "MsFlexPreferredSize": 16,
-        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 16,
         "flexDirection": "column",
-        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 16,
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 16,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
   <button
     className=""
     disabled={false}
@@ -2266,31 +2406,51 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
     </button>
   </div>
   <div
-    aria-hidden="true"
     className=""
     style={
       Object {
-        "MsFlexBasis": 16,
-        "MsFlexPreferredSize": 16,
-        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 16,
         "flexDirection": "column",
-        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 16,
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 16,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
   <button
     className=""
     disabled={false}
@@ -3635,31 +3795,51 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
     </button>
   </div>
   <div
-    aria-hidden="true"
     className=""
     style={
       Object {
-        "MsFlexBasis": 16,
-        "MsFlexPreferredSize": 16,
-        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
-        "flexBasis": 16,
         "flexDirection": "column",
-        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
-        "width": 16,
         "zIndex": 0,
       }
     }
-  />
+  >
+    <div
+      aria-hidden="true"
+      className=""
+      style={
+        Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexBasis": 16,
+          "flexDirection": "column",
+          "flexShrink": 0,
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "width": 16,
+          "zIndex": 0,
+        }
+      }
+    />
+  </div>
   <button
     className=""
     disabled={false}

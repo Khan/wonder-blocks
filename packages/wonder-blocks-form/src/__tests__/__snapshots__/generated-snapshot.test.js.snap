@@ -102,31 +102,51 @@ exports[`wonder-blocks-form example 1 1`] = `
         type="checkbox"
       />
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
   <div
@@ -231,31 +251,51 @@ exports[`wonder-blocks-form example 1 1`] = `
         />
       </svg>
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
   <div
@@ -340,31 +380,51 @@ exports[`wonder-blocks-form example 1 1`] = `
         type="checkbox"
       />
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
   <div
@@ -469,31 +529,51 @@ exports[`wonder-blocks-form example 1 1`] = `
         />
       </svg>
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
   <div
@@ -579,31 +659,51 @@ exports[`wonder-blocks-form example 1 1`] = `
         type="checkbox"
       />
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
   <div
@@ -710,31 +810,51 @@ exports[`wonder-blocks-form example 1 1`] = `
         />
       </svg>
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -843,31 +963,51 @@ exports[`wonder-blocks-form example 2 1`] = `
         type="checkbox"
       />
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
       <span
         className=""
         style={
@@ -1078,31 +1218,51 @@ exports[`wonder-blocks-form example 3 1`] = `
         type="checkbox"
       />
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -1210,31 +1370,51 @@ exports[`wonder-blocks-form example 4 1`] = `
         type="radio"
       />
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
   <div
@@ -1319,31 +1499,51 @@ exports[`wonder-blocks-form example 4 1`] = `
         type="radio"
       />
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
   <div
@@ -1428,31 +1628,51 @@ exports[`wonder-blocks-form example 4 1`] = `
         type="radio"
       />
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
   <div
@@ -1537,31 +1757,51 @@ exports[`wonder-blocks-form example 4 1`] = `
         type="radio"
       />
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
   <div
@@ -1647,31 +1887,51 @@ exports[`wonder-blocks-form example 4 1`] = `
         type="radio"
       />
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
   <div
@@ -1770,31 +2030,51 @@ exports[`wonder-blocks-form example 4 1`] = `
         }
       />
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 8,
-            "MsFlexPreferredSize": 8,
-            "WebkitFlexBasis": 8,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 8,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 8,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 8,
+              "MsFlexPreferredSize": 8,
+              "WebkitFlexBasis": 8,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 8,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 8,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
     </div>
   </div>
 </div>
@@ -1894,31 +2174,51 @@ exports[`wonder-blocks-form example 5 1`] = `
         You may choose at most three toppings
       </span>
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 12,
-            "MsFlexPreferredSize": 12,
-            "WebkitFlexBasis": 12,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 12,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 12,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 12,
+              "MsFlexPreferredSize": 12,
+              "WebkitFlexBasis": 12,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 12,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 12,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
       <div
         className=""
         style={
@@ -2002,31 +2302,51 @@ exports[`wonder-blocks-form example 5 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -2136,31 +2456,51 @@ exports[`wonder-blocks-form example 5 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -2289,31 +2629,51 @@ exports[`wonder-blocks-form example 5 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -2423,31 +2783,51 @@ exports[`wonder-blocks-form example 5 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -2557,31 +2937,51 @@ exports[`wonder-blocks-form example 5 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -2711,31 +3111,51 @@ exports[`wonder-blocks-form example 5 1`] = `
             />
           </svg>
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -2939,31 +3359,51 @@ exports[`wonder-blocks-form example 6 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -3074,31 +3514,51 @@ exports[`wonder-blocks-form example 6 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -3209,31 +3669,51 @@ exports[`wonder-blocks-form example 6 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -3344,31 +3824,51 @@ exports[`wonder-blocks-form example 6 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -3479,31 +3979,51 @@ exports[`wonder-blocks-form example 6 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -3614,31 +4134,51 @@ exports[`wonder-blocks-form example 6 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -3824,31 +4364,51 @@ exports[`wonder-blocks-form example 7 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -3964,31 +4524,51 @@ exports[`wonder-blocks-form example 7 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -4104,31 +4684,51 @@ exports[`wonder-blocks-form example 7 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -4244,31 +4844,51 @@ exports[`wonder-blocks-form example 7 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -4384,31 +5004,51 @@ exports[`wonder-blocks-form example 7 1`] = `
             type="checkbox"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -4533,31 +5173,51 @@ exports[`wonder-blocks-form example 8 1`] = `
         Your first Pokemon
       </span>
       <div
-        aria-hidden="true"
         className=""
         style={
           Object {
-            "MsFlexBasis": 12,
-            "MsFlexPreferredSize": 12,
-            "WebkitFlexBasis": 12,
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
             "display": "flex",
-            "flexBasis": 12,
             "flexDirection": "column",
-            "flexShrink": 0,
             "margin": 0,
             "minHeight": 0,
             "minWidth": 0,
             "padding": 0,
             "position": "relative",
-            "width": 12,
             "zIndex": 0,
           }
         }
-      />
+      >
+        <div
+          aria-hidden="true"
+          className=""
+          style={
+            Object {
+              "MsFlexBasis": 12,
+              "MsFlexPreferredSize": 12,
+              "WebkitFlexBasis": 12,
+              "alignItems": "stretch",
+              "borderStyle": "solid",
+              "borderWidth": 0,
+              "boxSizing": "border-box",
+              "display": "flex",
+              "flexBasis": 12,
+              "flexDirection": "column",
+              "flexShrink": 0,
+              "margin": 0,
+              "minHeight": 0,
+              "minWidth": 0,
+              "padding": 0,
+              "position": "relative",
+              "width": 12,
+              "zIndex": 0,
+            }
+          }
+        />
+      </div>
       <div
         className=""
         style={
@@ -4641,31 +5301,51 @@ exports[`wonder-blocks-form example 8 1`] = `
             type="radio"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -4776,31 +5456,51 @@ exports[`wonder-blocks-form example 8 1`] = `
             type="radio"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -4930,31 +5630,51 @@ exports[`wonder-blocks-form example 8 1`] = `
             type="radio"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -5064,31 +5784,51 @@ exports[`wonder-blocks-form example 8 1`] = `
             type="radio"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -5198,31 +5938,51 @@ exports[`wonder-blocks-form example 8 1`] = `
             type="radio"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -5408,31 +6168,51 @@ exports[`wonder-blocks-form example 9 1`] = `
             type="radio"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -5548,31 +6328,51 @@ exports[`wonder-blocks-form example 9 1`] = `
             type="radio"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -5688,31 +6488,51 @@ exports[`wonder-blocks-form example 9 1`] = `
             type="radio"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
@@ -5828,31 +6648,51 @@ exports[`wonder-blocks-form example 9 1`] = `
             type="radio"
           />
           <div
-            aria-hidden="true"
             className=""
             style={
               Object {
-                "MsFlexBasis": 8,
-                "MsFlexPreferredSize": 8,
-                "WebkitFlexBasis": 8,
                 "alignItems": "stretch",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
                 "display": "flex",
-                "flexBasis": 8,
                 "flexDirection": "column",
-                "flexShrink": 0,
                 "margin": 0,
                 "minHeight": 0,
                 "minWidth": 0,
                 "padding": 0,
                 "position": "relative",
-                "width": 8,
                 "zIndex": 0,
               }
             }
-          />
+          >
+            <div
+              aria-hidden="true"
+              className=""
+              style={
+                Object {
+                  "MsFlexBasis": 8,
+                  "MsFlexPreferredSize": 8,
+                  "WebkitFlexBasis": 8,
+                  "alignItems": "stretch",
+                  "borderStyle": "solid",
+                  "borderWidth": 0,
+                  "boxSizing": "border-box",
+                  "display": "flex",
+                  "flexBasis": 8,
+                  "flexDirection": "column",
+                  "flexShrink": 0,
+                  "margin": 0,
+                  "minHeight": 0,
+                  "minWidth": 0,
+                  "padding": 0,
+                  "position": "relative",
+                  "width": 8,
+                  "zIndex": 0,
+                }
+              }
+            />
+          </div>
           <span
             className=""
             style={
