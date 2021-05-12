@@ -17,11 +17,7 @@ type Props = {|
 export default class Strut extends React.Component<Props> {
     render(): React.Node {
         const {size, style} = this.props;
-        return (
-            <View style={style}>
-                <View aria-hidden="true" style={strutStyle(size)} />
-            </View>
-        );
+        return <View aria-hidden="true" style={[strutStyle(size), style]} />;
     }
 }
 

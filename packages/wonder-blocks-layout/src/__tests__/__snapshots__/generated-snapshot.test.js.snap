@@ -95,51 +95,31 @@ exports[`wonder-blocks-layout example 1 1`] = `
     </span>
   </button>
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
+        "MsFlexBasis": 12,
+        "MsFlexPreferredSize": 12,
+        "WebkitFlexBasis": 12,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flexBasis": 12,
         "flexDirection": "column",
+        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 12,
         "zIndex": 0,
       }
     }
-  >
-    <div
-      aria-hidden="true"
-      className=""
-      style={
-        Object {
-          "MsFlexBasis": 12,
-          "MsFlexPreferredSize": 12,
-          "WebkitFlexBasis": 12,
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexBasis": 12,
-          "flexDirection": "column",
-          "flexShrink": 0,
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": 12,
-          "zIndex": 0,
-        }
-      }
-    />
-  </div>
+  />
   <button
     className=""
     disabled={false}
@@ -214,51 +194,31 @@ exports[`wonder-blocks-layout example 1 1`] = `
     </span>
   </button>
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
+        "MsFlexBasis": 12,
+        "MsFlexPreferredSize": 12,
+        "WebkitFlexBasis": 12,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flexBasis": 12,
         "flexDirection": "column",
+        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 12,
         "zIndex": 0,
       }
     }
-  >
-    <div
-      aria-hidden="true"
-      className=""
-      style={
-        Object {
-          "MsFlexBasis": 12,
-          "MsFlexPreferredSize": 12,
-          "WebkitFlexBasis": 12,
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexBasis": 12,
-          "flexDirection": "column",
-          "flexShrink": 0,
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": 12,
-          "zIndex": 0,
-        }
-      }
-    />
-  </div>
+  />
   <button
     className=""
     disabled={false}
@@ -427,51 +387,31 @@ exports[`wonder-blocks-layout example 1 1`] = `
     </span>
   </button>
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
+        "MsFlexBasis": 12,
+        "MsFlexPreferredSize": 12,
+        "WebkitFlexBasis": 12,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flexBasis": 12,
         "flexDirection": "column",
+        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 12,
         "zIndex": 0,
       }
     }
-  >
-    <div
-      aria-hidden="true"
-      className=""
-      style={
-        Object {
-          "MsFlexBasis": 12,
-          "MsFlexPreferredSize": 12,
-          "WebkitFlexBasis": 12,
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexBasis": 12,
-          "flexDirection": "column",
-          "flexShrink": 0,
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": 12,
-          "zIndex": 0,
-        }
-      }
-    />
-  </div>
+  />
   <button
     className=""
     disabled={false}
@@ -802,51 +742,31 @@ exports[`wonder-blocks-layout example 7 1`] = `
   >
     This should
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
+          "flexBasis": 16,
           "flexDirection": "column",
+          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 16,
           "zIndex": 0,
         }
       }
-    >
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 16,
-            "MsFlexPreferredSize": 16,
-            "WebkitFlexBasis": 16,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 16,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 16,
-            "zIndex": 0,
-          }
-        }
-      />
-    </div>
+    />
     not wrap.
   </div>
 </div>
@@ -893,51 +813,31 @@ exports[`wonder-blocks-layout example 8 1`] = `
   >
     No
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
+          "flexBasis": 16,
           "flexDirection": "column",
+          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 16,
           "zIndex": 0,
         }
       }
-    >
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 16,
-            "MsFlexPreferredSize": 16,
-            "WebkitFlexBasis": 16,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 16,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 16,
-            "zIndex": 0,
-          }
-        }
-      />
-    </div>
+    />
     overlap!
   </div>
   <div
@@ -961,51 +861,31 @@ exports[`wonder-blocks-layout example 8 1`] = `
   >
     No
     <div
+      aria-hidden="true"
       className=""
       style={
         Object {
+          "MsFlexBasis": 16,
+          "MsFlexPreferredSize": 16,
+          "WebkitFlexBasis": 16,
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
           "boxSizing": "border-box",
           "display": "flex",
+          "flexBasis": 16,
           "flexDirection": "column",
+          "flexShrink": 0,
           "margin": 0,
           "minHeight": 0,
           "minWidth": 0,
           "padding": 0,
           "position": "relative",
+          "width": 16,
           "zIndex": 0,
         }
       }
-    >
-      <div
-        aria-hidden="true"
-        className=""
-        style={
-          Object {
-            "MsFlexBasis": 16,
-            "MsFlexPreferredSize": 16,
-            "WebkitFlexBasis": 16,
-            "alignItems": "stretch",
-            "borderStyle": "solid",
-            "borderWidth": 0,
-            "boxSizing": "border-box",
-            "display": "flex",
-            "flexBasis": 16,
-            "flexDirection": "column",
-            "flexShrink": 0,
-            "margin": 0,
-            "minHeight": 0,
-            "minWidth": 0,
-            "padding": 0,
-            "position": "relative",
-            "width": 16,
-            "zIndex": 0,
-          }
-        }
-      />
-    </div>
+    />
     overlap!
   </div>
 </div>
@@ -1033,9 +913,13 @@ exports[`wonder-blocks-layout example 9 1`] = `
 >
   strut
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
+        "MsFlexBasis": 16,
+        "MsFlexPreferredSize": 16,
+        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "alignSelf": "center",
         "backgroundColor": "#0a2a66",
@@ -1043,7 +927,9 @@ exports[`wonder-blocks-layout example 9 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flexBasis": 16,
         "flexDirection": "column",
+        "flexShrink": 0,
         "height": "6px",
         "margin": 0,
         "marginLeft": 4,
@@ -1052,42 +938,20 @@ exports[`wonder-blocks-layout example 9 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 16,
         "zIndex": 0,
       }
     }
-  >
-    <div
-      aria-hidden="true"
-      className=""
-      style={
-        Object {
-          "MsFlexBasis": 16,
-          "MsFlexPreferredSize": 16,
-          "WebkitFlexBasis": 16,
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexBasis": 16,
-          "flexDirection": "column",
-          "flexShrink": 0,
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": 16,
-          "zIndex": 0,
-        }
-      }
-    />
-  </div>
+  />
   has
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
+        "MsFlexBasis": 16,
+        "MsFlexPreferredSize": 16,
+        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "alignSelf": "center",
         "backgroundColor": "#0a2a66",
@@ -1095,7 +959,9 @@ exports[`wonder-blocks-layout example 9 1`] = `
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flexBasis": 16,
         "flexDirection": "column",
+        "flexShrink": 0,
         "height": "6px",
         "margin": 0,
         "marginLeft": 4,
@@ -1104,37 +970,11 @@ exports[`wonder-blocks-layout example 9 1`] = `
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 16,
         "zIndex": 0,
       }
     }
-  >
-    <div
-      aria-hidden="true"
-      className=""
-      style={
-        Object {
-          "MsFlexBasis": 16,
-          "MsFlexPreferredSize": 16,
-          "WebkitFlexBasis": 16,
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexBasis": 16,
-          "flexDirection": "column",
-          "flexShrink": 0,
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": 16,
-          "zIndex": 0,
-        }
-      }
-    />
-  </div>
+  />
   style
 </div>
 `;

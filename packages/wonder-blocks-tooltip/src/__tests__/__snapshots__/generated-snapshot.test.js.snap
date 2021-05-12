@@ -472,51 +472,31 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
     </span>
   </button>
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
+        "MsFlexBasis": 16,
+        "MsFlexPreferredSize": 16,
+        "WebkitFlexBasis": 16,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flexBasis": 16,
         "flexDirection": "column",
+        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 16,
         "zIndex": 0,
       }
     }
-  >
-    <div
-      aria-hidden="true"
-      className=""
-      style={
-        Object {
-          "MsFlexBasis": 16,
-          "MsFlexPreferredSize": 16,
-          "WebkitFlexBasis": 16,
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexBasis": 16,
-          "flexDirection": "column",
-          "flexShrink": 0,
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": 16,
-          "zIndex": 0,
-        }
-      }
-    />
-  </div>
+  />
   <button
     aria-describedby="uid-tooltip-7-aria-content"
     aria-label="search"
@@ -665,51 +645,31 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
     Title text!
   </h4>
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flexBasis": 4,
         "flexDirection": "column",
+        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 4,
         "zIndex": 0,
       }
     }
-  >
-    <div
-      aria-hidden="true"
-      className=""
-      style={
-        Object {
-          "MsFlexBasis": 4,
-          "MsFlexPreferredSize": 4,
-          "WebkitFlexBasis": 4,
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexBasis": 4,
-          "flexDirection": "column",
-          "flexShrink": 0,
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": 4,
-          "zIndex": 0,
-        }
-      }
-    />
-  </div>
+  />
   <span
     className=""
     style={
@@ -766,51 +726,31 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
     Body text title!
   </span>
   <div
+    aria-hidden="true"
     className=""
     style={
       Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
         "boxSizing": "border-box",
         "display": "flex",
+        "flexBasis": 4,
         "flexDirection": "column",
+        "flexShrink": 0,
         "margin": 0,
         "minHeight": 0,
         "minWidth": 0,
         "padding": 0,
         "position": "relative",
+        "width": 4,
         "zIndex": 0,
       }
     }
-  >
-    <div
-      aria-hidden="true"
-      className=""
-      style={
-        Object {
-          "MsFlexBasis": 4,
-          "MsFlexPreferredSize": 4,
-          "WebkitFlexBasis": 4,
-          "alignItems": "stretch",
-          "borderStyle": "solid",
-          "borderWidth": 0,
-          "boxSizing": "border-box",
-          "display": "flex",
-          "flexBasis": 4,
-          "flexDirection": "column",
-          "flexShrink": 0,
-          "margin": 0,
-          "minHeight": 0,
-          "minWidth": 0,
-          "padding": 0,
-          "position": "relative",
-          "width": 4,
-          "zIndex": 0,
-        }
-      }
-    />
-  </div>
+  />
   <span
     className=""
     style={
