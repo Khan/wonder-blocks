@@ -2,9 +2,11 @@
 import * as React from "react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 type Props = {|
     size: number,
+    style?: StyleType,
 |};
 
 /**
@@ -14,7 +16,8 @@ type Props = {|
  */
 export default class Strut extends React.Component<Props> {
     render(): React.Node {
-        return <View aria-hidden="true" style={strutStyle(this.props.size)} />;
+        const {size, style} = this.props;
+        return <View aria-hidden="true" style={[strutStyle(size), style]} />;
     }
 }
 

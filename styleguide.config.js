@@ -31,7 +31,10 @@ module.exports = {
         {
             name: "Clickable",
             content: "packages/wonder-blocks-clickable/docs.md",
-            components: "packages/wonder-blocks-clickable/src/components/*.js",
+            components: [
+                "packages/wonder-blocks-clickable/src/components/clickable-behavior.js",
+                "packages/wonder-blocks-clickable/src/components/clickable.js",
+            ],
         },
         {
             name: "Color",
@@ -124,7 +127,12 @@ module.exports = {
         {
             name: "Layout",
             content: "packages/wonder-blocks-layout/docs.md",
-            components: "packages/wonder-blocks-layout/src/components/*.js",
+            components: [
+                "packages/wonder-blocks-layout/src/components/media-layout-context.js",
+                "packages/wonder-blocks-layout/src/components/media-layout.js",
+                "packages/wonder-blocks-layout/src/components/spring.js",
+                "packages/wonder-blocks-layout/src/components/strut.js",
+            ],
         },
         {
             name: "Link",

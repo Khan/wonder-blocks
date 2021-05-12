@@ -197,6 +197,45 @@ describe("wonder-blocks-layout", () => {
         });
         const example = (
             <View style={styles.row}>
+                This should
+                <Spring />
+                expand.
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 6", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            spring: {
+                backgroundColor: Color.darkBlue,
+                marginLeft: Spacing.xxxSmall_4,
+                marginRight: Spacing.xxxSmall_4,
+            },
+        });
+        const example = (
+            <View style={styles.row}>
+                Welcome to
+                <Spring style={styles.spring} />
+                Khan Academy.
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 7", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+        });
+        const example = (
+            <View style={styles.row}>
                 <View style={styles.row}>
                     This should
                     <Strut size={16} />
@@ -208,7 +247,7 @@ describe("wonder-blocks-layout", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 6", () => {
+    it("example 8", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -226,6 +265,32 @@ describe("wonder-blocks-layout", () => {
                     <Strut size={16} />
                     overlap!
                 </View>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 9", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+            },
+            strut: {
+                alignSelf: "center",
+                backgroundColor: Color.darkBlue,
+                marginLeft: Spacing.xxxSmall_4,
+                marginRight: Spacing.xxxSmall_4,
+                height: "6px",
+            },
+        });
+        const example = (
+            <View style={styles.row}>
+                strut
+                <Strut size={16} style={styles.strut} />
+                has
+                <Strut size={16} style={styles.strut} />
+                style
             </View>
         );
         const tree = renderer.create(example).toJSON();

@@ -626,6 +626,101 @@ exports[`wonder-blocks-layout example 5 1`] = `
     }
   }
 >
+  This should
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  expand.
+</div>
+`;
+
+exports[`wonder-blocks-layout example 6 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  Welcome to
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "alignItems": "stretch",
+        "backgroundColor": "#0a2a66",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexDirection": "column",
+        "flexGrow": 1,
+        "margin": 0,
+        "marginLeft": 4,
+        "marginRight": 4,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "zIndex": 0,
+      }
+    }
+  />
+  Khan Academy.
+</div>
+`;
+
+exports[`wonder-blocks-layout example 7 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
   <div
     className=""
     style={
@@ -677,7 +772,7 @@ exports[`wonder-blocks-layout example 5 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-layout example 6 1`] = `
+exports[`wonder-blocks-layout example 8 1`] = `
 <div
   className=""
   style={
@@ -793,5 +888,93 @@ exports[`wonder-blocks-layout example 6 1`] = `
     />
     overlap!
   </div>
+</div>
+`;
+
+exports[`wonder-blocks-layout example 9 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "row",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  strut
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 16,
+        "MsFlexPreferredSize": 16,
+        "WebkitFlexBasis": 16,
+        "alignItems": "stretch",
+        "alignSelf": "center",
+        "backgroundColor": "#0a2a66",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 16,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "height": "6px",
+        "margin": 0,
+        "marginLeft": 4,
+        "marginRight": 4,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 16,
+        "zIndex": 0,
+      }
+    }
+  />
+  has
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 16,
+        "MsFlexPreferredSize": 16,
+        "WebkitFlexBasis": 16,
+        "alignItems": "stretch",
+        "alignSelf": "center",
+        "backgroundColor": "#0a2a66",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 16,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "height": "6px",
+        "margin": 0,
+        "marginLeft": 4,
+        "marginRight": 4,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 16,
+        "zIndex": 0,
+      }
+    }
+  />
+  style
 </div>
 `;

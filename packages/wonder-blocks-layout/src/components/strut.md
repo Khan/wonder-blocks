@@ -41,3 +41,32 @@ const styles = StyleSheet.create({
     </View>
 </View>
 ```
+
+`<Strut/>` can have a style
+```js
+import {StyleSheet} from "aphrodite";
+import Color from "@khanacademy/wonder-blocks-color";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {View} from "@khanacademy/wonder-blocks-core";
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    strut: {
+        alignSelf: "center",
+        backgroundColor: Color.darkBlue,
+        marginLeft: Spacing.xxxSmall_4,
+        marginRight: Spacing.xxxSmall_4,
+        height: "6px",
+    },
+});
+
+<View style={styles.row}>
+    strut
+    <Strut size={16} style={styles.strut}/>
+    has
+    <Strut size={16} style={styles.strut}/>
+    style
+</View>
+```
