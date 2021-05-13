@@ -212,6 +212,7 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
                 itemCount={data.length}
                 itemSize={this.getItemSize}
                 itemData={data}
+                style={{overflowX: "hidden"}}
                 // react-window doesn't accept maybe numbers. It wants numbers
                 // or strings.
                 // $FlowFixMe
