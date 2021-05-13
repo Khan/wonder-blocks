@@ -236,11 +236,11 @@ export default class SingleSelect extends React.Component<Props, State> {
             const {disabled, value} = option.props;
             const selected = selectedValue === value;
 
-            if (selected) {
-                this.selectedIndex = indexCounter;
-            }
             if (!disabled) {
                 indexCounter += 1;
+            }
+            if (selected) {
+                this.selectedIndex = indexCounter;
             }
             return {
                 component: option,

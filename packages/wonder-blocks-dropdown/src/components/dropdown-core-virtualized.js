@@ -101,11 +101,12 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
      */
     setWidth() {
         const rootNode = ((ReactDOM.findDOMNode(this): any): ?HTMLElement);
+        const parentNode = rootNode?.parentElement;
 
         // after the non-virtualized items are rendered, we get the container
         //  width to pass it to react-window's List
-        if (rootNode) {
-            const width = rootNode.getBoundingClientRect().width;
+        if (parentNode) {
+            const width = parentNode.getBoundingClientRect().width;
 
             this.setState({
                 width,
