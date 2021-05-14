@@ -49,6 +49,13 @@ type CommonProps = {|
     className?: string,
 
     /**
+     * Whether the Clickable is on a dark colored background.
+     * Sets the default focus ring color to white, instead of blue.
+     * Defaults to false.
+     */
+    light: boolean,
+
+    /**
      * Disables or enables the child; defaults to false
      */
     disabled: boolean,
@@ -167,6 +174,7 @@ type ContextTypes = {|
 |};
 
 type DefaultProps = {|
+    light: $PropertyType<Props, "light">,
     disabled: $PropertyType<Props, "disabled">,
     "aria-label": $PropertyType<Props, "aria-label">,
 |};
@@ -203,6 +211,7 @@ export default class Clickable extends React.Component<Props> {
     static contextTypes: ContextTypes = {router: PropTypes.any};
 
     static defaultProps: DefaultProps = {
+        light: false,
         disabled: false,
         "aria-label": "",
     };
@@ -269,6 +278,7 @@ export default class Clickable extends React.Component<Props> {
             onKeyDown,
             onKeyUp,
             hideDefaultFocusRing,
+            light,
             disabled,
             ...restProps
         } = this.props;
@@ -281,7 +291,9 @@ export default class Clickable extends React.Component<Props> {
         const getStyle = (state: ClickableState): StyleType => [
             styles.reset,
             styles.link,
-            !hideDefaultFocusRing && state.focused && styles.focused,
+            !hideDefaultFocusRing &&
+                state.focused &&
+                (light ? styles.focusedLight : styles.focused),
             style,
         ];
 
@@ -369,5 +381,8 @@ const styles = StyleSheet.create({
     },
     focused: {
         outline: `solid 2px ${Color.blue}`,
+    },
+    focusedLight: {
+        outline: `solid 2px ${Color.white}`,
     },
 });

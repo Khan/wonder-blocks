@@ -110,6 +110,113 @@ exports[`wonder-blocks-clickable example 2 1`] = `
   className=""
   style={
     Object {
+      "alignItems": "stretch",
+      "backgroundColor": "#0a2a66",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 12,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <button
+    aria-label=""
+    className=""
+    disabled={false}
+    onBlur={[Function]}
+    onClick={[Function]}
+    onDragStart={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    onKeyUp={[Function]}
+    onMouseDown={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    onMouseUp={[Function]}
+    onTouchCancel={[Function]}
+    onTouchEnd={[Function]}
+    onTouchStart={[Function]}
+    role="tab"
+    style={
+      Object {
+        "::MozFocusInner": Object {
+          "border": 0,
+        },
+        "MozOsxFontSmoothing": "inherit",
+        "WebkitFontSmoothing": "inherit",
+        "background": "transparent",
+        "border": "none",
+        "boxSizing": "border-box",
+        "color": "inherit",
+        "cursor": "pointer",
+        "font": "inherit",
+        "lineHeight": "normal",
+        "margin": 0,
+        "outline": "none",
+        "overflow": "visible",
+        "padding": 0,
+        "textDecoration": "none",
+        "touchAction": "manipulation",
+        "userSelect": "none",
+        "width": "auto",
+      }
+    }
+    tabIndex={0}
+    type="button"
+  >
+    <div
+      className=""
+      style={
+        Object {
+          "alignItems": "stretch",
+          "borderStyle": "solid",
+          "borderWidth": 0,
+          "boxSizing": "border-box",
+          "display": "flex",
+          "flexDirection": "column",
+          "margin": 0,
+          "minHeight": 0,
+          "minWidth": 0,
+          "padding": 0,
+          "position": "relative",
+          "zIndex": 0,
+        }
+      }
+    >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 16,
+            "fontWeight": 400,
+            "lineHeight": "22px",
+          }
+        }
+      >
+        This text is clickable!
+      </span>
+    </div>
+  </button>
+</div>
+`;
+
+exports[`wonder-blocks-clickable example 3 1`] = `
+<div
+  className=""
+  style={
+    Object {
       "alignItems": "center",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -218,7 +325,7 @@ exports[`wonder-blocks-clickable example 2 1`] = `
 </div>
 `;
 
-exports[`wonder-blocks-clickable example 3 1`] = `
+exports[`wonder-blocks-clickable example 4 1`] = `
 <div
   className=""
   style={
