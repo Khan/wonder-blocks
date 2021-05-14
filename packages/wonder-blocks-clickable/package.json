@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-clickable",
-  "version": "2.0.10",
+  "version": "2.1.0",
   "design": "v1",
   "description": "Clickable component for Wonder-Blocks.",
   "main": "dist/index.js",
