@@ -50,6 +50,52 @@ const styles = StyleSheet.create({
 </View>
 ```
 
+Clickable has a `light` prop which changes the default focus ring color to fit a dark background.
+
+```jsx
+import {StyleSheet} from "aphrodite";
+import Clickable from "@khanacademy/wonder-blocks-clickable";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {Body} from "@khanacademy/wonder-blocks-typography";
+
+const styles = StyleSheet.create({
+    background: {
+        backgroundColor: Color.darkBlue,
+        color: Color.white,
+        padding: Spacing.small_12,
+    },
+    hovered: {
+        textDecoration: "underline",
+        backgroundColor: Color.purple,
+    },
+    pressed: {
+        color: Color.blue,
+    },
+});
+
+<View style={styles.background}>
+    <Clickable
+        onClick={() => alert("You clicked some text!")}
+        role="tab"
+        light={true}
+    >
+        {
+            ({hovered, focused, pressed}) =>
+            <View style={[
+                hovered && styles.hovered,
+                pressed && styles.pressed,
+            ]}>
+                <Body>
+                    This text is clickable!
+                </Body>
+            </View>
+        }
+    </Clickable>
+</View>
+```
+
 ### Client-Side routing with Clickable
 
 If your Clickable component is within a React-Router enviroment, your component will automatically default to client-side routing with the `href` prop is set. This behavior can be toggeled by passing the `skipClientNav` prop. In this example we see two Clickable h1 tags, one which employs client-side routing, and the other uses skipClientNav to avoid this default behavior.

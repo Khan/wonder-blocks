@@ -59,6 +59,45 @@ describe("wonder-blocks-clickable", () => {
 
     it("example 2", () => {
         const styles = StyleSheet.create({
+            background: {
+                backgroundColor: Color.darkBlue,
+                color: Color.white,
+                padding: Spacing.small_12,
+            },
+            hovered: {
+                textDecoration: "underline",
+                backgroundColor: Color.purple,
+            },
+            pressed: {
+                color: Color.blue,
+            },
+        });
+        const example = (
+            <View style={styles.background}>
+                <Clickable
+                    onClick={() => alert("You clicked some text!")}
+                    role="tab"
+                    light={true}
+                >
+                    {({hovered, focused, pressed}) => (
+                        <View
+                            style={[
+                                hovered && styles.hovered,
+                                pressed && styles.pressed,
+                            ]}
+                        >
+                            <Body>This text is clickable!</Body>
+                        </View>
+                    )}
+                </Clickable>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 3", () => {
+        const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
                 alignItems: "center",
@@ -95,7 +134,7 @@ describe("wonder-blocks-clickable", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 3", () => {
+    it("example 4", () => {
         const styles = StyleSheet.create({
             hovered: {
                 textDecoration: "underline",
