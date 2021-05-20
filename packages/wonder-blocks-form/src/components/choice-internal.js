@@ -4,7 +4,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -118,14 +118,10 @@ type DefaultProps = {|
             </LabelMedium>
         );
     }
-    getDescriptionId(): string | void {
-        const {description, id} = this.props;
-        return description && id && `${id}-description`;
-    }
-    getDescription(): React.Node {
+    getDescription(id: string | void): React.Node {
         const {description} = this.props;
         return (
-            <LabelSmall style={styles.description} id={this.getDescriptionId()}>
+            <LabelSmall style={styles.description} id={id}>
                 {description}
             </LabelSmall>
         );
@@ -144,35 +140,43 @@ type DefaultProps = {|
         const ChoiceCore = this.getChoiceCoreComponent();
         const ClickableBehavior = getClickableBehavior();
         return (
-            <View style={style} className={className}>
-                <ClickableBehavior
-                    disabled={coreProps.disabled}
-                    onClick={this.handleClick}
-                    role={variant}
-                >
-                    {(state, childrenProps) => {
-                        return (
-                            <View
-                                style={styles.wrapper}
-                                {...childrenProps}
-                                // We are resetting the tabIndex=0 from handlers
-                                // because the ChoiceCore component will receive
-                                // focus on basis of it being an input element.
-                                tabIndex={-1}
+            <UniqueIDProvider mockOnFirstRender={true} scope="choice">
+                {(ids) => {
+                    const descriptionId = description && ids.get("description");
+
+                    return (
+                        <View style={style} className={className}>
+                            <ClickableBehavior
+                                disabled={coreProps.disabled}
+                                onClick={this.handleClick}
+                                role={variant}
                             >
-                                <ChoiceCore
-                                    {...coreProps}
-                                    {...state}
-                                    aria-describedby={this.getDescriptionId()}
-                                />
-                                <Strut size={Spacing.xSmall_8} />
-                                {label && this.getLabel()}
-                            </View>
-                        );
-                    }}
-                </ClickableBehavior>
-                {description && this.getDescription()}
-            </View>
+                                {(state, childrenProps) => {
+                                    return (
+                                        <View
+                                            style={styles.wrapper}
+                                            {...childrenProps}
+                                            // We are resetting the tabIndex=0 from handlers
+                                            // because the ChoiceCore component will receive
+                                            // focus on basis of it being an input element.
+                                            tabIndex={-1}
+                                        >
+                                            <ChoiceCore
+                                                {...coreProps}
+                                                {...state}
+                                                aria-describedby={descriptionId}
+                                            />
+                                            <Strut size={Spacing.xSmall_8} />
+                                            {label && this.getLabel()}
+                                        </View>
+                                    );
+                                }}
+                            </ClickableBehavior>
+                            {description && this.getDescription(descriptionId)}
+                        </View>
+                    );
+                }}
+            </UniqueIDProvider>
         );
     }
 }

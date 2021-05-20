@@ -814,7 +814,7 @@ exports[`wonder-blocks-form example 2 1`] = `
       tabIndex={-1}
     >
       <input
-        aria-describedby="assignment-description"
+        aria-describedby="uid-choice-6-description"
         aria-invalid={false}
         checked={false}
         className=""
@@ -895,7 +895,7 @@ exports[`wonder-blocks-form example 2 1`] = `
     </div>
     <span
       className=""
-      id="assignment-description"
+      id="uid-choice-6-description"
       style={
         Object {
           "MozOsxFontSmoothing": "grayscale",
@@ -2109,7 +2109,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           tabIndex={-1}
         >
           <input
-            aria-describedby="Toppings-sausage-description"
+            aria-describedby="uid-choice-15-description"
             aria-invalid={false}
             checked={false}
             className=""
@@ -2190,7 +2190,7 @@ exports[`wonder-blocks-form example 5 1`] = `
         </div>
         <span
           className=""
-          id="Toppings-sausage-description"
+          id="uid-choice-15-description"
           style={
             Object {
               "MozOsxFontSmoothing": "grayscale",
@@ -2666,7 +2666,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           tabIndex={-1}
         >
           <input
-            aria-describedby="Toppings-pineapple-description"
+            aria-describedby="uid-choice-19-description"
             aria-invalid={false}
             checked={true}
             className=""
@@ -2767,7 +2767,7 @@ exports[`wonder-blocks-form example 5 1`] = `
         </div>
         <span
           className=""
-          id="Toppings-pineapple-description"
+          id="uid-choice-19-description"
           style={
             Object {
               "MozOsxFontSmoothing": "grayscale",
@@ -4752,7 +4752,7 @@ exports[`wonder-blocks-form example 8 1`] = `
           tabIndex={-1}
         >
           <input
-            aria-describedby="Pokemon-char-description"
+            aria-describedby="uid-choice-32-description"
             aria-invalid={false}
             checked={false}
             className=""
@@ -4835,7 +4835,7 @@ exports[`wonder-blocks-form example 8 1`] = `
         </div>
         <span
           className=""
-          id="Pokemon-char-description"
+          id="uid-choice-32-description"
           style={
             Object {
               "MozOsxFontSmoothing": "grayscale",
