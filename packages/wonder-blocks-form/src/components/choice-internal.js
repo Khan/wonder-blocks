@@ -118,10 +118,16 @@ type DefaultProps = {|
             </LabelMedium>
         );
     }
+    getDescriptionId(): ?string {
+        const {description, id} = this.props;
+        return description && id && `${id}-description`;
+    }
     getDescription(): React.Node {
         const {description} = this.props;
         return (
-            <LabelSmall style={styles.description}>{description}</LabelSmall>
+            <LabelSmall style={styles.description} id={this.getDescriptionId()}>
+                {description}
+            </LabelSmall>
         );
     }
     render(): React.Node {
@@ -154,7 +160,11 @@ type DefaultProps = {|
                                 // focus on basis of it being an input element.
                                 tabIndex={-1}
                             >
-                                <ChoiceCore {...coreProps} {...state} />
+                                <ChoiceCore
+                                    {...coreProps}
+                                    {...state}
+                                    aria-describedby={this.getDescriptionId()}
+                                />
                                 <Strut size={Spacing.xSmall_8} />
                                 {label && this.getLabel()}
                             </View>
