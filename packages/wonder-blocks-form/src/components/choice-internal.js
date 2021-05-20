@@ -118,7 +118,7 @@ type DefaultProps = {|
             </LabelMedium>
         );
     }
-    getDescriptionId(): ?string {
+    getDescriptionId(): string | void {
         const {description, id} = this.props;
         return description && id && `${id}-description`;
     }
