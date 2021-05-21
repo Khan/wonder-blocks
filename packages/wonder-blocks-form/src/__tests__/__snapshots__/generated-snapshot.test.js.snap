@@ -5882,3 +5882,36 @@ exports[`wonder-blocks-form example 9 1`] = `
   </fieldset>
 </div>
 `;
+
+exports[`wonder-blocks-form example 10 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "background": "#ffffff",
+      "border": "1px solid rgba(33,36,44,0.16)",
+      "borderRadius": 4,
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "color": "#21242c",
+      "display": "flex",
+      "flexDirection": "column",
+      "height": 40,
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": "10px 10px 10px 16px",
+      "position": "relative",
+      "width": 288,
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    className="input_8lp9zk-o_O-LabelMedium_1rew30o"
+    placeholder="Placeholder"
+  />
+</div>
+`;

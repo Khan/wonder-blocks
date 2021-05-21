@@ -15,6 +15,7 @@ import {
     CheckboxGroup,
     Choice,
     RadioGroup,
+    TextField,
 } from "@khanacademy/wonder-blocks-form";
 import {StyleSheet} from "aphrodite";
 import {
@@ -596,6 +597,12 @@ describe("wonder-blocks-form", () => {
                 <ClassSelectorExample />
             </View>
         );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 10", () => {
+        const example = <TextField />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
