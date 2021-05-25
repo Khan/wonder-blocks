@@ -5900,3 +5900,13 @@ exports[`wonder-blocks-form example 10 1`] = `
   placeholder="Placeholder"
 />
 `;
+
+exports[`wonder-blocks-form example 11 1`] = `
+<input
+  className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3-o_O-disabled_1ab5c0p"
+  disabled={true}
+  onBlur={[Function]}
+  onFocus={[Function]}
+  placeholder="Placeholder"
+/>
+`;

@@ -606,4 +606,10 @@ describe("wonder-blocks-form", () => {
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
+
+    it("example 11", () => {
+        const example = <TextField disabled={true} />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 });
