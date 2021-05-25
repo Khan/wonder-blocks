@@ -9,3 +9,5 @@ export default {
 };
 
 export const basic: StoryComponentType = () => <TextField />;
+
+export const disabled: StoryComponentType = () => <TextField disabled={true} />;

@@ -7,46 +7,75 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
-type State = {|
-    enabled: boolean,
+type Props = {|
+    /**
+     * Makes a read-only input field that cannot be focused.
+     */
     disabled: boolean,
+|};
+
+type DefaultProps = {|
+    disabled: $PropertyType<Props, "disabled">,
+|};
+
+type State = {|
+    /**
+     * Displayed when the validation fails.
+     */
     error: ?string,
+
+    /**
+     * The user focuses on this field.
+     */
     focused: boolean,
 |};
 
-export default class TextField extends React.Component<{||}, State> {
-    state: State = {
-        enabled: true,
+/**
+ * A TextField is an element used to accept a single line of text from the user.
+ */
+export default class TextField extends React.Component<Props, State> {
+    static defaultProps: DefaultProps = {
         disabled: false,
+    };
+
+    state: State = {
         error: null,
         focused: false,
     };
 
-    handleOnFocus: () => void = () => {
+    handleOnFocus: (
+        event: SyntheticFocusEvent<HTMLInputElement>,
+    ) => mixed = () => {
         this.setState({
             focused: true,
         });
     };
 
-    handleOnBlur: () => void = () => {
+    handleOnBlur: (
+        event: SyntheticFocusEvent<HTMLInputElement>,
+    ) => mixed = () => {
         this.setState({
             focused: false,
         });
     };
 
     render(): React.Node {
+        const {disabled} = this.props;
         return (
             <input
                 className={css([
                     styles.input,
                     typographyStyles.LabelMedium,
-                    this.state.enabled && styles.default,
-                    this.state.disabled && styles.disabled,
-                    this.state.error && styles.error,
-                    this.state.focused && styles.focused,
+                    styles.default,
+                    // Prioritizes disabled, then focused, then error (if any)
+                    disabled
+                        ? styles.disabled
+                        : this.state.focused
+                        ? styles.focused
+                        : this.state.error && styles.error,
                 ])}
                 placeholder="Placeholder"
-                disabled={this.state.disabled}
+                disabled={disabled}
                 onFocus={this.handleOnFocus}
                 onBlur={this.handleOnBlur}
             />
