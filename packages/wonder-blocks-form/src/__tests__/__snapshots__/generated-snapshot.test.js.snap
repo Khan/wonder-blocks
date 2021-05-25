@@ -814,6 +814,7 @@ exports[`wonder-blocks-form example 2 1`] = `
       tabIndex={-1}
     >
       <input
+        aria-describedby="uid-choice-6-description"
         aria-invalid={false}
         checked={false}
         className=""
@@ -894,6 +895,7 @@ exports[`wonder-blocks-form example 2 1`] = `
     </div>
     <span
       className=""
+      id="uid-choice-6-description"
       style={
         Object {
           "MozOsxFontSmoothing": "grayscale",
@@ -2107,6 +2109,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           tabIndex={-1}
         >
           <input
+            aria-describedby="uid-choice-15-description"
             aria-invalid={false}
             checked={false}
             className=""
@@ -2187,6 +2190,7 @@ exports[`wonder-blocks-form example 5 1`] = `
         </div>
         <span
           className=""
+          id="uid-choice-15-description"
           style={
             Object {
               "MozOsxFontSmoothing": "grayscale",
@@ -2662,6 +2666,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           tabIndex={-1}
         >
           <input
+            aria-describedby="uid-choice-19-description"
             aria-invalid={false}
             checked={true}
             className=""
@@ -2762,6 +2767,7 @@ exports[`wonder-blocks-form example 5 1`] = `
         </div>
         <span
           className=""
+          id="uid-choice-19-description"
           style={
             Object {
               "MozOsxFontSmoothing": "grayscale",
@@ -4746,6 +4752,7 @@ exports[`wonder-blocks-form example 8 1`] = `
           tabIndex={-1}
         >
           <input
+            aria-describedby="uid-choice-32-description"
             aria-invalid={false}
             checked={false}
             className=""
@@ -4828,6 +4835,7 @@ exports[`wonder-blocks-form example 8 1`] = `
         </div>
         <span
           className=""
+          id="uid-choice-32-description"
           style={
             Object {
               "MozOsxFontSmoothing": "grayscale",
