@@ -636,7 +636,7 @@ describe("wonder-blocks-form", () => {
             constructor(props) {
                 super(props);
                 this.state = {
-                    value: "",
+                    value: "12345",
                 };
             }
 
@@ -666,7 +666,7 @@ describe("wonder-blocks-form", () => {
             constructor(props) {
                 super(props);
                 this.state = {
-                    value: "",
+                    value: "Password123",
                 };
             }
 
@@ -693,12 +693,7 @@ describe("wonder-blocks-form", () => {
 
     it("example 13", () => {
         const example = (
-            <TextField
-                id="tf-1"
-                value=""
-                onChange={() => void 0}
-                disabled={true}
-            />
+            <TextField id="tf-1" value="" onChange={() => {}} disabled={true} />
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();

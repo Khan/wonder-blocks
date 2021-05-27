@@ -5915,7 +5915,7 @@ exports[`wonder-blocks-form example 11 1`] = `
   onFocus={[Function]}
   placeholder="Placeholder"
   type="number"
-  value=""
+  value="12345"
 />
 `;
 
@@ -5929,7 +5929,7 @@ exports[`wonder-blocks-form example 12 1`] = `
   onFocus={[Function]}
   placeholder="Placeholder"
   type="password"
-  value=""
+  value="Password123"
 />
 `;
 

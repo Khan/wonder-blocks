@@ -35,7 +35,7 @@ class TextFieldExample extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: "",
+            value: "12345",
         };
     }
 
@@ -63,7 +63,7 @@ class TextFieldExample extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: "",
+            value: "Password123",
         };
     }
 
@@ -87,5 +87,5 @@ Disabled
 ```js
 import {TextField} from "@khanacademy/wonder-blocks-form";
 
-<TextField id="tf-1" value="" onChange={() => void 0} disabled={true} />
+<TextField id="tf-1" value="" onChange={() => {}} disabled={true} />
 ```

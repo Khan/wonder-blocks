@@ -14,7 +14,7 @@ describe("TextField", () => {
     it("textfield is focused", () => {
         // Arrange
         const wrapper = mount(
-            <TextField id="tf-1" value="" onChange={() => void 0} />,
+            <TextField id="tf-1" value="" onChange={() => {}} />,
         );
 
         // Act
@@ -27,7 +27,7 @@ describe("TextField", () => {
     it("textfield is blurred", async () => {
         // Arrange
         const wrapper = mount(
-            <TextField id="tf-1" value="" onChange={() => void 0} />,
+            <TextField id="tf-1" value="" onChange={() => {}} />,
         );
 
         // Act
@@ -39,26 +39,21 @@ describe("TextField", () => {
         expect(wrapper).toHaveState("focused", false);
     });
 
-    it("id prop is passed to input", () => {
+    it("id prop is passed to the input element", () => {
         // Arrange
         const id: string = "tf-1";
 
         // Act
         const wrapper = mount(
-            <TextField
-                id={id}
-                value=""
-                onChange={() => void 0}
-                disabled={true}
-            />,
+            <TextField id={id} value="" onChange={() => {}} disabled={true} />,
         );
 
         // Assert
         const input = wrapper.find("input");
-        expect(input).toHaveProp("id", id);
+        expect(input).toContainMatchingElement(`[id="${id}"]`);
     });
 
-    it("type prop is passed to input", () => {
+    it("type prop is passed to the input element", () => {
         // Arrange
         const type = "number";
 
@@ -68,17 +63,17 @@ describe("TextField", () => {
                 id={"tf-1"}
                 type={type}
                 value=""
-                onChange={() => void 0}
+                onChange={() => {}}
                 disabled={true}
             />,
         );
 
         // Assert
         const input = wrapper.find("input");
-        expect(input).toHaveProp("type", type);
+        expect(input).toContainMatchingElement(`[type="${type}"]`);
     });
 
-    it("value prop is passed to input", () => {
+    it("value prop is passed to the input element", () => {
         // Arrange
         const value = "Text";
 
@@ -87,23 +82,23 @@ describe("TextField", () => {
             <TextField
                 id={"tf-1"}
                 value={value}
-                onChange={() => void 0}
+                onChange={() => {}}
                 disabled={true}
             />,
         );
 
         // Assert
         const input = wrapper.find("input");
-        expect(input).toHaveValue(value);
+        expect(input).toContainMatchingElement(`[value="${value}"]`);
     });
 
-    it("disabled prop is true", () => {
+    it("disabled prop disables the input element", () => {
         // Arrange
         const wrapper = mount(
             <TextField
                 id="tf-1"
                 value=""
-                onChange={() => void 0}
+                onChange={() => {}}
                 disabled={true}
             />,
         );
@@ -129,9 +124,10 @@ describe("TextField", () => {
         );
 
         // Act
-        wrapper.simulate("change", {target: {value: "Text2"}});
+        const newValue = "Test2";
+        wrapper.simulate("change", {target: {value: newValue}});
 
         // Assert
-        expect(handleOnChange).toHaveBeenCalled();
+        expect(handleOnChange).toHaveBeenCalledWith(newValue);
     });
 });

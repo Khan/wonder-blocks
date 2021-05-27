@@ -26,7 +26,7 @@ export const text: StoryComponentType = () => {
 };
 
 export const number: StoryComponentType = () => {
-    const [value, setValue] = React.useState("");
+    const [value, setValue] = React.useState("12345");
 
     const handleOnChange = (newValue: string) => {
         setValue(newValue);
@@ -43,7 +43,7 @@ export const number: StoryComponentType = () => {
 };
 
 export const password: StoryComponentType = () => {
-    const [value, setValue] = React.useState("");
+    const [value, setValue] = React.useState("Password123");
 
     const handleOnChange = (newValue: string) => {
         setValue(newValue);
@@ -60,5 +60,5 @@ export const password: StoryComponentType = () => {
 };
 
 export const disabled: StoryComponentType = () => (
-    <TextField id="tf-1" value="" onChange={() => void 0} disabled={true} />
+    <TextField id="tf-1" value="" onChange={() => {}} disabled={true} />
 );
