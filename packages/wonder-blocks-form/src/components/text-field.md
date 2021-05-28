@@ -54,9 +54,14 @@ class TextFieldExample extends React.Component {
 <TextFieldExample />
 ```
 
-Password
+Password (with Validation)
 
 ```js
+import {StyleSheet} from "aphrodite";
+import {View, Text} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 
 class TextFieldExample extends React.Component {
@@ -64,20 +69,199 @@ class TextFieldExample extends React.Component {
         super(props);
         this.state = {
             value: "Password123",
+            errorMessage: null,
         };
+        this.handleOnChange = this.handleOnChange.bind(this);
+        this.handleValidation = this.handleValidation.bind(this);
+        this.handleOnError = this.handleOnError.bind(this);
+    }
+
+    handleOnChange(newValue) {
+        this.setState({value: newValue});
+    }
+
+    handleValidation(value) {
+        if (value.length <= 8) {
+            return "Password must be at least 8 characters long";
+        }
+        if (!/\d/.test(value)) {
+            return "Password must contain a numeric value";
+        }
+        this.setState({errorMessage: null})
+    }
+
+    handleOnError(errorMessage) {
+        this.setState({errorMessage: errorMessage});
     }
 
     render() {
         return (
-            <TextField
-                id="tf-1"
-                type="password"
-                value={this.state.value}
-                onChange={(newValue) => this.setState({value: newValue})}
-            />
+            <View>
+                <TextField
+                    id="tf-1"
+                    type="password"
+                    value={this.state.value}
+                    validation={this.handleValidation}
+                    onChange={this.handleOnChange}
+                    onError={this.handleOnError}
+                />
+                {this.state.errorMessage && (
+                    <View>
+                        <Strut size={Spacing.xSmall_8} />
+                        <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
+                    </View>
+                )}
+            </View>
         );
     }
 }
+
+const styles = StyleSheet.create({
+    errorMessage: {
+        color: Color.red,
+        paddingLeft: Spacing.xxxSmall_4,
+    },
+});
+
+<TextFieldExample />
+```
+
+Email (with Validation)
+
+```js
+import {StyleSheet} from "aphrodite";
+import {View, Text} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {TextField} from "@khanacademy/wonder-blocks-form";
+
+class TextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "khan@khanacademy.org",
+            errorMessage: null,
+        };
+        this.handleOnChange = this.handleOnChange.bind(this);
+        this.handleValidation = this.handleValidation.bind(this);
+        this.handleOnError = this.handleOnError.bind(this);
+    }
+
+    handleOnChange(newValue) {
+        this.setState({value: newValue});
+    }
+
+    handleValidation(value) {
+        const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+        if (!emailRegex.test(value)) {
+            return "Please enter a valid email";
+        }
+        this.setState({errorMessage: null})
+    }
+
+    handleOnError(errorMessage) {
+        this.setState({errorMessage: errorMessage});
+    }
+
+    render() {
+        return (
+            <View>
+                <TextField
+                    id="tf-1"
+                    type="email"
+                    value={this.state.value}
+                    validation={this.handleValidation}
+                    onChange={this.handleOnChange}
+                    onError={this.handleOnError}
+                />
+                {this.state.errorMessage && (
+                    <View>
+                        <Strut size={Spacing.xSmall_8} />
+                        <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
+                    </View>
+                )}
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    errorMessage: {
+        color: Color.red,
+        paddingLeft: Spacing.xxxSmall_4,
+    },
+});
+
+<TextFieldExample />
+```
+
+Telephone (with Validation)
+
+```js
+import {StyleSheet} from "aphrodite";
+import {View, Text} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {TextField} from "@khanacademy/wonder-blocks-form";
+
+class TextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "123-456-7890",
+            errorMessage: null,
+        };
+        this.handleOnChange = this.handleOnChange.bind(this);
+        this.handleValidation = this.handleValidation.bind(this);
+        this.handleOnError = this.handleOnError.bind(this);
+    }
+
+    handleOnChange(newValue) {
+        this.setState({value: newValue});
+    }
+
+    handleValidation(value) {
+        const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+        if (!telRegex.test(value)) {
+            return "Invalid US telephone number";
+        }
+        this.setState({errorMessage: null})
+    }
+
+    handleOnError(errorMessage) {
+        this.setState({errorMessage: errorMessage});
+    }
+
+    render() {
+        return (
+            <View>
+                <TextField
+                    id="tf-1"
+                    type="email"
+                    value={this.state.value}
+                    validation={this.handleValidation}
+                    onChange={this.handleOnChange}
+                    onError={this.handleOnError}
+                />
+                {this.state.errorMessage && (
+                    <View>
+                        <Strut size={Spacing.xSmall_8} />
+                        <Text style={styles.errorMessage}>{this.state.errorMessage}</Text>
+                    </View>
+                )}
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    errorMessage: {
+        color: Color.red,
+        paddingLeft: Spacing.xxxSmall_4,
+    },
+});
 
 <TextFieldExample />
 ```

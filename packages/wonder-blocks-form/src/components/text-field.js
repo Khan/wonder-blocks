@@ -31,9 +31,20 @@ type Props = {|
     disabled: boolean,
 
     /**
+     * Provide a validation for the input value.
+     * Return a string error message or null | void for a valid input.
+     */
+    validation?: (value: string) => ?string,
+
+    /**
      * Called when the value has changed.
      */
     onChange: (newValue: string) => mixed,
+
+    /**
+     * Called when the TextField validation has failed.
+     */
+    onError?: (errorMessage: string) => mixed,
 |};
 
 type DefaultProps = {|
@@ -70,8 +81,16 @@ export default class TextField extends React.Component<Props, State> {
     handleOnChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed = (
         event,
     ) => {
-        const {onChange} = this.props;
-        onChange(event.target.value);
+        const {validation, onChange, onError} = this.props;
+        const newValue = event.target.value;
+        if (validation) {
+            const isError = validation(newValue);
+            this.setState({error: isError});
+            if (isError && onError) {
+                onError(isError);
+            }
+        }
+        onChange(newValue);
     };
 
     handleOnFocus: (

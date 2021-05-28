@@ -5920,20 +5920,108 @@ exports[`wonder-blocks-form example 11 1`] = `
 `;
 
 exports[`wonder-blocks-form example 12 1`] = `
-<input
-  className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3"
-  disabled={false}
-  id="tf-1"
-  onBlur={[Function]}
-  onChange={[Function]}
-  onFocus={[Function]}
-  placeholder="Placeholder"
-  type="password"
-  value="Password123"
-/>
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3"
+    disabled={false}
+    id="tf-1"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="Placeholder"
+    type="password"
+    value="Password123"
+  />
+</div>
 `;
 
 exports[`wonder-blocks-form example 13 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3"
+    disabled={false}
+    id="tf-1"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="Placeholder"
+    type="email"
+    value="khan@khanacademy.org"
+  />
+</div>
+`;
+
+exports[`wonder-blocks-form example 14 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3"
+    disabled={false}
+    id="tf-1"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="Placeholder"
+    type="email"
+    value="123-456-7890"
+  />
+</div>
+`;
+
+exports[`wonder-blocks-form example 15 1`] = `
 <input
   className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3-o_O-disabled_1ab5c0p"
   disabled={true}

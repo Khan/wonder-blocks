@@ -130,4 +130,108 @@ describe("TextField", () => {
         // Assert
         expect(handleOnChange).toHaveBeenCalledWith(newValue);
     });
+
+    it("validation is called when value changes", () => {
+        // Arrange
+        const handleValidation = jest.fn((value: string): ?string => {});
+
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value="Text"
+                validation={handleValidation}
+                onChange={() => {}}
+                disabled={true}
+            />,
+        );
+
+        // Act
+        const newValue = "Text2";
+        wrapper.simulate("change", {target: {value: newValue}});
+
+        // Assert
+        expect(handleValidation).toHaveBeenCalledWith(newValue);
+    });
+
+    it("validation is given a valid input", () => {
+        // Arrange
+        const handleValidation = jest.fn((value: string): ?string => {
+            if (value.length < 8) {
+                return "Value is too short";
+            }
+        });
+
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value="TextIsLong"
+                validation={handleValidation}
+                onChange={() => {}}
+                disabled={true}
+            />,
+        );
+
+        // Act
+        const newValue = "TextIsLongerThan8";
+        wrapper.simulate("change", {target: {value: newValue}});
+
+        // Assert
+        expect(handleValidation.mock.results[0].value).toEqual(undefined);
+    });
+
+    it("validation is given an invalid input", () => {
+        // Arrange
+        const errorMessage = "Value is too short";
+        const handleValidation = jest.fn((value: string): ?string => {
+            if (value.length < 8) {
+                return errorMessage;
+            }
+        });
+
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value="TextIsLongerThan8"
+                validation={handleValidation}
+                onChange={() => {}}
+                disabled={true}
+            />,
+        );
+
+        // Act
+        const newValue = "Text";
+        wrapper.simulate("change", {target: {value: newValue}});
+
+        // Assert
+        expect(handleValidation.mock.results[0].value).toEqual(errorMessage);
+    });
+
+    it("onError is called on invalid validation", () => {
+        // Arrange
+        const errorMessage = "Value is too short";
+        const handleOnError = jest.fn((errorMessage: string) => {});
+        const handleValidation = jest.fn((value: string): ?string => {
+            if (value.length < 8) {
+                return errorMessage;
+            }
+        });
+
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value="TextIsLongerThan8"
+                validation={handleValidation}
+                onChange={() => {}}
+                onError={handleOnError}
+                disabled={true}
+            />,
+        );
+
+        // Act
+        const newValue = "Text";
+        wrapper.simulate("change", {target: {value: newValue}});
+
+        // Assert
+        expect(handleOnError).toHaveBeenCalledWith(errorMessage);
+    });
 });
