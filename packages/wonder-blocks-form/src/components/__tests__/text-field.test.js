@@ -176,7 +176,7 @@ describe("TextField", () => {
         wrapper.simulate("change", {target: {value: newValue}});
 
         // Assert
-        expect(handleValidation.mock.results[0].value).toEqual(undefined);
+        expect(handleValidation).toHaveReturnedWith(undefined);
     });
 
     it("validation is given an invalid input", () => {
@@ -203,7 +203,7 @@ describe("TextField", () => {
         wrapper.simulate("change", {target: {value: newValue}});
 
         // Assert
-        expect(handleValidation.mock.results[0].value).toEqual(errorMessage);
+        expect(handleValidation).toHaveReturnedWith(errorMessage);
     });
 
     it("onValidation is called after input validation", () => {
