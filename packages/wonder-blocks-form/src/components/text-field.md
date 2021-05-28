@@ -71,27 +71,26 @@ class TextFieldExample extends React.Component {
             value: "Password123",
             errorMessage: null,
         };
+        this.validation = this.validation.bind(this);
+        this.handleOnValidation = this.handleOnValidation.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleValidation = this.handleValidation.bind(this);
-        this.handleOnError = this.handleOnError.bind(this);
     }
 
-    handleOnChange(newValue) {
-        this.setState({value: newValue});
-    }
-
-    handleValidation(value) {
+    validation(value) {
         if (value.length <= 8) {
             return "Password must be at least 8 characters long";
         }
         if (!/\d/.test(value)) {
             return "Password must contain a numeric value";
         }
-        this.setState({errorMessage: null})
     }
 
-    handleOnError(errorMessage) {
+    handleOnValidation(errorMessage) {
         this.setState({errorMessage: errorMessage});
+    }
+
+    handleOnChange(newValue) {
+        this.setState({value: newValue});
     }
 
     render() {
@@ -101,9 +100,9 @@ class TextFieldExample extends React.Component {
                     id="tf-1"
                     type="password"
                     value={this.state.value}
-                    validation={this.handleValidation}
+                    validation={this.validation}
+                    onValidation={this.handleOnValidation}
                     onChange={this.handleOnChange}
-                    onError={this.handleOnError}
                 />
                 {this.state.errorMessage && (
                     <View>
@@ -143,25 +142,24 @@ class TextFieldExample extends React.Component {
             value: "khan@khanacademy.org",
             errorMessage: null,
         };
+        this.validation = this.validation.bind(this);
+        this.handleOnValidation = this.handleOnValidation.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleValidation = this.handleValidation.bind(this);
-        this.handleOnError = this.handleOnError.bind(this);
     }
 
-    handleOnChange(newValue) {
-        this.setState({value: newValue});
-    }
-
-    handleValidation(value) {
+    validation(value) {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
         }
-        this.setState({errorMessage: null})
     }
 
-    handleOnError(errorMessage) {
+    handleOnValidation(errorMessage) {
         this.setState({errorMessage: errorMessage});
+    }
+
+    handleOnChange(newValue) {
+        this.setState({value: newValue});
     }
 
     render() {
@@ -171,9 +169,9 @@ class TextFieldExample extends React.Component {
                     id="tf-1"
                     type="email"
                     value={this.state.value}
-                    validation={this.handleValidation}
+                    validation={this.validation}
+                    onValidation={this.handleOnValidation}
                     onChange={this.handleOnChange}
-                    onError={this.handleOnError}
                 />
                 {this.state.errorMessage && (
                     <View>
@@ -213,25 +211,24 @@ class TextFieldExample extends React.Component {
             value: "123-456-7890",
             errorMessage: null,
         };
+        this.validation = this.validation.bind(this);
+        this.handleOnValidation = this.handleOnValidation.bind(this);
         this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleValidation = this.handleValidation.bind(this);
-        this.handleOnError = this.handleOnError.bind(this);
     }
 
-    handleOnChange(newValue) {
-        this.setState({value: newValue});
-    }
-
-    handleValidation(value) {
+    validation(value) {
         const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         if (!telRegex.test(value)) {
             return "Invalid US telephone number";
         }
-        this.setState({errorMessage: null})
     }
 
-    handleOnError(errorMessage) {
+    handleOnValidation(errorMessage) {
         this.setState({errorMessage: errorMessage});
+    }
+
+    handleOnChange(newValue) {
+        this.setState({value: newValue});
     }
 
     render() {
@@ -241,9 +238,9 @@ class TextFieldExample extends React.Component {
                     id="tf-1"
                     type="email"
                     value={this.state.value}
-                    validation={this.handleValidation}
+                    validation={this.validation}
+                    onValidation={this.handleOnValidation}
                     onChange={this.handleOnChange}
-                    onError={this.handleOnError}
                 />
                 {this.state.errorMessage && (
                     <View>

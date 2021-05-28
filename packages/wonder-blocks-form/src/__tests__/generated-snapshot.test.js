@@ -671,18 +671,12 @@ describe("wonder-blocks-form", () => {
                     value: "Password123",
                     errorMessage: null,
                 };
+                this.validation = this.validation.bind(this);
+                this.handleOnValidation = this.handleOnValidation.bind(this);
                 this.handleOnChange = this.handleOnChange.bind(this);
-                this.handleValidation = this.handleValidation.bind(this);
-                this.handleOnError = this.handleOnError.bind(this);
             }
 
-            handleOnChange(newValue) {
-                this.setState({
-                    value: newValue,
-                });
-            }
-
-            handleValidation(value) {
+            validation(value) {
                 if (value.length <= 8) {
                     return "Password must be at least 8 characters long";
                 }
@@ -690,15 +684,17 @@ describe("wonder-blocks-form", () => {
                 if (!/\d/.test(value)) {
                     return "Password must contain a numeric value";
                 }
+            }
 
+            handleOnValidation(errorMessage) {
                 this.setState({
-                    errorMessage: null,
+                    errorMessage: errorMessage,
                 });
             }
 
-            handleOnError(errorMessage) {
+            handleOnChange(newValue) {
                 this.setState({
-                    errorMessage: errorMessage,
+                    value: newValue,
                 });
             }
 
@@ -709,9 +705,9 @@ describe("wonder-blocks-form", () => {
                             id="tf-1"
                             type="password"
                             value={this.state.value}
-                            validation={this.handleValidation}
+                            validation={this.validation}
+                            onValidation={this.handleOnValidation}
                             onChange={this.handleOnChange}
-                            onError={this.handleOnError}
                         />
                         {this.state.errorMessage && (
                             <View>
@@ -745,32 +741,28 @@ describe("wonder-blocks-form", () => {
                     value: "khan@khanacademy.org",
                     errorMessage: null,
                 };
+                this.validation = this.validation.bind(this);
+                this.handleOnValidation = this.handleOnValidation.bind(this);
                 this.handleOnChange = this.handleOnChange.bind(this);
-                this.handleValidation = this.handleValidation.bind(this);
-                this.handleOnError = this.handleOnError.bind(this);
             }
 
-            handleOnChange(newValue) {
-                this.setState({
-                    value: newValue,
-                });
-            }
-
-            handleValidation(value) {
+            validation(value) {
                 const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
 
                 if (!emailRegex.test(value)) {
                     return "Please enter a valid email";
                 }
+            }
 
+            handleOnValidation(errorMessage) {
                 this.setState({
-                    errorMessage: null,
+                    errorMessage: errorMessage,
                 });
             }
 
-            handleOnError(errorMessage) {
+            handleOnChange(newValue) {
                 this.setState({
-                    errorMessage: errorMessage,
+                    value: newValue,
                 });
             }
 
@@ -781,9 +773,9 @@ describe("wonder-blocks-form", () => {
                             id="tf-1"
                             type="email"
                             value={this.state.value}
-                            validation={this.handleValidation}
+                            validation={this.validation}
+                            onValidation={this.handleOnValidation}
                             onChange={this.handleOnChange}
-                            onError={this.handleOnError}
                         />
                         {this.state.errorMessage && (
                             <View>
@@ -817,32 +809,28 @@ describe("wonder-blocks-form", () => {
                     value: "123-456-7890",
                     errorMessage: null,
                 };
+                this.validation = this.validation.bind(this);
+                this.handleOnValidation = this.handleOnValidation.bind(this);
                 this.handleOnChange = this.handleOnChange.bind(this);
-                this.handleValidation = this.handleValidation.bind(this);
-                this.handleOnError = this.handleOnError.bind(this);
             }
 
-            handleOnChange(newValue) {
-                this.setState({
-                    value: newValue,
-                });
-            }
-
-            handleValidation(value) {
+            validation(value) {
                 const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
                 if (!telRegex.test(value)) {
                     return "Invalid US telephone number";
                 }
+            }
 
+            handleOnValidation(errorMessage) {
                 this.setState({
-                    errorMessage: null,
+                    errorMessage: errorMessage,
                 });
             }
 
-            handleOnError(errorMessage) {
+            handleOnChange(newValue) {
                 this.setState({
-                    errorMessage: errorMessage,
+                    value: newValue,
                 });
             }
 
@@ -853,9 +841,9 @@ describe("wonder-blocks-form", () => {
                             id="tf-1"
                             type="email"
                             value={this.state.value}
-                            validation={this.handleValidation}
+                            validation={this.validation}
+                            onValidation={this.handleOnValidation}
                             onChange={this.handleOnChange}
-                            onError={this.handleOnError}
                         />
                         {this.state.errorMessage && (
                             <View>

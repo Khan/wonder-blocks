@@ -56,17 +56,16 @@ export const password: StoryComponentType = () => {
         setValue(newValue);
     };
 
-    const handleValidation = (value: string) => {
+    const validation = (value: string) => {
         if (value.length <= 8) {
             return "Password must be at least 8 characters long";
         }
         if (!/\d/.test(value)) {
             return "Password must contain a numeric value";
         }
-        setErrorMessage();
     };
 
-    const handleOnError = (errorMessage: string) => {
+    const handleOnValidation = (errorMessage: ?string) => {
         setErrorMessage(errorMessage);
     };
 
@@ -76,9 +75,9 @@ export const password: StoryComponentType = () => {
                 id="tf-1"
                 type="password"
                 value={value}
-                validation={handleValidation}
+                validation={validation}
+                onValidation={handleOnValidation}
                 onChange={handleOnChange}
-                onError={handleOnError}
             />
             {errorMessage && (
                 <View>
@@ -98,15 +97,14 @@ export const email: StoryComponentType = () => {
         setValue(newValue);
     };
 
-    const handleValidation = (value: string) => {
+    const validation = (value: string) => {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
         }
-        setErrorMessage();
     };
 
-    const handleOnError = (errorMessage: string) => {
+    const handleOnValidation = (errorMessage: ?string) => {
         setErrorMessage(errorMessage);
     };
 
@@ -116,9 +114,9 @@ export const email: StoryComponentType = () => {
                 id="tf-1"
                 type="email"
                 value={value}
-                validation={handleValidation}
+                validation={validation}
+                onValidation={handleOnValidation}
                 onChange={handleOnChange}
-                onError={handleOnError}
             />
             {errorMessage && (
                 <View>
@@ -138,15 +136,14 @@ export const telephone: StoryComponentType = () => {
         setValue(newValue);
     };
 
-    const handleValidation = (value: string) => {
+    const validation = (value: string) => {
         const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         if (!telRegex.test(value)) {
             return "Invalid US telephone number";
         }
-        setErrorMessage();
     };
 
-    const handleOnError = (errorMessage: string) => {
+    const handleOnValidation = (errorMessage: ?string) => {
         setErrorMessage(errorMessage);
     };
 
@@ -156,9 +153,9 @@ export const telephone: StoryComponentType = () => {
                 id="tf-1"
                 type="tel"
                 value={value}
-                validation={handleValidation}
+                validation={validation}
+                onValidation={handleOnValidation}
                 onChange={handleOnChange}
-                onError={handleOnError}
             />
             {errorMessage && (
                 <View>
