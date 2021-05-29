@@ -1,4 +1,5 @@
 // @flow
+// This hand-crafted file is based on the TypeScript types.
 
 declare module "popper.js" {
     declare type Position = "top" | "right" | "bottom" | "left";
