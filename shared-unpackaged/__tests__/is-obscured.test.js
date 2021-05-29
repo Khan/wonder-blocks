@@ -26,18 +26,20 @@ describe("isObscured", () => {
 
     test("element is null, throws", () => {
         // Arrange
-        const element = ((null: any): Element);
+        const element: Element = (null: any);
+        const popperElement: any = "FAKE_ELEMENT";
 
         // Act
-        const underTest = () => isObscured(element);
+        const underTest = () => isObscured(element, popperElement);
 
         // Assert
         expect(underTest).toThrowError();
     });
 
     test("element is not obscured by anything, returns false", async () => {
+        // Arrange
+        const popperElement: any = "FAKE_ELEMENT";
         const ref = await new Promise((resolve) => {
-            // Arrange
             const nodes = (
                 <View>
                     <View ref={resolve}>Unobscured</View>
@@ -53,7 +55,7 @@ describe("isObscured", () => {
         document.elementFromPoint = jest.fn().mockReturnValue(element);
 
         // Act
-        const result = isObscured(element);
+        const result = isObscured(element, popperElement);
 
         // Assert
         expect(result).toBeFalsy();
@@ -61,6 +63,7 @@ describe("isObscured", () => {
 
     test("element is partially obscured, returns false", async () => {
         // Arrange
+        const popperElement: any = "FAKE_ELEMENT";
         const {ref, otherRef} = await new Promise((resolve) => {
             let ref;
             let otherRef;
@@ -93,7 +96,7 @@ describe("isObscured", () => {
             .mockImplementationOnce(() => otherElement);
 
         // Act
-        const result = isObscured(element);
+        const result = isObscured(element, popperElement);
 
         // Assert
         expect(result).toBeFalsy();
@@ -101,6 +104,7 @@ describe("isObscured", () => {
 
     test("element is obscured, returns true", async () => {
         // Arrange
+        const popperElement: any = "FAKE_ELEMENT";
         const {ref, otherRef} = await new Promise((resolve) => {
             let ref;
             let otherRef;
@@ -129,7 +133,7 @@ describe("isObscured", () => {
         document.elementFromPoint = jest.fn().mockReturnValue(otherElement);
 
         // Act
-        const result = isObscured(element);
+        const result = isObscured(element, popperElement);
 
         // Assert
         expect(result).toBeTruthy();
@@ -137,6 +141,7 @@ describe("isObscured", () => {
 
     test("element is not obscured, but elementFromPoint returns parent or child, returns false", async () => {
         // Arrange
+        const popperElement: any = "FAKE_ELEMENT";
         const {parentRef, elementRef, childRef} = await new Promise(
             (resolve) => {
                 let parentRef;
@@ -184,7 +189,7 @@ describe("isObscured", () => {
             .mockImplementationOnce(() => childElement);
 
         // Act
-        const result = isObscured(element);
+        const result = isObscured(element, popperElement);
 
         // Assert
         expect(result).toBeFalsy();

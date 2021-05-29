@@ -25,7 +25,7 @@ describe("Visibility PopperJS Modifier", () => {
         expect(result).toMatchObject({
             enabled: true,
             fn: expect.any(Function),
-            order: Popper.Defaults.modifiers.hide.order + 1,
+            order: (Popper.Defaults.modifiers?.hide?.order || 0) + 1,
         });
     });
 
@@ -37,7 +37,7 @@ describe("Visibility PopperJS Modifier", () => {
             test("obscured horizontally only, is not visible", () => {
                 // Arrange
                 const psuedoAnchorElement = {};
-                const data = {
+                const data: any = {
                     instance: {reference: psuedoAnchorElement},
                     attributes: {},
                     hide: false,
@@ -59,7 +59,7 @@ describe("Visibility PopperJS Modifier", () => {
             test("obscured vertically only, is not visible", () => {
                 // Arrange
                 const psuedoAnchorElement = {};
-                const data = {
+                const data: any = {
                     instance: {reference: psuedoAnchorElement},
                     attributes: {
                         "x-out-of-boundaries": "",
@@ -83,7 +83,7 @@ describe("Visibility PopperJS Modifier", () => {
             test("obscured totally, is not visible", () => {
                 // Arrange
                 const psuedoAnchorElement = {};
-                const data = {
+                const data: any = {
                     instance: {reference: psuedoAnchorElement},
                     attributes: {},
                     hide: false,
@@ -106,7 +106,7 @@ describe("Visibility PopperJS Modifier", () => {
         test("obscured by fixed or absolute components, is not visible", () => {
             // Arrange
             const psuedoAnchorElement = {};
-            const data = {
+            const data: any = {
                 instance: {reference: psuedoAnchorElement},
                 attributes: {},
                 hide: false,
@@ -137,7 +137,7 @@ describe("Visibility PopperJS Modifier", () => {
         test("not obscured by parent nor fixed/absolute positioning", () => {
             // Arrange
             const psuedoAnchorElement = {};
-            const data = {
+            const data: any = {
                 instance: {reference: psuedoAnchorElement},
                 attributes: {
                     "x-out-of-boundaries": "",

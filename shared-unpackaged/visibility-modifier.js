@@ -9,20 +9,16 @@
  * details on popper.js modifiers.
  */
 import PopperJS from "popper.js";
+import type {Data} from "popper.js";
 
 import {getElementIntersection} from "@khanacademy/wonder-blocks-core";
 
 import isObscured from "./is-obscured.js";
 
-type ModifierData = {
-    [key: string]: any,
-    ...
-};
-
 /**
  * The function that implements the modifier.
  */
-function visibilityModifierFn(data: any): ModifierData {
+function visibilityModifierFn(data: Data): Data {
     const anchorElement = data.instance.reference;
 
     // First, we see how the element intersects with its scroll parents.
@@ -33,7 +29,7 @@ function visibilityModifierFn(data: any): ModifierData {
     const hide =
         horizontal !== "within" ||
         vertical !== "within" ||
-        isObscured(anchorElement);
+        isObscured(anchorElement, data.instance.popper);
 
     // If we're hidden, we mimic what the built-in hide method does,
     // and set the hide flag and the OOB attribute with appropriate
@@ -75,6 +71,6 @@ function visibilityModifierFn(data: any): ModifierData {
 export default {
     enabled: true,
     // We want this to run after the "hide" modifier, by default.
-    order: (PopperJS.Defaults.modifiers["hide"].order + 1: number),
+    order: ((PopperJS.Defaults.modifiers?.hide?.order || 0) + 1: number),
     fn: visibilityModifierFn,
 };
