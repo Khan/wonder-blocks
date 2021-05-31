@@ -41,17 +41,19 @@ export default function isObscured(
     // `elementFromPoint` then doesn't return the element.
     // Also, consider how we might mitigate the pointer-events issue and make
     // this call more robust.
-
-    const bounds = getBounds(anchorElement, true);
+    const bounds = getBounds(anchorElement);
 
     // This method does the main work, taking some coordinates and determining
     // if our element is visible at that point or not.
     const isVisible = (x: number, y: number): boolean => {
         const elAtPoint = document.elementFromPoint(x, y);
-        if (elAtPoint != null && elAtPoint === popperElement) {
+        if (
+            elAtPoint != null &&
+            (elAtPoint === popperElement || popperElement.contains(elAtPoint))
+        ) {
             // Oh no, we're being obscured by our own popper.
             // We need to look behind it. Shenanigans time.
-            const displayStyle = elAtPoint?.style.display;
+            const pointerEventsStyle = elAtPoint.style.pointerEvents;
             // Remove pointer events so that we can look through it.
             elAtPoint.style.pointerEvents = "none";
             try {
@@ -59,7 +61,7 @@ export default function isObscured(
                 return visible;
             } finally {
                 // Make sure we put things back the way we found them. :)
-                elAtPoint.style.pointerEvents = displayStyle;
+                elAtPoint.style.pointerEvents = pointerEventsStyle;
             }
         }
         if (anchorElement instanceof Element) {
@@ -78,7 +80,7 @@ export default function isObscured(
         // intersection for checking obscurity. Since this doesn't cover
         // parent/child relationships in the DOM, it's not really effective
         // on its own and is possibly about as good as just returning `true`.
-        const intersection = () =>
+        const intersection =
             elAtPoint && getIntersection(bounds, getBounds(elAtPoint, true));
         return (
             intersection?.horizontal !== "within" ||

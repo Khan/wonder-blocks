@@ -5,7 +5,7 @@ import getEdges from "./get-edges.js";
 
 export default function getBounds(
     element: Element | ReferenceObject,
-    withoutEdges: boolean = true,
+    withoutEdges: boolean = false,
 ): Bounds {
     const elementRect = element.getBoundingClientRect();
     const edges = getEdges(element, withoutEdges);

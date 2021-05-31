@@ -32,7 +32,6 @@ export default function getEdges(
         const style =
             ((element: any).currentStyle: ?CSSStyleDeclaration) ||
             window.getComputedStyle(element);
-
         return {
             margin: {
                 left: parseFloat(style.marginLeft),
