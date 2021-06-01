@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-clickable",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "design": "v1",
   "description": "Clickable component for Wonder-Blocks.",
   "main": "dist/index.js",
@@ -15,7 +15,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-core": "^3.1.2"
+    "@khanacademy/wonder-blocks-core": "^3.1.3"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
