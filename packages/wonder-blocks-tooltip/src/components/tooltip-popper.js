@@ -44,7 +44,10 @@ export default class TooltipPopper extends React.Component<Props> {
 
         // We'll hide some complexity from the children here and ensure
         // that our placement always has a value.
-        const placement = popperProps.placement || this.props.placement;
+        const placement: Placement =
+            // We know that popperProps.placement will only be one of our
+            // supported values, so just cast it.
+            (popperProps.placement: any) || this.props.placement;
 
         // Just in case the callbacks have changed, let's update our reference
         // trackers.
@@ -54,7 +57,7 @@ export default class TooltipPopper extends React.Component<Props> {
         // Here we translate from the react-popper's PropperChildrenProps
         // to our own TooltipBubbleProps.
         const bubbleProps = {
-            placement: placement,
+            placement,
             style: {
                 // NOTE(jeresig): We can't just use `popperProps.style` here
                 // as the Flow type doesn't match Aphrodite's CSS flow props

@@ -1,29 +1,15 @@
 // @flow
+import type {ReferenceObject} from "popper.js";
 import enumerateScrollAncestors from "./enumerate-scroll-ancestors.js";
+import type {
+    Intersection,
+    Bounds,
+    // eslint-disable-next-line import/no-restricted-paths
+} from "../../../../shared-unpackaged/types.js";
+// eslint-disable-next-line import/no-restricted-paths
+import getAxisIntersection from "../../../../shared-unpackaged/get-axis-intersection.js";
 
-/**
- * Indicates the intersection state of an item on a single axis.
- */
-export type AxisIntersection =
-    // The item is partly or fully within the bounds.
-    | "within"
-
-    // The item is outside the starting bounds.
-    | "before"
-
-    // The item is outside the ending bounds.
-    | "after";
-
-/**
- * Indicates the visibility of an item on the horizontal and vertical axes.
- */
-export type Intersection = {|
-    // The intersection on the horizontal axis.
-    horizontal: ?AxisIntersection,
-
-    // The intersection on the vertical axis.
-    vertical: ?AxisIntersection,
-|};
+export type {Intersection};
 
 function UndeterminedIntersection() {
     return {
@@ -39,32 +25,6 @@ function FullIntersection() {
     };
 }
 
-type Rect = {|
-    top: number,
-    bottom: number,
-    left: number,
-    right: number,
-    width: number,
-    height: number,
-|};
-
-function getAxisIntersection(
-    intersectingRect: ClientRect | DOMRect,
-    boundsRect: Rect,
-    axis: "vertical" | "horizontal",
-): AxisIntersection {
-    const start = (rect) => (axis === "horizontal" ? rect.left : rect.top);
-    const end = (rect) => (axis === "horizontal" ? rect.right : rect.bottom);
-
-    if (end(intersectingRect) <= start(boundsRect)) {
-        return "before";
-    } else if (start(intersectingRect) >= end(boundsRect)) {
-        return "after";
-    } else {
-        return "within";
-    }
-}
-
 /**
  * Determine if an element intersects a single other element.
  *
@@ -72,7 +32,7 @@ function getAxisIntersection(
  * could obscure the given element, `element`.
  */
 function getElementIntersectionAgainstParent(
-    intersectingRect: ClientRect | DOMRect,
+    intersectingRect: Bounds,
     boundsElement: Element,
 ): Intersection {
     // We need to check that it matters if we're out of bounds. If the parent
@@ -84,13 +44,11 @@ function getElementIntersectionAgainstParent(
         window.getComputedStyle(boundsElement);
 
     const boundingRect = boundsElement.getBoundingClientRect();
-    const boundsRect: Rect = {
+    const boundsRect = {
         top: boundingRect.top,
         bottom: boundingRect.bottom,
         left: boundingRect.left,
         right: boundingRect.right,
-        width: boundingRect.width,
-        height: boundingRect.height,
     };
 
     // In webapp we set height: 100% on html, body and overflow-y: scroll on body.
@@ -99,8 +57,7 @@ function getElementIntersectionAgainstParent(
     // of the body to corect the bounds.
     // TODO(kevinb): screenshot test this
     if (boundsElement === document.body) {
-        boundsRect.height = (boundsElement: any).scrollHeight;
-        boundsRect.bottom = boundsRect.top + boundsRect.height;
+        boundsRect.bottom = boundsRect.top + (boundsElement: any).scrollHeight;
     }
 
     // We assume we're within this specific bounds element if it's overflow is
@@ -125,7 +82,7 @@ function getElementIntersectionAgainstParent(
  * scroll parents, or the bounds of a specific element.
  */
 export default function getElementIntersection(
-    element: Element,
+    element: Element | ReferenceObject,
     boundsElement?: Element,
 ): Intersection {
     if (!element) {
@@ -133,7 +90,13 @@ export default function getElementIntersection(
         return UndeterminedIntersection();
     }
 
-    const intersectingRect = element.getBoundingClientRect();
+    const {top, left, bottom, right} = element.getBoundingClientRect();
+    const intersectingRect = {
+        top,
+        left,
+        bottom,
+        right,
+    };
     // If we're looking against a single boundary element, then we just do that.
     if (boundsElement) {
         return getElementIntersectionAgainstParent(
@@ -142,23 +105,25 @@ export default function getElementIntersection(
         );
     }
 
-    // Otherwise, we enumerate the scroll parents and test against those.
-    // If one of them is hiding our candidate element, then we will return.
-    for (const scrollParent of enumerateScrollAncestors(element)) {
-        const intersection = getElementIntersectionAgainstParent(
-            intersectingRect,
-            scrollParent,
-        );
+    if (element instanceof Element) {
+        // Otherwise, we enumerate the scroll parents and test against those.
+        // If one of them is hiding our candidate element, then we will return.
+        for (const scrollParent of enumerateScrollAncestors(element)) {
+            const intersection = getElementIntersectionAgainstParent(
+                intersectingRect,
+                scrollParent,
+            );
 
-        // If the intersectingRect is before or after the parent in one or both
-        // dimensions, then return our intersection result. Otherwise, we'll
-        // keep on searching up our parents.
-        if (
-            intersection.vertical !== "within" ||
-            intersection.horizontal !== "within"
-        ) {
-            // Stop looking, we've found something that is hiding the element.
-            return intersection;
+            // If the intersectingRect is before or after the parent in one or both
+            // dimensions, then return our intersection result. Otherwise, we'll
+            // keep on searching up our parents.
+            if (
+                intersection.vertical !== "within" ||
+                intersection.horizontal !== "within"
+            ) {
+                // Stop looking, we've found something that is hiding the element.
+                return intersection;
+            }
         }
     }
 

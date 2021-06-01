@@ -22,6 +22,7 @@ module.exports = {
     },
     collectCoverageFrom: [
         "packages/**/*.js",
+        "shared-unpackaged/**/*.js",
         "!packages/**/*.stories.js",
         "!packages/**/*.flowtest.js",
         "!packages/**/dist/**/*.js",
