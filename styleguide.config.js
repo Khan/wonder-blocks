@@ -246,6 +246,10 @@ module.exports = {
             links: [
                 {
                     rel: "stylesheet",
+                    href: "source-serif-pro.css",
+                },
+                {
+                    rel: "stylesheet",
                     href: "lato.css",
                 },
                 {
