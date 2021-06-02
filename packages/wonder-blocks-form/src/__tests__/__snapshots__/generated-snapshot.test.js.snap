@@ -6047,7 +6047,7 @@ exports[`wonder-blocks-form example 15 1`] = `
   }
 >
   <input
-    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3-o_O-error_b4h83j"
+    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3-o_O-error_1n1oc37"
     disabled={false}
     id="tf-1"
     onBlur={[Function]}

@@ -3,7 +3,7 @@
 import * as React from "react";
 import {StyleSheet, css} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
+import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
@@ -236,7 +236,7 @@ const styles = StyleSheet.create({
         },
     },
     error: {
-        background: `linear-gradient(0deg, rgba(217, 41, 22, 0.06), rgba(217, 41, 22, 0.06)), ${Color.white}`,
+        background: `${mix(fade(Color.red, 0.06), Color.white)}`,
         border: `1px solid ${Color.red}`,
         color: Color.offBlack,
         "::placeholder": {
