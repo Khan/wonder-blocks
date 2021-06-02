@@ -5900,7 +5900,7 @@ exports[`wonder-blocks-form example 10 1`] = `
   onChange={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
-  placeholder="Placeholder"
+  placeholder="Text"
   type="text"
   value=""
 />
@@ -5915,7 +5915,7 @@ exports[`wonder-blocks-form example 11 1`] = `
   onChange={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
-  placeholder="Placeholder"
+  placeholder="Number"
   type="number"
   value="12345"
 />
@@ -5949,7 +5949,7 @@ exports[`wonder-blocks-form example 12 1`] = `
     onChange={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
-    placeholder="Placeholder"
+    placeholder="Password"
     type="password"
     value="Password123"
   />
@@ -5984,7 +5984,7 @@ exports[`wonder-blocks-form example 13 1`] = `
     onChange={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
-    placeholder="Placeholder"
+    placeholder="Email"
     type="email"
     value="khan@khanacademy.org"
   />
@@ -6019,7 +6019,7 @@ exports[`wonder-blocks-form example 14 1`] = `
     onChange={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
-    placeholder="Placeholder"
+    placeholder="Telephone"
     type="email"
     value="123-456-7890"
   />
@@ -6047,14 +6047,14 @@ exports[`wonder-blocks-form example 15 1`] = `
   }
 >
   <input
-    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3-o_O-error_1vc4qn7"
+    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3-o_O-error_b4h83j"
     disabled={false}
     id="tf-1"
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
     onKeyDown={[Function]}
-    placeholder="Placeholder"
+    placeholder="Email"
     type="email"
     value="khan"
   />
@@ -6128,7 +6128,58 @@ exports[`wonder-blocks-form example 16 1`] = `
   onBlur={[Function]}
   onChange={[Function]}
   onFocus={[Function]}
-  placeholder="Placeholder"
+  placeholder="This field is disabled."
+  type="text"
+  value=""
+/>
+`;
+
+exports[`wonder-blocks-form example 17 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "backgroundColor": "#0a2a66",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 16,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <input
+    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3"
+    disabled={false}
+    id="tf-1"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder="Email"
+    type="email"
+    value="khan@khanacademy.org"
+  />
+</div>
+`;
+
+exports[`wonder-blocks-form example 18 1`] = `
+<input
+  className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3-o_O-customField_subna9"
+  disabled={false}
+  id="tf-1"
+  onBlur={[Function]}
+  onChange={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  placeholder="Text"
   type="text"
   value=""
 />

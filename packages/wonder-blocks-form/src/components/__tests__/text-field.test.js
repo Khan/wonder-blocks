@@ -307,4 +307,43 @@ describe("TextField", () => {
         // Assert
         expect(handleOnKeyDown).toHaveReturnedWith(key);
     });
+
+    it("placeholder prop is passed to the input element", () => {
+        // Arrange
+        const placeholder = "Placeholder";
+
+        // Act
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value="Text"
+                placeholder={placeholder}
+                onChange={() => {}}
+            />,
+        );
+
+        // Assert
+        const input = wrapper.find("input");
+        expect(input).toContainMatchingElement(
+            `[placeholder="${placeholder}"]`,
+        );
+    });
+
+    it("required prop is passed to the input element", () => {
+        // Arrange
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value="Text"
+                onChange={() => {}}
+                required={true}
+            />,
+        );
+
+        // Act
+
+        // Assert
+        const input = wrapper.find("input");
+        expect(input).toContainMatchingElement("[required=true]");
+    });
 });

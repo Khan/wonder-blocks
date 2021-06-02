@@ -6,6 +6,7 @@ import {StyleSheet, css} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
@@ -60,11 +61,32 @@ type Props = {|
      * Called when the element has been blurred.
      */
     onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
+
+    /**
+     * Provide hints or examples of what to enter.
+     */
+    placeholder?: string,
+
+    /**
+     * Whether this component is required.
+     */
+    required?: boolean,
+
+    /**
+     * Change the default focus ring color to fit a dark background.
+     */
+    light: boolean,
+
+    /**
+     * Custom styles for the input.
+     */
+    style?: StyleType,
 |};
 
 type DefaultProps = {|
     type: $PropertyType<Props, "type">,
     disabled: $PropertyType<Props, "disabled">,
+    light: $PropertyType<Props, "light">,
 |};
 
 type State = {|
@@ -86,6 +108,7 @@ export default class TextField extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         type: "text",
         disabled: false,
+        light: false,
     };
 
     constructor(props: Props) {
@@ -150,7 +173,17 @@ export default class TextField extends React.Component<Props, State> {
     };
 
     render(): React.Node {
-        const {id, type, value, disabled, onKeyDown} = this.props;
+        const {
+            id,
+            type,
+            value,
+            disabled,
+            onKeyDown,
+            placeholder,
+            required,
+            light,
+            style,
+        } = this.props;
         return (
             <input
                 className={css([
@@ -161,18 +194,23 @@ export default class TextField extends React.Component<Props, State> {
                     disabled
                         ? styles.disabled
                         : this.state.focused
-                        ? styles.focused
-                        : this.state.error && styles.error,
+                        ? [styles.focused, light && styles.defaultLight]
+                        : this.state.error && [
+                              styles.error,
+                              light && styles.errorLight,
+                          ],
+                    style && style,
                 ])}
                 id={id}
                 type={type}
-                placeholder="Placeholder"
+                placeholder={placeholder}
                 value={value}
                 disabled={disabled}
                 onChange={this.handleOnChange}
                 onKeyDown={onKeyDown}
                 onFocus={this.handleOnFocus}
                 onBlur={this.handleOnBlur}
+                required={required}
             />
         );
     }
@@ -198,7 +236,7 @@ const styles = StyleSheet.create({
         },
     },
     error: {
-        background: "rgba(217, 41, 22, 0.06)",
+        background: `linear-gradient(0deg, rgba(217, 41, 22, 0.06), rgba(217, 41, 22, 0.06)), ${Color.white}`,
         border: `1px solid ${Color.red}`,
         color: Color.offBlack,
         "::placeholder": {
@@ -220,5 +258,11 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: Color.offBlack64,
         },
+    },
+    defaultLight: {
+        boxShadow: `0px 0px 0px 1px ${Color.blue}, 0px 0px 0px 2px ${Color.white}`,
+    },
+    errorLight: {
+        boxShadow: `0px 0px 0px 1px ${Color.red}, 0px 0px 0px 2px ${Color.white}`,
     },
 });
