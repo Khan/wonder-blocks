@@ -54,12 +54,12 @@ type Props = {|
     /**
      * Called when the element has been focused.
      */
-    onFocus?: () => mixed,
+    onFocus?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 
     /**
      * Called when the element has been blurred.
      */
-    onBlur?: () => mixed,
+    onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 |};
 
 type DefaultProps = {|
@@ -125,27 +125,27 @@ export default class TextField extends React.Component<Props, State> {
         onChange(newValue);
     };
 
-    handleOnFocus: (
-        event: SyntheticFocusEvent<HTMLInputElement>,
-    ) => mixed = () => {
+    handleOnFocus: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
+        event,
+    ) => {
         const {onFocus} = this.props;
         this.setState({
             focused: true,
         });
         if (onFocus) {
-            onFocus();
+            onFocus(event);
         }
     };
 
-    handleOnBlur: (
-        event: SyntheticFocusEvent<HTMLInputElement>,
-    ) => mixed = () => {
+    handleOnBlur: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
+        event,
+    ) => {
         const {onBlur} = this.props;
         this.setState({
             focused: false,
         });
         if (onBlur) {
-            onBlur();
+            onBlur(event);
         }
     };
 
