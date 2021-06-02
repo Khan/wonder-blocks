@@ -88,6 +88,14 @@ export default class TextField extends React.Component<Props, State> {
         disabled: false,
     };
 
+    constructor(props: Props) {
+        super(props);
+        if (props.validation) {
+            // Ensures error is updated on unmounted server-side renders
+            this.state.error = props.validation(props.value) || null;
+        }
+    }
+
     state: State = {
         error: null,
         focused: false,
@@ -100,7 +108,7 @@ export default class TextField extends React.Component<Props, State> {
     maybeValidate: (newValue: string) => void = (newValue) => {
         const {validation, onValidation} = this.props;
         if (validation) {
-            const maybeError = validation(newValue);
+            const maybeError = validation(newValue) || null;
             this.setState({error: maybeError});
             if (onValidation) {
                 onValidation(maybeError);
