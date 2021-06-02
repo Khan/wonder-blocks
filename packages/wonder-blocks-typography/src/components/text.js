@@ -110,8 +110,8 @@ const styleFragments = {
         lineHeight: "18px",
     },
     CompactHeadingSmall: {
-        fontSize: "20px",
-        lineHeight: "22px",
+        fontSize: "12px",
+        lineHeight: "16px",
     },
     // Label
     Label: {
