@@ -6,11 +6,13 @@ import {StyleSheet, css} from "aphrodite";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-import type {StyleType} from "@khanacademy/wonder-blocks-core";
+import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
 type Props = {|
+    ...AriaProps,
+
     /**
      * The unique identifier for the input.
      */
@@ -81,6 +83,11 @@ type Props = {|
      * Custom styles for the input.
      */
     style?: StyleType,
+
+    /**
+     * Optional test ID for e2e testing.
+     */
+    testId?: string,
 |};
 
 type DefaultProps = {|
@@ -183,6 +190,18 @@ export default class TextField extends React.Component<Props, State> {
             required,
             light,
             style,
+            testId,
+            // The following props are being included here to avoid
+            // passing them down to the otherProps spread
+            /* eslint-disable no-unused-vars */
+            onFocus,
+            onBlur,
+            onValidation,
+            validation,
+            onChange,
+            /* eslint-enable no-unused-vars */
+            // Should only include Aria related props
+            ...otherProps
         } = this.props;
         return (
             <input
@@ -211,6 +230,8 @@ export default class TextField extends React.Component<Props, State> {
                 onFocus={this.handleOnFocus}
                 onBlur={this.handleOnBlur}
                 required={required}
+                data-test-id={testId}
+                {...otherProps}
             />
         );
     }
