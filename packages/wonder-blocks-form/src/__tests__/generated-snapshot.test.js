@@ -8,7 +8,7 @@ import renderer from "react-test-renderer";
 
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, Text} from "@khanacademy/wonder-blocks-core";
 import {
     Checkbox,
     Radio,
@@ -24,6 +24,8 @@ import {
     LabelLarge,
 } from "@khanacademy/wonder-blocks-typography";
 import Color from "@khanacademy/wonder-blocks-color";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import CheckboxCore from "./../components/checkbox-core.js";
 import RadioCore from "./../components/radio-core.js";
@@ -667,31 +669,207 @@ describe("wonder-blocks-form", () => {
                 super(props);
                 this.state = {
                     value: "Password123",
+                    errorMessage: null,
                 };
+                this.validation = this.validation.bind(this);
+                this.handleOnValidation = this.handleOnValidation.bind(this);
+                this.handleOnChange = this.handleOnChange.bind(this);
+            }
+
+            validation(value) {
+                if (value.length <= 8) {
+                    return "Password must be at least 8 characters long";
+                }
+
+                if (!/\d/.test(value)) {
+                    return "Password must contain a numeric value";
+                }
+            }
+
+            handleOnValidation(errorMessage) {
+                this.setState({
+                    errorMessage: errorMessage,
+                });
+            }
+
+            handleOnChange(newValue) {
+                this.setState({
+                    value: newValue,
+                });
             }
 
             render() {
                 return (
-                    <TextField
-                        id="tf-1"
-                        type="password"
-                        value={this.state.value}
-                        onChange={(newValue) =>
-                            this.setState({
-                                value: newValue,
-                            })
-                        }
-                    />
+                    <View>
+                        <TextField
+                            id="tf-1"
+                            type="password"
+                            value={this.state.value}
+                            validation={this.validation}
+                            onValidation={this.handleOnValidation}
+                            onChange={this.handleOnChange}
+                        />
+                        {this.state.errorMessage && (
+                            <View>
+                                <Strut size={Spacing.xSmall_8} />
+                                <Text style={styles.errorMessage}>
+                                    {this.state.errorMessage}
+                                </Text>
+                            </View>
+                        )}
+                    </View>
                 );
             }
         }
 
+        const styles = StyleSheet.create({
+            errorMessage: {
+                color: Color.red,
+                paddingLeft: Spacing.xxxSmall_4,
+            },
+        });
         const example = <TextFieldExample />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it("example 13", () => {
+        class TextFieldExample extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    value: "khan@khanacademy.org",
+                    errorMessage: null,
+                };
+                this.validation = this.validation.bind(this);
+                this.handleOnValidation = this.handleOnValidation.bind(this);
+                this.handleOnChange = this.handleOnChange.bind(this);
+            }
+
+            validation(value) {
+                const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+
+                if (!emailRegex.test(value)) {
+                    return "Please enter a valid email";
+                }
+            }
+
+            handleOnValidation(errorMessage) {
+                this.setState({
+                    errorMessage: errorMessage,
+                });
+            }
+
+            handleOnChange(newValue) {
+                this.setState({
+                    value: newValue,
+                });
+            }
+
+            render() {
+                return (
+                    <View>
+                        <TextField
+                            id="tf-1"
+                            type="email"
+                            value={this.state.value}
+                            validation={this.validation}
+                            onValidation={this.handleOnValidation}
+                            onChange={this.handleOnChange}
+                        />
+                        {this.state.errorMessage && (
+                            <View>
+                                <Strut size={Spacing.xSmall_8} />
+                                <Text style={styles.errorMessage}>
+                                    {this.state.errorMessage}
+                                </Text>
+                            </View>
+                        )}
+                    </View>
+                );
+            }
+        }
+
+        const styles = StyleSheet.create({
+            errorMessage: {
+                color: Color.red,
+                paddingLeft: Spacing.xxxSmall_4,
+            },
+        });
+        const example = <TextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 14", () => {
+        class TextFieldExample extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    value: "123-456-7890",
+                    errorMessage: null,
+                };
+                this.validation = this.validation.bind(this);
+                this.handleOnValidation = this.handleOnValidation.bind(this);
+                this.handleOnChange = this.handleOnChange.bind(this);
+            }
+
+            validation(value) {
+                const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+                if (!telRegex.test(value)) {
+                    return "Invalid US telephone number";
+                }
+            }
+
+            handleOnValidation(errorMessage) {
+                this.setState({
+                    errorMessage: errorMessage,
+                });
+            }
+
+            handleOnChange(newValue) {
+                this.setState({
+                    value: newValue,
+                });
+            }
+
+            render() {
+                return (
+                    <View>
+                        <TextField
+                            id="tf-1"
+                            type="email"
+                            value={this.state.value}
+                            validation={this.validation}
+                            onValidation={this.handleOnValidation}
+                            onChange={this.handleOnChange}
+                        />
+                        {this.state.errorMessage && (
+                            <View>
+                                <Strut size={Spacing.xSmall_8} />
+                                <Text style={styles.errorMessage}>
+                                    {this.state.errorMessage}
+                                </Text>
+                            </View>
+                        )}
+                    </View>
+                );
+            }
+        }
+
+        const styles = StyleSheet.create({
+            errorMessage: {
+                color: Color.red,
+                paddingLeft: Spacing.xxxSmall_4,
+            },
+        });
+        const example = <TextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 15", () => {
         const example = (
             <TextField id="tf-1" value="" onChange={() => {}} disabled={true} />
         );
