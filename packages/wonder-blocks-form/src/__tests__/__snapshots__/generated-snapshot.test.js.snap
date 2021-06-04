@@ -5890,3 +5890,10 @@ exports[`wonder-blocks-form example 9 1`] = `
   </fieldset>
 </div>
 `;
+
+exports[`wonder-blocks-form example 10 1`] = `
+<input
+  className="input_gfhfc1-o_O-LabelMedium_1rew30o-o_O-default_nqqn0x"
+  placeholder="Placeholder"
+/>
+`;

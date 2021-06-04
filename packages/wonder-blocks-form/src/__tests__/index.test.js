@@ -16,6 +16,7 @@ describe("@khanacademy/wonder-blocks-form", () => {
                 "Choice",
                 "Radio",
                 "RadioGroup",
+                "TextField",
             ].sort(),
         );
     });
