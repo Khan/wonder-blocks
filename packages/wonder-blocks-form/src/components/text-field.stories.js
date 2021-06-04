@@ -34,6 +34,7 @@ export const text: StoryComponentType = () => {
             id="tf-1"
             type="text"
             value={value}
+            placeholder="Text"
             onChange={handleOnChange}
             onKeyDown={handleOnKeyDown}
         />
@@ -60,6 +61,7 @@ export const number: StoryComponentType = () => {
             id="tf-1"
             type="number"
             value={value}
+            placeholder="Number"
             onChange={handleOnChange}
             onKeyDown={handleOnKeyDown}
         />
@@ -110,6 +112,7 @@ export const password: StoryComponentType = () => {
                 id="tf-1"
                 type="password"
                 value={value}
+                placeholder="Password"
                 validation={validation}
                 onValidation={handleOnValidation}
                 onChange={handleOnChange}
@@ -169,6 +172,7 @@ export const email: StoryComponentType = () => {
                 id="tf-1"
                 type="email"
                 value={value}
+                placeholder="Email"
                 validation={validation}
                 onValidation={handleOnValidation}
                 onChange={handleOnChange}
@@ -228,6 +232,7 @@ export const telephone: StoryComponentType = () => {
                 id="tf-1"
                 type="tel"
                 value={value}
+                placeholder="Telephone"
                 validation={validation}
                 onValidation={handleOnValidation}
                 onChange={handleOnChange}
@@ -287,6 +292,7 @@ export const error: StoryComponentType = () => {
                 id="tf-1"
                 type="email"
                 value={value}
+                placeholder="Email"
                 validation={validation}
                 onValidation={handleOnValidation}
                 onChange={handleOnChange}
@@ -305,12 +311,124 @@ export const error: StoryComponentType = () => {
 };
 
 export const disabled: StoryComponentType = () => (
-    <TextField id="tf-1" value="" onChange={() => {}} disabled={true} />
+    <TextField
+        id="tf-1"
+        value=""
+        placeholder="This field is disabled."
+        onChange={() => {}}
+        disabled={true}
+    />
 );
+
+export const light: StoryComponentType = () => {
+    const [value, setValue] = React.useState("khan@khanacademy.org");
+    const [errorMessage, setErrorMessage] = React.useState();
+    const [focused, setFocused] = React.useState(false);
+
+    const handleOnChange = (newValue: string) => {
+        setValue(newValue);
+    };
+
+    const validation = (value: string) => {
+        const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+        if (!emailRegex.test(value)) {
+            return "Please enter a valid email";
+        }
+    };
+
+    const handleOnValidation = (errorMessage: ?string) => {
+        setErrorMessage(errorMessage);
+    };
+
+    const handleOnKeyDown = (
+        event: SyntheticKeyboardEvent<HTMLInputElement>,
+    ) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    const handleOnFocus = () => {
+        setFocused(true);
+    };
+
+    const handleOnBlur = () => {
+        setFocused(false);
+    };
+
+    return (
+        <View style={styles.darkBackground}>
+            <TextField
+                id="tf-1"
+                type="email"
+                value={value}
+                placeholder="Email"
+                light={true}
+                validation={validation}
+                onValidation={handleOnValidation}
+                onChange={handleOnChange}
+                onKeyDown={handleOnKeyDown}
+                onFocus={handleOnFocus}
+                onBlur={handleOnBlur}
+            />
+            {!focused && errorMessage && (
+                <View>
+                    <Strut size={Spacing.xSmall_8} />
+                    <Text style={styles.errorMessageLight}>{errorMessage}</Text>
+                </View>
+            )}
+        </View>
+    );
+};
+
+export const customStyle: StoryComponentType = () => {
+    const [value, setValue] = React.useState("");
+
+    const handleOnChange = (newValue: string) => {
+        setValue(newValue);
+    };
+
+    const handleOnKeyDown = (
+        event: SyntheticKeyboardEvent<HTMLInputElement>,
+    ) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <TextField
+            id="tf-1"
+            style={styles.customField}
+            type="text"
+            value={value}
+            placeholder="Text"
+            onChange={handleOnChange}
+            onKeyDown={handleOnKeyDown}
+        />
+    );
+};
 
 const styles = StyleSheet.create({
     errorMessage: {
         color: Color.red,
         paddingLeft: Spacing.xxxSmall_4,
+    },
+    errorMessageLight: {
+        color: Color.white,
+        paddingLeft: Spacing.xxxSmall_4,
+    },
+    darkBackground: {
+        backgroundColor: Color.darkBlue,
+        padding: Spacing.medium_16,
+    },
+    customField: {
+        backgroundColor: Color.darkBlue,
+        color: Color.white,
+        border: "none",
+        maxWidth: 250,
+        "::placeholder": {
+            color: Color.white64,
+        },
     },
 });

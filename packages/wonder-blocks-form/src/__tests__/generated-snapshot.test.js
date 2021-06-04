@@ -632,6 +632,7 @@ describe("wonder-blocks-form", () => {
                         id="tf-1"
                         type="text"
                         value={this.state.value}
+                        placeholder="Text"
                         onChange={this.handleOnChange}
                         onKeyDown={this.handleOnKeyDown}
                     />
@@ -673,6 +674,7 @@ describe("wonder-blocks-form", () => {
                         id="tf-1"
                         type="number"
                         value={this.state.value}
+                        placeholder="Number"
                         onChange={this.handleOnChange}
                         onKeyDown={this.handleOnKeyDown}
                     />
@@ -749,6 +751,7 @@ describe("wonder-blocks-form", () => {
                             id="tf-1"
                             type="password"
                             value={this.state.value}
+                            placeholder="Password"
                             validation={this.validation}
                             onValidation={this.handleOnValidation}
                             onChange={this.handleOnChange}
@@ -842,6 +845,7 @@ describe("wonder-blocks-form", () => {
                             id="tf-1"
                             type="email"
                             value={this.state.value}
+                            placeholder="Email"
                             validation={this.validation}
                             onValidation={this.handleOnValidation}
                             onChange={this.handleOnChange}
@@ -935,6 +939,7 @@ describe("wonder-blocks-form", () => {
                             id="tf-1"
                             type="email"
                             value={this.state.value}
+                            placeholder="Telephone"
                             validation={this.validation}
                             onValidation={this.handleOnValidation}
                             onChange={this.handleOnChange}
@@ -1028,6 +1033,7 @@ describe("wonder-blocks-form", () => {
                             id="tf-1"
                             type="email"
                             value={this.state.value}
+                            placeholder="Email"
                             validation={this.validation}
                             onValidation={this.handleOnValidation}
                             onChange={this.handleOnChange}
@@ -1061,8 +1067,167 @@ describe("wonder-blocks-form", () => {
 
     it("example 16", () => {
         const example = (
-            <TextField id="tf-1" value="" onChange={() => {}} disabled={true} />
+            <TextField
+                id="tf-1"
+                value=""
+                placeholder="This field is disabled."
+                onChange={() => {}}
+                disabled={true}
+            />
         );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 17", () => {
+        class TextFieldExample extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    value: "khan@khanacademy.org",
+                    errorMessage: null,
+                    focused: false,
+                };
+                this.validation = this.validation.bind(this);
+                this.handleOnValidation = this.handleOnValidation.bind(this);
+                this.handleOnChange = this.handleOnChange.bind(this);
+                this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+                this.handleOnFocus = this.handleOnFocus.bind(this);
+                this.handleOnBlur = this.handleOnBlur.bind(this);
+            }
+
+            validation(value) {
+                const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+
+                if (!emailRegex.test(value)) {
+                    return "Please enter a valid email";
+                }
+            }
+
+            handleOnValidation(errorMessage) {
+                this.setState({
+                    errorMessage: errorMessage,
+                });
+            }
+
+            handleOnChange(newValue) {
+                this.setState({
+                    value: newValue,
+                });
+            }
+
+            handleOnKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            handleOnFocus() {
+                this.setState({
+                    focused: true,
+                });
+            }
+
+            handleOnBlur() {
+                this.setState({
+                    focused: false,
+                });
+            }
+
+            render() {
+                return (
+                    <View style={styles.darkBackground}>
+                        <TextField
+                            id="tf-1"
+                            type="email"
+                            value={this.state.value}
+                            light={true}
+                            placeholder="Email"
+                            validation={this.validation}
+                            onValidation={this.handleOnValidation}
+                            onChange={this.handleOnChange}
+                            onKeyDown={this.handleOnKeyDown}
+                            onFocus={this.handleOnFocus}
+                            onBlur={this.handleOnBlur}
+                        />
+                        {!this.state.focused && this.state.errorMessage && (
+                            <View>
+                                <Strut size={Spacing.xSmall_8} />
+                                <Text style={styles.errorMessage}>
+                                    {this.state.errorMessage}
+                                </Text>
+                            </View>
+                        )}
+                    </View>
+                );
+            }
+        }
+
+        const styles = StyleSheet.create({
+            errorMessage: {
+                color: Color.white,
+                paddingLeft: Spacing.xxxSmall_4,
+            },
+            darkBackground: {
+                backgroundColor: Color.darkBlue,
+                padding: Spacing.medium_16,
+            },
+        });
+        const example = <TextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 18", () => {
+        class TextFieldExample extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    value: "",
+                };
+                this.handleOnChange = this.handleOnChange.bind(this);
+                this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+            }
+
+            handleOnChange(newValue) {
+                this.setState({
+                    value: newValue,
+                });
+            }
+
+            handleOnKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            render() {
+                return (
+                    <TextField
+                        id="tf-1"
+                        style={styles.customField}
+                        type="text"
+                        value={this.state.value}
+                        placeholder="Text"
+                        onChange={this.handleOnChange}
+                        onKeyDown={this.handleOnKeyDown}
+                    />
+                );
+            }
+        }
+
+        const styles = StyleSheet.create({
+            customField: {
+                backgroundColor: Color.darkBlue,
+                color: Color.white,
+                border: "none",
+                maxWidth: 250,
+                "::placeholder": {
+                    color: Color.white64,
+                },
+            },
+        });
+        const example = <TextFieldExample />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
