@@ -7,14 +7,37 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 
+type TextFieldType = "text" | "password" | "email" | "number" | "tel";
+
 type Props = {|
     /**
-     * Makes a read-only input field that cannot be focused.
+     * The unique identifier for the input.
+     */
+    id: string,
+
+    /**
+     * Determines the type of input. Defaults to text.
+     */
+    type: TextFieldType,
+
+    /**
+     * The input value.
+     */
+    value: string,
+
+    /**
+     * Makes a read-only input field that cannot be focused. Defaults to false.
      */
     disabled: boolean,
+
+    /**
+     * Called when the value has changed.
+     */
+    onChange: (newValue: string) => mixed,
 |};
 
 type DefaultProps = {|
+    type: $PropertyType<Props, "type">,
     disabled: $PropertyType<Props, "disabled">,
 |};
 
@@ -35,12 +58,20 @@ type State = {|
  */
 export default class TextField extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
+        type: "text",
         disabled: false,
     };
 
     state: State = {
         error: null,
         focused: false,
+    };
+
+    handleOnChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed = (
+        event,
+    ) => {
+        const {onChange} = this.props;
+        onChange(event.target.value);
     };
 
     handleOnFocus: (
@@ -60,7 +91,7 @@ export default class TextField extends React.Component<Props, State> {
     };
 
     render(): React.Node {
-        const {disabled} = this.props;
+        const {id, type, value, disabled} = this.props;
         return (
             <input
                 className={css([
@@ -74,8 +105,12 @@ export default class TextField extends React.Component<Props, State> {
                         ? styles.focused
                         : this.state.error && styles.error,
                 ])}
+                id={id}
+                type={type}
                 placeholder="Placeholder"
+                value={value}
                 disabled={disabled}
+                onChange={this.handleOnChange}
                 onFocus={this.handleOnFocus}
                 onBlur={this.handleOnBlur}
             />

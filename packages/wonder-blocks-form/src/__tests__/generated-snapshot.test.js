@@ -602,13 +602,99 @@ describe("wonder-blocks-form", () => {
     });
 
     it("example 10", () => {
-        const example = <TextField />;
+        class TextFieldExample extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    value: "",
+                };
+            }
+
+            render() {
+                return (
+                    <TextField
+                        id="tf-1"
+                        type="text"
+                        value={this.state.value}
+                        onChange={(newValue) =>
+                            this.setState({
+                                value: newValue,
+                            })
+                        }
+                    />
+                );
+            }
+        }
+
+        const example = <TextFieldExample />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it("example 11", () => {
-        const example = <TextField disabled={true} />;
+        class TextFieldExample extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    value: "12345",
+                };
+            }
+
+            render() {
+                return (
+                    <TextField
+                        id="tf-1"
+                        type="number"
+                        value={this.state.value}
+                        onChange={(newValue) =>
+                            this.setState({
+                                value: newValue,
+                            })
+                        }
+                    />
+                );
+            }
+        }
+
+        const example = <TextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 12", () => {
+        class TextFieldExample extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    value: "Password123",
+                };
+            }
+
+            render() {
+                return (
+                    <TextField
+                        id="tf-1"
+                        type="password"
+                        value={this.state.value}
+                        onChange={(newValue) =>
+                            this.setState({
+                                value: newValue,
+                            })
+                        }
+                    />
+                );
+            }
+        }
+
+        const example = <TextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 13", () => {
+        const example = (
+            <TextField id="tf-1" value="" onChange={() => {}} disabled={true} />
+        );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
