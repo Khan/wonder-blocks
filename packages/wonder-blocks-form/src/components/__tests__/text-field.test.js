@@ -24,6 +24,26 @@ describe("TextField", () => {
         expect(wrapper).toHaveState("focused", true);
     });
 
+    it("onFocus is called after textfield is focused", () => {
+        // Arrange
+        const handleOnFocus = jest.fn(() => {});
+
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value="TextIsLongerThan8"
+                onChange={() => {}}
+                onFocus={handleOnFocus}
+            />,
+        );
+
+        // Act
+        wrapper.simulate("focus");
+
+        // Assert
+        expect(handleOnFocus).toHaveBeenCalled();
+    });
+
     it("textfield is blurred", async () => {
         // Arrange
         const wrapper = mount(
@@ -39,13 +59,35 @@ describe("TextField", () => {
         expect(wrapper).toHaveState("focused", false);
     });
 
+    it("onBlur is called after textfield is blurred", async () => {
+        // Arrange
+        const handleOnBlur = jest.fn(() => {});
+
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value="TextIsLongerThan8"
+                onChange={() => {}}
+                onBlur={handleOnBlur}
+            />,
+        );
+
+        // Act
+        wrapper.simulate("focus");
+        await wait(0);
+        wrapper.simulate("blur");
+
+        // Assert
+        expect(handleOnBlur).toHaveBeenCalled();
+    });
+
     it("id prop is passed to the input element", () => {
         // Arrange
         const id: string = "tf-1";
 
         // Act
         const wrapper = mount(
-            <TextField id={id} value="" onChange={() => {}} disabled={true} />,
+            <TextField id={id} value="" onChange={() => {}} />,
         );
 
         // Assert
@@ -59,13 +101,7 @@ describe("TextField", () => {
 
         // Act
         const wrapper = mount(
-            <TextField
-                id={"tf-1"}
-                type={type}
-                value=""
-                onChange={() => {}}
-                disabled={true}
-            />,
+            <TextField id={"tf-1"} type={type} value="" onChange={() => {}} />,
         );
 
         // Assert
@@ -79,12 +115,7 @@ describe("TextField", () => {
 
         // Act
         const wrapper = mount(
-            <TextField
-                id={"tf-1"}
-                value={value}
-                onChange={() => {}}
-                disabled={true}
-            />,
+            <TextField id={"tf-1"} value={value} onChange={() => {}} />,
         );
 
         // Assert
@@ -115,12 +146,7 @@ describe("TextField", () => {
         const handleOnChange = jest.fn();
 
         const wrapper = mount(
-            <TextField
-                id={"tf-1"}
-                value="Text"
-                onChange={handleOnChange}
-                disabled={true}
-            />,
+            <TextField id={"tf-1"} value="Text" onChange={handleOnChange} />,
         );
 
         // Act
@@ -141,7 +167,6 @@ describe("TextField", () => {
                 value="Text"
                 validation={handleValidation}
                 onChange={() => {}}
-                disabled={true}
             />,
         );
 
@@ -167,7 +192,6 @@ describe("TextField", () => {
                 value="TextIsLong"
                 validation={handleValidation}
                 onChange={() => {}}
-                disabled={true}
             />,
         );
 
@@ -194,7 +218,6 @@ describe("TextField", () => {
                 value="TextIsLongerThan8"
                 validation={handleValidation}
                 onChange={() => {}}
-                disabled={true}
             />,
         );
 
@@ -223,7 +246,6 @@ describe("TextField", () => {
                 validation={validation}
                 onValidation={handleOnValidation}
                 onChange={() => {}}
-                disabled={true}
             />,
         );
 
@@ -233,5 +255,56 @@ describe("TextField", () => {
 
         // Assert
         expect(handleOnValidation).toHaveBeenCalledWith(errorMessage);
+    });
+
+    it("onValidation is called on input's initial value", () => {
+        // Arrange
+        const errorMessage = "Value is too short";
+        const handleOnValidation = jest.fn((errorMessage: ?string) => {});
+        const validation = jest.fn((value: string): ?string => {
+            if (value.length < 8) {
+                return errorMessage;
+            }
+        });
+
+        // Act
+        mount(
+            <TextField
+                id={"tf-1"}
+                value="Short"
+                validation={validation}
+                onValidation={handleOnValidation}
+                onChange={() => {}}
+            />,
+        );
+
+        // Assert
+        expect(handleOnValidation).toHaveBeenCalledWith(errorMessage);
+    });
+
+    it("onKeyDown is called after keyboard key press", () => {
+        // Arrange
+        const handleOnKeyDown = jest.fn(
+            (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+                return event.key;
+            },
+        );
+
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value="TextIsLongerThan8"
+                onChange={() => {}}
+                onKeyDown={handleOnKeyDown}
+            />,
+        );
+
+        // Act
+        const key = "Enter";
+        const input = wrapper.find("input");
+        input.simulate("keyDown", {key: key});
+
+        // Assert
+        expect(handleOnKeyDown).toHaveReturnedWith(key);
     });
 });

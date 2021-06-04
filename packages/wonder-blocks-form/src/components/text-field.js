@@ -45,6 +45,21 @@ type Props = {|
      * Called when the value has changed.
      */
     onChange: (newValue: string) => mixed,
+
+    /**
+     * Called when a key is pressed.
+     */
+    onKeyDown?: (event: SyntheticKeyboardEvent<HTMLInputElement>) => mixed,
+
+    /**
+     * Called when the element has been focused.
+     */
+    onFocus?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
+
+    /**
+     * Called when the element has been blurred.
+     */
+    onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 |};
 
 type DefaultProps = {|
@@ -73,44 +88,69 @@ export default class TextField extends React.Component<Props, State> {
         disabled: false,
     };
 
+    constructor(props: Props) {
+        super(props);
+        if (props.validation) {
+            // Ensures error is updated on unmounted server-side renders
+            this.state.error = props.validation(props.value) || null;
+        }
+    }
+
     state: State = {
         error: null,
         focused: false,
     };
 
-    handleOnChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed = (
-        event,
-    ) => {
-        const {validation, onValidation, onChange} = this.props;
-        const newValue = event.target.value;
+    componentDidMount() {
+        this.maybeValidate(this.props.value);
+    }
+
+    maybeValidate: (newValue: string) => void = (newValue) => {
+        const {validation, onValidation} = this.props;
         if (validation) {
-            const maybeError = validation(newValue);
+            const maybeError = validation(newValue) || null;
             this.setState({error: maybeError});
             if (onValidation) {
                 onValidation(maybeError);
             }
         }
+    };
+
+    handleOnChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed = (
+        event,
+    ) => {
+        const {onChange} = this.props;
+        const newValue = event.target.value;
+        this.maybeValidate(newValue);
         onChange(newValue);
     };
 
-    handleOnFocus: (
-        event: SyntheticFocusEvent<HTMLInputElement>,
-    ) => mixed = () => {
+    handleOnFocus: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
+        event,
+    ) => {
+        const {onFocus} = this.props;
         this.setState({
             focused: true,
         });
+        if (onFocus) {
+            onFocus(event);
+        }
     };
 
-    handleOnBlur: (
-        event: SyntheticFocusEvent<HTMLInputElement>,
-    ) => mixed = () => {
+    handleOnBlur: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
+        event,
+    ) => {
+        const {onBlur} = this.props;
         this.setState({
             focused: false,
         });
+        if (onBlur) {
+            onBlur(event);
+        }
     };
 
     render(): React.Node {
-        const {id, type, value, disabled} = this.props;
+        const {id, type, value, disabled, onKeyDown} = this.props;
         return (
             <input
                 className={css([
@@ -130,6 +170,7 @@ export default class TextField extends React.Component<Props, State> {
                 value={value}
                 disabled={disabled}
                 onChange={this.handleOnChange}
+                onKeyDown={onKeyDown}
                 onFocus={this.handleOnFocus}
                 onBlur={this.handleOnBlur}
             />

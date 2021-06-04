@@ -610,6 +610,20 @@ describe("wonder-blocks-form", () => {
                 this.state = {
                     value: "",
                 };
+                this.handleOnChange = this.handleOnChange.bind(this);
+                this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+            }
+
+            handleOnChange(newValue) {
+                this.setState({
+                    value: newValue,
+                });
+            }
+
+            handleOnKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
             }
 
             render() {
@@ -618,11 +632,8 @@ describe("wonder-blocks-form", () => {
                         id="tf-1"
                         type="text"
                         value={this.state.value}
-                        onChange={(newValue) =>
-                            this.setState({
-                                value: newValue,
-                            })
-                        }
+                        onChange={this.handleOnChange}
+                        onKeyDown={this.handleOnKeyDown}
                     />
                 );
             }
@@ -640,6 +651,20 @@ describe("wonder-blocks-form", () => {
                 this.state = {
                     value: "12345",
                 };
+                this.handleOnChange = this.handleOnChange.bind(this);
+                this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+            }
+
+            handleOnChange(newValue) {
+                this.setState({
+                    value: newValue,
+                });
+            }
+
+            handleOnKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
             }
 
             render() {
@@ -648,11 +673,8 @@ describe("wonder-blocks-form", () => {
                         id="tf-1"
                         type="number"
                         value={this.state.value}
-                        onChange={(newValue) =>
-                            this.setState({
-                                value: newValue,
-                            })
-                        }
+                        onChange={this.handleOnChange}
+                        onKeyDown={this.handleOnKeyDown}
                     />
                 );
             }
@@ -670,14 +692,18 @@ describe("wonder-blocks-form", () => {
                 this.state = {
                     value: "Password123",
                     errorMessage: null,
+                    focused: false,
                 };
                 this.validation = this.validation.bind(this);
                 this.handleOnValidation = this.handleOnValidation.bind(this);
                 this.handleOnChange = this.handleOnChange.bind(this);
+                this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+                this.handleOnFocus = this.handleOnFocus.bind(this);
+                this.handleOnBlur = this.handleOnBlur.bind(this);
             }
 
             validation(value) {
-                if (value.length <= 8) {
+                if (value.length < 8) {
                     return "Password must be at least 8 characters long";
                 }
 
@@ -698,6 +724,24 @@ describe("wonder-blocks-form", () => {
                 });
             }
 
+            handleOnKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            handleOnFocus() {
+                this.setState({
+                    focused: true,
+                });
+            }
+
+            handleOnBlur() {
+                this.setState({
+                    focused: false,
+                });
+            }
+
             render() {
                 return (
                     <View>
@@ -708,8 +752,11 @@ describe("wonder-blocks-form", () => {
                             validation={this.validation}
                             onValidation={this.handleOnValidation}
                             onChange={this.handleOnChange}
+                            onKeyDown={this.handleOnKeyDown}
+                            onFocus={this.handleOnFocus}
+                            onBlur={this.handleOnBlur}
                         />
-                        {this.state.errorMessage && (
+                        {!this.state.focused && this.state.errorMessage && (
                             <View>
                                 <Strut size={Spacing.xSmall_8} />
                                 <Text style={styles.errorMessage}>
@@ -740,10 +787,14 @@ describe("wonder-blocks-form", () => {
                 this.state = {
                     value: "khan@khanacademy.org",
                     errorMessage: null,
+                    focused: false,
                 };
                 this.validation = this.validation.bind(this);
                 this.handleOnValidation = this.handleOnValidation.bind(this);
                 this.handleOnChange = this.handleOnChange.bind(this);
+                this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+                this.handleOnFocus = this.handleOnFocus.bind(this);
+                this.handleOnBlur = this.handleOnBlur.bind(this);
             }
 
             validation(value) {
@@ -766,6 +817,24 @@ describe("wonder-blocks-form", () => {
                 });
             }
 
+            handleOnKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            handleOnFocus() {
+                this.setState({
+                    focused: true,
+                });
+            }
+
+            handleOnBlur() {
+                this.setState({
+                    focused: false,
+                });
+            }
+
             render() {
                 return (
                     <View>
@@ -776,8 +845,11 @@ describe("wonder-blocks-form", () => {
                             validation={this.validation}
                             onValidation={this.handleOnValidation}
                             onChange={this.handleOnChange}
+                            onKeyDown={this.handleOnKeyDown}
+                            onFocus={this.handleOnFocus}
+                            onBlur={this.handleOnBlur}
                         />
-                        {this.state.errorMessage && (
+                        {!this.state.focused && this.state.errorMessage && (
                             <View>
                                 <Strut size={Spacing.xSmall_8} />
                                 <Text style={styles.errorMessage}>
@@ -808,10 +880,14 @@ describe("wonder-blocks-form", () => {
                 this.state = {
                     value: "123-456-7890",
                     errorMessage: null,
+                    focused: false,
                 };
                 this.validation = this.validation.bind(this);
                 this.handleOnValidation = this.handleOnValidation.bind(this);
                 this.handleOnChange = this.handleOnChange.bind(this);
+                this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+                this.handleOnFocus = this.handleOnFocus.bind(this);
+                this.handleOnBlur = this.handleOnBlur.bind(this);
             }
 
             validation(value) {
@@ -834,6 +910,24 @@ describe("wonder-blocks-form", () => {
                 });
             }
 
+            handleOnKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            handleOnFocus() {
+                this.setState({
+                    focused: true,
+                });
+            }
+
+            handleOnBlur() {
+                this.setState({
+                    focused: false,
+                });
+            }
+
             render() {
                 return (
                     <View>
@@ -844,8 +938,11 @@ describe("wonder-blocks-form", () => {
                             validation={this.validation}
                             onValidation={this.handleOnValidation}
                             onChange={this.handleOnChange}
+                            onKeyDown={this.handleOnKeyDown}
+                            onFocus={this.handleOnFocus}
+                            onBlur={this.handleOnBlur}
                         />
-                        {this.state.errorMessage && (
+                        {!this.state.focused && this.state.errorMessage && (
                             <View>
                                 <Strut size={Spacing.xSmall_8} />
                                 <Text style={styles.errorMessage}>
@@ -870,6 +967,99 @@ describe("wonder-blocks-form", () => {
     });
 
     it("example 15", () => {
+        class TextFieldExample extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    value: "khan",
+                    errorMessage: null,
+                    focused: false,
+                };
+                this.validation = this.validation.bind(this);
+                this.handleOnValidation = this.handleOnValidation.bind(this);
+                this.handleOnChange = this.handleOnChange.bind(this);
+                this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+                this.handleOnFocus = this.handleOnFocus.bind(this);
+                this.handleOnBlur = this.handleOnBlur.bind(this);
+            }
+
+            validation(value) {
+                const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+
+                if (!emailRegex.test(value)) {
+                    return "Please enter a valid email";
+                }
+            }
+
+            handleOnValidation(errorMessage) {
+                this.setState({
+                    errorMessage: errorMessage,
+                });
+            }
+
+            handleOnChange(newValue) {
+                this.setState({
+                    value: newValue,
+                });
+            }
+
+            handleOnKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            handleOnFocus() {
+                this.setState({
+                    focused: true,
+                });
+            }
+
+            handleOnBlur() {
+                this.setState({
+                    focused: false,
+                });
+            }
+
+            render() {
+                return (
+                    <View>
+                        <TextField
+                            id="tf-1"
+                            type="email"
+                            value={this.state.value}
+                            validation={this.validation}
+                            onValidation={this.handleOnValidation}
+                            onChange={this.handleOnChange}
+                            onKeyDown={this.handleOnKeyDown}
+                            onFocus={this.handleOnFocus}
+                            onBlur={this.handleOnBlur}
+                        />
+                        {!this.state.focused && this.state.errorMessage && (
+                            <View>
+                                <Strut size={Spacing.xSmall_8} />
+                                <Text style={styles.errorMessage}>
+                                    {this.state.errorMessage}
+                                </Text>
+                            </View>
+                        )}
+                    </View>
+                );
+            }
+        }
+
+        const styles = StyleSheet.create({
+            errorMessage: {
+                color: Color.red,
+                paddingLeft: Spacing.xxxSmall_4,
+            },
+        });
+        const example = <TextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 16", () => {
         const example = (
             <TextField id="tf-1" value="" onChange={() => {}} disabled={true} />
         );
