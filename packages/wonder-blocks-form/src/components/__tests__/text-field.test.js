@@ -346,4 +346,42 @@ describe("TextField", () => {
         const input = wrapper.find("input");
         expect(input).toContainMatchingElement("[required=true]");
     });
+
+    it("testId is passed to the input element", () => {
+        // Arrange
+        const testId = "some-test-id";
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value="Text"
+                onChange={() => {}}
+                testId={testId}
+            />,
+        );
+
+        // Act
+
+        // Assert
+        const input = wrapper.find("input");
+        expect(input).toContainMatchingElement(`[data-test-id="${testId}"]`);
+    });
+
+    it("aria props are passed to the input element", () => {
+        // Arrange
+        const ariaLabel = "example-text-field";
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value="Text"
+                onChange={() => {}}
+                aria-label={ariaLabel}
+            />,
+        );
+
+        // Act
+
+        // Assert
+        const input = wrapper.find("input");
+        expect(input).toContainMatchingElement(`[aria-label="${ariaLabel}"]`);
+    });
 });
