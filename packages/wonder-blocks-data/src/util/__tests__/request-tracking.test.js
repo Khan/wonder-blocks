@@ -44,6 +44,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_TYPE",
                     cache: null,
+                    hydrate: true,
                 };
                 const options = {these: "are options"};
 
@@ -63,6 +64,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_TYPE",
                     cache: null,
+                    hydrate: true,
                 };
                 const options = {these: "are options"};
 
@@ -86,6 +88,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_TYPE",
                     cache: null,
+                    hydrate: true,
                 };
                 const options1 = {these: "are options"};
                 const options2 = {these: "are options"};
@@ -112,6 +115,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: handlerType,
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeHandler2: IRequestHandler<any, any> = {
                     fulfillRequest: jest.fn(),
@@ -119,6 +123,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: handlerType,
                     cache: null,
+                    hydrate: true,
                 };
                 const options1 = {these: "are options"};
                 const options2 = {these: "are also options"};
@@ -163,6 +168,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_TYPE",
                     cache: null,
+                    hydrate: true,
                 };
                 requestTracker.trackDataRequest(fakeBadHandler, "OPTIONS");
 
@@ -189,6 +195,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: "BAD_REQUEST",
                     cache: null,
+                    hydrate: true,
                 };
                 requestTracker.trackDataRequest(
                     fakeBadRequestHandler,
@@ -223,6 +230,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: "BAD_REQUEST",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeBadHandler: IRequestHandler<string, any> = {
                     fulfillRequest: () => {
@@ -232,6 +240,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: "BAD_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeValidHandler: IRequestHandler<string, any> = {
                     fulfillRequest: (() => {
@@ -245,6 +254,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: "VALID",
                     cache: null,
+                    hydrate: true,
                 };
                 requestTracker.trackDataRequest(
                     fakeBadRequestHandler,
@@ -293,6 +303,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: "VALID",
                     cache: null,
+                    hydrate: true,
                 };
                 requestTracker.trackDataRequest(fakeValidHandler, "OPTIONS1");
 
@@ -313,6 +324,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: "STATIC",
                     cache: null,
+                    hydrate: true,
                 };
                 requestTracker.trackDataRequest(fakeStaticHandler, "1");
                 requestTracker.trackDataRequest(fakeStaticHandler, "2");
@@ -338,6 +350,7 @@ describe("../request-tracking.js", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_TYPE",
                     cache: null,
+                    hydrate: true,
                 };
                 requestTracker.trackDataRequest(fakeHandler, "OPTIONS");
 

@@ -1,6 +1,7 @@
 // @flow
 import type {ValidData, ICache, CacheEntry, IRequestHandler} from "./types.js";
 
+let defaultInstance: ?ICache<any, any> = null;
 /**
  * This is a cache implementation to use when no caching is wanted.
  *
@@ -14,6 +15,13 @@ import type {ValidData, ICache, CacheEntry, IRequestHandler} from "./types.js";
  */
 export default class NoCache<TOptions, TData: ValidData>
     implements ICache<TOptions, TData> {
+    static get Default(): ICache<TOptions, TData> {
+        if (defaultInstance == null) {
+            defaultInstance = new NoCache<TOptions, TData>();
+        }
+        return defaultInstance;
+    }
+
     store: <TOptions, TData: ValidData>(
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,

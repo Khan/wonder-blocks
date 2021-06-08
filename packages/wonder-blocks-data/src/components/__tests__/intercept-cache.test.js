@@ -21,6 +21,7 @@ describe("InterceptCache", () => {
             shouldRefreshCache: () => false,
             type: "MY_HANDLER",
             cache: null,
+            hydrate: true,
         };
         const getEntryFn = jest.fn();
         const captureContextFn = jest.fn();
@@ -52,6 +53,7 @@ describe("InterceptCache", () => {
             shouldRefreshCache: () => false,
             type: "MY_HANDLER",
             cache: null,
+            hydrate: true,
         };
         const getEntry1Fn = jest.fn();
         const getEntry2Fn = jest.fn();
@@ -86,6 +88,7 @@ describe("InterceptCache", () => {
             shouldRefreshCache: () => false,
             type: "MY_HANDLER",
             cache: null,
+            hydrate: true,
         };
         const fulfillRequestFn = jest.fn();
         const shouldRefreshCacheFn = jest.fn();

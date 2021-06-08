@@ -29,6 +29,7 @@ describe("RequestFulfillment", () => {
                 shouldRefreshCache: () => false,
                 type: "MY_TYPE",
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -55,6 +56,7 @@ describe("RequestFulfillment", () => {
                 shouldRefreshCache: () => false,
                 type: "BAD_REQUEST",
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -80,6 +82,7 @@ describe("RequestFulfillment", () => {
                 shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -105,6 +108,7 @@ describe("RequestFulfillment", () => {
                 shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -129,6 +133,7 @@ describe("RequestFulfillment", () => {
                 shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -155,6 +160,7 @@ describe("RequestFulfillment", () => {
                 shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
                 cache: null,
+                hydrate: true,
             };
 
             // Act

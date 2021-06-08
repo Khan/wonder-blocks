@@ -50,6 +50,7 @@ describe("MemoryCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -73,6 +74,7 @@ describe("MemoryCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -96,6 +98,7 @@ describe("MemoryCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -119,6 +122,7 @@ describe("MemoryCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -141,6 +145,7 @@ describe("MemoryCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -163,6 +168,7 @@ describe("MemoryCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -183,6 +189,7 @@ describe("MemoryCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -203,6 +210,7 @@ describe("MemoryCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -225,6 +233,7 @@ describe("MemoryCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -247,6 +256,7 @@ describe("MemoryCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -276,6 +286,7 @@ describe("MemoryCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -314,6 +325,7 @@ describe("MemoryCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act

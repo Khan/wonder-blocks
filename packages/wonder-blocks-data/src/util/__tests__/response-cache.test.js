@@ -2,6 +2,7 @@
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {ResponseCache} from "../response-cache.js";
 import MemoryCache from "../memory-cache.js";
+import NoCache from "../no-cache.js";
 
 import type {IRequestHandler} from "../types.js";
 
@@ -28,6 +29,7 @@ describe("../response-cache.js", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -91,6 +93,7 @@ describe("../response-cache.js", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
             const sourceData = {
                 MY_HANDLER: {
@@ -122,6 +125,7 @@ describe("../response-cache.js", () => {
                     shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
                     cache: null,
+                    hydrate: true,
                 };
 
                 // Act
@@ -155,6 +159,7 @@ describe("../response-cache.js", () => {
                     shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
                     cache: customCache,
+                    hydrate: true,
                 };
 
                 // Act
@@ -187,6 +192,7 @@ describe("../response-cache.js", () => {
                     shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
                     cache: customCache,
+                    hydrate: true,
                 };
 
                 // Act
@@ -198,6 +204,56 @@ describe("../response-cache.js", () => {
                     "options",
                     {data: "data"},
                 );
+                expect(internalCache.store).not.toHaveBeenCalled();
+            });
+        });
+
+        describe("no hydrate", () => {
+            it("should store the entry in the NoCache cache", () => {
+                // Arrange
+                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                const internalCache = new MemoryCache();
+                const noCacheStoreSpy = jest.spyOn(NoCache.Default, "store");
+                const cache = new ResponseCache(internalCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    shouldRefreshCache: () => false,
+                    fulfillRequest: jest.fn(),
+                    cache: null,
+                    hydrate: false,
+                };
+
+                // Act
+                cache.cacheData(fakeHandler, "options", "data");
+
+                // Assert
+                expect(noCacheStoreSpy).toHaveBeenCalledWith(
+                    fakeHandler,
+                    "options",
+                    {data: "data"},
+                );
+            });
+
+            it("should not store the entry in the framework cache", () => {
+                // Arrange
+                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                const internalCache = new MemoryCache();
+                jest.spyOn(internalCache, "store");
+                const cache = new ResponseCache(internalCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    shouldRefreshCache: () => false,
+                    fulfillRequest: jest.fn(),
+                    cache: null,
+                    hydrate: false,
+                };
+
+                // Act
+                cache.cacheData(fakeHandler, "options", "data");
+
+                // Assert
                 expect(internalCache.store).not.toHaveBeenCalled();
             });
         });
@@ -216,6 +272,7 @@ describe("../response-cache.js", () => {
                     shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
                     cache: null,
+                    hydrate: true,
                 };
 
                 // Act
@@ -249,6 +306,7 @@ describe("../response-cache.js", () => {
                     shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
                     cache: customCache,
+                    hydrate: true,
                 };
 
                 // Act
@@ -281,6 +339,7 @@ describe("../response-cache.js", () => {
                     shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
                     cache: customCache,
+                    hydrate: true,
                 };
 
                 // Act
@@ -292,6 +351,56 @@ describe("../response-cache.js", () => {
                     "options",
                     {error: "Ooops!"},
                 );
+                expect(internalCache.store).not.toHaveBeenCalled();
+            });
+        });
+
+        describe("no hydrate", () => {
+            it("should store the entry in the NoCache cache", () => {
+                // Arrange
+                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                const internalCache = new MemoryCache();
+                const noCacheStoreSpy = jest.spyOn(NoCache.Default, "store");
+                const cache = new ResponseCache(internalCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    shouldRefreshCache: () => false,
+                    fulfillRequest: jest.fn(),
+                    cache: null,
+                    hydrate: false,
+                };
+
+                // Act
+                cache.cacheError(fakeHandler, "options", new Error("Ooops!"));
+
+                // Assert
+                expect(noCacheStoreSpy).toHaveBeenCalledWith(
+                    fakeHandler,
+                    "options",
+                    {error: "Ooops!"},
+                );
+            });
+
+            it("should not store the entry in the framework cache", () => {
+                // Arrange
+                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                const internalCache = new MemoryCache();
+                jest.spyOn(internalCache, "store");
+                const cache = new ResponseCache(internalCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    shouldRefreshCache: () => false,
+                    fulfillRequest: jest.fn(),
+                    cache: null,
+                    hydrate: false,
+                };
+
+                // Act
+                cache.cacheError(fakeHandler, "options", new Error("Ooops!"));
+
+                // Assert
                 expect(internalCache.store).not.toHaveBeenCalled();
             });
         });
@@ -310,6 +419,7 @@ describe("../response-cache.js", () => {
                     shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
                     cache: null,
+                    hydrate: true,
                 };
 
                 // Act
@@ -332,6 +442,7 @@ describe("../response-cache.js", () => {
                     shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
                     cache: null,
+                    hydrate: true,
                 };
 
                 // Act
@@ -361,6 +472,7 @@ describe("../response-cache.js", () => {
                     shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
                     cache: customCache,
+                    hydrate: true,
                 };
 
                 // Act
@@ -392,6 +504,7 @@ describe("../response-cache.js", () => {
                     shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
                     cache: customCache,
+                    hydrate: true,
                 };
 
                 // Act
@@ -425,6 +538,7 @@ describe("../response-cache.js", () => {
                     shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
                     cache: customCache,
+                    hydrate: true,
                 };
 
                 // Act
@@ -460,6 +574,7 @@ describe("../response-cache.js", () => {
                     shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
                     cache: customCache,
+                    hydrate: true,
                 };
 
                 // Act
@@ -492,6 +607,7 @@ describe("../response-cache.js", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: customCache,
+                hydrate: true,
             };
 
             // Act
@@ -518,6 +634,7 @@ describe("../response-cache.js", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: customCache,
+                hydrate: true,
             };
 
             // Act
@@ -553,6 +670,7 @@ describe("../response-cache.js", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: customCache,
+                hydrate: true,
             };
 
             // Act
@@ -580,6 +698,7 @@ describe("../response-cache.js", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: customCache,
+                hydrate: true,
             };
 
             // Act
@@ -611,6 +730,7 @@ describe("../response-cache.js", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: customCache,
+                hydrate: true,
             };
             const predicate = () => false;
 
@@ -645,6 +765,7 @@ describe("../response-cache.js", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: customCache,
+                hydrate: true,
             };
 
             // Act
@@ -672,6 +793,7 @@ describe("../response-cache.js", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: customCache,
+                hydrate: true,
             };
 
             // Act
@@ -698,6 +820,7 @@ describe("../response-cache.js", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
             // Let's add to the initialized state to check that everything
             // is cloning as we expect.
