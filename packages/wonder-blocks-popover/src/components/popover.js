@@ -118,6 +118,11 @@ type State = {|
      * Current popper placement
      */
     placement: Placement,
+
+    /**
+     * Popover Content ref
+     */
+    contentRef: RefObject<PopoverContent | PopoverContentCore>,
 |};
 
 type DefaultProps = {|
@@ -156,6 +161,7 @@ export default class Popover extends React.Component<Props, State> {
         opened: !!this.props.opened,
         anchorElement: null,
         placement: this.props.placement,
+        contentRef: React.createRef(),
     };
 
     /**
@@ -188,11 +194,14 @@ export default class Popover extends React.Component<Props, State> {
     renderContent(): PopoverContents {
         const {content} = this.props;
 
-        return typeof content === "function"
-            ? content({
-                  close: this.handleClose,
-              })
-            : content;
+        return React.cloneElement(
+            typeof content === "function"
+                ? content({
+                      close: this.handleClose,
+                  })
+                : content,
+            {ref: this.state.contentRef},
+        );
     }
 
     renderPopper(uniqueId: string): React.Node {
@@ -269,7 +278,10 @@ export default class Popover extends React.Component<Props, State> {
                 </IDProvider>
 
                 {dismissEnabled && opened && (
-                    <PopoverKeypressListener onClose={this.handleClose} />
+                    <PopoverKeypressListener
+                        onClose={this.handleClose}
+                        contentRef={this.state.contentRef}
+                    />
                 )}
             </PopoverContext.Provider>
         );
