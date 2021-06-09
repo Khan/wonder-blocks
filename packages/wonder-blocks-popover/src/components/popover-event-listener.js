@@ -27,10 +27,11 @@ type State = {|
 |};
 
 /**
- * A component that, when mounted, calls `onClose` when Escape is pressed.
+ * A component that, when mounted, calls `onClose` when certain events occur.
+ * This includes when pressing Escape or clicking outside the Popover.
  * @see @khanacademy/wonder-blocks-modal/components/modal-launcher.js
  */
-export default class PopoverKeypressListener extends React.Component<
+export default class PopoverEventListener extends React.Component<
     Props,
     State,
 > {
@@ -65,7 +66,7 @@ export default class PopoverKeypressListener extends React.Component<
         }
     };
 
-    _handleClick: (e: KeyboardEvent) => void = (e) => {
+    _handleClick: (e: MouseEvent) => void = (e) => {
         // Prevents the problem where clicking the trigger button
         // triggers a click event and immediately closes the popover.
         if (this.state.isFirstClick) {
