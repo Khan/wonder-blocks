@@ -38,7 +38,7 @@ const customViewports = {
 };
 
 export default {
-    title: "OnePaneDialog",
+    title: "Modal/OnePaneDialog",
     parameters: {
         viewport: {
             viewports: customViewports,
