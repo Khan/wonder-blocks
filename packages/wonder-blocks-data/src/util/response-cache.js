@@ -1,11 +1,13 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
 import MemoryCache from "./memory-cache.js";
+import NoCache from "./no-cache.js";
 
 import type {
     ValidData,
     CacheEntry,
     Cache,
+    ICache,
     IRequestHandler,
     ResponseCache as ResCache,
 } from "./types.js";
@@ -15,6 +17,18 @@ import type {
  * It's created below in the Default() static property.
  */
 let _default: ResponseCache;
+
+const getCache = <TOptions, TData: ValidData>(
+    handler: IRequestHandler<TOptions, TData>,
+): ?ICache<TOptions, TData> => {
+    if (Server.isServerSide()) {
+        // We don't use custom caches during SSR.
+        // However, we do skip caching if we are not hydrating the results
+        // of the handler - an advanced usecase
+        return handler.hydrate ? null : NoCache.Default;
+    }
+    return handler.cache;
+};
 
 /**
  * Implements the response cache.
@@ -40,8 +54,7 @@ export class ResponseCache {
         options: TOptions,
         entry: CacheEntry<TData>,
     ): CacheEntry<TData> {
-        // We don't support custom caches during SSR.
-        const customCache = Server.isServerSide() ? null : handler.cache;
+        const customCache = getCache(handler);
         const frozenEntry = Object.freeze(entry);
 
         // If we have a custom cache, use that and skip our own.
@@ -115,9 +128,8 @@ export class ResponseCache {
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
     ): ?$ReadOnly<CacheEntry<TData>> => {
-        // We don't use custom caches during SSR.
-        const customCache = Server.isServerSide() ? null : handler.cache;
-        const entry = customCache && customCache.retrieve(handler, options);
+        const customCache = getCache(handler);
+        const entry = customCache?.retrieve(handler, options);
         if (entry != null) {
             // Custom cache has an entry, so use it.
             return entry;
@@ -162,12 +174,8 @@ export class ResponseCache {
         // NOTE(somewhatabstract): We could invoke removeAll with a predicate
         // to match the key of the entry we're removing, but that's an
         // inefficient way to remove a single item, so let's not do that.
-
-        // We don't use custom caches during SSR.
-        const customCache = Server.isServerSide() ? null : handler.cache;
-        const removedCustom: boolean = !!(
-            customCache && customCache.remove(handler, options)
-        );
+        const customCache = getCache(handler);
+        const removedCustom: boolean = !!customCache?.remove(handler, options);
 
         // Delete the entry from our internal cache.
         return this._cache.remove(handler, options) || removedCustom;
@@ -196,12 +204,11 @@ export class ResponseCache {
             cachedEntry: $ReadOnly<CacheEntry<TData>>,
         ) => boolean,
     ): number => {
-        // We don't use custom caches during SSR.
-        const customCache = Server.isServerSide() ? null : handler.cache;
+        const customCache = getCache(handler);
         const removedCountCustom: number =
-            (customCache && customCache.removeAll(handler, predicate)) || 0;
+            customCache?.removeAll(handler, predicate) || 0;
 
-        // Apply the predicate to what we have in ourn internal cached.
+        // Apply the predicate to what we have in our internal cached.
         const removedCount = this._cache.removeAll(handler, predicate);
         return removedCount + removedCountCustom;
     };

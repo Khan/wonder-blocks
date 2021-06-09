@@ -11,10 +11,16 @@ export default class RequestHandler<TOptions, TData: ValidData>
     implements IRequestHandler<TOptions, TData> {
     _type: string;
     _cache: ?ICache<TOptions, TData>;
+    _hydrate: boolean;
 
-    constructor(type: string, cache?: ICache<TOptions, TData>) {
+    constructor(
+        type: string,
+        cache?: ICache<TOptions, TData>,
+        hydrate?: boolean = true,
+    ) {
         this._type = type;
         this._cache = cache || null;
+        this._hydrate = !!hydrate;
     }
 
     get type(): string {
@@ -23,6 +29,10 @@ export default class RequestHandler<TOptions, TData: ValidData>
 
     get cache(): ?ICache<TOptions, TData> {
         return this._cache;
+    }
+
+    get hydrate(): boolean {
+        return this._hydrate;
     }
 
     shouldRefreshCache(

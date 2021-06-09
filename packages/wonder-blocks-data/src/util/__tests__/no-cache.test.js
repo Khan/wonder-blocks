@@ -14,6 +14,7 @@ describe("NoCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -37,6 +38,7 @@ describe("NoCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -57,6 +59,7 @@ describe("NoCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -77,6 +80,7 @@ describe("NoCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act
@@ -95,6 +99,7 @@ describe("NoCache", () => {
                 shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
                 cache: null,
+                hydrate: true,
             };
 
             // Act

@@ -127,6 +127,15 @@ export interface IRequestHandler<TOptions, TData: ValidData> {
     get cache(): ?ICache<TOptions, TData>;
 
     /**
+     * When true, server-side results are cached and hydrated in the client.
+     * When false, the server-side cache is not used and results are not
+     * hydrated.
+     * This should only be set to false if something is ensuring that the
+     * hydrated client result will match the server result.
+     */
+    get hydrate(): boolean;
+
+    /**
      * Determine if the cached data should be refreshed.
      *
      * If this returns true, the framework will fulfill a new request by

@@ -95,6 +95,7 @@ export default class Data<TOptions, TData: ValidData> extends React.Component<
             getKey: handler.getKey,
             type: handler.type,
             cache: handler.cache,
+            hydrate: handler.hydrate,
         };
     }
 

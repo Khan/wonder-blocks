@@ -59,6 +59,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -84,6 +85,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -112,6 +114,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -147,6 +150,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -182,6 +186,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -216,6 +221,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
                 const consoleSpy = jest
@@ -259,6 +265,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "TYPE1",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeHandler2: IRequestHandler<string, string> = {
                     fulfillRequest: () => new Promise(() => {}),
@@ -266,6 +273,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "TYPE2",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = mount(
@@ -304,6 +312,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = mount(
@@ -336,6 +345,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -367,6 +377,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -397,6 +408,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => ({
@@ -433,6 +445,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fulfillRequestFn = jest.fn(() =>
@@ -465,6 +478,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fulfillRequestFn = jest.fn(() => null);
@@ -508,6 +522,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -530,6 +545,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => true,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -555,6 +571,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -580,6 +597,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "TYPE1",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeHandler2: IRequestHandler<string, string> = {
                     fulfillRequest: () => new Promise(() => {}),
@@ -587,6 +605,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "TYPE2",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = mount(
@@ -621,6 +640,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = mount(
@@ -655,6 +675,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -685,6 +706,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -716,6 +738,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => ({
@@ -751,6 +774,7 @@ describe("Data", () => {
                         shouldRefreshCache: jest.fn(() => false),
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const shouldRefreshCacheFn = jest.fn(() => true);
@@ -785,6 +809,7 @@ describe("Data", () => {
                         shouldRefreshCache: jest.fn(() => false),
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const shouldRefreshCacheFn = jest.fn(() => null);
@@ -816,6 +841,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => true,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fulfillRequestFn = jest.fn(() =>
@@ -848,6 +874,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const shouldRefreshCacheFn = jest.fn(() => true);
@@ -901,6 +928,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -923,6 +951,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -953,6 +982,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -978,6 +1008,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -1009,6 +1040,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => ({
@@ -1047,6 +1079,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => ({
@@ -1081,6 +1114,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fulfillRequestFn = jest.fn(() =>
@@ -1116,6 +1150,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const shouldRefreshCacheFn = jest.fn(() => true);
@@ -1156,6 +1191,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const shouldRefreshCacheFn = jest.fn(() => true);
@@ -1207,6 +1243,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -1229,6 +1266,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -1259,6 +1297,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -1290,6 +1329,7 @@ describe("Data", () => {
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
                     cache: null,
+                    hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
 
@@ -1318,6 +1358,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -1348,6 +1389,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => null);
@@ -1379,6 +1421,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => ({
@@ -1416,6 +1459,7 @@ describe("Data", () => {
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fakeGetEntryFn = jest.fn(() => ({
@@ -1450,6 +1494,7 @@ describe("Data", () => {
                         shouldRefreshCache: jest.fn(() => true),
                         type: "MY_HANDLER",
                         cache: null,
+                        hydrate: true,
                     };
                     const fakeChildrenFn = jest.fn(() => null);
                     const fulfillRequestFn = jest.fn(() =>
