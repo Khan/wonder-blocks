@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-form",
-  "version": "1.4.12",
+  "version": "1.5.0-alpha.0",
   "design": "v1",
   "description": "Form components for Wonder Blocks.",
   "main": "dist/index.js",
