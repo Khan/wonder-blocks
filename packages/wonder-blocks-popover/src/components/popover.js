@@ -18,7 +18,7 @@ import PopoverContext from "./popover-context.js";
 import PopoverAnchor from "./popover-anchor.js";
 import PopoverDialog from "./popover-dialog.js";
 import FocusManager from "./focus-manager.js";
-import PopoverKeypressListener from "./popover-keypress-listener.js";
+import PopoverEventListener from "./popover-event-listener.js";
 
 type PopoverContents =
     | React.Element<PopoverContent>
@@ -159,6 +159,13 @@ export default class Popover extends React.Component<Props, State> {
     };
 
     /**
+     * Popover content ref
+     */
+    contentRef: RefObject<
+        PopoverContent | PopoverContentCore,
+    > = React.createRef();
+
+    /**
      * Popover dialog closed
      */
     handleClose: () => void = () => {
@@ -188,11 +195,14 @@ export default class Popover extends React.Component<Props, State> {
     renderContent(): PopoverContents {
         const {content} = this.props;
 
-        return typeof content === "function"
-            ? content({
-                  close: this.handleClose,
-              })
-            : content;
+        return React.cloneElement(
+            typeof content === "function"
+                ? content({
+                      close: this.handleClose,
+                  })
+                : content,
+            {ref: this.contentRef},
+        );
     }
 
     renderPopper(uniqueId: string): React.Node {
@@ -269,7 +279,10 @@ export default class Popover extends React.Component<Props, State> {
                 </IDProvider>
 
                 {dismissEnabled && opened && (
-                    <PopoverKeypressListener onClose={this.handleClose} />
+                    <PopoverEventListener
+                        onClose={this.handleClose}
+                        contentRef={this.contentRef}
+                    />
                 )}
             </PopoverContext.Provider>
         );
