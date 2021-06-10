@@ -128,6 +128,7 @@ export default class OnePaneDialog extends React.Component<Props> {
                     title={title}
                     breadcrumbs={(breadcrumbs: React.Element<Breadcrumbs>)}
                     titleId={uniqueId}
+                    testId={testId && `${testId}-ModalHeader`}
                 />
             );
         } else if (subtitle) {
@@ -140,7 +141,13 @@ export default class OnePaneDialog extends React.Component<Props> {
                 />
             );
         } else {
-            return <ModalHeader title={title} titleId={uniqueId} />;
+            return (
+                <ModalHeader
+                    title={title}
+                    titleId={uniqueId}
+                    testId={testId && `${testId}-ModalHeader`}
+                />
+            );
         }
     }
 
