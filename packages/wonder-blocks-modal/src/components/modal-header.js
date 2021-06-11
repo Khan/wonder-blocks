@@ -6,10 +6,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {
-    HeadingMedium,
-    LabelMedium,
-} from "@khanacademy/wonder-blocks-typography";
+import {HeadingMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 type Common = {|
     /**
@@ -149,12 +146,12 @@ export default class ModalHeader extends React.Component<Props> {
                             {title}
                         </HeadingMedium>
                         {subtitle && (
-                            <LabelMedium
+                            <LabelSmall
                                 style={light && styles.subtitle}
                                 testId={testId && `${testId}-subtitle`}
                             >
                                 {subtitle}
-                            </LabelMedium>
+                            </LabelSmall>
                         )}
                     </View>
                 )}

@@ -1235,9 +1235,9 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   "color": "rgba(33,36,44,0.64)",
                   "display": "block",
                   "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-                  "fontSize": 16,
+                  "fontSize": 14,
                   "fontWeight": 400,
-                  "lineHeight": "20px",
+                  "lineHeight": "18px",
                   "marginTop": 8,
                 }
               }
