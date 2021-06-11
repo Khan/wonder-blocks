@@ -1179,7 +1179,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
           </button>
           <div
             className=""
-            data-test-id="one-pane-dialog-above-ModalHeader"
+            data-test-id="one-pane-dialog-above-header"
             style={
               Object {
                 "alignItems": "stretch",
@@ -1201,7 +1201,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
           >
             <h3
               className=""
-              data-test-id="one-pane-dialog-above-ModalHeader-title"
+              data-test-id="one-pane-dialog-above-header-title"
               id="uid-modal-1-wb-id"
               style={
                 Object {
@@ -1227,7 +1227,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
             </h3>
             <span
               className=""
-              data-test-id="one-pane-dialog-above-ModalHeader-subtitle"
+              data-test-id="one-pane-dialog-above-header-subtitle"
               style={
                 Object {
                   "MozOsxFontSmoothing": "grayscale",
