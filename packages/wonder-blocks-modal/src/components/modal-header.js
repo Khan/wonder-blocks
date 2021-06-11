@@ -140,6 +140,7 @@ export default class ModalHeader extends React.Component<Props> {
                             </View>
                         )}
                         <HeadingMedium
+                            style={styles.title}
                             id={titleId}
                             testId={testId && `${testId}-title`}
                         >
@@ -182,6 +183,11 @@ const styleSheets = {
             marginBottom: Spacing.xSmall_8,
         },
 
+        title: {
+            // Prevent title from overlapping the close button
+            paddingRight: Spacing.medium_16,
+        },
+
         subtitle: {
             color: Color.offBlack64,
             marginTop: Spacing.xSmall_8,
@@ -192,6 +198,10 @@ const styleSheets = {
         header: {
             paddingLeft: Spacing.medium_16,
             paddingRight: Spacing.medium_16,
+        },
+
+        title: {
+            paddingRight: Spacing.xLarge_32,
         },
     }),
 };

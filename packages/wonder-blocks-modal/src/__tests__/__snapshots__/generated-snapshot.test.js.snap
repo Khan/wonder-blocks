@@ -842,6 +842,7 @@ exports[`wonder-blocks-modal example 6 1`] = `
                   "fontWeight": 700,
                   "marginBottom": 0,
                   "marginTop": 0,
+                  "paddingRight": 16,
                 }
               }
             >
@@ -1220,6 +1221,7 @@ exports[`wonder-blocks-modal example 7 1`] = `
                   "fontWeight": 700,
                   "marginBottom": 0,
                   "marginTop": 0,
+                  "paddingRight": 16,
                 }
               }
             >
@@ -1860,6 +1862,7 @@ exports[`wonder-blocks-modal example 8 1`] = `
                   "fontWeight": 700,
                   "marginBottom": 0,
                   "marginTop": 0,
+                  "paddingRight": 16,
                 }
               }
             >
@@ -2453,6 +2456,7 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   "fontWeight": 700,
                   "marginBottom": 0,
                   "marginTop": 0,
+                  "paddingRight": 16,
                 }
               }
             >
