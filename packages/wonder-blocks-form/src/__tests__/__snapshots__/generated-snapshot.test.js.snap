@@ -3695,23 +3695,6 @@ exports[`wonder-blocks-form example 7 1`] = `
     }
   }
 >
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 16,
-        "fontWeight": 700,
-        "lineHeight": "20px",
-        "marginBottom": 16,
-      }
-    }
-  >
-    Select all prime numbers
-  </span>
   <fieldset
     className=""
     style={
@@ -3741,6 +3724,66 @@ exports[`wonder-blocks-form example 7 1`] = `
         }
       }
     >
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "display": "block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 16,
+            "fontWeight": 700,
+            "lineHeight": "20px",
+          }
+        }
+      >
+        Select all prime numbers
+      </span>
+      <span
+        className=""
+        style={
+          Object {
+            "MozOsxFontSmoothing": "grayscale",
+            "WebkitFontSmoothing": "antialiased",
+            "color": "rgba(33,36,44,0.64)",
+            "display": "block",
+            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontSize": 12,
+            "fontWeight": 400,
+            "lineHeight": "16px",
+            "marginTop": 5,
+          }
+        }
+      >
+        Hint: There is at least one prime number
+      </span>
+      <div
+        aria-hidden="true"
+        className=""
+        style={
+          Object {
+            "MsFlexBasis": 12,
+            "MsFlexPreferredSize": 12,
+            "WebkitFlexBasis": 12,
+            "alignItems": "stretch",
+            "borderStyle": "solid",
+            "borderWidth": 0,
+            "boxSizing": "border-box",
+            "display": "flex",
+            "flexBasis": 12,
+            "flexDirection": "column",
+            "flexShrink": 0,
+            "margin": 0,
+            "minHeight": 0,
+            "minWidth": 0,
+            "padding": 0,
+            "position": "relative",
+            "width": 12,
+            "zIndex": 0,
+          }
+        }
+      />
       <div
         className=""
         style={

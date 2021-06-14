@@ -5,7 +5,11 @@ import * as React from "react";
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {
+    type Typography,
+    LabelMedium,
+    LabelSmall,
+} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import styles from "./group-styles.js";
@@ -28,12 +32,12 @@ type CheckboxGroupProps = {|
      * Optional label for the group. This label is optional to allow for
      * greater flexibility in implementing checkbox and radio groups.
      */
-    label?: string,
+    label?: string | React.Element<Typography>,
 
     /**
      * Optional description for the group.
      */
-    description?: string,
+    description?: string | React.Element<Typography>,
 
     /**
      * Optional error message. If supplied, the group will be displayed in an
@@ -105,15 +109,19 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
             <StyledFieldset data-test-id={testId} style={styles.fieldset}>
                 {/* We have a View here because fieldset cannot be used with flexbox*/}
                 <View style={style}>
-                    {label && (
+                    {typeof label === "string" ? (
                         <StyledLegend style={styles.legend}>
                             <LabelMedium>{label}</LabelMedium>
                         </StyledLegend>
+                    ) : (
+                        label && label
                     )}
-                    {description && (
+                    {typeof description === "string" ? (
                         <LabelSmall style={styles.description}>
                             {description}
                         </LabelSmall>
+                    ) : (
+                        description && description
                     )}
                     {errorMessage && (
                         <LabelSmall style={styles.error}>

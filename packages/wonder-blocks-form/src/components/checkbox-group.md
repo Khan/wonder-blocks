@@ -131,19 +131,17 @@ class ClassSelectorExample extends React.Component {
 ```
 
 This example shows how to use custom styling to change the appearance of the
-checkbox group to look more like a multiple choice question.
+checkbox group to look more like a multiple choice question. You may also provide
+custom typography to the label and description.
 
 ```js
 import {CheckboxGroup, Choice} from "@khanacademy/wonder-blocks-form";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {LabelLarge, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
 import {StyleSheet} from "aphrodite";
 
 const styles = StyleSheet.create({
-    wrapper: {
-        width: 650,
-    },
     choice: {
         margin: 0,
         height: 48,
@@ -153,8 +151,9 @@ const styles = StyleSheet.create({
             borderBottom: "solid 1px #CCC",
         },
     },
-    prompt: {
-        marginBottom: 16,
+    description: {
+        marginTop: 5,
+        color: Color.offBlack64,
     },
 });
 
@@ -176,6 +175,12 @@ class ClassSelectorExample extends React.Component {
 
     render() {
         return <CheckboxGroup
+            label={<LabelLarge>Select all prime numbers</LabelLarge>}
+            description={
+                <LabelXSmall style={styles.description}>
+                    Hint: There is at least one prime number
+                </LabelXSmall>
+            }
             groupName="science-classes"
             onChange={this.handleChange}
             selectedValues={this.state.selectedValues}
@@ -190,9 +195,6 @@ class ClassSelectorExample extends React.Component {
 }
 
 <View>
-    <LabelLarge style={styles.prompt}>
-        Select all prime numbers
-    </LabelLarge>
     <ClassSelectorExample />
 </View>
 ```
