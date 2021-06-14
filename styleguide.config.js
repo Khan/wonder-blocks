@@ -96,6 +96,7 @@ module.exports = {
                 "packages/wonder-blocks-form/src/components/checkbox-group.js",
                 "packages/wonder-blocks-form/src/components/radio-group.js",
                 "packages/wonder-blocks-form/src/components/text-field.js",
+                "packages/wonder-blocks-form/src/components/labeled-text-field.js",
             ],
             sections: [
                 {
