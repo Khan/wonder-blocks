@@ -22,6 +22,7 @@ import {
     LabelMedium,
     LabelSmall,
     LabelLarge,
+    LabelXSmall,
 } from "@khanacademy/wonder-blocks-typography";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -413,9 +414,6 @@ describe("wonder-blocks-form", () => {
 
     it("example 7", () => {
         const styles = StyleSheet.create({
-            wrapper: {
-                width: 650,
-            },
             choice: {
                 margin: 0,
                 height: 48,
@@ -425,8 +423,9 @@ describe("wonder-blocks-form", () => {
                     borderBottom: "solid 1px #CCC",
                 },
             },
-            prompt: {
-                marginBottom: 16,
+            description: {
+                marginTop: 5,
+                color: Color.offBlack64,
             },
         });
 
@@ -449,6 +448,14 @@ describe("wonder-blocks-form", () => {
             render() {
                 return (
                     <CheckboxGroup
+                        label={
+                            <LabelLarge>Select all prime numbers</LabelLarge>
+                        }
+                        description={
+                            <LabelXSmall style={styles.description}>
+                                Hint: There is at least one prime number
+                            </LabelXSmall>
+                        }
                         groupName="science-classes"
                         onChange={this.handleChange}
                         selectedValues={this.state.selectedValues}
@@ -465,9 +472,6 @@ describe("wonder-blocks-form", () => {
 
         const example = (
             <View>
-                <LabelLarge style={styles.prompt}>
-                    Select all prime numbers
-                </LabelLarge>
                 <ClassSelectorExample />
             </View>
         );
