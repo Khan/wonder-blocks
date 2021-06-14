@@ -32,46 +32,104 @@ type Props = {|
      * The message for the error element.
      */
     error?: string | React.Element<Typography>,
+
+    /**
+     * A unique id to link the label (and optional error) to the field.
+     *
+     * The label will assume that the field will have its id formatted as `${id}-field`.
+     * The field can assume that the error will have its id formatted as `${id}-error`.
+     */
+    id?: string,
+
+    /**
+     * Optional test ID for e2e testing.
+     */
+    testId?: string,
 |};
 
 export default class FieldHeading extends React.Component<Props> {
-    isString: (item: string | React.Element<Typography>) => boolean = (
-        item,
-    ) => {
-        // Helps check if a prop is of type "string" to either render the default
-        // label or a custom Typography label passed by the user.
-        return typeof item === "string";
-    };
+    renderLabel(): React.Node {
+        const {label, id, testId} = this.props;
 
-    render(): React.Node {
-        const {field, label, description, error} = this.props;
         return (
-            <View>
-                {label && this.isString(label) ? (
-                    <LabelMedium style={[styles.label]}>{label}</LabelMedium>
+            <React.Fragment>
+                {typeof label === "string" ? (
+                    <LabelMedium
+                        style={styles.label}
+                        tag="label"
+                        htmlFor={id && `${id}-field`}
+                        testId={testId && `${testId}-label`}
+                    >
+                        {label}
+                    </LabelMedium>
                 ) : (
                     label
                 )}
-                {<Strut size={Spacing.xxxSmall_4} />}
+                <Strut size={Spacing.xxxSmall_4} />
+            </React.Fragment>
+        );
+    }
 
-                {description && this.isString(description) ? (
-                    <LabelSmall style={[styles.description]}>
+    maybeRenderDescription(): ?React.Node {
+        const {description, testId} = this.props;
+
+        if (!description) {
+            return null;
+        }
+
+        return (
+            <React.Fragment>
+                {typeof description === "string" ? (
+                    <LabelSmall
+                        style={styles.description}
+                        testId={testId && `${testId}-description`}
+                    >
                         {description}
                     </LabelSmall>
                 ) : (
                     description
                 )}
-                {description && <Strut size={Spacing.xxxSmall_4} />}
+                <Strut size={Spacing.xxxSmall_4} />
+            </React.Fragment>
+        );
+    }
 
-                <Strut size={Spacing.xSmall_8} />
-                {field}
+    maybeRenderError(): ?React.Node {
+        const {error, id, testId} = this.props;
 
-                {error && <Strut size={Spacing.small_12} />}
-                {error && this.isString(error) ? (
-                    <LabelSmall style={[styles.error]}>{error}</LabelSmall>
+        if (!error) {
+            return null;
+        }
+
+        return (
+            <React.Fragment>
+                <Strut size={Spacing.small_12} />
+                {typeof error === "string" ? (
+                    <LabelSmall
+                        style={styles.error}
+                        role="alert"
+                        id={id && `${id}-error`}
+                        testId={testId && `${testId}-error`}
+                    >
+                        {error}
+                    </LabelSmall>
                 ) : (
                     error
                 )}
+            </React.Fragment>
+        );
+    }
+
+    render(): React.Node {
+        const {field} = this.props;
+
+        return (
+            <View>
+                {this.renderLabel()}
+                {this.maybeRenderDescription()}
+                <Strut size={Spacing.xSmall_8} />
+                {field}
+                {this.maybeRenderError()}
             </View>
         );
     }

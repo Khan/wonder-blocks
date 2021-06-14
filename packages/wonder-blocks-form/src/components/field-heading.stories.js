@@ -15,6 +15,7 @@ export const basic: StoryComponentType = () => {
     const [value, setValue] = React.useState("khan");
     const [errorMessage, setErrorMessage] = React.useState();
     const [focused, setFocused] = React.useState(false);
+    const uniqueId = "uniqueid123";
 
     const handleOnChange = (newValue: string) => {
         setValue(newValue);
@@ -51,7 +52,9 @@ export const basic: StoryComponentType = () => {
         <FieldHeading
             field={
                 <TextField
-                    id="tf-1"
+                    id={`${uniqueId}-field`}
+                    aria-describedby={`${uniqueId}-error`}
+                    aria-invalid={errorMessage ? "true" : "false"}
                     type="email"
                     value={value}
                     placeholder="Email"
@@ -66,12 +69,14 @@ export const basic: StoryComponentType = () => {
             label="Email"
             description="Please enter your personal email."
             error={!focused && errorMessage ? errorMessage : undefined}
+            id={uniqueId}
         />
     );
 };
 
 export const withTypography: StoryComponentType = () => {
     const [value, setValue] = React.useState("Khan");
+    const uniqueId = "uniqueid123";
 
     const handleOnChange = (newValue: string) => {
         setValue(newValue);
@@ -89,7 +94,7 @@ export const withTypography: StoryComponentType = () => {
         <FieldHeading
             field={
                 <TextField
-                    id="tf-1"
+                    id={`${uniqueId}-field`}
                     type="text"
                     value={value}
                     placeholder="Name"
@@ -97,8 +102,13 @@ export const withTypography: StoryComponentType = () => {
                     onKeyDown={handleOnKeyDown}
                 />
             }
-            label={<LabelLarge>Your Name</LabelLarge>}
+            label={
+                <LabelLarge tag="label" htmlFor={`${uniqueId}-field`}>
+                    Your Name
+                </LabelLarge>
+            }
             description={<LabelSmall>Please enter your full name.</LabelSmall>}
+            id={uniqueId}
         />
     );
 };
