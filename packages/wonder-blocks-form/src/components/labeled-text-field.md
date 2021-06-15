@@ -3,12 +3,12 @@ LabeledTextField derives from TextField and allows the handling of single lines 
 ```js
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
-<LabeledTextField />;
+<LabeledTextField label="Label" description="Description" initialValue="Value" />;
 ```
 
 The field can be disabled
 ```js
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
-<LabeledTextField disabled={true} />
+<LabeledTextField label="Label" description="Description" disabled={true} />
 ```

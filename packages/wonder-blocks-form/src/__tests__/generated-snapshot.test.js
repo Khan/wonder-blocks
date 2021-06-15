@@ -1238,13 +1238,25 @@ describe("wonder-blocks-form", () => {
     });
 
     it("example 19", () => {
-        const example = <LabeledTextField />;
+        const example = (
+            <LabeledTextField
+                label="Label"
+                description="Description"
+                initialValue="Value"
+            />
+        );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it("example 20", () => {
-        const example = <LabeledTextField disabled={true} />;
+        const example = (
+            <LabeledTextField
+                label="Label"
+                description="Description"
+                disabled={true}
+            />
+        );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
