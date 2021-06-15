@@ -10,3 +10,7 @@ export default {
 };
 
 export const basic: StoryComponentType = () => <LabeledTextField />;
+
+export const disabled: StoryComponentType = () => (
+    <LabeledTextField disabled={true} />
+);
