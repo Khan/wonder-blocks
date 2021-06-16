@@ -71,10 +71,10 @@ describe("LabeledTextField", () => {
         const wrapper = mount(<LabeledTextField label="Label" />);
 
         // Assert
-        // Since the generated id is unique, we cannot know what it will be
-        // so we only test if the id attribute is set.
+        // Since the generated id is unique, we cannot know what it will be.
+        // We only test if the id attribute starts with "uid-" and ends with "-field".
         const input = wrapper.find("input");
-        expect(input).toContainMatchingElement("[id]");
+        expect(input.props()["id"]).toMatch(/uid-.*-field/);
     });
 
     it("type prop is passed to input", () => {
@@ -124,7 +124,7 @@ describe("LabeledTextField", () => {
 
         // Assert
         const input = wrapper.find("input");
-        expect(input).toContainMatchingElement(`[value="${initialValue}"]`);
+        expect(input).toHaveValue(initialValue);
     });
 
     it("disabled prop disables the input", () => {

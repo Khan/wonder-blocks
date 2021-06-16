@@ -70,16 +70,12 @@ export default class LabeledTextField extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        if (props.initialValue) {
-            this.state.value = props.initialValue;
-        }
+        this.state = {
+            value: props.initialValue ? props.initialValue : "",
+            error: null,
+            focused: false,
+        };
     }
-
-    state: State = {
-        value: "",
-        error: null,
-        focused: false,
-    };
 
     handleOnFocus: (
         event: SyntheticFocusEvent<HTMLInputElement>,
@@ -107,7 +103,7 @@ export default class LabeledTextField extends React.Component<Props, State> {
         const {id, type, label, description, disabled} = this.props;
 
         return (
-            <IDProvider id={id} scope="field">
+            <IDProvider id={id} scope="labeled-text-field">
                 {(uniqueId) => (
                     <FieldHeading
                         id={uniqueId}
