@@ -6264,7 +6264,7 @@ exports[`wonder-blocks-form example 19 1`] = `
       }
     }
   >
-    Label
+    Name
   </label>
   <div
     aria-hidden="true"
@@ -6307,7 +6307,7 @@ exports[`wonder-blocks-form example 19 1`] = `
       }
     }
   >
-    Description
+    Please enter your name
   </span>
   <div
     aria-hidden="true"
@@ -6370,55 +6370,11 @@ exports[`wonder-blocks-form example 19 1`] = `
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
+    onKeyDown={[Function]}
     placeholder="Placeholder"
     type="text"
-    value="Value"
+    value="Khan"
   />
-  <div
-    aria-hidden="true"
-    className=""
-    style={
-      Object {
-        "MsFlexBasis": 12,
-        "MsFlexPreferredSize": 12,
-        "WebkitFlexBasis": 12,
-        "alignItems": "stretch",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "flex",
-        "flexBasis": 12,
-        "flexDirection": "column",
-        "flexShrink": 0,
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "width": 12,
-        "zIndex": 0,
-      }
-    }
-  />
-  <span
-    className=""
-    id="uid-labeled-text-field-40-wb-id-error"
-    role="alert"
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "color": "#d92916",
-        "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
-        "fontSize": 14,
-        "fontWeight": 400,
-        "lineHeight": "18px",
-      }
-    }
-  >
-    Error
-  </span>
 </div>
 `;
 
@@ -6458,7 +6414,7 @@ exports[`wonder-blocks-form example 20 1`] = `
       }
     }
   >
-    Label
+    Age
   </label>
   <div
     aria-hidden="true"
@@ -6501,7 +6457,7 @@ exports[`wonder-blocks-form example 20 1`] = `
       }
     }
   >
-    Description
+    Please enter your age
   </span>
   <div
     aria-hidden="true"
@@ -6558,15 +6514,616 @@ exports[`wonder-blocks-form example 20 1`] = `
   <input
     aria-describedby="uid-labeled-text-field-41-wb-id-error"
     aria-invalid="false"
-    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3-o_O-disabled_1ab5c0p"
-    disabled={true}
+    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3"
+    disabled={false}
     id="uid-labeled-text-field-41-wb-id-field"
     onBlur={[Function]}
     onChange={[Function]}
     onFocus={[Function]}
+    onKeyDown={[Function]}
     placeholder="Placeholder"
-    type="text"
-    value=""
+    type="number"
+    value="18"
+  />
+</div>
+`;
+
+exports[`wonder-blocks-form example 21 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <label
+    className=""
+    htmlFor="uid-labeled-text-field-42-wb-id-field"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "color": "#21242c",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Password
+  </label>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 4,
+        "zIndex": 0,
+      }
+    }
+  />
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "color": "rgba(33,36,44,0.64)",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    Please enter a secure password
+  </span>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 4,
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 8,
+        "MsFlexPreferredSize": 8,
+        "WebkitFlexBasis": 8,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 8,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 8,
+        "zIndex": 0,
+      }
+    }
+  />
+  <input
+    aria-describedby="uid-labeled-text-field-42-wb-id-error"
+    aria-invalid="false"
+    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3"
+    disabled={false}
+    id="uid-labeled-text-field-42-wb-id-field"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder="Placeholder"
+    type="password"
+    value="Password123"
+  />
+</div>
+`;
+
+exports[`wonder-blocks-form example 22 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <label
+    className=""
+    htmlFor="uid-labeled-text-field-43-wb-id-field"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "color": "#21242c",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Email
+  </label>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 4,
+        "zIndex": 0,
+      }
+    }
+  />
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "color": "rgba(33,36,44,0.64)",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    Please provide your personal email
+  </span>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 4,
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 8,
+        "MsFlexPreferredSize": 8,
+        "WebkitFlexBasis": 8,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 8,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 8,
+        "zIndex": 0,
+      }
+    }
+  />
+  <input
+    aria-describedby="uid-labeled-text-field-43-wb-id-error"
+    aria-invalid="false"
+    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3"
+    disabled={false}
+    id="uid-labeled-text-field-43-wb-id-field"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder="Placeholder"
+    type="email"
+    value="khan@khan.org"
+  />
+</div>
+`;
+
+exports[`wonder-blocks-form example 23 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <label
+    className=""
+    htmlFor="uid-labeled-text-field-44-wb-id-field"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "color": "#21242c",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Telephone
+  </label>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 4,
+        "zIndex": 0,
+      }
+    }
+  />
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "color": "rgba(33,36,44,0.64)",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    Please provide your personal phone number
+  </span>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 4,
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 8,
+        "MsFlexPreferredSize": 8,
+        "WebkitFlexBasis": 8,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 8,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 8,
+        "zIndex": 0,
+      }
+    }
+  />
+  <input
+    aria-describedby="uid-labeled-text-field-44-wb-id-error"
+    aria-invalid="false"
+    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3"
+    disabled={false}
+    id="uid-labeled-text-field-44-wb-id-field"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder="Placeholder"
+    type="tel"
+    value="123-456-7890"
+  />
+</div>
+`;
+
+exports[`wonder-blocks-form example 24 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <label
+    className=""
+    htmlFor="uid-labeled-text-field-45-wb-id-field"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "color": "#21242c",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Email
+  </label>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 4,
+        "zIndex": 0,
+      }
+    }
+  />
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "color": "rgba(33,36,44,0.64)",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    Please enter your personal email
+  </span>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 4,
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 8,
+        "MsFlexPreferredSize": 8,
+        "WebkitFlexBasis": 8,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 8,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 8,
+        "zIndex": 0,
+      }
+    }
+  />
+  <input
+    aria-describedby="uid-labeled-text-field-45-wb-id-error"
+    aria-invalid="true"
+    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3-o_O-error_1n1oc37"
+    disabled={false}
+    id="uid-labeled-text-field-45-wb-id-field"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    onKeyDown={[Function]}
+    placeholder="Placeholder"
+    type="email"
+    value="khan"
   />
   <div
     aria-hidden="true"
@@ -6596,7 +7153,7 @@ exports[`wonder-blocks-form example 20 1`] = `
   />
   <span
     className=""
-    id="uid-labeled-text-field-41-wb-id-error"
+    id="uid-labeled-text-field-45-wb-id-error"
     role="alert"
     style={
       Object {
@@ -6611,7 +7168,156 @@ exports[`wonder-blocks-form example 20 1`] = `
       }
     }
   >
-    Error
+    Please enter a valid email
   </span>
+</div>
+`;
+
+exports[`wonder-blocks-form example 25 1`] = `
+<div
+  className=""
+  style={
+    Object {
+      "alignItems": "stretch",
+      "borderStyle": "solid",
+      "borderWidth": 0,
+      "boxSizing": "border-box",
+      "display": "flex",
+      "flexDirection": "column",
+      "margin": 0,
+      "minHeight": 0,
+      "minWidth": 0,
+      "padding": 0,
+      "position": "relative",
+      "zIndex": 0,
+    }
+  }
+>
+  <label
+    className=""
+    htmlFor="uid-labeled-text-field-46-wb-id-field"
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "color": "#21242c",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 16,
+        "fontWeight": 400,
+        "lineHeight": "20px",
+      }
+    }
+  >
+    Name
+  </label>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 4,
+        "zIndex": 0,
+      }
+    }
+  />
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "color": "rgba(33,36,44,0.64)",
+        "display": "block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 14,
+        "fontWeight": 400,
+        "lineHeight": "18px",
+      }
+    }
+  >
+    Please enter your name
+  </span>
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 4,
+        "MsFlexPreferredSize": 4,
+        "WebkitFlexBasis": 4,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 4,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 4,
+        "zIndex": 0,
+      }
+    }
+  />
+  <div
+    aria-hidden="true"
+    className=""
+    style={
+      Object {
+        "MsFlexBasis": 8,
+        "MsFlexPreferredSize": 8,
+        "WebkitFlexBasis": 8,
+        "alignItems": "stretch",
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "display": "flex",
+        "flexBasis": 8,
+        "flexDirection": "column",
+        "flexShrink": 0,
+        "margin": 0,
+        "minHeight": 0,
+        "minWidth": 0,
+        "padding": 0,
+        "position": "relative",
+        "width": 8,
+        "zIndex": 0,
+      }
+    }
+  />
+  <input
+    aria-describedby="uid-labeled-text-field-46-wb-id-error"
+    aria-invalid="false"
+    className="input_1t4b01j-o_O-LabelMedium_1rew30o-o_O-default_1r2dwp3-o_O-disabled_1ab5c0p"
+    disabled={true}
+    id="uid-labeled-text-field-46-wb-id-field"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onFocus={[Function]}
+    placeholder="Placeholder"
+    type="text"
+    value=""
+  />
 </div>
 `;

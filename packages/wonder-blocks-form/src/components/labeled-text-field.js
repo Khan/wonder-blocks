@@ -38,6 +38,37 @@ type Props = {|
      * Makes a read-only input field that cannot be focused. Defaults to false.
      */
     disabled: boolean,
+
+    /**
+     * Provide a validation for the input value.
+     * Return a string error message or null | void for a valid input.
+     */
+    validation?: (value: string) => ?string,
+
+    /**
+     * Called when the TextField input is validated.
+     */
+    onValidation?: (errorMessage: ?string) => mixed,
+
+    /**
+     * Called when the value has changed.
+     */
+    onChange?: (newValue: string) => mixed,
+
+    /**
+     * Called when a key is pressed.
+     */
+    onKeyDown?: (event: SyntheticKeyboardEvent<HTMLInputElement>) => mixed,
+
+    /**
+     * Called when the element has been focused.
+     */
+    onFocus?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
+
+    /**
+     * Called when the element has been blurred.
+     */
+    onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 |};
 
 type DefaultProps = {|
@@ -71,36 +102,64 @@ export default class LabeledTextField extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
         this.state = {
-            value: props.initialValue ? props.initialValue : "",
+            value: props.initialValue || "",
             error: null,
             focused: false,
         };
     }
 
-    handleOnFocus: (
-        event: SyntheticFocusEvent<HTMLInputElement>,
-    ) => mixed = () => {
-        this.setState({
-            focused: true,
-        });
+    handleValidation: (errorMessage: ?string) => mixed = (errorMessage) => {
+        const {onValidation} = this.props;
+        this.setState({error: errorMessage});
+        if (onValidation) {
+            onValidation(errorMessage);
+        }
     };
 
-    handleOnBlur: (
-        event: SyntheticFocusEvent<HTMLInputElement>,
-    ) => mixed = () => {
-        this.setState({
-            focused: false,
-        });
-    };
-
-    handleOnChange: (newValue: string) => mixed = (newValue) => {
+    handleChange: (newValue: string) => mixed = (newValue) => {
+        const {onChange} = this.props;
         this.setState({
             value: newValue,
         });
+        if (onChange) {
+            onChange(newValue);
+        }
+    };
+
+    handleFocus: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
+        event,
+    ) => {
+        const {onFocus} = this.props;
+        this.setState({
+            focused: true,
+        });
+        if (onFocus) {
+            onFocus(event);
+        }
+    };
+
+    handleBlur: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
+        event,
+    ) => {
+        const {onBlur} = this.props;
+        this.setState({
+            focused: false,
+        });
+        if (onBlur) {
+            onBlur(event);
+        }
     };
 
     render(): React.Node {
-        const {id, type, label, description, disabled} = this.props;
+        const {
+            id,
+            type,
+            label,
+            description,
+            disabled,
+            validation,
+            onKeyDown,
+        } = this.props;
 
         return (
             <IDProvider id={id} scope="labeled-text-field">
@@ -118,14 +177,17 @@ export default class LabeledTextField extends React.Component<Props, State> {
                                 value={this.state.value}
                                 placeholder="Placeholder"
                                 disabled={disabled}
-                                onChange={this.handleOnChange}
-                                onFocus={this.handleOnFocus}
-                                onBlur={this.handleOnBlur}
+                                validation={validation}
+                                onValidation={this.handleValidation}
+                                onChange={this.handleChange}
+                                onKeyDown={onKeyDown}
+                                onFocus={this.handleFocus}
+                                onBlur={this.handleBlur}
                             />
                         }
                         label={label}
                         description={description}
-                        error="Error"
+                        error={(!this.state.focused && this.state.error) || ""}
                     />
                 )}
             </IDProvider>
