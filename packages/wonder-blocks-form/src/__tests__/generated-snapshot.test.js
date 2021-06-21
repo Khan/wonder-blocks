@@ -16,6 +16,7 @@ import {
     Choice,
     RadioGroup,
     TextField,
+    LabeledTextField,
 } from "@khanacademy/wonder-blocks-form";
 import {StyleSheet} from "aphrodite";
 import {
@@ -1232,6 +1233,18 @@ describe("wonder-blocks-form", () => {
             },
         });
         const example = <TextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 19", () => {
+        class LabeledTextFieldExample extends React.Component {
+            render() {
+                return <LabeledTextField />;
+            }
+        }
+
+        const example = <LabeledTextFieldExample />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

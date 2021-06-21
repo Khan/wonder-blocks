@@ -14,6 +14,7 @@ describe("@khanacademy/wonder-blocks-form", () => {
                 "Checkbox",
                 "CheckboxGroup",
                 "Choice",
+                "LabeledTextField",
                 "Radio",
                 "RadioGroup",
                 "TextField",
