@@ -43,12 +43,12 @@ type Props = {|
      * Provide a validation for the input value.
      * Return a string error message or null | void for a valid input.
      */
-    validation?: (value: string) => ?string,
+    validate?: (value: string) => ?string,
 
     /**
      * Called when the TextField input is validated.
      */
-    onValidation?: (errorMessage: ?string) => mixed,
+    onValidate?: (errorMessage: ?string) => mixed,
 
     /**
      * Called when the value has changed.
@@ -130,11 +130,11 @@ export default class LabeledTextField extends React.Component<Props, State> {
         };
     }
 
-    handleValidation: (errorMessage: ?string) => mixed = (errorMessage) => {
-        const {onValidation} = this.props;
+    handleValidate: (errorMessage: ?string) => mixed = (errorMessage) => {
+        const {onValidate} = this.props;
         this.setState({error: errorMessage}, () => {
-            if (onValidation) {
-                onValidation(errorMessage);
+            if (onValidate) {
+                onValidate(errorMessage);
             }
         });
     };
@@ -177,7 +177,7 @@ export default class LabeledTextField extends React.Component<Props, State> {
             label,
             description,
             disabled,
-            validation,
+            validate,
             onKeyDown,
             placeholder,
             light,
@@ -203,8 +203,8 @@ export default class LabeledTextField extends React.Component<Props, State> {
                                 value={this.state.value}
                                 placeholder={placeholder}
                                 disabled={disabled}
-                                validation={validation}
-                                onValidation={this.handleValidation}
+                                validation={validate}
+                                onValidation={this.handleValidate}
                                 onChange={this.handleChange}
                                 onKeyDown={onKeyDown}
                                 onFocus={this.handleFocus}

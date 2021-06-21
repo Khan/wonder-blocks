@@ -63,7 +63,7 @@ Password
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
-    validation(value) {
+    validate(value) {
         if (value.length < 8) {
             return "Password must be at least 8 characters long";
         }
@@ -86,7 +86,7 @@ class LabeledTextFieldExample extends React.Component {
                 description="Please enter a secure password"
                 initialValue="Password123"
                 placeholder="Password"
-                validation={this.validation}
+                validate={this.validate}
                 onKeyDown={this.handleKeyDown}
             />
         );
@@ -102,7 +102,7 @@ Email
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
-    validation(value) {
+    validate(value) {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
@@ -123,7 +123,7 @@ class LabeledTextFieldExample extends React.Component {
                 description="Please provide your personal email"
                 initialValue="khan@khan.org"
                 placeholder="Email"
-                validation={this.validation}
+                validate={this.validate}
                 onKeyDown={this.handleKeyDown}
             />
         );
@@ -139,7 +139,7 @@ Telephone
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
-    validation(value) {
+    validate(value) {
         const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         if (!telRegex.test(value)) {
             return "Invalid US telephone number";
@@ -160,7 +160,7 @@ class LabeledTextFieldExample extends React.Component {
                 description="Please provide your personal phone number"
                 initialValue="123-456-7890"
                 placeholder="Telephone"
-                validation={this.validation}
+                validate={this.validate}
                 onKeyDown={this.handleKeyDown}
             />
         );
@@ -176,7 +176,7 @@ The field can have an error
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
-    validation(value) {
+    validate(value) {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
@@ -197,7 +197,7 @@ class LabeledTextFieldExample extends React.Component {
                 description="Please enter your personal email"
                 initialValue="khan"
                 placeholder="Email"
-                validation={this.validation}
+                validate={this.validate}
                 onKeyDown={this.handleKeyDown}
             />
         );

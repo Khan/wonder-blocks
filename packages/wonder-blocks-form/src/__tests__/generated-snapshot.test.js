@@ -1292,7 +1292,7 @@ describe("wonder-blocks-form", () => {
 
     it("example 21", () => {
         class LabeledTextFieldExample extends React.Component {
-            validation(value) {
+            validate(value) {
                 if (value.length < 8) {
                     return "Password must be at least 8 characters long";
                 }
@@ -1316,7 +1316,7 @@ describe("wonder-blocks-form", () => {
                         description="Please enter a secure password"
                         initialValue="Password123"
                         placeholder="Password"
-                        validation={this.validation}
+                        validate={this.validate}
                         onKeyDown={this.handleKeyDown}
                     />
                 );
@@ -1330,7 +1330,7 @@ describe("wonder-blocks-form", () => {
 
     it("example 22", () => {
         class LabeledTextFieldExample extends React.Component {
-            validation(value) {
+            validate(value) {
                 const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
 
                 if (!emailRegex.test(value)) {
@@ -1352,7 +1352,7 @@ describe("wonder-blocks-form", () => {
                         description="Please provide your personal email"
                         initialValue="khan@khan.org"
                         placeholder="Email"
-                        validation={this.validation}
+                        validate={this.validate}
                         onKeyDown={this.handleKeyDown}
                     />
                 );
@@ -1366,7 +1366,7 @@ describe("wonder-blocks-form", () => {
 
     it("example 23", () => {
         class LabeledTextFieldExample extends React.Component {
-            validation(value) {
+            validate(value) {
                 const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
 
                 if (!telRegex.test(value)) {
@@ -1388,7 +1388,7 @@ describe("wonder-blocks-form", () => {
                         description="Please provide your personal phone number"
                         initialValue="123-456-7890"
                         placeholder="Telephone"
-                        validation={this.validation}
+                        validate={this.validate}
                         onKeyDown={this.handleKeyDown}
                     />
                 );
@@ -1402,7 +1402,7 @@ describe("wonder-blocks-form", () => {
 
     it("example 24", () => {
         class LabeledTextFieldExample extends React.Component {
-            validation(value) {
+            validate(value) {
                 const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
 
                 if (!emailRegex.test(value)) {
@@ -1424,7 +1424,7 @@ describe("wonder-blocks-form", () => {
                         description="Please enter your personal email"
                         initialValue="khan"
                         placeholder="Email"
-                        validation={this.validation}
+                        validate={this.validate}
                         onKeyDown={this.handleKeyDown}
                     />
                 );

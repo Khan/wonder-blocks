@@ -52,7 +52,7 @@ export const number: StoryComponentType = () => {
 };
 
 export const password: StoryComponentType = () => {
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         if (value.length < 8) {
             return "Password must be at least 8 characters long";
         }
@@ -74,14 +74,14 @@ export const password: StoryComponentType = () => {
             description="Please enter a secure password"
             initialValue="Password123"
             placeholder="Password"
-            validation={validation}
+            validate={validate}
             onKeyDown={handleKeyDown}
         />
     );
 };
 
 export const email: StoryComponentType = () => {
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
@@ -101,14 +101,14 @@ export const email: StoryComponentType = () => {
             initialValue="khan@khan.org"
             description="Please provide your personal email"
             placeholder="Email"
-            validation={validation}
+            validate={validate}
             onKeyDown={handleKeyDown}
         />
     );
 };
 
 export const telephone: StoryComponentType = () => {
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         if (!telRegex.test(value)) {
             return "Invalid US telephone number";
@@ -128,14 +128,14 @@ export const telephone: StoryComponentType = () => {
             initialValue="123-456-7890"
             description="Please provide your personal phone number"
             placeholder="Telephone"
-            validation={validation}
+            validate={validate}
             onKeyDown={handleKeyDown}
         />
     );
 };
 
 export const error: StoryComponentType = () => {
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
@@ -155,7 +155,7 @@ export const error: StoryComponentType = () => {
             initialValue="khan"
             description="Please provide your personal email"
             placeholder="Email"
-            validation={validation}
+            validate={validate}
             onKeyDown={handleKeyDown}
         />
     );

@@ -141,11 +141,11 @@ describe("LabeledTextField", () => {
         expect(input).toBeDisabled();
     });
 
-    it("validation prop is called when input changes", () => {
+    it("validate prop is called when input changes", () => {
         // Arrange
-        const validation = jest.fn((value: string): ?string => {});
+        const validate = jest.fn((value: string): ?string => {});
         const wrapper = mount(
-            <LabeledTextField label="Label" validation={validation} />,
+            <LabeledTextField label="Label" validate={validate} />,
         );
 
         // Act
@@ -154,15 +154,15 @@ describe("LabeledTextField", () => {
         input.simulate("change", {target: {value: newValue}});
 
         // Assert
-        expect(validation).toHaveBeenCalledWith(newValue);
+        expect(validate).toHaveBeenCalledWith(newValue);
     });
 
-    it("onValidation prop is called on new validated input", () => {
+    it("onValidate prop is called on new validated input", () => {
         // Arrange
-        const handleValidation = jest.fn((errorMessage: ?string) => {});
+        const handleValidate = jest.fn((errorMessage: ?string) => {});
         const errorMessage = "Password must be at least 8 characters long";
 
-        const validation = (value: string): ?string => {
+        const validate = (value: string): ?string => {
             if (value.length < 8) {
                 return errorMessage;
             }
@@ -172,8 +172,8 @@ describe("LabeledTextField", () => {
             <LabeledTextField
                 label="Label"
                 initialValue="LongerThan8Chars"
-                validation={validation}
-                onValidation={handleValidation}
+                validate={validate}
+                onValidate={handleValidate}
             />,
         );
 
@@ -182,7 +182,7 @@ describe("LabeledTextField", () => {
         input.simulate("change", {target: {value: "Short"}});
 
         // Assert
-        expect(handleValidation).toHaveBeenCalledWith(errorMessage);
+        expect(handleValidate).toHaveBeenCalledWith(errorMessage);
     });
 
     it("onChange prop is called on input change", () => {
