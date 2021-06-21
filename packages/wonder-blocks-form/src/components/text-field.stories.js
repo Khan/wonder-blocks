@@ -17,13 +17,11 @@ export default {
 export const text: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
-    const handleOnChange = (newValue: string) => {
+    const handleChange = (newValue: string) => {
         setValue(newValue);
     };
 
-    const handleOnKeyDown = (
-        event: SyntheticKeyboardEvent<HTMLInputElement>,
-    ) => {
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
@@ -35,8 +33,8 @@ export const text: StoryComponentType = () => {
             type="text"
             value={value}
             placeholder="Text"
-            onChange={handleOnChange}
-            onKeyDown={handleOnKeyDown}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
         />
     );
 };
@@ -44,13 +42,11 @@ export const text: StoryComponentType = () => {
 export const number: StoryComponentType = () => {
     const [value, setValue] = React.useState("12345");
 
-    const handleOnChange = (newValue: string) => {
+    const handleChange = (newValue: string) => {
         setValue(newValue);
     };
 
-    const handleOnKeyDown = (
-        event: SyntheticKeyboardEvent<HTMLInputElement>,
-    ) => {
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
@@ -62,8 +58,8 @@ export const number: StoryComponentType = () => {
             type="number"
             value={value}
             placeholder="Number"
-            onChange={handleOnChange}
-            onKeyDown={handleOnKeyDown}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
         />
     );
 };
@@ -73,11 +69,11 @@ export const password: StoryComponentType = () => {
     const [errorMessage, setErrorMessage] = React.useState();
     const [focused, setFocused] = React.useState(false);
 
-    const handleOnChange = (newValue: string) => {
+    const handleChange = (newValue: string) => {
         setValue(newValue);
     };
 
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         if (value.length < 8) {
             return "Password must be at least 8 characters long";
         }
@@ -86,23 +82,21 @@ export const password: StoryComponentType = () => {
         }
     };
 
-    const handleOnValidation = (errorMessage: ?string) => {
+    const handleValidate = (errorMessage: ?string) => {
         setErrorMessage(errorMessage);
     };
 
-    const handleOnKeyDown = (
-        event: SyntheticKeyboardEvent<HTMLInputElement>,
-    ) => {
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
     };
 
-    const handleOnFocus = () => {
+    const handleFocus = () => {
         setFocused(true);
     };
 
-    const handleOnBlur = () => {
+    const handleBlur = () => {
         setFocused(false);
     };
 
@@ -113,12 +107,12 @@ export const password: StoryComponentType = () => {
                 type="password"
                 value={value}
                 placeholder="Password"
-                validation={validation}
-                onValidation={handleOnValidation}
-                onChange={handleOnChange}
-                onKeyDown={handleOnKeyDown}
-                onFocus={handleOnFocus}
-                onBlur={handleOnBlur}
+                validate={validate}
+                onValidate={handleValidate}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
             />
             {!focused && errorMessage && (
                 <View>
@@ -135,34 +129,32 @@ export const email: StoryComponentType = () => {
     const [errorMessage, setErrorMessage] = React.useState();
     const [focused, setFocused] = React.useState(false);
 
-    const handleOnChange = (newValue: string) => {
+    const handleChange = (newValue: string) => {
         setValue(newValue);
     };
 
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
         }
     };
 
-    const handleOnValidation = (errorMessage: ?string) => {
+    const handleValidate = (errorMessage: ?string) => {
         setErrorMessage(errorMessage);
     };
 
-    const handleOnKeyDown = (
-        event: SyntheticKeyboardEvent<HTMLInputElement>,
-    ) => {
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
     };
 
-    const handleOnFocus = () => {
+    const handleFocus = () => {
         setFocused(true);
     };
 
-    const handleOnBlur = () => {
+    const handleBlur = () => {
         setFocused(false);
     };
 
@@ -173,12 +165,12 @@ export const email: StoryComponentType = () => {
                 type="email"
                 value={value}
                 placeholder="Email"
-                validation={validation}
-                onValidation={handleOnValidation}
-                onChange={handleOnChange}
-                onKeyDown={handleOnKeyDown}
-                onFocus={handleOnFocus}
-                onBlur={handleOnBlur}
+                validate={validate}
+                onValidate={handleValidate}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
             />
             {!focused && errorMessage && (
                 <View>
@@ -195,34 +187,32 @@ export const telephone: StoryComponentType = () => {
     const [errorMessage, setErrorMessage] = React.useState();
     const [focused, setFocused] = React.useState(false);
 
-    const handleOnChange = (newValue: string) => {
+    const handleChange = (newValue: string) => {
         setValue(newValue);
     };
 
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         if (!telRegex.test(value)) {
             return "Invalid US telephone number";
         }
     };
 
-    const handleOnValidation = (errorMessage: ?string) => {
+    const handleValidate = (errorMessage: ?string) => {
         setErrorMessage(errorMessage);
     };
 
-    const handleOnKeyDown = (
-        event: SyntheticKeyboardEvent<HTMLInputElement>,
-    ) => {
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
     };
 
-    const handleOnFocus = () => {
+    const handleFocus = () => {
         setFocused(true);
     };
 
-    const handleOnBlur = () => {
+    const handleBlur = () => {
         setFocused(false);
     };
 
@@ -233,12 +223,12 @@ export const telephone: StoryComponentType = () => {
                 type="tel"
                 value={value}
                 placeholder="Telephone"
-                validation={validation}
-                onValidation={handleOnValidation}
-                onChange={handleOnChange}
-                onKeyDown={handleOnKeyDown}
-                onFocus={handleOnFocus}
-                onBlur={handleOnBlur}
+                validate={validate}
+                onValidate={handleValidate}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
             />
             {!focused && errorMessage && (
                 <View>
@@ -255,34 +245,32 @@ export const error: StoryComponentType = () => {
     const [errorMessage, setErrorMessage] = React.useState();
     const [focused, setFocused] = React.useState(false);
 
-    const handleOnChange = (newValue: string) => {
+    const handleChange = (newValue: string) => {
         setValue(newValue);
     };
 
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
         }
     };
 
-    const handleOnValidation = (errorMessage: ?string) => {
+    const handleValidate = (errorMessage: ?string) => {
         setErrorMessage(errorMessage);
     };
 
-    const handleOnKeyDown = (
-        event: SyntheticKeyboardEvent<HTMLInputElement>,
-    ) => {
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
     };
 
-    const handleOnFocus = () => {
+    const handleFocus = () => {
         setFocused(true);
     };
 
-    const handleOnBlur = () => {
+    const handleBlur = () => {
         setFocused(false);
     };
 
@@ -293,12 +281,12 @@ export const error: StoryComponentType = () => {
                 type="email"
                 value={value}
                 placeholder="Email"
-                validation={validation}
-                onValidation={handleOnValidation}
-                onChange={handleOnChange}
-                onKeyDown={handleOnKeyDown}
-                onFocus={handleOnFocus}
-                onBlur={handleOnBlur}
+                validate={validate}
+                onValidate={handleValidate}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
             />
             {!focused && errorMessage && (
                 <View>
@@ -325,34 +313,32 @@ export const light: StoryComponentType = () => {
     const [errorMessage, setErrorMessage] = React.useState();
     const [focused, setFocused] = React.useState(false);
 
-    const handleOnChange = (newValue: string) => {
+    const handleChange = (newValue: string) => {
         setValue(newValue);
     };
 
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
         }
     };
 
-    const handleOnValidation = (errorMessage: ?string) => {
+    const handleValidate = (errorMessage: ?string) => {
         setErrorMessage(errorMessage);
     };
 
-    const handleOnKeyDown = (
-        event: SyntheticKeyboardEvent<HTMLInputElement>,
-    ) => {
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
     };
 
-    const handleOnFocus = () => {
+    const handleFocus = () => {
         setFocused(true);
     };
 
-    const handleOnBlur = () => {
+    const handleBlur = () => {
         setFocused(false);
     };
 
@@ -364,12 +350,12 @@ export const light: StoryComponentType = () => {
                 value={value}
                 placeholder="Email"
                 light={true}
-                validation={validation}
-                onValidation={handleOnValidation}
-                onChange={handleOnChange}
-                onKeyDown={handleOnKeyDown}
-                onFocus={handleOnFocus}
-                onBlur={handleOnBlur}
+                validate={validate}
+                onValidate={handleValidate}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
             />
             {!focused && errorMessage && (
                 <View>
@@ -384,13 +370,11 @@ export const light: StoryComponentType = () => {
 export const customStyle: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
-    const handleOnChange = (newValue: string) => {
+    const handleChange = (newValue: string) => {
         setValue(newValue);
     };
 
-    const handleOnKeyDown = (
-        event: SyntheticKeyboardEvent<HTMLInputElement>,
-    ) => {
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
@@ -403,8 +387,8 @@ export const customStyle: StoryComponentType = () => {
             type="text"
             value={value}
             placeholder="Text"
-            onChange={handleOnChange}
-            onKeyDown={handleOnKeyDown}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
         />
     );
 };
