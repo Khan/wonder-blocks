@@ -1238,22 +1238,203 @@ describe("wonder-blocks-form", () => {
     });
 
     it("example 19", () => {
-        const example = (
-            <LabeledTextField
-                label="Label"
-                description="Description"
-                initialValue="Value"
-            />
-        );
+        class LabeledTextFieldExample extends React.Component {
+            handleKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            render() {
+                return (
+                    <LabeledTextField
+                        label="Name"
+                        description="Please enter your name"
+                        initialValue="Khan"
+                        onKeyDown={this.handleKeyDown}
+                    />
+                );
+            }
+        }
+
+        const example = <LabeledTextFieldExample />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
 
     it("example 20", () => {
+        class LabeledTextFieldExample extends React.Component {
+            handleKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            render() {
+                return (
+                    <LabeledTextField
+                        label="Age"
+                        type="number"
+                        description="Please enter your age"
+                        initialValue="18"
+                        onKeyDown={this.handleKeyDown}
+                    />
+                );
+            }
+        }
+
+        const example = <LabeledTextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 21", () => {
+        class LabeledTextFieldExample extends React.Component {
+            validation(value) {
+                if (value.length < 8) {
+                    return "Password must be at least 8 characters long";
+                }
+
+                if (!/\d/.test(value)) {
+                    return "Password must contain a numeric value";
+                }
+            }
+
+            handleKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            render() {
+                return (
+                    <LabeledTextField
+                        label="Password"
+                        type="password"
+                        description="Please enter a secure password"
+                        initialValue="Password123"
+                        validation={this.validation}
+                        onKeyDown={this.handleKeyDown}
+                    />
+                );
+            }
+        }
+
+        const example = <LabeledTextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 22", () => {
+        class LabeledTextFieldExample extends React.Component {
+            validation(value) {
+                const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+
+                if (!emailRegex.test(value)) {
+                    return "Please enter a valid email";
+                }
+            }
+
+            handleKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            render() {
+                return (
+                    <LabeledTextField
+                        label="Email"
+                        type="email"
+                        description="Please provide your personal email"
+                        initialValue="khan@khan.org"
+                        validation={this.validation}
+                        onKeyDown={this.handleKeyDown}
+                    />
+                );
+            }
+        }
+
+        const example = <LabeledTextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 23", () => {
+        class LabeledTextFieldExample extends React.Component {
+            validation(value) {
+                const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+
+                if (!telRegex.test(value)) {
+                    return "Invalid US telephone number";
+                }
+            }
+
+            handleKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            render() {
+                return (
+                    <LabeledTextField
+                        label="Telephone"
+                        type="tel"
+                        description="Please provide your personal phone number"
+                        initialValue="123-456-7890"
+                        validation={this.validation}
+                        onKeyDown={this.handleKeyDown}
+                    />
+                );
+            }
+        }
+
+        const example = <LabeledTextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 24", () => {
+        class LabeledTextFieldExample extends React.Component {
+            validation(value) {
+                const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+
+                if (!emailRegex.test(value)) {
+                    return "Please enter a valid email";
+                }
+            }
+
+            handleKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            render() {
+                return (
+                    <LabeledTextField
+                        label="Email"
+                        type="email"
+                        description="Please enter your personal email"
+                        initialValue="khan"
+                        validation={this.validation}
+                        onKeyDown={this.handleKeyDown}
+                    />
+                );
+            }
+        }
+
+        const example = <LabeledTextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 25", () => {
         const example = (
             <LabeledTextField
-                label="Label"
-                description="Description"
+                label="Name"
+                description="Please enter your name"
                 disabled={true}
             />
         );
