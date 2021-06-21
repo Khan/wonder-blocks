@@ -9,8 +9,14 @@ export default {
     title: "Form / LabeledTextField",
 };
 
-export const basic: StoryComponentType = () => <LabeledTextField />;
+export const basic: StoryComponentType = () => (
+    <LabeledTextField
+        label="Label"
+        description="Description"
+        initialValue="Value"
+    />
+);
 
 export const disabled: StoryComponentType = () => (
-    <LabeledTextField disabled={true} />
+    <LabeledTextField label="Label" description="Description" disabled={true} />
 );

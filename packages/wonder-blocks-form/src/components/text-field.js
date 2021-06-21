@@ -8,7 +8,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
-type TextFieldType = "text" | "password" | "email" | "number" | "tel";
+export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
 type Props = {|
     ...AriaProps,
