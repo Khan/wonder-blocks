@@ -18,6 +18,7 @@ class LabeledTextFieldExample extends React.Component {
                 label="Name"
                 description="Please enter your name"
                 initialValue="Khan"
+                placeholder="Name"
                 onKeyDown={this.handleKeyDown}
             />
         );
@@ -46,6 +47,7 @@ class LabeledTextFieldExample extends React.Component {
                 type="number"
                 description="Please enter your age"
                 initialValue="18"
+                placeholder="Age"
                 onKeyDown={this.handleKeyDown}
             />
         );
@@ -61,7 +63,7 @@ Password
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
-    validation(value) {
+    validate(value) {
         if (value.length < 8) {
             return "Password must be at least 8 characters long";
         }
@@ -83,7 +85,8 @@ class LabeledTextFieldExample extends React.Component {
                 type="password"
                 description="Please enter a secure password"
                 initialValue="Password123"
-                validation={this.validation}
+                placeholder="Password"
+                validate={this.validate}
                 onKeyDown={this.handleKeyDown}
             />
         );
@@ -99,7 +102,7 @@ Email
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
-    validation(value) {
+    validate(value) {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
@@ -119,7 +122,8 @@ class LabeledTextFieldExample extends React.Component {
                 type="email"
                 description="Please provide your personal email"
                 initialValue="khan@khan.org"
-                validation={this.validation}
+                placeholder="Email"
+                validate={this.validate}
                 onKeyDown={this.handleKeyDown}
             />
         );
@@ -135,7 +139,7 @@ Telephone
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
-    validation(value) {
+    validate(value) {
         const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         if (!telRegex.test(value)) {
             return "Invalid US telephone number";
@@ -155,7 +159,8 @@ class LabeledTextFieldExample extends React.Component {
                 type="tel"
                 description="Please provide your personal phone number"
                 initialValue="123-456-7890"
-                validation={this.validation}
+                placeholder="Telephone"
+                validate={this.validate}
                 onKeyDown={this.handleKeyDown}
             />
         );
@@ -171,7 +176,7 @@ The field can have an error
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
-    validation(value) {
+    validate(value) {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
@@ -191,7 +196,8 @@ class LabeledTextFieldExample extends React.Component {
                 type="email"
                 description="Please enter your personal email"
                 initialValue="khan"
-                validation={this.validation}
+                placeholder="Email"
+                validate={this.validate}
                 onKeyDown={this.handleKeyDown}
             />
         );
@@ -209,6 +215,104 @@ import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 <LabeledTextField
     label="Name"
     description="Please enter your name"
+    placeholder="Name"
     disabled={true}
 />
+```
+
+The field can be in light mode to fit a dark background
+
+```js
+import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import Color from "@khanacademy/wonder-blocks-color";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {StyleSheet} from "aphrodite";
+
+class LabeledTextFieldExample extends React.Component {
+    handleKeyDown(event) {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    }
+
+    render() {
+        return (
+            <View style={styles.darkBackground}>
+                <LabeledTextField
+                    label={
+                        <LabelMedium style={styles.whiteColor}>Name</LabelMedium>
+                    }
+                    description={
+                        <LabelSmall style={styles.offWhiteColor}>
+                            Please enter your name
+                        </LabelSmall>
+                    }
+                    placeholder="Name"
+                    light={true}
+                    onKeyDown={this.handleKeyDown}
+                />
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    darkBackground: {
+        background: Color.darkBlue,
+        padding: `${Spacing.medium_16}px`,
+    },
+    whiteColor: {
+        color: Color.white,
+    },
+    offWhiteColor: {
+        color: Color.white64,
+    },
+});
+
+<LabeledTextFieldExample />
+```
+
+The field can have custom styles
+
+```js
+import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+import {StyleSheet} from "aphrodite";
+import Color from "@khanacademy/wonder-blocks-color";
+
+class LabeledTextFieldExample extends React.Component {
+    handleKeyDown(event) {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    }
+
+    render() {
+        return (
+            <LabeledTextField
+                label="Name"
+                description="Please enter your name"
+                initialValue="Khan"
+                placeholder="Name"
+                style={styles.customField}
+                onKeyDown={this.handleKeyDown}
+            />
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    customField: {
+        backgroundColor: Color.darkBlue,
+        color: Color.white,
+        border: "none",
+        maxWidth: 250,
+        "::placeholder": {
+            color: Color.white64,
+        },
+    },
+});
+
+<LabeledTextFieldExample />
 ```

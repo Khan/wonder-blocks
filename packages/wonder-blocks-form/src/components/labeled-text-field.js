@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import {IDProvider} from "@khanacademy/wonder-blocks-core";
+import {IDProvider, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {type Typography} from "@khanacademy/wonder-blocks-typography";
 
 import FieldHeading from "./field-heading.js";
@@ -43,12 +43,12 @@ type Props = {|
      * Provide a validation for the input value.
      * Return a string error message or null | void for a valid input.
      */
-    validation?: (value: string) => ?string,
+    validate?: (value: string) => ?string,
 
     /**
      * Called when the TextField input is validated.
      */
-    onValidation?: (errorMessage: ?string) => mixed,
+    onValidate?: (errorMessage: ?string) => mixed,
 
     /**
      * Called when the value has changed.
@@ -69,11 +69,32 @@ type Props = {|
      * Called when the element has been blurred.
      */
     onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
+
+    /**
+     * Provide hints or examples of what to enter.
+     */
+    placeholder?: string,
+
+    /**
+     * Change the field’s sub-components to fit a dark background.
+     */
+    light: boolean,
+
+    /**
+     * Custom styles for the TextField component.
+     */
+    style?: StyleType,
+
+    /**
+     * Optional test ID for e2e testing.
+     */
+    testId?: string,
 |};
 
 type DefaultProps = {|
     type: $PropertyType<Props, "type">,
     disabled: $PropertyType<Props, "disabled">,
+    light: $PropertyType<Props, "light">,
 |};
 
 type State = {|
@@ -97,6 +118,7 @@ export default class LabeledTextField extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         type: "text",
         disabled: false,
+        light: false,
     };
 
     constructor(props: Props) {
@@ -108,46 +130,44 @@ export default class LabeledTextField extends React.Component<Props, State> {
         };
     }
 
-    handleValidation: (errorMessage: ?string) => mixed = (errorMessage) => {
-        const {onValidation} = this.props;
-        this.setState({error: errorMessage});
-        if (onValidation) {
-            onValidation(errorMessage);
-        }
+    handleValidate: (errorMessage: ?string) => mixed = (errorMessage) => {
+        const {onValidate} = this.props;
+        this.setState({error: errorMessage}, () => {
+            if (onValidate) {
+                onValidate(errorMessage);
+            }
+        });
     };
 
     handleChange: (newValue: string) => mixed = (newValue) => {
         const {onChange} = this.props;
-        this.setState({
-            value: newValue,
+        this.setState({value: newValue}, () => {
+            if (onChange) {
+                onChange(newValue);
+            }
         });
-        if (onChange) {
-            onChange(newValue);
-        }
     };
 
     handleFocus: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
         event,
     ) => {
         const {onFocus} = this.props;
-        this.setState({
-            focused: true,
+        this.setState({focused: true}, () => {
+            if (onFocus) {
+                onFocus(event);
+            }
         });
-        if (onFocus) {
-            onFocus(event);
-        }
     };
 
     handleBlur: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
         event,
     ) => {
         const {onBlur} = this.props;
-        this.setState({
-            focused: false,
+        this.setState({focused: false}, () => {
+            if (onBlur) {
+                onBlur(event);
+            }
         });
-        if (onBlur) {
-            onBlur(event);
-        }
     };
 
     render(): React.Node {
@@ -157,8 +177,12 @@ export default class LabeledTextField extends React.Component<Props, State> {
             label,
             description,
             disabled,
-            validation,
+            validate,
             onKeyDown,
+            placeholder,
+            light,
+            style,
+            testId,
         } = this.props;
 
         return (
@@ -166,6 +190,7 @@ export default class LabeledTextField extends React.Component<Props, State> {
                 {(uniqueId) => (
                     <FieldHeading
                         id={uniqueId}
+                        testId={testId}
                         field={
                             <TextField
                                 id={`${uniqueId}-field`}
@@ -173,16 +198,19 @@ export default class LabeledTextField extends React.Component<Props, State> {
                                 aria-invalid={
                                     this.state.error ? "true" : "false"
                                 }
+                                testId={testId && `${testId}-field`}
                                 type={type}
                                 value={this.state.value}
-                                placeholder="Placeholder"
+                                placeholder={placeholder}
                                 disabled={disabled}
-                                validation={validation}
-                                onValidation={this.handleValidation}
+                                validation={validate}
+                                onValidation={this.handleValidate}
                                 onChange={this.handleChange}
                                 onKeyDown={onKeyDown}
                                 onFocus={this.handleFocus}
                                 onBlur={this.handleBlur}
+                                light={light}
+                                style={style}
                             />
                         }
                         label={label}

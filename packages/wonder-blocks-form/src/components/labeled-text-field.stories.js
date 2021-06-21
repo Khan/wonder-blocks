@@ -2,6 +2,11 @@
 import * as React from "react";
 
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import Color from "@khanacademy/wonder-blocks-color";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {StyleSheet} from "aphrodite";
 
 import type {StoryComponentType} from "@storybook/react";
 
@@ -21,6 +26,7 @@ export const text: StoryComponentType = () => {
             label="Name"
             description="Please enter your name"
             initialValue="Khan"
+            placeholder="Name"
             onKeyDown={handleKeyDown}
         />
     );
@@ -39,13 +45,14 @@ export const number: StoryComponentType = () => {
             type="number"
             description="Please enter your age"
             initialValue="18"
+            placeholder="Age"
             onKeyDown={handleKeyDown}
         />
     );
 };
 
 export const password: StoryComponentType = () => {
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         if (value.length < 8) {
             return "Password must be at least 8 characters long";
         }
@@ -66,14 +73,15 @@ export const password: StoryComponentType = () => {
             type="password"
             description="Please enter a secure password"
             initialValue="Password123"
-            validation={validation}
+            placeholder="Password"
+            validate={validate}
             onKeyDown={handleKeyDown}
         />
     );
 };
 
 export const email: StoryComponentType = () => {
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
@@ -92,14 +100,15 @@ export const email: StoryComponentType = () => {
             type="email"
             initialValue="khan@khan.org"
             description="Please provide your personal email"
-            validation={validation}
+            placeholder="Email"
+            validate={validate}
             onKeyDown={handleKeyDown}
         />
     );
 };
 
 export const telephone: StoryComponentType = () => {
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         if (!telRegex.test(value)) {
             return "Invalid US telephone number";
@@ -118,14 +127,15 @@ export const telephone: StoryComponentType = () => {
             type="tel"
             initialValue="123-456-7890"
             description="Please provide your personal phone number"
-            validation={validation}
+            placeholder="Telephone"
+            validate={validate}
             onKeyDown={handleKeyDown}
         />
     );
 };
 
 export const error: StoryComponentType = () => {
-    const validation = (value: string) => {
+    const validate = (value: string) => {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
@@ -144,7 +154,8 @@ export const error: StoryComponentType = () => {
             type="email"
             initialValue="khan"
             description="Please provide your personal email"
-            validation={validation}
+            placeholder="Email"
+            validate={validate}
             onKeyDown={handleKeyDown}
         />
     );
@@ -154,6 +165,73 @@ export const disabled: StoryComponentType = () => (
     <LabeledTextField
         label="Name"
         description="Please enter your name"
+        placeholder="Name"
         disabled={true}
     />
 );
+
+export const light: StoryComponentType = () => {
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <View style={styles.darkBackground}>
+            <LabeledTextField
+                label={
+                    <LabelMedium style={styles.whiteColor}>Name</LabelMedium>
+                }
+                description={
+                    <LabelSmall style={styles.offWhiteColor}>
+                        Please enter your name
+                    </LabelSmall>
+                }
+                placeholder="Name"
+                light={true}
+                onKeyDown={handleKeyDown}
+            />
+        </View>
+    );
+};
+
+export const customStyle: StoryComponentType = () => {
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <LabeledTextField
+            label="Name"
+            description="Please enter your name"
+            placeholder="Name"
+            style={styles.customField}
+            onKeyDown={handleKeyDown}
+        />
+    );
+};
+
+const styles = StyleSheet.create({
+    darkBackground: {
+        background: Color.darkBlue,
+        padding: `${Spacing.medium_16}px`,
+    },
+    whiteColor: {
+        color: Color.white,
+    },
+    offWhiteColor: {
+        color: Color.white64,
+    },
+    customField: {
+        backgroundColor: Color.darkBlue,
+        color: Color.white,
+        border: "none",
+        maxWidth: 250,
+        "::placeholder": {
+            color: Color.white64,
+        },
+    },
+});
