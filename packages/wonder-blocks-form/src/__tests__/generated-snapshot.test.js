@@ -1238,13 +1238,13 @@ describe("wonder-blocks-form", () => {
     });
 
     it("example 19", () => {
-        class LabeledTextFieldExample extends React.Component {
-            render() {
-                return <LabeledTextField />;
-            }
-        }
+        const example = <LabeledTextField />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
 
-        const example = <LabeledTextFieldExample />;
+    it("example 20", () => {
+        const example = <LabeledTextField disabled={true} />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });

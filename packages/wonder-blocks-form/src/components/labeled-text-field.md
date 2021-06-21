@@ -3,11 +3,12 @@ LabeledTextField derives from TextField and allows the handling of single lines 
 ```js
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
-class LabeledTextFieldExample extends React.Component {
-    render() {
-        return <LabeledTextField />;
-    }
-}
+<LabeledTextField />;
+```
 
-<LabeledTextFieldExample />
+The field can be disabled
+```js
+import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+
+<LabeledTextField disabled={true} />
 ```
