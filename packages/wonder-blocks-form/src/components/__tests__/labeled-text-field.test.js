@@ -2,6 +2,7 @@
 import * as React from "react";
 import {mount} from "enzyme";
 
+import {StyleSheet} from "aphrodite";
 import LabeledTextField from "../labeled-text-field.js";
 
 const wait = (delay: number = 0) =>
@@ -252,5 +253,65 @@ describe("LabeledTextField", () => {
 
         // Assert
         expect(handleBlur).toHaveBeenCalled();
+    });
+
+    it("placeholder prop is passed to input", async () => {
+        // Arrange
+        const placeholder = "Placeholder";
+
+        // Act
+        const wrapper = mount(
+            <LabeledTextField label="Label" placeholder={placeholder} />,
+        );
+
+        // Assert
+        const input = wrapper.find("input");
+        expect(input).toContainMatchingElement(
+            `[placeholder="${placeholder}"]`,
+        );
+    });
+
+    it("light prop is passed to textfield", async () => {
+        // Arrange
+
+        // Act
+        const wrapper = mount(<LabeledTextField label="Label" light={true} />);
+
+        // Assert
+        const textField = wrapper.find("TextField");
+        expect(textField).toHaveProp("light", true);
+    });
+
+    it("style prop is passed to textfield", async () => {
+        // Arrange
+        const styles = StyleSheet.create({
+            style1: {
+                minWidth: 250,
+                background: "blue",
+            },
+        });
+
+        // Act
+        const wrapper = mount(
+            <LabeledTextField label="Label" style={styles.style1} />,
+        );
+
+        // Assert
+        const textField = wrapper.find("TextField");
+        expect(textField).toHaveStyle(styles.style1);
+    });
+
+    it("testId prop is passed to textfield", async () => {
+        // Arrange
+        const testId = "example-testid";
+
+        // Act
+        const wrapper = mount(
+            <LabeledTextField label="Label" testId={testId} />,
+        );
+
+        // Assert
+        const textField = wrapper.find(`[data-test-id="${testId}-field"]`);
+        expect(textField).toExist();
     });
 });

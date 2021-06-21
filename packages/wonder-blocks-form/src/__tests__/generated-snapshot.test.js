@@ -1251,6 +1251,7 @@ describe("wonder-blocks-form", () => {
                         label="Name"
                         description="Please enter your name"
                         initialValue="Khan"
+                        placeholder="Name"
                         onKeyDown={this.handleKeyDown}
                     />
                 );
@@ -1277,6 +1278,7 @@ describe("wonder-blocks-form", () => {
                         type="number"
                         description="Please enter your age"
                         initialValue="18"
+                        placeholder="Age"
                         onKeyDown={this.handleKeyDown}
                     />
                 );
@@ -1313,6 +1315,7 @@ describe("wonder-blocks-form", () => {
                         type="password"
                         description="Please enter a secure password"
                         initialValue="Password123"
+                        placeholder="Password"
                         validation={this.validation}
                         onKeyDown={this.handleKeyDown}
                     />
@@ -1348,6 +1351,7 @@ describe("wonder-blocks-form", () => {
                         type="email"
                         description="Please provide your personal email"
                         initialValue="khan@khan.org"
+                        placeholder="Email"
                         validation={this.validation}
                         onKeyDown={this.handleKeyDown}
                     />
@@ -1383,6 +1387,7 @@ describe("wonder-blocks-form", () => {
                         type="tel"
                         description="Please provide your personal phone number"
                         initialValue="123-456-7890"
+                        placeholder="Telephone"
                         validation={this.validation}
                         onKeyDown={this.handleKeyDown}
                     />
@@ -1418,6 +1423,7 @@ describe("wonder-blocks-form", () => {
                         type="email"
                         description="Please enter your personal email"
                         initialValue="khan"
+                        placeholder="Email"
                         validation={this.validation}
                         onKeyDown={this.handleKeyDown}
                     />
@@ -1435,9 +1441,96 @@ describe("wonder-blocks-form", () => {
             <LabeledTextField
                 label="Name"
                 description="Please enter your name"
+                placeholder="Name"
                 disabled={true}
             />
         );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 26", () => {
+        class LabeledTextFieldExample extends React.Component {
+            handleKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            render() {
+                return (
+                    <View style={styles.darkBackground}>
+                        <LabeledTextField
+                            label={
+                                <LabelMedium style={styles.whiteColor}>
+                                    Name
+                                </LabelMedium>
+                            }
+                            description={
+                                <LabelSmall style={styles.offWhiteColor}>
+                                    Please enter your name
+                                </LabelSmall>
+                            }
+                            placeholder="Name"
+                            light={true}
+                            onKeyDown={this.handleKeyDown}
+                        />
+                    </View>
+                );
+            }
+        }
+
+        const styles = StyleSheet.create({
+            darkBackground: {
+                background: Color.darkBlue,
+                padding: `${Spacing.medium_16}px`,
+            },
+            whiteColor: {
+                color: Color.white,
+            },
+            offWhiteColor: {
+                color: Color.white64,
+            },
+        });
+        const example = <LabeledTextFieldExample />;
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 27", () => {
+        class LabeledTextFieldExample extends React.Component {
+            handleKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            render() {
+                return (
+                    <LabeledTextField
+                        label="Name"
+                        description="Please enter your name"
+                        initialValue="Khan"
+                        placeholder="Name"
+                        style={styles.customField}
+                        onKeyDown={this.handleKeyDown}
+                    />
+                );
+            }
+        }
+
+        const styles = StyleSheet.create({
+            customField: {
+                backgroundColor: Color.darkBlue,
+                color: Color.white,
+                border: "none",
+                maxWidth: 250,
+                "::placeholder": {
+                    color: Color.white64,
+                },
+            },
+        });
+        const example = <LabeledTextFieldExample />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
