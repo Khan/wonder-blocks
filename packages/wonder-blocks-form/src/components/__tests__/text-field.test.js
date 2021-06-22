@@ -157,15 +157,15 @@ describe("TextField", () => {
         expect(handleOnChange).toHaveBeenCalledWith(newValue);
     });
 
-    it("validation is called when value changes", () => {
+    it("validate is called when value changes", () => {
         // Arrange
-        const handleValidation = jest.fn((value: string): ?string => {});
+        const handleValidate = jest.fn((value: string): ?string => {});
 
         const wrapper = mount(
             <TextField
                 id={"tf-1"}
                 value="Text"
-                validation={handleValidation}
+                validate={handleValidate}
                 onChange={() => {}}
             />,
         );
@@ -175,12 +175,12 @@ describe("TextField", () => {
         wrapper.simulate("change", {target: {value: newValue}});
 
         // Assert
-        expect(handleValidation).toHaveBeenCalledWith(newValue);
+        expect(handleValidate).toHaveBeenCalledWith(newValue);
     });
 
-    it("validation is given a valid input", () => {
+    it("validate is given a valid input", () => {
         // Arrange
-        const handleValidation = jest.fn((value: string): ?string => {
+        const handleValidate = jest.fn((value: string): ?string => {
             if (value.length < 8) {
                 return "Value is too short";
             }
@@ -190,7 +190,7 @@ describe("TextField", () => {
             <TextField
                 id={"tf-1"}
                 value="TextIsLong"
-                validation={handleValidation}
+                validate={handleValidate}
                 onChange={() => {}}
             />,
         );
@@ -200,13 +200,13 @@ describe("TextField", () => {
         wrapper.simulate("change", {target: {value: newValue}});
 
         // Assert
-        expect(handleValidation).toHaveReturnedWith(undefined);
+        expect(handleValidate).toHaveReturnedWith(undefined);
     });
 
-    it("validation is given an invalid input", () => {
+    it("validate is given an invalid input", () => {
         // Arrange
         const errorMessage = "Value is too short";
-        const handleValidation = jest.fn((value: string): ?string => {
+        const handleValidate = jest.fn((value: string): ?string => {
             if (value.length < 8) {
                 return errorMessage;
             }
@@ -216,7 +216,7 @@ describe("TextField", () => {
             <TextField
                 id={"tf-1"}
                 value="TextIsLongerThan8"
-                validation={handleValidation}
+                validate={handleValidate}
                 onChange={() => {}}
             />,
         );
@@ -226,14 +226,14 @@ describe("TextField", () => {
         wrapper.simulate("change", {target: {value: newValue}});
 
         // Assert
-        expect(handleValidation).toHaveReturnedWith(errorMessage);
+        expect(handleValidate).toHaveReturnedWith(errorMessage);
     });
 
-    it("onValidation is called after input validation", () => {
+    it("onValidate is called after input validate", () => {
         // Arrange
         const errorMessage = "Value is too short";
-        const handleOnValidation = jest.fn((errorMessage: ?string) => {});
-        const validation = jest.fn((value: string): ?string => {
+        const handleValidate = jest.fn((errorMessage: ?string) => {});
+        const validate = jest.fn((value: string): ?string => {
             if (value.length < 8) {
                 return errorMessage;
             }
@@ -243,8 +243,8 @@ describe("TextField", () => {
             <TextField
                 id={"tf-1"}
                 value="TextIsLongerThan8"
-                validation={validation}
-                onValidation={handleOnValidation}
+                validate={validate}
+                onValidate={handleValidate}
                 onChange={() => {}}
             />,
         );
@@ -254,14 +254,14 @@ describe("TextField", () => {
         wrapper.simulate("change", {target: {value: newValue}});
 
         // Assert
-        expect(handleOnValidation).toHaveBeenCalledWith(errorMessage);
+        expect(handleValidate).toHaveBeenCalledWith(errorMessage);
     });
 
-    it("onValidation is called on input's initial value", () => {
+    it("onValidate is called on input's initial value", () => {
         // Arrange
         const errorMessage = "Value is too short";
-        const handleOnValidation = jest.fn((errorMessage: ?string) => {});
-        const validation = jest.fn((value: string): ?string => {
+        const handleValidate = jest.fn((errorMessage: ?string) => {});
+        const validate = jest.fn((value: string): ?string => {
             if (value.length < 8) {
                 return errorMessage;
             }
@@ -272,14 +272,14 @@ describe("TextField", () => {
             <TextField
                 id={"tf-1"}
                 value="Short"
-                validation={validation}
-                onValidation={handleOnValidation}
+                validate={validate}
+                onValidate={handleValidate}
                 onChange={() => {}}
             />,
         );
 
         // Assert
-        expect(handleOnValidation).toHaveBeenCalledWith(errorMessage);
+        expect(handleValidate).toHaveBeenCalledWith(errorMessage);
     });
 
     it("onKeyDown is called after keyboard key press", () => {

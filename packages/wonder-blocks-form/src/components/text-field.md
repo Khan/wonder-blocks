@@ -9,15 +9,15 @@ class TextFieldExample extends React.Component {
         this.state = {
             value: "",
         };
-        this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
-    handleOnChange(newValue) {
+    handleChange(newValue) {
         this.setState({value: newValue});
     }
 
-    handleOnKeyDown(event) {
+    handleKeyDown(event) {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
@@ -30,8 +30,8 @@ class TextFieldExample extends React.Component {
                 type="text"
                 value={this.state.value}
                 placeholder="Text"
-                onChange={this.handleOnChange}
-                onKeyDown={this.handleOnKeyDown}
+                onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
             />
         );
     }
@@ -51,15 +51,15 @@ class TextFieldExample extends React.Component {
         this.state = {
             value: "12345",
         };
-        this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
-    handleOnChange(newValue) {
+    handleChange(newValue) {
         this.setState({value: newValue});
     }
 
-    handleOnKeyDown(event) {
+    handleKeyDown(event) {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
@@ -72,8 +72,8 @@ class TextFieldExample extends React.Component {
                 type="number"
                 value={this.state.value}
                 placeholder="Number"
-                onChange={this.handleOnChange}
-                onKeyDown={this.handleOnKeyDown}
+                onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
             />
         );
     }
@@ -100,15 +100,15 @@ class TextFieldExample extends React.Component {
             errorMessage: null,
             focused: false,
         };
-        this.validation = this.validation.bind(this);
-        this.handleOnValidation = this.handleOnValidation.bind(this);
-        this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
-        this.handleOnFocus = this.handleOnFocus.bind(this);
-        this.handleOnBlur = this.handleOnBlur.bind(this);
+        this.validate = this.validate.bind(this);
+        this.handleValidate = this.handleValidate.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
 
-    validation(value) {
+    validate(value) {
         if (value.length < 8) {
             return "Password must be at least 8 characters long";
         }
@@ -117,25 +117,25 @@ class TextFieldExample extends React.Component {
         }
     }
 
-    handleOnValidation(errorMessage) {
+    handleValidate(errorMessage) {
         this.setState({errorMessage: errorMessage});
     }
 
-    handleOnChange(newValue) {
+    handleChange(newValue) {
         this.setState({value: newValue});
     }
 
-    handleOnKeyDown(event) {
+    handleKeyDown(event) {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
     }
 
-    handleOnFocus() {
+    handleFocus() {
         this.setState({focused: true});
     }
 
-    handleOnBlur() {
+    handleBlur() {
         this.setState({focused: false});
     }
 
@@ -147,12 +147,12 @@ class TextFieldExample extends React.Component {
                     type="password"
                     value={this.state.value}
                     placeholder="Password"
-                    validation={this.validation}
-                    onValidation={this.handleOnValidation}
-                    onChange={this.handleOnChange}
-                    onKeyDown={this.handleOnKeyDown}
-                    onFocus={this.handleOnFocus}
-                    onBlur={this.handleOnBlur}
+                    validate={this.validate}
+                    onValidate={this.handleValidate}
+                    onChange={this.handleChange}
+                    onKeyDown={this.handleKeyDown}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
                 />
                 {!this.state.focused && this.state.errorMessage && (
                     <View>
@@ -193,40 +193,40 @@ class TextFieldExample extends React.Component {
             errorMessage: null,
             focused: false,
         };
-        this.validation = this.validation.bind(this);
-        this.handleOnValidation = this.handleOnValidation.bind(this);
-        this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
-        this.handleOnFocus = this.handleOnFocus.bind(this);
-        this.handleOnBlur = this.handleOnBlur.bind(this);
+        this.validate = this.validate.bind(this);
+        this.handleValidate = this.handleValidate.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
 
-    validation(value) {
+    validate(value) {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
         }
     }
 
-    handleOnValidation(errorMessage) {
+    handleValidate(errorMessage) {
         this.setState({errorMessage: errorMessage});
     }
 
-    handleOnChange(newValue) {
+    handleChange(newValue) {
         this.setState({value: newValue});
     }
 
-    handleOnKeyDown(event) {
+    handleKeyDown(event) {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
     }
 
-    handleOnFocus() {
+    handleFocus() {
         this.setState({focused: true});
     }
 
-    handleOnBlur() {
+    handleBlur() {
         this.setState({focused: false});
     }
 
@@ -238,12 +238,12 @@ class TextFieldExample extends React.Component {
                     type="email"
                     value={this.state.value}
                     placeholder="Email"
-                    validation={this.validation}
-                    onValidation={this.handleOnValidation}
-                    onChange={this.handleOnChange}
-                    onKeyDown={this.handleOnKeyDown}
-                    onFocus={this.handleOnFocus}
-                    onBlur={this.handleOnBlur}
+                    validate={this.validate}
+                    onValidate={this.handleValidate}
+                    onChange={this.handleChange}
+                    onKeyDown={this.handleKeyDown}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
                 />
                 {!this.state.focused && this.state.errorMessage && (
                     <View>
@@ -284,40 +284,40 @@ class TextFieldExample extends React.Component {
             errorMessage: null,
             focused: false,
         };
-        this.validation = this.validation.bind(this);
-        this.handleOnValidation = this.handleOnValidation.bind(this);
-        this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
-        this.handleOnFocus = this.handleOnFocus.bind(this);
-        this.handleOnBlur = this.handleOnBlur.bind(this);
+        this.validate = this.validate.bind(this);
+        this.handleValidate = this.handleValidate.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
 
-    validation(value) {
+    validate(value) {
         const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         if (!telRegex.test(value)) {
             return "Invalid US telephone number";
         }
     }
 
-    handleOnValidation(errorMessage) {
+    handleValidate(errorMessage) {
         this.setState({errorMessage: errorMessage});
     }
 
-    handleOnChange(newValue) {
+    handleChange(newValue) {
         this.setState({value: newValue});
     }
 
-    handleOnKeyDown(event) {
+    handleKeyDown(event) {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
     }
 
-    handleOnFocus() {
+    handleFocus() {
         this.setState({focused: true});
     }
 
-    handleOnBlur() {
+    handleBlur() {
         this.setState({focused: false});
     }
 
@@ -329,12 +329,12 @@ class TextFieldExample extends React.Component {
                     type="email"
                     value={this.state.value}
                     placeholder="Telephone"
-                    validation={this.validation}
-                    onValidation={this.handleOnValidation}
-                    onChange={this.handleOnChange}
-                    onKeyDown={this.handleOnKeyDown}
-                    onFocus={this.handleOnFocus}
-                    onBlur={this.handleOnBlur}
+                    validate={this.validate}
+                    onValidate={this.handleValidate}
+                    onChange={this.handleChange}
+                    onKeyDown={this.handleKeyDown}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
                 />
                 {!this.state.focused && this.state.errorMessage && (
                     <View>
@@ -375,40 +375,40 @@ class TextFieldExample extends React.Component {
             errorMessage: null,
             focused: false,
         };
-        this.validation = this.validation.bind(this);
-        this.handleOnValidation = this.handleOnValidation.bind(this);
-        this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
-        this.handleOnFocus = this.handleOnFocus.bind(this);
-        this.handleOnBlur = this.handleOnBlur.bind(this);
+        this.validate = this.validate.bind(this);
+        this.handleValidate = this.handleValidate.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
 
-    validation(value) {
+    validate(value) {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
         }
     }
 
-    handleOnValidation(errorMessage) {
+    handleValidate(errorMessage) {
         this.setState({errorMessage: errorMessage});
     }
 
-    handleOnChange(newValue) {
+    handleChange(newValue) {
         this.setState({value: newValue});
     }
 
-    handleOnKeyDown(event) {
+    handleKeyDown(event) {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
     }
 
-    handleOnFocus() {
+    handleFocus() {
         this.setState({focused: true});
     }
 
-    handleOnBlur() {
+    handleBlur() {
         this.setState({focused: false});
     }
 
@@ -420,12 +420,12 @@ class TextFieldExample extends React.Component {
                     type="email"
                     value={this.state.value}
                     placeholder="Email"
-                    validation={this.validation}
-                    onValidation={this.handleOnValidation}
-                    onChange={this.handleOnChange}
-                    onKeyDown={this.handleOnKeyDown}
-                    onFocus={this.handleOnFocus}
-                    onBlur={this.handleOnBlur}
+                    validate={this.validate}
+                    onValidate={this.handleValidate}
+                    onChange={this.handleChange}
+                    onKeyDown={this.handleKeyDown}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
                 />
                 {!this.state.focused && this.state.errorMessage && (
                     <View>
@@ -479,40 +479,40 @@ class TextFieldExample extends React.Component {
             errorMessage: null,
             focused: false,
         };
-        this.validation = this.validation.bind(this);
-        this.handleOnValidation = this.handleOnValidation.bind(this);
-        this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
-        this.handleOnFocus = this.handleOnFocus.bind(this);
-        this.handleOnBlur = this.handleOnBlur.bind(this);
+        this.validate = this.validate.bind(this);
+        this.handleValidate = this.handleValidate.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleFocus = this.handleFocus.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
     }
 
-    validation(value) {
+    validate(value) {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
             return "Please enter a valid email";
         }
     }
 
-    handleOnValidation(errorMessage) {
+    handleValidate(errorMessage) {
         this.setState({errorMessage: errorMessage});
     }
 
-    handleOnChange(newValue) {
+    handleChange(newValue) {
         this.setState({value: newValue});
     }
 
-    handleOnKeyDown(event) {
+    handleKeyDown(event) {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
     }
 
-    handleOnFocus() {
+    handleFocus() {
         this.setState({focused: true});
     }
 
-    handleOnBlur() {
+    handleBlur() {
         this.setState({focused: false});
     }
 
@@ -525,12 +525,12 @@ class TextFieldExample extends React.Component {
                     value={this.state.value}
                     light={true}
                     placeholder="Email"
-                    validation={this.validation}
-                    onValidation={this.handleOnValidation}
-                    onChange={this.handleOnChange}
-                    onKeyDown={this.handleOnKeyDown}
-                    onFocus={this.handleOnFocus}
-                    onBlur={this.handleOnBlur}
+                    validate={this.validate}
+                    onValidate={this.handleValidate}
+                    onChange={this.handleChange}
+                    onKeyDown={this.handleKeyDown}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
                 />
                 {!this.state.focused && this.state.errorMessage && (
                     <View>
@@ -571,15 +571,15 @@ class TextFieldExample extends React.Component {
         this.state = {
             value: "",
         };
-        this.handleOnChange = this.handleOnChange.bind(this);
-        this.handleOnKeyDown = this.handleOnKeyDown.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
     }
 
-    handleOnChange(newValue) {
+    handleChange(newValue) {
         this.setState({value: newValue});
     }
 
-    handleOnKeyDown(event) {
+    handleKeyDown(event) {
         if (event.key === "Enter") {
             event.currentTarget.blur();
         }
@@ -593,8 +593,8 @@ class TextFieldExample extends React.Component {
                 type="text"
                 value={this.state.value}
                 placeholder="Text"
-                onChange={this.handleOnChange}
-                onKeyDown={this.handleOnKeyDown}
+                onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
             />
         );
     }

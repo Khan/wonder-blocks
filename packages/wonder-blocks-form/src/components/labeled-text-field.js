@@ -203,8 +203,8 @@ export default class LabeledTextField extends React.Component<Props, State> {
                                 value={this.state.value}
                                 placeholder={placeholder}
                                 disabled={disabled}
-                                validation={validate}
-                                onValidation={this.handleValidate}
+                                validate={validate}
+                                onValidate={this.handleValidate}
                                 onChange={this.handleChange}
                                 onKeyDown={onKeyDown}
                                 onFocus={this.handleFocus}

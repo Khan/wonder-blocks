@@ -37,12 +37,12 @@ type Props = {|
      * Provide a validation for the input value.
      * Return a string error message or null | void for a valid input.
      */
-    validation?: (value: string) => ?string,
+    validate?: (value: string) => ?string,
 
     /**
      * Called right after the TextField input is validated.
      */
-    onValidation?: (errorMessage: ?string) => mixed,
+    onValidate?: (errorMessage: ?string) => mixed,
 
     /**
      * Called when the value has changed.
@@ -120,9 +120,9 @@ export default class TextField extends React.Component<Props, State> {
 
     constructor(props: Props) {
         super(props);
-        if (props.validation) {
+        if (props.validate) {
             // Ensures error is updated on unmounted server-side renders
-            this.state.error = props.validation(props.value) || null;
+            this.state.error = props.validate(props.value) || null;
         }
     }
 
@@ -136,17 +136,18 @@ export default class TextField extends React.Component<Props, State> {
     }
 
     maybeValidate: (newValue: string) => void = (newValue) => {
-        const {validation, onValidation} = this.props;
-        if (validation) {
-            const maybeError = validation(newValue) || null;
-            this.setState({error: maybeError});
-            if (onValidation) {
-                onValidation(maybeError);
-            }
+        const {validate, onValidate} = this.props;
+        if (validate) {
+            const maybeError = validate(newValue) || null;
+            this.setState({error: maybeError}, () => {
+                if (onValidate) {
+                    onValidate(maybeError);
+                }
+            });
         }
     };
 
-    handleOnChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed = (
+    handleChange: (event: SyntheticInputEvent<HTMLInputElement>) => mixed = (
         event,
     ) => {
         const {onChange} = this.props;
@@ -155,28 +156,26 @@ export default class TextField extends React.Component<Props, State> {
         onChange(newValue);
     };
 
-    handleOnFocus: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
+    handleFocus: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
         event,
     ) => {
         const {onFocus} = this.props;
-        this.setState({
-            focused: true,
+        this.setState({focused: true}, () => {
+            if (onFocus) {
+                onFocus(event);
+            }
         });
-        if (onFocus) {
-            onFocus(event);
-        }
     };
 
-    handleOnBlur: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
+    handleBlur: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
         event,
     ) => {
         const {onBlur} = this.props;
-        this.setState({
-            focused: false,
+        this.setState({focused: false}, () => {
+            if (onBlur) {
+                onBlur(event);
+            }
         });
-        if (onBlur) {
-            onBlur(event);
-        }
     };
 
     render(): React.Node {
@@ -196,8 +195,8 @@ export default class TextField extends React.Component<Props, State> {
             /* eslint-disable no-unused-vars */
             onFocus,
             onBlur,
-            onValidation,
-            validation,
+            onValidate,
+            validate,
             onChange,
             /* eslint-enable no-unused-vars */
             // Should only include Aria related props
@@ -225,10 +224,10 @@ export default class TextField extends React.Component<Props, State> {
                 placeholder={placeholder}
                 value={value}
                 disabled={disabled}
-                onChange={this.handleOnChange}
+                onChange={this.handleChange}
                 onKeyDown={onKeyDown}
-                onFocus={this.handleOnFocus}
-                onBlur={this.handleOnBlur}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
                 required={required}
                 data-test-id={testId}
                 {...otherProps}
