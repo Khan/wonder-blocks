@@ -316,3 +316,61 @@ const styles = StyleSheet.create({
 
 <LabeledTextFieldExample />
 ```
+
+The field forwards its ref to the input
+
+```js
+import {View} from "@khanacademy/wonder-blocks-core";
+import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+import Button from "@khanacademy/wonder-blocks-button";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {StyleSheet} from "aphrodite";
+
+class LabeledTextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.inputRef = React.createRef();
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleKeyDown(event) {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    }
+
+    handleSubmit() {
+        if (this.inputRef.current) {
+            this.inputRef.current.focus();
+        }
+    }
+
+    render() {
+        return (
+            <View>
+                <LabeledTextField
+                    label="Name"
+                    description="Please enter your name"
+                    initialValue="Khan"
+                    placeholder="Name"
+                    onKeyDown={this.handleKeyDown}
+                    ref={this.inputRef}
+                />
+                <Strut size={Spacing.medium_16} />
+                <Button style={styles.button} onClick={this.handleSubmit}>
+                    Focus Input
+                </Button>
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    button: {
+        maxWidth: 150,
+    },
+});
+
+<LabeledTextFieldExample />
+```

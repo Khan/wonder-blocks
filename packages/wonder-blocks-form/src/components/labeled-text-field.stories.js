@@ -6,6 +6,8 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Button from "@khanacademy/wonder-blocks-button";
 import {StyleSheet} from "aphrodite";
 
 import type {StoryComponentType} from "@storybook/react";
@@ -214,6 +216,39 @@ export const customStyle: StoryComponentType = () => {
     );
 };
 
+export const ref: StoryComponentType = () => {
+    const inputRef = React.createRef<HTMLInputElement>();
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    const handleSubmit = () => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    };
+
+    return (
+        <View>
+            <LabeledTextField
+                label="Name"
+                description="Please enter your name"
+                initialValue="Khan"
+                placeholder="Name"
+                onKeyDown={handleKeyDown}
+                ref={inputRef}
+            />
+            <Strut size={Spacing.medium_16} />
+            <Button style={styles.button} onClick={handleSubmit}>
+                Focus Input
+            </Button>
+        </View>
+    );
+};
+
 const styles = StyleSheet.create({
     darkBackground: {
         background: Color.darkBlue,
@@ -233,5 +268,8 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: Color.white64,
         },
+    },
+    button: {
+        maxWidth: 150,
     },
 });

@@ -10,6 +10,8 @@ import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
+type WithForwardRef = {|forwardedRef: React.Ref<"input">|};
+
 type Props = {|
     ...AriaProps,
 
@@ -90,10 +92,15 @@ type Props = {|
     testId?: string,
 |};
 
+type PropsWithForwardRef = {|
+    ...Props,
+    ...WithForwardRef,
+|};
+
 type DefaultProps = {|
-    type: $PropertyType<Props, "type">,
-    disabled: $PropertyType<Props, "disabled">,
-    light: $PropertyType<Props, "light">,
+    type: $PropertyType<PropsWithForwardRef, "type">,
+    disabled: $PropertyType<PropsWithForwardRef, "disabled">,
+    light: $PropertyType<PropsWithForwardRef, "light">,
 |};
 
 type State = {|
@@ -108,17 +115,18 @@ type State = {|
     focused: boolean,
 |};
 
+// TODO(WB-1081): Change class name back to TextField after Styleguidist is gone.
 /**
  * A TextField is an element used to accept a single line of text from the user.
  */
-export default class TextField extends React.Component<Props, State> {
+class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
     static defaultProps: DefaultProps = {
         type: "text",
         disabled: false,
         light: false,
     };
 
-    constructor(props: Props) {
+    constructor(props: PropsWithForwardRef) {
         super(props);
         if (props.validate) {
             // Ensures error is updated on unmounted server-side renders
@@ -190,6 +198,7 @@ export default class TextField extends React.Component<Props, State> {
             light,
             style,
             testId,
+            forwardedRef,
             // The following props are being included here to avoid
             // passing them down to the otherProps spread
             /* eslint-disable no-unused-vars */
@@ -230,6 +239,7 @@ export default class TextField extends React.Component<Props, State> {
                 onBlur={this.handleBlur}
                 required={required}
                 data-test-id={testId}
+                ref={forwardedRef}
                 {...otherProps}
             />
         );
@@ -286,3 +296,17 @@ const styles = StyleSheet.create({
         boxShadow: `0px 0px 0px 1px ${Color.red}, 0px 0px 0px 2px ${Color.white}`,
     },
 });
+
+type ExportProps = $Diff<
+    React.ElementConfig<typeof TextFieldInternal>,
+    WithForwardRef,
+>;
+
+const TextField: React.AbstractComponent<
+    ExportProps,
+    HTMLInputElement,
+> = React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
+    <TextFieldInternal {...props} forwardedRef={ref} />
+));
+
+export default TextField;

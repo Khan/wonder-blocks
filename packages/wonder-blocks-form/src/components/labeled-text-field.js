@@ -7,6 +7,8 @@ import {type Typography} from "@khanacademy/wonder-blocks-typography";
 import FieldHeading from "./field-heading.js";
 import TextField, {type TextFieldType} from "./text-field.js";
 
+type WithForwardRef = {|forwardedRef: React.Ref<"input">|};
+
 type Props = {|
     /**
      * An optional unique identifier for the TextField.
@@ -91,10 +93,15 @@ type Props = {|
     testId?: string,
 |};
 
+type PropsWithForwardRef = {|
+    ...Props,
+    ...WithForwardRef,
+|};
+
 type DefaultProps = {|
-    type: $PropertyType<Props, "type">,
-    disabled: $PropertyType<Props, "disabled">,
-    light: $PropertyType<Props, "light">,
+    type: $PropertyType<PropsWithForwardRef, "type">,
+    disabled: $PropertyType<PropsWithForwardRef, "disabled">,
+    light: $PropertyType<PropsWithForwardRef, "light">,
 |};
 
 type State = {|
@@ -114,14 +121,22 @@ type State = {|
     focused: boolean,
 |};
 
-export default class LabeledTextField extends React.Component<Props, State> {
+// TODO(WB-1081): Change class name back to LabeledTextField after Styleguidist is gone.
+/**
+ * A LabeledTextField is an element used to accept a single line of text
+ * from the user paired with a label, description, and error field elements.
+ */
+class LabeledTextFieldInternal extends React.Component<
+    PropsWithForwardRef,
+    State,
+> {
     static defaultProps: DefaultProps = {
         type: "text",
         disabled: false,
         light: false,
     };
 
-    constructor(props: Props) {
+    constructor(props: PropsWithForwardRef) {
         super(props);
         this.state = {
             value: props.initialValue || "",
@@ -183,6 +198,7 @@ export default class LabeledTextField extends React.Component<Props, State> {
             light,
             style,
             testId,
+            forwardedRef,
         } = this.props;
 
         return (
@@ -211,6 +227,7 @@ export default class LabeledTextField extends React.Component<Props, State> {
                                 onBlur={this.handleBlur}
                                 light={light}
                                 style={style}
+                                ref={forwardedRef}
                             />
                         }
                         label={label}
@@ -222,3 +239,17 @@ export default class LabeledTextField extends React.Component<Props, State> {
         );
     }
 }
+
+type ExportProps = $Diff<
+    React.ElementConfig<typeof LabeledTextFieldInternal>,
+    WithForwardRef,
+>;
+
+const LabeledTextField: React.AbstractComponent<
+    ExportProps,
+    HTMLInputElement,
+> = React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
+    <LabeledTextFieldInternal {...props} forwardedRef={ref} />
+));
+
+export default LabeledTextField;

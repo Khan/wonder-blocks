@@ -21,7 +21,7 @@ describe("TextField", () => {
         wrapper.simulate("focus");
 
         // Assert
-        expect(wrapper).toHaveState("focused", true);
+        expect(wrapper.find("TextFieldInternal")).toHaveState("focused", true);
     });
 
     it("onFocus is called after textfield is focused", () => {
@@ -56,7 +56,7 @@ describe("TextField", () => {
         wrapper.simulate("blur");
 
         // Assert
-        expect(wrapper).toHaveState("focused", false);
+        expect(wrapper.find("TextFieldInternal")).toHaveState("focused", false);
     });
 
     it("onBlur is called after textfield is blurred", async () => {
