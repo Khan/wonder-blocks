@@ -354,7 +354,7 @@ describe("../response-cache.js", () => {
         });
 
         describe("no hydrate", () => {
-            it("should store the entry in the NoCache cache", () => {
+            it("should store the entry in the ssr-only cache", () => {
                 // Arrange
                 jest.spyOn(Server, "isServerSide").mockReturnValue(true);
                 const ssrOnlyCache = new MemoryCache();
