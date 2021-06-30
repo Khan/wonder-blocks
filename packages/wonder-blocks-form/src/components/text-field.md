@@ -68,7 +68,7 @@ class TextFieldExample extends React.Component {
     render() {
         return (
             <TextField
-                id="tf-1"
+                id="tf-2"
                 type="number"
                 value={this.state.value}
                 placeholder="Number"
@@ -143,7 +143,7 @@ class TextFieldExample extends React.Component {
         return (
             <View>
                 <TextField
-                    id="tf-1"
+                    id="tf-3"
                     type="password"
                     value={this.state.value}
                     placeholder="Password"
@@ -234,7 +234,7 @@ class TextFieldExample extends React.Component {
         return (
             <View>
                 <TextField
-                    id="tf-1"
+                    id="tf-4"
                     type="email"
                     value={this.state.value}
                     placeholder="Email"
@@ -325,7 +325,7 @@ class TextFieldExample extends React.Component {
         return (
             <View>
                 <TextField
-                    id="tf-1"
+                    id="tf-5"
                     type="email"
                     value={this.state.value}
                     placeholder="Telephone"
@@ -416,7 +416,7 @@ class TextFieldExample extends React.Component {
         return (
             <View>
                 <TextField
-                    id="tf-1"
+                    id="tf-6"
                     type="email"
                     value={this.state.value}
                     placeholder="Email"
@@ -454,7 +454,7 @@ Disabled
 import {TextField} from "@khanacademy/wonder-blocks-form";
 
 <TextField
-    id="tf-1" value=""
+    id="tf-7" value=""
     placeholder="This field is disabled."
     onChange={() => {}}
     disabled={true}
@@ -520,7 +520,7 @@ class TextFieldExample extends React.Component {
         return (
             <View style={styles.darkBackground}>
                 <TextField
-                    id="tf-1"
+                    id="tf-8"
                     type="email"
                     value={this.state.value}
                     light={true}
@@ -588,7 +588,7 @@ class TextFieldExample extends React.Component {
     render() {
         return (
             <TextField
-                id="tf-1"
+                id="tf-9"
                 style={styles.customField}
                 type="text"
                 value={this.state.value}
@@ -609,6 +609,74 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: Color.white64,
         },
+    },
+});
+
+<TextFieldExample />
+```
+
+Using Ref
+
+```js
+import {View} from "@khanacademy/wonder-blocks-core";
+import {TextField} from "@khanacademy/wonder-blocks-form";
+import Button from "@khanacademy/wonder-blocks-button";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {StyleSheet} from "aphrodite";
+
+class TextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "",
+        };
+        this.inputRef = React.createRef();
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleChange(newValue) {
+        this.setState({value: newValue});
+    }
+
+    handleKeyDown(event) {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    }
+
+    handleSubmit() {
+        if (this.inputRef.current) {
+            this.inputRef.current.focus();
+        }
+    }
+
+    render() {
+        return (
+            <View>
+                <TextField
+                    id="tf-10"
+                    type="text"
+                    value={this.state.value}
+                    placeholder="Text"
+                    onChange={this.handleChange}
+                    onKeyDown={this.handleKeyDown}
+                    ref={this.inputRef}
+                />
+                <Strut size={Spacing.medium_16} />
+                <Button style={styles.button} onClick={this.handleSubmit}>
+                    Focus Input
+                </Button>
+            </View>
+        );
+    }
+}
+
+const styles = StyleSheet.create({
+    button: {
+        maxWidth: 150,
     },
 });
 

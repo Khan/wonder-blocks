@@ -15,19 +15,22 @@ describe("LabeledTextField", () => {
     it("labeledtextfield becomes focused", () => {
         // Arrange
         const wrapper = mount(<LabeledTextField label="Label" />);
-        const field = wrapper.find("TextField");
+        const field = wrapper.find("TextFieldInternal");
 
         // Act
         field.simulate("focus");
 
         // Assert
-        expect(wrapper).toHaveState("focused", true);
+        expect(wrapper.find("LabeledTextFieldInternal")).toHaveState(
+            "focused",
+            true,
+        );
     });
 
     it("labeledtextfield becomes blurred", async () => {
         // Arrange
         const wrapper = mount(<LabeledTextField label="Label" />);
-        const field = wrapper.find("TextField");
+        const field = wrapper.find("TextFieldInternal");
 
         // Act
         field.simulate("focus");
@@ -35,7 +38,10 @@ describe("LabeledTextField", () => {
         field.simulate("blur");
 
         // Assert
-        expect(wrapper).toHaveState("focused", false);
+        expect(wrapper.find("LabeledTextFieldInternal")).toHaveState(
+            "focused",
+            false,
+        );
     });
 
     it("value state changes when the user types", () => {
@@ -48,7 +54,10 @@ describe("LabeledTextField", () => {
         input.simulate("change", {target: {value: newValue}});
 
         // Assert
-        expect(wrapper).toHaveState("value", newValue);
+        expect(wrapper.find("LabeledTextFieldInternal")).toHaveState(
+            "value",
+            newValue,
+        );
     });
 
     it("id prop is passed to input", () => {
@@ -231,7 +240,7 @@ describe("LabeledTextField", () => {
         );
 
         // Act
-        const field = wrapper.find("TextField");
+        const field = wrapper.find("TextFieldInternal");
         field.simulate("focus");
 
         // Assert
@@ -246,7 +255,7 @@ describe("LabeledTextField", () => {
         );
 
         // Act
-        const field = wrapper.find("TextField");
+        const field = wrapper.find("TextFieldInternal");
         field.simulate("focus");
         await wait(0);
         field.simulate("blur");
@@ -278,7 +287,7 @@ describe("LabeledTextField", () => {
         const wrapper = mount(<LabeledTextField label="Label" light={true} />);
 
         // Assert
-        const textField = wrapper.find("TextField");
+        const textField = wrapper.find("TextFieldInternal");
         expect(textField).toHaveProp("light", true);
     });
 
@@ -297,7 +306,7 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const textField = wrapper.find("TextField");
+        const textField = wrapper.find("TextFieldInternal");
         expect(textField).toHaveStyle(styles.style1);
     });
 

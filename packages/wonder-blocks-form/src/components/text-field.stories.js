@@ -7,6 +7,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {TextField} from "@khanacademy/wonder-blocks-form";
+import Button from "@khanacademy/wonder-blocks-button";
 
 import type {StoryComponentType} from "@storybook/react";
 
@@ -393,6 +394,45 @@ export const customStyle: StoryComponentType = () => {
     );
 };
 
+export const ref: StoryComponentType = () => {
+    const [value, setValue] = React.useState("");
+    const inputRef: RefObject<typeof HTMLInputElement> = React.createRef();
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+    };
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    const handleSubmit = () => {
+        if (inputRef.current) {
+            inputRef.current.focus();
+        }
+    };
+
+    return (
+        <View>
+            <TextField
+                id="tf-1"
+                type="text"
+                value={value}
+                placeholder="Text"
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                ref={inputRef}
+            />
+            <Strut size={Spacing.medium_16} />
+            <Button style={styles.button} onClick={handleSubmit}>
+                Focus Input
+            </Button>
+        </View>
+    );
+};
+
 const styles = StyleSheet.create({
     errorMessage: {
         color: Color.red,
@@ -414,5 +454,8 @@ const styles = StyleSheet.create({
         "::placeholder": {
             color: Color.white64,
         },
+    },
+    button: {
+        maxWidth: 150,
     },
 });
