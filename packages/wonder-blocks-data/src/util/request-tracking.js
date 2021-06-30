@@ -153,7 +153,7 @@ export class RequestTracker {
          * Let's wait for everything to fulfill, and then clone the cached data.
          */
         return Promise.all(promises).then(() =>
-            this._responseCache.cloneCachedData(),
+            this._responseCache.cloneHydratableData(),
         );
     };
 }

@@ -15,12 +15,12 @@ export type Result<TData: ValidData> =
 
 export type CacheEntry<TData: ValidData> =
     | {|
-          error: string,
-          data?: ?void,
+          +error: string,
+          +data?: ?void,
       |}
     | {|
-          data: TData,
-          error?: ?void,
+          +data: TData,
+          +error?: ?void,
       |};
 
 type HandlerSubcache = {
