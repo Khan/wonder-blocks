@@ -66,6 +66,7 @@ describe("ActionScheduler", () => {
                 actionScheduler.clearAll();
 
                 // Assert
+                // $FlowIgnore[method-unbinding]
                 expect(testTimeout.clear).toHaveBeenCalledWith(true);
             });
 
@@ -84,6 +85,7 @@ describe("ActionScheduler", () => {
                 actionScheduler.clearAll();
 
                 // Assert
+                // $FlowIgnore[method-unbinding]
                 expect(testTimeout.clear).toHaveBeenCalledWith(false);
             });
         });
@@ -130,6 +132,7 @@ describe("ActionScheduler", () => {
                 actionScheduler.clearAll();
 
                 // Assert
+                // $FlowIgnore[method-unbinding]
                 expect(testInterval.clear).toHaveBeenCalledWith(true);
             });
 
@@ -148,6 +151,7 @@ describe("ActionScheduler", () => {
                 actionScheduler.clearAll();
 
                 // Assert
+                // $FlowIgnore[method-unbinding]
                 expect(testInterval.clear).toHaveBeenCalledWith(false);
             });
         });
@@ -193,6 +197,7 @@ describe("ActionScheduler", () => {
                 actionScheduler.clearAll();
 
                 // Assert
+                // $FlowIgnore[method-unbinding]
                 expect(testFrame.clear).toHaveBeenCalledWith(true);
             });
 
@@ -210,6 +215,7 @@ describe("ActionScheduler", () => {
                 actionScheduler.clearAll();
 
                 // Assert
+                // $FlowIgnore[method-unbinding]
                 expect(testFrame.clear).toHaveBeenCalledWith(false);
             });
         });
@@ -228,8 +234,11 @@ describe("ActionScheduler", () => {
             actionScheduler.clearAll();
 
             // Assert
+            // $FlowIgnore[method-unbinding]
             expect(timeout.clear).toHaveBeenCalledTimes(1);
+            // $FlowIgnore[method-unbinding]
             expect(interval.clear).toHaveBeenCalledTimes(1);
+            // $FlowIgnore[method-unbinding]
             expect(animationFrame.clear).toHaveBeenCalledTimes(1);
         });
 
@@ -246,8 +255,11 @@ describe("ActionScheduler", () => {
             actionScheduler.clearAll();
 
             // Assert
+            // $FlowIgnore[method-unbinding]
             expect(timeout.clear).toHaveBeenCalledTimes(1);
+            // $FlowIgnore[method-unbinding]
             expect(interval.clear).toHaveBeenCalledTimes(1);
+            // $FlowIgnore[method-unbinding]
             expect(animationFrame.clear).toHaveBeenCalledTimes(1);
         });
     });

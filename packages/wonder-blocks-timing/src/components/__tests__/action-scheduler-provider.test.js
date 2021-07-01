@@ -32,6 +32,7 @@ describe("ActionSchedulerProvider", () => {
         wrapper.unmount();
 
         // Assert
+        // $FlowIgnore[method-unbinding]
         expect(childrenMock.mock.calls[0][0].clearAll).toHaveBeenCalledTimes(1);
     });
 });

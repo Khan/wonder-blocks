@@ -15,10 +15,14 @@ jest.mock("../../util/active-tracker.js");
 
 describe("TooltipAnchor", () => {
     beforeEach(async () => {
+        // $FlowIgnore[method-unbinding]
         if (typeof document.addEventListener.mockReset === "function") {
+            // $FlowIgnore[method-unbinding]
             document.addEventListener.mockRestore();
         }
+        // $FlowIgnore[method-unbinding]
         if (typeof document.removeEventListener.mockReset === "function") {
+            // $FlowIgnore[method-unbinding]
             document.removeEventListener.mockRestore();
         }
         jest.clearAllTimers();
