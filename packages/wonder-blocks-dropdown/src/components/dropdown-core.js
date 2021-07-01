@@ -573,6 +573,7 @@ class DropdownCore extends React.Component<Props, State> {
     };
 
     handleDropdownMouseUp: (event: SyntheticMouseEvent<>) => void = (event) => {
+        // $FlowIgnore[method-unbinding]
         if (event.nativeEvent.stopImmediatePropagation) {
             event.nativeEvent.stopImmediatePropagation();
         } else {

@@ -169,6 +169,7 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
             // And then through each key of each stylesheet
             for (const name of Object.keys(styleSheet)) {
                 if (
+                    // $FlowIgnore[method-unbinding]
                     Object.prototype.hasOwnProperty.call(mockStyleSheet, name)
                 ) {
                     continue;

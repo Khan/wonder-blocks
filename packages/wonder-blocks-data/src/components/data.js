@@ -73,7 +73,7 @@ export default class Data<TOptions, TData: ValidData> extends React.Component<
                       ? interceptedResult
                       : handler.fulfillRequest(options);
               }
-            : handler.fulfillRequest;
+            : (options) => handler.fulfillRequest(options);
         const shouldRefreshCacheFn = shouldRefreshCache
             ? (
                   options: TOptions,
@@ -87,12 +87,13 @@ export default class Data<TOptions, TData: ValidData> extends React.Component<
                       ? interceptedResult
                       : handler.shouldRefreshCache(options, cacheEntry);
               }
-            : handler.shouldRefreshCache;
+            : (options, cacheEntry) =>
+                  handler.shouldRefreshCache(options, cacheEntry);
 
         return {
             fulfillRequest: fulfillRequestFn,
             shouldRefreshCache: shouldRefreshCacheFn,
-            getKey: handler.getKey,
+            getKey: (options) => handler.getKey(options),
             type: handler.type,
             cache: handler.cache,
             hydrate: handler.hydrate,

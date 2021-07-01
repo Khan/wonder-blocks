@@ -70,8 +70,9 @@ describe("InternalData", () => {
 
             it("should make request for data on construction", () => {
                 // Arrange
+                const fulfillRequestSpy = jest.fn().mockResolvedValue("data");
                 const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
@@ -92,10 +93,8 @@ describe("InternalData", () => {
                 );
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledWith(
-                    "options",
-                );
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledTimes(1);
+                expect(fulfillRequestSpy).toHaveBeenCalledWith("options");
+                expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
             });
 
             it("should initially render children with loading", () => {
@@ -131,10 +130,11 @@ describe("InternalData", () => {
 
             it("should share single request across all uses", () => {
                 // Arrange
+                const fulfillRequestSpy = jest.fn(
+                    () => new Promise((resolve, reject) => {}),
+                );
                 const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: jest.fn(
-                        () => new Promise((resolve, reject) => {}),
-                    ),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
@@ -164,10 +164,8 @@ describe("InternalData", () => {
                 );
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledWith(
-                    "options",
-                );
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledTimes(1);
+                expect(fulfillRequestSpy).toHaveBeenCalledWith("options");
+                expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
             });
 
             it("should render with an error if the request resolves to an error", async () => {
@@ -537,8 +535,9 @@ describe("InternalData", () => {
 
             it("should not request data if shouldRefreshCache returns false", () => {
                 // Arrange
+                const fulfillRequestSpy = jest.fn();
                 const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: jest.fn(),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
@@ -562,13 +561,14 @@ describe("InternalData", () => {
                 );
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                expect(fulfillRequestSpy).not.toHaveBeenCalled();
             });
 
             it("should request data if shouldRefreshCache returns true", () => {
                 // Arrange
+                const fulfillRequestSpy = jest.fn().mockResolvedValue("data");
                 const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (o) => o,
                     shouldRefreshCache: () => true,
                     type: "MY_HANDLER",
@@ -592,10 +592,8 @@ describe("InternalData", () => {
                 );
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledWith(
-                    "options",
-                );
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledTimes(1);
+                expect(fulfillRequestSpy).toHaveBeenCalledWith("options");
+                expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
             });
 
             it("should render first time with the cached data", () => {
@@ -796,8 +794,9 @@ describe("InternalData", () => {
         describe("without cached data", () => {
             it("should not request data", () => {
                 // Arrange
+                const fulfillRequestSpy = jest.fn().mockResolvedValue("data");
                 const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
@@ -818,7 +817,7 @@ describe("InternalData", () => {
                 );
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                expect(fulfillRequestSpy).not.toHaveBeenCalled();
             });
 
             it("should render children with loading", () => {
@@ -889,8 +888,9 @@ describe("InternalData", () => {
         describe("with cached data", () => {
             it("should not request data", () => {
                 // Arrange
+                const fulfillRequestSpy = jest.fn().mockResolvedValue("data");
                 const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
@@ -914,7 +914,7 @@ describe("InternalData", () => {
                 );
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                expect(fulfillRequestSpy).not.toHaveBeenCalled();
             });
 
             it("should render children with data", () => {

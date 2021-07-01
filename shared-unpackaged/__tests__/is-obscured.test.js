@@ -13,6 +13,7 @@ describe("isObscured", () => {
     let ogElementFromPoint = null;
     beforeEach(() => {
         // Some tests will want to mock this, so let's ensure we can reset it
+        // $FlowIgnore[method-unbinding]
         ogElementFromPoint = document.elementFromPoint;
     });
 
@@ -292,19 +293,20 @@ describe("isObscured", () => {
             expect(anchorEl).toBeTruthy();
             const popperEl = ((ReactDOM.findDOMNode(popperRef): any): Element);
             expect(popperEl).toBeTruthy();
-
-            // We return the popperRef here so that it is then modified.
-            // $FlowFixMe[cannot-write] Flow doesn't like us doing this to the document
-            document.elementFromPoint = jest
+            const elementFromPointSpy = jest
                 .fn()
                 .mockReturnValueOnce(popperEl)
                 .mockReturnValue(anchorEl);
+
+            // We return the popperRef here so that it is then modified.
+            // $FlowFixMe[cannot-write] Flow doesn't like us doing this to the document
+            document.elementFromPoint = elementFromPointSpy;
 
             // Act
             isObscured(anchorEl, popperEl);
 
             // Assert
-            expect(document.elementFromPoint).toHaveBeenCalledTimes(2);
+            expect(elementFromPointSpy).toHaveBeenCalledTimes(2);
         });
 
         test("on success, popper element pointer-events reset", async () => {
@@ -516,19 +518,20 @@ describe("isObscured", () => {
                 popperChildRef,
             ): any): Element);
             expect(popperChildEl).toBeTruthy();
-
-            // We return the popperRef here so that it is then modified.
-            // $FlowFixMe[cannot-write] Flow doesn't like us doing this to the document
-            document.elementFromPoint = jest
+            const elementFromPointSpy = jest
                 .fn()
                 .mockReturnValueOnce(popperChildEl)
                 .mockReturnValue(anchorEl);
+
+            // We return the popperRef here so that it is then modified.
+            // $FlowFixMe[cannot-write] Flow doesn't like us doing this to the document
+            document.elementFromPoint = elementFromPointSpy;
 
             // Act
             isObscured(anchorEl, popperEl);
 
             // Assert
-            expect(document.elementFromPoint).toHaveBeenCalledTimes(2);
+            expect(elementFromPointSpy).toHaveBeenCalledTimes(2);
         });
 
         test("on success, child of popper element pointer-events reset", async () => {

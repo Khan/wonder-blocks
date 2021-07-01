@@ -53,8 +53,11 @@ describe("Data", () => {
 
             it("should make request for data on construction", () => {
                 // Arrange
+                const fulfillRequestSpy = jest.fn(() =>
+                    Promise.resolve("data"),
+                );
                 const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
@@ -71,10 +74,8 @@ describe("Data", () => {
                 );
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledWith(
-                    "options",
-                );
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledTimes(1);
+                expect(fulfillRequestSpy).toHaveBeenCalledWith("options");
+                expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
             });
 
             it("should initially render children with loading", () => {
@@ -106,10 +107,11 @@ describe("Data", () => {
 
             it("should share single request across all uses", () => {
                 // Arrange
+                const fulfillRequestSpy = jest.fn(
+                    () => new Promise((resolve, reject) => {}),
+                );
                 const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: jest.fn(
-                        () => new Promise((resolve, reject) => {}),
-                    ),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
@@ -131,10 +133,8 @@ describe("Data", () => {
                 );
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledWith(
-                    "options",
-                );
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledTimes(1);
+                expect(fulfillRequestSpy).toHaveBeenCalledWith("options");
+                expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
             });
 
             it("should render with an error if the request resolves to an error", async () => {
@@ -371,8 +371,11 @@ describe("Data", () => {
 
                 it("should defer to the handler if interceptor returns null", () => {
                     // Arrange
+                    const fulfillRequestSpy = jest
+                        .fn()
+                        .mockResolvedValue("data");
                     const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                        fulfillRequest: fulfillRequestSpy,
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
@@ -395,15 +398,16 @@ describe("Data", () => {
                     );
 
                     // Assert
-                    expect(fakeHandler.fulfillRequest).toHaveBeenCalledWith(
-                        "options",
-                    );
+                    expect(fulfillRequestSpy).toHaveBeenCalledWith("options");
                 });
 
                 it("should render with the intercepted cache entry", () => {
                     // Arrange
+                    const fulfillRequestSpy = jest
+                        .fn()
+                        .mockResolvedValue("data");
                     const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                        fulfillRequest: fulfillRequestSpy,
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
@@ -432,15 +436,18 @@ describe("Data", () => {
                         loading: false,
                         error: "BOOMY BOOM!",
                     });
-                    expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                    expect(fulfillRequestSpy).not.toHaveBeenCalled();
                 });
             });
 
             describe("with data interceptor", () => {
                 it("should request data from interceptor", () => {
                     // Arrange
+                    const fulfillRequestSpy = jest
+                        .fn()
+                        .mockResolvedValue("data");
                     const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                        fulfillRequest: fulfillRequestSpy,
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
@@ -467,13 +474,16 @@ describe("Data", () => {
                     // Assert
                     expect(fulfillRequestFn).toHaveBeenCalledWith("options");
                     expect(fulfillRequestFn).toHaveBeenCalledTimes(1);
-                    expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                    expect(fulfillRequestSpy).not.toHaveBeenCalled();
                 });
 
                 it("should invoke handler method if interceptor method returns null", () => {
                     // Arrange
+                    const fulfillRequestSpy = jest
+                        .fn()
+                        .mockResolvedValue("data");
                     const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                        fulfillRequest: fulfillRequestSpy,
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
@@ -498,7 +508,7 @@ describe("Data", () => {
                     // Assert
                     expect(fulfillRequestFn).toHaveBeenCalledWith("options");
                     expect(fulfillRequestFn).toHaveBeenCalledTimes(1);
-                    expect(fakeHandler.fulfillRequest).toHaveBeenCalled();
+                    expect(fulfillRequestSpy).toHaveBeenCalled();
                 });
             });
         });
@@ -516,8 +526,9 @@ describe("Data", () => {
 
             it("should not request data on construction", () => {
                 // Arrange
+                const fulfillRequestSpy = jest.fn();
                 const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: jest.fn(),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
@@ -534,13 +545,14 @@ describe("Data", () => {
                 );
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                expect(fulfillRequestSpy).not.toHaveBeenCalled();
             });
 
             it("should request data if shouldRefreshCache returns true", () => {
                 // Arrange
+                const fulfillRequestSpy = jest.fn().mockResolvedValue("data");
                 const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (o) => o,
                     shouldRefreshCache: () => true,
                     type: "MY_HANDLER",
@@ -557,10 +569,8 @@ describe("Data", () => {
                 );
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledWith(
-                    "options",
-                );
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledTimes(1);
+                expect(fulfillRequestSpy).toHaveBeenCalledWith("options");
+                expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
             });
 
             it("should render first time with the cached data", () => {
@@ -768,10 +778,14 @@ describe("Data", () => {
             describe("with data interceptor", () => {
                 it("should request data from handler if interceptor shouldRefreshCache returns true", () => {
                     // Arrange
+                    const fulfillRequestSpy = jest
+                        .fn()
+                        .mockResolvedValue("data");
+                    const shouldRefreshCacheSpy = jest.fn(() => false);
                     const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                        fulfillRequest: fulfillRequestSpy,
                         getKey: (o) => o,
-                        shouldRefreshCache: jest.fn(() => false),
+                        shouldRefreshCache: shouldRefreshCacheSpy,
                         type: "MY_HANDLER",
                         cache: null,
                         hydrate: true,
@@ -792,21 +806,21 @@ describe("Data", () => {
                     );
 
                     // Assert
-                    expect(fakeHandler.fulfillRequest).toHaveBeenCalledWith(
-                        "options",
-                    );
-                    expect(fakeHandler.fulfillRequest).toHaveBeenCalledTimes(1);
-                    expect(
-                        fakeHandler.shouldRefreshCache,
-                    ).not.toHaveBeenCalled();
+                    expect(fulfillRequestSpy).toHaveBeenCalledWith("options");
+                    expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
+                    expect(shouldRefreshCacheSpy).not.toHaveBeenCalled();
                 });
 
                 it("should defer to handler if interceptor shouldRefreshCache returns null", () => {
                     // Arrange
+                    const fulfillRequestSpy = jest
+                        .fn()
+                        .mockResolvedValue("data");
+                    const shouldRefreshCacheSpy = jest.fn(() => false);
                     const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                        fulfillRequest: fulfillRequestSpy,
                         getKey: (o) => o,
-                        shouldRefreshCache: jest.fn(() => false),
+                        shouldRefreshCache: shouldRefreshCacheSpy,
                         type: "MY_HANDLER",
                         cache: null,
                         hydrate: true,
@@ -827,7 +841,7 @@ describe("Data", () => {
                     );
 
                     // Assert
-                    expect(fakeHandler.shouldRefreshCache).toHaveBeenCalledWith(
+                    expect(shouldRefreshCacheSpy).toHaveBeenCalledWith(
                         "options",
                         expect.any(Object),
                     );
@@ -835,8 +849,11 @@ describe("Data", () => {
 
                 it("should request data from interceptor if handler shouldRefreshCache returns true", () => {
                     // Arrange
+                    const fulfillRequestSpy = jest
+                        .fn()
+                        .mockResolvedValue("data");
                     const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                        fulfillRequest: fulfillRequestSpy,
                         getKey: (o) => o,
                         shouldRefreshCache: () => true,
                         type: "MY_HANDLER",
@@ -863,13 +880,16 @@ describe("Data", () => {
                     // Assert
                     expect(fulfillRequestFn).toHaveBeenCalledWith("options");
                     expect(fulfillRequestFn).toHaveBeenCalledTimes(1);
-                    expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                    expect(fulfillRequestSpy).not.toHaveBeenCalled();
                 });
 
                 it("should request data from interceptor if interceptor shouldRefreshCache returns true", () => {
                     // Arrange
+                    const fulfillRequestSpy = jest
+                        .fn()
+                        .mockResolvedValue("data");
                     const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                        fulfillRequest: fulfillRequestSpy,
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
@@ -898,7 +918,7 @@ describe("Data", () => {
                     // Assert
                     expect(fulfillRequestFn).toHaveBeenCalledWith("options");
                     expect(fulfillRequestFn).toHaveBeenCalledTimes(1);
-                    expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                    expect(fulfillRequestSpy).not.toHaveBeenCalled();
                 });
             });
         });
@@ -922,8 +942,9 @@ describe("Data", () => {
 
             it("should not request data", () => {
                 // Arrange
+                const fulfillRequestSpy = jest.fn().mockResolvedValue("data");
                 const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
@@ -940,7 +961,7 @@ describe("Data", () => {
                 );
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                expect(fulfillRequestSpy).not.toHaveBeenCalled();
             });
 
             it("should render children with loading", () => {
@@ -1034,8 +1055,11 @@ describe("Data", () => {
 
                 it("should render with the intercepted cache entry", () => {
                     // Arrange
+                    const fulfillRequestSpy = jest
+                        .fn()
+                        .mockResolvedValue("data");
                     const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                        fulfillRequest: fulfillRequestSpy,
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
@@ -1064,7 +1088,7 @@ describe("Data", () => {
                         loading: false,
                         error: "BOOMY BOOM!",
                     });
-                    expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                    expect(fulfillRequestSpy).not.toHaveBeenCalled();
                 });
 
                 it("should not invoke the tracking call", () => {
@@ -1108,8 +1132,11 @@ describe("Data", () => {
             describe("with data interceptor", () => {
                 it("should not request data from the interceptor", () => {
                     // Arrange
+                    const fulfillRequestSpy = jest
+                        .fn()
+                        .mockResolvedValue("data");
                     const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                        fulfillRequest: fulfillRequestSpy,
                         getKey: (o) => o,
                         shouldRefreshCache: () => false,
                         type: "MY_HANDLER",
@@ -1135,7 +1162,7 @@ describe("Data", () => {
 
                     // Assert
                     expect(fulfillRequestFn).not.toHaveBeenCalled();
-                    expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                    expect(fulfillRequestSpy).not.toHaveBeenCalled();
                 });
 
                 it("should invoke the tracking call", () => {
@@ -1159,7 +1186,12 @@ describe("Data", () => {
                     ReactDOMServer.renderToString(
                         <TrackData>
                             <InterceptData
-                                handler={fakeHandler}
+                                handler={
+                                    (fakeHandler: IRequestHandler<
+                                        string,
+                                        string,
+                                    >)
+                                }
                                 shouldRefreshCache={shouldRefreshCacheFn}
                             >
                                 <Data handler={fakeHandler} options={"options"}>
@@ -1171,10 +1203,14 @@ describe("Data", () => {
 
                     // Assert
                     expect(trackSpy).toHaveBeenCalledWith(
-                        expect.objectContaining({
-                            ...fakeHandler,
+                        {
+                            fulfillRequest: expect.any(Function),
+                            getKey: expect.any(Function),
+                            type: "MY_HANDLER",
+                            cache: null,
+                            hydrate: true,
                             shouldRefreshCache: expect.any(Function),
-                        }),
+                        },
                         "options",
                     );
                 });
@@ -1200,7 +1236,12 @@ describe("Data", () => {
                     ReactDOMServer.renderToString(
                         <TrackData>
                             <InterceptData
-                                handler={fakeHandler}
+                                handler={
+                                    (fakeHandler: IRequestHandler<
+                                        string,
+                                        string,
+                                    >)
+                                }
                                 shouldRefreshCache={shouldRefreshCacheFn}
                             >
                                 <Data handler={fakeHandler} options={"options"}>
@@ -1237,8 +1278,9 @@ describe("Data", () => {
 
             it("should not request data", () => {
                 // Arrange
+                const fulfillRequestSpy = jest.fn().mockResolvedValue("data");
                 const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (o) => o,
                     shouldRefreshCache: () => false,
                     type: "MY_HANDLER",
@@ -1255,7 +1297,7 @@ describe("Data", () => {
                 );
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                expect(fulfillRequestSpy).not.toHaveBeenCalled();
             });
 
             it("should render children with data", () => {
@@ -1488,8 +1530,11 @@ describe("Data", () => {
             describe("with data interceptor", () => {
                 it("should not request data from interceptor", () => {
                     // Arrange
+                    const fulfillRequestSpy = jest
+                        .fn()
+                        .mockResolvedValue("data");
                     const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: jest.fn(() => Promise.resolve("data")),
+                        fulfillRequest: fulfillRequestSpy,
                         getKey: (o) => o,
                         shouldRefreshCache: jest.fn(() => true),
                         type: "MY_HANDLER",
@@ -1514,7 +1559,7 @@ describe("Data", () => {
                     );
 
                     // Assert
-                    expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                    expect(fulfillRequestSpy).not.toHaveBeenCalled();
                     expect(fulfillRequestFn).not.toHaveBeenCalled();
                 });
             });

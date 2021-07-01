@@ -37,10 +37,11 @@ describe("../request-tracking.js", () => {
         describe("#trackDataRequest", () => {
             it("should get the key for the request", () => {
                 // Arrange
+                const getKeySpy = jest.fn();
                 const requestTracker = createRequestTracker();
                 const fakeHandler: IRequestHandler<any, any> = {
                     fulfillRequest: jest.fn(() => Promise.resolve(null)),
-                    getKey: jest.fn(),
+                    getKey: getKeySpy,
                     shouldRefreshCache: () => false,
                     type: "MY_TYPE",
                     cache: null,
@@ -52,14 +53,15 @@ describe("../request-tracking.js", () => {
                 requestTracker.trackDataRequest(fakeHandler, options);
 
                 // Assert
-                expect(fakeHandler.getKey).toHaveBeenCalledWith(options);
+                expect(getKeySpy).toHaveBeenCalledWith(options);
             });
 
             it("should track a request", async () => {
                 // Arrange
                 const requestTracker = new RequestTracker();
+                const fulfillRequestSpy = jest.fn();
                 const fakeHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn(),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: jest.fn().mockReturnValue("MY_KEY"),
                     shouldRefreshCache: () => false,
                     type: "MY_TYPE",
@@ -73,17 +75,16 @@ describe("../request-tracking.js", () => {
                 await requestTracker.fulfillTrackedRequests();
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledWith(
-                    options,
-                );
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledTimes(1);
+                expect(fulfillRequestSpy).toHaveBeenCalledWith(options);
+                expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
             });
 
             it("should track each matching request once", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
+                const fulfillRequestSpy = jest.fn().mockResolvedValue(null);
                 const fakeHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve(null)),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: (options) => JSON.stringify(options),
                     shouldRefreshCache: () => false,
                     type: "MY_TYPE",
@@ -99,26 +100,26 @@ describe("../request-tracking.js", () => {
                 await requestTracker.fulfillTrackedRequests();
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledWith(
-                    options1,
-                );
-                expect(fakeHandler.fulfillRequest).toHaveBeenCalledTimes(1);
+                expect(fulfillRequestSpy).toHaveBeenCalledWith(options1);
+                expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
             });
 
             it("should reuse the existing handler for the handler type from the cache", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
                 const handlerType = "MY_TYPE";
+                const fulfillRequestSpy1 = jest.fn();
                 const fakeHandler1: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn(),
+                    fulfillRequest: fulfillRequestSpy1,
                     getKey: jest.fn().mockReturnValue("MY_KEY1"),
                     shouldRefreshCache: () => false,
                     type: handlerType,
                     cache: null,
                     hydrate: true,
                 };
+                const fulfillRequestSpy2 = jest.fn();
                 const fakeHandler2: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn(),
+                    fulfillRequest: fulfillRequestSpy2,
                     getKey: jest.fn().mockReturnValue("MY_KEY2"),
                     shouldRefreshCache: () => false,
                     type: handlerType,
@@ -134,14 +135,10 @@ describe("../request-tracking.js", () => {
                 await requestTracker.fulfillTrackedRequests();
 
                 // Assert
-                expect(fakeHandler1.fulfillRequest).toHaveBeenCalledTimes(2);
-                expect(fakeHandler1.fulfillRequest).toHaveBeenCalledWith(
-                    options1,
-                );
-                expect(fakeHandler1.fulfillRequest).toHaveBeenCalledWith(
-                    options2,
-                );
-                expect(fakeHandler2.fulfillRequest).not.toHaveBeenCalled();
+                expect(fulfillRequestSpy1).toHaveBeenCalledTimes(2);
+                expect(fulfillRequestSpy1).toHaveBeenCalledWith(options1);
+                expect(fulfillRequestSpy1).toHaveBeenCalledWith(options2);
+                expect(fulfillRequestSpy2).not.toHaveBeenCalled();
             });
         });
 
@@ -344,8 +341,9 @@ describe("../request-tracking.js", () => {
             it("should clear the tracked data requests", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
+                const fulfillRequestSpy = jest.fn().mockResolvedValue(null);
                 const fakeHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve(null)),
+                    fulfillRequest: fulfillRequestSpy,
                     getKey: jest.fn().mockReturnValue("MY_KEY"),
                     shouldRefreshCache: () => false,
                     type: "MY_TYPE",
@@ -359,7 +357,7 @@ describe("../request-tracking.js", () => {
                 await requestTracker.fulfillTrackedRequests();
 
                 // Assert
-                expect(fakeHandler.fulfillRequest).not.toHaveBeenCalled();
+                expect(fulfillRequestSpy).not.toHaveBeenCalled();
             });
         });
     });
