@@ -2,7 +2,6 @@
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {ResponseCache} from "../response-cache.js";
 import MemoryCache from "../memory-cache.js";
-import NoCache from "../no-cache.js";
 
 import type {IRequestHandler} from "../types.js";
 
@@ -209,12 +208,13 @@ describe("../response-cache.js", () => {
         });
 
         describe("no hydrate", () => {
-            it("should store the entry in the NoCache cache", () => {
+            it("should store the entry in the ssr-only cache", () => {
                 // Arrange
                 jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                const ssrOnlyCache = new MemoryCache();
                 const internalCache = new MemoryCache();
-                const noCacheStoreSpy = jest.spyOn(NoCache.Default, "store");
-                const cache = new ResponseCache(internalCache);
+                const storeSpy = jest.spyOn(ssrOnlyCache, "store");
+                const cache = new ResponseCache(internalCache, ssrOnlyCache);
                 const fakeHandler: IRequestHandler<string, string> = {
                     getKey: () => "MY_KEY",
                     type: "MY_HANDLER",
@@ -228,11 +228,9 @@ describe("../response-cache.js", () => {
                 cache.cacheData(fakeHandler, "options", "data");
 
                 // Assert
-                expect(noCacheStoreSpy).toHaveBeenCalledWith(
-                    fakeHandler,
-                    "options",
-                    {data: "data"},
-                );
+                expect(storeSpy).toHaveBeenCalledWith(fakeHandler, "options", {
+                    data: "data",
+                });
             });
 
             it("should not store the entry in the framework cache", () => {
@@ -356,12 +354,13 @@ describe("../response-cache.js", () => {
         });
 
         describe("no hydrate", () => {
-            it("should store the entry in the NoCache cache", () => {
+            it("should store the entry in the ssr-only cache", () => {
                 // Arrange
                 jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                const ssrOnlyCache = new MemoryCache();
                 const internalCache = new MemoryCache();
-                const noCacheStoreSpy = jest.spyOn(NoCache.Default, "store");
-                const cache = new ResponseCache(internalCache);
+                const storeSpy = jest.spyOn(ssrOnlyCache, "store");
+                const cache = new ResponseCache(internalCache, ssrOnlyCache);
                 const fakeHandler: IRequestHandler<string, string> = {
                     getKey: () => "MY_KEY",
                     type: "MY_HANDLER",
@@ -375,11 +374,9 @@ describe("../response-cache.js", () => {
                 cache.cacheError(fakeHandler, "options", new Error("Ooops!"));
 
                 // Assert
-                expect(noCacheStoreSpy).toHaveBeenCalledWith(
-                    fakeHandler,
-                    "options",
-                    {error: "Ooops!"},
-                );
+                expect(storeSpy).toHaveBeenCalledWith(fakeHandler, "options", {
+                    error: "Ooops!",
+                });
             });
 
             it("should not store the entry in the framework cache", () => {
@@ -808,8 +805,8 @@ describe("../response-cache.js", () => {
         });
     });
 
-    describe("#cloneCachedData", () => {
-        it("should clone the internal cache", () => {
+    describe("#cloneHydratableData", () => {
+        it("should clone the internal hydration cache", () => {
             // Arrange
             const internalCache = new MemoryCache();
             jest.spyOn(internalCache, "cloneData").mockReturnValue("CLONE!");
@@ -828,7 +825,7 @@ describe("../response-cache.js", () => {
             cache.cacheError(fakeHandler, "OPTIONS2", new Error("OH NO!"));
 
             // Act
-            const result = cache.cloneCachedData();
+            const result = cache.cloneHydratableData();
 
             // Assert
             expect(internalCache.cloneData).toHaveBeenCalled();
@@ -843,7 +840,7 @@ describe("../response-cache.js", () => {
             });
 
             // Act
-            const underTest = () => cache.cloneCachedData();
+            const underTest = () => cache.cloneHydratableData();
 
             // Assert
             expect(underTest).toThrowErrorMatchingInlineSnapshot(

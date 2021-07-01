@@ -18,18 +18,6 @@ import type {
  */
 let _default: ResponseCache;
 
-const getCache = <TOptions, TData: ValidData>(
-    handler: IRequestHandler<TOptions, TData>,
-): ?ICache<TOptions, TData> => {
-    if (Server.isServerSide()) {
-        // We don't use custom caches during SSR.
-        // However, we do skip caching if we are not hydrating the results
-        // of the handler - an advanced usecase
-        return handler.hydrate ? null : NoCache.Default;
-    }
-    return handler.cache;
-};
-
 /**
  * Implements the response cache.
  *
@@ -43,10 +31,32 @@ export class ResponseCache {
         return _default;
     }
 
-    _cache: MemoryCache<any, any>;
+    _hydrationAndDefaultCache: MemoryCache<any, any>;
+    _ssrOnlyCache: ?MemoryCache<any, any>;
 
-    constructor(memoryCache: ?MemoryCache<any, any> = null) {
-        this._cache = memoryCache || new MemoryCache();
+    constructor(
+        memoryCache: ?MemoryCache<any, any> = null,
+        ssrOnlyCache: ?MemoryCache<any, any> = null,
+    ) {
+        this._ssrOnlyCache = Server.isServerSide()
+            ? ssrOnlyCache || new MemoryCache()
+            : undefined;
+        this._hydrationAndDefaultCache = memoryCache || new MemoryCache();
+    }
+
+    /**
+     * Returns the default cache to use for the given handler.
+     */
+    _defaultCache<TOptions, TData: ValidData>(
+        handler: IRequestHandler<TOptions, TData>,
+    ): ICache<TOptions, TData> {
+        if (handler.hydrate) {
+            return this._hydrationAndDefaultCache;
+        }
+
+        // If the handler doesn't want to hydrate, we return the SSR-only cache.
+        // If we are client-side, we return our non-caching implementation.
+        return this._ssrOnlyCache || NoCache.Default;
     }
 
     _setCacheEntry<TOptions, TData: ValidData>(
@@ -54,14 +64,16 @@ export class ResponseCache {
         options: TOptions,
         entry: CacheEntry<TData>,
     ): CacheEntry<TData> {
-        const customCache = getCache(handler);
         const frozenEntry = Object.freeze(entry);
 
-        // If we have a custom cache, use that and skip our own.
-        if (customCache != null) {
-            customCache.store(handler, options, frozenEntry);
+        if (this._ssrOnlyCache == null && handler.cache != null) {
+            // We are not server-side, and our handler has its own cache,
+            // so we use that to store values.
+            handler.cache.store(handler, options, frozenEntry);
         } else {
-            this._cache.store(handler, options, frozenEntry);
+            // We are either server-side, or our handler doesn't provide
+            // a caching override.
+            this._defaultCache(handler).store(handler, options, frozenEntry);
         }
         return frozenEntry;
     }
@@ -72,14 +84,14 @@ export class ResponseCache {
      * This can only be called if the cache is not already in use.
      */
     initialize: (source: ResCache) => void = (source) => {
-        if (this._cache.inUse) {
+        if (this._hydrationAndDefaultCache.inUse) {
             throw new Error(
                 "Cannot initialize data response cache more than once",
             );
         }
 
         try {
-            this._cache = new MemoryCache(source);
+            this._hydrationAndDefaultCache = new MemoryCache(source);
         } catch (e) {
             throw new Error(
                 `An error occurred trying to initialize the data response cache: ${e}`,
@@ -128,30 +140,37 @@ export class ResponseCache {
         handler: IRequestHandler<TOptions, TData>,
         options: TOptions,
     ): ?$ReadOnly<CacheEntry<TData>> => {
-        const customCache = getCache(handler);
-        const entry = customCache?.retrieve(handler, options);
-        if (entry != null) {
-            // Custom cache has an entry, so use it.
-            return entry;
+        // If we're not server-side, and the handler has a custom cache
+        // let's try to use it.
+        if (this._ssrOnlyCache == null && handler.cache != null) {
+            const entry = handler.cache.retrieve(handler, options);
+            if (entry != null) {
+                // Custom cache has an entry, so use it.
+                return entry;
+            }
         }
 
         // Get the internal entry for the handler.
-        const internalEntry = this._cache.retrieve<TOptions, TData>(
+        // This allows us to use our hydrated cache during hydration.
+        // If we just returned null when the custom cache didn't have it,
+        // we would never hydrate properly.
+        const internalEntry = this._defaultCache<TOptions, TData>(
             handler,
-            options,
-        );
+        ).retrieve(handler, options);
 
-        // If we have a custom cache on the handler, make sure it has the entry.
-        if (customCache != null && internalEntry != null) {
+        // If we hydrated something that the custom cache didn't have,
+        // we need to make sure the custom cache contains that value.
+        if (handler.cache != null && internalEntry != null) {
             // Yes, if this throws, we will have a problem. We want that.
             // Bad cache implementations should be overt.
-            customCache.store(handler, options, internalEntry);
+            handler.cache.store(handler, options, internalEntry);
 
             // We now delete this from our in-memory cache as we don't need it.
             // This does mean that if another handler of the same type but
             // without a custom cache won't get the value, but that's not an
-            // expected valid usage of this framework.
-            this._cache.remove(handler, options);
+            // expected valid usage of this framework - two handlers with
+            // different caching options shouldn't be using the same type name.
+            this._hydrationAndDefaultCache.remove(handler, options);
         }
         return internalEntry;
     };
@@ -174,11 +193,21 @@ export class ResponseCache {
         // NOTE(somewhatabstract): We could invoke removeAll with a predicate
         // to match the key of the entry we're removing, but that's an
         // inefficient way to remove a single item, so let's not do that.
-        const customCache = getCache(handler);
+
+        // If we're not server-side, and the handler has a custom cache
+        // let's try to use it.
+        const customCache = this._ssrOnlyCache == null ? handler.cache : null;
         const removedCustom: boolean = !!customCache?.remove(handler, options);
 
         // Delete the entry from our internal cache.
-        return this._cache.remove(handler, options) || removedCustom;
+        // Even if we have a custom cache, we want to make sure we still
+        // removed the same value from internal cache since this could be
+        // getting called before hydration for some complex advanced usage
+        // reason.
+        return (
+            this._defaultCache(handler).remove(handler, options) ||
+            removedCustom
+        );
     };
 
     /**
@@ -204,21 +233,36 @@ export class ResponseCache {
             cachedEntry: $ReadOnly<CacheEntry<TData>>,
         ) => boolean,
     ): number => {
-        const customCache = getCache(handler);
+        // If we're not server-side, and the handler has a custom cache
+        // let's try to use it.
+        const customCache = this._ssrOnlyCache == null ? handler.cache : null;
         const removedCountCustom: number =
             customCache?.removeAll(handler, predicate) || 0;
 
         // Apply the predicate to what we have in our internal cached.
-        const removedCount = this._cache.removeAll(handler, predicate);
+        // Even if we have a custom cache, we want to make sure we still
+        // removed the same value from internal cache since this could be
+        // getting called before hydration for some complex advanced usage
+        // reason.
+        const removedCount = this._defaultCache(handler).removeAll(
+            handler,
+            predicate,
+        );
+
+        // We have no idea which keys were removed from which caches,
+        // so we can't dedupe the remove counts based on keys.
+        // That's why we return the total records deleted rather than the
+        // total keys deleted.
         return removedCount + removedCountCustom;
     };
 
     /**
-     * Deep clone the cache.
+     * Deep clone the hydration cache.
      *
      * By design, this does not clone anything held in custom caches.
      */
-    cloneCachedData: () => $ReadOnly<Cache> = (): $ReadOnly<Cache> => {
-        return this._cache.cloneData();
+    cloneHydratableData: () => $ReadOnly<Cache> = (): $ReadOnly<Cache> => {
+        // We return our hydration cache only.
+        return this._hydrationAndDefaultCache.cloneData();
     };
 }

@@ -21,6 +21,15 @@ interface IRequestHandler<TOptions, TData> {
     get cache(): ?ICache<TOptions, TData>;
 
     /**
+     * When true, server-side results are cached and hydrated in the client.
+     * When false, the server-side cache is not used and results are not
+     * hydrated.
+     * This should only be set to false if something is ensuring that the
+     * hydrated client result will match the server result.
+     */
+    get hydrate(): boolean;
+
+    /**
      * Determine if the cached data should be refreshed.
      *
      * If this returns true, the framework will use the currently cached value
@@ -56,6 +65,14 @@ called. Subclasses will need to implement this method.
 A default implementation of `getKey` is provided that serializes the options of
 a request to a string and uses that as the cache key. You may want to override
 this behavior to simplify the key or to omit some values from the key.
+
+The `hydrate` property indicates if the data that is fulfilled for the handler
+during SSR should be provided for hydration. This should be `true` in most
+cases. When `false`, React hydration will fail unless some other aspect of your
+SSR process is tracking the data for hydration. An example of setting this to
+false might be when you are using Apollo Client. In that scenario, you may use
+Apollo Cache to store and hydrate the data, while using Wonder Blocks Data to
+track and fulfill any query requests made via Apollo Client.
 
 Finally, the `shouldRefreshCache` method is provided for cases where a handler
 may want control over cache freshness. By default, this will return `true` for
