@@ -32,9 +32,9 @@ type Props = {|
     description?: string | React.Element<Typography>,
 
     /**
-     * The initial input value.
+     * The input value.
      */
-    initialValue?: string,
+    value: string,
 
     /**
      * Makes a read-only input field that cannot be focused. Defaults to false.
@@ -55,7 +55,7 @@ type Props = {|
     /**
      * Called when the value has changed.
      */
-    onChange?: (newValue: string) => mixed,
+    onChange: (newValue: string) => mixed,
 
     /**
      * Called when a key is pressed.
@@ -106,11 +106,6 @@ type DefaultProps = {|
 
 type State = {|
     /**
-     * The value of the input.
-     */
-    value: string,
-
-    /**
      * Displayed when the validation fails.
      */
     error: ?string,
@@ -139,7 +134,6 @@ class LabeledTextFieldInternal extends React.Component<
     constructor(props: PropsWithForwardRef) {
         super(props);
         this.state = {
-            value: props.initialValue || "",
             error: null,
             focused: false,
         };
@@ -150,15 +144,6 @@ class LabeledTextFieldInternal extends React.Component<
         this.setState({error: errorMessage}, () => {
             if (onValidate) {
                 onValidate(errorMessage);
-            }
-        });
-    };
-
-    handleChange: (newValue: string) => mixed = (newValue) => {
-        const {onChange} = this.props;
-        this.setState({value: newValue}, () => {
-            if (onChange) {
-                onChange(newValue);
             }
         });
     };
@@ -191,8 +176,10 @@ class LabeledTextFieldInternal extends React.Component<
             type,
             label,
             description,
+            value,
             disabled,
             validate,
+            onChange,
             onKeyDown,
             placeholder,
             light,
@@ -216,12 +203,12 @@ class LabeledTextFieldInternal extends React.Component<
                                 }
                                 testId={testId && `${testId}-field`}
                                 type={type}
-                                value={this.state.value}
+                                value={value}
                                 placeholder={placeholder}
                                 disabled={disabled}
                                 validate={validate}
                                 onValidate={this.handleValidate}
-                                onChange={this.handleChange}
+                                onChange={onChange}
                                 onKeyDown={onKeyDown}
                                 onFocus={this.handleFocus}
                                 onBlur={this.handleBlur}

@@ -14,7 +14,9 @@ const wait = (delay: number = 0) =>
 describe("LabeledTextField", () => {
     it("labeledtextfield becomes focused", () => {
         // Arrange
-        const wrapper = mount(<LabeledTextField label="Label" />);
+        const wrapper = mount(
+            <LabeledTextField label="Label" value="" onChange={() => {}} />,
+        );
         const field = wrapper.find("TextFieldInternal");
 
         // Act
@@ -29,7 +31,9 @@ describe("LabeledTextField", () => {
 
     it("labeledtextfield becomes blurred", async () => {
         // Arrange
-        const wrapper = mount(<LabeledTextField label="Label" />);
+        const wrapper = mount(
+            <LabeledTextField label="Label" value="" onChange={() => {}} />,
+        );
         const field = wrapper.find("TextFieldInternal");
 
         // Act
@@ -44,29 +48,19 @@ describe("LabeledTextField", () => {
         );
     });
 
-    it("value state changes when the user types", () => {
-        // Arrange
-        const wrapper = mount(<LabeledTextField label="Label" />);
-        const input = wrapper.find("input");
-
-        // Act
-        const newValue = "New Value";
-        input.simulate("change", {target: {value: newValue}});
-
-        // Assert
-        expect(wrapper.find("LabeledTextFieldInternal")).toHaveState(
-            "value",
-            newValue,
-        );
-    });
-
     it("id prop is passed to input", () => {
         // Arrange
         const id = "exampleid";
 
         // Act
         const wrapper = mount(
-            <LabeledTextField id={id} label="Label" disabled={true} />,
+            <LabeledTextField
+                id={id}
+                label="Label"
+                value=""
+                onChange={() => {}}
+                disabled={true}
+            />,
         );
 
         // Assert
@@ -78,7 +72,9 @@ describe("LabeledTextField", () => {
         // Arrange
 
         // Act
-        const wrapper = mount(<LabeledTextField label="Label" />);
+        const wrapper = mount(
+            <LabeledTextField label="Label" value="" onChange={() => {}} />,
+        );
 
         // Assert
         // Since the generated id is unique, we cannot know what it will be.
@@ -92,7 +88,14 @@ describe("LabeledTextField", () => {
         const type = "email";
 
         // Act
-        const wrapper = mount(<LabeledTextField type={type} label="Label" />);
+        const wrapper = mount(
+            <LabeledTextField
+                type={type}
+                label="Label"
+                value=""
+                onChange={() => {}}
+            />,
+        );
 
         // Assert
         const input = wrapper.find("input");
@@ -104,7 +107,9 @@ describe("LabeledTextField", () => {
         const label = "Label";
 
         // Act
-        const wrapper = mount(<LabeledTextField label={label} />);
+        const wrapper = mount(
+            <LabeledTextField label={label} value="" onChange={() => {}} />,
+        );
 
         // Assert
         expect(wrapper).toIncludeText(label);
@@ -116,25 +121,34 @@ describe("LabeledTextField", () => {
 
         // Act
         const wrapper = mount(
-            <LabeledTextField label="Label" description={description} />,
+            <LabeledTextField
+                label="Label"
+                description={description}
+                value=""
+                onChange={() => {}}
+            />,
         );
 
         // Assert
         expect(wrapper).toIncludeText(description);
     });
 
-    it("initialValue prop is set on mount", () => {
+    it("value prop is set on mount", () => {
         // Arrange
-        const initialValue = "Value";
+        const value = "Value";
 
         // Act
         const wrapper = mount(
-            <LabeledTextField initialValue={initialValue} label="Label" />,
+            <LabeledTextField
+                label="Label"
+                value={value}
+                onChange={() => {}}
+            />,
         );
 
         // Assert
         const input = wrapper.find("input");
-        expect(input).toHaveValue(initialValue);
+        expect(input).toHaveValue(value);
     });
 
     it("disabled prop disables the input", () => {
@@ -142,7 +156,12 @@ describe("LabeledTextField", () => {
 
         // Act
         const wrapper = mount(
-            <LabeledTextField label="Label" disabled={true} />,
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                disabled={true}
+            />,
         );
 
         // Assert
@@ -154,7 +173,12 @@ describe("LabeledTextField", () => {
         // Arrange
         const validate = jest.fn((value: string): ?string => {});
         const wrapper = mount(
-            <LabeledTextField label="Label" validate={validate} />,
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                validate={validate}
+            />,
         );
 
         // Act
@@ -180,7 +204,8 @@ describe("LabeledTextField", () => {
         const wrapper = mount(
             <LabeledTextField
                 label="Label"
-                initialValue="LongerThan8Chars"
+                value="LongerThan8Chars"
+                onChange={() => {}}
                 validate={validate}
                 onValidate={handleValidate}
             />,
@@ -199,7 +224,7 @@ describe("LabeledTextField", () => {
         const handleChange = jest.fn((newValue: string) => {});
 
         const wrapper = mount(
-            <LabeledTextField label="Label" onChange={handleChange} />,
+            <LabeledTextField label="Label" value="" onChange={handleChange} />,
         );
 
         // Act
@@ -220,7 +245,12 @@ describe("LabeledTextField", () => {
         );
 
         const wrapper = mount(
-            <LabeledTextField label="Label" onKeyDown={handleKeyDown} />,
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                onKeyDown={handleKeyDown}
+            />,
         );
 
         // Act
@@ -236,7 +266,12 @@ describe("LabeledTextField", () => {
         // Arrange
         const handleFocus = jest.fn(() => {});
         const wrapper = mount(
-            <LabeledTextField label="Label" onFocus={handleFocus} />,
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                onFocus={handleFocus}
+            />,
         );
 
         // Act
@@ -251,7 +286,12 @@ describe("LabeledTextField", () => {
         // Arrange
         const handleBlur = jest.fn(() => {});
         const wrapper = mount(
-            <LabeledTextField label="Label" onBlur={handleBlur} />,
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                onBlur={handleBlur}
+            />,
         );
 
         // Act
@@ -270,7 +310,12 @@ describe("LabeledTextField", () => {
 
         // Act
         const wrapper = mount(
-            <LabeledTextField label="Label" placeholder={placeholder} />,
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                placeholder={placeholder}
+            />,
         );
 
         // Assert
@@ -284,7 +329,14 @@ describe("LabeledTextField", () => {
         // Arrange
 
         // Act
-        const wrapper = mount(<LabeledTextField label="Label" light={true} />);
+        const wrapper = mount(
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                light={true}
+            />,
+        );
 
         // Assert
         const textField = wrapper.find("TextFieldInternal");
@@ -302,7 +354,12 @@ describe("LabeledTextField", () => {
 
         // Act
         const wrapper = mount(
-            <LabeledTextField label="Label" style={styles.style1} />,
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                style={styles.style1}
+            />,
         );
 
         // Assert
@@ -316,7 +373,12 @@ describe("LabeledTextField", () => {
 
         // Act
         const wrapper = mount(
-            <LabeledTextField label="Label" testId={testId} />,
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                testId={testId}
+            />,
         );
 
         // Assert

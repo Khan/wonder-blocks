@@ -6,6 +6,13 @@ Text
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "Khan",
+        };
+    }
+
     handleKeyDown(event) {
         if (event.key === "Enter") {
             event.currentTarget.blur();
@@ -17,7 +24,8 @@ class LabeledTextFieldExample extends React.Component {
             <LabeledTextField
                 label="Name"
                 description="Please enter your name"
-                initialValue="Khan"
+                value={this.state.value}
+                onChange={(newValue) => this.setState({value: newValue})}
                 placeholder="Name"
                 onKeyDown={this.handleKeyDown}
             />
@@ -34,6 +42,13 @@ Number
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "18",
+        };
+    }
+
     handleKeyDown(event) {
         if (event.key === "Enter") {
             event.currentTarget.blur();
@@ -46,7 +61,8 @@ class LabeledTextFieldExample extends React.Component {
                 label="Age"
                 type="number"
                 description="Please enter your age"
-                initialValue="18"
+                value={this.state.value}
+                onChange={(newValue) => this.setState({value: newValue})}
                 placeholder="Age"
                 onKeyDown={this.handleKeyDown}
             />
@@ -63,6 +79,13 @@ Password
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "Password123",
+        };
+    }
+
     validate(value) {
         if (value.length < 8) {
             return "Password must be at least 8 characters long";
@@ -84,7 +107,8 @@ class LabeledTextFieldExample extends React.Component {
                 label="Password"
                 type="password"
                 description="Please enter a secure password"
-                initialValue="Password123"
+                value={this.state.value}
+                onChange={(newValue) => this.setState({value: newValue})}
                 placeholder="Password"
                 validate={this.validate}
                 onKeyDown={this.handleKeyDown}
@@ -102,6 +126,13 @@ Email
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "khan@khan.org",
+        };
+    }
+
     validate(value) {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
@@ -121,7 +152,8 @@ class LabeledTextFieldExample extends React.Component {
                 label="Email"
                 type="email"
                 description="Please provide your personal email"
-                initialValue="khan@khan.org"
+                value={this.state.value}
+                onChange={(newValue) => this.setState({value: newValue})}
                 placeholder="Email"
                 validate={this.validate}
                 onKeyDown={this.handleKeyDown}
@@ -139,6 +171,13 @@ Telephone
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "123-456-7890",
+        };
+    }
+
     validate(value) {
         const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         if (!telRegex.test(value)) {
@@ -158,7 +197,8 @@ class LabeledTextFieldExample extends React.Component {
                 label="Telephone"
                 type="tel"
                 description="Please provide your personal phone number"
-                initialValue="123-456-7890"
+                value={this.state.value}
+                onChange={(newValue) => this.setState({value: newValue})}
                 placeholder="Telephone"
                 validate={this.validate}
                 onKeyDown={this.handleKeyDown}
@@ -176,6 +216,13 @@ The field can have an error
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 class LabeledTextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "khan",
+        };
+    }
+
     validate(value) {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
@@ -195,7 +242,8 @@ class LabeledTextFieldExample extends React.Component {
                 label="Email"
                 type="email"
                 description="Please enter your personal email"
-                initialValue="khan"
+                value={this.state.value}
+                onChange={(newValue) => this.setState({value: newValue})}
                 placeholder="Email"
                 validate={this.validate}
                 onKeyDown={this.handleKeyDown}
@@ -215,6 +263,8 @@ import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 <LabeledTextField
     label="Name"
     description="Please enter your name"
+    value=""
+    onChange={() => {}}
     placeholder="Name"
     disabled={true}
 />
@@ -231,6 +281,13 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {StyleSheet} from "aphrodite";
 
 class LabeledTextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "",
+        };
+    }
+
     handleKeyDown(event) {
         if (event.key === "Enter") {
             event.currentTarget.blur();
@@ -249,6 +306,8 @@ class LabeledTextFieldExample extends React.Component {
                             Please enter your name
                         </LabelSmall>
                     }
+                    value={this.state.value}
+                    onChange={(newValue) => this.setState({value: newValue})}
                     placeholder="Name"
                     light={true}
                     onKeyDown={this.handleKeyDown}
@@ -282,6 +341,13 @@ import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 
 class LabeledTextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "Khan",
+        };
+    }
+
     handleKeyDown(event) {
         if (event.key === "Enter") {
             event.currentTarget.blur();
@@ -293,7 +359,8 @@ class LabeledTextFieldExample extends React.Component {
             <LabeledTextField
                 label="Name"
                 description="Please enter your name"
-                initialValue="Khan"
+                value={this.state.value}
+                onChange={(newValue) => this.setState({value: newValue})}
                 placeholder="Name"
                 style={styles.customField}
                 onKeyDown={this.handleKeyDown}
@@ -330,6 +397,9 @@ import {StyleSheet} from "aphrodite";
 class LabeledTextFieldExample extends React.Component {
     constructor(props) {
         super(props);
+        this.state = {
+            value: "Khan",
+        };
         this.inputRef = React.createRef();
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -352,7 +422,8 @@ class LabeledTextFieldExample extends React.Component {
                 <LabeledTextField
                     label="Name"
                     description="Please enter your name"
-                    initialValue="Khan"
+                    value={this.state.value}
+                    onChange={(newValue) => this.setState({value: newValue})}
                     placeholder="Name"
                     onKeyDown={this.handleKeyDown}
                     ref={this.inputRef}

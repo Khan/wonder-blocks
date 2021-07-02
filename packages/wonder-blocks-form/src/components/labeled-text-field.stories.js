@@ -17,6 +17,8 @@ export default {
 };
 
 export const text: StoryComponentType = () => {
+    const [value, setValue] = React.useState("Khan");
+
     const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.currentTarget.blur();
@@ -27,7 +29,8 @@ export const text: StoryComponentType = () => {
         <LabeledTextField
             label="Name"
             description="Please enter your name"
-            initialValue="Khan"
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
             placeholder="Name"
             onKeyDown={handleKeyDown}
         />
@@ -35,6 +38,8 @@ export const text: StoryComponentType = () => {
 };
 
 export const number: StoryComponentType = () => {
+    const [value, setValue] = React.useState("18");
+
     const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.currentTarget.blur();
@@ -46,7 +51,8 @@ export const number: StoryComponentType = () => {
             label="Age"
             type="number"
             description="Please enter your age"
-            initialValue="18"
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
             placeholder="Age"
             onKeyDown={handleKeyDown}
         />
@@ -54,6 +60,8 @@ export const number: StoryComponentType = () => {
 };
 
 export const password: StoryComponentType = () => {
+    const [value, setValue] = React.useState("Password123");
+
     const validate = (value: string) => {
         if (value.length < 8) {
             return "Password must be at least 8 characters long";
@@ -74,7 +82,8 @@ export const password: StoryComponentType = () => {
             label="Password"
             type="password"
             description="Please enter a secure password"
-            initialValue="Password123"
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
             placeholder="Password"
             validate={validate}
             onKeyDown={handleKeyDown}
@@ -83,6 +92,8 @@ export const password: StoryComponentType = () => {
 };
 
 export const email: StoryComponentType = () => {
+    const [value, setValue] = React.useState("khan@khan.org");
+
     const validate = (value: string) => {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
@@ -100,7 +111,8 @@ export const email: StoryComponentType = () => {
         <LabeledTextField
             label="Email"
             type="email"
-            initialValue="khan@khan.org"
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
             description="Please provide your personal email"
             placeholder="Email"
             validate={validate}
@@ -110,6 +122,8 @@ export const email: StoryComponentType = () => {
 };
 
 export const telephone: StoryComponentType = () => {
+    const [value, setValue] = React.useState("123-456-7890");
+
     const validate = (value: string) => {
         const telRegex = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
         if (!telRegex.test(value)) {
@@ -127,7 +141,8 @@ export const telephone: StoryComponentType = () => {
         <LabeledTextField
             label="Telephone"
             type="tel"
-            initialValue="123-456-7890"
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
             description="Please provide your personal phone number"
             placeholder="Telephone"
             validate={validate}
@@ -137,6 +152,8 @@ export const telephone: StoryComponentType = () => {
 };
 
 export const error: StoryComponentType = () => {
+    const [value, setValue] = React.useState("khan");
+
     const validate = (value: string) => {
         const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
         if (!emailRegex.test(value)) {
@@ -154,7 +171,8 @@ export const error: StoryComponentType = () => {
         <LabeledTextField
             label="Email"
             type="email"
-            initialValue="khan"
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
             description="Please provide your personal email"
             placeholder="Email"
             validate={validate}
@@ -167,12 +185,16 @@ export const disabled: StoryComponentType = () => (
     <LabeledTextField
         label="Name"
         description="Please enter your name"
+        value=""
+        onChange={() => {}}
         placeholder="Name"
         disabled={true}
     />
 );
 
 export const light: StoryComponentType = () => {
+    const [value, setValue] = React.useState("");
+
     const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.currentTarget.blur();
@@ -190,6 +212,8 @@ export const light: StoryComponentType = () => {
                         Please enter your name
                     </LabelSmall>
                 }
+                value={value}
+                onChange={(newValue) => setValue(newValue)}
                 placeholder="Name"
                 light={true}
                 onKeyDown={handleKeyDown}
@@ -199,6 +223,8 @@ export const light: StoryComponentType = () => {
 };
 
 export const customStyle: StoryComponentType = () => {
+    const [value, setValue] = React.useState("");
+
     const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
             event.currentTarget.blur();
@@ -209,6 +235,8 @@ export const customStyle: StoryComponentType = () => {
         <LabeledTextField
             label="Name"
             description="Please enter your name"
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
             placeholder="Name"
             style={styles.customField}
             onKeyDown={handleKeyDown}
@@ -217,6 +245,7 @@ export const customStyle: StoryComponentType = () => {
 };
 
 export const ref: StoryComponentType = () => {
+    const [value, setValue] = React.useState("Khan");
     const inputRef = React.createRef<HTMLInputElement>();
 
     const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
@@ -236,7 +265,8 @@ export const ref: StoryComponentType = () => {
             <LabeledTextField
                 label="Name"
                 description="Please enter your name"
-                initialValue="Khan"
+                value={value}
+                onChange={(newValue) => setValue(newValue)}
                 placeholder="Name"
                 onKeyDown={handleKeyDown}
                 ref={inputRef}
