@@ -47,6 +47,10 @@ type Props = {|
     testId?: string,
 |};
 
+/**
+ * A FieldHeading is an element that provides a label, description, and error element
+ * to present better context and hints to any type of form field component.
+ */
 export default class FieldHeading extends React.Component<Props> {
     renderLabel(): React.Node {
         const {label, id, testId} = this.props;

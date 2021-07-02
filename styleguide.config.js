@@ -106,6 +106,7 @@ module.exports = {
                         "packages/wonder-blocks-form/src/components/checkbox-core.js",
                         "packages/wonder-blocks-form/src/components/radio-core.js",
                         "packages/wonder-blocks-form/src/components/choice-internal.js",
+                        "packages/wonder-blocks-form/src/components/field-heading.js",
                     ],
                 },
             ],

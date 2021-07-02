@@ -15,6 +15,7 @@ import {
     CheckboxGroup,
     Choice,
     RadioGroup,
+    TextField,
 } from "@khanacademy/wonder-blocks-form";
 import {StyleSheet} from "aphrodite";
 import {
@@ -28,6 +29,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import CheckboxCore from "./../components/checkbox-core.js";
 import RadioCore from "./../components/radio-core.js";
 import ChoiceInternal from "./../components/choice-internal.js";
+import FieldHeading from "./../components/field-heading.js";
 
 describe("wonder-blocks-form", () => {
     it("example 1", () => {
@@ -600,6 +602,52 @@ describe("wonder-blocks-form", () => {
                 <ClassSelectorExample />
             </View>
         );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 10", () => {
+        class FieldHeadingExample extends React.Component {
+            constructor(props) {
+                super(props);
+                this.state = {
+                    value: "",
+                };
+                this.handleKeyDown = this.handleKeyDown.bind(this);
+            }
+
+            handleKeyDown(event) {
+                if (event.key === "Enter") {
+                    event.currentTarget.blur();
+                }
+            }
+
+            render() {
+                return (
+                    <FieldHeading
+                        field={
+                            <TextField
+                                id="tf-1"
+                                type="text"
+                                value={this.state.value}
+                                placeholder="Username"
+                                onChange={(newValue) =>
+                                    this.setState({
+                                        value: newValue,
+                                    })
+                                }
+                                onKeyDown={this.handleKeyDown}
+                            />
+                        }
+                        label="Username"
+                        description="Please enter your username."
+                        error="That username is already taken."
+                    />
+                );
+            }
+        }
+
+        const example = <FieldHeadingExample />;
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();
     });
