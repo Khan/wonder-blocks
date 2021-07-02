@@ -1,6 +1,6 @@
 ```js
 import {View} from "@khanacademy/wonder-blocks-core";
-import {TextField, Radio} from "@khanacademy/wonder-blocks-form";
+import {TextField} from "@khanacademy/wonder-blocks-form";
 
 class FieldHeadingExample extends React.Component {
     constructor(props) {
