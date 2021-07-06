@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-form",
-  "version": "1.6.0",
+  "version": "2.0.0",
   "design": "v1",
   "description": "Form components for Wonder Blocks.",
   "main": "dist/index.js",
@@ -19,7 +19,7 @@
     "@khanacademy/wonder-blocks-color": "^1.1.17",
     "@khanacademy/wonder-blocks-core": "^3.1.3",
     "@khanacademy/wonder-blocks-icon": "^1.2.20",
-    "@khanacademy/wonder-blocks-layout": "^1.4.1",
+    "@khanacademy/wonder-blocks-layout": "^1.4.2",
     "@khanacademy/wonder-blocks-spacing": "^3.0.2",
     "@khanacademy/wonder-blocks-typography": "^1.1.24"
   },

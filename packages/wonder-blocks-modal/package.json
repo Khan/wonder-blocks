@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-modal",
-  "version": "2.1.39",
+  "version": "2.1.40",
   "design": "v2",
   "publishConfig": {
     "access": "public"
@@ -20,7 +20,7 @@
     "@khanacademy/wonder-blocks-core": "^3.1.3",
     "@khanacademy/wonder-blocks-icon": "^1.2.20",
     "@khanacademy/wonder-blocks-icon-button": "^3.3.12",
-    "@khanacademy/wonder-blocks-layout": "^1.4.1",
+    "@khanacademy/wonder-blocks-layout": "^1.4.2",
     "@khanacademy/wonder-blocks-spacing": "^3.0.2",
     "@khanacademy/wonder-blocks-toolbar": "^2.1.24",
     "@khanacademy/wonder-blocks-typography": "^1.1.24"
