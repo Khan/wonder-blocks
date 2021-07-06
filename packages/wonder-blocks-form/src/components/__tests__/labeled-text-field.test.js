@@ -151,6 +151,23 @@ describe("LabeledTextField", () => {
         expect(input).toHaveValue(value);
     });
 
+    it("value prop change from parent reflects on input value", async () => {
+        // Arrange
+        const handleChange = jest.fn((newValue: string) => {});
+
+        const wrapper = mount(
+            <LabeledTextField label="Label" value="" onChange={handleChange} />,
+        );
+
+        // Act
+        const newValue = "new value";
+        wrapper.setProps({value: newValue});
+
+        // Assert
+        const input = wrapper.find("input");
+        expect(input).toHaveValue(newValue);
+    });
+
     it("disabled prop disables the input", () => {
         // Arrange
 
