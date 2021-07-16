@@ -333,57 +333,6 @@ const styles = StyleSheet.create({
 <LabeledTextFieldExample />
 ```
 
-The field can have custom styles
-
-```js
-import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
-import {StyleSheet} from "aphrodite";
-import Color from "@khanacademy/wonder-blocks-color";
-
-class LabeledTextFieldExample extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            value: "Khan",
-        };
-    }
-
-    handleKeyDown(event) {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    }
-
-    render() {
-        return (
-            <LabeledTextField
-                label="Name"
-                description="Please enter your name"
-                value={this.state.value}
-                onChange={(newValue) => this.setState({value: newValue})}
-                placeholder="Name"
-                style={styles.customField}
-                onKeyDown={this.handleKeyDown}
-            />
-        );
-    }
-}
-
-const styles = StyleSheet.create({
-    customField: {
-        backgroundColor: Color.darkBlue,
-        color: Color.white,
-        border: "none",
-        maxWidth: 250,
-        "::placeholder": {
-            color: Color.white64,
-        },
-    },
-});
-
-<LabeledTextFieldExample />
-```
-
 The field forwards its ref to the input
 
 ```js

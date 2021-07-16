@@ -222,28 +222,6 @@ export const light: StoryComponentType = () => {
     );
 };
 
-export const customStyle: StoryComponentType = () => {
-    const [value, setValue] = React.useState("");
-
-    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
-        if (event.key === "Enter") {
-            event.currentTarget.blur();
-        }
-    };
-
-    return (
-        <LabeledTextField
-            label="Name"
-            description="Please enter your name"
-            value={value}
-            onChange={(newValue) => setValue(newValue)}
-            placeholder="Name"
-            style={styles.customField}
-            onKeyDown={handleKeyDown}
-        />
-    );
-};
-
 export const ref: StoryComponentType = () => {
     const [value, setValue] = React.useState("Khan");
     const inputRef = React.createRef<HTMLInputElement>();
@@ -289,15 +267,6 @@ const styles = StyleSheet.create({
     },
     offWhiteColor: {
         color: Color.white64,
-    },
-    customField: {
-        backgroundColor: Color.darkBlue,
-        color: Color.white,
-        border: "none",
-        maxWidth: 250,
-        "::placeholder": {
-            color: Color.white64,
-        },
     },
     button: {
         maxWidth: 150,

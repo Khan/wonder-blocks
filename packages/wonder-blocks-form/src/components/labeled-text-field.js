@@ -83,7 +83,7 @@ type Props = {|
     light: boolean,
 
     /**
-     * Custom styles for the TextField component.
+     * Custom styles for the container.
      */
     style?: StyleType,
 
@@ -194,6 +194,7 @@ class LabeledTextFieldInternal extends React.Component<
                     <FieldHeading
                         id={uniqueId}
                         testId={testId}
+                        style={style}
                         field={
                             <TextField
                                 id={`${uniqueId}-field`}
@@ -213,7 +214,6 @@ class LabeledTextFieldInternal extends React.Component<
                                 onFocus={this.handleFocus}
                                 onBlur={this.handleBlur}
                                 light={light}
-                                style={style}
                                 ref={forwardedRef}
                             />
                         }

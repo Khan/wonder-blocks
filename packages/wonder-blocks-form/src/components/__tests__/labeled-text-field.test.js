@@ -360,7 +360,7 @@ describe("LabeledTextField", () => {
         expect(textField).toHaveProp("light", true);
     });
 
-    it("style prop is passed to textfield", async () => {
+    it("style prop is passed to fieldheading", async () => {
         // Arrange
         const styles = StyleSheet.create({
             style1: {
@@ -380,8 +380,8 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const textField = wrapper.find("TextFieldInternal");
-        expect(textField).toHaveStyle(styles.style1);
+        const fieldHeading = wrapper.find("FieldHeading");
+        expect(fieldHeading).toHaveStyle(styles.style1);
     });
 
     it("testId prop is passed to textfield", async () => {
