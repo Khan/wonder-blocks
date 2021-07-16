@@ -222,6 +222,41 @@ export const light: StoryComponentType = () => {
     );
 };
 
+export const customStyle: StoryComponentType = () => {
+    const [firstName, setFirstName] = React.useState("");
+    const [lastName, setLastName] = React.useState("");
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <View style={styles.row}>
+            <LabeledTextField
+                label="First name"
+                description="Please enter your first name"
+                value={firstName}
+                onChange={(newValue) => setFirstName(newValue)}
+                placeholder="Khan"
+                style={styles.grow}
+                onKeyDown={handleKeyDown}
+            />
+            <Strut size={Spacing.xLarge_32} />
+            <LabeledTextField
+                label="Last name"
+                description="Please enter your last name"
+                value={lastName}
+                onChange={(newValue) => setLastName(newValue)}
+                placeholder="Academy"
+                style={styles.grow}
+                onKeyDown={handleKeyDown}
+            />
+        </View>
+    );
+};
+
 export const ref: StoryComponentType = () => {
     const [value, setValue] = React.useState("Khan");
     const inputRef = React.createRef<HTMLInputElement>();
@@ -270,5 +305,11 @@ const styles = StyleSheet.create({
     },
     button: {
         maxWidth: 150,
+    },
+    row: {
+        flexDirection: "row",
+    },
+    grow: {
+        flexGrow: 1,
     },
 });

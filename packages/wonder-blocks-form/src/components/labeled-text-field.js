@@ -84,6 +84,15 @@ type Props = {|
 
     /**
      * Custom styles for the container.
+     *
+     * Note: This style is passed to the field heading container
+     * due to scenarios where we would like to set a specific
+     * width for the text field. If we apply the style directly
+     * to the text field, the container would not be affected.
+     * For example, setting text field to "width: 50%" would not
+     * affect the container since text field is a child of the container.
+     * In this case, the container would maintain its width ocuppying
+     * unnecessary space when the text field is smaller.
      */
     style?: StyleType,
 
