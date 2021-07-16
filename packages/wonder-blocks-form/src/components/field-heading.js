@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -32,6 +32,11 @@ type Props = {|
      * The message for the error element.
      */
     error?: string | React.Element<Typography>,
+
+    /**
+     * Custom styles for the field heading container.
+     */
+    style?: StyleType,
 
     /**
      * A unique id to link the label (and optional error) to the field.
@@ -125,10 +130,10 @@ export default class FieldHeading extends React.Component<Props> {
     }
 
     render(): React.Node {
-        const {field} = this.props;
+        const {field, style} = this.props;
 
         return (
-            <View>
+            <View style={style}>
                 {this.renderLabel()}
                 {this.maybeRenderDescription()}
                 <Strut size={Spacing.xSmall_8} />

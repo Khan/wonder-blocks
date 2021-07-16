@@ -223,7 +223,8 @@ export const light: StoryComponentType = () => {
 };
 
 export const customStyle: StoryComponentType = () => {
-    const [value, setValue] = React.useState("");
+    const [firstName, setFirstName] = React.useState("");
+    const [lastName, setLastName] = React.useState("");
 
     const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
@@ -232,15 +233,27 @@ export const customStyle: StoryComponentType = () => {
     };
 
     return (
-        <LabeledTextField
-            label="Name"
-            description="Please enter your name"
-            value={value}
-            onChange={(newValue) => setValue(newValue)}
-            placeholder="Name"
-            style={styles.customField}
-            onKeyDown={handleKeyDown}
-        />
+        <View style={styles.row}>
+            <LabeledTextField
+                label="First name"
+                description="Please enter your first name"
+                value={firstName}
+                onChange={(newValue) => setFirstName(newValue)}
+                placeholder="Khan"
+                style={styles.grow}
+                onKeyDown={handleKeyDown}
+            />
+            <Strut size={Spacing.xLarge_32} />
+            <LabeledTextField
+                label="Last name"
+                description="Please enter your last name"
+                value={lastName}
+                onChange={(newValue) => setLastName(newValue)}
+                placeholder="Academy"
+                style={styles.grow}
+                onKeyDown={handleKeyDown}
+            />
+        </View>
     );
 };
 
@@ -290,16 +303,13 @@ const styles = StyleSheet.create({
     offWhiteColor: {
         color: Color.white64,
     },
-    customField: {
-        backgroundColor: Color.darkBlue,
-        color: Color.white,
-        border: "none",
-        maxWidth: 250,
-        "::placeholder": {
-            color: Color.white64,
-        },
-    },
     button: {
         maxWidth: 150,
+    },
+    row: {
+        flexDirection: "row",
+    },
+    grow: {
+        flexGrow: 1,
     },
 });

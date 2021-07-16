@@ -333,18 +333,21 @@ const styles = StyleSheet.create({
 <LabeledTextFieldExample />
 ```
 
-The field can have custom styles
+The field container can have a style
 
 ```js
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {StyleSheet} from "aphrodite";
-import Color from "@khanacademy/wonder-blocks-color";
 
 class LabeledTextFieldExample extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            value: "Khan",
+            firstName: "",
+            lastName: "",
         };
     }
 
@@ -356,28 +359,39 @@ class LabeledTextFieldExample extends React.Component {
 
     render() {
         return (
-            <LabeledTextField
-                label="Name"
-                description="Please enter your name"
-                value={this.state.value}
-                onChange={(newValue) => this.setState({value: newValue})}
-                placeholder="Name"
-                style={styles.customField}
-                onKeyDown={this.handleKeyDown}
-            />
+            <View style={styles.row}>
+                <LabeledTextField
+                    label="First name"
+                    description="Please enter your first name"
+                    placeholder="Khan"
+                    value={this.state.firstName}
+                    onChange={(newValue) => this.setState({firstName: newValue})}
+                    placeholder="Khan"
+                    style={styles.grow}
+                    onKeyDown={this.handleKeyDown}
+                />
+                <Strut size={Spacing.xLarge_32} />
+                <LabeledTextField
+                    label="Last name"
+                    description="Please enter your last name"
+                    placeholder="Academy"
+                    value={this.state.lastName}
+                    onChange={(newValue) => this.setState({lastName: newValue})}
+                    placeholder="Academy"
+                    style={styles.grow}
+                    onKeyDown={this.handleKeyDown}
+                />
+            </View>
         );
     }
 }
 
 const styles = StyleSheet.create({
-    customField: {
-        backgroundColor: Color.darkBlue,
-        color: Color.white,
-        border: "none",
-        maxWidth: 250,
-        "::placeholder": {
-            color: Color.white64,
-        },
+    row: {
+        flexDirection: "row",
+    },
+    grow: {
+        flexGrow: 1,
     },
 });
 

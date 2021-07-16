@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {mount} from "enzyme";
+import {StyleSheet} from "aphrodite";
 
 import FieldHeading from "../field-heading.js";
 import TextField from "../text-field.js";
@@ -153,5 +154,29 @@ describe("FieldHeading", () => {
         // Assert
         const error = wrapper.find(`[data-test-id="${testId}-error"]`);
         expect(error).toContainMatchingElement(`[id="${id}-error"]`);
+    });
+
+    it("stype prop applies to the fieldheading container", () => {
+        // Arrange
+        const styles = StyleSheet.create({
+            style1: {
+                flexGrow: 1,
+                background: "blue",
+            },
+        });
+
+        // Act
+        const wrapper = mount(
+            <FieldHeading
+                field={<TextField id="tf-1" value="" onChange={() => {}} />}
+                label="Label"
+                error="Error"
+                style={styles.style1}
+            />,
+        );
+
+        // Assert
+        const container = wrapper.find("View").at(0);
+        expect(container).toHaveStyle(styles.style1);
     });
 });
