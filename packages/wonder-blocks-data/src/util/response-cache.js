@@ -158,9 +158,14 @@ export class ResponseCache {
             handler,
         ).retrieve(handler, options);
 
-        // If we hydrated something that the custom cache didn't have,
-        // we need to make sure the custom cache contains that value.
-        if (handler.cache != null && internalEntry != null) {
+        // If we are not server-side and we hydrated something that the custom
+        // cache didn't have, we need to make sure the custom cache contains
+        // that value.
+        if (
+            this._ssrOnlyCache == null &&
+            handler.cache != null &&
+            internalEntry != null
+        ) {
             // Yes, if this throws, we will have a problem. We want that.
             // Bad cache implementations should be overt.
             handler.cache.store(handler, options, internalEntry);
