@@ -1,7 +1,9 @@
 // @flow
+import {Server} from "@khanacademy/wonder-blocks-core";
 import {
     initializeCache,
     fulfillAllDataRequests,
+    hasUnfulfilledRequests,
     removeFromCache,
     removeAllFromCache,
 } from "../index.js";
@@ -27,6 +29,7 @@ describe("@khanacademy/wonder-blocks-data", () => {
                 "NoCache",
                 "RequestHandler",
                 "TrackData",
+                "hasUnfulfilledRequests",
                 "fulfillAllDataRequests",
                 "initializeCache",
                 "removeFromCache",
@@ -53,8 +56,9 @@ describe("@khanacademy/wonder-blocks-data", () => {
     });
 
     describe("#fulfillAllDataRequests", () => {
-        test("invokes RequestTracker.Default.fulfillTrackedRequests", () => {
+        test("when server-side, invokes RequestTracker.Default.fulfillTrackedRequests", () => {
             // Arrange
+            jest.spyOn(Server, "isServerSide").mockReturnValue(true);
             const fulfillTrackedRequests = jest.spyOn(
                 RequestTracker.Default,
                 "fulfillTrackedRequests",
@@ -65,6 +69,50 @@ describe("@khanacademy/wonder-blocks-data", () => {
 
             // Assert
             expect(fulfillTrackedRequests).toHaveBeenCalled();
+        });
+
+        test("when client-side, rejects with error", async () => {
+            // Arrange
+            jest.spyOn(Server, "isServerSide").mockReturnValue(false);
+
+            // Act
+            const underTest = fulfillAllDataRequests();
+
+            // Assert
+            await expect(underTest).rejects.toThrowErrorMatchingInlineSnapshot(
+                `"Data requests are not tracked when client-side"`,
+            );
+        });
+    });
+
+    describe("#hasUnfulfilledRequests", () => {
+        test("when server-side, invokes RequestTracker.Default.hasUnfulfilledRequests", () => {
+            // Arrange
+            jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+            const hasUnfulfilledRequestsSpy = jest.spyOn(
+                RequestTracker.Default,
+                "hasUnfulfilledRequests",
+                "get",
+            );
+
+            // Act
+            hasUnfulfilledRequests();
+
+            // Assert
+            expect(hasUnfulfilledRequestsSpy).toHaveBeenCalled();
+        });
+
+        test("when client-side, rejects with error", () => {
+            // Arrange
+            jest.spyOn(Server, "isServerSide").mockReturnValue(false);
+
+            // Act
+            const underTest = () => hasUnfulfilledRequests();
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                `"Data requests are not tracked when client-side"`,
+            );
         });
     });
 

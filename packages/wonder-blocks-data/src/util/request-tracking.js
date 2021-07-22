@@ -99,6 +99,13 @@ export class RequestTracker {
     };
 
     /**
+     * Indicates if we have requests waiting to be fulfilled.
+     */
+    get hasUnfulfilledRequests(): boolean {
+        return Object.keys(this._trackedRequests).length > 0;
+    }
+
+    /**
      * Initiate fulfillment of all tracked requests.
      *
      * This loops over the requests that were tracked using TrackData, and asks

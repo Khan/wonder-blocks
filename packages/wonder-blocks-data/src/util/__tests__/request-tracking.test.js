@@ -142,6 +142,62 @@ describe("../request-tracking.js", () => {
             });
         });
 
+        describe("#hasUnfulfilledRequests", () => {
+            it("should return false if no requests have been tracked", () => {
+                // Arrange
+                const requestTracker = createRequestTracker();
+
+                // Act
+                const result = requestTracker.hasUnfulfilledRequests;
+
+                // Assert
+                expect(result).toBe(false);
+            });
+
+            it("should return true if there are requests waiting to be fulfilled", () => {
+                // Arrange
+                const requestTracker = createRequestTracker();
+                const fakeHandler: IRequestHandler<any, any> = {
+                    fulfillRequest: jest.fn(),
+                    getKey: jest.fn().mockReturnValue("MY_KEY"),
+                    shouldRefreshCache: () => false,
+                    type: "MY_TYPE",
+                    cache: null,
+                    hydrate: true,
+                };
+                const options = {these: "are options"};
+                requestTracker.trackDataRequest(fakeHandler, options);
+
+                // Act
+                const result = requestTracker.hasUnfulfilledRequests;
+
+                // Assert
+                expect(result).toBe(true);
+            });
+
+            it("should return false if all tracked requests have been fulfilled", () => {
+                // Arrange
+                const requestTracker = createRequestTracker();
+                const fakeHandler: IRequestHandler<any, any> = {
+                    fulfillRequest: jest.fn().mockResolvedValue(5),
+                    getKey: jest.fn().mockReturnValue("MY_KEY"),
+                    shouldRefreshCache: () => false,
+                    type: "MY_TYPE",
+                    cache: null,
+                    hydrate: true,
+                };
+                const options = {these: "are options"};
+                requestTracker.trackDataRequest(fakeHandler, options);
+                requestTracker.fulfillTrackedRequests();
+
+                // Act
+                const result = requestTracker.hasUnfulfilledRequests;
+
+                // Assert
+                expect(result).toBe(false);
+            });
+        });
+
         describe("#fulfillTrackedRequests", () => {
             it("should return an empty cache if no requests tracked", async () => {
                 // Arrange

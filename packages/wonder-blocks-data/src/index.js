@@ -1,4 +1,5 @@
 // @flow
+import {Server} from "@khanacademy/wonder-blocks-core";
 import {ResponseCache as ResCache} from "./util/response-cache.js";
 import {RequestTracker} from "./util/request-tracking.js";
 
@@ -21,8 +22,21 @@ export type {
 export const initializeCache = (source: ResponseCache): void =>
     ResCache.Default.initialize(source);
 
-export const fulfillAllDataRequests = (): Promise<ResponseCache> =>
-    RequestTracker.Default.fulfillTrackedRequests();
+export const fulfillAllDataRequests = (): Promise<ResponseCache> => {
+    if (!Server.isServerSide()) {
+        return Promise.reject(
+            new Error("Data requests are not tracked when client-side"),
+        );
+    }
+    return RequestTracker.Default.fulfillTrackedRequests();
+};
+
+export const hasUnfulfilledRequests = (): boolean => {
+    if (!Server.isServerSide()) {
+        throw new Error("Data requests are not tracked when client-side");
+    }
+    return RequestTracker.Default.hasUnfulfilledRequests;
+};
 
 export const removeFromCache = <TOptions, TData: ValidData>(
     handler: IRequestHandler<TOptions, TData>,
