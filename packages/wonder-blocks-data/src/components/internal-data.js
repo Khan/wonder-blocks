@@ -207,6 +207,9 @@ export default class InternalData<
 
     render(): React.Node {
         const result = this._resultFromState();
+        // We only track data requests when we are server-side and we don't
+        // already have a result. The existence of a result is indicated by the
+        // loading flag being false.
         if (result.loading && Server.isServerSide()) {
             return this._renderWithTrackingContext(result);
         }
