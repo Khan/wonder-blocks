@@ -292,6 +292,50 @@ export const ref: StoryComponentType = () => {
     );
 };
 
+export const readOnly: StoryComponentType = () => {
+    const [value, setValue] = React.useState("Khan");
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <LabeledTextField
+            label="Read Only"
+            description="This is a read-only field."
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
+            placeholder="Name"
+            onKeyDown={handleKeyDown}
+            readOnly={true}
+        />
+    );
+};
+
+export const autoComplete: StoryComponentType = () => {
+    const [value, setValue] = React.useState("");
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <LabeledTextField
+            label="Name"
+            description="Please enter your name."
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
+            placeholder="Name"
+            onKeyDown={handleKeyDown}
+            autoComplete="name"
+        />
+    );
+};
+
 const styles = StyleSheet.create({
     darkBackground: {
         background: Color.darkBlue,

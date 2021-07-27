@@ -682,3 +682,89 @@ const styles = StyleSheet.create({
 
 <TextFieldExample />
 ```
+
+Read Only
+
+```js
+import {TextField} from "@khanacademy/wonder-blocks-form";
+
+class TextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "Khan",
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+    }
+
+    handleChange(newValue) {
+        this.setState({value: newValue});
+    }
+
+    handleKeyDown(event) {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    }
+
+    render() {
+        return (
+            <TextField
+                id="tf-1"
+                type="text"
+                value={this.state.value}
+                placeholder="Text"
+                onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
+                readOnly={true}
+            />
+        );
+    }
+}
+
+<TextFieldExample />
+```
+
+Autocomplete
+
+```js
+import {TextField} from "@khanacademy/wonder-blocks-form";
+
+class TextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "",
+        };
+        this.handleChange = this.handleChange.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+    }
+
+    handleChange(newValue) {
+        this.setState({value: newValue});
+    }
+
+    handleKeyDown(event) {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    }
+
+    render() {
+        return (
+            <TextField
+                id="tf-1"
+                type="text"
+                value={this.state.value}
+                placeholder="Text"
+                onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
+                autoComplete="name"
+            />
+        );
+    }
+}
+
+<TextFieldExample />
+```

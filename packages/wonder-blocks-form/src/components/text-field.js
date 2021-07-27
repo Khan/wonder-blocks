@@ -90,6 +90,16 @@ type Props = {|
      * Optional test ID for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Specifies if the input field is read-only.
+     */
+    readOnly?: boolean,
+
+    /**
+     * Specifies if the input field allows autocomplete.
+     */
+    autoComplete?: string,
 |};
 
 type PropsWithForwardRef = {|
@@ -198,6 +208,8 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
             light,
             style,
             testId,
+            readOnly,
+            autoComplete,
             forwardedRef,
             // The following props are being included here to avoid
             // passing them down to the otherProps spread
@@ -239,6 +251,8 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
                 onBlur={this.handleBlur}
                 required={required}
                 data-test-id={testId}
+                readOnly={readOnly}
+                autoComplete={autoComplete}
                 ref={forwardedRef}
                 {...otherProps}
             />

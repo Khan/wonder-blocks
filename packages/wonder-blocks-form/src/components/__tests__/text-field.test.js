@@ -384,4 +384,41 @@ describe("TextField", () => {
         const input = wrapper.find("input");
         expect(input).toContainMatchingElement(`[aria-label="${ariaLabel}"]`);
     });
+
+    it("readOnly prop is passed to the input element", async () => {
+        // Arrange
+
+        // Act
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value={"Text"}
+                onChange={() => {}}
+                readOnly={true}
+            />,
+        );
+
+        // Assert
+        const input = wrapper.find("input");
+        expect(input).toHaveProp("readOnly");
+    });
+
+    it("autoComplete prop is passed to the input element", async () => {
+        // Arrange
+        const autoComplete = "name";
+
+        // Act
+        const wrapper = mount(
+            <TextField
+                id={"tf-1"}
+                value={"Text"}
+                onChange={() => {}}
+                autoComplete={autoComplete}
+            />,
+        );
+
+        // Assert
+        const input = wrapper.find("input");
+        expect(input).toHaveProp("autoComplete", autoComplete);
+    });
 });
