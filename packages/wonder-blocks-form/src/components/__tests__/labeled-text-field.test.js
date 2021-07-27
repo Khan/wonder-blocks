@@ -402,4 +402,41 @@ describe("LabeledTextField", () => {
         const textField = wrapper.find(`[data-test-id="${testId}-field"]`);
         expect(textField).toExist();
     });
+
+    it("readOnly prop is passed to textfield", async () => {
+        // Arrange
+
+        // Act
+        const wrapper = mount(
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                readOnly={true}
+            />,
+        );
+
+        // Assert
+        const textField = wrapper.find("TextFieldInternal");
+        expect(textField).toHaveProp("readOnly", true);
+    });
+
+    it("autoComplete prop is passed to textfield", async () => {
+        // Arrange
+        const autoComplete = "name";
+
+        // Act
+        const wrapper = mount(
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                autoComplete={autoComplete}
+            />,
+        );
+
+        // Assert
+        const textField = wrapper.find("TextFieldInternal");
+        expect(textField).toHaveProp("autoComplete", autoComplete);
+    });
 });

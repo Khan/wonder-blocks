@@ -459,3 +459,77 @@ const styles = StyleSheet.create({
 
 <LabeledTextFieldExample />
 ```
+
+The field can be read-only
+
+```js
+import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+
+class LabeledTextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "Khan",
+        };
+    }
+
+    handleKeyDown(event) {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    }
+
+    render() {
+        return (
+            <LabeledTextField
+                label="Name"
+                description="Please enter your name"
+                value={this.state.value}
+                onChange={(newValue) => this.setState({value: newValue})}
+                placeholder="Name"
+                onKeyDown={this.handleKeyDown}
+                readOnly={true}
+            />
+        );
+    }
+}
+
+<LabeledTextFieldExample />
+```
+
+The field can have specific autocomplete
+
+```js
+import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+
+class LabeledTextFieldExample extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            value: "",
+        };
+    }
+
+    handleKeyDown(event) {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    }
+
+    render() {
+        return (
+            <LabeledTextField
+                label="Name"
+                description="Please enter your name"
+                value={this.state.value}
+                onChange={(newValue) => this.setState({value: newValue})}
+                placeholder="Name"
+                onKeyDown={this.handleKeyDown}
+                autoComplete="name"
+            />
+        );
+    }
+}
+
+<LabeledTextFieldExample />
+```

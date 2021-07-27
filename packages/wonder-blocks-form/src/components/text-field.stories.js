@@ -433,6 +433,58 @@ export const ref: StoryComponentType = () => {
     );
 };
 
+export const readOnly: StoryComponentType = () => {
+    const [value, setValue] = React.useState("Khan");
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+    };
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <TextField
+            id="tf-1"
+            type="text"
+            value={value}
+            placeholder="Text"
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            readOnly={true}
+        />
+    );
+};
+
+export const autoComplete: StoryComponentType = () => {
+    const [value, setValue] = React.useState("");
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+    };
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <TextField
+            id="tf-1"
+            type="text"
+            value={value}
+            placeholder="Name"
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            autoComplete="name"
+        />
+    );
+};
+
 const styles = StyleSheet.create({
     errorMessage: {
         color: Color.red,

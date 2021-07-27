@@ -100,6 +100,16 @@ type Props = {|
      * Optional test ID for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Specifies if the TextField is read-only.
+     */
+    readOnly?: boolean,
+
+    /**
+     * Specifies if the TextField allows autocomplete.
+     */
+    autoComplete?: string,
 |};
 
 type PropsWithForwardRef = {|
@@ -194,6 +204,8 @@ class LabeledTextFieldInternal extends React.Component<
             light,
             style,
             testId,
+            readOnly,
+            autoComplete,
             forwardedRef,
         } = this.props;
 
@@ -223,6 +235,8 @@ class LabeledTextFieldInternal extends React.Component<
                                 onFocus={this.handleFocus}
                                 onBlur={this.handleBlur}
                                 light={light}
+                                readOnly={readOnly}
+                                autoComplete={autoComplete}
                                 ref={forwardedRef}
                             />
                         }
