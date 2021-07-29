@@ -33,6 +33,13 @@ type Props = {|
     below?: React.Node,
 
     /**
+     * When set, overrides the default role value. Default role is "dialog"
+     * Roles other than dialog and alertdialog aren't appropriate for this
+     * component
+     */
+    role?: "dialog" | "alertdialog",
+
+    /**
      * Custom styles
      */
     style?: StyleType,
@@ -41,6 +48,10 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+|};
+
+type DefaultProps = {|
+    role: $PropertyType<Props, "role">,
 |};
 
 /**
@@ -54,10 +65,15 @@ type Props = {|
  * the `aria-labelledby` attribute however this is recommended. It should match the `id` of the dialog title.
  */
 export default class ModalDialog extends React.Component<Props> {
+    static defaultProps: DefaultProps = {
+        role: "dialog",
+    };
+
     render(): React.Node {
         const {
             above,
             below,
+            role,
             style,
             children,
             testId,
@@ -76,7 +92,7 @@ export default class ModalDialog extends React.Component<Props> {
                         <View style={[styles.wrapper, style]}>
                             {below && <View style={styles.below}>{below}</View>}
                             <View
-                                role="dialog"
+                                role={role}
                                 aria-modal="true"
                                 aria-labelledby={ariaLabelledBy}
                                 style={styles.dialog}
