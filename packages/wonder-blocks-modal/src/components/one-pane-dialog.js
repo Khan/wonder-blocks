@@ -63,6 +63,13 @@ type Common = {|
     below?: React.Node,
 
     /**
+     * When set, overrides the default role value. Default role is "dialog"
+     * Roles other than dialog and alertdialog aren't appropriate for this
+     * component
+     */
+    role?: "dialog" | "alertdialog",
+
+    /**
      * Optional custom styles.
      */
     style?: StyleType,
@@ -162,6 +169,7 @@ export default class OnePaneDialog extends React.Component<Props> {
             closeButtonVisible,
             testId,
             titleId,
+            role,
         } = this.props;
 
         return (
@@ -175,6 +183,7 @@ export default class OnePaneDialog extends React.Component<Props> {
                                 below={below}
                                 testId={testId}
                                 aria-labelledby={uniqueId}
+                                role={role}
                             >
                                 <ModalPanel
                                     onClose={onClose}
