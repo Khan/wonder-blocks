@@ -244,7 +244,7 @@ type DefaultProps = {|
  * the `Button` can take.
  *
  * Example usage:
- * ```jsx
+ * ```
  * <Button
  *     onClick={(e) => console.log("Hello, world!")}
  * >

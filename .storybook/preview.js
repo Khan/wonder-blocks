@@ -1,12 +1,27 @@
-import {addDecorator, addParameters} from "@storybook/react";
-import {withKnobs} from "@storybook/addon-knobs";
-import {jsxDecorator} from "storybook-addon-jsx";
+import React from "react";
 
-addParameters({
-    options: {
-        showAddonPanel: false,
+export const parameters = {
+    backgrounds: {
+        default: "light",
+        values: [
+            {
+                name: "light",
+                value: "#ffffff",
+            },
+            {
+                name: "darkBlue",
+                value: "#0a2a66",
+            },
+        ],
     },
-});
+    // https://storybook.js.org/docs/react/configure/story-layout
+    layout: "padded",
+};
 
-addDecorator(withKnobs);
-addDecorator(jsxDecorator);
+export const decorators = [
+    (Story) => (
+        <div style={{margin: "1em"}}>
+            <Story />
+        </div>
+    ),
+];
