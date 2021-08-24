@@ -130,7 +130,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
 
     maybeRenderDismissIconButton(): React.Node {
         const {searchText} = this.props;
-        const {clearSearch} = this.state.labels; // ?
+        const {clearSearch} = this.state.labels;
 
         if (searchText.length > 0) {
             return (
