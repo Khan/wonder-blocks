@@ -1,111 +1,207 @@
 //@flow
 import * as React from "react";
-import IconButton from "@khanacademy/wonder-blocks-icon-button";
-import {mount} from "enzyme";
+import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+// eslint-disable-next-line import/no-unassigned-import
+import "@testing-library/jest-dom/extend-expect";
 
-import DropdownOpener from "../dropdown-opener.js";
-import SelectOpener from "../select-opener.js";
 import OptionItem from "../option-item.js";
 import SingleSelect from "../single-select.js";
-import {keyCodes} from "../../util/constants.js";
-import SearchTextInput from "../search-text-input.js";
 
 jest.mock("../dropdown-core-virtualized.js");
 
+const FRAME_DURATION = 17;
+
+const mockRequestAnimationFrame = (frameDuration: number = FRAME_DURATION) => {
+    jest.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => {
+        const frameId = 0;
+        setTimeout(() => cb(frameId), frameDuration);
+        return frameId;
+    });
+};
+
 describe("SingleSelect", () => {
-    let select;
     const onChange = jest.fn();
 
     beforeEach(() => {
         jest.useFakeTimers();
 
         window.scrollTo = jest.fn();
-        select = mount(
-            <SingleSelect onChange={onChange} placeholder="Choose">
-                <OptionItem label="item 1" value="1" />
-                <OptionItem label="item 2" value="2" />
-                <OptionItem label="item 3" value="3" />
-            </SingleSelect>,
-        );
+
+        // We mock console.error() because React logs a bunch of errors pertaining
+        // to the use href="javascript:void(0);".
+        jest.spyOn(console, "error").mockImplementation(() => {});
+    });
+
+    afterEach(() => {
+        window.scrollTo.mockClear();
+        onChange.mockReset();
+        // $FlowIgnore[prop-missing]: Flow doesn't understand that we're mocking console.error
+        console.error.mockReset(); // eslint-disable-line no-console
     });
 
     afterEach(() => {
         window.scrollTo.mockClear();
     });
 
-    it("closes/opens the select on mouse click, space, and enter", () => {
-        const opener = select.find(SelectOpener);
-        expect(select.state("open")).toEqual(false);
-
-        // Open select with mouse
-        opener.simulate("mousedown");
-        opener.simulate("mouseup");
-        opener.simulate("click");
-        expect(select.state("open")).toEqual(true);
-
-        // Close select with space
-        opener.simulate("keydown", {keyCode: keyCodes.space});
-        opener.simulate("keyup", {keyCode: keyCodes.space});
-        expect(select.state("open")).toEqual(false);
-
-        // Should open with enter
-        opener.simulate("keydown", {keyCode: keyCodes.enter});
-        opener.simulate("keyup", {keyCode: keyCodes.enter});
-        expect(select.state("open")).toEqual(true);
-    });
-
-    it("displays selected item label as expected", () => {
-        select.setState({open: true});
-        const opener = select.find(SelectOpener);
-        const noop = jest.fn();
-        const nativeEvent = {
-            nativeEvent: {stopImmediatePropagation: noop},
-        };
-
-        // Grab the second item in the list
-        const item = select.find(OptionItem).at(1);
-        expect(item.text()).toEqual("item 2");
-        // Click the item
-        item.simulate("mousedown");
-        item.simulate("mouseup", nativeEvent);
-        item.simulate("click");
-
-        // Expect select's onChange callback to have been called
-        expect(onChange).toHaveBeenCalledTimes(1);
-
-        // This select should close afer a single item selection
-        expect(select.state("open")).toEqual(false);
-
-        // Selected is still false because the client of SingleSelect is
-        // expected to change the props on SingleSelect
-        expect(item.prop("selected")).toEqual(false);
-
-        // Let's set it manually here via selectedValue on SingleSelect
-        select.setProps({selectedValue: "2"});
-
-        // Now the SelectOpener should display the label of the selected item
-        // instead of the placeholder
-        expect(opener.text()).toEqual("item 2");
-    });
-
-    it("verifies testId is added to the opener", () => {
-        // Arrange
-        const wrapper = mount(
-            <SingleSelect
-                onChange={onChange}
-                placeholder="Choose"
-                testId="some-test-id"
-            >
+    describe("uncontrolled", () => {
+        const uncontrolledSingleSelect = (
+            <SingleSelect onChange={onChange} placeholder="Choose">
                 <OptionItem label="item 1" value="1" />
                 <OptionItem label="item 2" value="2" />
-            </SingleSelect>,
+                <OptionItem label="item 3" value="3" />
+            </SingleSelect>
         );
 
-        // Act
-        const opener = wrapper.find(SelectOpener).find("button");
+        describe("mouse", () => {
+            it("should open when clicking on the default opener", () => {
+                // Arrange
+                render(uncontrolledSingleSelect);
+                const opener = screen.getByText("Choose");
 
-        // Assert
-        expect(opener.prop("data-test-id")).toBe("some-test-id");
+                // Act
+                userEvent.click(opener);
+
+                // Assert
+                expect(screen.queryByRole("listbox")).toBeInTheDocument();
+            });
+
+            it("the opener should keep the focus after opening", () => {
+                // Arrange
+                mockRequestAnimationFrame(FRAME_DURATION);
+                render(uncontrolledSingleSelect);
+                const opener = screen.getByText("Choose");
+
+                // Act
+                userEvent.click(opener);
+                jest.advanceTimersByTime(FRAME_DURATION);
+
+                expect(screen.getByRole("button")).toHaveFocus();
+            });
+
+            it("should close when clicking on the default opener a second time", () => {
+                // Arrange
+                render(uncontrolledSingleSelect);
+                const opener = screen.getByText("Choose");
+                userEvent.click(opener);
+
+                // Act
+                userEvent.click(opener);
+
+                // Assert
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
+
+            it("should close when clicking on an item", () => {
+                // Arrange
+                render(uncontrolledSingleSelect);
+                const opener = screen.getByText("Choose");
+                userEvent.click(opener);
+
+                // Act
+                userEvent.click(screen.getByText("item 1"));
+
+                // Assert
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
+
+            it("should call onChange() with the item's value when clicking it", () => {
+                // Arrange
+                render(uncontrolledSingleSelect);
+                const opener = screen.getByText("Choose");
+                userEvent.click(opener);
+
+                // Act
+                userEvent.click(screen.getByText("item 1")); // closed
+
+                // Assert
+                expect(onChange).toHaveBeenCalledWith("1"); // value
+            });
+        });
+
+        describe("keyboard", () => {
+            describe.each([{key: "{enter}"}, {key: "{space}"}])(
+                "$key",
+                ({key}) => {
+                    it("should open when pressing the key when the default opener is focused", () => {
+                        // Arrange
+                        render(uncontrolledSingleSelect);
+                        userEvent.tab();
+
+                        // Act
+                        userEvent.keyboard(key);
+
+                        // Assert
+                        expect(
+                            screen.queryByRole("listbox"),
+                        ).toBeInTheDocument();
+                    });
+
+                    it("should focus the first item in the dropdown", () => {
+                        // Arrange
+                        mockRequestAnimationFrame(FRAME_DURATION);
+                        render(uncontrolledSingleSelect);
+                        userEvent.tab();
+
+                        // Act
+                        userEvent.keyboard(key);
+                        jest.advanceTimersByTime(FRAME_DURATION);
+
+                        // Assert
+                        const options = screen.getAllByRole("option");
+                        expect(options[0]).toHaveFocus();
+                    });
+                },
+            );
+
+            it("should not select an item when pressing {enter}", () => {
+                // Arrange
+                mockRequestAnimationFrame(FRAME_DURATION);
+                render(uncontrolledSingleSelect);
+                userEvent.tab();
+                userEvent.keyboard("{enter}"); // open
+                jest.advanceTimersByTime(FRAME_DURATION);
+
+                // Act
+                userEvent.keyboard("{enter}");
+
+                // Assert
+                expect(onChange).not.toHaveBeenCalled();
+                expect(screen.queryByRole("listbox")).toBeInTheDocument();
+            });
+
+            it("should select an item when pressing {space}", () => {
+                // Arrange
+                mockRequestAnimationFrame(FRAME_DURATION);
+                render(uncontrolledSingleSelect);
+                userEvent.tab();
+                userEvent.keyboard("{enter}"); // open
+                jest.advanceTimersByTime(FRAME_DURATION);
+
+                // Act
+                userEvent.keyboard("{space}");
+
+                // Assert
+                expect(onChange).toHaveBeenCalledWith("1");
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
+
+            it("should dismiss the dropdown when pressing {escape}", () => {
+                // Arrange
+                mockRequestAnimationFrame(FRAME_DURATION);
+                render(uncontrolledSingleSelect);
+                userEvent.tab();
+                userEvent.keyboard("{enter}"); // open
+                jest.advanceTimersByTime(FRAME_DURATION);
+
+                // Act
+                userEvent.keyboard("{escape}");
+
+                // Assert
+                expect(onChange).not.toHaveBeenCalled();
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
+        });
     });
 
     describe("Controlled component", () => {
@@ -156,12 +252,10 @@ describe("SingleSelect", () => {
         it("opens the menu when the parent updates its state", () => {
             // Arrange
             const onToggleMock = jest.fn();
-            const wrapper = mount(
-                <ControlledComponent onToggle={onToggleMock} />,
-            );
+            render(<ControlledComponent onToggle={onToggleMock} />);
 
             // Act
-            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            userEvent.click(screen.getByTestId("parent-button"));
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(true);
@@ -170,15 +264,13 @@ describe("SingleSelect", () => {
         it("closes the menu when the parent updates its state", () => {
             // Arrange
             const onToggleMock = jest.fn();
-            const wrapper = mount(
-                <ControlledComponent onToggle={onToggleMock} />,
-            );
+            render(<ControlledComponent onToggle={onToggleMock} />);
 
             // Act
             // open the menu from the outside
-            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            userEvent.click(screen.getByTestId("parent-button"));
             // click on first item
-            wrapper.find(OptionItem).at(0).simulate("click");
+            userEvent.click(screen.getByText("item 1"));
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(false);
@@ -187,12 +279,10 @@ describe("SingleSelect", () => {
         it("should still allow the opener to open the menu", () => {
             // Arrange
             const onToggleMock = jest.fn();
-            const wrapper = mount(
-                <ControlledComponent onToggle={onToggleMock} />,
-            );
+            render(<ControlledComponent onToggle={onToggleMock} />);
 
             // Act
-            wrapper.find(SelectOpener).simulate("click");
+            userEvent.click(screen.getByText("Choose"));
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(true);
@@ -200,41 +290,43 @@ describe("SingleSelect", () => {
 
         it("opens the menu when the anchor is clicked once", () => {
             // Arrange
-            const wrapper = mount(<ControlledComponent />);
+            render(<ControlledComponent />);
 
             // Act
             // click on the anchor
-            wrapper.find(SelectOpener).simulate("click");
+            userEvent.click(screen.getByText("Choose"));
 
             // Assert
-            expect(wrapper.find(SingleSelect).prop("opened")).toBe(true);
+            expect(screen.queryByRole("listbox")).toBeInTheDocument();
         });
 
         it("closes the menu when the anchor is clicked", () => {
             // Arrange
-            const wrapper = mount(<ControlledComponent />);
+            render(<ControlledComponent />);
 
             // Act
             // open the menu from the outside
-            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            userEvent.click(screen.getByTestId("parent-button"));
             // click on the dropdown anchor to hide the menu
-            wrapper.find(SelectOpener).simulate("click");
+            userEvent.click(screen.getByText("Choose"));
 
             // Assert
-            expect(wrapper.find(SingleSelect).prop("opened")).toBe(false);
+            expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
         });
     });
 
     describe("Custom Opener", () => {
         it("opens the menu when clicking on the custom opener", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <SingleSelect
                     onChange={jest.fn()}
                     placeholder="custom opener"
                     testId="openTest"
                     opener={(eventState) => (
-                        <button aria-label="Search" onClick={jest.fn()} />
+                        <button aria-label="Search" onClick={jest.fn()}>
+                            Search
+                        </button>
                     )}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -244,24 +336,23 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = wrapper.find(DropdownOpener);
-            opener.simulate("click");
+            const opener = screen.getByText("Search");
+            userEvent.click(opener);
 
             // Assert
-            expect(wrapper.state("open")).toBe(true);
+            expect(screen.queryByRole("listbox")).toBeInTheDocument();
         });
 
         it("calls the custom onClick handler", () => {
             // Arrange
             const onClickMock = jest.fn();
 
-            const wrapper = mount(
+            render(
                 <SingleSelect
                     onChange={jest.fn()}
                     placeholder="custom opener"
                     opener={() => (
                         <button
-                            data-test-id="custom-opener"
                             aria-label="Custom opener"
                             onClick={onClickMock}
                         />
@@ -274,41 +365,16 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = wrapper.find(DropdownOpener);
-            opener.simulate("click");
+            const opener = screen.getByLabelText("Custom opener");
+            userEvent.click(opener);
 
             // Assert
             expect(onClickMock).toHaveBeenCalledTimes(1);
         });
 
-        it("verifies testId is passed from the custom opener", () => {
-            // Arrange
-            const menu = mount(
-                <SingleSelect
-                    onChange={onChange}
-                    placeholder="Choose"
-                    opener={() => (
-                        <button
-                            data-test-id="custom-opener"
-                            aria-label="Custom opener"
-                        />
-                    )}
-                >
-                    <OptionItem label="item 1" value="1" />
-                    <OptionItem label="item 2" value="2" />
-                </SingleSelect>,
-            );
-
-            // Act
-            const opener = menu.find(DropdownOpener).find("button");
-
-            // Assert
-            expect(opener.prop("data-test-id")).toBe("custom-opener");
-        });
-
         it("verifies testId is not passed from the parent element", () => {
             // Arrange
-            const menu = mount(
+            render(
                 <SingleSelect
                     onChange={onChange}
                     placeholder="Choose"
@@ -321,15 +387,15 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = menu.find(DropdownOpener).find("button");
+            const opener = screen.getByLabelText("Custom opener");
 
             // Assert
-            expect(opener.prop("data-test-id")).not.toBeDefined();
+            expect(opener).not.toHaveAttribute("data-test-id");
         });
 
         it("passes the placeholder text to the custom opener", () => {
             // Arrange
-            const menu = mount(
+            render(
                 <SingleSelect
                     placeholder="Custom placeholder"
                     testId="openTest"
@@ -349,53 +415,73 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = menu.find(DropdownOpener);
+            const opener = screen.getByTestId("custom-opener");
             // open dropdown
-            opener.simulate("click");
-            const openerElement = menu.find(`[data-test-id="custom-opener"]`);
+            userEvent.click(opener);
 
             // Assert
-            expect(openerElement).toHaveText("Custom placeholder");
+            expect(opener).toHaveTextContent("Custom placeholder");
         });
 
         it("passes the selected label to the custom opener", () => {
             // Arrange
-            const menu = mount(
-                <SingleSelect
-                    placeholder="Custom placeholder"
-                    testId="openTest"
-                    onChange={jest.fn()}
-                    opener={({text}) => (
-                        <button
-                            onClick={jest.fn()}
-                            data-test-id="custom-opener"
-                        >
-                            {text}
-                        </button>
-                    )}
-                >
-                    <OptionItem label="Toggle A" value="toggle_a" />
-                    <OptionItem label="Toggle B" value="toggle_b" />
-                </SingleSelect>,
-            );
+            type Props = {||};
+
+            type State = {|
+                selectedValue: ?string,
+            |};
+
+            class ControlledComponent extends React.Component<Props, State> {
+                state: State = {
+                    selectedValue: null,
+                };
+
+                render(): React.Node {
+                    return (
+                        <React.Fragment>
+                            <SingleSelect
+                                onChange={(value) =>
+                                    this.setState({selectedValue: value})
+                                }
+                                selectedValue={this.state.selectedValue}
+                                placeholder="Custom placeholder"
+                                opener={({text}) => (
+                                    <button
+                                        onClick={jest.fn()}
+                                        data-test-id="custom-opener"
+                                    >
+                                        {text}
+                                    </button>
+                                )}
+                            >
+                                <OptionItem label="Toggle A" value="toggle_a" />
+                                <OptionItem label="Toggle B" value="toggle_b" />
+                            </SingleSelect>
+                        </React.Fragment>
+                    );
+                }
+            }
+
+            render(<ControlledComponent />);
 
             // Act
-            const opener = menu.find(DropdownOpener);
+            const opener = screen.getByTestId("custom-opener");
             // open dropdown
-            opener.simulate("click");
-            // select the second item manually via selectedValue on SingleSelect
-            menu.setProps({selectedValue: "toggle_b"});
-            const openerElement = menu.find(`[data-test-id="custom-opener"]`);
+            userEvent.click(opener);
+            userEvent.click(screen.getByText("Toggle B"));
+            jest.advanceTimersByTime(100);
 
             // Assert
-            expect(openerElement).toHaveText("Toggle B");
+            // NOTE: the opener text is only updated in response to changes to the
+            // `selectedValue` prop.
+            expect(opener).toHaveTextContent("Toggle B");
         });
     });
 
     describe("isFilterable", () => {
         it("displays SearchTextInput when isFilterable is true", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <SingleSelect
                     onChange={onChange}
                     isFilterable={true}
@@ -406,18 +492,18 @@ describe("SingleSelect", () => {
                     <OptionItem label="item 3" value="3" />
                 </SingleSelect>,
             );
-            wrapper.setState({open: true});
+            userEvent.click(screen.getByText("Choose"));
 
             // Act
-            const searchInput = wrapper.find(SearchTextInput);
+            const searchInput = screen.queryByRole("textbox");
 
             // Assert
-            expect(searchInput.exists()).toBe(true);
+            expect(searchInput).toBeInTheDocument();
         });
 
         it("filters the items by the search input (case insensitive)", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <SingleSelect
                     onChange={onChange}
                     isFilterable={true}
@@ -428,21 +514,21 @@ describe("SingleSelect", () => {
                     <OptionItem label="item 3" value="3" />
                 </SingleSelect>,
             );
+            userEvent.click(screen.getByText("Choose"));
 
             // Act
-            wrapper.setState({
-                open: true,
-                searchText: "Item 2",
-            });
+            const searchInput = screen.getByRole("textbox");
+            userEvent.paste(searchInput, "Item 2");
 
             // Assert
-            expect(wrapper.find(OptionItem).at(0).text()).toEqual("item 2");
-            expect(wrapper.find(OptionItem).at(1).exists()).toBe(false);
+            const options = screen.getAllByRole("option");
+            expect(options).toHaveLength(1);
+            expect(options[0]).toHaveTextContent("item 2");
         });
 
         it("Type something in SearchTextInput should update searchText in SingleSelect", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <SingleSelect
                     onChange={onChange}
                     isFilterable={true}
@@ -453,20 +539,23 @@ describe("SingleSelect", () => {
                     <OptionItem label="item 3" value="3" />
                 </SingleSelect>,
             );
-
-            wrapper.setState({open: true});
-            const searchInput = wrapper.find(SearchTextInput).find("input");
+            userEvent.click(screen.getByText("Choose"));
+            const searchInput = screen.getByRole("textbox");
+            userEvent.paste(searchInput, "Item 2");
 
             // Act
-            searchInput.simulate("change", {target: {value: "Item 1"}});
+            userEvent.clear(searchInput);
+            userEvent.paste(searchInput, "Item 1");
 
             // Assert
-            expect(wrapper).toHaveState({searchText: "Item 1"});
+            const options = screen.getAllByRole("option");
+            expect(options).toHaveLength(1);
+            expect(options[0]).toHaveTextContent("item 1");
         });
 
         it("Click dismiss button should clear the searchText in SingleSelect", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <SingleSelect
                     onChange={onChange}
                     isFilterable={true}
@@ -477,20 +566,22 @@ describe("SingleSelect", () => {
                     <OptionItem label="item 3" value="3" />
                 </SingleSelect>,
             );
+            userEvent.click(screen.getByText("Choose"));
+            const searchInput = screen.getByRole("textbox");
+            userEvent.paste(searchInput, "Should be cleared");
 
-            wrapper.setState({open: true, searchText: "Should be cleared"});
-            const dismissBtn = wrapper.find(IconButton);
+            const dismissBtn = screen.getByLabelText("Clear search");
 
             // Act
-            dismissBtn.simulate("click");
+            userEvent.click(dismissBtn);
 
             // Assert
-            expect(wrapper).toHaveState({searchText: ""});
+            expect(searchInput.textContent).toEqual("");
         });
 
         it("Open SingleSelect should clear the searchText", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <SingleSelect
                     onChange={onChange}
                     isFilterable={true}
@@ -501,15 +592,16 @@ describe("SingleSelect", () => {
                     <OptionItem label="item 3" value="3" />
                 </SingleSelect>,
             );
-
-            wrapper.setState({searchText: "some text"});
-            const opener = wrapper.find(SelectOpener);
+            const opener = screen.getByText("Choose");
+            userEvent.click(opener);
+            const searchInput = screen.getByRole("textbox");
+            userEvent.paste(searchInput, "some text");
 
             // Act
-            opener.simulate("click");
+            userEvent.click(opener);
 
             // Assert
-            expect(wrapper).toHaveState({searchText: ""});
+            expect(searchInput.textContent).toEqual("");
         });
     });
 });

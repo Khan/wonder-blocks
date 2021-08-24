@@ -748,10 +748,13 @@ class DropdownCore extends React.Component<Props, State> {
                     }}
                 >
                     {({placement, ref, style, outOfBoundaries}) => {
+                        // For some reason react-popper includes `pointerEvents: "none"`
+                        // in the `style` it passes to us, but only when running the tests.
+                        const {pointerEvents: _, ...restStyle} = style;
                         return (
                             <div
                                 ref={ref}
-                                style={style}
+                                style={restStyle}
                                 data-placement={placement}
                             >
                                 {this.renderItems(outOfBoundaries)}
