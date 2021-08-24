@@ -748,10 +748,11 @@ class DropdownCore extends React.Component<Props, State> {
                     }}
                 >
                     {({placement, ref, style, outOfBoundaries}) => {
+                        const {pointerEvents: _, ...restStyle} = style;
                         return (
                             <div
                                 ref={ref}
-                                style={style}
+                                style={restStyle}
                                 data-placement={placement}
                             >
                                 {this.renderItems(outOfBoundaries)}
