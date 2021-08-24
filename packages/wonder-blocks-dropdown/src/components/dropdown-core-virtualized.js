@@ -226,7 +226,7 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
     }
 
     render(): React.Node {
-        if (!this.state.width) {
+        if (this.state.width === undefined) {
             // if we don't pass a fixed value, then we need to render
             // non-virtualized items to calculate width
             return this.renderInitialItems();
