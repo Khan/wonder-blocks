@@ -1,5 +1,9 @@
 module.exports = {
-    extends: ["@khanacademy"],
+    extends: [
+        "@khanacademy",
+        // This config includes rules from @testing-library/jest-dom as well
+        "plugin:testing-library/react",
+    ],
     plugins: ["import", "jest", "promise", "monorepo"],
     settings: {
         react: {
@@ -79,5 +83,12 @@ module.exports = {
                 ],
             },
         ],
+
+        // testing-library
+        "testing-library/prefer-user-event": "error",
+        // These rules results in a lot of false positives
+        "testing-library/render-result-naming-convention": "off",
+        "testing-library/await-async-utils": "off",
+        "testing-library/await-async-query": "off",
     },
 };
