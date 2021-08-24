@@ -1,91 +1,16 @@
 /* eslint-disable import/no-commonjs */
-const babelConfig = require("./build-settings/babel.config.js");
-
-module.exports = function (wallaby) {
-    const tests = [
-        "packages/**/__tests__/*.test.js",
-        "shared-unpackaged/**/*.test.js",
-        "consistency-tests/__tests__/*.test.js",
-    ];
-
+/**
+ * Configuration for the wallabyjs test runner.
+ * See https://wallabyjs.com/ for details.
+ *
+ * To run the tests you'll need to install the wallaby plugin for
+ * your IDE, see https://wallabyjs.com/download/.  Once the plugin
+ * is installed, use it to select this file as the wallaby config you
+ * want to use then start wallaby.
+ */
+module.exports = (wallaby) => {
     return {
-        tests,
-
-        // Wallaby needs to know about all files that may be loaded because
-        // of running a test.
-        files: [
-            "packages/**/*.js",
-            "shared-unpackaged/**/*.js",
-            "consistency-tests/**/*.js",
-            "utils/**/*.js",
-            {pattern: "config/jest/*.js", instrument: false},
-
-            // These paths are excluded.
-            ...tests.map((test) => `!${test}`),
-        ],
-
-        filesWithNoCoverageCalculated: [
-            "packages/wonder-blocks-*/dist/**/*.js",
-            "config/jest/*.js",
-            "utils/**/*.js", // we ignore these files in .codecov.yml as well
-        ],
-
-        // Wallaby does its own compilation of .js files to support its
-        // advanced logging features.  Wallaby can't parse the flow and
-        // JSX in our source files so need to provide a babel configuration.
-        compilers: {
-            "packages/**/*.js": wallaby.compilers.babel(babelConfig),
-            "shared-unpackaged/**/*.js": wallaby.compilers.babel(babelConfig),
-            "consistency-tests/**/*.test.js": wallaby.compilers.babel(
-                babelConfig,
-            ),
-            "utils/**/*.js": wallaby.compilers.babel(babelConfig),
-        },
-
-        env: {
-            type: "node",
-            runner: "node",
-        },
-
-        testFramework: "jest",
-
-        setup: function (wallaby) {
-            // We require "path" here because this setup function is run
-            // in a different context and does not have access to variables
-            // from its closure.
-            const path = require("path");
-
-            const jestConfig = require(path.join(
-                wallaby.localProjectDir,
-                "./config/jest/test.config.js",
-            ));
-
-            // Prevent our jest configuration from re-compiling the files
-            // since wallaby has already done that.
-            delete jestConfig.transform;
-
-            // Map @khanacademy/wonder-blocks-foo to /packages/wonder-blocks-foo
-            // so that we load the source code for dependencies when running tests.
-            jestConfig.moduleNameMapper = {
-                "^@khanacademy/(.*)$":
-                    wallaby.projectCacheDir + "/packages/$1/index.js",
-            };
-
-            wallaby.testFramework.configure(jestConfig);
-        },
-
-        // Uncomment to only run tests for files that have been changed.
-        // Coverage reports on http://wallabyjs.com/app will be incomplete
-        // but initial start will be faster.
-        // automaticTestFileSelection: false,
-
-        // Uncomment to only run tests/suites using .only().
-        // Coverage reports on http://wallabyjs.com/app will be incomplete
-        // but initial start will be faster.
-        // runSelectedTestsOnly: true,
-
-        // Uncomment to get additional debug information in the wallaby
-        // console when running testts.
-        // debug: true,
+        autoDetect: true,
+        trace: true,
     };
 };
