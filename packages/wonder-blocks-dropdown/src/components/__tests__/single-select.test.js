@@ -1,22 +1,13 @@
 //@flow
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 // eslint-disable-next-line import/no-unassigned-import
 import "@testing-library/jest-dom/extend-expect";
 
 import OptionItem from "../option-item.js";
 import SingleSelect from "../single-select.js";
 
-const FRAME_DURATION = 17;
-
-const mockRequestAnimationFrame = (frameDuration: number = FRAME_DURATION) => {
-    jest.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => {
-        const frameId = 0;
-        setTimeout(() => cb(frameId), frameDuration);
-        return frameId;
-    });
-};
+import userEvent from "../../../../../utils/testing/user-event.js";
 
 describe("SingleSelect", () => {
     const onChange = jest.fn();
@@ -66,13 +57,11 @@ describe("SingleSelect", () => {
 
             it("the opener should keep the focus after opening", () => {
                 // Arrange
-                mockRequestAnimationFrame(FRAME_DURATION);
                 render(uncontrolledSingleSelect);
                 const opener = screen.getByText("Choose");
 
                 // Act
                 userEvent.click(opener);
-                jest.advanceTimersByTime(FRAME_DURATION);
 
                 expect(screen.getByRole("button")).toHaveFocus();
             });
@@ -90,16 +79,13 @@ describe("SingleSelect", () => {
                 expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
             });
 
-            it("should close when clicking on an item", async () => {
+            it("should close when clicking on an item", () => {
                 // Arrange
-                mockRequestAnimationFrame(FRAME_DURATION);
                 render(uncontrolledSingleSelect);
                 const opener = screen.getByText("Choose");
                 userEvent.click(opener);
-                jest.advanceTimersByTime(FRAME_DURATION);
 
                 // Act
-                await screen.findByText("item 1");
                 userEvent.click(screen.getByText("item 1"));
 
                 // Assert
@@ -108,11 +94,9 @@ describe("SingleSelect", () => {
 
             it("should call onChange() with the item's value when clicking it", () => {
                 // Arrange
-                mockRequestAnimationFrame(FRAME_DURATION);
                 render(uncontrolledSingleSelect);
                 const opener = screen.getByText("Choose");
                 userEvent.click(opener);
-                jest.advanceTimersByTime(FRAME_DURATION);
 
                 // Act
                 userEvent.click(screen.getByText("item 1")); // closed
@@ -142,13 +126,11 @@ describe("SingleSelect", () => {
 
                     it("should focus the first item in the dropdown", () => {
                         // Arrange
-                        mockRequestAnimationFrame(FRAME_DURATION);
                         render(uncontrolledSingleSelect);
                         userEvent.tab();
 
                         // Act
                         userEvent.keyboard(key);
-                        jest.advanceTimersByTime(FRAME_DURATION);
 
                         // Assert
                         const options = screen.getAllByRole("option");
@@ -159,11 +141,9 @@ describe("SingleSelect", () => {
 
             it("should not select an item when pressing {enter}", () => {
                 // Arrange
-                mockRequestAnimationFrame(FRAME_DURATION);
                 render(uncontrolledSingleSelect);
                 userEvent.tab();
                 userEvent.keyboard("{enter}"); // open
-                jest.advanceTimersByTime(FRAME_DURATION);
 
                 // Act
                 userEvent.keyboard("{enter}");
@@ -175,11 +155,9 @@ describe("SingleSelect", () => {
 
             it("should select an item when pressing {space}", () => {
                 // Arrange
-                mockRequestAnimationFrame(FRAME_DURATION);
                 render(uncontrolledSingleSelect);
                 userEvent.tab();
                 userEvent.keyboard("{enter}"); // open
-                jest.advanceTimersByTime(FRAME_DURATION);
 
                 // Act
                 userEvent.keyboard("{space}");
@@ -191,11 +169,9 @@ describe("SingleSelect", () => {
 
             it("should dismiss the dropdown when pressing {escape}", () => {
                 // Arrange
-                mockRequestAnimationFrame(FRAME_DURATION);
                 render(uncontrolledSingleSelect);
                 userEvent.tab();
                 userEvent.keyboard("{enter}"); // open
-                jest.advanceTimersByTime(FRAME_DURATION);
 
                 // Act
                 userEvent.keyboard("{escape}");
@@ -266,12 +242,10 @@ describe("SingleSelect", () => {
 
         it("closes the menu when the parent updates its state", () => {
             // Arrange
-            mockRequestAnimationFrame(FRAME_DURATION);
             const onToggleMock = jest.fn();
             render(<ControlledComponent onToggle={onToggleMock} />);
             // open the menu from the outside
             userEvent.click(screen.getByTestId("parent-button"));
-            jest.advanceTimersByTime(FRAME_DURATION);
 
             // Act
             // click on first item
@@ -467,14 +441,12 @@ describe("SingleSelect", () => {
                 }
             }
 
-            mockRequestAnimationFrame(FRAME_DURATION);
             render(<ControlledComponent />);
 
             // Act
             const opener = screen.getByTestId("custom-opener");
             // open dropdown
             userEvent.click(opener);
-            jest.advanceTimersByTime(FRAME_DURATION);
             userEvent.click(screen.getByText("Toggle B"));
             jest.advanceTimersByTime(100);
 
@@ -510,7 +482,6 @@ describe("SingleSelect", () => {
 
         it("filters the items by the search input (case insensitive)", () => {
             // Arrange
-            mockRequestAnimationFrame(FRAME_DURATION);
             render(
                 <SingleSelect
                     onChange={onChange}
@@ -523,7 +494,6 @@ describe("SingleSelect", () => {
                 </SingleSelect>,
             );
             userEvent.click(screen.getByText("Choose"));
-            jest.advanceTimersByTime(FRAME_DURATION);
 
             // Act
             const searchInput = screen.getByRole("textbox");
@@ -537,7 +507,6 @@ describe("SingleSelect", () => {
 
         it("Type something in SearchTextInput should update searchText in SingleSelect", () => {
             // Arrange
-            mockRequestAnimationFrame(FRAME_DURATION);
             render(
                 <SingleSelect
                     onChange={onChange}
@@ -550,7 +519,6 @@ describe("SingleSelect", () => {
                 </SingleSelect>,
             );
             userEvent.click(screen.getByText("Choose"));
-            jest.advanceTimersByTime(FRAME_DURATION);
             const searchInput = screen.getByRole("textbox");
             userEvent.paste(searchInput, "Item 2");
 
