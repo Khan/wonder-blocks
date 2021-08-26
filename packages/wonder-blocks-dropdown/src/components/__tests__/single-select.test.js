@@ -1,24 +1,13 @@
 //@flow
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
 // eslint-disable-next-line import/no-unassigned-import
 import "@testing-library/jest-dom/extend-expect";
 
 import OptionItem from "../option-item.js";
 import SingleSelect from "../single-select.js";
 
-jest.mock("../dropdown-core-virtualized.js");
-
-const FRAME_DURATION = 17;
-
-const mockRequestAnimationFrame = (frameDuration: number = FRAME_DURATION) => {
-    jest.spyOn(window, "requestAnimationFrame").mockImplementation((cb) => {
-        const frameId = 0;
-        setTimeout(() => cb(frameId), frameDuration);
-        return frameId;
-    });
-};
+import userEvent from "../../../../../utils/testing/user-event.js";
 
 describe("SingleSelect", () => {
     const onChange = jest.fn();
@@ -68,13 +57,11 @@ describe("SingleSelect", () => {
 
             it("the opener should keep the focus after opening", () => {
                 // Arrange
-                mockRequestAnimationFrame(FRAME_DURATION);
                 render(uncontrolledSingleSelect);
                 const opener = screen.getByText("Choose");
 
                 // Act
                 userEvent.click(opener);
-                jest.advanceTimersByTime(FRAME_DURATION);
 
                 expect(screen.getByRole("button")).toHaveFocus();
             });
@@ -139,13 +126,11 @@ describe("SingleSelect", () => {
 
                     it("should focus the first item in the dropdown", () => {
                         // Arrange
-                        mockRequestAnimationFrame(FRAME_DURATION);
                         render(uncontrolledSingleSelect);
                         userEvent.tab();
 
                         // Act
                         userEvent.keyboard(key);
-                        jest.advanceTimersByTime(FRAME_DURATION);
 
                         // Assert
                         const options = screen.getAllByRole("option");
@@ -156,11 +141,9 @@ describe("SingleSelect", () => {
 
             it("should not select an item when pressing {enter}", () => {
                 // Arrange
-                mockRequestAnimationFrame(FRAME_DURATION);
                 render(uncontrolledSingleSelect);
                 userEvent.tab();
                 userEvent.keyboard("{enter}"); // open
-                jest.advanceTimersByTime(FRAME_DURATION);
 
                 // Act
                 userEvent.keyboard("{enter}");
@@ -172,11 +155,9 @@ describe("SingleSelect", () => {
 
             it("should select an item when pressing {space}", () => {
                 // Arrange
-                mockRequestAnimationFrame(FRAME_DURATION);
                 render(uncontrolledSingleSelect);
                 userEvent.tab();
                 userEvent.keyboard("{enter}"); // open
-                jest.advanceTimersByTime(FRAME_DURATION);
 
                 // Act
                 userEvent.keyboard("{space}");
@@ -188,11 +169,9 @@ describe("SingleSelect", () => {
 
             it("should dismiss the dropdown when pressing {escape}", () => {
                 // Arrange
-                mockRequestAnimationFrame(FRAME_DURATION);
                 render(uncontrolledSingleSelect);
                 userEvent.tab();
                 userEvent.keyboard("{enter}"); // open
-                jest.advanceTimersByTime(FRAME_DURATION);
 
                 // Act
                 userEvent.keyboard("{escape}");
@@ -265,10 +244,10 @@ describe("SingleSelect", () => {
             // Arrange
             const onToggleMock = jest.fn();
             render(<ControlledComponent onToggle={onToggleMock} />);
-
-            // Act
             // open the menu from the outside
             userEvent.click(screen.getByTestId("parent-button"));
+
+            // Act
             // click on first item
             userEvent.click(screen.getByText("item 1"));
 
