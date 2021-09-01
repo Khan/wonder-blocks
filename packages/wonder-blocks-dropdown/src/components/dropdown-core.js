@@ -187,6 +187,11 @@ class DropdownCore extends React.Component<Props, State> {
     listRef: {|
         current: null | React.ElementRef<typeof List>,
     |};
+    // Keeps a reference of the menu instance so we can focus it when the menu
+    // is opened for screen reader support
+    menuRef: {|
+        current: null | React.ElementRef<typeof View>,
+    |};
 
     // Figure out if the same items are focusable. If an item has been added or
     // removed, this method will return false.
@@ -261,6 +266,7 @@ class DropdownCore extends React.Component<Props, State> {
         };
 
         this.listRef = React.createRef();
+        this.menuRef = React.createRef();
     }
 
     componentDidMount() {
@@ -332,30 +338,21 @@ class DropdownCore extends React.Component<Props, State> {
     // Figure out focus states for the dropdown after it has changed from open
     // to closed or vice versa
     initialFocusItem() {
-        const {
-            keyboard,
-            initialFocusedIndex,
-            open,
-            onSearchTextChanged,
-            searchText,
-        } = this.props;
+        const {open, onSearchTextChanged, searchText} = this.props;
 
         if (open) {
-            // Reset focused index
-            this.focusedIndex = initialFocusedIndex;
-            // We explicitly set focus to the first item only if we sense
-            // that the user opened the menu via the keyboard
-            if (keyboard) {
-                this.keyboardNavOn = true;
-                this.scheduleToFocusCurrentItem();
-            }
-
             const showSearchTextInput =
                 !!onSearchTextChanged && typeof searchText === "string";
 
             // focus on the search field (if is enabled)
             if (showSearchTextInput) {
                 this.scheduleToFocusCurrentItem();
+            } else {
+                // Focus on the menu. This allows screen readers to move focus into
+                // the menu so it can be interacted with - especially important for
+                // mobile screen readers because mobile browsers cannot focus
+                // ordinary divs like the menu items
+                this.focusMenu();
             }
         } else if (!open) {
             // If the dropdown has been closed, reset the keyboardNavOn boolean
@@ -400,6 +397,17 @@ class DropdownCore extends React.Component<Props, State> {
     scheduleToFocusCurrentItem() {
         // wait for windowed items to be recalculated
         this.props.schedule.animationFrame(() => this.focusCurrentItem());
+    }
+
+    focusMenu() {
+        this.props.schedule.animationFrame(() => {
+            if (this.menuRef.current) {
+                const node = ReactDOM.findDOMNode(this.menuRef.current);
+                if (node instanceof HTMLElement) {
+                    node.focus();
+                }
+            }
+        });
     }
 
     focusCurrentItem() {
@@ -706,6 +714,8 @@ class DropdownCore extends React.Component<Props, State> {
                     {minWidth: minDropdownWidth},
                     dropdownStyle,
                 ]}
+                ref={this.menuRef}
+                tabIndex={0}
             >
                 <DropdownCoreVirtualized
                     data={itemsList}

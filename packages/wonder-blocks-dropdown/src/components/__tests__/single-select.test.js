@@ -55,7 +55,7 @@ describe("SingleSelect", () => {
                 expect(screen.queryByRole("listbox")).toBeInTheDocument();
             });
 
-            it("the opener should keep the focus after opening", () => {
+            it("the opener should focus the listbox menu after opening", () => {
                 // Arrange
                 render(uncontrolledSingleSelect);
                 const opener = screen.getByText("Choose");
@@ -63,7 +63,7 @@ describe("SingleSelect", () => {
                 // Act
                 userEvent.click(opener);
 
-                expect(screen.getByRole("button")).toHaveFocus();
+                expect(screen.getByRole("listbox")).toHaveFocus();
             });
 
             it("should close when clicking on the default opener a second time", () => {
@@ -124,7 +124,7 @@ describe("SingleSelect", () => {
                         ).toBeInTheDocument();
                     });
 
-                    it("should focus the first item in the dropdown", () => {
+                    it("should focus the listbox menu container", () => {
                         // Arrange
                         render(uncontrolledSingleSelect);
                         userEvent.tab();
@@ -133,8 +133,8 @@ describe("SingleSelect", () => {
                         userEvent.keyboard(key);
 
                         // Assert
-                        const options = screen.getAllByRole("option");
-                        expect(options[0]).toHaveFocus();
+                        const listbox = screen.getByRole("listbox");
+                        expect(listbox).toHaveFocus();
                     });
                 },
             );
@@ -160,6 +160,7 @@ describe("SingleSelect", () => {
                 userEvent.keyboard("{enter}"); // open
 
                 // Act
+                userEvent.keyboard("{arrowup}");
                 userEvent.keyboard("{space}");
 
                 // Assert
