@@ -55,7 +55,7 @@ describe("SingleSelect", () => {
                 expect(screen.queryByRole("listbox")).toBeInTheDocument();
             });
 
-            it("the opener should keep the focus after opening", () => {
+            it("should focus the first item in the dropdown", () => {
                 // Arrange
                 render(uncontrolledSingleSelect);
                 const opener = screen.getByText("Choose");
@@ -63,7 +63,9 @@ describe("SingleSelect", () => {
                 // Act
                 userEvent.click(opener);
 
-                expect(screen.getByRole("button")).toHaveFocus();
+                // Assert
+                const options = screen.getAllByRole("option");
+                expect(options[0]).toHaveFocus();
             });
 
             it("should close when clicking on the default opener a second time", () => {
