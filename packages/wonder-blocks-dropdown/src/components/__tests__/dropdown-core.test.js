@@ -315,7 +315,7 @@ describe("DropdownCore", () => {
         // Click on item at index 1
         option1.simulate("click");
 
-        // When starting to use keyboard behavior, should move to next item
+        // should move to next item
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
         jest.runAllTimers();
