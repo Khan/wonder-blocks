@@ -76,7 +76,6 @@ describe("DropdownCore", () => {
                     },
                 ]}
                 role="listbox"
-                keyboard={true}
                 light={false}
                 open={false}
                 // mock the opener elements
@@ -95,7 +94,6 @@ describe("DropdownCore", () => {
         const handleOpen = jest.fn();
         dropdown.setProps({
             initialFocusedIndex: 0,
-            keyboard: true,
             onOpenChanged: (open) => handleOpen(open),
             open: true,
         });
@@ -232,7 +230,6 @@ describe("DropdownCore", () => {
                         },
                     ]}
                     role="listbox"
-                    keyboard={true}
                     light={false}
                     open={true}
                     // mock the opener elements
@@ -292,7 +289,6 @@ describe("DropdownCore", () => {
         const handleOpen = jest.fn();
         dropdown.setProps({
             initialFocusedIndex: 2,
-            keyboard: true,
             onOpenChanged: (open) => handleOpen(open),
             open: true,
         });
@@ -307,43 +303,10 @@ describe("DropdownCore", () => {
         expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
     });
 
-    it("focuses correct item when opened with click, then switching to keyboard", () => {
-        dropdown.setProps({
-            initialFocusedIndex: 1,
-            keyboard: false,
-            open: true,
-        });
-
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
-    });
-
-    it("focuses correct item after clicking on option, then switching to keyboard", () => {
-        dropdown.setProps({
-            initialFocusedIndex: 0,
-            keyboard: false,
-            open: true,
-        });
-
-        const option1 = dropdown.find("OptionItem").at(1);
-
-        // Click on item at index 1
-        option1.simulate("click");
-
-        // When starting to use keyboard behavior, should move to next item
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 2));
-    });
-
     it("focuses correct item with clicking/pressing with initial focused of not 0", () => {
         // Same as the previous test, expect initialFocusedIndex is 2 now
         dropdown.setProps({
             initialFocusedIndex: 2,
-            keyboard: false,
             open: true,
         });
 
@@ -352,7 +315,7 @@ describe("DropdownCore", () => {
         // Click on item at index 1
         option1.simulate("click");
 
-        // When starting to use keyboard behavior, should move to next item
+        // should move to next item
         dropdown.simulate("keydown", {keyCode: keyCodes.down});
         dropdown.simulate("keyup", {keyCode: keyCodes.down});
         jest.runAllTimers();
@@ -400,7 +363,6 @@ describe("DropdownCore", () => {
                     populatedProps: {},
                 },
             ],
-            keyboard: true,
             open: true,
         });
 
@@ -423,7 +385,6 @@ describe("DropdownCore", () => {
     it("focuses correct item after different items become focusable", () => {
         dropdown.setProps({
             initialFocusedIndex: 0,
-            keyboard: true,
             open: true,
         });
 
@@ -639,7 +600,7 @@ describe("DropdownCore", () => {
                 },
             ],
         });
-        // SearchTextInput should be focused (since keyboard is true)
+        // SearchTextInput should be focused
         const searchInput = dropdown.find(SearchTextInput);
         jest.runAllTimers();
 
@@ -677,7 +638,7 @@ describe("DropdownCore", () => {
             ],
             open: true,
         });
-        // SearchTextInput should be focused (since keyboard is true)
+        // SearchTextInput should be focused
         const searchInput = dropdown.find(SearchTextInput).find("input");
         jest.runAllTimers();
         expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));

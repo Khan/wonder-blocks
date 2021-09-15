@@ -180,11 +180,6 @@ type State = {|
     open: boolean,
 
     /**
-     * Whether or not last open state change was triggered by a keyboard click.
-     */
-    keyboard?: boolean,
-
-    /**
      * The text input to filter the items by their label. Defaults to an empty
      * string.
      */
@@ -265,13 +260,9 @@ export default class MultiSelect extends React.Component<Props, State> {
         }
     }
 
-    handleOpenChanged: (opened: boolean, keyboard?: boolean) => void = (
-        opened,
-        keyboard,
-    ) => {
+    handleOpenChanged: (opened: boolean) => void = (opened) => {
         this.setState({
             open: opened,
-            keyboard,
             searchText: "",
             lastSelectedValues: this.props.selectedValues,
         });
@@ -489,7 +480,7 @@ export default class MultiSelect extends React.Component<Props, State> {
     };
 
     handleClick: (e: SyntheticEvent<>) => void = (e: SyntheticEvent<>) => {
-        this.handleOpenChanged(!this.state.open, e.type === "keyup");
+        this.handleOpenChanged(!this.state.open);
     };
 
     renderOpener(
@@ -586,7 +577,6 @@ export default class MultiSelect extends React.Component<Props, State> {
                     ...this.getShortcuts(numOptions),
                     ...filteredItems,
                 ]}
-                keyboard={this.state.keyboard}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
                 open={open}

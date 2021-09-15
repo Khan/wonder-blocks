@@ -87,17 +87,10 @@ type Props = {|
     searchText?: ?string,
 
     /**
-     * Whether the user used the keyboard to open this menu. This activates
-     * keyboard navigation behavior and focus from the very start.
-     */
-    keyboard: ?boolean,
-
-    /**
      * Callback for when the menu is opened or closed. Parameter is whether
-     * the dropdown menu should be open and whether a keyboard event triggered
-     * the change.
+     * the dropdown menu should be open.
      */
-    onOpenChanged: (open: boolean, keyboard?: boolean) => mixed,
+    onOpenChanged: (open: boolean) => mixed,
 
     /**
      * Whether the menu is open or not.
@@ -178,8 +171,6 @@ class DropdownCore extends React.Component<Props, State> {
     // out focus correctly when the items have changed in terms of whether
     // they're focusable or not
     focusedOriginalIndex: number;
-    // Whether keyboard nav has been activated
-    keyboardNavOn: boolean;
     // Whether any items have been selected since the menu was opened
     itemsClicked: boolean;
     popperElement: ?HTMLElement;
@@ -249,7 +240,6 @@ class DropdownCore extends React.Component<Props, State> {
         super(props);
 
         this.focusedIndex = this.props.initialFocusedIndex;
-        this.keyboardNavOn = false;
         this.state = {
             prevItems: this.props.items,
             itemRefs: [],
@@ -301,16 +291,7 @@ class DropdownCore extends React.Component<Props, State> {
                     this.focusedIndex = 0;
                     // Reset the knowlege that things had been clicked
                     this.itemsClicked = false;
-                    if (this.keyboardNavOn) {
-                        // If keyboard navigation was already on, use that
-                        this.scheduleToFocusCurrentItem();
-                    } else {
-                        // Otherwise shift focus to the original focus item
-                        // (the opener) to listen for further keyboard events
-                        if (this.props.openerElement) {
-                            this.props.openerElement.focus();
-                        }
-                    }
+                    this.scheduleToFocusCurrentItem();
                 } else {
                     this.focusedIndex = newFocusableIndex;
                 }
@@ -332,34 +313,13 @@ class DropdownCore extends React.Component<Props, State> {
     // Figure out focus states for the dropdown after it has changed from open
     // to closed or vice versa
     initialFocusItem() {
-        const {
-            keyboard,
-            initialFocusedIndex,
-            open,
-            onSearchTextChanged,
-            searchText,
-        } = this.props;
+        const {initialFocusedIndex, open} = this.props;
 
         if (open) {
             // Reset focused index
             this.focusedIndex = initialFocusedIndex;
-            // We explicitly set focus to the first item only if we sense
-            // that the user opened the menu via the keyboard
-            if (keyboard) {
-                this.keyboardNavOn = true;
-                this.scheduleToFocusCurrentItem();
-            }
-
-            const showSearchTextInput =
-                !!onSearchTextChanged && typeof searchText === "string";
-
-            // focus on the search field (if is enabled)
-            if (showSearchTextInput) {
-                this.scheduleToFocusCurrentItem();
-            }
+            this.scheduleToFocusCurrentItem();
         } else if (!open) {
-            // If the dropdown has been closed, reset the keyboardNavOn boolean
-            this.keyboardNavOn = false;
             this.itemsClicked = false;
         }
     }
@@ -458,7 +418,6 @@ class DropdownCore extends React.Component<Props, State> {
 
     handleKeyDown: (event: SyntheticKeyboardEvent<>) => void = (event) => {
         const {
-            initialFocusedIndex,
             onOpenChanged,
             open,
             onSearchTextChanged,
@@ -469,25 +428,10 @@ class DropdownCore extends React.Component<Props, State> {
         if (!open) {
             if (keyCode === keyCodes.down) {
                 event.preventDefault();
-                onOpenChanged(true, true);
+                onOpenChanged(true);
                 return;
             }
             return;
-        }
-
-        // This is the first use of keyboard navigation
-        if (
-            !this.keyboardNavOn &&
-            (keyCode === keyCodes.up || keyCode === keyCodes.down)
-        ) {
-            this.keyboardNavOn = true;
-            // No items have been clicked so we focus the initial item
-            if (!this.itemsClicked) {
-                event.preventDefault();
-                this.focusedIndex = initialFocusedIndex;
-                this.scheduleToFocusCurrentItem();
-                return;
-            }
         }
 
         const showSearchTextInput =
@@ -507,7 +451,7 @@ class DropdownCore extends React.Component<Props, State> {
                     return;
                 }
                 this.restoreTabOrder();
-                onOpenChanged(false, true);
+                onOpenChanged(false);
                 return;
             case keyCodes.space:
                 // When we display SearchTextInput and the focus is on it,
@@ -556,7 +500,7 @@ class DropdownCore extends React.Component<Props, State> {
                 if (open) {
                     event.stopPropagation();
                     this.restoreTabOrder();
-                    onOpenChanged(false, true);
+                    onOpenChanged(false);
                 }
                 return;
         }
