@@ -59,7 +59,7 @@ type State = {|
 /**
  * Maximum visible items inside the dropdown list
  */
-const MAX_VISIBLE_ITEMS = 10;
+const MAX_VISIBLE_ITEMS = 9;
 
 /**
  * A react-window's List wrapper that instantiates the virtualized list and
