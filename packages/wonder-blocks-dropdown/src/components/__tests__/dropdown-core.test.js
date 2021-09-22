@@ -285,6 +285,96 @@ describe("DropdownCore", () => {
         expect(handleOpen.mock.calls[0][0]).toBe(true);
     });
 
+    it("selects correct item when starting off at an undefined index", () => {
+        const handleOpen = jest.fn();
+        dropdown.setProps({
+            initialFocusedIndex: undefined,
+            onOpenChanged: (open) => handleOpen(open),
+            open: true,
+        });
+
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
+    });
+
+    it("selects correct item when starting off at an undefined index and a searchbox", () => {
+        const handleOpen = jest.fn();
+        const handleSearchTextChanged = jest.fn();
+        dropdown.setProps({
+            initialFocusedIndex: undefined,
+            onOpenChanged: (open) => handleOpen(open),
+            searchText: "",
+            items: [
+                {
+                    component: (
+                        <SearchTextInput
+                            testId="item-0"
+                            key="search-text-input"
+                            onChange={handleSearchTextChanged}
+                            searchText={""}
+                        />
+                    ),
+                    focusable: true,
+                    populatedProps: {},
+                },
+            ],
+            open: true,
+        });
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
+    });
+
+    it("selects correct item when starting off at a different index and a searchbox", () => {
+        const handleOpen = jest.fn();
+        const handleSearchTextChanged = jest.fn();
+        dropdown.setProps({
+            initialFocusedIndex: 1,
+            onOpenChanged: (open) => handleOpen(open),
+            searchText: "",
+            items: [
+                {
+                    component: (
+                        <SearchTextInput
+                            testId="search"
+                            key="search-text-input"
+                            onChange={handleSearchTextChanged}
+                            searchText={""}
+                        />
+                    ),
+                    focusable: true,
+                    populatedProps: {},
+                },
+                {
+                    component: (
+                        <OptionItem
+                            testId="item-0"
+                            label="item 1"
+                            value="1"
+                            key="1"
+                        />
+                    ),
+                    focusable: false,
+                    populatedProps: {},
+                },
+                {
+                    component: (
+                        <OptionItem
+                            testId="item-1"
+                            label="item 2"
+                            value="2"
+                            key="2"
+                        />
+                    ),
+                    focusable: true,
+                    populatedProps: {},
+                },
+            ],
+            open: true,
+        });
+        jest.runAllTimers();
+        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
+    });
+
     it("selects correct item when starting off at a different index", () => {
         const handleOpen = jest.fn();
         dropdown.setProps({

@@ -198,7 +198,6 @@ class DropdownCore extends React.Component<Props, State> {
 
     static defaultProps: DefaultProps = {
         alignment: "left",
-        initialFocusedIndex: undefined,
         labels: {
             noResults: defaultLabels.noResults,
         },
@@ -239,14 +238,8 @@ class DropdownCore extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        // If we are given an initial focus index, select it.  Otherwise
-        // default to the first item
-        if (props.initialFocusedIndex) {
-            this.focusedIndex =
-                props.initialFocusedIndex + this.getIndexOffset();
-        } else {
-            this.focusedIndex = 0;
-        }
+        // Apply our initial focus index
+        this.resetFocusedIndex();
 
         this.state = {
             prevItems: this.props.items,
@@ -325,32 +318,35 @@ class DropdownCore extends React.Component<Props, State> {
         );
     }
 
-    // If we have a search box visible, then our focus
-    // index is going to be offset by 1, since the orginal
-    // index doesn't account for the search box's
-    // existence.
-    getIndexOffset(): number {
-        if (this.hasSearchBox()) {
-            return 1;
-        }
+    // Resets our initial focus index to what was passed in
+    // via the props
+    resetFocusedIndex() {
+        const {initialFocusedIndex} = this.props;
 
-        return 0;
+        // If we are given an initial focus index, select it.  Otherwise
+        // default to the first item
+        if (initialFocusedIndex) {
+            // If we have a search box visible, then our focus
+            // index is going to be offset by 1, since the orginal
+            // index doesn't account for the search box's
+            // existence.
+            if (this.hasSearchBox()) {
+                this.focusedIndex = initialFocusedIndex + 1;
+            } else {
+                this.focusedIndex = initialFocusedIndex;
+            }
+        } else {
+            this.focusedIndex = 0;
+        }
     }
 
     // Figure out focus states for the dropdown after it has changed from open
     // to closed or vice versa
     initialFocusItem() {
-        const {initialFocusedIndex, open} = this.props;
+        const {open} = this.props;
 
         if (open) {
-            // Reset focused index
-            // If we are given an initial focus index, select it.  Otherwise
-            // default to the first item
-            if (initialFocusedIndex) {
-                this.focusedIndex = initialFocusedIndex + this.getIndexOffset();
-            } else {
-                this.focusedIndex = 0;
-            }
+            this.resetFocusedIndex();
             this.scheduleToFocusCurrentItem();
         } else if (!open) {
             this.itemsClicked = false;
@@ -396,28 +392,26 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusCurrentItem() {
-        if (this.state.itemRefs[this.focusedIndex]) {
+        const fousedItemRef = this.state.itemRefs[this.focusedIndex];
+
+        if (fousedItemRef) {
             // force react-window to scroll to ensure the focused item is visible
             if (this.listRef.current) {
                 // Our focused index does not include disabled items, but the
                 // react-window index system does include the disabled items
                 // in the count.  So we need to use "originalIndex", which
                 // does account for disabled items.
-                this.listRef.current.scrollToItem(
-                    this.state.itemRefs[this.focusedIndex].originalIndex,
-                );
+                this.listRef.current.scrollToItem(fousedItemRef.originalIndex);
             }
 
             const node = ((ReactDOM.findDOMNode(
-                this.state.itemRefs[this.focusedIndex].ref.current,
+                fousedItemRef.ref.current,
             ): any): HTMLElement);
             if (node) {
                 node.focus();
                 // Keep track of the original index of the newly focused item.
                 // To be used if the set of focusable items in the menu changes
-                this.focusedOriginalIndex = this.state.itemRefs[
-                    this.focusedIndex
-                ].originalIndex;
+                this.focusedOriginalIndex = fousedItemRef.originalIndex;
             }
         }
     }
