@@ -57,9 +57,12 @@ type State = {|
 |};
 
 /**
- * Maximum visible items inside the dropdown list
+ * Maximum visible items inside the dropdown list.
+ * Based on the defined height that we're using, this is the maximium
+ * number of items that can fit into the visible porition of the
+ * dropdowns list box.
  */
-const MAX_VISIBLE_ITEMS = 10;
+const MAX_VISIBLE_ITEMS = 9;
 
 /**
  * A react-window's List wrapper that instantiates the virtualized list and
