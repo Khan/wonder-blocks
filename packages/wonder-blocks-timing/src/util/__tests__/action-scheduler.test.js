@@ -89,6 +89,26 @@ describe("ActionScheduler", () => {
                 expect(testTimeout.clear).toHaveBeenCalledWith(false);
             });
         });
+
+        describe("when scheduler is disabled", () => {
+            it("should return a noop timeout", () => {
+                // Arrange
+                const actionScheduler = new ActionScheduler();
+                const action = jest.fn();
+
+                // Act
+                actionScheduler.disable();
+                const result = actionScheduler.timeout(
+                    action,
+                    42,
+                    false,
+                    false,
+                );
+
+                // Assert
+                expect(result).toBe(ActionScheduler.NoopAction);
+            });
+        });
     });
 
     describe("#interval", () => {
@@ -155,6 +175,26 @@ describe("ActionScheduler", () => {
                 expect(testInterval.clear).toHaveBeenCalledWith(false);
             });
         });
+
+        describe("when scheduler is disabled", () => {
+            it("should return a noop interval", () => {
+                // Arrange
+                const actionScheduler = new ActionScheduler();
+                const action = jest.fn();
+
+                // Act
+                actionScheduler.disable();
+                const result = actionScheduler.interval(
+                    action,
+                    42,
+                    false,
+                    false,
+                );
+
+                // Assert
+                expect(result).toBe(ActionScheduler.NoopAction);
+            });
+        });
     });
 
     describe("#animationFrame", () => {
@@ -219,6 +259,21 @@ describe("ActionScheduler", () => {
                 expect(testFrame.clear).toHaveBeenCalledWith(false);
             });
         });
+
+        describe("when scheduler is disabled", () => {
+            it("should return a noop interval", () => {
+                // Arrange
+                const actionScheduler = new ActionScheduler();
+                const action = jest.fn();
+
+                // Act
+                actionScheduler.disable();
+                const result = actionScheduler.animationFrame(action, false);
+
+                // Assert
+                expect(result).toBe(ActionScheduler.NoopAction);
+            });
+        });
     });
 
     describe("#clearAll", () => {
@@ -261,6 +316,20 @@ describe("ActionScheduler", () => {
             expect(interval.clear).toHaveBeenCalledTimes(1);
             // $FlowIgnore[method-unbinding]
             expect(animationFrame.clear).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe("#disable", () => {
+        it("should clear all scheduled actions", () => {
+            // Arrange
+            const actionScheduler = new ActionScheduler();
+            const clearAllSpy = jest.spyOn(actionScheduler, "clearAll");
+
+            // Act
+            actionScheduler.disable();
+
+            // Assert
+            expect(clearAllSpy).toHaveBeenCalledTimes(1);
         });
     });
 });
