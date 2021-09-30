@@ -103,13 +103,13 @@
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {
+    "@popperjs/core": "^2.10.1",
     "aphrodite": "^1.2.5",
     "inquirer": "^7.0.0",
-    "popper.js": "^1.14.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.3",
     "react-dom": "^16.4.3",
-    "react-popper": "^1.0.0",
+    "react-popper": "^2.2.5",
     "react-router-dom": "^4.2.2",
     "react-window": "^1.8.5"
   },

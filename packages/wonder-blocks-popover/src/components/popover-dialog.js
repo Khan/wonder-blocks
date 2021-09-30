@@ -69,7 +69,7 @@ export default class PopoverDialog extends React.Component<Props> {
             placement,
             children,
             id,
-            outOfBoundaries,
+            isReferenceHidden,
             updateBubbleRef,
             updateTailRef,
             tailOffset,
@@ -93,7 +93,7 @@ export default class PopoverDialog extends React.Component<Props> {
                     ref={updateBubbleRef}
                     data-placement={placement}
                     style={[
-                        outOfBoundaries && styles.hide,
+                        isReferenceHidden && styles.hide,
                         styles[`content-${placement}`],
                         style,
                     ]}

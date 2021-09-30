@@ -7,11 +7,7 @@ import * as React from "react";
 import {Popper} from "react-popper";
 import type {PopperChildrenProps} from "react-popper";
 
-// NOTE(jeff): Here we share some code for use with PopperJS. Long term,
-// we should either contribute this code to the PopperJS component, or its
-// own non-wonder-blocks package.
-// $FlowIgnore
-import visibilityModifierDefaultConfig from "../../../../shared-unpackaged/visibility-modifier.js"; // eslint-disable-line import/no-restricted-paths
+// eslint-disable-line import/no-restricted-paths
 import RefTracker from "../util/ref-tracker.js";
 import type {Placement} from "../util/types.js";
 import type {PopperElementProps} from "./tooltip-bubble.js";
@@ -65,16 +61,21 @@ export default class TooltipPopper extends React.Component<Props> {
                 // props that we need, instead.
                 top: popperProps.style.top,
                 left: popperProps.style.left,
+                bottom: popperProps.style.bottom,
+                right: popperProps.style.right,
                 position: popperProps.style.position,
                 transform: popperProps.style.transform,
             },
             updateBubbleRef: this._bubbleRefTracker.updateRef,
             tailOffset: {
+                bottom: popperProps.arrowProps.style.bottom,
+                right: popperProps.arrowProps.style.right,
                 top: popperProps.arrowProps.style.top,
                 left: popperProps.arrowProps.style.left,
+                transform: popperProps.arrowProps.style.transform,
             },
             updateTailRef: this._tailRefTracker.updateRef,
-            outOfBoundaries: popperProps.outOfBoundaries,
+            isReferenceHidden: popperProps.isReferenceHidden,
         };
         return children(bubbleProps);
     }
@@ -85,10 +86,14 @@ export default class TooltipPopper extends React.Component<Props> {
             <Popper
                 referenceElement={anchorElement}
                 placement={placement}
-                modifiers={{
-                    wbVisibility: visibilityModifierDefaultConfig,
-                    preventOverflow: {boundariesElement: "viewport"},
-                }}
+                modifiers={[
+                    {
+                        name: "preventOverflow",
+                        options: {
+                            rootBoundary: "document",
+                        },
+                    },
+                ]}
             >
                 {(props) => this._renderPositionedContent(props)}
             </Popper>

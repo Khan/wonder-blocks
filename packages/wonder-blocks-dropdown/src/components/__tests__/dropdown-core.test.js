@@ -662,7 +662,9 @@ describe("DropdownCore", () => {
         });
 
         // Assert
-        expect(dropdown.find("InnerPopper").text()).toContain("No results");
+        expect(dropdown).toContainMatchingElement(
+            `[data-test-id="dropdown-core-no-results"]`,
+        );
     });
 
     it("When SearchTextInput has input and focused, tab key should not close the select", () => {

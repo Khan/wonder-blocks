@@ -89,6 +89,11 @@ const styles = StyleSheet.create({
         height: "800px",
         width: "1200px",
     },
+    centered: {
+        alignItems: "center",
+        justifyContent: "center",
+        height: `calc(100vh - 16px)`,
+    },
 });
 
 export const WithFilter: StoryComponentType = () => <SingleSelectWithFilter />;
@@ -105,3 +110,34 @@ WithFilter.story = {
 export const WithFilterOpened: StoryComponentType = () => (
     <SingleSelectWithFilter opened={true} />
 );
+
+export const DropdownOverlap: StoryComponentType = () => {
+    const [value, setValue] = React.useState(null);
+    const [opened, setOpened] = React.useState(true);
+
+    return (
+        <View style={styles.centered}>
+            <View>
+                <SingleSelect
+                    onChange={(selected) => setValue(selected)}
+                    isFilterable={true}
+                    opened={opened}
+                    onToggle={(opened) => setOpened(opened)}
+                    placeholder="Select a fruit"
+                    selectedValue={value}
+                >
+                    {optionItems}
+                </SingleSelect>
+            </View>
+        </View>
+    );
+};
+
+DropdownOverlap.story = {
+    name: "Dropdown container overlaps anchor",
+    parameters: {
+        chromatic: {
+            viewports: [320, 640, 1024],
+        },
+    },
+};
