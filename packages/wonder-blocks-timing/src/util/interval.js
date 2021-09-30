@@ -1,5 +1,10 @@
 // @flow
-import type {IInterval} from "./types.js";
+import {
+    SchedulePolicy as SchedulePolicies,
+    ClearPolicy as ClearPolicies,
+} from "./policies.js";
+
+import type {IInterval, SchedulePolicy, ClearPolicy} from "./types.js";
 
 /**
  * Encapsulates everything associated with calling setInterval/clearInterval,
@@ -22,16 +27,16 @@ export default class Interval implements IInterval {
      * @param {() => mixed} action The action to be invoked each time the
      * interval period has passed.
      * @param {number} intervalMs The interval period.
-     * @param {boolean} [autoSchedule] When true, the interval is activated
-     * immediately on instanstiation; otherwise, `set` must be called to
-     * activate the interval.
-     * Defaults to `true`.
+     * @param {SchedulePolicy} [schedulePolicy] When SchedulePolicy.Immediately,
+     * the interval is set immediately on instantiation; otherwise, `set` must be
+     * called to set the interval.
+     * Defaults to `SchedulePolicy.Immediately`.
      * @memberof Interval
      */
     constructor(
         action: () => mixed,
         intervalMs: number,
-        autoSchedule?: boolean,
+        schedulePolicy: SchedulePolicy = SchedulePolicies.Immediately,
     ) {
         if (typeof action !== "function") {
             throw new Error("Action must be a function");
@@ -44,7 +49,7 @@ export default class Interval implements IInterval {
         this._action = action;
         this._intervalMs = intervalMs;
 
-        if (autoSchedule || autoSchedule == null) {
+        if (schedulePolicy === SchedulePolicies.Immediately) {
             this.set();
         }
     }
@@ -69,7 +74,7 @@ export default class Interval implements IInterval {
      */
     set(): void {
         if (this.isSet) {
-            this.clear(false);
+            this.clear(ClearPolicies.Cancel);
         }
         this._intervalId = setInterval(() => this._action(), this._intervalMs);
     }
@@ -80,21 +85,22 @@ export default class Interval implements IInterval {
      * If the interval is active, this cancels that interval. If no interval is
      * pending, this does nothing.
      *
-     * @param {boolean} [resolve] When true, if the interval was active when
-     * called, the interval action is invoked after cancellation. Defaults to
-     * false.
+     * @param {ClearPolicy} [policy] When ClearPolicy.Resolve, if the request
+     * was set when called, the request action is invoked after cancelling
+     * the request; otherwise, the pending action is cancelled.
+     * Defaults to `ClearPolicy.Cancel`.
      *
      * @returns {void}
      * @memberof Interval
      */
-    clear(resolve?: boolean): void {
+    clear(policy: ClearPolicy = ClearPolicies.Cancel): void {
         const intervalId = this._intervalId;
         this._intervalId = null;
         if (intervalId == null) {
             return;
         }
         clearInterval(intervalId);
-        if (resolve) {
+        if (policy === ClearPolicies.Resolve) {
             this._action();
         }
     }

@@ -8,6 +8,7 @@ import type {
     IInterval,
     ITimeout,
     IScheduleActions,
+    Options,
 } from "./types.js";
 
 /**
@@ -27,45 +28,43 @@ export default class ActionScheduler implements IScheduleActions {
         clear: () => {},
     };
 
-    timeout(
-        action: () => mixed,
-        period: number,
-        autoSchedule?: boolean,
-        resolveOnClear?: boolean,
-    ): ITimeout {
+    timeout(action: () => mixed, period: number, options?: Options): ITimeout {
         if (this._disabled) {
             return ActionScheduler.NoopAction;
         }
-        const timeout = new Timeout(action, period, autoSchedule);
-        this._registeredActions.push(() => timeout.clear(resolveOnClear));
+        const timeout = new Timeout(action, period, options?.schedulePolicy);
+        this._registeredActions.push(() => timeout.clear(options?.clearPolicy));
         return timeout;
     }
 
     interval(
         action: () => mixed,
         period: number,
-        autoSchedule?: boolean,
-        resolveOnClear?: boolean,
+        options?: Options,
     ): IInterval {
         if (this._disabled) {
             return ActionScheduler.NoopAction;
         }
-        const interval = new Interval(action, period, autoSchedule);
-        this._registeredActions.push(() => interval.clear(resolveOnClear));
+        const interval = new Interval(action, period, options?.schedulePolicy);
+        this._registeredActions.push(() =>
+            interval.clear(options?.clearPolicy),
+        );
         return interval;
     }
 
     animationFrame(
         action: (DOMHighResTimeStamp) => void,
-        autoSchedule?: boolean,
-        resolveOnClear?: boolean,
+        options?: Options,
     ): IAnimationFrame {
         if (this._disabled) {
             return ActionScheduler.NoopAction;
         }
-        const animationFrame = new AnimationFrame(action, autoSchedule);
+        const animationFrame = new AnimationFrame(
+            action,
+            options?.schedulePolicy,
+        );
         this._registeredActions.push(() =>
-            animationFrame.clear(resolveOnClear),
+            animationFrame.clear(options?.clearPolicy),
         );
         return animationFrame;
     }
