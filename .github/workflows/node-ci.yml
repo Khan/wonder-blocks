@@ -55,7 +55,7 @@ jobs:
           # Specify our custom build script
           build-script: "build:all"
           # Any JS files anywhere within a dist directory:
-          pattern: "**/dist/**/*.js"
+          pattern: "**/dist/es/*.js"
           # Always ignore SourceMaps and node_modules:
           exclude: "{**/*.map,**/node_modules/**}"
       # Linting / type checking
