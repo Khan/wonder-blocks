@@ -52,7 +52,9 @@ jobs:
       - name: Compressed size
         uses: preactjs/compressed-size-action@v2
         with:
-           # Any JS files anywhere within a dist directory:
+          # Specify our custom build script
+          build-script: "build:all"
+          # Any JS files anywhere within a dist directory:
           pattern: "**/dist/**/*.js"
           # Always ignore SourceMaps and node_modules:
           exclude: "{**/*.map,**/node_modules/**}"
