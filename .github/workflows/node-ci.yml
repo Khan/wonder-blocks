@@ -1,6 +1,8 @@
 name: Linting and Testing
 
-on: [push]
+on:
+  pull_request:
+    types: [edited, opened, synchronize, reopened]
 
 # We run a single job with multiple steps to run the workflow faster.
 # Steps: Setup/build > lint > flow > test > coverage > codecov > chromatic
@@ -21,7 +23,7 @@ jobs:
           # have a ref to compare against.
           git fetch --depth 1 origin ${GITHUB_BASE_REF}
       - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: 12.16.x
       - name: Get yarn cache
