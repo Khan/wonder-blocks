@@ -3,28 +3,30 @@ name: Node CI
 on: [push]
 
 jobs:
-  chromatic:
+  setup:
     if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
     runs-on: ubuntu-latest
     env:
       CI: true
     steps:
-      - uses: actions/checkout@v1
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Use Node.js 12.x
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
           node-version: 12.16.x
       - name: Get yarn cache
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v1
+      - uses: actions/cache@v2
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-yarn-
       - name: Cache node modules
-        uses: actions/cache@v1
+        uses: actions/cache@v2
         with:
           path: node_modules
           key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
@@ -34,8 +36,67 @@ jobs:
         run: yarn install
       - name: yarn build:all
         run: yarn build:all
+
+  chromatic:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    name: Publish to Chromatic for visual testing
+    env:
+      CI: true
+    steps:
       - uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
           autoAcceptChanges: "master"
+
+  lint:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    name: Run lint and flow checks
+    env:
+      CI: true
+    steps:
+      - name: Run ESLint
+        uses: Khan/eslint-action@main
+        with:
+          eslint-lib: ./node_modules/eslint
+          run-all-if-changed: package.json,.eslintrc.js
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run Flow
+        uses: Khan/flow-action@main
+        with:
+          flow-bin: ./node_modules/.bin/flow
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  test:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    name: Run test and coverage report
+    env:
+      CI: true
+    steps:
+      - name: Run jest tests
+        uses: Khan/jest-action@main
+        with:
+          jest-bin: ./node_modules/.bin/jest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Run Jest with coverage
+        uses: Khan/jest-coverage-action@main
+        with:
+          run-all-if-changed: package.json,jest.config.js
+          jest-bin: ./node_modules/.bin/jest
+          coverage-data-path: ./coverage/coverage-final.json
+          find-related-tests: 1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Upload Coverage
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/coverage-final.json
+          fail_ci_if_error: true
+
