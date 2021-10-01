@@ -13,16 +13,15 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
+      - name: Checking out latest commit
+        uses: actions/checkout@v2
       - name: Checking out base ref
         run: |
           # Make sure we also fetch the base ref so that ESLint, Flow, and Jest
           # have a ref to compare against.
           git fetch --depth 1 origin ${GITHUB_BASE_REF}
       - name: Use Node.js 12.x
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v1
         with:
           node-version: 12.16.x
       - name: Get yarn cache
@@ -47,27 +46,27 @@ jobs:
         run: yarn build:all
       # Linting / type checking
       - name: Run ESLint
-        uses: Khan/eslint-action@main
+        uses: Khan/eslint-action@v1.1.5
         with:
           eslint-lib: ./node_modules/eslint
           run-all-if-changed: package.json,.eslintrc.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Flow
-        uses: Khan/flow-action@main
+        uses: Khan/flow-action@1.1.3
         with:
           flow-bin: ./node_modules/.bin/flow
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       # Unit/integration testing
       - name: Run jest tests
-        uses: Khan/jest-action@main
+        uses: Khan/jest-action@1.2.0
         with:
           jest-bin: ./node_modules/.bin/jest
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Jest with coverage
-        uses: Khan/jest-coverage-action@main
+        uses: Khan/jest-coverage-action@1.1.3
         with:
           run-all-if-changed: package.json,jest.config.js
           jest-bin: ./node_modules/.bin/jest
