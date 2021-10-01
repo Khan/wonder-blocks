@@ -1,13 +1,17 @@
-name: Node CI
+name: Linting and Testing
 
 on: [push]
 
+# We run a single job with multiple steps to run the workflow faster.
+# Steps: Setup/build > lint > flow > test > coverage > codecov > chromatic
 jobs:
-  setup:
+  build:
     if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
     runs-on: ubuntu-latest
     env:
       CI: true
+    strategy:
+      fail-fast: false
     steps:
       - uses: actions/checkout@v2
         with:
@@ -36,27 +40,7 @@ jobs:
         run: yarn install
       - name: yarn build:all
         run: yarn build:all
-
-  chromatic:
-    runs-on: ubuntu-latest
-    needs: [setup]
-    name: Publish to Chromatic for visual testing
-    env:
-      CI: true
-    steps:
-      - uses: chromaui/action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-          autoAcceptChanges: "master"
-
-  lint:
-    runs-on: ubuntu-latest
-    needs: [setup]
-    name: Run lint and flow checks
-    env:
-      CI: true
-    steps:
+      # Linting / type checking
       - name: Run ESLint
         uses: Khan/eslint-action@main
         with:
@@ -70,14 +54,7 @@ jobs:
           flow-bin: ./node_modules/.bin/flow
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-  test:
-    runs-on: ubuntu-latest
-    needs: [setup]
-    name: Run test and coverage report
-    env:
-      CI: true
-    steps:
+      # Unit/integration testing
       - name: Run jest tests
         uses: Khan/jest-action@main
         with:
@@ -99,4 +76,10 @@ jobs:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/coverage-final.json
           fail_ci_if_error: true
-
+      # Visual testing
+      - name: Publish to Chromatic for visual testing
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+          autoAcceptChanges: "master"
