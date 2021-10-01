@@ -48,6 +48,9 @@ jobs:
         run: yarn install
       - name: yarn build:all
         run: yarn build:all
+      - uses: andresz1/size-limit-action@v1.0.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
       # Linting / type checking
       - name: Run ESLint
         uses: Khan/eslint-action@v1.1.5
