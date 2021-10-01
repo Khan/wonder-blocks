@@ -15,11 +15,14 @@ export default {
 };
 
 const styles = StyleSheet.create({
+    container: {
+        display: "grid",
+        gridTemplateColumns: "repeat(2, 1fr)",
+        height: `calc(100vh - 16px)`,
+    },
     example: {
         alignItems: "center",
         justifyContent: "center",
-        width: "100vw",
-        height: "100vh",
     },
     row: {
         flexDirection: "row",
@@ -47,24 +50,18 @@ const BasePopoverExample = ({placement}: {|placement: Placement|}) => {
                         setOpened(true);
                     }}
                 >
-                    Open popover
+                    Open popover: {placement}
                 </Button>
             </Popover>
         </View>
     );
 };
-export const leftAlignedPopover: StoryComponentType = () => (
-    <BasePopoverExample placement="left" />
-);
 
-export const rightAlignedPopover: StoryComponentType = () => (
-    <BasePopoverExample placement="right" />
-);
-
-export const bottomAlignedPopover: StoryComponentType = () => (
-    <BasePopoverExample placement="bottom" />
-);
-
-export const topAlignedPopover: StoryComponentType = () => (
-    <BasePopoverExample placement="top" />
+export const popoverAlignment: StoryComponentType = () => (
+    <View style={styles.container}>
+        <BasePopoverExample placement="left" />
+        <BasePopoverExample placement="bottom" />
+        <BasePopoverExample placement="right" />
+        <BasePopoverExample placement="top" />
+    </View>
 );
