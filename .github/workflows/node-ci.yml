@@ -7,7 +7,7 @@ on:
 # We run a single job with multiple steps to run the workflow faster.
 # Steps: Setup/build > lint > flow > test > coverage > codecov > chromatic
 jobs:
-  build:
+  lint_and_test:
     if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
     runs-on: ubuntu-latest
     env:
@@ -83,7 +83,6 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/coverage-final.json
-          fail_ci_if_error: true
       # Visual testing
       - name: Publish to Chromatic for visual testing
         uses: chromaui/action@v1
