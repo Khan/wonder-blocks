@@ -1,7 +1,9 @@
 /* eslint-disable import/no-commonjs */
 const {createConfig, babel, postcss} = require("webpack-blocks");
 
-const babelConfig = require("./build-settings/babel.config.js");
+const babelConfig = require("./build-settings/babel.config.js")({
+    env: () => false,
+});
 
 module.exports = {
     webpackConfig: createConfig([babel(babelConfig), postcss()]),
