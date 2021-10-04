@@ -29,12 +29,12 @@
     "@khanacademy/wonder-blocks-typography": "^1.1.24"
   },
   "peerDependencies": {
+    "@popperjs/core": "^2.10.1",
     "aphrodite": "^1.2.5",
-    "popper.js": "^1.14.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-popper": "^1.0.0",
+    "react-popper": "^2.0.0",
     "react-router-dom": "^4.2.2",
     "react-window": "^1.8.5"
   },

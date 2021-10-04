@@ -73,7 +73,7 @@ import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 </View>
 ```
 
-### Hidden because outOfBoundaries is true
+### Hidden because isReferenceHidden is true
 
 ```jsx
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -83,7 +83,7 @@ import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 <View>
     <TooltipBubble
         placement="top"
-        outOfBoundaries={true}
+        isReferenceHidden={true}
         style={{position: "relative"}}
     >
         <TooltipContent>I'm hidden. So hidden. Shhhhh!</TooltipContent>

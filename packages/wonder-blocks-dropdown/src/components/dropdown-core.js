@@ -19,11 +19,6 @@ import type {
     WithActionSchedulerProps,
     WithoutActionScheduler,
 } from "@khanacademy/wonder-blocks-timing";
-// NOTE(jeff): Here we share some code for use with PopperJS. Long term,
-// we should either contribute this code to the PopperJS component, or its
-// own non-wonder-blocks package.
-// $FlowIgnore
-import visibilityModifierDefaultConfig from "../../../../shared-unpackaged/visibility-modifier.js"; // eslint-disable-line import/no-restricted-paths
 import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 import SeparatorItem from "./separator-item.js";
 import SearchTextInput from "./search-text-input.js";
@@ -639,7 +634,7 @@ class DropdownCore extends React.Component<Props, State> {
         });
     }
 
-    renderItems(outOfBoundaries: ?boolean): React.Node {
+    renderItems(isReferenceHidden: ?boolean): React.Node {
         const {dropdownStyle, light, openerElement} = this.props;
 
         // The dropdown width is at least the width of the opener.
@@ -662,7 +657,7 @@ class DropdownCore extends React.Component<Props, State> {
                 style={[
                     styles.dropdown,
                     light && styles.light,
-                    outOfBoundaries && styles.hidden,
+                    isReferenceHidden && styles.hidden,
                     {minWidth: minDropdownWidth},
                     dropdownStyle,
                 ]}
@@ -690,7 +685,7 @@ class DropdownCore extends React.Component<Props, State> {
         if (modalHost) {
             return ReactDOM.createPortal(
                 <Popper
-                    innerRef={(node) => {
+                    innerRef={(node: ?HTMLElement) => {
                         if (node) {
                             this.popperElement = node;
                         }
@@ -699,15 +694,26 @@ class DropdownCore extends React.Component<Props, State> {
                     placement={
                         alignment === "left" ? "bottom-start" : "bottom-end"
                     }
-                    modifiers={{
-                        wbVisibility: visibilityModifierDefaultConfig,
-                        preventOverflow: {
-                            boundariesElement: "viewport",
-                            escapeWithReference: true,
+                    modifiers={[
+                        {
+                            name: "preventOverflow",
+                            options: {
+                                rootBoundary: "viewport",
+                                // Allows to overlap the popper in case there's
+                                // no more vertical room in the viewport.
+                                altAxis: true,
+                                mainAxis: true,
+                            },
                         },
-                    }}
+                    ]}
                 >
-                    {({placement, ref, style, outOfBoundaries}) => {
+                    {({
+                        placement,
+                        ref,
+                        style,
+                        hasPopperEscaped,
+                        isReferenceHidden,
+                    }) => {
                         // For some reason react-popper includes `pointerEvents: "none"`
                         // in the `style` it passes to us, but only when running the tests.
                         const {pointerEvents: _, ...restStyle} = style;
@@ -717,7 +723,9 @@ class DropdownCore extends React.Component<Props, State> {
                                 style={restStyle}
                                 data-placement={placement}
                             >
-                                {this.renderItems(outOfBoundaries)}
+                                {this.renderItems(
+                                    hasPopperEscaped || isReferenceHidden,
+                                )}
                             </div>
                         );
                     }}
@@ -767,6 +775,7 @@ const styles = StyleSheet.create({
     },
 
     hidden: {
+        pointerEvents: "none",
         visibility: "hidden",
     },
 

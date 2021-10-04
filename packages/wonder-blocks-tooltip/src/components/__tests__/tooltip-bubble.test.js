@@ -16,8 +16,11 @@ describe("TooltipBubble", () => {
     const makePopperProps = () => ({
         placement: "top",
         tailOffset: {
-            top: 0,
-            left: 50,
+            top: "0",
+            left: "50",
+            bottom: undefined,
+            right: undefined,
+            transform: "translate3d(50, 0, 0)",
         },
     });
 
@@ -40,8 +43,6 @@ describe("TooltipBubble", () => {
                         placement={props.placement}
                         tailOffset={props.tailOffset}
                         updateBubbleRef={resolve}
-                        anchorTimeoutID={null}
-                        onTimeoutChanged={() => {}}
                         onActiveChanged={() => {}}
                     >
                         {fakeContent}

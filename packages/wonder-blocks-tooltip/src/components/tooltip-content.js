@@ -67,10 +67,10 @@ export default class TooltipContent extends React.Component<Props> {
 
 const styles = StyleSheet.create({
     withoutTitle: {
-        margin: `10px ${Spacing.medium_16}px`,
+        padding: `10px ${Spacing.medium_16}px`,
     },
 
     withTitle: {
-        margin: Spacing.medium_16,
+        padding: Spacing.medium_16,
     },
 });
