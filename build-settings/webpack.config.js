@@ -7,7 +7,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const babelOptions = require("./babel.config.js");
+const babelOptions = require("./babel.config.js")({env: () => false});
 
 const packages = fs
     .readdirSync(path.join(process.cwd(), "packages"))
