@@ -41,10 +41,7 @@ jobs:
             ${{ runner.OS }}-node_modules-
       - name: yarn install
         run: yarn install
-      - name: yarn build:all
-        run: yarn build:all
-      # Check bundle sizes
-      - name: Compressed size
+      - name: Check Builds
         uses: preactjs/compressed-size-action@v2
         with:
           # Specify our custom build script
