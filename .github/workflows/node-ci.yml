@@ -15,14 +15,10 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - name: Check out head branch
+      - name: Checking out latest commit
         uses: actions/checkout@v2
         with:
-          ref: '${{ github.head_ref }}'
-      - name: Check out base branch
-        uses: actions/checkout@v2
-        with:
-          ref: '${{ github.base_ref }}'
+          fetch-depth: 0
       - name: Use Node.js 12.x
         uses: actions/setup-node@v2
         with:
