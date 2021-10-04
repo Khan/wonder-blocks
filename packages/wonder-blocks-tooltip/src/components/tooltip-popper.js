@@ -7,7 +7,6 @@ import * as React from "react";
 import {Popper} from "react-popper";
 import type {PopperChildrenProps} from "react-popper";
 
-// eslint-disable-line import/no-restricted-paths
 import RefTracker from "../util/ref-tracker.js";
 import type {Placement} from "../util/types.js";
 import type {PopperElementProps} from "./tooltip-bubble.js";

@@ -19,7 +19,6 @@ import type {
     WithActionSchedulerProps,
     WithoutActionScheduler,
 } from "@khanacademy/wonder-blocks-timing";
-// eslint-disable-line import/no-restricted-paths
 import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 import SeparatorItem from "./separator-item.js";
 import SearchTextInput from "./search-text-input.js";
