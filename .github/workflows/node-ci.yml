@@ -15,15 +15,14 @@ jobs:
     strategy:
       fail-fast: false
     steps:
-      - name: Checking out latest commit
+      - name: Check out head branch
         uses: actions/checkout@v2
         with:
-          fetch-depth: 0
-      - name: Checking out base ref
-        run: |
-          # Make sure we also fetch the base ref so that ESLint, Flow, and Jest
-          # have a ref to compare against.
-          git fetch --depth 0 origin ${GITHUB_BASE_REF}
+          ref: '${{ github.head_ref }}'
+      - name: Check out base branch
+        uses: actions/checkout@v2
+        with:
+          ref: '${{ github.base_ref }}'
       - name: Use Node.js 12.x
         uses: actions/setup-node@v2
         with:
