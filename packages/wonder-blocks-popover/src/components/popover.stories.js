@@ -50,7 +50,7 @@ const BasePopoverExample = ({placement}: {|placement: Placement|}) => {
                         setOpened(true);
                     }}
                 >
-                    Open popover: {placement}
+                    {`Open popover: ${placement}`}
                 </Button>
             </Popover>
         </View>

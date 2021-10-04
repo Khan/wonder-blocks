@@ -19,11 +19,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      - name: Checking out base ref
-        run: |
-          # Make sure we also fetch the base ref so that ESLint, Flow, and Jest
-          # have a ref to compare against.
-          git fetch --depth 1 origin ${GITHUB_BASE_REF}
       - name: Use Node.js 12.x
         uses: actions/setup-node@v2
         with:
@@ -46,8 +41,15 @@ jobs:
             ${{ runner.OS }}-node_modules-
       - name: yarn install
         run: yarn install
-      - name: yarn build:all
-        run: yarn build:all
+      - name: Check Builds
+        uses: preactjs/compressed-size-action@v2
+        with:
+          # Specify our custom build script
+          build-script: "build:all"
+          # Any JS files anywhere within a dist directory:
+          pattern: "**/dist/es/*.js"
+          # Always ignore SourceMaps and node_modules:
+          exclude: "{**/*.map,**/node_modules/**}"
       # Linting / type checking
       - name: Run ESLint
         uses: Khan/eslint-action@v1.1.5
