@@ -1,6 +1,8 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
+import {render, screen} from "@testing-library/react";
+// eslint-disable-next-line import/no-unassigned-import
+import "@testing-library/jest-dom/extend-expect";
 
 import InitialFocus from "../initial-focus.js";
 
@@ -11,71 +13,64 @@ describe("InitialFocus", () => {
 
     it("should try to focus on a given element by id", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <InitialFocus initialFocusId="initial-focus-id">
-                <div data-container>
-                    <button data-tab-index="0" />
-                    <button data-tab-index="1" id="initial-focus-id" />
-                    <button data-tab-index="2" />
+                <div data-test-id="container">
+                    <button data-test-id="item-0" />
+                    <button data-test-id="item-1" id="initial-focus-id" />
+                    <button data-test-id="item-2" />
                 </div>
             </InitialFocus>,
         );
 
         // Act
-        const firstFocusableElement = wrapper
-            .find('[data-tab-index="1"]')
-            .getDOMNode();
-
+        const firstFocusableElement = screen.getByTestId("item-1");
         // Fast-forward until all timers have been executed
         jest.runAllTimers();
 
         // Assert
-        expect(document.activeElement).toBe(firstFocusableElement);
+        expect(firstFocusableElement).toHaveFocus();
     });
 
     it("should try to focus on the first focusable element", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <InitialFocus>
-                <div data-container>
-                    <button data-tab-index="0" />
-                    <button data-tab-index="1" />
-                    <button data-tab-index="2" />
+                <div data-test-id="container">
+                    <button data-test-id="item-0" />
+                    <button data-test-id="item-1" id="initial-focus-id" />
+                    <button data-test-id="item-2" />
                 </div>
             </InitialFocus>,
         );
 
         // Act
-        const firstFocusableElement = wrapper
-            .find('[data-tab-index="0"]')
-            .getDOMNode();
+        const firstFocusableElement = screen.getByTestId("item-0");
 
         // Fast-forward until all timers have been executed
         jest.runAllTimers();
 
         // Assert
-        expect(document.activeElement).toBe(firstFocusableElement);
+        expect(firstFocusableElement).toHaveFocus();
     });
 
     it("should try to focus on the container if no focusable elements are found", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <InitialFocus>
-                <div data-container>
+                <div data-test-id="container">
                     <p>no focusable elements here</p>
                 </div>
             </InitialFocus>,
         );
 
         // Act
-        const firstFocusableElement = wrapper
-            .find("[data-container]")
-            .getDOMNode();
+        const firstFocusableElement = screen.getByTestId("container");
 
         // Fast-forward until all timers have been executed
         jest.runAllTimers();
 
         // Assert
-        expect(document.activeElement).toBe(firstFocusableElement);
+        expect(firstFocusableElement).toHaveFocus();
     });
 });
