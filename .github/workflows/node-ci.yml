@@ -23,7 +23,7 @@ jobs:
         run: |
           # Make sure we also fetch the base ref so that ESLint, Flow, and Jest
           # have a ref to compare against.
-          git fetch --depth 1 origin ${GITHUB_BASE_REF}
+          git fetch --depth 0 origin ${GITHUB_BASE_REF}
       - name: Use Node.js 12.x
         uses: actions/setup-node@v2
         with:
