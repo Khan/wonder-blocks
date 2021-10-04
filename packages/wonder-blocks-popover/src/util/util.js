@@ -10,5 +10,5 @@ const FOCUSABLE_ELEMENTS =
 export function findFocusableNodes(
     root: HTMLElement | Document,
 ): Array<HTMLElement> {
-    return [...root.querySelectorAll(FOCUSABLE_ELEMENTS)];
+    return Array.from(root.querySelectorAll(FOCUSABLE_ELEMENTS));
 }

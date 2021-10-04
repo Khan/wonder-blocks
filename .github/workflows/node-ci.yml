@@ -68,7 +68,7 @@ jobs:
       - name: Run jest tests
         uses: Khan/jest-action@v1.2.0
         with:
-          run-all-if-changed: package.json,jest.config.js
+          run-all-if-changed: package.json,jest.config.js,babel.config.js
           jest-bin: ./node_modules/.bin/jest
           find-related-tests: 1
         env:
