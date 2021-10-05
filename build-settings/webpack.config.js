@@ -51,6 +51,11 @@ const genWebpackConfig = function (subPkgRoot) {
             ],
         },
         optimization: {
+            /**
+             * We explicitly disable concatenation of modules as this causes
+             * mangling of the concatenated module exports, which means the
+             * React components get odd names that aren't very friendly.
+             */
             concatenateModules: false,
             minimize: false,
         },
