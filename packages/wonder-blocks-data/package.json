@@ -20,7 +20,7 @@
     "react": "^16.4.1"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.1.0"
+    "wb-dev-build-settings": "^0.1.1"
   },
   "author": "",
   "license": "MIT"
