@@ -1,4 +1,7 @@
 // @flow
+export type SchedulePolicy = "schedule-immediately" | "schedule-on-demand";
+
+export type ClearPolicy = "resolve-on-clear" | "cancel-on-clear";
 
 /**
  * Encapsulates everything associated with calling setTimeout/clearTimeout, and
@@ -35,13 +38,14 @@ export interface ITimeout {
      * If the timeout is pending, this cancels that pending timeout. If no
      * timeout is pending, this does nothing.
      *
-     * @param {boolean} [resolve] When true, if the timeout was set when called,
-     * the timeout action is invoked after cancelling the timeout. Defaults to
-     * false.
+     * @param {ClearPolicy} [policy] When ClearPolicy.Resolve, if the request
+     * was set when called, the request action is invoked after cancelling
+     * the request; otherwise, the pending action is cancelled.
+     * Defaults to `ClearPolicy.Cancel`.
      *
      * @memberof ITimeout
      */
-    clear(resolve?: boolean): void;
+    clear(policy?: ClearPolicy): void;
 }
 
 /**
@@ -77,13 +81,14 @@ export interface IInterval {
      * If the interval is active, this cancels that interval. If the interval
      * is not active, this does nothing.
      *
-     * @param {boolean} [resolve] When true, if the interval was active when
-     * called, the associated action is invoked after cancelling the interval.
-     * Defaults to false.
+     * @param {ClearPolicy} [policy] When ClearPolicy.Resolve, if the request
+     * was set when called, the request action is invoked after cancelling
+     * the request; otherwise, the pending action is cancelled.
+     * Defaults to `ClearPolicy.Cancel`.
      *
      * @memberof IInterval
      */
-    clear(resolve?: boolean): void;
+    clear(policy?: ClearPolicy): void;
 }
 
 /**
@@ -121,14 +126,20 @@ export interface IAnimationFrame {
      * If the request is pending, this cancels that pending request. If no
      * request is pending, this does nothing.
      *
-     * @param {boolean} [resolve] When true, if the request was set when called,
-     * the request action is invoked after cancelling the request. Defaults to
-     * false.
+     * @param {ClearPolicy} [policy] When ClearPolicy.Resolve, if the request
+     * was set when called, the request action is invoked after cancelling
+     * the request; otherwise, the pending action is cancelled.
+     * Defaults to `ClearPolicy.Cancel`.
      *
      * @memberof IAnimationFrame
      */
-    clear(resolve?: boolean): void;
+    clear(policy?: ClearPolicy): void;
 }
+
+export type Options = {|
+    schedulePolicy?: SchedulePolicy,
+    clearPolicy?: ClearPolicy,
+|};
 
 /**
  * Provides means to request timeouts, intervals, and animation frames, with
@@ -161,12 +172,7 @@ export interface IScheduleActions {
      * @returns {ITimeout} A interface for manipulating the created timeout.
      * @memberof IScheduleActions
      */
-    timeout(
-        action: () => mixed,
-        period: number,
-        autoSchedule?: boolean,
-        resolveOnClear?: boolean,
-    ): ITimeout;
+    timeout(action: () => mixed, period: number, options?: Options): ITimeout;
 
     /**
      * Request an interval.
@@ -189,12 +195,7 @@ export interface IScheduleActions {
      * @returns {IInterval} An interface for manipulating the created interval.
      * @memberof IScheduleActions
      */
-    interval(
-        action: () => mixed,
-        period: number,
-        autoSchedule?: boolean,
-        resolveOnClear?: boolean,
-    ): IInterval;
+    interval(action: () => mixed, period: number, options?: Options): IInterval;
 
     /**
      * Request an animation frame.
@@ -216,8 +217,7 @@ export interface IScheduleActions {
      */
     animationFrame(
         action: (time: DOMHighResTimeStamp) => void,
-        autoSchedule?: boolean,
-        resolveOnClear?: boolean,
+        options?: Options,
     ): IAnimationFrame;
 
     /**

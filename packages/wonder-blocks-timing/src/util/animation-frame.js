@@ -1,5 +1,10 @@
 // @flow
-import type {IAnimationFrame} from "./types.js";
+import {
+    SchedulePolicy as SchedulePolicies,
+    ClearPolicy as ClearPolicies,
+} from "./policies.js";
+
+import type {IAnimationFrame, SchedulePolicy, ClearPolicy} from "./types.js";
 
 /**
  * Encapsulates everything associated with calling requestAnimationFrame/
@@ -19,14 +24,15 @@ export default class AnimationFrame implements IAnimationFrame {
      * The request is not made until set is called.
      *
      * @param {DOMHighResTimeStamp => mixed} action The action to be invoked.
-     * @param {boolean} [autoSchedule] When true, the request is made immediately on
-     * instanstiation; otherwise, `set` must be called to make the request.
-     * Defaults to `true`.
+     * @param {SchedulePolicy} [schedulePolicy] When SchedulePolicy.Immediately,
+     * the interval is set immediately on instantiation; otherwise, `set` must be
+     * called to set the interval.
+     * Defaults to `SchedulePolicy.Immediately`.
      * @memberof AnimationFrame
      */
     constructor(
         action: (DOMHighResTimeStamp) => mixed,
-        autoSchedule?: boolean,
+        schedulePolicy: SchedulePolicy = SchedulePolicies.Immediately,
     ) {
         if (typeof action !== "function") {
             throw new Error("Action must be a function");
@@ -34,7 +40,7 @@ export default class AnimationFrame implements IAnimationFrame {
 
         this._action = action;
 
-        if (autoSchedule || autoSchedule == null) {
+        if (schedulePolicy === SchedulePolicies.Immediately) {
             this.set();
         }
     }
@@ -61,10 +67,10 @@ export default class AnimationFrame implements IAnimationFrame {
      */
     set(): void {
         if (this.isSet) {
-            this.clear(false);
+            this.clear(ClearPolicies.Cancel);
         }
         this._animationFrameId = requestAnimationFrame((time) =>
-            this.clear(true, time),
+            this.clear(ClearPolicies.Resolve, time),
         );
     }
 
@@ -74,21 +80,28 @@ export default class AnimationFrame implements IAnimationFrame {
      * If the request is pending, this cancels that pending request without
      * invoking the action. If no request is pending, this does nothing.
      *
-     * @param {boolean} [resolve] When true, if the request was pending when
-     * called, the request action is invoked after cancelling the timeout.
-     * Defaults to false.
+     * @param {ClearPolicy} [policy] When ClearPolicy.Resolve, if the request
+     * was set when called, the request action is invoked after cancelling
+     * the request; otherwise, the pending action is cancelled.
+     * Defaults to `ClearPolicy.Cancel`.
+     * @param {DOMHighResTimeStamp} [time] Timestamp to pass to the action when
+     * ClearPolicy.Resolve is specified. Ignored when ClearPolicy.Cancel is
+     * specified.
      *
      * @returns {void}
      * @memberof AnimationFrame
      */
-    clear(resolve?: boolean, time?: DOMHighResTimeStamp): void {
+    clear(
+        policy: ClearPolicy = ClearPolicies.Cancel,
+        time?: DOMHighResTimeStamp,
+    ): void {
         const animationFrameId = this._animationFrameId;
         this._animationFrameId = null;
         if (animationFrameId == null) {
             return;
         }
         cancelAnimationFrame(animationFrameId);
-        if (resolve) {
+        if (policy === ClearPolicies.Resolve) {
             this._action(time || performance.now());
         }
     }

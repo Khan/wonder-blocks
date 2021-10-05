@@ -19,4 +19,5 @@ export type {
     WithoutActionScheduler,
 };
 
+export {SchedulePolicy, ClearPolicy} from "./util/policies.js";
 export {default as withActionScheduler} from "./components/with-action-scheduler.js";
