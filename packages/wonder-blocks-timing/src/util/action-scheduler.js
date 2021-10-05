@@ -17,7 +17,15 @@ import type {
  * `IScheduleActions` instance.
  */
 export default class ActionScheduler implements IScheduleActions {
+    _disabled: boolean = false;
     _registeredActions: Array<() => void> = [];
+    static +NoopAction: ITimeout & IAnimationFrame & IInterval = {
+        set: () => {},
+        get isSet() {
+            return false;
+        },
+        clear: () => {},
+    };
 
     timeout(
         action: () => mixed,
@@ -25,6 +33,9 @@ export default class ActionScheduler implements IScheduleActions {
         autoSchedule?: boolean,
         resolveOnClear?: boolean,
     ): ITimeout {
+        if (this._disabled) {
+            return ActionScheduler.NoopAction;
+        }
         const timeout = new Timeout(action, period, autoSchedule);
         this._registeredActions.push(() => timeout.clear(resolveOnClear));
         return timeout;
@@ -36,6 +47,9 @@ export default class ActionScheduler implements IScheduleActions {
         autoSchedule?: boolean,
         resolveOnClear?: boolean,
     ): IInterval {
+        if (this._disabled) {
+            return ActionScheduler.NoopAction;
+        }
         const interval = new Interval(action, period, autoSchedule);
         this._registeredActions.push(() => interval.clear(resolveOnClear));
         return interval;
@@ -46,6 +60,9 @@ export default class ActionScheduler implements IScheduleActions {
         autoSchedule?: boolean,
         resolveOnClear?: boolean,
     ): IAnimationFrame {
+        if (this._disabled) {
+            return ActionScheduler.NoopAction;
+        }
         const animationFrame = new AnimationFrame(action, autoSchedule);
         this._registeredActions.push(() =>
             animationFrame.clear(resolveOnClear),
@@ -57,5 +74,14 @@ export default class ActionScheduler implements IScheduleActions {
         const registered = [...this._registeredActions];
         this._registeredActions = [];
         registered.forEach((clearFn) => clearFn());
+    }
+
+    /**
+     * Prevents this scheduler from creating any additional actions.
+     * This also clears any pending actions.
+     */
+    disable(): void {
+        this._disabled = true;
+        this.clearAll();
     }
 }

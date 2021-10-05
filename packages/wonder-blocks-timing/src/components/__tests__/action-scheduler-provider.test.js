@@ -21,7 +21,7 @@ describe("ActionSchedulerProvider", () => {
         expect(childrenMock).toHaveBeenCalledWith(expect.any(ActionScheduler));
     });
 
-    it("should call clearAll on the action scheduler at unmount", () => {
+    it("should call disable on the action scheduler at unmount", () => {
         // Arrange
         const childrenMock = jest.fn().mockReturnValueOnce(null);
         const wrapper = mount(
@@ -32,7 +32,7 @@ describe("ActionSchedulerProvider", () => {
         wrapper.unmount();
 
         // Assert
-        // $FlowIgnore[method-unbinding]
-        expect(childrenMock.mock.calls[0][0].clearAll).toHaveBeenCalledTimes(1);
+        // $FlowIgnore[prop-missing]
+        expect(childrenMock.mock.calls[0][0].disable).toHaveBeenCalledTimes(1);
     });
 });
