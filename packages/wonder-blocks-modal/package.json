@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-modal",
-  "version": "2.1.41",
+  "version": "2.1.42",
   "design": "v2",
   "publishConfig": {
     "access": "public"
@@ -15,15 +15,16 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@khanacademy/wonder-blocks-breadcrumbs": "^1.0.23",
-    "@khanacademy/wonder-blocks-color": "^1.1.17",
-    "@khanacademy/wonder-blocks-core": "^3.1.3",
-    "@khanacademy/wonder-blocks-icon": "^1.2.20",
-    "@khanacademy/wonder-blocks-icon-button": "^3.3.12",
-    "@khanacademy/wonder-blocks-layout": "^1.4.2",
-    "@khanacademy/wonder-blocks-spacing": "^3.0.2",
-    "@khanacademy/wonder-blocks-toolbar": "^2.1.24",
-    "@khanacademy/wonder-blocks-typography": "^1.1.24"
+    "@babel/runtime": "^7.13.10",
+    "@khanacademy/wonder-blocks-breadcrumbs": "^1.0.24",
+    "@khanacademy/wonder-blocks-color": "^1.1.18",
+    "@khanacademy/wonder-blocks-core": "^3.1.4",
+    "@khanacademy/wonder-blocks-icon": "^1.2.21",
+    "@khanacademy/wonder-blocks-icon-button": "^3.3.13",
+    "@khanacademy/wonder-blocks-layout": "^1.4.3",
+    "@khanacademy/wonder-blocks-spacing": "^3.0.3",
+    "@khanacademy/wonder-blocks-toolbar": "^2.1.25",
+    "@khanacademy/wonder-blocks-typography": "^1.1.25"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
@@ -31,6 +32,6 @@
     "react-dom": "^16.4.1"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.0.4"
+    "wb-dev-build-settings": "^0.1.0"
   }
 }

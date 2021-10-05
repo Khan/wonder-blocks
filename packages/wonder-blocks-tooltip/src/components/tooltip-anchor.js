@@ -59,14 +59,6 @@ type Props = {|
     onActiveChanged: (active: boolean) => mixed,
 
     /**
-     * Callback to pass timeoutID back to Tooltip.
-     *
-     * `timeoutID` will change if the timeout has finished executing or if it has been canceled.
-     * The timeout will become cancelled once a user hovers onto the tooltip bubble.
-     */
-    onTimeoutChanged: (timeoutID: ?TimeoutID) => mixed,
-
-    /**
      * Optional unique id factory.
      */
     ids?: IIdentifierFactory,
@@ -245,6 +237,7 @@ export default class TooltipAnchor
 
         // Determine if we are doing things immediately or not.
         instant = instant || (active && TRACKER.steal(this));
+
         if (instant) {
             if (active) {
                 document.addEventListener("keyup", this._handleKeyUp);
@@ -266,10 +259,8 @@ export default class TooltipAnchor
             this._timeoutID = setTimeout(() => {
                 this._timeoutID = null;
                 this._setActiveState(active, true);
-                this.props.onTimeoutChanged(null);
             }, delay);
         }
-        this.props.onTimeoutChanged(instant ? null : this._timeoutID);
     }
 
     _handleFocusIn: () => void = () => {

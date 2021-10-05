@@ -16,7 +16,7 @@ export type PopperElementProps = {|
     placement: Placement,
 
     /** Whether the bubble is out of bounds or not. */
-    outOfBoundaries?: ?boolean,
+    isReferenceHidden?: ?boolean,
 
     /** A callback for updating the ref of the bubble itself. */
     updateBubbleRef?: getRefFn,
@@ -40,12 +40,6 @@ export type Props = {|
 
     onActiveChanged: (active: boolean) => mixed,
 
-    /* A callback for updating the timeoutID refrence in tooltip  */
-    onTimeoutChanged: (timeoutID: ?TimeoutID) => mixed,
-
-    /* The timeoutID attached to the tooltip anchor */
-    anchorTimeoutID: ?TimeoutID,
-
     // TODO(somewhatabstract): Update react-docgen to support spread operators
     // (v3 beta introduces this)
     ...PopperElementProps,
@@ -66,10 +60,6 @@ export default class TooltipBubble extends React.Component<Props, State> {
     }
 
     handleMouseEnter: () => void = () => {
-        if (this.props.anchorTimeoutID) {
-            clearTimeout(this.props.anchorTimeoutID);
-            this.props.onTimeoutChanged(null);
-        }
         this._setActiveState(true);
     };
 
@@ -83,7 +73,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
             children,
             updateBubbleRef,
             placement,
-            outOfBoundaries,
+            isReferenceHidden,
             style,
             updateTailRef,
             tailOffset,
@@ -98,7 +88,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
                 onMouseLeave={this.handleMouseLeave}
                 ref={updateBubbleRef}
                 style={[
-                    outOfBoundaries && styles.hide,
+                    isReferenceHidden && styles.hide,
                     styles.bubble,
                     styles[`content-${placement}`],
                     style,
