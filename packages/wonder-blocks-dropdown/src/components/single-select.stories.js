@@ -2,8 +2,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
@@ -94,6 +99,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         height: `calc(100vh - 16px)`,
     },
+    scrollableArea: {
+        height: "200vh",
+    },
 });
 
 export const WithFilter: StoryComponentType = () => <SingleSelectWithFilter />;
@@ -111,13 +119,21 @@ export const WithFilterOpened: StoryComponentType = () => (
     <SingleSelectWithFilter opened={true} />
 );
 
-export const DropdownOverlap: StoryComponentType = () => {
+export const DropdownInModal: StoryComponentType = () => {
     const [value, setValue] = React.useState(null);
     const [opened, setOpened] = React.useState(true);
 
-    return (
-        <View style={styles.centered}>
+    const modalContent = (
+        <View style={styles.scrollableArea}>
             <View>
+                <Body>
+                    Sometimes we want to include Dropdowns inside a Modal, and
+                    these controls can be accessed only by scrolling down. This
+                    example help us to demonstrate that SingleSelect components
+                    can correctly be displayed within the visible scrolling
+                    area.
+                </Body>
+                <Strut size={Spacing.large_24} />
                 <SingleSelect
                     onChange={(selected) => setValue(selected)}
                     isFilterable={true}
@@ -131,13 +147,29 @@ export const DropdownOverlap: StoryComponentType = () => {
             </View>
         </View>
     );
+
+    const modal = (
+        <OnePaneDialog title="Dropdown in a Modal" content={modalContent} />
+    );
+
+    return (
+        <View style={styles.centered}>
+            <ModalLauncher modal={modal}>
+                {({openModal}) => (
+                    <Button onClick={openModal}>Click here!</Button>
+                )}
+            </ModalLauncher>
+        </View>
+    );
 };
 
-DropdownOverlap.story = {
-    name: "Dropdown container overlaps anchor",
+DropdownInModal.story = {
+    name: "Dropdown in a modal",
     parameters: {
         chromatic: {
-            viewports: [320, 640, 1024],
+            // We don't need screenshots because this story can be tested after
+            // the modal is opened.
+            disable: true,
         },
     },
 };
