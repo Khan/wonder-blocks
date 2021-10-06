@@ -7,7 +7,12 @@
 const fs = require("fs");
 const path = require("path");
 
-const babelOptions = require("./babel.config.js")({env: () => false});
+/**
+ * We tell babel to build as test output here (targetting node and not as es6)
+ * because we use the output in testing and Jest doesn't yet support es6
+ * modules.
+ */
+const babelOptions = require("./babel.config.js")({env: () => true});
 
 const packages = fs
     .readdirSync(path.join(process.cwd(), "packages"))
@@ -46,6 +51,12 @@ const genWebpackConfig = function (subPkgRoot) {
             ],
         },
         optimization: {
+            /**
+             * We explicitly disable concatenation of modules as this causes
+             * mangling of the concatenated module exports, which means the
+             * React components get odd names that aren't very friendly.
+             */
+            concatenateModules: false,
             minimize: false,
         },
         node: {process: false},
