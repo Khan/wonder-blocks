@@ -173,8 +173,7 @@ The `IScheduleActions` interface provides 4 (four) different functions:
     timeout(
         action: () => mixed,
         period: number,
-        autoSchedule?: boolean,
-        resolveOnClear?: boolean,
+        options?: Options,
     ): ITimeout;
 ```
 
@@ -185,8 +184,7 @@ in the standard timer API.
 | --- | --- | --- | --- |
 | `action` | `()`&nbsp;`=>`&nbsp;`void` | _Required_ | The action to be invoked when the timeout period is reached. |
 | `period` | `number` | _Required_ | The timeout period in milliseconds. The action will be invoked after this period has passed since the timeout was set. This value must be greater than or equal to zero. |
-| `autoSchedule` | `boolean` | `true` | Whether or not to set the timeout as soon as this call is made, or wait until `set` is explicitly called. Defaults to `true`. |
-| `resolveOnClear` | `boolean` | `false` | Whether or not the associated action will be invoked if it is still pending at the point the timeout is cleared. Defaults to `false`. This only takes effect when the [clearAll](#clearall) is invoked on parent the `IScheduleActions` instance, such as when unmounting; this does not affect calls to the `clear` method on the returned `ITimeout` interface. |
+| `options` | `Options` | `{schedulePolicy: SchedulePolicy.Immediately, clearPolicy: ClearPolicy.Cancel}` | Options to control various aspects of the timeout such as whether it starts immediately or not, and whether the scheduled action is invoked on clear or not. The clear policy only takes effect when the [clearAll](#clearall) is invoked on parent the `IScheduleActions` instance, such as when unmounting; this does not affect calls to the `clear` method on the returned `ITimeout` interface. For more on policies, see [Policies](#policies). |
 | _returns_ | [`ITimeout`](#itimeout) | | An interface for manipulating the created timeout. |
 
 ##### interval
@@ -195,8 +193,7 @@ in the standard timer API.
     interval(
         action: () => mixed,
         period: number,
-        autoSchedule?: boolean,
-        resolveOnClear?: boolean,
+        options?: Options,
     ): IInterval;
 ```
 
@@ -207,8 +204,7 @@ in the standard timer API.
 | --- | --- | --- | --- |
 | `action` | `()`&nbsp;`=>`&nbsp;`void` | _Required_ | The action to be invoked when the interval period occurs. |
 | `period` | `number` | _Required_ | The interval period in milliseconds. The action will be invoked each time this period has passed since the interval was set or last occurred. This value must be greater than zero. |
-| `autoSchedule` | `boolean` | `true` | Whether or not to set the interval as soon as this call is made, or wait until `set` is explicitly called. Defaults to `true`. |
-| `resolveOnClear` | `boolean` | `false` |  Whether or not the associated action will be invoked at the point the interval is cleared if the interval is running at that time. Defaults to `false`. This only takes effect when the [clearAll](#clearall) is invoked on parent the `IScheduleActions` instance, such as when unmounting; this does not affect calls to the `clear` method on the returned `IInterval` interface. |
+| `options` | `Options` | `{schedulePolicy: SchedulePolicy.Immediately, clearPolicy: ClearPolicy.Cancel}` | Options to control various aspects of the interval such as whether it starts immediately or not, and whether the scheduled action is invoked on clear or not. The clear policy only takes effect when the [clearAll](#clearall) is invoked on parent the `IScheduleActions` instance, such as when unmounting; this does not affect calls to the `clear` method on the returned `IInterval` interface. For more on policies, see [Policies](#policies). |
 | _returns_ | [`IInterval`](#iinterval) | | An interface for manipulating the created interval. |
 
 ##### animationFrame
@@ -216,8 +212,7 @@ in the standard timer API.
 ```js static
     animationFrame(
         action: () => void,
-        autoSchedule?: boolean,
-        resolveOnClear?: boolean,
+        options?: Options,
     ): IAnimationFrame;
 ```
 
@@ -227,8 +222,7 @@ in the standard timer API.
 | | Flow&nbsp;Type | Default | Description |
 | --- | --- | --- | --- |
 | `action` | `()`&nbsp;`=>`&nbsp;`void` | _Required_ | The action to be invoked before the repaint. |
-| `autoSchedule` | `boolean` | `true` | Whether or not to make the request as soon as this call is made, or wait until `set` is explicitly called. Defaults to `true`. |
-| `resolveOnClear` | `boolean` | `false` |  Whether or not the associated action will be invoked at the point the request is cleared if it has not yet executed. Defaults to `false`. This only takes effect when the [clearAll](#clearall) is invoked on parent the `IScheduleActions` instance, such as when unmounting; this does not affect calls to the `clear` method on the returned `IAnimationFrame` interface. |
+| `options` | `Options` | `{schedulePolicy: SchedulePolicy.Immediately, clearPolicy: ClearPolicy.Cancel}` | Options to control various aspects of the animation frame such as whether it starts immediately or not, and whether the scheduled action is invoked on clear or not. The clear policy only takes effect when the [clearAll](#clearall) is invoked on parent the `IScheduleActions` instance, such as when unmounting; this does not affect calls to the `clear` method on the returned `IAnimationFrame` interface. For more on policies, see [Policies](#policies). |
 | _returns_ | [`IAnimationFrame`](#ianimationframe) | | An interface for manipulating the created request. |
 
 ##### clearAll
@@ -241,13 +235,29 @@ Clears all timeouts, intervals, and animation frame requests that were made with
 
 #### Types
 
+##### Policies
+
+###### SchedulePolicy
+
+| Policy | Value | Description |
+| --- | --- | --- |
+| `OnDemand` | `"schedule-on-demand"` | The scheduled action's timing will begin when `set` is called. |
+| `Immediately` | `"schedule-immediately"` | The scheduled action's timing will begin immediately. |
+
+###### ClearPolicy
+
+| Policy | Value | Description |
+| --- | --- | --- |
+| `Cancel` | `"cancel-on-clear"` | The action, if set at the time of applying the policy, will be cancelled without being invoked. |
+| `Resolve` | `"resolve-on-clear"` | The action, if set at the time of applying the policy, will be invoked as if the scheduled time had occurred. |
+
 ##### ITimeout
 
 ```js static
 interface ITimeout {
     get isSet(): boolean;
     set(): void;
-    clear(resolve?: boolean): void;
+    clear(clearPolicy?: ClearPolicy = ClearPolicies.Cancel): void;
 }
 ```
 
@@ -257,7 +267,7 @@ The `ITimeout` interface provides additional calls to manipulate a timeout, if s
 | --- | --- | --- |
 | `isSet` | `boolean` | A read-only property for determining if the timeout is set or not. Returns `true` if the timeout is set (aka pending), otherwise `false`. |
 | `set` | `()`&nbsp;`=>`&nbsp;`void` | If the timeout is pending, this cancels that pending timeout and starts the timeout afresh. If the timeout is not pending, this starts the timeout. Can be used to re-schedule an already invoked or cleared timeout. |
-| `clear` | `(resolve?:`&nbsp;`boolean)`&nbsp;`=>`&nbsp;`void` | If the timeout is pending, this cancels that pending timeout. If no timeout is pending, this does nothing. When the optional `resolve` argument is `true`, and the timeout was in the set state when called, the timeout action is invoked after cancelling the timeout. The `resolve` parameter defaults to `false`. This call does nothing if there was no pending timeout (i.e. when `isSet` is `false`). |
+| `clear` | `(clearPolicy?:`&nbsp;`ClearPolicy)`&nbsp;`=>`&nbsp;`void` | If the timeout is pending, this cancels that pending timeout. If no timeout is pending, this does nothing. When the optional `clearPolicy` argument is `ClearPolicy.Resolve`, and the timeout was in the set state when called, the timeout action is invoked after cancelling the timeout. The `clearPolicy` parameter defaults to `ClearPolicy.Cancel`. This call does nothing if there was no pending timeout (i.e. when `isSet` is `false`). |
 
 ##### IInterval
 
@@ -265,7 +275,7 @@ The `ITimeout` interface provides additional calls to manipulate a timeout, if s
 interface IInterval {
     get isSet(): boolean;
     set(): void;
-    clear(resolve?: boolean): void;
+    clear(clearPolicy?: ClearPolicy = ClearPolicies.Cancel): void;
 }
 ```
 
@@ -275,7 +285,7 @@ The `IInterval` interface provides additional calls to manipulate an interval, i
 | --- | --- | --- |
 | `isSet` | `boolean` | A read-only property for determining if the interval is active or not. Returns `true` if the interval is active, otherwise `false`. |
 | `set` | `()`&nbsp;`=>`&nbsp;`void` | If the interval is active, this cancels that interval and restarts it afresh. If the interval is not active, this starts the interval. Can be used to re-schedule a cleared interval. |
-| `clear` | `(resolve?:`&nbsp;`boolean)`&nbsp;`=>`&nbsp;`void` | If the interval is active, this cancels that interval. If the interval is not active, this does nothing. When the optional `resolve` argument is `true`, and the interval was in the active state when called, the associated action is invoked after cancelling the interval. The `resolve` parameter defaults to `false`. This call does nothing if there was no pending interval (i.e. when `isSet` is `false`). |
+| `clear` | `(clearPolicy?:`&nbsp;`ClearPolicy)`&nbsp;`=>`&nbsp;`void` | If the interval is active, this cancels that interval. If the interval is not active, this does nothing. When the optional `clearPolicy` argument is `ClearPolicy.Resolve`, and the interval was in the active state when called, the associated action is invoked after cancelling the interval. The `clearPolicy` parameter defaults to `ClearPolicy.Cancel`. This call does nothing if there was no active interval (i.e. when `isSet` is `false`). |
 
 ##### IAnimationFrame
 
@@ -283,7 +293,7 @@ The `IInterval` interface provides additional calls to manipulate an interval, i
 interface IAnimationFrame {
     get isSet(): boolean;
     set(): void;
-    clear(resolve?: boolean): void;
+    clear(clearPolicy?: ClearPolicy = ClearPolicies.Cancel): void;
 }
 ```
 
@@ -293,7 +303,7 @@ The `IAnimationFrame` interface provides additional calls to manipulate an anima
 | --- | --- | --- |
 | `isSet` | `boolean` | A read-only property for determining if the request is set (aka pending). Returns `true` if the animation frame is set, otherwise `false`. |
 | `set` | `()`&nbsp;`=>`&nbsp;`void` | If the request is pending, this cancels that pending request and starts a request afresh. If the request is not pending, this starts the request. Can be used to re-request an already invokd or cleared request. |
-| `clear` | `(resolve?:`&nbsp;`boolean)`&nbsp;`=>`&nbsp;`void` | If the request is pending, this cancels that pending request. If no request is pending, this does nothing. When the optional `resolve` argument is `true`, and the request was in the active state when called, the associated action is invoked after cancelling the request. The `resolve` parameter defaults to `false`. This call does nothing if there was no pending request (i.e. when `isSet` is `false`). |
+| `clear` | `(clearPolicy?:`&nbsp;`ClearPolicy)`&nbsp;`=>`&nbsp;`void` | If the request is pending, this cancels that pending request. If no request is pending, this does nothing. When the optional `clearPolicy` argument is `ClearPolicy.Resolve`, and the request was in the set state when called, the associated action is invoked after cancelling the requst. The `clearPolicy` parameter defaults to `ClearPolicy.Cancel`. This call does nothing if there was no pending request (i.e. when `isSet` is `false`). |
 
 ### Migration from standard API
 
