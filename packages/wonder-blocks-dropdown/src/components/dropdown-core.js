@@ -691,6 +691,7 @@ class DropdownCore extends React.Component<Props, State> {
                         }
                     }}
                     referenceElement={this.props.openerElement}
+                    strategy="fixed"
                     placement={
                         alignment === "left" ? "bottom-start" : "bottom-end"
                     }
@@ -702,7 +703,10 @@ class DropdownCore extends React.Component<Props, State> {
                                 // Allows to overlap the popper in case there's
                                 // no more vertical room in the viewport.
                                 altAxis: true,
-                                mainAxis: true,
+                                // Also needed to make sure the Popper will be
+                                // displayed correctly in different contexts
+                                // (e.g inside a Modal)
+                                tether: false,
                             },
                         },
                     ]}

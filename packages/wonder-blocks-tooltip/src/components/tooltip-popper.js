@@ -84,12 +84,13 @@ export default class TooltipPopper extends React.Component<Props> {
         return (
             <Popper
                 referenceElement={anchorElement}
+                strategy="fixed"
                 placement={placement}
                 modifiers={[
                     {
                         name: "preventOverflow",
                         options: {
-                            rootBoundary: "document",
+                            rootBoundary: "viewport",
                         },
                     },
                 ]}
