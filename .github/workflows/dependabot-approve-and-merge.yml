@@ -24,6 +24,8 @@ jobs:
       # config.
       - name: Checking out latest commit
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Use Node.js 12.x
         uses: actions/setup-node@v2
         with:
