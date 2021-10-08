@@ -27,6 +27,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+          workingDir: "packages"
           exitZeroOnChanges: true
           skip: true
       # Here the PR gets approved.
