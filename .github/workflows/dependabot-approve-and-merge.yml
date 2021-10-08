@@ -20,6 +20,15 @@ jobs:
         uses: dependabot/fetch-metadata@v1.1.1
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+      # We also need to skip Chromatic builds because it's required by our
+      # config.
+      - name: Skip Chromatic builds
+        uses: chromaui/action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+          exitZeroOnChanges: true
+          skip: true
       # Here the PR gets approved.
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"
