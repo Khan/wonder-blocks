@@ -22,12 +22,35 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       # We also need to skip Chromatic builds because it's required by our
       # config.
+      - name: Checking out latest commit
+        uses: actions/checkout@v2
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v2
+        with:
+          node-version: 12.16.x
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.OS }}-node_modules-
+      - name: Install dependencies
+        run: yarn install
       - name: Skip Chromatic builds
         uses: chromaui/action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-          workingDir: "packages"
           exitZeroOnChanges: true
           skip: true
       # Here the PR gets approved.
