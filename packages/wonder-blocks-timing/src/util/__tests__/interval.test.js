@@ -1,5 +1,6 @@
 // @flow
 import Interval from "../interval.js";
+import {SchedulePolicy, ClearPolicy} from "../policies.js";
 
 describe("Interval", () => {
     beforeEach(() => {
@@ -41,12 +42,12 @@ describe("Interval", () => {
             );
         });
 
-        it("sets an interval when autoSchedule is true", () => {
+        it("sets an interval when schedule policy is SchedulePolicy.Immediately", () => {
             // Arrange
 
             // Act
             // eslint-disable-next-line no-new
-            new Interval(() => {}, 1000, true);
+            new Interval(() => {}, 1000, SchedulePolicy.Immediately);
 
             // Assert
             expect(setInterval).toHaveBeenCalledTimes(1);
@@ -56,7 +57,11 @@ describe("Interval", () => {
     describe("isSet", () => {
         it("is false when the interval has not been set", () => {
             // Arrange
-            const interval = new Interval(() => {}, 1000, false);
+            const interval = new Interval(
+                () => {},
+                1000,
+                SchedulePolicy.OnDemand,
+            );
 
             // Act
             const result = interval.isSet;
@@ -166,40 +171,44 @@ describe("Interval", () => {
             expect(action).not.toHaveBeenCalled();
         });
 
-        it("should invoke the action if resolve is true", () => {
+        it("should invoke the action if clear policy is ClearPolicy.Resolve", () => {
             // Arrange
             const action = jest.fn();
             const interval = new Interval(action, 500);
             interval.set();
 
             // Act
-            interval.clear(true);
+            interval.clear(ClearPolicy.Resolve);
             jest.runTimersToTime(501);
 
             // Assert
             expect(action).toHaveBeenCalledTimes(1);
         });
 
-        it("should not invoke the action if resolve is false", () => {
+        it("should not invoke the action if clear policy is ClearPolicy.Cancel", () => {
             // Arrange
             const action = jest.fn();
-            const interval = new Interval(action, 500, true);
+            const interval = new Interval(
+                action,
+                500,
+                SchedulePolicy.Immediately,
+            );
 
             // Act
-            interval.clear(false);
+            interval.clear(ClearPolicy.Cancel);
             jest.runTimersToTime(501);
 
             // Assert
             expect(action).not.toHaveBeenCalled();
         });
 
-        it("should not invoke the action if interval is inactive", () => {
+        it("should not invoke the action if interval is inactive and clear policy is ClearPolicy.Resolve", () => {
             // Arrange
             const action = jest.fn();
-            const interval = new Interval(action, 500, false);
+            const interval = new Interval(action, 500, SchedulePolicy.OnDemand);
 
             // Act
-            interval.clear(true);
+            interval.clear(ClearPolicy.Resolve);
             jest.runTimersToTime(501);
 
             // Assert

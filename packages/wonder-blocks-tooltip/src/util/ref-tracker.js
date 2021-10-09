@@ -8,7 +8,10 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
+import type {PopperChildrenProps} from "react-popper";
 import type {getRefFn} from "./types.js";
+
+type PopperRef = $PropertyType<PopperChildrenProps, "ref">;
 
 export default class RefTracker {
     updateRef: getRefFn;
@@ -28,7 +31,7 @@ export default class RefTracker {
         }
     };
 
-    setCallback: (targetFn: ?(?HTMLElement) => void) => void = (targetFn) => {
+    setCallback: (targetFn: ?PopperRef) => void = (targetFn) => {
         if (this._targetFn !== targetFn) {
             if (targetFn && typeof targetFn !== "function") {
                 throw new Error("targetFn must be a function");

@@ -19,11 +19,6 @@ import type {
     WithActionSchedulerProps,
     WithoutActionScheduler,
 } from "@khanacademy/wonder-blocks-timing";
-// NOTE(jeff): Here we share some code for use with PopperJS. Long term,
-// we should either contribute this code to the PopperJS component, or its
-// own non-wonder-blocks package.
-// $FlowIgnore
-import visibilityModifierDefaultConfig from "../../../../shared-unpackaged/visibility-modifier.js"; // eslint-disable-line import/no-restricted-paths
 import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 import SeparatorItem from "./separator-item.js";
 import SearchTextInput from "./search-text-input.js";
@@ -42,7 +37,7 @@ type DefaultProps = {|
      * An index that represents the index of the focused element when the menu
      * is opened.
      */
-    initialFocusedIndex: number,
+    initialFocusedIndex?: number,
 
     /**
      * Whether this menu should be left-aligned or right-aligned with the
@@ -87,17 +82,10 @@ type Props = {|
     searchText?: ?string,
 
     /**
-     * Whether the user used the keyboard to open this menu. This activates
-     * keyboard navigation behavior and focus from the very start.
-     */
-    keyboard: ?boolean,
-
-    /**
      * Callback for when the menu is opened or closed. Parameter is whether
-     * the dropdown menu should be open and whether a keyboard event triggered
-     * the change.
+     * the dropdown menu should be open.
      */
-    onOpenChanged: (open: boolean, keyboard?: boolean) => mixed,
+    onOpenChanged: (open: boolean) => mixed,
 
     /**
      * Whether the menu is open or not.
@@ -178,8 +166,6 @@ class DropdownCore extends React.Component<Props, State> {
     // out focus correctly when the items have changed in terms of whether
     // they're focusable or not
     focusedOriginalIndex: number;
-    // Whether keyboard nav has been activated
-    keyboardNavOn: boolean;
     // Whether any items have been selected since the menu was opened
     itemsClicked: boolean;
     popperElement: ?HTMLElement;
@@ -207,7 +193,6 @@ class DropdownCore extends React.Component<Props, State> {
 
     static defaultProps: DefaultProps = {
         alignment: "left",
-        initialFocusedIndex: 0,
         labels: {
             noResults: defaultLabels.noResults,
         },
@@ -248,8 +233,9 @@ class DropdownCore extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        this.focusedIndex = this.props.initialFocusedIndex;
-        this.keyboardNavOn = false;
+        // Apply our initial focus index
+        this.resetFocusedIndex();
+
         this.state = {
             prevItems: this.props.items,
             itemRefs: [],
@@ -301,16 +287,7 @@ class DropdownCore extends React.Component<Props, State> {
                     this.focusedIndex = 0;
                     // Reset the knowlege that things had been clicked
                     this.itemsClicked = false;
-                    if (this.keyboardNavOn) {
-                        // If keyboard navigation was already on, use that
-                        this.scheduleToFocusCurrentItem();
-                    } else {
-                        // Otherwise shift focus to the original focus item
-                        // (the opener) to listen for further keyboard events
-                        if (this.props.openerElement) {
-                            this.props.openerElement.focus();
-                        }
-                    }
+                    this.scheduleToFocusCurrentItem();
                 } else {
                     this.focusedIndex = newFocusableIndex;
                 }
@@ -329,37 +306,44 @@ class DropdownCore extends React.Component<Props, State> {
         this.removeEventListeners();
     }
 
+    hasSearchBox(): boolean {
+        return (
+            !!this.props.onSearchTextChanged &&
+            typeof this.props.searchText === "string"
+        );
+    }
+
+    // Resets our initial focus index to what was passed in
+    // via the props
+    resetFocusedIndex() {
+        const {initialFocusedIndex} = this.props;
+
+        // If we are given an initial focus index, select it.  Otherwise
+        // default to the first item
+        if (initialFocusedIndex) {
+            // If we have a search box visible, then our focus
+            // index is going to be offset by 1, since the orginal
+            // index doesn't account for the search box's
+            // existence.
+            if (this.hasSearchBox()) {
+                this.focusedIndex = initialFocusedIndex + 1;
+            } else {
+                this.focusedIndex = initialFocusedIndex;
+            }
+        } else {
+            this.focusedIndex = 0;
+        }
+    }
+
     // Figure out focus states for the dropdown after it has changed from open
     // to closed or vice versa
     initialFocusItem() {
-        const {
-            keyboard,
-            initialFocusedIndex,
-            open,
-            onSearchTextChanged,
-            searchText,
-        } = this.props;
+        const {open} = this.props;
 
         if (open) {
-            // Reset focused index
-            this.focusedIndex = initialFocusedIndex;
-            // We explicitly set focus to the first item only if we sense
-            // that the user opened the menu via the keyboard
-            if (keyboard) {
-                this.keyboardNavOn = true;
-                this.scheduleToFocusCurrentItem();
-            }
-
-            const showSearchTextInput =
-                !!onSearchTextChanged && typeof searchText === "string";
-
-            // focus on the search field (if is enabled)
-            if (showSearchTextInput) {
-                this.scheduleToFocusCurrentItem();
-            }
+            this.resetFocusedIndex();
+            this.scheduleToFocusCurrentItem();
         } else if (!open) {
-            // If the dropdown has been closed, reset the keyboardNavOn boolean
-            this.keyboardNavOn = false;
             this.itemsClicked = false;
         }
     }
@@ -403,16 +387,27 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusCurrentItem() {
-        const node = ((ReactDOM.findDOMNode(
-            this.state.itemRefs[this.focusedIndex].ref.current,
-        ): any): HTMLElement);
-        if (node) {
-            node.focus();
-            // Keep track of the original index of the newly focused item.
-            // To be used if the set of focusable items in the menu changes
-            this.focusedOriginalIndex = this.state.itemRefs[
-                this.focusedIndex
-            ].originalIndex;
+        const fousedItemRef = this.state.itemRefs[this.focusedIndex];
+
+        if (fousedItemRef) {
+            // force react-window to scroll to ensure the focused item is visible
+            if (this.listRef.current) {
+                // Our focused index does not include disabled items, but the
+                // react-window index system does include the disabled items
+                // in the count.  So we need to use "originalIndex", which
+                // does account for disabled items.
+                this.listRef.current.scrollToItem(fousedItemRef.originalIndex);
+            }
+
+            const node = ((ReactDOM.findDOMNode(
+                fousedItemRef.ref.current,
+            ): any): HTMLElement);
+            if (node) {
+                node.focus();
+                // Keep track of the original index of the newly focused item.
+                // To be used if the set of focusable items in the menu changes
+                this.focusedOriginalIndex = fousedItemRef.originalIndex;
+            }
         }
     }
 
@@ -423,11 +418,6 @@ class DropdownCore extends React.Component<Props, State> {
             this.focusedIndex -= 1;
         }
 
-        // force react-window to scroll on the correct position
-        if (this.listRef.current) {
-            this.listRef.current.scrollToItem(this.focusedIndex);
-        }
-
         this.scheduleToFocusCurrentItem();
     }
 
@@ -436,11 +426,6 @@ class DropdownCore extends React.Component<Props, State> {
             this.focusedIndex = 0;
         } else {
             this.focusedIndex += 1;
-        }
-
-        // force react-window to scroll on the correct position
-        if (this.listRef.current) {
-            this.listRef.current.scrollToItem(this.focusedIndex);
         }
 
         this.scheduleToFocusCurrentItem();
@@ -457,41 +442,18 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     handleKeyDown: (event: SyntheticKeyboardEvent<>) => void = (event) => {
-        const {
-            initialFocusedIndex,
-            onOpenChanged,
-            open,
-            onSearchTextChanged,
-            searchText,
-        } = this.props;
+        const {onOpenChanged, open, searchText} = this.props;
         const keyCode = event.which || event.keyCode;
         // If menu isn't open and user presses down, open the menu
         if (!open) {
             if (keyCode === keyCodes.down) {
                 event.preventDefault();
-                onOpenChanged(true, true);
+                onOpenChanged(true);
                 return;
             }
             return;
         }
 
-        // This is the first use of keyboard navigation
-        if (
-            !this.keyboardNavOn &&
-            (keyCode === keyCodes.up || keyCode === keyCodes.down)
-        ) {
-            this.keyboardNavOn = true;
-            // No items have been clicked so we focus the initial item
-            if (!this.itemsClicked) {
-                event.preventDefault();
-                this.focusedIndex = initialFocusedIndex;
-                this.scheduleToFocusCurrentItem();
-                return;
-            }
-        }
-
-        const showSearchTextInput =
-            !!onSearchTextChanged && typeof searchText === "string";
         // Handle all other key behavior
         switch (keyCode) {
             case keyCodes.tab:
@@ -500,19 +462,19 @@ class DropdownCore extends React.Component<Props, State> {
                 // is displayed. When user presses tab, we should move focus
                 // to the dismiss button.
                 if (
-                    showSearchTextInput &&
+                    this.hasSearchBox() &&
                     this.focusedIndex === 0 &&
                     searchText
                 ) {
                     return;
                 }
                 this.restoreTabOrder();
-                onOpenChanged(false, true);
+                onOpenChanged(false);
                 return;
             case keyCodes.space:
                 // When we display SearchTextInput and the focus is on it,
                 // we should let the user type space.
-                if (showSearchTextInput && this.focusedIndex === 0) {
+                if (this.hasSearchBox() && this.focusedIndex === 0) {
                     return;
                 }
                 // Prevent space from scrolling down the page
@@ -531,20 +493,13 @@ class DropdownCore extends React.Component<Props, State> {
 
     // Some keys should be handled during the keyup event instead.
     handleKeyUp: (event: SyntheticKeyboardEvent<>) => void = (event) => {
-        const {
-            onOpenChanged,
-            open,
-            onSearchTextChanged,
-            searchText,
-        } = this.props;
+        const {onOpenChanged, open} = this.props;
         const keyCode = event.which || event.keyCode;
-        const showSearchTextInput =
-            !!onSearchTextChanged && typeof searchText === "string";
         switch (keyCode) {
             case keyCodes.space:
                 // When we display SearchTextInput and the focus is on it,
                 // we should let the user type space.
-                if (showSearchTextInput && this.focusedIndex === 0) {
+                if (this.hasSearchBox() && this.focusedIndex === 0) {
                     return;
                 }
                 // Prevent space from scrolling down the page
@@ -556,7 +511,7 @@ class DropdownCore extends React.Component<Props, State> {
                 if (open) {
                     event.stopPropagation();
                     this.restoreTabOrder();
-                    onOpenChanged(false, true);
+                    onOpenChanged(false);
                 }
                 return;
         }
@@ -679,7 +634,7 @@ class DropdownCore extends React.Component<Props, State> {
         });
     }
 
-    renderItems(outOfBoundaries: ?boolean): React.Node {
+    renderItems(isReferenceHidden: ?boolean): React.Node {
         const {dropdownStyle, light, openerElement} = this.props;
 
         // The dropdown width is at least the width of the opener.
@@ -702,7 +657,7 @@ class DropdownCore extends React.Component<Props, State> {
                 style={[
                     styles.dropdown,
                     light && styles.light,
-                    outOfBoundaries && styles.hidden,
+                    isReferenceHidden && styles.hidden,
                     {minWidth: minDropdownWidth},
                     dropdownStyle,
                 ]}
@@ -730,31 +685,51 @@ class DropdownCore extends React.Component<Props, State> {
         if (modalHost) {
             return ReactDOM.createPortal(
                 <Popper
-                    innerRef={(node) => {
+                    innerRef={(node: ?HTMLElement) => {
                         if (node) {
                             this.popperElement = node;
                         }
                     }}
                     referenceElement={this.props.openerElement}
+                    strategy="fixed"
                     placement={
                         alignment === "left" ? "bottom-start" : "bottom-end"
                     }
-                    modifiers={{
-                        wbVisibility: visibilityModifierDefaultConfig,
-                        preventOverflow: {
-                            boundariesElement: "viewport",
-                            escapeWithReference: true,
+                    modifiers={[
+                        {
+                            name: "preventOverflow",
+                            options: {
+                                rootBoundary: "viewport",
+                                // Allows to overlap the popper in case there's
+                                // no more vertical room in the viewport.
+                                altAxis: true,
+                                // Also needed to make sure the Popper will be
+                                // displayed correctly in different contexts
+                                // (e.g inside a Modal)
+                                tether: false,
+                            },
                         },
-                    }}
+                    ]}
                 >
-                    {({placement, ref, style, outOfBoundaries}) => {
+                    {({
+                        placement,
+                        ref,
+                        style,
+                        hasPopperEscaped,
+                        isReferenceHidden,
+                    }) => {
+                        // For some reason react-popper includes `pointerEvents: "none"`
+                        // in the `style` it passes to us, but only when running the tests.
+                        const {pointerEvents: _, ...restStyle} = style;
                         return (
                             <div
                                 ref={ref}
-                                style={style}
+                                style={restStyle}
                                 data-placement={placement}
                             >
-                                {this.renderItems(outOfBoundaries)}
+                                {this.renderItems(
+                                    hasPopperEscaped || isReferenceHidden,
+                                )}
                             </div>
                         );
                     }}
@@ -804,6 +779,7 @@ const styles = StyleSheet.create({
     },
 
     hidden: {
+        pointerEvents: "none",
         visibility: "hidden",
     },
 

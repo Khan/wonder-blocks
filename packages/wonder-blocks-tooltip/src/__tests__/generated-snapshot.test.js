@@ -458,7 +458,7 @@ describe("wonder-blocks-tooltip", () => {
             <View>
                 <TooltipBubble
                     placement="top"
-                    outOfBoundaries={true}
+                    isReferenceHidden={true}
                     style={{
                         position: "relative",
                     }}

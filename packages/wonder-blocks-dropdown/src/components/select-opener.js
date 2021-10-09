@@ -69,7 +69,7 @@ type SelectOpenerProps = {|
     /**
      * Callback for when the SelectOpener is pressed.
      */
-    onOpenChanged: (open: boolean, keyboard: boolean) => mixed,
+    onOpenChanged: (open: boolean) => mixed,
 
     /**
      * Whether the dropdown is open.
@@ -100,7 +100,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
 
     handleClick: (e: SyntheticEvent<>) => void = (e) => {
         const {open} = this.props;
-        this.props.onOpenChanged(!open, e.type === "keyup");
+        this.props.onOpenChanged(!open);
     };
 
     render(): React.Node {

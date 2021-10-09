@@ -24,10 +24,10 @@ type Props = {|
  */
 export default class ActionSchedulerProvider extends React.Component<Props> {
     componentWillUnmount() {
-        this._actionScheduler.clearAll();
+        this._actionScheduler.disable();
     }
 
-    _actionScheduler: IScheduleActions = new ActionScheduler();
+    _actionScheduler: ActionScheduler = new ActionScheduler();
 
     render(): React.Node {
         const {children} = this.props;

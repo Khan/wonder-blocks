@@ -94,10 +94,6 @@ type State = {|
      * Whether or not the dropdown is open.
      */
     opened: boolean,
-    /**
-     * Whether or not last open state change was triggered by a keyboard click.
-     */
-    keyboard?: boolean,
 |};
 
 type DefaultProps = {|
@@ -117,7 +113,6 @@ export default class ActionMenu extends React.Component<Props, State> {
     };
 
     state: State = {
-        keyboard: false,
         opened: false,
     };
 
@@ -145,13 +140,9 @@ export default class ActionMenu extends React.Component<Props, State> {
         }
     };
 
-    handleOpenChanged: (opened: boolean, keyboard?: boolean) => void = (
-        opened,
-        keyboard,
-    ) => {
+    handleOpenChanged: (opened: boolean) => void = (opened) => {
         this.setState({
             opened,
-            keyboard,
         });
 
         if (this.props.onToggle) {
@@ -231,7 +222,7 @@ export default class ActionMenu extends React.Component<Props, State> {
     };
 
     handleClick: (e: SyntheticEvent<>) => void = (e) => {
-        this.handleOpenChanged(!this.state.opened, e.type === "keyup");
+        this.handleOpenChanged(!this.state.opened);
     };
 
     renderOpener(numItems: number): React.Element<typeof DropdownOpener> {
@@ -283,7 +274,6 @@ export default class ActionMenu extends React.Component<Props, State> {
                 alignment={alignment}
                 open={this.state.opened}
                 items={items}
-                keyboard={this.state.keyboard}
                 openerElement={this.openerElement}
                 onOpenChanged={this.handleOpenChanged}
                 dropdownStyle={[styles.menuTopSpace, dropdownStyle]}

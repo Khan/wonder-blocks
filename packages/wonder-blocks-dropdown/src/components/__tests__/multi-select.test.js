@@ -379,9 +379,6 @@ describe("MultiSelect", () => {
             .find(OptionItem)
             .at(2)
             .find(ClickableBehavior);
-        // The focus is on opener. Press up (or down) should focus the input
-        select.simulate("keydown", {keyCode: keyCodes.up});
-        select.simulate("keyup", {keyCode: keyCodes.up});
         jest.runAllTimers();
         expect(searchInput.state("focused")).toBe(true);
 
@@ -400,9 +397,6 @@ describe("MultiSelect", () => {
         select.setState({open: true});
         const searchInput = select.find(SearchTextInput);
         const selectAll = select.find(ActionItem).at(0).find(ClickableBehavior);
-        // The focus is on opener. Press up (or down) should focus the input
-        select.simulate("keydown", {keyCode: keyCodes.down});
-        select.simulate("keyup", {keyCode: keyCodes.down});
         jest.runAllTimers();
         expect(searchInput.state("focused")).toBe(true);
 

@@ -1,5 +1,6 @@
 // @flow
 import Timeout from "../timeout.js";
+import {SchedulePolicy, ClearPolicy} from "../policies.js";
 
 describe("Timeout", () => {
     beforeEach(() => {
@@ -41,12 +42,12 @@ describe("Timeout", () => {
             );
         });
 
-        it("sets a timeout when autoSchedule is true", () => {
+        it("sets a timeout when schedule policy is SchedulePolicy.Immediately", () => {
             // Arrange
 
             // Act
             // eslint-disable-next-line no-new
-            new Timeout(() => {}, 0, true);
+            new Timeout(() => {}, 0, SchedulePolicy.Immediately);
 
             // Assert
             expect(setTimeout).toHaveBeenCalledTimes(1);
@@ -56,7 +57,7 @@ describe("Timeout", () => {
     describe("isSet", () => {
         it("is false when the timeout has not been set", () => {
             // Arrange
-            const timeout = new Timeout(() => {}, 0, false);
+            const timeout = new Timeout(() => {}, 0, SchedulePolicy.OnDemand);
 
             // Act
             const result = timeout.isSet;
@@ -94,7 +95,7 @@ describe("Timeout", () => {
     describe("#set", () => {
         it("should call setTimeout", () => {
             // Arrange
-            const timeout = new Timeout(() => {}, 500, false);
+            const timeout = new Timeout(() => {}, 500, SchedulePolicy.OnDemand);
 
             // Act
             timeout.set();
@@ -140,7 +141,7 @@ describe("Timeout", () => {
         it("should set the timeout again if it has already executed", () => {
             // Arrange
             const action = jest.fn();
-            const timeout = new Timeout(action, 500, false);
+            const timeout = new Timeout(action, 500, SchedulePolicy.OnDemand);
             timeout.set();
             jest.runOnlyPendingTimers();
 
@@ -167,27 +168,31 @@ describe("Timeout", () => {
             expect(action).not.toHaveBeenCalled();
         });
 
-        it("should invoke the action if resolve is true", () => {
+        it("should invoke the action if clear policy is ClearPolicy.Resolve", () => {
             // Arrange
             const action = jest.fn();
             const timeout = new Timeout(action, 500);
             timeout.set();
 
             // Act
-            timeout.clear(true);
+            timeout.clear(ClearPolicy.Resolve);
             jest.runOnlyPendingTimers();
 
             // Assert
             expect(action).toHaveBeenCalledTimes(1);
         });
 
-        it("should not invoke the action if resolve is false", () => {
+        it("should not invoke the action if clear policy is ClearPolicy.Cancel", () => {
             // Arrange
             const action = jest.fn();
-            const timeout = new Timeout(action, 500, true);
+            const timeout = new Timeout(
+                action,
+                500,
+                SchedulePolicy.Immediately,
+            );
 
             // Act
-            timeout.clear(false);
+            timeout.clear(ClearPolicy.Cancel);
             jest.runOnlyPendingTimers();
 
             // Assert
@@ -197,10 +202,10 @@ describe("Timeout", () => {
         it("should not invoke the action if timeout is not pending", () => {
             // Arrange
             const action = jest.fn();
-            const timeout = new Timeout(action, 500, false);
+            const timeout = new Timeout(action, 500, SchedulePolicy.OnDemand);
 
             // Act
-            timeout.clear(true);
+            timeout.clear(ClearPolicy.Resolve);
             jest.runOnlyPendingTimers();
 
             // Assert

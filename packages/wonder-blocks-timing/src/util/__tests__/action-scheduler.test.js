@@ -3,6 +3,7 @@ import ActionScheduler from "../action-scheduler.js";
 import Timeout from "../timeout.js";
 import Interval from "../interval.js";
 import AnimationFrame from "../animation-frame.js";
+import {SchedulePolicy, ClearPolicy} from "../policies.js";
 
 jest.mock("../timeout.js");
 jest.mock("../interval.js");
@@ -38,55 +39,54 @@ describe("ActionScheduler", () => {
             expect(result).toBeDefined();
         });
 
-        it("should pass arguments to Timeout", () => {
+        it("should pass schedule policy to Timeout", () => {
             // Arrange
             const actionScheduler = new ActionScheduler();
             const action = jest.fn();
+            const options = {
+                schedulePolicy: SchedulePolicy.Immediately,
+            };
 
             // Act
-            actionScheduler.timeout(action, 42, true);
+            actionScheduler.timeout(action, 42, options);
 
             // Assert
-            expect(Timeout).toHaveBeenCalledWith(action, 42, true);
+            expect(Timeout).toHaveBeenCalledWith(
+                action,
+                42,
+                SchedulePolicy.Immediately,
+            );
         });
 
-        describe("clearOnResolve", () => {
-            it("when true, should call timeout.clear(true) on clearAll", () => {
+        it("should pass clear policy to timeout.clear on clearAll", () => {
+            // Arrange
+            const actionScheduler = new ActionScheduler();
+            const action = jest.fn();
+            const options = {
+                clearPolicy: ClearPolicy.Resolve,
+            };
+            const testTimeout = actionScheduler.timeout(action, 42, options);
+
+            // Act
+            actionScheduler.clearAll();
+
+            // Assert
+            // $FlowIgnore[method-unbinding]
+            expect(testTimeout.clear).toHaveBeenCalledWith(ClearPolicy.Resolve);
+        });
+
+        describe("when scheduler is disabled", () => {
+            it("should return a noop timeout", () => {
                 // Arrange
                 const actionScheduler = new ActionScheduler();
                 const action = jest.fn();
-                const testTimeout = actionScheduler.timeout(
-                    action,
-                    42,
-                    false,
-                    true,
-                );
 
                 // Act
-                actionScheduler.clearAll();
+                actionScheduler.disable();
+                const result = actionScheduler.timeout(action, 42);
 
                 // Assert
-                // $FlowIgnore[method-unbinding]
-                expect(testTimeout.clear).toHaveBeenCalledWith(true);
-            });
-
-            it("when falsy, should call timeout.clear() on clearAll", () => {
-                // Arrange
-                const actionScheduler = new ActionScheduler();
-                const action = jest.fn();
-                const testTimeout = actionScheduler.timeout(
-                    action,
-                    42,
-                    false,
-                    false,
-                );
-
-                // Act
-                actionScheduler.clearAll();
-
-                // Assert
-                // $FlowIgnore[method-unbinding]
-                expect(testTimeout.clear).toHaveBeenCalledWith(false);
+                expect(result).toBe(ActionScheduler.NoopAction);
             });
         });
     });
@@ -104,55 +104,56 @@ describe("ActionScheduler", () => {
             expect(result).toBeDefined();
         });
 
-        it("should pass arguments to Interval", () => {
+        it("should pass schedule policy to Interval", () => {
             // Arrange
             const actionScheduler = new ActionScheduler();
             const action = jest.fn();
+            const options = {
+                schedulePolicy: SchedulePolicy.Immediately,
+            };
 
             // Act
-            actionScheduler.interval(action, 42, true);
+            actionScheduler.interval(action, 42, options);
 
             // Assert
-            expect(Interval).toHaveBeenCalledWith(action, 42, true);
+            expect(Interval).toHaveBeenCalledWith(
+                action,
+                42,
+                SchedulePolicy.Immediately,
+            );
         });
 
-        describe("clearOnResolve", () => {
-            it("when true, should call interval.clear(true) on clearAll", () => {
+        it("should pass clear policy to interval.clear on clearAll", () => {
+            // Arrange
+            const actionScheduler = new ActionScheduler();
+            const action = jest.fn();
+            const options = {
+                clearPolicy: ClearPolicy.Resolve,
+            };
+            const testInterval = actionScheduler.interval(action, 42, options);
+
+            // Act
+            actionScheduler.clearAll();
+
+            // Assert
+            // $FlowIgnore[method-unbinding]
+            expect(testInterval.clear).toHaveBeenCalledWith(
+                ClearPolicy.Resolve,
+            );
+        });
+
+        describe("when scheduler is disabled", () => {
+            it("should return a noop interval", () => {
                 // Arrange
                 const actionScheduler = new ActionScheduler();
                 const action = jest.fn();
-                const testInterval = actionScheduler.interval(
-                    action,
-                    42,
-                    false,
-                    true,
-                );
 
                 // Act
-                actionScheduler.clearAll();
+                actionScheduler.disable();
+                const result = actionScheduler.interval(action, 42);
 
                 // Assert
-                // $FlowIgnore[method-unbinding]
-                expect(testInterval.clear).toHaveBeenCalledWith(true);
-            });
-
-            it("when falsy, should call interval.clear() on clearAll", () => {
-                // Arrange
-                const actionScheduler = new ActionScheduler();
-                const action = jest.fn();
-                const testInterval = actionScheduler.interval(
-                    action,
-                    42,
-                    false,
-                    false,
-                );
-
-                // Act
-                actionScheduler.clearAll();
-
-                // Assert
-                // $FlowIgnore[method-unbinding]
-                expect(testInterval.clear).toHaveBeenCalledWith(false);
+                expect(result).toBe(ActionScheduler.NoopAction);
             });
         });
     });
@@ -170,53 +171,53 @@ describe("ActionScheduler", () => {
             expect(result).toBeDefined();
         });
 
-        it("should pass arguments to AnimationFrame", () => {
+        it("should pass schedule policy to AnimationFrame", () => {
             // Arrange
             const actionScheduler = new ActionScheduler();
             const action = jest.fn();
+            const options = {
+                schedulePolicy: SchedulePolicy.Immediately,
+            };
 
             // Act
-            actionScheduler.animationFrame(action, true);
+            actionScheduler.animationFrame(action, options);
 
             // Assert
-            expect(AnimationFrame).toHaveBeenCalledWith(action, true);
+            expect(AnimationFrame).toHaveBeenCalledWith(
+                action,
+                SchedulePolicy.Immediately,
+            );
         });
 
-        describe("clearOnResolve", () => {
-            it("when true, should call animationFrame.clear(true) on clearAll", () => {
+        it("should pass clear policy to animationFrame.clear on clearAll", () => {
+            // Arrange
+            const actionScheduler = new ActionScheduler();
+            const action = jest.fn();
+            const options = {
+                clearPolicy: ClearPolicy.Resolve,
+            };
+            const testFrame = actionScheduler.animationFrame(action, options);
+
+            // Act
+            actionScheduler.clearAll();
+
+            // Assert
+            // $FlowIgnore[method-unbinding]
+            expect(testFrame.clear).toHaveBeenCalledWith(ClearPolicy.Resolve);
+        });
+
+        describe("when scheduler is disabled", () => {
+            it("should return a noop interval", () => {
                 // Arrange
                 const actionScheduler = new ActionScheduler();
                 const action = jest.fn();
-                const testFrame = actionScheduler.animationFrame(
-                    action,
-                    false,
-                    true,
-                );
 
                 // Act
-                actionScheduler.clearAll();
+                actionScheduler.disable();
+                const result = actionScheduler.animationFrame(action);
 
                 // Assert
-                // $FlowIgnore[method-unbinding]
-                expect(testFrame.clear).toHaveBeenCalledWith(true);
-            });
-
-            it("when falsy, should call animationFrame.clear() on clearAll", () => {
-                // Arrange
-                const actionScheduler = new ActionScheduler();
-                const action = jest.fn();
-                const testFrame = actionScheduler.animationFrame(
-                    action,
-                    false,
-                    false,
-                );
-
-                // Act
-                actionScheduler.clearAll();
-
-                // Assert
-                // $FlowIgnore[method-unbinding]
-                expect(testFrame.clear).toHaveBeenCalledWith(false);
+                expect(result).toBe(ActionScheduler.NoopAction);
             });
         });
     });
@@ -261,6 +262,20 @@ describe("ActionScheduler", () => {
             expect(interval.clear).toHaveBeenCalledTimes(1);
             // $FlowIgnore[method-unbinding]
             expect(animationFrame.clear).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe("#disable", () => {
+        it("should clear all scheduled actions", () => {
+            // Arrange
+            const actionScheduler = new ActionScheduler();
+            const clearAllSpy = jest.spyOn(actionScheduler, "clearAll");
+
+            // Act
+            actionScheduler.disable();
+
+            // Assert
+            expect(clearAllSpy).toHaveBeenCalledTimes(1);
         });
     });
 });

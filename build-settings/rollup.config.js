@@ -3,7 +3,7 @@ import fs from "fs";
 import autoExternal from "rollup-plugin-auto-external";
 import babel from "rollup-plugin-babel";
 
-const {presets, plugins} = require("./babel.config.js");
+const {presets, plugins} = require("./babel.config.js")({env: () => false});
 
 const createConfig = (pkgName) => ({
     output: {
@@ -16,6 +16,7 @@ const createConfig = (pkgName) => ({
             presets,
             plugins,
             exclude: "node_modules/**",
+            runtimeHelpers: true,
         }),
         autoExternal({
             packagePath: `packages/${pkgName}/package.json`,

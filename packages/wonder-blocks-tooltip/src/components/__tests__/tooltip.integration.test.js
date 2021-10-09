@@ -1,108 +1,79 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
+
+import {render, screen, fireEvent} from "@testing-library/react";
+// eslint-disable-next-line import/no-unassigned-import
+import "@testing-library/jest-dom/extend-expect";
+import userEvent from "@testing-library/user-event";
 
 import Tooltip from "../tooltip.js";
-import TooltipBubble from "../tooltip-bubble.js";
-import TooltipAnchor from "../tooltip-anchor.js";
-import {TooltipDisappearanceDelay} from "../../util/constants.js";
 
 describe("tooltip integration tests", () => {
     beforeEach(() => {
         jest.useFakeTimers();
-        // jest.clearAllMocks().resetModules();
     });
 
     it("should set timeoutId be null when TooltipBubble is active", () => {
         // Arrange
-        const wrapper = mount(
-            <Tooltip content="hello, world">an anchor</Tooltip>,
-        );
-        const anchor = wrapper.find(TooltipAnchor).getDOMNode();
+        render(<Tooltip content="hello, world">an anchor</Tooltip>);
+        const anchor = screen.getByText("an anchor");
 
         // Act
-        anchor && anchor.dispatchEvent(new FocusEvent("mouseenter"));
+        userEvent.hover(anchor);
         // There's a 100ms delay before TooltipAnchor calls _setActiveState with
         // instant set to true.  This second call is what actually triggers the
         // call to this.props.onActiveChanged() which updates Tooltip's active
         // state.
         jest.runAllTimers();
-        // Since the call to update Tooltip's active state happens in a timeout
-        // we need to call update b/c it happens outside of the normal React lifecycle
-        // methods.
-        wrapper.update();
 
         // Assert
-        expect(wrapper).toContainMatchingElement("TooltipBubble");
-        expect(wrapper).toHaveState("timeoutID", null);
+        expect(screen.getByRole("tooltip")).toBeInTheDocument();
     });
 
-    it("should set a timeout on mouseleave on TooltipAnchor", () => {
+    it("should hide the bubble on mouseleave on TooltipAnchor", () => {
         // Arrange
-        const wrapper = mount(
-            <Tooltip content="hello, world">an anchor</Tooltip>,
-        );
-        const anchor = wrapper.find(TooltipAnchor).getDOMNode();
-        anchor && anchor.dispatchEvent(new FocusEvent("mouseenter"));
-        jest.runAllTimers();
-        wrapper.update();
+        render(<Tooltip content="hello, world">an anchor</Tooltip>);
+
+        const anchor = screen.getByText("an anchor");
+        userEvent.hover(anchor);
 
         // Act
-        anchor && anchor.dispatchEvent(new FocusEvent("mouseleave"));
-        wrapper.update();
+        userEvent.unhover(anchor);
+        // There's a 100ms delay before TooltipAnchor calls _setActiveState with
+        // instant set to true.  This second call is what actually triggers the
+        // call to this.props.onActiveChanged() which updates Tooltip's active
+        // state.
+        jest.runAllTimers();
 
         // Assert
-        expect(wrapper.state("timeoutID")).toEqual(expect.any(Number));
-        expect(wrapper.state("active")).toEqual(true);
+        expect(screen.queryByRole("tooltip")).toBeNull();
     });
 
-    it("should disable the timeout if the mouse hovers over TooltipAnchor within the TooltipDisappearanceDelay", () => {
+    it("should close TooltipBubble on mouseleave on TooltipBubble", async () => {
         // Arrange
-        const wrapper = mount(
-            <Tooltip content="hello, world">an anchor</Tooltip>,
-        );
+        render(<Tooltip content="hello, world">an anchor</Tooltip>);
 
-        const anchor = wrapper.find(TooltipAnchor).getDOMNode();
-        anchor && anchor.dispatchEvent(new FocusEvent("mouseenter"));
-        jest.runAllTimers();
-        wrapper.update();
+        const anchor = screen.getByText("an anchor");
+        userEvent.hover(anchor);
+        // hover on bubble to keep it active
+        const bubbleWrapper = await screen.findByRole("tooltip");
+        userEvent.unhover(anchor);
 
-        const bubbleWrapper = wrapper.find(TooltipBubble);
+        // Used because RTL complains about the bubble containing a child
+        // element with pointerEvents: none
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.mouseEnter(bubbleWrapper);
 
         // Act
-        anchor && anchor.dispatchEvent(new FocusEvent("mouseleave"));
-        jest.advanceTimersByTime(TooltipDisappearanceDelay / 2);
-        wrapper.update();
-
-        bubbleWrapper.simulate("mouseenter");
-        jest.advanceTimersByTime(TooltipDisappearanceDelay + 100);
-        wrapper.update();
-
-        // Assert
-        expect(wrapper.state("timeoutID")).toEqual(null);
-        expect(wrapper).toContainMatchingElement("TooltipBubble");
-        expect(wrapper.state("active")).toEqual(true);
-    });
-
-    it("should close TooltipBubble on mouseleave on TooltipBubble", () => {
-        // Arrange
-        const wrapper = mount(
-            <Tooltip content="hello, world">an anchor</Tooltip>,
-        );
-
-        const anchor = wrapper.find(TooltipAnchor).getDOMNode();
-        anchor && anchor.dispatchEvent(new FocusEvent("mouseenter"));
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.mouseLeave(bubbleWrapper);
+        // There's a 100ms delay before TooltipAnchor calls _setActiveState with
+        // instant set to true.  This second call is what actually triggers the
+        // call to this.props.onActiveChanged() which updates Tooltip's active
+        // state.
         jest.runAllTimers();
-        wrapper.update();
-
-        const bubbleWrapper = wrapper.find(TooltipBubble);
-
-        // Act
-        bubbleWrapper.simulate("mouseleave");
 
         // Assert
-        expect(wrapper.state("timeoutID")).toEqual(null);
-        expect(wrapper).not.toContainMatchingElement("TooltipBubble");
-        expect(wrapper.state("active")).toEqual(false);
+        expect(screen.queryByRole("tooltip")).not.toBeInTheDocument();
     });
 });

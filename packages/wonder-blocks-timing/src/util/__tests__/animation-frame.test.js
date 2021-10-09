@@ -1,5 +1,6 @@
 // @flow
 import AnimationFrame from "../animation-frame.js";
+import {SchedulePolicy, ClearPolicy} from "../policies.js";
 
 describe("AnimationFrame", () => {
     beforeEach(() => {
@@ -45,12 +46,12 @@ describe("AnimationFrame", () => {
             );
         });
 
-        it("requests an animation frame when autoSchedule is true", () => {
+        it("requests an animation frame when schedule policy is SchedulePolicy.Immediately", () => {
             // Arrange
 
             // Act
             // eslint-disable-next-line no-new
-            new AnimationFrame(() => {}, true);
+            new AnimationFrame(() => {}, SchedulePolicy.Immediately);
 
             // Assert
             expect(requestAnimationFrame).toHaveBeenCalledTimes(1);
@@ -60,7 +61,8 @@ describe("AnimationFrame", () => {
     describe("isSet", () => {
         it("is false when the request has not been set", () => {
             // Arrange
-            const animationFrame = new AnimationFrame(() => {}, false);
+            const animationFrame = new AnimationFrame(() => {},
+            SchedulePolicy.OnDemand);
 
             // Act
             const result = animationFrame.isSet;
@@ -144,7 +146,10 @@ describe("AnimationFrame", () => {
         it("should set the timeout again if it has already executed", () => {
             // Arrange
             const action = jest.fn();
-            const animationFrame = new AnimationFrame(action, false);
+            const animationFrame = new AnimationFrame(
+                action,
+                SchedulePolicy.OnDemand,
+            );
             animationFrame.set();
             jest.runOnlyPendingTimers();
 
@@ -171,7 +176,7 @@ describe("AnimationFrame", () => {
             expect(action).not.toHaveBeenCalled();
         });
 
-        it("should invoke the action if resolve is true", () => {
+        it("should invoke the action if clear policy is ClearPolicy.Resolve", () => {
             // Arrange
             jest.spyOn(performance, "now").mockReturnValue(42);
             const action = jest.fn();
@@ -179,7 +184,7 @@ describe("AnimationFrame", () => {
             animationFrame.set();
 
             // Act
-            animationFrame.clear(true);
+            animationFrame.clear(ClearPolicy.Resolve);
             jest.runOnlyPendingTimers();
 
             // Assert
@@ -187,26 +192,32 @@ describe("AnimationFrame", () => {
             expect(action).toHaveBeenCalledWith(42);
         });
 
-        it("should not invoke the action if resolve is false", () => {
+        it("should not invoke the action if clear policy is ClearPolicy.Cancel", () => {
             // Arrange
             const action = jest.fn();
-            const animationFrame = new AnimationFrame(action, true);
+            const animationFrame = new AnimationFrame(
+                action,
+                SchedulePolicy.Immediately,
+            );
 
             // Act
-            animationFrame.clear(false);
+            animationFrame.clear(ClearPolicy.Cancel);
             jest.runOnlyPendingTimers();
 
             // Assert
             expect(action).not.toHaveBeenCalled();
         });
 
-        it("should not invoke the action if timeout is not pending", () => {
+        it("should not invoke the action if timeout is not pending and clear policy is ClearPolicy.Resolve", () => {
             // Arrange
             const action = jest.fn();
-            const animationFrame = new AnimationFrame(action, false);
+            const animationFrame = new AnimationFrame(
+                action,
+                SchedulePolicy.OnDemand,
+            );
 
             // Act
-            animationFrame.clear(true);
+            animationFrame.clear(ClearPolicy.Resolve);
             jest.runOnlyPendingTimers();
 
             // Assert

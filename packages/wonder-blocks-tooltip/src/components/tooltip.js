@@ -103,9 +103,18 @@ type Props = {|
 |};
 
 type State = {|
+    /**
+     * Whether the tooltip is open by hovering/focusing on the anchor element.
+     */
     active: boolean,
+    /**
+     * Whether the tooltip is open by hovering on the tooltip bubble.
+     */
+    activeBubble: boolean,
+    /**
+     * The element that activates the tooltip.
+     */
     anchorElement: ?HTMLElement,
-    timeoutID: ?TimeoutID,
 |};
 
 type DefaultProps = {|
@@ -121,8 +130,8 @@ export default class Tooltip extends React.Component<Props, State> {
 
     state: State = {
         active: false,
+        activeBubble: false,
         anchorElement: null,
-        timeoutID: null,
     };
     static ariaContentId: string = "aria-content";
 
@@ -161,14 +170,12 @@ export default class Tooltip extends React.Component<Props, State> {
                         id={bubbleId}
                         style={props.style}
                         tailOffset={props.tailOffset}
-                        outOfBoundaries={props.outOfBoundaries}
+                        isReferenceHidden={props.isReferenceHidden}
                         placement={props.placement}
                         updateTailRef={props.updateTailRef}
                         updateBubbleRef={props.updateBubbleRef}
-                        onActiveChanged={(active) => this.setState({active})}
-                        anchorTimeoutID={this.state.timeoutID}
-                        onTimeoutChanged={(timeoutID) =>
-                            this.setState({timeoutID})
+                        onActiveChanged={(active) =>
+                            this.setState({activeBubble: active})
                         }
                     >
                         {this._renderBubbleContent()}
@@ -189,7 +196,7 @@ export default class Tooltip extends React.Component<Props, State> {
 
     _renderTooltipAnchor(ids?: IIdentifierFactory): React.Node {
         const {children, forceAnchorFocusivity} = this.props;
-        const {active} = this.state;
+        const {active, activeBubble} = this.state;
 
         const popperHost = this._getHost();
 
@@ -200,13 +207,12 @@ export default class Tooltip extends React.Component<Props, State> {
                     forceAnchorFocusivity={forceAnchorFocusivity}
                     anchorRef={(r) => this._updateAnchorElement(r)}
                     onActiveChanged={(active) => this.setState({active})}
-                    onTimeoutChanged={(timeoutID) => this.setState({timeoutID})}
                     ids={ids}
                 >
                     {children}
                 </TooltipAnchor>
                 {popperHost &&
-                    active &&
+                    (active || activeBubble) &&
                     ReactDOM.createPortal(this._renderPopper(ids), popperHost)}
             </React.Fragment>
         );

@@ -1,5 +1,10 @@
 // @flow
-import type {ITimeout} from "./types.js";
+import {
+    SchedulePolicy as SchedulePolicies,
+    ClearPolicy as ClearPolicies,
+} from "./policies.js";
+
+import type {ITimeout, SchedulePolicy, ClearPolicy} from "./types.js";
 
 /**
  * Encapsulates everything associated with calling setTimeout/clearTimeout, and
@@ -22,15 +27,16 @@ export default class Timeout implements ITimeout {
      * @param {() => mixed} action The action to be invoked when the timeout
      * period has passed.
      * @param {number} timeoutMs The timeout period.
-     * @param {boolean} [autoSchedule] When true, the timer is set immediately on
-     * instanstiation; otherwise, `set` must be called to set the timeout.
-     * Defaults to `true`.
+     * @param {SchedulePolicy} [schedulePolicy] When SchedulePolicy.Immediately,
+     * the timer is set immediately on instantiation; otherwise, `set` must be
+     * called to set the timeout.
+     * Defaults to `SchedulePolicy.Immediately`.
      * @memberof Timeout
      */
     constructor(
         action: () => mixed,
         timeoutMs: number,
-        autoSchedule?: boolean,
+        schedulePolicy: SchedulePolicy = SchedulePolicies.Immediately,
     ) {
         if (typeof action !== "function") {
             throw new Error("Action must be a function");
@@ -43,7 +49,7 @@ export default class Timeout implements ITimeout {
         this._action = action;
         this._timeoutMs = timeoutMs;
 
-        if (autoSchedule || autoSchedule == null) {
+        if (schedulePolicy === SchedulePolicies.Immediately) {
             this.set();
         }
     }
@@ -70,9 +76,12 @@ export default class Timeout implements ITimeout {
      */
     set(): void {
         if (this.isSet) {
-            this.clear(false);
+            this.clear(ClearPolicies.Cancel);
         }
-        this._timeoutId = setTimeout(() => this.clear(true), this._timeoutMs);
+        this._timeoutId = setTimeout(
+            () => this.clear(ClearPolicies.Resolve),
+            this._timeoutMs,
+        );
     }
 
     /**
@@ -81,21 +90,22 @@ export default class Timeout implements ITimeout {
      * If the timeout is pending, this cancels that pending timeout without
      * invoking the action. If no timeout is pending, this does nothing.
      *
-     * @param {boolean} [resolve] When true, if the timeout was set when called,
-     * the timeout action is invoked after cancelling the timeout. Defaults to
-     * false.
+     * @param {ClearPolicy} [policy] When ClearPolicy.Resolve, if the request
+     * was set when called, the request action is invoked after cancelling
+     * the request; otherwise, the pending action is cancelled.
+     * Defaults to `ClearPolicy.Cancel`.
      *
      * @returns {void}
      * @memberof Timeout
      */
-    clear(resolve?: boolean): void {
+    clear(policy: ClearPolicy = ClearPolicies.Cancel): void {
         const timeoutId = this._timeoutId;
         this._timeoutId = null;
         if (timeoutId == null) {
             return;
         }
         clearTimeout(timeoutId);
-        if (resolve) {
+        if (policy === ClearPolicies.Resolve) {
             this._action();
         }
     }

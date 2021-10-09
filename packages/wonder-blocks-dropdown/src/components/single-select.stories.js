@@ -2,8 +2,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
@@ -89,6 +94,14 @@ const styles = StyleSheet.create({
         height: "800px",
         width: "1200px",
     },
+    centered: {
+        alignItems: "center",
+        justifyContent: "center",
+        height: `calc(100vh - 16px)`,
+    },
+    scrollableArea: {
+        height: "200vh",
+    },
 });
 
 export const WithFilter: StoryComponentType = () => <SingleSelectWithFilter />;
@@ -105,3 +118,58 @@ WithFilter.story = {
 export const WithFilterOpened: StoryComponentType = () => (
     <SingleSelectWithFilter opened={true} />
 );
+
+export const DropdownInModal: StoryComponentType = () => {
+    const [value, setValue] = React.useState(null);
+    const [opened, setOpened] = React.useState(true);
+
+    const modalContent = (
+        <View style={styles.scrollableArea}>
+            <View>
+                <Body>
+                    Sometimes we want to include Dropdowns inside a Modal, and
+                    these controls can be accessed only by scrolling down. This
+                    example help us to demonstrate that SingleSelect components
+                    can correctly be displayed within the visible scrolling
+                    area.
+                </Body>
+                <Strut size={Spacing.large_24} />
+                <SingleSelect
+                    onChange={(selected) => setValue(selected)}
+                    isFilterable={true}
+                    opened={opened}
+                    onToggle={(opened) => setOpened(opened)}
+                    placeholder="Select a fruit"
+                    selectedValue={value}
+                >
+                    {optionItems}
+                </SingleSelect>
+            </View>
+        </View>
+    );
+
+    const modal = (
+        <OnePaneDialog title="Dropdown in a Modal" content={modalContent} />
+    );
+
+    return (
+        <View style={styles.centered}>
+            <ModalLauncher modal={modal}>
+                {({openModal}) => (
+                    <Button onClick={openModal}>Click here!</Button>
+                )}
+            </ModalLauncher>
+        </View>
+    );
+};
+
+DropdownInModal.story = {
+    name: "Dropdown in a modal",
+    parameters: {
+        chromatic: {
+            // We don't need screenshots because this story can be tested after
+            // the modal is opened.
+            disable: true,
+        },
+    },
+};

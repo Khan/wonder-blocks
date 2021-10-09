@@ -117,10 +117,6 @@ type State = {|
      * Whether or not the dropdown is open.
      */
     open: boolean,
-    /**
-     * Whether or not last opened state change was triggered by a keyboard click.
-     */
-    keyboard?: boolean,
 
     /**
      * The text input to filter the items by their label. Defaults to an empty
@@ -188,13 +184,9 @@ export default class SingleSelect extends React.Component<Props, State> {
         };
     }
 
-    handleOpenChanged: (opened: boolean, keyboard?: boolean) => void = (
-        opened,
-        keyboard,
-    ) => {
+    handleOpenChanged: (opened: boolean) => void = (opened) => {
         this.setState({
             open: opened,
-            keyboard,
             searchText: "",
         });
 
@@ -236,12 +228,14 @@ export default class SingleSelect extends React.Component<Props, State> {
             const {disabled, value} = option.props;
             const selected = selectedValue === value;
 
-            if (!disabled) {
-                indexCounter += 1;
-            }
             if (selected) {
                 this.selectedIndex = indexCounter;
             }
+
+            if (!disabled) {
+                indexCounter += 1;
+            }
+
             return {
                 component: option,
                 focusable: !disabled,
@@ -313,7 +307,7 @@ export default class SingleSelect extends React.Component<Props, State> {
     };
 
     handleClick: (e: SyntheticEvent<>) => void = (e) => {
-        this.handleOpenChanged(!this.state.open, e.type === "keyup");
+        this.handleOpenChanged(!this.state.open);
     };
 
     renderOpener(
@@ -409,7 +403,6 @@ export default class SingleSelect extends React.Component<Props, State> {
                 ]}
                 initialFocusedIndex={this.selectedIndex}
                 items={items}
-                keyboard={this.state.keyboard}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
                 open={this.state.open}

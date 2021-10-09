@@ -21,12 +21,16 @@ type WithoutActionScheduler<T> = $Exact<$Diff<T, WithActionSchedulerProps>>;
  * these props use the `WithActionScheduler` type.
  */
 export default function withActionScheduler<
-    Config: {...},
-    Component: React.ComponentType<WithActionScheduler<Config>>,
+    -Config: WithActionSchedulerProps,
+    +Instance,
+    Component: React.AbstractComponent<WithActionScheduler<Config>, Instance>,
 >(
     WrappedComponent: Component,
-): React.ComponentType<WithoutActionScheduler<React.ElementConfig<Component>>> {
-    return React.forwardRef((props, ref) => (
+): React.AbstractComponent<
+    WithoutActionScheduler<React.ElementConfig<Component>>,
+    Instance,
+> {
+    return React.forwardRef<_, Instance>((props, ref) => (
         <ActionSchedulerProvider>
             {(schedule: IScheduleActions) => (
                 <WrappedComponent {...props} ref={ref} schedule={schedule} />
