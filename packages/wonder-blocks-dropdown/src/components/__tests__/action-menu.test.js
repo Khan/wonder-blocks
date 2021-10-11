@@ -8,6 +8,7 @@ import SeparatorItem from "../separator-item.js";
 import ActionMenu from "../action-menu.js";
 import DropdownOpener from "../dropdown-opener.js";
 import {keyCodes} from "../../util/constants.js";
+import ActionMenuOpenerCore from "../action-menu-opener-core.js";
 
 jest.mock("../dropdown-core-virtualized.js");
 
@@ -141,6 +142,38 @@ describe("ActionMenu", () => {
 
         // Assert
         expect(menu.state("opened")).toBe(false);
+    });
+
+    it("updates the aria-expanded value when opening and closing", () => {
+        // Arrange
+        const menu = mount(
+            <ActionMenu
+                menuText={"Action menu!"}
+                testId="openTest"
+                onChange={onChange}
+                selectedValues={[]}
+            >
+                <ActionItem label="Action" onClick={onClick} />
+                <SeparatorItem />
+                <OptionItem label="Toggle" value="toggle" onClick={onToggle} />
+            </ActionMenu>,
+        );
+
+        let opener = menu.find(DropdownOpener);
+        let openerCore = menu.find(ActionMenuOpenerCore);
+        expect(openerCore.prop("opened")).toBe(false);
+        expect(opener.find("[aria-expanded='false']")).toExist();
+
+        // Act
+        opener.simulate("keydown", {keyCode: keyCodes.enter});
+        opener.simulate("keyup", {keyCode: keyCodes.enter});
+        menu.update();
+        openerCore = menu.find(ActionMenuOpenerCore);
+        opener = menu.find(DropdownOpener);
+
+        // Assert
+        expect(openerCore.prop("opened")).toBe(true);
+        expect(opener.find("[aria-expanded='true']")).toExist();
     });
 
     it("triggers actions", () => {
