@@ -12,7 +12,7 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {StoryComponentType} from "@storybook/react";
 
 export default {
-    title: "Clickable",
+    title: "Navigation/Clickable",
 };
 
 export const basic: StoryComponentType = () => (

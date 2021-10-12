@@ -11,7 +11,7 @@ import Popover from "./popover.js";
 import PopoverContent from "./popover-content.js";
 
 export default {
-    title: "Popover",
+    title: "Floating/Popover",
 };
 
 const styles = StyleSheet.create({

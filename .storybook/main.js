@@ -1,5 +1,5 @@
 module.exports = {
-    stories: ["../packages/**/*.stories.js"],
+    stories: ["../packages/**/*.stories.@(js|mdx)"],
     addons: [
         // Includes core addons (controls, docs, actions, viewport, backgrounds)
         "@storybook/addon-essentials",

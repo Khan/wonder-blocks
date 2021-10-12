@@ -1,0 +1,119 @@
+<!---Badge.stories.mdx --->
+
+
+import {Meta, Story, Canvas} from "@storybook/addon-docs";
+import {StyleSheet} from "aphrodite";
+
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+
+<Meta title="Navigation/Button/Best Practices" component={Button} parameters={{
+        previewTabs: {
+            canvas: {hidden: true}
+        },
+        viewMode: 'docs'
+}} />
+
+export const Template = (args) => <Button {...args} />;
+
+
+## Best Practices
+
+### Layout
+
+In vertical layouts, buttons will stretch horizontally to fill the available
+space. This is probably not what you want unless you're on a very narrow
+screen.
+
+<Canvas>
+    <Story name="Full-bleed button">
+        <View>
+    <Button>Label</Button>
+</View>
+    </Story>
+</Canvas>
+
+This can be corrected by applying appropriate flex styles to the container.
+
+<Canvas>
+    <Story name="Buttons in rows">
+<View>
+    <View style={styles.row}>
+        <Button>
+            Button in a row
+        </Button>
+    </View>
+    <View style={styles.gap} />
+    <View style={styles.column}>
+        <Button>
+            Button in a column
+        </Button>
+    </View>
+</View>
+    </Story>
+</Canvas>
+
+### 👍 Usign minWidth for internationalization
+
+Layouts often specify a specific width of button. When implementing such designs use `minWidth` instead of `width`. `minWidth` allows the button to resize to fit the content whereas `width` does not. This is important for international sites since sometimes strings for UI elements can be much longer in other languages. Both of the buttons below have a "natural" width of `144px`. The one on the right is wider but it accommodates the full string instead of wrapping it.
+
+<Canvas>
+    <Story name="Using minWidth">
+        <View style={styles.row}>
+    <Button
+        style={styles.buttonMinWidth}
+        kind="secondary"
+    >
+        label
+    </Button>
+    <Button
+        style={styles.buttonMinWidth}
+    >
+        label in a different language
+    </Button>
+</View>
+    </Story>
+</Canvas>
+
+### Truncating text
+
+If the parent container of the button doesn't have enough room to accommodate
+the width of the button, the text will truncate. This should ideally never
+happen, but it's sometimes a necessary fallback.
+
+<Canvas>
+    <Story name="Truncating text">
+        <View style={{flexDirection: "row", width: 300}}>
+    <Button
+        style={styles.buttonMinWidth}
+        kind="secondary"
+    >
+        label
+    </Button>
+    <Button
+        style={styles.buttonMinWidth}
+    >
+        label too long for the parent container
+    </Button>
+</View>
+    </Story>
+</Canvas>
+
+export const styles = StyleSheet.create({
+    column: {
+        alignItems: "flex-start",
+    },
+    row: {
+        flexDirection: "row",
+    },
+    gap: {
+        height: 16,
+    },
+    button: {
+        marginRight: 10,
+    },
+    buttonMinWidth: {
+        marginRight: 10,
+        minWidth: 144,
+    }
+});

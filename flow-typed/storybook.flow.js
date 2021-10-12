@@ -7,6 +7,7 @@ declare module "@storybook/react" {
         story?: $FlowFixMe,
         args?: {[key: string]: any, ...},
         parameters?: {[key: string]: any, ...},
+        storyName?: string,
         ...
     };
 }

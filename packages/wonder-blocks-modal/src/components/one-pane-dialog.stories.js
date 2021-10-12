@@ -38,7 +38,7 @@ const customViewports = {
 };
 
 export default {
-    title: "OnePaneDialog",
+    title: "Floating/Modal/OnePaneDialog",
     parameters: {
         viewport: {
             viewports: customViewports,

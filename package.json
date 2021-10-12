@@ -23,7 +23,7 @@
     "lint": "eslint --config .eslintrc.js packages",
     "publish": "node utils/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:cjs && yarn build:es6 && lerna publish",
     "start:prod": "yarn run build:styleguidist && yarn run start:styleguidist --config styleguide.prod.config.js",
-    "start:storybook": "start-storybook -s ./static",
+    "start:storybook": "start-storybook -s ./static -p 6061",
     "start:styleguidist": "styleguidist server",
     "start": "concurrently --kill-others-on-fail \"yarn run start:styleguidist\" \"webpack --config build-settings/webpack.config.js -w\" \"rollup -c build-settings/rollup.config.js -w\"",
     "test:common": "yarn run build:all && yarn run lint && yarn run alex && yarn run gen-snapshot-tests && yarn run flow",
