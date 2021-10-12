@@ -30,8 +30,8 @@ export default {
             options: ["primary", "secondary", "tertiary"],
             control: {type: "select"},
             table: {
-                type: {
-                    summary: "Notes",
+                type: {summary: "primary | secondary | tertiary"},
+                defaultValue: {
                     detail: `
                     - Primary buttons have background colors.\n- Secondary buttons have a border and no background color.\n- Tertiary buttons have no background or border.
                     `,
@@ -52,14 +52,18 @@ export default {
             control: {type: "select"},
             table: {
                 category: "Sizing",
-                type: {
-                    summary: "Notes",
+                defaultValue: {
                     detail: `"medium" = height: 40; "small" = height: 32; "xlarge" = height: 60;`,
                 },
             },
         },
         disabled: {
             description: "Whether the button is disabled.",
+            table: {
+                type: {
+                    summary: "boolean",
+                },
+            },
         },
         light: {
             description: "Whether the button is on a dark/colored background.",
@@ -548,13 +552,13 @@ ButtonsWithIcons.parameters = {
     },
 };
 
-export const longLabelsAreEllipsized: StoryComponentType = () => (
+export const LongLabelsAreEllipsized: StoryComponentType = () => (
     <Button onClick={() => {}} style={{maxWidth: 200}}>
         label too long for the parent container
     </Button>
 );
 
-export const submitButtonInForm: StoryComponentType = () => (
+export const SubmitButtonInForm: StoryComponentType = () => (
     <form
         onSubmit={(e) => {
             e.preventDefault();
@@ -568,12 +572,13 @@ export const submitButtonInForm: StoryComponentType = () => (
     </form>
 );
 
-submitButtonInForm.parameters = {
+SubmitButtonInForm.parameters = {
     options: {
         showAddonPanel: true,
     },
     chromatic: {
-        // We already have screenshots of other stories that cover more of the button states
+        // We already have screenshots of other stories that cover more of the
+        // button states.
         disable: true,
     },
 };
