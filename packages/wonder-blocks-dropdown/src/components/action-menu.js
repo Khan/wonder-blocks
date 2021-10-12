@@ -226,7 +226,8 @@ export default class ActionMenu extends React.Component<Props, State> {
     };
 
     renderOpener(numItems: number): React.Element<typeof DropdownOpener> {
-        const {disabled, menuText, opened, opener, testId} = this.props;
+        const {disabled, menuText, opener, testId} = this.props;
+        const {opened} = this.state;
 
         return (
             <DropdownOpener
