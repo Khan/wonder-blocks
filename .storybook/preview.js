@@ -17,11 +17,3 @@ export const parameters = {
     // https://storybook.js.org/docs/react/configure/story-layout
     layout: "padded",
 };
-
-export const decorators = [
-    (Story) => (
-        <div style={{margin: "1em"}}>
-            <Story />
-        </div>
-    ),
-];
