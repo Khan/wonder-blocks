@@ -50,7 +50,7 @@ jobs:
         run: yarn install
       - name: Skip Chromatic builds
         run: yarn chromatic --project-token=$PROJECT_TOKEN --skip
-        with:
+        env:
           PROJECT_TOKEN: ${{ secrets.CHROMATIC_APP_CODE }}
       # Here the PR gets approved.
       - name: Approve a PR
