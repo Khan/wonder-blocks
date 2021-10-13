@@ -49,11 +49,9 @@ jobs:
       - name: Install dependencies
         run: yarn install
       - name: Skip Chromatic builds
-        uses: chromaui/action@v1
+        run: yarn chromatic --project-token=$PROJECT_TOKEN --skip
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-          skip: true
+          PROJECT_TOKEN: ${{ secrets.CHROMATIC_APP_CODE }}
       # Here the PR gets approved.
       - name: Approve a PR
         run: gh pr review --approve "$PR_URL"
