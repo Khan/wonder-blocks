@@ -7,45 +7,46 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
+    strategy:
+      fail-fast: false
     steps:
     - name: Checking out latest commit
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-      - name: Use Node.js 12.x
-        uses: actions/setup-node@v2
-        with:
-          node-version: 12.16.x
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
-      - uses: actions/cache@v1
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        with:
-          path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.OS }}-node_modules-
-      - name: yarn install
-        run: yarn install
-      # (if) Run this step on non-dependabot PRs.
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - name: Use Node.js 12.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: 12.16.x
+    - name: Get yarn cache
+      id: yarn-cache
+      run: echo "::set-output name=dir::$(yarn cache dir)"
+    - uses: actions/cache@v1
+      with:
+        path: ${{ steps.yarn-cache.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+    - name: Cache node modules
+      uses: actions/cache@v2
+      with:
+        path: node_modules
+        key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.OS }}-node_modules-
+    - name: yarn install
+      run: yarn install
+    # (if) Run this step on non-dependabot PRs.
+    - name: Publish to Chromatic for visual testing
       if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-      - name: Publish to Chromatic for visual testing
-      - uses: chromaui/action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-          autoAcceptChanges: "master"
-      # (else) Run this step on dependabot PRs.
+      uses: chromaui/action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+        autoAcceptChanges: "master"
+    # (else) Run this step on dependabot PRs.
+    - name: Skip Chromatic builds
       if: ${{ github.actor == 'dependabot[bot]' }}
-      # We need to skip Chromatic builds because it's required by our config.
-      - name: Skip Chromatic builds
-        run: yarn chromatic --project-token=$PROJECT_TOKEN --skip
-        env:
-          PROJECT_TOKEN: ${{ secrets.CHROMATIC_APP_CODE }}
+      run: yarn chromatic --project-token=$PROJECT_TOKEN --skip
+      env:
+        PROJECT_TOKEN: ${{ secrets.CHROMATIC_APP_CODE }}
