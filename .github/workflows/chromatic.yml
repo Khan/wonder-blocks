@@ -36,6 +36,8 @@ jobs:
           ${{ runner.OS }}-node_modules-
     - name: yarn install
       run: yarn install
+    - name: yarn build:all
+      run: yarn build:all
     # (if) Run this step on non-dependabot PRs.
     - name: Publish to Chromatic for visual testing
       if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
