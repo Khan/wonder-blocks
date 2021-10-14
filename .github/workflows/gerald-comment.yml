@@ -3,6 +3,8 @@ name: Gerald - Check Comments
   issue_comment
 jobs:
   gerald:
+    # Skip this workflow on dependabot PRs
+    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Run Gerald

@@ -9,6 +9,8 @@ name: Gerald - Notify and Request Reviewers On Pull Request
   types: [opened, synchronize, reopened, ready_for_review, edited]
 jobs:
   gerald:
+    # Skip this workflow on dependabot PRs
+    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
     runs-on: ubuntu-latest
     steps:
       - name: Get All Changed Files
