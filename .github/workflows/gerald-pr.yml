@@ -1,6 +1,6 @@
 name: Gerald - Notify and Request Reviewers On Pull Request
 'on':
- - pull_request:
+  pull_request:
   # ready_for_review isn't included by default, so we add it here to have this
   # workflow re-run when a pr is converted from "draft" to "not draft". We also
   # add "edited" to re-check when the base branch is changed.
