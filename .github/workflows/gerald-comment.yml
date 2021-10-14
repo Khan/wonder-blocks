@@ -1,0 +1,13 @@
+name: Gerald - Check Comments
+'on':
+  issue_comment
+jobs:
+  gerald:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Gerald
+        uses: Khan/gerald@main
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          ADMIN_PERMISSION_TOKEN: '${{ secrets.KHAN_ACTIONS_BOT_TOKEN }}'
+          EVENT: 'issue_comment'
