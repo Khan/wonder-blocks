@@ -1,0 +1,15 @@
+name: Gerald - Check Comments
+'on':
+  issue_comment
+jobs:
+  gerald:
+    # Skip this workflow on dependabot PRs
+    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Gerald
+        uses: Khan/gerald@main
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+          ADMIN_PERMISSION_TOKEN: '${{ secrets.KHAN_ACTIONS_BOT_TOKEN }}'
+          EVENT: 'issue_comment'
