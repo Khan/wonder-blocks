@@ -5,7 +5,7 @@ on:
     types: [edited, opened, synchronize, reopened]
 
 # We run a single job with multiple steps to run the workflow faster.
-# Steps: Setup/build > lint > flow > test > coverage > codecov > chromatic
+# Steps: Setup/build > lint > flow > test > coverage > codecov
 jobs:
   lint_and_test:
     if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
@@ -17,8 +17,6 @@ jobs:
     steps:
       - name: Checking out latest commit
         uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - name: Use Node.js 12.x
         uses: actions/setup-node@v2
         with:
@@ -85,10 +83,3 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/coverage-final.json
-      # Visual testing
-      - name: Publish to Chromatic for visual testing
-        uses: chromaui/action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-          autoAcceptChanges: "master"

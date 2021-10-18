@@ -55,7 +55,7 @@
     "babel-jest": "^26.0.1",
     "babel-loader": "^8.0.0-beta.0",
     "babel-plugin-dynamic-import-node": "^2.1.0",
-    "chromatic": "^6.0.2",
+    "chromatic": "^6.0.4",
     "codecov": "^3.0.4",
     "concurrently": "^5.0.0",
     "enzyme": "^3.9.0",
