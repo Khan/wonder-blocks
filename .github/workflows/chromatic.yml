@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CI: true
+      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
     strategy:
       fail-fast: false
     steps:
@@ -47,4 +48,4 @@ jobs:
     # (else) Run this step on dependabot PRs.
     - name: Skip Chromatic builds
       if: ${{ github.actor == 'dependabot[bot]' }}
-      run: yarn chromatic --project-token="${{ secrets.CHROMATIC_APP_CODE }}" --skip
+      run: yarn chromatic --skip
