@@ -47,6 +47,6 @@ jobs:
     # (else) Run this step on dependabot PRs.
     - name: Skip Chromatic builds
       if: ${{ github.actor == 'dependabot[bot]' }}
-      run: yarn chromatic --project-token=$PROJECT_TOKEN --skip
+      run: yarn chromatic --project-token="$PROJECT_TOKEN" --skip
       env:
         PROJECT_TOKEN: ${{ secrets.CHROMATIC_APP_CODE }}
