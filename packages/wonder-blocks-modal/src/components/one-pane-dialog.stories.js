@@ -191,14 +191,12 @@ export const withOpener: StoryComponentType = () => {
     );
 };
 
-withOpener.story = {
-    parameters: {
-        viewport: {
-            defaultViewport: null,
-        },
-        chromatic: {
-            // Don't take screenshots of this story since it would only show a button.
-            disable: true,
-        },
+withOpener.parameters = {
+    viewport: {
+        defaultViewport: null,
+    },
+    chromatic: {
+        // Don't take screenshots of this story since it would only show a button.
+        disable: true,
     },
 };

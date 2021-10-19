@@ -83,12 +83,10 @@ export const customStyles: StoryComponentType = () => (
     <MultiSelectWithCustomStyles />
 );
 
-customStyles.story = {
-    parameters: {
-        chromatic: {
-            // we don't need screenshots because this story only tests behavior.
-            disable: true,
-        },
+customStyles.parameters = {
+    chromatic: {
+        // we don't need screenshots because this story only tests behavior.
+        disable: true,
     },
 };
 
