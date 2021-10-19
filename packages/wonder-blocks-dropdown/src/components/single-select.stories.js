@@ -106,12 +106,10 @@ const styles = StyleSheet.create({
 
 export const WithFilter: StoryComponentType = () => <SingleSelectWithFilter />;
 
-WithFilter.story = {
-    parameters: {
-        chromatic: {
-            // we don't need screenshots because this story only tests behavior.
-            disable: true,
-        },
+WithFilter.parameters = {
+    chromatic: {
+        // we don't need screenshots because this story only tests behavior.
+        disableSnapshot: true,
     },
 };
 
@@ -163,13 +161,12 @@ export const DropdownInModal: StoryComponentType = () => {
     );
 };
 
-DropdownInModal.story = {
-    name: "Dropdown in a modal",
-    parameters: {
-        chromatic: {
-            // We don't need screenshots because this story can be tested after
-            // the modal is opened.
-            disable: true,
-        },
+DropdownInModal.storyName = "Dropdown in a modal";
+
+DropdownInModal.parameters = {
+    chromatic: {
+        // We don't need screenshots because this story can be tested after
+        // the modal is opened.
+        disableSnapshot: true,
     },
 };

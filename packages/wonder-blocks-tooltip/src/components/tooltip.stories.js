@@ -9,11 +9,11 @@ import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 import type {StoryComponentType} from "@storybook/react";
 
 export default {
-    title: "Tooltip",
+    title: "Floating/Tooltip",
 };
 
 const BaseTooltipExample = ({placement}: {|placement: Placement|}) => {
-    const inputRef = React.useRef<null | HTMLElement>(null);
+    const inputRef = React.useRef(null);
     React.useEffect(() => {
         if (inputRef.current) {
             inputRef.current.focus();

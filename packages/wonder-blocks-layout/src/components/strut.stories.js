@@ -83,20 +83,16 @@ export const withStyle: StoryComponentType = () => (
     </View>
 );
 
-simple.story = {
-    parameters: {
-        chromatic: {
-            // we don't need screenshots because this story only tests behavior.
-            disable: true,
-        },
+simple.parameters = {
+    chromatic: {
+        // we don't need screenshots because this story only tests behavior.
+        disableSnapshot: true,
     },
 };
 
-withStyle.story = {
-    parameters: {
-        chromatic: {
-            // we don't need screenshots because this story only tests behavior.
-            disable: true,
-        },
+withStyle.parameters = {
+    chromatic: {
+        // we don't need screenshots because this story only tests behavior.
+        disableSnapshot: true,
     },
 };

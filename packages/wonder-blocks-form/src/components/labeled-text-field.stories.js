@@ -259,7 +259,7 @@ export const customStyle: StoryComponentType = () => {
 
 export const ref: StoryComponentType = () => {
     const [value, setValue] = React.useState("Khan");
-    const inputRef = React.createRef<HTMLInputElement>();
+    const inputRef = React.createRef();
 
     const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {

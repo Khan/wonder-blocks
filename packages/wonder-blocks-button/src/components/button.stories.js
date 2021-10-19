@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import {action} from "@storybook/addon-actions";
-import {text, radios, object, boolean} from "@storybook/addon-knobs";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -11,61 +10,31 @@ import type {StoryComponentType} from "@storybook/react";
 import Button from "./button.js";
 
 export default {
-    title: "Button",
+    title: "Navigation/Button",
+    component: Button,
 };
 
-export const buttonsWithKnobs: StoryComponentType = () => {
-    const children = text("children", "Hello, world!");
-    const kind = radios(
-        "kind",
-        {
-            "primary (default)": "primary",
-            secondary: "secondary",
-            tertiary: "tertiary",
-        },
-        "primary",
-    );
-    const color = radios(
-        "color",
-        {
-            "default (default)": "default",
-            destructive: "destructive",
-        },
-        "default",
-    );
-    const size = radios(
-        "size",
-        {large: "large", "medium (default)": "medium", small: "small"},
-        "medium",
-    );
-    const light = boolean("light", false);
-    const disabled = boolean("disabled", false);
-    const style = object("style", {maxWidth: 200});
-
-    return (
-        <Button
-            kind={kind}
-            color={color}
-            size={size}
-            light={light}
-            disabled={disabled}
-            style={style}
-            onClick={action("onClick")}
-        >
-            {children}
-        </Button>
-    );
+export const buttonsWithKnobs: StoryComponentType = (args) => {
+    return <Button {...args} onClick={action("onClick")} />;
 };
 
-buttonsWithKnobs.story = {
-    parameters: {
-        options: {
-            showAddonPanel: true,
-        },
-        chromatic: {
-            // We already have screenshots of other stories that cover more of the button states
-            disable: true,
-        },
+buttonsWithKnobs.args = {
+    children: "Hello, world!",
+    kind: "primary",
+    color: "default",
+    size: "medium",
+    light: false,
+    disabled: false,
+    style: {maxWidth: 200},
+};
+
+buttonsWithKnobs.parameters = {
+    options: {
+        showAddonPanel: true,
+    },
+    chromatic: {
+        // We already have screenshots of other stories that cover more of the button states
+        disableSnapshot: true,
     },
 };
 
@@ -179,9 +148,9 @@ export const darkBackgroundButtons: StoryComponentType = () => (
     </View>
 );
 
-darkBackgroundButtons.story = {
-    parameters: {
-        backgrounds: [{name: "darkBlue", value: Color.darkBlue, default: true}],
+darkBackgroundButtons.parameters = {
+    backgrounds: {
+        default: "darkBlue",
     },
 };
 
@@ -263,14 +232,12 @@ export const submitButtonInForm: StoryComponentType = () => (
     </form>
 );
 
-submitButtonInForm.story = {
-    parameters: {
-        options: {
-            showAddonPanel: true,
-        },
-        chromatic: {
-            // We already have screenshots of other stories that cover more of the button states
-            disable: true,
-        },
+submitButtonInForm.parameters = {
+    options: {
+        showAddonPanel: true,
+    },
+    chromatic: {
+        // We already have screenshots of other stories that cover more of the button states
+        disableSnapshot: true,
     },
 };

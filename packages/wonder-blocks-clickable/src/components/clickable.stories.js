@@ -12,7 +12,7 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 import type {StoryComponentType} from "@storybook/react";
 
 export default {
-    title: "Clickable",
+    title: "Navigation/Clickable",
 };
 
 export const basic: StoryComponentType = () => (
@@ -77,12 +77,10 @@ export const keyboardNavigation: StoryComponentType = () => (
     </View>
 );
 
-keyboardNavigation.story = {
-    parameters: {
-        chromatic: {
-            // we don't need screenshots because this story only tests behavior.
-            disable: true,
-        },
+keyboardNavigation.parameters = {
+    chromatic: {
+        // we don't need screenshots because this story only tests behavior.
+        disableSnapshot: true,
     },
 };
 
