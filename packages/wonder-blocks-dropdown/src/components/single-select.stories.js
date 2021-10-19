@@ -109,7 +109,7 @@ export const WithFilter: StoryComponentType = () => <SingleSelectWithFilter />;
 WithFilter.parameters = {
     chromatic: {
         // we don't need screenshots because this story only tests behavior.
-        disable: true,
+        disableSnapshot: true,
     },
 };
 
@@ -167,6 +167,6 @@ DropdownInModal.parameters = {
     chromatic: {
         // We don't need screenshots because this story can be tested after
         // the modal is opened.
-        disable: true,
+        disableSnapshot: true,
     },
 };

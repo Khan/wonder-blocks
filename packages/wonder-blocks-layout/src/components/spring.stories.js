@@ -71,13 +71,13 @@ export const withStyle: StoryComponentType = () => (
 simple.parameters = {
     chromatic: {
         // we don't need screenshots because this story only tests behavior.
-        disable: true,
+        disableSnapshot: true,
     },
 };
 
 withStyle.parameters = {
     chromatic: {
         // we don't need screenshots because this story only tests behavior.
-        disable: true,
+        disableSnapshot: true,
     },
 };

@@ -197,6 +197,6 @@ withOpener.parameters = {
     },
     chromatic: {
         // Don't take screenshots of this story since it would only show a button.
-        disable: true,
+        disableSnapshot: true,
     },
 };

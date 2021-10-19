@@ -34,7 +34,7 @@ buttonsWithKnobs.parameters = {
     },
     chromatic: {
         // We already have screenshots of other stories that cover more of the button states
-        disable: true,
+        disableSnapshot: true,
     },
 };
 
@@ -238,6 +238,6 @@ submitButtonInForm.parameters = {
     },
     chromatic: {
         // We already have screenshots of other stories that cover more of the button states
-        disable: true,
+        disableSnapshot: true,
     },
 };

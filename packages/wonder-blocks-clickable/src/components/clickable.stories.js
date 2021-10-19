@@ -80,7 +80,7 @@ export const keyboardNavigation: StoryComponentType = () => (
 keyboardNavigation.parameters = {
     chromatic: {
         // we don't need screenshots because this story only tests behavior.
-        disable: true,
+        disableSnapshot: true,
     },
 };
 

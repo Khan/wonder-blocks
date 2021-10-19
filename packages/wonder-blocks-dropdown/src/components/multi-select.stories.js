@@ -86,7 +86,7 @@ export const customStyles: StoryComponentType = () => (
 customStyles.parameters = {
     chromatic: {
         // we don't need screenshots because this story only tests behavior.
-        disable: true,
+        disableSnapshot: true,
     },
 };
 
