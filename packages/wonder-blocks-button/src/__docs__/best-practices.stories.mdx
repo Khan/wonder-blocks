@@ -1,25 +1,23 @@
-<!---Badge.stories.mdx --->
-
-
 import {Meta, Story, Canvas} from "@storybook/addon-docs";
 import {StyleSheet} from "aphrodite";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-<Meta title="Navigation/Button/Best Practices" component={Button} parameters={{
+<Meta
+    title="Navigation/Button/Best practices"
+    component={Button}
+    parameters={{
         previewTabs: {
-            canvas: {hidden: true}
+            canvas: {hidden: true},
         },
-        viewMode: 'docs',
+        viewMode: "docs",
         chromatic: {
             // Disables chromatic testing for these stories.
-            disableSnapshot: true
-        }
-}} />
-
-export const Template = (args) => <Button {...args} />;
-
+            disableSnapshot: true,
+        },
+    }}
+/>
 
 ## Best Practices
 
@@ -32,8 +30,8 @@ screen.
 <Canvas>
     <Story name="Full-bleed button">
         <View>
-    <Button>Label</Button>
-</View>
+            <Button>Label</Button>
+        </View>
     </Story>
 </Canvas>
 
@@ -41,19 +39,15 @@ This can be corrected by applying appropriate flex styles to the container.
 
 <Canvas>
     <Story name="Buttons in rows">
-<View>
-    <View style={styles.row}>
-        <Button>
-            Button in a row
-        </Button>
-    </View>
-    <View style={styles.gap} />
-    <View style={styles.column}>
-        <Button>
-            Button in a column
-        </Button>
-    </View>
-</View>
+        <View>
+            <View style={styles.row}>
+                <Button>Button in a row</Button>
+            </View>
+            <View style={styles.gap} />
+            <View style={styles.column}>
+                <Button>Button in a column</Button>
+            </View>
+        </View>
     </Story>
 </Canvas>
 
@@ -64,18 +58,13 @@ Layouts often specify a specific width of button. When implementing such designs
 <Canvas>
     <Story name="Using minWidth">
         <View style={styles.row}>
-    <Button
-        style={styles.buttonMinWidth}
-        kind="secondary"
-    >
-        label
-    </Button>
-    <Button
-        style={styles.buttonMinWidth}
-    >
-        label in a different language
-    </Button>
-</View>
+            <Button style={styles.buttonMinWidth} kind="secondary">
+                label
+            </Button>
+            <Button style={styles.buttonMinWidth}>
+                label in a different language
+            </Button>
+        </View>
     </Story>
 </Canvas>
 
@@ -88,18 +77,13 @@ happen, but it's sometimes a necessary fallback.
 <Canvas>
     <Story name="Truncating text">
         <View style={{flexDirection: "row", width: 300}}>
-    <Button
-        style={styles.buttonMinWidth}
-        kind="secondary"
-    >
-        label
-    </Button>
-    <Button
-        style={styles.buttonMinWidth}
-    >
-        label too long for the parent container
-    </Button>
-</View>
+            <Button style={styles.buttonMinWidth} kind="secondary">
+                label
+            </Button>
+            <Button style={styles.buttonMinWidth}>
+                label too long for the parent container
+            </Button>
+        </View>
     </Story>
 </Canvas>
 
@@ -119,5 +103,5 @@ export const styles = StyleSheet.create({
     buttonMinWidth: {
         marginRight: 10,
         minWidth: 144,
-    }
+    },
 });

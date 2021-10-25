@@ -132,6 +132,7 @@ type _CSSProperties = {|
     fontVariant?: any,
     fontVariantAlternates?: any,
     fontWeight?: "normal" | "bold" | "lighter" | "bolder" | "inherit" | number,
+    gap?: any,
     gridArea?: any,
     gridColumn?: any,
     gridColumnEnd?: any,
@@ -366,7 +367,7 @@ declare module "aphrodite" {
      */
     declare type StyleDeclaration = {
         [key: string]: _CSSProperties,
-        ...,
+        ...
     };
 
     declare interface StyleSheetStatic {

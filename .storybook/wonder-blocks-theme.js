@@ -7,7 +7,7 @@ import {create} from "@storybook/theming";
 export default create({
     base: "light",
     brandTitle: "Wonder Blocks",
-    brandUrl: "https://wonder-blocks.netlify.app/",
+    brandUrl: "/",
     brandImage: "/logo.svg",
 
     // Typography
