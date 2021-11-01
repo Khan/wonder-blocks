@@ -44,7 +44,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-        autoAcceptChanges: true
+        autoAcceptChanges: "master"
     # (else) Run this step on dependabot PRs.
     - name: Skip Chromatic builds
       if: ${{ github.actor == 'dependabot[bot]' }}
