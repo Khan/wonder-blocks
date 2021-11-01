@@ -31,10 +31,13 @@ to let people using screen readers that the action taken by clicking the button
 will take some time to complete.
 
 This is an example of a component with an accessible label:
+
 <Canvas>
     <Story name="Labeling">
         <View>
-            <Button spinner={true} aria-label="The action is being saved...">Label</Button>
+            <Button spinner={true} aria-label="The action is being saved...">
+                Label
+            </Button>
         </View>
     </Story>
 </Canvas>
@@ -76,9 +79,9 @@ to fully evaluate the implied behaviors of the button element itself.
 </Canvas>
 
 ### References
+
 - [Implicit ARIA semantics](https://www.w3.org/TR/wai-aria-1.1/#implicit_semantics)
 - [Document conformance requirements](https://www.w3.org/TR/html-aria/#document-conformance-requirements-for-use-of-aria-attributes-in-html)
-
 
 For more details, see the [Accessibility section](https://www.w3.org/TR/wai-aria-practices-1.1/#button) in w3.org.
 

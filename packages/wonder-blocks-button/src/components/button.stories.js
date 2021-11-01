@@ -283,7 +283,7 @@ DefaultButton.parameters = {
     },
 };
 
-export const BasicButtons: StoryComponentType = (args) => (
+export const BasicButtons: StoryComponentType = () => (
     <View>
         <View style={{flexDirection: "row"}}>
             <Button onClick={() => {}}>Hello, world!</Button>
@@ -365,7 +365,7 @@ ButtonsWithColors.parameters = {
     },
 };
 
-export const DarkBackgroundButtons: StoryComponentType = (args) => (
+export const DarkBackgroundButtons: StoryComponentType = () => (
     <View style={{backgroundColor: Color.darkBlue}}>
         <View style={{flexDirection: "row"}}>
             <Button onClick={() => {}} light={true}>
@@ -736,7 +736,7 @@ SubmitButtonInForm.parameters = {
     chromatic: {
         // We already have screenshots of other stories that cover more of the
         // button states.
-        disable: true,
+        disableSnapshot: true,
     },
 };
 
