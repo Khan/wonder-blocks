@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import * as PropTypes from "prop-types";
+import {__RouterContext} from "react-router";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
@@ -126,10 +126,6 @@ export type SharedProps = {|
     onClick?: (e: SyntheticEvent<>) => mixed,
 |};
 
-type ContextTypes = {|
-    router: $FlowFixMe,
-|};
-
 type DefaultProps = {|
     color: $PropertyType<SharedProps, "color">,
     kind: $PropertyType<SharedProps, "kind">,
@@ -174,7 +170,6 @@ type DefaultProps = {|
  * ```
  */
 export default class IconButton extends React.Component<SharedProps> {
-    static contextTypes: ContextTypes = {router: PropTypes.any};
     static defaultProps: DefaultProps = {
         color: "default",
         kind: "primary",
@@ -182,7 +177,7 @@ export default class IconButton extends React.Component<SharedProps> {
         disabled: false,
     };
 
-    render(): React.Node {
+    renderClickableBehavior(router: any): React.Node {
         const {
             onClick,
             href,
@@ -195,7 +190,7 @@ export default class IconButton extends React.Component<SharedProps> {
         const ClickableBehavior = getClickableBehavior(
             href,
             skipClientNav,
-            this.context.router,
+            router,
         );
 
         return (
@@ -223,6 +218,14 @@ export default class IconButton extends React.Component<SharedProps> {
                     );
                 }}
             </ClickableBehavior>
+        );
+    }
+
+    render(): React.Node {
+        return (
+            <__RouterContext.Consumer>
+                {(router) => this.renderClickableBehavior(router)}
+            </__RouterContext.Consumer>
         );
     }
 }

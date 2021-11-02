@@ -18,6 +18,17 @@ const keyCodes = {
 };
 
 describe("Button", () => {
+    const {location} = window;
+
+    beforeAll(() => {
+        delete window.location;
+        window.location = {assign: jest.fn()};
+    });
+
+    afterAll(() => {
+        window.location = location;
+    });
+
     test("client-side navigation", () => {
         // Arrange
         const wrapper = mount(

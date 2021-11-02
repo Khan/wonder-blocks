@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import * as PropTypes from "prop-types";
+import {__RouterContext} from "react-router";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -156,10 +156,6 @@ export type SharedProps =
           beforeNav?: () => Promise<mixed>,
       |};
 
-type ContextTypes = {|
-    router: $FlowFixMe,
-|};
-
 type DefaultProps = {|
     kind: $PropertyType<SharedProps, "kind">,
     light: $PropertyType<SharedProps, "light">,
@@ -184,14 +180,13 @@ type DefaultProps = {|
  * ```
  */
 export default class Link extends React.Component<SharedProps> {
-    static contextTypes: ContextTypes = {router: PropTypes.any};
     static defaultProps: DefaultProps = {
         kind: "primary",
         light: false,
         visitable: false,
     };
 
-    render(): React.Node {
+    renderClickableBehavior(router: any): React.Node {
         const {
             onClick,
             beforeNav = undefined,
@@ -209,7 +204,7 @@ export default class Link extends React.Component<SharedProps> {
         const ClickableBehavior = getClickableBehavior(
             href,
             skipClientNav,
-            this.context.router,
+            router,
         );
 
         if (beforeNav) {
@@ -283,5 +278,13 @@ export default class Link extends React.Component<SharedProps> {
                 </ClickableBehavior>
             );
         }
+    }
+
+    render(): React.Node {
+        return (
+            <__RouterContext.Consumer>
+                {(router) => this.renderClickableBehavior(router)}
+            </__RouterContext.Consumer>
+        );
     }
 }

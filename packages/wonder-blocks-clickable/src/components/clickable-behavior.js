@@ -312,8 +312,8 @@ const startState: ClickableState = {
  * The react-router aware version is returned if `router` is a react-router-dom
  * router, `skipClientNav` is not `true`, and `href` is an internal URL.
  *
- * The `router` can be accessed via this.context.router from a component
- * rendered as a descendant of a BrowserRouter.
+ * The `router` can be accessed via __RouterContext (imported from 'react-router')
+ * from a component rendered as a descendant of a BrowserRouter.
  * See https://reacttraining.com/react-router/web/guides/basic-components.
  */
 export default class ClickableBehavior extends React.Component<

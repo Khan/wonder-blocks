@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import * as PropTypes from "prop-types";
+import {__RouterContext} from "react-router";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -222,10 +222,6 @@ type Props =
           safeWithNav: () => Promise<mixed>,
       |};
 
-type ContextTypes = {|
-    router: $FlowFixMe,
-|};
-
 type DefaultProps = {|
     color: $PropertyType<Props, "color">,
     kind: $PropertyType<Props, "kind">,
@@ -253,8 +249,6 @@ type DefaultProps = {|
  * ```
  */
 export default class Button extends React.Component<Props> {
-    static contextTypes: ContextTypes = {router: PropTypes.any};
-
     static defaultProps: DefaultProps = {
         color: "default",
         kind: "primary",
@@ -264,7 +258,7 @@ export default class Button extends React.Component<Props> {
         spinner: false,
     };
 
-    render(): React.Node {
+    renderClickableBehavior(router: any): React.Node {
         const {
             href = undefined,
             type = undefined,
@@ -284,7 +278,7 @@ export default class Button extends React.Component<Props> {
         const ClickableBehavior = getClickableBehavior(
             href,
             skipClientNav,
-            this.context.router,
+            router,
         );
 
         const renderProp = (
@@ -343,5 +337,13 @@ export default class Button extends React.Component<Props> {
                 </ClickableBehavior>
             );
         }
+    }
+
+    render(): React.Node {
+        return (
+            <__RouterContext.Consumer>
+                {(router) => this.renderClickableBehavior(router)}
+            </__RouterContext.Consumer>
+        );
     }
 }

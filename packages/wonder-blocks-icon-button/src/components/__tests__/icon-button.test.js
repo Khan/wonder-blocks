@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {mount, shallow} from "enzyme";
+import {mount} from "enzyme";
 
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {icons} from "@khanacademy/wonder-blocks-icon";
@@ -9,8 +9,19 @@ import expectRenderError from "../../../../../utils/testing/expect-render-error.
 import IconButton from "../icon-button.js";
 
 describe("IconButton", () => {
+    const {location} = window;
+
+    beforeAll(() => {
+        delete window.location;
+        window.location = {assign: jest.fn()};
+    });
+
+    afterAll(() => {
+        window.location = location;
+    });
+
     test("render an icon", (done) => {
-        const wrapper = shallow(
+        const wrapper = mount(
             <IconButton
                 icon={icons.search}
                 aria-label="search"

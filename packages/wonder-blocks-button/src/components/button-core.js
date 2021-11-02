@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
-import * as PropTypes from "prop-types";
+import {__RouterContext} from "react-router";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import Color, {
@@ -30,18 +30,12 @@ type Props = {|
     type?: "submit",
 |};
 
-type ContextTypes = {|
-    router: $FlowFixMe,
-|};
-
 const StyledAnchor = addStyle<"a">("a");
 const StyledButton = addStyle<"button">("button");
 const StyledLink = addStyle<typeof Link>(Link);
 
 export default class ButtonCore extends React.Component<Props> {
-    static contextTypes: ContextTypes = {router: PropTypes.any};
-
-    render(): React.Node {
+    renderInner(router: any): React.Node {
         const {
             children,
             skipClientNav,
@@ -63,7 +57,6 @@ export default class ButtonCore extends React.Component<Props> {
             waiting: _,
             ...restProps
         } = this.props;
-        const {router} = this.context;
 
         const buttonColor =
             color === "destructive"
@@ -175,6 +168,14 @@ export default class ButtonCore extends React.Component<Props> {
                 </StyledButton>
             );
         }
+    }
+
+    render(): React.Node {
+        return (
+            <__RouterContext.Consumer>
+                {(router) => this.renderInner(router)}
+            </__RouterContext.Consumer>
+        );
     }
 }
 
