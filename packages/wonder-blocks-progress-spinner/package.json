@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-progress-spinner",
-  "version": "1.1.26",
+  "version": "1.1.27",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -17,7 +17,7 @@
   "dependencies": {
     "@babel/runtime": "^7.13.10",
     "@khanacademy/wonder-blocks-color": "^1.1.19",
-    "@khanacademy/wonder-blocks-core": "^3.1.5",
+    "@khanacademy/wonder-blocks-core": "^3.2.0",
     "@khanacademy/wonder-blocks-spacing": "^3.0.4"
   },
   "peerDependencies": {

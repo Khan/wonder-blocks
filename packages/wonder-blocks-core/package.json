@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-core",
-  "version": "3.1.5",
+  "version": "3.2.0",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -20,8 +20,8 @@
     "aphrodite": "^1.2.5",
     "react": "16.14.0",
     "react-dom": "16.14.0",
-    "react-router-dom": "5.3.0",
-    "react-router": "5.2.1"
+    "react-router": "5.2.1",
+    "react-router-dom": "5.3.0"
   },
   "devDependencies": {
     "wb-dev-build-settings": "^0.1.2"
