@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import * as PropTypes from "prop-types";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -79,10 +78,6 @@ type OptionProps = {|
     style?: StyleType,
 |};
 
-type ContextTypes = {|
-    router: $FlowFixMe,
-|};
-
 type DefaultProps = {|
     disabled: $PropertyType<OptionProps, "disabled">,
     onToggle: $PropertyType<OptionProps, "onToggle">,
@@ -99,7 +94,6 @@ export default class OptionItem extends React.Component<OptionProps> {
     static isClassOf(instance: React.Element<any>): boolean {
         return instance && instance.type && instance.type.__IS_OPTION_ITEM__;
     }
-    static contextTypes: ContextTypes = {router: PropTypes.any};
     static defaultProps: DefaultProps = {
         disabled: false,
         onToggle: () => void 0,

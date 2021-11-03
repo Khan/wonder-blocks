@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import * as PropTypes from "prop-types";
 
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import Color, {SemanticColor, mix} from "@khanacademy/wonder-blocks-color";
@@ -39,10 +38,6 @@ type Props = {|
     opened: boolean,
 |};
 
-type ContextTypes = {|
-    router: $FlowFixMe,
-|};
-
 const StyledButton = addStyle<"button">("button");
 
 /**
@@ -52,8 +47,6 @@ const StyledButton = addStyle<"button">("button");
  * - the down caret icon is smaller that the one that would be used by ButtonCore
  */
 export default class ActionMenuOpenerCore extends React.Component<Props> {
-    static contextTypes: ContextTypes = {router: PropTypes.any};
-
     render(): React.Node {
         const {
             children,

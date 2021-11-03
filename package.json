@@ -103,7 +103,6 @@
     "@popperjs/core": "^2.10.1",
     "aphrodite": "^1.2.5",
     "inquirer": "^7.0.0",
-    "prop-types": "^15.6.2",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-popper": "^2.2.5",
