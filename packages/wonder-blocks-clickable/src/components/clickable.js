@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import * as PropTypes from "prop-types";
 import {Link} from "react-router-dom";
+import {__RouterContext} from "react-router";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -169,10 +169,6 @@ type Props =
           safeWithNav: () => Promise<mixed>,
       |};
 
-type ContextTypes = {|
-    router: $FlowFixMe,
-|};
-
 type DefaultProps = {|
     light: $PropertyType<Props, "light">,
     disabled: $PropertyType<Props, "disabled">,
@@ -208,8 +204,6 @@ const StyledLink = addStyle<typeof Link>(Link);
  * ```
  */
 export default class Clickable extends React.Component<Props> {
-    static contextTypes: ContextTypes = {router: PropTypes.any};
-
     static defaultProps: DefaultProps = {
         light: false,
         disabled: false,
@@ -218,11 +212,12 @@ export default class Clickable extends React.Component<Props> {
 
     getCorrectTag: (
         clickableState: ClickableState,
+        router: any,
         commonProps: {[string]: any, ...},
-    ) => React.Node = (clickableState, commonProps) => {
+    ) => React.Node = (clickableState, router, commonProps) => {
         const activeHref = this.props.href && !this.props.disabled;
         const useClient =
-            this.context.router &&
+            router &&
             !this.props.skipClientNav &&
             isClientSideUrl(this.props.href || "");
 
@@ -265,7 +260,7 @@ export default class Clickable extends React.Component<Props> {
         }
     };
 
-    render(): React.Node {
+    renderClickableBehavior(router: any): React.Node {
         const {
             href,
             onClick,
@@ -285,7 +280,7 @@ export default class Clickable extends React.Component<Props> {
         const ClickableBehavior = getClickableBehavior(
             href,
             skipClientNav,
-            this.context.router,
+            router,
         );
 
         const getStyle = (state: ClickableState): StyleType => [
@@ -309,7 +304,7 @@ export default class Clickable extends React.Component<Props> {
                     disabled={disabled}
                 >
                     {(state, childrenProps) =>
-                        this.getCorrectTag(state, {
+                        this.getCorrectTag(state, router, {
                             ...restProps,
                             "data-test-id": testId,
                             style: getStyle(state),
@@ -330,7 +325,7 @@ export default class Clickable extends React.Component<Props> {
                     disabled={disabled}
                 >
                     {(state, childrenProps) =>
-                        this.getCorrectTag(state, {
+                        this.getCorrectTag(state, router, {
                             ...restProps,
                             "data-test-id": testId,
                             style: getStyle(state),
@@ -340,6 +335,14 @@ export default class Clickable extends React.Component<Props> {
                 </ClickableBehavior>
             );
         }
+    }
+
+    render(): React.Node {
+        return (
+            <__RouterContext.Consumer>
+                {(router) => this.renderClickableBehavior(router)}
+            </__RouterContext.Consumer>
+        );
     }
 }
 

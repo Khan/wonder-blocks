@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import * as PropTypes from "prop-types";
+import {__RouterContext} from "react-router";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
@@ -77,10 +77,6 @@ type SelectOpenerProps = {|
     open: boolean,
 |};
 
-type ContextTypes = {|
-    router: $FlowFixMe,
-|};
-
 type DefaultProps = {|
     disabled: $PropertyType<SelectOpenerProps, "disabled">,
     light: $PropertyType<SelectOpenerProps, "light">,
@@ -91,7 +87,6 @@ type DefaultProps = {|
  * An opener that opens select boxes.
  */
 export default class SelectOpener extends React.Component<SelectOpenerProps> {
-    static contextTypes: ContextTypes = {router: PropTypes.any};
     static defaultProps: DefaultProps = {
         disabled: false,
         light: false,
@@ -103,7 +98,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         this.props.onOpenChanged(!open);
     };
 
-    render(): React.Node {
+    renderClickableBehavior(router: any): React.Node {
         const {
             children,
             disabled,
@@ -117,7 +112,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
             ...sharedProps
         } = this.props;
 
-        const ClickableBehavior = getClickableBehavior(this.context.router);
+        const ClickableBehavior = getClickableBehavior(router);
 
         return (
             <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
@@ -171,6 +166,14 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                     );
                 }}
             </ClickableBehavior>
+        );
+    }
+
+    render(): React.Node {
+        return (
+            <__RouterContext.Consumer>
+                {(router) => this.renderClickableBehavior(router)}
+            </__RouterContext.Consumer>
         );
     }
 }

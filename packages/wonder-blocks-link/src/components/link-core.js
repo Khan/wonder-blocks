@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
-import * as PropTypes from "prop-types";
+import {__RouterContext} from "react-router";
 
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
@@ -22,17 +22,11 @@ type Props = {|
     href: string,
 |};
 
-type ContextTypes = {|
-    router: $FlowFixMe,
-|};
-
 const StyledAnchor = addStyle<"a">("a");
 const StyledLink = addStyle<typeof Link>(Link);
 
 export default class LinkCore extends React.Component<Props> {
-    static contextTypes: ContextTypes = {router: PropTypes.any};
-
-    render(): React.Node {
+    renderInner(router: any): React.Node {
         const {
             children,
             skipClientNav,
@@ -48,7 +42,6 @@ export default class LinkCore extends React.Component<Props> {
             waiting: _,
             ...restProps
         } = this.props;
-        const {router} = this.context;
 
         const linkStyles = _generateStyles(kind, light, visitable);
 
@@ -74,6 +67,14 @@ export default class LinkCore extends React.Component<Props> {
             <StyledAnchor {...commonProps} href={href}>
                 {children}
             </StyledAnchor>
+        );
+    }
+
+    render(): React.Node {
+        return (
+            <__RouterContext.Consumer>
+                {(router) => this.renderInner(router)}
+            </__RouterContext.Consumer>
         );
     }
 }

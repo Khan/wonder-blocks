@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
-import * as PropTypes from "prop-types";
+import {__RouterContext} from "react-router";
 
 import Color, {
     SemanticColor,
@@ -33,18 +33,12 @@ type Props = {|
     href?: string,
 |};
 
-type ContextTypes = {|
-    router: $FlowFixMe,
-|};
-
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
 export default class IconButtonCore extends React.Component<Props> {
-    static contextTypes: ContextTypes = {router: PropTypes.any};
-
-    render(): React.Node {
+    renderInner(router: any): React.Node {
         const {
             skipClientNav,
             color,
@@ -61,7 +55,6 @@ export default class IconButtonCore extends React.Component<Props> {
             waiting: _,
             ...restProps
         } = this.props;
-        const {router} = this.context;
 
         const buttonColor =
             color === "destructive"
@@ -110,6 +103,14 @@ export default class IconButtonCore extends React.Component<Props> {
                 </StyledButton>
             );
         }
+    }
+
+    render(): React.Node {
+        return (
+            <__RouterContext.Consumer>
+                {(router) => this.renderInner(router)}
+            </__RouterContext.Consumer>
+        );
     }
 }
 

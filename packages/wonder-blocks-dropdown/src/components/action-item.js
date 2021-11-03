@@ -3,7 +3,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
-import * as PropTypes from "prop-types";
+import {__RouterContext} from "react-router";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -103,10 +103,6 @@ type DefaultProps = {|
     role: $PropertyType<ActionProps, "role">,
 |};
 
-type ContextTypes = {|
-    router: $FlowFixMe,
-|};
-
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
@@ -120,7 +116,6 @@ export default class ActionItem extends React.Component<ActionProps> {
     static isClassOf(instance: React.Element<any>): boolean {
         return instance && instance.type && instance.type.__IS_ACTION_ITEM__;
     }
-    static contextTypes: ContextTypes = {router: PropTypes.any};
     static defaultProps: DefaultProps = {
         disabled: false,
         indent: false,
@@ -128,7 +123,7 @@ export default class ActionItem extends React.Component<ActionProps> {
     };
     static __IS_ACTION_ITEM__: boolean = true;
 
-    render(): React.Node {
+    renderClickableBehavior(router: any): React.Node {
         const {
             skipClientNav,
             disabled,
@@ -141,7 +136,6 @@ export default class ActionItem extends React.Component<ActionProps> {
             style,
             testId,
         } = this.props;
-        const {router} = this.context;
 
         const ClickableBehavior = getClickableBehavior(
             href,
@@ -218,6 +212,14 @@ export default class ActionItem extends React.Component<ActionProps> {
                     }
                 }}
             </ClickableBehavior>
+        );
+    }
+
+    render(): React.Node {
+        return (
+            <__RouterContext.Consumer>
+                {(router) => this.renderClickableBehavior(router)}
+            </__RouterContext.Consumer>
         );
     }
 }

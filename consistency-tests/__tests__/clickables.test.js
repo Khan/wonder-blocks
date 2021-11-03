@@ -105,17 +105,6 @@ describe.each`
         expect(wrapper.find(ReactRouterLink)).not.toExist();
         expect(wrapper.find("a")).toExist();
     });
-
-    it("renders an <a> if the href is 'javascript:void(0)'", () => {
-        const wrapper = mount(
-            <MemoryRouter>
-                <Component href="javascript:void(0)">Click me</Component>
-            </MemoryRouter>,
-        );
-
-        expect(wrapper.find(ReactRouterLink)).not.toExist();
-        expect(wrapper.find("a")).toExist();
-    });
 });
 
 // NOTE: Link doesn't work without an href so it isn't included in this suite
