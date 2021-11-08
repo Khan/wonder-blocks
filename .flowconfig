@@ -5,3 +5,6 @@
 deprecated-type=error
 deprecated-utility=error
 implicit-inexact-object=error
+
+[options]
+module.name_mapper='@khanacademy/\(wonder-blocks-[^/]*\)' -> '<PROJECT_ROOT>/packages/\1/src/index.js'
