@@ -1,11 +1,7 @@
 // @flow
 import * as React from "react";
 
-import {
-    IDProvider,
-    type AriaProps,
-    type StyleType,
-} from "@khanacademy/wonder-blocks-core";
+import {IDProvider, type StyleType} from "@khanacademy/wonder-blocks-core";
 import {type Typography} from "@khanacademy/wonder-blocks-typography";
 
 import FieldHeading from "./field-heading.js";
@@ -14,8 +10,6 @@ import TextField, {type TextFieldType} from "./text-field.js";
 type WithForwardRef = {|forwardedRef: React.Ref<"input">|};
 
 type Props = {|
-    ...AriaProps,
-
     /**
      * An optional unique identifier for the TextField.
      * If no id is specified, a unique id will be auto-generated.
@@ -46,6 +40,11 @@ type Props = {|
      * Makes a read-only input field that cannot be focused. Defaults to false.
      */
     disabled: boolean,
+
+    /**
+     * Identifies the element or elements that describes this text field.
+     */
+    ariaDescribedby?: string | Array<string>,
 
     /**
      * Provide a validation for the input value.
@@ -213,7 +212,7 @@ class LabeledTextFieldInternal extends React.Component<
             readOnly,
             autoComplete,
             forwardedRef,
-            "aria-describedby": ariaDescribedby,
+            ariaDescribedby,
         } = this.props;
 
         return (
