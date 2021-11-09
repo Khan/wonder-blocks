@@ -239,12 +239,15 @@ type DefaultProps = {|
  * `ButtonCore` is a stateless component which displays the different states
  * the `Button` can take.
  *
- * Example usage:
- * ```
+ * ### Usage
+ *
+ * ```jsx
+ * import Button from "@khanacademy/wonder-blocks-button";
+ *
  * <Button
  *     onClick={(e) => console.log("Hello, world!")}
  * >
- *     Label
+ *     Hello, world!
  * </Button>
  * ```
  */
