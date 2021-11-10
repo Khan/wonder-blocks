@@ -1,6 +1,7 @@
 //@flow
 import * as React from "react";
 import {mount} from "enzyme";
+import {render, screen} from "@testing-library/react";
 
 import {StyleSheet} from "aphrodite";
 import LabeledTextField from "../labeled-text-field.js";
@@ -184,6 +185,49 @@ describe("LabeledTextField", () => {
         // Assert
         const input = wrapper.find("input");
         expect(input).toBeDisabled();
+    });
+
+    it("ariaDescribedby prop sets aria-describedby", () => {
+        // Arrange
+        const ariaDescription = "aria description";
+
+        // Act
+        render(
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                ariaDescribedby={ariaDescription}
+            />,
+        );
+
+        // Assert
+        const input = screen.getByRole("textbox");
+        expect(input.getAttribute("aria-describedby")).toEqual(ariaDescription);
+    });
+
+    it("auto-generates a unique error when ariaDescribedby is not passed in", () => {
+        // Arrange
+
+        // Act
+        render(
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                // ariaDescribedby is not passed in
+            />,
+        );
+
+        // Assert
+        // Since the generated aria-describedby is unique,
+        // we cannot know what it will be.
+        // We only test if the aria-describedby attribute starts with
+        // "uid-" and ends with "-error".
+        const input = screen.getByRole("textbox");
+        expect(input.getAttribute("aria-describedby")).toMatch(
+            /^uid-.*-error$/,
+        );
     });
 
     it("validate prop is called when input changes", () => {

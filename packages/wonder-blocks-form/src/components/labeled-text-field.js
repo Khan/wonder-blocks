@@ -42,6 +42,11 @@ type Props = {|
     disabled: boolean,
 
     /**
+     * Identifies the element or elements that describes this text field.
+     */
+    ariaDescribedby?: string | Array<string>,
+
+    /**
      * Provide a validation for the input value.
      * Return a string error message or null | void for a valid input.
      */
@@ -207,6 +212,7 @@ class LabeledTextFieldInternal extends React.Component<
             readOnly,
             autoComplete,
             forwardedRef,
+            ariaDescribedby,
         } = this.props;
 
         return (
@@ -219,7 +225,11 @@ class LabeledTextFieldInternal extends React.Component<
                         field={
                             <TextField
                                 id={`${uniqueId}-field`}
-                                aria-describedby={`${uniqueId}-error`}
+                                aria-describedby={
+                                    ariaDescribedby
+                                        ? ariaDescribedby
+                                        : `${uniqueId}-error`
+                                }
                                 aria-invalid={
                                     this.state.error ? "true" : "false"
                                 }
