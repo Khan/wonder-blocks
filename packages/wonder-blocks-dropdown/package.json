@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
-  "version": "2.5.0",
+  "version": "2.5.1",
   "design": "v1",
   "description": "Dropdown variants for Wonder Blocks.",
   "main": "dist/index.js",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.13.10",
-    "@khanacademy/wonder-blocks-button": "^2.10.0",
+    "@khanacademy/wonder-blocks-button": "^2.10.1",
     "@khanacademy/wonder-blocks-clickable": "^2.2.0",
     "@khanacademy/wonder-blocks-color": "^1.1.19",
     "@khanacademy/wonder-blocks-core": "^3.2.0",
