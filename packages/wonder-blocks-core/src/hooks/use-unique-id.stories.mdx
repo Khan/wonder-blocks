@@ -1,0 +1,51 @@
+import {Meta, Story, Canvas} from "@storybook/addon-docs";
+
+import {
+    WithoutMockExample,
+    WithMockExample,
+    ScopedExample,
+} from "./use-unique-id.examples.js";
+
+<Meta title="Core/useUniqueId*" />
+
+# `useUniqueIdWithoutMock`
+
+This hook is similar to `<UniqueIDProvider mockOnFirstRender={false}>`.
+It will return `null` on the initial render and then the same identifier
+factory for each subsequent render. The identifier factory is unique to
+each component.
+
+<Canvas>
+    <Story name="WithoutMock">
+        <WithoutMockExample />
+    </Story>{" "}
+</Canvas>
+
+# `useUniqueIdWithMock`
+
+This hook is similar to `<UniqueIDProvider mockOnFirstRender={true}>`.
+It will return a mock identifier factory on the initial render that doesn'that
+guarantee identifier uniqueness. Mock mode can help things appear on the screen
+during the initial render, but is not the default, because it is not always safe
+(e.g., we need actual IDs for some SVG constructs).
+
+<Canvas>
+    <Story name="WithMock">
+        <WithMock />
+    </Story>{" "}
+</Canvas>
+
+# Scoped
+
+Both of these hooks ensure that every identifier factory is unique using a
+unique number for each on. However, this isn't very readable when wanting to
+differentiate the types of things using unique identifiers. If we want to, we
+can provide a `scope` param that adds some text to each identifier provided.
+This can be useful for providing some quick at-a-glance component identification
+to identifiers when there are multiple hooks being used.
+
+<Canvas>
+    <Story name="ScopedExample">
+        <ScopedExample />
+    </Story>{" "}
+</Canvas>

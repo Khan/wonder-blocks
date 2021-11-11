@@ -17,19 +17,15 @@ import type {IIdentifierFactory} from "../util/types.js";
  */
 export const useUniqueIdWithMock = (scope?: string): IIdentifierFactory => {
     const renderState = useRenderState();
-    const isMounted = React.useRef(false);
+    const [isMounted, setIsMounted] = React.useState(false);
     const idFactory = React.useRef<?IIdentifierFactory>(null);
+
     React.useEffect(() => {
-        isMounted.current = true;
-        return () => {
-            isMounted.current = false;
-        };
+        // triggers a re-render now that the component is mounted
+        setIsMounted(true);
     }, []);
 
-    if (
-        renderState === "initial" ||
-        (renderState === "root" && !isMounted.current)
-    ) {
+    if (renderState === "initial" || (renderState === "root" && !isMounted)) {
         return SsrIDFactory;
     }
 
@@ -49,19 +45,15 @@ export const useUniqueIdWithMock = (scope?: string): IIdentifierFactory => {
  */
 export const useUniqueIdWithoutMock = (scope?: string): ?IIdentifierFactory => {
     const renderState = useRenderState();
-    const isMounted = React.useRef(false);
+    const [isMounted, setIsMounted] = React.useState(false);
     const idFactory = React.useRef<?IIdentifierFactory>(null);
+
     React.useEffect(() => {
-        isMounted.current = true;
-        return () => {
-            isMounted.current = false;
-        };
+        // triggers a re-render now that the component is mounted
+        setIsMounted(true);
     }, []);
 
-    if (
-        renderState === "initial" ||
-        (renderState === "root" && !isMounted.current)
-    ) {
+    if (renderState === "initial" || (renderState === "root" && !isMounted)) {
         return null;
     }
 
