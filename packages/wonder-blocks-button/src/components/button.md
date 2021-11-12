@@ -458,7 +458,7 @@ This table gives an overview of the options:
 
 ### Example: beforeNav callbacks
 
-These examples always wait until the async callback code completes before
+These buttons always wait until the async callback code completes before
 starting navigation.
 
 ```jsx
@@ -521,7 +521,7 @@ const styles = StyleSheet.create({
 
 ### Example: safeWithNav callbacks
 
-These examples navigate immediately when doing client-side navigation
+These buttons navigate immediately when doing client-side navigation
 or when opening a new tab, but wait until the async callback code
 completes before starting server-side navigation.
 

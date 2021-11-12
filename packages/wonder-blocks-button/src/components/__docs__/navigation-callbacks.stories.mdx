@@ -1,0 +1,59 @@
+import {Meta, Story, Canvas} from "@storybook/addon-docs";
+import {StyleSheet} from "aphrodite";
+
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+
+<Meta
+    title="Navigation/Button/Navigation Callbacks"
+    component={Button}
+    parameters={{
+        previewTabs: {
+            canvas: {hidden: true},
+        },
+        viewMode: "docs",
+        chromatic: {
+            // Disables chromatic testing for these stories.
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+## Running Callbacks on Navigation
+
+Sometimes you may need to run some code and also navigate when the user
+clicks the button. For example, you might want to send a request to the
+server and also send the user to a different page. You can do this by
+passing in a URL to the `href` prop and also passing in a callback
+function to either the `onClick`, `beforeNav`, or `safeWithNav` prop.
+Which prop you choose depends on your use case.
+
+- `onClick` is guaranteed to run to completion before navigation starts,
+  but it is not async aware, so it should only be used if all of the code
+  in your callback function executes synchronously.
+
+- `beforeNav` is guaranteed to run async operations before navigation
+  starts. You must return a promise from the callback function passed in
+  to this prop, and the navigation will happen after the promise
+  resolves. This prop should be used if it's important that the async code
+  completely finishes before the next URL starts loading.
+
+- `safeWithNav` runs async code concurrently with navigation when safe,
+  but delays navigation until the async code is finished when
+  concurrent execution is not safe. You must return a promise from the
+  callback function passed in to this prop, and Wonder Blocks will run
+  the async code in parallel with client-side navigation or while opening
+  a new tab, but will wait until the async code finishes to start a
+  server-side navigation. This prop should be used when it's okay to load
+  the next URL while the async callback code is running.
+
+This table gives an overview of the options:
+
+| Prop         | Async safe? | Completes before navigation? |
+|--------------|-------------|------------------------------|
+| onClick      | no          | yes                          |
+| beforeNav    | yes         | yes                          |
+| safeWithNav  | yes         | no                           |
+
+
+
