@@ -546,7 +546,7 @@ describe("wonder-blocks-button", () => {
                         style={styles.button}
                         onClick={(e) => e.preventDefault()}
                     >
-                        This button prevent navigation.
+                        This button prevents navigation.
                     </Button>
                     <Switch>
                         <Route path="/foo">

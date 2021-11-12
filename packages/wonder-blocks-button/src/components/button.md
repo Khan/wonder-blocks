@@ -436,7 +436,8 @@ Which prop you choose depends on your use case.
 - `beforeNav` is guaranteed to run async operations before navigation
   starts. You must return a promise from the callback function passed in
   to this prop, and the navigation will happen after the promise
-  resolves. This prop should be used if it's important that the async code
+  resolves. If the promise rejects, the navigation will not occur.
+  This prop should be used if it's important that the async code
   completely finishes before the next URL starts loading.
 
 - `safeWithNav` runs async code concurrently with navigation when safe,
@@ -445,16 +446,27 @@ Which prop you choose depends on your use case.
   callback function passed in to this prop, and Wonder Blocks will run
   the async code in parallel with client-side navigation or while opening
   a new tab, but will wait until the async code finishes to start a
-  server-side navigation. This prop should be used when it's okay to load
+  server-side navigation. If the promise rejects the navigation will
+  happen anyway. This prop should be used when it's okay to load
   the next URL while the async callback code is running.
 
 This table gives an overview of the options:
 
-| Prop         | Async safe? | Completes before navigation? |
-|--------------|-------------|------------------------------|
-| onClick      | no          | yes                          |
-| beforeNav    | yes         | yes                          |
-| safeWithNav  | yes         | no                           |
+| Prop        | Async safe? | Completes before navigation? |
+|-------------|-------------|------------------------------|
+| onClick     | no          | yes                          |
+| beforeNav   | yes         | yes                          |
+| safeWithNav | yes         | no                           |
+
+It is possible to use more than one of these props on the same element.
+If multiple props are used, they will run in this order: first `onClick`,
+then `beforeNav`, then `safeWithNav`. If both `beforeNav` and `safeWithNav`
+are used, the `safeWithNav` callback will not be called until the
+`beforeNav` promise resolves successfully. If the `beforeNav` promise
+rejects, `safeWithNav` will not be run.
+
+If the `onClick` handler calls `preventDefault()`, then `beforeNav`
+and `safeWithNav` will still run, but navigation will not occur.
 
 ### Example: beforeNav callbacks
 
@@ -585,9 +597,9 @@ const styles = StyleSheet.create({
 
 ### Example: Prevent navigation by calling e.preventDefault()
 
-Sometimes you may need to perform an async action either before or during
-navigation.  This can be accomplished with `beforeNav` and `safeWithNav`
-respectively.
+If the `onClick` callback calls `preventDefault()`, then navigation
+will not occur.
+
 ```jsx
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -612,7 +624,7 @@ const styles = StyleSheet.create({
             style={styles.button}
             onClick={e => e.preventDefault()}
         >
-            This button prevent navigation.
+            This button prevents navigation.
         </Button>
         <Switch>
             <Route path="/foo">

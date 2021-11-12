@@ -464,7 +464,7 @@ SafeWithNavCallbacks.storyName = "safeWithNav Callbacks";
 SafeWithNavCallbacks.parameters = {
     docs: {
         storyDescription:
-            "These buttons navigate immediately when doing client-side navigation or when opening a new tab, but wait until the async callback code completes before starting server-side navigation.",
+            "If the `onClick` callback calls `preventDefault()`, then navigation will not occur.",
     },
     chromatic: {
         disableSnapshot: true,
@@ -482,7 +482,7 @@ export const PreventNavigation: StoryComponentType = () => (
                     e.preventDefault();
                 }}
             >
-                This button prevent navigation.
+                This button prevents navigation.
             </Button>
             <Switch>
                 <Route path="/foo">
