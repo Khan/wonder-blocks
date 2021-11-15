@@ -426,7 +426,7 @@ describe("wonder-blocks-button", () => {
                             })
                         }
                     >
-                        Async action, client-side nav
+                        beforeNav, client-side nav
                     </Button>
                     <Button
                         href="/foo"
@@ -438,7 +438,7 @@ describe("wonder-blocks-button", () => {
                             })
                         }
                     >
-                        Async action, server-side nav
+                        beforeNav, server-side nav
                     </Button>
                     <Button
                         href="https://google.com"
@@ -451,7 +451,7 @@ describe("wonder-blocks-button", () => {
                             })
                         }
                     >
-                        Async action, open URL in new tab
+                        beforeNav, open URL in new tab
                     </Button>
                     <Switch>
                         <Route path="/foo">
@@ -482,9 +482,38 @@ describe("wonder-blocks-button", () => {
                     <Button
                         href="/foo"
                         style={styles.button}
-                        onClick={(e) => e.preventDefault()}
+                        safeWithNav={() =>
+                            new Promise((resolve, reject) => {
+                                setTimeout(resolve, 1000);
+                            })
+                        }
                     >
-                        This button prevent navigation.
+                        safeWithNav, client-side nav
+                    </Button>
+                    <Button
+                        href="/foo"
+                        style={styles.button}
+                        skipClientNav={true}
+                        safeWithNav={() =>
+                            new Promise((resolve, reject) => {
+                                setTimeout(resolve, 1000);
+                            })
+                        }
+                    >
+                        safeWithNav, server-side nav
+                    </Button>
+                    <Button
+                        href="https://google.com"
+                        target="_blank"
+                        style={styles.button}
+                        skipClientNav={true}
+                        safeWithNav={() =>
+                            new Promise((resolve, reject) => {
+                                setTimeout(resolve, 1000);
+                            })
+                        }
+                    >
+                        safeWithNav, open URL in new tab
                     </Button>
                     <Switch>
                         <Route path="/foo">
@@ -499,6 +528,39 @@ describe("wonder-blocks-button", () => {
     });
 
     it("example 11", () => {
+        const styles = StyleSheet.create({
+            row: {
+                flexDirection: "row",
+                alignItems: "center",
+            },
+            button: {
+                marginRight: 10,
+            },
+        }); // NOTE: In actual code you would use BrowserRouter instead
+
+        const example = (
+            <MemoryRouter>
+                <View style={styles.row}>
+                    <Button
+                        href="/foo"
+                        style={styles.button}
+                        onClick={(e) => e.preventDefault()}
+                    >
+                        This button prevents navigation.
+                    </Button>
+                    <Switch>
+                        <Route path="/foo">
+                            <View id="foo">Hello, world!</View>
+                        </Route>
+                    </Switch>
+                </View>
+            </MemoryRouter>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 12", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -542,7 +604,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 12", () => {
+    it("example 13", () => {
         const example = (
             <View>
                 <form onSubmit={() => alert("the form was submitted")}>
@@ -554,7 +616,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 13", () => {
+    it("example 14", () => {
         const example = (
             <View>
                 <Button>Label</Button>
@@ -564,7 +626,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 14", () => {
+    it("example 15", () => {
         const styles = StyleSheet.create({
             column: {
                 alignItems: "flex-start",
@@ -594,7 +656,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 15", () => {
+    it("example 16", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -621,7 +683,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 16", () => {
+    it("example 17", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -649,7 +711,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 17", () => {
+    it("example 18", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",
@@ -672,7 +734,7 @@ describe("wonder-blocks-button", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 18", () => {
+    it("example 19", () => {
         const styles = StyleSheet.create({
             row: {
                 flexDirection: "row",

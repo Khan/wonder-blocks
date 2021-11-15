@@ -35,3 +35,9 @@ import Link from "@khanacademy/wonder-blocks-link";
     </Link>
 </View>
 ```
+
+### Running callbacks on navigation
+
+The `onClick`, `beforeNav`, and `safeWithNav` props can be used to run callbacks
+when navigating to the new URL. Which prop to use depends on the use case. See
+the [Button](#section-button) documentation for details.

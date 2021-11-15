@@ -145,6 +145,13 @@ const styles = StyleSheet.create({
 </MemoryRouter>
 ```
 
+### Running callbacks on navigation
+
+When using the `href` prop, the `onClick`, `beforeNav`, and `safeWithNav` props
+can be used to run callbacks when navigating to the new URL. Which prop to use
+depends on the use case. See the [Button](#section-button) documentation for
+details.
+
 ### Navigating with the Keyboard
 
 Clickable adds support to keyboard navigation. This way, your components are
