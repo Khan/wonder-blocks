@@ -1,5 +1,5 @@
 // @flow
-import * as React from "react";
+import {useEffect, useRef, useState} from "react";
 
 import SsrIDFactory from "../util/ssr-id-factory.js";
 import UniqueIDFactory from "../util/unique-id-factory.js";
@@ -17,10 +17,10 @@ import type {IIdentifierFactory} from "../util/types.js";
  */
 export const useUniqueIdWithMock = (scope?: string): IIdentifierFactory => {
     const renderState = useRenderState();
-    const [isMounted, setIsMounted] = React.useState(false);
-    const idFactory = React.useRef<?IIdentifierFactory>(null);
+    const [isMounted, setIsMounted] = useState(false);
+    const idFactory = useRef<?IIdentifierFactory>(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
         // triggers a re-render now that the component is mounted
         setIsMounted(true);
     }, []);
@@ -45,10 +45,10 @@ export const useUniqueIdWithMock = (scope?: string): IIdentifierFactory => {
  */
 export const useUniqueIdWithoutMock = (scope?: string): ?IIdentifierFactory => {
     const renderState = useRenderState();
-    const [isMounted, setIsMounted] = React.useState(false);
-    const idFactory = React.useRef<?IIdentifierFactory>(null);
+    const [isMounted, setIsMounted] = useState(false);
+    const idFactory = useRef<?IIdentifierFactory>(null);
 
-    React.useEffect(() => {
+    useEffect(() => {
         // triggers a re-render now that the component is mounted
         setIsMounted(true);
     }, []);
