@@ -53,6 +53,7 @@ module.exports = {
                 "packages/wonder-blocks-core/src/components/unique-id-provider.js",
                 "packages/wonder-blocks-core/src/components/view.js",
                 "packages/wonder-blocks-core/src/components/with-ssr-placeholder.js",
+                "packages/wonder-blocks-core/src/hooks/use-unique-id.js",
             ],
         },
         {

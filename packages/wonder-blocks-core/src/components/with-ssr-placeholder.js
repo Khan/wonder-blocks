@@ -1,6 +1,10 @@
 // @flow
 import * as React from "react";
 
+import {RenderStateContext} from "./render-state-context.js";
+
+import type {RenderState} from "./render-state-context.js";
+
 /**
  * We use render functions so that we don't do any work unless we need to.
  * This avoids rendering but not mounting potentially complex component trees.
@@ -28,24 +32,6 @@ type Props = {|
 type State = {|
     mounted: boolean,
 |};
-
-type RenderState = "root" | "initial" | "standard";
-/**
- * This is the context that tracks who is doing what in our SSR component tree.
- *
- * root:
- *   no one has instigated an initial SSR render so the component that sees
- *   this "root" state is responsible for controlling initial versus standard
- *   rendering semantics
- *
- * initial:
- *   this means the SSR render has started, and all SSR components should act
- *   as though they are on the server
- *
- * standard:
- *   means that we're all now doing non-SSR rendering
- */
-const RenderStateContext = React.createContext<RenderState>("root");
 
 /**
  * Defer or change rendering until the component did mount.
