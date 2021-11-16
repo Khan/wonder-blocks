@@ -1,0 +1,130 @@
+import {Meta, Story, Canvas} from "@storybook/addon-docs";
+
+import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
+
+import {useUniqueIdWithoutMock, useUniqueIdWithMock} from "./use-unique-id.js";
+
+<Meta title="Core/useUniqueId*" />
+
+# `useUniqueIdWithoutMock`
+
+This hook is similar to `<UniqueIDProvider mockOnFirstRender={false}>`.
+It will return `null` on the initial render and then the same identifier
+factory for each subsequent render. The identifier factory is unique to
+each component.
+
+export const WithoutMockExample = () => {
+    const [count, setCount] = React.useState(0);
+    const renders = React.useRef([]);
+    const ids = useUniqueIdWithoutMock();
+    const handleClick = () => {
+        setCount(count + 1);
+    };
+    if (ids) {
+        renders.current.push(ids.get("my-unique-id"));
+    }
+    return (
+        <View>
+            <Button onClick={handleClick} style={{width: 200}}>
+                Re-render
+            </Button>
+            <br />
+            renders:
+            {renders.current.map((value, index) => (
+                <View>
+                    Render {index}: {value}
+                </View>
+            ))}
+        </View>
+    );
+};
+
+<Canvas>
+    <Story name="WithoutMockExample">
+        <WithoutMockExample />
+    </Story>
+</Canvas>
+
+# `useUniqueIdWithMock`
+
+This hook is similar to `<UniqueIDProvider mockOnFirstRender={true}>`.
+It will return a mock identifier factory on the initial render that doesn'that
+guarantee identifier uniqueness. Mock mode can help things appear on the screen
+during the initial render, but is not the default, because it is not always safe
+(e.g., we need actual IDs for some SVG constructs).
+
+export const WithMockExample = () => {
+    const [count, setCount] = React.useState(0);
+    const renders = React.useRef([]);
+    const ids = useUniqueIdWithMock();
+    const handleClick = () => {
+        setCount(count + 1);
+    };
+    if (ids) {
+        renders.current.push(ids.get("my-unique-id"));
+    }
+    return (
+        <View>
+            <Button onClick={handleClick} style={{width: 200}}>
+                Re-render
+            </Button>
+            <br />
+            renders:
+            {renders.current.map((value, index) => (
+                <View>
+                    Render {index}: {value}
+                </View>
+            ))}
+        </View>
+    );
+};
+
+<Canvas>
+    <Story name="WithMockExample">
+        <WithMockExample />
+    </Story>
+</Canvas>
+
+# Scoped
+
+Both of these hooks ensure that every identifier factory is unique using a
+unique number for each one. However, this isn't very readable when wanting to
+differentiate the types of things using unique identifiers. If we want to, we
+can provide a `scope` param that adds some text to each identifier provided.
+This can be useful for providing some quick at-a-glance component identification
+to identifiers when there are multiple hooks being used.
+
+export const ScopedExample = () => {
+    const firstIdFactory = useUniqueIdWithoutMock("first");
+    const secondIdFactory = useUniqueIdWithoutMock("second");
+    return (
+        <View>
+            <HeadingSmall>First Provider with scope: first</HeadingSmall>
+            {firstIdFactory && (
+                <View>
+                    <Body>
+                        The id returned for my-identifier:{" "}
+                        {firstIdFactory.get("my-identifier")}
+                    </Body>
+                </View>
+            )}
+            <HeadingSmall>Second Provider with scope: second</HeadingSmall>
+            {secondIdFactory && (
+                <View>
+                    <Body>
+                        The id returned for my-identifier:{" "}
+                        {secondIdFactory.get("my-identifier")}
+                    </Body>
+                </View>
+            )}
+        </View>
+    );
+};
+
+<Canvas>
+    <Story name="ScopedExample">
+        <ScopedExample />
+    </Story>{" "}
+</Canvas>

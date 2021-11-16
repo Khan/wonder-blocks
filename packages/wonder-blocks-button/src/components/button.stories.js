@@ -353,7 +353,7 @@ ButtonsWithRouter.parameters = {
     },
 };
 
-export const NavigationWithAsyncAction: StoryComponentType = () => (
+export const BeforeNavCallbacks: StoryComponentType = () => (
     <MemoryRouter>
         <View style={styles.row}>
             <Button
@@ -365,7 +365,7 @@ export const NavigationWithAsyncAction: StoryComponentType = () => (
                     })
                 }
             >
-                Async action, client-side nav
+                beforeNav, client-side nav
             </Button>
             <Button
                 href="/foo"
@@ -377,7 +377,7 @@ export const NavigationWithAsyncAction: StoryComponentType = () => (
                     })
                 }
             >
-                Async action, server-side nav
+                beforeNav, server-side nav
             </Button>
             <Button
                 href="https://google.com"
@@ -389,7 +389,7 @@ export const NavigationWithAsyncAction: StoryComponentType = () => (
                     })
                 }
             >
-                Async action, open URL
+                beforeNav, open URL in new tab
             </Button>
             <Switch>
                 <Route path="/foo">
@@ -400,10 +400,71 @@ export const NavigationWithAsyncAction: StoryComponentType = () => (
     </MemoryRouter>
 );
 
-NavigationWithAsyncAction.parameters = {
+BeforeNavCallbacks.storyName = "beforeNav Callbacks";
+
+BeforeNavCallbacks.parameters = {
     docs: {
         storyDescription:
-            "Sometimes you may need to perform an async action either before or during navigation. This can be accomplished with `beforeNav` and `safeWithNav` respectively.",
+            "These buttons always wait until the async callback code completes before starting navigation.",
+    },
+    chromatic: {
+        disableSnapshot: true,
+    },
+};
+
+export const SafeWithNavCallbacks: StoryComponentType = () => (
+    <MemoryRouter>
+        <View style={styles.row}>
+            <Button
+                href="/foo"
+                style={styles.button}
+                safeWithNav={() =>
+                    new Promise((resolve, reject) => {
+                        setTimeout(resolve, 1000);
+                    })
+                }
+            >
+                safeWithNav, client-side nav
+            </Button>
+            <Button
+                href="/foo"
+                style={styles.button}
+                skipClientNav={true}
+                safeWithNav={() =>
+                    new Promise((resolve, reject) => {
+                        setTimeout(resolve, 1000);
+                    })
+                }
+            >
+                safeWithNav, server-side nav
+            </Button>
+            <Button
+                href="https://google.com"
+                style={styles.button}
+                skipClientNav={true}
+                safeWithNav={() =>
+                    new Promise((resolve, reject) => {
+                        setTimeout(resolve, 1000);
+                    })
+                }
+            >
+                safeWithNav, open URL in new tab
+            </Button>
+            <Switch>
+                <Route path="/foo">
+                    <View id="foo">Hello, world!</View>
+                </Route>
+            </Switch>
+        </View>
+    </MemoryRouter>
+);
+
+SafeWithNavCallbacks.storyName = "safeWithNav Callbacks";
+
+SafeWithNavCallbacks.parameters = {
+    docs: {
+        storyDescription:
+            "If the `onClick` callback calls `preventDefault()`, then navigation will not occur.",
     },
     chromatic: {
         disableSnapshot: true,
@@ -421,7 +482,7 @@ export const PreventNavigation: StoryComponentType = () => (
                     e.preventDefault();
                 }}
             >
-                This button prevent navigation.
+                This button prevents navigation.
             </Button>
             <Switch>
                 <Route path="/foo">

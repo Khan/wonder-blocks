@@ -1,4 +1,4 @@
-#### Example: kind
+### Example: kind
 
 There are three `kind`s of buttons: `"primary"` (default), `"secondary"`, and
 `"tertiary"`:
@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-#### Example: color
+### Example: color
 
 Buttons have a `color` that is either `"default"` (the default, as shown above) or `"destructive"` (as can seen below):
 
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-#### Example: disabled
+### Example: disabled
 
 Buttons can be `disabled`:
 
@@ -139,7 +139,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-#### Example: dark
+### Example: dark
 
 Buttons on a `darkBlue` background should set `light` to `true`.
 ```jsx
@@ -212,7 +212,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-#### Example: size
+### Example: size
 
 Buttons have a `size` that's either `"medium"` (default), `"small"`, or `"xlarge"`.
 ```js
@@ -309,7 +309,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-#### Example: spinner
+### Example: spinner
 
 Buttons can show a `spinner`.  This is useful when indicating to a user that
 their input has been recognized but that the operation will take some time.
@@ -343,7 +343,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-#### Example: Navigation
+### Example: Navigation
 
 ```jsx
 import Button from "@khanacademy/wonder-blocks-button";
@@ -384,7 +384,7 @@ const styles = StyleSheet.create({
 </View>
 ```
 
-#### Example: Navigation with React Router
+### Example: Navigation with React Router
 
 Buttons do client-side navigation by default, if React Router exists:
 ```jsx
@@ -420,12 +420,59 @@ const styles = StyleSheet.create({
     </View>
 </MemoryRouter>
 ```
+### Running callbacks on navigation
 
-#### Example: Navigation with async action
+Sometimes you may need to run some code and also navigate when the user
+clicks the button. For example, you might want to send a request to the
+server and also send the user to a different page. You can do this by
+passing in a URL to the `href` prop and also passing in a callback
+function to either the `onClick`, `beforeNav`, or `safeWithNav` prop.
+Which prop you choose depends on your use case.
 
-Sometimes you may need to perform an async action either before or during
-navigation.  This can be accomplished with `beforeNav` and `safeWithNav`
-respectively.
+- `onClick` is guaranteed to run to completion before navigation starts,
+  but it is not async aware, so it should only be used if all of the code
+  in your callback function executes synchronously.
+
+- `beforeNav` is guaranteed to run async operations before navigation
+  starts. You must return a promise from the callback function passed in
+  to this prop, and the navigation will happen after the promise
+  resolves. If the promise rejects, the navigation will not occur.
+  This prop should be used if it's important that the async code
+  completely finishes before the next URL starts loading.
+
+- `safeWithNav` runs async code concurrently with navigation when safe,
+  but delays navigation until the async code is finished when
+  concurrent execution is not safe. You must return a promise from the
+  callback function passed in to this prop, and Wonder Blocks will run
+  the async code in parallel with client-side navigation or while opening
+  a new tab, but will wait until the async code finishes to start a
+  server-side navigation. If the promise rejects the navigation will
+  happen anyway. This prop should be used when it's okay to load
+  the next URL while the async callback code is running.
+
+This table gives an overview of the options:
+
+| Prop        | Async safe? | Completes before navigation? |
+|-------------|-------------|------------------------------|
+| onClick     | no          | yes                          |
+| beforeNav   | yes         | yes                          |
+| safeWithNav | yes         | no                           |
+
+It is possible to use more than one of these props on the same element.
+If multiple props are used, they will run in this order: first `onClick`,
+then `beforeNav`, then `safeWithNav`. If both `beforeNav` and `safeWithNav`
+are used, the `safeWithNav` callback will not be called until the
+`beforeNav` promise resolves successfully. If the `beforeNav` promise
+rejects, `safeWithNav` will not be run.
+
+If the `onClick` handler calls `preventDefault()`, then `beforeNav`
+and `safeWithNav` will still run, but navigation will not occur.
+
+### Example: beforeNav callbacks
+
+These buttons always wait until the async callback code completes before
+starting navigation.
+
 ```jsx
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -452,7 +499,7 @@ const styles = StyleSheet.create({
                 setTimeout(resolve, 1000);
             })}
         >
-            Async action, client-side nav
+            beforeNav, client-side nav
         </Button>
         <Button
             href="/foo"
@@ -462,7 +509,7 @@ const styles = StyleSheet.create({
                 setTimeout(resolve, 1000);
             })}
         >
-            Async action, server-side nav
+            beforeNav, server-side nav
         </Button>
         <Button
             href="https://google.com"
@@ -473,7 +520,7 @@ const styles = StyleSheet.create({
                 setTimeout(resolve, 1000);
             })}
         >
-            Async action, open URL in new tab
+            beforeNav, open URL in new tab
         </Button>
         <Switch>
             <Route path="/foo">
@@ -484,11 +531,75 @@ const styles = StyleSheet.create({
 </MemoryRouter>
 ```
 
-#### Example: Prevent navigation by calling e.preventDefault()
+### Example: safeWithNav callbacks
 
-Sometimes you may need to perform an async action either before or during
-navigation.  This can be accomplished with `beforeNav` and `safeWithNav`
-respectively.
+These buttons navigate immediately when doing client-side navigation
+or when opening a new tab, but wait until the async callback code
+completes before starting server-side navigation.
+
+```jsx
+import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {StyleSheet} from "aphrodite";
+import {MemoryRouter, Route, Switch} from "react-router-dom";
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+    },
+    button: {
+        marginRight: 10,
+    }
+});
+
+// NOTE: In actual code you would use BrowserRouter instead
+<MemoryRouter>
+    <View style={styles.row}>
+        <Button
+            href="/foo"
+            style={styles.button}
+            safeWithNav={() => new Promise((resolve, reject) => {
+                setTimeout(resolve, 1000);
+            })}
+        >
+            safeWithNav, client-side nav
+        </Button>
+        <Button
+            href="/foo"
+            style={styles.button}
+            skipClientNav={true}
+            safeWithNav={() => new Promise((resolve, reject) => {
+                setTimeout(resolve, 1000);
+            })}
+        >
+            safeWithNav, server-side nav
+        </Button>
+        <Button
+            href="https://google.com"
+            target="_blank"
+            style={styles.button}
+            skipClientNav={true}
+            safeWithNav={() => new Promise((resolve, reject) => {
+                setTimeout(resolve, 1000);
+            })}
+        >
+            safeWithNav, open URL in new tab
+        </Button>
+        <Switch>
+            <Route path="/foo">
+                <View id="foo">Hello, world!</View>
+            </Route>
+        </Switch>
+    </View>
+</MemoryRouter>
+```
+
+### Example: Prevent navigation by calling e.preventDefault()
+
+If the `onClick` callback calls `preventDefault()`, then navigation
+will not occur.
+
 ```jsx
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -513,7 +624,7 @@ const styles = StyleSheet.create({
             style={styles.button}
             onClick={e => e.preventDefault()}
         >
-            This button prevent navigation.
+            This button prevents navigation.
         </Button>
         <Switch>
             <Route path="/foo">
@@ -524,7 +635,7 @@ const styles = StyleSheet.create({
 </MemoryRouter>
 ```
 
-#### Example: style
+### Example: style
 
 Buttons can have a `style` props which supports width, position, margin,
 and flex styles.
@@ -582,7 +693,7 @@ const kinds = ["primary", "secondary", "tertiary"];
 </View>
 ```
 
-#### Example: "submit" buttons in forms
+### Example: "submit" buttons in forms
 
 ```jsx
 import Button from "@khanacademy/wonder-blocks-button";

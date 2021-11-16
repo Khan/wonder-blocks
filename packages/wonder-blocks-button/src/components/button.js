@@ -139,11 +139,10 @@ export type SharedProps = {|
     /**
      * Function to call when button is clicked.
      *
-     * This callback should be used for things like marking BigBingo
-     * conversions. It should NOT be used to redirect to a different URL or to
-     * prevent navigation via e.preventDefault(). The event passed to this
-     * handler will have its preventDefault() and stopPropagation() methods
-     * stubbed out.
+     * This callback should be used for running synchronous code, like
+     * dispatching a Redux action. For asynchronous code see the
+     * beforeNav and safeWithNav props. It should NOT be used to redirect
+     * to a different URL.
      *
      * Note: onClick is optional if href is present, but must be defined if
      * href is not
