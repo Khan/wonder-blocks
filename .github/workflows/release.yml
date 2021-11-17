@@ -35,7 +35,7 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Send a Slack notification if a publish happens
-      - uses: rtCamp/action-slack-notify@v2
+        uses: rtCamp/action-slack-notify@v2
         if: steps.changesets.outputs.published == 'true'
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
