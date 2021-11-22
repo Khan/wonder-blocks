@@ -7,7 +7,14 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {ClearPolicy, SchedulePolicy} from "../util/policies.js";
 import {useTimeout} from "./use-timeout.js";
 
-<Meta title="Timing/useTimeout" />
+<Meta
+    title="Timing/useTimeout"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
 
 # `useTimeout`
 
@@ -62,14 +69,7 @@ export const Immediately = () => {
 };
 
 <Canvas>
-    <Story
-        name="Immediately"
-        paramters={{
-            chromatic: {
-                disableSnapshot: true,
-            },
-        }}
-    >
+    <Story name="Immediately">
         <Immediately />
     </Story>
 </Canvas>
@@ -117,14 +117,7 @@ export const OnDemandAndResolveOnClear = () => {
 };
 
 <Canvas>
-    <Story
-        name="OnDemandAndResolveOnClear"
-        paramters={{
-            chromatic: {
-                disableSnapshot: true,
-            },
-        }}
-    >
+    <Story name="OnDemandAndResolveOnClear">
         <OnDemandAndResolveOnClear />
     </Story>
 </Canvas>
