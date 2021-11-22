@@ -4,7 +4,7 @@ module.exports = {
         // This config includes rules from @testing-library/jest-dom as well
         "plugin:testing-library/react",
     ],
-    plugins: ["import", "jest", "promise", "monorepo"],
+    plugins: ["import", "jest", "promise", "monorepo", "react-hooks"],
     settings: {
         react: {
             version: "detect",
@@ -83,6 +83,10 @@ module.exports = {
                 ],
             },
         ],
+
+        // react-hooks
+        "react-hooks/rules-of-hooks": "error",
+        "react-hooks/exhaustive-deps": "error",
 
         // testing-library
         "testing-library/prefer-user-event": "error",
