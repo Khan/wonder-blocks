@@ -4,7 +4,7 @@ import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 
-import {SchedulePolicy} from "../util/policies.js";
+import {ClearPolicy, SchedulePolicy} from "../util/policies.js";
 import {useTimeout} from "./use-timeout.js";
 
 <Meta title="Timing/useTimeout" />
@@ -12,7 +12,7 @@ import {useTimeout} from "./use-timeout.js";
 # `useTimeout`
 
 `useTimeout` is a hook that provides a convenient API for setting and clearing
-a timeout.  It is defined as follows:
+a timeout. It is defined as follows:
 
 ```
 function useTimeout(
@@ -31,14 +31,16 @@ interface ITimeout {
 }
 ```
 
-By default the timeout will be set immediately up creation.  The `options` parameter can
+By default the timeout will be set immediately up creation. The `options` parameter can
 be used to control when when the timeout is schedule and whether or not `action` should be
 called when the timeout is cleared.
 
 Notes:
-- Calling `set` after the timeout has expired will restart the timeout.
-- Updating the second paramter, `timeoutMs`, will also restart the timeout.
-- When the component using this hooks is unmounted, the timeout will automatically be cleared.
+-   Because `clear` takes a param, it's import that you don't pass it directly to an event handler,
+    e.g. `<Button onClick={clear} />` will not work as expected.
+-   Calling `set` after the timeout has expired will restart the timeout.
+-   Updating the second paramter, `timeoutMs`, will also restart the timeout.
+-   When the component using this hooks is unmounted, the timeout will automatically be cleared.
 
 export const Immediately = () => {
     const [callCount, setCallCount] = React.useState(0);
@@ -76,44 +78,44 @@ const Immediately = () => {
             <View>isSet = {isSet.toString()}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>
-                <Button onClick={set}>Set timeout</Button>
-                <Button onClick={clear}>Clear timeout</Button>
+                <Button onClick={() => set()}>Set timeout</Button>
+                <Button onClick={() => clear()}>Clear timeout</Button>
             </View>
         </View>
     );
 };
 ```
 
-export const OnDemand = () => {
+export const OnDemandAndResolveOnClear = () => {
     const [callCount, setCallCount] = React.useState(0);
     const callback = React.useCallback(() => {
+        console.log("action called");
         setCallCount((callCount) => callCount + 1);
     }, []);
-    const {isSet, set, clear} = useTimeout(
-        callback,
-        1000,
-        SchedulePolicy.OnDemand,
-    );
+    const {isSet, set, clear} = useTimeout(callback, 1000, {
+        clearPolicy: ClearPolicy.Resolve,
+        schedulePolicy: SchedulePolicy.OnDemand,
+    });
     return (
         <View>
             <View>isSet = {isSet.toString()}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>
-                <Button onClick={set}>Set timeout</Button>
-                <Button onClick={clear}>Clear timeout</Button>
+                <Button onClick={() => set()}>Set timeout</Button>
+                <Button onClick={() => clear()}>Clear timeout</Button>
             </View>
         </View>
     );
 };
 
 <Canvas>
-    <Story name="OnDemand">
-        <OnDemand />
+    <Story name="OnDemandAndResolveOnClear">
+        <OnDemandAndResolveOnClear />
     </Story>
 </Canvas>
 
 ```
-const OnDemand = () => {
+const OnDemandAndResolveOnClear = () => {
     const [callCount, setCallCount] = React.useState(0);
     const callback = React.useCallback(() => {
         setCallCount((callCount) => callCount + 1);
@@ -121,15 +123,18 @@ const OnDemand = () => {
     const {isSet, set, clear} = useTimeout(
         callback,
         1000,
-        SchedulePolicy.OnDemand,
+        {
+            clearPolicy: ClearPolicy.Resolve,
+            schedulePolicy: SchedulePolicy.OnDemand,
+        },
     );
     return (
         <View>
             <View>isSet = {isSet.toString()}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>
-                <Button onClick={set}>Set timeout</Button>
-                <Button onClick={clear}>Clear timeout</Button>
+                <Button onClick={() => set()}>Set timeout</Button>
+                <Button onClick={() => clear()}>Clear timeout</Button>
             </View>
         </View>
     );
