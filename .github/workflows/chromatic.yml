@@ -48,4 +48,12 @@ jobs:
     # (else) Run this step on dependabot PRs.
     - name: Skip Chromatic builds
       if: ${{ github.actor == 'dependabot[bot]' }}
-      run: yarn chromatic --skip
+      uses: chromaui/action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+        exitZeroOnChanges: true
+        # This is a flag that allows us to skip the build in the case of a
+        # dependabot PR. We still need to report the build as successful so that
+        # the checks are valid and Dependabot can continue.
+        skip: true
