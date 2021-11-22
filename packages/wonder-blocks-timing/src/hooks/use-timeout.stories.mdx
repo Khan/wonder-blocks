@@ -36,6 +36,7 @@ be used to control when when the timeout is schedule and whether or not `action`
 called when the timeout is cleared.
 
 Notes:
+
 -   Because `clear` takes a param, it's import that you don't pass it directly to an event handler,
     e.g. `<Button onClick={clear} />` will not work as expected.
 -   Calling `set` after the timeout has expired will restart the timeout.
@@ -61,7 +62,14 @@ export const Immediately = () => {
 };
 
 <Canvas>
-    <Story name="Immediately">
+    <Story
+        name="Immediately"
+        paramters={{
+            chromatic: {
+                disableSnapshot: true,
+            },
+        }}
+    >
         <Immediately />
     </Story>
 </Canvas>
@@ -109,7 +117,14 @@ export const OnDemandAndResolveOnClear = () => {
 };
 
 <Canvas>
-    <Story name="OnDemandAndResolveOnClear">
+    <Story
+        name="OnDemandAndResolveOnClear"
+        paramters={{
+            chromatic: {
+                disableSnapshot: true,
+            },
+        }}
+    >
         <OnDemandAndResolveOnClear />
     </Story>
 </Canvas>
