@@ -16,7 +16,7 @@ export default {
     title: "Form / LabeledTextField",
 };
 
-export const text: StoryComponentType = () => {
+export const Text: StoryComponentType = () => {
     const [value, setValue] = React.useState("Khan");
 
     const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
@@ -37,7 +37,7 @@ export const text: StoryComponentType = () => {
     );
 };
 
-export const number: StoryComponentType = () => {
+export const Number: StoryComponentType = () => {
     const [value, setValue] = React.useState("18");
 
     const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
@@ -59,7 +59,7 @@ export const number: StoryComponentType = () => {
     );
 };
 
-export const password: StoryComponentType = () => {
+export const Password: StoryComponentType = () => {
     const [value, setValue] = React.useState("Password123");
 
     const validate = (value: string) => {
@@ -91,7 +91,7 @@ export const password: StoryComponentType = () => {
     );
 };
 
-export const email: StoryComponentType = () => {
+export const Email: StoryComponentType = () => {
     const [value, setValue] = React.useState("khan@khan.org");
 
     const validate = (value: string) => {
@@ -121,7 +121,7 @@ export const email: StoryComponentType = () => {
     );
 };
 
-export const telephone: StoryComponentType = () => {
+export const Telephone: StoryComponentType = () => {
     const [value, setValue] = React.useState("123-456-7890");
 
     const validate = (value: string) => {
@@ -151,7 +151,7 @@ export const telephone: StoryComponentType = () => {
     );
 };
 
-export const error: StoryComponentType = () => {
+export const Error: StoryComponentType = () => {
     const [value, setValue] = React.useState("khan");
 
     const validate = (value: string) => {
@@ -181,7 +181,7 @@ export const error: StoryComponentType = () => {
     );
 };
 
-export const disabled: StoryComponentType = () => (
+export const Disabled: StoryComponentType = () => (
     <LabeledTextField
         label="Name"
         description="Please enter your name"
@@ -192,7 +192,7 @@ export const disabled: StoryComponentType = () => (
     />
 );
 
-export const light: StoryComponentType = () => {
+export const Light: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
     const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
@@ -222,7 +222,7 @@ export const light: StoryComponentType = () => {
     );
 };
 
-export const customStyle: StoryComponentType = () => {
+export const CustomStyle: StoryComponentType = () => {
     const [firstName, setFirstName] = React.useState("");
     const [lastName, setLastName] = React.useState("");
 
@@ -257,7 +257,7 @@ export const customStyle: StoryComponentType = () => {
     );
 };
 
-export const ref: StoryComponentType = () => {
+export const Ref: StoryComponentType = () => {
     const [value, setValue] = React.useState("Khan");
     const inputRef = React.createRef();
 
@@ -292,7 +292,7 @@ export const ref: StoryComponentType = () => {
     );
 };
 
-export const readOnly: StoryComponentType = () => {
+export const ReadOnly: StoryComponentType = () => {
     const [value, setValue] = React.useState("Khan");
 
     const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
@@ -314,7 +314,7 @@ export const readOnly: StoryComponentType = () => {
     );
 };
 
-export const autoComplete: StoryComponentType = () => {
+export const AutoComplete: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
     const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
