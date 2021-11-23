@@ -7,8 +7,8 @@
   "scripts": {
     "alex": "alex packages/",
     "build:all": "yarn build:cjs && yarn build:es6",
-    "build:cjs": "webpack --config build-settings/webpack.config.js --display-modules && node utils/package-flow-types.js",
-    "build:es6": "rollup -c build-settings/rollup.config.js",
+    "build:cjs": "webpack --config ./build-settings/webpack.config.js --display-modules && node ./utils/package-flow-types.js",
+    "build:es6": "rollup -c ./build-settings/rollup.config.js",
     "build-storybook": "build-storybook -s ./static",
     "build:styleguidist": "yarn run gen-styleguide-prod-config && styleguidist build --config styleguide.prod.config.js",
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules",
