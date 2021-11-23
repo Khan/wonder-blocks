@@ -72,12 +72,18 @@ jobs:
     - name: Install dependencies
       if: steps.node-modules-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
-    - name: Run tests with coverage
-      run: yarn coverage
+    - name: Run Jest with coverage
+      uses: Khan/jest-coverage-action@v1.1.3
+      with:
+        jest-bin: ./node_modules/.bin/jest
+        coverage-data-path: ./coverage/coverage-final.json
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     - name: Upload Coverage
       uses: codecov/codecov-action@v2
       with:
         token: ${{ secrets.CODECOV_TOKEN }}
+        files: ./coverage/coverage-final.json
 
   chromatic:
     needs: [prime_cache_primary]
@@ -112,6 +118,8 @@ jobs:
     - name: Install dependencies
       if: steps.node-modules-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
+    - name: Build all packages
+      run: yarn build:all
     - name: Publish to Chromatic
       uses: chromaui/action@v1
       with:
