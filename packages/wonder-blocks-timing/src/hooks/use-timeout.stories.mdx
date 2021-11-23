@@ -49,6 +49,8 @@ Notes:
 -   Calling `set` after the timeout has expired will restart the timeout.
 -   Updating the second paramter, `timeoutMs`, will also restart the timeout.
 -   When the component using this hooks is unmounted, the timeout will automatically be cleared.
+-   Calling `set` after the timeout is set but before it expires means that the timeout will be
+    reset and will call `action`, `timeoutMs` after the most recent call to `set` was made.
 
 export const Immediately = () => {
     const [callCount, setCallCount] = React.useState(0);

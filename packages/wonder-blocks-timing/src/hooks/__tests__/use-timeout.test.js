@@ -48,6 +48,18 @@ describe("useTimeout", () => {
             expect(action).toHaveBeenCalled();
         });
 
+        it("should update isSet to false after the timeout expires", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() => useTimeout(action, 1000));
+
+            // Act
+            jest.advanceTimersByTime(1000);
+
+            // Assert
+            expect(result.current.isSet).toBe(false);
+        });
+
         it("should call the action again if 'set' is called after the action was called", () => {
             // Arrange
             const action = jest.fn();
@@ -205,7 +217,7 @@ describe("useTimeout", () => {
         });
     });
 
-    describe("SchedulePolicies.OnDeman", () => {
+    describe("SchedulePolicies.OnDemand", () => {
         it("should not set the timer on creation", () => {
             // Arrange
             const {result} = renderHook(() =>
@@ -246,6 +258,44 @@ describe("useTimeout", () => {
             );
 
             // Act
+            result.current.set();
+            jest.advanceTimersByTime(1000);
+
+            // Assert
+            expect(action).toHaveBeenCalled();
+        });
+
+        it("should reset the timer after calling set() again", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useTimeout(action, 1000, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
+                }),
+            );
+
+            // Act
+            result.current.set();
+            jest.advanceTimersByTime(500);
+            result.current.set();
+            jest.advanceTimersByTime(500);
+
+            // Assert
+            expect(action).not.toHaveBeenCalled();
+        });
+
+        it("should call the action after calling set() again", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result} = renderHook(() =>
+                useTimeout(action, 1000, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
+                }),
+            );
+
+            // Act
+            result.current.set();
+            jest.advanceTimersByTime(500);
             result.current.set();
             jest.advanceTimersByTime(1000);
 

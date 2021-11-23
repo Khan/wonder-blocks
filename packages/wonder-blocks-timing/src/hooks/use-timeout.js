@@ -14,7 +14,7 @@ export function useTimeout(
 ): ITimeout {
     const schedulePolicy =
         options?.schedulePolicy ?? SchedulePolicies.Immediately;
-    const [isActive, setIsActive] = useState(
+    const [isSet, setIsSet] = useState(
         schedulePolicy === SchedulePolicies.Immediately,
     );
     const actionRef = useRef(action);
@@ -37,21 +37,24 @@ export function useTimeout(
                 actionRef.current();
             }
             // This will cause the useEffect below to re-run
-            setIsActive(false);
+            setIsSet(false);
         },
         [options?.clearPolicy],
     );
 
     const set = useCallback(() => {
+        if (isSet) {
+            clear();
+        }
         // This will cause the useEffect below to re-run
-        setIsActive(true);
-    }, []);
+        setIsSet(true);
+    }, [clear, isSet]);
 
     useEffect(() => {
-        if (isActive && mountedRef.current) {
+        if (isSet && mountedRef.current) {
             const timeout = window.setTimeout(() => {
                 actionRef.current();
-                setIsActive(false);
+                setIsSet(false);
             }, timeoutMs);
 
             return () => {
@@ -61,13 +64,7 @@ export function useTimeout(
                 }
             };
         }
-    }, [clear, isActive, timeoutMs]);
+    }, [clear, isSet, timeoutMs]);
 
-    return {
-        get isSet() {
-            return isActive;
-        },
-        set,
-        clear,
-    };
+    return {isSet, set, clear};
 }
