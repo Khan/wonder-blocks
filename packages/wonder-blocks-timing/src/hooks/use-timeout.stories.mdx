@@ -21,7 +21,7 @@ import {useTimeout} from "./use-timeout.js";
 `useTimeout` is a hook that provides a convenient API for setting and clearing
 a timeout. It is defined as follows:
 
-```
+```ts
 function useTimeout(
     action: () => mixed,
     timeoutMs: number,
@@ -76,7 +76,7 @@ export const Immediately = () => {
     </Story>
 </Canvas>
 
-```
+```jsx
 const Immediately = () => {
     const [callCount, setCallCount] = React.useState(0);
     const callback = React.useCallback(() => {
@@ -124,7 +124,7 @@ export const OnDemandAndResolveOnClear = () => {
     </Story>
 </Canvas>
 
-```
+```jsx
 const OnDemandAndResolveOnClear = () => {
     const [callCount, setCallCount] = React.useState(0);
     const callback = React.useCallback(() => {
