@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View, Text} from "@khanacademy/wonder-blocks-core";
+import {View, Text as _Text} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -15,7 +15,7 @@ export default {
     title: "Form / TextField",
 };
 
-export const text: StoryComponentType = () => {
+export const Text: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
     const handleChange = (newValue: string) => {
@@ -40,7 +40,7 @@ export const text: StoryComponentType = () => {
     );
 };
 
-export const number: StoryComponentType = () => {
+export const Number: StoryComponentType = () => {
     const [value, setValue] = React.useState("12345");
 
     const handleChange = (newValue: string) => {
@@ -65,7 +65,7 @@ export const number: StoryComponentType = () => {
     );
 };
 
-export const password: StoryComponentType = () => {
+export const Password: StoryComponentType = () => {
     const [value, setValue] = React.useState("Password123");
     const [errorMessage, setErrorMessage] = React.useState();
     const [focused, setFocused] = React.useState(false);
@@ -118,14 +118,14 @@ export const password: StoryComponentType = () => {
             {!focused && errorMessage && (
                 <View>
                     <Strut size={Spacing.xSmall_8} />
-                    <Text style={styles.errorMessage}>{errorMessage}</Text>
+                    <_Text style={styles.errorMessage}>{errorMessage}</_Text>
                 </View>
             )}
         </View>
     );
 };
 
-export const email: StoryComponentType = () => {
+export const Email: StoryComponentType = () => {
     const [value, setValue] = React.useState("khan@khanacademy.org");
     const [errorMessage, setErrorMessage] = React.useState();
     const [focused, setFocused] = React.useState(false);
@@ -176,14 +176,14 @@ export const email: StoryComponentType = () => {
             {!focused && errorMessage && (
                 <View>
                     <Strut size={Spacing.xSmall_8} />
-                    <Text style={styles.errorMessage}>{errorMessage}</Text>
+                    <_Text style={styles.errorMessage}>{errorMessage}</_Text>
                 </View>
             )}
         </View>
     );
 };
 
-export const telephone: StoryComponentType = () => {
+export const Telephone: StoryComponentType = () => {
     const [value, setValue] = React.useState("123-456-7890");
     const [errorMessage, setErrorMessage] = React.useState();
     const [focused, setFocused] = React.useState(false);
@@ -234,14 +234,14 @@ export const telephone: StoryComponentType = () => {
             {!focused && errorMessage && (
                 <View>
                     <Strut size={Spacing.xSmall_8} />
-                    <Text style={styles.errorMessage}>{errorMessage}</Text>
+                    <_Text style={styles.errorMessage}>{errorMessage}</_Text>
                 </View>
             )}
         </View>
     );
 };
 
-export const error: StoryComponentType = () => {
+export const Error: StoryComponentType = () => {
     const [value, setValue] = React.useState("khan");
     const [errorMessage, setErrorMessage] = React.useState();
     const [focused, setFocused] = React.useState(false);
@@ -292,14 +292,14 @@ export const error: StoryComponentType = () => {
             {!focused && errorMessage && (
                 <View>
                     <Strut size={Spacing.xSmall_8} />
-                    <Text style={styles.errorMessage}>{errorMessage}</Text>
+                    <_Text style={styles.errorMessage}>{errorMessage}</_Text>
                 </View>
             )}
         </View>
     );
 };
 
-export const disabled: StoryComponentType = () => (
+export const Disabled: StoryComponentType = () => (
     <TextField
         id="tf-1"
         value=""
@@ -309,7 +309,7 @@ export const disabled: StoryComponentType = () => (
     />
 );
 
-export const light: StoryComponentType = () => {
+export const Light: StoryComponentType = () => {
     const [value, setValue] = React.useState("khan@khanacademy.org");
     const [errorMessage, setErrorMessage] = React.useState();
     const [focused, setFocused] = React.useState(false);
@@ -361,14 +361,16 @@ export const light: StoryComponentType = () => {
             {!focused && errorMessage && (
                 <View>
                     <Strut size={Spacing.xSmall_8} />
-                    <Text style={styles.errorMessageLight}>{errorMessage}</Text>
+                    <_Text style={styles.errorMessageLight}>
+                        {errorMessage}
+                    </_Text>
                 </View>
             )}
         </View>
     );
 };
 
-export const customStyle: StoryComponentType = () => {
+export const CustomStyle: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
     const handleChange = (newValue: string) => {
@@ -394,7 +396,7 @@ export const customStyle: StoryComponentType = () => {
     );
 };
 
-export const ref: StoryComponentType = () => {
+export const Ref: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
     const inputRef: RefObject<typeof HTMLInputElement> = React.createRef();
 
@@ -433,7 +435,7 @@ export const ref: StoryComponentType = () => {
     );
 };
 
-export const readOnly: StoryComponentType = () => {
+export const ReadOnly: StoryComponentType = () => {
     const [value, setValue] = React.useState("Khan");
 
     const handleChange = (newValue: string) => {
@@ -459,7 +461,7 @@ export const readOnly: StoryComponentType = () => {
     );
 };
 
-export const autoComplete: StoryComponentType = () => {
+export const AutoComplete: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
     const handleChange = (newValue: string) => {
