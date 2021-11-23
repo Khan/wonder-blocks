@@ -73,12 +73,7 @@ jobs:
       if: steps.node-modules-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
     - name: Run Jest with coverage
-      uses: Khan/jest-coverage-action@v1.1.3
-      with:
-        jest-bin: ./node_modules/.bin/jest
-        coverage-data-path: ./coverage/coverage-final.json
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: yarn test:coverage
     - name: Upload Coverage
       uses: codecov/codecov-action@v2
       with:
@@ -87,7 +82,7 @@ jobs:
 
   chromatic:
     needs: [prime_cache_primary]
-    name: Gather coverage
+    name: Update Chromatic
     env:
       CI: true
     runs-on: ${{ matrix.os }}
