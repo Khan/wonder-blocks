@@ -49,10 +49,12 @@ jobs:
           exclude: "{**/*.map,**/node_modules/**}"
       # Linting / type checking
       - name: Run ESLint
-        uses: Khan/eslint-action@v1.1.5
+        uses: Khan/eslint-action@v2.0.0
         with:
           eslint-lib: ./node_modules/eslint
-          run-all-if-changed: package.json,.eslintrc.js
+          run-all-if-changed: |
+            package.json
+            .eslintrc.js
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Run Flow
@@ -65,7 +67,7 @@ jobs:
       - name: Run jest tests
         uses: Khan/jest-action@v1.2.0
         with:
-          run-all-if-changed: package.json,jest.config.js,babel.config.js
+          run-all-if-changed: package.json,babel.config.js,test.config.js,test.transform.js
           jest-bin: ./node_modules/.bin/jest
           find-related-tests: 1
         env:
