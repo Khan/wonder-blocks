@@ -14,7 +14,8 @@ let defaultInstance: ?ICache<any, any> = null;
  * requested data after hydration has finished.
  */
 export default class NoCache<TOptions, TData: ValidData>
-    implements ICache<TOptions, TData> {
+    implements ICache<TOptions, TData>
+{
     static get Default(): ICache<TOptions, TData> {
         if (defaultInstance == null) {
             defaultInstance = new NoCache<TOptions, TData>();

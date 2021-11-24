@@ -316,11 +316,9 @@ type ExportProps = $Diff<
     WithForwardRef,
 >;
 
-const TextField: React.AbstractComponent<
-    ExportProps,
-    HTMLInputElement,
-> = React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
-    <TextFieldInternal {...props} forwardedRef={ref} />
-));
+const TextField: React.AbstractComponent<ExportProps, HTMLInputElement> =
+    React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
+        <TextFieldInternal {...props} forwardedRef={ref} />
+    ));
 
 export default TextField;

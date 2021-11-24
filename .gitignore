@@ -6,3 +6,4 @@ storybook-static
 !.vscode
 styleguide.prod.config.js
 .DS_Store
+yarn-error.log

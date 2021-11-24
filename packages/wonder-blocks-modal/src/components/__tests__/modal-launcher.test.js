@@ -110,6 +110,7 @@ describe("ModalLauncher", () => {
 
         // Simulate an Escape keypress.
         const event: KeyboardEvent = (document.createEvent("Event"): any);
+        // $FlowIgnore[cannot-write]
         event.key = "Escape";
         event.initEvent("keyup", true, true);
         document.dispatchEvent(event);

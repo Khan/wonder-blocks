@@ -48,8 +48,7 @@ DefaultButton.args = {
 DefaultButton.parameters = {
     design: {
         type: "figma",
-        url:
-            "https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks-(Web)?node-id=401%3A307",
+        url: "https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks-(Web)?node-id=401%3A307",
     },
     chromatic: {
         // We already have screenshots of other stories that cover more of the button states

@@ -931,7 +931,9 @@ describe("TooltipAnchor", () => {
             );
             jest.runOnlyPendingTimers();
             const event: KeyboardEvent = (document.createEvent("Event"): any);
+            // $FlowIgnore[cannot-write]
             event.key = "Escape";
+            // $FlowIgnore[cannot-write]
             event.which = 27;
             event.initEvent("keyup", true, true);
 
@@ -969,6 +971,7 @@ describe("TooltipAnchor", () => {
             jest.runOnlyPendingTimers();
             const event: KeyboardEvent = (document.createEvent("Event"): any);
             const spyOnStopPropagation = jest.spyOn(event, "stopPropagation");
+            // $FlowIgnore[cannot-write]
             event.key = "Escape";
             event.initEvent("keyup", true, true);
 

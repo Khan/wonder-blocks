@@ -265,11 +265,9 @@ type ExportProps = $Diff<
     WithForwardRef,
 >;
 
-const LabeledTextField: React.AbstractComponent<
-    ExportProps,
-    HTMLInputElement,
-> = React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
-    <LabeledTextFieldInternal {...props} forwardedRef={ref} />
-));
+const LabeledTextField: React.AbstractComponent<ExportProps, HTMLInputElement> =
+    React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
+        <LabeledTextFieldInternal {...props} forwardedRef={ref} />
+    ));
 
 export default LabeledTextField;

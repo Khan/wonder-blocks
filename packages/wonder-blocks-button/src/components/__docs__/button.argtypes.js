@@ -60,8 +60,7 @@ export default {
             category: "Theming",
             type: {
                 summary: "boolean",
-                detail:
-                    "Sets primary button background color to white, and secondary and tertiary button title to color.",
+                detail: "Sets primary button background color to white, and secondary and tertiary button title to color.",
             },
         },
     },
@@ -161,8 +160,7 @@ export default {
             category: "Navigation",
             type: {
                 summary: "Note",
-                detail:
-                    "All URLs containing a protocol are considered external, e.g. https://khanacademy.org/math/algebra/eval-exprs will trigger a full page reload.",
+                detail: "All URLs containing a protocol are considered external, e.g. https://khanacademy.org/math/algebra/eval-exprs will trigger a full page reload.",
             },
         },
     },

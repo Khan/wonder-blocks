@@ -52,7 +52,7 @@ describe("SingleSelect", () => {
                 userEvent.click(opener);
 
                 // Assert
-                expect(screen.queryByRole("listbox")).toBeInTheDocument();
+                expect(screen.getByRole("listbox")).toBeInTheDocument();
             });
 
             it("should focus the first item in the dropdown", () => {
@@ -121,9 +121,7 @@ describe("SingleSelect", () => {
                         userEvent.keyboard(key);
 
                         // Assert
-                        expect(
-                            screen.queryByRole("listbox"),
-                        ).toBeInTheDocument();
+                        expect(screen.getByRole("listbox")).toBeInTheDocument();
                     });
 
                     it("should focus the first item in the dropdown", () => {
@@ -152,7 +150,7 @@ describe("SingleSelect", () => {
 
                 // Assert
                 expect(onChange).not.toHaveBeenCalled();
-                expect(screen.queryByRole("listbox")).toBeInTheDocument();
+                expect(screen.getByRole("listbox")).toBeInTheDocument();
             });
 
             it("should select an item when pressing {space}", () => {
@@ -278,7 +276,7 @@ describe("SingleSelect", () => {
             userEvent.click(screen.getByText("Choose"));
 
             // Assert
-            expect(screen.queryByRole("listbox")).toBeInTheDocument();
+            expect(screen.getByRole("listbox")).toBeInTheDocument();
         });
 
         it("closes the menu when the anchor is clicked", () => {
@@ -321,7 +319,7 @@ describe("SingleSelect", () => {
             userEvent.click(opener);
 
             // Assert
-            expect(screen.queryByRole("listbox")).toBeInTheDocument();
+            expect(screen.getByRole("listbox")).toBeInTheDocument();
         });
 
         it("calls the custom onClick handler", () => {

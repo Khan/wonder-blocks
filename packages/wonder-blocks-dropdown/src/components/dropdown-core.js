@@ -522,9 +522,8 @@ class DropdownCore extends React.Component<Props, State> {
         // appropriate item in handleKeyDown
         this.itemsClicked = true;
         this.focusedIndex = index;
-        this.focusedOriginalIndex = this.state.itemRefs[
-            this.focusedIndex
-        ].originalIndex;
+        this.focusedOriginalIndex =
+            this.state.itemRefs[this.focusedIndex].originalIndex;
     };
 
     handleDropdownMouseUp: (event: SyntheticMouseEvent<>) => void = (event) => {

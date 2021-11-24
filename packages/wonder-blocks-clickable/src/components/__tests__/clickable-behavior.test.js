@@ -566,6 +566,7 @@ describe("ClickableBehavior", () => {
             const button = wrapper.find("#test-button").first();
             button.simulate("click", {
                 preventDefault() {
+                    // $FlowIgnore[object-this-reference]
                     this.defaultPrevented = true;
                 },
             });
@@ -1052,6 +1053,7 @@ describe("ClickableBehavior", () => {
             const button = wrapper.find("#test-button").first();
             button.simulate("click", {
                 preventDefault() {
+                    // $FlowIgnore[object-this-reference]
                     this.defaultPrevented = true;
                 },
             });

@@ -1,10 +1,17 @@
+// eslint-disable-next-line import/no-commonjs
 module.exports = {
     extends: [
         "@khanacademy",
         // This config includes rules from @testing-library/jest-dom as well
         "plugin:testing-library/react",
     ],
-    plugins: ["import", "jest", "promise", "monorepo", "react-hooks"],
+    parser: "@babel/eslint-parser",
+    parserOptions: {
+        babelOptions: {
+            configFile: "./build-settings/babel.config.js",
+        },
+    },
+    plugins: ["import", "jest", "promise", "monorepo", "react-hooks", "@babel"],
     settings: {
         react: {
             version: "detect",

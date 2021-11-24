@@ -132,12 +132,10 @@ export default class Data<TOptions, TData: ValidData> extends React.Component<
                 {(value) => {
                     const handlerType = this.props.handler.type;
                     const interceptor = value[handlerType];
-                    const handler = this._getHandlerFromInterceptor(
-                        interceptor,
-                    );
-                    const getEntry = this._getCacheLookupFnFromInterceptor(
-                        interceptor,
-                    );
+                    const handler =
+                        this._getHandlerFromInterceptor(interceptor);
+                    const getEntry =
+                        this._getCacheLookupFnFromInterceptor(interceptor);
 
                     /**
                      * Need to share our types with InternalData so Flow

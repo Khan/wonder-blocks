@@ -18,6 +18,5 @@ export type RenderState = "root" | "initial" | "standard";
  * standard:
  *   means that we're all now doing non-SSR rendering
  */
-export const RenderStateContext: React.Context<RenderState> = React.createContext(
-    "root",
-);
+export const RenderStateContext: React.Context<RenderState> =
+    React.createContext("root");

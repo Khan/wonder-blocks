@@ -178,14 +178,8 @@ export default class IconButton extends React.Component<SharedProps> {
     };
 
     renderClickableBehavior(router: any): React.Node {
-        const {
-            onClick,
-            href,
-            skipClientNav,
-            tabIndex,
-            target,
-            ...sharedProps
-        } = this.props;
+        const {onClick, href, skipClientNav, tabIndex, target, ...sharedProps} =
+            this.props;
 
         const ClickableBehavior = getClickableBehavior(
             href,
