@@ -28,6 +28,8 @@ module.exports = (api) => {
 
     // NOTE: plugins are run first, in order, followed by presets, in reverse order
     const plugins = [
+        "babel-plugin-transform-flow-enums",
+
         [
             /**
              * Fixes "Invalid attempt to spread non-iterable instance" errors

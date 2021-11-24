@@ -5,6 +5,12 @@ import SsrIDFactory from "../util/ssr-id-factory.js";
 import UniqueIDFactory from "../util/unique-id-factory.js";
 import {useRenderState} from "./use-render-state.js";
 
+// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
+// have fixed:
+// https://github.com/import-js/eslint-plugin-import/issues/2073
+// eslint-disable-next-line import/named
+import {RenderState} from "../components/render-state-context.js";
+
 import type {IIdentifierFactory} from "../util/types.js";
 
 /**
@@ -25,7 +31,10 @@ export const useUniqueIdWithMock = (scope?: string): IIdentifierFactory => {
         setIsMounted(true);
     }, []);
 
-    if (renderState === "initial" || (renderState === "root" && !isMounted)) {
+    if (
+        renderState === RenderState.Initial ||
+        (renderState === RenderState.Root && !isMounted)
+    ) {
         return SsrIDFactory;
     }
 
@@ -53,7 +62,10 @@ export const useUniqueIdWithoutMock = (scope?: string): ?IIdentifierFactory => {
         setIsMounted(true);
     }, []);
 
-    if (renderState === "initial" || (renderState === "root" && !isMounted)) {
+    if (
+        renderState === RenderState.Initial ||
+        (renderState === RenderState.Root && !isMounted)
+    ) {
         return null;
     }
 
