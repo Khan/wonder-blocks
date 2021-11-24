@@ -6,9 +6,39 @@ import {mount} from "enzyme";
 import FocusManager from "../focus-manager.js";
 import {findFocusableNodes} from "../../util/util.js";
 
+import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
+
 describe("FocusManager", () => {
+    const getElementAttachedToDocument = (id: string): HTMLElement => {
+        const element = document.getElementById(id);
+        if (element) {
+            return element;
+        }
+
+        const newElement = document.createElement("div");
+        newElement.setAttribute("id", id);
+        document.body?.appendChild(newElement);
+        return newElement;
+    };
+
+    beforeEach(() => {
+        jest.useRealTimers();
+    });
+
+    afterEach(() => {
+        unmountAll();
+        if (document.body) {
+            document.body.innerHTML = "";
+        }
+    });
+
     it("should focus on the first focusable element inside the popover", async () => {
         // Arrange
+        // We need the elements in the DOM document for the focus() calls to
+        // work.
+        const containerDiv = getElementAttachedToDocument("container");
+        const focusManagerDiv = getElementAttachedToDocument("focusManagerDiv");
+
         const ref = await new Promise((resolve) => {
             const nodes = (
                 <div ref={resolve}>
@@ -16,7 +46,7 @@ describe("FocusManager", () => {
                     <button data-next />
                 </div>
             );
-            mount(nodes);
+            mount(nodes, {attachTo: containerDiv});
         });
         const domNode = ((ReactDOM.findDOMNode(ref): any): HTMLElement);
 
@@ -38,10 +68,10 @@ describe("FocusManager", () => {
                     <button data-tab-index="2" />
                 </div>
             </FocusManager>,
+            {attachTo: focusManagerDiv},
         );
 
         // Act
-
         // focus on the previous element before the popover (anchor element)
         anchorElementNode.focus();
         // press `tab` to focus on the next element
@@ -61,6 +91,11 @@ describe("FocusManager", () => {
 
     it("should focus on the last focusable element inside the popover", async () => {
         // Arrange
+        // We need the elements in the DOM document for the focus() calls to
+        // work.
+        const containerDiv = getElementAttachedToDocument("container");
+        const focusManagerDiv = getElementAttachedToDocument("focusManagerDiv");
+
         const ref = await new Promise((resolve) => {
             const nodes = (
                 <div ref={resolve}>
@@ -68,7 +103,7 @@ describe("FocusManager", () => {
                     <button data-next />
                 </div>
             );
-            mount(nodes);
+            mount(nodes, {attachTo: containerDiv});
         });
         const domNode = ((ReactDOM.findDOMNode(ref): any): HTMLElement);
 
@@ -90,6 +125,7 @@ describe("FocusManager", () => {
                     <button data-tab-index="2" />
                 </div>
             </FocusManager>,
+            {attachTo: focusManagerDiv},
         );
 
         // Act

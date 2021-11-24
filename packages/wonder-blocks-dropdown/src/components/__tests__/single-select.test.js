@@ -1,8 +1,6 @@
 //@flow
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-// eslint-disable-next-line import/no-unassigned-import
-import "@testing-library/jest-dom/extend-expect";
 
 import OptionItem from "../option-item.js";
 import SingleSelect from "../single-select.js";
@@ -25,8 +23,7 @@ describe("SingleSelect", () => {
     afterEach(() => {
         window.scrollTo.mockClear();
         onChange.mockReset();
-        // $FlowIgnore[prop-missing]: Flow doesn't understand that we're mocking console.error
-        console.error.mockReset(); // eslint-disable-line no-console
+        jest.spyOn(console, "error").mockReset();
     });
 
     afterEach(() => {

@@ -1,5 +1,5 @@
 // @flow
-import {renderHook} from "@testing-library/react-hooks";
+import {renderHook, act} from "@testing-library/react-hooks";
 import {SchedulePolicy, ClearPolicy} from "../../util/policies.js";
 
 import {useTimeout} from "../use-timeout.js";
@@ -42,7 +42,9 @@ describe("useTimeout", () => {
             renderHook(() => useTimeout(action, 1000));
 
             // Act
-            jest.advanceTimersByTime(1000);
+            act(() => {
+                jest.advanceTimersByTime(1000);
+            });
 
             // Assert
             expect(action).toHaveBeenCalled();
@@ -54,7 +56,9 @@ describe("useTimeout", () => {
             const {result} = renderHook(() => useTimeout(action, 1000));
 
             // Act
-            jest.advanceTimersByTime(1000);
+            act(() => {
+                jest.advanceTimersByTime(1000);
+            });
 
             // Assert
             expect(result.current.isSet).toBe(false);
@@ -66,9 +70,11 @@ describe("useTimeout", () => {
             const {result} = renderHook(() => useTimeout(action, 1000));
 
             // Act
-            jest.advanceTimersByTime(1000);
-            result.current.set();
-            jest.advanceTimersByTime(1000);
+            act(() => {
+                jest.advanceTimersByTime(1001);
+                result.current.set();
+                jest.advanceTimersByTime(1001);
+            });
 
             // Assert
             expect(action).toHaveBeenCalledTimes(2);
@@ -85,13 +91,17 @@ describe("useTimeout", () => {
             );
 
             // Act
-            jest.advanceTimersByTime(900);
+            act(() => {
+                jest.advanceTimersByTime(900);
+            });
             rerender({timeoutMs: 500});
-            jest.advanceTimersByTime(100);
+            act(() => {
+                jest.advanceTimersByTime(100);
+            });
 
             // Assert
             expect(action).not.toHaveBeenCalled();
-            jest.advanceTimersByTime(500);
+            act(() => jest.advanceTimersByTime(500));
             expect(action).toHaveBeenCalled();
         });
 
@@ -107,7 +117,9 @@ describe("useTimeout", () => {
 
             // Act
             rerender({timeoutMs: 500});
-            jest.advanceTimersByTime(500);
+            act(() => {
+                jest.advanceTimersByTime(500);
+            });
 
             // Assert
             expect(action).toHaveBeenCalled();
@@ -126,7 +138,9 @@ describe("useTimeout", () => {
 
             // Act
             rerender({action: action2});
-            jest.advanceTimersByTime(1000);
+            act(() => {
+                jest.advanceTimersByTime(1000);
+            });
 
             // Assert
             expect(action2).toHaveBeenCalled();
@@ -145,7 +159,9 @@ describe("useTimeout", () => {
 
             // Act
             rerender({action: action2});
-            jest.advanceTimersByTime(1000);
+            act(() => {
+                jest.advanceTimersByTime(1000);
+            });
 
             // Assert
             expect(action1).not.toHaveBeenCalled();
@@ -157,8 +173,10 @@ describe("useTimeout", () => {
             const {result} = renderHook(() => useTimeout(action, 1000));
 
             // Act
-            result.current.clear();
-            jest.advanceTimersByTime(1000);
+            act(() => {
+                result.current.clear();
+                jest.advanceTimersByTime(1000);
+            });
 
             // Assert
             expect(action).not.toHaveBeenCalled();
@@ -170,7 +188,9 @@ describe("useTimeout", () => {
             const {result} = renderHook(() => useTimeout(action, 1000));
 
             // Act
-            result.current.clear(ClearPolicy.Resolve);
+            act(() => {
+                result.current.clear(ClearPolicy.Resolve);
+            });
 
             // Assert
             expect(action).toHaveBeenCalled();
@@ -184,7 +204,9 @@ describe("useTimeout", () => {
             );
 
             // Act
-            result.current.clear();
+            act(() => {
+                result.current.clear();
+            });
 
             // Assert
             expect(action).toHaveBeenCalled();
@@ -242,7 +264,9 @@ describe("useTimeout", () => {
             );
 
             // Act
-            jest.advanceTimersByTime(1000);
+            act(() => {
+                jest.advanceTimersByTime(1000);
+            });
 
             // Assert
             expect(action).not.toHaveBeenCalled();
@@ -258,8 +282,10 @@ describe("useTimeout", () => {
             );
 
             // Act
-            result.current.set();
-            jest.advanceTimersByTime(1000);
+            act(() => {
+                result.current.set();
+                jest.advanceTimersByTime(1000);
+            });
 
             // Assert
             expect(action).toHaveBeenCalled();
@@ -275,10 +301,12 @@ describe("useTimeout", () => {
             );
 
             // Act
-            result.current.set();
-            jest.advanceTimersByTime(500);
-            result.current.set();
-            jest.advanceTimersByTime(500);
+            act(() => {
+                result.current.set();
+                jest.advanceTimersByTime(500);
+                result.current.set();
+                jest.advanceTimersByTime(500);
+            });
 
             // Assert
             expect(action).not.toHaveBeenCalled();
@@ -294,10 +322,12 @@ describe("useTimeout", () => {
             );
 
             // Act
-            result.current.set();
-            jest.advanceTimersByTime(500);
-            result.current.set();
-            jest.advanceTimersByTime(1000);
+            act(() => {
+                result.current.set();
+                jest.advanceTimersByTime(500);
+                result.current.set();
+                jest.advanceTimersByTime(1000);
+            });
 
             // Assert
             expect(action).toHaveBeenCalled();

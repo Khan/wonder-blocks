@@ -128,7 +128,7 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
-            const result = ref && ref.getAttribute("tabindex");
+            const result = ref?.getAttribute("tabindex");
 
             // Assert
             expect(result).toBe("0");
@@ -150,7 +150,7 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
-            const result = ref && ref.getAttribute("tabindex");
+            const result = ref?.getAttribute("tabindex");
 
             // Assert
             expect(result).toBe("-1");
@@ -174,7 +174,7 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
-            const result = ref && ref.getAttribute("tabindex");
+            const result = ref?.getAttribute("tabindex");
 
             // Assert
             expect(result).toBeNull();
@@ -197,11 +197,11 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
-            const tabindex = ref && ref.getAttribute("tabindex");
+            const tabindex = ref?.getAttribute("tabindex");
             expect(tabindex).toBe("0");
 
-            wrapper && wrapper.setProps({force: false});
-            const result = ref && ref.getAttribute("tabindex");
+            wrapper?.setProps({force: false});
+            const result = ref?.getAttribute("tabindex");
 
             // Assert
             expect(result).toBeNull();
@@ -224,7 +224,7 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
-            const result = ref && ref.getAttribute("tabindex");
+            const result = ref?.getAttribute("tabindex");
 
             // Assert
             expect(result).not.toBeNull();
@@ -237,6 +237,7 @@ describe("TooltipAnchor", () => {
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker.js"
             );
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             // Let's tell the tooltip it isn't stealing and therefore it should
             // be using a delay to show the tooltip.
             // Flow doesn't know this is a mock
@@ -265,10 +266,10 @@ describe("TooltipAnchor", () => {
             // whether focused directly or a child is focused). We have to
             // fake directly because there's no real browser here handling
             // focus and real events.
-            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            ref?.dispatchEvent(new FocusEvent("focusin"));
             // Check that we didn't go active before the delay
             expect(activeState).toBe(false);
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -310,7 +311,7 @@ describe("TooltipAnchor", () => {
             // whether focused directly or a child is focused). We have to
             // fake directly because there's no real browser here handling
             // focus and real events.
-            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            ref?.dispatchEvent(new FocusEvent("focusin"));
 
             // Assert
             expect(activeState).toBe(true);
@@ -320,6 +321,7 @@ describe("TooltipAnchor", () => {
     describe("loses keyboard focus", () => {
         test("active state was not stolen, active is set to false with delay", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
@@ -335,8 +337,8 @@ describe("TooltipAnchor", () => {
                 mount(nodes);
             });
 
-            ref && ref.dispatchEvent(new FocusEvent("focusin"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new FocusEvent("focusin"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -344,9 +346,9 @@ describe("TooltipAnchor", () => {
             expect(activeState).toBe(true);
 
             // Act
-            ref && ref.dispatchEvent(new FocusEvent("focusout"));
+            ref?.dispatchEvent(new FocusEvent("focusout"));
             expect(activeState).toBe(true);
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipDisappearanceDelay,
             );
@@ -358,6 +360,7 @@ describe("TooltipAnchor", () => {
 
         test("active state was not stolen, gives up active state", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker.js"
             );
@@ -380,8 +383,8 @@ describe("TooltipAnchor", () => {
                 mount(nodes);
             });
 
-            ref && ref.dispatchEvent(new FocusEvent("focusin"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new FocusEvent("focusin"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -389,9 +392,9 @@ describe("TooltipAnchor", () => {
             expect(activeState).toBe(true);
 
             // Act
-            ref && ref.dispatchEvent(new FocusEvent("focusout"));
+            ref?.dispatchEvent(new FocusEvent("focusout"));
             expect(activeState).toBe(true);
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipDisappearanceDelay,
             );
@@ -403,6 +406,7 @@ describe("TooltipAnchor", () => {
 
         test("active state was stolen, active is set to false immediately", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             let wrapper;
             let activeState = false;
             const ref = await new Promise((resolve) => {
@@ -419,8 +423,8 @@ describe("TooltipAnchor", () => {
                 wrapper = mount(nodes);
             });
 
-            ref && ref.dispatchEvent(new FocusEvent("focusin"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new FocusEvent("focusin"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -428,8 +432,8 @@ describe("TooltipAnchor", () => {
             expect(activeState).toBe(true);
 
             // Act
-            ref && ref.dispatchEvent(new FocusEvent("focusout"));
-            wrapper && wrapper.instance().activeStateStolen();
+            ref?.dispatchEvent(new FocusEvent("focusout"));
+            wrapper?.instance().activeStateStolen();
 
             // Assert
             expect(activeState).toBe(false);
@@ -437,6 +441,7 @@ describe("TooltipAnchor", () => {
 
         test("active state was stolen, so it does not have it to give up", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker.js"
             );
@@ -459,8 +464,8 @@ describe("TooltipAnchor", () => {
                 );
                 wrapper = mount(nodes);
             });
-            ref && ref.dispatchEvent(new FocusEvent("focusin"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new FocusEvent("focusin"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -468,8 +473,8 @@ describe("TooltipAnchor", () => {
             expect(activeState).toBe(true);
 
             // Act
-            ref && ref.dispatchEvent(new FocusEvent("focusout"));
-            wrapper && wrapper.instance().activeStateStolen();
+            ref?.dispatchEvent(new FocusEvent("focusout"));
+            wrapper?.instance().activeStateStolen();
 
             // Assert
             expect(mockTracker.giveup).not.toHaveBeenCalled();
@@ -477,6 +482,7 @@ describe("TooltipAnchor", () => {
 
         test("if hovered, remains active", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
@@ -491,30 +497,29 @@ describe("TooltipAnchor", () => {
                 );
                 mount(nodes);
             });
-            ref && ref.dispatchEvent(new FocusEvent("focusin"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new FocusEvent("focusin"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            // Flow doesn't know we added jest mocks to this
-            // $FlowFixMe[prop-missing]
-            setTimeout.mockClear();
-            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            timeoutSpy.mockClear();
+            ref?.dispatchEvent(new MouseEvent("mouseenter"));
 
             // Act
-            ref && ref.dispatchEvent(new FocusEvent("focusout"));
+            ref?.dispatchEvent(new FocusEvent("focusout"));
 
             // Assert
             // Make sure that we're not delay hiding as well.
             expect(activeState).toBe(true);
-            expect(setTimeout).not.toHaveBeenCalled();
+            expect(timeoutSpy).not.toHaveBeenCalled();
         });
     });
 
     describe("is hovered", () => {
         test("active state was not stolen, delays set active", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker.js"
             );
@@ -541,10 +546,10 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
-            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            ref?.dispatchEvent(new MouseEvent("mouseenter"));
             // Check that we didn't go active before the delay
             expect(activeState).toBe(false);
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -582,7 +587,7 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
-            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            ref?.dispatchEvent(new MouseEvent("mouseenter"));
 
             // Assert
             expect(activeState).toBe(true);
@@ -592,6 +597,7 @@ describe("TooltipAnchor", () => {
     describe("is unhovered", () => {
         test("active state was not stolen, active is set to false with delay", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
@@ -606,8 +612,8 @@ describe("TooltipAnchor", () => {
                 );
                 mount(nodes);
             });
-            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new MouseEvent("mouseenter"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -615,9 +621,9 @@ describe("TooltipAnchor", () => {
             expect(activeState).toBe(true);
 
             // Act
-            ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
+            ref?.dispatchEvent(new MouseEvent("mouseleave"));
             expect(activeState).toBe(true);
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipDisappearanceDelay,
             );
@@ -629,6 +635,7 @@ describe("TooltipAnchor", () => {
 
         test("active state was not stolen, gives up active state", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker.js"
             );
@@ -649,8 +656,8 @@ describe("TooltipAnchor", () => {
                 );
                 mount(nodes);
             });
-            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new MouseEvent("mouseenter"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -658,9 +665,9 @@ describe("TooltipAnchor", () => {
             expect(activeState).toBe(true);
 
             // Act
-            ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
+            ref?.dispatchEvent(new MouseEvent("mouseleave"));
             expect(activeState).toBe(true);
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipDisappearanceDelay,
             );
@@ -672,6 +679,7 @@ describe("TooltipAnchor", () => {
 
         test("active state was stolen, active is set to false immediately", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             let wrapper;
             let activeState = false;
             const ref = await new Promise((resolve) => {
@@ -687,8 +695,8 @@ describe("TooltipAnchor", () => {
                 );
                 wrapper = mount(nodes);
             });
-            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new MouseEvent("mouseenter"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -696,8 +704,8 @@ describe("TooltipAnchor", () => {
             expect(activeState).toBe(true);
 
             // Act
-            ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
-            wrapper && wrapper.instance().activeStateStolen();
+            ref?.dispatchEvent(new MouseEvent("mouseleave"));
+            wrapper?.instance().activeStateStolen();
 
             // Assert
             expect(activeState).toBe(false);
@@ -705,6 +713,7 @@ describe("TooltipAnchor", () => {
 
         test("active state was stolen, so it does not have it to give up", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker.js"
             );
@@ -727,8 +736,8 @@ describe("TooltipAnchor", () => {
                 );
                 wrapper = mount(nodes);
             });
-            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new MouseEvent("mouseenter"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -736,8 +745,8 @@ describe("TooltipAnchor", () => {
             expect(activeState).toBe(true);
 
             // Act
-            ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
-            wrapper && wrapper.instance().activeStateStolen();
+            ref?.dispatchEvent(new MouseEvent("mouseleave"));
+            wrapper?.instance().activeStateStolen();
 
             // Assert
             expect(mockTracker.giveup).not.toHaveBeenCalled();
@@ -745,6 +754,7 @@ describe("TooltipAnchor", () => {
 
         test("if focused, remains active", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
@@ -759,30 +769,29 @@ describe("TooltipAnchor", () => {
                 );
                 mount(nodes);
             });
-            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new MouseEvent("mouseenter"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
-            // Flow doesn't know we added jest mocks to this
-            // $FlowFixMe[prop-missing]
-            setTimeout.mockClear();
-            ref && ref.dispatchEvent(new FocusEvent("focusin"));
+            timeoutSpy.mockClear();
+            ref?.dispatchEvent(new FocusEvent("focusin"));
 
             // Act
-            ref && ref.dispatchEvent(new MouseEvent("mouseleave"));
+            ref?.dispatchEvent(new MouseEvent("mouseleave"));
 
             // Assert
             // Make sure that we're not delay hiding as well.
             expect(activeState).toBe(true);
-            expect(setTimeout).not.toHaveBeenCalled();
+            expect(timeoutSpy).not.toHaveBeenCalled();
         });
     });
 
     describe("dismiss behavior", () => {
         test("subscribes to keydown event on active", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             const spy = jest.spyOn(document, "addEventListener");
             const ref = await new Promise((resolve) => {
                 const nodes = (
@@ -797,8 +806,8 @@ describe("TooltipAnchor", () => {
             });
 
             // Act
-            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new MouseEvent("mouseenter"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -811,6 +820,7 @@ describe("TooltipAnchor", () => {
 
         test("does not subscribe to keydown event if already active", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             const spy = jest.spyOn(document, "addEventListener");
             const ref = await new Promise((resolve) => {
                 const nodes = (
@@ -824,8 +834,8 @@ describe("TooltipAnchor", () => {
                 mount(nodes);
             });
 
-            ref && ref.dispatchEvent(new KeyboardEvent("focusin"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new KeyboardEvent("focusin"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -835,7 +845,7 @@ describe("TooltipAnchor", () => {
             spy.mockClear();
 
             // Act
-            ref && ref.dispatchEvent(new MouseEvent("mouseenter"));
+            ref?.dispatchEvent(new MouseEvent("mouseenter"));
 
             // Assert
             expect(spy).not.toHaveBeenCalled();
@@ -843,6 +853,7 @@ describe("TooltipAnchor", () => {
 
         test("unsubscribes from keydown event on inactive", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             const spy = jest.spyOn(document, "removeEventListener");
             const ref = await new Promise((resolve) => {
                 const nodes = (
@@ -856,16 +867,16 @@ describe("TooltipAnchor", () => {
                 mount(nodes);
             });
 
-            ref && ref.dispatchEvent(new KeyboardEvent("focusin"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new KeyboardEvent("focusin"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
 
             // Act
-            ref && ref.dispatchEvent(new KeyboardEvent("focusout"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new KeyboardEvent("focusout"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipDisappearanceDelay,
             );
@@ -878,6 +889,7 @@ describe("TooltipAnchor", () => {
 
         test("unsubscribes from keydown event on unmount", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             let wrapper;
             const spy = jest.spyOn(document, "removeEventListener");
             const ref = await new Promise((resolve) => {
@@ -892,15 +904,15 @@ describe("TooltipAnchor", () => {
                 wrapper = mount(nodes);
             });
 
-            ref && ref.dispatchEvent(new KeyboardEvent("focusin"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new KeyboardEvent("focusin"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
             jest.runOnlyPendingTimers();
 
             // Act
-            wrapper && wrapper.unmount();
+            wrapper?.unmount();
 
             // Assert
             expect(spy).toHaveBeenCalledTimes(1);
@@ -909,6 +921,7 @@ describe("TooltipAnchor", () => {
 
         test("when active, escape dismisses tooltip", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             let activeState = false;
             const ref = await new Promise((resolve) => {
                 const nodes = (
@@ -924,8 +937,8 @@ describe("TooltipAnchor", () => {
                 mount(nodes);
             });
 
-            ref && ref.dispatchEvent(new KeyboardEvent("focusin"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new KeyboardEvent("focusin"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -939,7 +952,7 @@ describe("TooltipAnchor", () => {
 
             // Act
             document.dispatchEvent(event);
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipDisappearanceDelay,
             );
@@ -951,6 +964,7 @@ describe("TooltipAnchor", () => {
 
         test("when active, escape stops event propagation", async () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             const ref = await new Promise((resolve) => {
                 const nodes = (
                     <TooltipAnchor
@@ -963,8 +977,8 @@ describe("TooltipAnchor", () => {
                 mount(nodes);
             });
 
-            ref && ref.dispatchEvent(new KeyboardEvent("focusin"));
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            ref?.dispatchEvent(new KeyboardEvent("focusin"));
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipAppearanceDelay,
             );
@@ -977,7 +991,7 @@ describe("TooltipAnchor", () => {
 
             // Act
             document.dispatchEvent(event);
-            expect(setTimeout).toHaveBeenLastCalledWith(
+            expect(timeoutSpy).toHaveBeenLastCalledWith(
                 expect.any(Function),
                 TooltipDisappearanceDelay,
             );

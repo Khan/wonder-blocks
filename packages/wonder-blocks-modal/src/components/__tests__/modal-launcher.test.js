@@ -5,7 +5,9 @@ import {mount, shallow} from "enzyme";
 import ModalLauncher from "../modal-launcher.js";
 import OnePaneDialog from "../one-pane-dialog.js";
 
-const sleep = (duration: number = 0) =>
+import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
+
+const wait = (duration: number = 0) =>
     new Promise((resolve, reject) => setTimeout(resolve, duration));
 
 const exampleModal = (
@@ -16,19 +18,51 @@ const exampleModal = (
 );
 
 describe("ModalLauncher", () => {
+    const getElementAttachedToDocument = (id: string): HTMLElement => {
+        const element = document.getElementById(id);
+        if (element) {
+            return element;
+        }
+
+        const newElement = document.createElement("div");
+        newElement.setAttribute("id", id);
+        document.body?.appendChild(newElement);
+        return newElement;
+    };
+
+    beforeEach(() => {
+        jest.useRealTimers();
+    });
+
+    afterEach(() => {
+        unmountAll();
+        if (document.body) {
+            document.body.innerHTML = "";
+        }
+    });
+
     window.scrollTo = jest.fn();
 
-    test("Children can launch the modal", () => {
+    test("Children can launch the modal", async () => {
+        // Arrange
+        const containerDiv = getElementAttachedToDocument("container");
         const wrapper = mount(
             <ModalLauncher modal={exampleModal}>
                 {({openModal}) => <button onClick={openModal} />}
             </ModalLauncher>,
+            {attachTo: containerDiv},
         );
+
+        // Act
         wrapper.find("button").simulate("click");
+        await wait();
+
         const portal = global.document.querySelector(
             "[data-modal-launcher-portal]",
         );
-        expect(portal instanceof HTMLDivElement).toBe(true);
+
+        // Assert
+        expect(portal).toBeInstanceOf(HTMLDivElement);
     });
 
     test("Modal can be manually opened and closed", () => {
@@ -62,7 +96,7 @@ describe("ModalLauncher", () => {
         //     this function receives a `closeModal` argument that works.
         const modalFn = ({closeModal}: {|closeModal: () => void|}) => {
             expect(opened).toBe(true);
-            setImmediate(closeModal);
+            setTimeout(closeModal, 0);
             return exampleModal;
         };
 
@@ -255,7 +289,7 @@ describe("ModalLauncher", () => {
         wrapper.find("button").simulate("click");
 
         // wait for styles to be applied
-        await sleep();
+        await wait();
 
         // Assert
         expect(document.activeElement).not.toBe(lastButton);
@@ -263,6 +297,7 @@ describe("ModalLauncher", () => {
 
     test("if modal is closed, return focus to the last element focused outside the modal", async () => {
         // Arrange
+        const containerDiv = getElementAttachedToDocument("container");
         let savedCloseModal = () => {
             throw new Error(`closeModal wasn't saved`);
         };
@@ -278,6 +313,7 @@ describe("ModalLauncher", () => {
                     <button onClick={openModal} data-last-focused-button />
                 )}
             </ModalLauncher>,
+            {attachTo: containerDiv},
         );
 
         const lastButton = wrapper
@@ -290,7 +326,7 @@ describe("ModalLauncher", () => {
         wrapper.find("button").simulate("click");
 
         // wait for styles to be applied
-        await sleep();
+        await wait();
 
         // Act
         savedCloseModal(); // close the modal

@@ -26,8 +26,8 @@ class LogOnFailedTestReporter extends DefaultReporter {
             this.log(
         `  ${TITLE_BULLET}Console\n\n${getConsoleOutput(
           consoleBuffer,
-          config.cwd,
-          !!this._globalConfig.verbose,
+          config,
+          this._globalConfig,
         )}`
       );
         }

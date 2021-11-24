@@ -22,8 +22,9 @@ const wait = (delay: number = 0) =>
 describe("ClickableBehavior", () => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
-        // the testing environment.
-        window.location.assign = jest.fn();
+        // the testing environment
+        delete window.location;
+        window.location = {assign: jest.fn()};
         window.open = jest.fn();
     });
 

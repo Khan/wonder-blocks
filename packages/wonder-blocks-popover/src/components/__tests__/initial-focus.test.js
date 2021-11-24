@@ -1,8 +1,6 @@
 // @flow
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-// eslint-disable-next-line import/no-unassigned-import
-import "@testing-library/jest-dom/extend-expect";
 
 import InitialFocus from "../initial-focus.js";
 
