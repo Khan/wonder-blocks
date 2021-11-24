@@ -73,7 +73,7 @@ jobs:
       if: steps.node-modules-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
     - name: Run Jest with coverage
-      run: yarn test:coverage
+      run: yarn coverage:ci
     - name: Upload Coverage
       uses: codecov/codecov-action@v2
       with:
