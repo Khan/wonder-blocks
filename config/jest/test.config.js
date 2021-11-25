@@ -9,7 +9,7 @@ module.exports = {
     transform: {
         "^.+\\.jsx?$": "<rootDir>/config/jest/test.transform.js",
     },
-    testEnvironment: "jest-environment-jsdom",
+    testEnvironment: "jsdom",
     globals: {
         SNAPSHOT_INLINE_APHRODITE: true,
     },
