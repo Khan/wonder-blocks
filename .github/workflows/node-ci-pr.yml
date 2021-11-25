@@ -83,22 +83,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # Unit/integration testing
-      - name: Run jest tests
-        uses: Khan/jest-action@v1.2.0
-        with:
-          run-all-if-changed: package.json,babel.config.js,test.config.js,test.transform.js
-          jest-bin: ./node_modules/.bin/jest
-          find-related-tests: 1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Run Jest with coverage
-        uses: Khan/jest-coverage-action@v1.1.3
-        with:
-          jest-bin: ./node_modules/.bin/jest
-          coverage-data-path: ./coverage/coverage-final.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Testing and coverage
+      - name: Run jest tests with coverage
+        run: yarn coverage:ci
       - name: Upload Coverage
         uses: codecov/codecov-action@v2
         with:
