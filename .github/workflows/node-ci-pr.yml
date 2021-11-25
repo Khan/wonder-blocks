@@ -8,36 +8,41 @@ on:
 # Steps: Setup/build > lint > flow > test > coverage > codecov
 jobs:
   lint_and_test:
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os}}
     env:
       CI: true
     strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [12.x]
       fail-fast: false
     steps:
       - name: Checking out latest commit
         uses: actions/checkout@v2
-      - name: Use Node.js 12.x
+      - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
-          node-version: 12.x
+          node-version: ${{ matrix.node-version }}
       - name: Get yarn cache
         id: yarn-cache
         run: echo "::set-output name=dir::$(yarn cache dir)"
       - uses: actions/cache@v2
         with:
           path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-yarn-
+            ${{ runner.os }}-${{ matrix.node-version }}-yarn-
       - name: Cache node modules
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ runner.OS }}-build-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.OS }}-node-modules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.OS }}-node_modules-
+            ${{ runner.os }}${{ matrix.node-version }}-node-modules-
       - name: yarn install
-        run: yarn install
+        run: yarn install --frozen-lockfile
+
+      # Make sure our packages aren't growing unexpectedly
       - name: Check Builds
         uses: preactjs/compressed-size-action@v2
         with:
@@ -47,6 +52,7 @@ jobs:
           pattern: "**/dist/es/*.js"
           # Always ignore SourceMaps and node_modules:
           exclude: "{**/*.map,**/node_modules/**}"
+
       - name: Get All Changed Files
         uses: jaredly/get-changed-files@v1.0.1
         id: changed
@@ -56,6 +62,7 @@ jobs:
       - uses: allenevans/set-env@v2.0.0
         with:
           ALL_CHANGED_FILES: '${{ steps.changed.outputs.added_modified }}'
+
       # Linting / type checking
       - name: Run ESLint
         uses: Khan/eslint-action@v2.0.0
@@ -72,6 +79,7 @@ jobs:
           flow-bin: ./node_modules/.bin/flow
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       # Unit/integration testing
       - name: Run jest tests
         uses: Khan/jest-action@v1.2.0
