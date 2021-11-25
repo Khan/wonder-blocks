@@ -114,6 +114,9 @@
     "react-router-dom": "5.3.0",
     "react-window": "^1.8.5"
   },
+  "resolutions": {
+    "jest-environment-jsdom": "^27"
+  },
   "workspaces": [
     "packages/*",
     "build-settings"
