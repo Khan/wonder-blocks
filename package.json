@@ -80,6 +80,7 @@
     "glob": "^7.1.2",
     "husky": "^4.2.5",
     "jest": "^27.3.1",
+    "jest-environment-jsdom": "^27.3.1",
     "jest-enzyme": "^7.1.2",
     "lerna": "^3.16.5",
     "lint-staged": "^10.2.2",
