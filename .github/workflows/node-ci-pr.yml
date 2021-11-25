@@ -47,6 +47,15 @@ jobs:
           pattern: "**/dist/es/*.js"
           # Always ignore SourceMaps and node_modules:
           exclude: "{**/*.map,**/node_modules/**}"
+      - name: Get All Changed Files
+        uses: jaredly/get-changed-files@absolute
+        id: changed
+        with:
+          format: 'json'
+          absolute: true
+      - uses: allenevans/set-env@v2.0.0
+        with:
+          ALL_CHANGED_FILES: '${{ steps.changed.outputs.added_modified }}'
       # Linting / type checking
       - name: Run ESLint
         uses: Khan/eslint-action@v2.0.0
