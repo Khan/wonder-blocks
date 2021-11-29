@@ -17,8 +17,6 @@ StyleSheetTestUtils.suppressStyleInjection();
 // Setup enzyme's react adapter
 Enzyme.configure({adapter: new EnzymeAdapter()});
 
-require("jest-enzyme/lib/index.js");
-
 beforeEach(() => {
     mockRequestAnimationFrame();
 });
