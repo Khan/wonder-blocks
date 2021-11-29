@@ -8,7 +8,7 @@ on:
 # Steps: Setup/build > lint > flow > test > coverage > codecov
 jobs:
   lint_and_test:
-    runs-on: ${{ matrix.os}}
+    runs-on: ${{ matrix.os }}
     env:
       CI: true
     strategy:
@@ -38,7 +38,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: node_modules
-          key: ${{ runner.OS }}-${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}-${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
             ${{ runner.os }}-${{ matrix.node-version }}-node-modules-
       - name: yarn install
