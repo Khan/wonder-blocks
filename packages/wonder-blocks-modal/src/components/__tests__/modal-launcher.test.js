@@ -6,6 +6,7 @@ import ModalLauncher from "../modal-launcher.js";
 import OnePaneDialog from "../one-pane-dialog.js";
 
 import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
+import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document.js";
 
 const wait = (duration: number = 0) =>
     new Promise((resolve, reject) => setTimeout(resolve, duration));
@@ -18,18 +19,6 @@ const exampleModal = (
 );
 
 describe("ModalLauncher", () => {
-    const getElementAttachedToDocument = (id: string): HTMLElement => {
-        const element = document.getElementById(id);
-        if (element) {
-            return element;
-        }
-
-        const newElement = document.createElement("div");
-        newElement.setAttribute("id", id);
-        document.body?.appendChild(newElement);
-        return newElement;
-    };
-
     beforeEach(() => {
         jest.useRealTimers();
     });
@@ -45,6 +34,8 @@ describe("ModalLauncher", () => {
 
     test("Children can launch the modal", async () => {
         // Arrange
+        // We need the elements in the DOM document, it seems, for this test
+        // to work. Changing to testing-library will likely fix this.
         const containerDiv = getElementAttachedToDocument("container");
         const wrapper = mount(
             <ModalLauncher modal={exampleModal}>
@@ -297,6 +288,8 @@ describe("ModalLauncher", () => {
 
     test("if modal is closed, return focus to the last element focused outside the modal", async () => {
         // Arrange
+        // We need the elements in the DOM document, it seems, for this test
+        // to work. Changing to testing-library will likely fix this.
         const containerDiv = getElementAttachedToDocument("container");
         let savedCloseModal = () => {
             throw new Error(`closeModal wasn't saved`);

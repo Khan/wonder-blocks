@@ -7,20 +7,9 @@ import FocusManager from "../focus-manager.js";
 import {findFocusableNodes} from "../../util/util.js";
 
 import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
+import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document.js";
 
 describe("FocusManager", () => {
-    const getElementAttachedToDocument = (id: string): HTMLElement => {
-        const element = document.getElementById(id);
-        if (element) {
-            return element;
-        }
-
-        const newElement = document.createElement("div");
-        newElement.setAttribute("id", id);
-        document.body?.appendChild(newElement);
-        return newElement;
-    };
-
     beforeEach(() => {
         jest.useRealTimers();
     });
