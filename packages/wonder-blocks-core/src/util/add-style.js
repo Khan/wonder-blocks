@@ -27,10 +27,8 @@ export default function addStyle<T: React.AbstractComponent<any> | string>(
         const reset =
             typeof Component === "string" ? overrides[Component] : null;
 
-        const {
-            className: aphroditeClassName,
-            style: inlineStyles,
-        } = processStyleList([reset, defaultStyle, style]);
+        const {className: aphroditeClassName, style: inlineStyles} =
+            processStyleList([reset, defaultStyle, style]);
 
         return (
             <Component

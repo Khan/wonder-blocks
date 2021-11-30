@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-toolbar",
-  "version": "2.1.27",
+  "version": "2.1.28",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -15,16 +15,16 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.13.10",
-    "@khanacademy/wonder-blocks-color": "^1.1.19",
-    "@khanacademy/wonder-blocks-core": "^3.2.0",
-    "@khanacademy/wonder-blocks-typography": "^1.1.27"
+    "@babel/runtime": "^7.16.3",
+    "@khanacademy/wonder-blocks-color": "^1.1.20",
+    "@khanacademy/wonder-blocks-core": "^4.0.0",
+    "@khanacademy/wonder-blocks-typography": "^1.1.28"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
     "react": "16.14.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.1.2"
+    "wb-dev-build-settings": "^0.2.0"
   }
 }

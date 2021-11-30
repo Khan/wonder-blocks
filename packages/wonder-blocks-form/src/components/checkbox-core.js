@@ -24,8 +24,7 @@ const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 const StyledInput = addStyle("input");
 
 const checkboxCheck: IconAsset = {
-    small:
-        "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
+    small: "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
 };
 
 /**

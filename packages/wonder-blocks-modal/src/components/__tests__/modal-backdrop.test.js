@@ -5,7 +5,10 @@ import {mount} from "enzyme";
 import ModalBackdrop from "../modal-backdrop.js";
 import OnePaneDialog from "../one-pane-dialog.js";
 
-const sleep = (duration: number = 0) =>
+import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
+import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document.js";
+
+const wait = (duration: number = 0) =>
     new Promise((resolve, reject) => setTimeout(resolve, duration));
 
 const exampleModal = (
@@ -31,6 +34,17 @@ const exampleModalWithButtons = (
 );
 
 describe("ModalBackdrop", () => {
+    beforeEach(() => {
+        jest.useRealTimers();
+    });
+
+    afterEach(() => {
+        unmountAll();
+        if (document.body) {
+            document.body.innerHTML = "";
+        }
+    });
+
     test("Clicking the backdrop triggers `onCloseModal`", () => {
         const onCloseModal = jest.fn();
 
@@ -80,6 +94,9 @@ describe("ModalBackdrop", () => {
 
     test("If initialFocusId is set and element is found, we focus that element inside the modal", async () => {
         // Arrange
+        // We need the elements in the DOM document, it seems, for this test
+        // to work. Changing to testing-library will likely fix this.
+        const attachElement = getElementAttachedToDocument("container");
         const initialFocusId = "initial-focus";
 
         const wrapper = mount(
@@ -98,10 +115,11 @@ describe("ModalBackdrop", () => {
                     footer={<div data-modal-footer />}
                 />
             </ModalBackdrop>,
+            {attachTo: attachElement},
         );
 
         // Act
-        await sleep(); // wait for styles to be applied
+        await wait(); // wait for styles to be applied
         const initialFocusElement = wrapper.find(`#${initialFocusId}`);
 
         // Assert
@@ -113,6 +131,9 @@ describe("ModalBackdrop", () => {
 
     test("If initialFocusId is set but element is NOT found, we focus on the first focusable element instead", async () => {
         // Arrange
+        // We need the elements in the DOM document, it seems, for this test
+        // to work. Changing to testing-library will likely fix this.
+        const attachElement = getElementAttachedToDocument("container");
         const initialFocusId = "initial-focus";
         const firstFocusableElement = "[data-first-button]";
 
@@ -123,10 +144,11 @@ describe("ModalBackdrop", () => {
             >
                 {exampleModalWithButtons}
             </ModalBackdrop>,
+            {attachTo: attachElement},
         );
 
         // Act
-        await sleep(); // wait for styles to be applied
+        await wait(); // wait for styles to be applied
         const initialFocusElement = wrapper.find(`#${initialFocusId}`);
 
         // Assert
@@ -140,14 +162,18 @@ describe("ModalBackdrop", () => {
 
     test("If no initialFocusId is set, we focus the first button in the modal", async () => {
         // Arrange
+        // We need the elements in the DOM document, it seems, for this test
+        // to work. Changing to testing-library will likely fix this.
+        const attachElement = getElementAttachedToDocument("container");
         const wrapper = mount(
             <ModalBackdrop onCloseModal={() => {}}>
                 {exampleModalWithButtons}
             </ModalBackdrop>,
+            {attachTo: attachElement},
         );
 
         // Act
-        await sleep(); // wait for styles to be applied
+        await wait(); // wait for styles to be applied
         const focusableElement = wrapper
             .find("[data-first-button]")
             .getDOMNode();
@@ -158,65 +184,23 @@ describe("ModalBackdrop", () => {
 
     test("If there are no focusable elements, we focus the Dialog instead", async () => {
         // Arrange
+        // We need the elements in the DOM document, it seems, for this test
+        // to work. Changing to testing-library will likely fix this.
+        const attachElement = getElementAttachedToDocument("container");
         const wrapper = mount(
             <ModalBackdrop onCloseModal={() => {}}>
                 {exampleModal}
             </ModalBackdrop>,
+            {attachTo: attachElement},
         );
 
         // Act
-        await sleep(); // wait for styles to be applied
+        await wait(); // wait for styles to be applied
         const focusableElement = wrapper
             .find('div[role="dialog"]')
             .getDOMNode();
 
         // Assert
         expect(document.activeElement).toBe(focusableElement);
-    });
-
-    // TODO(mdr): I haven't figured out how to actually simulate tab keystrokes
-    //     or focus events in a way that JSDOM will recognize, so triggering the
-    //     global focus handler isn't feasible. I had to do manual testing
-    //     instead :( Here's what I had, though!
-    test.skip("Tabbing inside the modal wraps around", () => {
-        const wrapper = mount(
-            <div>
-                <button data-button-id="A" />
-                <ModalBackdrop onCloseModal={() => {}}>
-                    {exampleModalWithButtons}
-                </ModalBackdrop>
-                <button data-button-id="Z" />
-            </div>,
-        );
-
-        const buttonA = wrapper.find('[data-button-id="A"]').getDOMNode();
-        const button1 = wrapper.find('[data-button-id="1"]').getDOMNode();
-        const button2 = wrapper.find('[data-button-id="2"]').getDOMNode();
-        const button3 = wrapper.find('[data-button-id="3"]').getDOMNode();
-        const buttonZ = wrapper.find('[data-button-id="Z"]').getDOMNode();
-
-        // First, go forward. Confirm that, when we get to button Z, we wrap
-        // back to button 1. (I wish we could just simulate tab keypresses!
-        // Instead, we depend on the implementation detail that _which_ node you
-        // exit from determines where you'll end up.)
-        button1.focus();
-        expect(document.activeElement).toBe(button1);
-        button2.focus();
-        expect(document.activeElement).toBe(button2);
-        button3.focus();
-        expect(document.activeElement).toBe(button3);
-        buttonZ.focus();
-        expect(document.activeElement).toBe(button1);
-
-        // Then, go backward. Confirm that, when we get to button A, we wrap
-        // back to button 3.
-        button3.focus();
-        expect(document.activeElement).toBe(button3);
-        button2.focus();
-        expect(document.activeElement).toBe(button2);
-        button1.focus();
-        expect(document.activeElement).toBe(button1);
-        buttonA.focus();
-        expect(document.activeElement).toBe(button3);
     });
 });

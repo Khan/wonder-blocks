@@ -363,12 +363,8 @@ export default class TooltipTail extends React.Component<Props> {
     }
 
     _renderArrow(): React.Node {
-        const {
-            trimlinePoints,
-            points,
-            height,
-            width,
-        } = this._calculateDimensionsFromPlacement();
+        const {trimlinePoints, points, height, width} =
+            this._calculateDimensionsFromPlacement();
 
         const {color} = this.props;
 

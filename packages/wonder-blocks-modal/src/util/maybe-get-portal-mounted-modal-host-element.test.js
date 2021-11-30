@@ -108,9 +108,8 @@ describe("maybeGetPortalMountedModalHostElement", () => {
                 if (node) {
                     // Act
                     const candidateElement = ReactDOM.findDOMNode(node);
-                    const result = maybeGetPortalMountedModalHostElement(
-                        candidateElement,
-                    );
+                    const result =
+                        maybeGetPortalMountedModalHostElement(candidateElement);
 
                     // Assert
                     expect(result).toBeTruthy();

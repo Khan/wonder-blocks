@@ -37,13 +37,13 @@ describe.each`
 `("$name with an href", ({Component, name}) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
-        // the testing environment.
-        window.location.assign = jest.fn();
+        // the testing environment
+        delete window.location;
+        window.location = {assign: jest.fn()};
         window.open = jest.fn();
     });
 
     afterEach(() => {
-        window.location.assign.mockClear();
         window.open.mockClear();
     });
 
@@ -117,13 +117,13 @@ describe.each`
 `("$name without an href", ({Component, name}) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
-        // the testing environment.
-        window.location.assign = jest.fn();
+        // the testing environment, but JSDOM protects assign from being changed
+        // so we need to replace the whole location object.
+        window.location = {...window.location, assign: jest.fn()};
         window.open = jest.fn();
     });
 
     afterEach(() => {
-        window.location.assign.mockClear();
         window.open.mockClear();
     });
 

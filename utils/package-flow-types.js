@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  * Packages flow types with build files.
  *
@@ -8,20 +9,27 @@
 const path = require("path");
 const fs = require("fs");
 
-const packages = fs.readdirSync(path.join(__dirname, "../packages"));
+console.group("Packaging flow types...");
 
-for (const pkg of packages) {
-    // eslint-disable-next-line no-console
-    console.log(`copying flow files in ${pkg}`);
-    const filename = path.join(
-        __dirname,
-        "../packages",
-        pkg,
-        "dist",
-        "index.js.flow",
-    );
-    const contents = ["// @flow", 'export * from "../src/index.js";'].join(
-        "\n",
-    );
-    fs.writeFileSync(filename, contents, "utf8");
+try {
+    const packages = fs.readdirSync(path.join(__dirname, "../packages"));
+
+    for (const pkg of packages) {
+        console.log(`copying flow files in ${pkg}`);
+        const filename = path.join(
+            __dirname,
+            "../packages",
+            pkg,
+            "dist",
+            "index.js.flow",
+        );
+        const contents = ["// @flow", 'export * from "../src/index.js";'].join(
+            "\n",
+        );
+        fs.writeFileSync(filename, contents, "utf8");
+    }
+} catch (e) {
+    console.error(e);
+} finally {
+    console.groupEnd();
 }

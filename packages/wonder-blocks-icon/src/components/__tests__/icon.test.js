@@ -24,10 +24,8 @@ const mockStyledSVGComponent: JestMockFn<any, any> = (Core: any)
 
 // Also, let's type up a couple of other mocks to shut flow up.
 const mockGetPathForIcon: JestMockFn<any, any> = (getPathForIcon: any);
-const mockViewportPixelsForSize: JestMockFn<
-    any,
-    any,
-> = (viewportPixelsForSize: any);
+const mockViewportPixelsForSize: JestMockFn<any, any> =
+    (viewportPixelsForSize: any);
 
 jest.mock("../../util/icon-util.js", () => ({
     getPathForIcon: jest.fn(() => ({})),

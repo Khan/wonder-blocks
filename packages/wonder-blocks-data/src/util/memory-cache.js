@@ -30,7 +30,8 @@ function deepClone<T: {...}>(source: T | $ReadOnly<T>): $ReadOnly<T> {
  * absence of a custom cache. We use this for SSR too (see ./response-cache.js).
  */
 export default class MemoryCache<TOptions, TData: ValidData>
-    implements ICache<TOptions, TData> {
+    implements ICache<TOptions, TData>
+{
     _cache: Cache;
 
     constructor(source: ?$ReadOnly<Cache> = null) {

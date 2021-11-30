@@ -14,7 +14,10 @@ module.exports = {
         SNAPSHOT_INLINE_APHRODITE: true,
     },
     testMatch: ["<rootDir>/**/*.test.js"],
-    setupFilesAfterEnv: ["<rootDir>/config/jest/test-setup.js"],
+    setupFilesAfterEnv: [
+        "@testing-library/jest-dom/extend-expect",
+        "<rootDir>/config/jest/test-setup.js",
+    ],
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-(.*)$":
             "<rootDir>/packages/wonder-blocks-$1/src/index.js",
@@ -22,7 +25,6 @@ module.exports = {
     },
     collectCoverageFrom: [
         "packages/**/*.js",
-        "shared-unpackaged/**/*.js",
         "!packages/**/*.stories.js",
         "!packages/**/*.flowtest.js",
         "!packages/**/dist/**/*.js",

@@ -7,6 +7,10 @@ describe("Timeout", () => {
         jest.useFakeTimers();
     });
 
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     describe("constructor", () => {
         it("creates instance", () => {
             // Arrange
@@ -44,13 +48,14 @@ describe("Timeout", () => {
 
         it("sets a timeout when schedule policy is SchedulePolicy.Immediately", () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
 
             // Act
             // eslint-disable-next-line no-new
             new Timeout(() => {}, 0, SchedulePolicy.Immediately);
 
             // Assert
-            expect(setTimeout).toHaveBeenCalledTimes(1);
+            expect(timeoutSpy).toHaveBeenCalledTimes(1);
         });
     });
 
@@ -95,13 +100,14 @@ describe("Timeout", () => {
     describe("#set", () => {
         it("should call setTimeout", () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             const timeout = new Timeout(() => {}, 500, SchedulePolicy.OnDemand);
 
             // Act
             timeout.set();
 
             // Assert
-            expect(setTimeout).toHaveBeenNthCalledWith(
+            expect(timeoutSpy).toHaveBeenNthCalledWith(
                 1,
                 expect.any(Function),
                 500,
@@ -110,12 +116,15 @@ describe("Timeout", () => {
 
         it("should invoke setTimeout to call the given action", () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             const action = jest.fn();
-            const timeout = new Timeout(() => action(), 500);
+            const timeout = new Timeout(
+                () => action(),
+                500,
+                SchedulePolicy.OnDemand,
+            );
             timeout.set();
-            // Flow doesn't know we added jest mocks to this
-            // $FlowFixMe[prop-missing]
-            const scheduledAction = setTimeout.mock.calls[0][0];
+            const scheduledAction = timeoutSpy.mock.calls[0][0];
 
             // Act
             scheduledAction();
@@ -140,16 +149,17 @@ describe("Timeout", () => {
 
         it("should set the timeout again if it has already executed", () => {
             // Arrange
+            const timeoutSpy = jest.spyOn(global, "setTimeout");
             const action = jest.fn();
             const timeout = new Timeout(action, 500, SchedulePolicy.OnDemand);
             timeout.set();
-            jest.runOnlyPendingTimers();
+            jest.runAllTimers();
 
             // Act
             timeout.set();
 
             // Assert
-            expect(setTimeout).toHaveBeenCalledTimes(2);
+            expect(timeoutSpy).toHaveBeenCalledTimes(2);
         });
     });
 

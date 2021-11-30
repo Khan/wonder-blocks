@@ -25,9 +25,8 @@ type RequestCache = {
  *
  * INTERNAL USE ONLY
  */
-export const TrackerContext: React.Context<?TrackerFn> = new React.createContext<?TrackerFn>(
-    null,
-);
+export const TrackerContext: React.Context<?TrackerFn> =
+    new React.createContext<?TrackerFn>(null);
 
 /**
  * The default instance is stored here.
