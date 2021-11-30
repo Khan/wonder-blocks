@@ -121,6 +121,9 @@
       "pre-commit": "lint-staged"
     }
   },
+  "resolutions": {
+    "jest-environment-jsdom": "^27.3.1"
+  },
   "lint-staged": {
     "*.md": [
       "yarn gen-snapshot-tests",
