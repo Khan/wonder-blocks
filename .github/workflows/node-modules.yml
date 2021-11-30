@@ -1,0 +1,39 @@
+name: Cache and update node_modules
+
+on:
+  workflow_call:
+    inputs:
+      key:
+        description: The key to use for naming caches.
+        required: true
+        type: string
+      os:
+        description: The operating system to use.
+        required: true
+        type: string
+
+jobs:
+  cache-node-modules:
+    runs-on: ${{ inputs.os }}
+    env:
+      CI: true
+    steps:
+      - name: Get yarn cache
+        id: yarn-cache
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+
+      - uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache.outputs.dir }}
+          key: ${{ inputs.key }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ inputs.key }}-yarn-
+
+      - name: Cache node modules
+        uses: actions/cache@v2
+        with:
+          path: node_modules
+          key: ${{ inputs.key }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+
+      - name: Install dependencies
+        run: yarn install --frozen-lockfile
