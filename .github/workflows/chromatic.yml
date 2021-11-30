@@ -24,7 +24,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Cache node modules and install dependencies
-      uses: ./.github/workflows/node-modules.yml
+      uses: Khan/wonder-blocks/.github/workflows/node-modules.yml
       with:
         os: ${{ matrix.os }}
         key: ${{ runner.os }}-${{ matrix.node-version }}
