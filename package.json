@@ -22,6 +22,7 @@
     "jest": "jest --config config/jest/test.config.js",
     "lint:watch": "esw --watch --config ./eslint/eslintrc packages",
     "lint": "eslint --config .eslintrc.js packages",
+    "lint:ci": "eslint --config .eslintrc.js",
     "publish": "node utils/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:cjs && yarn build:es6 && lerna publish",
     "start:prod": "yarn run build:styleguidist && yarn run start:styleguidist --config styleguide.prod.config.js",
     "start:storybook": "start-storybook -s ./static -p 6061",

@@ -48,22 +48,13 @@ jobs:
         uses: jaredly/get-changed-files@v1.0.1
         id: changed
         with:
-          format: json
+          format: space-delimited
           absolute: true
-      - uses: allenevans/set-env@v2.0.0
-        with:
-          ALL_CHANGED_FILES: '${{ steps.changed.outputs.added_modified }}'
 
       # Linting / type checking
       - name: Run ESLint
-        uses: Khan/eslint-action@v2.0.0
-        with:
-          eslint-lib: ./node_modules/eslint
-          run-all-if-changed: |
-            package.json
-            .eslintrc.js
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          yarn lint:ci ${{ steps.changed.outputs.added_modified }}
       - name: Run Flow
         uses: Khan/flow-action@v1.1.3
         with:
