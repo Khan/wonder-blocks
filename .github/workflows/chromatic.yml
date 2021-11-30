@@ -32,15 +32,15 @@ jobs:
         key: ${{ runner.os }}-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-${{ matrix.node-version }}-yarn-
+
     - name: Cache node modules
       id: node-modules-cache # use this to check for `cache-hit` (`steps.node-modules-cache.outputs.cache-hit != 'true'`)
       uses: actions/cache@v2
       with:
         path: node_modules
         key: ${{ runner.os }}-${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ matrix.node-version }}-node-modules-
     - name: yarn install
+      if: steps.node-modules-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
 
     - name: yarn build:all

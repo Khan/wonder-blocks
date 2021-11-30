@@ -39,9 +39,8 @@ jobs:
         with:
           path: node_modules
           key: ${{ runner.os }}-${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-node-modules-
       - name: yarn install
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
       # Make sure our packages aren't growing unexpectedly

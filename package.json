@@ -58,7 +58,6 @@
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-transform-flow-enums": "^0.0.2",
     "chromatic": "^6.0.4",
-    "codecov": "^3.0.4",
     "concurrently": "^5.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
@@ -89,7 +88,6 @@
     "prettier": "^2.4.1",
     "pretty-quick": "^2.0.1",
     "react-docgen": "^5.0.0",
-    "react-router-enzyme-context": "^1.2.0",
     "react-styleguidist": "^11.0.5",
     "react-test-renderer": "^17.0.2",
     "rollup": "^2.10.4",
@@ -97,7 +95,6 @@
     "rollup-plugin-babel": "^4.0.0-beta.2",
     "storybook-addon-designs": "^6.2.0",
     "storybook-addon-jsx": "^7.3.14",
-    "unescape": "^1.0.1",
     "webpack": "^4.6.0",
     "webpack-blocks": "^2.0.1",
     "webpack-cli": "^3.3.9"
@@ -114,9 +111,6 @@
     "react-router": "5.2.1",
     "react-router-dom": "5.3.0",
     "react-window": "^1.8.5"
-  },
-  "resolutions": {
-    "jest-environment-jsdom": "^27"
   },
   "workspaces": [
     "packages/*",
