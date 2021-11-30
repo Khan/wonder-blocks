@@ -33,6 +33,7 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    # Cache and install dependencies
     - name: Get yarn cache
       id: yarn-cache
       run: echo "::set-output name=dir::$(yarn cache dir)"
@@ -42,14 +43,14 @@ jobs:
         key: ${{ runner.os }}-${{ matrix.node-version }}-yarn-${{ hashFiles('**/yarn.lock') }}
         restore-keys: |
           ${{ runner.os }}-${{ matrix.node-version }}-yarn-
-
-    - uses: actions/cache@v2
-      id: node-modules-cache # use this to check for `cache-hit` (`steps.node-modules-cache.outputs.cache-hit != 'true'`)
+    - name: Cache node modules
+      uses: actions/cache@v2
       with:
         path: node_modules
         key: ${{ runner.os }}-${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.node-version }}-node-modules-
     - name: Install dependencies
-      if: steps.node-modules-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
 
 
@@ -71,14 +72,18 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - uses: actions/cache@v2
-      id: node-modules-cache # use this to check for `cache-hit` (`steps.node-modules-cache.outputs.cache-hit != 'true'`)
+
+    # Cache and install dependencies
+    - name: Cache node modules
+      uses: actions/cache@v2
       with:
         path: node_modules
         key: ${{ runner.os }}-${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.node-version }}-node-modules-
     - name: Install dependencies
-      if: steps.node-modules-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
+
     - name: Run Jest with coverage
       run: yarn coverage:ci
     - name: Upload Coverage
@@ -110,14 +115,18 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
-    - uses: actions/cache@v2
-      id: node-modules-cache # use this to check for `cache-hit` (`steps.node-modules-cache.outputs.cache-hit != 'true'`)
+
+    # Cache and install dependencies
+    - name: Cache node modules
+      uses: actions/cache@v2
       with:
         path: node_modules
         key: ${{ runner.os }}-${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-${{ matrix.node-version }}-node-modules-
     - name: Install dependencies
-      if: steps.node-modules-cache.outputs.cache-hit != 'true'
       run: yarn install --frozen-lockfile
+
     - name: Build all packages
       run: yarn build:all
     - name: Publish to Chromatic
