@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-spacing",
-  "version": "3.0.4",
+  "version": "3.0.5",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.1.2"
+    "wb-dev-build-settings": "^0.2.0"
   },
   "author": "",
   "license": "MIT"

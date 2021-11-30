@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-clickable",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "design": "v1",
   "description": "Clickable component for Wonder-Blocks.",
   "main": "dist/index.js",
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@khanacademy/wonder-blocks-core": "^3.2.0"
+    "@khanacademy/wonder-blocks-core": "^4.0.0"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
@@ -26,6 +26,6 @@
     "react-router-dom": "5.3.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.1.2"
+    "wb-dev-build-settings": "^0.2.0"
   }
 }

@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-grid",
-  "version": "1.0.26",
+  "version": "1.0.27",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -16,15 +16,15 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@khanacademy/wonder-blocks-color": "^1.1.19",
-    "@khanacademy/wonder-blocks-core": "^3.2.0",
-    "@khanacademy/wonder-blocks-spacing": "^3.0.4"
+    "@khanacademy/wonder-blocks-color": "^1.1.20",
+    "@khanacademy/wonder-blocks-core": "^4.0.0",
+    "@khanacademy/wonder-blocks-spacing": "^3.0.5"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
     "react": "16.14.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.1.2"
+    "wb-dev-build-settings": "^0.2.0"
   }
 }

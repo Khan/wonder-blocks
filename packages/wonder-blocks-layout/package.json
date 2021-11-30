@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-layout",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -14,11 +14,11 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@khanacademy/wonder-blocks-core": "^3.2.0",
-    "@khanacademy/wonder-blocks-spacing": "^3.0.4"
+    "@khanacademy/wonder-blocks-core": "^4.0.0",
+    "@khanacademy/wonder-blocks-spacing": "^3.0.5"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.1.2"
+    "wb-dev-build-settings": "^0.2.0"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
