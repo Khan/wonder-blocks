@@ -44,17 +44,6 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      # Make sure our packages aren't growing unexpectedly
-      - name: Check Builds
-        uses: preactjs/compressed-size-action@v2
-        with:
-          # Specify our custom build script
-          build-script: "build:all"
-          # Any JS files anywhere within a dist directory:
-          pattern: "**/dist/es/*.js"
-          # Always ignore SourceMaps and node_modules:
-          exclude: "{**/*.map,**/node_modules/**}"
-
       - name: Get All Changed Files
         uses: jaredly/get-changed-files@v1.0.1
         id: changed
@@ -90,3 +79,14 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/coverage-final.json
+
+      # Make sure our packages aren't growing unexpectedly
+      - name: Check Builds
+        uses: preactjs/compressed-size-action@v2
+        with:
+          # Specify our custom build script
+          build-script: "build:all"
+          # Any JS files anywhere within a dist directory:
+          pattern: "**/dist/es/*.js"
+          # Always ignore SourceMaps and node_modules:
+          exclude: "{**/*.map,**/node_modules/**}"
