@@ -56,11 +56,11 @@ jobs:
 
       # Linting / type checking
       - name: Run ESLint (all files)
-        if: contains(steps.changed.outputs.added_modified, ".eslintrc.js") || contains(steps.changed.outputs.added_modified, "yarn.lock")
+        if: contains(steps.changed.outputs.added_modified, '.eslintrc.js') || contains(steps.changed.outputs.added_modified, 'yarn.lock')
         run: |
           yarn lint:ci .
       - name: Run ESLint (added/changed files)
-        if: contains(steps.changed.outputs.added_modified, ".eslintrc.js") == false && contains(steps.changed.outputs.added_modified, "yarn.lock") == false
+        if: contains(steps.changed.outputs.added_modified, '.eslintrc.js') == false && contains(steps.changed.outputs.added_modified, 'yarn.lock') == false
         run: |
           yarn lint:ci ${{ steps.changed.outputs.added_modified }}
 
