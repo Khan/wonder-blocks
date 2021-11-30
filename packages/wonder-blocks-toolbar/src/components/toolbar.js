@@ -74,14 +74,8 @@ export default class Toolbar extends React.Component<Props> {
     };
 
     render(): React.Node {
-        const {
-            color,
-            leftContent,
-            rightContent,
-            size,
-            subtitle,
-            title,
-        } = this.props;
+        const {color, leftContent, rightContent, size, subtitle, title} =
+            this.props;
 
         const TitleComponent = subtitle ? LabelLarge : HeadingSmall;
 

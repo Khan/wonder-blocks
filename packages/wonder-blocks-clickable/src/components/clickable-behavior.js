@@ -558,9 +558,8 @@ export default class ClickableBehavior extends React.Component<
         }
 
         const keyCode = e.which || e.keyCode;
-        const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
-            role,
-        );
+        const {triggerOnEnter, triggerOnSpace} =
+            getAppropriateTriggersForRole(role);
         if (
             (triggerOnEnter && keyCode === keyCodes.enter) ||
             (triggerOnSpace && keyCode === keyCodes.space)
@@ -585,9 +584,8 @@ export default class ClickableBehavior extends React.Component<
         }
 
         const keyCode = e.which || e.keyCode;
-        const {triggerOnEnter, triggerOnSpace} = getAppropriateTriggersForRole(
-            role,
-        );
+        const {triggerOnEnter, triggerOnSpace} =
+            getAppropriateTriggersForRole(role);
         if (
             (triggerOnEnter && keyCode === keyCodes.enter) ||
             (triggerOnSpace && keyCode === keyCodes.space)

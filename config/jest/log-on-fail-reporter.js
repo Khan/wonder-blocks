@@ -1,13 +1,14 @@
+/* eslint-disable import/no-commonjs */
 /**
  * Only log console statements on when the test errors out.
  * From: https://gist.github.com/GeeWee/71db0d9911b4a087e4b2486386168b05
  */
 const chalk = require("chalk");
 const {getConsoleOutput} = require("@jest/console");
-const DefaultReporter = require("@jest/reporters/build/default_reporter")
-    .default;
-const getResultHeader = require("@jest/reporters/build/get_result_header")
-    .default;
+const JestReporters = require("@jest/reporters");
+
+const DefaultReporter = JestReporters.DefaultReporter;
+const getResultHeader = JestReporters.utils.getResultHeader;
 
 const TITLE_BULLET = chalk.bold("\u25cf ");
 
@@ -24,9 +25,9 @@ class LogOnFailedTestReporter extends DefaultReporter {
             // prettier-ignore
             this.log(
         `  ${TITLE_BULLET}Console\n\n${getConsoleOutput(
-          config.cwd,
-          !!this._globalConfig.verbose,
-          consoleBuffer
+          consoleBuffer,
+          config,
+          this._globalConfig,
         )}`
       );
         }

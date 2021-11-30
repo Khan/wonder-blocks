@@ -15,7 +15,8 @@ describe("Link", () => {
     beforeEach(() => {
         // Note: window.location.assign needs a mock function in the testing
         // environment.
-        window.location.assign = jest.fn();
+        delete window.location;
+        window.location = {assign: jest.fn()};
     });
 
     afterEach(() => {

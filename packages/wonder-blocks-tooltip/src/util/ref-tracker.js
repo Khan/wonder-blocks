@@ -9,12 +9,10 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 
 import type {PopperChildrenProps} from "react-popper";
-import type {getRefFn} from "./types.js";
 
 type PopperRef = $PropertyType<PopperChildrenProps, "ref">;
 
 export default class RefTracker {
-    updateRef: getRefFn;
     _lastRef: ?HTMLElement;
     _targetFn: ?(?HTMLElement) => void;
 

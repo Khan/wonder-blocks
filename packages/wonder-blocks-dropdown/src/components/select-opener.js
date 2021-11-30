@@ -16,15 +16,8 @@ import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
 
 const StyledButton = addStyle("button");
 
-const {
-    blue,
-    white,
-    white50,
-    offBlack,
-    offBlack16,
-    offBlack32,
-    offBlack64,
-} = Color;
+const {blue, white, white50, offBlack, offBlack16, offBlack32, offBlack64} =
+    Color;
 
 type SelectOpenerProps = {|
     ...AriaProps,

@@ -161,9 +161,8 @@ export default class Popover extends React.Component<Props, State> {
     /**
      * Popover content ref
      */
-    contentRef: RefObject<
-        PopoverContent | PopoverContentCore,
-    > = React.createRef();
+    contentRef: RefObject<PopoverContent | PopoverContentCore> =
+        React.createRef();
 
     /**
      * Popover dialog closed

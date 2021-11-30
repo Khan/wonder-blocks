@@ -14,6 +14,8 @@ import MultiSelect from "../multi-select.js";
 import {keyCodes} from "../../util/constants.js";
 import SearchTextInput from "../search-text-input.js";
 
+import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
+
 import type {Labels} from "../multi-select.js";
 
 jest.useFakeTimers();
@@ -68,6 +70,12 @@ describe("MultiSelect", () => {
     });
 
     afterEach(() => {
+        // We have to explicitly unmount before clearing mocks, otherwise jest
+        // timers will throw because we'll try to clear an animation frame that
+        // we set with a setTimeout but are clearing with clearAnimationFrame
+        // because we restored the clearAnimationFrame mock (and we won't
+        // have cleared the timeout we actually set!)
+        unmountAll();
         jest.restoreAllMocks();
     });
 

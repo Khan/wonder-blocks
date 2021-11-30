@@ -29,8 +29,9 @@ export const unmountAll = () => {
 
 export function mount<T>(
     nodes: React.Element<React.AbstractComponent<T>>,
+    ...args: Array<any>
 ): ReactWrapper<T> {
-    const wrapper = enzyme.mount<T>(nodes);
+    const wrapper = enzyme.mount<T>(nodes, ...args);
     const identity = ACTIVE_WRAPPERS.length;
     ACTIVE_WRAPPERS[identity] = wrapper;
     return wrapper;

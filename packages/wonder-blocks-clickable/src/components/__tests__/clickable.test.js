@@ -13,6 +13,11 @@ const wait = (delay: number = 0) =>
     });
 
 describe("Clickable", () => {
+    beforeEach(() => {
+        delete window.location;
+        window.location = {assign: jest.fn()};
+    });
+
     test("client-side navigation", () => {
         // Arrange
         const wrapper = mount(
@@ -129,8 +134,6 @@ describe("Clickable", () => {
 
     test("should navigate to a specific link using the keyboard", () => {
         // Arrange
-        window.location.assign = jest.fn();
-
         const wrapper = mount(
             <Clickable testId="button" href="/foo" skipClientNav={true}>
                 {(eventState) => <h1>Click Me!</h1>}
@@ -276,7 +279,6 @@ describe("Clickable", () => {
 
     test("safeWithNav with skipClientNav=true waits for promise resolution", async () => {
         // Arrange
-        jest.spyOn(window.location, "assign");
         const wrapper = mount(
             <MemoryRouter>
                 <div>
@@ -309,7 +311,6 @@ describe("Clickable", () => {
 
     test("beforeNav resolution and safeWithNav with skipClientNav=true waits for promise resolution", async () => {
         // Arrange
-        jest.spyOn(window.location, "assign");
         const wrapper = mount(
             <MemoryRouter>
                 <div>
@@ -336,8 +337,6 @@ describe("Clickable", () => {
         buttonWrapper.simulate("click", {button: 0});
         await wait(0);
         buttonWrapper.update();
-        await wait(0);
-        buttonWrapper.update();
 
         // Assert
         expect(window.location.assign).toHaveBeenCalledWith("/foo");
@@ -345,7 +344,6 @@ describe("Clickable", () => {
 
     test("safeWithNav with skipClientNav=true waits for promise rejection", async () => {
         // Arrange
-        jest.spyOn(window.location, "assign");
         const wrapper = mount(
             <MemoryRouter>
                 <div>
@@ -376,9 +374,8 @@ describe("Clickable", () => {
         expect(window.location.assign).toHaveBeenCalledWith("/foo");
     });
 
-    test("safeWithNav with skipClientNav=false calls safeWithNav but doesn't wait to navigate", async () => {
+    test("safeWithNav with skipClientNav=false calls safeWithNav but doesn't wait to navigate", () => {
         // Arrange
-        jest.spyOn(window.location, "assign");
         const safeWithNavMock = jest.fn();
         const wrapper = mount(
             <MemoryRouter>
@@ -406,12 +403,16 @@ describe("Clickable", () => {
 
         // Assert
         expect(safeWithNavMock).toHaveBeenCalled();
-        expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        expect(wrapper).toIncludeText(
+            "Hello, world!" /*client side nav to /foo*/,
+        );
+        expect(window.location.assign).not.toHaveBeenCalledWith(
+            "/foo" /*not a full page nav*/,
+        );
     });
 
     test("safeWithNav with beforeNav resolution and skipClientNav=false calls safeWithNav but doesn't wait to navigate", async () => {
         // Arrange
-        jest.spyOn(window.location, "assign");
         const safeWithNavMock = jest.fn();
         const wrapper = mount(
             <MemoryRouter>
@@ -442,7 +443,12 @@ describe("Clickable", () => {
 
         // Assert
         expect(safeWithNavMock).toHaveBeenCalled();
-        expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        expect(wrapper).toIncludeText(
+            "Hello, world!" /*client side nav to /foo*/,
+        );
+        expect(window.location.assign).not.toHaveBeenCalledWith(
+            "/foo" /*not a full page nav*/,
+        );
     });
 
     describe("raw events", () => {

@@ -93,32 +93,34 @@ export default class Row extends React.Component<Props> {
                             ? children({mediaSize, totalColumns})
                             : children;
 
-                    const filteredContents: Array<React.Node> = (React.Children.toArray(
-                        contents,
-                    ): Array<React.Node>)
-                        // Go through all of the contents and pre-emptively remove anything
-                        // that shouldn't be rendered.
-                        .filter(
-                            // Flow doesn't let us check .type on a non-null React.Node so
-                            // we have to cast it to any.
-                            (item: any) =>
-                                Cell.isClassOf(item)
-                                    ? Cell.shouldDisplay(item.props, mediaSize)
-                                    : true,
-                        )
-                        // Intersperse Gutter elements between the cells.
-                        .reduce(
-                            (acc, elem, index) => [
-                                ...acc,
-                                elem,
-                                <Gutter key={`gutter-${index}`} />,
-                            ],
-                            [],
-                        )
-                        // We only want gutters between each cell in the row.  The reduce
-                        // adds a gutter after every cell so we need to remove the last
-                        // element which is an unnecessary gutteer.
-                        .slice(0, -1);
+                    const filteredContents: Array<React.Node> =
+                        (React.Children.toArray(contents): Array<React.Node>)
+                            // Go through all of the contents and pre-emptively remove anything
+                            // that shouldn't be rendered.
+                            .filter(
+                                // Flow doesn't let us check .type on a non-null React.Node so
+                                // we have to cast it to any.
+                                (item: any) =>
+                                    Cell.isClassOf(item)
+                                        ? Cell.shouldDisplay(
+                                              item.props,
+                                              mediaSize,
+                                          )
+                                        : true,
+                            )
+                            // Intersperse Gutter elements between the cells.
+                            .reduce(
+                                (acc, elem, index) => [
+                                    ...acc,
+                                    elem,
+                                    <Gutter key={`gutter-${index}`} />,
+                                ],
+                                [],
+                            )
+                            // We only want gutters between each cell in the row.  The reduce
+                            // adds a gutter after every cell so we need to remove the last
+                            // element which is an unnecessary gutteer.
+                            .slice(0, -1);
 
                     return (
                         <View

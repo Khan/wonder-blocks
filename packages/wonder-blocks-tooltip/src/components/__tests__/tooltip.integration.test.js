@@ -2,8 +2,6 @@
 import * as React from "react";
 
 import {render, screen, fireEvent} from "@testing-library/react";
-// eslint-disable-next-line import/no-unassigned-import
-import "@testing-library/jest-dom/extend-expect";
 import userEvent from "@testing-library/user-event";
 
 import Tooltip from "../tooltip.js";
@@ -56,6 +54,8 @@ describe("tooltip integration tests", () => {
         const anchor = screen.getByText("an anchor");
         userEvent.hover(anchor);
         // hover on bubble to keep it active
+        // Need to run the timers or we won't get the bubble wrapper to show.
+        jest.runAllTimers();
         const bubbleWrapper = await screen.findByRole("tooltip");
         userEvent.unhover(anchor);
 

@@ -1,9 +1,11 @@
 // @flow
 import * as React from "react";
 
-import {RenderStateContext} from "./render-state-context.js";
-
-import type {RenderState} from "./render-state-context.js";
+// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
+// have fixed:
+// https://github.com/import-js/eslint-plugin-import/issues/2073
+// eslint-disable-next-line import/named
+import {RenderState, RenderStateContext} from "./render-state-context.js";
 
 /**
  * We use render functions so that we don't do any work unless we need to.
@@ -89,7 +91,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
             // This is our second non-SSR render, so let's tell everyone to
             // do their thing.
             return (
-                <RenderStateContext.Provider value="standard">
+                <RenderStateContext.Provider value={RenderState.Standard}>
                     {children()}
                 </RenderStateContext.Provider>
             );
@@ -101,7 +103,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         // but they're not in charge of instigating the second render.
         if (placeholder) {
             return (
-                <RenderStateContext.Provider value="initial">
+                <RenderStateContext.Provider value={RenderState.Initial}>
                     {placeholder()}
                 </RenderStateContext.Provider>
             );
@@ -115,35 +117,10 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         const {children, placeholder} = this.props;
 
         switch (renderState) {
-            // There are edge cases where for some reason, we get an unknown
-            // context value here. So far it seems to be when we're nested in a
-            // v1 WithSSRPlaceholder equivalent component, or in some older
-            // React v16 situations where we're nested in the provider of a
-            // different context.
-            //
-            // We ignore this from coverage. It's a maintenance case to help
-            // us catch code changes that affect the control flow unexpectedly,
-            // but it's not something we need to write a test case for.
-            //
-            /* istanbul ignore next */
-            default:
-                // Let's log this case so we can debug it easily.
-                // Then fall through to the root case.
-                /* eslint-disable-next-line no-console */
-                console.log(
-                    `We got a render state we don't understand: "${JSON.stringify(
-                        renderState,
-                    )}"`,
-                );
-                // We "fallthrough" to the root case. This is more obvious
-                // and maintainable code than just ignoring the no-fallthrough
-                // lint rule.
-                return this._maybeRender("root");
-
-            case "root":
+            case RenderState.Root:
                 return this._renderAsRootComponent();
 
-            case "initial":
+            case RenderState.Initial:
                 // We're not the root component, so we just have to either
                 // render our placeholder or nothing.
                 // The second render is going to be triggered for us.
@@ -153,10 +130,39 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
                 // Otherwise, we render nothing.
                 return null;
 
-            case "standard":
+            case RenderState.Standard:
                 // We have covered the SSR render, we're now rendering with
                 // standard rendering semantics.
                 return children();
+        }
+
+        // There are edge cases where for some reason, we get an unknown
+        // context value here. So far it seems to be when we're nested in a
+        // v1 WithSSRPlaceholder equivalent component, or in some older
+        // React v16 situations where we're nested in the provider of a
+        // different context.
+        //
+        // We ignore this from coverage. It's a maintenance case to help
+        // us catch code changes that affect the control flow unexpectedly,
+        // but it's not something we need to write a test case for.
+        //
+        // Flow will assert exhaustiveness of the switch because Flow enums
+        // rock.
+        //
+        /* istanbul ignore next */
+        {
+            // Let's log this case so we can debug it easily.
+            // Then fall through to the root case.
+            /* eslint-disable-next-line no-console */
+            console.log(
+                `We got a render state we don't understand: "${JSON.stringify(
+                    renderState,
+                )}"`,
+            );
+            // We "fallthrough" to the root case. This is more obvious
+            // and maintainable code than just ignoring the no-fallthrough
+            // lint rule.
+            return this._maybeRender(RenderState.Root);
         }
     }
 

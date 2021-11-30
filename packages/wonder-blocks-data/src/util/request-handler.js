@@ -8,7 +8,8 @@ import type {ValidData, CacheEntry, IRequestHandler, ICache} from "./types.js";
  * use with the Wonder Blocks Data framework.
  */
 export default class RequestHandler<TOptions, TData: ValidData>
-    implements IRequestHandler<TOptions, TData> {
+    implements IRequestHandler<TOptions, TData>
+{
     _type: string;
     _cache: ?ICache<TOptions, TData>;
     _hydrate: boolean;

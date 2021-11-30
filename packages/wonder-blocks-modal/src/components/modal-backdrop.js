@@ -7,6 +7,8 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ModalLauncherPortalAttributeName} from "../util/constants.js";
 
+import {findFocusableNodes} from "../util/find-focusable-nodes.js";
+
 import type {ModalElement} from "../util/types.js";
 
 type Props = {|
@@ -23,13 +25,6 @@ type Props = {|
      */
     testId?: string,
 |};
-
-/**
- * List of elements that can be focused
- * @see https://www.w3.org/TR/html5/editing.html#can-be-focused
- */
-const FOCUSABLE_ELEMENTS =
-    'a[href], details, input, textarea, select, button:not([aria-label^="Close"])';
 
 /**
  * A private component used by ModalLauncher. This is the fixed-position
@@ -82,7 +77,7 @@ export default class ModalBackdrop extends React.Component<Props> {
      */
     _getFirstFocusableElement(node: HTMLElement): HTMLElement | null {
         // get a collection of elements that can be focused
-        const focusableElements = node.querySelectorAll(FOCUSABLE_ELEMENTS);
+        const focusableElements = findFocusableNodes(node);
 
         if (!focusableElements) {
             return null;
