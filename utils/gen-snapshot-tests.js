@@ -435,9 +435,8 @@ function tryGenerateSectionTests(section) {
 
     // Now, let's collate all our examples and the components for the section
     // they're in.
-    const {examples, componentFileMap} = extractExamplesAndComponentFiles(
-        section,
-    );
+    const {examples, componentFileMap} =
+        extractExamplesAndComponentFiles(section);
 
     if (examples.length === 0) {
         // eslint-disable-next-line no-console
