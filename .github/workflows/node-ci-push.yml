@@ -65,7 +65,7 @@ jobs:
         # Use a matrix as it means we get the version info in the job name
         # which is very helpful.
         os: [ubuntu-latest]
-        node-version: [14.x]
+        node-version: [14]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -103,7 +103,7 @@ jobs:
         # Use a matrix as it means we get the version info in the job name
         # which is very helpful.
         os: [ubuntu-latest]
-        node-version: [14.x]
+        node-version: [14]
     steps:
     - uses: actions/checkout@v2
       with:
