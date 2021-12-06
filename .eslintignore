@@ -11,3 +11,7 @@ packages/wonder-blocks-core/util/add-style.js
 styleguide.prod.config.js
 
 config
+
+# ignore files that eslint doesn't know how to lint
+**/*.md
+**/*.mdx
