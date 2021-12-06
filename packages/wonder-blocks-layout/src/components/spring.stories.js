@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export const simple: StoryComponentType = () => (
+export const Simple: StoryComponentType = () => (
     <View style={styles.column}>
         <View style={styles.row}>
             <Button>Hello, world!</Button>
@@ -48,7 +48,7 @@ export const simple: StoryComponentType = () => (
     </View>
 );
 
-export const withStyle: StoryComponentType = () => (
+export const WithStyle: StoryComponentType = () => (
     <View style={styles.column}>
         <View style={styles.row}>
             <Button>Hello, world!</Button>
@@ -68,14 +68,14 @@ export const withStyle: StoryComponentType = () => (
     </View>
 );
 
-simple.parameters = {
+Simple.parameters = {
     chromatic: {
         // we don't need screenshots because this story only tests behavior.
         disableSnapshot: true,
     },
 };
 
-withStyle.parameters = {
+WithStyle.parameters = {
     chromatic: {
         // we don't need screenshots because this story only tests behavior.
         disableSnapshot: true,
