@@ -24,7 +24,7 @@
     "lint": "eslint --config .eslintrc.js packages",
     "lint:ci": "eslint --config .eslintrc.js",
     "publish": "node utils/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:all && lerna publish",
-    "release": "node utils/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:all && changeset publish",
+    "publish:ci": "node utils/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:all && changeset publish",
     "start:prod": "yarn run build:styleguidist && yarn run start:styleguidist --config styleguide.prod.config.js",
     "start:storybook": "start-storybook -s ./static -p 6061",
     "start:styleguidist": "styleguidist server",
