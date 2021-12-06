@@ -1,15 +1,17 @@
 // @flow
-import {useEffect, useRef, useState} from "react";
+import {useContext, useRef} from "react";
 
 import SsrIDFactory from "../util/ssr-id-factory.js";
 import UniqueIDFactory from "../util/unique-id-factory.js";
-import {useRenderState} from "./use-render-state.js";
 
-// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-// have fixed:
-// https://github.com/import-js/eslint-plugin-import/issues/2073
-// eslint-disable-next-line import/named
-import {RenderState} from "../components/render-state-context.js";
+import {
+    // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
+    // have fixed:
+    // https://github.com/import-js/eslint-plugin-import/issues/2073
+    // eslint-disable-next-line import/named
+    RenderState,
+    RenderStateContext,
+} from "../components/render-state-context.js";
 
 import type {IIdentifierFactory} from "../util/types.js";
 
@@ -22,19 +24,16 @@ import type {IIdentifierFactory} from "../util/types.js";
  * @returns {IIdentifierFactory}
  */
 export const useUniqueIdWithMock = (scope?: string): IIdentifierFactory => {
-    const renderState = useRenderState();
-    const [isMounted, setIsMounted] = useState(false);
+    const renderState = useContext(RenderStateContext);
     const idFactory = useRef<?IIdentifierFactory>(null);
 
-    useEffect(() => {
-        // triggers a re-render now that the component is mounted
-        setIsMounted(true);
-    }, []);
+    if (renderState === RenderState.Root) {
+        throw new Error(
+            "Components using useUniqueIdWithMock() should be descendants of <RenderStateRoot>",
+        );
+    }
 
-    if (
-        renderState === RenderState.Initial ||
-        (renderState === RenderState.Root && !isMounted)
-    ) {
+    if (renderState === RenderState.Initial) {
         return SsrIDFactory;
     }
 
@@ -53,19 +52,16 @@ export const useUniqueIdWithMock = (scope?: string): IIdentifierFactory => {
  * @returns {?IIdentifierFactory}
  */
 export const useUniqueIdWithoutMock = (scope?: string): ?IIdentifierFactory => {
-    const renderState = useRenderState();
-    const [isMounted, setIsMounted] = useState(false);
+    const renderState = useContext(RenderStateContext);
     const idFactory = useRef<?IIdentifierFactory>(null);
 
-    useEffect(() => {
-        // triggers a re-render now that the component is mounted
-        setIsMounted(true);
-    }, []);
+    if (renderState === RenderState.Root) {
+        throw new Error(
+            "Components using useUniqueIdWithoutMock() should be descendants of <RenderStateRoot>",
+        );
+    }
 
-    if (
-        renderState === RenderState.Initial ||
-        (renderState === RenderState.Root && !isMounted)
-    ) {
+    if (renderState === RenderState.Initial) {
         return null;
     }
 
