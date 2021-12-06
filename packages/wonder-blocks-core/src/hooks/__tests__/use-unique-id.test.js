@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import {render} from "@testing-library/react";
 import {renderHook} from "@testing-library/react-hooks/server";
 
 import SsrIDFactory from "../../util/ssr-id-factory.js";
@@ -8,63 +9,85 @@ import {useUniqueIdWithMock, useUniqueIdWithoutMock} from "../use-unique-id.js";
 import {RenderStateRoot} from "../../components/render-state-root.js";
 
 describe("useUniqueIdWithoutMock", () => {
-    const wrapper = ({children}) => (
-        <RenderStateRoot>{children}</RenderStateRoot>
-    );
-
-    test("initial render returns null", () => {
+    test("server-side render returns null", () => {
         // Arrange
+        const wrapper = ({children}) => (
+            <RenderStateRoot>{children}</RenderStateRoot>
+        );
 
         // Act
-        const {result} = renderHook(() => useUniqueIdWithoutMock(), {wrapper});
-
-        // Assert
-        expect(result.current).toEqual(null);
-    });
-
-    test("rehydration returns null", () => {
-        // Arrange
-        const {result, hydrate} = renderHook(() => useUniqueIdWithoutMock(), {
+        const {result} = renderHook(() => useUniqueIdWithoutMock(), {
             wrapper,
         });
 
-        // Act
-        hydrate();
-
         // Assert
         expect(result.current).toEqual(null);
     });
 
-    test("first render after rehydration gets a unique id factory", () => {
+    test("initial client render returns null", () => {
         // Arrange
-        const {result, hydrate, rerender} = renderHook(
-            () => useUniqueIdWithoutMock(),
-            {wrapper},
-        );
+        const factoryValues = [];
+        const TestComponent = (): React.Node => {
+            const factory = useUniqueIdWithoutMock();
+            factoryValues.push(factory);
+            return null;
+        };
 
         // Act
-        hydrate();
-        rerender();
+        render(
+            <RenderStateRoot>
+                <TestComponent />
+            </RenderStateRoot>,
+        );
 
         // Assert
-        expect(result.current).toBeInstanceOf(UniqueIDFactory);
+        expect(factoryValues[0]).toBe(null);
+    });
+
+    test("second client render retursn a unique id factory", () => {
+        // Arrange
+        const factoryValues = [];
+        const TestComponent = (): React.Node => {
+            const factory = useUniqueIdWithoutMock();
+            factoryValues.push(factory);
+            return null;
+        };
+
+        // Act
+        render(
+            <RenderStateRoot>
+                <TestComponent />
+            </RenderStateRoot>,
+        );
+
+        // Assert
+        expect(factoryValues[1]).not.toBe(SsrIDFactory);
+        expect(factoryValues[1]).toBeInstanceOf(UniqueIDFactory);
     });
 
     test("second render returns the same unique id factory", () => {
-        const {result, hydrate, rerender} = renderHook(
-            () => useUniqueIdWithoutMock(),
-            {wrapper},
+        // Arrange
+        const factoryValues = [];
+        const TestComponent = (): React.Node => {
+            const factory = useUniqueIdWithoutMock();
+            factoryValues.push(factory);
+            return null;
+        };
+        const {rerender} = render(
+            <RenderStateRoot>
+                <TestComponent />
+            </RenderStateRoot>,
         );
 
         // Act
-        hydrate();
-        rerender();
-        const firstFactory = result.current;
-        rerender();
-        const secondFactory = result.current;
+        rerender(
+            <RenderStateRoot>
+                <TestComponent />
+            </RenderStateRoot>,
+        );
 
         // Assert
-        expect(firstFactory).toBe(secondFactory);
+        expect(factoryValues[1]).toBe(factoryValues[2]);
     });
 
     it("should throw an error if it isn't a descendant of <RenderStateRoot>", () => {
@@ -83,12 +106,11 @@ describe("useUniqueIdWithoutMock", () => {
 });
 
 describe("useUniqueIdWithMock", () => {
-    const wrapper = ({children}) => (
-        <RenderStateRoot>{children}</RenderStateRoot>
-    );
-
-    test("initial server render returns SsrIDFactory", () => {
+    test("server-side render returns SsrIDFactory", () => {
         // Arrange
+        const wrapper = ({children}) => (
+            <RenderStateRoot>{children}</RenderStateRoot>
+        );
 
         // Act
         const {result} = renderHook(() => useUniqueIdWithMock(), {wrapper});
@@ -97,51 +119,70 @@ describe("useUniqueIdWithMock", () => {
         expect(result.current).toBe(SsrIDFactory);
     });
 
-    test("rehydration also returns SsrIDFactory", () => {
+    test("initial client render returns SsrIDFactory", () => {
         // Arrange
-
-        // Arrange
-        const {result, hydrate} = renderHook(() => useUniqueIdWithMock(), {
-            wrapper,
-        });
+        const factoryValues = [];
+        const TestComponent = (): React.Node => {
+            const factory = useUniqueIdWithMock();
+            factoryValues.push(factory);
+            return null;
+        };
 
         // Act
-        hydrate();
-
-        // Assert
-        expect(result.current).toBe(SsrIDFactory);
-    });
-
-    test("first render after rehydration gets a unique id factory", () => {
-        const {result, hydrate, rerender} = renderHook(
-            () => useUniqueIdWithMock(),
-            {wrapper},
+        render(
+            <RenderStateRoot>
+                <TestComponent />
+            </RenderStateRoot>,
         );
 
+        // Assert
+        expect(factoryValues[0]).toBe(SsrIDFactory);
+    });
+
+    test("second client render retursn a unique id factory", () => {
+        // Arrange
+        const factoryValues = [];
+        const TestComponent = (): React.Node => {
+            const factory = useUniqueIdWithMock();
+            factoryValues.push(factory);
+            return null;
+        };
+
         // Act
-        hydrate();
-        rerender();
+        render(
+            <RenderStateRoot>
+                <TestComponent />
+            </RenderStateRoot>,
+        );
 
         // Assert
-        expect(result.current).toBeInstanceOf(UniqueIDFactory);
-        expect(result.current).not.toBe(SsrIDFactory);
+        expect(factoryValues[1]).not.toBe(SsrIDFactory);
+        expect(factoryValues[1]).toBeInstanceOf(UniqueIDFactory);
     });
 
     test("second render returns the same unique id factory", () => {
-        const {result, hydrate, rerender} = renderHook(
-            () => useUniqueIdWithMock(),
-            {wrapper},
+        // Arrange
+        const factoryValues = [];
+        const TestComponent = (): React.Node => {
+            const factory = useUniqueIdWithMock();
+            factoryValues.push(factory);
+            return null;
+        };
+        const {rerender} = render(
+            <RenderStateRoot>
+                <TestComponent />
+            </RenderStateRoot>,
         );
 
         // Act
-        hydrate();
-        rerender();
-        const firstFactory = result.current;
-        rerender();
-        const secondFactory = result.current;
+        rerender(
+            <RenderStateRoot>
+                <TestComponent />
+            </RenderStateRoot>,
+        );
 
         // Assert
-        expect(firstFactory).toBe(secondFactory);
+        expect(factoryValues[1]).toBe(factoryValues[2]);
     });
 
     it("should throw an error if it isn't a descendant of <RenderStateRoot>", () => {

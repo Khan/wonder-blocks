@@ -7,7 +7,7 @@ import * as React from "react";
 // eslint-disable-next-line import/named
 import {RenderState, RenderStateContext} from "./render-state-context.js";
 
-const {useEffect, useRef} = React;
+const {useEffect, useRef, useState} = React;
 
 type Props = {|
     children: React.Node,
@@ -15,10 +15,12 @@ type Props = {|
 
 export const RenderStateRoot = ({children}: Props): React.Node => {
     const initialRef = useRef<boolean>(true);
+    const [, setMounted] = useState<boolean>(false);
 
     useEffect(() => {
         initialRef.current = false;
-    });
+        setMounted(true);
+    }, []);
 
     const value = initialRef.current
         ? RenderState.Initial

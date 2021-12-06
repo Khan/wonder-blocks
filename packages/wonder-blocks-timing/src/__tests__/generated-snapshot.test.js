@@ -133,9 +133,8 @@ describe("wonder-blocks-timing", () => {
             }
         }
 
-        const MyGoodComponentWithScheduler = withActionScheduler(
-            MyGoodComponent,
-        );
+        const MyGoodComponentWithScheduler =
+            withActionScheduler(MyGoodComponent);
         const example = (
             <IDProvider>
                 {(id) => (
