@@ -41,19 +41,19 @@ const BaseTooltipExample = ({placement}: {|placement: Placement|}) => {
     );
 };
 
-export const tooltipRight: StoryComponentType = () => (
+export const TooltipRight: StoryComponentType = () => (
     <BaseTooltipExample placement="right" />
 );
 
-export const tooltipLeft: StoryComponentType = () => (
+export const TooltipLeft: StoryComponentType = () => (
     <BaseTooltipExample placement="left" />
 );
 
-export const tooltipTop: StoryComponentType = () => (
+export const TooltipTop: StoryComponentType = () => (
     <BaseTooltipExample placement="top" />
 );
 
-export const tooltipBottom: StoryComponentType = () => (
+export const TooltipBottom: StoryComponentType = () => (
     <BaseTooltipExample placement="bottom" />
 );
 

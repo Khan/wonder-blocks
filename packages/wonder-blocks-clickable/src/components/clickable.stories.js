@@ -15,7 +15,7 @@ export default {
     title: "Navigation/Clickable",
 };
 
-export const basic: StoryComponentType = () => (
+export const Basic: StoryComponentType = () => (
     <View>
         <View style={styles.centerText}>
             <Clickable
@@ -56,7 +56,7 @@ export const basic: StoryComponentType = () => (
     </View>
 );
 
-export const keyboardNavigation: StoryComponentType = () => (
+export const KeyboardNavigation: StoryComponentType = () => (
     <View>
         <Clickable
             href="https://www.khanacademy.org/about/tos"
@@ -77,14 +77,14 @@ export const keyboardNavigation: StoryComponentType = () => (
     </View>
 );
 
-keyboardNavigation.parameters = {
+KeyboardNavigation.parameters = {
     chromatic: {
         // we don't need screenshots because this story only tests behavior.
         disableSnapshot: true,
     },
 };
 
-export const keyboardNavigationTab: StoryComponentType = () => (
+export const KeyboardNavigationTab: StoryComponentType = () => (
     <View>
         <Clickable role="tab" aria-controls="panel-1" id="tab-1">
             {({hovered, focused, pressed}) => (

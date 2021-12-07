@@ -50,7 +50,7 @@ export default {
     },
 };
 
-export const simple: StoryComponentType = () => {
+export const Simple: StoryComponentType = () => {
     const modal = (
         <OnePaneDialog
             testId="one-pane-dialog-above"
@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     },
 });
 
-export const kitchenSink: StoryComponentType = () => {
+export const KitchenSink: StoryComponentType = () => {
     const modal = (
         <OnePaneDialog
             title="Single-line title"
@@ -142,7 +142,7 @@ export const kitchenSink: StoryComponentType = () => {
     );
 };
 
-export const withOpener: StoryComponentType = () => {
+export const WithOpener: StoryComponentType = () => {
     type MyModalProps = {|
         closeModal: () => void,
     |};
@@ -191,7 +191,7 @@ export const withOpener: StoryComponentType = () => {
     );
 };
 
-withOpener.parameters = {
+WithOpener.parameters = {
     viewport: {
         defaultViewport: null,
     },
