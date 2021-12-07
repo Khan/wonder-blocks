@@ -11,3 +11,8 @@ packages/wonder-blocks-core/util/add-style.js
 styleguide.prod.config.js
 
 config
+
+# Some files we want to skip from eslint
+package.json
+.changesets/**/*.md
+.github/**/*.md
