@@ -7,24 +7,20 @@ import * as React from "react";
 // eslint-disable-next-line import/named
 import {RenderState, RenderStateContext} from "./render-state-context.js";
 
-const {useEffect, useRef, useState} = React;
+const {useEffect, useState} = React;
 
 type Props = {|
     children: React.Node,
 |};
 
 export const RenderStateRoot = ({children}: Props): React.Node => {
-    const initialRef = useRef<boolean>(true);
-    const [, setMounted] = useState<boolean>(false);
+    const [firstRender, setFirstRender] = useState<boolean>(true);
 
     useEffect(() => {
-        initialRef.current = false;
-        setMounted(true);
-    }, []);
+        setFirstRender(false);
+    }, []); // This effect will only run once.
 
-    const value = initialRef.current
-        ? RenderState.Initial
-        : RenderState.Standard;
+    const value = firstRender ? RenderState.Initial : RenderState.Standard;
 
     return (
         <RenderStateContext.Provider value={value}>

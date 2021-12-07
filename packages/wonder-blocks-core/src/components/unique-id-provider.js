@@ -8,6 +8,7 @@ import SsrIDFactory from "../util/ssr-id-factory.js";
 
 import type {IIdentifierFactory} from "../util/types.js";
 
+// TODO(FEI-4202): update to use `useUniqueId`
 type Props = {|
     /**
      * A render prop that takes an instance of IIdentifierFactory and returns
