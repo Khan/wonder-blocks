@@ -103,6 +103,34 @@ describe("useUniqueIdWithoutMock", () => {
             ),
         );
     });
+
+    it("Should minimize the number of renders it does", () => {
+        // Arrange
+        const values1 = [];
+        const TestComponent1 = (): React.Node => {
+            const ids = useUniqueIdWithoutMock();
+            values1.push(ids ? ids.get("TestComponent1") : "null");
+            return null;
+        };
+
+        const values2 = [];
+        const TestComponent2 = () => {
+            const ids = useUniqueIdWithoutMock();
+            values2.push(ids ? ids.get("TestComponent2") : "null");
+            return <TestComponent1 />;
+        };
+
+        // Act
+        render(
+            <RenderStateRoot>
+                <TestComponent2 />
+            </RenderStateRoot>,
+        );
+
+        // Assert
+        expect(values1).toHaveLength(2);
+        expect(values2).toHaveLength(2);
+    });
 });
 
 describe("useUniqueIdWithMock", () => {
@@ -197,5 +225,33 @@ describe("useUniqueIdWithMock", () => {
                 "Components using useUniqueIdWithMock() should be descendants of <RenderStateRoot>",
             ),
         );
+    });
+
+    it("Should minimize the number of renders it does", () => {
+        // Arrange
+        const values1 = [];
+        const TestComponent1 = (): React.Node => {
+            const ids = useUniqueIdWithMock();
+            values1.push(ids.get("TestComponent1"));
+            return null;
+        };
+
+        const values2 = [];
+        const TestComponent2 = () => {
+            const ids = useUniqueIdWithMock();
+            values2.push(ids.get("TestComponent2"));
+            return <TestComponent1 />;
+        };
+
+        // Act
+        render(
+            <RenderStateRoot>
+                <TestComponent2 />
+            </RenderStateRoot>,
+        );
+
+        // Assert
+        expect(values1).toHaveLength(2);
+        expect(values2).toHaveLength(2);
     });
 });
