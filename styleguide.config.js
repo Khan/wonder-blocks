@@ -204,6 +204,10 @@ module.exports = {
             content: "packages/wonder-blocks-spacing/docs.md",
         },
         {
+            name: "Testing",
+            content: "packages/wonder-blocks-testing/docs.md",
+        },
+        {
             name: "Timing",
             content: "packages/wonder-blocks-timing/docs.md",
             sections: [
