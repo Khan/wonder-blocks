@@ -55,4 +55,18 @@ describe("RenderStateRoot", () => {
         // Assert
         expect(values[1]).toEqual(RenderState.Standard);
     });
+
+    it("should not allow nesting of <RenderStateRoot>", () => {
+        // Act
+        const underTest = () =>
+            render(
+                <RenderStateRoot>
+                    <RenderStateRoot>Hello, world!</RenderStateRoot>
+                </RenderStateRoot>,
+            );
+
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(
+            `"There's already a <RenderStateRoot> above this instance in the render tree.  This instance should be removed."`,
+        );
+    });
 });

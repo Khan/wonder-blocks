@@ -7,7 +7,7 @@ import * as React from "react";
 // eslint-disable-next-line import/named
 import {RenderState, RenderStateContext} from "./render-state-context.js";
 
-const {useEffect, useState} = React;
+const {useContext, useEffect, useState} = React;
 
 type Props = {|
     children: React.Node,
@@ -15,6 +15,14 @@ type Props = {|
 
 export const RenderStateRoot = ({children}: Props): React.Node => {
     const [firstRender, setFirstRender] = useState<boolean>(true);
+    const contextValue = useContext(RenderStateContext);
+
+    if (contextValue !== RenderState.Root) {
+        throw new Error(
+            "There's already a <RenderStateRoot> above this instance in " +
+                "the render tree.  This instance should be removed.",
+        );
+    }
 
     useEffect(() => {
         setFirstRender(false);
