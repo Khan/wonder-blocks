@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-// TODO(FEI-4202): update to use `useRenderState`
+// TODO(FEI-4202): update to use `useContext(RenderStateContext)`
 // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
 // have fixed:
 // https://github.com/import-js/eslint-plugin-import/issues/2073
