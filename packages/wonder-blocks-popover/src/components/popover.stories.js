@@ -57,7 +57,7 @@ const BasePopoverExample = ({placement}: {|placement: Placement|}) => {
     );
 };
 
-export const popoverAlignment: StoryComponentType = () => (
+export const PopoverAlignment: StoryComponentType = () => (
     <View style={styles.container}>
         <BasePopoverExample placement="left" />
         <BasePopoverExample placement="bottom" />

@@ -246,9 +246,8 @@ describe("wonder-blocks-typography", () => {
             }
 
             renderTypography() {
-                const {text, dir} = this.props.languages[
-                    this.state.selectedValue
-                ];
+                const {text, dir} =
+                    this.props.languages[this.state.selectedValue];
                 return (
                     <React.Fragment>
                         <Title dir={dir}>{text}</Title>

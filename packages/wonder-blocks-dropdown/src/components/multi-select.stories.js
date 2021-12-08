@@ -79,18 +79,18 @@ class MultiSelectWithCustomStyles extends React.Component<Props, State> {
     }
 }
 
-export const customStyles: StoryComponentType = () => (
+export const CustomStyles: StoryComponentType = () => (
     <MultiSelectWithCustomStyles />
 );
 
-customStyles.parameters = {
+CustomStyles.parameters = {
     chromatic: {
         // we don't need screenshots because this story only tests behavior.
         disableSnapshot: true,
     },
 };
 
-export const customStylesOpened: StoryComponentType = () => (
+export const CustomStylesOpened: StoryComponentType = () => (
     <MultiSelectWithCustomStyles opened={true} />
 );
 

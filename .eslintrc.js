@@ -4,6 +4,9 @@ module.exports = {
         "@khanacademy",
         // This config includes rules from @testing-library/jest-dom as well
         "plugin:testing-library/react",
+        // This config includes rules from storybook to enforce story best
+        // practices
+        "plugin:storybook/recommended",
     ],
     parser: "@babel/eslint-parser",
     parserOptions: {
@@ -90,11 +93,9 @@ module.exports = {
                 ],
             },
         ],
-
         // react-hooks
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
-
         // testing-library
         "testing-library/prefer-user-event": "error",
         // These rules results in a lot of false positives

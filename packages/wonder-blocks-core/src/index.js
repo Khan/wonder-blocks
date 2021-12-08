@@ -12,5 +12,6 @@ export {
     useUniqueIdWithMock,
     useUniqueIdWithoutMock,
 } from "./hooks/use-unique-id.js";
+export {RenderStateRoot} from "./components/render-state-root.js";
 
 export type {AriaProps, IIdentifierFactory, StyleType};

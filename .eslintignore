@@ -12,7 +12,8 @@ styleguide.prod.config.js
 
 config
 
-# Some files we want to skip from eslint
+# ignore files that eslint doesn't know how to lint
 package.json
-.changesets/**/*.md
+**/*.md
+**/*.mdx
 .github/**/*.yml
