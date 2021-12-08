@@ -23,7 +23,7 @@ It will return `null` on the initial render and then the same identifier
 factory for each subsequent render. The identifier factory is unique to
 each component.
 
-NOTE: All uses of `uniqueUniqueIdWithoutMock` should appear as descendants
+NOTE: All uses of `useUniqueIdWithoutMock` should appear as descendants
 of `<RenderStateRoot>`. It's customary to place `<RenderStateRoot>` near
 the base of the render tree since only one instance is allow in any given
 render tree.
@@ -72,7 +72,7 @@ guarantee identifier uniqueness. Mock mode can help things appear on the screen
 during the initial render, but is not the default, because it is not always safe
 (e.g., we need actual IDs for some SVG constructs).
 
-NOTE: All uses of `uniqueUniqueIdWithMock` should appear as descendants
+NOTE: All uses of `useUniqueIdWithMock` should appear as descendants
 of `<RenderStateRoot>`. It's customary to place `<RenderStateRoot>` near
 the base of the render tree since only one instance is allow in any given
 render tree.
