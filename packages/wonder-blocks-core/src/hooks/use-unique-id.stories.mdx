@@ -5,8 +5,16 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 
 import {useUniqueIdWithoutMock, useUniqueIdWithMock} from "./use-unique-id.js";
+import {RenderStateRoot} from "../components/render-state-root.js";
 
-<Meta title="Core/useUniqueId*" />
+<Meta
+    title="Core/useUniqueId*"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
 
 # `useUniqueIdWithoutMock`
 
@@ -24,6 +32,8 @@ export const WithoutMockExample = () => {
     };
     if (ids) {
         renders.current.push(ids.get("my-unique-id"));
+    } else {
+        renders.current.push("null");
     }
     return (
         <View>
@@ -43,7 +53,9 @@ export const WithoutMockExample = () => {
 
 <Canvas>
     <Story name="WithoutMockExample">
-        <WithoutMockExample />
+        <RenderStateRoot>
+            <WithoutMockExample />
+        </RenderStateRoot>
     </Story>
 </Canvas>
 
@@ -64,6 +76,8 @@ export const WithMockExample = () => {
     };
     if (ids) {
         renders.current.push(ids.get("my-unique-id"));
+    } else {
+        renders.current.push("null");
     }
     return (
         <View>
@@ -83,7 +97,9 @@ export const WithMockExample = () => {
 
 <Canvas>
     <Story name="WithMockExample">
-        <WithMockExample />
+        <RenderStateRoot>
+            <WithMockExample />
+        </RenderStateRoot>
     </Story>
 </Canvas>
 
@@ -125,6 +141,8 @@ export const ScopedExample = () => {
 
 <Canvas>
     <Story name="ScopedExample">
-        <ScopedExample />
+        <RenderStateRoot>
+            <ScopedExample />
+        </RenderStateRoot>
     </Story>{" "}
 </Canvas>
