@@ -19,7 +19,12 @@ const packages = fs
     .map((dir) => path.join(process.cwd(), "packages", dir));
 
 const genWebpackConfig = function (subPkgRoot) {
-    const pkgJson = require(path.join(subPkgRoot, "./package.json"));
+    const pkgJsonPath = path.join(subPkgRoot, "package.json");
+    if (!fs.existsSync(pkgJsonPath)) {
+        return null;
+    }
+
+    const pkgJson = require(pkgJsonPath);
     const pkgDeps = pkgJson.dependencies
         ? Object.keys(pkgJson.dependencies)
         : [];
@@ -64,4 +69,4 @@ const genWebpackConfig = function (subPkgRoot) {
     };
 };
 
-module.exports = packages.map(genWebpackConfig);
+module.exports = packages.map(genWebpackConfig).filter(Boolean);
