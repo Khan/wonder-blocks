@@ -224,6 +224,22 @@ describe("useInterval", () => {
             // Assert
             expect(action).toHaveBeenCalled();
         });
+
+        it("shouldn't throw an error if called after the component unmounted", () => {
+            const action = jest.fn();
+            const {result, unmount} = renderHook(() =>
+                useInterval(action, 500),
+            );
+            act(() => {
+                unmount();
+            });
+
+            // Act
+            const underTest = () => result.current.set();
+
+            // Assert
+            expect(underTest).not.toThrow();
+        });
     });
 
     describe("#clear", () => {
@@ -329,16 +345,15 @@ describe("useInterval", () => {
             const {result, unmount} = renderHook(() =>
                 useInterval(action, 500),
             );
-
-            // Act
             act(() => {
                 unmount();
             });
 
+            // Act
+            const underTest = () => result.current.clear();
+
             // Assert
-            act(() => {
-                result.current.clear();
-            });
+            expect(underTest).not.toThrow();
         });
     });
 });
