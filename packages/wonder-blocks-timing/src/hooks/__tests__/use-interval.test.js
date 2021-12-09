@@ -44,6 +44,19 @@ describe("useInterval", () => {
         expect(intervalSpy).toHaveBeenCalledTimes(1);
     });
 
+    it("should call the action before unmounting", () => {
+        const action = jest.fn();
+        const {unmount} = renderHook(() =>
+            useInterval(action, 1000, {clearPolicy: ClearPolicy.Resolve}),
+        );
+
+        act(() => {
+            unmount();
+        });
+
+        expect(action).toHaveBeenCalled();
+    });
+
     describe("isSet", () => {
         it("is false when the interval has not been set [SchedulePolicy.OnDemand]", () => {
             // Arrange
@@ -285,6 +298,25 @@ describe("useInterval", () => {
             act(() => {
                 result.current.clear(ClearPolicy.Resolve);
                 jest.advanceTimersByTime(501);
+            });
+
+            // Assert
+            expect(action).not.toHaveBeenCalled();
+        });
+
+        it("should not call the action on unmount if it's already been cleared", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result, unmount} = renderHook(() =>
+                useInterval(action, 500, {
+                    schedulePolicy: SchedulePolicy.OnDemand,
+                }),
+            );
+
+            // Act
+            act(() => {
+                result.current.clear(ClearPolicy.Resolve);
+                unmount();
             });
 
             // Assert

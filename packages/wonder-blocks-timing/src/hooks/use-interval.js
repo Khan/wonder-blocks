@@ -1,5 +1,5 @@
 // @flow
-import {useEffect, useState, useCallback, useRef} from "react";
+import {useEffect, useState, useCallback} from "react";
 
 import {
     SchedulePolicy as SchedulePolicies,
@@ -7,34 +7,8 @@ import {
 } from "../util/policies.js";
 import type {IInterval, ClearPolicy, Options} from "../util/types.js";
 
-/**
- * Returns `true` if the component is currently mount and `false`
- * if it is not.
- * @returns {boolean}
- */
-const useMounted = () => {
-    const ref = useRef<boolean>(false);
-    useEffect(() => {
-        ref.current = true;
-        return () => {
-            ref.current = false;
-        };
-    }, []);
-    return ref;
-};
-
-/**
- * Returns a ref whose .current value is updated whenever
- * the `value` passed to this hook changes.
- * @returns {{current: T}}
- */
-const useUpdatingRef = <T>(value: T): {|current: T|} => {
-    const ref = useRef<T>(value);
-    useEffect(() => {
-        ref.current = value;
-    }, [value]);
-    return ref;
-};
+import {useUpdatingRef} from "./internal/use-updating-ref.js";
+import {useSimpleInterval} from "./internal/use-simple-interval.js";
 
 export function useInterval(
     action: () => mixed,
@@ -51,47 +25,43 @@ export function useInterval(
 
     const schedulePolicy =
         options?.schedulePolicy ?? SchedulePolicies.Immediately;
+
     const [isSet, setIsSet] = useState(
         schedulePolicy === SchedulePolicies.Immediately,
     );
+
+    const set = useCallback(() => setIsSet(true), []);
+
     const actionRef = useUpdatingRef(action);
-    const isMounted = useMounted();
 
     const clear = useCallback(
         (policy?: ClearPolicy) => {
-            if (
-                isSet &&
-                (policy ?? options?.clearPolicy) === ClearPolicies.Resolve
-            ) {
+            policy = policy ?? options?.clearPolicy;
+            if (isSet && policy === ClearPolicies.Resolve) {
                 actionRef.current();
             }
-            // This will cause the useEffect below to re-run
             setIsSet(false);
         },
+        // react-hooks/exhaustive-deps doesn't require refs to be
+        // listed in the deps array.  Unfortunately, in this situation
+        // it doesn't recognized actionRef as a ref.
         [actionRef, isSet, options?.clearPolicy],
     );
 
-    const set = useCallback(() => {
-        if (!isSet) {
-            // This will cause the useEffect below to re-run
-            setIsSet(true);
-        }
-    }, [isSet]);
-
     useEffect(() => {
-        if (isSet && isMounted) {
-            const intervalId = setInterval(() => {
-                actionRef.current();
-            }, intervalMs);
+        return () => {
+            if (isSet && options?.clearPolicy === ClearPolicies.Resolve) {
+                action();
+            }
+            setIsSet(false);
+        };
+        // This effect is used to handle cleanup when the component is
+        // unmounted so we don't want it be run until then.  That's why
+        // the deps array is empty.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-            return () => {
-                clearInterval(intervalId);
-                if (!isMounted) {
-                    clear();
-                }
-            };
-        }
-    }, [actionRef, clear, isSet, intervalMs, isMounted]);
+    useSimpleInterval(action, intervalMs, isSet);
 
     return {isSet, set, clear};
 }
