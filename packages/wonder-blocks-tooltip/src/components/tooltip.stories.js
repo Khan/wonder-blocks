@@ -10,6 +10,14 @@ import type {StoryComponentType} from "@storybook/react";
 
 export default {
     title: "Floating/Tooltip",
+    parameters: {
+        // TODO(WB-1170): Re-enable this after investigating more about
+        // Chromatic flakyness.
+        chromatic: {
+            // Disables chromatic testing for these stories.
+            disableSnapshot: true,
+        },
+    },
 };
 
 const BaseTooltipExample = ({placement}: {|placement: Placement|}) => {
