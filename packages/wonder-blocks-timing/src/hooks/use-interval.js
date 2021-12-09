@@ -55,11 +55,12 @@ export function useInterval(
         return () => {
             // eslint-disable-next-line react-hooks/exhaustive-deps
             if (!mountedRef.current) {
+                // This code should only run when the component using the hook
+                // is unmounted.
                 if (isSet && options?.clearPolicy === ClearPolicies.Resolve) {
                     // eslint-disable-next-line react-hooks/exhaustive-deps
                     actionRef.current();
                 }
-                setIsSet(false);
             }
         };
         // react-hooks/exhaustive-deps doesn't require refs to be
