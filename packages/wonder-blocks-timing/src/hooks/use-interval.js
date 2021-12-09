@@ -7,6 +7,35 @@ import {
 } from "../util/policies.js";
 import type {IInterval, ClearPolicy, Options} from "../util/types.js";
 
+/**
+ * Returns `true` if the component is currently mount and `false`
+ * if it is not.
+ * @returns {boolean}
+ */
+const useMounted = () => {
+    const ref = useRef<boolean>(false);
+    useEffect(() => {
+        ref.current = true;
+        return () => {
+            ref.current = false;
+        };
+    }, []);
+    return ref;
+};
+
+/**
+ * Returns a ref whose .current value is updated whenever
+ * the `value` passed to this hook changes.
+ * @returns {{current: T}}
+ */
+const useUpdatingRef = <T>(value: T): {|current: T|} => {
+    const ref = useRef<T>(value);
+    useEffect(() => {
+        ref.current = value;
+    }, [value]);
+    return ref;
+};
+
 export function useInterval(
     action: () => mixed,
     intervalMs: number,
@@ -25,19 +54,8 @@ export function useInterval(
     const [isSet, setIsSet] = useState(
         schedulePolicy === SchedulePolicies.Immediately,
     );
-    const actionRef = useRef(action);
-    const mountedRef = useRef(false);
-
-    useEffect(() => {
-        mountedRef.current = true;
-        return () => {
-            mountedRef.current = false;
-        };
-    }, []);
-
-    useEffect(() => {
-        actionRef.current = action;
-    }, [action]);
+    const actionRef = useUpdatingRef(action);
+    const isMounted = useMounted();
 
     const clear = useCallback(
         (policy?: ClearPolicy) => {
@@ -50,7 +68,7 @@ export function useInterval(
             // This will cause the useEffect below to re-run
             setIsSet(false);
         },
-        [isSet, options?.clearPolicy],
+        [actionRef, isSet, options?.clearPolicy],
     );
 
     const set = useCallback(() => {
@@ -61,19 +79,19 @@ export function useInterval(
     }, [isSet]);
 
     useEffect(() => {
-        if (isSet && mountedRef.current) {
-            const timeout = setInterval(() => {
+        if (isSet && isMounted) {
+            const intervalId = setInterval(() => {
                 actionRef.current();
             }, intervalMs);
 
             return () => {
-                clearInterval(timeout);
-                if (!mountedRef.current) {
+                clearInterval(intervalId);
+                if (!isMounted) {
                     clear();
                 }
             };
         }
-    }, [clear, isSet, intervalMs]);
+    }, [actionRef, clear, isSet, intervalMs, isMounted]);
 
     return {isSet, set, clear};
 }
