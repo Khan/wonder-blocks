@@ -304,23 +304,41 @@ describe("useInterval", () => {
             expect(action).not.toHaveBeenCalled();
         });
 
-        it("should not call the action on unmount if it's already been cleared", () => {
+        it("should not call the action again on unmount if it's already been cleared", () => {
             // Arrange
             const action = jest.fn();
             const {result, unmount} = renderHook(() =>
-                useInterval(action, 500, {
-                    schedulePolicy: SchedulePolicy.OnDemand,
-                }),
+                useInterval(action, 500, {clearPolicy: ClearPolicy.Resolve}),
             );
 
             // Act
             act(() => {
-                result.current.clear(ClearPolicy.Resolve);
+                result.current.clear();
+            });
+            act(() => {
                 unmount();
             });
 
             // Assert
-            expect(action).not.toHaveBeenCalled();
+            expect(action).toHaveBeenCalledTimes(1);
+        });
+
+        it("should not error if calling clear() after unmounting", () => {
+            // Arrange
+            const action = jest.fn();
+            const {result, unmount} = renderHook(() =>
+                useInterval(action, 500),
+            );
+
+            // Act
+            act(() => {
+                unmount();
+            });
+
+            // Assert
+            act(() => {
+                result.current.clear();
+            });
         });
     });
 });

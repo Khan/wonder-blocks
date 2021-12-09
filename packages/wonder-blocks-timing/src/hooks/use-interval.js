@@ -7,6 +7,7 @@ import {
 } from "../util/policies.js";
 import type {IInterval, ClearPolicy, Options} from "../util/types.js";
 
+import {useMountedRef} from "./internal/use-mounted-ref.js";
 import {useUpdatingRef} from "./internal/use-updating-ref.js";
 import {useSimpleInterval} from "./internal/use-simple-interval.js";
 
@@ -48,18 +49,23 @@ export function useInterval(
         [actionRef, isSet, options?.clearPolicy],
     );
 
+    const mountedRef = useMountedRef();
+
     useEffect(() => {
         return () => {
-            if (isSet && options?.clearPolicy === ClearPolicies.Resolve) {
-                action();
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            if (!mountedRef.current) {
+                if (isSet && options?.clearPolicy === ClearPolicies.Resolve) {
+                    // eslint-disable-next-line react-hooks/exhaustive-deps
+                    actionRef.current();
+                }
+                setIsSet(false);
             }
-            setIsSet(false);
         };
-        // This effect is used to handle cleanup when the component is
-        // unmounted so we don't want it be run until then.  That's why
-        // the deps array is empty.
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+        // react-hooks/exhaustive-deps doesn't require refs to be
+        // listed in the deps array.  Unfortunately, in this situation
+        // it doesn't recognized actionRef and mountedRef as refs.
+    }, [actionRef, isSet, mountedRef, options?.clearPolicy]);
 
     useSimpleInterval(action, intervalMs, isSet);
 
