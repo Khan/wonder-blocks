@@ -4,7 +4,7 @@ import {useEffect, useRef} from "react";
 /**
  * Returns `true` if the component is currently mount and `false`
  * if it is not.
- * @returns {boolean}
+ * @returns {{current: boolean}}
  */
 export const useMountedRef = (): {|current: boolean|} => {
     const ref = useRef<boolean>(false);
