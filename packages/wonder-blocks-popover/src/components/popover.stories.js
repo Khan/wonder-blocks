@@ -13,11 +13,10 @@ import PopoverContent from "./popover-content.js";
 export default {
     title: "Floating/Popover",
     parameters: {
-        // TODO(WB-1170): Re-enable this after investigating more about
-        // Chromatic flakyness.
+        // TODO(WB-1170): Reassess this after investigating more about Chromatic
+        // flakyness.
         chromatic: {
-            // Disables chromatic testing for these stories.
-            disableSnapshot: true,
+            delay: 200,
         },
     },
 };
