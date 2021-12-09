@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Adapter #constructor should throw if closeGroupFn is invalid 1`] = `"closeGroupFn must be a function"`;
+
+exports[`Adapter #constructor should throw if closeGroupFn is invalid 2`] = `"closeGroupFn must be a function"`;
+
+exports[`Adapter #constructor should throw if the name is invalid (     ) 1`] = `"name must be a non-empty string"`;
+
+exports[`Adapter #constructor should throw if the name is invalid () 1`] = `"name must be a non-empty string"`;
+
+exports[`Adapter #constructor should throw if the name is invalid (8) 1`] = `"name must be a string"`;
+
+exports[`Adapter #constructor should throw if the name is invalid (null) 1`] = `"name must be a string"`;
