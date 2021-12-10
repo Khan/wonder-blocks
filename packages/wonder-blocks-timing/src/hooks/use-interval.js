@@ -7,7 +7,6 @@ import {
 } from "../util/policies.js";
 import type {IInterval, ClearPolicy, Options} from "../util/types.js";
 
-import {useMountedRef} from "./internal/use-mounted-ref.js";
 import {useUpdatingRef} from "./internal/use-updating-ref.js";
 import {useSimpleInterval} from "./internal/use-simple-interval.js";
 
@@ -49,24 +48,24 @@ export function useInterval(
         [actionRef, isSet, options?.clearPolicy],
     );
 
-    const mountedRef = useMountedRef();
+    const runOnUnmountRef = useUpdatingRef(
+        isSet && options?.clearPolicy === ClearPolicies.Resolve,
+    );
 
     useEffect(() => {
         return () => {
+            // This code will only run with the component using this
+            // hook is unmounted.
             // eslint-disable-next-line react-hooks/exhaustive-deps
-            if (!mountedRef.current) {
-                // This code should only run when the component using the hook
-                // is unmounted.
-                if (isSet && options?.clearPolicy === ClearPolicies.Resolve) {
-                    // eslint-disable-next-line react-hooks/exhaustive-deps
-                    actionRef.current();
-                }
+            if (runOnUnmountRef.current) {
+                // eslint-disable-next-line react-hooks/exhaustive-deps
+                actionRef.current();
             }
         };
-        // react-hooks/exhaustive-deps doesn't require refs to be
-        // listed in the deps array.  Unfortunately, in this situation
-        // it doesn't recognized actionRef and mountedRef as refs.
-    }, [actionRef, isSet, mountedRef, options?.clearPolicy]);
+        // This eslint rule doesn't realize actionRef and runOnUnmountRef
+        // a both refs and thus do not have to be listed as deps.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     useSimpleInterval(action, intervalMs, isSet);
 
