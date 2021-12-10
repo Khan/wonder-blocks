@@ -29,8 +29,9 @@ export function useSimpleInterval(
                 clearInterval(intervalId);
             };
         }
-        // react-hooks/exhaustive-deps doesn't require refs to be
-        // listed in the deps array.  Unfortunately, in this situation
-        // it doesn't recognized actionRef as a ref.
-    }, [action, intervalMs, active, actionRef]);
+        // actionRef isn't actually required, but react-hooks/exhaustive-deps
+        // doesn't recognize it as a ref and thus complains if it isn't in the
+        // deps list.  It isn't a big deal though since the value ofactionRef
+        // never changes (only its contents do).
+    }, [intervalMs, active, actionRef]);
 }

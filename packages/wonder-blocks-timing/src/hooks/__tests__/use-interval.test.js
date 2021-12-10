@@ -57,6 +57,73 @@ describe("useInterval", () => {
         expect(action).toHaveBeenCalled();
     });
 
+    it("should call the current action", () => {
+        // Arrange
+        const action1 = jest.fn();
+        const action2 = jest.fn();
+        const {rerender} = renderHook(({action}) => useInterval(action, 500), {
+            initialProps: {action: action1},
+        });
+
+        // Act
+        rerender({action: action2});
+        jest.advanceTimersByTime(501);
+
+        // Assert
+        expect(action2).toHaveBeenCalledTimes(1);
+    });
+
+    it("should only call useInterval once even if action changes", () => {
+        // Arrange
+        const intervalSpy = jest.spyOn(global, "setInterval");
+        const action1 = jest.fn();
+        const action2 = jest.fn();
+        const {rerender} = renderHook(({action}) => useInterval(action, 500), {
+            initialProps: {action: action1},
+        });
+
+        // Act
+        rerender({action: action2});
+
+        // Assert
+        expect(intervalSpy).toHaveBeenCalledTimes(1);
+    });
+
+    it("should use the new interval after changing it", () => {
+        // Arrange
+        const action = jest.fn();
+        const {rerender} = renderHook(
+            ({intervalMs}) => useInterval(action, intervalMs),
+            {
+                initialProps: {intervalMs: 500},
+            },
+        );
+        rerender({initialProps: 1000});
+
+        // Act
+        jest.advanceTimersByTime(1501);
+
+        // Assert
+        expect(action).toHaveBeenCalledTimes(1);
+    });
+
+    it("should restart the interval if intervalMs changes", () => {
+        // Arrange
+        const intervalSpy = jest.spyOn(global, "setInterval");
+        const {rerender} = renderHook(
+            ({intervalMs}) => useInterval(() => {}, intervalMs),
+            {
+                initialProps: {intervalMs: 500},
+            },
+        );
+
+        // Act
+        rerender({initialProps: 1000});
+
+        // Assert
+        expect(intervalSpy).toHaveBeenCalledTimes(2);
+    });
+
     describe("isSet", () => {
         it("is false when the interval has not been set [SchedulePolicy.OnDemand]", () => {
             // Arrange
