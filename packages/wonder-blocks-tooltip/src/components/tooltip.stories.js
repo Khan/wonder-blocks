@@ -10,6 +10,13 @@ import type {StoryComponentType} from "@storybook/react";
 
 export default {
     title: "Floating/Tooltip",
+    parameters: {
+        // TODO(WB-1170): Reassess this after investigating more about Chromatic
+        // flakyness.
+        chromatic: {
+            delay: 200,
+        },
+    },
 };
 
 const BaseTooltipExample = ({placement}: {|placement: Placement|}) => {
