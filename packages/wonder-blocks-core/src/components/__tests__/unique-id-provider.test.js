@@ -9,6 +9,7 @@ import SsrIDFactory from "../../util/ssr-id-factory.js";
 import UniqueIDFactory from "../../util/unique-id-factory.js";
 import UniqueIDProvider from "../unique-id-provider.js";
 import WithSSRPlaceholder from "../with-ssr-placeholder.js";
+import {RenderStateRoot} from "../render-state-root.js";
 
 describe("UniqueIDProvider", () => {
     describe("mockOnFirstRender is default (false)", () => {
@@ -145,6 +146,27 @@ describe("UniqueIDProvider", () => {
                         </UniqueIDProvider>
                     )}
                 </WithSSRPlaceholder>
+            );
+
+            // Act
+            mount(nodes);
+
+            // Assert
+            expect(foo).toHaveBeenCalled();
+            expect(foo.mock.calls[0][0]).toBeTruthy();
+        });
+    });
+
+    describe("inside a RenderStateRoot", () => {
+        test("it should pass an id to its children", () => {
+            // Arrange
+            const foo = jest.fn(() => null);
+            const nodes = (
+                <RenderStateRoot>
+                    <UniqueIDProvider mockOnFirstRender={false}>
+                        {(ids) => foo(ids.get(""))}
+                    </UniqueIDProvider>
+                </RenderStateRoot>
             );
 
             // Act
