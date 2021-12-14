@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {mount} from "enzyme";
-import "jest-enzyme"; // eslint-disable-line import/no-unassigned-import
+import "jest-enzyme";
 
 import OptionItem from "../option-item.js";
 import SearchTextInput from "../search-text-input.js";

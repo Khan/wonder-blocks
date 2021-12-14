@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server.js";
 import {mount} from "enzyme";
-import "jest-enzyme"; // eslint-disable-line import/no-unassigned-import
+import "jest-enzyme";
 
 import WithSSRPlaceholder from "../with-ssr-placeholder.js";
 import {RenderStateRoot} from "../render-state-root.js";

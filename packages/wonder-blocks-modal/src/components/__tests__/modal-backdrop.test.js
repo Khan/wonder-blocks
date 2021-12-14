@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import {mount} from "enzyme";
-import "jest-enzyme"; // eslint-disable-line import/no-unassigned-import
+import "jest-enzyme";
 
 import ModalBackdrop from "../modal-backdrop.js";
 import OnePaneDialog from "../one-pane-dialog.js";

@@ -2,7 +2,7 @@
 import * as React from "react";
 import {VariableSizeList as List} from "react-window";
 import {mount} from "enzyme";
-import "jest-enzyme"; // eslint-disable-line import/no-unassigned-import
+import "jest-enzyme";
 
 import OptionItem from "../option-item.js";
 import SeparatorItem from "../separator-item.js";
