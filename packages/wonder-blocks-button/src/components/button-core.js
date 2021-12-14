@@ -162,7 +162,7 @@ export default class ButtonCore extends React.Component<Props> {
                 <StyledButton
                     type={type || "button"}
                     {...commonProps}
-                    disabled={disabled}
+                    aria-disabled={disabled}
                 >
                     {contents}
                 </StyledButton>

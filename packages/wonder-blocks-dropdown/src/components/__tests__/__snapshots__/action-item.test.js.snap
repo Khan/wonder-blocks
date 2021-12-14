@@ -40,7 +40,7 @@ exports[`ActionItem should render with disabled styles 1`] = `
       "touchAction": "manipulation",
     }
   }
-  tabIndex={-1}
+  tabIndex={0}
   type="button"
 >
   <span

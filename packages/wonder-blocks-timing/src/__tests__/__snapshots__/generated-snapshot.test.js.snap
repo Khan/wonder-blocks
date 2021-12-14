@@ -40,8 +40,8 @@ exports[`wonder-blocks-timing example 1 1`] = `
     }
   >
     <button
+      aria-disabled={false}
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -216,8 +216,8 @@ exports[`wonder-blocks-timing example 2 1`] = `
     }
   >
     <button
+      aria-disabled={false}
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
