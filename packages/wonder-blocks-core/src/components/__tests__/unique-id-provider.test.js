@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server.js";
 import {mount} from "enzyme";
+import "jest-enzyme";
 
 import View from "../view.js";
 

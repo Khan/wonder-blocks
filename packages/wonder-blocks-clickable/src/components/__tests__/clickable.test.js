@@ -2,6 +2,7 @@
 import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {mount} from "enzyme";
+import "jest-enzyme";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Clickable from "../clickable.js";

@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {mount} from "enzyme";
+import "jest-enzyme";
 
 import ActionSchedulerProvider from "../action-scheduler-provider.js";
 import ActionScheduler from "../../util/action-scheduler.js";

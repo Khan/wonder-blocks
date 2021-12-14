@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {mount} from "enzyme";
+import "jest-enzyme";
 import Breadcrumbs from "../breadcrumbs.js";
 import BreadcrumbsItem from "../breadcrumbs-item.js";
 

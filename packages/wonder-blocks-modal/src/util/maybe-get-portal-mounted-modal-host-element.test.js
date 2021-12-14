@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {mount} from "enzyme";
+import "jest-enzyme";
 
 import {ModalLauncherPortalAttributeName} from "./constants.js";
 import maybeGetPortalMountedModalHostElement from "./maybe-get-portal-mounted-modal-host-element.js";

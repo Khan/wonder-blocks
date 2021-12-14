@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {mount} from "enzyme";
+import "jest-enzyme";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import PopoverEventListener from "../popover-event-listener.js";

@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {mount} from "enzyme";
+import "jest-enzyme";
 
 import FocusManager from "../focus-manager.js";
 import {findFocusableNodes} from "../../util/util.js";

@@ -2,6 +2,7 @@
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {mount} from "enzyme";
+import "jest-enzyme";
 
 import MediaLayout from "../media-layout.js";
 import MediaLayoutContext from "../media-layout-context.js";

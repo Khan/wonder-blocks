@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {shallow} from "enzyme";
+import "jest-enzyme";
 
 import SearchTextInput from "../search-text-input.js";
 

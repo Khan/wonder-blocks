@@ -1,6 +1,7 @@
 //@flow
 import * as React from "react";
 import {mount} from "enzyme";
+import "jest-enzyme";
 import {render, screen} from "@testing-library/react";
 
 import {StyleSheet} from "aphrodite";

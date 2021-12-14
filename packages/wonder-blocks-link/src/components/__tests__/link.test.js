@@ -2,6 +2,7 @@
 import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {mount} from "enzyme";
+import "jest-enzyme";
 
 import Link from "../link.js";
 
