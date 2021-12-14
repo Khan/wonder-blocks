@@ -2,16 +2,16 @@
 import {renderHook, act} from "@testing-library/react-hooks";
 import {SchedulePolicy, ClearPolicy} from "../../util/policies.js";
 
-import {useTimeout} from "../use-timeout.js";
+import {useScheduledTimeout} from "../use-scheduled-timeout.js";
 
-describe("useTimeout", () => {
+describe("useScheduledTimeout", () => {
     beforeEach(() => {
         jest.useFakeTimers();
     });
 
     it("should return an ITimeout", () => {
         // Arrange
-        const {result} = renderHook(() => useTimeout(() => {}, 1000));
+        const {result} = renderHook(() => useScheduledTimeout(() => {}, 1000));
 
         // Act
 
@@ -27,7 +27,7 @@ describe("useTimeout", () => {
 
     it("should default to being immediately set", () => {
         // Arrange
-        const {result} = renderHook(() => useTimeout(() => {}, 1000));
+        const {result} = renderHook(() => useScheduledTimeout(() => {}, 1000));
 
         // Act
 
@@ -39,7 +39,7 @@ describe("useTimeout", () => {
         it("should call the action after the timeout expires", () => {
             // Arrange
             const action = jest.fn();
-            renderHook(() => useTimeout(action, 1000));
+            renderHook(() => useScheduledTimeout(action, 1000));
 
             // Act
             act(() => {
@@ -53,7 +53,9 @@ describe("useTimeout", () => {
         it("should update isSet to false after the timeout expires", () => {
             // Arrange
             const action = jest.fn();
-            const {result} = renderHook(() => useTimeout(action, 1000));
+            const {result} = renderHook(() =>
+                useScheduledTimeout(action, 1000),
+            );
 
             // Act
             act(() => {
@@ -67,7 +69,9 @@ describe("useTimeout", () => {
         it("should call the action again if 'set' is called after the action was called", () => {
             // Arrange
             const action = jest.fn();
-            const {result} = renderHook(() => useTimeout(action, 1000));
+            const {result} = renderHook(() =>
+                useScheduledTimeout(action, 1000),
+            );
 
             // Act
             act(() => {
@@ -84,7 +88,7 @@ describe("useTimeout", () => {
             // Arrange
             const action = jest.fn();
             const {rerender} = renderHook(
-                ({timeoutMs}) => useTimeout(action, timeoutMs),
+                ({timeoutMs}) => useScheduledTimeout(action, timeoutMs),
                 {
                     initialProps: {timeoutMs: 1000},
                 },
@@ -109,7 +113,7 @@ describe("useTimeout", () => {
             // Arrange
             const action = jest.fn();
             const {rerender} = renderHook(
-                ({timeoutMs}) => useTimeout(action, timeoutMs),
+                ({timeoutMs}) => useScheduledTimeout(action, timeoutMs),
                 {
                     initialProps: {timeoutMs: 1000},
                 },
@@ -130,7 +134,7 @@ describe("useTimeout", () => {
             const action1 = jest.fn();
             const action2 = jest.fn();
             const {rerender} = renderHook(
-                ({action}) => useTimeout(action, 1000),
+                ({action}) => useScheduledTimeout(action, 1000),
                 {
                     initialProps: {action: action1},
                 },
@@ -151,7 +155,7 @@ describe("useTimeout", () => {
             const action1 = jest.fn();
             const action2 = jest.fn();
             const {rerender} = renderHook(
-                ({action}) => useTimeout(action, 1000),
+                ({action}) => useScheduledTimeout(action, 1000),
                 {
                     initialProps: {action: action1},
                 },
@@ -170,7 +174,9 @@ describe("useTimeout", () => {
         it("should not call the action if the timeout is cleared", () => {
             // Arrange
             const action = jest.fn();
-            const {result} = renderHook(() => useTimeout(action, 1000));
+            const {result} = renderHook(() =>
+                useScheduledTimeout(action, 1000),
+            );
 
             // Act
             act(() => {
@@ -185,7 +191,9 @@ describe("useTimeout", () => {
         it("should call the action when the timeout is cleared when passing ClearPolicies.Resolve to clear()", () => {
             // Arrange
             const action = jest.fn();
-            const {result} = renderHook(() => useTimeout(action, 1000));
+            const {result} = renderHook(() =>
+                useScheduledTimeout(action, 1000),
+            );
 
             // Act
             act(() => {
@@ -200,7 +208,9 @@ describe("useTimeout", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() =>
-                useTimeout(action, 1000, {clearPolicy: ClearPolicy.Resolve}),
+                useScheduledTimeout(action, 1000, {
+                    clearPolicy: ClearPolicy.Resolve,
+                }),
             );
 
             // Act
@@ -216,7 +226,9 @@ describe("useTimeout", () => {
             // Arrange
             const action = jest.fn();
             const {unmount} = renderHook(() =>
-                useTimeout(action, 1000, {clearPolicy: ClearPolicy.Resolve}),
+                useScheduledTimeout(action, 1000, {
+                    clearPolicy: ClearPolicy.Resolve,
+                }),
             );
 
             // Act
@@ -229,7 +241,9 @@ describe("useTimeout", () => {
         it("should not call the action on unmount when using the default options", () => {
             // Arrange
             const action = jest.fn();
-            const {unmount} = renderHook(() => useTimeout(action, 1000));
+            const {unmount} = renderHook(() =>
+                useScheduledTimeout(action, 1000),
+            );
 
             // Act
             unmount();
@@ -243,7 +257,7 @@ describe("useTimeout", () => {
         it("should not set the timer on creation", () => {
             // Arrange
             const {result} = renderHook(() =>
-                useTimeout(() => {}, 1000, {
+                useScheduledTimeout(() => {}, 1000, {
                     schedulePolicy: SchedulePolicy.OnDemand,
                 }),
             );
@@ -258,7 +272,7 @@ describe("useTimeout", () => {
             // Arrange
             const action = jest.fn();
             renderHook(() =>
-                useTimeout(action, 1000, {
+                useScheduledTimeout(action, 1000, {
                     schedulePolicy: SchedulePolicy.OnDemand,
                 }),
             );
@@ -276,7 +290,7 @@ describe("useTimeout", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() =>
-                useTimeout(action, 1000, {
+                useScheduledTimeout(action, 1000, {
                     schedulePolicy: SchedulePolicy.OnDemand,
                 }),
             );
@@ -295,7 +309,7 @@ describe("useTimeout", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() =>
-                useTimeout(action, 1000, {
+                useScheduledTimeout(action, 1000, {
                     schedulePolicy: SchedulePolicy.OnDemand,
                 }),
             );
@@ -316,7 +330,7 @@ describe("useTimeout", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() =>
-                useTimeout(action, 1000, {
+                useScheduledTimeout(action, 1000, {
                     schedulePolicy: SchedulePolicy.OnDemand,
                 }),
             );
