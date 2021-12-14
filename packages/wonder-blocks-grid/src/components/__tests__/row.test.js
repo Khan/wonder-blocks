@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import {mount} from "enzyme";
+import "jest-enzyme"; // eslint-disable-line import/no-unassigned-import
 
 import {
     MEDIA_DEFAULT_SPEC,

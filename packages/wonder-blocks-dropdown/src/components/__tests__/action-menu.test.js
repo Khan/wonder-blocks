@@ -1,6 +1,7 @@
 //@flow
 import * as React from "react";
 import {mount} from "enzyme";
+import "jest-enzyme"; // eslint-disable-line import/no-unassigned-import
 
 import ActionItem from "../action-item.js";
 import OptionItem from "../option-item.js";

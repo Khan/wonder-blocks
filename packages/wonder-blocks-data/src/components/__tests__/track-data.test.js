@@ -2,6 +2,7 @@
 import * as React from "react";
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {mount, shallow} from "enzyme";
+import "jest-enzyme"; // eslint-disable-line import/no-unassigned-import
 
 import TrackData from "../track-data.js";
 import {RequestTracker, TrackerContext} from "../../util/request-tracking.js";

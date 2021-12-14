@@ -2,6 +2,7 @@ import * as React from "react";
 import renderer from "react-test-renderer";
 import {MemoryRouter, Link} from "react-router-dom";
 import {mount} from "enzyme";
+import "jest-enzyme"; // eslint-disable-line import/no-unassigned-import
 
 import ActionItem from "../action-item.js";
 

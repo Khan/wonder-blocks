@@ -7,6 +7,7 @@
  */
 import * as React from "react";
 import {mount} from "enzyme";
+import "jest-enzyme"; // eslint-disable-line import/no-unassigned-import
 import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
 
 import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";

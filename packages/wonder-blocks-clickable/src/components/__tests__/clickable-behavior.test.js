@@ -3,6 +3,7 @@
 import * as React from "react";
 import {MemoryRouter, Switch, Route} from "react-router-dom";
 import {mount, shallow} from "enzyme";
+import "jest-enzyme"; // eslint-disable-line import/no-unassigned-import
 
 import getClickableBehavior from "../../util/get-clickable-behavior.js";
 import ClickableBehavior from "../clickable-behavior.js";
