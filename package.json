@@ -55,7 +55,7 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^13.5.0",
-    "alex": "^8.0.0",
+    "alex": "^10.0.0",
     "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "babel-plugin-dynamic-import-node": "^2.3.3",
