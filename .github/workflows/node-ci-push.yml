@@ -4,6 +4,7 @@ on:
   push:
     branches:
     - master
+    - changeset-release/*
 
 # Our jobs run like this to minimize wasting resource cycles:
 #   1. Prime caches for primary configuration (ubuntu on node 14).
