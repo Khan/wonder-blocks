@@ -28,10 +28,12 @@ describe("#getConfiguration", () => {
         const {getConfiguration} = isolateModules(() => require("../setup.js"));
 
         // Act
-        const act = () => getConfiguration();
+        const underTest = () => getConfiguration();
 
         // Assert
-        expect(act).toThrowErrorMatchingInlineSnapshot(`"Not configured"`);
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(
+            `"Not configured"`,
+        );
     });
 });
 

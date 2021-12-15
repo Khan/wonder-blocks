@@ -96,6 +96,10 @@ export const getAdapter: AdapterFactory<StorybookOptions, Exports<any>> = (
                     // template.
                     acc[exportName] = Template.bind({});
                     acc[exportName].args = getProps({log});
+                    // Adding a story name here means that we don't have to
+                    // care about naming the exports correctly, if we don't
+                    // want (useful if we need to autogenerate or manually
+                    // expose ESM exports).
                     acc[exportName].storyName = storyName;
 
                     return acc;

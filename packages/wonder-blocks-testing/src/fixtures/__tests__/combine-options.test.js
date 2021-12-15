@@ -1,9 +1,9 @@
 // @flow
-import * as CombineModule from "../combine.js";
+import * as CombineTopLevelModule from "../combine-top-level.js";
 
 import {combineOptions} from "../combine-options.js";
 
-jest.mock("../combine.js");
+jest.mock("../combine-top-level.js");
 
 describe("#combineOptions", () => {
     beforeEach(() => {
@@ -17,7 +17,7 @@ describe("#combineOptions", () => {
             {b: "test2"},
             {a: "test3", c: "test3"},
         ];
-        const combineSpy = jest.spyOn(CombineModule, "combine");
+        const combineSpy = jest.spyOn(CombineTopLevelModule, "combineTopLevel");
 
         // Act
         combineOptions(...toBeCombined);
@@ -29,7 +29,7 @@ describe("#combineOptions", () => {
     it("should ignore falsy args", () => {
         // Arrange
         const toBeCombined = [null, {a: "test"}, {b: "test"}, 0, undefined];
-        const combineSpy = jest.spyOn(CombineModule, "combine");
+        const combineSpy = jest.spyOn(CombineTopLevelModule, "combineTopLevel");
 
         // Act
         combineOptions(...toBeCombined);
@@ -45,7 +45,7 @@ describe("#combineOptions", () => {
             {b: "test2"},
             {a: "test3", c: "test3"},
         ];
-        jest.spyOn(CombineModule, "combine").mockImplementation(
+        jest.spyOn(CombineTopLevelModule, "combineTopLevel").mockImplementation(
             // Just for testing, we know the values are strings, so let's
             // combine them with concatenation so we see the order of
             // combination in the result.

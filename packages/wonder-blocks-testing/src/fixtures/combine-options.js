@@ -1,5 +1,5 @@
 // @flow
-import {combine} from "./combine.js";
+import {combineTopLevel} from "./combine-top-level.js";
 
 /**
  * Combine one or more objects into a single object.
@@ -14,7 +14,7 @@ export const combineOptions = <Options: {...}>(
         for (const key of Object.keys(cur)) {
             // We always call combine, even if acc[key] is undefined
             // because we need to make sure we clone values.
-            acc[key] = combine(acc[key], cur[key]);
+            acc[key] = combineTopLevel(acc[key], cur[key]);
         }
         return acc;
     }, {});

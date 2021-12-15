@@ -1,7 +1,7 @@
 // @flow
 import * as WonderStuffCoreModule from "@khanacademy/wonder-stuff-core";
 
-import {combine} from "../combine.js";
+import {combineTopLevel} from "../combine-top-level.js";
 
 jest.mock("@khanacademy/wonder-stuff-core");
 
@@ -20,7 +20,7 @@ describe("#combine", () => {
             const val2 = "VALUE2";
 
             // Act
-            const result = combine(val1, val2);
+            const result = combineTopLevel(val1, val2);
 
             // Assert
             expect(result).toEqual(`CLONED: VALUE2`);
@@ -34,7 +34,7 @@ describe("#combine", () => {
         const val2 = ["VALUE2", "VALUE3", "VALUE3"];
 
         // Act
-        const result = combine(val1, val2);
+        const result = combineTopLevel(val1, val2);
 
         // Assert
         expect(result).toEqual(["VALUE1", "VALUE2", "VALUE3"]);
@@ -49,7 +49,7 @@ describe("#combine", () => {
         const val2 = ["VALUE1", "VALUE2", "VALUE3"];
 
         // Act
-        const result = combine(val1, val2);
+        const result = combineTopLevel(val1, val2);
 
         // Assert
         expect(result).toEqual("CLONED: VALUE1,VALUE2,VALUE3");
@@ -66,7 +66,7 @@ describe("#combine", () => {
         };
 
         // Act
-        const result = combine(val1, val2);
+        const result = combineTopLevel(val1, val2);
 
         // Assert
         expect(result).toEqual('CLONED: {"key1":"VALUE1"}');
@@ -87,7 +87,7 @@ describe("#combine", () => {
         };
 
         // Act
-        const result = combine(val1, val2);
+        const result = combineTopLevel(val1, val2);
 
         // Assert
         expect(result).toEqual({

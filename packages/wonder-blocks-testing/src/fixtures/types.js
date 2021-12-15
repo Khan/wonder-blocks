@@ -31,6 +31,8 @@ export type FixturesOptions<TProps: {...}> = {|
 
     /**
      * Optional title of the fixture collection.
+     *
+     * Adapters may enforce a title, otherwise the component name is used.
      */
     title?: string,
 
