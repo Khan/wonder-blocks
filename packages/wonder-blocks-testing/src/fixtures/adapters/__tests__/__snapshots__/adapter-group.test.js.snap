@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AdapterGroup #constructor should throw if options are not valid (a string) 1`] = `"options must be an object"`;
+
+exports[`AdapterGroup #constructor should throw if options are not valid (null) 1`] = `"options must be an object"`;
+
+exports[`AdapterGroup #declareFixture should throw if options are not valid (a string) 1`] = `"options must be an object"`;
+
+exports[`AdapterGroup #declareFixture should throw if options are not valid (null) 1`] = `"options must be an object"`;
