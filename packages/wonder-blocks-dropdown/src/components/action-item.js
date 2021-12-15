@@ -39,6 +39,12 @@ type ActionProps = {|
     href?: string,
 
     /**
+     * Optional attribute to indicate to the Screen Reader which language the
+     * item text is in.
+     */
+    lang?: string,
+
+    /**
      * A target destination window for a link to open in.
      */
     target?: "_blank",
@@ -131,6 +137,7 @@ export default class ActionItem extends React.Component<ActionProps> {
             target,
             indent,
             label,
+            lang,
             onClick,
             role,
             style,
@@ -176,6 +183,7 @@ export default class ActionItem extends React.Component<ActionProps> {
                     const children = (
                         <React.Fragment>
                             <LabelMedium
+                                lang={lang}
                                 style={[indent && styles.indent, styles.label]}
                             >
                                 {label}
