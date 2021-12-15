@@ -7,7 +7,7 @@ import {
 } from "../util/policies.js";
 import type {ITimeout, ClearPolicy, Options} from "../util/types.js";
 
-export function useTimeout(
+export function useScheduledTimeout(
     action: () => mixed,
     timeoutMs: number,
     options?: Options,

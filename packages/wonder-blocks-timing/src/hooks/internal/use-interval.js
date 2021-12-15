@@ -10,7 +10,7 @@ import {useUpdatingRef} from "./use-updating-ref.js";
  * @param intervalMs the duration between calls to `action`
  * @param active whether or not the interval is active
  */
-export function useSimpleInterval(
+export function useInterval(
     action: () => mixed,
     intervalMs: number,
     active: boolean,

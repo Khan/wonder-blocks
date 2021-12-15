@@ -8,9 +8,9 @@ import {
 import type {IInterval, ClearPolicy, Options} from "../util/types.js";
 
 import {useUpdatingRef} from "./internal/use-updating-ref.js";
-import {useSimpleInterval} from "./internal/use-simple-interval.js";
+import {useInterval} from "./internal/use-interval.js";
 
-export function useInterval(
+export function useScheduledInterval(
     action: () => mixed,
     intervalMs: number,
     options?: Options,
@@ -67,7 +67,7 @@ export function useInterval(
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    useSimpleInterval(action, intervalMs, isSet);
+    useInterval(action, intervalMs, isSet);
 
     return {isSet, set, clear};
 }

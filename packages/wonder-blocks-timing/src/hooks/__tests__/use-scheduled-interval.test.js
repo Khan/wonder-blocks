@@ -2,9 +2,9 @@
 import {renderHook, act} from "@testing-library/react-hooks";
 import {SchedulePolicy, ClearPolicy} from "../../util/policies.js";
 
-import {useInterval} from "../use-interval.js";
+import {useScheduledInterval} from "../use-scheduled-interval.js";
 
-describe("useInterval", () => {
+describe("useScheduledInterval", () => {
     beforeEach(() => {
         jest.useFakeTimers();
     });
@@ -17,7 +17,9 @@ describe("useInterval", () => {
         // Arrange
 
         // Act
-        const {result} = renderHook(() => useInterval((null: any), 1000));
+        const {result} = renderHook(() =>
+            useScheduledInterval((null: any), 1000),
+        );
 
         // Assert
         expect(result.error).toEqual(Error("Action must be a function"));
@@ -27,7 +29,7 @@ describe("useInterval", () => {
         // Arrange
 
         // Act
-        const {result} = renderHook(() => useInterval(() => {}, 0));
+        const {result} = renderHook(() => useScheduledInterval(() => {}, 0));
 
         // Assert
         expect(result.error).toEqual(Error("Interval period must be >= 1"));
@@ -38,7 +40,7 @@ describe("useInterval", () => {
         const intervalSpy = jest.spyOn(global, "setInterval");
 
         // Act
-        renderHook(() => useInterval(() => {}, 1000));
+        renderHook(() => useScheduledInterval(() => {}, 1000));
 
         // Assert
         expect(intervalSpy).toHaveBeenCalledTimes(1);
@@ -47,7 +49,9 @@ describe("useInterval", () => {
     it("should call the action before unmounting", () => {
         const action = jest.fn();
         const {unmount} = renderHook(() =>
-            useInterval(action, 1000, {clearPolicy: ClearPolicy.Resolve}),
+            useScheduledInterval(action, 1000, {
+                clearPolicy: ClearPolicy.Resolve,
+            }),
         );
 
         act(() => {
@@ -61,9 +65,12 @@ describe("useInterval", () => {
         // Arrange
         const action1 = jest.fn();
         const action2 = jest.fn();
-        const {rerender} = renderHook(({action}) => useInterval(action, 500), {
-            initialProps: {action: action1},
-        });
+        const {rerender} = renderHook(
+            ({action}) => useScheduledInterval(action, 500),
+            {
+                initialProps: {action: action1},
+            },
+        );
 
         // Act
         rerender({action: action2});
@@ -73,14 +80,17 @@ describe("useInterval", () => {
         expect(action2).toHaveBeenCalledTimes(1);
     });
 
-    it("should only call useInterval once even if action changes", () => {
+    it("should only call useScheduledInterval once even if action changes", () => {
         // Arrange
         const intervalSpy = jest.spyOn(global, "setInterval");
         const action1 = jest.fn();
         const action2 = jest.fn();
-        const {rerender} = renderHook(({action}) => useInterval(action, 500), {
-            initialProps: {action: action1},
-        });
+        const {rerender} = renderHook(
+            ({action}) => useScheduledInterval(action, 500),
+            {
+                initialProps: {action: action1},
+            },
+        );
 
         // Act
         rerender({action: action2});
@@ -93,7 +103,7 @@ describe("useInterval", () => {
         // Arrange
         const action = jest.fn();
         const {rerender} = renderHook(
-            ({intervalMs}) => useInterval(action, intervalMs),
+            ({intervalMs}) => useScheduledInterval(action, intervalMs),
             {
                 initialProps: {intervalMs: 500},
             },
@@ -111,7 +121,7 @@ describe("useInterval", () => {
         // Arrange
         const intervalSpy = jest.spyOn(global, "setInterval");
         const {rerender} = renderHook(
-            ({intervalMs}) => useInterval(() => {}, intervalMs),
+            ({intervalMs}) => useScheduledInterval(() => {}, intervalMs),
             {
                 initialProps: {intervalMs: 500},
             },
@@ -128,7 +138,7 @@ describe("useInterval", () => {
         it("is false when the interval has not been set [SchedulePolicy.OnDemand]", () => {
             // Arrange
             const {result} = renderHook(() =>
-                useInterval(() => {}, 1000, {
+                useScheduledInterval(() => {}, 1000, {
                     schedulePolicy: SchedulePolicy.OnDemand,
                 }),
             );
@@ -142,7 +152,9 @@ describe("useInterval", () => {
 
         it("is true when the interval is active", () => {
             // Arrange
-            const {result} = renderHook(() => useInterval(() => {}, 1000));
+            const {result} = renderHook(() =>
+                useScheduledInterval(() => {}, 1000),
+            );
             act(() => {
                 result.current.set();
             });
@@ -156,7 +168,9 @@ describe("useInterval", () => {
 
         it("is false when the interval is cleared", () => {
             // Arrange
-            const {result} = renderHook(() => useInterval(() => {}, 1000));
+            const {result} = renderHook(() =>
+                useScheduledInterval(() => {}, 1000),
+            );
             act(() => {
                 result.current.set();
                 result.current.clear();
@@ -175,7 +189,7 @@ describe("useInterval", () => {
             // Arrange
             const intervalSpy = jest.spyOn(global, "setInterval");
             const {result} = renderHook(() =>
-                useInterval(() => {}, 500, {
+                useScheduledInterval(() => {}, 500, {
                     schedulePolicy: SchedulePolicy.OnDemand,
                 }),
             );
@@ -198,7 +212,7 @@ describe("useInterval", () => {
             const intervalSpy = jest.spyOn(global, "setInterval");
             const action = jest.fn();
             const {result} = renderHook(() =>
-                useInterval(action, 500, {
+                useScheduledInterval(action, 500, {
                     schedulePolicy: SchedulePolicy.OnDemand,
                 }),
             );
@@ -219,7 +233,7 @@ describe("useInterval", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() =>
-                useInterval(action, 500, {
+                useScheduledInterval(action, 500, {
                     schedulePolicy: SchedulePolicy.OnDemand,
                 }),
             );
@@ -240,7 +254,9 @@ describe("useInterval", () => {
         it("should set an interval that stays active while not cleared", () => {
             // Arrange
             const action = jest.fn();
-            const {result} = renderHook(() => useInterval(action, 500));
+            const {result} = renderHook(() =>
+                useScheduledInterval(action, 500),
+            );
             act(() => {
                 result.current.set();
             });
@@ -257,7 +273,9 @@ describe("useInterval", () => {
         it("should continue to be set after calling it multiple times", () => {
             // Arrange
             const action = jest.fn();
-            const {result} = renderHook(() => useInterval(action, 500));
+            const {result} = renderHook(() =>
+                useScheduledInterval(action, 500),
+            );
             act(() => {
                 result.current.set();
             });
@@ -277,7 +295,9 @@ describe("useInterval", () => {
         it("should set the timeout after clearing it", () => {
             // Arrange
             const action = jest.fn();
-            const {result} = renderHook(() => useInterval(action, 500));
+            const {result} = renderHook(() =>
+                useScheduledInterval(action, 500),
+            );
             act(() => {
                 result.current.clear();
             });
@@ -295,7 +315,7 @@ describe("useInterval", () => {
         it("shouldn't throw an error if called after the component unmounted", () => {
             const action = jest.fn();
             const {result, unmount} = renderHook(() =>
-                useInterval(action, 500),
+                useScheduledInterval(action, 500),
             );
             act(() => {
                 unmount();
@@ -313,7 +333,9 @@ describe("useInterval", () => {
         it("should clear an active interval", () => {
             // Arrange
             const action = jest.fn();
-            const {result} = renderHook(() => useInterval(action, 500));
+            const {result} = renderHook(() =>
+                useScheduledInterval(action, 500),
+            );
             act(() => {
                 result.current.set();
             });
@@ -331,7 +353,9 @@ describe("useInterval", () => {
         it("should invoke the action if clear policy is ClearPolicy.Resolve", () => {
             // Arrange
             const action = jest.fn();
-            const {result} = renderHook(() => useInterval(action, 500));
+            const {result} = renderHook(() =>
+                useScheduledInterval(action, 500),
+            );
             act(() => {
                 result.current.set();
             });
@@ -350,7 +374,7 @@ describe("useInterval", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() =>
-                useInterval(action, 500, {
+                useScheduledInterval(action, 500, {
                     schedulePolicy: SchedulePolicy.Immediately,
                 }),
             );
@@ -372,7 +396,7 @@ describe("useInterval", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() =>
-                useInterval(action, 500, {
+                useScheduledInterval(action, 500, {
                     schedulePolicy: SchedulePolicy.OnDemand,
                 }),
             );
@@ -391,7 +415,9 @@ describe("useInterval", () => {
             // Arrange
             const action = jest.fn();
             const {result, unmount} = renderHook(() =>
-                useInterval(action, 500, {clearPolicy: ClearPolicy.Resolve}),
+                useScheduledInterval(action, 500, {
+                    clearPolicy: ClearPolicy.Resolve,
+                }),
             );
 
             // Act
@@ -410,7 +436,7 @@ describe("useInterval", () => {
             // Arrange
             const action = jest.fn();
             const {result, unmount} = renderHook(() =>
-                useInterval(action, 500),
+                useScheduledInterval(action, 500),
             );
             act(() => {
                 unmount();
