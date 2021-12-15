@@ -80,7 +80,7 @@ describe("useScheduledInterval", () => {
         expect(action2).toHaveBeenCalledTimes(1);
     });
 
-    it("should only call useScheduledInterval once even if action changes", () => {
+    it("should only call setInterval once even if action changes", () => {
         // Arrange
         const intervalSpy = jest.spyOn(global, "setInterval");
         const action1 = jest.fn();
@@ -108,7 +108,7 @@ describe("useScheduledInterval", () => {
                 initialProps: {intervalMs: 500},
             },
         );
-        rerender({initialProps: 1000});
+        rerender({intervalMs: 1000});
 
         // Act
         jest.advanceTimersByTime(1501);
@@ -128,10 +128,11 @@ describe("useScheduledInterval", () => {
         );
 
         // Act
-        rerender({initialProps: 1000});
+        rerender({intervalMs: 1000});
 
         // Assert
-        expect(intervalSpy).toHaveBeenCalledTimes(2);
+        expect(intervalSpy).toHaveBeenCalledWith(expect.any(Function), 500);
+        expect(intervalSpy).toHaveBeenCalledWith(expect.any(Function), 1000);
     });
 
     describe("isSet", () => {

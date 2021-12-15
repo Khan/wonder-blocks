@@ -1,5 +1,5 @@
 // @flow
-import {useEffect, useState, useCallback, useRef} from "react";
+import {useEffect, useState, useCallback} from "react";
 
 import {
     SchedulePolicy as SchedulePolicies,
@@ -7,64 +7,74 @@ import {
 } from "../util/policies.js";
 import type {ITimeout, ClearPolicy, Options} from "../util/types.js";
 
+import {useUpdatingRef} from "./internal/use-updating-ref.js";
+import {useTimeout} from "./use-timeout.js";
+
 export function useScheduledTimeout(
     action: () => mixed,
     timeoutMs: number,
     options?: Options,
 ): ITimeout {
+    if (typeof action !== "function") {
+        throw new Error("Action must be a function");
+    }
+
+    if (timeoutMs < 0) {
+        throw new Error("Timeout period must be >= 0");
+    }
+
     const schedulePolicy =
         options?.schedulePolicy ?? SchedulePolicies.Immediately;
+
     const [isSet, setIsSet] = useState(
         schedulePolicy === SchedulePolicies.Immediately,
     );
-    const actionRef = useRef(action);
-    const mountedRef = useRef(false);
 
-    useEffect(() => {
-        mountedRef.current = true;
-        return () => {
-            mountedRef.current = false;
-        };
-    }, []);
+    const set = useCallback(() => setIsSet(true), []);
 
-    useEffect(() => {
-        actionRef.current = action;
+    // This wrapper isn't present in useScheduledInterval because we
+    // don't need to update `isSet` in that situations.
+    const wrappedAction = useCallback(() => {
+        setIsSet(false);
+        action();
     }, [action]);
+
+    const actionRef = useUpdatingRef(wrappedAction);
 
     const clear = useCallback(
         (policy?: ClearPolicy) => {
-            if ((policy ?? options?.clearPolicy) === ClearPolicies.Resolve) {
+            policy = policy ?? options?.clearPolicy;
+            if (isSet && policy === ClearPolicies.Resolve) {
                 actionRef.current();
             }
-            // This will cause the useEffect below to re-run
             setIsSet(false);
         },
-        [options?.clearPolicy],
+        // react-hooks/exhaustive-deps doesn't require refs to be
+        // listed in the deps array.  Unfortunately, in this situation
+        // it doesn't recognized actionRef as a ref.
+        [actionRef, isSet, options?.clearPolicy],
     );
 
-    const set = useCallback(() => {
-        if (isSet) {
-            clear();
-        }
-        // This will cause the useEffect below to re-run
-        setIsSet(true);
-    }, [clear, isSet]);
+    const runOnUnmountRef = useUpdatingRef(
+        isSet && options?.clearPolicy === ClearPolicies.Resolve,
+    );
 
     useEffect(() => {
-        if (isSet && mountedRef.current) {
-            const timeout = window.setTimeout(() => {
+        return () => {
+            // This code will only run with the component using this
+            // hook is unmounted.
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            if (runOnUnmountRef.current) {
+                // eslint-disable-next-line react-hooks/exhaustive-deps
                 actionRef.current();
-                setIsSet(false);
-            }, timeoutMs);
+            }
+        };
+        // This eslint rule doesn't realize actionRef and runOnUnmountRef
+        // a both refs and thus do not have to be listed as deps.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
-            return () => {
-                window.clearTimeout(timeout);
-                if (!mountedRef.current) {
-                    clear();
-                }
-            };
-        }
-    }, [clear, isSet, timeoutMs]);
+    useTimeout(wrappedAction, timeoutMs, isSet);
 
     return {isSet, set, clear};
 }

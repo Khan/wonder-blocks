@@ -8,7 +8,7 @@ import {
 import type {IInterval, ClearPolicy, Options} from "../util/types.js";
 
 import {useUpdatingRef} from "./internal/use-updating-ref.js";
-import {useInterval} from "./internal/use-interval.js";
+import {useInterval} from "./use-interval.js";
 
 export function useScheduledInterval(
     action: () => mixed,

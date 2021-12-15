@@ -59,7 +59,7 @@ export const Immediately = () => {
     const interval = useScheduledInterval(callback, 1000);
     return (
         <View>
-            <View>isSet = {isSet.toString()}</View>
+            <View>isSet = {interval.isSet.toString()}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>
                 <Button onClick={() => interval.set()}>Set interval</Button>
@@ -84,7 +84,7 @@ const Immediately = () => {
     const interval = useScheduledInterval(callback, 1000);
     return (
         <View>
-            <View>isSet = {isSet.toString()}</View>
+            <View>isSet = {interval.isSet.toString()}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>
                 <Button onClick={() => interval.set()}>Set interval</Button>
@@ -107,7 +107,7 @@ export const OnDemandAndResolveOnClear = () => {
     });
     return (
         <View>
-            <View>isSet = {isSet.toString()}</View>
+            <View>isSet = {interval.isSet.toString()}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>
                 <Button onClick={() => interval.set()}>Set interval</Button>
@@ -135,7 +135,7 @@ const OnDemandAndResolveOnClear = () => {
     });
     return (
         <View>
-            <View>isSet = {isSet.toString()}</View>
+            <View>isSet = {interval.isSet.toString()}</View>
             <View>callCount = {callCount}</View>
             <View style={{flexDirection: "row"}}>
                 <Button onClick={() => interval.set()}>Set interval</Button>
