@@ -15,3 +15,5 @@ config
 # ignore files that eslint doesn't know how to lint
 **/*.md
 **/*.mdx
+CODEOWNERS
+**/*.json
