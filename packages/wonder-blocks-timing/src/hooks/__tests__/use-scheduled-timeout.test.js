@@ -9,6 +9,10 @@ describe("useScheduledTimeout", () => {
         jest.useFakeTimers();
     });
 
+    afterEach(() => {
+        jest.restoreAllMocks();
+    });
+
     it("should return an ITimeout", () => {
         // Arrange
         const {result} = renderHook(() => useScheduledTimeout(() => {}, 1000));
@@ -35,6 +39,99 @@ describe("useScheduledTimeout", () => {
         expect(result.current.isSet).toBe(true);
     });
 
+    it("should call the action before unmounting", () => {
+        const action = jest.fn();
+        const {unmount} = renderHook(() =>
+            useScheduledTimeout(action, 1000, {
+                clearPolicy: ClearPolicy.Resolve,
+            }),
+        );
+
+        act(() => {
+            unmount();
+        });
+
+        expect(action).toHaveBeenCalled();
+    });
+
+    it("should call the current action", () => {
+        // Arrange
+        const action1 = jest.fn();
+        const action2 = jest.fn();
+        const {rerender} = renderHook(
+            ({action}) => useScheduledTimeout(action, 500),
+            {
+                initialProps: {action: action1},
+            },
+        );
+
+        // Act
+        rerender({action: action2});
+        jest.advanceTimersByTime(501);
+
+        // Assert
+        expect(action2).toHaveBeenCalledTimes(1);
+    });
+
+    it("should only call setTimeout once even if action changes", () => {
+        // Arrange
+        const timeoutSpy = jest.spyOn(global, "setTimeout");
+        const action1 = jest.fn();
+        const action2 = jest.fn();
+        const {rerender} = renderHook(
+            ({action}) => useScheduledTimeout(action, 500),
+            {
+                initialProps: {action: action1},
+            },
+        );
+        // NOTE: For some reason setTimeout is called twice by the time we get
+        // here.  I've verified that it only gets called once inside the hook
+        // so something else must be calling it.
+        const callCount = timeoutSpy.mock.calls.length;
+
+        // Act
+        rerender({action: action2});
+
+        // Assert
+        expect(timeoutSpy).toHaveBeenCalledTimes(callCount);
+    });
+
+    it("should use the new timeout duration after changing it", () => {
+        // Arrange
+        const action = jest.fn();
+        const {rerender} = renderHook(
+            ({timeoutMs}) => useScheduledTimeout(action, timeoutMs),
+            {
+                initialProps: {timeoutMs: 500},
+            },
+        );
+        rerender({timeoutMs: 1000});
+
+        // Act
+        jest.advanceTimersByTime(1501);
+
+        // Assert
+        expect(action).toHaveBeenCalledTimes(1);
+    });
+
+    it("should restart the timeout if intervalMs changes", () => {
+        // Arrange
+        const timeoutSpy = jest.spyOn(global, "setTimeout");
+        const {rerender} = renderHook(
+            ({timeoutMs}) => useScheduledTimeout(() => {}, timeoutMs),
+            {
+                initialProps: {timeoutMs: 500},
+            },
+        );
+
+        // Act
+        rerender({timeoutMs: 1000});
+
+        // Assert
+        expect(timeoutSpy).toHaveBeenCalledWith(expect.any(Function), 500);
+        expect(timeoutSpy).toHaveBeenCalledWith(expect.any(Function), 1000);
+    });
+
     describe("SchedulePolicies.Immediately", () => {
         it("should call the action after the timeout expires", () => {
             // Arrange
@@ -59,7 +156,7 @@ describe("useScheduledTimeout", () => {
 
             // Act
             act(() => {
-                jest.advanceTimersByTime(1000);
+                jest.advanceTimersByTime(1001);
             });
 
             // Assert

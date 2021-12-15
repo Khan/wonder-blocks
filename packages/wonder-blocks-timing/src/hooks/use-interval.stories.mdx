@@ -1,0 +1,80 @@
+import {Meta, Story, Source, Canvas} from "@storybook/addon-docs";
+
+import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
+
+import {useInterval} from "./use-interval.js";
+
+<Meta
+    title="Timing/useInterval"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# `useInterval`
+
+`useInterval` is a hook that provides a simple API for using intervals safely.
+It is defined as follows:
+
+```ts
+function useInterval(
+    action: () => mixed,
+    intervalMs: number,
+    active: boolean,
+): void;
+```
+
+Notes:
+
+-   Setting `active` to `true` will start the interval and setting it to `false`
+    will stop it
+-   Changing the value of `timeoutMs` will reset the interval, changing `action`
+    will not.
+
+export const BasicUsage = () => {
+    const [callCount, setCallCount] = React.useState(0);
+    const [active, setActive] = React.useState(false);
+    const callback = React.useCallback(() => {
+        setCallCount((callCount) => callCount + 1);
+    }, []);
+    useInterval(callback, 1000, active);
+    return (
+        <View>
+            <View>callCount = {callCount}</View>
+            <View>active = {active.toString()}</View>
+            <Button onClick={() => setActive(!active)} style={{width: 200}}>
+                Toggle active
+            </Button>
+        </View>
+    );
+};
+
+<Canvas>
+    <Story name="BasicUsage">
+        <BasicUsage />
+    </Story>
+</Canvas>
+
+```jsx
+export const BasicUsage = () => {
+    const [callCount, setCallCount] = React.useState(0);
+    const [active, setActive] = React.useState(false);
+    const callback = React.useCallback(() => {
+        setCallCount((callCount) => callCount + 1);
+    }, []);
+    useInterval(callback, 1000, active);
+    return (
+        <View>
+            <View>callCount = {callCount}</View>
+            <View>active = {active.toString()}</View>
+            <Button onClick={() => setActive(!active)} style={{width: 200}}>
+                Toggle active
+            </Button>
+        </View>
+    );
+};
+```

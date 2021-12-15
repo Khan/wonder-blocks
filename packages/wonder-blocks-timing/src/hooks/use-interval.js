@@ -1,12 +1,12 @@
 // @flow
 import {useEffect} from "react";
 
-import {useUpdatingRef} from "./use-updating-ref.js";
+import {useUpdatingRef} from "./internal/use-updating-ref.js";
 
 /**
  * A simple hook for using `setInterval`.
  *
- * @param action called every `intervalMs` when `isSet` is true
+ * @param action called every `intervalMs` when `active` is true
  * @param intervalMs the duration between calls to `action`
  * @param active whether or not the interval is active
  */
