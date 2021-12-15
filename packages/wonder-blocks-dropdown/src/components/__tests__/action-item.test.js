@@ -21,10 +21,11 @@ describe("ActionItem", () => {
         // Arrange
 
         // Act
-        const wrapper = mount(<ActionItem href="/foo" label="Example" />);
+        render(<ActionItem href="/foo" label="Example" />);
 
         // Assert
-        expect(wrapper.find("a")).toHaveLength(1);
+        // eslint-disable-next-line testing-library/no-node-access
+        expect(document.querySelectorAll("a")).toHaveLength(1);
     });
 
     it("should render a Link if there's a router", () => {
