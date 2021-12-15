@@ -55,5 +55,5 @@ const stories: Array<mixed> = Object.values(
 );
 
 export default stories[0];
-export const f1 = stories[1];
-export const f2 = stories[2];
+export const F1 = stories[1];
+export const F2 = stories[2];
