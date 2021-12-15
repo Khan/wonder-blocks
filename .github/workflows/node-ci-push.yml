@@ -5,6 +5,7 @@ on:
     branches:
     - master
     - changeset-release/*
+    - feature/*
 
 # Our jobs run like this to minimize wasting resource cycles:
 #   1. Prime caches for primary configuration (ubuntu on node 14).
