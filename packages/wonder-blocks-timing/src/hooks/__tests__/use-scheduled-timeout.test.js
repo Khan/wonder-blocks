@@ -13,6 +13,28 @@ describe("useScheduledTimeout", () => {
         jest.restoreAllMocks();
     });
 
+    it("throws if the action is not a function", () => {
+        // Arrange
+
+        // Act
+        const {result} = renderHook(() =>
+            useScheduledTimeout((null: any), 1000),
+        );
+
+        // Assert
+        expect(result.error).toEqual(Error("Action must be a function"));
+    });
+
+    it("throws if the period is less than 0", () => {
+        // Arrange
+
+        // Act
+        const {result} = renderHook(() => useScheduledTimeout(() => {}, -1));
+
+        // Assert
+        expect(result.error).toEqual(Error("Timeout period must be >= 0"));
+    });
+
     it("should return an ITimeout", () => {
         // Arrange
         const {result} = renderHook(() => useScheduledTimeout(() => {}, 1000));
