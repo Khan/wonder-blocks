@@ -82,7 +82,6 @@
     "eslint-watch": "^8.0.0",
     "flow-bin": "^0.165.1",
     "glob": "^7.1.2",
-    "husky": "^4.2.5",
     "jest": "^27.3.1",
     "jest-enzyme": "^7.1.2",
     "lerna": "^3.16.5",
@@ -120,11 +119,6 @@
     "packages/*",
     "build-settings"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.md": [
       "yarn gen-snapshot-tests",
