@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as Core from "@khanacademy/wonder-blocks-core";
 import {mount} from "enzyme";
+import "jest-enzyme";
 
 import icons from "../../util/icon-assets.js";
 import {getPathForIcon, viewportPixelsForSize} from "../../util/icon-util.js";

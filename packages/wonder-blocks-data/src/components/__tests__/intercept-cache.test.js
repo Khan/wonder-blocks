@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {mount} from "enzyme";
+import "jest-enzyme";
 
 import InterceptContext from "../intercept-context.js";
 import InterceptData from "../intercept-data.js";

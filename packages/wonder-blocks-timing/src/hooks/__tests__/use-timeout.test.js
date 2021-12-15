@@ -1,6 +1,5 @@
 // @flow
-import {renderHook, act} from "@testing-library/react-hooks";
-import {SchedulePolicy, ClearPolicy} from "../../util/policies.js";
+import {renderHook} from "@testing-library/react-hooks";
 
 import {useTimeout} from "../use-timeout.js";
 
@@ -9,328 +8,129 @@ describe("useTimeout", () => {
         jest.useFakeTimers();
     });
 
-    it("should return an ITimeout", () => {
+    it("should not fire if 'active' is false", () => {
         // Arrange
-        const {result} = renderHook(() => useTimeout(() => {}, 1000));
+        const action = jest.fn();
 
         // Act
+        renderHook(() => useTimeout(action, 500, false));
+        jest.advanceTimersByTime(501);
 
         // Assert
-        expect(result.current).toEqual(
-            expect.objectContaining({
-                clear: expect.any(Function),
-                set: expect.any(Function),
-                isSet: expect.any(Boolean),
-            }),
+        expect(action).not.toHaveBeenCalled();
+    });
+
+    it("should not fire before the timeout", () => {
+        // Arrange
+        const action = jest.fn();
+
+        // Act
+        renderHook(() => useTimeout(action, 500, true));
+        jest.advanceTimersByTime(499);
+
+        // Assert
+        expect(action).not.toHaveBeenCalled();
+    });
+
+    it("should fire after the timeout", () => {
+        // Arrange
+        const action = jest.fn();
+
+        // Act
+        renderHook(() => useTimeout(action, 500, true));
+        jest.advanceTimersByTime(501);
+
+        // Assert
+        expect(action).toHaveBeenCalledTimes(1);
+    });
+
+    it("should fire after time after 'active' changes to true", () => {
+        // Arrange
+        const action = jest.fn();
+        const {rerender} = renderHook(
+            ({active}) => useTimeout(action, 500, active),
+            {initialProps: {active: false}},
         );
-    });
-
-    it("should default to being immediately set", () => {
-        // Arrange
-        const {result} = renderHook(() => useTimeout(() => {}, 1000));
 
         // Act
+        rerender({active: true});
+        jest.advanceTimersByTime(501);
 
         // Assert
-        expect(result.current.isSet).toBe(true);
+        expect(action).toHaveBeenCalled();
     });
 
-    describe("SchedulePolicies.Immediately", () => {
-        it("should call the action after the timeout expires", () => {
-            // Arrange
-            const action = jest.fn();
-            renderHook(() => useTimeout(action, 1000));
+    it("should not fire after the timeout if 'active' changes to false", () => {
+        // Arrange
+        const action = jest.fn();
+        const {rerender} = renderHook(
+            ({active}) => useTimeout(action, 500, active),
+            {initialProps: {active: true}},
+        );
 
-            // Act
-            act(() => {
-                jest.advanceTimersByTime(1000);
-            });
+        // Act
+        rerender({active: false});
+        jest.advanceTimersByTime(501);
 
-            // Assert
-            expect(action).toHaveBeenCalled();
-        });
-
-        it("should update isSet to false after the timeout expires", () => {
-            // Arrange
-            const action = jest.fn();
-            const {result} = renderHook(() => useTimeout(action, 1000));
-
-            // Act
-            act(() => {
-                jest.advanceTimersByTime(1000);
-            });
-
-            // Assert
-            expect(result.current.isSet).toBe(false);
-        });
-
-        it("should call the action again if 'set' is called after the action was called", () => {
-            // Arrange
-            const action = jest.fn();
-            const {result} = renderHook(() => useTimeout(action, 1000));
-
-            // Act
-            act(() => {
-                jest.advanceTimersByTime(1001);
-                result.current.set();
-                jest.advanceTimersByTime(1001);
-            });
-
-            // Assert
-            expect(action).toHaveBeenCalledTimes(2);
-        });
-
-        it("should restart the timeout if timeoutMs gets updated", () => {
-            // Arrange
-            const action = jest.fn();
-            const {rerender} = renderHook(
-                ({timeoutMs}) => useTimeout(action, timeoutMs),
-                {
-                    initialProps: {timeoutMs: 1000},
-                },
-            );
-
-            // Act
-            act(() => {
-                jest.advanceTimersByTime(900);
-            });
-            rerender({timeoutMs: 500});
-            act(() => {
-                jest.advanceTimersByTime(100);
-            });
-
-            // Assert
-            expect(action).not.toHaveBeenCalled();
-            act(() => jest.advanceTimersByTime(500));
-            expect(action).toHaveBeenCalled();
-        });
-
-        it("should should timeout after the new timeoutMs if it gets updated", () => {
-            // Arrange
-            const action = jest.fn();
-            const {rerender} = renderHook(
-                ({timeoutMs}) => useTimeout(action, timeoutMs),
-                {
-                    initialProps: {timeoutMs: 1000},
-                },
-            );
-
-            // Act
-            rerender({timeoutMs: 500});
-            act(() => {
-                jest.advanceTimersByTime(500);
-            });
-
-            // Assert
-            expect(action).toHaveBeenCalled();
-        });
-
-        it("should call the new action after re-rendering with a new action", () => {
-            // Arrange
-            const action1 = jest.fn();
-            const action2 = jest.fn();
-            const {rerender} = renderHook(
-                ({action}) => useTimeout(action, 1000),
-                {
-                    initialProps: {action: action1},
-                },
-            );
-
-            // Act
-            rerender({action: action2});
-            act(() => {
-                jest.advanceTimersByTime(1000);
-            });
-
-            // Assert
-            expect(action2).toHaveBeenCalled();
-        });
-
-        it("should not call the original action after re-rendering with a new action", () => {
-            // Arrange
-            const action1 = jest.fn();
-            const action2 = jest.fn();
-            const {rerender} = renderHook(
-                ({action}) => useTimeout(action, 1000),
-                {
-                    initialProps: {action: action1},
-                },
-            );
-
-            // Act
-            rerender({action: action2});
-            act(() => {
-                jest.advanceTimersByTime(1000);
-            });
-
-            // Assert
-            expect(action1).not.toHaveBeenCalled();
-        });
-
-        it("should not call the action if the timeout is cleared", () => {
-            // Arrange
-            const action = jest.fn();
-            const {result} = renderHook(() => useTimeout(action, 1000));
-
-            // Act
-            act(() => {
-                result.current.clear();
-                jest.advanceTimersByTime(1000);
-            });
-
-            // Assert
-            expect(action).not.toHaveBeenCalled();
-        });
-
-        it("should call the action when the timeout is cleared when passing ClearPolicies.Resolve to clear()", () => {
-            // Arrange
-            const action = jest.fn();
-            const {result} = renderHook(() => useTimeout(action, 1000));
-
-            // Act
-            act(() => {
-                result.current.clear(ClearPolicy.Resolve);
-            });
-
-            // Assert
-            expect(action).toHaveBeenCalled();
-        });
-
-        it("should call the action when the timeout is cleared when using ClearPolicies.Resolve in options", () => {
-            // Arrange
-            const action = jest.fn();
-            const {result} = renderHook(() =>
-                useTimeout(action, 1000, {clearPolicy: ClearPolicy.Resolve}),
-            );
-
-            // Act
-            act(() => {
-                result.current.clear();
-            });
-
-            // Assert
-            expect(action).toHaveBeenCalled();
-        });
-
-        it("should call the action on unmount when using ClearPolicies.Resolve in options", () => {
-            // Arrange
-            const action = jest.fn();
-            const {unmount} = renderHook(() =>
-                useTimeout(action, 1000, {clearPolicy: ClearPolicy.Resolve}),
-            );
-
-            // Act
-            unmount();
-
-            // Assert
-            expect(action).toHaveBeenCalled();
-        });
-
-        it("should not call the action on unmount when using the default options", () => {
-            // Arrange
-            const action = jest.fn();
-            const {unmount} = renderHook(() => useTimeout(action, 1000));
-
-            // Act
-            unmount();
-
-            // Assert
-            expect(action).not.toHaveBeenCalled();
-        });
+        // Assert
+        expect(action).not.toHaveBeenCalled();
     });
 
-    describe("SchedulePolicies.OnDemand", () => {
-        it("should not set the timer on creation", () => {
-            // Arrange
-            const {result} = renderHook(() =>
-                useTimeout(() => {}, 1000, {
-                    schedulePolicy: SchedulePolicy.OnDemand,
-                }),
-            );
+    it("should reset the timeout if 'timeoutMs' is changes", () => {
+        // Arrange
+        const action = jest.fn();
 
-            // Act
+        // Act
+        const {rerender} = renderHook(
+            ({timeoutMs}) => useTimeout(action, timeoutMs, true),
+            {initialProps: {timeoutMs: 500}},
+        );
+        rerender({timeoutMs: 1000});
+        jest.advanceTimersByTime(501);
 
-            // Assert
-            expect(result.current.isSet).toBe(false);
-        });
+        // Assert
+        expect(action).not.toHaveBeenCalled();
+        jest.advanceTimersByTime(1001);
+        expect(action).toHaveBeenCalled();
+    });
 
-        it("should not call action after timeoutMs if the timer hasn't been set", () => {
-            // Arrange
-            const action = jest.fn();
-            renderHook(() =>
-                useTimeout(action, 1000, {
-                    schedulePolicy: SchedulePolicy.OnDemand,
-                }),
-            );
+    it("should not reset the timeout if 'action' changes", () => {
+        // Arrange
+        const action1 = jest.fn();
+        const action2 = jest.fn();
+        const timeoutSpy = jest.spyOn(window, "setTimeout");
 
-            // Act
-            act(() => {
-                jest.advanceTimersByTime(1000);
-            });
+        // Act
+        const {rerender} = renderHook(
+            ({action}) => useTimeout(action, 500, true),
+            {initialProps: {action: action1}},
+        );
+        // NOTE: For some reason setTimeout is called twice by the time we get
+        // here.  I've verified that it only gets called once inside the hook
+        // so something else must be calling it.
+        const callCount = timeoutSpy.mock.calls.length;
+        rerender({action: action2});
+        jest.advanceTimersByTime(501);
 
-            // Assert
-            expect(action).not.toHaveBeenCalled();
-        });
+        // Assert
+        expect(timeoutSpy).toHaveBeenCalledTimes(callCount);
+    });
 
-        it("should call action after timeoutMs if the timer has been set", () => {
-            // Arrange
-            const action = jest.fn();
-            const {result} = renderHook(() =>
-                useTimeout(action, 1000, {
-                    schedulePolicy: SchedulePolicy.OnDemand,
-                }),
-            );
+    it("should fire the current action if 'action' changes", () => {
+        // Arrange
+        const action1 = jest.fn();
+        const action2 = jest.fn();
 
-            // Act
-            act(() => {
-                result.current.set();
-                jest.advanceTimersByTime(1000);
-            });
+        // Act
+        const {rerender} = renderHook(
+            ({action}) => useTimeout(action, 500, true),
+            {initialProps: {action: action1}},
+        );
+        rerender({action: action2});
+        jest.advanceTimersByTime(501);
 
-            // Assert
-            expect(action).toHaveBeenCalled();
-        });
-
-        it("should reset the timer after calling set() again", () => {
-            // Arrange
-            const action = jest.fn();
-            const {result} = renderHook(() =>
-                useTimeout(action, 1000, {
-                    schedulePolicy: SchedulePolicy.OnDemand,
-                }),
-            );
-
-            // Act
-            act(() => {
-                result.current.set();
-                jest.advanceTimersByTime(500);
-                result.current.set();
-                jest.advanceTimersByTime(500);
-            });
-
-            // Assert
-            expect(action).not.toHaveBeenCalled();
-        });
-
-        it("should call the action after calling set() again", () => {
-            // Arrange
-            const action = jest.fn();
-            const {result} = renderHook(() =>
-                useTimeout(action, 1000, {
-                    schedulePolicy: SchedulePolicy.OnDemand,
-                }),
-            );
-
-            // Act
-            act(() => {
-                result.current.set();
-                jest.advanceTimersByTime(500);
-                result.current.set();
-                jest.advanceTimersByTime(1000);
-            });
-
-            // Assert
-            expect(action).toHaveBeenCalled();
-        });
+        // Assert
+        expect(action1).not.toHaveBeenCalledWith();
+        expect(action2).toHaveBeenCalledWith();
     });
 });

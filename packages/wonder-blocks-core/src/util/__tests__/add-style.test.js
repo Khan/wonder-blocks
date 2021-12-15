@@ -2,6 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {mount} from "enzyme";
+import "jest-enzyme";
 
 import addStyle from "../add-style.js";
 

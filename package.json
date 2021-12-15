@@ -23,8 +23,8 @@
     "lint:watch": "esw --watch --config ./eslint/eslintrc packages",
     "lint": "eslint --config .eslintrc.js packages",
     "lint:ci": "eslint --config .eslintrc.js",
-    "publish": "node utils/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:all && lerna publish",
-    "publish:ci": "node utils/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:all && changeset publish",
+    "publish": "node utils/publish/pre-publish-check.js && git diff --stat --exit-code HEAD && yarn build:all && lerna publish",
+    "publish:ci": "node utils/publish/pre-publish-check-ci.js && git diff --stat --exit-code HEAD && yarn build:all && changeset publish",
     "start:prod": "yarn run build:styleguidist && yarn run start:styleguidist --config styleguide.prod.config.js",
     "start:storybook": "start-storybook -s ./static -p 6061",
     "start:styleguidist": "styleguidist server",
@@ -55,16 +55,15 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^13.5.0",
-    "alex": "^8.0.0",
+    "alex": "^10.0.0",
     "babel-jest": "^27.3.1",
     "babel-loader": "^8.2.3",
     "babel-plugin-dynamic-import-node": "^2.3.3",
     "babel-plugin-transform-flow-enums": "^0.0.2",
     "chromatic": "^6.0.4",
-    "concurrently": "^5.0.0",
+    "concurrently": "^6.4.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
-    "enzyme-matchers": "^7.1.2",
     "enzyme-to-json": "^3.6.2",
     "eslint": "^8.3.0",
     "eslint-config-prettier": "^8.3.0",
@@ -83,8 +82,8 @@
     "eslint-watch": "^8.0.0",
     "flow-bin": "^0.165.1",
     "glob": "^7.1.2",
-    "husky": "^4.2.5",
     "jest": "^27.3.1",
+    "jest-enzyme": "^7.1.2",
     "lerna": "^3.16.5",
     "lint-staged": "^10.2.2",
     "marked": "1.1.0",
@@ -108,7 +107,7 @@
     "@popperjs/core": "^2.10.1",
     "aphrodite": "^1.2.5",
     "flow-enums-runtime": "^0.0.6",
-    "inquirer": "^7.0.0",
+    "inquirer": "^8.2.0",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-popper": "^2.2.5",
@@ -120,11 +119,6 @@
     "packages/*",
     "build-settings"
   ],
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
   "lint-staged": {
     "*.md": [
       "yarn gen-snapshot-tests",

@@ -50,7 +50,7 @@ module.exports = {
             },
         ],
         "import/newline-after-import": "error",
-        "import/no-unassigned-import": "error",
+        "import/no-unassigned-import": ["error", {allow: ["jest-enzyme"]}],
         "import/no-named-default": "error",
         "import/extensions": [
             "error",

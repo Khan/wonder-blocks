@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {mount, shallow} from "enzyme";
+import "jest-enzyme";
 
 import ModalLauncher from "../modal-launcher.js";
 import OnePaneDialog from "../one-pane-dialog.js";

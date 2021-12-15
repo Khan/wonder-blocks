@@ -13,7 +13,9 @@ styleguide.prod.config.js
 config
 
 # ignore files that eslint doesn't know how to lint
+package.json
 **/*.md
 **/*.mdx
+.github/**/*.yml
 CODEOWNERS
 **/*.json

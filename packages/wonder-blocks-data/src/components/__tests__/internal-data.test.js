@@ -2,6 +2,7 @@
 // @flow
 import * as React from "react";
 import {mount, shallow} from "enzyme";
+import "jest-enzyme";
 
 // eslint-disable-next-line import/extensions
 import * as ReactDOMServer from "react-dom/server";

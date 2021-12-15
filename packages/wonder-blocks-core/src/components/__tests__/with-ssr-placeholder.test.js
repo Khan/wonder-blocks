@@ -2,8 +2,10 @@
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server.js";
 import {mount} from "enzyme";
+import "jest-enzyme";
 
 import WithSSRPlaceholder from "../with-ssr-placeholder.js";
+import {RenderStateRoot} from "../render-state-root.js";
 
 describe("WithSSRPlaceholder", () => {
     describe("client-side rendering", () => {
@@ -184,6 +186,75 @@ describe("WithSSRPlaceholder", () => {
                 // Assert
                 expect(result).toBe("");
             });
+        });
+    });
+
+    describe("inside a RenderStateRoot", () => {
+        test("calls placeholder render first, then the actual content render", async () => {
+            // Arrange
+            const mockPlaceholder = jest.fn(() => null);
+            await new Promise((resolve) => {
+                const nodes = (
+                    <RenderStateRoot>
+                        <WithSSRPlaceholder placeholder={mockPlaceholder}>
+                            {() => {
+                                resolve();
+                                return null;
+                            }}
+                        </WithSSRPlaceholder>
+                    </RenderStateRoot>
+                );
+
+                // Act
+                mount(nodes);
+            });
+
+            // Assert
+            // Our promise doesn't resolve until the children render, therefore
+            // we don't get here until that and so if the placeholder has been
+            // called, it must have been called first.
+            expect(mockPlaceholder).toHaveBeenCalledTimes(1);
+        });
+
+        test("server-side rendering, calls placeholder render only", () => {
+            // Arrange
+            const mockChildren = jest.fn(() => null);
+            const mockPlaceholder = jest.fn(() => null);
+
+            const nodes = (
+                <RenderStateRoot>
+                    <WithSSRPlaceholder placeholder={mockPlaceholder}>
+                        {mockChildren}
+                    </WithSSRPlaceholder>
+                </RenderStateRoot>
+            );
+
+            // Act
+            ReactDOMServer.renderToStaticMarkup(nodes);
+
+            // Assert
+            expect(mockPlaceholder).toHaveBeenCalledTimes(1);
+            expect(mockChildren).toHaveBeenCalledTimes(0);
+        });
+
+        test("null placeholder returns null", () => {
+            // Arrange
+            const mockChildren = jest.fn(() => null);
+
+            const nodes = (
+                <RenderStateRoot>
+                    <WithSSRPlaceholder placeholder={null}>
+                        {mockChildren}
+                    </WithSSRPlaceholder>
+                </RenderStateRoot>
+            );
+
+            // Act
+            const result = ReactDOMServer.renderToStaticMarkup(nodes);
+
+            // Assert
+            expect(result).toBe("");
+            expect(mockChildren).toHaveBeenCalledTimes(0);
         });
     });
 });
