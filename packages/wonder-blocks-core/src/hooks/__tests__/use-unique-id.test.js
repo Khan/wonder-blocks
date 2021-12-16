@@ -12,7 +12,7 @@ describe("useUniqueIdWithoutMock", () => {
     test("server-side render returns null", () => {
         // Arrange
         const wrapper = ({children}) => (
-            <RenderStateRoot>{children}</RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>{children}</RenderStateRoot>
         );
 
         // Act
@@ -35,7 +35,7 @@ describe("useUniqueIdWithoutMock", () => {
 
         // Act
         render(
-            <RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>
                 <TestComponent />
             </RenderStateRoot>,
         );
@@ -55,7 +55,7 @@ describe("useUniqueIdWithoutMock", () => {
 
         // Act
         render(
-            <RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>
                 <TestComponent />
             </RenderStateRoot>,
         );
@@ -74,14 +74,14 @@ describe("useUniqueIdWithoutMock", () => {
             return null;
         };
         const {rerender} = render(
-            <RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>
                 <TestComponent />
             </RenderStateRoot>,
         );
 
         // Act
         rerender(
-            <RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>
                 <TestComponent />
             </RenderStateRoot>,
         );
@@ -122,7 +122,7 @@ describe("useUniqueIdWithoutMock", () => {
 
         // Act
         render(
-            <RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>
                 <TestComponent2 />
             </RenderStateRoot>,
         );
@@ -137,7 +137,7 @@ describe("useUniqueIdWithMock", () => {
     test("server-side render returns SsrIDFactory", () => {
         // Arrange
         const wrapper = ({children}) => (
-            <RenderStateRoot>{children}</RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>{children}</RenderStateRoot>
         );
 
         // Act
@@ -158,7 +158,7 @@ describe("useUniqueIdWithMock", () => {
 
         // Act
         render(
-            <RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>
                 <TestComponent />
             </RenderStateRoot>,
         );
@@ -178,7 +178,7 @@ describe("useUniqueIdWithMock", () => {
 
         // Act
         render(
-            <RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>
                 <TestComponent />
             </RenderStateRoot>,
         );
@@ -197,14 +197,14 @@ describe("useUniqueIdWithMock", () => {
             return null;
         };
         const {rerender} = render(
-            <RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>
                 <TestComponent />
             </RenderStateRoot>,
         );
 
         // Act
         rerender(
-            <RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>
                 <TestComponent />
             </RenderStateRoot>,
         );
@@ -245,7 +245,7 @@ describe("useUniqueIdWithMock", () => {
 
         // Act
         render(
-            <RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>
                 <TestComponent2 />
             </RenderStateRoot>,
         );

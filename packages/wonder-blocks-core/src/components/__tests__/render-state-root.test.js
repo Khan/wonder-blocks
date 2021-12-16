@@ -25,7 +25,7 @@ describe("RenderStateRoot", () => {
 
         // Act
         render(
-            <RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>
                 <TestComponent />
             </RenderStateRoot>,
         );
@@ -47,7 +47,7 @@ describe("RenderStateRoot", () => {
 
         // Act
         render(
-            <RenderStateRoot>
+            <RenderStateRoot throwIfNested={true}>
                 <TestComponent />
             </RenderStateRoot>,
         );
@@ -56,12 +56,14 @@ describe("RenderStateRoot", () => {
         expect(values[1]).toEqual(RenderState.Standard);
     });
 
-    it("should not allow nesting of <RenderStateRoot>", () => {
+    it("should not allow nesting of <RenderStateRoot> when throwIfNested={true}", () => {
         // Act
         const underTest = () =>
             render(
-                <RenderStateRoot>
-                    <RenderStateRoot>Hello, world!</RenderStateRoot>
+                <RenderStateRoot throwIfNested={true}>
+                    <RenderStateRoot throwIfNested={true}>
+                        Hello, world!
+                    </RenderStateRoot>
                 </RenderStateRoot>,
             );
 
@@ -69,4 +71,23 @@ describe("RenderStateRoot", () => {
             `"There's already a <RenderStateRoot> above this instance in the render tree.  This instance should be removed."`,
         );
     });
+
+    it("should allow nesting of <RenderStateRoot> when throwIfNested={false}", () => {
+        // Act
+        const underTest = () =>
+            render(
+                <RenderStateRoot throwIfNested={false}>
+                    <RenderStateRoot throwIfNested={false}>
+                        Hello, world!
+                    </RenderStateRoot>
+                </RenderStateRoot>,
+            );
+
+        expect(underTest).not.toThrowError();
+    });
+
+    // This test can be written once ADR #526 has been implemented.  I've left
+    // a comment in the ADR about this kind of test case being something we
+    // should support.
+    it.todo("should only render a single context provider when nesting");
 });

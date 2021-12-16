@@ -11,22 +11,30 @@ const {useContext, useEffect, useState} = React;
 
 type Props = {|
     children: React.Node,
+    throwIfNested: boolean,
 |};
 
-export const RenderStateRoot = ({children}: Props): React.Node => {
+export const RenderStateRoot = ({
+    children,
+    throwIfNested,
+}: Props): React.Node => {
     const [firstRender, setFirstRender] = useState<boolean>(true);
     const contextValue = useContext(RenderStateContext);
-
-    if (contextValue !== RenderState.Root) {
-        throw new Error(
-            "There's already a <RenderStateRoot> above this instance in " +
-                "the render tree.  This instance should be removed.",
-        );
-    }
-
     useEffect(() => {
         setFirstRender(false);
     }, []); // This effect will only run once.
+
+    if (contextValue !== RenderState.Root) {
+        if (throwIfNested) {
+            throw new Error(
+                "There's already a <RenderStateRoot> above this instance in " +
+                    "the render tree.  This instance should be removed.",
+            );
+        }
+        // Avoid rendering multiple providers if this RenderStateRoot
+        // is nested inside another one.
+        return children;
+    }
 
     const value = firstRender ? RenderState.Initial : RenderState.Standard;
 
