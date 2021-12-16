@@ -1,6 +1,7 @@
 /* eslint-disable max-lines */
 // @flow
 import * as React from "react";
+import {render, screen} from "@testing-library/react";
 import {MemoryRouter, Switch, Route} from "react-router-dom";
 import {mount, shallow} from "enzyme";
 
@@ -273,6 +274,46 @@ describe("ClickableBehavior", () => {
         );
         button.simulate("blur");
         expect(button.state("focused")).toEqual(false);
+    });
+
+    test("tabIndex should be 0", () => {
+        // Arrange
+        // Act
+        render(
+            <ClickableBehavior disabled={false} onClick={(e) => {}}>
+                {(state, childrenProps) => {
+                    return (
+                        <button data-test-id="test-button-1" {...childrenProps}>
+                            Label
+                        </button>
+                    );
+                }}
+            </ClickableBehavior>,
+        );
+
+        // Assert
+        const button = screen.getByTestId("test-button-1");
+        expect(button).toHaveAttribute("tabIndex", "0");
+    });
+
+    test("tabIndex should be 0 even for disabled components", () => {
+        // Arrange
+        // Act
+        render(
+            <ClickableBehavior disabled={true} onClick={(e) => {}}>
+                {(state, childrenProps) => {
+                    return (
+                        <button data-test-id="test-button-2" {...childrenProps}>
+                            Label
+                        </button>
+                    );
+                }}
+            </ClickableBehavior>,
+        );
+
+        // Assert
+        const button = screen.getByTestId("test-button-2");
+        expect(button).toHaveAttribute("tabIndex", "0");
     });
 
     it("does not change state if disabled", () => {

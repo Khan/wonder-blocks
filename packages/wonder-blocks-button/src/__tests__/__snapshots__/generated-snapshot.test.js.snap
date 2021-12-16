@@ -21,8 +21,8 @@ exports[`wonder-blocks-button example 1 1`] = `
   }
 >
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -94,8 +94,8 @@ exports[`wonder-blocks-button example 1 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -170,8 +170,8 @@ exports[`wonder-blocks-button example 1 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -267,8 +267,8 @@ exports[`wonder-blocks-button example 2 1`] = `
   }
 >
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -340,8 +340,8 @@ exports[`wonder-blocks-button example 2 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -416,8 +416,8 @@ exports[`wonder-blocks-button example 2 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -513,8 +513,8 @@ exports[`wonder-blocks-button example 3 1`] = `
   }
 >
   <button
-    aria-disabled={true}
     className=""
+    disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -586,8 +586,8 @@ exports[`wonder-blocks-button example 3 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={true}
     className=""
+    disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -662,8 +662,8 @@ exports[`wonder-blocks-button example 3 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={true}
     className=""
+    disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -760,8 +760,8 @@ exports[`wonder-blocks-button example 4 1`] = `
   }
 >
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -833,8 +833,8 @@ exports[`wonder-blocks-button example 4 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -909,8 +909,8 @@ exports[`wonder-blocks-button example 4 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -983,8 +983,8 @@ exports[`wonder-blocks-button example 4 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={true}
     className=""
+    disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -1056,8 +1056,8 @@ exports[`wonder-blocks-button example 4 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={true}
     className=""
+    disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -1132,8 +1132,8 @@ exports[`wonder-blocks-button example 4 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={true}
     className=""
+    disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -1249,8 +1249,8 @@ exports[`wonder-blocks-button example 5 1`] = `
     }
   >
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -1322,8 +1322,8 @@ exports[`wonder-blocks-button example 5 1`] = `
       </span>
     </button>
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -1398,8 +1398,8 @@ exports[`wonder-blocks-button example 5 1`] = `
       </span>
     </button>
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -1493,8 +1493,8 @@ exports[`wonder-blocks-button example 5 1`] = `
     }
   >
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -1566,8 +1566,8 @@ exports[`wonder-blocks-button example 5 1`] = `
       </span>
     </button>
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -1642,8 +1642,8 @@ exports[`wonder-blocks-button example 5 1`] = `
       </span>
     </button>
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -1737,8 +1737,8 @@ exports[`wonder-blocks-button example 5 1`] = `
     }
   >
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -1810,8 +1810,8 @@ exports[`wonder-blocks-button example 5 1`] = `
       </span>
     </button>
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -1886,8 +1886,8 @@ exports[`wonder-blocks-button example 5 1`] = `
       </span>
     </button>
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -1984,9 +1984,9 @@ exports[`wonder-blocks-button example 6 1`] = `
   }
 >
   <button
-    aria-disabled={true}
     aria-label="loading"
     className=""
+    disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -2112,9 +2112,9 @@ exports[`wonder-blocks-button example 6 1`] = `
     </div>
   </button>
   <button
-    aria-disabled={true}
     aria-label="loading"
     className=""
+    disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -2240,9 +2240,9 @@ exports[`wonder-blocks-button example 6 1`] = `
     </div>
   </button>
   <button
-    aria-disabled={true}
     aria-label="loading"
     className=""
+    disabled={true}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -2459,8 +2459,8 @@ exports[`wonder-blocks-button example 7 1`] = `
     </span>
   </a>
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -3354,8 +3354,8 @@ exports[`wonder-blocks-button example 12 1`] = `
     }
   >
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -3447,8 +3447,8 @@ exports[`wonder-blocks-button example 12 1`] = `
       </span>
     </button>
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -3543,8 +3543,8 @@ exports[`wonder-blocks-button example 12 1`] = `
       </span>
     </button>
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -3658,8 +3658,8 @@ exports[`wonder-blocks-button example 12 1`] = `
     }
   >
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -3752,8 +3752,8 @@ exports[`wonder-blocks-button example 12 1`] = `
       </span>
     </button>
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -3849,8 +3849,8 @@ exports[`wonder-blocks-button example 12 1`] = `
       </span>
     </button>
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -3971,8 +3971,8 @@ exports[`wonder-blocks-button example 13 1`] = `
     onSubmit={[Function]}
   >
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -4067,8 +4067,8 @@ exports[`wonder-blocks-button example 14 1`] = `
   }
 >
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -4181,8 +4181,8 @@ exports[`wonder-blocks-button example 15 1`] = `
     }
   >
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -4293,8 +4293,8 @@ exports[`wonder-blocks-button example 15 1`] = `
     }
   >
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -4389,8 +4389,8 @@ exports[`wonder-blocks-button example 16 1`] = `
   }
 >
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -4466,8 +4466,8 @@ exports[`wonder-blocks-button example 16 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -4564,8 +4564,8 @@ exports[`wonder-blocks-button example 17 1`] = `
   }
 >
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -4641,8 +4641,8 @@ exports[`wonder-blocks-button example 17 1`] = `
     </span>
   </button>
   <button
-    aria-disabled={false}
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -4757,8 +4757,8 @@ exports[`wonder-blocks-button example 18 1`] = `
     }
   >
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -4831,8 +4831,8 @@ exports[`wonder-blocks-button example 18 1`] = `
       </span>
     </button>
     <button
-      aria-disabled={false}
       className=""
+      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -4927,9 +4927,9 @@ exports[`wonder-blocks-button example 19 1`] = `
   }
 >
   <button
-    aria-disabled={false}
     aria-label=""
     className=""
+    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
