@@ -11,7 +11,11 @@ const {useContext, useEffect, useState} = React;
 
 type Props = {|
     children: React.Node,
-    throwIfNested: boolean,
+
+    /**
+     * Whether the component should throw when nested.  Defaults to `true`.
+     */
+    throwIfNested?: boolean,
 |};
 
 export const RenderStateRoot = ({
@@ -43,4 +47,8 @@ export const RenderStateRoot = ({
             {children}
         </RenderStateContext.Provider>
     );
+};
+
+RenderStateRoot.defaultProps = {
+    throwIfNested: true,
 };

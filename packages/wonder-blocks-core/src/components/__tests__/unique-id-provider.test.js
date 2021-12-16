@@ -163,7 +163,7 @@ describe("UniqueIDProvider", () => {
             // Arrange
             const foo = jest.fn(() => null);
             const nodes = (
-                <RenderStateRoot throwIfNested={true}>
+                <RenderStateRoot>
                     <UniqueIDProvider mockOnFirstRender={false}>
                         {(ids) => foo(ids.get(""))}
                     </UniqueIDProvider>

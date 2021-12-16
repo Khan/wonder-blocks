@@ -195,7 +195,7 @@ describe("WithSSRPlaceholder", () => {
             const mockPlaceholder = jest.fn(() => null);
             await new Promise((resolve) => {
                 const nodes = (
-                    <RenderStateRoot throwIfNested={true}>
+                    <RenderStateRoot>
                         <WithSSRPlaceholder placeholder={mockPlaceholder}>
                             {() => {
                                 resolve();
@@ -222,7 +222,7 @@ describe("WithSSRPlaceholder", () => {
             const mockPlaceholder = jest.fn(() => null);
 
             const nodes = (
-                <RenderStateRoot throwIfNested={true}>
+                <RenderStateRoot>
                     <WithSSRPlaceholder placeholder={mockPlaceholder}>
                         {mockChildren}
                     </WithSSRPlaceholder>
@@ -242,7 +242,7 @@ describe("WithSSRPlaceholder", () => {
             const mockChildren = jest.fn(() => null);
 
             const nodes = (
-                <RenderStateRoot throwIfNested={true}>
+                <RenderStateRoot>
                     <WithSSRPlaceholder placeholder={null}>
                         {mockChildren}
                     </WithSSRPlaceholder>

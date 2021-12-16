@@ -25,7 +25,7 @@ describe("RenderStateRoot", () => {
 
         // Act
         render(
-            <RenderStateRoot throwIfNested={true}>
+            <RenderStateRoot>
                 <TestComponent />
             </RenderStateRoot>,
         );
@@ -47,7 +47,7 @@ describe("RenderStateRoot", () => {
 
         // Act
         render(
-            <RenderStateRoot throwIfNested={true}>
+            <RenderStateRoot>
                 <TestComponent />
             </RenderStateRoot>,
         );
@@ -56,14 +56,12 @@ describe("RenderStateRoot", () => {
         expect(values[1]).toEqual(RenderState.Standard);
     });
 
-    it("should not allow nesting of <RenderStateRoot> when throwIfNested={true}", () => {
+    it("should not allow nesting of <RenderStateRoot> when", () => {
         // Act
         const underTest = () =>
             render(
-                <RenderStateRoot throwIfNested={true}>
-                    <RenderStateRoot throwIfNested={true}>
-                        Hello, world!
-                    </RenderStateRoot>
+                <RenderStateRoot>
+                    <RenderStateRoot>Hello, world!</RenderStateRoot>
                 </RenderStateRoot>,
             );
 
