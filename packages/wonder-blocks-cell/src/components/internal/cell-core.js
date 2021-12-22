@@ -11,7 +11,24 @@ import {
     renderRightAccessory,
 } from "./common.js";
 
-import type {CellProps} from "../../util/types.js";
+import type {CellProps, HorizontalRuleVariant} from "../../util/types.js";
+
+/**
+ * Gets the horizontalRule style based on the variant.
+ * @param {HorizontalRuleVariant} horizontalRule The variant of the horizontal
+ * rule.
+ * @returns A styled horizontal rule.
+ */
+const getHorizontalRuleStyles = (horizontalRule: HorizontalRuleVariant) => {
+    switch (horizontalRule) {
+        case "inset":
+            return [styles.horizontalRule, styles.horizontalRuleInset];
+        case "full-width":
+            return styles.horizontalRule;
+        case "none":
+            return {};
+    }
+};
 
 type CellCoreProps = {|
     ...CellProps,
@@ -42,34 +59,21 @@ const CellCore = (props: CellCoreProps): React.Node => {
         testId,
     } = props;
 
-    return (
-        <View style={[styles.wrapper, style]}>
-            <View
-                style={[
-                    styles.innerWrapper,
-                    horizontalRule === "full-width" && styles.horizontalRule,
-                ]}
-            >
-                {/* Left accessory */}
-                {leftAccessory &&
-                    renderLeftAccessory(leftAccessory, leftAccessoryStyle)}
-            </View>
-            <View
-                style={[
-                    styles.innerWrapper,
-                    styles.cellBody,
-                    horizontalRule !== "none" && styles.horizontalRule,
-                ]}
-            >
-                {/* Cell contents */}
-                <View testId={testId} style={styles.content}>
-                    {children}
-                </View>
+    const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
 
-                {/* Right accessory */}
-                {rightAccessory &&
-                    renderRightAccessory(rightAccessory, rightAccessoryStyle)}
+    return (
+        <View style={[styles.wrapper, style, horizontalRuleStyles]}>
+            {/* Left accessory */}
+            {leftAccessory &&
+                renderLeftAccessory(leftAccessory, leftAccessoryStyle)}
+            {/* Cell contents */}
+            <View testId={testId} style={styles.content}>
+                {children}
             </View>
+
+            {/* Right accessory */}
+            {rightAccessory &&
+                renderRightAccessory(rightAccessory, rightAccessoryStyle)}
         </View>
     );
 };
@@ -77,21 +81,10 @@ const CellCore = (props: CellCoreProps): React.Node => {
 const styles = StyleSheet.create({
     wrapper: {
         background: Color.white,
+        padding: CellMeasurements.cellPadding,
         flexDirection: "row",
         alignItems: "stretch",
         textAlign: "left",
-    },
-
-    innerWrapper: {
-        minWidth: "auto",
-        padding: CellMeasurements.cellPadding,
-        paddingLeft: 0,
-        flexDirection: "row",
-        justifyContent: "space-between",
-    },
-
-    cellBody: {
-        width: "100%",
     },
 
     content: {
@@ -100,7 +93,22 @@ const styles = StyleSheet.create({
     },
 
     horizontalRule: {
-        boxShadow: `inset 0px -1px 0px ${Color.offBlack16}`,
+        position: "relative",
+        ":after": {
+            width: "100%",
+            content: "''",
+            position: "absolute",
+            bottom: 0,
+            right: 0,
+            height: 2,
+            boxShadow: `inset 0px -1px 0px ${Color.offBlack8}`,
+        },
+    },
+
+    horizontalRuleInset: {
+        ":after": {
+            width: `calc(100% - ${CellMeasurements.cellPadding}px)`,
+        },
     },
 });
 

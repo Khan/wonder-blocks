@@ -7,7 +7,7 @@ import {type Typography} from "@khanacademy/wonder-blocks-typography";
 /**
  * A set of values that can be used to configure the horizontal rule appearance.
  */
-type HorizontalRuleVariant = "full-width" | "inset" | "none";
+export type HorizontalRuleVariant = "full-width" | "inset" | "none";
 
 /**
  * A subset of CSS Properties to allow overriding some of the default styles set

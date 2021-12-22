@@ -17,11 +17,14 @@ type Accessory = React.Node;
 export const renderLeftAccessory = (
     leftAccessory: Accessory,
     leftAccessoryStyle?: AccessoryStyle,
-): React.Element<typeof View> => {
+): React.Node => {
     return (
-        <View style={[styles.left, {...leftAccessoryStyle}]}>
-            {leftAccessory}
-        </View>
+        <>
+            <View style={[styles.left, {...leftAccessoryStyle}]}>
+                {leftAccessory}
+            </View>
+            <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
+        </>
     );
 };
 
@@ -40,12 +43,15 @@ export const renderRightAccessory = (
 };
 
 export const CellMeasurements = {
+    /**
+     * The cell wrapper's gap.
+     */
     cellPadding: Spacing.medium_16,
+
+    /**
+     * The horizontal spacing between the left and right accessory.
+     */
     accessoryHorizontalSpacing: Spacing.medium_16,
-    leftAccessoryWidth: Spacing.large_24,
-    rightAccessoryWidth: Spacing.xLarge_32,
-    textHorizontalSpacing: Spacing.large_24,
-    textVerticalSpacing: Spacing.xxxxSmall_2,
 };
 
 const styles = StyleSheet.create({
@@ -53,7 +59,6 @@ const styles = StyleSheet.create({
         minWidth: "auto",
         alignItems: "center",
         alignSelf: "center",
-        paddingLeft: CellMeasurements.cellPadding,
     },
 
     right: {
