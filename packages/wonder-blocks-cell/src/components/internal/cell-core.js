@@ -7,28 +7,12 @@ import Color from "@khanacademy/wonder-blocks-color";
 
 import {
     CellMeasurements,
+    getHorizontalRuleStyles,
     renderLeftAccessory,
     renderRightAccessory,
 } from "./common.js";
 
-import type {CellProps, HorizontalRuleVariant} from "../../util/types.js";
-
-/**
- * Gets the horizontalRule style based on the variant.
- * @param {HorizontalRuleVariant} horizontalRule The variant of the horizontal
- * rule.
- * @returns A styled horizontal rule.
- */
-const getHorizontalRuleStyles = (horizontalRule: HorizontalRuleVariant) => {
-    switch (horizontalRule) {
-        case "inset":
-            return [styles.horizontalRule, styles.horizontalRuleInset];
-        case "full-width":
-            return styles.horizontalRule;
-        case "none":
-            return {};
-    }
-};
+import type {CellProps} from "../../util/types.js";
 
 type CellCoreProps = {|
     ...CellProps,
@@ -90,25 +74,6 @@ const styles = StyleSheet.create({
     content: {
         alignSelf: "center",
         color: Color.offBlack,
-    },
-
-    horizontalRule: {
-        position: "relative",
-        ":after": {
-            width: "100%",
-            content: "''",
-            position: "absolute",
-            bottom: 0,
-            right: 0,
-            height: 2,
-            boxShadow: `inset 0px -1px 0px ${Color.offBlack8}`,
-        },
-    },
-
-    horizontalRuleInset: {
-        ":after": {
-            width: `calc(100% - ${CellMeasurements.cellPadding}px)`,
-        },
     },
 });
 
