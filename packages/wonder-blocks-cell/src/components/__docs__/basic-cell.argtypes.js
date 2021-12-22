@@ -29,16 +29,6 @@ export default {
             },
         },
     },
-    horizontalRule: {
-        description:
-            "Adds a horizontal rule at the bottom of the cell that can be used to separate cells within groups such as lists. Defaults to `inset`.",
-        defaultValue: "inset",
-        options: ["inset", "full-width", "none"],
-        control: {type: "select"},
-        table: {
-            category: "Layout",
-        },
-    },
     leftAccessory: {
         description: `If provided, this adds a left accessory to the cell. Left Accessories can be defined using WB components such as Icon, IconButton, or it can even be used for a custom node/component if needed. What ever is passed in will occupy the "LeftAccessory” area of the Cell.`,
         control: {type: "select"},
@@ -65,24 +55,6 @@ export default {
         mapping: CellMappings,
         table: {
             category: "Layout",
-        },
-    },
-    style: {
-        description: "Optional custom styles.",
-        table: {
-            category: "Styling",
-            type: {
-                summary: "StyleType",
-            },
-        },
-    },
-    testId: {
-        description: "Test ID used for e2e testing.",
-        control: {type: "text"},
-        table: {
-            type: {
-                summary: "string",
-            },
         },
     },
 };

@@ -7,7 +7,6 @@ import Color from "@khanacademy/wonder-blocks-color";
 
 import {
     CellMeasurements,
-    getHorizontalRuleStyles,
     renderLeftAccessory,
     renderRightAccessory,
 } from "./common.js";
@@ -34,26 +33,19 @@ type CellCoreProps = {|
 const CellCore = (props: CellCoreProps): React.Node => {
     const {
         children,
-        horizontalRule = "inset",
         leftAccessory = undefined,
         leftAccessoryStyle = undefined,
         rightAccessory = undefined,
         rightAccessoryStyle = undefined,
-        style,
-        testId,
     } = props;
 
-    const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
-
     return (
-        <View style={[styles.wrapper, style, horizontalRuleStyles]}>
+        <View style={[styles.wrapper]}>
             {/* Left accessory */}
             {leftAccessory &&
                 renderLeftAccessory(leftAccessory, leftAccessoryStyle)}
             {/* Cell contents */}
-            <View testId={testId} style={styles.content}>
-                {children}
-            </View>
+            <View style={styles.content}>{children}</View>
 
             {/* Right accessory */}
             {rightAccessory &&

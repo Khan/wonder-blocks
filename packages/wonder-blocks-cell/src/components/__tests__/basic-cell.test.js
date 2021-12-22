@@ -63,14 +63,4 @@ describe("BasicCell", () => {
         // Assert
         expect(screen.getByLabelText("Caret icon")).toBeInTheDocument();
     });
-
-    it("should add testId to the content wrapper", () => {
-        // Arrange
-
-        // Act
-        render(<BasicCell title="Basic cell" testId="cellId" />);
-
-        // Assert
-        expect(screen.getByTestId("cellId")).toHaveTextContent("Basic cell");
-    });
 });
