@@ -124,7 +124,7 @@ BasicCellBoth.parameters = {
 
 export const BasicCellAccessoryStyles: StoryComponentType = () => (
     <BasicCell
-        title="BasicCell with custom accessory stylesdfsfdsfdsf dsfdfdsfsdfdsfsdfddddddddddddddddd"
+        title="BasicCell with custom accessory styles"
         leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
         leftAccessoryStyle={{
             minWidth: Spacing.xxLarge_48,

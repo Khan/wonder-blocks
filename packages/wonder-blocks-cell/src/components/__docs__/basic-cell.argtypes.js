@@ -57,4 +57,14 @@ export default {
             category: "Layout",
         },
     },
+    rightAccessoryStyle: {
+        description: `Optional custom styles applied to the rightAccessory wrapper. For example, it can be used to set a custom minWidth or a custom alignment.`,
+        table: {
+            category: "Styling",
+            type: {
+                summary: "AccessoryStyle",
+                detail: "NOTE: rightAccessoryStyle can only be used if rightAccessory is set.",
+            },
+        },
+    },
 };
