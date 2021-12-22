@@ -2,6 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -58,5 +59,6 @@ const styles = StyleSheet.create({
     right: {
         alignItems: "center",
         alignSelf: "center",
+        color: Color.offBlack64,
     },
 });

@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
 
     content: {
         alignSelf: "center",
+        color: Color.offBlack,
     },
 
     horizontalRule: {

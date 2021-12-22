@@ -18,7 +18,7 @@ import BasicCellArgTypes from "./basic-cell.argtypes.js";
 import BasicCell from "../basic-cell.js";
 
 export default {
-    title: "Layout / Cell / Basic Cell",
+    title: "Cell / Basic Cell",
     component: BasicCell,
     argTypes: BasicCellArgTypes,
     parameters: {
@@ -52,9 +52,7 @@ export const DefaultBasicCell: StoryComponentType = Template.bind({});
 
 DefaultBasicCell.args = {
     title: "Basic Cell",
-    rightAccessory: (
-        <Icon icon={icons.caretRight} size="medium" color={Color.offBlack50} />
-    ),
+    rightAccessory: <Icon icon={icons.caretRight} />,
 };
 
 DefaultBasicCell.parameters = {
@@ -197,7 +195,7 @@ BasicCellSizes.parameters = {
 
 const styles = StyleSheet.create({
     example: {
-        backgroundColor: Color.offBlack8,
+        backgroundColor: Color.offWhite,
         padding: Spacing.large_24,
         width: 320,
     },
