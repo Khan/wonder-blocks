@@ -1,4 +1,4 @@
 // @flow
-import BasicCell from "./components/basic-cell.js";
 
-export {BasicCell};
+// Just a temporary export to have some code.
+export const NOTHING = "NOTHING";
