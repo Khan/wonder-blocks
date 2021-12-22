@@ -1,7 +1,13 @@
 // @flow
 import * as React from "react";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
+
+/**
+ * A set of values that can be used to configure the horizontal rule appearance.
+ */
+export type HorizontalRuleVariant = "full-width" | "inset" | "none";
 
 /**
  * An element or component that represents an accessory within a cell.
@@ -80,4 +86,20 @@ export type CellProps = {|
      * set.
      */
     rightAccessoryStyle?: AccessoryStyle,
+
+    /**
+     * Adds a horizontal rule at the bottom of the cell that can be used to
+     * separate cells within groups such as lists. Defaults to `inset`.
+     */
+    horizontalRule?: HorizontalRuleVariant,
+
+    /**
+     * Optional custom styles applied to the cell container.
+     */
+    style?: StyleType,
+
+    /**
+     * Optional test ID for e2e testing.
+     */
+    testId?: string,
 |};

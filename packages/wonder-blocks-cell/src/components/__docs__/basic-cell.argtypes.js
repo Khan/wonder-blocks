@@ -67,4 +67,32 @@ export default {
             },
         },
     },
+    horizontalRule: {
+        description:
+            "Adds a horizontal rule at the bottom of the cell that can be used to separate cells within groups such as lists. Defaults to `inset`.",
+        defaultValue: "inset",
+        options: ["inset", "full-width", "none"],
+        control: {type: "select"},
+        table: {
+            category: "Layout",
+        },
+    },
+    style: {
+        description: "Optional custom styles.",
+        table: {
+            category: "Styling",
+            type: {
+                summary: "StyleType",
+            },
+        },
+    },
+    testId: {
+        description: "Test ID used for e2e testing.",
+        control: {type: "text"},
+        table: {
+            type: {
+                summary: "string",
+            },
+        },
+    },
 };

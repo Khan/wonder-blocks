@@ -6,7 +6,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 
-import {CellMeasurements} from "./common.js";
+import {CellMeasurements, getHorizontalRuleStyles} from "./common.js";
 
 import type {CellProps, TypographyText} from "../../util/types.js";
 
@@ -30,15 +30,20 @@ type CellCoreProps = {|
 const CellCore = (props: CellCoreProps): React.Node => {
     const {
         children,
+        horizontalRule = "inset",
         leftAccessory = undefined,
         leftAccessoryStyle = undefined,
         rightAccessory = undefined,
         rightAccessoryStyle = undefined,
+        style,
+        testId,
     } = props;
+
+    const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
 
     return (
         <View style={[styles.wrapper]}>
-            <View style={styles.innerWrapper}>
+            <View style={[styles.innerWrapper, style, horizontalRuleStyles]}>
                 {/* Left accessory */}
                 {leftAccessory && (
                     <>
@@ -53,7 +58,9 @@ const CellCore = (props: CellCoreProps): React.Node => {
                     </>
                 )}
                 {/* Cell contents */}
-                <View style={styles.content}>{children}</View>
+                <View style={styles.content} testId={testId}>
+                    {children}
+                </View>
 
                 {/* Right accessory */}
                 {rightAccessory && (
@@ -85,11 +92,11 @@ const styles = StyleSheet.create({
     innerWrapper: {
         padding: CellMeasurements.cellPadding,
         flexDirection: "row",
+        color: Color.offBlack,
     },
 
     content: {
         alignSelf: "center",
-        color: Color.offBlack,
     },
 
     accessory: {
