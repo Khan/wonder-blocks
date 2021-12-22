@@ -85,7 +85,7 @@ jobs:
         uses: preactjs/compressed-size-action@v2
         with:
           # Specify our custom build script
-          build-script: "build:all"
+          build-script: "build:es6"
           # Any JS files anywhere within a dist directory:
           pattern: "**/dist/es/*.js"
           # Always ignore SourceMaps and node_modules:
