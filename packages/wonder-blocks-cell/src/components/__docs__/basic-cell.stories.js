@@ -107,11 +107,8 @@ export const BasicCellBoth: StoryComponentType = () => (
     <BasicCell
         title="Intro to rational & irrational numbers"
         leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
-        leftAccessoryStyle={{
-            minWidth: Spacing.xxLarge_48,
-        }}
         rightAccessory={
-            <Icon icon={calendarIcon} size="small" color={Color.blue} />
+            <Icon icon={calendarIcon} size="medium" color={Color.blue} />
         }
     />
 );
@@ -122,6 +119,33 @@ BasicCellBoth.parameters = {
     docs: {
         storyDescription:
             "You can also create a more complex cell with accessories placed on both sides. Note that you can extend the Icon component with custom paths such as the following example.",
+    },
+};
+
+export const BasicCellAccessoryStyles: StoryComponentType = () => (
+    <BasicCell
+        title="BasicCell with custom accessory stylesdfsfdsfdsf dsfdfdsfsdfdsfsdfddddddddddddddddd"
+        leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
+        leftAccessoryStyle={{
+            minWidth: Spacing.xxLarge_48,
+            alignSelf: "flex-start",
+            alignItems: "flex-start",
+        }}
+        rightAccessory={<Icon icon={icons.caretRight} size="small" />}
+        rightAccessoryStyle={{
+            minWidth: Spacing.large_24,
+            alignSelf: "flex-end",
+            alignItems: "flex-end",
+        }}
+    />
+);
+
+BasicCellAccessoryStyles.storyName = "BasicCell accessories with custom styles";
+
+BasicCellAccessoryStyles.parameters = {
+    docs: {
+        storyDescription:
+            "Accessories can also be customized to adapt to different sizes and alignments. In this example, we can see how a cell can be customized for both accessories.",
     },
 };
 

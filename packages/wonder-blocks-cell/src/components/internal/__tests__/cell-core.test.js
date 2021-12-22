@@ -10,7 +10,7 @@ describe("CellCore", () => {
 
         // Act
         render(
-            <CellCore title="Cell Core">
+            <CellCore>
                 <div>cell core content</div>
             </CellCore>,
         );

@@ -24,10 +24,10 @@ import type {CellProps} from "../util/types.js";
  * ```
  */
 function BasicCell(props: CellProps): React.Node {
-    const {title} = props;
+    const {title, ...coreProps} = props;
 
     return (
-        <CellCore {...props}>
+        <CellCore {...coreProps}>
             {typeof title === "string" ? (
                 <LabelMedium>{title}</LabelMedium>
             ) : (

@@ -4,17 +4,14 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
 
-import {
-    CellMeasurements,
-    renderLeftAccessory,
-    renderRightAccessory,
-} from "./common.js";
+import {CellMeasurements} from "./common.js";
 
-import type {CellProps} from "../../util/types.js";
+import type {CellProps, TypographyText} from "../../util/types.js";
 
 type CellCoreProps = {|
-    ...CellProps,
+    ...$Rest<CellProps, {|title: TypographyText|}>,
 
     /**
      * The content of the cell.
@@ -41,15 +38,41 @@ const CellCore = (props: CellCoreProps): React.Node => {
 
     return (
         <View style={[styles.wrapper]}>
-            {/* Left accessory */}
-            {leftAccessory &&
-                renderLeftAccessory(leftAccessory, leftAccessoryStyle)}
-            {/* Cell contents */}
-            <View style={styles.content}>{children}</View>
+            <View style={styles.innerWrapper}>
+                {/* Left accessory */}
+                {leftAccessory && (
+                    <>
+                        <View
+                            style={[styles.accessory, {...leftAccessoryStyle}]}
+                        >
+                            {leftAccessory}
+                        </View>
+                        <Strut
+                            size={CellMeasurements.accessoryHorizontalSpacing}
+                        />
+                    </>
+                )}
+                {/* Cell contents */}
+                <View style={styles.content}>{children}</View>
 
-            {/* Right accessory */}
-            {rightAccessory &&
-                renderRightAccessory(rightAccessory, rightAccessoryStyle)}
+                {/* Right accessory */}
+                {rightAccessory && (
+                    <>
+                        <Strut
+                            size={CellMeasurements.accessoryHorizontalSpacing}
+                        />
+                        <View
+                            style={[
+                                styles.accessory,
+                                styles.accessoryRight,
+                                {...rightAccessoryStyle},
+                            ]}
+                        >
+                            {rightAccessory}
+                        </View>
+                    </>
+                )}
+            </View>
         </View>
     );
 };
@@ -57,15 +80,35 @@ const CellCore = (props: CellCoreProps): React.Node => {
 const styles = StyleSheet.create({
     wrapper: {
         background: Color.white,
+    },
+
+    innerWrapper: {
         padding: CellMeasurements.cellPadding,
         flexDirection: "row",
-        alignItems: "stretch",
-        textAlign: "left",
     },
 
     content: {
         alignSelf: "center",
         color: Color.offBlack,
+    },
+
+    accessory: {
+        // Use content width by default.
+        minWidth: "auto",
+        // Horizontal alignment of the accessory.
+        alignItems: "center",
+        // Vertical alignment.
+        alignSelf: "center",
+    },
+
+    accessoryRight: {
+        // The right accessory will have this color by default. Unless the
+        // accessory element overrides that color internally.
+        color: Color.offBlack64,
+        // Align the right accessory to the right side of the cell, so we can
+        // prevent to display the accessory on the left side of the cell if the
+        // content is too short.
+        marginLeft: "auto",
     },
 });
 
