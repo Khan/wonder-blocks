@@ -39,8 +39,6 @@ const CellCore = (props: CellCoreProps): React.Node => {
         testId,
     } = props;
 
-    const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
-
     const maybeRenderLeftAccessory = (): React.Node => {
         if (!leftAccessory) {
             return null;
@@ -70,6 +68,8 @@ const CellCore = (props: CellCoreProps): React.Node => {
             </>
         );
     };
+
+    const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
 
     return (
         <View style={[styles.wrapper, style]}>
