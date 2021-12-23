@@ -190,6 +190,7 @@ export const BasicCellWithCustomStyles: StoryComponentType = () => (
             background: Color.darkBlue,
             color: Color.white,
         }}
+        onClick={() => {}}
     />
 );
 
@@ -197,6 +198,26 @@ BasicCellHorizontalRules.parameters = {
     docs: {
         storyDescription:
             "Cell components can also adapt to different visual needs. One example of this can be done by passing a custom style object to the `style` prop.",
+    },
+};
+/*
+ * BasicCell with onClick set
+
+ */
+
+export const ClickableBasicCell: StoryComponentType = () => (
+    <BasicCell
+        title="Intro to rational & irrational numbers"
+        rightAccessory={<Icon icon={icons.caretRight} />}
+        onClick={() => {}}
+    />
+);
+
+ClickableBasicCell.parameters = {
+    chromatic: {
+        // This only includes interactions with the clickable cell, so no need
+        // to capture screenshots.
+        disableSnapshot: true,
     },
 };
 

@@ -102,4 +102,12 @@ export type CellProps = {|
      * Optional test ID for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Called when the cell is clicked.
+     *
+     * If not provided, the Cell can’t be hovered and/or pressed (highlighted on
+     * hover).
+     */
+    onClick?: (e: SyntheticEvent<>) => mixed,
 |};

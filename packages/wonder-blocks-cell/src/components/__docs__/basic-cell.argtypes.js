@@ -107,4 +107,17 @@ export default {
             },
         },
     },
+    onClick: {
+        action: "clicked",
+        description: `Called when the cell is clicked.
+        If not provided, the Cell can’t be hovered and/or pressed (highlighted on
+    hover).
+        `,
+        table: {
+            category: "Events",
+            type: {
+                summary: "(e: SyntheticEvent<>) => mixed",
+            },
+        },
+    },
 };

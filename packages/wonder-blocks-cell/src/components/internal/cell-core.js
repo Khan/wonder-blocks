@@ -2,10 +2,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
+import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
 import {CellMeasurements, getHorizontalRuleStyles} from "./common.js";
 
 import type {CellProps, TypographyText} from "../../util/types.js";
@@ -33,6 +36,7 @@ const CellCore = (props: CellCoreProps): React.Node => {
         horizontalRule = "inset",
         leftAccessory = undefined,
         leftAccessoryStyle = undefined,
+        onClick,
         rightAccessory = undefined,
         rightAccessoryStyle = undefined,
         style,
@@ -75,29 +79,62 @@ const CellCore = (props: CellCoreProps): React.Node => {
         );
     };
 
-    const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
+    const renderCell = (eventState?: ClickableState): React.Node => {
+        const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
 
-    return (
-        <View style={[styles.wrapper, style]}>
-            <View style={[styles.innerWrapper, horizontalRuleStyles]}>
-                {/* Left accessory */}
-                {maybeRenderLeftAccessory()}
-                {/* Cell contents */}
-                <View style={styles.content} testId={testId}>
-                    {children}
+        return (
+            <View
+                style={[
+                    styles.wrapper,
+                    // focused applied to the main wrapper to make the border
+                    // outline part of the wrapper
+                    eventState?.focused && styles.focused,
+                    // custom styles
+                    style,
+                ]}
+            >
+                <View
+                    style={[
+                        styles.innerWrapper,
+                        horizontalRuleStyles,
+                        // other states applied to the inner wrapper to blend
+                        // the background color properly
+                        eventState?.hovered && styles.hovered,
+                        eventState?.pressed && styles.pressed,
+                    ]}
+                >
+                    {/* Left accessory */}
+                    {maybeRenderLeftAccessory()}
+                    {/* Cell contents */}
+                    <View style={styles.content} testId={testId}>
+                        {children}
+                    </View>
+
+                    {/* Right accessory */}
+                    {maybeRenderRightAccessory()}
                 </View>
-
-                {/* Right accessory */}
-                {maybeRenderRightAccessory()}
             </View>
-        </View>
-    );
+        );
+    };
+
+    // Pressable cell.
+    if (onClick) {
+        return (
+            <Clickable onClick={onClick} hideDefaultFocusRing={true}>
+                {(eventState) => renderCell(eventState)}
+            </Clickable>
+        );
+    }
+
+    // No click event attached, so just render the cell as-is.
+    return renderCell();
 };
 
 const styles = StyleSheet.create({
     wrapper: {
         background: Color.white,
         color: Color.offBlack,
+        textAlign: "left",
     },
 
     innerWrapper: {
@@ -126,6 +163,24 @@ const styles = StyleSheet.create({
         // prevent to display the accessory on the left side of the cell if the
         // content is too short.
         marginLeft: "auto",
+    },
+
+    /**
+     * States
+     */
+    hovered: {
+        background: Color.offBlack8,
+    },
+
+    focused: {
+        borderRadius: Spacing.xxxSmall_4,
+        outline: `solid ${Spacing.xxxxSmall_2}px ${Color.blue}`,
+        outlineOffset: -Spacing.xxxxSmall_2,
+        overflow: "hidden",
+    },
+
+    pressed: {
+        background: Color.offBlack16,
     },
 });
 
