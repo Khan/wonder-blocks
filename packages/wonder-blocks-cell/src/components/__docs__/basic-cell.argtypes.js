@@ -36,6 +36,10 @@ export default {
         mapping: CellMappings,
         table: {
             category: "Layout",
+            type: {
+                summary: "React.Node",
+                detail: "By default it uses a free width and its default alignment is center (for both vertical and horizontal).",
+            },
         },
     },
     leftAccessoryStyle: {
@@ -55,6 +59,10 @@ export default {
         mapping: CellMappings,
         table: {
             category: "Layout",
+            type: {
+                summary: "React.Node",
+                detail: "By default it uses a free width and its default alignment is center (for both vertical and horizontal).",
+            },
         },
     },
     rightAccessoryStyle: {
@@ -75,10 +83,14 @@ export default {
         control: {type: "select"},
         table: {
             category: "Layout",
+            type: {
+                summary: "inset | full-width | none",
+            },
         },
     },
     style: {
         description: "Optional custom styles.",
+        control: {type: "object"},
         table: {
             category: "Styling",
             type: {
