@@ -18,7 +18,7 @@ import BasicCellArgTypes from "./basic-cell.argtypes.js";
 import BasicCell from "../basic-cell.js";
 
 export default {
-    title: "Cell / Basic Cell",
+    title: "Cell / BasicCell",
     component: BasicCell,
     argTypes: BasicCellArgTypes,
     parameters: {
