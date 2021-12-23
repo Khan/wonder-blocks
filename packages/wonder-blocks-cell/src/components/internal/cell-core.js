@@ -41,44 +41,48 @@ const CellCore = (props: CellCoreProps): React.Node => {
 
     const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
 
+    const maybeRenderLeftAccessory = (): React.Node => {
+        if (!leftAccessory) {
+            return null;
+        }
+
+        return (
+            <>
+                <View style={[styles.accessory, {...leftAccessoryStyle}]}>
+                    {leftAccessory}
+                </View>
+                <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
+            </>
+        );
+    };
+
+    const maybeRenderRightAccessory = (): React.Node => {
+        if (!rightAccessory) {
+            return null;
+        }
+
+        return (
+            <>
+                <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
+                <View style={[styles.accessory, {...rightAccessoryStyle}]}>
+                    {rightAccessory}
+                </View>
+            </>
+        );
+    };
+
     return (
-        <View style={[styles.wrapper]}>
-            <View style={[styles.innerWrapper, style, horizontalRuleStyles]}>
+        <View style={[styles.wrapper, style]}>
+            <View style={[styles.innerWrapper, horizontalRuleStyles]}>
                 {/* Left accessory */}
-                {leftAccessory && (
-                    <>
-                        <View
-                            style={[styles.accessory, {...leftAccessoryStyle}]}
-                        >
-                            {leftAccessory}
-                        </View>
-                        <Strut
-                            size={CellMeasurements.accessoryHorizontalSpacing}
-                        />
-                    </>
-                )}
+                {maybeRenderLeftAccessory()}
                 {/* Cell contents */}
                 <View style={styles.content} testId={testId}>
                     {children}
                 </View>
 
                 {/* Right accessory */}
-                {rightAccessory && (
-                    <>
-                        <Strut
-                            size={CellMeasurements.accessoryHorizontalSpacing}
-                        />
-                        <View
-                            style={[
-                                styles.accessory,
-                                styles.accessoryRight,
-                                {...rightAccessoryStyle},
-                            ]}
-                        >
-                            {rightAccessory}
-                        </View>
-                    </>
-                )}
+                {maybeRenderRightAccessory()}
             </View>
         </View>
     );
@@ -87,12 +91,12 @@ const CellCore = (props: CellCoreProps): React.Node => {
 const styles = StyleSheet.create({
     wrapper: {
         background: Color.white,
+        color: Color.offBlack,
     },
 
     innerWrapper: {
         padding: CellMeasurements.cellPadding,
         flexDirection: "row",
-        color: Color.offBlack,
     },
 
     content: {
