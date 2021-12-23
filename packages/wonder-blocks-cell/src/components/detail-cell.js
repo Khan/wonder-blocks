@@ -70,6 +70,7 @@ function DetailCell(props: DetailCellProps): React.Node {
             ) : (
                 title
             )}
+            {/* Add a vertical spacing between the title and the subtitle */}
             {subtitle2 && <Strut size={Spacing.xxxxSmall_2} />}
             {maybeRenderSubtitle(subtitle2)}
         </CellCore>

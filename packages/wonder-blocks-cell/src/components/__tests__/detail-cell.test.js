@@ -17,6 +17,22 @@ describe("DetailCell", () => {
         expect(screen.getByText("Detail cell")).toBeInTheDocument();
     });
 
+    it("should render the title using a Typography element", () => {
+        // Arrange
+
+        // Act
+        render(
+            <DetailCell
+                title={<HeadingMedium>Detail cell title</HeadingMedium>}
+            />,
+        );
+
+        // Assert
+        expect(
+            screen.getByRole("heading", {name: "Detail cell title"}),
+        ).toBeInTheDocument();
+    });
+
     it("should render the subtitle1 using a plain text", () => {
         // Arrange
 
