@@ -62,7 +62,13 @@ const CellCore = (props: CellCoreProps): React.Node => {
         return (
             <>
                 <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
-                <View style={[styles.accessory, {...rightAccessoryStyle}]}>
+                <View
+                    style={[
+                        styles.accessory,
+                        styles.accessoryRight,
+                        {...rightAccessoryStyle},
+                    ]}
+                >
                     {rightAccessory}
                 </View>
             </>
