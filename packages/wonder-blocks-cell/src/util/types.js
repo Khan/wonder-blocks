@@ -110,4 +110,19 @@ export type CellProps = {|
      * hover).
      */
     onClick?: (e: SyntheticEvent<>) => mixed,
+
+    /**
+     * Whether the cell is active (or currently selected).
+     */
+    active?: boolean,
+
+    /**
+     * Whether the cell is disabled.
+     */
+    disabled?: boolean,
+
+    /**
+     * Used to announce the cell's content to screen readers.
+     */
+    "aria-label"?: string,
 |};

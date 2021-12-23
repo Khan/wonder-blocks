@@ -210,6 +210,7 @@ export const ClickableBasicCell: StoryComponentType = () => (
         title="Intro to rational & irrational numbers"
         rightAccessory={<Icon icon={icons.caretRight} />}
         onClick={() => {}}
+        aria-label="Press to navigate to the article"
     />
 );
 
@@ -220,6 +221,30 @@ ClickableBasicCell.parameters = {
         disableSnapshot: true,
     },
 };
+
+export const BasicCellActive: StoryComponentType = () => (
+    <BasicCell
+        title="Title for article item"
+        leftAccessory={
+            <Icon icon={icons.contentVideo} size="medium" color="black" />
+        }
+        rightAccessory={
+            <Icon icon={calendarIcon} size="small" color={Color.blue} />
+        }
+        active={true}
+        onClick={() => {}}
+    />
+);
+
+export const BasicCellDisabled: StoryComponentType = () => (
+    <BasicCell
+        title="Title for article item"
+        leftAccessory={<Icon icon={icons.contentVideo} size="medium" />}
+        rightAccessory={<Icon icon={calendarIcon} size="small" />}
+        disabled={true}
+        onClick={() => {}}
+    />
+);
 
 const styles = StyleSheet.create({
     example: {

@@ -46,4 +46,50 @@ describe("CellCore", () => {
         // Assert
         expect(screen.getByRole("button")).toBeInTheDocument();
     });
+
+    it("should add aria-label to the button", () => {
+        // Arrange
+
+        // Act
+        render(
+            <CellCore onClick={jest.fn()} aria-label="some description">
+                <div>cell core content</div>
+            </CellCore>,
+        );
+
+        // Assert
+        expect(
+            screen.getByLabelText("some description", {role: "button"}),
+        ).toBeInTheDocument();
+    });
+
+    it("should add aria-disabled if disabled is set", () => {
+        // Arrange
+
+        // Act
+        render(
+            <CellCore onClick={jest.fn()} disabled={true}>
+                <div>cell core content</div>
+            </CellCore>,
+        );
+
+        // Assert
+        expect(screen.getByRole("button")).toBeDisabled();
+    });
+
+    it("should add aria-current if active is set", () => {
+        // Arrange
+
+        // Act
+        const {container} = render(
+            <CellCore active={true}>
+                <div>cell core content</div>
+            </CellCore>,
+        );
+
+        // Assert
+        // Verify that the root element has the aria-current attribute
+        // eslint-disable-next-line testing-library/no-node-access
+        expect(container.firstChild).toHaveAttribute("aria-current", "true");
+    });
 });

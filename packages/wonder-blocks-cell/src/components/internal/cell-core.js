@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Color from "@khanacademy/wonder-blocks-color";
+import Color, {fade} from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
@@ -32,7 +32,9 @@ type CellCoreProps = {|
  */
 const CellCore = (props: CellCoreProps): React.Node => {
     const {
+        active,
         children,
+        disabled,
         horizontalRule = "inset",
         leftAccessory = undefined,
         leftAccessoryStyle = undefined,
@@ -41,6 +43,7 @@ const CellCore = (props: CellCoreProps): React.Node => {
         rightAccessoryStyle = undefined,
         style,
         testId,
+        "aria-label": ariaLabel,
     } = props;
 
     const maybeRenderLeftAccessory = (): React.Node => {
@@ -70,7 +73,9 @@ const CellCore = (props: CellCoreProps): React.Node => {
                     style={[
                         styles.accessory,
                         styles.accessoryRight,
+                        disabled && styles.disabled,
                         {...rightAccessoryStyle},
+                        active && styles.accessoryActive,
                     ]}
                 >
                     {rightAccessory}
@@ -92,15 +97,25 @@ const CellCore = (props: CellCoreProps): React.Node => {
                     // custom styles
                     style,
                 ]}
+                aria-current={active ? "true" : undefined}
             >
                 <View
                     style={[
                         styles.innerWrapper,
                         horizontalRuleStyles,
+                        disabled && styles.disabled,
+                        active && styles.active,
                         // other states applied to the inner wrapper to blend
                         // the background color properly
-                        eventState?.hovered && styles.hovered,
-                        eventState?.pressed && styles.pressed,
+                        !disabled && eventState?.hovered && styles.hovered,
+                        // active + hovered
+                        active && eventState?.hovered && styles.activeHovered,
+                        !disabled && eventState?.pressed && styles.pressed,
+                        // active + pressed
+                        !disabled &&
+                            active &&
+                            eventState?.pressed &&
+                            styles.activePressed,
                     ]}
                 >
                     {/* Left accessory */}
@@ -120,7 +135,12 @@ const CellCore = (props: CellCoreProps): React.Node => {
     // Pressable cell.
     if (onClick) {
         return (
-            <Clickable onClick={onClick} hideDefaultFocusRing={true}>
+            <Clickable
+                disabled={disabled}
+                onClick={onClick}
+                hideDefaultFocusRing={true}
+                aria-label={ariaLabel ? ariaLabel : undefined}
+            >
                 {(eventState) => renderCell(eventState)}
             </Clickable>
         );
@@ -172,15 +192,41 @@ const styles = StyleSheet.create({
         background: Color.offBlack8,
     },
 
+    // Handling the focus ring internally because clickable doesn't support
+    // rounded focus ring.
     focused: {
         borderRadius: Spacing.xxxSmall_4,
         outline: `solid ${Spacing.xxxxSmall_2}px ${Color.blue}`,
+        // The focus ring is not visible when there are stacked cells.
+        // Using outlineOffset to display the focus ring inside the cell.
         outlineOffset: -Spacing.xxxxSmall_2,
+        // To hide the internal corners of the cell.
         overflow: "hidden",
     },
 
     pressed: {
         background: Color.offBlack16,
+    },
+
+    active: {
+        background: fade(Color.blue, 0.08),
+        color: Color.blue,
+    },
+
+    activeHovered: {
+        background: fade(Color.blue, 0.16),
+    },
+
+    activePressed: {
+        background: fade(Color.blue, 0.24),
+    },
+
+    disabled: {
+        color: Color.offBlack32,
+    },
+
+    accessoryActive: {
+        color: Color.blue,
     },
 });
 
