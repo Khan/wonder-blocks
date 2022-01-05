@@ -44,12 +44,13 @@ describe("Data", () => {
         describe("without cached data", () => {
             beforeEach(() => {
                 /**
-                 * Each of these test cases will never have cached data
-                 * retrieved.
+                 * Each of these test cases will not have cached data to be
+                 * retrieved in the beginning.
                  */
-                jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue(
-                    null,
-                );
+                jest.spyOn(
+                    ResponseCache.Default,
+                    "getEntry",
+                ).mockReturnValueOnce(null);
             });
 
             it("should make request for data on construction", () => {
@@ -99,11 +100,9 @@ describe("Data", () => {
                 );
 
                 // Assert
-                expect(fakeChildrenFn).toHaveBeenCalledWith(
-                    expect.objectContaining({
-                        loading: true,
-                    }),
-                );
+                expect(fakeChildrenFn).toHaveBeenCalledWith({
+                    status: "loading",
+                });
             });
 
             it("should share single request across all uses", () => {
@@ -138,7 +137,7 @@ describe("Data", () => {
                 expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
             });
 
-            it("should render with an error if the request resolves to an error", async () => {
+            it("should render with an error if the request rejects to an error", async () => {
                 // Arrange
                 const fulfillSpy = jest.spyOn(
                     RequestFulfillment.Default,
@@ -169,7 +168,7 @@ describe("Data", () => {
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
                 expect(fakeChildrenFn).toHaveBeenLastCalledWith({
-                    loading: false,
+                    status: "error",
                     error: "OH NOES!",
                 });
             });
@@ -205,7 +204,7 @@ describe("Data", () => {
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
                 expect(fakeChildrenFn).toHaveBeenLastCalledWith({
-                    loading: false,
+                    status: "success",
                     data: "YAY! DATA!",
                 });
             });
@@ -245,7 +244,7 @@ describe("Data", () => {
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
                 expect(fakeChildrenFn).toHaveBeenLastCalledWith({
-                    loading: false,
+                    status: "error",
                     error: "CATASTROPHE!",
                 });
                 expect(consoleSpy).toHaveBeenCalledWith(
@@ -296,7 +295,7 @@ describe("Data", () => {
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(1);
                 expect(fakeChildrenFn).toHaveBeenLastCalledWith({
-                    loading: true,
+                    status: "loading",
                 });
             });
 
@@ -333,7 +332,7 @@ describe("Data", () => {
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(1);
                 expect(fakeChildrenFn).toHaveBeenLastCalledWith({
-                    loading: true,
+                    status: "loading",
                 });
             });
 
@@ -434,7 +433,7 @@ describe("Data", () => {
 
                     // Assert
                     expect(fakeChildrenFn).toHaveBeenCalledWith({
-                        loading: false,
+                        status: "error",
                         error: "BOOMY BOOM!",
                     });
                     expect(fulfillRequestSpy).not.toHaveBeenCalled();
@@ -595,7 +594,7 @@ describe("Data", () => {
 
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledWith({
-                    loading: false,
+                    status: "success",
                     data: "YAY! DATA!",
                 });
             });
@@ -638,7 +637,7 @@ describe("Data", () => {
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(1);
                 expect(fakeChildrenFn).toHaveBeenLastCalledWith({
-                    loading: false,
+                    status: "success",
                     data: "NEW DATA!",
                 });
             });
@@ -672,7 +671,7 @@ describe("Data", () => {
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(1);
                 expect(fakeChildrenFn).toHaveBeenLastCalledWith({
-                    loading: false,
+                    status: "success",
                     data: "NEW DATA!",
                 });
             });
@@ -736,7 +735,7 @@ describe("Data", () => {
 
                     // Assert
                     expect(fakeChildrenFn).toHaveBeenCalledWith({
-                        loading: false,
+                        status: "success",
                         data: "YAY! DATA!",
                     });
                 });
@@ -770,7 +769,7 @@ describe("Data", () => {
 
                     // Assert
                     expect(fakeChildrenFn).toHaveBeenCalledWith({
-                        loading: false,
+                        status: "error",
                         error: "BOOMY BOOM!",
                     });
                 });
@@ -985,11 +984,9 @@ describe("Data", () => {
                 );
 
                 // Assert
-                expect(fakeChildrenFn).toHaveBeenCalledWith(
-                    expect.objectContaining({
-                        loading: true,
-                    }),
-                );
+                expect(fakeChildrenFn).toHaveBeenCalledWith({
+                    status: "loading",
+                });
             });
 
             it("should invoke the tracking call", () => {
@@ -1086,7 +1083,7 @@ describe("Data", () => {
 
                     // Assert
                     expect(fakeChildrenFn).toHaveBeenCalledWith({
-                        loading: false,
+                        status: "error",
                         error: "BOOMY BOOM!",
                     });
                     expect(fulfillRequestSpy).not.toHaveBeenCalled();
@@ -1321,12 +1318,10 @@ describe("Data", () => {
                 );
 
                 // Assert
-                expect(fakeChildrenFn).toHaveBeenCalledWith(
-                    expect.objectContaining({
-                        loading: false,
-                        data: "YAY! DATA!",
-                    }),
-                );
+                expect(fakeChildrenFn).toHaveBeenCalledWith({
+                    status: "success",
+                    data: "YAY! DATA!",
+                });
             });
 
             it("should render children with error", () => {
@@ -1352,12 +1347,10 @@ describe("Data", () => {
                 );
 
                 // Assert
-                expect(fakeChildrenFn).toHaveBeenCalledWith(
-                    expect.objectContaining({
-                        loading: false,
-                        error: "OH NO! IT GO BOOM",
-                    }),
-                );
+                expect(fakeChildrenFn).toHaveBeenCalledWith({
+                    status: "error",
+                    error: "OH NO! IT GO BOOM",
+                });
             });
 
             it("should not invoke the tracking call", () => {
@@ -1451,7 +1444,7 @@ describe("Data", () => {
 
                     // Assert
                     expect(fakeChildrenFn).toHaveBeenCalledWith({
-                        loading: false,
+                        status: "success",
                         data: "YAY! DATA!",
                     });
                 });
@@ -1485,7 +1478,7 @@ describe("Data", () => {
 
                     // Assert
                     expect(fakeChildrenFn).toHaveBeenCalledWith({
-                        loading: false,
+                        status: "error",
                         error: "BOOMY BOOM!",
                     });
                 });

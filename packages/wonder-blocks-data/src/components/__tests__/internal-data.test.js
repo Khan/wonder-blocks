@@ -16,6 +16,7 @@ import InternalData from "../internal-data.js";
 
 import type {IRequestHandler} from "../../util/types.js";
 
+// TODO: All these tests need to be replaced with tests on the hook instead.
 describe("InternalData", () => {
     beforeEach(() => {
         const responseCache = new ResponseCache();

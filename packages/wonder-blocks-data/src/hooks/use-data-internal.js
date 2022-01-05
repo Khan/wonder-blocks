@@ -2,17 +2,25 @@
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {useState, useEffect, useContext} from "react";
 import {RequestFulfillment} from "../util/request-fulfillment.js";
-import {ResponseCache} from "../util/response-cache.js";
 import {TrackerContext} from "../util/request-tracking.js";
 import {resultFromCacheEntry} from "../util/result-from-cache-entry.js";
 
-import type {Result, IRequestHandler, ValidData} from "../util/types.js";
+import type {
+    CacheEntry,
+    Result,
+    IRequestHandler,
+    ValidData,
+} from "../util/types.js";
 
 export const useDataInternal = <TOptions, TData: ValidData>(
     handler: IRequestHandler<TOptions, TData>,
     options: TOptions,
+    getCacheEntry: (
+        handler: IRequestHandler<TOptions, TData>,
+        options: TOptions,
+    ) => ?$ReadOnly<CacheEntry<TData>>,
 ): Result<TData> => {
-    const cachedData = ResponseCache.Default.getEntry(handler, options);
+    const cachedData = getCacheEntry(handler, options);
     const maybeTrack = useContext(TrackerContext);
     const [localError, setLocalError] = useState();
 
