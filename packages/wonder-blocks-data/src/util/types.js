@@ -1,16 +1,19 @@
 // @flow
 export type ValidData = string | boolean | number | {...};
 
+export type Status = "loading" | "success" | "error";
+
 export type Result<TData: ValidData> =
     | {|
-          loading: true,
-          data?: void,
-          error?: void,
+          status: "loading",
       |}
     | {|
-          loading: false,
+          status: "success",
           data?: TData,
-          error?: string,
+      |}
+    | {|
+          status: "error",
+          error: string,
       |};
 
 export type CacheEntry<TData: ValidData> =

@@ -4,6 +4,7 @@ import {Server} from "@khanacademy/wonder-blocks-core";
 
 import {RequestFulfillment} from "../util/request-fulfillment.js";
 import {TrackerContext} from "../util/request-tracking.js";
+import {resultFromCacheEntry} from "../util/result-from-cache-entry.js";
 
 import type {
     ValidData,
@@ -23,9 +24,7 @@ type Props<TOptions, TData> = {|
 |};
 
 type State<TData> = {|
-    loading: boolean,
-    data: ?TData,
-    error: ?string,
+    current: ?CacheEntry<TData>,
 |};
 
 /**
@@ -66,9 +65,9 @@ export default class InternalData<
         }
 
         return (
-            this.state.loading !== nextState.loading ||
-            this.state.data !== nextState.data ||
-            this.state.error !== nextState.error
+            this.state.current !== nextState.current ||
+            this.state.current?.data !== nextState.current?.data ||
+            this.state.current?.error !== nextState.current?.error
         );
     }
 
@@ -114,9 +113,7 @@ export default class InternalData<
                      */
                     if (this._mounted && this._propsMatch(propsAtFulfillment)) {
                         this.setState({
-                            loading: false,
-                            data: cacheEntry.data,
-                            error: cacheEntry.error,
+                            current: cacheEntry,
                         });
                     }
                     return null;
@@ -131,9 +128,10 @@ export default class InternalData<
                     );
                     if (this._mounted && this._propsMatch(propsAtFulfillment)) {
                         this.setState({
-                            loading: false,
-                            data: null,
-                            error: typeof e === "string" ? e : e.message,
+                            current: {
+                                data: null,
+                                error: typeof e === "string" ? e : e.message,
+                            },
                         });
                     }
                     return null;
@@ -149,38 +147,7 @@ export default class InternalData<
          * or we don't.
          */
         return {
-            loading: cachedData == null,
-            data: cachedData && cachedData.data,
-            error: cachedData && cachedData.error,
-        };
-    }
-
-    _resultFromState(): Result<TData> {
-        const {loading, data, error} = this.state;
-
-        if (loading) {
-            return {
-                loading: true,
-            };
-        }
-
-        if (data != null) {
-            return {
-                loading: false,
-                data,
-            };
-        }
-
-        if (error == null) {
-            // We should never get here ever.
-            throw new Error(
-                "Loaded result has invalid state where data and error are missing",
-            );
-        }
-
-        return {
-            loading: false,
-            error,
+            current: cachedData,
         };
     }
 
@@ -206,11 +173,11 @@ export default class InternalData<
     }
 
     render(): React.Node {
-        const result = this._resultFromState();
+        const result = resultFromCacheEntry(this.state.current);
         // We only track data requests when we are server-side and we don't
         // already have a result. The existence of a result is indicated by the
         // loading flag being false.
-        if (result.loading && Server.isServerSide()) {
+        if (result.status === "loading" && Server.isServerSide()) {
             return this._renderWithTrackingContext(result);
         }
 
