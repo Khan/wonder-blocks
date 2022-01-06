@@ -21,8 +21,8 @@ exports[`wonder-blocks-modal example 1 1`] = `
   }
 >
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -116,8 +116,8 @@ exports[`wonder-blocks-modal example 2 1`] = `
   }
 >
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -392,8 +392,8 @@ exports[`wonder-blocks-modal example 4 1`] = `
   }
 >
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -487,8 +487,8 @@ exports[`wonder-blocks-modal example 5 1`] = `
   }
 >
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -1387,8 +1387,8 @@ exports[`wonder-blocks-modal example 7 1`] = `
             }
           >
             <button
+              aria-disabled={false}
               className=""
-              disabled={false}
               onBlur={[Function]}
               onClick={[Function]}
               onDragStart={[Function]}
@@ -1996,8 +1996,8 @@ exports[`wonder-blocks-modal example 8 1`] = `
               }
             >
               <button
+                aria-disabled={false}
                 className=""
-                disabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
                 onDragStart={[Function]}
@@ -2070,8 +2070,8 @@ exports[`wonder-blocks-modal example 8 1`] = `
                 </span>
               </button>
               <button
+                aria-disabled={false}
                 className=""
-                disabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
                 onDragStart={[Function]}
@@ -2144,8 +2144,8 @@ exports[`wonder-blocks-modal example 8 1`] = `
                 </span>
               </button>
               <button
+                aria-disabled={false}
                 className=""
-                disabled={false}
                 onBlur={[Function]}
                 onClick={[Function]}
                 onDragStart={[Function]}
@@ -2627,8 +2627,8 @@ exports[`wonder-blocks-modal example 9 1`] = `
                 }
               >
                 <button
+                  aria-disabled={false}
                   className=""
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onDragStart={[Function]}
@@ -2726,8 +2726,8 @@ exports[`wonder-blocks-modal example 9 1`] = `
                   }
                 />
                 <button
+                  aria-disabled={false}
                   className=""
-                  disabled={false}
                   onBlur={[Function]}
                   onClick={[Function]}
                   onDragStart={[Function]}
@@ -3321,8 +3321,8 @@ exports[`wonder-blocks-modal example 10 1`] = `
                     }
                   />
                   <button
+                    aria-disabled={false}
                     className=""
-                    disabled={false}
                     onBlur={[Function]}
                     onClick={[Function]}
                     onDragStart={[Function]}

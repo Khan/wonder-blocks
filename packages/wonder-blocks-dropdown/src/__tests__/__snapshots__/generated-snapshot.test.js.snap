@@ -1134,8 +1134,8 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
     }
   />
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -2292,8 +2292,8 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
     }
   />
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -2998,8 +2998,8 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
   }
 >
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -3661,8 +3661,8 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
     }
   />
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
