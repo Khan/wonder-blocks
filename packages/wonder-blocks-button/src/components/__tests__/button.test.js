@@ -787,7 +787,7 @@ describe("Button", () => {
     });
 
     describe("button focus", () => {
-        test("can be focused", async () => {
+        test("primary button can have focus", async () => {
             // Arrange
             render(<Button testId={"button-focus-test"}>Label</Button>);
 
@@ -799,7 +799,7 @@ describe("Button", () => {
             expect(button).toHaveFocus();
         });
 
-        test("can be focused when disabled", async () => {
+        test("primary button can have focus when disabled", async () => {
             // Arrange
             render(
                 <Button disabled={true} testId={"button-focus-test"}>
@@ -815,7 +815,7 @@ describe("Button", () => {
             expect(button).toHaveFocus();
         });
 
-        test("can be focused when disabled", async () => {
+        test("tertiary button can have focus when disabled", async () => {
             // Arrange
             render(
                 <Button
