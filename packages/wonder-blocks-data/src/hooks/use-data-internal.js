@@ -1,61 +1,85 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {useState, useEffect, useContext} from "react";
+import {useState, useEffect, useContext, useRef} from "react";
 import {RequestFulfillment} from "../util/request-fulfillment.js";
 import {TrackerContext} from "../util/request-tracking.js";
 import {resultFromCacheEntry} from "../util/result-from-cache-entry.js";
+import {ResponseCache} from "../util/response-cache.js";
 
 import type {
-    CacheEntry,
     Result,
     IRequestHandler,
     ValidData,
+    CacheEntry,
 } from "../util/types.js";
 
 export const useDataInternal = <TOptions, TData: ValidData>(
     handler: IRequestHandler<TOptions, TData>,
     options: TOptions,
-    getCacheEntry: (
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ) => ?$ReadOnly<CacheEntry<TData>>,
 ): Result<TData> => {
-    const cachedData = getCacheEntry(handler, options);
-    const maybeTrack = useContext(TrackerContext);
-    const [localError, setLocalError] = useState();
+    // If we're server-side or hydrating, we'll have a cached entry to use.
+    // So we get that and use it to initialize our state.
+    // This works in both hydration and SSR because the very first call to
+    // this will have cached data in those cases as it will be present on the
+    // initial render - and subsequent renders on the client it will be null.
+    const cachedData = ResponseCache.Default.getEntry<TOptions, TData>(
+        handler,
+        options,
+    );
+    const [result, setResult] = useState<?CacheEntry<TData>>(cachedData);
 
     // We only track data requests when we are server-side and we don't
     // already have a result.
-    if (cachedData == null && Server.isServerSide()) {
+    const maybeTrack = useContext(TrackerContext);
+    if (result == null && Server.isServerSide()) {
         maybeTrack?.(handler, options);
     }
 
+    // We need to update our request when the handler changes or the key
+    // to the options change, so we keep track of those.
+    // However, even if we are hydrating from cache, we still need to make the
+    // request at least once, so we do not initialize these references.
+    const handlerRef = useRef();
+    const keyRef = useRef();
+
     // This effect will ensure that we fulfill the request as desired.
     useEffect(() => {
-        // If we are server-side, or we have cached data and we don't need
-        // to refresh the cache, then just skip the effect.
-        // NOTE: Server-side requests are fulfilled outside of the render loop.
+        // If we are server-side, then just skip the effect. We track requests
+        // during SSR and fulfill them outside of the React render cycle.
+        if (Server.isServerSide()) {
+            return;
+        }
+
+        // If the handler hasn't changed and the key that the options represent
+        // hasn't changed, then we don't need to make our request.
         if (
-            Server.isServerSide() ||
-            (cachedData != null &&
-                !handler.shouldRefreshCache(options, cachedData))
+            handler === handlerRef.current &&
+            handler.getKey(options) === keyRef.current
         ) {
             return;
         }
 
-        // We aren't server-side and either we don't have a cached data value
-        // or we have been asked to refresh the cache, so let's make the
-        // request.
+        // Update our refs to the current handler and key.
+        handlerRef.current = handler;
+        keyRef.current = handler.getKey(options);
+
+        // If we're not hydrating a result, we want to make sure we set our
+        // result to null so that we're in the loading state.
+        if (cachedData == null) {
+            // Mark ourselves as loading.
+            setResult(null);
+        }
+
+        // We aren't server-side, so let's make the request.
+        // The request handler is in control of whether that request actually
+        // happens or not.
         let cancel = false;
         RequestFulfillment.Default.fulfill(handler, options)
             .then((updateEntry) => {
                 if (cancel) {
                     return;
                 }
-
-                // Updating the local error state is a proxy for the cached
-                // data changing that avoids us double-caching the same data.
-                setLocalError(null);
+                setResult(updateEntry);
                 return;
             })
             .catch((e) => {
@@ -70,22 +94,18 @@ export const useDataInternal = <TOptions, TData: ValidData>(
                 console.error(
                     `Unexpected error occurred during data fulfillment: ${e}`,
                 );
-                setLocalError(typeof e === "string" ? e : e.message);
+                setResult({
+                    data: null,
+                    error: typeof e === "string" ? e : e.message,
+                });
                 return;
             });
 
         return () => {
             cancel = true;
         };
-    }, [cachedData, handler, options]);
+    }, [handler, options, handlerRef, keyRef, cachedData]);
 
-    if (localError != null) {
-        return {
-            status: "error",
-            error: localError,
-        };
-    }
-
-    const result = resultFromCacheEntry(cachedData);
-    return result;
+    // If we are server-side
+    return resultFromCacheEntry(result);
 };

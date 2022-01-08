@@ -3,20 +3,11 @@ import * as React from "react";
 
 import {useDataInternal} from "../hooks/use-data-internal.js";
 
-import type {
-    ValidData,
-    CacheEntry,
-    Result,
-    IRequestHandler,
-} from "../util/types.js";
+import type {ValidData, Result, IRequestHandler} from "../util/types.js";
 
 type Props<TOptions, TData> = {|
     handler: IRequestHandler<TOptions, TData>,
     options: TOptions,
-    getEntry: (
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ) => ?$ReadOnly<CacheEntry<TData>>,
     children: (result: Result<TData>) => React.Node,
 |};
 
@@ -32,7 +23,7 @@ type Props<TOptions, TData> = {|
 const InternalData = <TOptions, TData: ValidData>(
     props: Props<TOptions, TData>,
 ): React.Node => {
-    const data = useDataInternal(props.handler, props.options, props.getEntry);
+    const data = useDataInternal(props.handler, props.options);
     return props.children(data);
 };
 export default InternalData;

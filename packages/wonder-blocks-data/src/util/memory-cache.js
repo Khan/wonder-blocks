@@ -25,9 +25,7 @@ function deepClone<T: {...}>(source: T | $ReadOnly<T>): $ReadOnly<T> {
  *
  * Special case cache implementation for the memory cache.
  *
- * This is only used within our framework. Handlers don't need to
- * provide this as a custom cache as the framework will default to this in the
- * absence of a custom cache. We use this for SSR too (see ./response-cache.js).
+ * This is only used within our framework for SSR (see ./response-cache.js).
  */
 export default class MemoryCache<TOptions, TData: ValidData>
     implements ICache<TOptions, TData>
@@ -53,6 +51,11 @@ export default class MemoryCache<TOptions, TData: ValidData>
         }
     }
 
+    /**
+     * Indicate if this cache is being used or now.
+     *
+     * When the cache has entries, returns `true`; otherwise, returns `false`.
+     */
     get inUse(): boolean {
         return Object.keys(this._cache).length > 0;
     }

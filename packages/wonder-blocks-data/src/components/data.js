@@ -1,13 +1,11 @@
 // @flow
 import * as React from "react";
 
-import {ResponseCache} from "../util/response-cache.js";
 import InternalData from "./internal-data.js";
 
 import InterceptContext from "./intercept-context.js";
 
 import type {
-    CacheEntry,
     Interceptor,
     Result,
     IRequestHandler,
@@ -65,7 +63,7 @@ export default class Data<TOptions, TData: ValidData> extends React.Component<
             return handler;
         }
 
-        const {fulfillRequest, shouldRefreshCache} = interceptor;
+        const {fulfillRequest} = interceptor;
         const fulfillRequestFn = fulfillRequest
             ? (options: TOptions): Promise<TData> => {
                   const interceptedResult = fulfillRequest(options);
@@ -74,55 +72,12 @@ export default class Data<TOptions, TData: ValidData> extends React.Component<
                       : handler.fulfillRequest(options);
               }
             : (options) => handler.fulfillRequest(options);
-        const shouldRefreshCacheFn = shouldRefreshCache
-            ? (
-                  options: TOptions,
-                  cacheEntry: ?$ReadOnly<CacheEntry<TData>>,
-              ): boolean => {
-                  const interceptedResult = shouldRefreshCache(
-                      options,
-                      cacheEntry,
-                  );
-                  return interceptedResult != null
-                      ? interceptedResult
-                      : handler.shouldRefreshCache(options, cacheEntry);
-              }
-            : (options, cacheEntry) =>
-                  handler.shouldRefreshCache(options, cacheEntry);
 
         return {
             fulfillRequest: fulfillRequestFn,
-            shouldRefreshCache: shouldRefreshCacheFn,
             getKey: (options) => handler.getKey(options),
             type: handler.type,
-            cache: handler.cache,
             hydrate: handler.hydrate,
-        };
-    }
-
-    _getCacheLookupFnFromInterceptor(
-        interceptor: ?Interceptor,
-    ): $PropertyType<ResponseCache, "getEntry"> {
-        const getEntry = interceptor && interceptor.getEntry;
-        if (!getEntry) {
-            return ResponseCache.Default.getEntry;
-        }
-
-        return <TOptions, TData: ValidData>(
-            handler: IRequestHandler<TOptions, TData>,
-            options: TOptions,
-        ): ?$ReadOnly<CacheEntry<TData>> => {
-            // 1. Lookup the current cache value.
-            const cacheEntry = ResponseCache.Default.getEntry<TOptions, TData>(
-                handler,
-                options,
-            );
-
-            // 2. See if our interceptor wants to override it.
-            const interceptedData = getEntry(options, cacheEntry);
-
-            // 3. Return the appropriate response.
-            return interceptedData != null ? interceptedData : cacheEntry;
         };
     }
 
@@ -134,8 +89,6 @@ export default class Data<TOptions, TData: ValidData> extends React.Component<
                     const interceptor = value[handlerType];
                     const handler =
                         this._getHandlerFromInterceptor(interceptor);
-                    const getEntry =
-                        this._getCacheLookupFnFromInterceptor(interceptor);
 
                     /**
                      * Need to share our types with InternalData so Flow
@@ -150,7 +103,6 @@ export default class Data<TOptions, TData: ValidData> extends React.Component<
                             // $FlowIgnore[incompatible-type-arg]
                             handler={handler}
                             options={this.props.options}
-                            getEntry={getEntry}
                         >
                             {(result) => this.props.children(result)}
                         </InternalData>

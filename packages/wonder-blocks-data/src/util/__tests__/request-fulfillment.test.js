@@ -17,32 +17,30 @@ describe("RequestFulfillment", () => {
     });
 
     describe("#fulfill", () => {
-        it("should cache errors caused directly by handlers", async () => {
+        it("should attempt to cache errors caused directly by handlers", async () => {
             // Arrange
             const responseCache = new ResponseCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
+            const error = new Error("OH NO!");
             const fakeBadHandler: IRequestHandler<any, any> = {
                 fulfillRequest: () => {
-                    throw new Error("OH NO!");
+                    throw error;
                 },
                 getKey: jest.fn().mockReturnValue("MY_KEY"),
-                shouldRefreshCache: () => false,
                 type: "MY_TYPE",
-                cache: null,
                 hydrate: true,
             };
+            const cacheErrorSpy = jest.spyOn(responseCache, "cacheError");
 
             // Act
             await requestFulfillment.fulfill(fakeBadHandler, "OPTIONS");
 
             // Assert
-            expect(responseCache.cloneHydratableData()).toStrictEqual({
-                MY_TYPE: {
-                    MY_KEY: {
-                        error: "OH NO!",
-                    },
-                },
-            });
+            expect(cacheErrorSpy).toHaveBeenCalledWith(
+                fakeBadHandler,
+                "OPTIONS",
+                error,
+            );
         });
 
         it("should cache errors occurring in promises", async () => {
@@ -53,23 +51,20 @@ describe("RequestFulfillment", () => {
                 fulfillRequest: () =>
                     new Promise((resolve, reject) => reject("OH NO!")),
                 getKey: (o) => o,
-                shouldRefreshCache: () => false,
                 type: "BAD_REQUEST",
-                cache: null,
                 hydrate: true,
             };
+            const cacheErrorSpy = jest.spyOn(responseCache, "cacheError");
 
             // Act
             await requestFulfillment.fulfill(fakeBadRequestHandler, "OPTIONS");
 
             // Assert
-            expect(responseCache.cloneHydratableData()).toStrictEqual({
-                BAD_REQUEST: {
-                    OPTIONS: {
-                        error: "OH NO!",
-                    },
-                },
-            });
+            expect(cacheErrorSpy).toHaveBeenCalledWith(
+                fakeBadRequestHandler,
+                "OPTIONS",
+                "OH NO!",
+            );
         });
 
         it("should cache data from requests", async () => {
@@ -79,24 +74,20 @@ describe("RequestFulfillment", () => {
             const fakeRequestHandler: IRequestHandler<string, any> = {
                 fulfillRequest: () => Promise.resolve("DATA!"),
                 getKey: (o) => o,
-                shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
-                cache: null,
                 hydrate: true,
             };
+            const cacheDataSpy = jest.spyOn(responseCache, "cacheData");
 
             // Act
             await requestFulfillment.fulfill(fakeRequestHandler, "OPTIONS");
-            const result = responseCache.cloneHydratableData();
 
             // Assert
-            expect(result).toStrictEqual({
-                VALID_REQUEST: {
-                    OPTIONS: {
-                        data: "DATA!",
-                    },
-                },
-            });
+            expect(cacheDataSpy).toHaveBeenCalledWith(
+                fakeRequestHandler,
+                "OPTIONS",
+                "DATA!",
+            );
         });
 
         it("should return a promise of the result", async () => {
@@ -106,9 +97,7 @@ describe("RequestFulfillment", () => {
             const fakeRequestHandler: IRequestHandler<string, any> = {
                 fulfillRequest: () => Promise.resolve("DATA!"),
                 getKey: (o) => o,
-                shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
-                cache: null,
                 hydrate: true,
             };
 
@@ -131,9 +120,7 @@ describe("RequestFulfillment", () => {
             const fakeRequestHandler: IRequestHandler<string, any> = {
                 fulfillRequest: () => Promise.resolve("DATA!"),
                 getKey: (o) => o,
-                shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
-                cache: null,
                 hydrate: true,
             };
 
@@ -158,9 +145,7 @@ describe("RequestFulfillment", () => {
             const fakeRequestHandler: IRequestHandler<string, any> = {
                 fulfillRequest: () => Promise.resolve("DATA!"),
                 getKey: (o) => o,
-                shouldRefreshCache: () => false,
                 type: "VALID_REQUEST",
-                cache: null,
                 hydrate: false,
             };
 

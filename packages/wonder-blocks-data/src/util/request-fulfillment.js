@@ -76,6 +76,8 @@ export class RequestFulfillment {
                     delete handlerRequests[key];
                     /**
                      * Let's cache the data!
+                     *
+                     * NOTE: This only caches when we're server side.
                      */
                     return cacheData<TOptions, TData>(handler, options, data);
                 })
@@ -83,6 +85,8 @@ export class RequestFulfillment {
                     delete handlerRequests[key];
                     /**
                      * Let's cache the error!
+                     *
+                     * NOTE: This only caches when we're server side.
                      */
                     return cacheError<TOptions, TData>(handler, options, error);
                 });
