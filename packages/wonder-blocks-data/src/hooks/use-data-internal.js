@@ -29,7 +29,8 @@ export const useDataInternal = <TOptions, TData: ValidData>(
     const [result, setResult] = useState<?CacheEntry<TData>>(cachedData);
 
     // We only track data requests when we are server-side and we don't
-    // already have a result.
+    // already have a result, as given by the cachedData (which is also the
+    // initial value for the result state).
     const maybeTrack = useContext(TrackerContext);
     if (result == null && Server.isServerSide()) {
         maybeTrack?.(handler, options);
@@ -106,6 +107,5 @@ export const useDataInternal = <TOptions, TData: ValidData>(
         };
     }, [handler, options, handlerRef, keyRef, cachedData]);
 
-    // If we are server-side
     return resultFromCacheEntry(result);
 };
