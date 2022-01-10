@@ -22,11 +22,11 @@ export const useDataInternal = <TOptions, TData: ValidData>(
     // This works in both hydration and SSR because the very first call to
     // this will have cached data in those cases as it will be present on the
     // initial render - and subsequent renders on the client it will be null.
-    const cachedData = ResponseCache.Default.getEntry<TOptions, TData>(
+    const cachedResult = ResponseCache.Default.getEntry<TOptions, TData>(
         handler,
         options,
     );
-    const [result, setResult] = useState<?CacheEntry<TData>>(cachedData);
+    const [result, setResult] = useState<?CacheEntry<TData>>(cachedResult);
 
     // We only track data requests when we are server-side and we don't
     // already have a result, as given by the cachedData (which is also the
@@ -47,6 +47,8 @@ export const useDataInternal = <TOptions, TData: ValidData>(
     useEffect(() => {
         // If we are server-side, then just skip the effect. We track requests
         // during SSR and fulfill them outside of the React render cycle.
+        // NOTE: This shouldn't happen since effects would not run on the server
+        // but let's be defensive - I think it makes the code clearer.
         if (Server.isServerSide()) {
             return;
         }
@@ -66,7 +68,7 @@ export const useDataInternal = <TOptions, TData: ValidData>(
 
         // If we're not hydrating a result, we want to make sure we set our
         // result to null so that we're in the loading state.
-        if (cachedData == null) {
+        if (cachedResult == null) {
             // Mark ourselves as loading.
             setResult(null);
         }
@@ -105,7 +107,7 @@ export const useDataInternal = <TOptions, TData: ValidData>(
         return () => {
             cancel = true;
         };
-    }, [handler, options, handlerRef, keyRef, cachedData]);
+    }, [handler, options, handlerRef, keyRef, cachedResult]);
 
     return resultFromCacheEntry(result);
 };

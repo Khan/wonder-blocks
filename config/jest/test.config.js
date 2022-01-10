@@ -17,6 +17,7 @@ module.exports = {
     setupFilesAfterEnv: [
         "@testing-library/jest-dom/extend-expect",
         "<rootDir>/config/jest/test-setup.js",
+        "jest-extended/all"
     ],
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-(.*)$":
