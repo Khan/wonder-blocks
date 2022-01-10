@@ -1,7 +1,7 @@
 /* eslint-disable max-lines */
 // @flow
 import * as React from "react";
-import {mount, shallow} from "enzyme";
+import {mount} from "enzyme";
 import "jest-enzyme";
 
 // eslint-disable-next-line import/extensions
@@ -404,28 +404,6 @@ describe("Data", () => {
                 jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue({
                     data: "YAY! DATA!",
                 });
-            });
-
-            it("should not request data on construction", () => {
-                // Arrange
-                const fulfillRequestSpy = jest.fn();
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: fulfillRequestSpy,
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
-                const fakeChildrenFn = jest.fn(() => null);
-
-                // Act
-                shallow(
-                    <Data handler={fakeHandler} options={"options"}>
-                        {fakeChildrenFn}
-                    </Data>,
-                );
-
-                // Assert
-                expect(fulfillRequestSpy).not.toHaveBeenCalled();
             });
 
             it("should render first time with the cached data", () => {

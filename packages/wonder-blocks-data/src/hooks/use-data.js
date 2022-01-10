@@ -57,6 +57,7 @@ export const useData = <TOptions, TData: ValidData>(
         // during SSR and fulfill them outside of the React render cycle.
         // NOTE: This shouldn't happen since effects would not run on the server
         // but let's be defensive - I think it makes the code clearer.
+        /* istanbul ignore next */
         if (Server.isServerSide()) {
             return;
         }
