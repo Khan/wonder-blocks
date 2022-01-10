@@ -249,7 +249,57 @@ describe("MemoryCache", () => {
     });
 
     describe("#removeAll", () => {
+        it("should return 0 if the handler subcache is absent", () => {
+            // Arrange
+            const cache = new MemoryCache();
+            const fakeHandler: IRequestHandler<string, string> = {
+                getKey: () => "MY_KEY",
+                type: "MY_HANDLER",
+                fulfillRequest: jest.fn(),
+                hydrate: true,
+            };
+
+            // Act
+            const result = cache.removeAll(fakeHandler);
+
+            // Assert
+            expect(result).toBe(0);
+        });
+
         it("should remove matching entries from handler subcache", () => {
+            const cache = new MemoryCache({
+                MY_HANDLER: {
+                    MY_KEY: {data: "2"},
+                    MY_KEY2: {data: "1"},
+                    MY_KEY3: {data: "2"},
+                },
+                OTHER_HANDLER: {
+                    MY_KEY: {data: "1"},
+                },
+            });
+            const fakeHandler: IRequestHandler<string, string> = {
+                getKey: () => "MY_KEY",
+                type: "MY_HANDLER",
+                fulfillRequest: jest.fn(),
+                hydrate: true,
+            };
+
+            // Act
+            cache.removeAll(fakeHandler, (k, d) => d.data === "2");
+            const result = cache.cloneData();
+
+            // Assert
+            expect(result).toStrictEqual({
+                MY_HANDLER: {
+                    MY_KEY2: {data: "1"},
+                },
+                OTHER_HANDLER: {
+                    MY_KEY: {data: "1"},
+                },
+            });
+        });
+
+        it("should return the number of items that matched the predicate and were removed", () => {
             const cache = new MemoryCache({
                 MY_HANDLER: {
                     MY_KEY: {data: "2"},
@@ -272,21 +322,42 @@ describe("MemoryCache", () => {
                 fakeHandler,
                 (k, d) => d.data === "2",
             );
-            const after = cache.cloneData();
 
             // Assert
             expect(result).toBe(2);
-            expect(after).toStrictEqual({
+        });
+
+        it("should remove the entire handler subcache if no predicate", () => {
+            const cache = new MemoryCache({
                 MY_HANDLER: {
-                    MY_KEY2: {data: "1"},
+                    MY_KEY: {data: "data!"},
+                    MY_KEY2: {data: "data!"},
+                    MY_KEY3: {data: "data!"},
                 },
                 OTHER_HANDLER: {
-                    MY_KEY: {data: "1"},
+                    MY_KEY: {data: "data!"},
+                },
+            });
+            const fakeHandler: IRequestHandler<string, string> = {
+                getKey: () => "MY_KEY",
+                type: "MY_HANDLER",
+                fulfillRequest: jest.fn(),
+                hydrate: true,
+            };
+
+            // Act
+            cache.removeAll(fakeHandler);
+            const result = cache.cloneData();
+
+            // Assert
+            expect(result).toStrictEqual({
+                OTHER_HANDLER: {
+                    MY_KEY: {data: "data!"},
                 },
             });
         });
 
-        it("should remove all entries from handler subcache if no predicate", () => {
+        it("should return the number of items that were in the handler subcache if there was no predicate", () => {
             const cache = new MemoryCache({
                 MY_HANDLER: {
                     MY_KEY: {data: "data!"},
@@ -306,22 +377,70 @@ describe("MemoryCache", () => {
 
             // Act
             const result = cache.removeAll(fakeHandler);
-            const after = cache.cloneData();
 
             // Assert
             expect(result).toBe(3);
-            expect(after).toStrictEqual({
-                MY_HANDLER: {},
-                OTHER_HANDLER: {
-                    MY_KEY: {data: "data!"},
-                },
-            });
         });
     });
 
     describe("#cloneData", () => {
         it("should return a copy of the cache data", () => {});
 
-        it("should throw if there is an error during cloning", () => {});
+        it("should throw if there is an error during cloning", () => {
+            // Arrange
+            const cache = new MemoryCache({
+                MY_HANDLER: {
+                    MY_KEY: {data: "data!"},
+                },
+            });
+            jest.spyOn(JSON, "stringify").mockImplementation(() => {
+                throw new Error("BANG!");
+            });
+
+            // Act
+            const act = () => cache.cloneData();
+
+            // Assert
+            expect(act).toThrowErrorMatchingInlineSnapshot(
+                `"An error occurred while trying to clone the cache: Error: BANG!"`,
+            );
+        });
+    });
+
+    describe("@inUse", () => {
+        it("should return true if the cache contains data", () => {
+            // Arrange
+            const cache = new MemoryCache({
+                MY_HANDLER: {
+                    MY_KEY: {data: "data!"},
+                },
+            });
+
+            // Act
+            const result = cache.inUse;
+
+            // Assert
+            expect(result).toBeTruthy();
+        });
+
+        it("should return false if the cache is empty", () => {
+            // Arrange
+            const cache = new MemoryCache({
+                MY_HANDLER: {
+                    MY_KEY: {data: "data!"},
+                },
+            });
+            cache.removeAll(
+                ({
+                    type: "MY_HANDLER",
+                }: any),
+            );
+
+            // Act
+            const result = cache.inUse;
+
+            // Assert
+            expect(result).toBeFalsy();
+        });
     });
 });

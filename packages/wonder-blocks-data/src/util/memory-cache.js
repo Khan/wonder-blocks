@@ -71,9 +71,7 @@ export default class MemoryCache<TOptions, TData: ValidData>
     ): void => {
         const requestType = handler.type;
 
-        const frozenEntry = Object.isFrozen(entry)
-            ? entry
-            : Object.freeze(entry);
+        const frozenEntry = Object.freeze(entry);
 
         // Ensure we have a cache location for this handler type.
         this._cache[requestType] = this._cache[requestType] || {};
@@ -160,16 +158,19 @@ export default class MemoryCache<TOptions, TData: ValidData>
             return 0;
         }
 
-        // Apply the predicate to what we have cached.
         let removedCount = 0;
-        for (const [key, entry] of Object.entries(handlerCache)) {
-            if (
-                typeof predicate !== "function" ||
-                predicate(key, (entry: any))
-            ) {
-                removedCount++;
-                delete handlerCache[key];
+        if (typeof predicate === "function") {
+            // Apply the predicate to what we have cached.
+            for (const [key, entry] of Object.entries(handlerCache)) {
+                if (predicate(key, (entry: any))) {
+                    removedCount++;
+                    delete handlerCache[key];
+                }
             }
+        } else {
+            // We're removing everything so delete the entire subcache.
+            removedCount = Object.keys(handlerCache).length;
+            delete this._cache[requestType];
         }
         return removedCount;
     };
