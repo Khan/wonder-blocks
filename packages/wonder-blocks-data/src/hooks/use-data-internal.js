@@ -2,6 +2,7 @@
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {useState, useEffect, useContext, useRef} from "react";
 import {RequestFulfillment} from "../util/request-fulfillment.js";
+import InterceptContext from "../components/intercept-context.js";
 import {TrackerContext} from "../util/request-tracking.js";
 import {resultFromCacheEntry} from "../util/result-from-cache-entry.js";
 import {ResponseCache} from "../util/response-cache.js";
@@ -36,12 +37,19 @@ export const useDataInternal = <TOptions, TData: ValidData>(
         maybeTrack?.(handler, options);
     }
 
+    // Lookup to see if there's an interceptor for the handler.
+    // If we have one, we need to replace the handler with one that
+    // uses the interceptor.
+    const interceptorMap = useContext(InterceptContext);
+    const interceptor = interceptorMap[handler.type];
+
     // We need to update our request when the handler changes or the key
     // to the options change, so we keep track of those.
     // However, even if we are hydrating from cache, we still need to make the
     // request at least once, so we do not initialize these references.
     const handlerRef = useRef();
     const keyRef = useRef();
+    const interceptorRef = useRef();
 
     // This effect will ensure that we fulfill the request as desired.
     useEffect(() => {
@@ -57,7 +65,8 @@ export const useDataInternal = <TOptions, TData: ValidData>(
         // hasn't changed, then we don't need to make our request.
         if (
             handler === handlerRef.current &&
-            handler.getKey(options) === keyRef.current
+            handler.getKey(options) === keyRef.current &&
+            interceptor === interceptorRef.current
         ) {
             return;
         }
@@ -65,6 +74,7 @@ export const useDataInternal = <TOptions, TData: ValidData>(
         // Update our refs to the current handler and key.
         handlerRef.current = handler;
         keyRef.current = handler.getKey(options);
+        interceptorRef.current = interceptor;
 
         // If we're not hydrating a result, we want to make sure we set our
         // result to null so that we're in the loading state.
@@ -73,11 +83,30 @@ export const useDataInternal = <TOptions, TData: ValidData>(
             setResult(null);
         }
 
+        const getMaybeInterceptedHandler = () => {
+            if (interceptor == null) {
+                return handler;
+            }
+
+            const fulfillRequestFn = (options) =>
+                interceptor.fulfillRequest(options) ??
+                handler.fulfillRequest(options);
+            return {
+                fulfillRequest: fulfillRequestFn,
+                getKey: (options) => handler.getKey(options),
+                type: handler.type,
+                hydrate: handler.hydrate,
+            };
+        };
+
         // We aren't server-side, so let's make the request.
         // The request handler is in control of whether that request actually
         // happens or not.
         let cancel = false;
-        RequestFulfillment.Default.fulfill(handler, options)
+        RequestFulfillment.Default.fulfill(
+            getMaybeInterceptedHandler(),
+            options,
+        )
             .then((updateEntry) => {
                 if (cancel) {
                     return;
@@ -107,7 +136,15 @@ export const useDataInternal = <TOptions, TData: ValidData>(
         return () => {
             cancel = true;
         };
-    }, [handler, options, handlerRef, keyRef, cachedResult]);
+    }, [
+        handler,
+        options,
+        handlerRef,
+        keyRef,
+        cachedResult,
+        interceptor,
+        interceptorRef,
+    ]);
 
     return resultFromCacheEntry(result);
 };

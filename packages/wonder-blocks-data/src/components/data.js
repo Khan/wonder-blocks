@@ -1,16 +1,9 @@
 // @flow
 import * as React from "react";
 
-import InternalData from "./internal-data.js";
+import {useDataInternal} from "../hooks/use-data-internal.js";
 
-import InterceptContext from "./intercept-context.js";
-
-import type {
-    Interceptor,
-    Result,
-    IRequestHandler,
-    ValidData,
-} from "../util/types.js";
+import type {Result, IRequestHandler, ValidData} from "../util/types.js";
 
 type Props<
     /**
@@ -52,63 +45,10 @@ type Props<
  * requirements can be placed in a React application in a manner that will
  * support server-side rendering and efficient caching.
  */
-export default class Data<TOptions, TData: ValidData> extends React.Component<
-    Props<TOptions, TData>,
-> {
-    _getHandlerFromInterceptor(
-        interceptor: ?Interceptor,
-    ): IRequestHandler<TOptions, TData> {
-        const {handler} = this.props;
-        if (!interceptor) {
-            return handler;
-        }
-
-        const {fulfillRequest} = interceptor;
-        const fulfillRequestFn = fulfillRequest
-            ? (options: TOptions): Promise<TData> => {
-                  const interceptedResult = fulfillRequest(options);
-                  return interceptedResult != null
-                      ? interceptedResult
-                      : handler.fulfillRequest(options);
-              }
-            : (options) => handler.fulfillRequest(options);
-
-        return {
-            fulfillRequest: fulfillRequestFn,
-            getKey: (options) => handler.getKey(options),
-            type: handler.type,
-            hydrate: handler.hydrate,
-        };
-    }
-
-    render(): React.Node {
-        return (
-            <InterceptContext.Consumer>
-                {(value) => {
-                    const handlerType = this.props.handler.type;
-                    const interceptor = value[handlerType];
-                    const handler =
-                        this._getHandlerFromInterceptor(interceptor);
-
-                    /**
-                     * Need to share our types with InternalData so Flow
-                     * doesn't need to infer them and find mismatches.
-                     * However, just deriving a new component creates issues
-                     * where InternalData starts rerendering too often.
-                     * Couldn't track down why, so suppressing the error
-                     * instead.
-                     */
-                    return (
-                        <InternalData
-                            // $FlowIgnore[incompatible-type-arg]
-                            handler={handler}
-                            options={this.props.options}
-                        >
-                            {(result) => this.props.children(result)}
-                        </InternalData>
-                    );
-                }}
-            </InterceptContext.Consumer>
-        );
-    }
-}
+const Data = <TOptions, TData: ValidData>(
+    props: Props<TOptions, TData>,
+): React.Node => {
+    const data = useDataInternal(props.handler, props.options);
+    return props.children(data);
+};
+export default Data;
