@@ -12,11 +12,11 @@ import {RequestFulfillment} from "../../util/request-fulfillment.js";
 import {ResponseCache} from "../../util/response-cache.js";
 import {RequestTracker} from "../../util/request-tracking.js";
 
-import {useDataInternal} from "../use-data-internal.js";
+import {useData} from "../use-data.js";
 
 import type {IRequestHandler} from "../../util/types.js";
 
-describe("#useDataInternal", () => {
+describe("#useData", () => {
     beforeEach(() => {
         const responseCache = new ResponseCache();
         jest.spyOn(ResponseCache, "Default", "get").mockReturnValue(
@@ -51,7 +51,7 @@ describe("#useDataInternal", () => {
             // Act
             const {
                 result: {current: result},
-            } = serverRenderHook(() => useDataInternal(fakeHandler, "options"));
+            } = serverRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(result).toEqual({
@@ -73,7 +73,7 @@ describe("#useDataInternal", () => {
             );
 
             // Act
-            serverRenderHook(() => useDataInternal(fakeHandler, "options"));
+            serverRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(fulfillRequestSpy).not.toHaveBeenCalled();
@@ -93,7 +93,7 @@ describe("#useDataInternal", () => {
             );
 
             // Act
-            serverRenderHook(() => useDataInternal(fakeHandler, "options"), {
+            serverRenderHook(() => useData(fakeHandler, "options"), {
                 wrapper: TrackData,
             });
 
@@ -120,7 +120,7 @@ describe("#useDataInternal", () => {
             // Act
             const {
                 result: {current: result},
-            } = serverRenderHook(() => useDataInternal(fakeHandler, "options"));
+            } = serverRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(result).toEqual({
@@ -145,7 +145,7 @@ describe("#useDataInternal", () => {
             // Act
             const {
                 result: {current: result},
-            } = serverRenderHook(() => useDataInternal(fakeHandler, "options"));
+            } = serverRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(result).toEqual({
@@ -176,7 +176,7 @@ describe("#useDataInternal", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() => useDataInternal(fakeHandler, "options"));
+            } = clientRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(result).toEqual({
@@ -204,7 +204,7 @@ describe("#useDataInternal", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() => useDataInternal(fakeHandler, "options"));
+            } = clientRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(result).toEqual({
@@ -233,7 +233,7 @@ describe("#useDataInternal", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() => useDataInternal(fakeHandler, "options"));
+            } = clientRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(result).toEqual({
@@ -260,7 +260,7 @@ describe("#useDataInternal", () => {
             );
 
             // Act
-            clientRenderHook(() => useDataInternal(fakeHandler, "options"), {
+            clientRenderHook(() => useData(fakeHandler, "options"), {
                 wrapper: TrackData,
             });
 
@@ -286,7 +286,7 @@ describe("#useDataInternal", () => {
             );
 
             // Act
-            clientRenderHook(() => useDataInternal(fakeHandler, "options"));
+            clientRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(fulfillRequestSpy).toHaveBeenCalledWith(
@@ -307,7 +307,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(() =>
-                useDataInternal(fakeHandler, "options"),
+                useData(fakeHandler, "options"),
             );
             await act(() => request);
             const result = render.result.current;
@@ -331,7 +331,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(() =>
-                useDataInternal(fakeHandler, "options"),
+                useData(fakeHandler, "options"),
             );
             await act(async () => {
                 try {
@@ -369,7 +369,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(() =>
-                useDataInternal(fakeHandler, "options"),
+                useData(fakeHandler, "options"),
             );
             await act(async () => {
                 try {
@@ -409,7 +409,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(
-                ({handler}) => useDataInternal(handler, "options"),
+                ({handler}) => useData(handler, "options"),
                 {
                     initialProps: {handler: oldHandler},
                 },
@@ -446,7 +446,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(
-                ({options}) => useDataInternal(oldHandler, options),
+                ({options}) => useData(oldHandler, options),
                 {
                     initialProps: {options: "OLD OPTIONS"},
                 },
@@ -486,7 +486,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(
-                ({handler}) => useDataInternal(handler, "options"),
+                ({handler}) => useData(handler, "options"),
                 {
                     initialProps: {handler: oldHandler},
                 },
@@ -520,7 +520,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(
-                ({options}) => useDataInternal(oldHandler, options),
+                ({options}) => useData(oldHandler, options),
                 {
                     initialProps: {options: "OLD OPTIONS"},
                 },
@@ -557,7 +557,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(
-                ({options}) => useDataInternal(oldHandler, options),
+                ({options}) => useData(oldHandler, options),
                 {
                     initialProps: {
                         options: {key: "SAME KEY", someThing: "else"},

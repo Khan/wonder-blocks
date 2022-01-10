@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import {useDataInternal} from "../hooks/use-data-internal.js";
+import {useData} from "../hooks/use-data.js";
 
 import type {Result, IRequestHandler, ValidData} from "../util/types.js";
 
@@ -48,7 +48,7 @@ type Props<
 const Data = <TOptions, TData: ValidData>(
     props: Props<TOptions, TData>,
 ): React.Node => {
-    const data = useDataInternal(props.handler, props.options);
+    const data = useData(props.handler, props.options);
     return props.children(data);
 };
 export default Data;

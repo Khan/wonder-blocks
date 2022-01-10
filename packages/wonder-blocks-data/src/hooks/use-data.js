@@ -14,7 +14,7 @@ import type {
     CacheEntry,
 } from "../util/types.js";
 
-export const useDataInternal = <TOptions, TData: ValidData>(
+export const useData = <TOptions, TData: ValidData>(
     handler: IRequestHandler<TOptions, TData>,
     options: TOptions,
 ): Result<TData> => {

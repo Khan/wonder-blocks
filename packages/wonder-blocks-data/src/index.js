@@ -60,3 +60,4 @@ export {default as RequestHandler} from "./util/request-handler.js";
 export {default as TrackData} from "./components/track-data.js";
 export {default as Data} from "./components/data.js";
 export {default as InterceptData} from "./components/intercept-data.js";
+export {useData} from "./hooks/use-data.js";
