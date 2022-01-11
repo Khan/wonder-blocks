@@ -127,10 +127,10 @@ export const useData = <TOptions, TData: ValidData>(
         return () => {
             cancel = true;
         };
-        // handler.getKey is a proxy for options
-        // We don't want to trigger on cachedResult changing, we're
-        // just using that as a flag for render state if the other things
-        // trigger this effect.
+        // - handler.getKey is a proxy for options
+        // - We don't want to trigger on cachedResult changing, we're
+        //   just using that as a flag for render state if the other things
+        //   trigger this effect.
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [handler, handler.getKey(options), interceptor]);
 
