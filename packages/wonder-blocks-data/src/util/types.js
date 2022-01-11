@@ -1,16 +1,19 @@
 // @flow
 export type ValidData = string | boolean | number | {...};
 
+export type Status = "loading" | "success" | "error";
+
 export type Result<TData: ValidData> =
     | {|
-          loading: true,
-          data?: void,
-          error?: void,
+          status: "loading",
       |}
     | {|
-          loading: false,
+          status: "success",
           data?: TData,
-          error?: string,
+      |}
+    | {|
+          status: "error",
+          error: string,
       |};
 
 export type CacheEntry<TData: ValidData> =
@@ -28,24 +31,12 @@ type HandlerSubcache = {
     ...
 };
 
-export type InterceptCacheFn<TOptions, TData: ValidData> = (
-    options: TOptions,
-    cacheEntry: ?$ReadOnly<CacheEntry<TData>>,
-) => ?$ReadOnly<CacheEntry<TData>>;
-
 export type InterceptFulfillRequestFn<TOptions, TData: ValidData> = (
     options: TOptions,
 ) => ?Promise<TData>;
 
-export type InterceptShouldRefreshCacheFn<TOptions, TData: ValidData> = (
-    options: TOptions,
-    cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
-) => ?boolean;
-
 export type Interceptor = {|
-    getEntry?: ?InterceptCacheFn<any, any>,
     fulfillRequest?: ?InterceptFulfillRequestFn<any, any>,
-    shouldRefreshCache?: ?InterceptShouldRefreshCacheFn<any, any>,
 |};
 
 export type InterceptContextData = {
@@ -121,30 +112,18 @@ export interface IRequestHandler<TOptions, TData: ValidData> {
     get type(): string;
 
     /**
-     * A custom cache to use with data that this handler requests.
-     * This only affects client-side caching of data.
-     */
-    get cache(): ?ICache<TOptions, TData>;
-
-    /**
      * When true, server-side results are cached and hydrated in the client.
      * When false, the server-side cache is not used and results are not
      * hydrated.
      * This should only be set to false if something is ensuring that the
      * hydrated client result will match the server result.
+     *
+     * For example, if Apollo is used to handle GraphQL requests in SSR mode,
+     * it has its own cache that is used to hydrate the client. Setting this
+     * to false makes sure we don't store the data twice, which would
+     * unnecessarily bloat the data sent back to the client.
      */
     get hydrate(): boolean;
-
-    /**
-     * Determine if the cached data should be refreshed.
-     *
-     * If this returns true, the framework will fulfill a new request by
-     * calling `fulfillRequest`.
-     */
-    shouldRefreshCache(
-        options: TOptions,
-        cachedEntry: ?$ReadOnly<CacheEntry<TData>>,
-    ): boolean;
 
     /**
      * Get the key to use for a given request. This should be idempotent for a

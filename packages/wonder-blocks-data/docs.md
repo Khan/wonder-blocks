@@ -23,17 +23,17 @@ fulfillAllDataRequests(): Promise<$ReadOnly<ResponseCache>>;
 
 ## initializeCache
 
-Wonder Blocks Data caches data in its response cache. This cache can be
-initialized with data using the `initializeCache` method. The `initializeData`
-method can only be called once to populate the cache. Usually, the data to be
-passed to `initializeCache` will be obtained by calling `fulfillAllDataRequests`
-after tracking data requests (see [TrackData](#trackdata)) during server-side
-rendering.
+Wonder Blocks Data caches data in its response cache for hydration. This cache
+can be initialized with data using the `initializeCache` method.
+The `initializeCache` method can only be called when the hydration cache is
+empty.
 
-Though method could also be used to initialize the response cache for tests,
-it is recommended that the `InterceptCache` component be used instead, since
-it can be used repeatedly whereas `initializeCache`, by design, can only be
-called while the cache is uninitialized and unused.
+Usually, the data to be passed to `initializeCache` will be obtained by
+calling `fulfillAllDataRequests` after tracking data requests
+(see [TrackData](#trackdata)) during server-side rendering.
+
+Combine with `removeFromCache` or `removeAllFromCache` to support your testing
+needs.
 
 ### Usage
 
@@ -49,9 +49,12 @@ initializeCache(sourceCache: $ReadOnly<ResponseCache>): void;
 
 ## removeFromCache
 
-Removes an entry from the framework cache and any custom cache associated to the given handler. The given handler and options identify the entry to be removed.
+Removes an entry associated with the given handler from the hydration cache. The given handler and options identify the entry to be removed.
 
 If an item is removed, this returns `true`; otherwise, `false`.
+
+This can be used after `initializeCache` to manipulate the cache prior to hydration.
+This can be useful during testing.
 
 ### Usage
 
@@ -68,9 +71,12 @@ removeFromCache(handler: IRequestHandler<TOptions, TData>, options: TOptions): b
 
 ## removeAllFromCache
 
-Removes all entries that match a given predicate from the framework cache and any custom cache associated to the given handler. If no predicate is given, all cached entries for the given handler are removed.
+Removes all entries associated to the given handler that match a given predicate from the hydration cache. If no predicate is given, all cached entries for the given handler are removed.
 
 This returns the count of entries removed.
+
+This can be used after `initializeCache` to manipulate the cache prior to hydration.
+This can be useful during testing (especially to clear the cache so that it can be initialized again).
 
 ### Usage
 

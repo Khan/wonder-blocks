@@ -47,9 +47,7 @@ describe("MemoryCache", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -71,9 +69,7 @@ describe("MemoryCache", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -95,9 +91,7 @@ describe("MemoryCache", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -119,9 +113,7 @@ describe("MemoryCache", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -142,9 +134,7 @@ describe("MemoryCache", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -165,9 +155,7 @@ describe("MemoryCache", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -186,9 +174,7 @@ describe("MemoryCache", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -207,9 +193,7 @@ describe("MemoryCache", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -230,9 +214,7 @@ describe("MemoryCache", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -253,9 +235,7 @@ describe("MemoryCache", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -283,9 +263,7 @@ describe("MemoryCache", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -322,9 +300,7 @@ describe("MemoryCache", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -343,5 +319,9 @@ describe("MemoryCache", () => {
         });
     });
 
-    describe("#cloneData", () => {});
+    describe("#cloneData", () => {
+        it("should return a copy of the cache data", () => {});
+
+        it("should throw if there is an error during cloning", () => {});
+    });
 });

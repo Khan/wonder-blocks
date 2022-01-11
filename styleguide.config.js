@@ -61,11 +61,9 @@ module.exports = {
             content: "packages/wonder-blocks-data/docs.md",
             components: [
                 "packages/wonder-blocks-data/src/components/data.js",
-                "packages/wonder-blocks-data/src/components/intercept-cache.js",
                 "packages/wonder-blocks-data/src/components/intercept-data.js",
                 "packages/wonder-blocks-data/src/components/track-data.js",
                 "packages/wonder-blocks-data/src/util/request-handler.js",
-                "packages/wonder-blocks-data/src/util/no-cache.js",
             ],
         },
         {
