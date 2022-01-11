@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render} from "@testing-library/react";
 
 import InterceptContext from "../intercept-context.js";
 import InterceptData from "../intercept-data.js";
@@ -28,7 +27,7 @@ describe("InterceptData", () => {
         const captureContextFn = jest.fn();
 
         // Act
-        mount(
+        render(
             <InterceptData {...props}>
                 <InterceptContext.Consumer>
                     {captureContextFn}
@@ -60,7 +59,7 @@ describe("InterceptData", () => {
         const captureContextFn = jest.fn();
 
         // Act
-        mount(
+        render(
             <InterceptData
                 handler={fakeHandler}
                 fulfillRequest={fulfillRequest1Fn}

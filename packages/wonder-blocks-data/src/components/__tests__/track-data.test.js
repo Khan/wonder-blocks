@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {mount, shallow} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
 
 import TrackData from "../track-data.js";
 import {RequestTracker, TrackerContext} from "../../util/request-tracking.js";
@@ -17,7 +16,7 @@ describe("TrackData", () => {
         jest.spyOn(Server, "isServerSide").mockReturnValue(false);
 
         // Act
-        const underTest = () => shallow(<TrackData>SOME CHILDREN</TrackData>);
+        const underTest = () => render(<TrackData>SOME CHILDREN</TrackData>);
 
         // Assert
         expect(underTest).toThrowErrorMatchingInlineSnapshot(
@@ -30,10 +29,11 @@ describe("TrackData", () => {
         jest.spyOn(Server, "isServerSide").mockReturnValue(true);
 
         // Act
-        const result = shallow(<TrackData>SOME CHILDREN</TrackData>);
+        render(<TrackData>SOME CHILDREN</TrackData>);
+        const result = screen.getByText("SOME CHILDREN");
 
         // Assert
-        expect(result).toHaveHTML("SOME CHILDREN");
+        expect(result).toBeDefined();
     });
 
     it("should provide tracker function for tracking context", async () => {
@@ -42,7 +42,7 @@ describe("TrackData", () => {
 
         // Act
         const result = await new Promise((resolve, reject) => {
-            mount(
+            render(
                 <TrackData>
                     <TrackerContext.Consumer>
                         {(fn) => resolve(fn)}
