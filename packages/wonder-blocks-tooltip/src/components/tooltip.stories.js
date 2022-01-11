@@ -70,6 +70,12 @@ export const TooltipOnButtons: StoryComponentType = () => {
     );
 };
 
+TooltipOnButtons.parameters = {
+    chromatic: {
+        disableSnapshot: true,
+    },
+};
+
 export const TooltipRight: StoryComponentType = () => (
     <BaseTooltipExample placement="right" />
 );
