@@ -323,6 +323,8 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
                 color: light ? fadedColor : activeColor,
                 borderColor: light ? fadedColor : activeColor,
                 borderWidth: 2,
+                // We need to reduce padding to offset the difference
+                // caused by the border becoming thicker on focus.
                 // The left padding for the button with icon should have 4px
                 // less padding
                 paddingLeft: iconWidth ? padding - 5 : padding - 1,
@@ -335,6 +337,8 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
                 ":focus": {
                     borderColor: light ? white50 : offBlack32,
                     borderWidth: 2,
+                    // We need to reduce padding to offset the difference
+                    // caused by the border becoming thicker on focus.
                     // The left padding for the button with icon should have 4px
                     // less padding
                     paddingLeft: iconWidth ? padding - 5 : padding - 1,
