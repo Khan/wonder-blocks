@@ -91,7 +91,7 @@ const styles = StyleSheet.create({
     content: {
         alignSelf: "center",
         color: Color.offBlack,
-        padding: `6px 0`,
+        padding: `${CellMeasurements.contentVerticalSpacing}px 0`,
     },
 
     accessory: {
