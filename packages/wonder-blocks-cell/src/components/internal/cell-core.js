@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     innerWrapper: {
         padding: `${CellMeasurements.cellPadding.paddingVertical}px ${CellMeasurements.cellPadding.paddingHorizontal}px`,
         flexDirection: "row",
+        flex: 1,
     },
 
     content: {
