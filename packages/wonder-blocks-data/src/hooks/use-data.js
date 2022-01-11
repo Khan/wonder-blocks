@@ -62,16 +62,6 @@ export const useData = <TOptions, TData: ValidData>(
             return;
         }
 
-        // If the handler hasn't changed and the key that the options represent
-        // hasn't changed, then we don't need to make our request.
-        if (
-            handler === handlerRef.current &&
-            handler.getKey(options) === keyRef.current &&
-            interceptor === interceptorRef.current
-        ) {
-            return;
-        }
-
         // Update our refs to the current handler and key.
         handlerRef.current = handler;
         keyRef.current = handler.getKey(options);
@@ -137,15 +127,12 @@ export const useData = <TOptions, TData: ValidData>(
         return () => {
             cancel = true;
         };
-    }, [
-        handler,
-        options,
-        handlerRef,
-        keyRef,
-        cachedResult,
-        interceptor,
-        interceptorRef,
-    ]);
+        // handler.getKey is a proxy for options
+        // We don't want to trigger on cachedResult changing, we're
+        // just using that as a flag for render state if the other things
+        // trigger this effect.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [handler, handler.getKey(options), interceptor]);
 
     return resultFromCacheEntry(result);
 };
