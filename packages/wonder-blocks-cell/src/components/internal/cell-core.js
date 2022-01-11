@@ -80,16 +80,18 @@ const CellCore = (props: CellCoreProps): React.Node => {
 const styles = StyleSheet.create({
     wrapper: {
         background: Color.white,
+        minHeight: CellMeasurements.cellMinHeight,
     },
 
     innerWrapper: {
-        padding: CellMeasurements.cellPadding,
+        padding: `${CellMeasurements.cellPadding.paddingVertical}px ${CellMeasurements.cellPadding.paddingHorizontal}px`,
         flexDirection: "row",
     },
 
     content: {
         alignSelf: "center",
         color: Color.offBlack,
+        padding: `6px 0`,
     },
 
     accessory: {
@@ -106,8 +108,8 @@ const styles = StyleSheet.create({
         // accessory element overrides that color internally.
         color: Color.offBlack64,
         // Align the right accessory to the right side of the cell, so we can
-        // prevent to display the accessory on the left side of the cell if the
-        // content is too short.
+        // prevent the accessory from shifting left, if the content is too
+        // short.
         marginLeft: "auto",
     },
 });

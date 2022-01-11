@@ -40,7 +40,8 @@ export type TypographyText = string | React.Element<Typography>;
 export type CellProps = {|
     /**
      * The title / main content of the cell. You can either provide a string or
-     * a Typography component.
+     * a Typography component. If a string is provided, typography defaults to
+     * LabelLarge.
      */
     title: TypographyText,
 
