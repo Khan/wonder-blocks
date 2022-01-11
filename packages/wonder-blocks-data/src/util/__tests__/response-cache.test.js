@@ -634,63 +634,196 @@ describe("../response-cache.js", () => {
     });
 
     describe("#remove", () => {
-        it("should return false if nothing was removed", () => {
-            // Arrange
-            const hydrationCache = new MemoryCache();
-            jest.spyOn(hydrationCache, "remove").mockReturnValue(false);
-            const cache = new ResponseCache(hydrationCache);
-            const fakeHandler: IRequestHandler<string, string> = {
-                getKey: () => "MY_KEY",
-                type: "MY_HANDLER",
-                fulfillRequest: jest.fn(),
-                hydrate: true,
-            };
+        describe("when handler wants hydration", () => {
+            it("should return false if nothing was removed from hydration cache", () => {
+                // Arrange
+                const hydrationCache = new MemoryCache();
+                jest.spyOn(hydrationCache, "remove").mockReturnValue(false);
+                const cache = new ResponseCache(hydrationCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    fulfillRequest: jest.fn(),
+                    hydrate: true,
+                };
 
-            // Act
-            const result = cache.remove(fakeHandler, "optionsA");
+                // Act
+                const result = cache.remove(fakeHandler, "optionsA");
 
-            // Assert
-            expect(result).toBeFalsy();
+                // Assert
+                expect(result).toBeFalsy();
+            });
+
+            it("should return true if something was removed from hydration cache", () => {
+                // Arrange
+                const hydrationCache = new MemoryCache();
+                jest.spyOn(hydrationCache, "remove").mockReturnValue(true);
+                const cache = new ResponseCache(hydrationCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    fulfillRequest: jest.fn(),
+                    hydrate: true,
+                };
+
+                // Act
+                const result = cache.remove(fakeHandler, "optionsA");
+
+                // Assert
+                expect(result).toBeTruthy();
+            });
         });
 
-        it("should return true if something was removed from hydration cache", () => {
-            // Arrange
-            const hydrationCache = new MemoryCache();
-            jest.spyOn(hydrationCache, "remove").mockReturnValue(true);
-            const cache = new ResponseCache(hydrationCache);
-            const fakeHandler: IRequestHandler<string, string> = {
-                getKey: () => "MY_KEY",
-                type: "MY_HANDLER",
-                fulfillRequest: jest.fn(),
-                hydrate: true,
-            };
+        describe("when handler does not want hydration", () => {
+            it("should return false", () => {
+                // Arrange
+                const hydrationCache = new MemoryCache();
+                const ssrOnlyCache = new MemoryCache();
+                jest.spyOn(hydrationCache, "remove").mockReturnValue(true);
+                jest.spyOn(ssrOnlyCache, "remove").mockReturnValue(true);
+                const cache = new ResponseCache(hydrationCache, ssrOnlyCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    fulfillRequest: jest.fn(),
+                    hydrate: false,
+                };
 
-            // Act
-            const result = cache.remove(fakeHandler, "optionsA");
+                // Act
+                const result = cache.remove(fakeHandler, "optionsA");
 
-            // Assert
-            expect(result).toBeTruthy();
+                // Assert
+                expect(result).toBeFalsy();
+            });
+
+            describe("when server-side", () => {
+                beforeEach(() => {
+                    jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                });
+
+                it("should return false if nothing was removed from ssr-only cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "remove").mockReturnValue(true);
+                    jest.spyOn(ssrOnlyCache, "remove").mockReturnValue(false);
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: false,
+                    };
+
+                    // Act
+                    const result = cache.remove(fakeHandler, "optionsA");
+
+                    // Assert
+                    expect(result).toBeFalsy();
+                });
+
+                it("should return true if something was removed from ssr-only cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    jest.spyOn(ssrOnlyCache, "remove").mockReturnValue(true);
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: false,
+                    };
+
+                    // Act
+                    const result = cache.remove(fakeHandler, "optionsA");
+
+                    // Assert
+                    expect(result).toBeTruthy();
+                });
+            });
         });
     });
 
     describe("#removeAll", () => {
-        it("should return total number of entries removed", () => {
-            // Arrange
-            const hydrationCache = new MemoryCache();
-            jest.spyOn(hydrationCache, "removeAll").mockReturnValue(1);
-            const cache = new ResponseCache(hydrationCache);
-            const fakeHandler: IRequestHandler<string, string> = {
-                getKey: () => "MY_KEY",
-                type: "MY_HANDLER",
-                fulfillRequest: jest.fn(),
-                hydrate: true,
-            };
+        describe("when handler wants hydration", () => {
+            it("should return total number of entries removed from hydration cache", () => {
+                // Arrange
+                const hydrationCache = new MemoryCache();
+                jest.spyOn(hydrationCache, "removeAll").mockReturnValue(1);
+                const cache = new ResponseCache(hydrationCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    fulfillRequest: jest.fn(),
+                    hydrate: true,
+                };
 
-            // Act
-            const result = cache.removeAll(fakeHandler);
+                // Act
+                const result = cache.removeAll(fakeHandler);
 
-            // Assert
-            expect(result).toBe(1);
+                // Assert
+                expect(result).toBe(1);
+            });
+        });
+
+        describe("when handler does not want hydration", () => {
+            it("should return zero", () => {
+                // Arrange
+                const hydrationCache = new MemoryCache();
+                const ssrOnlyCache = new MemoryCache();
+                jest.spyOn(hydrationCache, "removeAll").mockReturnValue(42);
+                jest.spyOn(ssrOnlyCache, "removeAll").mockReturnValue(42);
+                const cache = new ResponseCache(hydrationCache, ssrOnlyCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    fulfillRequest: jest.fn(),
+                    hydrate: false,
+                };
+
+                // Act
+                const result = cache.removeAll(fakeHandler);
+
+                // Assert
+                expect(result).toBe(0);
+            });
+
+            describe("when server-side", () => {
+                beforeEach(() => {
+                    jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                });
+
+                it("should return total number of entries removed from ssr-only cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "removeAll").mockReturnValue(13);
+                    jest.spyOn(ssrOnlyCache, "removeAll").mockReturnValue(42);
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: false,
+                    };
+
+                    // Act
+                    const result = cache.removeAll(fakeHandler);
+
+                    // Assert
+                    expect(result).toBe(42);
+                });
+            });
         });
     });
 
