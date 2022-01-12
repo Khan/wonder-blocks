@@ -267,7 +267,7 @@ export const BasicCellActive: StoryComponentType = () => (
 export const BasicCellDisabled: StoryComponentType = () => (
     <BasicCell
         title="Title for article item"
-        leftAccessory={<Icon icon={icons.contentVideo} size="medium" />}
+        leftAccessory={AccessoryMappings.withImage}
         rightAccessory={<Icon icon={calendarIcon} size="small" />}
         disabled={true}
         onClick={() => {}}

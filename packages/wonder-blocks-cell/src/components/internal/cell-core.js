@@ -16,6 +16,7 @@ import type {CellProps, TypographyText} from "../../util/types.js";
 type LeftAccessoryProps = {|
     leftAccessory?: CellProps["leftAccessory"],
     leftAccessoryStyle?: CellProps["leftAccessoryStyle"],
+    disabled?: CellProps["disabled"],
 |};
 
 /**
@@ -25,6 +26,7 @@ type LeftAccessoryProps = {|
 const LeftAccessory = ({
     leftAccessory,
     leftAccessoryStyle,
+    disabled,
 }: LeftAccessoryProps): React.Node => {
     if (!leftAccessory) {
         return null;
@@ -32,7 +34,13 @@ const LeftAccessory = ({
 
     return (
         <>
-            <View style={[styles.accessory, {...leftAccessoryStyle}]}>
+            <View
+                style={[
+                    styles.accessory,
+                    disabled && styles.accessoryDisabled,
+                    {...leftAccessoryStyle},
+                ]}
+            >
                 {leftAccessory}
             </View>
             <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
@@ -68,7 +76,7 @@ const RightAccessory = ({
                 style={[
                     styles.accessory,
                     styles.accessoryRight,
-                    disabled && styles.disabled,
+                    disabled && styles.accessoryDisabled,
                     {...rightAccessoryStyle},
                     active && styles.accessoryActive,
                 ]}
@@ -150,6 +158,7 @@ const CellCore = (props: CellCoreProps): React.Node => {
                     <LeftAccessory
                         leftAccessory={leftAccessory}
                         leftAccessoryStyle={leftAccessoryStyle}
+                        disabled={disabled}
                     />
 
                     {/* Cell contents */}
@@ -267,6 +276,11 @@ const styles = StyleSheet.create({
 
     accessoryActive: {
         color: Color.blue,
+    },
+
+    accessoryDisabled: {
+        color: Color.offBlack,
+        opacity: 0.32,
     },
 });
 
