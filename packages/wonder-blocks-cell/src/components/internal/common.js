@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
     horizontalRuleInset: {
         ":after": {
             // Inset doesn't include the left padding of the cell.
-            width: `calc(100% - ${CellMeasurements.cellPadding}px)`,
+            width: `calc(100% - ${CellMeasurements.cellPadding.paddingHorizontal}px)`,
         },
     },
 });

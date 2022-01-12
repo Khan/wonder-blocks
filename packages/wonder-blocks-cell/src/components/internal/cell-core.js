@@ -10,6 +10,66 @@ import {CellMeasurements, getHorizontalRuleStyles} from "./common.js";
 
 import type {CellProps, TypographyText} from "../../util/types.js";
 
+type LeftAccessoryProps = {|
+    leftAccessory?: CellProps["leftAccessory"],
+    leftAccessoryStyle?: CellProps["leftAccessoryStyle"],
+|};
+
+/**
+ * Left Accessories can be defined using WB components such as Icon, IconButton,
+ * or it can even be used for a custom node/component if needed.
+ */
+const LeftAccessory = ({
+    leftAccessory,
+    leftAccessoryStyle,
+}: LeftAccessoryProps): React.Node => {
+    if (!leftAccessory) {
+        return null;
+    }
+
+    return (
+        <>
+            <View style={[styles.accessory, {...leftAccessoryStyle}]}>
+                {leftAccessory}
+            </View>
+            <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
+        </>
+    );
+};
+
+type RightAccessoryProps = {|
+    rightAccessory?: CellProps["rightAccessory"],
+    rightAccessoryStyle?: CellProps["rightAccessoryStyle"],
+|};
+
+/**
+ * Right Accessories can be defined using WB components such as Icon,
+ * IconButton, or it can even be used for a custom node/component if needed.
+ */
+const RightAccessory = ({
+    rightAccessory,
+    rightAccessoryStyle,
+}: RightAccessoryProps): React.Node => {
+    if (!rightAccessory) {
+        return null;
+    }
+
+    return (
+        <>
+            <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
+            <View
+                style={[
+                    styles.accessory,
+                    styles.accessoryRight,
+                    {...rightAccessoryStyle},
+                ]}
+            >
+                {rightAccessory}
+            </View>
+        </>
+    );
+};
+
 type CellCoreProps = {|
     ...$Rest<CellProps, {|title: TypographyText|}>,
 
@@ -39,56 +99,27 @@ const CellCore = (props: CellCoreProps): React.Node => {
         testId,
     } = props;
 
-    const maybeRenderLeftAccessory = (): React.Node => {
-        if (!leftAccessory) {
-            return null;
-        }
-
-        return (
-            <>
-                <View style={[styles.accessory, {...leftAccessoryStyle}]}>
-                    {leftAccessory}
-                </View>
-                <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
-            </>
-        );
-    };
-
-    const maybeRenderRightAccessory = (): React.Node => {
-        if (!rightAccessory) {
-            return null;
-        }
-
-        return (
-            <>
-                <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
-                <View
-                    style={[
-                        styles.accessory,
-                        styles.accessoryRight,
-                        {...rightAccessoryStyle},
-                    ]}
-                >
-                    {rightAccessory}
-                </View>
-            </>
-        );
-    };
-
     const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
 
     return (
         <View style={[styles.wrapper, style]}>
             <View style={[styles.innerWrapper, horizontalRuleStyles]}>
                 {/* Left accessory */}
-                {maybeRenderLeftAccessory()}
+                <LeftAccessory
+                    leftAccessory={leftAccessory}
+                    leftAccessoryStyle={leftAccessoryStyle}
+                />
+
                 {/* Cell contents */}
                 <View style={styles.content} testId={testId}>
                     {children}
                 </View>
 
                 {/* Right accessory */}
-                {maybeRenderRightAccessory()}
+                <RightAccessory
+                    rightAccessory={rightAccessory}
+                    rightAccessoryStyle={rightAccessoryStyle}
+                />
             </View>
         </View>
     );
