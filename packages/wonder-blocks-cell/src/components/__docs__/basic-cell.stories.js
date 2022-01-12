@@ -258,9 +258,7 @@ export const BasicCellActive: StoryComponentType = () => (
         leftAccessory={
             <Icon icon={icons.contentVideo} size="medium" color="black" />
         }
-        rightAccessory={
-            <Icon icon={calendarIcon} size="small" color={Color.blue} />
-        }
+        rightAccessory={<Icon icon={calendarIcon} size="small" />}
         active={true}
         onClick={() => {}}
     />
