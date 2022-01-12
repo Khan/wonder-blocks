@@ -33,7 +33,7 @@ describe("TrackData", () => {
         const result = screen.getByText("SOME CHILDREN");
 
         // Assert
-        expect(result).toBeDefined();
+        expect(result).toBeInTheDocument();
     });
 
     it("should provide tracker function for tracking context", async () => {

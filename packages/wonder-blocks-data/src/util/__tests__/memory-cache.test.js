@@ -302,12 +302,12 @@ describe("MemoryCache", () => {
         it("should return the number of items that matched the predicate and were removed", () => {
             const cache = new MemoryCache({
                 MY_HANDLER: {
-                    MY_KEY: {data: "2"},
-                    MY_KEY2: {data: "1"},
-                    MY_KEY3: {data: "2"},
+                    MY_KEY: {data: "a"},
+                    MY_KEY2: {data: "b"},
+                    MY_KEY3: {data: "a"},
                 },
                 OTHER_HANDLER: {
-                    MY_KEY: {data: "1"},
+                    MY_KEY: {data: "b"},
                 },
             });
             const fakeHandler: IRequestHandler<string, string> = {
@@ -320,7 +320,7 @@ describe("MemoryCache", () => {
             // Act
             const result = cache.removeAll(
                 fakeHandler,
-                (k, d) => d.data === "2",
+                (k, d) => d.data === "a",
             );
 
             // Assert

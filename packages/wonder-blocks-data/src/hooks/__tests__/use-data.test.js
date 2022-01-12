@@ -506,7 +506,7 @@ describe("#useData", () => {
             );
             render.rerender({handler: newHandler});
             await act(() => oldRequest.catch(() => {}));
-            const result = render.result.all; //?
+            const result = render.result.all;
 
             // Assert
             expect(result).not.toIncludeAnyMembers([

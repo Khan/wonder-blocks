@@ -464,7 +464,7 @@ describe("../response-cache.js", () => {
                 jest.spyOn(Server, "isServerSide").mockReturnValue(false);
             });
 
-            describe("handler wants hyrdation", () => {
+            describe("handler wants hydration", () => {
                 it("should return null if not in the hydration cache", () => {
                     // Arrange
                     const hydrationCache = new MemoryCache();
@@ -586,6 +586,9 @@ describe("../response-cache.js", () => {
                     // Arrange
                     const hydrationCache = new MemoryCache();
                     const ssrOnlyCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "retrieve").mockReturnValue(
+                        "NOT NULL",
+                    );
                     jest.spyOn(ssrOnlyCache, "retrieve").mockReturnValue(null);
                     const cache = new ResponseCache(
                         hydrationCache,
@@ -595,7 +598,7 @@ describe("../response-cache.js", () => {
                         getKey: () => "MY_KEY",
                         type: "MY_HANDLER",
                         fulfillRequest: jest.fn(),
-                        hydrate: true,
+                        hydrate: false,
                     };
 
                     // Act
@@ -605,10 +608,13 @@ describe("../response-cache.js", () => {
                     expect(result).toBeNull();
                 });
 
-                it("should return the cached entry if in the hydration cache", () => {
+                it("should return the cached entry if in the ssr-only cache", () => {
                     // Arrange
                     const hydrationCache = new MemoryCache();
                     const ssrOnlyCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "retrieve").mockReturnValue({
+                        data: "wrong data!",
+                    });
                     jest.spyOn(ssrOnlyCache, "retrieve").mockReturnValue({
                         data: "data!",
                     });
