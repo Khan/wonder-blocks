@@ -98,15 +98,18 @@ const styles = StyleSheet.create({
     wrapper: {
         background: Color.white,
         color: Color.offBlack,
+        minHeight: CellMeasurements.cellMinHeight,
     },
 
     innerWrapper: {
-        padding: CellMeasurements.cellPadding,
+        padding: `${CellMeasurements.cellPadding.paddingVertical}px ${CellMeasurements.cellPadding.paddingHorizontal}px`,
         flexDirection: "row",
+        flex: 1,
     },
 
     content: {
         alignSelf: "center",
+        padding: `${CellMeasurements.contentVerticalSpacing}px 0`,
     },
 
     accessory: {
@@ -123,8 +126,8 @@ const styles = StyleSheet.create({
         // accessory element overrides that color internally.
         color: Color.offBlack64,
         // Align the right accessory to the right side of the cell, so we can
-        // prevent to display the accessory on the left side of the cell if the
-        // content is too short.
+        // prevent the accessory from shifting left, if the content is too
+        // short.
         marginLeft: "auto",
     },
 });

@@ -4,6 +4,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
@@ -13,7 +14,7 @@ import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info.js";
 import {name, version} from "../../../package.json";
-import BasicCellArgTypes from "./basic-cell.argtypes.js";
+import BasicCellArgTypes, {AccessoryMappings} from "./basic-cell.argtypes.js";
 
 import BasicCell from "../basic-cell.js";
 
@@ -93,6 +94,35 @@ BasicCellRight.parameters = {
     docs: {
         storyDescription:
             "You can also create a cell with an accessory placed on the right. Note that you can pass any of the existing WB components such as `Icon`.",
+    },
+};
+
+/**
+ * Adding multiline title to verify that the cell's height is correct.
+ */
+export const BasicCellWithDifferentHeights: StoryComponentType = (args) => (
+    <>
+        <BasicCell
+            title="Single line with short accessory."
+            rightAccessory={AccessoryMappings.withCaret}
+        />
+        <Strut size={Spacing.xSmall_8} />
+        <BasicCell
+            title="Single line with tall accessory."
+            rightAccessory={AccessoryMappings.withIconText}
+        />
+        <Strut size={Spacing.xSmall_8} />
+        <BasicCell
+            title="Multi line title with tall accessory. Content should fit within the container and the cell height should be consistent no matter the content length."
+            rightAccessory={AccessoryMappings.withIconText}
+        />
+    </>
+);
+
+BasicCellWithDifferentHeights.parameters = {
+    docs: {
+        storyDescription:
+            "Cells should keep a consistent height no matter the content passed in the title prop. It should also respect a `minHeight` of 48px",
     },
 };
 
@@ -204,6 +234,6 @@ const styles = StyleSheet.create({
     example: {
         backgroundColor: Color.offWhite,
         padding: Spacing.large_24,
-        width: 320,
+        width: 320 + Spacing.xxLarge_48,
     },
 });
