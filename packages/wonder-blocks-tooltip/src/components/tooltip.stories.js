@@ -2,7 +2,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
@@ -46,6 +49,31 @@ const BaseTooltipExample = ({placement}: {|placement: Placement|}) => {
             </View>
         </View>
     );
+};
+
+export const TooltipOnButtons: StoryComponentType = () => {
+    return (
+        <View style={styles.centered}>
+            <View>
+                <Tooltip content={"This is a tooltip on a button."}>
+                    <Button disabled={false}>Example 1</Button>
+                </Tooltip>
+                <Strut size={Spacing.medium_16} />
+                <Tooltip
+                    content="This is a tooltip on a disabled button."
+                    placement="bottom"
+                >
+                    <Button disabled={true}>Example 2</Button>
+                </Tooltip>
+            </View>
+        </View>
+    );
+};
+
+TooltipOnButtons.parameters = {
+    chromatic: {
+        disableSnapshot: true,
+    },
 };
 
 export const TooltipRight: StoryComponentType = () => (
