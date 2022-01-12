@@ -11,5 +11,4 @@ module.exports = {
     reactOptions: {
         fastRefresh: true,
     },
-    staticDirs: ["../static"],
 };
