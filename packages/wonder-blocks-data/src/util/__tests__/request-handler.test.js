@@ -14,7 +14,7 @@ describe("../request-handler.js", () => {
         jest.restoreAllMocks();
     });
 
-    describe("#get type", () => {
+    describe("@type", () => {
         it("should return value passed in construction", () => {
             // Arrange
             const handler = new RequestHandler("MY_TYPE");
@@ -24,6 +24,41 @@ describe("../request-handler.js", () => {
 
             // Assert
             expect(result).toBe("MY_TYPE");
+        });
+    });
+
+    describe("@hydrate", () => {
+        it("should return true when constructed with false", () => {
+            // Arrange
+            const handler = new RequestHandler("MY_TYPE", false);
+
+            // Act
+            const result = handler.hydrate;
+
+            // Assert
+            expect(result).toBeFalse();
+        });
+
+        it("should return true when constructed with true", () => {
+            // Arrange
+            const handler = new RequestHandler("MY_TYPE", true);
+
+            // Act
+            const result = handler.hydrate;
+
+            // Assert
+            expect(result).toBeTrue();
+        });
+
+        it("should return true by default", () => {
+            // Arrange
+            const handler = new RequestHandler("MY_TYPE");
+
+            // Act
+            const result = handler.hydrate;
+
+            // Assert
+            expect(result).toBeTrue();
         });
     });
 

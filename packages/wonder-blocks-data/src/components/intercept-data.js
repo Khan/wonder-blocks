@@ -59,7 +59,7 @@ export default class InterceptData<
                     const handlerType = this.props.handler.type;
                     const interceptor = {
                         ...value[handlerType],
-                        fulfillRequest: this.props.fulfillRequest || null,
+                        fulfillRequest: this.props.fulfillRequest,
                     };
                     const newValue = {
                         ...value,

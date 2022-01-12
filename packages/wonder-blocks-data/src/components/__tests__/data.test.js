@@ -1,8 +1,7 @@
 /* eslint-disable max-lines */
 // @flow
 import * as React from "react";
-import {mount, shallow} from "enzyme";
-import "jest-enzyme";
+import {render, act} from "@testing-library/react";
 
 // eslint-disable-next-line import/extensions
 import * as ReactDOMServer from "react-dom/server";
@@ -66,7 +65,7 @@ describe("Data", () => {
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
-                mount(
+                render(
                     <Data handler={fakeHandler} options={"options"}>
                         {fakeChildrenFn}
                     </Data>,
@@ -88,7 +87,7 @@ describe("Data", () => {
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
-                mount(
+                render(
                     <Data handler={fakeHandler} options={"options"}>
                         {fakeChildrenFn}
                     </Data>,
@@ -114,7 +113,7 @@ describe("Data", () => {
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
-                mount(
+                render(
                     <View>
                         <Data handler={fakeHandler} options={"options"}>
                             {fakeChildrenFn}
@@ -146,7 +145,7 @@ describe("Data", () => {
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
-                mount(
+                render(
                     <Data handler={fakeHandler} options={"options"}>
                         {fakeChildrenFn}
                     </Data>,
@@ -154,7 +153,7 @@ describe("Data", () => {
                 /**
                  * We wait for the fulfillment to resolve.
                  */
-                await fulfillSpy.mock.results[0].value;
+                await act(() => fulfillSpy.mock.results[0].value);
 
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
@@ -180,7 +179,7 @@ describe("Data", () => {
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
-                mount(
+                render(
                     <Data handler={fakeHandler} options={"options"}>
                         {fakeChildrenFn}
                     </Data>,
@@ -188,7 +187,7 @@ describe("Data", () => {
                 /**
                  * We wait for the fulfillment to resolve.
                  */
-                await fulfillSpy.mock.results[0].value;
+                await act(() => fulfillSpy.mock.results[0].value);
 
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
@@ -218,7 +217,7 @@ describe("Data", () => {
                     });
 
                 // Act
-                mount(
+                render(
                     <Data handler={fakeHandler} options={"options"}>
                         {fakeChildrenFn}
                     </Data>,
@@ -226,7 +225,9 @@ describe("Data", () => {
                 /**
                  * We wait for the fulfillment to reject.
                  */
-                await fulfillSpy.mock.results[0].value.catch(() => {});
+                await act(() =>
+                    fulfillSpy.mock.results[0].value.catch(() => {}),
+                );
 
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
@@ -261,22 +262,24 @@ describe("Data", () => {
                     hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
-                const wrapper = mount(
+                const wrapper = render(
                     <Data handler={fakeHandler} options={"options"}>
                         {fakeChildrenFn}
                     </Data>,
                 );
                 // We want to make sure we render the error state so we can
                 // see our switch back to loading.
-                await fulfillSpy.mock.results[0].value;
+                await act(() => fulfillSpy.mock.results[0].value);
                 // Clear out calls so everything is from the props change.
                 fulfillSpy.mockClear();
                 fakeChildrenFn.mockClear();
 
                 // Act
-                wrapper.setProps({
-                    handler: fakeHandler2,
-                });
+                wrapper.rerender(
+                    <Data handler={fakeHandler2} options={"options"}>
+                        {fakeChildrenFn}
+                    </Data>,
+                );
 
                 // Assert
                 // Render 1: Caused by handler changed
@@ -301,21 +304,23 @@ describe("Data", () => {
                     hydrate: true,
                 };
                 const fakeChildrenFn = jest.fn(() => null);
-                const wrapper = mount(
+                const wrapper = render(
                     <Data handler={fakeHandler} options={"options"}>
                         {fakeChildrenFn}
                     </Data>,
                 );
                 // We want to make sure we render the data state so we can
                 // see our switch back to loading.
-                await fulfillSpy.mock.results[0].value;
+                await act(() => fulfillSpy.mock.results[0].value);
                 fulfillSpy.mockClear();
                 fakeChildrenFn.mockClear();
 
                 // Act
-                wrapper.setProps({
-                    options: "new-options",
-                });
+                wrapper.rerender(
+                    <Data handler={fakeHandler} options={"new-options"}>
+                        {fakeChildrenFn}
+                    </Data>,
+                );
 
                 // Assert
                 // Render 1: Caused by handler changed
@@ -344,7 +349,7 @@ describe("Data", () => {
                     );
 
                     // Act
-                    mount(
+                    render(
                         <InterceptData
                             handler={fakeHandler}
                             fulfillRequest={fulfillRequestFn}
@@ -376,7 +381,7 @@ describe("Data", () => {
                     const fulfillRequestFn = jest.fn(() => null);
 
                     // Act
-                    mount(
+                    render(
                         <InterceptData
                             handler={fakeHandler}
                             fulfillRequest={fulfillRequestFn}
@@ -406,28 +411,6 @@ describe("Data", () => {
                 });
             });
 
-            it("should not request data on construction", () => {
-                // Arrange
-                const fulfillRequestSpy = jest.fn();
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: fulfillRequestSpy,
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
-                const fakeChildrenFn = jest.fn(() => null);
-
-                // Act
-                shallow(
-                    <Data handler={fakeHandler} options={"options"}>
-                        {fakeChildrenFn}
-                    </Data>,
-                );
-
-                // Assert
-                expect(fulfillRequestSpy).not.toHaveBeenCalled();
-            });
-
             it("should render first time with the cached data", () => {
                 // Arrange
                 const fakeHandler: IRequestHandler<string, string> = {
@@ -439,7 +422,7 @@ describe("Data", () => {
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
-                mount(
+                render(
                     <Data handler={fakeHandler} options={"options"}>
                         {fakeChildrenFn}
                     </Data>,

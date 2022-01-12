@@ -7,16 +7,18 @@ import {renderHook as serverRenderHook} from "@testing-library/react-hooks/serve
 
 import {Server} from "@khanacademy/wonder-blocks-core";
 
+import * as React from "react";
 import TrackData from "../../components/track-data.js";
+import InterceptData from "../../components/intercept-data.js";
 import {RequestFulfillment} from "../../util/request-fulfillment.js";
 import {ResponseCache} from "../../util/response-cache.js";
 import {RequestTracker} from "../../util/request-tracking.js";
 
-import {useDataInternal} from "../use-data-internal.js";
+import {useData} from "../use-data.js";
 
 import type {IRequestHandler} from "../../util/types.js";
 
-describe("#useDataInternal", () => {
+describe("#useData", () => {
     beforeEach(() => {
         const responseCache = new ResponseCache();
         jest.spyOn(ResponseCache, "Default", "get").mockReturnValue(
@@ -51,7 +53,7 @@ describe("#useDataInternal", () => {
             // Act
             const {
                 result: {current: result},
-            } = serverRenderHook(() => useDataInternal(fakeHandler, "options"));
+            } = serverRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(result).toEqual({
@@ -73,7 +75,7 @@ describe("#useDataInternal", () => {
             );
 
             // Act
-            serverRenderHook(() => useDataInternal(fakeHandler, "options"));
+            serverRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(fulfillRequestSpy).not.toHaveBeenCalled();
@@ -93,7 +95,7 @@ describe("#useDataInternal", () => {
             );
 
             // Act
-            serverRenderHook(() => useDataInternal(fakeHandler, "options"), {
+            serverRenderHook(() => useData(fakeHandler, "options"), {
                 wrapper: TrackData,
             });
 
@@ -120,7 +122,7 @@ describe("#useDataInternal", () => {
             // Act
             const {
                 result: {current: result},
-            } = serverRenderHook(() => useDataInternal(fakeHandler, "options"));
+            } = serverRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(result).toEqual({
@@ -145,7 +147,7 @@ describe("#useDataInternal", () => {
             // Act
             const {
                 result: {current: result},
-            } = serverRenderHook(() => useDataInternal(fakeHandler, "options"));
+            } = serverRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(result).toEqual({
@@ -176,7 +178,7 @@ describe("#useDataInternal", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() => useDataInternal(fakeHandler, "options"));
+            } = clientRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(result).toEqual({
@@ -204,7 +206,7 @@ describe("#useDataInternal", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() => useDataInternal(fakeHandler, "options"));
+            } = clientRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(result).toEqual({
@@ -233,7 +235,7 @@ describe("#useDataInternal", () => {
             // Act
             const {
                 result: {current: result},
-            } = clientRenderHook(() => useDataInternal(fakeHandler, "options"));
+            } = clientRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(result).toEqual({
@@ -260,7 +262,7 @@ describe("#useDataInternal", () => {
             );
 
             // Act
-            clientRenderHook(() => useDataInternal(fakeHandler, "options"), {
+            clientRenderHook(() => useData(fakeHandler, "options"), {
                 wrapper: TrackData,
             });
 
@@ -286,7 +288,7 @@ describe("#useDataInternal", () => {
             );
 
             // Act
-            clientRenderHook(() => useDataInternal(fakeHandler, "options"));
+            clientRenderHook(() => useData(fakeHandler, "options"));
 
             // Assert
             expect(fulfillRequestSpy).toHaveBeenCalledWith(
@@ -307,7 +309,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(() =>
-                useDataInternal(fakeHandler, "options"),
+                useData(fakeHandler, "options"),
             );
             await act(() => request);
             const result = render.result.current;
@@ -331,7 +333,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(() =>
-                useDataInternal(fakeHandler, "options"),
+                useData(fakeHandler, "options"),
             );
             await act(async () => {
                 try {
@@ -369,7 +371,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(() =>
-                useDataInternal(fakeHandler, "options"),
+                useData(fakeHandler, "options"),
             );
             await act(async () => {
                 try {
@@ -409,7 +411,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(
-                ({handler}) => useDataInternal(handler, "options"),
+                ({handler}) => useData(handler, "options"),
                 {
                     initialProps: {handler: oldHandler},
                 },
@@ -429,7 +431,7 @@ describe("#useDataInternal", () => {
 
         it("should ignore resolution of pending request fulfillment when key from options changes", async () => {
             // Arrange
-            const oldRequest = Promise.resolve("OLD DATA");
+            const oldRequest = Promise.reject("OLD ERROR");
             const oldHandler: IRequestHandler<string, string> = {
                 fulfillRequest: jest
                     .fn()
@@ -446,7 +448,99 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(
-                ({options}) => useDataInternal(oldHandler, options),
+                ({options}) => useData(oldHandler, options),
+                {
+                    initialProps: {options: "OLD OPTIONS"},
+                },
+            );
+            render.rerender({options: "NEW OPTIONS"});
+            await act(() => oldRequest.catch(() => {}));
+            const result = render.result.all;
+
+            // Assert
+            expect(result).not.toIncludeAnyMembers([
+                {
+                    status: "error",
+                    error: "OLD ERROR",
+                },
+            ]);
+        });
+
+        it("should ignore rejection of pending request fulfillment when handler changes", async () => {
+            // Arrange
+            const oldRequest = Promise.reject("OLD ERROR");
+            const oldHandler: IRequestHandler<string, string> = {
+                fulfillRequest: jest.fn().mockReturnValue(
+                    new Promise(() => {
+                        /*this doesn't get called for this test case*/
+                    }),
+                ),
+                getKey: (o) => o,
+                type: "MY_HANDLER",
+                hydrate: true,
+            };
+            const newHandler: IRequestHandler<string, string> = {
+                fulfillRequest: jest.fn().mockReturnValue(
+                    new Promise(() => {
+                        /*let's have the new request remain pending*/
+                    }),
+                ),
+                getKey: (o) => o,
+                type: "MY_NEW_HANDLER",
+                hydrate: true,
+            };
+            jest.spyOn(RequestFulfillment.Default, "fulfill")
+                .mockReturnValueOnce(oldRequest)
+                .mockReturnValue(
+                    new Promise(() => {
+                        /*leave the second request pending*/
+                    }),
+                );
+
+            // Act
+            const render = clientRenderHook(
+                ({handler}) => useData(handler, "options"),
+                {
+                    initialProps: {handler: oldHandler},
+                },
+            );
+            render.rerender({handler: newHandler});
+            await act(() => oldRequest.catch(() => {}));
+            const result = render.result.all;
+
+            // Assert
+            expect(result).not.toIncludeAnyMembers([
+                {
+                    status: "error",
+                    error: "OLD ERROR",
+                },
+            ]);
+        });
+
+        it("should ignore rejection of pending request fulfillment when key from options changes", async () => {
+            // Arrange
+            const oldRequest = Promise.resolve("OLD DATA");
+            const oldHandler: IRequestHandler<string, string> = {
+                fulfillRequest: jest.fn().mockReturnValue(
+                    new Promise(() => {
+                        /*this won't ever get called in this version*/
+                    }),
+                ),
+                getKey: (o) => o,
+                type: "MY_HANDLER",
+                hydrate: true,
+            };
+            jest.spyOn(RequestFulfillment.Default, "fulfill")
+                .mockReturnValueOnce(oldRequest)
+                .mockReturnValue(
+                    new Promise(() => {
+                        /*leave the second request pending*/
+                    }),
+                );
+
+            // Act
+            const render = clientRenderHook(
+                ({options}) => useData(oldHandler, options),
                 {
                     initialProps: {options: "OLD OPTIONS"},
                 },
@@ -486,7 +580,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(
-                ({handler}) => useDataInternal(handler, "options"),
+                ({handler}) => useData(handler, "options"),
                 {
                     initialProps: {handler: oldHandler},
                 },
@@ -520,7 +614,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(
-                ({options}) => useDataInternal(oldHandler, options),
+                ({options}) => useData(oldHandler, options),
                 {
                     initialProps: {options: "OLD OPTIONS"},
                 },
@@ -557,7 +651,7 @@ describe("#useDataInternal", () => {
 
             // Act
             const render = clientRenderHook(
-                ({options}) => useDataInternal(oldHandler, options),
+                ({options}) => useData(oldHandler, options),
                 {
                     initialProps: {
                         options: {key: "SAME KEY", someThing: "else"},
@@ -572,6 +666,122 @@ describe("#useDataInternal", () => {
             expect(result).toEqual({
                 status: "success",
                 data: "DATA",
+            });
+        });
+    });
+
+    describe("with interceptor", () => {
+        it("should return the result of the interceptor request resolution", async () => {
+            // Arrange
+            const intercepted = Promise.resolve("INTERCEPTED");
+            const notIntercepted = Promise.resolve("NOT INTERCEPTED");
+            const fakeHandler: IRequestHandler<string, string> = {
+                fulfillRequest: jest.fn().mockReturnValue(notIntercepted),
+                getKey: (o) => o,
+                type: "MY_HANDLER",
+                hydrate: true,
+            };
+            const wrapper = ({children}) => (
+                <InterceptData
+                    fulfillRequest={() => intercepted}
+                    handler={fakeHandler}
+                >
+                    {children}
+                </InterceptData>
+            );
+
+            // Act
+            const render = clientRenderHook(
+                () => useData(fakeHandler, "options"),
+                {
+                    wrapper,
+                },
+            );
+            await act(() => Promise.all([notIntercepted, intercepted]));
+            const result = render.result.current;
+
+            // Assert
+            expect(result).toEqual({
+                status: "success",
+                data: "INTERCEPTED",
+            });
+        });
+
+        it("should return the result of the interceptor request rejection", async () => {
+            // Arrange
+            const intercepted = Promise.reject("INTERCEPTED");
+            const notIntercepted = Promise.resolve("NOT INTERCEPTED");
+            const fakeHandler: IRequestHandler<string, string> = {
+                fulfillRequest: jest.fn().mockReturnValue(notIntercepted),
+                getKey: (o) => o,
+                type: "MY_HANDLER",
+                hydrate: true,
+            };
+            const wrapper = ({children}) => (
+                <InterceptData
+                    fulfillRequest={() => intercepted}
+                    handler={fakeHandler}
+                >
+                    {children}
+                </InterceptData>
+            );
+
+            // Act
+            const render = clientRenderHook(
+                () => useData(fakeHandler, "options"),
+                {
+                    wrapper,
+                },
+            );
+            await notIntercepted;
+            await act(async () => {
+                try {
+                    await intercepted;
+                } catch (e) {
+                    /* ignore, it's ok */
+                }
+            });
+            const result = render.result.current;
+
+            // Assert
+            expect(result).toEqual({
+                status: "error",
+                error: "INTERCEPTED",
+            });
+        });
+
+        it("should return the result of the handler if the interceptor returns null", async () => {
+            // Arrange
+            const notIntercepted = Promise.resolve("NOT INTERCEPTED");
+            const fakeHandler: IRequestHandler<string, string> = {
+                fulfillRequest: jest.fn().mockReturnValue(notIntercepted),
+                getKey: (o) => o,
+                type: "MY_HANDLER",
+                hydrate: true,
+            };
+            const wrapper = ({children}) => (
+                <InterceptData
+                    fulfillRequest={() => null}
+                    handler={fakeHandler}
+                >
+                    {children}
+                </InterceptData>
+            );
+
+            // Act
+            const render = clientRenderHook(
+                () => useData(fakeHandler, "options"),
+                {
+                    wrapper,
+                },
+            );
+            await act(() => notIntercepted);
+            const result = render.result.current;
+
+            // Assert
+            expect(result).toEqual({
+                status: "success",
+                data: "NOT INTERCEPTED",
             });
         });
     });

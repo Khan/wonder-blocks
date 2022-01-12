@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-data": major
 ---
 
-Remove client-side caching
+Introduce useData hook

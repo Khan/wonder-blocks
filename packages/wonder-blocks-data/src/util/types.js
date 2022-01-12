@@ -36,7 +36,7 @@ export type InterceptFulfillRequestFn<TOptions, TData: ValidData> = (
 ) => ?Promise<TData>;
 
 export type Interceptor = {|
-    fulfillRequest?: ?InterceptFulfillRequestFn<any, any>,
+    fulfillRequest: InterceptFulfillRequestFn<any, any>,
 |};
 
 export type InterceptContextData = {

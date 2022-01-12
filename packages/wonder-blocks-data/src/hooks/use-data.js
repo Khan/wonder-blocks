@@ -2,6 +2,7 @@
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {useState, useEffect, useContext, useRef} from "react";
 import {RequestFulfillment} from "../util/request-fulfillment.js";
+import InterceptContext from "../components/intercept-context.js";
 import {TrackerContext} from "../util/request-tracking.js";
 import {resultFromCacheEntry} from "../util/result-from-cache-entry.js";
 import {ResponseCache} from "../util/response-cache.js";
@@ -13,7 +14,7 @@ import type {
     CacheEntry,
 } from "../util/types.js";
 
-export const useDataInternal = <TOptions, TData: ValidData>(
+export const useData = <TOptions, TData: ValidData>(
     handler: IRequestHandler<TOptions, TData>,
     options: TOptions,
 ): Result<TData> => {
@@ -36,12 +37,19 @@ export const useDataInternal = <TOptions, TData: ValidData>(
         maybeTrack?.(handler, options);
     }
 
+    // Lookup to see if there's an interceptor for the handler.
+    // If we have one, we need to replace the handler with one that
+    // uses the interceptor.
+    const interceptorMap = useContext(InterceptContext);
+    const interceptor = interceptorMap[handler.type];
+
     // We need to update our request when the handler changes or the key
     // to the options change, so we keep track of those.
     // However, even if we are hydrating from cache, we still need to make the
     // request at least once, so we do not initialize these references.
     const handlerRef = useRef();
     const keyRef = useRef();
+    const interceptorRef = useRef();
 
     // This effect will ensure that we fulfill the request as desired.
     useEffect(() => {
@@ -49,22 +57,15 @@ export const useDataInternal = <TOptions, TData: ValidData>(
         // during SSR and fulfill them outside of the React render cycle.
         // NOTE: This shouldn't happen since effects would not run on the server
         // but let's be defensive - I think it makes the code clearer.
+        /* istanbul ignore next */
         if (Server.isServerSide()) {
-            return;
-        }
-
-        // If the handler hasn't changed and the key that the options represent
-        // hasn't changed, then we don't need to make our request.
-        if (
-            handler === handlerRef.current &&
-            handler.getKey(options) === keyRef.current
-        ) {
             return;
         }
 
         // Update our refs to the current handler and key.
         handlerRef.current = handler;
         keyRef.current = handler.getKey(options);
+        interceptorRef.current = interceptor;
 
         // If we're not hydrating a result, we want to make sure we set our
         // result to null so that we're in the loading state.
@@ -73,11 +74,30 @@ export const useDataInternal = <TOptions, TData: ValidData>(
             setResult(null);
         }
 
+        const getMaybeInterceptedHandler = () => {
+            if (interceptor == null) {
+                return handler;
+            }
+
+            const fulfillRequestFn = (options) =>
+                interceptor.fulfillRequest(options) ??
+                handler.fulfillRequest(options);
+            return {
+                fulfillRequest: fulfillRequestFn,
+                getKey: (options) => handler.getKey(options),
+                type: handler.type,
+                hydrate: handler.hydrate,
+            };
+        };
+
         // We aren't server-side, so let's make the request.
         // The request handler is in control of whether that request actually
         // happens or not.
         let cancel = false;
-        RequestFulfillment.Default.fulfill(handler, options)
+        RequestFulfillment.Default.fulfill(
+            getMaybeInterceptedHandler(),
+            options,
+        )
             .then((updateEntry) => {
                 if (cancel) {
                     return;
@@ -107,7 +127,12 @@ export const useDataInternal = <TOptions, TData: ValidData>(
         return () => {
             cancel = true;
         };
-    }, [handler, options, handlerRef, keyRef, cachedResult]);
+        // - handler.getKey is a proxy for options
+        // - We don't want to trigger on cachedResult changing, we're
+        //   just using that as a flag for render state if the other things
+        //   trigger this effect.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [handler, handler.getKey(options), interceptor]);
 
     return resultFromCacheEntry(result);
 };

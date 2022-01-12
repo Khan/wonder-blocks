@@ -40,6 +40,29 @@ describe("../request-tracking.js", () => {
              */
             new RequestTracker(new ResponseCache());
 
+        describe("@Default", () => {
+            it("should return an instance of RequestTracker", () => {
+                // Arrange
+
+                // Act
+                const result = RequestTracker.Default;
+
+                // Assert
+                expect(result).toBeInstanceOf(RequestTracker);
+            });
+
+            it("should return the same instance on each call", () => {
+                // Arrange
+
+                // Act
+                const result1 = RequestTracker.Default;
+                const result2 = RequestTracker.Default;
+
+                // Assert
+                expect(result1).toBe(result2);
+            });
+        });
+
         describe("#trackDataRequest", () => {
             it("should get the key for the request", () => {
                 // Arrange
