@@ -1,11 +1,13 @@
 // @flow
 import * as React from "react";
+import {View} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {LabelSmall, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
 
 /**
  * Some pre-defined accessory examples to use in our stories.
  */
-const CellMappings = {
+export const AccessoryMappings = {
     withContentArticle: ((
         <Icon icon={icons.contentArticle} size="medium" />
     ): React.Element<typeof Icon>),
@@ -15,12 +17,21 @@ const CellMappings = {
     withCaret: (<Icon icon={icons.caretRight} size="medium" />: React.Element<
         typeof Icon,
     >),
+    withText: (<LabelSmall>26.3 GB</LabelSmall>: React.Element<
+        typeof LabelSmall,
+    >),
+    withIconText: ((
+        <View style={{alignItems: "center"}}>
+            <Icon icon={icons.info} size="small" />
+            <LabelXSmall>Info</LabelXSmall>
+        </View>
+    ): React.Element<typeof View>),
 };
 
 export default {
     title: {
         description:
-            "The title / main content of the cell. You can either provide a string or a Typography component.",
+            "The title / main content of the cell. You can either provide a string or a Typography component. If a string is provided, typography defaults to `LabelLarge`.",
         type: {required: true},
         table: {
             type: {
@@ -32,8 +43,8 @@ export default {
     leftAccessory: {
         description: `If provided, this adds a left accessory to the cell. Left Accessories can be defined using WB components such as Icon, IconButton, or it can even be used for a custom node/component if needed. What ever is passed in will occupy the "LeftAccessory” area of the Cell.`,
         control: {type: "select"},
-        options: (Object.keys(CellMappings): Array<React.Node>),
-        mapping: CellMappings,
+        options: (Object.keys(AccessoryMappings): Array<React.Node>),
+        mapping: AccessoryMappings,
         table: {
             category: "Layout",
             type: {
@@ -55,8 +66,8 @@ export default {
     rightAccessory: {
         description: `If provided, this adds a right accessory to the cell. Right Accessories can be defined using WB components such as Icon, IconButton, or it can even be used for a custom node/component if needed. What ever is passed in will occupy the “RightAccessory” area of the Cell.`,
         control: {type: "select"},
-        options: (Object.keys(CellMappings): Array<React.Node>),
-        mapping: CellMappings,
+        options: (Object.keys(AccessoryMappings): Array<React.Node>),
+        mapping: AccessoryMappings,
         table: {
             category: "Layout",
             type: {
