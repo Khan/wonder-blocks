@@ -161,6 +161,8 @@ const CellCore = (props: CellCoreProps): React.Node => {
                     <RightAccessory
                         rightAccessory={rightAccessory}
                         rightAccessoryStyle={rightAccessoryStyle}
+                        active={active}
+                        disabled={disabled}
                     />
                 </View>
             </View>
