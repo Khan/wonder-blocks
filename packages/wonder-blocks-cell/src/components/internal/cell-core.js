@@ -201,6 +201,7 @@ const styles = StyleSheet.create({
 
     content: {
         alignSelf: "center",
+        overflowWrap: "break-word",
         padding: `${CellMeasurements.contentVerticalSpacing}px 0`,
     },
 
