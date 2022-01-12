@@ -78,7 +78,28 @@ DetailCellActive.parameters = {
 };
 
 /**
- * Active detail cell example.
+ * Disabled detail cell example.
+ */
+export const DetailCellDisabled: StoryComponentType = () => (
+    <DetailCell
+        title="Title for article item"
+        subtitle1="Subtitle for article item"
+        subtitle2="Subtitle for article item"
+        leftAccessory={<Icon icon={icons.contentVideo} size="medium" />}
+        rightAccessory={<Icon icon={icons.caretRight} size="small" />}
+        disabled={true}
+    />
+);
+
+DetailCellDisabled.parameters = {
+    docs: {
+        storyDescription:
+            "For more complex scenarios where we need to use more content such as subtitles, we provide a DetailCell component that can be used to cover these cases. The following example shows how to include a subtitle and use the active state.",
+    },
+};
+
+/**
+ * Using custom styles.
  */
 export const DetailCellWithCustomStyles: StoryComponentType = () => (
     <DetailCell

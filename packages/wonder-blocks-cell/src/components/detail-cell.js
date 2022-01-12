@@ -5,11 +5,36 @@ import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {LabelSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core.js";
 
 import type {CellProps, TypographyText} from "../util/types.js";
+
+type SubtitleProps = {|
+    subtitle?: TypographyText,
+    /**
+     * If true, the subtitle will use the alpha color defined in the parent
+     * component/element.
+     */
+    disabled?: boolean,
+|};
+
+const Subtitle = ({subtitle, disabled}: SubtitleProps): React.Node => {
+    if (!subtitle) {
+        return null;
+    }
+
+    if (typeof subtitle === "string") {
+        return (
+            <LabelSmall style={!disabled && styles.subtitle}>
+                {subtitle}
+            </LabelSmall>
+        );
+    }
+
+    return subtitle;
+};
 
 type DetailCellProps = {|
     ...CellProps,
@@ -50,29 +75,18 @@ type DetailCellProps = {|
 function DetailCell(props: DetailCellProps): React.Node {
     const {title, subtitle1, subtitle2, ...coreProps} = props;
 
-    const maybeRenderSubtitle = (subtitle?: TypographyText): React.Node => {
-        if (!subtitle) {
-            return null;
-        }
-
-        if (typeof subtitle === "string") {
-            return <LabelSmall style={styles.subtitle}>{subtitle}</LabelSmall>;
-        }
-
-        return subtitle;
-    };
-
     return (
         <CellCore {...coreProps}>
-            {maybeRenderSubtitle(subtitle1)}
+            <Subtitle subtitle={subtitle1} disabled={coreProps.disabled} />
+            {subtitle1 && <Strut size={Spacing.xxxxSmall_2} />}
             {typeof title === "string" ? (
-                <LabelMedium>{title}</LabelMedium>
+                <LabelLarge>{title}</LabelLarge>
             ) : (
                 title
             )}
             {/* Add a vertical spacing between the title and the subtitle */}
             {subtitle2 && <Strut size={Spacing.xxxxSmall_2} />}
-            {maybeRenderSubtitle(subtitle2)}
+            <Subtitle subtitle={subtitle2} disabled={coreProps.disabled} />
         </CellCore>
     );
 }
