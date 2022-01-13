@@ -13,6 +13,8 @@ on:
 #      cache.
 #   2. Coverage
 #   3. Chromatic autoApprove on squash commits
+#   4. Publish to branch (to ensure that the required checks will run on
+#      protected branches)
 #
 # For pushes directly to a branch, we assume a PR has been used with wider
 # checks, this just makes sure our coverage data is up-to-date.
@@ -138,6 +140,8 @@ jobs:
         projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
         autoAcceptChanges: true
 
+  # NOTE: This step is copied from render-gateway. See
+  # https://github.com/Khan/render-gateway/blob/master/.github/workflows/node-ci.yml
   publish_to_branch:
     needs: [prime_cache_primary]
     name: Publish to branch
