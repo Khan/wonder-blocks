@@ -26,6 +26,9 @@ export const AccessoryMappings = {
             <LabelXSmall>Info</LabelXSmall>
         </View>
     ): React.Element<typeof View>),
+    withImage: ((
+        <img src="/avatar.png" alt="ItemAvatar" width={48} height={48} />
+    ): React$Element<"img">),
 };
 
 export default {

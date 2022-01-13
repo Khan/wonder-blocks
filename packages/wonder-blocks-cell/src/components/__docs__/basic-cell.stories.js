@@ -224,12 +224,13 @@ export const BasicCellWithCustomStyles: StoryComponentType = () => (
     />
 );
 
-BasicCellHorizontalRules.parameters = {
+BasicCellWithCustomStyles.parameters = {
     docs: {
         storyDescription:
             "Cell components can also adapt to different visual needs. One example of this can be done by passing a custom style object to the `style` prop.",
     },
 };
+
 /*
  * BasicCell with onClick set
 
@@ -250,6 +251,10 @@ ClickableBasicCell.parameters = {
         // to capture screenshots.
         disableSnapshot: true,
     },
+    docs: {
+        storyDescription:
+            "Cell components can also also be clickable. This is done by passing a `onClick` prop to the component.",
+    },
 };
 
 export const BasicCellActive: StoryComponentType = () => (
@@ -264,15 +269,29 @@ export const BasicCellActive: StoryComponentType = () => (
     />
 );
 
+BasicCellActive.parameters = {
+    docs: {
+        storyDescription:
+            "The cell also supports different states within itself. The different styles are defined internally (e.g hover, focused, pressed, active, disabled) and we allow passing some props to use the `active` or `disabled` state.",
+    },
+};
+
 export const BasicCellDisabled: StoryComponentType = () => (
     <BasicCell
         title="Title for article item"
-        leftAccessory={<Icon icon={icons.contentVideo} size="medium" />}
+        leftAccessory={AccessoryMappings.withImage}
         rightAccessory={<Icon icon={calendarIcon} size="small" />}
         disabled={true}
         onClick={() => {}}
     />
 );
+
+BasicCellDisabled.parameters = {
+    docs: {
+        storyDescription:
+            "In the following example we can see how the `disabled` state works. Note that we apply an opacity to all the elements to make it more apparent that the cell is disabled. This includes text, SVG icons, images, etc.",
+    },
+};
 
 const styles = StyleSheet.create({
     example: {
