@@ -36,11 +36,12 @@ export type FetchFn<TRequestOptions: RequestOptions = RequestOptions> = (
  * Functions that details of a GQL request and generate the URL.
  */
 export type GetURLForOperation<
+    TData,
     TVariables: {...},
     TContext: GqlContext,
     TType,
 > = (
-    operation: GqlOperation<TType>,
+    operation: GqlOperation<TType, TData, TVariables>,
     variables: ?TVariables,
     context: TContext,
 ) => URL;
@@ -50,6 +51,6 @@ export type GetURLForOperation<
  */
 export type GqlRouterConfiguration<TContext: GqlContext> = {|
     fetch: FetchFn<any>,
-    getURLForOperation: GetURLForOperation<any, any, any>,
+    getURLForOperation: GetURLForOperation<any, any, any, any>,
     defaultContext: TContext,
 |};

@@ -27,7 +27,7 @@ type Props<
     /**
      * The function to use to generate a request URL for a given operation.
      */
-    getURLForOperation: GetURLForOperation<any, any, any>,
+    getURLForOperation: GetURLForOperation<any, any, any, any>,
 
     /**
      * The children to be rendered inside the router.
