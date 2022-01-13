@@ -10,24 +10,24 @@ import type {
     GqlRouterConfiguration,
 } from "../util/gql-types.js";
 
-type Props<TContext: GqlContext> = {|
+type Props<
+    TContext: GqlContext,
+    TRequestOptions: RequestOptions = RequestOptions,
+> = {|
     /**
      * The default context to be used by operations when no context is provided.
-     * This is required for the root level `GqlRouter` instance.
      */
-    defaultContext?: TContext,
+    defaultContext: TContext,
 
     /**
      * The function to use when fetching requests.
-     * Defaults to `fetch` if available.
      */
-    fetch?: FetchFn,
+    fetch: FetchFn<TRequestOptions>,
 
     /**
      * The function to use to generate a request URL for a given operation.
-     * This is required for the root level `GqlRouter` instance.
      */
-    getURLForOperation?: GetURLForOperation,
+    getURLForOperation: GetURLForOperation<any, any, any>,
 
     /**
      * The children to be rendered inside the router.
@@ -37,6 +37,9 @@ type Props<TContext: GqlContext> = {|
 
 /**
  * Configure GraphQL routing for GraphQL hooks and components.
+ *
+ * These can be nested. Components and hooks relying on the GraphQL routing
+ * will use the configuration from their closest ancestral GqlRouter.
  */
 export const GqlRouter = <TContext: GqlContext>({
     defaultContext: thisDefaultContext,
@@ -44,58 +47,26 @@ export const GqlRouter = <TContext: GqlContext>({
     getURLForOperation: thisGetURLForOperation,
     children,
 }: Props<TContext>): React.Node => {
-    // There's a chance we are nested inside another `GqlRouter`, so we must
-    // inherit from it, if that's the case.
-    const existing = React.useContext(GqlRouterContext);
-
-    if (existing == null) {
-        if (process.env.NODE_ENV === "production") {
-            // Simplified error checking for production.
-            if (
-                thisDefaultContext == null ||
-                thisGetURLForOperation == null ||
-                (thisFetch == null && typeof fetch !== "function")
-            ) {
-                throw new Error("Bad root GqlRouter");
-            }
-        } else {
-            // More detailed errors for dev and test.
-            if (thisDefaultContext == null) {
-                throw new Error(
-                    "defaultContext is required on the root GqlRouter",
-                );
-            }
-
-            if (thisGetURLForOperation == null) {
-                throw new Error(
-                    "getURLForOperation is required on the root GqlRouter",
-                );
-            }
-
-            if (thisFetch == null && typeof fetch !== "function") {
-                throw new Error(
-                    "No fetch implementation provided and no global fetch detected; please provide one on the root GqlRouter, or install an implementation such as node-fetch",
-                );
-            }
-        }
-    }
+    // We don't care if we're nested. We always force our callers to define
+    // everything. It makes for a clearer API and requires less error checking
+    // code (assuming our flow types are correct). We also don't default fetch
+    // to anything - our callers can tell us what function to use quite easily.
+    // If code that consumes this wants more nuanced nesting, it can implement
+    // it within its own GqlRouter than then defers to this one.
 
     // We want to always use the same object if things haven't changed to avoid
-    // over-rendering our children, let's memoize the configuration.
+    // over-rendering consumers of our context, let's memoize the configuration.
+    // By doing this, if a component under children that uses this context
+    // uses React.memo, we won't force it to re-render every time we render
+    // because we'll only change the context value if something has actually
+    // changed.
     const configuration: GqlRouterConfiguration<TContext> = React.useMemo(
         () => ({
-            fetch: thisFetch ?? existing?.fetch ?? fetch,
-            getURLForOperation:
-                // Our error checking above ensures that we will have a
-                // valid value here.
-                // $FlowFixMe[incompatible-use]
-                thisGetURLForOperation ?? existing.getURLForOperation,
-            // Our error checking above ensures that we will have a
-            // valid value here.
-            // $FlowFixMe[incompatible-use]
-            defaultContext: thisDefaultContext ?? existing.defaultContext,
+            fetch: thisFetch,
+            getURLForOperation: thisGetURLForOperation,
+            defaultContext: thisDefaultContext,
         }),
-        [thisDefaultContext, thisFetch, thisGetURLForOperation, existing],
+        [thisDefaultContext, thisFetch, thisGetURLForOperation],
     );
 
     return (

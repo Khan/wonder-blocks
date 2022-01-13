@@ -27,7 +27,7 @@ export type GqlContext = {|
  * Functions that make fetches.
  * Supports `fetch` and similar methods.
  */
-export type FetchFn = <TRequestOptions: RequestOptions = RequestOptions>(
+export type FetchFn<TRequestOptions: RequestOptions = RequestOptions> = (
     url: string,
     options?: TRequestOptions,
 ) => Promise<Response>;
@@ -35,11 +35,11 @@ export type FetchFn = <TRequestOptions: RequestOptions = RequestOptions>(
 /**
  * Functions that details of a GQL request and generate the URL.
  */
-export type GetURLForOperation = <
+export type GetURLForOperation<
     TVariables: {...},
     TContext: GqlContext,
     TType,
->(
+> = (
     operation: GqlOperation<TType>,
     variables: ?TVariables,
     context: TContext,
@@ -49,7 +49,7 @@ export type GetURLForOperation = <
  * The configuration stored in the GqlRouterContext context.
  */
 export type GqlRouterConfiguration<TContext: GqlContext> = {|
-    fetch: FetchFn,
-    getURLForOperation: GetURLForOperation,
+    fetch: FetchFn<any>,
+    getURLForOperation: GetURLForOperation<any, any, any>,
     defaultContext: TContext,
 |};
