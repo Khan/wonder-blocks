@@ -1,0 +1,32 @@
+{
+    "name": "@khanacademy/wonder-blocks-cell",
+    "version": "0.0.1",
+    "design": "v1",
+    "publishConfig": {
+      "access": "public"
+    },
+    "description": "",
+    "main": "dist/index.js",
+    "module": "dist/es/index.js",
+    "source": "src/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "dependencies": {
+      "@babel/runtime": "^7.16.3",
+      "@khanacademy/wonder-blocks-clickable": "^2.2.1",
+      "@khanacademy/wonder-blocks-color": "^1.1.20",
+      "@khanacademy/wonder-blocks-core": "^4.2.0",
+      "@khanacademy/wonder-blocks-spacing": "^3.0.5",
+      "@khanacademy/wonder-blocks-typography": "^1.1.28"
+    },
+    "peerDependencies": {
+      "aphrodite": "^1.2.5",
+      "react": "16.14.0"
+    },
+    "devDependencies": {
+      "wb-dev-build-settings": "^0.2.0"
+    },
+    "author": "",
+    "license": "MIT"
+}
