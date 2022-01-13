@@ -1,9 +1,14 @@
 // @flow
 /**
+ * Operation types.
+ */
+export type GqlOperationType = "mutation" | "query";
+
+/**
  * A GraphQL operation.
  */
 export type GqlOperation<
-    TType: "mutation" | "query",
+    TType: GqlOperationType,
     // TData is not used to define a field on this type, but it is used
     // to ensure that calls using this operation will properly return the
     // correct data type.
@@ -53,4 +58,12 @@ export type GqlRouterConfiguration<TContext: GqlContext> = {|
     fetch: FetchFn<any>,
     getURLForOperation: GetURLForOperation<any, any, any, any>,
     defaultContext: TContext,
+|};
+
+/**
+ * Options for configuring a GQL fetch.
+ */
+export type GqlFetchOptions<TVariables: {...}, TContext: GqlContext> = {|
+    variables?: TVariables,
+    context?: Partial<TContext>,
 |};
