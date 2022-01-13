@@ -59,7 +59,7 @@ describe("CellCore", () => {
 
         // Assert
         expect(
-            screen.getByLabelText("some description", {role: "button"}),
+            screen.getByRole("button", {name: "some description"}),
         ).toBeInTheDocument();
     });
 
