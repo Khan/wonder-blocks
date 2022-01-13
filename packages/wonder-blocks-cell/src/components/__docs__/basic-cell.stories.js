@@ -220,6 +220,7 @@ export const BasicCellWithCustomStyles: StoryComponentType = () => (
             background: Color.darkBlue,
             color: Color.white,
         }}
+        onClick={() => {}}
     />
 );
 
@@ -229,6 +230,49 @@ BasicCellHorizontalRules.parameters = {
             "Cell components can also adapt to different visual needs. One example of this can be done by passing a custom style object to the `style` prop.",
     },
 };
+/*
+ * BasicCell with onClick set
+
+ */
+
+export const ClickableBasicCell: StoryComponentType = () => (
+    <BasicCell
+        title="Intro to rational & irrational numbers"
+        rightAccessory={<Icon icon={icons.caretRight} />}
+        onClick={() => {}}
+        aria-label="Press to navigate to the article"
+    />
+);
+
+ClickableBasicCell.parameters = {
+    chromatic: {
+        // This only includes interactions with the clickable cell, so no need
+        // to capture screenshots.
+        disableSnapshot: true,
+    },
+};
+
+export const BasicCellActive: StoryComponentType = () => (
+    <BasicCell
+        title="Title for article item"
+        leftAccessory={
+            <Icon icon={icons.contentVideo} size="medium" color="black" />
+        }
+        rightAccessory={<Icon icon={calendarIcon} size="small" />}
+        active={true}
+        onClick={() => {}}
+    />
+);
+
+export const BasicCellDisabled: StoryComponentType = () => (
+    <BasicCell
+        title="Title for article item"
+        leftAccessory={AccessoryMappings.withImage}
+        rightAccessory={<Icon icon={calendarIcon} size="small" />}
+        disabled={true}
+        onClick={() => {}}
+    />
+);
 
 const styles = StyleSheet.create({
     example: {

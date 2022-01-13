@@ -73,4 +73,26 @@ describe("BasicCell", () => {
         // Assert
         expect(screen.getByTestId("cellId")).toHaveTextContent("Basic cell");
     });
+
+    it("should add a button if onClick is set", () => {
+        // Arrange
+
+        // Act
+        render(<BasicCell title="Basic cell" onClick={jest.fn()} />);
+
+        // Assert
+        expect(screen.getByRole("button")).toBeInTheDocument();
+    });
+
+    it("should allow clicking the cell if onClick is set", () => {
+        // Arrange
+        const onClickMock = jest.fn();
+        render(<BasicCell title="Basic cell" onClick={onClickMock} />);
+
+        // Act
+        screen.getByRole("button").click();
+
+        // Assert
+        expect(onClickMock).toHaveBeenCalled();
+    });
 });

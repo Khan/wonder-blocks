@@ -26,6 +26,9 @@ export const AccessoryMappings = {
             <LabelXSmall>Info</LabelXSmall>
         </View>
     ): React.Element<typeof View>),
+    withImage: ((
+        <img src="/avatar.png" alt="ItemAvatar" width={48} height={48} />
+    ): React$Element<"img">),
 };
 
 export default {
@@ -115,6 +118,60 @@ export default {
         table: {
             type: {
                 summary: "string",
+            },
+        },
+    },
+    onClick: {
+        action: "clicked",
+        description: `Called when the cell is clicked.
+        If not provided, the Cell can’t be hovered and/or pressed (highlighted on
+    hover).
+        `,
+        table: {
+            category: "Events",
+            type: {
+                summary: "(e: SyntheticEvent<>) => mixed",
+            },
+        },
+    },
+    disabled: {
+        description: "Whether the cell is disabled.",
+        control: {
+            type: "boolean",
+        },
+        defaultValue: false,
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+    },
+    active: {
+        description: "Whether the cell is active (or currently selected).",
+        control: {
+            type: "boolean",
+        },
+        defaultValue: false,
+        table: {
+            type: {
+                summary: "boolean",
+            },
+        },
+    },
+    /**
+     * Accessibility
+     */
+    ariaLabel: {
+        name: "aria-label",
+        control: {
+            type: "string",
+        },
+        description: "Used to announce the cell's content to screen readers.",
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "string",
+                detail: `aria-label should be specially used when the cell is pressable so screen readers can announce the link when the user is focused on it.`,
             },
         },
     },
