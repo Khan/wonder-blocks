@@ -47,6 +47,10 @@ export default {
         mapping: AccessoryMappings,
         table: {
             category: "Layout",
+            type: {
+                summary: "React.Node",
+                detail: "By default it uses a free width and its default alignment is center (for both vertical and horizontal).",
+            },
         },
     },
     leftAccessoryStyle: {
@@ -66,6 +70,10 @@ export default {
         mapping: AccessoryMappings,
         table: {
             category: "Layout",
+            type: {
+                summary: "React.Node",
+                detail: "By default it uses a free width and its default alignment is center (for both vertical and horizontal).",
+            },
         },
     },
     rightAccessoryStyle: {
@@ -75,6 +83,38 @@ export default {
             type: {
                 summary: "AccessoryStyle",
                 detail: "NOTE: rightAccessoryStyle can only be used if rightAccessory is set.",
+            },
+        },
+    },
+    horizontalRule: {
+        description:
+            "Adds a horizontal rule at the bottom of the cell that can be used to separate cells within groups such as lists. Defaults to `inset`.",
+        defaultValue: "inset",
+        options: ["inset", "full-width", "none"],
+        control: {type: "select"},
+        table: {
+            category: "Layout",
+            type: {
+                summary: "inset | full-width | none",
+            },
+        },
+    },
+    style: {
+        description: "Optional custom styles.",
+        control: {type: "object"},
+        table: {
+            category: "Styling",
+            type: {
+                summary: "StyleType",
+            },
+        },
+    },
+    testId: {
+        description: "Test ID used for e2e testing.",
+        control: {type: "text"},
+        table: {
+            type: {
+                summary: "string",
             },
         },
     },

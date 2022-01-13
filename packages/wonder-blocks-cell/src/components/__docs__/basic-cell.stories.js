@@ -179,6 +179,57 @@ BasicCellAccessoryStyles.parameters = {
     },
 };
 
+/**
+ * Defining horizontal rule variants
+ */
+export const BasicCellHorizontalRules: StoryComponentType = () => (
+    <>
+        <BasicCell
+            title="This is a basic cell with an 'inset' horizontal rule"
+            leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
+            horizontalRule="inset"
+        />
+        <BasicCell
+            title="This is a basic cell with a 'full-width' horizontal rule"
+            leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
+            horizontalRule="full-width"
+        />
+        <BasicCell
+            title="This is a basic cell without a horizontal rule"
+            leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
+            horizontalRule="none"
+        />
+    </>
+);
+
+BasicCellHorizontalRules.storyName = "Defining horizontal rule variants";
+
+BasicCellHorizontalRules.parameters = {
+    docs: {
+        storyDescription:
+            "Cell components can use the `horizontalRule` prop to use a set of predefined variants that we can use to match our needs.",
+    },
+};
+
+export const BasicCellWithCustomStyles: StoryComponentType = () => (
+    <BasicCell
+        title="BasicCell with a darkBlue background"
+        leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
+        rightAccessory={<Icon icon={calendarIcon} color={Color.white} />}
+        style={{
+            background: Color.darkBlue,
+            color: Color.white,
+        }}
+    />
+);
+
+BasicCellHorizontalRules.parameters = {
+    docs: {
+        storyDescription:
+            "Cell components can also adapt to different visual needs. One example of this can be done by passing a custom style object to the `style` prop.",
+    },
+};
+
 const styles = StyleSheet.create({
     example: {
         backgroundColor: Color.offWhite,

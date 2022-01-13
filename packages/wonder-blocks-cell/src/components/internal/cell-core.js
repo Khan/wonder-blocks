@@ -6,9 +6,69 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 
-import {CellMeasurements} from "./common.js";
+import {CellMeasurements, getHorizontalRuleStyles} from "./common.js";
 
 import type {CellProps, TypographyText} from "../../util/types.js";
+
+type LeftAccessoryProps = {|
+    leftAccessory?: CellProps["leftAccessory"],
+    leftAccessoryStyle?: CellProps["leftAccessoryStyle"],
+|};
+
+/**
+ * Left Accessories can be defined using WB components such as Icon, IconButton,
+ * or it can even be used for a custom node/component if needed.
+ */
+const LeftAccessory = ({
+    leftAccessory,
+    leftAccessoryStyle,
+}: LeftAccessoryProps): React.Node => {
+    if (!leftAccessory) {
+        return null;
+    }
+
+    return (
+        <>
+            <View style={[styles.accessory, {...leftAccessoryStyle}]}>
+                {leftAccessory}
+            </View>
+            <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
+        </>
+    );
+};
+
+type RightAccessoryProps = {|
+    rightAccessory?: CellProps["rightAccessory"],
+    rightAccessoryStyle?: CellProps["rightAccessoryStyle"],
+|};
+
+/**
+ * Right Accessories can be defined using WB components such as Icon,
+ * IconButton, or it can even be used for a custom node/component if needed.
+ */
+const RightAccessory = ({
+    rightAccessory,
+    rightAccessoryStyle,
+}: RightAccessoryProps): React.Node => {
+    if (!rightAccessory) {
+        return null;
+    }
+
+    return (
+        <>
+            <Strut size={CellMeasurements.accessoryHorizontalSpacing} />
+            <View
+                style={[
+                    styles.accessory,
+                    styles.accessoryRight,
+                    {...rightAccessoryStyle},
+                ]}
+            >
+                {rightAccessory}
+            </View>
+        </>
+    );
+};
 
 type CellCoreProps = {|
     ...$Rest<CellProps, {|title: TypographyText|}>,
@@ -30,48 +90,36 @@ type CellCoreProps = {|
 const CellCore = (props: CellCoreProps): React.Node => {
     const {
         children,
+        horizontalRule = "inset",
         leftAccessory = undefined,
         leftAccessoryStyle = undefined,
         rightAccessory = undefined,
         rightAccessoryStyle = undefined,
+        style,
+        testId,
     } = props;
 
+    const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
+
     return (
-        <View style={[styles.wrapper]}>
-            <View style={styles.innerWrapper}>
+        <View style={[styles.wrapper, style]}>
+            <View style={[styles.innerWrapper, horizontalRuleStyles]}>
                 {/* Left accessory */}
-                {leftAccessory && (
-                    <>
-                        <View
-                            style={[styles.accessory, {...leftAccessoryStyle}]}
-                        >
-                            {leftAccessory}
-                        </View>
-                        <Strut
-                            size={CellMeasurements.accessoryHorizontalSpacing}
-                        />
-                    </>
-                )}
+                <LeftAccessory
+                    leftAccessory={leftAccessory}
+                    leftAccessoryStyle={leftAccessoryStyle}
+                />
+
                 {/* Cell contents */}
-                <View style={styles.content}>{children}</View>
+                <View style={styles.content} testId={testId}>
+                    {children}
+                </View>
 
                 {/* Right accessory */}
-                {rightAccessory && (
-                    <>
-                        <Strut
-                            size={CellMeasurements.accessoryHorizontalSpacing}
-                        />
-                        <View
-                            style={[
-                                styles.accessory,
-                                styles.accessoryRight,
-                                {...rightAccessoryStyle},
-                            ]}
-                        >
-                            {rightAccessory}
-                        </View>
-                    </>
-                )}
+                <RightAccessory
+                    rightAccessory={rightAccessory}
+                    rightAccessoryStyle={rightAccessoryStyle}
+                />
             </View>
         </View>
     );
@@ -80,6 +128,7 @@ const CellCore = (props: CellCoreProps): React.Node => {
 const styles = StyleSheet.create({
     wrapper: {
         background: Color.white,
+        color: Color.offBlack,
         minHeight: CellMeasurements.cellMinHeight,
     },
 
@@ -91,7 +140,6 @@ const styles = StyleSheet.create({
 
     content: {
         alignSelf: "center",
-        color: Color.offBlack,
         padding: `${CellMeasurements.contentVerticalSpacing}px 0`,
     },
 
