@@ -532,8 +532,8 @@ exports[`wonder-blocks-core example 10 1`] = `
     }
   >
     <button
+      aria-disabled={false}
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
