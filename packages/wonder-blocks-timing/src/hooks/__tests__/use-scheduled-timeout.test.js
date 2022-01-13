@@ -224,7 +224,7 @@ describe("useScheduledTimeout", () => {
 
             // Assert
             expect(action).not.toHaveBeenCalled();
-            act(() => jest.advanceTimersByTime(500));
+            act((): void => jest.advanceTimersByTime(500));
             expect(action).toHaveBeenCalled();
         });
 
