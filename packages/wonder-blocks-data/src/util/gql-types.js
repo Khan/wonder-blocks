@@ -19,54 +19,6 @@ export type GqlOperation<
     id: string,
 |};
 
-/**
- * A GraphQL query definition.
- */
-export type GqlQuery<TData, TVariables: {...} = Empty> = GqlOperation<
-    "query",
-    TData,
-    TVariables,
->;
-
-/**
- * A GraphQL mutation definition.
- */
-export type GqlMutation<TData, TVariables: {...} = Empty> = GqlOperation<
-    "mutation",
-    TData,
-    TVariables,
->;
-
-/**
- * These types allow us to add the __typename field to all depths of an object.
- */
-type RecursiveAddTypename<O: Object> = $ObjMap<O, typeof addTypename>;
-type RecursiveAddTypenameObj<O: Object> = {|
-    ...RecursiveAddTypename<O>,
-    __typename: string,
-|};
-
-// We need to use multiple dispatch within flow for this to work so we have to
-// redeclare the same method in a few different ways.
-/* eslint-disable no-redeclare */
-declare function addTypename<I, O, F: (I) => O>(F): F;
-declare function addTypename<A: Array<Object>>(
-    A,
-): Array<RecursiveAddTypename<A[number]>>;
-declare function addTypename<I: string | boolean | number | void | null>(I): I;
-declare function addTypename<I: Array<string> | Array<boolean> | Array<number>>(
-    I,
-): Array<I[number]>;
-declare function addTypename<O: Object>(O): RecursiveAddTypenameObj<O>;
-/* eslint-enable no-redeclare */
-
-/**
- * Add the required __typename field to all depths of the object type.
- * This is for use with TData types and as such, does not add it to the root
- * level.
- */
-export type DataWithTypename<O: Object> = RecursiveAddTypename<O>;
-
 export type GqlContext = {|
     [key: string]: string,
 |};
