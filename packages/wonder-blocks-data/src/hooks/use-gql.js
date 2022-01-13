@@ -22,6 +22,7 @@ export const useGql = (): (<
     operation: GqlOperation<TType, TData, TVariables>,
     options?: GqlFetchOptions<TVariables, TContext>,
 ) => Promise<TData>) => {
+    // This hook only works if the `GqlRouter` has been used to setup context.
     const gqlRouterContext = useContext(GqlRouterContext);
     if (gqlRouterContext == null) {
         throw new Error("No GqlRouter");
@@ -55,6 +56,7 @@ export const useGql = (): (<
                 });
 
                 // Invoke the fetch and return the resulting JSON response.
+                // TODO: Support POST if we need to.
                 return fetch(url.toString()).then((r) => r.json());
             },
         [fetch, getURLForOperation, defaultContext],
