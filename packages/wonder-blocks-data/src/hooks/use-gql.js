@@ -3,8 +3,7 @@ import {useContext, useMemo} from "react";
 
 import {GqlRouterContext} from "../util/gql-router-context.js";
 import {getGqlDataFromResponse} from "../util/get-gql-data-from-response.js";
-import {GqlError} from "../util/gql-error.js";
-import {GqlErrors} from "../util/gql-errors.js";
+import {GqlError, GqlErrors} from "../util/gql-error.js";
 
 import type {
     GqlContext,
@@ -12,8 +11,12 @@ import type {
     GqlFetchOptions,
     GqlOperationType,
 } from "../util/gql-types.js";
+
 /**
  * Hook to obtain a gqlFetch function for performing GraphQL requests.
+ *
+ * The fetch function will resolve null if the request was aborted, otherwise
+ * it will resolve the data returned by the GraphQL server.
  */
 export const useGql = (): (<
     TType: GqlOperationType,
@@ -49,7 +52,7 @@ export const useGql = (): (<
                     {},
                 ),
             ) => {
-                const {variables, context} = options ?? {};
+                const {variables, context} = options;
 
                 // Invoke the fetch and extract the data.
                 return fetch(operation, variables, {

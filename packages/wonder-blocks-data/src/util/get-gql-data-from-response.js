@@ -1,6 +1,5 @@
 // @flow
-import {GqlError} from "./gql-error.js";
-import {GqlErrors} from "./gql-errors.js";
+import {GqlError, GqlErrors} from "./gql-error.js";
 
 /**
  * Validate a GQL operation response and extract the data.
@@ -52,11 +51,14 @@ export const getGqlDataFromResponse = async <TData>(
     }
 
     // If the response payload has errors, throw an error.
-    if (result?.errors != null) {
+    if (
+        result.errors != null &&
+        Array.isArray(result.errors) &&
+        result.errors.length > 0
+    ) {
         throw new GqlError("GraphQL errors", GqlErrors.ErrorResult, {
             metadata: {
                 statusCode: response.status,
-                graphQLErrors: result.errors,
                 result,
             },
         });
