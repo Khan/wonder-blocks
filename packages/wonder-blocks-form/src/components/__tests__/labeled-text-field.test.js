@@ -3,7 +3,7 @@ import * as React from "react";
 import {mount} from "enzyme";
 import "jest-enzyme";
 import {render, screen} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+// import userEvent from "@testing-library/user-event";
 
 import {StyleSheet} from "aphrodite";
 import LabeledTextField from "../labeled-text-field.js";
@@ -559,12 +559,12 @@ describe("Required LabeledTextField", () => {
     });
 
     /*
-    test.only("displays the default message when requiredErrorMessage is not passed in", async () => {
+    test("displays the default message when requiredErrorMessage is not passed in", async () => {
         // Arrange
         render(
             <LabeledTextField
                 label="Label"
-                value=""
+                value="abcdefg"
                 onChange={() => {}}
                 required={true}
                 testId="test-labeled-text-field"
@@ -575,9 +575,7 @@ describe("Required LabeledTextField", () => {
         textField.focus();
         userEvent.type(textField, "a");
 
-        await wait(0);
-
-        console.log("value", textField.value);
+        // console.log("value", textField.value);
         userEvent.clear(textField);
 
         // Act
@@ -614,5 +612,5 @@ describe("Required LabeledTextField", () => {
         // Assert
         expect(screen.getByRole("alert")).toHaveTextContent(errorMessage);
     });
+    */
 });
-*/

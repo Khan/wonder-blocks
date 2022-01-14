@@ -154,7 +154,6 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
 
     constructor(props: PropsWithForwardRef) {
         super(props);
-        // Value should never be undefined since it is a required prop
         if (props.validate && props.value !== "") {
             // Ensures error is updated on unmounted server-side renders
             this.state.error = props.validate(props.value) || null;
@@ -167,7 +166,6 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
     };
 
     componentDidMount() {
-        // Value should never be undefined since it is a required prop
         if (this.props.value !== "") {
             this.maybeValidate(this.props.value);
         }
@@ -233,7 +231,6 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
             disabled,
             onKeyDown,
             placeholder,
-            required,
             light,
             style,
             testId,
@@ -248,6 +245,7 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
             onValidate,
             validate,
             onChange,
+            required,
             requiredErrorMessage,
             /* eslint-enable no-unused-vars */
             // Should only include Aria related props

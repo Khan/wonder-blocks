@@ -57,6 +57,7 @@ export const Required: StoryComponentType = () => {
         <TextField
             id="tf-1"
             type="text"
+            value={value}
             onChange={handleChange}
             onKeyDown={handleKeyDown}
             required={true}

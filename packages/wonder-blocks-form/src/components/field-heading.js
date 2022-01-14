@@ -67,7 +67,12 @@ export default class FieldHeading extends React.Component<Props> {
     renderLabel(): React.Node {
         const {label, id, required, testId} = this.props;
 
-        const requiredIcon = <StyledSpan style={styles.required} aria-hidden={true}> *</StyledSpan>;
+        const requiredIcon = (
+            <StyledSpan style={styles.required} aria-hidden={true}>
+                {" "}
+                *
+            </StyledSpan>
+        );
 
         return (
             <React.Fragment>
