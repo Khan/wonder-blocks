@@ -104,6 +104,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
+    "@khanacademy/wonder-stuff-core": "^0.1.2",
     "@popperjs/core": "^2.10.1",
     "aphrodite": "^1.2.5",
     "flow-enums-runtime": "^0.0.6",

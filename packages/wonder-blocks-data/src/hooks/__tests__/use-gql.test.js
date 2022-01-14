@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {renderHook, act} from "@testing-library/react-hooks";
+import {renderHook} from "@testing-library/react-hooks";
 
 import {GqlRouterContext} from "../../util/gql-router-context.js";
 import {useGql} from "../use-gql.js";
@@ -15,14 +15,15 @@ describe("#useGql", () => {
         } = renderHook(() => useGql());
 
         // Assert
-        expect(result).toMatchInlineSnapshot(`[Error: No GqlRouter]`);
+        expect(result).toMatchInlineSnapshot(
+            `[GqlInternalError: No GqlRouter]`,
+        );
     });
 
     it("should return a function", () => {
         // Arrange
         const gqlRouterContext = {
             fetch: jest.fn(),
-            getURLForOperation: jest.fn(),
             defaultContext: {},
         };
 

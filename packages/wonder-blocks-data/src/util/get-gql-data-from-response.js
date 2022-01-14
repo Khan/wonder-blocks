@@ -1,4 +1,10 @@
 // @flow
+import {GqlError} from "./gql-error.js";
+import {GqlErrors} from "./gql-errors.js";
+
+/**
+ * Validate a GQL operation response and extract the data.
+ */
 export const getGqlDataFromResponse = async <TData>(
     response: Response,
 ): Promise<TData> => {
@@ -9,15 +15,26 @@ export const getGqlDataFromResponse = async <TData>(
     try {
         result = JSON.parse(bodyText);
     } catch (e) {
-        // TODO: Use KindError from WS Core.
-        throw new Error("Failed to parse");
+        throw new GqlError("Failed to parse response", GqlErrors.Parse, {
+            metadata: {
+                statusCode: response.status,
+                bodyText,
+            },
+            cause: e,
+        });
     }
 
+    // Check for a bad status code.
     if (response.status >= 300) {
-        // TODO: Use KindError from WS Core.
-        throw new Error("Network error");
+        throw new GqlError("Response unsuccessful", GqlErrors.Network, {
+            metadata: {
+                statusCode: response.status,
+                result,
+            },
+        });
     }
 
+    // Check that we have a valid result payload.
     if (
         // Flow shouldn't be warning about this.
         // $FlowIgnore[method-unbinding]
@@ -26,14 +43,25 @@ export const getGqlDataFromResponse = async <TData>(
         // $FlowIgnore[method-unbinding]
         !Object.prototype.hasOwnProperty.call(result, "errors")
     ) {
-        // TODO: Use KindError from WS Core.
-        throw new Error("Data error");
+        throw new GqlError("Server response missing", GqlErrors.BadResponse, {
+            metadata: {
+                statusCode: response.status,
+                result,
+            },
+        });
     }
 
-    // TODO: If there are errors, throw an error to encapsulate them.
+    // If the response payload has errors, throw an error.
     if (result?.errors != null) {
-        throw new Error("GQL error");
+        throw new GqlError("GraphQL errors", GqlErrors.ErrorResult, {
+            metadata: {
+                statusCode: response.status,
+                graphQLErrors: result.errors,
+                result,
+            },
+        });
     }
 
+    // We got here, so return the data.
     return result.data;
 };

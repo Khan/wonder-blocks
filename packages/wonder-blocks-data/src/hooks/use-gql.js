@@ -3,6 +3,8 @@ import {useContext, useMemo} from "react";
 
 import {GqlRouterContext} from "../util/gql-router-context.js";
 import {getGqlDataFromResponse} from "../util/get-gql-data-from-response.js";
+import {GqlError} from "../util/gql-error.js";
+import {GqlErrors} from "../util/gql-errors.js";
 
 import type {
     GqlContext,
@@ -10,7 +12,6 @@ import type {
     GqlFetchOptions,
     GqlOperationType,
 } from "../util/gql-types.js";
-
 /**
  * Hook to obtain a gqlFetch function for performing GraphQL requests.
  */
@@ -22,11 +23,11 @@ export const useGql = (): (<
 >(
     operation: GqlOperation<TType, TData, TVariables>,
     options?: GqlFetchOptions<TVariables, TContext>,
-) => Promise<TData>) => {
+) => Promise<?TData>) => {
     // This hook only works if the `GqlRouter` has been used to setup context.
     const gqlRouterContext = useContext(GqlRouterContext);
     if (gqlRouterContext == null) {
-        throw new Error("No GqlRouter");
+        throw new GqlError("No GqlRouter", GqlErrors.Internal);
     }
     const {fetch, defaultContext} = gqlRouterContext;
 
@@ -50,11 +51,16 @@ export const useGql = (): (<
             ) => {
                 const {variables, context} = options ?? {};
 
-                // Invoke the fetch.
+                // Invoke the fetch and extract the data.
                 return fetch(operation, variables, {
                     ...defaultContext,
                     ...context,
-                }).then((r) => getGqlDataFromResponse(r));
+                }).then(getGqlDataFromResponse, (error) => {
+                    // Return null if the request was aborted.
+                    if (error.name === "AbortError") {
+                        return null;
+                    }
+                });
             },
         [fetch, defaultContext],
     );
