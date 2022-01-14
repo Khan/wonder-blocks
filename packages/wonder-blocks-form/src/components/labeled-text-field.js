@@ -42,6 +42,27 @@ type Props = {|
     disabled: boolean,
 
     /**
+     * Whether this field is required to to continue.
+     *
+     * If the `validate` prop is not being passed in in conjuction with
+     * the `required` prop, please use the `requiredErrorMessage` prop
+     * to specify the error message.
+     */
+    required?: boolean,
+
+    /**
+     * The error message that should render if this field is
+     * required and left blank. Note that this message will not be used
+     * if a `validate` prop is passed in.
+     *
+     * Implementation note: Added this field so that users can pass in
+     * translated strings.
+     *
+     * Example message: i18n._("A password is required to log in.")
+     */
+    requiredErrorMessage?: string,
+
+    /**
      * Identifies the element or elements that describes this text field.
      */
     ariaDescribedby?: string | Array<string>,
@@ -202,6 +223,8 @@ class LabeledTextFieldInternal extends React.Component<
             description,
             value,
             disabled,
+            required,
+            requiredErrorMessage,
             validate,
             onChange,
             onKeyDown,
@@ -233,6 +256,9 @@ class LabeledTextFieldInternal extends React.Component<
                                 aria-invalid={
                                     this.state.error ? "true" : "false"
                                 }
+                                aria-required={required ? "true" : "false"}
+                                required={required}
+                                requiredErrorMessage={requiredErrorMessage}
                                 testId={testId && `${testId}-field`}
                                 type={type}
                                 value={value}
@@ -252,6 +278,7 @@ class LabeledTextFieldInternal extends React.Component<
                         }
                         label={label}
                         description={description}
+                        required={required}
                         error={(!this.state.focused && this.state.error) || ""}
                     />
                 )}

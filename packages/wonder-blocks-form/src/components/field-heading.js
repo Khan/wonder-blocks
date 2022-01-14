@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View, type StyleType} from "@khanacademy/wonder-blocks-core";
+import {View, addStyle, type StyleType} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -29,6 +29,11 @@ type Props = {|
     description?: string | React.Element<Typography>,
 
     /**
+     * Whether this field is required to to continue.
+     */
+    required?: boolean,
+
+    /**
      * The message for the error element.
      */
     error?: string | React.Element<Typography>,
@@ -52,13 +57,17 @@ type Props = {|
     testId?: string,
 |};
 
+const StyledSpan = addStyle("span");
+
 /**
  * A FieldHeading is an element that provides a label, description, and error element
  * to present better context and hints to any type of form field component.
  */
 export default class FieldHeading extends React.Component<Props> {
     renderLabel(): React.Node {
-        const {label, id, testId} = this.props;
+        const {label, id, required, testId} = this.props;
+
+        const requiredIcon = <StyledSpan style={styles.required} aria-hidden={true}> *</StyledSpan>;
 
         return (
             <React.Fragment>
@@ -70,6 +79,7 @@ export default class FieldHeading extends React.Component<Props> {
                         testId={testId && `${testId}-label`}
                     >
                         {label}
+                        {required && requiredIcon}
                     </LabelMedium>
                 ) : (
                     label
@@ -152,6 +162,9 @@ const styles = StyleSheet.create({
         color: Color.offBlack64,
     },
     error: {
+        color: Color.red,
+    },
+    required: {
         color: Color.red,
     },
 });

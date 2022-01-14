@@ -77,6 +77,17 @@ type Props = {|
     required?: boolean,
 
     /**
+     * The error message that should render if this field is
+     * required and left blank. Note that this message will not be used
+     * if a `validate` prop is passed in. Also note that error messages
+     * only redner for the LabeledTextField component, not for TextField.
+     *
+     * Implementation note: Added this field so that users can pass in
+     * translated strings.
+     */
+    requiredErrorMessage: string,
+
+    /**
      * Change the default focus ring color to fit a dark background.
      */
     light: boolean,
@@ -111,6 +122,10 @@ type DefaultProps = {|
     type: $PropertyType<PropsWithForwardRef, "type">,
     disabled: $PropertyType<PropsWithForwardRef, "disabled">,
     light: $PropertyType<PropsWithForwardRef, "light">,
+    requiredErrorMessage: $PropertyType<
+        PropsWithForwardRef,
+        "requiredErrorMessage",
+    >,
 |};
 
 type State = {|
@@ -134,11 +149,13 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
         type: "text",
         disabled: false,
         light: false,
+        requiredErrorMessage: "This field is required.",
     };
 
     constructor(props: PropsWithForwardRef) {
         super(props);
-        if (props.validate) {
+        // Value should never be undefined since it is a required prop
+        if (props.validate && props.value !== "") {
             // Ensures error is updated on unmounted server-side renders
             this.state.error = props.validate(props.value) || null;
         }
@@ -150,13 +167,25 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
     };
 
     componentDidMount() {
-        this.maybeValidate(this.props.value);
+        // Value should never be undefined since it is a required prop
+        if (this.props.value !== "") {
+            this.maybeValidate(this.props.value);
+        }
     }
 
     maybeValidate: (newValue: string) => void = (newValue) => {
-        const {validate, onValidate} = this.props;
+        const {validate, onValidate, required, requiredErrorMessage} =
+            this.props;
+
         if (validate) {
             const maybeError = validate(newValue) || null;
+            this.setState({error: maybeError}, () => {
+                if (onValidate) {
+                    onValidate(maybeError);
+                }
+            });
+        } else if (required) {
+            const maybeError = newValue ? null : requiredErrorMessage;
             this.setState({error: maybeError}, () => {
                 if (onValidate) {
                     onValidate(maybeError);
@@ -219,6 +248,7 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
             onValidate,
             validate,
             onChange,
+            requiredErrorMessage,
             /* eslint-enable no-unused-vars */
             // Should only include Aria related props
             ...otherProps
@@ -249,7 +279,6 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
                 onKeyDown={onKeyDown}
                 onFocus={this.handleFocus}
                 onBlur={this.handleBlur}
-                required={required}
                 data-test-id={testId}
                 readOnly={readOnly}
                 autoComplete={autoComplete}
