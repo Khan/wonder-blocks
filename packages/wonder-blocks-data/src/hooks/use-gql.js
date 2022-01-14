@@ -2,6 +2,7 @@
 import {useContext, useMemo} from "react";
 
 import {GqlRouterContext} from "../util/gql-router-context.js";
+import {getGqlDataFromResponse} from "../util/get-gql-data-from-response.js";
 
 import type {
     GqlContext,
@@ -27,7 +28,7 @@ export const useGql = (): (<
     if (gqlRouterContext == null) {
         throw new Error("No GqlRouter");
     }
-    const {fetch, getURLForOperation, defaultContext} = gqlRouterContext;
+    const {fetch, defaultContext} = gqlRouterContext;
 
     // Let's memoize the gqlFetch function we create based off our context.
     // That way, even if the context happens to change, if its values don't
@@ -49,17 +50,13 @@ export const useGql = (): (<
             ) => {
                 const {variables, context} = options ?? {};
 
-                // Get the URL for the operation we're fetching.
-                const url = getURLForOperation(operation, variables, {
+                // Invoke the fetch.
+                return fetch(operation, variables, {
                     ...defaultContext,
                     ...context,
-                });
-
-                // Invoke the fetch and return the resulting JSON response.
-                // TODO: Support POST if we need to.
-                return fetch(url.toString()).then((r) => r.json());
+                }).then((r) => getGqlDataFromResponse(r));
             },
-        [fetch, getURLForOperation, defaultContext],
+        [fetch, defaultContext],
     );
     return gqlFetch;
 };

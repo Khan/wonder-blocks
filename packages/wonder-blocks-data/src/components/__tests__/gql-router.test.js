@@ -12,7 +12,6 @@ describe("GqlRouter", () => {
             foo: "bar",
         };
         const fetch = jest.fn();
-        const getURLForOperation = jest.fn();
         const CaptureContext = ({captureFn}) => {
             captureFn(React.useContext(GqlRouterContext));
             return null;
@@ -21,11 +20,7 @@ describe("GqlRouter", () => {
         // Act
         const result = await new Promise((resolve, reject) => {
             render(
-                <GqlRouter
-                    defaultContext={defaultContext}
-                    fetch={fetch}
-                    getURLForOperation={getURLForOperation}
-                >
+                <GqlRouter defaultContext={defaultContext} fetch={fetch}>
                     <CaptureContext captureFn={resolve} />
                 </GqlRouter>,
             );
@@ -35,7 +30,6 @@ describe("GqlRouter", () => {
         expect(result).toStrictEqual({
             defaultContext,
             fetch,
-            getURLForOperation,
         });
     });
 
@@ -45,7 +39,6 @@ describe("GqlRouter", () => {
             foo: "bar",
         };
         const fetch = jest.fn();
-        const getURLForOperation = jest.fn();
         let renderCount = 0;
         const Child = React.memo(() => {
             const context = React.useContext(GqlRouterContext);
@@ -55,20 +48,12 @@ describe("GqlRouter", () => {
 
         // Act
         const {rerender} = render(
-            <GqlRouter
-                defaultContext={defaultContext}
-                fetch={fetch}
-                getURLForOperation={getURLForOperation}
-            >
+            <GqlRouter defaultContext={defaultContext} fetch={fetch}>
                 <Child />
             </GqlRouter>,
         );
         rerender(
-            <GqlRouter
-                defaultContext={defaultContext}
-                fetch={fetch}
-                getURLForOperation={getURLForOperation}
-            >
+            <GqlRouter defaultContext={defaultContext} fetch={fetch}>
                 <Child />
             </GqlRouter>,
         );
