@@ -48,7 +48,7 @@ export const gqlRequestMatch = (
 
     // We do a loose match, so if the lhs doesn't define variables,
     // we just assume it matches everything.
-    if (variables1 !== null) {
+    if (variables1 != null) {
         // Variables have to match.
         if (!areObjectsEqual(variables1, variables2)) {
             return false;
@@ -57,7 +57,7 @@ export const gqlRequestMatch = (
 
     // We do a loose match, so if the lhs doesn't define context,
     // we just assume it matches everything.
-    if (context1 !== null) {
+    if (context1 != null) {
         // Context has to match.
         if (!areObjectsEqual(context1, context2)) {
             return false;

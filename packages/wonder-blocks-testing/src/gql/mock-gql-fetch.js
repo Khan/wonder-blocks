@@ -1,8 +1,8 @@
 // @flow
 import type {GqlOperation, GqlContext} from "@khanacademy/wonder-blocks-data";
 import {gqlRequestMatch} from "./gql-request-match.js";
-import {makeGqlErrorResponse} from "./make-gql-error-response.js";
-import type {ErrorResponse} from "./make-gql-error-response.js";
+import {makeGqlMockResponse} from "./make-gql-mock-response.js";
+import type {GqlMockResponse} from "./make-gql-mock-response.js";
 
 type OperationOptions<
     TType,
@@ -15,24 +15,14 @@ type OperationOptions<
     context?: TContext,
 |};
 
-type GqlMockResolvedOperationFn = <
+type GqlMockOperationFn = <
     TType,
     TData,
     TVariables: {...},
     TContext: GqlContext,
 >(
     options: OperationOptions<TType, TData, TVariables, TContext>,
-    data: TData,
-) => GqlFetchMockFn;
-
-type GqlMockRejectedOperationFn = <
-    TType,
-    TData,
-    TVariables: {...},
-    TContext: GqlContext,
->(
-    options: OperationOptions<TType, TData, TVariables, TContext>,
-    error: ErrorResponse,
+    response: GqlMockResponse<TData>,
 ) => GqlFetchMockFn;
 
 type GqlFetchMockFn = {|
@@ -41,10 +31,8 @@ type GqlFetchMockFn = {|
         variables: ?{...},
         context: GqlContext,
     ): Promise<Response>,
-    mockResolvedOperationOnce: GqlMockResolvedOperationFn,
-    mockRejectedOperationOnce: GqlMockRejectedOperationFn,
-    mockResolvedOperation: GqlMockResolvedOperationFn,
-    mockRejectedOperation: GqlMockRejectedOperationFn,
+    mockOperation: GqlMockOperationFn,
+    mockOperationOnce: GqlMockOperationFn,
 |};
 
 type MockedOperation = {|
@@ -118,73 +106,42 @@ export const mockGqlFetch = (): GqlFetchMockFn => {
         );
     };
 
-    gqlFetchMock.mockResolvedOperation = <
+    const addMockedOperation = <
         TType,
         TData,
         TVariables: {...},
         TContext: GqlContext,
     >(
         options: OperationOptions<TType, TData, TVariables, TContext>,
-        data: TData,
+        response: GqlMockResponse<TData>,
+        onceOnly: boolean,
     ): GqlFetchMockFn => {
-        const response = () =>
-            Promise.resolve(
-                ({
-                    status: 200,
-                    text: () => Promise.resolve(JSON.stringify({data})),
-                }: any),
-            );
-        mockedOperations.push(makeMockedOperation(options, response, false));
+        const mockResponse = () => makeGqlMockResponse(response);
+        mockedOperations.push(
+            makeMockedOperation(options, mockResponse, onceOnly),
+        );
         return gqlFetchMock;
     };
 
-    gqlFetchMock.mockRejectedOperation = <
+    gqlFetchMock.mockOperation = <
         TType,
         TData,
         TVariables: {...},
         TContext: GqlContext,
     >(
         options: OperationOptions<TType, TData, TVariables, TContext>,
-        error: ErrorResponse,
-    ): GqlFetchMockFn => {
-        const response = () => Promise.resolve(makeGqlErrorResponse(error));
-        mockedOperations.push(makeMockedOperation(options, response, false));
-        return gqlFetchMock;
-    };
+        response: GqlMockResponse<TData>,
+    ): GqlFetchMockFn => addMockedOperation(options, response, false);
 
-    gqlFetchMock.mockResolvedOperationOnce = <
+    gqlFetchMock.mockOperationOnce = <
         TType,
         TData,
         TVariables: {...},
         TContext: GqlContext,
     >(
         options: OperationOptions<TType, TData, TVariables, TContext>,
-        data: TData,
-    ): GqlFetchMockFn => {
-        const response = () =>
-            Promise.resolve(
-                ({
-                    status: 200,
-                    text: () => Promise.resolve(JSON.stringify({data})),
-                }: any),
-            );
-        mockedOperations.push(makeMockedOperation(options, response, true));
-        return gqlFetchMock;
-    };
-
-    gqlFetchMock.mockRejectedOperationOnce = <
-        TType,
-        TData,
-        TVariables: {...},
-        TContext: GqlContext,
-    >(
-        options: OperationOptions<TType, TData, TVariables, TContext>,
-        error: ErrorResponse,
-    ): GqlFetchMockFn => {
-        const response = () => Promise.resolve(makeGqlErrorResponse(error));
-        mockedOperations.push(makeMockedOperation(options, response, true));
-        return gqlFetchMock;
-    };
+        response: GqlMockResponse<TData>,
+    ): GqlFetchMockFn => addMockedOperation(options, response, true);
 
     return gqlFetchMock;
 };
