@@ -14,7 +14,7 @@ describe("../request-handler.js", () => {
         jest.restoreAllMocks();
     });
 
-    describe("#get type", () => {
+    describe("@type", () => {
         it("should return value passed in construction", () => {
             // Arrange
             const handler = new RequestHandler("MY_TYPE");
@@ -24,6 +24,41 @@ describe("../request-handler.js", () => {
 
             // Assert
             expect(result).toBe("MY_TYPE");
+        });
+    });
+
+    describe("@hydrate", () => {
+        it("should return true when constructed with false", () => {
+            // Arrange
+            const handler = new RequestHandler("MY_TYPE", false);
+
+            // Act
+            const result = handler.hydrate;
+
+            // Assert
+            expect(result).toBeFalse();
+        });
+
+        it("should return true when constructed with true", () => {
+            // Arrange
+            const handler = new RequestHandler("MY_TYPE", true);
+
+            // Act
+            const result = handler.hydrate;
+
+            // Assert
+            expect(result).toBeTrue();
+        });
+
+        it("should return true by default", () => {
+            // Arrange
+            const handler = new RequestHandler("MY_TYPE");
+
+            // Act
+            const result = handler.hydrate;
+
+            // Assert
+            expect(result).toBeTrue();
         });
     });
 
@@ -66,41 +101,6 @@ describe("../request-handler.js", () => {
             expect(underTest).toThrowErrorMatchingInlineSnapshot(
                 `"Failed to auto-generate key: Error: OH NOES!"`,
             );
-        });
-    });
-
-    describe("#shouldRefreshCache", () => {
-        it("should return true if no current cached entry", () => {
-            // Arrange
-            const handler = new RequestHandler("MY_TYPE");
-
-            // Act
-            const result = handler.shouldRefreshCache({}, null);
-
-            // Assert
-            expect(result).toBeTruthy();
-        });
-
-        it("should return true if cached entry has error", () => {
-            // Arrange
-            const handler = new RequestHandler("MY_TYPE");
-
-            // Act
-            const result = handler.shouldRefreshCache({}, {error: "oops!"});
-
-            // Assert
-            expect(result).toBeTruthy();
-        });
-
-        it("should return false if cached entry is data", () => {
-            // Arrange
-            const handler = new RequestHandler("MY_TYPE");
-
-            // Act
-            const result = handler.shouldRefreshCache({}, {data: "yay! data"});
-
-            // Assert
-            expect(result).toBeFalsy();
         });
     });
 
