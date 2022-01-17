@@ -19,10 +19,15 @@ export type GqlOperation<
     // correct variables type.
     // eslint-disable-next-line no-unused-vars
     TVariables: {...} = Empty,
-> = {|
+> = {
     type: TType,
     id: string,
-|};
+    // We allow other things here to be passed along to the fetch function.
+    // For example, we might want to pass the full query/mutation definition
+    // as a string here to allow that to be sent to an Apollo server that
+    // expects it.
+    ...
+};
 
 export type GqlContext = {|
     [key: string]: string,
