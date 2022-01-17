@@ -19,3 +19,6 @@ package.json
 .github/**/*.yml
 CODEOWNERS
 **/*.json
+**/*.jpg
+**/*.png
+**/*.svg

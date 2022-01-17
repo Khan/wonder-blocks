@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {render, screen} from "@testing-library/react";
 import {mount} from "enzyme";
 import "jest-enzyme";
 
@@ -783,6 +784,56 @@ describe("Button", () => {
             // Assert
             expect(safeWithNavMock).toHaveBeenCalled();
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        });
+    });
+
+    describe("button focus", () => {
+        test("primary button can have focus", async () => {
+            // Arrange
+            render(<Button testId={"button-focus-test"}>Label</Button>);
+
+            // Act
+            const button = screen.getByTestId("button-focus-test");
+            button.focus();
+
+            // Assert
+            expect(button).toHaveFocus();
+        });
+
+        test("primary button can have focus when disabled", async () => {
+            // Arrange
+            render(
+                <Button disabled={true} testId={"button-focus-test"}>
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const button = screen.getByTestId("button-focus-test");
+            button.focus();
+
+            // Assert
+            expect(button).toHaveFocus();
+        });
+
+        test("tertiary button can have focus when disabled", async () => {
+            // Arrange
+            render(
+                <Button
+                    disabled={true}
+                    testId={"button-focus-test"}
+                    kind="tertiary"
+                >
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const button = screen.getByTestId("button-focus-test");
+            button.focus();
+
+            // Assert
+            expect(button).toHaveFocus();
         });
     });
 

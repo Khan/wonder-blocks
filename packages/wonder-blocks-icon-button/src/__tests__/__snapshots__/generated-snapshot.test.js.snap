@@ -335,7 +335,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         "width": 40,
       }
     }
-    tabIndex={-1}
+    tabIndex={0}
     type="button"
   >
     <svg
@@ -427,7 +427,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
         "width": 40,
       }
     }
-    tabIndex={-1}
+    tabIndex={0}
     type="button"
   >
     <svg

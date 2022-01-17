@@ -380,8 +380,8 @@ exports[`wonder-blocks-data example 5 1`] = `
   }
 >
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
