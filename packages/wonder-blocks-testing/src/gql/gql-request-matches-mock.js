@@ -38,6 +38,8 @@ export const gqlRequestMatchesMock = (
     context: GqlContext,
 ): boolean => {
     // If they don't represent the same operation, then they can't match.
+    // NOTE: Operations can include more fields than id and type, but we only
+    // care about id and type. The rest is ignored.
     if (
         mock.operation.id !== operation.id ||
         mock.operation.type !== operation.type
