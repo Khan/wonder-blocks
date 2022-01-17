@@ -97,8 +97,8 @@
     > = RenderHookResult<TProps, TValue, TRenderer>;
 
     declare export type Act = {|
-        (callback: () => Promise<void>): Promise<void>,
-        (callback: () => void): void,
+        (callback: () => Promise<mixed>): Promise<void>,
+        (callback: () => mixed): void,
     |};
 
     declare export type CleanupCallback = () => Promise<void> | void;

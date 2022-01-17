@@ -311,7 +311,7 @@ describe("#useData", () => {
             const render = clientRenderHook(() =>
                 useData(fakeHandler, "options"),
             );
-            await act(() => request);
+            await act((): Promise<mixed> => request);
             const result = render.result.current;
 
             // Assert
@@ -335,7 +335,7 @@ describe("#useData", () => {
             const render = clientRenderHook(() =>
                 useData(fakeHandler, "options"),
             );
-            await act(async () => {
+            await act(async (): Promise<mixed> => {
                 try {
                     await request;
                 } catch (e) {
@@ -373,7 +373,7 @@ describe("#useData", () => {
             const render = clientRenderHook(() =>
                 useData(fakeHandler, "options"),
             );
-            await act(async () => {
+            await act(async (): Promise<mixed> => {
                 try {
                     await request;
                 } catch (e) {
@@ -417,7 +417,7 @@ describe("#useData", () => {
                 },
             );
             render.rerender({handler: newHandler});
-            await act(() => oldRequest);
+            await act((): Promise<mixed> => oldRequest);
             const result = render.result.all;
 
             // Assert
@@ -454,7 +454,7 @@ describe("#useData", () => {
                 },
             );
             render.rerender({options: "NEW OPTIONS"});
-            await act(() => oldRequest.catch(() => {}));
+            await act((): Promise<mixed> => oldRequest.catch(() => {}));
             const result = render.result.all;
 
             // Assert
@@ -505,7 +505,7 @@ describe("#useData", () => {
                 },
             );
             render.rerender({handler: newHandler});
-            await act(() => oldRequest.catch(() => {}));
+            await act((): Promise<mixed> => oldRequest.catch(() => {}));
             const result = render.result.all;
 
             // Assert
@@ -546,7 +546,7 @@ describe("#useData", () => {
                 },
             );
             render.rerender({options: "NEW OPTIONS"});
-            await act(() => oldRequest);
+            await act((): Promise<mixed> => oldRequest);
             const result = render.result.all;
 
             // Assert
@@ -585,7 +585,7 @@ describe("#useData", () => {
                     initialProps: {handler: oldHandler},
                 },
             );
-            await act(() => oldRequest);
+            await act((): Promise<mixed> => oldRequest);
             render.rerender({handler: newHandler});
             const result = render.result.current;
 
@@ -619,7 +619,7 @@ describe("#useData", () => {
                     initialProps: {options: "OLD OPTIONS"},
                 },
             );
-            await act(() => oldRequest);
+            await act((): Promise<mixed> => oldRequest);
             render.rerender({options: "NEW OPTIONS"});
             const result = render.result.current;
 
@@ -658,7 +658,7 @@ describe("#useData", () => {
                     },
                 },
             );
-            await act(() => oldRequest);
+            await act((): Promise<mixed> => oldRequest);
             render.rerender({options: {key: "SAME KEY", someThing: "new"}});
             const result = render.result.current;
 
@@ -697,7 +697,9 @@ describe("#useData", () => {
                     wrapper,
                 },
             );
-            await act(() => Promise.all([notIntercepted, intercepted]));
+            await act((): Promise<mixed> =>
+                Promise.all([notIntercepted, intercepted]),
+            );
             const result = render.result.current;
 
             // Assert
@@ -734,7 +736,7 @@ describe("#useData", () => {
                 },
             );
             await notIntercepted;
-            await act(async () => {
+            await act(async (): Promise<mixed> => {
                 try {
                     await intercepted;
                 } catch (e) {
@@ -775,7 +777,7 @@ describe("#useData", () => {
                     wrapper,
                 },
             );
-            await act(() => notIntercepted);
+            await act((): Promise<mixed> => notIntercepted);
             const result = render.result.current;
 
             // Assert
