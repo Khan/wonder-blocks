@@ -1,5 +1,6 @@
 // @flow
 import type {GqlOperation, GqlContext} from "@khanacademy/wonder-blocks-data";
+import type {GqlMockOperation} from "./types.js";
 
 const safeHasOwnProperty = (obj: any, prop: string): boolean =>
     // Flow really shouldn't be raising this error here.
@@ -30,36 +31,34 @@ const areObjectsEqual = (a: any, b: any): boolean => {
     return true;
 };
 
-export const gqlRequestMatch = (
-    operation1: GqlOperation<any, any, any>,
-    variables1: ?{...},
-    context1: ?GqlContext,
-    operation2: GqlOperation<any, any, any>,
-    variables2: ?{...},
-    context2: GqlContext,
+export const gqlRequestMatchesMock = (
+    mock: GqlMockOperation<any, any, any, any>,
+    operation: GqlOperation<any, any, any>,
+    variables: ?{...},
+    context: GqlContext,
 ): boolean => {
     // If they don't represent the same operation, then they can't match.
     if (
-        operation1.id !== operation2.id ||
-        operation1.type !== operation2.type
+        mock.operation.id !== operation.id ||
+        mock.operation.type !== operation.type
     ) {
         return false;
     }
 
     // We do a loose match, so if the lhs doesn't define variables,
     // we just assume it matches everything.
-    if (variables1 != null) {
+    if (mock.variables != null) {
         // Variables have to match.
-        if (!areObjectsEqual(variables1, variables2)) {
+        if (!areObjectsEqual(mock.variables, variables)) {
             return false;
         }
     }
 
     // We do a loose match, so if the lhs doesn't define context,
     // we just assume it matches everything.
-    if (context1 != null) {
+    if (mock.context != null) {
         // Context has to match.
-        if (!areObjectsEqual(context1, context2)) {
+        if (!areObjectsEqual(mock.context, context)) {
             return false;
         }
     }
