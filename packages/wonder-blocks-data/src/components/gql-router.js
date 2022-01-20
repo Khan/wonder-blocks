@@ -5,7 +5,7 @@ import {GqlRouterContext} from "../util/gql-router-context.js";
 
 import type {
     GqlContext,
-    FetchFn,
+    GqlFetchFn,
     GqlRouterConfiguration,
 } from "../util/gql-types.js";
 
@@ -18,7 +18,7 @@ type Props<TContext: GqlContext> = {|
     /**
      * The function to use when fetching requests.
      */
-    fetch: FetchFn<any, any, any, TContext>,
+    fetch: GqlFetchFn<any, any, any, TContext>,
 
     /**
      * The children to be rendered inside the router.

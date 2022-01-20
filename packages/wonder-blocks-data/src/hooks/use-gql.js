@@ -67,6 +67,8 @@ export const useGql = (): (<
                     if (error.name === "AbortError") {
                         return null;
                     }
+                    // Need to make sure we pass other errors along.
+                    throw error;
                 });
             },
         [fetch, defaultContext],

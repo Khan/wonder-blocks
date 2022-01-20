@@ -37,7 +37,12 @@ export type GqlContext = {|
 /**
  * Functions that make fetches of GQL operations.
  */
-export type FetchFn<TType, TData, TVariables: {...}, TContext: GqlContext> = (
+export type GqlFetchFn<
+    TType,
+    TData,
+    TVariables: {...},
+    TContext: GqlContext,
+> = (
     operation: GqlOperation<TType, TData, TVariables>,
     variables: ?TVariables,
     context: TContext,
@@ -47,7 +52,7 @@ export type FetchFn<TType, TData, TVariables: {...}, TContext: GqlContext> = (
  * The configuration stored in the GqlRouterContext context.
  */
 export type GqlRouterConfiguration<TContext: GqlContext> = {|
-    fetch: FetchFn<any, any, any, any>,
+    fetch: GqlFetchFn<any, any, any, any>,
     defaultContext: TContext,
 |};
 

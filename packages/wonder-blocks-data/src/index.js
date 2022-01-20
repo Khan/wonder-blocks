@@ -60,4 +60,10 @@ export {useData} from "./hooks/use-data.js";
 export {GqlRouter} from "./components/gql-router.js";
 export {useGql} from "./hooks/use-gql.js";
 export * from "./util/gql-error.js";
-export type {GqlContext, GqlOperation} from "./util/gql-types.js";
+export type {
+    GqlContext,
+    GqlOperation,
+    GqlOperationType,
+    GqlFetchOptions,
+    GqlFetchFn,
+} from "./util/gql-types.js";
