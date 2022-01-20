@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-data
 
+## 3.1.0
+
+### Minor Changes
+
+-   b68cedfe: Add GqlRouter component
+-   c7233a97: Implement useGql hook
+
 ## 3.0.1
 
 ### Patch Changes
