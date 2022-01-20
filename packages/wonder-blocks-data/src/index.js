@@ -58,4 +58,6 @@ export {useData} from "./hooks/use-data.js";
 
 // GraphQL
 export {GqlRouter} from "./components/gql-router.js";
+export {useGql} from "./hooks/use-gql.js";
+export * from "./util/gql-error.js";
 export type {GqlContext, GqlOperation} from "./util/gql-types.js";

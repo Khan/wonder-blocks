@@ -1,9 +1,14 @@
 // @flow
 /**
+ * Operation types.
+ */
+export type GqlOperationType = "mutation" | "query";
+
+/**
  * A GraphQL operation.
  */
 export type GqlOperation<
-    TType: "mutation" | "query",
+    TType: GqlOperationType,
     // TData is not used to define a field on this type, but it is used
     // to ensure that calls using this operation will properly return the
     // correct data type.
@@ -14,43 +19,42 @@ export type GqlOperation<
     // correct variables type.
     // eslint-disable-next-line no-unused-vars
     TVariables: {...} = Empty,
-> = {|
+> = {
     type: TType,
     id: string,
-|};
+    // We allow other things here to be passed along to the fetch function.
+    // For example, we might want to pass the full query/mutation definition
+    // as a string here to allow that to be sent to an Apollo server that
+    // expects it. This is a courtesy to calling code; these additional
+    // values are ignored by WB Data, and passed through as-is.
+    ...
+};
 
 export type GqlContext = {|
     [key: string]: string,
 |};
 
 /**
- * Functions that make fetches.
- * Supports `fetch` and similar methods.
+ * Functions that make fetches of GQL operations.
  */
-export type FetchFn<TRequestOptions: RequestOptions = RequestOptions> = (
-    url: string,
-    options?: TRequestOptions,
-) => Promise<Response>;
-
-/**
- * Functions that details of a GQL request and generate the URL.
- */
-export type GetURLForOperation<
-    TData,
-    TVariables: {...},
-    TContext: GqlContext,
-    TType,
-> = (
+export type FetchFn<TType, TData, TVariables: {...}, TContext: GqlContext> = (
     operation: GqlOperation<TType, TData, TVariables>,
     variables: ?TVariables,
     context: TContext,
-) => URL;
+) => Promise<Response>;
 
 /**
  * The configuration stored in the GqlRouterContext context.
  */
 export type GqlRouterConfiguration<TContext: GqlContext> = {|
-    fetch: FetchFn<any>,
-    getURLForOperation: GetURLForOperation<any, any, any, any>,
+    fetch: FetchFn<any, any, any, any>,
     defaultContext: TContext,
+|};
+
+/**
+ * Options for configuring a GQL fetch.
+ */
+export type GqlFetchOptions<TVariables: {...}, TContext: GqlContext> = {|
+    variables?: TVariables,
+    context?: Partial<TContext>,
 |};

@@ -6,14 +6,10 @@ import {GqlRouterContext} from "../util/gql-router-context.js";
 import type {
     GqlContext,
     FetchFn,
-    GetURLForOperation,
     GqlRouterConfiguration,
 } from "../util/gql-types.js";
 
-type Props<
-    TContext: GqlContext,
-    TRequestOptions: RequestOptions = RequestOptions,
-> = {|
+type Props<TContext: GqlContext> = {|
     /**
      * The default context to be used by operations when no context is provided.
      */
@@ -22,12 +18,7 @@ type Props<
     /**
      * The function to use when fetching requests.
      */
-    fetch: FetchFn<TRequestOptions>,
-
-    /**
-     * The function to use to generate a request URL for a given operation.
-     */
-    getURLForOperation: GetURLForOperation<any, any, any, any>,
+    fetch: FetchFn<any, any, any, TContext>,
 
     /**
      * The children to be rendered inside the router.
@@ -44,7 +35,6 @@ type Props<
 export const GqlRouter = <TContext: GqlContext>({
     defaultContext: thisDefaultContext,
     fetch: thisFetch,
-    getURLForOperation: thisGetURLForOperation,
     children,
 }: Props<TContext>): React.Node => {
     // We don't care if we're nested. We always force our callers to define
@@ -63,10 +53,9 @@ export const GqlRouter = <TContext: GqlContext>({
     const configuration: GqlRouterConfiguration<TContext> = React.useMemo(
         () => ({
             fetch: thisFetch,
-            getURLForOperation: thisGetURLForOperation,
             defaultContext: thisDefaultContext,
         }),
-        [thisDefaultContext, thisFetch, thisGetURLForOperation],
+        [thisDefaultContext, thisFetch],
     );
 
     return (

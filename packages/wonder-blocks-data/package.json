@@ -17,6 +17,7 @@
     "@khanacademy/wonder-blocks-core": "^4.0.0"
   },
   "peerDependencies": {
+    "@khanacademy/wonder-stuff-core": "^0.1.2",
     "react": "16.14.0"
   },
   "devDependencies": {
