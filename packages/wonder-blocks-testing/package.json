@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.3",
-        "@khanacademy/wonder-blocks-data": "^2.3.4"
+        "@khanacademy/wonder-blocks-data": "^3.0.1"
     },
     "peerDependencies": {
         "@khanacademy/wonder-stuff-core": "^0.1.2",
