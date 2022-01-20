@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 3.1.1
+
+### Patch Changes
+
+-   4ff59815: Add GraphQL fetch mock support to wonder-blocks-testing
+
 ## 3.1.0
 
 ### Minor Changes
