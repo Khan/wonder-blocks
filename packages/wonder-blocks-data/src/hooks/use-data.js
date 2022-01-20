@@ -29,19 +29,40 @@ export const useData = <TOptions, TData: ValidData>(
     );
     const [result, setResult] = useState<?CacheEntry<TData>>(cachedResult);
 
-    // We only track data requests when we are server-side and we don't
-    // already have a result, as given by the cachedData (which is also the
-    // initial value for the result state).
-    const maybeTrack = useContext(TrackerContext);
-    if (result == null && Server.isServerSide()) {
-        maybeTrack?.(handler, options);
-    }
-
     // Lookup to see if there's an interceptor for the handler.
     // If we have one, we need to replace the handler with one that
     // uses the interceptor.
     const interceptorMap = useContext(InterceptContext);
     const interceptor = interceptorMap[handler.type];
+
+    // If we have an interceptor, we need to replace the handler with one that
+    // uses the interceptor. This helper function generates a new handler.
+    // We need this before we track the request as we want the interceptor
+    // to also work for tracked requests to simplify testing the server-side
+    // request fulfillment.
+    const getMaybeInterceptedHandler = () => {
+        if (interceptor == null) {
+            return handler;
+        }
+
+        const fulfillRequestFn = (options) =>
+            interceptor.fulfillRequest(options) ??
+            handler.fulfillRequest(options);
+        return {
+            fulfillRequest: fulfillRequestFn,
+            getKey: (options) => handler.getKey(options),
+            type: handler.type,
+            hydrate: handler.hydrate,
+        };
+    };
+
+    // We only track data requests when we are server-side and we don't
+    // already have a result, as given by the cachedData (which is also the
+    // initial value for the result state).
+    const maybeTrack = useContext(TrackerContext);
+    if (result == null && Server.isServerSide()) {
+        maybeTrack?.(getMaybeInterceptedHandler(), options);
+    }
 
     // We need to update our request when the handler changes or the key
     // to the options change, so we keep track of those.
@@ -73,22 +94,6 @@ export const useData = <TOptions, TData: ValidData>(
             // Mark ourselves as loading.
             setResult(null);
         }
-
-        const getMaybeInterceptedHandler = () => {
-            if (interceptor == null) {
-                return handler;
-            }
-
-            const fulfillRequestFn = (options) =>
-                interceptor.fulfillRequest(options) ??
-                handler.fulfillRequest(options);
-            return {
-                fulfillRequest: fulfillRequestFn,
-                getKey: (options) => handler.getKey(options),
-                type: handler.type,
-                hydrate: handler.hydrate,
-            };
-        };
 
         // We aren't server-side, so let's make the request.
         // The request handler is in control of whether that request actually

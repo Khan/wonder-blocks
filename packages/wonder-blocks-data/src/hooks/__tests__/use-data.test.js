@@ -155,6 +155,42 @@ describe("#useData", () => {
                 error: "ERROR",
             });
         });
+
+        it("should track the intercepted request", async () => {
+            // Arrange
+            const intercepted = Promise.resolve("INTERCEPTED");
+            const notIntercepted = Promise.resolve("NOT INTERCEPTED");
+            const fakeHandler: IRequestHandler<string, string> = {
+                fulfillRequest: jest.fn().mockReturnValue(notIntercepted),
+                getKey: (o) => o,
+                type: "MY_HANDLER",
+                hydrate: true,
+            };
+            const trackDataRequestSpy = jest.spyOn(
+                RequestTracker.Default,
+                "trackDataRequest",
+            );
+            const wrapper = ({children}) => (
+                <TrackData>
+                    <InterceptData
+                        fulfillRequest={() => intercepted}
+                        handler={fakeHandler}
+                    >
+                        {children}
+                    </InterceptData>
+                </TrackData>
+            );
+
+            // Act
+            serverRenderHook(() => useData(fakeHandler, "options"), {
+                wrapper,
+            });
+            const trackedHandler = trackDataRequestSpy.mock.calls[0][0];
+            const result = await trackedHandler.fulfillRequest();
+
+            // Assert
+            expect(result).toBe("INTERCEPTED");
+        });
     });
 
     describe("when client-side", () => {
@@ -668,122 +704,122 @@ describe("#useData", () => {
                 data: "DATA",
             });
         });
-    });
 
-    describe("with interceptor", () => {
-        it("should return the result of the interceptor request resolution", async () => {
-            // Arrange
-            const intercepted = Promise.resolve("INTERCEPTED");
-            const notIntercepted = Promise.resolve("NOT INTERCEPTED");
-            const fakeHandler: IRequestHandler<string, string> = {
-                fulfillRequest: jest.fn().mockReturnValue(notIntercepted),
-                getKey: (o) => o,
-                type: "MY_HANDLER",
-                hydrate: true,
-            };
-            const wrapper = ({children}) => (
-                <InterceptData
-                    fulfillRequest={() => intercepted}
-                    handler={fakeHandler}
-                >
-                    {children}
-                </InterceptData>
-            );
+        describe("with interceptor", () => {
+            it("should return the result of the interceptor request resolution", async () => {
+                // Arrange
+                const intercepted = Promise.resolve("INTERCEPTED");
+                const notIntercepted = Promise.resolve("NOT INTERCEPTED");
+                const fakeHandler: IRequestHandler<string, string> = {
+                    fulfillRequest: jest.fn().mockReturnValue(notIntercepted),
+                    getKey: (o) => o,
+                    type: "MY_HANDLER",
+                    hydrate: true,
+                };
+                const wrapper = ({children}) => (
+                    <InterceptData
+                        fulfillRequest={() => intercepted}
+                        handler={fakeHandler}
+                    >
+                        {children}
+                    </InterceptData>
+                );
 
-            // Act
-            const render = clientRenderHook(
-                () => useData(fakeHandler, "options"),
-                {
-                    wrapper,
-                },
-            );
-            await act((): Promise<mixed> =>
-                Promise.all([notIntercepted, intercepted]),
-            );
-            const result = render.result.current;
+                // Act
+                const render = clientRenderHook(
+                    () => useData(fakeHandler, "options"),
+                    {
+                        wrapper,
+                    },
+                );
+                await act((): Promise<mixed> =>
+                    Promise.all([notIntercepted, intercepted]),
+                );
+                const result = render.result.current;
 
-            // Assert
-            expect(result).toEqual({
-                status: "success",
-                data: "INTERCEPTED",
+                // Assert
+                expect(result).toEqual({
+                    status: "success",
+                    data: "INTERCEPTED",
+                });
             });
-        });
 
-        it("should return the result of the interceptor request rejection", async () => {
-            // Arrange
-            const intercepted = Promise.reject("INTERCEPTED");
-            const notIntercepted = Promise.resolve("NOT INTERCEPTED");
-            const fakeHandler: IRequestHandler<string, string> = {
-                fulfillRequest: jest.fn().mockReturnValue(notIntercepted),
-                getKey: (o) => o,
-                type: "MY_HANDLER",
-                hydrate: true,
-            };
-            const wrapper = ({children}) => (
-                <InterceptData
-                    fulfillRequest={() => intercepted}
-                    handler={fakeHandler}
-                >
-                    {children}
-                </InterceptData>
-            );
+            it("should return the result of the interceptor request rejection", async () => {
+                // Arrange
+                const intercepted = Promise.reject("INTERCEPTED");
+                const notIntercepted = Promise.resolve("NOT INTERCEPTED");
+                const fakeHandler: IRequestHandler<string, string> = {
+                    fulfillRequest: jest.fn().mockReturnValue(notIntercepted),
+                    getKey: (o) => o,
+                    type: "MY_HANDLER",
+                    hydrate: true,
+                };
+                const wrapper = ({children}) => (
+                    <InterceptData
+                        fulfillRequest={() => intercepted}
+                        handler={fakeHandler}
+                    >
+                        {children}
+                    </InterceptData>
+                );
 
-            // Act
-            const render = clientRenderHook(
-                () => useData(fakeHandler, "options"),
-                {
-                    wrapper,
-                },
-            );
-            await notIntercepted;
-            await act(async (): Promise<mixed> => {
-                try {
-                    await intercepted;
-                } catch (e) {
-                    /* ignore, it's ok */
-                }
+                // Act
+                const render = clientRenderHook(
+                    () => useData(fakeHandler, "options"),
+                    {
+                        wrapper,
+                    },
+                );
+                await notIntercepted;
+                await act(async (): Promise<mixed> => {
+                    try {
+                        await intercepted;
+                    } catch (e) {
+                        /* ignore, it's ok */
+                    }
+                });
+                const result = render.result.current;
+
+                // Assert
+                expect(result).toEqual({
+                    status: "error",
+                    error: "INTERCEPTED",
+                });
             });
-            const result = render.result.current;
 
-            // Assert
-            expect(result).toEqual({
-                status: "error",
-                error: "INTERCEPTED",
-            });
-        });
+            it("should return the result of the handler if the interceptor returns null", async () => {
+                // Arrange
+                const notIntercepted = Promise.resolve("NOT INTERCEPTED");
+                const fakeHandler: IRequestHandler<string, string> = {
+                    fulfillRequest: jest.fn().mockReturnValue(notIntercepted),
+                    getKey: (o) => o,
+                    type: "MY_HANDLER",
+                    hydrate: true,
+                };
+                const wrapper = ({children}) => (
+                    <InterceptData
+                        fulfillRequest={() => null}
+                        handler={fakeHandler}
+                    >
+                        {children}
+                    </InterceptData>
+                );
 
-        it("should return the result of the handler if the interceptor returns null", async () => {
-            // Arrange
-            const notIntercepted = Promise.resolve("NOT INTERCEPTED");
-            const fakeHandler: IRequestHandler<string, string> = {
-                fulfillRequest: jest.fn().mockReturnValue(notIntercepted),
-                getKey: (o) => o,
-                type: "MY_HANDLER",
-                hydrate: true,
-            };
-            const wrapper = ({children}) => (
-                <InterceptData
-                    fulfillRequest={() => null}
-                    handler={fakeHandler}
-                >
-                    {children}
-                </InterceptData>
-            );
+                // Act
+                const render = clientRenderHook(
+                    () => useData(fakeHandler, "options"),
+                    {
+                        wrapper,
+                    },
+                );
+                await act((): Promise<mixed> => notIntercepted);
+                const result = render.result.current;
 
-            // Act
-            const render = clientRenderHook(
-                () => useData(fakeHandler, "options"),
-                {
-                    wrapper,
-                },
-            );
-            await act((): Promise<mixed> => notIntercepted);
-            const result = render.result.current;
-
-            // Assert
-            expect(result).toEqual({
-                status: "success",
-                data: "NOT INTERCEPTED",
+                // Assert
+                expect(result).toEqual({
+                    status: "success",
+                    data: "NOT INTERCEPTED",
+                });
             });
         });
     });
