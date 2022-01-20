@@ -57,7 +57,7 @@ jobs:
 
       - name: Build Slack message
         if: steps.changesets.outputs.published == 'true'
-        run: echo "UPDATED_PACKAGES=$(${{ steps.changesets.outputs.publishedPackages }} | jq -r '[group_by(.name) | .[] | \" - \"+.[].name+\"@\"+.[].version] | join(\"\n\")')" >> $GITHUB_ENV
+        run: echo "UPDATED_PACKAGES=$(jq '[group_by(.name) | .[] | " - "+.[].name+"@"+.[].version] | join("\n")' <<< '${{ steps.changesets.outputs.publishedPackages }}')" >> $GITHUB_ENV
 
       - name: Send a Slack notification if a publish happens
         if: steps.changesets.outputs.published == 'true'
