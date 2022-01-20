@@ -3,7 +3,7 @@ import * as React from "react";
 import {mount} from "enzyme";
 import "jest-enzyme";
 import {render, screen} from "@testing-library/react";
-// import userEvent from "@testing-library/user-event";
+import userEvent from "@testing-library/user-event";
 
 import {StyleSheet} from "aphrodite";
 import LabeledTextField from "../labeled-text-field.js";
@@ -558,24 +558,26 @@ describe("Required LabeledTextField", () => {
         expect(textField).not.toHaveAttribute("aria-required", "true");
     });
 
-    /*
     test("displays the default message when requiredErrorMessage is not passed in", async () => {
         // Arrange
-        render(
-            <LabeledTextField
-                label="Label"
-                value="abcdefg"
-                onChange={() => {}}
-                required={true}
-                testId="test-labeled-text-field"
-            />,
-        );
+        const TextFieldWrapper = () => {
+            const [value, setValue] = React.useState("");
+            return (
+                <LabeledTextField
+                    label="Label"
+                    value={value}
+                    onChange={(newValue) => setValue(newValue)}
+                    required={true}
+                    testId="test-labeled-text-field"
+                />
+            );
+        };
+
+        render(<TextFieldWrapper />);
 
         const textField = screen.getByTestId("test-labeled-text-field-field");
         textField.focus();
-        userEvent.type(textField, "a");
-
-        // console.log("value", textField.value);
+        userEvent.paste(textField, "a");
         userEvent.clear(textField);
 
         // Act
@@ -590,16 +592,22 @@ describe("Required LabeledTextField", () => {
     test("displays the passed in requiredErrorMessage", () => {
         // Arrange
         const errorMessage = "This is an example error message.";
-        render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                required={true}
-                requiredErrorMessage={errorMessage}
-                testId="test-labeled-text-field"
-            />,
-        );
+
+        const TextFieldWrapper = () => {
+            const [value, setValue] = React.useState("");
+            return (
+                <LabeledTextField
+                    label="Label"
+                    value={value}
+                    onChange={(newValue) => setValue(newValue)}
+                    required={true}
+                    requiredErrorMessage={errorMessage}
+                    testId="test-labeled-text-field"
+                />
+            );
+        };
+
+        render(<TextFieldWrapper />);
 
         const textField = screen.getByTestId("test-labeled-text-field-field");
         textField.focus();
@@ -612,5 +620,4 @@ describe("Required LabeledTextField", () => {
         // Assert
         expect(screen.getByRole("alert")).toHaveTextContent(errorMessage);
     });
-    */
 });
