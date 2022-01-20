@@ -90,7 +90,7 @@ describe("#getGqlDataFromReponse", () => {
         );
     });
 
-    it("should include the statis code and the result in the malformed response error", async () => {
+    it("should include the status code and the result in the malformed response error", async () => {
         // Arrange
         const response: any = {
             status: 200,

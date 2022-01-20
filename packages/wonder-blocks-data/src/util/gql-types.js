@@ -25,7 +25,8 @@ export type GqlOperation<
     // We allow other things here to be passed along to the fetch function.
     // For example, we might want to pass the full query/mutation definition
     // as a string here to allow that to be sent to an Apollo server that
-    // expects it.
+    // expects it. This is a courtesy to calling code; these additional
+    // values are ignored by WB Data, and passed through as-is.
     ...
 };
 

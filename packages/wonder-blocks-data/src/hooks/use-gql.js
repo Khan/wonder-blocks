@@ -60,6 +60,10 @@ export const useGql = (): (<
                     ...context,
                 }).then(getGqlDataFromResponse, (error) => {
                     // Return null if the request was aborted.
+                    // The only way to detect this reliably, it seems, is to
+                    // check the error name and see if it's "AbortError" (this
+                    // is also what Apollo does).
+                    // Even then, it's reliant on the fetch supporting aborts.
                     if (error.name === "AbortError") {
                         return null;
                     }
