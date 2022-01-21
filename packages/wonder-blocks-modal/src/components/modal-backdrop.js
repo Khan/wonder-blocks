@@ -26,6 +26,10 @@ type Props = {|
     testId?: string,
 |};
 
+type State = {|
+    mousePressedOutside: boolean,
+|};
+
 /**
  * A private component used by ModalLauncher. This is the fixed-position
  * container element that gets mounted outside the DOM. It overlays the modal
@@ -36,7 +40,7 @@ type Props = {|
  * and adding an `onClose` prop that will call `onCloseModal`. If an
  * `onClose` prop is already provided, the two are merged.
  */
-export default class ModalBackdrop extends React.Component<Props> {
+export default class ModalBackdrop extends React.Component<Props, State> {
     componentDidMount() {
         const node: HTMLElement = (ReactDOM.findDOMNode(this): any);
         if (!node) {
@@ -56,6 +60,8 @@ export default class ModalBackdrop extends React.Component<Props> {
             firstFocusableElement.focus();
         }, 0);
     }
+
+    _mousePressedOutside: boolean = false;
 
     /**
      * Returns an element specified by the user
@@ -107,12 +113,18 @@ export default class ModalBackdrop extends React.Component<Props> {
      * _directly_ from the positioner, not bubbled up from its children), close
      * the modal.
      */
-    handleClick: (e: SyntheticEvent<>) => void = (e: SyntheticEvent<>) => {
-        // Was the lowest-level click target (`e.target`) the positioner element
-        // (`e.currentTarget`)?
-        if (e.target === e.currentTarget) {
+    handleMouseDown: (e: SyntheticEvent<>) => void = (e: SyntheticEvent<>) => {
+        // Confirm that it is the backdrop that is being clicked, not the child
+        this._mousePressedOutside = e.target === e.currentTarget;
+    };
+
+    handleMouseUp: (e: SyntheticEvent<>) => void = (e: SyntheticEvent<>) => {
+        // Confirm that it is the backdrop that is being clicked, not the child
+        // and that the mouse was pressed in the backdrop first.
+        if (e.target === e.currentTarget && this._mousePressedOutside) {
             this.props.onCloseModal();
         }
+        this._mousePressedOutside = false;
     };
 
     render(): React.Node {
@@ -124,7 +136,8 @@ export default class ModalBackdrop extends React.Component<Props> {
         return (
             <View
                 style={styles.modalPositioner}
-                onClick={this.handleClick}
+                onMouseDown={this.handleMouseDown}
+                onMouseUp={this.handleMouseUp}
                 testId={testId}
                 {...backdropProps}
             >
