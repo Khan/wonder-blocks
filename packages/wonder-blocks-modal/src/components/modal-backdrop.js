@@ -26,10 +26,6 @@ type Props = {|
     testId?: string,
 |};
 
-type State = {|
-    mousePressedOutside: boolean,
-|};
-
 /**
  * A private component used by ModalLauncher. This is the fixed-position
  * container element that gets mounted outside the DOM. It overlays the modal
@@ -40,7 +36,7 @@ type State = {|
  * and adding an `onClose` prop that will call `onCloseModal`. If an
  * `onClose` prop is already provided, the two are merged.
  */
-export default class ModalBackdrop extends React.Component<Props, State> {
+export default class ModalBackdrop extends React.Component<Props> {
     componentDidMount() {
         const node: HTMLElement = (ReactDOM.findDOMNode(this): any);
         if (!node) {

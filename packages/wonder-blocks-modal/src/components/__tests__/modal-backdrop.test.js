@@ -3,6 +3,7 @@ import * as React from "react";
 import {mount} from "enzyme";
 import "jest-enzyme";
 import {render, screen, fireEvent} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import ModalBackdrop from "../modal-backdrop.js";
 import OnePaneDialog from "../one-pane-dialog.js";
@@ -64,16 +65,7 @@ describe("ModalBackdrop", () => {
         const backdrop = screen.getByTestId("modal-backdrop-test-id");
 
         //Act
-
-        // Simulate click
-        //
-        // The component looks for mouseup and mousedown instead of just click
-        // on the backdrop to make sure the user didn't drag into or out from
-        // the modal panel.
-        // eslint-disable-next-line testing-library/prefer-user-event
-        fireEvent.mouseDown(backdrop);
-        // eslint-disable-next-line testing-library/prefer-user-event
-        fireEvent.mouseUp(backdrop);
+        userEvent.click(backdrop);
 
         // Assert
         expect(onCloseModal).toHaveBeenCalled();
