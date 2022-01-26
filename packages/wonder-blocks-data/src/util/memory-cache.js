@@ -25,9 +25,7 @@ function deepClone<T: {...}>(source: T | $ReadOnly<T>): $ReadOnly<T> {
  *
  * Special case cache implementation for the memory cache.
  *
- * This is only used within our framework. Handlers don't need to
- * provide this as a custom cache as the framework will default to this in the
- * absence of a custom cache. We use this for SSR too (see ./response-cache.js).
+ * This is only used within our framework for SSR (see ./response-cache.js).
  */
 export default class MemoryCache<TOptions, TData: ValidData>
     implements ICache<TOptions, TData>
@@ -53,6 +51,11 @@ export default class MemoryCache<TOptions, TData: ValidData>
         }
     }
 
+    /**
+     * Indicate if this cache is being used or now.
+     *
+     * When the cache has entries, returns `true`; otherwise, returns `false`.
+     */
     get inUse(): boolean {
         return Object.keys(this._cache).length > 0;
     }
@@ -68,9 +71,7 @@ export default class MemoryCache<TOptions, TData: ValidData>
     ): void => {
         const requestType = handler.type;
 
-        const frozenEntry = Object.isFrozen(entry)
-            ? entry
-            : Object.freeze(entry);
+        const frozenEntry = Object.freeze(entry);
 
         // Ensure we have a cache location for this handler type.
         this._cache[requestType] = this._cache[requestType] || {};
@@ -157,16 +158,19 @@ export default class MemoryCache<TOptions, TData: ValidData>
             return 0;
         }
 
-        // Apply the predicate to what we have cached.
         let removedCount = 0;
-        for (const [key, entry] of Object.entries(handlerCache)) {
-            if (
-                typeof predicate !== "function" ||
-                predicate(key, (entry: any))
-            ) {
-                removedCount++;
-                delete handlerCache[key];
+        if (typeof predicate === "function") {
+            // Apply the predicate to what we have cached.
+            for (const [key, entry] of Object.entries(handlerCache)) {
+                if (predicate(key, (entry: any))) {
+                    removedCount++;
+                    delete handlerCache[key];
+                }
             }
+        } else {
+            // We're removing everything so delete the entire subcache.
+            removedCount = Object.keys(handlerCache).length;
+            delete this._cache[requestType];
         }
         return removedCount;
     };

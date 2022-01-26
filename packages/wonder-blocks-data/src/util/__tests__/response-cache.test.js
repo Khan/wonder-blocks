@@ -18,6 +18,29 @@ describe("../response-cache.js", () => {
         jest.restoreAllMocks();
     });
 
+    describe("@Default", () => {
+        it("should return an instance of ResponseCache", () => {
+            // Arrange
+
+            // Act
+            const result = ResponseCache.Default;
+
+            // Assert
+            expect(result).toBeInstanceOf(ResponseCache);
+        });
+
+        it("should return the same instance on each call", () => {
+            // Arrange
+
+            // Act
+            const result1 = ResponseCache.Default;
+            const result2 = ResponseCache.Default;
+
+            // Assert
+            expect(result1).toBe(result2);
+        });
+    });
+
     describe("#initialize", () => {
         it("should initialize the cache with the given data", () => {
             // Arrange
@@ -25,9 +48,7 @@ describe("../response-cache.js", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
 
@@ -89,9 +110,7 @@ describe("../response-cache.js", () => {
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: () => "MY_KEY",
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
             const sourceData = {
@@ -112,398 +131,445 @@ describe("../response-cache.js", () => {
     });
 
     describe("#cacheData", () => {
-        describe("no custom cache", () => {
-            it("should store the entry in the framework cache", () => {
+        describe("when client-side", () => {
+            it("should not store the entry in the hydration cache", () => {
                 // Arrange
-                const internalCache = new MemoryCache();
-                jest.spyOn(internalCache, "store");
-                const cache = new ResponseCache(internalCache);
+                const hydrationCache = new MemoryCache();
+                const cache = new ResponseCache(hydrationCache);
                 const fakeHandler: IRequestHandler<string, string> = {
                     getKey: () => "MY_KEY",
                     type: "MY_HANDLER",
-                    shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
-                    cache: null,
                     hydrate: true,
                 };
+                const hydrationStoreSpy = jest.spyOn(hydrationCache, "store");
 
                 // Act
                 cache.cacheData(fakeHandler, "options", "data");
 
                 // Assert
-                expect(internalCache.store).toHaveBeenCalledWith(
-                    fakeHandler,
-                    "options",
-                    {data: "data"},
-                );
-            });
-        });
-
-        describe("with custom cache", () => {
-            it("SSR should use the framework cache, not the custom cache", () => {
-                // Arrange
-                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
-                const internalCache = new MemoryCache();
-                jest.spyOn(internalCache, "store");
-                const cache = new ResponseCache(internalCache);
-                const customCache = {
-                    store: jest.fn(),
-                    retrieve: jest.fn(),
-                    remove: jest.fn(),
-                    removeAll: jest.fn(),
-                };
-                const fakeHandler: IRequestHandler<string, string> = {
-                    getKey: () => "MY_KEY",
-                    type: "MY_HANDLER",
-                    shouldRefreshCache: () => false,
-                    fulfillRequest: jest.fn(),
-                    cache: customCache,
-                    hydrate: true,
-                };
-
-                // Act
-                cache.cacheData(fakeHandler, "options", "data");
-
-                // Assert
-                expect(customCache.store).not.toHaveBeenCalled();
-                expect(internalCache.store).toHaveBeenCalledWith(
-                    fakeHandler,
-                    "options",
-                    {data: "data"},
-                );
+                expect(hydrationStoreSpy).not.toHaveBeenCalled();
             });
 
-            it("CSR should use the custom cache, not the framework cache", () => {
+            it("should not store the entry in the ssrOnly cache", () => {
                 // Arrange
-                jest.spyOn(Server, "isServerSide").mockReturnValue(false);
-                const internalCache = new MemoryCache();
-                jest.spyOn(internalCache, "store");
-                const cache = new ResponseCache(internalCache);
-                const customCache = {
-                    store: jest.fn(),
-                    retrieve: jest.fn(),
-                    remove: jest.fn(),
-                    removeAll: jest.fn(),
-                };
-                const fakeHandler: IRequestHandler<string, string> = {
-                    getKey: () => "MY_KEY",
-                    type: "MY_HANDLER",
-                    shouldRefreshCache: () => false,
-                    fulfillRequest: jest.fn(),
-                    cache: customCache,
-                    hydrate: true,
-                };
-
-                // Act
-                cache.cacheData(fakeHandler, "options", "data");
-
-                // Assert
-                expect(customCache.store).toHaveBeenCalledWith(
-                    fakeHandler,
-                    "options",
-                    {data: "data"},
-                );
-                expect(internalCache.store).not.toHaveBeenCalled();
-            });
-        });
-
-        describe("no hydrate", () => {
-            it("should store the entry in the ssr-only cache", () => {
-                // Arrange
-                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                const hydrationCache = new MemoryCache();
                 const ssrOnlyCache = new MemoryCache();
-                const internalCache = new MemoryCache();
-                const storeSpy = jest.spyOn(ssrOnlyCache, "store");
-                const cache = new ResponseCache(internalCache, ssrOnlyCache);
+                const cache = new ResponseCache(hydrationCache, ssrOnlyCache);
                 const fakeHandler: IRequestHandler<string, string> = {
                     getKey: () => "MY_KEY",
                     type: "MY_HANDLER",
-                    shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
-                    cache: null,
-                    hydrate: false,
+                    hydrate: true,
                 };
+                const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "store");
 
                 // Act
                 cache.cacheData(fakeHandler, "options", "data");
 
                 // Assert
-                expect(storeSpy).toHaveBeenCalledWith(fakeHandler, "options", {
-                    data: "data",
+                expect(ssrOnlyStoreSpy).not.toHaveBeenCalled();
+            });
+        });
+
+        describe("when server-side", () => {
+            beforeEach(() => {
+                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+            });
+
+            describe("when the handler wants hydration", () => {
+                it("should store the entry in the hydration cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const cache = new ResponseCache(hydrationCache);
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: true,
+                    };
+                    const hydrationStoreSpy = jest.spyOn(
+                        hydrationCache,
+                        "store",
+                    );
+
+                    // Act
+                    cache.cacheData(fakeHandler, "options", "data");
+
+                    // Assert
+                    expect(hydrationStoreSpy).toHaveBeenCalledWith(
+                        fakeHandler,
+                        "options",
+                        {data: "data"},
+                    );
+                });
+
+                it("should not store the entry in the ssrOnly cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: true,
+                    };
+                    const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "store");
+
+                    // Act
+                    cache.cacheData(fakeHandler, "options", "data");
+
+                    // Assert
+                    expect(ssrOnlyStoreSpy).not.toHaveBeenCalled();
                 });
             });
 
-            it("should not store the entry in the framework cache", () => {
-                // Arrange
-                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
-                const internalCache = new MemoryCache();
-                jest.spyOn(internalCache, "store");
-                const cache = new ResponseCache(internalCache);
-                const fakeHandler: IRequestHandler<string, string> = {
-                    getKey: () => "MY_KEY",
-                    type: "MY_HANDLER",
-                    shouldRefreshCache: () => false,
-                    fulfillRequest: jest.fn(),
-                    cache: null,
-                    hydrate: false,
-                };
+            describe("when the handler does not hydration", () => {
+                it("should store the entry in the ssr-only cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: false,
+                    };
+                    const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "store");
 
-                // Act
-                cache.cacheData(fakeHandler, "options", "data");
+                    // Act
+                    cache.cacheData(fakeHandler, "options", "data");
 
-                // Assert
-                expect(internalCache.store).not.toHaveBeenCalled();
+                    // Assert
+                    expect(ssrOnlyStoreSpy).toHaveBeenCalledWith(
+                        fakeHandler,
+                        "options",
+                        {
+                            data: "data",
+                        },
+                    );
+                });
+
+                it("should not store the entry in the hydration cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: false,
+                    };
+                    const hydrationStoreSpy = jest.spyOn(
+                        hydrationCache,
+                        "store",
+                    );
+
+                    // Act
+                    cache.cacheData(fakeHandler, "options", "data");
+
+                    // Assert
+                    expect(hydrationStoreSpy).not.toHaveBeenCalled();
+                });
             });
         });
     });
 
     describe("#cacheError", () => {
-        describe("no custom cache", () => {
-            it("should store the entry in the framework cache", () => {
+        describe("when client-side", () => {
+            it("should not store the entry in the hydration cache", () => {
                 // Arrange
-                const internalCache = new MemoryCache();
-                jest.spyOn(internalCache, "store");
-                const cache = new ResponseCache(internalCache);
+                const hydrationCache = new MemoryCache();
+                const cache = new ResponseCache(hydrationCache);
                 const fakeHandler: IRequestHandler<string, string> = {
                     getKey: () => "MY_KEY",
                     type: "MY_HANDLER",
-                    shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
-                    cache: null,
                     hydrate: true,
                 };
+                const hydrationStoreSpy = jest.spyOn(hydrationCache, "store");
 
                 // Act
                 cache.cacheError(fakeHandler, "options", new Error("Ooops!"));
 
                 // Assert
-                expect(internalCache.store).toHaveBeenCalledWith(
-                    fakeHandler,
-                    "options",
-                    {error: "Ooops!"},
-                );
-            });
-        });
-
-        describe("with custom cache", () => {
-            it("SSR should use the framework cache, not the custom cache", () => {
-                // Arrange
-                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
-                const internalCache = new MemoryCache();
-                jest.spyOn(internalCache, "store");
-                const cache = new ResponseCache(internalCache);
-                const customCache = {
-                    store: jest.fn(),
-                    retrieve: jest.fn(),
-                    remove: jest.fn(),
-                    removeAll: jest.fn(),
-                };
-                const fakeHandler: IRequestHandler<string, string> = {
-                    getKey: () => "MY_KEY",
-                    type: "MY_HANDLER",
-                    shouldRefreshCache: () => false,
-                    fulfillRequest: jest.fn(),
-                    cache: customCache,
-                    hydrate: true,
-                };
-
-                // Act
-                cache.cacheError(fakeHandler, "options", new Error("Ooops!"));
-
-                // Assert
-                expect(internalCache.store).toHaveBeenCalledWith(
-                    fakeHandler,
-                    "options",
-                    {error: "Ooops!"},
-                );
-                expect(customCache.store).not.toHaveBeenCalled();
+                expect(hydrationStoreSpy).not.toHaveBeenCalled();
             });
 
-            it("CSR should use the custom cache, not the framework cache", () => {
+            it("should not store the entry in the ssrOnly cache", () => {
                 // Arrange
-                jest.spyOn(Server, "isServerSide").mockReturnValue(false);
-                const internalCache = new MemoryCache();
-                jest.spyOn(internalCache, "store");
-                const cache = new ResponseCache(internalCache);
-                const customCache = {
-                    store: jest.fn(),
-                    retrieve: jest.fn(),
-                    remove: jest.fn(),
-                    removeAll: jest.fn(),
-                };
-                const fakeHandler: IRequestHandler<string, string> = {
-                    getKey: () => "MY_KEY",
-                    type: "MY_HANDLER",
-                    shouldRefreshCache: () => false,
-                    fulfillRequest: jest.fn(),
-                    cache: customCache,
-                    hydrate: true,
-                };
-
-                // Act
-                cache.cacheError(fakeHandler, "options", new Error("Ooops!"));
-
-                // Assert
-                expect(customCache.store).toHaveBeenCalledWith(
-                    fakeHandler,
-                    "options",
-                    {error: "Ooops!"},
-                );
-                expect(internalCache.store).not.toHaveBeenCalled();
-            });
-        });
-
-        describe("no hydrate", () => {
-            it("should store the entry in the ssr-only cache", () => {
-                // Arrange
-                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                const hydrationCache = new MemoryCache();
                 const ssrOnlyCache = new MemoryCache();
-                const internalCache = new MemoryCache();
-                const storeSpy = jest.spyOn(ssrOnlyCache, "store");
-                const cache = new ResponseCache(internalCache, ssrOnlyCache);
+                const cache = new ResponseCache(hydrationCache, ssrOnlyCache);
                 const fakeHandler: IRequestHandler<string, string> = {
                     getKey: () => "MY_KEY",
                     type: "MY_HANDLER",
-                    shouldRefreshCache: () => false,
                     fulfillRequest: jest.fn(),
-                    cache: null,
-                    hydrate: false,
+                    hydrate: true,
                 };
+                const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "store");
 
                 // Act
-                cache.cacheError(fakeHandler, "options", new Error("Ooops!"));
+                cache.cacheError(fakeHandler, "options", "Ooops!");
 
                 // Assert
-                expect(storeSpy).toHaveBeenCalledWith(fakeHandler, "options", {
-                    error: "Ooops!",
+                expect(ssrOnlyStoreSpy).not.toHaveBeenCalled();
+            });
+        });
+
+        describe("when server-side", () => {
+            beforeEach(() => {
+                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+            });
+
+            describe("when the handler wants hydration", () => {
+                it("should store the entry in the hydration cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const cache = new ResponseCache(hydrationCache);
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: true,
+                    };
+                    const hydrationStoreSpy = jest.spyOn(
+                        hydrationCache,
+                        "store",
+                    );
+
+                    // Act
+                    cache.cacheError(
+                        fakeHandler,
+                        "options",
+                        new Error("Ooops!"),
+                    );
+
+                    // Assert
+                    expect(hydrationStoreSpy).toHaveBeenCalledWith(
+                        fakeHandler,
+                        "options",
+                        {error: "Ooops!"},
+                    );
+                });
+
+                it("should not store the entry in the ssrOnly cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: true,
+                    };
+                    const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "store");
+
+                    // Act
+                    cache.cacheError(
+                        fakeHandler,
+                        "options",
+                        new Error("Ooops!"),
+                    );
+
+                    // Assert
+                    expect(ssrOnlyStoreSpy).not.toHaveBeenCalled();
                 });
             });
 
-            it("should not store the entry in the framework cache", () => {
-                // Arrange
-                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
-                const internalCache = new MemoryCache();
-                jest.spyOn(internalCache, "store");
-                const cache = new ResponseCache(internalCache);
-                const fakeHandler: IRequestHandler<string, string> = {
-                    getKey: () => "MY_KEY",
-                    type: "MY_HANDLER",
-                    shouldRefreshCache: () => false,
-                    fulfillRequest: jest.fn(),
-                    cache: null,
-                    hydrate: false,
-                };
+            describe("when the handler does not hydration", () => {
+                it("should store the entry in the ssr-only cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: false,
+                    };
+                    const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "store");
 
-                // Act
-                cache.cacheError(fakeHandler, "options", new Error("Ooops!"));
+                    // Act
+                    cache.cacheError(
+                        fakeHandler,
+                        "options",
+                        new Error("Ooops!"),
+                    );
 
-                // Assert
-                expect(internalCache.store).not.toHaveBeenCalled();
+                    // Assert
+                    expect(ssrOnlyStoreSpy).toHaveBeenCalledWith(
+                        fakeHandler,
+                        "options",
+                        {error: "Ooops!"},
+                    );
+                });
+
+                it("should not store the entry in the hydration cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: false,
+                    };
+                    const hydrationStoreSpy = jest.spyOn(
+                        hydrationCache,
+                        "store",
+                    );
+
+                    // Act
+                    cache.cacheError(
+                        fakeHandler,
+                        "options",
+                        new Error("Ooops!"),
+                    );
+
+                    // Assert
+                    expect(hydrationStoreSpy).not.toHaveBeenCalled();
+                });
             });
         });
     });
 
     describe("#getEntry", () => {
-        describe("no custom cache", () => {
-            it("should return null if not in the framework cache", () => {
-                // Arrange
-                const internalCache = new MemoryCache();
-                jest.spyOn(internalCache, "retrieve").mockReturnValue(null);
-                const cache = new ResponseCache();
-                const fakeHandler: IRequestHandler<string, string> = {
-                    getKey: () => "MY_KEY",
-                    type: "MY_HANDLER",
-                    shouldRefreshCache: () => false,
-                    fulfillRequest: jest.fn(),
-                    cache: null,
-                    hydrate: true,
-                };
-
-                // Act
-                const result = cache.getEntry(fakeHandler, "options");
-
-                // Assert
-                expect(result).toBeNull();
+        describe("when client-side", () => {
+            beforeEach(() => {
+                jest.spyOn(Server, "isServerSide").mockReturnValue(false);
             });
 
-            it("should return the cached entry", () => {
-                // Arrange
-                const internalCache = new MemoryCache();
-                jest.spyOn(internalCache, "retrieve").mockReturnValue({
-                    data: "data!",
+            describe("handler wants hydration", () => {
+                it("should return null if not in the hydration cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "retrieve").mockReturnValue(
+                        null,
+                    );
+                    const cache = new ResponseCache(hydrationCache);
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: true,
+                    };
+
+                    // Act
+                    const result = cache.getEntry(fakeHandler, "options");
+
+                    // Assert
+                    expect(result).toBeNull();
                 });
-                const cache = new ResponseCache(internalCache);
-                const fakeHandler: IRequestHandler<string, string> = {
-                    getKey: () => "MY_KEY",
-                    type: "MY_HANDLER",
-                    shouldRefreshCache: () => false,
-                    fulfillRequest: jest.fn(),
-                    cache: null,
-                    hydrate: true,
-                };
 
-                // Act
-                const result = cache.getEntry(fakeHandler, "options");
+                it("should return the cached entry if in the hydration cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "retrieve").mockReturnValue({
+                        data: "data!",
+                    });
+                    const cache = new ResponseCache(hydrationCache);
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: true,
+                    };
 
-                // Assert
-                expect(result).toStrictEqual({data: "data!"});
+                    // Act
+                    const result = cache.getEntry(fakeHandler, "options");
+
+                    // Assert
+                    expect(result).toStrictEqual({data: "data!"});
+                });
+            });
+
+            describe("handler does not want hyrdation", () => {
+                it("should return undefined", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "retrieve").mockReturnValue({
+                        data: "data!",
+                    });
+                    const cache = new ResponseCache(hydrationCache);
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: false,
+                    };
+
+                    // Act
+                    const result = cache.getEntry(fakeHandler, "options");
+
+                    // Assert
+                    expect(result).toBeUndefined();
+                });
             });
         });
 
-        describe("with custom cache", () => {
-            describe("SSR", () => {
-                it("should use framework cache, not custom cache", () => {
+        describe("when server-side", () => {
+            beforeEach(() => {
+                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+            });
+
+            describe("handler wants hydration", () => {
+                it("should return null if not in the hydration cache", () => {
                     // Arrange
-                    jest.spyOn(Server, "isServerSide").mockReturnValue(true);
-                    const internalCache = new MemoryCache();
-                    jest.spyOn(internalCache, "retrieve");
-                    const cache = new ResponseCache(internalCache);
-                    const customCache = {
-                        store: jest.fn(),
-                        retrieve: jest.fn(),
-                        remove: jest.fn(),
-                        removeAll: jest.fn(),
-                    };
+                    const hydrationCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "retrieve").mockReturnValue(
+                        null,
+                    );
+                    const cache = new ResponseCache(hydrationCache);
                     const fakeHandler: IRequestHandler<string, string> = {
                         getKey: () => "MY_KEY",
                         type: "MY_HANDLER",
-                        shouldRefreshCache: () => false,
                         fulfillRequest: jest.fn(),
-                        cache: customCache,
                         hydrate: true,
                     };
 
                     // Act
-                    cache.getEntry(fakeHandler, "options");
+                    const result = cache.getEntry(fakeHandler, "options");
 
                     // Assert
-                    expect(internalCache.retrieve).toHaveBeenCalledWith(
-                        fakeHandler,
-                        "options",
-                    );
-                    expect(customCache.retrieve).not.toHaveBeenCalled();
+                    expect(result).toBeNull();
                 });
 
-                it("should not store framework entry in custom cache", () => {
+                it("should return the cached entry if in the hydration cache", () => {
                     // Arrange
-                    jest.spyOn(Server, "isServerSide").mockReturnValue(true);
-                    const internalCache = new MemoryCache();
-                    jest.spyOn(internalCache, "retrieve").mockReturnValue({
+                    const hydrationCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "retrieve").mockReturnValue({
                         data: "data!",
                     });
-                    const cache = new ResponseCache(internalCache);
-                    const customCache = {
-                        store: jest.fn(),
-                        retrieve: jest.fn(),
-                        remove: jest.fn(),
-                        removeAll: jest.fn(),
-                    };
+                    const cache = new ResponseCache(hydrationCache);
                     const fakeHandler: IRequestHandler<string, string> = {
                         getKey: () => "MY_KEY",
                         type: "MY_HANDLER",
-                        shouldRefreshCache: () => false,
                         fulfillRequest: jest.fn(),
-                        cache: customCache,
                         hydrate: true,
                     };
 
@@ -512,97 +578,55 @@ describe("../response-cache.js", () => {
 
                     // Assert
                     expect(result).toStrictEqual({data: "data!"});
-                    expect(customCache.store).not.toHaveBeenCalled();
-                });
-
-                it("should not remove framework entry", () => {
-                    // Arrange
-                    jest.spyOn(Server, "isServerSide").mockReturnValue(true);
-                    const internalCache = new MemoryCache();
-                    jest.spyOn(internalCache, "retrieve").mockReturnValue({
-                        data: "data!",
-                    });
-                    jest.spyOn(internalCache, "remove");
-                    const cache = new ResponseCache(internalCache);
-                    const customCache = {
-                        store: jest.fn(),
-                        retrieve: jest.fn(),
-                        remove: jest.fn(),
-                        removeAll: jest.fn(),
-                    };
-                    const fakeHandler: IRequestHandler<string, string> = {
-                        getKey: () => "MY_KEY",
-                        type: "MY_HANDLER",
-                        shouldRefreshCache: () => false,
-                        fulfillRequest: jest.fn(),
-                        cache: customCache,
-                        hydrate: true,
-                    };
-
-                    // Act
-                    cache.getEntry(fakeHandler, "options");
-
-                    // Assert
-                    expect(internalCache.remove).not.toHaveBeenCalled();
                 });
             });
 
-            describe("CSR", () => {
-                it("should return custom cached entry", () => {
+            describe("handler does not want hyrdation", () => {
+                it("should return null if not in the ssr-only cache", () => {
                     // Arrange
-                    jest.spyOn(Server, "isServerSide").mockReturnValue(false);
-                    const internalCache = new MemoryCache();
-                    jest.spyOn(internalCache, "retrieve");
-                    const cache = new ResponseCache(internalCache);
-                    const customCache = {
-                        store: jest.fn(),
-                        retrieve: jest
-                            .fn()
-                            .mockReturnValue({data: "custom data!"}),
-                        remove: jest.fn(),
-                        removeAll: jest.fn(),
-                    };
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "retrieve").mockReturnValue(
+                        "NOT NULL",
+                    );
+                    jest.spyOn(ssrOnlyCache, "retrieve").mockReturnValue(null);
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
                     const fakeHandler: IRequestHandler<string, string> = {
                         getKey: () => "MY_KEY",
                         type: "MY_HANDLER",
-                        shouldRefreshCache: () => false,
                         fulfillRequest: jest.fn(),
-                        cache: customCache,
-                        hydrate: true,
+                        hydrate: false,
                     };
 
                     // Act
-                    cache.getEntry(fakeHandler, "options");
+                    const result = cache.getEntry(fakeHandler, "options");
 
                     // Assert
-                    expect(customCache.retrieve).toHaveBeenCalledWith(
-                        fakeHandler,
-                        "options",
-                    );
-                    expect(internalCache.retrieve).not.toHaveBeenCalled();
+                    expect(result).toBeNull();
                 });
 
-                it("should store framework entry in custom cache when custom cache misses", () => {
+                it("should return the cached entry if in the ssr-only cache", () => {
                     // Arrange
-                    jest.spyOn(Server, "isServerSide").mockReturnValue(false);
-                    const internalCache = new MemoryCache();
-                    jest.spyOn(internalCache, "retrieve").mockReturnValue({
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "retrieve").mockReturnValue({
+                        data: "wrong data!",
+                    });
+                    jest.spyOn(ssrOnlyCache, "retrieve").mockReturnValue({
                         data: "data!",
                     });
-                    const cache = new ResponseCache(internalCache);
-                    const customCache = {
-                        store: jest.fn(),
-                        retrieve: jest.fn(),
-                        remove: jest.fn(),
-                        removeAll: jest.fn(),
-                    };
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
                     const fakeHandler: IRequestHandler<string, string> = {
                         getKey: () => "MY_KEY",
                         type: "MY_HANDLER",
-                        shouldRefreshCache: () => false,
                         fulfillRequest: jest.fn(),
-                        cache: customCache,
-                        hydrate: true,
+                        hydrate: false,
                     };
 
                     // Act
@@ -610,281 +634,217 @@ describe("../response-cache.js", () => {
 
                     // Assert
                     expect(result).toStrictEqual({data: "data!"});
-                    expect(customCache.store).toBeCalledWith(
-                        fakeHandler,
-                        "options",
-                        {data: "data!"},
-                    );
-                });
-
-                it("should remove framework entry when custom cache misses", () => {
-                    // Arrange
-                    jest.spyOn(Server, "isServerSide").mockReturnValue(false);
-                    const internalCache = new MemoryCache();
-                    jest.spyOn(internalCache, "retrieve").mockReturnValue({
-                        data: "data!",
-                    });
-                    jest.spyOn(internalCache, "remove");
-                    const cache = new ResponseCache(internalCache);
-                    const customCache = {
-                        store: jest.fn(),
-                        retrieve: jest.fn(),
-                        remove: jest.fn(),
-                        removeAll: jest.fn(),
-                    };
-                    const fakeHandler: IRequestHandler<string, string> = {
-                        getKey: () => "MY_KEY",
-                        type: "MY_HANDLER",
-                        shouldRefreshCache: () => false,
-                        fulfillRequest: jest.fn(),
-                        cache: customCache,
-                        hydrate: true,
-                    };
-
-                    // Act
-                    cache.getEntry(fakeHandler, "options");
-
-                    // Assert
-                    expect(internalCache.remove).toHaveBeenCalledWith(
-                        fakeHandler,
-                        "options",
-                    );
                 });
             });
         });
     });
 
     describe("#remove", () => {
-        it("should return false if nothing was removed", () => {
-            // Arrange
-            const internalCache = new MemoryCache();
-            jest.spyOn(internalCache, "remove").mockReturnValue(false);
-            const cache = new ResponseCache(internalCache);
-            const customCache = {
-                store: jest.fn(),
-                retrieve: jest.fn(),
-                remove: jest.fn().mockReturnValue(false),
-                removeAll: jest.fn(),
-            };
-            const fakeHandler: IRequestHandler<string, string> = {
-                getKey: () => "MY_KEY",
-                type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
-                fulfillRequest: jest.fn(),
-                cache: customCache,
-                hydrate: true,
-            };
+        describe("when handler wants hydration", () => {
+            it("should return false if nothing was removed from hydration cache", () => {
+                // Arrange
+                const hydrationCache = new MemoryCache();
+                jest.spyOn(hydrationCache, "remove").mockReturnValue(false);
+                const cache = new ResponseCache(hydrationCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    fulfillRequest: jest.fn(),
+                    hydrate: true,
+                };
 
-            // Act
-            const result = cache.remove(fakeHandler, "optionsA");
+                // Act
+                const result = cache.remove(fakeHandler, "optionsA");
 
-            // Assert
-            expect(result).toBeFalsy();
+                // Assert
+                expect(result).toBeFalsy();
+            });
+
+            it("should return true if something was removed from hydration cache", () => {
+                // Arrange
+                const hydrationCache = new MemoryCache();
+                jest.spyOn(hydrationCache, "remove").mockReturnValue(true);
+                const cache = new ResponseCache(hydrationCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    fulfillRequest: jest.fn(),
+                    hydrate: true,
+                };
+
+                // Act
+                const result = cache.remove(fakeHandler, "optionsA");
+
+                // Assert
+                expect(result).toBeTruthy();
+            });
         });
 
-        it("should return true if something was removed from framework cache", () => {
-            // Arrange
-            const internalCache = new MemoryCache();
-            jest.spyOn(internalCache, "remove").mockReturnValue(true);
-            const cache = new ResponseCache(internalCache);
-            const customCache = {
-                store: jest.fn(),
-                retrieve: jest.fn(),
-                remove: jest.fn().mockReturnValue(false),
-                removeAll: jest.fn(),
-            };
-            const fakeHandler: IRequestHandler<string, string> = {
-                getKey: () => "MY_KEY",
-                type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
-                fulfillRequest: jest.fn(),
-                cache: customCache,
-                hydrate: true,
-            };
+        describe("when handler does not want hydration", () => {
+            it("should return false", () => {
+                // Arrange
+                const hydrationCache = new MemoryCache();
+                const ssrOnlyCache = new MemoryCache();
+                jest.spyOn(hydrationCache, "remove").mockReturnValue(true);
+                jest.spyOn(ssrOnlyCache, "remove").mockReturnValue(true);
+                const cache = new ResponseCache(hydrationCache, ssrOnlyCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    fulfillRequest: jest.fn(),
+                    hydrate: false,
+                };
 
-            // Act
-            const result = cache.remove(fakeHandler, "optionsA");
+                // Act
+                const result = cache.remove(fakeHandler, "optionsA");
 
-            // Assert
-            expect(result).toBeTruthy();
-        });
+                // Assert
+                expect(result).toBeFalsy();
+            });
 
-        it("should return true if something was removed from custom cache", () => {
-            // Arrange
-            const internalCache = new MemoryCache();
-            /**
-             * This simulates that the internal cache did not remove anything.
-             * That way, if the custom cache says it does, we can check that
-             * our method is acknowledging that.
-             */
-            jest.spyOn(internalCache, "remove").mockReturnValue(false);
-            const cache = new ResponseCache(internalCache);
-            const customCache = {
-                store: jest.fn(),
-                retrieve: jest.fn(),
-                /**
-                 * We're testing that this mocked valiue propagates to the
-                 * framework response cache `remove` call.
-                 */
-                remove: jest.fn().mockReturnValue(true),
-                removeAll: jest.fn(),
-            };
-            const fakeHandler: IRequestHandler<string, string> = {
-                getKey: () => "IGNORED",
-                type: "IGNORED",
-                shouldRefreshCache: () => false,
-                fulfillRequest: jest.fn(),
-                cache: customCache,
-                hydrate: true,
-            };
+            describe("when server-side", () => {
+                beforeEach(() => {
+                    jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                });
 
-            // Act
-            const result = cache.remove(fakeHandler, "PRETEND_KEY");
+                it("should return false if nothing was removed from ssr-only cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "remove").mockReturnValue(true);
+                    jest.spyOn(ssrOnlyCache, "remove").mockReturnValue(false);
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: false,
+                    };
 
-            // Assert
-            expect(result).toBeTruthy();
-        });
+                    // Act
+                    const result = cache.remove(fakeHandler, "optionsA");
 
-        it("SSR should call framework cache, not custom cache", () => {
-            // Arrange
-            jest.spyOn(Server, "isServerSide").mockReturnValue(true);
-            const internalCache = new MemoryCache();
-            jest.spyOn(internalCache, "remove");
-            const cache = new ResponseCache(internalCache);
-            const customCache = {
-                store: jest.fn(),
-                retrieve: jest.fn(),
-                remove: jest.fn(),
-                removeAll: jest.fn(),
-            };
-            const fakeHandler: IRequestHandler<string, string> = {
-                getKey: () => "MY_KEY",
-                type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
-                fulfillRequest: jest.fn(),
-                cache: customCache,
-                hydrate: true,
-            };
+                    // Assert
+                    expect(result).toBeFalsy();
+                });
 
-            // Act
-            cache.remove(fakeHandler, "optionsA");
+                it("should return true if something was removed from ssr-only cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    jest.spyOn(ssrOnlyCache, "remove").mockReturnValue(true);
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: false,
+                    };
 
-            // Assert
-            expect(customCache.remove).not.toHaveBeenCalled();
-            expect(internalCache.remove).toHaveBeenCalledWith(
-                fakeHandler,
-                "optionsA",
-            );
+                    // Act
+                    const result = cache.remove(fakeHandler, "optionsA");
+
+                    // Assert
+                    expect(result).toBeTruthy();
+                });
+            });
         });
     });
 
     describe("#removeAll", () => {
-        it("CSR should call removeAll on custom and framework caches", () => {
-            const internalCache = new MemoryCache();
-            jest.spyOn(internalCache, "removeAll");
-            const cache = new ResponseCache(internalCache);
-            const customCache = {
-                store: jest.fn(),
-                retrieve: jest.fn(),
-                remove: jest.fn(),
-                removeAll: jest.fn(),
-            };
-            const fakeHandler: IRequestHandler<string, string> = {
-                getKey: () => "MY_KEY",
-                type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
-                fulfillRequest: jest.fn(),
-                cache: customCache,
-                hydrate: true,
-            };
-            const predicate = () => false;
+        describe("when handler wants hydration", () => {
+            it("should return total number of entries removed from hydration cache", () => {
+                // Arrange
+                const hydrationCache = new MemoryCache();
+                jest.spyOn(hydrationCache, "removeAll").mockReturnValue(1);
+                const cache = new ResponseCache(hydrationCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    fulfillRequest: jest.fn(),
+                    hydrate: true,
+                };
 
-            // Act
-            cache.removeAll(fakeHandler, predicate);
+                // Act
+                const result = cache.removeAll(fakeHandler);
 
-            // Assert
-            expect(customCache.removeAll).toHaveBeenCalledWith(
-                fakeHandler,
-                predicate,
-            );
-            expect(internalCache.removeAll).toHaveBeenCalledWith(
-                fakeHandler,
-                predicate,
-            );
+                // Assert
+                expect(result).toBe(1);
+            });
         });
 
-        it("should return total number of entries removed", () => {
-            // Arrange
-            const internalCache = new MemoryCache();
-            jest.spyOn(internalCache, "removeAll").mockReturnValue(1);
-            const cache = new ResponseCache(internalCache);
-            const customCache = {
-                store: jest.fn(),
-                retrieve: jest.fn(),
-                remove: jest.fn(),
-                removeAll: jest.fn().mockReturnValue(1),
-            };
-            const fakeHandler: IRequestHandler<string, string> = {
-                getKey: () => "MY_KEY",
-                type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
-                fulfillRequest: jest.fn(),
-                cache: customCache,
-                hydrate: true,
-            };
+        describe("when handler does not want hydration", () => {
+            it("should return zero", () => {
+                // Arrange
+                const hydrationCache = new MemoryCache();
+                const ssrOnlyCache = new MemoryCache();
+                jest.spyOn(hydrationCache, "removeAll").mockReturnValue(42);
+                jest.spyOn(ssrOnlyCache, "removeAll").mockReturnValue(42);
+                const cache = new ResponseCache(hydrationCache, ssrOnlyCache);
+                const fakeHandler: IRequestHandler<string, string> = {
+                    getKey: () => "MY_KEY",
+                    type: "MY_HANDLER",
+                    fulfillRequest: jest.fn(),
+                    hydrate: false,
+                };
 
-            // Act
-            const result = cache.removeAll(fakeHandler);
+                // Act
+                const result = cache.removeAll(fakeHandler);
 
-            // Assert
-            expect(result).toBe(2);
-        });
+                // Assert
+                expect(result).toBe(0);
+            });
 
-        it("SSR should call framework cache, not custom cache", () => {
-            // Arrange
-            jest.spyOn(Server, "isServerSide").mockReturnValue(true);
-            const internalCache = new MemoryCache();
-            jest.spyOn(internalCache, "removeAll");
-            const cache = new ResponseCache(internalCache);
-            const customCache = {
-                store: jest.fn(),
-                retrieve: jest.fn(),
-                remove: jest.fn(),
-                removeAll: jest.fn(),
-            };
-            const fakeHandler: IRequestHandler<string, string> = {
-                getKey: () => "MY_KEY",
-                type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
-                fulfillRequest: jest.fn(),
-                cache: customCache,
-                hydrate: true,
-            };
+            describe("when server-side", () => {
+                beforeEach(() => {
+                    jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                });
 
-            // Act
-            cache.removeAll(fakeHandler);
+                it("should return total number of entries removed from ssr-only cache", () => {
+                    // Arrange
+                    const hydrationCache = new MemoryCache();
+                    const ssrOnlyCache = new MemoryCache();
+                    jest.spyOn(hydrationCache, "removeAll").mockReturnValue(13);
+                    jest.spyOn(ssrOnlyCache, "removeAll").mockReturnValue(42);
+                    const cache = new ResponseCache(
+                        hydrationCache,
+                        ssrOnlyCache,
+                    );
+                    const fakeHandler: IRequestHandler<string, string> = {
+                        getKey: () => "MY_KEY",
+                        type: "MY_HANDLER",
+                        fulfillRequest: jest.fn(),
+                        hydrate: false,
+                    };
 
-            // Assert
-            expect(customCache.removeAll).not.toHaveBeenCalled();
-            expect(internalCache.removeAll).toHaveBeenCalledWith(
-                fakeHandler,
-                undefined,
-            );
+                    // Act
+                    const result = cache.removeAll(fakeHandler);
+
+                    // Assert
+                    expect(result).toBe(42);
+                });
+            });
         });
     });
 
     describe("#cloneHydratableData", () => {
-        it("should clone the internal hydration cache", () => {
+        it("should clone the hydration cache", () => {
             // Arrange
-            const internalCache = new MemoryCache();
-            jest.spyOn(internalCache, "cloneData").mockReturnValue("CLONE!");
-            const cache = new ResponseCache(internalCache);
+            const hydrationCache = new MemoryCache();
+            const cloneSpy = jest
+                .spyOn(hydrationCache, "cloneData")
+                .mockReturnValue("CLONE!");
+            const cache = new ResponseCache(hydrationCache);
             const fakeHandler: IRequestHandler<string, string> = {
                 getKey: (options) => options,
                 type: "MY_HANDLER",
-                shouldRefreshCache: () => false,
                 fulfillRequest: jest.fn(),
-                cache: null,
                 hydrate: true,
             };
             // Let's add to the initialized state to check that everything
@@ -896,7 +856,7 @@ describe("../response-cache.js", () => {
             const result = cache.cloneHydratableData();
 
             // Assert
-            expect(internalCache.cloneData).toHaveBeenCalled();
+            expect(cloneSpy).toHaveBeenCalled();
             expect(result).toBe("CLONE!");
         });
 

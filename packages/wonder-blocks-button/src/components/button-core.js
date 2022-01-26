@@ -162,7 +162,7 @@ export default class ButtonCore extends React.Component<Props> {
                 <StyledButton
                     type={type || "button"}
                     {...commonProps}
-                    disabled={disabled}
+                    aria-disabled={disabled}
                 >
                     {contents}
                 </StyledButton>
@@ -291,6 +291,11 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
                 background: light ? fadedColor : offBlack32,
                 color: light ? color : white64,
                 cursor: "default",
+                ":focus": {
+                    boxShadow: `0 0 0 1px ${
+                        light ? offBlack32 : white
+                    }, 0 0 0 3px ${light ? fadedColor : offBlack32}`,
+                },
             },
         };
     } else if (kind === "secondary") {
@@ -318,6 +323,8 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
                 color: light ? fadedColor : activeColor,
                 borderColor: light ? fadedColor : activeColor,
                 borderWidth: 2,
+                // We need to reduce padding to offset the difference
+                // caused by the border becoming thicker on focus.
                 // The left padding for the button with icon should have 4px
                 // less padding
                 paddingLeft: iconWidth ? padding - 5 : padding - 1,
@@ -327,9 +334,20 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
                 color: light ? white50 : offBlack32,
                 borderColor: light ? fadedColor : offBlack32,
                 cursor: "default",
+                ":focus": {
+                    borderColor: light ? white50 : offBlack32,
+                    borderWidth: 2,
+                    // We need to reduce padding to offset the difference
+                    // caused by the border becoming thicker on focus.
+                    // The left padding for the button with icon should have 4px
+                    // less padding
+                    paddingLeft: iconWidth ? padding - 5 : padding - 1,
+                    paddingRight: padding - 1,
+                },
             },
         };
     } else if (kind === "tertiary") {
+        // TODO(FEI-4229): Make tertiary buttons focusable
         newStyles = {
             default: {
                 background: "none",

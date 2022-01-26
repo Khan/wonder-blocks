@@ -651,7 +651,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           "touchAction": "manipulation",
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="button"
     >
       <div
@@ -1134,8 +1134,8 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
     }
   />
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -1627,7 +1627,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
           "whiteSpace": "nowrap",
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="button"
     >
       <span
@@ -1926,7 +1926,7 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
           "whiteSpace": "nowrap",
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="button"
     >
       <span
@@ -2292,8 +2292,8 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
     }
   />
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -2998,8 +2998,8 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
   }
 >
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -3159,7 +3159,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
           "whiteSpace": "nowrap",
         }
       }
-      tabIndex={-1}
+      tabIndex={0}
       type="button"
     >
       <span
@@ -3661,8 +3661,8 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
     }
   />
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}

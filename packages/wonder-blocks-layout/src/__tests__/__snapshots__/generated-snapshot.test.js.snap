@@ -22,8 +22,8 @@ exports[`wonder-blocks-layout example 1 1`] = `
   }
 >
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -121,8 +121,8 @@ exports[`wonder-blocks-layout example 1 1`] = `
     }
   />
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -220,8 +220,8 @@ exports[`wonder-blocks-layout example 1 1`] = `
     }
   />
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -314,8 +314,8 @@ exports[`wonder-blocks-layout example 1 1`] = `
     }
   />
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -413,8 +413,8 @@ exports[`wonder-blocks-layout example 1 1`] = `
     }
   />
   <button
+    aria-disabled={false}
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}

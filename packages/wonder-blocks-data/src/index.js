@@ -15,7 +15,6 @@ export type {
     CacheEntry,
     Result,
     IRequestHandler,
-    ICache,
     ResponseCache,
 } from "./util/types.js";
 
@@ -51,15 +50,20 @@ export const removeAllFromCache = <TOptions, TData: ValidData>(
     ) => boolean,
 ): number => ResCache.Default.removeAll<TOptions, TData>(handler, predicate);
 
-/**
- * TODO(somewhatabstract): Export each cache type we implement.
- *
- * Is there a base type we export, like we do for RequestHandler?
- */
-
 export {default as RequestHandler} from "./util/request-handler.js";
 export {default as TrackData} from "./components/track-data.js";
 export {default as Data} from "./components/data.js";
 export {default as InterceptData} from "./components/intercept-data.js";
-export {default as InterceptCache} from "./components/intercept-cache.js";
-export {default as NoCache} from "./util/no-cache.js";
+export {useData} from "./hooks/use-data.js";
+
+// GraphQL
+export {GqlRouter} from "./components/gql-router.js";
+export {useGql} from "./hooks/use-gql.js";
+export * from "./util/gql-error.js";
+export type {
+    GqlContext,
+    GqlOperation,
+    GqlOperationType,
+    GqlFetchOptions,
+    GqlFetchFn,
+} from "./util/gql-types.js";

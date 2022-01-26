@@ -17,6 +17,7 @@ module.exports = {
     setupFilesAfterEnv: [
         "@testing-library/jest-dom/extend-expect",
         "<rootDir>/config/jest/test-setup.js",
+        "jest-extended/all"
     ],
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-(.*)$":
@@ -26,6 +27,7 @@ module.exports = {
     collectCoverageFrom: [
         "packages/**/*.js",
         "!packages/**/*.stories.js",
+        "!packages/**/src/index.js",
         "!packages/**/*.flowtest.js",
         "!packages/**/dist/**/*.js",
         "!<rootDir>/node_modules/",

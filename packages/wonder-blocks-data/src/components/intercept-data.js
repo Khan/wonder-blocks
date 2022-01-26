@@ -7,10 +7,9 @@ import type {
     ValidData,
     IRequestHandler,
     InterceptFulfillRequestFn,
-    InterceptShouldRefreshCacheFn,
 } from "../util/types.js";
 
-type BaseProps<TOptions, TData> = {|
+type Props<TOptions, TData> = {|
     /**
      * A handler of the type to be intercepted.
      */
@@ -24,9 +23,7 @@ type BaseProps<TOptions, TData> = {|
      * one).
      */
     children: React.Node,
-|};
 
-type FulfillRequestProps<TOptions, TData> = {|
     /**
      * Called to fulfill a request.
      * If this returns null, the request will be fulfilled by the
@@ -35,37 +32,10 @@ type FulfillRequestProps<TOptions, TData> = {|
     fulfillRequest: InterceptFulfillRequestFn<TOptions, TData>,
 |};
 
-type ShouldRefreshCacheProps<TOptions, TData> = {|
-    /**
-     * Called to determine if the cache should be refreshed.
-     * If this returns null, the handler being intercepted will be asked if
-     * the cache should be refreshed.
-     */
-    shouldRefreshCache: InterceptShouldRefreshCacheFn<TOptions, TData>,
-|};
-
-type Props<TOptions, TData> =
-    | {|
-          ...BaseProps<TOptions, TData>,
-          ...FulfillRequestProps<TOptions, TData>,
-          ...ShouldRefreshCacheProps<TOptions, TData>,
-      |}
-    | {|
-          ...BaseProps<TOptions, TData>,
-          ...FulfillRequestProps<TOptions, TData>,
-      |}
-    | {|
-          ...BaseProps<TOptions, TData>,
-          ...ShouldRefreshCacheProps<TOptions, TData>,
-      |};
-
 /**
  * This component provides a mechanism to intercept the data requests for the
  * type of a given handler and provide alternative results. This is mostly
  * useful for testing.
- *
- * Results from this interceptor will end up in the cache. If you
- * wish to only override the cache, use `InterceptCache` instead.
  *
  * This component is not recommended for use in production code as it
  * can prevent predictable functioning of the Wonder Blocks Data framework.
@@ -89,9 +59,7 @@ export default class InterceptData<
                     const handlerType = this.props.handler.type;
                     const interceptor = {
                         ...value[handlerType],
-                        fulfillRequest: this.props.fulfillRequest || null,
-                        shouldRefreshCache:
-                            this.props.shouldRefreshCache || null,
+                        fulfillRequest: this.props.fulfillRequest,
                     };
                     const newValue = {
                         ...value,

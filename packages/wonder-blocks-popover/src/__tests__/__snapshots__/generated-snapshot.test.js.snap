@@ -22,9 +22,9 @@ exports[`wonder-blocks-popover example 1 1`] = `
 >
   <button
     aria-controls="uid-popover-0-wb-id"
+    aria-disabled={false}
     aria-expanded="false"
     className=""
-    disabled={false}
     id="uid-popover-0-wb-id-anchor"
     onBlur={[Function]}
     onClick={[Function]}
@@ -142,9 +142,9 @@ exports[`wonder-blocks-popover example 2 1`] = `
   >
     <button
       aria-controls="uid-popover-1-wb-id"
+      aria-disabled={false}
       aria-expanded="true"
       className=""
-      disabled={false}
       id="uid-popover-1-wb-id-anchor"
       onBlur={[Function]}
       onClick={[Function]}
@@ -242,8 +242,8 @@ exports[`wonder-blocks-popover example 2 1`] = `
       }
     />
     <button
+      aria-disabled={false}
       className=""
-      disabled={false}
       onBlur={[Function]}
       onClick={[Function]}
       onDragStart={[Function]}
@@ -339,9 +339,9 @@ exports[`wonder-blocks-popover example 3 1`] = `
 >
   <button
     aria-controls="uid-popover-2-wb-id"
+    aria-disabled={false}
     aria-expanded="false"
     className=""
-    disabled={false}
     id="uid-popover-2-wb-id-anchor"
     onBlur={[Function]}
     onClick={[Function]}
@@ -437,9 +437,9 @@ exports[`wonder-blocks-popover example 4 1`] = `
 >
   <button
     aria-controls="uid-popover-3-wb-id"
+    aria-disabled={false}
     aria-expanded="false"
     className=""
-    disabled={false}
     id="uid-popover-3-wb-id-anchor"
     onBlur={[Function]}
     onClick={[Function]}
@@ -535,9 +535,9 @@ exports[`wonder-blocks-popover example 5 1`] = `
 >
   <button
     aria-controls="uid-popover-4-wb-id"
+    aria-disabled={false}
     aria-expanded="false"
     className=""
-    disabled={false}
     id="uid-popover-4-wb-id-anchor"
     onBlur={[Function]}
     onClick={[Function]}
@@ -969,8 +969,8 @@ exports[`wonder-blocks-popover example 7 1`] = `
         }
       >
         <button
+          aria-disabled={false}
           className=""
-          disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
           onDragStart={[Function]}
@@ -1070,8 +1070,8 @@ exports[`wonder-blocks-popover example 7 1`] = `
           }
         />
         <button
+          aria-disabled={false}
           className=""
-          disabled={false}
           onBlur={[Function]}
           onClick={[Function]}
           onDragStart={[Function]}
