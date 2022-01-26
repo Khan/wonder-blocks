@@ -2,6 +2,8 @@
 import * as React from "react";
 import {mount} from "enzyme";
 import "jest-enzyme";
+import {render, screen, fireEvent} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import ModalBackdrop from "../modal-backdrop.js";
 import OnePaneDialog from "../one-pane-dialog.js";
@@ -17,6 +19,7 @@ const exampleModal = (
         content={<div data-modal-content />}
         title="Title"
         footer={<div data-modal-footer />}
+        testId="example-modal-test-id"
     />
 );
 
@@ -47,19 +50,24 @@ describe("ModalBackdrop", () => {
     });
 
     test("Clicking the backdrop triggers `onCloseModal`", () => {
+        // Arrange
         const onCloseModal = jest.fn();
 
-        // We use `mount` instead of `shallow` here, because the component's
-        // click handler expects actual DOM events.
-        const wrapper = mount(
-            <ModalBackdrop onCloseModal={onCloseModal}>
+        render(
+            <ModalBackdrop
+                onCloseModal={onCloseModal}
+                testId="modal-backdrop-test-id"
+            >
                 {exampleModal}
             </ModalBackdrop>,
         );
 
-        expect(onCloseModal).not.toHaveBeenCalled();
+        const backdrop = screen.getByTestId("modal-backdrop-test-id");
 
-        wrapper.simulate("click");
+        //Act
+        userEvent.click(backdrop);
+
+        // Assert
         expect(onCloseModal).toHaveBeenCalled();
     });
 
@@ -75,6 +83,62 @@ describe("ModalBackdrop", () => {
         );
 
         wrapper.find("[data-modal-content]").simulate("click");
+        expect(onCloseModal).not.toHaveBeenCalled();
+    });
+
+    test("Clicking and dragging into the backdrop does not close modal", () => {
+        // Arrange
+        const onCloseModal = jest.fn();
+
+        render(
+            <ModalBackdrop
+                onCloseModal={onCloseModal}
+                testId="modal-backdrop-test-id"
+            >
+                {exampleModal}
+            </ModalBackdrop>,
+        );
+
+        const panel = screen.getByTestId("example-modal-test-id");
+        const backdrop = screen.getByTestId("modal-backdrop-test-id");
+
+        // Act
+
+        // Dragging the mouse
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.mouseDown(panel);
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.mouseUp(backdrop);
+
+        // Assert
+        expect(onCloseModal).not.toHaveBeenCalled();
+    });
+
+    test("Clicking and dragging in from the backdrop does not close modal", () => {
+        // Arrange
+        const onCloseModal = jest.fn();
+
+        render(
+            <ModalBackdrop
+                onCloseModal={onCloseModal}
+                testId="modal-backdrop-test-id"
+            >
+                {exampleModal}
+            </ModalBackdrop>,
+        );
+
+        const panel = screen.getByTestId("example-modal-test-id");
+        const backdrop = screen.getByTestId("modal-backdrop-test-id");
+
+        // Act
+
+        // Dragging the mouse
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.mouseDown(backdrop);
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.mouseUp(panel);
+
+        // Assert
         expect(onCloseModal).not.toHaveBeenCalled();
     });
 
@@ -97,6 +161,7 @@ describe("ModalBackdrop", () => {
         // Arrange
         // We need the elements in the DOM document, it seems, for this test
         // to work. Changing to testing-library will likely fix this.
+        // Then we can remove the lint suppression.
         const attachElement = getElementAttachedToDocument("container");
         const initialFocusId = "initial-focus";
 
@@ -126,7 +191,9 @@ describe("ModalBackdrop", () => {
         // Assert
         // first we verify the element exists in the DOM
         expect(initialFocusElement).toHaveLength(1);
+
         // verify the focus is set on the correct element
+        // eslint-disable-next-line testing-library/no-node-access
         expect(document.activeElement).toBe(initialFocusElement.getDOMNode());
     });
 
@@ -134,6 +201,7 @@ describe("ModalBackdrop", () => {
         // Arrange
         // We need the elements in the DOM document, it seems, for this test
         // to work. Changing to testing-library will likely fix this.
+        // Then we can remove the lint suppression.
         const attachElement = getElementAttachedToDocument("container");
         const initialFocusId = "initial-focus";
         const firstFocusableElement = "[data-first-button]";
@@ -156,6 +224,7 @@ describe("ModalBackdrop", () => {
         // first we verify the element doesn't exist in the DOM
         expect(initialFocusElement).toHaveLength(0);
         // verify the focus is set on the first focusable element instead
+        // eslint-disable-next-line testing-library/no-node-access
         expect(document.activeElement).toBe(
             wrapper.find(firstFocusableElement).getDOMNode(),
         );
@@ -165,6 +234,7 @@ describe("ModalBackdrop", () => {
         // Arrange
         // We need the elements in the DOM document, it seems, for this test
         // to work. Changing to testing-library will likely fix this.
+        // Then we can remove the lint suppression.
         const attachElement = getElementAttachedToDocument("container");
         const wrapper = mount(
             <ModalBackdrop onCloseModal={() => {}}>
@@ -180,6 +250,7 @@ describe("ModalBackdrop", () => {
             .getDOMNode();
 
         // Assert
+        // eslint-disable-next-line testing-library/no-node-access
         expect(document.activeElement).toBe(focusableElement);
     });
 
@@ -187,6 +258,7 @@ describe("ModalBackdrop", () => {
         // Arrange
         // We need the elements in the DOM document, it seems, for this test
         // to work. Changing to testing-library will likely fix this.
+        // Then we can remove the lint suppression.
         const attachElement = getElementAttachedToDocument("container");
         const wrapper = mount(
             <ModalBackdrop onCloseModal={() => {}}>
@@ -202,6 +274,7 @@ describe("ModalBackdrop", () => {
             .getDOMNode();
 
         // Assert
+        // eslint-disable-next-line testing-library/no-node-access
         expect(document.activeElement).toBe(focusableElement);
     });
 });

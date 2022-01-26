@@ -57,6 +57,8 @@ export default class ModalBackdrop extends React.Component<Props> {
         }, 0);
     }
 
+    _mousePressedOutside: boolean = false;
+
     /**
      * Returns an element specified by the user
      */
@@ -107,12 +109,18 @@ export default class ModalBackdrop extends React.Component<Props> {
      * _directly_ from the positioner, not bubbled up from its children), close
      * the modal.
      */
-    handleClick: (e: SyntheticEvent<>) => void = (e: SyntheticEvent<>) => {
-        // Was the lowest-level click target (`e.target`) the positioner element
-        // (`e.currentTarget`)?
-        if (e.target === e.currentTarget) {
+    handleMouseDown: (e: SyntheticEvent<>) => void = (e: SyntheticEvent<>) => {
+        // Confirm that it is the backdrop that is being clicked, not the child
+        this._mousePressedOutside = e.target === e.currentTarget;
+    };
+
+    handleMouseUp: (e: SyntheticEvent<>) => void = (e: SyntheticEvent<>) => {
+        // Confirm that it is the backdrop that is being clicked, not the child
+        // and that the mouse was pressed in the backdrop first.
+        if (e.target === e.currentTarget && this._mousePressedOutside) {
             this.props.onCloseModal();
         }
+        this._mousePressedOutside = false;
     };
 
     render(): React.Node {
@@ -124,7 +132,8 @@ export default class ModalBackdrop extends React.Component<Props> {
         return (
             <View
                 style={styles.modalPositioner}
-                onClick={this.handleClick}
+                onMouseDown={this.handleMouseDown}
+                onMouseUp={this.handleMouseUp}
                 testId={testId}
                 {...backdropProps}
             >
