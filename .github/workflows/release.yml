@@ -57,7 +57,19 @@ jobs:
 
       - name: Build Slack message
         if: steps.changesets.outputs.published == 'true'
-        run: echo "UPDATED_PACKAGES=$(jq -r '[group_by(.name) | .[] | " - "+.[].name+"@"+.[].version] | join("\n")' <<< '${{ steps.changesets.outputs.publishedPackages }}')" >> $GITHUB_ENV
+        # We have to do this in stages to make sure that the output into the
+        # GITHUB_ENV retains are lines and is valid for updating the env.
+        # This is based of option 2 from
+        # - LIVE: https://trstringer.com/github-actions-multiline-strings/
+        # - ARCHIVE: https://web.archive.org/web/20211017170102/https://trstringer.com/github-actions-multiline-strings/
+        run: |
+          UPDATED_PACKAGES=$(cat << EOF
+              $(jq -r '[group_by(.name) | .[] | " - "+.[].name+"@"+.[].version] | join("\n")' <<< '${{ steps.changesets.outputs.publishedPackages }}')
+              EOF
+          )
+          echo "UPDATED_PACKAGES<<EOF" >> $GITHUB_ENV
+          echo "$UPDATED_PACKAGES" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Send a Slack notification if a publish happens
         if: steps.changesets.outputs.published == 'true'
