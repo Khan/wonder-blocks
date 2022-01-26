@@ -488,8 +488,9 @@ describe("LabeledTextField", () => {
 });
 
 describe("Required LabeledTextField", () => {
-    test("Has * when required prop is true", async () => {
+    test("Has * when `required` prop is true", () => {
         // Arrange
+
         // Act
         render(
             <LabeledTextField
@@ -504,8 +505,9 @@ describe("Required LabeledTextField", () => {
         expect(screen.getByText("*")).toBeInTheDocument();
     });
 
-    test("Does not have * when required prop is false", () => {
+    test("Does not have * when `required` prop is false", () => {
         // Arrange
+
         // Act
         render(
             <LabeledTextField
@@ -520,8 +522,9 @@ describe("Required LabeledTextField", () => {
         expect(screen.queryByText("*")).not.toBeInTheDocument();
     });
 
-    test("aria-required is true when required prop is true", () => {
+    test("aria-required is true when `required` prop is true", () => {
         // Arrange
+
         // Act
         render(
             <LabeledTextField
@@ -539,8 +542,9 @@ describe("Required LabeledTextField", () => {
         expect(textField).toHaveAttribute("aria-required", "true");
     });
 
-    test("aria-required is false when required prop is false", () => {
+    test("aria-required is false when `required` prop is false", () => {
         // Arrange
+
         // Act
         render(
             <LabeledTextField
@@ -555,10 +559,10 @@ describe("Required LabeledTextField", () => {
         const textField = screen.getByTestId("foo-labeled-text-field-field");
 
         // Assert
-        expect(textField).not.toHaveAttribute("aria-required", "true");
+        expect(textField).toHaveAttribute("aria-required", "false");
     });
 
-    test("displays the default message when requiredErrorMessage is not passed in", async () => {
+    test("displays the default message when the `required` prop is `true`", () => {
         // Arrange
         const TextFieldWrapper = () => {
             const [value, setValue] = React.useState("");
@@ -566,7 +570,7 @@ describe("Required LabeledTextField", () => {
                 <LabeledTextField
                     label="Label"
                     value={value}
-                    onChange={(newValue) => setValue(newValue)}
+                    onChange={setValue}
                     required={true}
                     testId="test-labeled-text-field"
                 />
@@ -589,7 +593,7 @@ describe("Required LabeledTextField", () => {
         );
     });
 
-    test("displays the passed in requiredErrorMessage", () => {
+    test("displays the string passed into `required`", () => {
         // Arrange
         const errorMessage = "This is an example error message.";
 
@@ -599,9 +603,8 @@ describe("Required LabeledTextField", () => {
                 <LabeledTextField
                     label="Label"
                     value={value}
-                    onChange={(newValue) => setValue(newValue)}
-                    required={true}
-                    requiredErrorMessage={errorMessage}
+                    onChange={setValue}
+                    required={errorMessage}
                     testId="test-labeled-text-field"
                 />
             );

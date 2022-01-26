@@ -74,11 +74,17 @@ export const RequiredWithSpecifiedText: StoryComponentType = () => {
             value={value}
             onChange={(newValue) => setValue(newValue)}
             onKeyDown={handleKeyDown}
-            required={true}
-            requiredErrorMessage="This specific field is super required."
+            required="This specific field is super required."
         />
     );
 };
+
+RequiredWithSpecifiedText.parameters = {
+    chromatic: {
+        // We have screenshots of other stories that cover this case.
+        disableSnapshot: true,
+    }
+}
 
 export const Number: StoryComponentType = () => {
     const [value, setValue] = React.useState("18");
@@ -193,6 +199,13 @@ export const EmailRequired: StoryComponentType = () => {
         />
     );
 };
+
+EmailRequired.parameters = {
+    chromatic: {
+        // We have screenshots of other stories that cover this case.
+        disableSnapshot: true,
+    }
+}
 
 export const Telephone: StoryComponentType = () => {
     const [value, setValue] = React.useState("123-456-7890");

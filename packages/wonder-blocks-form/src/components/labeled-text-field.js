@@ -42,25 +42,28 @@ type Props = {|
     disabled: boolean,
 
     /**
-     * Whether this field is required to to continue.
+     * Whether this field is required to to continue, or the error message to
+     * render if this field is left blank.
      *
-     * If the `validate` prop is not being passed in in conjuction with
-     * the `required` prop, please use the `requiredErrorMessage` prop
-     * to specify the error message.
-     */
-    required?: boolean,
-
-    /**
-     * The error message that should render if this field is
-     * required and left blank. Note that this message will not be used
-     * if a `validate` prop is passed in.
+     * This can be a boolean or a string.
      *
-     * Implementation note: Added this field so that users can pass in
-     * translated strings.
+     * String:
+     * Please pass in a translated string to use as the error message that will
+     * render if the user leaves this field blank. If this field is required,
+     * and a string is not passed in, a default untranslated string will render
+     * upon error.
+     * Note: The string will not be used if a `validate` prop is passed in.
      *
      * Example message: i18n._("A password is required to log in.")
+     *
+     * Boolean:
+     * True/false indicating whether this field is required. Please do not pass
+     * in `true` if possible - pass in the error string instead.
+     * If `true` is passed, and a `validate` prop is not passed, that means
+     * there is no corresponding message and the default untranlsated message
+     * will be used.
      */
-    requiredErrorMessage?: string,
+    required?: boolean | string,
 
     /**
      * Identifies the element or elements that describes this text field.
@@ -224,7 +227,6 @@ class LabeledTextFieldInternal extends React.Component<
             value,
             disabled,
             required,
-            requiredErrorMessage,
             validate,
             onChange,
             onKeyDown,
@@ -258,7 +260,6 @@ class LabeledTextFieldInternal extends React.Component<
                                 }
                                 aria-required={required ? "true" : "false"}
                                 required={required}
-                                requiredErrorMessage={requiredErrorMessage}
                                 testId={testId && `${testId}-field`}
                                 type={type}
                                 value={value}

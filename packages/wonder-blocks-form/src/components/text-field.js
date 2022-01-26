@@ -12,6 +12,8 @@ export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
 type WithForwardRef = {|forwardedRef: React.Ref<"input">|};
 
+const defaultErrorMessage = "This field is required.";
+
 type Props = {|
     ...AriaProps,
 
@@ -72,20 +74,28 @@ type Props = {|
     placeholder?: string,
 
     /**
-     * Whether this component is required.
-     */
-    required?: boolean,
-
-    /**
-     * The error message that should render if this field is
-     * required and left blank. Note that this message will not be used
-     * if a `validate` prop is passed in. Also note that error messages
-     * only redner for the LabeledTextField component, not for TextField.
+     * Whether this field is required to to continue, or the error message to
+     * render if this field is left blank.
      *
-     * Implementation note: Added this field so that users can pass in
-     * translated strings.
+     * This can be a boolean or a string.
+     *
+     * String:
+     * Please pass in a translated string to use as the error message that will
+     * render if the user leaves this field blank. If this field is required,
+     * and a string is not passed in, a default untranslated string will render
+     * upon error.
+     * Note: The string will not be used if a `validate` prop is passed in.
+     *
+     * Example message: i18n._("A password is required to log in.")
+     *
+     * Boolean:
+     * True/false indicating whether this field is required. Please do not pass
+     * in `true` if possible - pass in the error string instead.
+     * If `true` is passed, and a `validate` prop is not passed, that means
+     * there is no corresponding message and the default untranlsated message
+     * will be used.
      */
-    requiredErrorMessage: string,
+    required?: boolean | string,
 
     /**
      * Change the default focus ring color to fit a dark background.
@@ -122,10 +132,6 @@ type DefaultProps = {|
     type: $PropertyType<PropsWithForwardRef, "type">,
     disabled: $PropertyType<PropsWithForwardRef, "disabled">,
     light: $PropertyType<PropsWithForwardRef, "light">,
-    requiredErrorMessage: $PropertyType<
-        PropsWithForwardRef,
-        "requiredErrorMessage",
-    >,
 |};
 
 type State = {|
@@ -149,7 +155,6 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
         type: "text",
         disabled: false,
         light: false,
-        requiredErrorMessage: "This field is required.",
     };
 
     constructor(props: PropsWithForwardRef) {
@@ -172,8 +177,7 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
     }
 
     maybeValidate: (newValue: string) => void = (newValue) => {
-        const {validate, onValidate, required, requiredErrorMessage} =
-            this.props;
+        const {validate, onValidate, required} = this.props;
 
         if (validate) {
             const maybeError = validate(newValue) || null;
@@ -183,7 +187,9 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
                 }
             });
         } else if (required) {
-            const maybeError = newValue ? null : requiredErrorMessage;
+            const requiredString =
+                typeof required === "string" ? required : defaultErrorMessage;
+            const maybeError = newValue ? null : requiredString;
             this.setState({error: maybeError}, () => {
                 if (onValidate) {
                     onValidate(maybeError);
@@ -246,7 +252,6 @@ class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
             validate,
             onChange,
             required,
-            requiredErrorMessage,
             /* eslint-enable no-unused-vars */
             // Should only include Aria related props
             ...otherProps

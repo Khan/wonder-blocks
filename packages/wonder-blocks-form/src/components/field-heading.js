@@ -29,7 +29,7 @@ type Props = {|
     description?: string | React.Element<Typography>,
 
     /**
-     * Whether this field is required to to continue.
+     * Whether this field is required to continue.
      */
     required?: boolean,
 
