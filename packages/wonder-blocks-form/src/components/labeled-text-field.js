@@ -279,7 +279,7 @@ class LabeledTextFieldInternal extends React.Component<
                         }
                         label={label}
                         description={description}
-                        required={required}
+                        required={!!required}
                         error={(!this.state.focused && this.state.error) || ""}
                     />
                 )}
