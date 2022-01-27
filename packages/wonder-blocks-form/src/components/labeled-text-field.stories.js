@@ -83,8 +83,8 @@ RequiredWithSpecifiedText.parameters = {
     chromatic: {
         // We have screenshots of other stories that cover this case.
         disableSnapshot: true,
-    }
-}
+    },
+};
 
 export const Number: StoryComponentType = () => {
     const [value, setValue] = React.useState("18");
@@ -204,8 +204,8 @@ EmailRequired.parameters = {
     chromatic: {
         // We have screenshots of other stories that cover this case.
         disableSnapshot: true,
-    }
-}
+    },
+};
 
 export const Telephone: StoryComponentType = () => {
     const [value, setValue] = React.useState("123-456-7890");
