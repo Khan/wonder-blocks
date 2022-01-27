@@ -1,6 +1,8 @@
 // @flow
 import * as React from "react";
 
+import {View} from "@khanacademy/wonder-blocks-core";
+
 import type {StoryComponentType} from "@storybook/react";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info.js";
@@ -27,6 +29,7 @@ export default {
             },
         },
     },
+    decorators: [(Story: any): React.Node => <View>{Story()}</View>],
 };
 
 /**

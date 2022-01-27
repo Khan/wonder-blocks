@@ -169,9 +169,6 @@ describe("BirthdayPicker", () => {
             });
 
             userEvent.click(screen.getByTestId("birthday-picker-year"));
-            // const yearOption = await screen.findByTestId(
-            //     "birthday-picker-year-2021",
-            // );
             const yearOption = await screen.findByRole("option", {
                 name: "2021",
             });
