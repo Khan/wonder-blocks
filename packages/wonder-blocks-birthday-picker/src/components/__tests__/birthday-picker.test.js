@@ -24,16 +24,14 @@ describe("BirthdayPicker", () => {
             // Act
             render(<BirthdayPicker onChange={() => {}} />);
 
+            const monthPicker = screen.getByTestId("birthday-picker-month");
+            const dayPicker = screen.getByTestId("birthday-picker-day");
+            const yearPicker = screen.getByTestId("birthday-picker-year");
+
             // Assert
-            expect(
-                screen.getByTestId("birthday-picker-month"),
-            ).toHaveTextContent("Month");
-            expect(screen.getByTestId("birthday-picker-day")).toHaveTextContent(
-                "Day",
-            );
-            expect(
-                screen.getByTestId("birthday-picker-year"),
-            ).toHaveTextContent("Year");
+            expect(monthPicker).toHaveTextContent("Month");
+            expect(dayPicker).toHaveTextContent("Day");
+            expect(yearPicker).toHaveTextContent("Year");
         });
 
         it("renders with a valid default value", () => {
@@ -49,16 +47,14 @@ describe("BirthdayPicker", () => {
                 />,
             );
 
+            const monthPicker = screen.getByTestId("birthday-picker-month");
+            const dayPicker = screen.getByTestId("birthday-picker-day");
+            const yearPicker = screen.getByTestId("birthday-picker-year");
+
             // Assert
-            expect(
-                screen.getByTestId("birthday-picker-month"),
-            ).toHaveTextContent("Jul");
-            expect(screen.getByTestId("birthday-picker-day")).toHaveTextContent(
-                "19",
-            );
-            expect(
-                screen.getByTestId("birthday-picker-year"),
-            ).toHaveTextContent("2021");
+            expect(monthPicker).toHaveTextContent("Jul");
+            expect(dayPicker).toHaveTextContent("19");
+            expect(yearPicker).toHaveTextContent("2021");
             expect(screen.queryByRole("alert")).not.toBeInTheDocument();
         });
 
@@ -77,16 +73,14 @@ describe("BirthdayPicker", () => {
                 />,
             );
 
+            const monthPicker = screen.getByTestId("birthday-picker-month");
+            const dayPicker = screen.getByTestId("birthday-picker-day");
+            const yearPicker = screen.getByTestId("birthday-picker-year");
+
             // Assert
-            expect(
-                screen.getByTestId("birthday-picker-month"),
-            ).toHaveTextContent("Jul");
-            expect(screen.getByTestId("birthday-picker-day")).toHaveTextContent(
-                "20",
-            );
-            expect(
-                screen.getByTestId("birthday-picker-year"),
-            ).toHaveTextContent("2021");
+            expect(monthPicker).toHaveTextContent("Jul");
+            expect(dayPicker).toHaveTextContent("20");
+            expect(yearPicker).toHaveTextContent("2021");
         });
 
         it("renders an error with a invalid default future value", async () => {
@@ -118,16 +112,14 @@ describe("BirthdayPicker", () => {
                 />,
             );
 
+            const monthPicker = screen.getByTestId("birthday-picker-month");
+            const dayPicker = screen.getByTestId("birthday-picker-day");
+            const yearPicker = screen.getByTestId("birthday-picker-year");
+
             // Assert
-            expect(
-                screen.getByTestId("birthday-picker-month"),
-            ).toHaveTextContent("Month");
-            expect(screen.getByTestId("birthday-picker-day")).toHaveTextContent(
-                "Day",
-            );
-            expect(
-                screen.getByTestId("birthday-picker-year"),
-            ).toHaveTextContent("Year");
+            expect(monthPicker).toHaveTextContent("Month");
+            expect(dayPicker).toHaveTextContent("Day");
+            expect(yearPicker).toHaveTextContent("Year");
         });
 
         it("renders an error with an invalid default value", async () => {
@@ -179,9 +171,6 @@ describe("BirthdayPicker", () => {
             });
 
             userEvent.click(screen.getByTestId("birthday-picker-year"));
-            // const yearOption = await screen.findByTestId(
-            //     "birthday-picker-year-2021",
-            // );
             const yearOption = await screen.findByRole("option", {
                 name: "2021",
             });

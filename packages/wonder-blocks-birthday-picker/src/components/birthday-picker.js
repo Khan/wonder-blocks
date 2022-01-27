@@ -52,9 +52,21 @@ type Props = {|
 |};
 
 type State = {|
+    /**
+     * The currently selected month.
+     */
     month: string | null,
+    /**
+     * The currently selected day.
+     */
     day: string | null,
+    /**
+     * The currently selected year.
+     */
     year: string | null,
+    /**
+     * The error message to display (in case there's an invalid date).
+     */
     error: string | null,
 |};
 
@@ -109,34 +121,44 @@ export default class BirthdayPicker extends React.Component<Props, State> {
     constructor(props: Props) {
         super(props);
 
-        let month = null;
-        let day = null;
-        let year = null;
-        let error = null;
+        this.lastChangeValue = props.defaultValue || null;
+        this.state = this.getStateFromDefault();
+    }
+
+    /**
+     * Calculates the initial state values based on the default value.
+     */
+    getStateFromDefault(): State {
+        const {defaultValue} = this.props;
+        const initialState: State = {
+            month: null,
+            day: null,
+            year: null,
+            error: null,
+        };
 
         // merge custom labels with the default ones
-        this.labels = {...defaultLabels, ...props.labels};
+        this.labels = {...defaultLabels, ...this.props.labels};
 
         // If a default value was provided then we use moment to convert it
         // into a date that we can use to populate the
-        if (props.defaultValue) {
-            const date = moment(props.defaultValue);
+        if (defaultValue) {
+            const date = moment(defaultValue);
 
             if (date.isValid()) {
-                month = String(date.month());
-                day = String(date.date());
-                year = String(date.year());
+                initialState.month = String(date.month());
+                initialState.day = String(date.date());
+                initialState.year = String(date.year());
             }
 
             // If the date is in the future or is invalid then we want to show
             // an error to the user.
             if (date.isAfter() || !date.isValid()) {
-                error = this.labels.errorMessage;
+                initialState.error = this.labels.errorMessage;
             }
         }
 
-        this.lastChangeValue = props.defaultValue || null;
-        this.state = {month, day, year, error};
+        return initialState;
     }
 
     lastChangeValue: ?string = null;
@@ -167,23 +189,24 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         // equal to null
         if (month === null || day === null || year === null) {
             this.reportChange(null);
-        } else {
-            // This is a legal call to Moment, but our Moment types don't
-            // recognize it.
-            // $FlowFixMe[incompatible-call]
-            const date = moment([year, month, day]);
+            return;
+        }
 
-            // If the date is in the future or is invalid then we want to show
-            // an error to the user and return a null value.
-            if (date.isAfter() || !date.isValid()) {
-                this.setState({error: this.labels.errorMessage});
-                this.reportChange(null);
-            } else {
-                this.setState({error: null});
-                // If the date picker is in a non-English language, we still
-                // want to generate an English date.
-                this.reportChange(date.locale("en").format("YYYY-MM-DD"));
-            }
+        // This is a legal call to Moment, but our Moment types don't
+        // recognize it.
+        // $FlowFixMe[incompatible-call]
+        const date = moment([year, month, day]);
+
+        // If the date is in the future or is invalid then we want to show
+        // an error to the user and return a null value.
+        if (date.isAfter() || !date.isValid()) {
+            this.setState({error: this.labels.errorMessage});
+            this.reportChange(null);
+        } else {
+            this.setState({error: null});
+            // If the date picker is in a non-English language, we still
+            // want to generate an English date.
+            this.reportChange(date.locale("en").format("YYYY-MM-DD"));
         }
     };
 
