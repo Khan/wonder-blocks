@@ -231,7 +231,7 @@ const _generateStyles = (light, placeholder) => {
     if (light) {
         newStyles = {
             default: {
-                backgroundColor: "transparent",
+                background: "transparent",
                 color: placeholder ? white50 : white,
                 borderColor: white50,
                 borderWidth: 1,
@@ -261,7 +261,7 @@ const _generateStyles = (light, placeholder) => {
     } else {
         newStyles = {
             default: {
-                backgroundColor: white,
+                background: white,
                 borderColor: offBlack16,
                 borderWidth: 1,
                 color: placeholder ? offBlack64 : offBlack,

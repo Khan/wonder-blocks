@@ -1,4 +1,4 @@
 // @flow
+import BirthdatePicker from "./components/birthday-picker.js";
 
-// Just a temporary export to have some code.
-export const NOTHING = "NOTHING";
+export default BirthdatePicker;
