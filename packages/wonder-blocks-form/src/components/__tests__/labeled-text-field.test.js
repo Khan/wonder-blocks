@@ -488,7 +488,7 @@ describe("LabeledTextField", () => {
 });
 
 describe("Required LabeledTextField", () => {
-    test("Has * when `required` prop is true", () => {
+    test("has * when `required` prop is true", () => {
         // Arrange
 
         // Act
@@ -505,7 +505,7 @@ describe("Required LabeledTextField", () => {
         expect(screen.getByText("*")).toBeInTheDocument();
     });
 
-    test("Does not have * when `required` prop is false", () => {
+    test("does not have * when `required` prop is false", () => {
         // Arrange
 
         // Act
