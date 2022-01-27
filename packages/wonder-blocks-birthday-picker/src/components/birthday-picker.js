@@ -9,6 +9,28 @@ import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Color from "@khanacademy/wonder-blocks-color";
 import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 
+export type Labels = {|
+    /**
+     * Label for displaying a validation error.
+     */
+    errorMessage: string,
+
+    /**
+     * Label for the month placeholder.
+     */
+    month: string,
+
+    /**
+     * Label for the year placeholder.
+     */
+    year: string,
+
+    /**
+     * Label for the day placeholder.
+     */
+    day: string,
+|};
+
 type Props = {|
     /**
      * The default value to populate the birthdate with. Should be in the
@@ -16,6 +38,11 @@ type Props = {|
      * initial value as this is an uncontrolled component.
      */
     defaultValue?: string,
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels?: Labels,
 
     /**
      * Listen for changes to the birthdate. Could be a string in the YYYY-MM-DD
@@ -34,8 +61,14 @@ type State = {|
 // Flow doesn't know about the getYear property on Date for some reason!
 // $FlowFixMe[prop-missing]
 const CUR_YEAR = new Date().getYear() + 1900;
-// TODO(WB-1200.2): Add labels prop to handle translations.
-const BIRTHDAY_ERROR = "Please select a valid birthdate.";
+
+// Only exported internally for testing/documentation purposes.
+export const defaultLabels: Labels = {
+    errorMessage: "Please select a valid birthdate.",
+    month: "Month",
+    year: "Year",
+    day: "Day",
+};
 
 /**
  * Birthday Picker. Similar to a datepicker, but specifically for birthdates.
@@ -64,6 +97,15 @@ const BIRTHDAY_ERROR = "Please select a valid birthdate.";
  * ```
  */
 export default class BirthdayPicker extends React.Component<Props, State> {
+    /**
+     * Strings used for placeholders and error message. These are used this way
+     * to support i18n.
+     * NOTE: This is a field rather than state to avoid re-rendering the entire
+     * component. Also, we don't need to use state because these strings are
+     * only needed on mount.
+     */
+    labels: Labels;
+
     constructor(props: Props) {
         super(props);
 
@@ -71,6 +113,9 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         let day = null;
         let year = null;
         let error = null;
+
+        // merge custom labels with the default ones
+        this.labels = {...defaultLabels, ...props.labels};
 
         // If a default value was provided then we use moment to convert it
         // into a date that we can use to populate the
@@ -86,7 +131,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
             // If the date is in the future or is invalid then we want to show
             // an error to the user.
             if (date.isAfter() || !date.isValid()) {
-                error = BIRTHDAY_ERROR;
+                error = this.labels.errorMessage;
             }
         }
 
@@ -131,7 +176,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
             // If the date is in the future or is invalid then we want to show
             // an error to the user and return a null value.
             if (date.isAfter() || !date.isValid()) {
-                this.setState({error: BIRTHDAY_ERROR});
+                this.setState({error: this.labels.errorMessage});
                 this.reportChange(null);
             } else {
                 this.setState({error: null});
@@ -161,9 +206,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
             <>
                 <View testId="birthday-picker" style={{flexDirection: "row"}}>
                     <SingleSelect
-                        // TODO(WB-1200.2): Add labels prop to handle
-                        // translations.
-                        placeholder={"Month"}
+                        placeholder={this.labels.month}
                         onChange={this.handleMonthChange}
                         selectedValue={month}
                         style={{minWidth: 110}}
@@ -179,9 +222,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                     </SingleSelect>
                     <Strut size={Spacing.xSmall_8} />
                     <SingleSelect
-                        // TODO(WB-1200.2): Add labels prop to handle
-                        // translations.
-                        placeholder={"Day"}
+                        placeholder={this.labels.day}
                         onChange={this.handleDayChange}
                         selectedValue={day}
                         style={{minWidth: 100}}
@@ -197,9 +238,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                     </SingleSelect>
                     <Strut size={Spacing.xSmall_8} />
                     <SingleSelect
-                        // TODO(WB-1200.2): Add labels prop to handle
-                        // translations.
-                        placeholder={"Year"}
+                        placeholder={this.labels.year}
                         onChange={this.handleYearChange}
                         selectedValue={year}
                         style={{minWidth: 110}}

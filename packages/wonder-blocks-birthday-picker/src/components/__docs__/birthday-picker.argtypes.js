@@ -1,4 +1,5 @@
 // @flow
+import {defaultLabels} from "../birthday-picker.js";
 
 export default {
     defaultValue: {
@@ -8,6 +9,17 @@ export default {
         table: {
             type: {
                 summary: "string",
+            },
+        },
+    },
+    labels: {
+        control: {type: "object"},
+        description:
+            "The object containing the custom labels used inside this component.",
+        defaultValue: defaultLabels,
+        table: {
+            type: {
+                summary: "Labels",
             },
         },
     },

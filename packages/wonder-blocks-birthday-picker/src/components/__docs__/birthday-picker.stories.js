@@ -69,3 +69,18 @@ InvalidBirthdayPicker.args = {
     onChange: () => {},
     defaultValue: "2030-07-19",
 };
+
+export const BirthdayPickerWithCustomLabels: StoryComponentType = Template.bind(
+    {},
+);
+
+BirthdayPickerWithCustomLabels.args = {
+    onChange: () => {},
+    defaultValue: "",
+    labels: {
+        day: "Día",
+        month: "Mes",
+        year: "Año",
+        errorMessage: "Por favor seleccione una fecha válida.",
+    },
+};
