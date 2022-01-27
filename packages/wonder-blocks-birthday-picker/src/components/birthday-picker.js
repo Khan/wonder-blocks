@@ -13,22 +13,22 @@ export type Labels = {|
     /**
      * Label for displaying a validation error.
      */
-    errorMessage: string,
+    +errorMessage: string,
 
     /**
      * Label for the month placeholder.
      */
-    month: string,
+    +month: string,
 
     /**
      * Label for the year placeholder.
      */
-    year: string,
+    +year: string,
 
     /**
      * Label for the day placeholder.
      */
-    day: string,
+    +day: string,
 |};
 
 type Props = {|
@@ -75,12 +75,12 @@ type State = {|
 const CUR_YEAR = new Date().getYear() + 1900;
 
 // Only exported internally for testing/documentation purposes.
-export const defaultLabels: Labels = {
+export const defaultLabels: Labels = Object.freeze({
     errorMessage: "Please select a valid birthdate.",
     month: "Month",
     year: "Year",
     day: "Day",
-};
+});
 
 /**
  * Birthday Picker. Similar to a datepicker, but specifically for birthdates.

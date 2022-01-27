@@ -20,6 +20,7 @@ export default {
         table: {
             type: {
                 summary: "Labels",
+                detail: "{month?: string, year?: string, day?: string, errorMessage?: string}",
             },
         },
     },
