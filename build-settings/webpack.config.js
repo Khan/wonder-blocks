@@ -16,7 +16,8 @@ const babelOptions = require("./babel.config.js")({env: () => true});
 
 const packages = fs
     .readdirSync(path.join(process.cwd(), "packages"))
-    .map((dir) => path.join(process.cwd(), "packages", dir));
+    .map((dir) => path.join(process.cwd(), "packages", dir))
+    .filter((dir) => fs.existsSync(path.join(dir, "package.json")));
 
 const genWebpackConfig = function (subPkgRoot) {
     const pkgJsonPath = path.join(subPkgRoot, "package.json");
