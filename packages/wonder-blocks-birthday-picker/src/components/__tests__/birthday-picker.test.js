@@ -388,6 +388,27 @@ describe("BirthdayPicker", () => {
             expect(screen.getByText(translatedLabel)).toBeInTheDocument();
         });
 
+        it("merges correctly the labels", () => {
+            // Arrange
+
+            // Only passing some of the labels to verify if the others are
+            // merged correctly.
+            const partialLabels: $Shape<Labels> = {
+                month: "Mes",
+                year: "Año",
+            };
+
+            // Act
+            render(
+                <BirthdayPicker onChange={() => {}} labels={partialLabels} />,
+            );
+
+            // Assert
+            expect(screen.getByText("Mes")).toBeInTheDocument(); // es
+            expect(screen.getByText("Año")).toBeInTheDocument(); // es
+            expect(screen.getByText("Day")).toBeInTheDocument(); // EN
+        });
+
         it("renders a translated error with an invalid default value", async () => {
             // Arrange
             const defaultValue = "2021-02-31"; // There is no Feb 31st
