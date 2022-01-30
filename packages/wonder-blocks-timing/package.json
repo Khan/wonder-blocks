@@ -17,7 +17,7 @@
     "react": "16.14.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.2.0"
+    "wb-dev-build-settings": "^0.3.0"
   },
   "author": "",
   "license": "MIT"
