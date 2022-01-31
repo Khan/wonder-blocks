@@ -190,7 +190,7 @@ const {blue, white, offBlack, offBlack32} = Color;
 const styles = StyleSheet.create({
     itemContainer: {
         flexDirection: "row",
-        backgroundColor: white,
+        background: white,
         color: offBlack,
         alignItems: "center",
         height: DROPDOWN_ITEM_HEIGHT,
