@@ -222,8 +222,33 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         this.setState({year}, this.handleChange);
     };
 
+    maybeRenderError(): ?React.Node {
+        const {error} = this.state;
+
+        if (!error) {
+            return null;
+        }
+
+        return (
+            <>
+                <Strut size={Spacing.xxxSmall_4} />
+                <View style={{flexDirection: "row"}} role="alert">
+                    <Icon
+                        size="small"
+                        icon={icons.info}
+                        color={Color.red}
+                        style={{marginTop: 3}}
+                        aria-hidden="true"
+                    />
+                    <Strut size={Spacing.xxxSmall_4} />
+                    <Body style={{color: Color.red}}>{error}</Body>
+                </View>
+            </>
+        );
+    }
+
     render(): React.Element<any> {
-        const {month, day, year, error} = this.state;
+        const {month, day, year} = this.state;
 
         return (
             <>
@@ -276,22 +301,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                         ))}
                     </SingleSelect>
                 </View>
-                {error && (
-                    <>
-                        <Strut size={Spacing.xxxSmall_4} />
-                        <View style={{flexDirection: "row"}} role="alert">
-                            <Icon
-                                size="small"
-                                icon={icons.info}
-                                color={Color.red}
-                                style={{marginTop: 3}}
-                                aria-hidden="true"
-                            />
-                            <Strut size={Spacing.xxxSmall_4} />
-                            <Body style={{color: Color.red}}>{error}</Body>
-                        </View>
-                    </>
-                )}
+                {this.maybeRenderError()}
             </>
         );
     }
