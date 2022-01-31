@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-link",
-  "version": "3.8.2",
+  "version": "3.8.3",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -16,9 +16,9 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@khanacademy/wonder-blocks-clickable": "^2.2.2",
+    "@khanacademy/wonder-blocks-clickable": "^2.2.3",
     "@khanacademy/wonder-blocks-color": "^1.1.20",
-    "@khanacademy/wonder-blocks-core": "^4.0.0"
+    "@khanacademy/wonder-blocks-core": "^4.2.1"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
@@ -27,6 +27,6 @@
     "react-router-dom": "5.3.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.2.0"
+    "wb-dev-build-settings": "^0.3.0"
   }
 }

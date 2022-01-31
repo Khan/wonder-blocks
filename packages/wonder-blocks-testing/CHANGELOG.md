@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-testing
 
+## 2.0.0
+
+### Major Changes
+
+-   274caaac: Remove isolateModules (now implemented by @khanacademy/wonder-stuff-testing), export GQL framework, export fixture framework types
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-data@3.1.2
+
 ## 1.0.0
 
 ### Major Changes
