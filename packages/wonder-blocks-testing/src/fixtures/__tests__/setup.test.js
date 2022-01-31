@@ -1,10 +1,10 @@
 // @flow
-import {isolateModules} from "../../jest/isolate-modules.js";
+import {jest as wst} from "@khanacademy/wonder-stuff-testing";
 
 describe("#getConfiguration", () => {
     it("should return the configuration passed during setup", () => {
         // Arrange
-        const {setup, getConfiguration} = isolateModules(() =>
+        const {setup, getConfiguration} = wst.isolateModules(() =>
             require("../setup.js"),
         );
         const configuration = {
@@ -25,7 +25,9 @@ describe("#getConfiguration", () => {
 
     it("should throw if setup has not been performed", () => {
         // Arrange
-        const {getConfiguration} = isolateModules(() => require("../setup.js"));
+        const {getConfiguration} = wst.isolateModules(() =>
+            require("../setup.js"),
+        );
 
         // Act
         const underTest = () => getConfiguration();
@@ -40,7 +42,7 @@ describe("#getConfiguration", () => {
 describe("#setup", () => {
     it("should set the configuration returned by getConfiguration", () => {
         // Arrange
-        const {setup, getConfiguration} = isolateModules(() =>
+        const {setup, getConfiguration} = wst.isolateModules(() =>
             require("../setup.js"),
         );
         const configuration1 = {

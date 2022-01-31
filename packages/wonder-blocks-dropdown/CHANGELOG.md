@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.6.2
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-button@2.11.2
+-   @khanacademy/wonder-blocks-clickable@2.2.3
+-   @khanacademy/wonder-blocks-core@4.2.1
+-   @khanacademy/wonder-blocks-icon@1.2.25
+-   @khanacademy/wonder-blocks-icon-button@3.4.3
+-   @khanacademy/wonder-blocks-layout@1.4.7
+-   @khanacademy/wonder-blocks-modal@2.2.1
+-   @khanacademy/wonder-blocks-typography@1.1.29
+
 ## 2.6.1
 
 ### Patch Changes
