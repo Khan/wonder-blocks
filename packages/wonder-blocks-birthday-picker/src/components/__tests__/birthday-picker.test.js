@@ -5,7 +5,9 @@ import {render, screen} from "@testing-library/react";
 import * as DateMock from "jest-date-mock";
 import userEvent from "../../../../../utils/testing/user-event.js";
 
-import BirthdayPicker from "../birthday-picker.js";
+import BirthdayPicker, {defaultLabels} from "../birthday-picker.js";
+
+import type {Labels} from "../birthday-picker.js";
 
 describe("BirthdayPicker", () => {
     const today = new Date("2021-07-19T09:30:00Z");
@@ -327,6 +329,92 @@ describe("BirthdayPicker", () => {
 
             // Assert
             expect(onChange).toHaveBeenCalledTimes(1);
+        });
+    });
+
+    describe("labels", () => {
+        const translatedLabels: $Shape<Labels> = {
+            month: "Mes",
+            day: "Día",
+            year: "Año",
+            errorMessage: "Por favor ingrese una fecha valida.",
+        };
+
+        beforeEach(() => {
+            jest.useRealTimers();
+            DateMock.advanceTo(today);
+        });
+
+        it.each([defaultLabels.month, defaultLabels.day, defaultLabels.year])(
+            "renders the placeholder as %s",
+            (label) => {
+                // Arrange
+
+                // Act
+                render(<BirthdayPicker onChange={() => {}} />);
+
+                // Assert
+                expect(screen.getByText(label)).toBeInTheDocument();
+            },
+        );
+
+        it.each([
+            translatedLabels.month,
+            translatedLabels.day,
+            translatedLabels.year,
+        ])("renders the translated placeholder as %s", (translatedLabel) => {
+            // Arrange
+
+            // Act
+            render(
+                <BirthdayPicker
+                    onChange={() => {}}
+                    labels={translatedLabels}
+                />,
+            );
+
+            // Assert
+            expect(screen.getByText(translatedLabel)).toBeInTheDocument();
+        });
+
+        it("merges correctly the labels", () => {
+            // Arrange
+
+            // Only passing some of the labels to verify if the others are
+            // merged correctly.
+            const partialLabels: $Shape<Labels> = {
+                month: "Mes",
+                year: "Año",
+            };
+
+            // Act
+            render(
+                <BirthdayPicker onChange={() => {}} labels={partialLabels} />,
+            );
+
+            // Assert
+            expect(screen.getByText("Mes")).toBeInTheDocument(); // es
+            expect(screen.getByText("Año")).toBeInTheDocument(); // es
+            expect(screen.getByText("Day")).toBeInTheDocument(); // EN
+        });
+
+        it("renders a translated error with an invalid default value", async () => {
+            // Arrange
+            const defaultValue = "2021-02-31"; // There is no Feb 31st
+
+            // Act
+            render(
+                <BirthdayPicker
+                    defaultValue={defaultValue}
+                    onChange={() => {}}
+                    labels={translatedLabels}
+                />,
+            );
+
+            // Assert
+            expect(
+                screen.getByText(translatedLabels.errorMessage),
+            ).toBeInTheDocument();
         });
     });
 });
