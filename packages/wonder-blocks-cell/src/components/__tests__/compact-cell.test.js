@@ -5,28 +5,30 @@ import {render, screen} from "@testing-library/react";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
 
-import BasicCell from "../basic-cell.js";
+import CompactCell from "../compact-cell.js";
 
-describe("BasicCell", () => {
-    it("should render the default BasicCell component", () => {
+describe("CompactCell", () => {
+    it("should render the default CompactCell component", () => {
         // Arrange
 
         // Act
-        render(<BasicCell title="Basic cell" />);
+        render(<CompactCell title="Compact cell" />);
 
         // Assert
-        expect(screen.getByText("Basic cell")).toBeInTheDocument();
+        expect(screen.getByText("Compact cell")).toBeInTheDocument();
     });
 
     it("should render the title using a Typography element", () => {
         // Arrange
 
         // Act
-        render(<BasicCell title={<HeadingMedium>Basic cell</HeadingMedium>} />);
+        render(
+            <CompactCell title={<HeadingMedium>Compact cell</HeadingMedium>} />,
+        );
 
         // Assert
         expect(
-            screen.getByRole("heading", {name: "Basic cell"}),
+            screen.getByRole("heading", {name: "Compact cell"}),
         ).toBeInTheDocument();
     });
 
@@ -35,8 +37,8 @@ describe("BasicCell", () => {
 
         // Act
         render(
-            <BasicCell
-                title="Basic cell"
+            <CompactCell
+                title="Compact cell"
                 leftAccessory={
                     <Icon icon={icons.caretRight} aria-label="Caret icon" />
                 }
@@ -52,8 +54,8 @@ describe("BasicCell", () => {
 
         // Act
         render(
-            <BasicCell
-                title="Basic cell"
+            <CompactCell
+                title="Compact cell"
                 rightAccessory={
                     <Icon icon={icons.caretRight} aria-label="Caret icon" />
                 }
@@ -68,17 +70,17 @@ describe("BasicCell", () => {
         // Arrange
 
         // Act
-        render(<BasicCell title="Basic cell" testId="cellId" />);
+        render(<CompactCell title="Compact cell" testId="cellId" />);
 
         // Assert
-        expect(screen.getByTestId("cellId")).toHaveTextContent("Basic cell");
+        expect(screen.getByTestId("cellId")).toHaveTextContent("Compact cell");
     });
 
     it("should add a button if onClick is set", () => {
         // Arrange
 
         // Act
-        render(<BasicCell title="Basic cell" onClick={jest.fn()} />);
+        render(<CompactCell title="Compact cell" onClick={jest.fn()} />);
 
         // Assert
         expect(screen.getByRole("button")).toBeInTheDocument();
@@ -87,7 +89,7 @@ describe("BasicCell", () => {
     it("should allow clicking the cell if onClick is set", () => {
         // Arrange
         const onClickMock = jest.fn();
-        render(<BasicCell title="Basic cell" onClick={onClickMock} />);
+        render(<CompactCell title="Compact cell" onClick={onClickMock} />);
 
         // Act
         screen.getByRole("button").click();

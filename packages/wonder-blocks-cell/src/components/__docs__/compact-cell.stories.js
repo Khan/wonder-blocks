@@ -14,14 +14,16 @@ import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info.js";
 import {name, version} from "../../../package.json";
-import BasicCellArgTypes, {AccessoryMappings} from "./basic-cell.argtypes.js";
+import CompactCellArgTypes, {
+    AccessoryMappings,
+} from "./compact-cell.argtypes.js";
 
-import BasicCell from "../basic-cell.js";
+import CompactCell from "../compact-cell.js";
 
 export default {
-    title: "Cell / BasicCell",
-    component: BasicCell,
-    argTypes: BasicCellArgTypes,
+    title: "Cell / CompactCell",
+    component: CompactCell,
+    argTypes: CompactCellArgTypes,
     parameters: {
         componentSubtitle: ((
             <ComponentInfo name={name} version={version} />
@@ -44,19 +46,19 @@ export default {
 };
 
 /**
- * Default BasicCell example. It will be rendered as the first/default story and
+ * Default CompactCell example. It will be rendered as the first/default story and
  * it can be interacted with the controls panel in the Browser.
  */
-const Template = (args) => <BasicCell {...args} />;
+const Template = (args) => <CompactCell {...args} />;
 
-export const DefaultBasicCell: StoryComponentType = Template.bind({});
+export const DefaultCompactCell: StoryComponentType = Template.bind({});
 
-DefaultBasicCell.args = {
+DefaultCompactCell.args = {
     title: "Basic Cell",
     rightAccessory: <Icon icon={icons.caretRight} />,
 };
 
-DefaultBasicCell.parameters = {
+DefaultCompactCell.parameters = {
     chromatic: {
         // We have screenshots of other stories that cover other variants.
         disableSnapshot: true,
@@ -66,14 +68,14 @@ DefaultBasicCell.parameters = {
 /**
  * Only including an accessory on the left.
  */
-export const BasicCellLeft: StoryComponentType = () => (
-    <BasicCell
+export const CompactCellLeft: StoryComponentType = () => (
+    <CompactCell
         title="Intro to rational & irrational numbers"
         leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
     />
 );
 
-BasicCellLeft.parameters = {
+CompactCellLeft.parameters = {
     docs: {
         storyDescription:
             "You can create a minimal cell that only uses a title and an Icon that can be placed on the left or right (or both). In this case, we will place the icon on the left to show you how cell is flexible. Note that you can pass any of the existing WB components such as `Icon`, `IconButton`, `Tooltip`, etc.",
@@ -83,14 +85,14 @@ BasicCellLeft.parameters = {
 /**
  * Only including an accessory on the right.
  */
-export const BasicCellRight: StoryComponentType = (args) => (
-    <BasicCell
+export const CompactCellRight: StoryComponentType = (args) => (
+    <CompactCell
         title="Intro to rational & irrational numbers"
         rightAccessory={<Icon icon={icons.caretRight} size="medium" />}
     />
 );
 
-BasicCellRight.parameters = {
+CompactCellRight.parameters = {
     docs: {
         storyDescription:
             "You can also create a cell with an accessory placed on the right. Note that you can pass any of the existing WB components such as `Icon`.",
@@ -100,26 +102,26 @@ BasicCellRight.parameters = {
 /**
  * Adding multiline title to verify that the cell's height is correct.
  */
-export const BasicCellWithDifferentHeights: StoryComponentType = (args) => (
+export const CompactCellWithDifferentHeights: StoryComponentType = (args) => (
     <>
-        <BasicCell
+        <CompactCell
             title="Single line with short accessory."
             rightAccessory={AccessoryMappings.withCaret}
         />
         <Strut size={Spacing.xSmall_8} />
-        <BasicCell
+        <CompactCell
             title="Single line with tall accessory."
             rightAccessory={AccessoryMappings.withIconText}
         />
         <Strut size={Spacing.xSmall_8} />
-        <BasicCell
+        <CompactCell
             title="Multi line title with tall accessory. Content should fit within the container and the cell height should be consistent no matter the content length."
             rightAccessory={AccessoryMappings.withIconText}
         />
     </>
 );
 
-BasicCellWithDifferentHeights.parameters = {
+CompactCellWithDifferentHeights.parameters = {
     docs: {
         storyDescription:
             "Cells should keep a consistent height no matter the content passed in the title prop. It should also respect a `minHeight` of 48px",
@@ -127,14 +129,14 @@ BasicCellWithDifferentHeights.parameters = {
 };
 
 /**
- * A BasicCell example adding both accessories (left and right)
+ * A CompactCell example adding both accessories (left and right)
  */
 const calendarIcon: IconAsset = {
     small: `M14.22 1.6H13.33V0H11.56V1.6H4.44V0H2.67V1.6H1.78C0.79 1.6 0.01 2.32 0.01 3.2L0 14.4C0 15.28 0.79 16 1.78 16H14.22C15.2 16 16 15.28 16 14.4V3.2C16 2.32 15.2 1.6 14.22 1.6ZM14.22 14.4H1.78V5.6H14.22V14.4ZM3.56 7.2H8V11.2H3.56V7.2Z`,
 };
 
-export const BasicCellBoth: StoryComponentType = () => (
-    <BasicCell
+export const CompactCellBoth: StoryComponentType = () => (
+    <CompactCell
         title="Intro to rational & irrational numbers"
         leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
         rightAccessory={
@@ -143,18 +145,18 @@ export const BasicCellBoth: StoryComponentType = () => (
     />
 );
 
-BasicCellBoth.storyName = "BasicCell with both accessories";
+CompactCellBoth.storyName = "CompactCell with both accessories";
 
-BasicCellBoth.parameters = {
+CompactCellBoth.parameters = {
     docs: {
         storyDescription:
             "You can also create a more complex cell with accessories placed on both sides. Note that you can extend the Icon component with custom paths such as the following example.",
     },
 };
 
-export const BasicCellAccessoryStyles: StoryComponentType = () => (
-    <BasicCell
-        title="BasicCell with custom accessory styles"
+export const CompactCellAccessoryStyles: StoryComponentType = () => (
+    <CompactCell
+        title="CompactCell with custom accessory styles"
         leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
         leftAccessoryStyle={{
             minWidth: Spacing.xxLarge_48,
@@ -170,9 +172,10 @@ export const BasicCellAccessoryStyles: StoryComponentType = () => (
     />
 );
 
-BasicCellAccessoryStyles.storyName = "BasicCell accessories with custom styles";
+CompactCellAccessoryStyles.storyName =
+    "CompactCell accessories with custom styles";
 
-BasicCellAccessoryStyles.parameters = {
+CompactCellAccessoryStyles.parameters = {
     docs: {
         storyDescription:
             "Accessories can also be customized to adapt to different sizes and alignments. In this example, we can see how a cell can be customized for both accessories.",
@@ -182,19 +185,19 @@ BasicCellAccessoryStyles.parameters = {
 /**
  * Defining horizontal rule variants
  */
-export const BasicCellHorizontalRules: StoryComponentType = () => (
+export const CompactCellHorizontalRules: StoryComponentType = () => (
     <>
-        <BasicCell
+        <CompactCell
             title="This is a basic cell with an 'inset' horizontal rule"
             leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
             horizontalRule="inset"
         />
-        <BasicCell
+        <CompactCell
             title="This is a basic cell with a 'full-width' horizontal rule"
             leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
             horizontalRule="full-width"
         />
-        <BasicCell
+        <CompactCell
             title="This is a basic cell without a horizontal rule"
             leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
             horizontalRule="none"
@@ -202,18 +205,18 @@ export const BasicCellHorizontalRules: StoryComponentType = () => (
     </>
 );
 
-BasicCellHorizontalRules.storyName = "Defining horizontal rule variants";
+CompactCellHorizontalRules.storyName = "Defining horizontal rule variants";
 
-BasicCellHorizontalRules.parameters = {
+CompactCellHorizontalRules.parameters = {
     docs: {
         storyDescription:
             "Cell components can use the `horizontalRule` prop to use a set of predefined variants that we can use to match our needs.",
     },
 };
 
-export const BasicCellWithCustomStyles: StoryComponentType = () => (
-    <BasicCell
-        title="BasicCell with a darkBlue background"
+export const CompactCellWithCustomStyles: StoryComponentType = () => (
+    <CompactCell
+        title="CompactCell with a darkBlue background"
         leftAccessory={<Icon icon={icons.contentArticle} size="medium" />}
         rightAccessory={<Icon icon={calendarIcon} color={Color.white} />}
         style={{
@@ -224,7 +227,7 @@ export const BasicCellWithCustomStyles: StoryComponentType = () => (
     />
 );
 
-BasicCellWithCustomStyles.parameters = {
+CompactCellWithCustomStyles.parameters = {
     docs: {
         storyDescription:
             "Cell components can also adapt to different visual needs. One example of this can be done by passing a custom style object to the `style` prop.",
@@ -232,12 +235,12 @@ BasicCellWithCustomStyles.parameters = {
 };
 
 /*
- * BasicCell with onClick set
+ * CompactCell with onClick set
 
  */
 
-export const ClickableBasicCell: StoryComponentType = () => (
-    <BasicCell
+export const ClickableCompactCell: StoryComponentType = () => (
+    <CompactCell
         title="Intro to rational & irrational numbers"
         rightAccessory={<Icon icon={icons.caretRight} />}
         onClick={() => {}}
@@ -245,7 +248,7 @@ export const ClickableBasicCell: StoryComponentType = () => (
     />
 );
 
-ClickableBasicCell.parameters = {
+ClickableCompactCell.parameters = {
     chromatic: {
         // This only includes interactions with the clickable cell, so no need
         // to capture screenshots.
@@ -257,8 +260,8 @@ ClickableBasicCell.parameters = {
     },
 };
 
-export const BasicCellActive: StoryComponentType = () => (
-    <BasicCell
+export const CompactCellActive: StoryComponentType = () => (
+    <CompactCell
         title="Title for article item"
         leftAccessory={
             <Icon icon={icons.contentVideo} size="medium" color="black" />
@@ -269,15 +272,15 @@ export const BasicCellActive: StoryComponentType = () => (
     />
 );
 
-BasicCellActive.parameters = {
+CompactCellActive.parameters = {
     docs: {
         storyDescription:
             "The cell also supports different states within itself. The different styles are defined internally (e.g hover, focused, pressed, active, disabled) and we allow passing some props to use the `active` or `disabled` state.",
     },
 };
 
-export const BasicCellDisabled: StoryComponentType = () => (
-    <BasicCell
+export const CompactCellDisabled: StoryComponentType = () => (
+    <CompactCell
         title="Title for article item"
         leftAccessory={AccessoryMappings.withImage}
         rightAccessory={<Icon icon={calendarIcon} size="small" />}
@@ -286,7 +289,7 @@ export const BasicCellDisabled: StoryComponentType = () => (
     />
 );
 
-BasicCellDisabled.parameters = {
+CompactCellDisabled.parameters = {
     docs: {
         storyDescription:
             "In the following example we can see how the `disabled` state works. Note that we apply an opacity to all the elements to make it more apparent that the cell is disabled. This includes text, SVG icons, images, etc.",

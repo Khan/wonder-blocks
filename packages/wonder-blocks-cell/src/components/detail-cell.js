@@ -55,8 +55,8 @@ type DetailCellProps = {|
 |};
 
 /**
- * This is a variant of BasicCell that allows adding subtitles, before and after
- * the cell title.
+ * This is a variant of CompactCell that allows adding subtitles, before and
+ * after the cell title.
  *
  * ### Usage
  *
