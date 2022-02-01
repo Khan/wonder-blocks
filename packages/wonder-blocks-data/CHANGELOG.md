@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 3.1.3
+
+### Patch Changes
+
+-   9931ae6b: Simplify GQL types
+
 ## 3.1.2
 
 ### Patch Changes
