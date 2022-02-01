@@ -26,6 +26,7 @@ export type GqlOperation<
     // as a string here to allow that to be sent to an Apollo server that
     // expects it. This is a courtesy to calling code; these additional
     // values are ignored by WB Data, and passed through as-is.
+    [key: string]: mixed,
     ...
 };
 
