@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 3.1.2
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-core@4.2.1
+
 ## 3.1.1
 
 ### Patch Changes
