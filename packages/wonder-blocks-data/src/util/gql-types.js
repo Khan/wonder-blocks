@@ -8,7 +8,6 @@ export type GqlOperationType = "mutation" | "query";
  * A GraphQL operation.
  */
 export type GqlOperation<
-    TType: GqlOperationType,
     // TData is not used to define a field on this type, but it is used
     // to ensure that calls using this operation will properly return the
     // correct data type.
@@ -20,7 +19,7 @@ export type GqlOperation<
     // eslint-disable-next-line no-unused-vars
     TVariables: {...} = Empty,
 > = {
-    type: TType,
+    type: GqlOperationType,
     id: string,
     // We allow other things here to be passed along to the fetch function.
     // For example, we might want to pass the full query/mutation definition
@@ -37,13 +36,8 @@ export type GqlContext = {|
 /**
  * Functions that make fetches of GQL operations.
  */
-export type GqlFetchFn<
-    TType,
-    TData,
-    TVariables: {...},
-    TContext: GqlContext,
-> = (
-    operation: GqlOperation<TType, TData, TVariables>,
+export type GqlFetchFn<TData, TVariables: {...}, TContext: GqlContext> = (
+    operation: GqlOperation<TData, TVariables>,
     variables: ?TVariables,
     context: TContext,
 ) => Promise<Response>;
@@ -52,7 +46,7 @@ export type GqlFetchFn<
  * The configuration stored in the GqlRouterContext context.
  */
 export type GqlRouterConfiguration<TContext: GqlContext> = {|
-    fetch: GqlFetchFn<any, any, any, any>,
+    fetch: GqlFetchFn<any, any, any>,
     defaultContext: TContext,
 |};
 

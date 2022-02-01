@@ -52,13 +52,8 @@ export const mockGqlFetch = (): GqlFetchMockFn => {
         );
     };
 
-    const addMockedOperation = <
-        TType,
-        TData,
-        TVariables: {...},
-        TContext: GqlContext,
-    >(
-        operation: GqlMockOperation<TType, TData, TVariables, TContext>,
+    const addMockedOperation = <TData, TVariables: {...}, TContext: GqlContext>(
+        operation: GqlMockOperation<TData, TVariables, TContext>,
         response: GqlMockResponse<TData>,
         onceOnly: boolean,
     ): GqlFetchMockFn => {
@@ -73,22 +68,20 @@ export const mockGqlFetch = (): GqlFetchMockFn => {
     };
 
     gqlFetchMock.mockOperation = <
-        TType,
         TData,
         TVariables: {...},
         TContext: GqlContext,
     >(
-        operation: GqlMockOperation<TType, TData, TVariables, TContext>,
+        operation: GqlMockOperation<TData, TVariables, TContext>,
         response: GqlMockResponse<TData>,
     ): GqlFetchMockFn => addMockedOperation(operation, response, false);
 
     gqlFetchMock.mockOperationOnce = <
-        TType,
         TData,
         TVariables: {...},
         TContext: GqlContext,
     >(
-        operation: GqlMockOperation<TType, TData, TVariables, TContext>,
+        operation: GqlMockOperation<TData, TVariables, TContext>,
         response: GqlMockResponse<TData>,
     ): GqlFetchMockFn => addMockedOperation(operation, response, true);
 
