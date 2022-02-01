@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.6.3
+
+### Patch Changes
+
+-   11c87db3: - Added `wonder-blocks-birthday-picker`.
+    -   Dropdown: Updated some styles from `backgroundColor` to `background` to avoid some warnings on unit tests.
+
 ## 2.6.2
 
 ### Patch Changes

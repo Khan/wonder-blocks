@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-testing
 
+## 2.0.1
+
+### Patch Changes
+
+-   9931ae6b: Simplify GQL types
+-   Updated dependencies [9931ae6b]
+    -   @khanacademy/wonder-blocks-data@3.1.3
+
 ## 2.0.0
 
 ### Major Changes
