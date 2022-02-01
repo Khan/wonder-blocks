@@ -17,7 +17,7 @@ export default {
         // TODO(WB-1170): Reassess this after investigating more about Chromatic
         // flakyness.
         chromatic: {
-            delay: 400,
+            disableSnapshot: true,
         },
     },
 };
