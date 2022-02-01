@@ -40,6 +40,31 @@ export const Text: StoryComponentType = () => {
     );
 };
 
+export const Required: StoryComponentType = () => {
+    const [value, setValue] = React.useState("");
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+    };
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <TextField
+            id="tf-1"
+            type="text"
+            value={value}
+            onChange={handleChange}
+            onKeyDown={handleKeyDown}
+            required={true}
+        />
+    );
+};
+
 export const Number: StoryComponentType = () => {
     const [value, setValue] = React.useState("12345");
 

@@ -330,24 +330,6 @@ describe("TextField", () => {
         );
     });
 
-    it("required prop is passed to the input element", () => {
-        // Arrange
-        const wrapper = mount(
-            <TextField
-                id={"tf-1"}
-                value="Text"
-                onChange={() => {}}
-                required={true}
-            />,
-        );
-
-        // Act
-
-        // Assert
-        const input = wrapper.find("input");
-        expect(input).toContainMatchingElement("[required=true]");
-    });
-
     it("testId is passed to the input element", () => {
         // Arrange
         const testId = "some-test-id";

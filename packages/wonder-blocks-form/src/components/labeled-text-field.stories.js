@@ -37,6 +37,55 @@ export const Text: StoryComponentType = () => {
     );
 };
 
+export const RequiredWithDefaultText: StoryComponentType = () => {
+    const [value, setValue] = React.useState("");
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <LabeledTextField
+            label="Name"
+            description="Please enter your name"
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
+            onKeyDown={handleKeyDown}
+            required={true}
+        />
+    );
+};
+
+export const RequiredWithSpecifiedText: StoryComponentType = () => {
+    const [value, setValue] = React.useState("");
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <LabeledTextField
+            label="Name"
+            description="Please enter your name"
+            value={value}
+            onChange={(newValue) => setValue(newValue)}
+            onKeyDown={handleKeyDown}
+            required="This specific field is super required."
+        />
+    );
+};
+
+RequiredWithSpecifiedText.parameters = {
+    chromatic: {
+        // We have screenshots of other stories that cover this case.
+        disableSnapshot: true,
+    },
+};
+
 export const Number: StoryComponentType = () => {
     const [value, setValue] = React.useState("18");
 
@@ -119,6 +168,43 @@ export const Email: StoryComponentType = () => {
             onKeyDown={handleKeyDown}
         />
     );
+};
+
+export const EmailRequired: StoryComponentType = () => {
+    const [value, setValue] = React.useState("");
+
+    const validate = (value: string) => {
+        const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+        if (!emailRegex.test(value)) {
+            return "Please enter a valid email";
+        }
+    };
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <LabeledTextField
+            label="Email"
+            type="email"
+            onChange={(newValue) => setValue(newValue)}
+            description="Please provide your personal email"
+            value={value}
+            validate={validate}
+            onKeyDown={handleKeyDown}
+            required={true}
+        />
+    );
+};
+
+EmailRequired.parameters = {
+    chromatic: {
+        // We have screenshots of other stories that cover this case.
+        disableSnapshot: true,
+    },
 };
 
 export const Telephone: StoryComponentType = () => {

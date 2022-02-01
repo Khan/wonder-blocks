@@ -42,6 +42,30 @@ type Props = {|
     disabled: boolean,
 
     /**
+     * Whether this field is required to to continue, or the error message to
+     * render if this field is left blank.
+     *
+     * This can be a boolean or a string.
+     *
+     * String:
+     * Please pass in a translated string to use as the error message that will
+     * render if the user leaves this field blank. If this field is required,
+     * and a string is not passed in, a default untranslated string will render
+     * upon error.
+     * Note: The string will not be used if a `validate` prop is passed in.
+     *
+     * Example message: i18n._("A password is required to log in.")
+     *
+     * Boolean:
+     * True/false indicating whether this field is required. Please do not pass
+     * in `true` if possible - pass in the error string instead.
+     * If `true` is passed, and a `validate` prop is not passed, that means
+     * there is no corresponding message and the default untranlsated message
+     * will be used.
+     */
+    required?: boolean | string,
+
+    /**
      * Identifies the element or elements that describes this text field.
      */
     ariaDescribedby?: string | Array<string>,
@@ -202,6 +226,7 @@ class LabeledTextFieldInternal extends React.Component<
             description,
             value,
             disabled,
+            required,
             validate,
             onChange,
             onKeyDown,
@@ -233,6 +258,8 @@ class LabeledTextFieldInternal extends React.Component<
                                 aria-invalid={
                                     this.state.error ? "true" : "false"
                                 }
+                                aria-required={required ? "true" : "false"}
+                                required={required}
                                 testId={testId && `${testId}-field`}
                                 type={type}
                                 value={value}
@@ -252,6 +279,7 @@ class LabeledTextFieldInternal extends React.Component<
                         }
                         label={label}
                         description={description}
+                        required={!!required}
                         error={(!this.state.focused && this.state.error) || ""}
                     />
                 )}

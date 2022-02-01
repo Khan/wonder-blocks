@@ -3,6 +3,7 @@ import * as React from "react";
 import {mount} from "enzyme";
 import "jest-enzyme";
 import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import {StyleSheet} from "aphrodite";
 import LabeledTextField from "../labeled-text-field.js";
@@ -483,5 +484,143 @@ describe("LabeledTextField", () => {
         // Assert
         const textField = wrapper.find("TextFieldInternal");
         expect(textField).toHaveProp("autoComplete", autoComplete);
+    });
+});
+
+describe("Required LabeledTextField", () => {
+    test("has * when `required` prop is true", () => {
+        // Arrange
+
+        // Act
+        render(
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                required={true}
+            />,
+        );
+
+        // Assert
+        expect(screen.getByText("*")).toBeInTheDocument();
+    });
+
+    test("does not have * when `required` prop is false", () => {
+        // Arrange
+
+        // Act
+        render(
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                required={false}
+            />,
+        );
+
+        // Assert
+        expect(screen.queryByText("*")).not.toBeInTheDocument();
+    });
+
+    test("aria-required is true when `required` prop is true", () => {
+        // Arrange
+
+        // Act
+        render(
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                testId="foo-labeled-text-field"
+                required={true}
+            />,
+        );
+
+        const textField = screen.getByTestId("foo-labeled-text-field-field");
+
+        // Assert
+        expect(textField).toHaveAttribute("aria-required", "true");
+    });
+
+    test("aria-required is false when `required` prop is false", () => {
+        // Arrange
+
+        // Act
+        render(
+            <LabeledTextField
+                label="Label"
+                value=""
+                onChange={() => {}}
+                testId="foo-labeled-text-field"
+                required={false}
+            />,
+        );
+
+        const textField = screen.getByTestId("foo-labeled-text-field-field");
+
+        // Assert
+        expect(textField).toHaveAttribute("aria-required", "false");
+    });
+
+    test("displays the default message when the `required` prop is `true`", () => {
+        // Arrange
+        const TextFieldWrapper = () => {
+            const [value, setValue] = React.useState("");
+            return (
+                <LabeledTextField
+                    label="Label"
+                    value={value}
+                    onChange={setValue}
+                    required={true}
+                    testId="test-labeled-text-field"
+                />
+            );
+        };
+
+        render(<TextFieldWrapper />);
+
+        const textField = screen.getByTestId("test-labeled-text-field-field");
+        textField.focus();
+        userEvent.paste(textField, "a");
+        userEvent.clear(textField);
+
+        // Act
+        textField.blur();
+
+        // Assert
+        expect(screen.getByRole("alert")).toHaveTextContent(
+            "This field is required.",
+        );
+    });
+
+    test("displays the string passed into `required`", () => {
+        // Arrange
+        const errorMessage = "This is an example error message.";
+
+        const TextFieldWrapper = () => {
+            const [value, setValue] = React.useState("");
+            return (
+                <LabeledTextField
+                    label="Label"
+                    value={value}
+                    onChange={setValue}
+                    required={errorMessage}
+                    testId="test-labeled-text-field"
+                />
+            );
+        };
+
+        render(<TextFieldWrapper />);
+
+        const textField = screen.getByTestId("test-labeled-text-field-field");
+        textField.focus();
+        userEvent.paste(textField, "a");
+        userEvent.clear(textField);
+
+        // Act
+        textField.blur();
+
+        // Assert
+        expect(screen.getByRole("alert")).toHaveTextContent(errorMessage);
     });
 });
