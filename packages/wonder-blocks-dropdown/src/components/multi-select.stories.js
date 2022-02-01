@@ -96,8 +96,9 @@ export const CustomStylesOpened: StoryComponentType = () => (
 );
 
 export const DisabledMultiSelect: StoryComponentType = () => (
-    <MultiSelect disabled={true} placeholder="Choose a juice">
-        <OptionItem label="Banana juice" value="banana" />
+    <MultiSelect disabled={true} onChange={() => {}}>
+        <OptionItem label="Mercury" value="1" />
+        <OptionItem label="Venus" value="2" />
     </MultiSelect>
 );
 

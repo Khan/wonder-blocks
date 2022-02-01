@@ -173,8 +173,13 @@ DropdownInModal.parameters = {
 };
 
 export const DisabledSingleSelect: StoryComponentType = () => (
-    <SingleSelect disabled={true} placeholder="Choose a juice">
+    <SingleSelect
+        disabled={true}
+        placeholder="Choose a juice"
+        onChange={() => {}}
+    >
         <OptionItem label="Banana juice" value="banana" />
+        <OptionItem label="Strawberry juice" value="strawberry" />
     </SingleSelect>
 );
 
