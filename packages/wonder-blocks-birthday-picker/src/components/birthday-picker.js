@@ -40,6 +40,11 @@ type Props = {|
     defaultValue?: string,
 
     /**
+     * Whether the birthdate fields are disabled.
+     */
+    disabled?: boolean,
+
+    /**
      * The object containing the custom labels used inside this component.
      */
     labels?: Labels,
@@ -248,12 +253,14 @@ export default class BirthdayPicker extends React.Component<Props, State> {
     }
 
     render(): React.Element<any> {
+        const {disabled} = this.props;
         const {month, day, year} = this.state;
 
         return (
             <>
                 <View testId="birthday-picker" style={{flexDirection: "row"}}>
                     <SingleSelect
+                        disabled={disabled}
                         placeholder={this.labels.month}
                         onChange={this.handleMonthChange}
                         selectedValue={month}
@@ -270,6 +277,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                     </SingleSelect>
                     <Strut size={Spacing.xSmall_8} />
                     <SingleSelect
+                        disabled={disabled}
                         placeholder={this.labels.day}
                         onChange={this.handleDayChange}
                         selectedValue={day}
@@ -286,6 +294,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                     </SingleSelect>
                     <Strut size={Spacing.xSmall_8} />
                     <SingleSelect
+                        disabled={disabled}
                         placeholder={this.labels.year}
                         onChange={this.handleYearChange}
                         selectedValue={year}

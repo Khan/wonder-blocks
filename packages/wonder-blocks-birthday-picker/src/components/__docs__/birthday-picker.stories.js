@@ -64,6 +64,10 @@ BirthdayPickerWithDefaultValue.parameters = {
     chromatic: {
         disableSnapshot: true,
     },
+    docs: {
+        storyDescription:
+            "This component is empty by default, but we can pass in a defined birthday by using the `defaultValue` prop.",
+    },
 };
 
 export const InvalidBirthdayPicker: StoryComponentType = Template.bind({});
@@ -71,6 +75,13 @@ export const InvalidBirthdayPicker: StoryComponentType = Template.bind({});
 InvalidBirthdayPicker.args = {
     onChange: () => {},
     defaultValue: "2030-07-19",
+};
+
+InvalidBirthdayPicker.parameters = {
+    docs: {
+        storyDescription:
+            "In case the birthday is invalid, we display an error message indicating this problem.",
+    },
 };
 
 export const BirthdayPickerWithCustomLabels: StoryComponentType = Template.bind(
@@ -85,5 +96,26 @@ BirthdayPickerWithCustomLabels.args = {
         month: "Mes",
         year: "Año",
         errorMessage: "Por favor seleccione una fecha válida.",
+    },
+};
+
+BirthdayPickerWithCustomLabels.parameters = {
+    docs: {
+        storyDescription:
+            "We can pass custom labels to the component. This can be helpful when we need to pass in translated strings. The default labels are: `Day`, `Month`, `Year` used as placeholders and 'Please select a valid birthdate.' to indicate an `errorMessage` when the validation fails. For more info about how to use this, refer to the `labels` prop in the Props table documentation above.",
+    },
+};
+
+export const DisabledBirthdayPicker: StoryComponentType = Template.bind({});
+
+DisabledBirthdayPicker.args = {
+    onChange: () => {},
+    disabled: true,
+};
+
+DisabledBirthdayPicker.parameters = {
+    docs: {
+        storyDescription:
+            "A BirthdayPicker can be disabled by passing the `disabled` prop. This will disable all the dropdown controls and prevent them from being interacted with.",
     },
 };
