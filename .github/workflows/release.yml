@@ -56,20 +56,21 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build Slack message
+        id: slack_message
         if: steps.changesets.outputs.published == 'true'
         # We have to do this in stages to make sure that the output into the
         # GITHUB_ENV retains are lines and is valid for updating the env.
-        # This is based of option 2 from
+        # This is based on:
         # - LIVE: https://trstringer.com/github-actions-multiline-strings/
         # - ARCHIVE: https://web.archive.org/web/20211017170102/https://trstringer.com/github-actions-multiline-strings/
+        # - LIVE: https://renehernandez.io/snippets/multiline-strings-as-a-job-output-in-github-actions/
+        # - ARCHIVE: https://web.archive.org/web/20211115000540/https://renehernandez.io/snippets/multiline-strings-as-a-job-output-in-github-actions/
         run: |
-          UPDATED_PACKAGES=$(cat << EOF
-          $(jq -r '[group_by(.name) | .[] | " - "+.[].name+"@"+.[].version] | join("\n")' <<< '${{ steps.changesets.outputs.publishedPackages }}')
-          EOF
-          )
-          echo "UPDATED_PACKAGES<<EOF" >> $GITHUB_ENV
-          echo "$UPDATED_PACKAGES" >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
+          UPDATED_PACKAGES=$(jq -r '[group_by(.name) | .[] | " - "+.[].name+"@"+.[].version] | join("\n")' <<< '${{ steps.changesets.outputs.publishedPackages }}')
+          UPDATED_PACKAGES="${UPDATED_PACKAGES//'%'/'%25'}"
+          UPDATED_PACKAGES="${UPDATED_PACKAGES//$'\n'/'%0A'}"
+          UPDATED_PACKAGES="${UPDATED_PACKAGES//$'\r'/'%0D'}"
+          echo "::set-output name=updated_packages::$UPDATED_PACKAGES"
 
       - name: Send a Slack notification if a publish happens
         if: steps.changesets.outputs.published == 'true'
@@ -80,7 +81,7 @@ jobs:
           SLACK_MSG_AUTHOR: ${{ github.event.pull_request.user.login }}
           SLACK_USERNAME: GithubGoose
           SLACK_ICON_EMOJI: ":goose:"
-          SLACK_MESSAGE: $(printf "A new version of ${{ github.event.repository.name }} was published! 🎉 \n$UPDATED_PACKAGES\nRelease notes → https://github.com/Khan/${{ github.event.repository.name }}/releases/")
+          SLACK_MESSAGE: "A new version of ${{ github.event.repository.name }} was published! 🎉 \n${{ steps.slack_message.outputs.updated_packages }}\nRelease notes → https://github.com/Khan/${{ github.event.repository.name }}/releases/"
           SLACK_TITLE: "New Wonder Blocks release!"
           SLACK_FOOTER: Wonder Blocks Slack Notification
           MSG_MINIMAL: true
