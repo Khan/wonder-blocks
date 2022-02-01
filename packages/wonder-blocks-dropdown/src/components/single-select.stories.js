@@ -4,13 +4,14 @@ import {StyleSheet} from "aphrodite";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {SingleSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
+
+import {SingleSelect, OptionItem} from "../index.js";
 
 export default {
     title: "Dropdown / SingleSelect",
@@ -168,5 +169,23 @@ DropdownInModal.parameters = {
         // We don't need screenshots because this story can be tested after
         // the modal is opened.
         disableSnapshot: true,
+    },
+};
+
+export const DisabledSingleSelect: StoryComponentType = () => (
+    <SingleSelect
+        disabled={true}
+        placeholder="Choose a juice"
+        onChange={() => {}}
+    >
+        <OptionItem label="Banana juice" value="banana" />
+        <OptionItem label="Strawberry juice" value="strawberry" />
+    </SingleSelect>
+);
+
+DisabledSingleSelect.parameters = {
+    docs: {
+        storyDescription:
+            "`SingleSelect` can be disabled by passing `disabled={true}`. This can be useful when you want to disable a control temporarily.",
     },
 };
