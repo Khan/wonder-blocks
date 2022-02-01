@@ -3,10 +3,11 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 
 import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 import type {StoryComponentType} from "@storybook/react";
+
+import {MultiSelect, OptionItem} from "../index.js";
 
 export default {
     title: "Dropdown / MultiSelect",
@@ -93,6 +94,19 @@ CustomStyles.parameters = {
 export const CustomStylesOpened: StoryComponentType = () => (
     <MultiSelectWithCustomStyles opened={true} />
 );
+
+export const DisabledMultiSelect: StoryComponentType = () => (
+    <MultiSelect disabled={true} placeholder="Choose a juice">
+        <OptionItem label="Banana juice" value="banana" />
+    </MultiSelect>
+);
+
+DisabledMultiSelect.parameters = {
+    docs: {
+        storyDescription:
+            "`MultiSelect` can be disabled by passing `disabled={true}`. This can be useful when you want to disable a control temporarily.",
+    },
+};
 
 const styles = StyleSheet.create({
     setWidth: {
