@@ -64,8 +64,8 @@ jobs:
         # - ARCHIVE: https://web.archive.org/web/20211017170102/https://trstringer.com/github-actions-multiline-strings/
         run: |
           UPDATED_PACKAGES=$(cat << EOF
-              $(jq -r '[group_by(.name) | .[] | " - "+.[].name+"@"+.[].version] | join("\n")' <<< '${{ steps.changesets.outputs.publishedPackages }}')
-              EOF
+          $(jq -r '[group_by(.name) | .[] | " - "+.[].name+"@"+.[].version] | join("\n")' <<< '${{ steps.changesets.outputs.publishedPackages }}')
+          EOF
           )
           echo "UPDATED_PACKAGES<<EOF" >> $GITHUB_ENV
           echo "$UPDATED_PACKAGES" >> $GITHUB_ENV

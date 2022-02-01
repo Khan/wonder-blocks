@@ -24,7 +24,7 @@ export const useGql = (): (<
     TVariables: {...},
     TContext: GqlContext,
 >(
-    operation: GqlOperation<TType, TData, TVariables>,
+    operation: GqlOperation<TData, TVariables>,
     options?: GqlFetchOptions<TVariables, TContext>,
 ) => Promise<?TData>) => {
     // This hook only works if the `GqlRouter` has been used to setup context.
@@ -41,13 +41,8 @@ export const useGql = (): (<
     // in hooks deps without fear of it triggering extra renders.
     const gqlFetch = useMemo(
         () =>
-            <
-                TType: GqlOperationType,
-                TData,
-                TVariables: {...},
-                TContext: GqlContext,
-            >(
-                operation: GqlOperation<TType, TData, TVariables>,
+            <TData, TVariables: {...}, TContext: GqlContext>(
+                operation: GqlOperation<TData, TVariables>,
                 options: GqlFetchOptions<TVariables, TContext> = Object.freeze(
                     {},
                 ),

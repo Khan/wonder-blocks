@@ -18,7 +18,7 @@ type Props<TContext: GqlContext> = {|
     /**
      * The function to use when fetching requests.
      */
-    fetch: GqlFetchFn<any, any, any, TContext>,
+    fetch: GqlFetchFn<any, any, TContext>,
 
     /**
      * The children to be rendered inside the router.
