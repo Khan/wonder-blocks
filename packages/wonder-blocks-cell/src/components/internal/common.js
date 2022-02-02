@@ -19,6 +19,14 @@ export const CellMeasurements = {
     },
 
     /**
+     * The DetailCell wrapper's gap.
+     */
+    detailCellPadding: {
+        paddingVertical: Spacing.small_12,
+        paddingHorizontal: Spacing.medium_16,
+    },
+
+    /**
      * The extra vertical spacing added to the title/content wrapper.
      */
     contentVerticalSpacing: Spacing.xxxSmall_4,
