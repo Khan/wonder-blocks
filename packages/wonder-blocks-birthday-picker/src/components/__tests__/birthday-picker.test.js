@@ -122,6 +122,22 @@ describe("BirthdayPicker", () => {
             expect(yearPicker).toHaveTextContent("Year");
         });
 
+        it("renders correctly the disabled state", () => {
+            // Arrange
+
+            // Act
+            render(<BirthdayPicker disabled={true} onChange={() => {}} />);
+
+            const monthPicker = screen.getByTestId("birthday-picker-month");
+            const dayPicker = screen.getByTestId("birthday-picker-day");
+            const yearPicker = screen.getByTestId("birthday-picker-year");
+
+            // Assert
+            expect(monthPicker).toBeDisabled();
+            expect(dayPicker).toBeDisabled();
+            expect(yearPicker).toBeDisabled();
+        });
+
         it("renders an error with an invalid default value", async () => {
             // Arrange
             const defaultValue = "2021-02-31";
