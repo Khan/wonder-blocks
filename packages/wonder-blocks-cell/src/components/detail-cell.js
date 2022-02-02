@@ -5,9 +5,10 @@ import {StyleSheet} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import CellCore from "./internal/cell-core.js";
+import {CellMeasurements} from "./internal/common.js";
 
 import type {CellProps, TypographyText} from "../util/types.js";
 
@@ -56,7 +57,10 @@ type DetailCellProps = {|
 
 /**
  * This is a variant of CompactCell that allows adding subtitles, before and
- * after the cell title.
+ * after the cell title. They typically represent an item that can be
+ * clicked/tapped to view more complex details. They vary in height depending on
+ * the presence or absence of subtitles, and they allow for a wide range of
+ * functionality depending on which accessories are active.
  *
  * ### Usage
  *
@@ -76,11 +80,11 @@ function DetailCell(props: DetailCellProps): React.Node {
     const {title, subtitle1, subtitle2, ...coreProps} = props;
 
     return (
-        <CellCore {...coreProps}>
+        <CellCore {...coreProps} innerStyle={styles.innerWrapper}>
             <Subtitle subtitle={subtitle1} disabled={coreProps.disabled} />
             {subtitle1 && <Strut size={Spacing.xxxxSmall_2} />}
             {typeof title === "string" ? (
-                <LabelLarge>{title}</LabelLarge>
+                <LabelMedium>{title}</LabelMedium>
             ) : (
                 title
             )}
@@ -94,6 +98,11 @@ function DetailCell(props: DetailCellProps): React.Node {
 const styles = StyleSheet.create({
     subtitle: {
         color: Color.offBlack64,
+    },
+
+    // This is to override the default padding of the CellCore innerWrapper.
+    innerWrapper: {
+        padding: `${CellMeasurements.detailCellPadding.paddingVertical}px ${CellMeasurements.detailCellPadding.paddingHorizontal}px`,
     },
 });
 

@@ -2,6 +2,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
+
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
@@ -94,6 +96,14 @@ type CellCoreProps = {|
      * The content of the cell.
      */
     children: React.Node,
+
+    /**
+     * The optional styles applied to the inner wrapper.
+     *
+     * Note: This is not intended to be used externally, only used directly
+     * within the package scope.
+     */
+    innerStyle?: StyleType,
 |};
 
 /**
@@ -118,6 +128,7 @@ const CellCore = (props: CellCoreProps): React.Node => {
         style,
         testId,
         "aria-label": ariaLabel,
+        innerStyle,
     } = props;
 
     const renderCell = (eventState?: ClickableState): React.Node => {
@@ -130,14 +141,15 @@ const CellCore = (props: CellCoreProps): React.Node => {
                     // focused applied to the main wrapper to make the border
                     // outline part of the wrapper
                     eventState?.focused && styles.focused,
-                    // custom styles
-                    style,
                 ]}
                 aria-current={active ? "true" : undefined}
             >
                 <View
                     style={[
                         styles.innerWrapper,
+                        innerStyle,
+                        // custom styles
+                        style,
                         horizontalRuleStyles,
                         disabled && styles.disabled,
                         active && styles.active,
