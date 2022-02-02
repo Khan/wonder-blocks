@@ -1,8 +1,8 @@
 // @flow
-import BasicCellArgTypes from "./basic-cell.argtypes.js";
+import CompactCellArgTypes from "./compact-cell.argtypes.js";
 
 export default {
-    ...BasicCellArgTypes,
+    ...CompactCellArgTypes,
     subtitle1: {
         control: {
             type: "text",
