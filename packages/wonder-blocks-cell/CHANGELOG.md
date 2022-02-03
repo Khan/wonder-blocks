@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-cell
 
+## 2.0.0
+
+### Major Changes
+
+-   655daa88: Renamed `BasicCell` to `CompactCell` for better clarification of this variant
+
+### Patch Changes
+
+-   2630d750: DetailCell: Style tweaks (changing title from bold to regular, changing vertical padding to 16px)
+
 ## 1.0.2
 
 ### Patch Changes

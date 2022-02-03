@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.6.4
+
+### Patch Changes
+
+-   77e7523c: Update disabled state to match design specs (offWhite bg)
+
 ## 2.6.3
 
 ### Patch Changes

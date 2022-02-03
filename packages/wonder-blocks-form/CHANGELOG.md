@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 2.4.0
+
+### Minor Changes
+
+-   af4f527c: LabeledTextField component now has a `required` prop that will mark is as required with an asterisk and provide validation
+
 ## 2.3.3
 
 ### Patch Changes
