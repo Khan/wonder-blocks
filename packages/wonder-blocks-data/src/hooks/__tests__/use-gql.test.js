@@ -80,6 +80,7 @@ describe("#useGql", () => {
                 id: "MyQuery",
             };
             const gqlOpContext = {
+                a: undefined, // This should not get included.
                 b: "overrideB",
             };
             const gqlOpVariables = {
