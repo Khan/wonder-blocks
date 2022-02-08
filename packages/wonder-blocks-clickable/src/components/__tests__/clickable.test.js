@@ -3,6 +3,8 @@ import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {mount} from "enzyme";
 import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Clickable from "../clickable.js";
@@ -450,6 +452,56 @@ describe("Clickable", () => {
         expect(window.location.assign).not.toHaveBeenCalledWith(
             "/foo" /*not a full page nav*/,
         );
+    });
+
+    test("should add aria-disabled if disabled is set", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Clickable testId="button" disabled={true}>
+                {(eventState) => <h1>Click Me!</h1>}
+            </Clickable>,
+        );
+
+        const button = screen.getByTestId("button");
+
+        // Assert
+        expect(button).toHaveAttribute("aria-disabled", "true");
+    });
+
+    test("allow keyboard navigation when disabled is set", () => {
+        // Arrange
+        render(
+            <Clickable testId="button" disabled={true}>
+                {(eventState) => <h1>Click Me!</h1>}
+            </Clickable>,
+        );
+
+        // Act
+        userEvent.tab();
+
+        const button = screen.getByTestId("button");
+
+        // Assert
+        expect(button).toHaveFocus();
+    });
+
+    test("allow keyboard navigation when disabled is set", () => {
+        // Arrange
+        render(
+            <Clickable testId="button" disabled={true}>
+                {(eventState) => <h1>Click Me!</h1>}
+            </Clickable>,
+        );
+
+        // Act
+        userEvent.tab();
+
+        const button = screen.getByTestId("button");
+
+        // Assert
+        expect(button).toHaveFocus();
     });
 
     describe("raw events", () => {

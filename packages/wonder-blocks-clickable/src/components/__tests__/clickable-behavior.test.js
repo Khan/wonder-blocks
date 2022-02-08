@@ -378,7 +378,7 @@ describe("ClickableBehavior", () => {
         expect(button.state("pressed")).toEqual(false);
 
         button.simulate("focus");
-        expect(button.state("focused")).toEqual(false);
+        expect(button.state("focused")).toEqual(true);
 
         const anchor = shallow(
             <ClickableBehavior
@@ -464,7 +464,7 @@ describe("ClickableBehavior", () => {
 
         expect(button.state("hovered")).toEqual(false);
         expect(button.state("pressed")).toEqual(false);
-        expect(button.state("focused")).toEqual(false);
+        expect(button.state("focused")).toEqual(true);
     });
 
     describe("full page load navigation", () => {

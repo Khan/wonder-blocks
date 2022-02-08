@@ -21,9 +21,9 @@ exports[`wonder-blocks-clickable example 1 1`] = `
   }
 >
   <button
+    aria-disabled={false}
     aria-label=""
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}
@@ -128,9 +128,9 @@ exports[`wonder-blocks-clickable example 2 1`] = `
   }
 >
   <button
+    aria-disabled={false}
     aria-label=""
     className=""
-    disabled={false}
     onBlur={[Function]}
     onClick={[Function]}
     onDragStart={[Function]}

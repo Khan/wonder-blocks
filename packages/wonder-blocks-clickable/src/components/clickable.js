@@ -252,7 +252,7 @@ export default class Clickable extends React.Component<Props> {
                 <StyledButton
                     {...commonProps}
                     type="button"
-                    disabled={this.props.disabled}
+                    aria-disabled={this.props.disabled}
                 >
                     {this.props.children(clickableState)}
                 </StyledButton>
