@@ -15,7 +15,7 @@ describe("InterceptData", () => {
         const fakeHandler = () => Promise.resolve("data");
         const props = {
             handler: fakeHandler,
-            id: "ID",
+            requestId: "ID",
         };
         const captureContextFn = jest.fn();
 
@@ -44,8 +44,8 @@ describe("InterceptData", () => {
 
         // Act
         render(
-            <InterceptData handler={fulfillRequest1Fn} id="ID">
-                <InterceptData handler={fulfillRequest2Fn} id="ID">
+            <InterceptData handler={fulfillRequest1Fn} requestId="ID">
+                <InterceptData handler={fulfillRequest2Fn} requestId="ID">
                     <InterceptContext.Consumer>
                         {captureContextFn}
                     </InterceptContext.Consumer>

@@ -20,7 +20,7 @@ type Props<
      *
      * This should not be shared by other uses of this component.
      */
-    id: string,
+    requestId: string,
 
     /**
      * This defines how the request is fulfilled.
@@ -73,7 +73,7 @@ type Props<
  * support server-side rendering and efficient caching.
  */
 const Data = <TData: ValidData>({
-    id,
+    requestId,
     handler,
     children,
     hydrate,
@@ -89,14 +89,18 @@ const Data = <TData: ValidData>({
     // that uses the interceptor. This helper function generates a new
     // handler.
     const maybeInterceptedHandler = React.useMemo(() => {
-        const interceptor = interceptorMap[id];
+        const interceptor = interceptorMap[requestId];
         if (interceptor == null) {
             return handler;
         }
         return () => interceptor() ?? handler();
-    }, [handler, interceptorMap, id]);
+    }, [handler, interceptorMap, requestId]);
 
-    const hydrateResult = useServerEffect(id, maybeInterceptedHandler, hydrate);
+    const hydrateResult = useServerEffect(
+        requestId,
+        maybeInterceptedHandler,
+        hydrate,
+    );
     const [currentResult, setResult] = React.useState(hydrateResult);
 
     // Here we make sure the request still occurs client-side as needed.
@@ -128,7 +132,7 @@ const Data = <TData: ValidData>({
 
         // We aren't server-side, so let's make the request.
         let cancel = false;
-        RequestFulfillment.Default.fulfill(id, {
+        RequestFulfillment.Default.fulfill(requestId, {
             handler: maybeInterceptedHandler,
         })
             .then((result) => {
@@ -170,7 +174,7 @@ const Data = <TData: ValidData>({
         // request itself changes. All of which is to say that we only
         // run this effect for the ID changing.
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [id]);
+    }, [requestId]);
 
     return children(resultFromCacheEntry(currentResult));
 };

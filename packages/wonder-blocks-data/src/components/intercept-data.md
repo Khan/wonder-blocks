@@ -32,17 +32,17 @@ const myHandler = () => Promise.reject(new Error("You should not see this!"));
 
 const interceptHandler = () => Promise.resolve("INTERCEPTED DATA!");
 
-<InterceptData handler={interceptHandler} id="INTERCEPT_EXAMPLE">
+<InterceptData handler={interceptHandler} requestId="INTERCEPT_EXAMPLE">
     <View>
         <Body>This received intercepted data!</Body>
-        <Data handler={myHandler} id="INTERCEPT_EXAMPLE">
-            {({loading, data}) => {
-                if (loading) {
+        <Data handler={myHandler} requestId="INTERCEPT_EXAMPLE">
+            {(result) => {
+                if (result.status !== "success") {
                     return "If you see this, the example is broken!";
                 }
 
                 return (
-                    <BodyMonospace>{data}</BodyMonospace>
+                    <BodyMonospace>{result.data}</BodyMonospace>
                 );
             }}
         </Data>

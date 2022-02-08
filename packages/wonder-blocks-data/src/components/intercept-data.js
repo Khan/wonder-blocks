@@ -9,7 +9,7 @@ type Props<TData: ValidData> = {|
     /**
      * The ID of the request to intercept.
      */
-    id: string,
+    requestId: string,
 
     /**
      * Called to intercept and fulfill the request.
@@ -41,16 +41,19 @@ type Props<TData: ValidData> = {|
  * new instance will replace this interceptor for its children. All methods
  * will be replaced.
  */
-const InterceptData = <TData: ValidData>(props: Props<TData>): React.Node => {
+const InterceptData = <TData: ValidData>({
+    requestId,
+    handler,
+    children,
+}: Props<TData>): React.Node => {
     const interceptMap = React.useContext(InterceptContext);
 
-    const {id, handler, children} = props;
     const updatedInterceptMap = React.useMemo(
         () => ({
             ...interceptMap,
-            [id]: handler,
+            [requestId]: handler,
         }),
-        [interceptMap, id, handler],
+        [interceptMap, requestId, handler],
     );
 
     return (

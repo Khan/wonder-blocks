@@ -9,18 +9,158 @@ import renderer from "react-test-renderer";
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
-import {Server, View} from "@khanacademy/wonder-blocks-core";
+import {View, Server} from "@khanacademy/wonder-blocks-core";
 import {
-    TrackData,
     Data,
+    initializeCache,
+    InterceptData,
+    TrackData,
     fulfillAllDataRequests,
 } from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Button from "@khanacademy/wonder-blocks-button";
 
 describe("wonder-blocks-data", () => {
     it("example 1", () => {
+        const myValidHandler = () =>
+            new Promise((resolve, reject) =>
+                setTimeout(() => resolve("I'm DATA from a request"), 3000),
+            );
+
+        const myInvalidHandler = () =>
+            new Promise((resolve, reject) =>
+                setTimeout(() => reject("I'm an ERROR from a request"), 3000),
+            );
+
+        const example = (
+            <View>
+                <View>
+                    <Body>This request will succeed and give us data!</Body>
+                    <Data handler={myValidHandler} requestId="VALID">
+                        {(result) => {
+                            if (result.status === "loading") {
+                                return "Loading...";
+                            }
+
+                            return <BodyMonospace>{result.data}</BodyMonospace>;
+                        }}
+                    </Data>
+                </View>
+                <Strut size={Spacing.small_12} />
+                <View>
+                    <Body>This request will go boom and give us an error!</Body>
+                    <Data handler={myInvalidHandler} requestId="INVALID">
+                        {(result) => {
+                            if (result.status === "loading") {
+                                return "Loading...";
+                            }
+
+                            return (
+                                <BodyMonospace
+                                    style={{
+                                        color: Color.red,
+                                    }}
+                                >
+                                    ERROR: {result.error}
+                                </BodyMonospace>
+                            );
+                        }}
+                    </Data>
+                </View>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 2", () => {
+        const myHandler = () => {
+            throw new Error(
+                "If you're seeing this error, the examples are broken and data isn't in the cache that should be.",
+            );
+        };
+
+        initializeCache({
+            DATA: {
+                data: "I'm DATA from the hydration cache",
+            },
+            ERROR: {
+                error: "I'm an ERROR from hydration cache",
+            },
+        });
+        const example = (
+            <View>
+                <View>
+                    <Body>This cache has data!</Body>
+                    <Data handler={myHandler} requestId="DATA">
+                        {(result) => {
+                            if (result.status !== "success") {
+                                return "If you see this, the example is broken!";
+                            }
+
+                            return <BodyMonospace>{result.data}</BodyMonospace>;
+                        }}
+                    </Data>
+                </View>
+                <Strut size={Spacing.small_12} />
+                <View>
+                    <Body>This cache has error!</Body>
+                    <Data handler={myHandler} requestId="ERROR">
+                        {(result) => {
+                            if (result.status !== "error") {
+                                return "If you see this, the example is broken!";
+                            }
+
+                            return (
+                                <BodyMonospace
+                                    style={{
+                                        color: Color.red,
+                                    }}
+                                >
+                                    ERROR: {result.error}
+                                </BodyMonospace>
+                            );
+                        }}
+                    </Data>
+                </View>
+            </View>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 3", () => {
+        const myHandler = () =>
+            Promise.reject(new Error("You should not see this!"));
+
+        const interceptHandler = () => Promise.resolve("INTERCEPTED DATA!");
+
+        const example = (
+            <InterceptData
+                handler={interceptHandler}
+                requestId="INTERCEPT_EXAMPLE"
+            >
+                <View>
+                    <Body>This received intercepted data!</Body>
+                    <Data handler={myHandler} requestId="INTERCEPT_EXAMPLE">
+                        {(result) => {
+                            if (result.status !== "success") {
+                                return "If you see this, the example is broken!";
+                            }
+
+                            return <BodyMonospace>{result.data}</BodyMonospace>;
+                        }}
+                    </Data>
+                </View>
+            </InterceptData>
+        );
+        const tree = renderer.create(example).toJSON();
+        expect(tree).toMatchSnapshot();
+    });
+
+    it("example 4", () => {
         class ErrorBoundary extends React.Component {
             constructor(props) {
                 super(props);
@@ -67,7 +207,7 @@ describe("wonder-blocks-data", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 2", () => {
+    it("example 5", () => {
         const myPretendHandler = () =>
             new Promise((resolve, reject) =>
                 setTimeout(() => resolve("DATA!"), 3000),
@@ -141,13 +281,15 @@ describe("wonder-blocks-data", () => {
                         <TrackData>
                             <Data
                                 handler={myPretendHandler}
-                                id="TRACK_DATA_EXAMPLE"
+                                requestId="TRACK_DATA_EXAMPLE"
                             >
-                                {({loading, data, error}) => (
+                                {(result) => (
                                     <View>
-                                        <BodyMonospace>{`Loading: ${loading}`}</BodyMonospace>
+                                        <BodyMonospace>{`Loading: ${
+                                            result.status === "loading"
+                                        }`}</BodyMonospace>
                                         <BodyMonospace>{`Data: ${JSON.stringify(
-                                            data,
+                                            result.data,
                                         )}`}</BodyMonospace>
                                     </View>
                                 )}
@@ -168,12 +310,6 @@ describe("wonder-blocks-data", () => {
                                 that when it does, the above still doesn't
                                 update. That's because during SSR, the data is
                                 not updated in the rendered tree.
-                            </Body>
-                            <Strut size={Spacing.small_12} />
-                            <Body>
-                                If you click to remount after the data appears,
-                                we'll rerender with the now cached data, and
-                                above should update accordingly.
                             </Body>
                             <Strut size={Spacing.small_12} />
                             <BodyMonospace>{data}</BodyMonospace>

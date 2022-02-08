@@ -1,6 +1,7 @@
-The `Data` component is the frontend piece of our data architecture that
-most folks will use if not using hooks. It describes a data requirement in terms of a handler and an identifier.
-It also has props to govern hydrate behavior as well as loading and client-side request behavior.
+The `Data` component is the frontend piece of our data architecture.
+It describes a data requirement in terms of a handler and an identifier.
+It also has props to govern hydrate behavior as well as loading and client-side
+request behavior.
 
 The handler is responsible for fulfilling the request when asked to do so.
 
@@ -55,14 +56,14 @@ const myInvalidHandler = () => new Promise((resolve, reject) =>
 <View>
     <View>
         <Body>This request will succeed and give us data!</Body>
-        <Data handler={myValidHandler} id="VALID">
-            {({loading, data}) => {
-                if (loading) {
+        <Data handler={myValidHandler} requestId="VALID">
+            {(result) => {
+                if (result.status === "loading") {
                     return "Loading...";
                 }
 
                 return (
-                    <BodyMonospace>{data}</BodyMonospace>
+                    <BodyMonospace>{result.data}</BodyMonospace>
                 );
             }}
         </Data>
@@ -70,14 +71,14 @@ const myInvalidHandler = () => new Promise((resolve, reject) =>
     <Strut size={Spacing.small_12} />
     <View>
         <Body>This request will go boom and give us an error!</Body>
-        <Data handler={myInvalidHandler} id="INVALID">
-            {({loading, error}) => {
-                if (loading) {
+        <Data handler={myInvalidHandler} requestId="INVALID">
+            {(result) => {
+                if (result.status === "loading") {
                     return "Loading...";
                 }
 
                 return (
-                    <BodyMonospace style={{color: Color.red}}>ERROR: {error}</BodyMonospace>
+                    <BodyMonospace style={{color: Color.red}}>ERROR: {result.error}</BodyMonospace>
                 );
             }}
         </Data>
@@ -117,14 +118,14 @@ initializeCache({
 <View>
     <View>
         <Body>This cache has data!</Body>
-        <Data handler={myHandler} id="DATA">
-            {({loading, data}) => {
-                if (loading) {
+        <Data handler={myHandler} requestId="DATA">
+            {(result) => {
+                if (result.status !== "success") {
                     return "If you see this, the example is broken!";
                 }
 
                 return (
-                    <BodyMonospace>{data}</BodyMonospace>
+                    <BodyMonospace>{result.data}</BodyMonospace>
                 );
             }}
         </Data>
@@ -132,14 +133,14 @@ initializeCache({
     <Strut size={Spacing.small_12} />
     <View>
         <Body>This cache has error!</Body>
-        <Data handler={myHandler} id="ERROR">
-            {({loading, error}) => {
-                if (loading) {
+        <Data handler={myHandler} requestId="ERROR">
+            {(result) => {
+                if (result.status !== "error") {
                     return "If you see this, the example is broken!";
                 }
 
                 return (
-                    <BodyMonospace style={{color: Color.red}}>ERROR: {error}</BodyMonospace>
+                    <BodyMonospace style={{color: Color.red}}>ERROR: {result.error}</BodyMonospace>
                 );
             }}
         </Data>

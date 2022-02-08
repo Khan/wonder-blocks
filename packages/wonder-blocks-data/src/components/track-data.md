@@ -129,7 +129,7 @@ class Example extends React.Component {
             <React.Fragment>
                 <Strut size={Spacing.small_12} />
                 <TrackData>
-                    <Data handler={myPretendHandler} id="TRACK_DATA_EXAMPLE">
+                    <Data handler={myPretendHandler} requestId="TRACK_DATA_EXAMPLE">
                         {(result) => (
                             <View>
                                 <BodyMonospace>{`Loading: ${result.status === "loading"}`}</BodyMonospace>

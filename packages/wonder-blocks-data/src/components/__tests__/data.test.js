@@ -57,7 +57,7 @@ describe("Data", () => {
 
                 // Act
                 render(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -75,7 +75,7 @@ describe("Data", () => {
 
                 // Act
                 render(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -97,10 +97,10 @@ describe("Data", () => {
                 // Act
                 render(
                     <View>
-                        <Data handler={fakeHandler} id="ID">
+                        <Data handler={fakeHandler} requestId="ID">
                             {fakeChildrenFn}
                         </Data>
-                        <Data handler={fakeHandler} id="ID">
+                        <Data handler={fakeHandler} requestId="ID">
                             {fakeChildrenFn}
                         </Data>
                     </View>,
@@ -121,7 +121,7 @@ describe("Data", () => {
 
                 // Act
                 render(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -150,7 +150,7 @@ describe("Data", () => {
 
                 // Act
                 render(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -189,7 +189,7 @@ describe("Data", () => {
 
                     // Act
                     render(
-                        <Data handler={fakeHandler} id="ID">
+                        <Data handler={fakeHandler} requestId="ID">
                             {fakeChildrenFn}
                         </Data>,
                     );
@@ -224,7 +224,7 @@ describe("Data", () => {
                 const fakeHandler = () => Promise.resolve("HELLO!");
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = render(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -236,7 +236,7 @@ describe("Data", () => {
 
                 // Act
                 wrapper.rerender(
-                    <Data handler={fakeHandler} id="NEW_ID">
+                    <Data handler={fakeHandler} requestId="NEW_ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -265,12 +265,12 @@ describe("Data", () => {
                 // Act
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = render(
-                    <Data handler={oldHandler} id="ID">
+                    <Data handler={oldHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
                 wrapper.rerender(
-                    <Data handler={oldHandler} id="NEW_ID">
+                    <Data handler={oldHandler} requestId="NEW_ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -298,12 +298,12 @@ describe("Data", () => {
                 // Act
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = render(
-                    <Data handler={oldHandler} id="ID">
+                    <Data handler={oldHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
                 wrapper.rerender(
-                    <Data handler={oldHandler} id="NEW_ID">
+                    <Data handler={oldHandler} requestId="NEW_ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -332,12 +332,12 @@ describe("Data", () => {
                 // Act
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = render(
-                    <Data handler={oldHandler} id="ID">
+                    <Data handler={oldHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
                 wrapper.rerender(
-                    <Data handler={oldHandler} id="NEW_ID">
+                    <Data handler={oldHandler} requestId="NEW_ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -365,8 +365,11 @@ describe("Data", () => {
 
                     // Act
                     render(
-                        <InterceptData id="ID" handler={interceptHandler}>
-                            <Data handler={fakeHandler} id="ID">
+                        <InterceptData
+                            requestId="ID"
+                            handler={interceptHandler}
+                        >
+                            <Data handler={fakeHandler} requestId="ID">
                                 {fakeChildrenFn}
                             </Data>
                         </InterceptData>,
@@ -385,8 +388,11 @@ describe("Data", () => {
 
                     // Act
                     render(
-                        <InterceptData handler={interceptHandler} id="ID">
-                            <Data handler={fakeHandler} id="ID">
+                        <InterceptData
+                            handler={interceptHandler}
+                            requestId="ID"
+                        >
+                            <Data handler={fakeHandler} requestId="ID">
                                 {fakeChildrenFn}
                             </Data>
                         </InterceptData>,
@@ -422,7 +428,7 @@ describe("Data", () => {
 
                 // Act
                 render(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -444,14 +450,14 @@ describe("Data", () => {
 
                 // Act
                 const wrapper = render(
-                    <Data handler={fakeHandler1} id="ID">
+                    <Data handler={fakeHandler1} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
                 wrapper.rerender(
                     <Data
                         handler={fakeHandler2}
-                        id="ID"
+                        requestId="ID"
                         showOldDataWhileLoading={true}
                     >
                         {fakeChildrenFn}
@@ -473,7 +479,7 @@ describe("Data", () => {
                 render(
                     <Data
                         handler={fakeHandler}
-                        id="ID"
+                        requestId="ID"
                         alwaysRequestOnHydration={false}
                     >
                         {fakeChildrenFn}
@@ -493,7 +499,7 @@ describe("Data", () => {
                 render(
                     <Data
                         handler={fakeHandler}
-                        id="ID"
+                        requestId="ID"
                         alwaysRequestOnHydration={true}
                     >
                         {fakeChildrenFn}
@@ -527,7 +533,7 @@ describe("Data", () => {
 
                 // Act
                 render(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -559,7 +565,7 @@ describe("Data", () => {
 
                 // Act
                 render(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -593,7 +599,7 @@ describe("Data", () => {
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -609,7 +615,7 @@ describe("Data", () => {
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -632,7 +638,7 @@ describe("Data", () => {
                 // Act
                 ReactDOMServer.renderToString(
                     <TrackData>
-                        <Data handler={fakeHandler} id="ID">
+                        <Data handler={fakeHandler} requestId="ID">
                             {fakeChildrenFn}
                         </Data>
                     </TrackData>,
@@ -657,8 +663,11 @@ describe("Data", () => {
 
                     // Act
                     ReactDOMServer.renderToString(
-                        <InterceptData handler={interceptedHandler} id="ID">
-                            <Data handler={fakeHandler} id="ID">
+                        <InterceptData
+                            handler={interceptedHandler}
+                            requestId="ID"
+                        >
+                            <Data handler={fakeHandler} requestId="ID">
                                 {fakeChildrenFn}
                             </Data>
                         </InterceptData>,
@@ -684,8 +693,11 @@ describe("Data", () => {
                     // Act
                     ReactDOMServer.renderToString(
                         <TrackData>
-                            <InterceptData id="ID" handler={interceptedHandler}>
-                                <Data handler={fakeHandler} id="ID">
+                            <InterceptData
+                                requestId="ID"
+                                handler={interceptedHandler}
+                            >
+                                <Data handler={fakeHandler} requestId="ID">
                                     {fakeChildrenFn}
                                 </Data>
                             </InterceptData>
@@ -720,7 +732,7 @@ describe("Data", () => {
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -736,7 +748,7 @@ describe("Data", () => {
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -758,7 +770,7 @@ describe("Data", () => {
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} id="ID">
+                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -782,7 +794,7 @@ describe("Data", () => {
                 // Act
                 ReactDOMServer.renderToString(
                     <TrackData>
-                        <Data handler={fakeHandler} id="ID">
+                        <Data handler={fakeHandler} requestId="ID">
                             {fakeChildrenFn}
                         </Data>
                     </TrackData>,
@@ -806,8 +818,11 @@ describe("Data", () => {
 
                     // Act
                     ReactDOMServer.renderToString(
-                        <InterceptData handler={interceptHandler} id="ID">
-                            <Data handler={fakeHandler} id="ID">
+                        <InterceptData
+                            handler={interceptHandler}
+                            requestId="ID"
+                        >
+                            <Data handler={fakeHandler} requestId="ID">
                                 {fakeChildrenFn}
                             </Data>
                         </InterceptData>,
