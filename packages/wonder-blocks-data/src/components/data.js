@@ -131,6 +131,10 @@ const Data = <TData: ValidData>({
         }
 
         // We aren't server-side, so let's make the request.
+        // We don't need to use our built-in request fulfillment here if we
+        // don't want, but it does mean we'll share inflight requests for the
+        // same ID and the result will be in the same format as the
+        // hydrated value.
         let cancel = false;
         RequestFulfillment.Default.fulfill(requestId, {
             handler: maybeInterceptedHandler,
