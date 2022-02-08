@@ -459,12 +459,12 @@ describe("Clickable", () => {
 
         // Act
         render(
-            <Clickable testId="button" disabled={true}>
+            <Clickable testId="clickable-button" disabled={true}>
                 {(eventState) => <h1>Click Me!</h1>}
             </Clickable>,
         );
 
-        const button = screen.getByTestId("button");
+        const button = screen.getByTestId("clickable-button");
 
         // Assert
         expect(button).toHaveAttribute("aria-disabled", "true");
@@ -473,32 +473,23 @@ describe("Clickable", () => {
     test("allow keyboard navigation when disabled is set", () => {
         // Arrange
         render(
-            <Clickable testId="button" disabled={true}>
-                {(eventState) => <h1>Click Me!</h1>}
-            </Clickable>,
+            <div>
+                <button>First focusable button</button>
+                <Clickable testId="clickable-button" disabled={true}>
+                    {(eventState) => <h1>Click Me!</h1>}
+                </Clickable>
+            </div>,
         );
 
         // Act
+        // RTL's focuses on `document.body` by default, so we need to focus on
+        // the first button
         userEvent.tab();
 
-        const button = screen.getByTestId("button");
-
-        // Assert
-        expect(button).toHaveFocus();
-    });
-
-    test("allow keyboard navigation when disabled is set", () => {
-        // Arrange
-        render(
-            <Clickable testId="button" disabled={true}>
-                {(eventState) => <h1>Click Me!</h1>}
-            </Clickable>,
-        );
-
-        // Act
+        // Then we focus on our Clickable button.
         userEvent.tab();
 
-        const button = screen.getByTestId("button");
+        const button = screen.getByTestId("clickable-button");
 
         // Assert
         expect(button).toHaveFocus();
