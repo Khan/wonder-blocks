@@ -221,8 +221,6 @@ const disabledHandlers = {
     onTouchCancel: () => void 0,
     onKeyDown: () => void 0,
     onKeyUp: () => void 0,
-    onFocus: () => void 0,
-    onBlur: () => void 0,
     // Clickable components should still be tabbable so they can
     // be used as anchors.
     tabIndex: 0,
