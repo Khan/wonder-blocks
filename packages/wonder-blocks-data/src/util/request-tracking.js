@@ -3,20 +3,19 @@ import * as React from "react";
 import {ResponseCache} from "./response-cache.js";
 import {RequestFulfillment} from "./request-fulfillment.js";
 
-import type {Cache, IRequestHandler} from "./types.js";
+import type {Cache, ValidData} from "./types.js";
 
-type TrackerFn = (handler: IRequestHandler<any, any>, options: any) => void;
-
-type HandlerCache = {
-    [type: string]: IRequestHandler<any, any>,
-    ...
-};
+type TrackerFn = <TData: ValidData>(
+    id: string,
+    handler: () => Promise<?TData>,
+    hydrate: boolean,
+) => void;
 
 type RequestCache = {
-    [handlerType: string]: {
-        [key: string]: any,
-        ...
-    },
+    [id: string]: {|
+        hydrate?: boolean,
+        handler: () => Promise<?any>,
+    |},
     ...
 };
 
@@ -50,7 +49,6 @@ export class RequestTracker {
     /**
      * These are the caches for tracked requests, their handlers, and responses.
      */
-    _trackedHandlers: HandlerCache = {};
     _trackedRequests: RequestCache = {};
     _responseCache: ResponseCache;
     _requestFulfillment: RequestFulfillment;
@@ -66,26 +64,23 @@ export class RequestTracker {
      * This method caches a request and its handler for use during server-side
      * rendering to allow us to fulfill requests before producing a final render.
      */
-    trackDataRequest: (
-        handler: IRequestHandler<any, any>,
-        options: any,
-    ) => void = (handler: IRequestHandler<any, any>, options: any): void => {
-        const key = handler.getKey(options);
-        const type = handler.type;
-
-        /**
-         * Make sure we have stored the handler for use when fulfilling requests.
-         */
-        if (this._trackedHandlers[type] == null) {
-            this._trackedHandlers[type] = handler;
-            this._trackedRequests[type] = {};
-        }
-
+    trackDataRequest: <TData: ValidData>(
+        id: string,
+        handler: () => Promise<?TData>,
+        hydrate: boolean,
+    ) => void = <TData: ValidData>(
+        id: string,
+        handler: () => Promise<?TData>,
+        hydrate: boolean,
+    ): void => {
         /**
          * If we don't already have this tracked, then let's track it.
          */
-        if (this._trackedRequests[type][key] == null) {
-            this._trackedRequests[type][key] = options;
+        if (this._trackedRequests[id] == null) {
+            this._trackedRequests[id] = {
+                handler,
+                hydrate,
+            };
         }
     };
 
@@ -93,7 +88,6 @@ export class RequestTracker {
      * Reset our tracking info.
      */
     reset: () => void = () => {
-        this._trackedHandlers = {};
         this._trackedRequests = {};
     };
 
@@ -122,18 +116,12 @@ export class RequestTracker {
     > => {
         const promises = [];
 
-        for (const handlerType of Object.keys(this._trackedHandlers)) {
-            const handler = this._trackedHandlers[handlerType];
-
-            // For each handler, we will perform the request fulfillments!
-            const requests = this._trackedRequests[handlerType];
-            for (const requestKey of Object.keys(requests)) {
-                const promise = this._requestFulfillment.fulfill(
-                    handler,
-                    requests[requestKey],
-                );
-                promises.push(promise);
-            }
+        for (const requestKey of Object.keys(this._trackedRequests)) {
+            const promise = this._requestFulfillment.fulfill(
+                requestKey,
+                this._trackedRequests[requestKey],
+            );
+            promises.push(promise);
         }
 
         /**

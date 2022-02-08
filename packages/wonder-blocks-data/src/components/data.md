@@ -1,7 +1,6 @@
 The `Data` component is the frontend piece of our data architecture that
-most folks will use. It describes a data requirement in terms of a handler, and
-some options. Handlers must implement the
-`IRequestHandler` interface.
+most folks will use if not using hooks. It describes a data requirement in terms of a handler and an identifier.
+It also has props to govern hydrate behavior as well as loading and client-side request behavior.
 
 The handler is responsible for fulfilling the request when asked to do so.
 
@@ -40,42 +39,23 @@ data or an error, we re-render.
 ```jsx
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Data, RequestHandler} from "@khanacademy/wonder-blocks-data";
+import {Data} from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-class MyValidHandler extends RequestHandler {
-    constructor() {
-        super("CACHE_MISS_HANDLER_VALID");
-    }
+const myValidHandler = () => new Promise((resolve, reject) =>
+    setTimeout(() => resolve("I'm DATA from a request"), 3000),
+);
 
-    fulfillRequest(options) {
-        return new Promise((resolve, reject) =>
-            setTimeout(() => resolve("I'm DATA from a request"), 3000),
-        );
-    }
-}
-
-class MyInvalidHandler extends RequestHandler {
-    constructor() {
-        super("CACHE_MISS_HANDLER_ERROR");
-    }
-
-    fulfillRequest(options) {
-        return new Promise((resolve, reject) =>
-            setTimeout(() => reject("I'm an ERROR from a request"), 3000),
-        );
-    }
-}
-
-const valid = new MyValidHandler();
-const invalid = new MyInvalidHandler();
+const myInvalidHandler = () => new Promise((resolve, reject) =>
+    setTimeout(() => reject("I'm an ERROR from a request"), 3000),
+);
 
 <View>
     <View>
         <Body>This request will succeed and give us data!</Body>
-        <Data handler={valid} options={{some: "options"}}>
+        <Data handler={myValidHandler} id="VALID">
             {({loading, data}) => {
                 if (loading) {
                     return "Loading...";
@@ -90,7 +70,7 @@ const invalid = new MyInvalidHandler();
     <Strut size={Spacing.small_12} />
     <View>
         <Body>This request will go boom and give us an error!</Body>
-        <Data handler={invalid} options={{some: "options"}}>
+        <Data handler={myInvalidHandler} id="INVALID">
             {({loading, error}) => {
                 if (loading) {
                     return "Loading...";
@@ -114,42 +94,30 @@ populated using the `initializeCache` method before rendering.
 ```jsx
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Data, RequestHandler, initializeCache} from "@khanacademy/wonder-blocks-data";
+import {Data, initializeCache} from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-class MyHandler extends RequestHandler {
-    constructor() {
-        super("CACHE_HIT_HANDLER");
-    }
+const myHandler = () => {
+    throw new Error(
+        "If you're seeing this error, the examples are broken and data isn't in the cache that should be.",
+    );
+};
 
-    /**
-     * fulfillRequest should not get called as we already have data cached.
-     */
-    fulfillRequest(options) {
-        throw new Error(
-            "If you're seeing this error, the examples are broken and data isn't in the cache that should be.",
-        );
-    }
-}
-
-const handler = new MyHandler();
 initializeCache({
-    CACHE_HIT_HANDLER: {
-        DATA: {
-            data: "I'm DATA from the hydration cache"
-        },
-        ERROR: {
-            error: "I'm an ERROR from hydration cache"
-        }
+    DATA: {
+        data: "I'm DATA from the hydration cache"
+    },
+    ERROR: {
+        error: "I'm an ERROR from hydration cache"
     }
 });
 
 <View>
     <View>
         <Body>This cache has data!</Body>
-        <Data handler={handler} options={"DATA"}>
+        <Data handler={myHandler} id="DATA">
             {({loading, data}) => {
                 if (loading) {
                     return "If you see this, the example is broken!";
@@ -164,7 +132,7 @@ initializeCache({
     <Strut size={Spacing.small_12} />
     <View>
         <Body>This cache has error!</Body>
-        <Data handler={handler} options={"ERROR"}>
+        <Data handler={myHandler} id="ERROR">
             {({loading, error}) => {
                 if (loading) {
                     return "If you see this, the example is broken!";

@@ -1,11 +1,5 @@
 // @flow
-import type {
-    ValidData,
-    ICache,
-    CacheEntry,
-    Cache,
-    IRequestHandler,
-} from "./types.js";
+import type {ValidData, CacheEntry, Cache} from "./types.js";
 
 function deepClone<T: {...}>(source: T | $ReadOnly<T>): $ReadOnly<T> {
     /**
@@ -27,9 +21,7 @@ function deepClone<T: {...}>(source: T | $ReadOnly<T>): $ReadOnly<T> {
  *
  * This is only used within our framework for SSR (see ./response-cache.js).
  */
-export default class MemoryCache<TOptions, TData: ValidData>
-    implements ICache<TOptions, TData>
-{
+export default class MemoryCache {
     _cache: Cache;
 
     constructor(source: ?$ReadOnly<Cache> = null) {
@@ -60,45 +52,25 @@ export default class MemoryCache<TOptions, TData: ValidData>
         return Object.keys(this._cache).length > 0;
     }
 
-    store: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-        entry: CacheEntry<TData>,
-    ) => void = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
+    store: <TData: ValidData>(id: string, entry: CacheEntry<TData>) => void = <
+        TData: ValidData,
+    >(
+        id: string,
         entry: CacheEntry<TData>,
     ): void => {
-        const requestType = handler.type;
-
         const frozenEntry = Object.freeze(entry);
 
-        // Ensure we have a cache location for this handler type.
-        this._cache[requestType] = this._cache[requestType] || {};
-
         // Cache the data.
-        const key = handler.getKey(options);
-        this._cache[requestType][key] = frozenEntry;
+        this._cache[id] = frozenEntry;
     };
 
-    retrieve: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ) => ?CacheEntry<TData> = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
+    retrieve: <TData: ValidData>(id: string) => ?CacheEntry<TData> = <
+        TData: ValidData,
+    >(
+        id: string,
     ): ?CacheEntry<TData> => {
-        const requestType = handler.type;
-
-        // Get the internal subcache for the handler.
-        const handlerCache = this._cache[requestType];
-        if (!handlerCache) {
-            return null;
-        }
-
         // Get the response.
-        const key = handler.getKey(options);
-        const internalEntry = handlerCache[key];
+        const internalEntry = this._cache[id];
         if (internalEntry == null) {
             return null;
         }
@@ -106,71 +78,46 @@ export default class MemoryCache<TOptions, TData: ValidData>
         return internalEntry;
     };
 
-    remove: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ) => boolean = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ): boolean => {
-        const requestType = handler.type;
-
+    remove: (id: string) => boolean = (id: string): boolean => {
         // NOTE(somewhatabstract): We could invoke removeAll with a predicate
         // to match the key of the entry we're removing, but that's an
         // inefficient way to remove a single item, so let's not do that.
 
-        // Get the internal subcache for the handler.
-        const handlerCache = this._cache[requestType];
-        if (!handlerCache) {
-            return false;
-        }
-
         // Get the entry.
-        const key = handler.getKey(options);
-        const internalEntry = handlerCache[key];
+        const internalEntry = this._cache[id];
         if (internalEntry == null) {
             return false;
         }
 
         // Delete the entry.
-        delete handlerCache[key];
+        delete this._cache[id];
         return true;
     };
 
-    removeAll: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
+    removeAll: (
         predicate?: (
             key: string,
-            cachedEntry: $ReadOnly<CacheEntry<TData>>,
+            cachedEntry: $ReadOnly<CacheEntry<ValidData>>,
         ) => boolean,
-    ) => number = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
+    ) => number = (
         predicate?: (
             key: string,
-            cachedEntry: $ReadOnly<CacheEntry<TData>>,
+            cachedEntry: $ReadOnly<CacheEntry<ValidData>>,
         ) => boolean,
     ): number => {
-        const requestType = handler.type;
-
-        // Get the internal subcache for the handler.
-        const handlerCache = this._cache[requestType];
-        if (!handlerCache) {
-            return 0;
-        }
-
         let removedCount = 0;
         if (typeof predicate === "function") {
             // Apply the predicate to what we have cached.
-            for (const [key, entry] of Object.entries(handlerCache)) {
+            for (const [key, entry] of Object.entries(this._cache)) {
                 if (predicate(key, (entry: any))) {
                     removedCount++;
-                    delete handlerCache[key];
+                    delete this._cache[key];
                 }
             }
         } else {
             // We're removing everything so delete the entire subcache.
-            removedCount = Object.keys(handlerCache).length;
-            delete this._cache[requestType];
+            removedCount = Object.keys(this._cache).length;
+            this._cache = {};
         }
         return removedCount;
     };

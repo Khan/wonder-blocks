@@ -6,7 +6,6 @@ import type {
     ValidData,
     CacheEntry,
     Cache,
-    IRequestHandler,
     ResponseCache as ResCache,
 } from "./types.js";
 
@@ -29,12 +28,12 @@ export class ResponseCache {
         return _default;
     }
 
-    _hydrationCache: MemoryCache<any, any>;
-    _ssrOnlyCache: ?MemoryCache<any, any>;
+    _hydrationCache: MemoryCache;
+    _ssrOnlyCache: ?MemoryCache;
 
     constructor(
-        hydrationCache: ?MemoryCache<any, any> = null,
-        ssrOnlyCache: ?MemoryCache<any, any> = null,
+        hydrationCache: ?MemoryCache = null,
+        ssrOnlyCache: ?MemoryCache = null,
     ) {
         this._ssrOnlyCache = Server.isServerSide()
             ? ssrOnlyCache || new MemoryCache()
@@ -42,19 +41,22 @@ export class ResponseCache {
         this._hydrationCache = hydrationCache || new MemoryCache();
     }
 
-    _setCacheEntry<TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
+    _setCacheEntry<TData: ValidData>(
+        id: string,
         entry: CacheEntry<TData>,
+        hydrate: boolean,
     ): CacheEntry<TData> {
         const frozenEntry = Object.freeze(entry);
-        if (this._ssrOnlyCache != null) {
+        if (Server.isServerSide()) {
             // We are server-side.
             // We need to store this value.
-            if (handler.hydrate) {
-                this._hydrationCache.store(handler, options, frozenEntry);
+            if (hydrate) {
+                this._hydrationCache.store(id, frozenEntry);
             } else {
-                this._ssrOnlyCache.store(handler, options, frozenEntry);
+                // Usually, when server-side, this cache will always be present.
+                // We do fake server-side in our doc example though, when it
+                // won't be.
+                this._ssrOnlyCache?.store(id, frozenEntry);
             }
         }
         return frozenEntry;
@@ -86,68 +88,59 @@ export class ResponseCache {
      *
      * This is a noop when client-side.
      */
-    cacheData: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
+    cacheData: <TData: ValidData>(
+        id: string,
         data: TData,
-    ) => CacheEntry<TData> = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
+        hydrate: boolean,
+    ) => CacheEntry<TData> = <TData: ValidData>(
+        id: string,
         data: TData,
-    ): CacheEntry<TData> => this._setCacheEntry(handler, options, {data});
+        hydrate: boolean,
+    ): CacheEntry<TData> => this._setCacheEntry(id, {data}, hydrate);
 
     /**
      * Cache an error for a specific response.
      *
      * This is a noop when client-side.
      */
-    cacheError: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
+    cacheError: <TData: ValidData>(
+        id: string,
         error: Error | string,
-    ) => CacheEntry<TData> = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
+        hydrate: boolean,
+    ) => CacheEntry<TData> = <TData: ValidData>(
+        id: string,
         error: Error | string,
+        hydrate: boolean,
     ): CacheEntry<TData> => {
         const errorMessage = typeof error === "string" ? error : error.message;
-        return this._setCacheEntry(handler, options, {error: errorMessage});
+        return this._setCacheEntry(id, {error: errorMessage}, hydrate);
     };
 
     /**
      * Retrieve data from our cache.
      */
-    getEntry: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ) => ?$ReadOnly<CacheEntry<TData>> = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ): ?$ReadOnly<CacheEntry<TData>> => {
-        // Get the cached entry for this value.
-        // If the handler wants WB Data to hydrate (i.e. handler.hydrate is
-        // true), we use our hydration cache. Otherwise, if we're server-side
-        // we use our SSR-only cache. Otherwise, there's no entry to return.
-        const cache = handler.hydrate
-            ? this._hydrationCache
-            : Server.isServerSide()
-            ? this._ssrOnlyCache
-            : undefined;
-        const internalEntry = cache?.retrieve(handler, options);
+    getEntry: <TData: ValidData>(id: string) => ?$ReadOnly<CacheEntry<TData>> =
+        <TData: ValidData>(id: string): ?$ReadOnly<CacheEntry<TData>> => {
+            // Get the cached entry for this value.
 
-        // If we are not server-side and we hydrated something, let's clear
-        // that from the hydration cache to save memory.
-        if (this._ssrOnlyCache == null && internalEntry != null) {
-            // We now delete this from our hydration cache as we don't need it.
-            // This does mean that if another handler of the same type but
-            // without some sort of linked cache won't get the value, but
-            // that's not an expected use-case. If two different places use the
-            // same handler and options (i.e. the same request), then the
-            // handler should cater to that to ensure they share the result.
-            this._hydrationCache.remove(handler, options);
-        }
-        return internalEntry;
-    };
+            // We first look in the ssr cache and then the hydration cache.
+            const internalEntry =
+                this._ssrOnlyCache?.retrieve(id) ??
+                this._hydrationCache.retrieve(id);
+
+            // If we are not server-side and we hydrated something, let's clear
+            // that from the hydration cache to save memory.
+            if (this._ssrOnlyCache == null && internalEntry != null) {
+                // We now delete this from our hydration cache as we don't need it.
+                // This does mean that if another handler of the same type but
+                // without some sort of linked cache won't get the value, but
+                // that's not an expected use-case. If two different places use the
+                // same handler and options (i.e. the same request), then the
+                // handler should cater to that to ensure they share the result.
+                this._hydrationCache.remove(id);
+            }
+            return internalEntry;
+        };
 
     /**
      * Remove from cache, the entry matching the given handler and options.
@@ -157,21 +150,16 @@ export class ResponseCache {
      *
      * Returns true if something was removed from any cache; otherwise, false.
      */
-    remove: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ) => boolean = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ): boolean => {
+    remove: (id: string) => boolean = (id: string): boolean => {
         // NOTE(somewhatabstract): We could invoke removeAll with a predicate
         // to match the key of the entry we're removing, but that's an
         // inefficient way to remove a single item, so let's not do that.
 
         // Delete the entry from the appropriate cache.
-        return handler.hydrate
-            ? this._hydrationCache.remove(handler, options)
-            : this._ssrOnlyCache?.remove(handler, options) ?? false;
+        return (
+            this._hydrationCache.remove(id) ||
+            (this._ssrOnlyCache?.remove(id) ?? false)
+        );
     };
 
     /**
@@ -182,23 +170,22 @@ export class ResponseCache {
      *
      * It returns a count of all records removed.
      */
-    removeAll: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
+    removeAll: (
         predicate?: (
             key: string,
-            cachedEntry: $ReadOnly<CacheEntry<TData>>,
+            cachedEntry: $ReadOnly<CacheEntry<ValidData>>,
         ) => boolean,
-    ) => number = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
+    ) => number = (
         predicate?: (
             key: string,
-            cachedEntry: $ReadOnly<CacheEntry<TData>>,
+            cachedEntry: $ReadOnly<CacheEntry<ValidData>>,
         ) => boolean,
     ): number => {
-        // Apply the predicate to what we have in the appropriate cache.
-        return handler.hydrate
-            ? this._hydrationCache.removeAll(handler, predicate)
-            : this._ssrOnlyCache?.removeAll(handler, predicate) ?? 0;
+        // Apply the predicate to what we have in our caches.
+        return (
+            this._hydrationCache.removeAll(predicate) +
+            (this._ssrOnlyCache?.removeAll(predicate) ?? 0)
+        );
     };
 
     /**

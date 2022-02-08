@@ -65,19 +65,11 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Server, View} from "@khanacademy/wonder-blocks-core";
-import {Data, TrackData, RequestHandler, fulfillAllDataRequests} from "@khanacademy/wonder-blocks-data";
+import {Data, TrackData, fulfillAllDataRequests} from "@khanacademy/wonder-blocks-data";
 
-class MyPretendHandler extends RequestHandler {
-    constructor() {
-        super("MY_PRETEND_HANDLER");
-    }
-
-    fulfillRequest(options) {
-        return new Promise((resolve, reject) =>
-            setTimeout(() => resolve("DATA!"), 3000),
-        );
-    }
-}
+const myPretendHandler = () => new Promise((resolve, reject) =>
+    setTimeout(() => resolve("DATA!"), 3000),
+);
 
 class Example extends React.Component {
     constructor() {
@@ -87,7 +79,6 @@ class Example extends React.Component {
          * for the scope of this component.
          */
         this.state = {};
-        this._handler = new MyPretendHandler();
     }
 
     static getDerivedStateFromError(error) {
@@ -133,15 +124,16 @@ class Example extends React.Component {
         const data = this.state.data
             ? JSON.stringify(this.state.data, undefined, "  ")
             : "Data requested...";
+
         return (
             <React.Fragment>
                 <Strut size={Spacing.small_12} />
                 <TrackData>
-                    <Data handler={this._handler} options={{}}>
-                        {({loading, data, error}) => (
+                    <Data handler={myPretendHandler} id="TRACK_DATA_EXAMPLE">
+                        {(result) => (
                             <View>
-                                <BodyMonospace>{`Loading: ${loading}`}</BodyMonospace>
-                                <BodyMonospace>{`Data: ${JSON.stringify(data)}`}</BodyMonospace>
+                                <BodyMonospace>{`Loading: ${result.status === "loading"}`}</BodyMonospace>
+                                <BodyMonospace>{`Data: ${JSON.stringify(result.data)}`}</BodyMonospace>
                             </View>
                         )}
                     </Data>
@@ -160,12 +152,6 @@ class Example extends React.Component {
                         when it does, the above still doesn't update. That's
                         because during SSR, the data is not updated in the
                         rendered tree.
-                    </Body>
-                    <Strut size={Spacing.small_12} />
-                    <Body>
-                        If you click to remount after the data appears, we'll
-                        rerender with the now cached data, and above should
-                        update accordingly.
                     </Body>
                     <Strut size={Spacing.small_12} />
                     <BodyMonospace>{data}</BodyMonospace>

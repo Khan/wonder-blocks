@@ -15,6 +15,12 @@ export const resultFromCacheEntry = <TData: ValidData>(
     }
 
     const {data, error} = cacheEntry;
+    if (error != null) {
+        return {
+            status: "error",
+            error,
+        };
+    }
 
     if (data != null) {
         return {
@@ -23,16 +29,7 @@ export const resultFromCacheEntry = <TData: ValidData>(
         };
     }
 
-    if (error == null) {
-        // We should never get here ever.
-        return {
-            status: "error",
-            error: "Loaded result has invalid state where data and error are missing",
-        };
-    }
-
     return {
-        status: "error",
-        error,
+        status: "aborted",
     };
 };

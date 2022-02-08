@@ -14,8 +14,6 @@ import {RequestTracker} from "../../util/request-tracking.js";
 import InterceptData from "../intercept-data.js";
 import Data from "../data.js";
 
-import type {IRequestHandler} from "../../util/types.js";
-
 describe("Data", () => {
     beforeEach(() => {
         const responseCache = new ResponseCache();
@@ -51,47 +49,37 @@ describe("Data", () => {
                 ).mockReturnValueOnce(null);
             });
 
-            it("should make request for data on construction", () => {
+            it("should make request for data on construction", async () => {
                 // Arrange
-                const fulfillRequestSpy = jest.fn(() =>
-                    Promise.resolve("data"),
-                );
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: fulfillRequestSpy,
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const response = Promise.resolve("data");
+                const fakeHandler = jest.fn().mockReturnValue(response);
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 render(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <Data handler={fakeHandler} id="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
+                await act(() => response);
 
                 // Assert
-                expect(fulfillRequestSpy).toHaveBeenCalledWith("options");
-                expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
+                expect(fakeHandler).toHaveBeenCalledTimes(1);
             });
 
-            it("should initially render children with loading", () => {
+            it("should initially render children with loading", async () => {
                 // Arrange
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: () => Promise.resolve("data"),
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const response = Promise.resolve("data");
+                const fakeHandler = jest.fn().mockReturnValue(response);
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 render(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <Data handler={fakeHandler} id="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
+                await act(() => response);
 
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledWith({
@@ -101,32 +89,25 @@ describe("Data", () => {
 
             it("should share single request across all uses", () => {
                 // Arrange
-                const fulfillRequestSpy = jest.fn(
+                const fakeHandler = jest.fn(
                     () => new Promise((resolve, reject) => {}),
                 );
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: fulfillRequestSpy,
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 render(
                     <View>
-                        <Data handler={fakeHandler} options={"options"}>
+                        <Data handler={fakeHandler} id="ID">
                             {fakeChildrenFn}
                         </Data>
-                        <Data handler={fakeHandler} options={"options"}>
+                        <Data handler={fakeHandler} id="ID">
                             {fakeChildrenFn}
                         </Data>
                     </View>,
                 );
 
                 // Assert
-                expect(fulfillRequestSpy).toHaveBeenCalledWith("options");
-                expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
+                expect(fakeHandler).toHaveBeenCalledTimes(1);
             });
 
             it("should render with an error if the request rejects to an error", async () => {
@@ -135,18 +116,12 @@ describe("Data", () => {
                     RequestFulfillment.Default,
                     "fulfill",
                 );
-
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: () => Promise.reject(new Error("OH NOES!")),
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const fakeHandler = () => Promise.reject(new Error("OH NOES!"));
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 render(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <Data handler={fakeHandler} id="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -170,17 +145,12 @@ describe("Data", () => {
                     "fulfill",
                 );
 
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: () => Promise.resolve("YAY! DATA!"),
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const fakeHandler = () => Promise.resolve("YAY! DATA!");
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 render(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <Data handler={fakeHandler} id="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -197,115 +167,64 @@ describe("Data", () => {
                 });
             });
 
-            it("should render with an error if the request rejects", async () => {
-                // Arrange
-                const fulfillSpy = jest
-                    .spyOn(RequestFulfillment.Default, "fulfill")
-                    .mockReturnValue(Promise.reject("CATASTROPHE!"));
+            it.each`
+                error
+                ${"CATASTROPHE!"}
+                ${new Error("CATASTROPHE!")}
+            `(
+                "should render with an error if the request rejects with $error",
+                async ({error}) => {
+                    // Arrange
+                    const fulfillSpy = jest
+                        .spyOn(RequestFulfillment.Default, "fulfill")
+                        .mockReturnValue(Promise.reject(error));
 
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: () => Promise.resolve("YAY!"),
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
-                const fakeChildrenFn = jest.fn(() => null);
-                const consoleSpy = jest
-                    .spyOn(console, "error")
-                    .mockImplementation(() => {
-                        /* Just to shut it up */
+                    const fakeHandler = () => Promise.resolve("YAY!");
+                    const fakeChildrenFn = jest.fn(() => null);
+                    const consoleSpy = jest
+                        .spyOn(console, "error")
+                        .mockImplementation(() => {
+                            /* Just to shut it up */
+                        });
+
+                    // Act
+                    render(
+                        <Data handler={fakeHandler} id="ID">
+                            {fakeChildrenFn}
+                        </Data>,
+                    );
+                    /**
+                     * We wait for the fulfillment to reject.
+                     */
+                    await act(() =>
+                        fulfillSpy.mock.results[0].value.catch(() => {}),
+                    );
+
+                    // Assert
+                    expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
+                    expect(fakeChildrenFn).toHaveBeenLastCalledWith({
+                        status: "error",
+                        error: "CATASTROPHE!",
                     });
+                    expect(consoleSpy).toHaveBeenCalledWith(
+                        expect.stringMatching(
+                            "Unexpected error occurred during data fulfillment:(?: Error:)? CATASTROPHE!",
+                        ),
+                    );
+                },
+            );
 
-                // Act
-                render(
-                    <Data handler={fakeHandler} options={"options"}>
-                        {fakeChildrenFn}
-                    </Data>,
-                );
-                /**
-                 * We wait for the fulfillment to reject.
-                 */
-                await act(() =>
-                    fulfillSpy.mock.results[0].value.catch(() => {}),
-                );
-
-                // Assert
-                expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
-                expect(fakeChildrenFn).toHaveBeenLastCalledWith({
-                    status: "error",
-                    error: "CATASTROPHE!",
-                });
-                expect(consoleSpy).toHaveBeenCalledWith(
-                    "Unexpected error occurred during data fulfillment: CATASTROPHE!",
-                );
-            });
-
-            it("should render loading if the handler changes and request not cached", async () => {
-                // Arrange
-                const fulfillSpy = jest.spyOn(
-                    RequestFulfillment.Default,
-                    "fulfill",
-                );
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: () => Promise.reject(new Error("OH NOES!")),
-                    getKey: (o) => o,
-                    type: "TYPE1",
-                    hydrate: true,
-                };
-                const fakeHandler2: IRequestHandler<string, string> = {
-                    fulfillRequest: () =>
-                        new Promise(() => {
-                            /*pending*/
-                        }),
-                    getKey: (o) => o,
-                    type: "TYPE2",
-                    hydrate: true,
-                };
-                const fakeChildrenFn = jest.fn(() => null);
-                const wrapper = render(
-                    <Data handler={fakeHandler} options={"options"}>
-                        {fakeChildrenFn}
-                    </Data>,
-                );
-                // We want to make sure we render the error state so we can
-                // see our switch back to loading.
-                await act(() => fulfillSpy.mock.results[0].value);
-                // Clear out calls so everything is from the props change.
-                fulfillSpy.mockClear();
-                fakeChildrenFn.mockClear();
-
-                // Act
-                wrapper.rerender(
-                    <Data handler={fakeHandler2} options={"options"}>
-                        {fakeChildrenFn}
-                    </Data>,
-                );
-
-                // Assert
-                // Render 1: Caused by handler changed
-                // Render 2: Caused by result state changing to null
-                expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
-                expect(fakeChildrenFn).toHaveBeenLastCalledWith({
-                    status: "loading",
-                });
-            });
-
-            it("should start loading if the options key changes and is not cached", async () => {
+            it("should start loading if the id changes and request not cached", async () => {
                 // Arrange
                 const fulfillSpy = jest.spyOn(
                     RequestFulfillment.Default,
                     "fulfill",
                 );
 
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: () => Promise.resolve("HELLO!"),
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const fakeHandler = () => Promise.resolve("HELLO!");
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = render(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <Data handler={fakeHandler} id="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -317,7 +236,7 @@ describe("Data", () => {
 
                 // Act
                 wrapper.rerender(
-                    <Data handler={fakeHandler} options={"new-options"}>
+                    <Data handler={fakeHandler} id="NEW_ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -331,71 +250,151 @@ describe("Data", () => {
                 });
             });
 
+            it("should ignore resolution of pending handler fulfillment when id changes", async () => {
+                // Arrange
+                const oldRequest = Promise.resolve("OLD DATA");
+                const oldHandler = jest
+                    .fn()
+                    .mockReturnValueOnce(oldRequest)
+                    .mockReturnValue(
+                        new Promise(() => {
+                            /*let's have the new request remain pending*/
+                        }),
+                    );
+
+                // Act
+                const fakeChildrenFn = jest.fn(() => null);
+                const wrapper = render(
+                    <Data handler={oldHandler} id="ID">
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+                wrapper.rerender(
+                    <Data handler={oldHandler} id="NEW_ID">
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+                await act(() => oldRequest);
+
+                // Assert
+                expect(fakeChildrenFn).not.toHaveBeenCalledWith({
+                    status: "success",
+                    data: "OLD DATA",
+                });
+            });
+
+            it("should ignore rejection of pending handler fulfillment when id changes", async () => {
+                // Arrange
+                const oldRequest = Promise.reject(new Error("BOOM!"));
+                const oldHandler = jest
+                    .fn()
+                    .mockReturnValueOnce(oldRequest)
+                    .mockReturnValue(
+                        new Promise(() => {
+                            /*let's have the new request remain pending*/
+                        }),
+                    );
+
+                // Act
+                const fakeChildrenFn = jest.fn(() => null);
+                const wrapper = render(
+                    <Data handler={oldHandler} id="ID">
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+                wrapper.rerender(
+                    <Data handler={oldHandler} id="NEW_ID">
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+                await act(() =>
+                    oldRequest.catch(() => {
+                        /*ignore*/
+                    }),
+                );
+
+                // Assert
+                expect(fakeChildrenFn).not.toHaveBeenCalledWith({
+                    status: "error",
+                    error: "BOOM!",
+                });
+            });
+
+            it("should ignore catastrophic request fulfillment when id changes", async () => {
+                // Arrange
+                const catastrophe = Promise.reject("CATASTROPHE!");
+                jest.spyOn(
+                    RequestFulfillment.Default,
+                    "fulfill",
+                ).mockReturnValueOnce(catastrophe);
+                const oldHandler = jest.fn().mockResolvedValue("OLD DATA");
+
+                // Act
+                const fakeChildrenFn = jest.fn(() => null);
+                const wrapper = render(
+                    <Data handler={oldHandler} id="ID">
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+                wrapper.rerender(
+                    <Data handler={oldHandler} id="NEW_ID">
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+                await act(() =>
+                    catastrophe.catch(() => {
+                        /* ignore */
+                    }),
+                );
+
+                // Assert
+                expect(fakeChildrenFn).not.toHaveBeenCalledWith({
+                    status: "error",
+                    error: "CATASTROPHE!",
+                });
+            });
+
             describe("with data interceptor", () => {
                 it("should request data from interceptor", () => {
                     // Arrange
-                    const fulfillRequestSpy = jest
-                        .fn()
-                        .mockResolvedValue("data");
-                    const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: fulfillRequestSpy,
-                        getKey: (o) => o,
-                        type: "MY_HANDLER",
-                        hydrate: true,
-                    };
+                    const fakeHandler = jest.fn().mockResolvedValue("data");
                     const fakeChildrenFn = jest.fn(() => null);
-                    const fulfillRequestFn = jest.fn(() =>
-                        Promise.resolve("DATA!"),
-                    );
+                    const interceptHandler = jest
+                        .fn()
+                        .mockResolvedValue("INTERCEPTED DATA");
 
                     // Act
                     render(
-                        <InterceptData
-                            handler={fakeHandler}
-                            fulfillRequest={fulfillRequestFn}
-                        >
-                            <Data handler={fakeHandler} options={"options"}>
+                        <InterceptData id="ID" handler={interceptHandler}>
+                            <Data handler={fakeHandler} id="ID">
                                 {fakeChildrenFn}
                             </Data>
                         </InterceptData>,
                     );
 
                     // Assert
-                    expect(fulfillRequestFn).toHaveBeenCalledWith("options");
-                    expect(fulfillRequestFn).toHaveBeenCalledTimes(1);
-                    expect(fulfillRequestSpy).not.toHaveBeenCalled();
+                    expect(interceptHandler).toHaveBeenCalledTimes(1);
+                    expect(fakeHandler).not.toHaveBeenCalled();
                 });
 
                 it("should invoke handler method if interceptor method returns null", () => {
                     // Arrange
-                    const fulfillRequestSpy = jest
-                        .fn()
-                        .mockResolvedValue("data");
-                    const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: fulfillRequestSpy,
-                        getKey: (o) => o,
-                        type: "MY_HANDLER",
-                        hydrate: true,
-                    };
+                    const fakeHandler = jest.fn().mockResolvedValue("data");
                     const fakeChildrenFn = jest.fn(() => null);
-                    const fulfillRequestFn = jest.fn(() => null);
+                    const interceptHandler = jest.fn(() => null);
 
                     // Act
                     render(
-                        <InterceptData
-                            handler={fakeHandler}
-                            fulfillRequest={fulfillRequestFn}
-                        >
-                            <Data handler={fakeHandler} options={"options"}>
+                        <InterceptData handler={interceptHandler} id="ID">
+                            <Data handler={fakeHandler} id="ID">
                                 {fakeChildrenFn}
                             </Data>
                         </InterceptData>,
                     );
 
                     // Assert
-                    expect(fulfillRequestFn).toHaveBeenCalledWith("options");
-                    expect(fulfillRequestFn).toHaveBeenCalledTimes(1);
-                    expect(fulfillRequestSpy).toHaveBeenCalled();
+                    expect(interceptHandler).toHaveBeenCalledTimes(1);
+                    expect(fakeHandler).toHaveBeenCalledTimes(1);
                 });
             });
         });
@@ -406,24 +405,24 @@ describe("Data", () => {
                  * Each of these test cases will start out with some cached data
                  * retrieved.
                  */
-                jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue({
+                jest.spyOn(
+                    ResponseCache.Default,
+                    "getEntry",
+                    // Fake once because that's how the cache would work,
+                    // deleting the hydrated value as soon as it was used.
+                ).mockReturnValueOnce({
                     data: "YAY! DATA!",
                 });
             });
 
             it("should render first time with the cached data", () => {
                 // Arrange
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: () => Promise.resolve("data"),
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const fakeHandler = () => Promise.resolve("data");
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 render(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <Data handler={fakeHandler} id="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -433,6 +432,140 @@ describe("Data", () => {
                     status: "success",
                     data: "YAY! DATA!",
                 });
+            });
+
+            it("should retain old data while reloading if showOldDataWhileLoading is true", async () => {
+                // Arrange
+                const response1 = Promise.resolve("data1");
+                const response2 = Promise.resolve("data2");
+                const fakeHandler1 = () => response1;
+                const fakeHandler2 = () => response2;
+                const fakeChildrenFn = jest.fn(() => null);
+
+                // Act
+                const wrapper = render(
+                    <Data handler={fakeHandler1} id="ID">
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+                wrapper.rerender(
+                    <Data
+                        handler={fakeHandler2}
+                        id="ID"
+                        showOldDataWhileLoading={true}
+                    >
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+
+                // Assert
+                expect(fakeChildrenFn).not.toHaveBeenCalledWith({
+                    status: "loading",
+                });
+            });
+
+            it("should not request data when alwaysRequestOnHydration is false and cache has a valid data result", () => {
+                // Arrange
+                const fakeHandler = jest.fn().mockResolvedValue("data");
+                const fakeChildrenFn = jest.fn(() => null);
+
+                // Act
+                render(
+                    <Data
+                        handler={fakeHandler}
+                        id="ID"
+                        alwaysRequestOnHydration={false}
+                    >
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+
+                // Assert
+                expect(fakeHandler).not.toHaveBeenCalled();
+            });
+
+            it("should request data if cached data value is valid but alwaysRequestOnHydration is true", () => {
+                // Arrange
+                const fakeHandler = jest.fn().mockResolvedValue("data");
+                const fakeChildrenFn = jest.fn(() => null);
+
+                // Act
+                render(
+                    <Data
+                        handler={fakeHandler}
+                        id="ID"
+                        alwaysRequestOnHydration={true}
+                    >
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+
+                // Assert
+                expect(fakeHandler).toHaveBeenCalledTimes(1);
+            });
+        });
+
+        describe("with cached abort", () => {
+            beforeEach(() => {
+                /**
+                 * Each of these test cases will start out with a cached abort.
+                 */
+                jest.spyOn(
+                    ResponseCache.Default,
+                    "getEntry",
+                    // Fake once because that's how the cache would work,
+                    // deleting the hydrated value as soon as it was used.
+                ).mockReturnValueOnce({
+                    data: null,
+                });
+            });
+
+            it("should request data if cached data value is null (i.e. represents an aborted request)", () => {
+                // Arrange
+                const fakeHandler = jest.fn().mockResolvedValue("data");
+                const fakeChildrenFn = jest.fn(() => null);
+
+                // Act
+                render(
+                    <Data handler={fakeHandler} id="ID">
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+
+                // Assert
+                expect(fakeHandler).toHaveBeenCalledTimes(1);
+            });
+        });
+
+        describe("with cached error", () => {
+            beforeEach(() => {
+                /**
+                 * Each of these test cases will start out with a cached error.
+                 */
+                jest.spyOn(
+                    ResponseCache.Default,
+                    "getEntry",
+                    // Fake once because that's how the cache would work,
+                    // deleting the hydrated value as soon as it was used.
+                ).mockReturnValueOnce({
+                    error: "BOO! ERROR!",
+                });
+            });
+
+            it("should always request data if there's a cached error", () => {
+                // Arrange
+                const fakeHandler = jest.fn().mockResolvedValue("data");
+                const fakeChildrenFn = jest.fn(() => null);
+
+                // Act
+                render(
+                    <Data handler={fakeHandler} id="ID">
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+
+                // Assert
+                expect(fakeHandler).toHaveBeenCalledTimes(1);
             });
         });
     });
@@ -455,39 +588,28 @@ describe("Data", () => {
 
             it("should not request data", () => {
                 // Arrange
-                const fulfillRequestSpy = jest.fn().mockResolvedValue("data");
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: fulfillRequestSpy,
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const fakeHandler = jest.fn().mockResolvedValue("data");
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <Data handler={fakeHandler} id="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
 
                 // Assert
-                expect(fulfillRequestSpy).not.toHaveBeenCalled();
+                expect(fakeHandler).not.toHaveBeenCalled();
             });
 
             it("should render children with loading", () => {
                 // Arrange
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: () => Promise.resolve("data"),
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const fakeHandler = jest.fn().mockResolvedValue("data");
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <Data handler={fakeHandler} id="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -504,59 +626,47 @@ describe("Data", () => {
                     RequestTracker.Default,
                     "trackDataRequest",
                 );
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: () => Promise.resolve("data"),
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const fakeHandler = jest.fn().mockResolvedValue("data");
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 ReactDOMServer.renderToString(
                     <TrackData>
-                        <Data handler={fakeHandler} options={"options"}>
+                        <Data handler={fakeHandler} id="ID">
                             {fakeChildrenFn}
                         </Data>
                     </TrackData>,
                 );
 
                 // Assert
-                expect(trackSpy).toHaveBeenCalledWith(fakeHandler, "options");
+                expect(trackSpy).toHaveBeenCalledWith(
+                    "ID",
+                    expect.any(Function),
+                    true,
+                );
             });
 
             describe("with data interceptor", () => {
                 it("should not request data from the interceptor", () => {
                     // Arrange
-                    const fulfillRequestSpy = jest
-                        .fn()
-                        .mockResolvedValue("data");
-                    const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: fulfillRequestSpy,
-                        getKey: (o) => o,
-                        type: "MY_HANDLER",
-                        hydrate: true,
-                    };
+                    const fakeHandler = jest.fn().mockResolvedValue("data");
                     const fakeChildrenFn = jest.fn(() => null);
-                    const fulfillRequestFn = jest.fn(() =>
+                    const interceptedHandler = jest.fn(() =>
                         Promise.resolve("DATA!"),
                     );
 
                     // Act
                     ReactDOMServer.renderToString(
-                        <InterceptData
-                            handler={fakeHandler}
-                            fulfillRequest={fulfillRequestFn}
-                        >
-                            <Data handler={fakeHandler} options={"options"}>
+                        <InterceptData handler={interceptedHandler} id="ID">
+                            <Data handler={fakeHandler} id="ID">
                                 {fakeChildrenFn}
                             </Data>
                         </InterceptData>,
                     );
 
                     // Assert
-                    expect(fulfillRequestFn).not.toHaveBeenCalled();
-                    expect(fulfillRequestSpy).not.toHaveBeenCalled();
+                    expect(fakeHandler).not.toHaveBeenCalled();
+                    expect(interceptedHandler).not.toHaveBeenCalled();
                 });
 
                 it("should invoke the tracking call", () => {
@@ -565,30 +675,17 @@ describe("Data", () => {
                         RequestTracker.Default,
                         "trackDataRequest",
                     );
-                    const fakeHandler = {
-                        fulfillRequest: () => Promise.resolve("data"),
-                        getKey: (o) => o,
-                        type: "MY_HANDLER",
-                        hydrate: true,
-                    };
+                    const fakeHandler = jest.fn().mockResolvedValue("data");
                     const fakeChildrenFn = jest.fn(() => null);
-                    const fulfillRequestFn = jest.fn(() =>
-                        Promise.resolve("DATA!"),
-                    );
+                    const interceptedHandler = jest
+                        .fn()
+                        .mockResolvedValue("INTERCEPTED");
 
                     // Act
                     ReactDOMServer.renderToString(
                         <TrackData>
-                            <InterceptData
-                                handler={
-                                    (fakeHandler: IRequestHandler<
-                                        string,
-                                        string,
-                                    >)
-                                }
-                                fulfillRequest={fulfillRequestFn}
-                            >
-                                <Data handler={fakeHandler} options={"options"}>
+                            <InterceptData id="ID" handler={interceptedHandler}>
+                                <Data handler={fakeHandler} id="ID">
                                     {fakeChildrenFn}
                                 </Data>
                             </InterceptData>
@@ -597,13 +694,9 @@ describe("Data", () => {
 
                     // Assert
                     expect(trackSpy).toHaveBeenCalledWith(
-                        {
-                            fulfillRequest: expect.any(Function),
-                            getKey: expect.any(Function),
-                            type: "MY_HANDLER",
-                            hydrate: true,
-                        },
-                        "options",
+                        "ID",
+                        expect.any(Function),
+                        true,
                     );
                 });
             });
@@ -622,39 +715,28 @@ describe("Data", () => {
 
             it("should not request data", () => {
                 // Arrange
-                const fulfillRequestSpy = jest.fn().mockResolvedValue("data");
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: fulfillRequestSpy,
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const fakeHandler = jest.fn().mockResolvedValue("data");
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <Data handler={fakeHandler} id="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
 
                 // Assert
-                expect(fulfillRequestSpy).not.toHaveBeenCalled();
+                expect(fakeHandler).not.toHaveBeenCalled();
             });
 
             it("should render children with data", () => {
                 // Arrange
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: () => Promise.resolve("data"),
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const fakeHandler = jest.fn().mockResolvedValue("data");
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <Data handler={fakeHandler} id="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -671,17 +753,12 @@ describe("Data", () => {
                 jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue({
                     error: "OH NO! IT GO BOOM",
                 });
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: () => Promise.resolve("data"),
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const fakeHandler = jest.fn().mockResolvedValue("data");
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 ReactDOMServer.renderToString(
-                    <Data handler={fakeHandler} options={"options"}>
+                    <Data handler={fakeHandler} id="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -699,18 +776,13 @@ describe("Data", () => {
                     RequestTracker.Default,
                     "trackDataRequest",
                 );
-                const fakeHandler: IRequestHandler<string, string> = {
-                    fulfillRequest: () => Promise.resolve("data"),
-                    getKey: (o) => o,
-                    type: "MY_HANDLER",
-                    hydrate: true,
-                };
+                const fakeHandler = jest.fn().mockResolvedValue("data");
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
                 ReactDOMServer.renderToString(
                     <TrackData>
-                        <Data handler={fakeHandler} options={"options"}>
+                        <Data handler={fakeHandler} id="ID">
                             {fakeChildrenFn}
                         </Data>
                     </TrackData>,
@@ -726,35 +798,24 @@ describe("Data", () => {
             describe("with data interceptor", () => {
                 it("should not request data from interceptor", () => {
                     // Arrange
-                    const fulfillRequestSpy = jest
-                        .fn()
-                        .mockResolvedValue("data");
-                    const fakeHandler: IRequestHandler<string, string> = {
-                        fulfillRequest: fulfillRequestSpy,
-                        getKey: (o) => o,
-                        type: "MY_HANDLER",
-                        hydrate: true,
-                    };
+                    const fakeHandler = jest.fn().mockResolvedValue("data");
                     const fakeChildrenFn = jest.fn(() => null);
-                    const fulfillRequestFn = jest.fn(() =>
-                        Promise.resolve("data2"),
-                    );
+                    const interceptHandler = jest
+                        .fn()
+                        .mockResolvedValue("INTERCEPTED");
 
                     // Act
                     ReactDOMServer.renderToString(
-                        <InterceptData
-                            handler={fakeHandler}
-                            fulfillRequest={fulfillRequestFn}
-                        >
-                            <Data handler={fakeHandler} options={"options"}>
+                        <InterceptData handler={interceptHandler} id="ID">
+                            <Data handler={fakeHandler} id="ID">
                                 {fakeChildrenFn}
                             </Data>
                         </InterceptData>,
                     );
 
                     // Assert
-                    expect(fulfillRequestSpy).not.toHaveBeenCalled();
-                    expect(fulfillRequestFn).not.toHaveBeenCalled();
+                    expect(fakeHandler).not.toHaveBeenCalled();
+                    expect(interceptHandler).not.toHaveBeenCalled();
                 });
             });
         });

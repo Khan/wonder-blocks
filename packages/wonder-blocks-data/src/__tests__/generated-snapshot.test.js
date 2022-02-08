@@ -9,215 +9,18 @@ import renderer from "react-test-renderer";
 // Mock react-dom as jest doesn't like findDOMNode.
 jest.mock("react-dom");
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
-import {View, Server} from "@khanacademy/wonder-blocks-core";
+import {Server, View} from "@khanacademy/wonder-blocks-core";
 import {
-    Data,
-    RequestHandler,
-    initializeCache,
-    InterceptData,
     TrackData,
+    Data,
     fulfillAllDataRequests,
 } from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Button from "@khanacademy/wonder-blocks-button";
 
 describe("wonder-blocks-data", () => {
     it("example 1", () => {
-        class MyValidHandler extends RequestHandler {
-            constructor() {
-                super("CACHE_MISS_HANDLER_VALID");
-            }
-
-            fulfillRequest(options) {
-                return new Promise((resolve, reject) =>
-                    setTimeout(() => resolve("I'm DATA from a request"), 3000),
-                );
-            }
-        }
-
-        class MyInvalidHandler extends RequestHandler {
-            constructor() {
-                super("CACHE_MISS_HANDLER_ERROR");
-            }
-
-            fulfillRequest(options) {
-                return new Promise((resolve, reject) =>
-                    setTimeout(
-                        () => reject("I'm an ERROR from a request"),
-                        3000,
-                    ),
-                );
-            }
-        }
-
-        const valid = new MyValidHandler();
-        const invalid = new MyInvalidHandler();
-        const example = (
-            <View>
-                <View>
-                    <Body>This request will succeed and give us data!</Body>
-                    <Data
-                        handler={valid}
-                        options={{
-                            some: "options",
-                        }}
-                    >
-                        {({loading, data}) => {
-                            if (loading) {
-                                return "Loading...";
-                            }
-
-                            return <BodyMonospace>{data}</BodyMonospace>;
-                        }}
-                    </Data>
-                </View>
-                <Strut size={Spacing.small_12} />
-                <View>
-                    <Body>This request will go boom and give us an error!</Body>
-                    <Data
-                        handler={invalid}
-                        options={{
-                            some: "options",
-                        }}
-                    >
-                        {({loading, error}) => {
-                            if (loading) {
-                                return "Loading...";
-                            }
-
-                            return (
-                                <BodyMonospace
-                                    style={{
-                                        color: Color.red,
-                                    }}
-                                >
-                                    ERROR: {error}
-                                </BodyMonospace>
-                            );
-                        }}
-                    </Data>
-                </View>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    it("example 2", () => {
-        class MyHandler extends RequestHandler {
-            constructor() {
-                super("CACHE_HIT_HANDLER");
-            }
-            /**
-             * fulfillRequest should not get called as we already have data cached.
-             */
-
-            fulfillRequest(options) {
-                throw new Error(
-                    "If you're seeing this error, the examples are broken and data isn't in the cache that should be.",
-                );
-            }
-        }
-
-        const handler = new MyHandler();
-        initializeCache({
-            CACHE_HIT_HANDLER: {
-                DATA: {
-                    data: "I'm DATA from the hydration cache",
-                },
-                ERROR: {
-                    error: "I'm an ERROR from hydration cache",
-                },
-            },
-        });
-        const example = (
-            <View>
-                <View>
-                    <Body>This cache has data!</Body>
-                    <Data handler={handler} options={"DATA"}>
-                        {({loading, data}) => {
-                            if (loading) {
-                                return "If you see this, the example is broken!";
-                            }
-
-                            return <BodyMonospace>{data}</BodyMonospace>;
-                        }}
-                    </Data>
-                </View>
-                <Strut size={Spacing.small_12} />
-                <View>
-                    <Body>This cache has error!</Body>
-                    <Data handler={handler} options={"ERROR"}>
-                        {({loading, error}) => {
-                            if (loading) {
-                                return "If you see this, the example is broken!";
-                            }
-
-                            return (
-                                <BodyMonospace
-                                    style={{
-                                        color: Color.red,
-                                    }}
-                                >
-                                    ERROR: {error}
-                                </BodyMonospace>
-                            );
-                        }}
-                    </Data>
-                </View>
-            </View>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    it("example 3", () => {
-        class MyHandler extends RequestHandler {
-            constructor() {
-                super("INTERCEPT_DATA_HANDLER1");
-            }
-
-            fulfillRequest(options) {
-                return Promise.reject(new Error("You should not see this!"));
-            }
-        }
-
-        const handler = new MyHandler();
-
-        const fulfillRequestInterceptor = function (options) {
-            if (options === "DATA") {
-                return Promise.resolve("INTERCEPTED DATA!");
-            }
-
-            return null;
-        };
-
-        const example = (
-            <InterceptData
-                handler={handler}
-                fulfillRequest={fulfillRequestInterceptor}
-            >
-                <View>
-                    <Body>This received intercepted data!</Body>
-                    <Data handler={handler} options={"DATA"}>
-                        {({loading, data}) => {
-                            if (loading) {
-                                return "If you see this, the example is broken!";
-                            }
-
-                            return <BodyMonospace>{data}</BodyMonospace>;
-                        }}
-                    </Data>
-                </View>
-            </InterceptData>
-        );
-        const tree = renderer.create(example).toJSON();
-        expect(tree).toMatchSnapshot();
-    });
-
-    it("example 4", () => {
         class ErrorBoundary extends React.Component {
             constructor(props) {
                 super(props);
@@ -264,18 +67,11 @@ describe("wonder-blocks-data", () => {
         expect(tree).toMatchSnapshot();
     });
 
-    it("example 5", () => {
-        class MyPretendHandler extends RequestHandler {
-            constructor() {
-                super("MY_PRETEND_HANDLER");
-            }
-
-            fulfillRequest(options) {
-                return new Promise((resolve, reject) =>
-                    setTimeout(() => resolve("DATA!"), 3000),
-                );
-            }
-        }
+    it("example 2", () => {
+        const myPretendHandler = () =>
+            new Promise((resolve, reject) =>
+                setTimeout(() => resolve("DATA!"), 3000),
+            );
 
         class Example extends React.Component {
             constructor() {
@@ -286,7 +82,6 @@ describe("wonder-blocks-data", () => {
                  */
 
                 this.state = {};
-                this._handler = new MyPretendHandler();
             }
 
             static getDerivedStateFromError(error) {
@@ -344,7 +139,10 @@ describe("wonder-blocks-data", () => {
                     <React.Fragment>
                         <Strut size={Spacing.small_12} />
                         <TrackData>
-                            <Data handler={this._handler} options={{}}>
+                            <Data
+                                handler={myPretendHandler}
+                                id="TRACK_DATA_EXAMPLE"
+                            >
                                 {({loading, data, error}) => (
                                     <View>
                                         <BodyMonospace>{`Loading: ${loading}`}</BodyMonospace>
