@@ -11,7 +11,6 @@
  */
 const fs = require("fs");
 const path = require("path");
-const {type} = require("os");
 const marked = require("marked");
 const {parse} = require("@babel/core");
 const generate = require("@babel/generator").default;
@@ -376,8 +375,6 @@ function extractExamplesAndComponentsForFile(sourceFile, componentFileMap) {
                 node.declaration.name,
         )
         .join();
-
-    console.log(defaultExport);
 
     // Guard against files without default exports.
     if (!defaultExport) {
