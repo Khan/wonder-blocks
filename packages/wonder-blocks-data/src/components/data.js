@@ -5,7 +5,7 @@ import {Server} from "@khanacademy/wonder-blocks-core";
 import {RequestFulfillment} from "../util/request-fulfillment.js";
 import InterceptContext from "./intercept-context.js";
 import {useServerEffect} from "../hooks/use-server-effect.js";
-import {resultFromCachedResponse} from "../util/result-from-cache-entry.js";
+import {resultFromCachedResponse} from "../util/result-from-cache-response.js";
 
 import type {Result, ValidCacheData} from "../util/types.js";
 
