@@ -3,9 +3,9 @@ import * as React from "react";
 
 import InterceptContext from "./intercept-context.js";
 
-import type {ValidData} from "../util/types.js";
+import type {ValidCacheData} from "../util/types.js";
 
-type Props<TData: ValidData> = {|
+type Props<TData: ValidCacheData> = {|
     /**
      * The ID of the request to intercept.
      */
@@ -41,7 +41,7 @@ type Props<TData: ValidData> = {|
  * new instance will replace this interceptor for its children. All methods
  * will be replaced.
  */
-const InterceptData = <TData: ValidData>({
+const InterceptData = <TData: ValidCacheData>({
     requestId,
     handler,
     children,

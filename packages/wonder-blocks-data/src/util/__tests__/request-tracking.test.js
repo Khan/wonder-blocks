@@ -5,7 +5,7 @@ import "jest-enzyme";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {RequestTracker, TrackerContext} from "../request-tracking.js";
-import {ResponseCache} from "../response-cache.js";
+import {SsrCache} from "../ssr-cache.js";
 
 describe("../request-tracking.js", () => {
     describe("TrackerContext", () => {
@@ -36,7 +36,7 @@ describe("../request-tracking.js", () => {
              * We pass our own response cache instance so that the test cases
              * are not sharing the same default instance.
              */
-            new RequestTracker(new ResponseCache());
+            new RequestTracker(new SsrCache());
 
         describe("@Default", () => {
             it("should return an instance of RequestTracker", () => {

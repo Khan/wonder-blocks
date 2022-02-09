@@ -1,11 +1,11 @@
 // @flow
 import {KindError, Errors, clone} from "@khanacademy/wonder-stuff-core";
-import type {ValidData, ScopedCache} from "./types.js";
+import type {ValidCacheData, ScopedCache} from "./types.js";
 
 /**
  * Describe an in-memory cache.
  */
-export class InMemoryCache {
+export class ScopedInMemoryCache {
     _cache: ScopedCache;
 
     constructor(initialCache: ScopedCache = Object.freeze({})) {
@@ -31,40 +31,43 @@ export class InMemoryCache {
     /**
      * Set a value in the cache.
      */
-    set: <TValue: ValidData>(scope: string, id: string, value: TValue) => void =
-        <TValue: ValidData>(scope, id, value: TValue): void => {
-            if (!id || typeof id !== "string") {
-                throw new KindError(
-                    "id must be non-empty string",
-                    Errors.InvalidInput,
-                );
-            }
+    set: <TValue: ValidCacheData>(
+        scope: string,
+        id: string,
+        value: TValue,
+    ) => void = <TValue: ValidCacheData>(scope, id, value: TValue): void => {
+        if (!id || typeof id !== "string") {
+            throw new KindError(
+                "id must be non-empty string",
+                Errors.InvalidInput,
+            );
+        }
 
-            if (!scope || typeof scope !== "string") {
-                throw new KindError(
-                    "scope must be non-empty string",
-                    Errors.InvalidInput,
-                );
-            }
+        if (!scope || typeof scope !== "string") {
+            throw new KindError(
+                "scope must be non-empty string",
+                Errors.InvalidInput,
+            );
+        }
 
-            if (typeof value === "function") {
-                throw new KindError(
-                    "value must be a non-function value",
-                    Errors.InvalidInput,
-                );
-            }
+        if (typeof value === "function") {
+            throw new KindError(
+                "value must be a non-function value",
+                Errors.InvalidInput,
+            );
+        }
 
-            this._cache[scope] = this._cache[scope] ?? {};
-            this._cache[scope][id] = Object.freeze(clone(value));
-        };
+        this._cache[scope] = this._cache[scope] ?? {};
+        this._cache[scope][id] = Object.freeze(clone(value));
+    };
 
     /**
      * Retrieve a value from the cache.
      */
-    get: (scope: string, id: string) => ?ValidData = (
+    get: (scope: string, id: string) => ?ValidCacheData = (
         scope,
         id,
-    ): ?ValidData => {
+    ): ?ValidCacheData => {
         return this._cache[scope]?.[id] ?? null;
     };
 
@@ -88,7 +91,7 @@ export class InMemoryCache {
      */
     purgeScope: (
         scope: string,
-        predicate?: (id: string, value: ValidData) => boolean,
+        predicate?: (id: string, value: ValidCacheData) => boolean,
     ) => void = (scope, predicate) => {
         if (!this._cache[scope]) {
             return;
@@ -115,7 +118,11 @@ export class InMemoryCache {
      * If the predicate is omitted, then all items in the cache are purged.
      */
     purgeAll: (
-        predicate?: (scope: string, id: string, value: ValidData) => boolean,
+        predicate?: (
+            scope: string,
+            id: string,
+            value: ValidCacheData,
+        ) => boolean,
     ) => void = (predicate) => {
         if (predicate == null) {
             this._cache = {};

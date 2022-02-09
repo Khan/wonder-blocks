@@ -5,15 +5,15 @@ import {Server} from "@khanacademy/wonder-blocks-core";
 import {RequestFulfillment} from "../util/request-fulfillment.js";
 import InterceptContext from "./intercept-context.js";
 import {useServerEffect} from "../hooks/use-server-effect.js";
-import {resultFromCacheEntry} from "../util/result-from-cache-entry.js";
+import {resultFromCachedResponse} from "../util/result-from-cache-response.js";
 
-import type {Result, ValidData} from "../util/types.js";
+import type {Result, ValidCacheData} from "../util/types.js";
 
 type Props<
     /**
      * The type of data resolved by the handler's fulfillRequest method.
      */
-    TData: ValidData,
+    TData: ValidCacheData,
 > = {|
     /**
      * A unique identifier for the request.
@@ -72,7 +72,7 @@ type Props<
  * requirements can be placed in a React application in a manner that will
  * support server-side rendering and efficient caching.
  */
-const Data = <TData: ValidData>({
+const Data = <TData: ValidCacheData>({
     requestId,
     handler,
     children,
@@ -180,7 +180,7 @@ const Data = <TData: ValidData>({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [requestId]);
 
-    return children(resultFromCacheEntry(currentResult));
+    return children(resultFromCachedResponse(currentResult));
 };
 
 export default Data;

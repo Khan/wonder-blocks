@@ -1,11 +1,11 @@
 // @flow
-import type {ValidData, CacheEntry, Result} from "./types.js";
+import type {ValidCacheData, CachedResponse, Result} from "./types.js";
 
 /**
  * Turns a cache entry into a stateful result.
  */
-export const resultFromCacheEntry = <TData: ValidData>(
-    cacheEntry: ?CacheEntry<TData>,
+export const resultFromCachedResponse = <TData: ValidCacheData>(
+    cacheEntry: ?CachedResponse<TData>,
 ): Result<TData> => {
     // No cache entry means we didn't load one yet.
     if (cacheEntry == null) {

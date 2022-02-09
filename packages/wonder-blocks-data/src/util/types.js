@@ -5,12 +5,17 @@
  * We disallow functions and undefined as undefined represents a cache miss
  * and functions are not allowed.
  */
-export type ValidData = string | boolean | number | {...} | Array<?ValidData>;
+export type ValidCacheData =
+    | string
+    | boolean
+    | number
+    | {...}
+    | Array<?ValidCacheData>;
 
 /**
  * The normalized result of a request.
  */
-export type Result<TData: ValidData> =
+export type Result<TData: ValidCacheData> =
     | {|
           status: "loading",
       |}
@@ -29,7 +34,7 @@ export type Result<TData: ValidData> =
 /**
  * A cache entry for a fulfilled request response.
  */
-export type CacheEntry<TData: ValidData> =
+export type CachedResponse<TData: ValidCacheData> =
     | {|
           +error: string,
           +data?: void,
@@ -39,16 +44,11 @@ export type CacheEntry<TData: ValidData> =
           +error?: void,
       |};
 
-export type InterceptContextData = {
-    [id: string]: <TData: ValidData>() => ?Promise<?TData>,
-    ...
-};
-
 /**
  * A cache of fulfilled request responses.
  */
-export type Cache = {
-    [key: string]: CacheEntry<any>,
+export type ResponseCache = {
+    [key: string]: CachedResponse<any>,
     ...
 };
 
@@ -63,10 +63,8 @@ export type ScopedCache = {
         /**
          * Each value in the cache is then identified within a given scope.
          */
-        [id: string]: ValidData,
+        [id: string]: ValidCacheData,
         ...
     },
     ...
 };
-
-export type ResponseCache = $ReadOnly<Cache>;

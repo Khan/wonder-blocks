@@ -9,17 +9,15 @@ import {Server, View} from "@khanacademy/wonder-blocks-core";
 
 import TrackData from "../track-data.js";
 import {RequestFulfillment} from "../../util/request-fulfillment.js";
-import {ResponseCache} from "../../util/response-cache.js";
+import {SsrCache} from "../../util/ssr-cache.js";
 import {RequestTracker} from "../../util/request-tracking.js";
 import InterceptData from "../intercept-data.js";
 import Data from "../data.js";
 
 describe("Data", () => {
     beforeEach(() => {
-        const responseCache = new ResponseCache();
-        jest.spyOn(ResponseCache, "Default", "get").mockReturnValue(
-            responseCache,
-        );
+        const responseCache = new SsrCache();
+        jest.spyOn(SsrCache, "Default", "get").mockReturnValue(responseCache);
         jest.spyOn(RequestFulfillment, "Default", "get").mockReturnValue(
             new RequestFulfillment(responseCache),
         );
@@ -43,10 +41,9 @@ describe("Data", () => {
                  * Each of these test cases will not have cached data to be
                  * retrieved in the beginning.
                  */
-                jest.spyOn(
-                    ResponseCache.Default,
-                    "getEntry",
-                ).mockReturnValueOnce(null);
+                jest.spyOn(SsrCache.Default, "getEntry").mockReturnValueOnce(
+                    null,
+                );
             });
 
             it("should make request for data on construction", async () => {
@@ -412,7 +409,7 @@ describe("Data", () => {
                  * retrieved.
                  */
                 jest.spyOn(
-                    ResponseCache.Default,
+                    SsrCache.Default,
                     "getEntry",
                     // Fake once because that's how the cache would work,
                     // deleting the hydrated value as soon as it was used.
@@ -521,7 +518,7 @@ describe("Data", () => {
                  * Each of these test cases will start out with a cached abort.
                  */
                 jest.spyOn(
-                    ResponseCache.Default,
+                    SsrCache.Default,
                     "getEntry",
                     // Fake once because that's how the cache would work,
                     // deleting the hydrated value as soon as it was used.
@@ -553,7 +550,7 @@ describe("Data", () => {
                  * Each of these test cases will start out with a cached error.
                  */
                 jest.spyOn(
-                    ResponseCache.Default,
+                    SsrCache.Default,
                     "getEntry",
                     // Fake once because that's how the cache would work,
                     // deleting the hydrated value as soon as it was used.
@@ -591,9 +588,7 @@ describe("Data", () => {
                  * Each of these test cases will never have cached data
                  * retrieved.
                  */
-                jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue(
-                    null,
-                );
+                jest.spyOn(SsrCache.Default, "getEntry").mockReturnValue(null);
             });
 
             it("should not request data", () => {
@@ -724,7 +719,7 @@ describe("Data", () => {
                  * Each of these test cases will start out with some cached data
                  * retrieved.
                  */
-                jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue({
+                jest.spyOn(SsrCache.Default, "getEntry").mockReturnValue({
                     data: "YAY! DATA!",
                 });
             });
@@ -766,7 +761,7 @@ describe("Data", () => {
 
             it("should render children with error", () => {
                 // Arrange
-                jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValue({
+                jest.spyOn(SsrCache.Default, "getEntry").mockReturnValue({
                     error: "OH NO! IT GO BOOM",
                 });
                 const fakeHandler = jest.fn().mockResolvedValue("data");
