@@ -1,7 +1,7 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {SsrCache} from "../ssr-cache.js";
-import {InMemoryCache} from "../in-memory-cache.js";
+import {ScopedInMemoryCache} from "../scoped-in-memory-cache.js";
 
 describe("../ssr-cache.js", () => {
     afterEach(() => {
@@ -56,7 +56,7 @@ describe("../ssr-cache.js", () => {
 
         it("should throw if the cache is already intialized", () => {
             // Arrange
-            const internalCache = new InMemoryCache({
+            const internalCache = new ScopedInMemoryCache({
                 MY_KEY: {data: "THE_DATA"},
             });
             const cache = new SsrCache(internalCache);
@@ -95,7 +95,7 @@ describe("../ssr-cache.js", () => {
         describe("when client-side", () => {
             it("should not store the entry in the hydration cache", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
                 const cache = new SsrCache(hydrationCache);
                 const hydrationStoreSpy = jest.spyOn(hydrationCache, "set");
 
@@ -108,8 +108,8 @@ describe("../ssr-cache.js", () => {
 
             it("should not store the entry in the ssrOnly cache", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
-                const ssrOnlyCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
+                const ssrOnlyCache = new ScopedInMemoryCache();
                 const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                 const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "set");
 
@@ -129,7 +129,7 @@ describe("../ssr-cache.js", () => {
             describe("when hydrate is true", () => {
                 it("should store the entry in the hydration cache", () => {
                     // Arrange
-                    const hydrationCache = new InMemoryCache();
+                    const hydrationCache = new ScopedInMemoryCache();
                     const cache = new SsrCache(hydrationCache);
                     const hydrationStoreSpy = jest.spyOn(hydrationCache, "set");
 
@@ -148,8 +148,8 @@ describe("../ssr-cache.js", () => {
 
                 it("should not store the entry in the ssrOnly cache", () => {
                     // Arrange
-                    const hydrationCache = new InMemoryCache();
-                    const ssrOnlyCache = new InMemoryCache();
+                    const hydrationCache = new ScopedInMemoryCache();
+                    const ssrOnlyCache = new ScopedInMemoryCache();
                     const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                     const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "set");
 
@@ -164,8 +164,8 @@ describe("../ssr-cache.js", () => {
             describe("when hydrate is false", () => {
                 it("should store the entry in the ssr-only cache", () => {
                     // Arrange
-                    const hydrationCache = new InMemoryCache();
-                    const ssrOnlyCache = new InMemoryCache();
+                    const hydrationCache = new ScopedInMemoryCache();
+                    const ssrOnlyCache = new ScopedInMemoryCache();
                     const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                     const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "set");
 
@@ -184,8 +184,8 @@ describe("../ssr-cache.js", () => {
 
                 it("should not store the entry in the hydration cache", () => {
                     // Arrange
-                    const hydrationCache = new InMemoryCache();
-                    const ssrOnlyCache = new InMemoryCache();
+                    const hydrationCache = new ScopedInMemoryCache();
+                    const ssrOnlyCache = new ScopedInMemoryCache();
                     const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                     const hydrationStoreSpy = jest.spyOn(hydrationCache, "set");
 
@@ -203,7 +203,7 @@ describe("../ssr-cache.js", () => {
         describe("when client-side", () => {
             it("should not store the entry in the hydration cache", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
                 const cache = new SsrCache(hydrationCache);
                 const hydrationStoreSpy = jest.spyOn(hydrationCache, "set");
 
@@ -216,8 +216,8 @@ describe("../ssr-cache.js", () => {
 
             it("should not store the entry in the ssrOnly cache", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
-                const ssrOnlyCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
+                const ssrOnlyCache = new ScopedInMemoryCache();
                 const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                 const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "set");
 
@@ -237,7 +237,7 @@ describe("../ssr-cache.js", () => {
             describe("when hydrate is true", () => {
                 it("should store the entry in the hydration cache", () => {
                     // Arrange
-                    const hydrationCache = new InMemoryCache();
+                    const hydrationCache = new ScopedInMemoryCache();
                     const cache = new SsrCache(hydrationCache);
                     const hydrationStoreSpy = jest.spyOn(hydrationCache, "set");
 
@@ -256,8 +256,8 @@ describe("../ssr-cache.js", () => {
 
                 it("should not store the entry in the ssrOnly cache", () => {
                     // Arrange
-                    const hydrationCache = new InMemoryCache();
-                    const ssrOnlyCache = new InMemoryCache();
+                    const hydrationCache = new ScopedInMemoryCache();
+                    const ssrOnlyCache = new ScopedInMemoryCache();
                     const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                     const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "set");
 
@@ -272,8 +272,8 @@ describe("../ssr-cache.js", () => {
             describe("when hydrate is false", () => {
                 it("should store the entry in the ssr-only cache", () => {
                     // Arrange
-                    const hydrationCache = new InMemoryCache();
-                    const ssrOnlyCache = new InMemoryCache();
+                    const hydrationCache = new ScopedInMemoryCache();
+                    const ssrOnlyCache = new ScopedInMemoryCache();
                     const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                     const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "set");
 
@@ -292,8 +292,8 @@ describe("../ssr-cache.js", () => {
 
                 it("should not store the entry in the hydration cache", () => {
                     // Arrange
-                    const hydrationCache = new InMemoryCache();
-                    const ssrOnlyCache = new InMemoryCache();
+                    const hydrationCache = new ScopedInMemoryCache();
+                    const ssrOnlyCache = new ScopedInMemoryCache();
                     const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                     const hydrationStoreSpy = jest.spyOn(hydrationCache, "set");
 
@@ -315,7 +315,7 @@ describe("../ssr-cache.js", () => {
 
             it("should return null if not in the hydration cache", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
                 jest.spyOn(hydrationCache, "get").mockReturnValue(null);
                 const cache = new SsrCache(hydrationCache);
 
@@ -328,7 +328,7 @@ describe("../ssr-cache.js", () => {
 
             it("should return the cached entry if in the hydration cache", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
                 jest.spyOn(hydrationCache, "get").mockReturnValue({
                     data: "data!",
                 });
@@ -349,8 +349,8 @@ describe("../ssr-cache.js", () => {
 
             it("should return null in any cache", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
-                const ssrOnlyCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
+                const ssrOnlyCache = new ScopedInMemoryCache();
                 const cache = new SsrCache(hydrationCache, ssrOnlyCache);
 
                 // Act
@@ -362,7 +362,7 @@ describe("../ssr-cache.js", () => {
 
             it("should return the cached entry if in the hydration cache", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
                 jest.spyOn(hydrationCache, "get").mockReturnValue({
                     data: "data!",
                 });
@@ -377,8 +377,8 @@ describe("../ssr-cache.js", () => {
 
             it("should return the cached entry if in the ssr-only cache", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
-                const ssrOnlyCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
+                const ssrOnlyCache = new ScopedInMemoryCache();
                 jest.spyOn(ssrOnlyCache, "get").mockReturnValue({
                     data: "data!",
                 });
@@ -396,8 +396,8 @@ describe("../ssr-cache.js", () => {
     describe("#remove", () => {
         it("should return false if nothing was removed", () => {
             // Arrange
-            const hydrationCache = new InMemoryCache();
-            const ssrOnlycache = new InMemoryCache();
+            const hydrationCache = new ScopedInMemoryCache();
+            const ssrOnlycache = new ScopedInMemoryCache();
             jest.spyOn(hydrationCache, "purge").mockReturnValue(false);
             jest.spyOn(ssrOnlycache, "purge").mockReturnValue(false);
             const cache = new SsrCache(hydrationCache, ssrOnlycache);
@@ -411,7 +411,7 @@ describe("../ssr-cache.js", () => {
 
         it("should return true if something was removed from hydration cache", () => {
             // Arrange
-            const hydrationCache = new InMemoryCache();
+            const hydrationCache = new ScopedInMemoryCache();
             jest.spyOn(hydrationCache, "purge").mockReturnValue(true);
             const cache = new SsrCache(hydrationCache);
 
@@ -429,8 +429,8 @@ describe("../ssr-cache.js", () => {
 
             it("should return true if something was removed from ssr-only cache", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
-                const ssrOnlyCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
+                const ssrOnlyCache = new ScopedInMemoryCache();
                 jest.spyOn(ssrOnlyCache, "purge").mockReturnValue(true);
                 const cache = new SsrCache(hydrationCache, ssrOnlyCache);
 
@@ -446,7 +446,7 @@ describe("../ssr-cache.js", () => {
     describe("#cloneHydratableData", () => {
         it("should clone the hydration cache", () => {
             // Arrange
-            const hydrationCache = new InMemoryCache();
+            const hydrationCache = new ScopedInMemoryCache();
             const cloneSpy = jest
                 .spyOn(hydrationCache, "clone")
                 .mockReturnValue({
@@ -475,7 +475,7 @@ describe("../ssr-cache.js", () => {
 
             it("should remove all entries from the hydration cache when client-side without predicate", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
                 const purgeAllSpy = jest.spyOn(hydrationCache, "purgeAll");
                 const cache = new SsrCache(hydrationCache);
 
@@ -488,9 +488,12 @@ describe("../ssr-cache.js", () => {
 
             it("should pass a predicate to hydration cache purge if a predicate is passed", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
                 const purgeAllSpy = jest.spyOn(hydrationCache, "purgeAll");
-                const cache = new SsrCache(hydrationCache, new InMemoryCache());
+                const cache = new SsrCache(
+                    hydrationCache,
+                    new ScopedInMemoryCache(),
+                );
 
                 // Act
                 cache.removeAll(() => true);
@@ -501,14 +504,17 @@ describe("../ssr-cache.js", () => {
 
             it("should pass a predicate to the hydration cache that calls the predicate it was given", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache({
+                const hydrationCache = new ScopedInMemoryCache({
                     default: {
                         KEY1: {
                             data: "DATA",
                         },
                     },
                 });
-                const cache = new SsrCache(hydrationCache, new InMemoryCache());
+                const cache = new SsrCache(
+                    hydrationCache,
+                    new ScopedInMemoryCache(),
+                );
                 const predicate = jest.fn().mockReturnValue(false);
 
                 // Act
@@ -526,12 +532,15 @@ describe("../ssr-cache.js", () => {
 
             it("should remove all entries from hydration cache when server-side without predicate", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
                 const hydrationPurgeAllSpy = jest.spyOn(
                     hydrationCache,
                     "purgeAll",
                 );
-                const cache = new SsrCache(hydrationCache, new InMemoryCache());
+                const cache = new SsrCache(
+                    hydrationCache,
+                    new ScopedInMemoryCache(),
+                );
 
                 // Act
                 cache.removeAll();
@@ -542,9 +551,12 @@ describe("../ssr-cache.js", () => {
 
             it("should remove all entries from ssr cache when server-side without predicate", () => {
                 // Arrange
-                const ssrOnlyCache = new InMemoryCache();
+                const ssrOnlyCache = new ScopedInMemoryCache();
                 const ssrPurgeAllSpy = jest.spyOn(ssrOnlyCache, "purgeAll");
-                const cache = new SsrCache(new InMemoryCache(), ssrOnlyCache);
+                const cache = new SsrCache(
+                    new ScopedInMemoryCache(),
+                    ssrOnlyCache,
+                );
 
                 // Act
                 cache.removeAll();
@@ -555,9 +567,12 @@ describe("../ssr-cache.js", () => {
 
             it("should pass a predicate to hydration cache purge if a predicate is passed", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
+                const hydrationCache = new ScopedInMemoryCache();
                 const purgeAllSpy = jest.spyOn(hydrationCache, "purgeAll");
-                const cache = new SsrCache(hydrationCache, new InMemoryCache());
+                const cache = new SsrCache(
+                    hydrationCache,
+                    new ScopedInMemoryCache(),
+                );
 
                 // Act
                 cache.removeAll(() => true);
@@ -568,9 +583,12 @@ describe("../ssr-cache.js", () => {
 
             it("should pass a predicate to srr cache purge if a predicate is passed", () => {
                 // Arrange
-                const ssrOnlyCache = new InMemoryCache();
+                const ssrOnlyCache = new ScopedInMemoryCache();
                 const purgeAllSpy = jest.spyOn(ssrOnlyCache, "purgeAll");
-                const cache = new SsrCache(new InMemoryCache(), ssrOnlyCache);
+                const cache = new SsrCache(
+                    new ScopedInMemoryCache(),
+                    ssrOnlyCache,
+                );
 
                 // Act
                 cache.removeAll(() => true);
@@ -581,8 +599,11 @@ describe("../ssr-cache.js", () => {
 
             it("should pass a predicate to the hydration cache that calls the predicate it was given", () => {
                 // Arrange
-                const hydrationCache = new InMemoryCache();
-                const cache = new SsrCache(hydrationCache, new InMemoryCache());
+                const hydrationCache = new ScopedInMemoryCache();
+                const cache = new SsrCache(
+                    hydrationCache,
+                    new ScopedInMemoryCache(),
+                );
                 cache.cacheData("KEY1", "DATA", true);
                 const predicate = jest.fn().mockReturnValue(false);
 
@@ -595,8 +616,11 @@ describe("../ssr-cache.js", () => {
 
             it("should pass a predicate to the ssr cache that calls the predicate it was given", () => {
                 // Arrange
-                const ssrOnlyCache = new InMemoryCache();
-                const cache = new SsrCache(new InMemoryCache(), ssrOnlyCache);
+                const ssrOnlyCache = new ScopedInMemoryCache();
+                const cache = new SsrCache(
+                    new ScopedInMemoryCache(),
+                    ssrOnlyCache,
+                );
                 cache.cacheData(
                     "KEY1",
                     "DATA",

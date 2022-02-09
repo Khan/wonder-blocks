@@ -50,7 +50,7 @@ export {default as Data} from "./components/data.js";
 export {default as InterceptData} from "./components/intercept-data.js";
 export {useServerEffect} from "./hooks/use-server-effect.js";
 export {useSharedCache, clearSharedCache} from "./hooks/use-shared-cache.js";
-export {InMemoryCache} from "./util/in-memory-cache.js";
+export {ScopedInMemoryCache} from "./util/scoped-in-memory-cache.js";
 
 // GraphQL
 export {GqlRouter} from "./components/gql-router.js";

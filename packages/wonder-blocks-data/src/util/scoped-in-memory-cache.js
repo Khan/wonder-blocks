@@ -5,7 +5,7 @@ import type {ValidCacheData, ScopedCache} from "./types.js";
 /**
  * Describe an in-memory cache.
  */
-export class InMemoryCache {
+export class ScopedInMemoryCache {
     _cache: ScopedCache;
 
     constructor(initialCache: ScopedCache = Object.freeze({})) {

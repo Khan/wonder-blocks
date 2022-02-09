@@ -1,6 +1,6 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {InMemoryCache} from "./in-memory-cache.js";
+import {ScopedInMemoryCache} from "./scoped-in-memory-cache.js";
 
 import type {ValidCacheData, CachedResponse, ResponseCache} from "./types.js";
 
@@ -25,17 +25,17 @@ export class SsrCache {
         return _default;
     }
 
-    _hydrationCache: InMemoryCache;
-    _ssrOnlyCache: ?InMemoryCache;
+    _hydrationCache: ScopedInMemoryCache;
+    _ssrOnlyCache: ?ScopedInMemoryCache;
 
     constructor(
-        hydrationCache: ?InMemoryCache = null,
-        ssrOnlyCache: ?InMemoryCache = null,
+        hydrationCache: ?ScopedInMemoryCache = null,
+        ssrOnlyCache: ?ScopedInMemoryCache = null,
     ) {
         this._ssrOnlyCache = Server.isServerSide()
-            ? ssrOnlyCache || new InMemoryCache()
+            ? ssrOnlyCache || new ScopedInMemoryCache()
             : undefined;
-        this._hydrationCache = hydrationCache || new InMemoryCache();
+        this._hydrationCache = hydrationCache || new ScopedInMemoryCache();
     }
 
     _setCachedResponse<TData: ValidCacheData>(
@@ -70,7 +70,7 @@ export class SsrCache {
                 "Cannot initialize data response cache more than once",
             );
         }
-        this._hydrationCache = new InMemoryCache({
+        this._hydrationCache = new ScopedInMemoryCache({
             // $FlowIgnore[incompatible-call]
             [DefaultScope]: source,
         });

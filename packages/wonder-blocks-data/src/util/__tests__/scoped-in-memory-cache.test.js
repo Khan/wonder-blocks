@@ -1,8 +1,8 @@
 // @flow
 import * as WSCore from "@khanacademy/wonder-stuff-core";
-import {InMemoryCache} from "../in-memory-cache.js";
+import {ScopedInMemoryCache} from "../scoped-in-memory-cache.js";
 
-describe("InMemoryCache", () => {
+describe("ScopedInMemoryCache", () => {
     describe("#constructor", () => {
         it("should clone the passed source data", () => {
             // Arrange
@@ -13,7 +13,7 @@ describe("InMemoryCache", () => {
             };
 
             // Act
-            const cache = new InMemoryCache(sourceData);
+            const cache = new ScopedInMemoryCache(sourceData);
             // Try to mutate the cache.
             sourceData["scope"] = {key: "SOME_NEW_DATA"};
             const result = cache.get("scope", "key");
@@ -30,7 +30,7 @@ describe("InMemoryCache", () => {
 
             // Act
             const underTest = () =>
-                new InMemoryCache({
+                new ScopedInMemoryCache({
                     scope: {
                         BAD: "FOOD",
                     },
@@ -52,7 +52,7 @@ describe("InMemoryCache", () => {
             ${() => "BOO"}
         `("should throw if the id is $id", ({id}) => {
             // Arrange
-            const cache = new InMemoryCache();
+            const cache = new ScopedInMemoryCache();
 
             // Act
             const underTest = () => cache.set("scope", id, "value");
@@ -69,7 +69,7 @@ describe("InMemoryCache", () => {
             ${() => "BOO"}
         `("should throw if the scope is $scope", ({scope}) => {
             // Arrange
-            const cache = new InMemoryCache();
+            const cache = new ScopedInMemoryCache();
 
             // Act
             const underTest = () => cache.set(scope, "key", "value");
@@ -80,7 +80,7 @@ describe("InMemoryCache", () => {
 
         it("should throw if the value is a function", () => {
             // Arrange
-            const cache = new InMemoryCache();
+            const cache = new ScopedInMemoryCache();
 
             // Act
             const underTest = () => cache.set("scope", "key", () => "value");
@@ -91,7 +91,7 @@ describe("InMemoryCache", () => {
 
         it("should store the entry in the cache", () => {
             // Arrange
-            const cache = new InMemoryCache();
+            const cache = new ScopedInMemoryCache();
 
             // Act
             cache.set("scope", "key", "data");
@@ -103,7 +103,7 @@ describe("InMemoryCache", () => {
 
         it("should replace the entry in the cache", () => {
             // Arrange
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope: {
                     key: "data",
                 },
@@ -121,7 +121,7 @@ describe("InMemoryCache", () => {
     describe("#retrieve", () => {
         it("should return null if the scope is not cached", () => {
             // Arrange
-            const cache = new InMemoryCache();
+            const cache = new ScopedInMemoryCache();
 
             // Act
             const result = cache.get("scope", "key");
@@ -132,7 +132,7 @@ describe("InMemoryCache", () => {
 
         it("should return null if the value is not in the cache scope", () => {
             // Arrange
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope: {
                     key1: "data",
                 },
@@ -147,7 +147,7 @@ describe("InMemoryCache", () => {
 
         it("should return the entry if it exists", () => {
             // Arrange
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope: {key: "value"},
             });
 
@@ -162,7 +162,7 @@ describe("InMemoryCache", () => {
     describe("#purge", () => {
         it("should remove the entry", () => {
             // Arrange
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope1: {
                     key1: "data1",
                     key2: "data2",
@@ -190,7 +190,7 @@ describe("InMemoryCache", () => {
         });
 
         it("should remove the entire scope if the purged item is the last item in the scope", () => {
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope1: {
                     key2: "data2",
                 },
@@ -217,7 +217,7 @@ describe("InMemoryCache", () => {
     describe("#purgeScope", () => {
         it("should remove matching entries only", () => {
             // Arrange
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope1: {
                     key1: "a",
                     key2: "b",
@@ -249,7 +249,7 @@ describe("InMemoryCache", () => {
 
         it("should remove the entire scope when there is no predicate", () => {
             // Arrange
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope1: {
                     key1: "data1",
                     key2: "data2",
@@ -275,7 +275,7 @@ describe("InMemoryCache", () => {
 
         it("should not throw if the scope does not exist", () => {
             // Arrange
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope1: {
                     key1: "data1",
                 },
@@ -291,7 +291,7 @@ describe("InMemoryCache", () => {
 
     describe("#purgeAll", () => {
         it("should remove matching entries only", () => {
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope1: {key: "2"},
                 scope2: {key: "1"},
                 scope3: {key: "2"},
@@ -308,7 +308,7 @@ describe("InMemoryCache", () => {
         });
 
         it("should remove the all items if there is no predicate", () => {
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope1: {key: "2"},
                 scope2: {key: "1"},
                 scope3: {key: "2"},
@@ -331,7 +331,7 @@ describe("InMemoryCache", () => {
                 scope2: {key: "1"},
                 scope3: {key: "2"},
             };
-            const cache = new InMemoryCache(data);
+            const cache = new ScopedInMemoryCache(data);
 
             // Act
             const result = cache.clone();
@@ -342,7 +342,7 @@ describe("InMemoryCache", () => {
 
         it("should throw if there is an error during cloning", () => {
             // Arrange
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope1: {key: "2"},
                 scope2: {key: "1"},
                 scope3: {key: "2"},
@@ -364,7 +364,7 @@ describe("InMemoryCache", () => {
     describe("@inUse", () => {
         it("should return true if the cache contains data", () => {
             // Arrange
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope1: {key: "2"},
                 scope2: {key: "1"},
                 scope3: {key: "2"},
@@ -379,7 +379,7 @@ describe("InMemoryCache", () => {
 
         it("should return false if the cache is empty", () => {
             // Arrange
-            const cache = new InMemoryCache({
+            const cache = new ScopedInMemoryCache({
                 scope1: {key: "2"},
                 scope2: {key: "1"},
                 scope3: {key: "2"},

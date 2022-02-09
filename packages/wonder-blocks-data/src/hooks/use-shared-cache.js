@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import {KindError, Errors} from "@khanacademy/wonder-stuff-core";
-import {InMemoryCache} from "../util/in-memory-cache.js";
+import {ScopedInMemoryCache} from "../util/scoped-in-memory-cache.js";
 import type {ValidCacheData} from "../util/types.js";
 
 /**
@@ -14,7 +14,7 @@ type CacheValueFn<TValue: ValidCacheData> = (value: ?TValue) => void;
  * It's incredibly complex.
  * Very in-memory. So cache. Such complex. Wow.
  */
-const cache = new InMemoryCache();
+const cache = new ScopedInMemoryCache();
 
 /**
  * Clear the in-memory cache or a single scope within it.
