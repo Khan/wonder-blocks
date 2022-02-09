@@ -1,14 +1,20 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {ResponseCache as ResCache} from "./util/response-cache.js";
+import {ResponseCache as SsrCache} from "./util/response-cache.js";
 import {RequestTracker} from "./util/request-tracking.js";
 
 import type {ValidData, CacheEntry, ResponseCache} from "./util/types.js";
 
-export type {Cache, CacheEntry, Result, ResponseCache} from "./util/types.js";
+export type {
+    Cache,
+    CacheEntry,
+    Result,
+    ResponseCache,
+    ScopedCache,
+} from "./util/types.js";
 
 export const initializeCache = (source: ResponseCache): void =>
-    ResCache.Default.initialize(source);
+    SsrCache.Default.initialize(source);
 
 export const fulfillAllDataRequests = (): Promise<ResponseCache> => {
     if (!Server.isServerSide()) {
@@ -27,19 +33,21 @@ export const hasUnfulfilledRequests = (): boolean => {
 };
 
 export const removeFromCache = (id: string): boolean =>
-    ResCache.Default.remove(id);
+    SsrCache.Default.remove(id);
 
 export const removeAllFromCache = (
     predicate?: (
         key: string,
         cacheEntry: ?$ReadOnly<CacheEntry<ValidData>>,
     ) => boolean,
-): number => ResCache.Default.removeAll(predicate);
+): void => SsrCache.Default.removeAll(predicate);
 
 export {default as TrackData} from "./components/track-data.js";
 export {default as Data} from "./components/data.js";
 export {default as InterceptData} from "./components/intercept-data.js";
 export {useServerEffect} from "./hooks/use-server-effect.js";
+export {useSharedCache, clearSharedCache} from "./hooks/use-shared-cache.js";
+export {InMemoryCache} from "./util/in-memory-cache.js";
 
 // GraphQL
 export {GqlRouter} from "./components/gql-router.js";

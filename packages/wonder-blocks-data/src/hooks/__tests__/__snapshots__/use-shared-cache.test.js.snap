@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#useSharedCache should throw if the id is  1`] = `[InvalidInputError: id must be a non-empty string]`;
+
+exports[`#useSharedCache should throw if the id is [Function anonymous] 1`] = `[InvalidInputError: id must be a non-empty string]`;
+
+exports[`#useSharedCache should throw if the id is 5 1`] = `[InvalidInputError: id must be a non-empty string]`;
+
+exports[`#useSharedCache should throw if the id is null 1`] = `[InvalidInputError: id must be a non-empty string]`;
+
+exports[`#useSharedCache should throw if the scope is  1`] = `[InvalidInputError: scope must be a non-empty string]`;
+
+exports[`#useSharedCache should throw if the scope is [Function anonymous] 1`] = `[InvalidInputError: scope must be a non-empty string]`;
+
+exports[`#useSharedCache should throw if the scope is 5 1`] = `[InvalidInputError: scope must be a non-empty string]`;
+
+exports[`#useSharedCache should throw if the scope is null 1`] = `[InvalidInputError: scope must be a non-empty string]`;

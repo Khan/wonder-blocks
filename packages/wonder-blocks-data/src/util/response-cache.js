@@ -1,6 +1,6 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import MemoryCache from "./memory-cache.js";
+import {InMemoryCache} from "./in-memory-cache.js";
 
 import type {
     ValidData,
@@ -8,6 +8,8 @@ import type {
     Cache,
     ResponseCache as ResCache,
 } from "./types.js";
+
+const DefaultScope = "default";
 
 /**
  * The default instance is stored here.
@@ -28,17 +30,17 @@ export class ResponseCache {
         return _default;
     }
 
-    _hydrationCache: MemoryCache;
-    _ssrOnlyCache: ?MemoryCache;
+    _hydrationCache: InMemoryCache;
+    _ssrOnlyCache: ?InMemoryCache;
 
     constructor(
-        hydrationCache: ?MemoryCache = null,
-        ssrOnlyCache: ?MemoryCache = null,
+        hydrationCache: ?InMemoryCache = null,
+        ssrOnlyCache: ?InMemoryCache = null,
     ) {
         this._ssrOnlyCache = Server.isServerSide()
-            ? ssrOnlyCache || new MemoryCache()
+            ? ssrOnlyCache || new InMemoryCache()
             : undefined;
-        this._hydrationCache = hydrationCache || new MemoryCache();
+        this._hydrationCache = hydrationCache || new InMemoryCache();
     }
 
     _setCacheEntry<TData: ValidData>(
@@ -51,12 +53,12 @@ export class ResponseCache {
             // We are server-side.
             // We need to store this value.
             if (hydrate) {
-                this._hydrationCache.store(id, frozenEntry);
+                this._hydrationCache.set(DefaultScope, id, frozenEntry);
             } else {
                 // Usually, when server-side, this cache will always be present.
                 // We do fake server-side in our doc example though, when it
                 // won't be.
-                this._ssrOnlyCache?.store(id, frozenEntry);
+                this._ssrOnlyCache?.set(DefaultScope, id, frozenEntry);
             }
         }
         return frozenEntry;
@@ -73,14 +75,10 @@ export class ResponseCache {
                 "Cannot initialize data response cache more than once",
             );
         }
-
-        try {
-            this._hydrationCache = new MemoryCache(source);
-        } catch (e) {
-            throw new Error(
-                `An error occurred trying to initialize the data response cache: ${e}`,
-            );
-        }
+        this._hydrationCache = new InMemoryCache({
+            // $FlowIgnore[incompatible-variance]
+            [DefaultScope]: source,
+        });
     };
 
     /**
@@ -125,8 +123,8 @@ export class ResponseCache {
 
             // We first look in the ssr cache and then the hydration cache.
             const internalEntry =
-                this._ssrOnlyCache?.retrieve(id) ??
-                this._hydrationCache.retrieve(id);
+                this._ssrOnlyCache?.get(DefaultScope, id) ??
+                this._hydrationCache.get(DefaultScope, id);
 
             // If we are not server-side and we hydrated something, let's clear
             // that from the hydration cache to save memory.
@@ -137,8 +135,11 @@ export class ResponseCache {
                 // that's not an expected use-case. If two different places use the
                 // same handler and options (i.e. the same request), then the
                 // handler should cater to that to ensure they share the result.
-                this._hydrationCache.remove(id);
+                this._hydrationCache.purge(DefaultScope, id);
             }
+            // Getting the typing right between the in-memory cache and this
+            // is hard. Just telling flow it's OK.
+            // $FlowIgnore[incompatible-return]
             return internalEntry;
         };
 
@@ -157,8 +158,8 @@ export class ResponseCache {
 
         // Delete the entry from the appropriate cache.
         return (
-            this._hydrationCache.remove(id) ||
-            (this._ssrOnlyCache?.remove(id) ?? false)
+            this._hydrationCache.purge(DefaultScope, id) ||
+            (this._ssrOnlyCache?.purge(DefaultScope, id) ?? false)
         );
     };
 
@@ -175,17 +176,17 @@ export class ResponseCache {
             key: string,
             cachedEntry: $ReadOnly<CacheEntry<ValidData>>,
         ) => boolean,
-    ) => number = (
-        predicate?: (
-            key: string,
-            cachedEntry: $ReadOnly<CacheEntry<ValidData>>,
-        ) => boolean,
-    ): number => {
+    ) => void = (predicate) => {
+        const realPredicate = predicate
+            ? // We know what we're putting into the cache so let's assume it
+              // conforms.
+              // $FlowIgnore[incompatible-call]
+              (_, key, cachedEntry) => predicate(key, cachedEntry)
+            : undefined;
+
         // Apply the predicate to what we have in our caches.
-        return (
-            this._hydrationCache.removeAll(predicate) +
-            (this._ssrOnlyCache?.removeAll(predicate) ?? 0)
-        );
+        this._hydrationCache.purgeAll(realPredicate);
+        this._ssrOnlyCache?.purgeAll(realPredicate);
     };
 
     /**
@@ -195,6 +196,13 @@ export class ResponseCache {
      */
     cloneHydratableData: () => $ReadOnly<Cache> = (): $ReadOnly<Cache> => {
         // We return our hydration cache only.
-        return this._hydrationCache.cloneData();
+        const cache = this._hydrationCache.clone();
+
+        // If we're empty, we still want to return an object, so we default
+        // to an empty object.
+        // We only need the default scope out of our scoped in-memory cache.
+        // We know that it conforms to our expectations.
+        // $FlowIgnore[incompatible-return]
+        return cache[DefaultScope] ?? {};
     };
 }
