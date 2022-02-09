@@ -51,6 +51,11 @@ type Props = {|
 
     /**
      * Whether we want to hide the day field.
+     *
+     * **NOTE:** We will set the day to the _FIRST_ day of the _SELECTED_ month
+     * if the day field is hidden. Please make sure to modify the passed date
+     * value to fit different needs (e.g. if you want to set the _FIRST_ day of
+     * the _FOLLOWING_ month instead).
      */
     monthYearOnly?: boolean,
 
@@ -158,12 +163,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         // If a default value was provided then we use moment to convert it
         // into a date that we can use to populate the
         if (defaultValue) {
-            let date = moment(defaultValue);
-
-            // Override the default day if monthYearOnly mode is set.
-            if (monthYearOnly) {
-                date = date.startOf("month");
-            }
+            const date = moment(defaultValue);
 
             if (date.isValid()) {
                 initialState.month = String(date.month());
