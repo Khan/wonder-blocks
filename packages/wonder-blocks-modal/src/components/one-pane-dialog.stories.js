@@ -6,6 +6,7 @@ import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 import Button from "@khanacademy/wonder-blocks-button";
+import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 
 import type {StoryComponentType} from "@storybook/react";
 import OnePaneDialog from "./one-pane-dialog.js";
@@ -199,4 +200,42 @@ WithOpener.parameters = {
         // Don't take screenshots of this story since it would only show a button.
         disableSnapshot: true,
     },
+};
+
+export const WithClosedFocusId: StoryComponentType = () => {
+    const [opened, setOpened] = React.useState(false);
+
+    const handleOpen = () => {
+        console.log("opening modal");
+        setOpened(true);
+    };
+
+    const handleClose = () => {
+        console.log("closing modal");
+        setOpened(false);
+    };
+
+    return (
+        <View style={{gap: 20}}>
+            <Button>Top of page (should not receive focus)</Button>
+            <Button id="button-to-focus-on">Focus here after close</Button>
+            <ActionMenu menuText="actions">
+                <ActionItem label="Open modal" onClick={() => handleOpen()} />
+            </ActionMenu>
+            <ModalLauncher
+                onClose={() => handleClose()}
+                opened={opened}
+                closedFocusId="button-to-focus-on"
+                modal={({closeModal}) => (
+                    <OnePaneDialog
+                        title="Triggered from action menu"
+                        content={<View>Hello World</View>}
+                        footer={
+                            <Button onClick={closeModal}>Close Modal</Button>
+                        }
+                    />
+                )}
+            />
+        </View>
+    );
 };

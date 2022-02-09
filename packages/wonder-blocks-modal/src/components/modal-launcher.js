@@ -3,6 +3,12 @@ import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
+import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
+import type {
+    WithActionSchedulerProps,
+    WithoutActionScheduler,
+} from "@khanacademy/wonder-blocks-timing";
+
 import FocusTrap from "./focus-trap.js";
 import ModalBackdrop from "./modal-backdrop.js";
 import ScrollDisabler from "./scroll-disabler.js";
@@ -44,9 +50,18 @@ type CommonProps = {|
     initialFocusId?: string,
 
     /**
+     * The selector for the element that will be focused after the dialog
+     * closes. When not set, the last element focused outside modal will be
+     * used if it exists.
+     */
+    closedFocusId?: string,
+
+    /**
      * Test ID used for e2e testing. It's set on the ModalBackdrop
      */
     testId?: string,
+
+    ...WithActionSchedulerProps,
 |};
 
 type ControlledProps = {|
@@ -104,7 +119,7 @@ type State = {|
  * like OnePaneDialog and is provided via
  * the `modal` prop.
  */
-export default class ModalLauncher extends React.Component<Props, State> {
+class ModalLauncher extends React.Component<Props, State> {
     /**
      * The most recent element _outside this component_ that received focus.
      * Be default, it captures the element that triggered the modal opening
@@ -158,11 +173,33 @@ export default class ModalLauncher extends React.Component<Props, State> {
 
     handleCloseModal: () => void = () => {
         this.setState({opened: false}, () => {
-            this.props.onClose && this.props.onClose();
+            const {onClose, closedFocusId, schedule} = this.props;
+            const lastElement = this.lastElementFocusedOutsideModal;
 
-            if (this.lastElementFocusedOutsideModal != null) {
-                // return focus to the element that triggered the modal
-                this.lastElementFocusedOutsideModal.focus();
+            onClose && onClose();
+
+            // Focus on the specified element after closing teh modal.
+            if (closedFocusId) {
+                const focusElement = (ReactDOM.findDOMNode(
+                    document.getElementById(closedFocusId),
+                ): any);
+
+                if (focusElement) {
+                    // Wait for the modal to leave the DOM before trying
+                    // to focus on the specified element.
+                    schedule.animationFrame(() => {
+                        focusElement.focus();
+                    });
+                    return;
+                }
+            }
+
+            if (lastElement != null) {
+                // Wait for the modal to leave the DOM before trying to
+                // return focus to the element that triggered the modal.
+                schedule.animationFrame(() => {
+                    lastElement.focus();
+                });
             }
         });
     };
@@ -269,3 +306,11 @@ const styles = StyleSheet.create({
         zIndex: 1080,
     },
 });
+
+type ExportProps = WithoutActionScheduler<
+    React.ElementConfig<typeof ModalLauncher>,
+>;
+
+export default (withActionScheduler(
+    ModalLauncher,
+): React.ComponentType<ExportProps>);
