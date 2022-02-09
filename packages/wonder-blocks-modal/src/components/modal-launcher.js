@@ -178,7 +178,7 @@ class ModalLauncher extends React.Component<Props, State> {
 
             onClose && onClose();
 
-            // Focus on the specified element after closing teh modal.
+            // Focus on the specified element after closing the modal.
             if (closedFocusId) {
                 const focusElement = (ReactDOM.findDOMNode(
                     document.getElementById(closedFocusId),
