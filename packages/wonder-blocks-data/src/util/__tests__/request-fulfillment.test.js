@@ -2,8 +2,6 @@
 import {ResponseCache} from "../response-cache.js";
 import {RequestFulfillment} from "../request-fulfillment.js";
 
-import type {IRequestHandler} from "../types.js";
-
 describe("RequestFulfillment", () => {
     it("should provide static default instance", () => {
         // Arrange
@@ -22,90 +20,63 @@ describe("RequestFulfillment", () => {
             const responseCache = new ResponseCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
             const error = new Error("OH NO!");
-            const fakeBadHandler: IRequestHandler<any, any> = {
-                fulfillRequest: () => {
-                    throw error;
-                },
-                getKey: jest.fn().mockReturnValue("MY_KEY"),
-                type: "MY_TYPE",
-                hydrate: true,
+            const fakeBadHandler = () => {
+                throw error;
             };
             const cacheErrorSpy = jest.spyOn(responseCache, "cacheError");
 
             // Act
-            await requestFulfillment.fulfill(fakeBadHandler, "OPTIONS");
+            await requestFulfillment.fulfill("ID", {
+                handler: fakeBadHandler,
+            });
 
             // Assert
-            expect(cacheErrorSpy).toHaveBeenCalledWith(
-                fakeBadHandler,
-                "OPTIONS",
-                error,
-            );
+            expect(cacheErrorSpy).toHaveBeenCalledWith("ID", error, true);
         });
 
         it("should cache errors occurring in promises", async () => {
             // Arrange
             const responseCache = new ResponseCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
-            const fakeBadRequestHandler: IRequestHandler<string, any> = {
-                fulfillRequest: () =>
-                    new Promise((resolve, reject) => reject("OH NO!")),
-                getKey: (o) => o,
-                type: "BAD_REQUEST",
-                hydrate: true,
-            };
+            const fakeBadRequestHandler = () =>
+                new Promise((resolve, reject) => reject("OH NO!"));
             const cacheErrorSpy = jest.spyOn(responseCache, "cacheError");
 
             // Act
-            await requestFulfillment.fulfill(fakeBadRequestHandler, "OPTIONS");
+            await requestFulfillment.fulfill("ID", {
+                handler: fakeBadRequestHandler,
+            });
 
             // Assert
-            expect(cacheErrorSpy).toHaveBeenCalledWith(
-                fakeBadRequestHandler,
-                "OPTIONS",
-                "OH NO!",
-            );
+            expect(cacheErrorSpy).toHaveBeenCalledWith("ID", "OH NO!", true);
         });
 
         it("should cache data from requests", async () => {
             // Arrange
             const responseCache = new ResponseCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
-            const fakeRequestHandler: IRequestHandler<string, any> = {
-                fulfillRequest: () => Promise.resolve("DATA!"),
-                getKey: (o) => o,
-                type: "VALID_REQUEST",
-                hydrate: true,
-            };
+            const fakeRequestHandler = () => Promise.resolve("DATA!");
             const cacheDataSpy = jest.spyOn(responseCache, "cacheData");
 
             // Act
-            await requestFulfillment.fulfill(fakeRequestHandler, "OPTIONS");
+            await requestFulfillment.fulfill("ID", {
+                handler: fakeRequestHandler,
+            });
 
             // Assert
-            expect(cacheDataSpy).toHaveBeenCalledWith(
-                fakeRequestHandler,
-                "OPTIONS",
-                "DATA!",
-            );
+            expect(cacheDataSpy).toHaveBeenCalledWith("ID", "DATA!", true);
         });
 
         it("should return a promise of the result", async () => {
             // Arrange
             const responseCache = new ResponseCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
-            const fakeRequestHandler: IRequestHandler<string, any> = {
-                fulfillRequest: () => Promise.resolve("DATA!"),
-                getKey: (o) => o,
-                type: "VALID_REQUEST",
-                hydrate: true,
-            };
+            const fakeRequestHandler = () => Promise.resolve("DATA!");
 
             // Act
-            const result = await requestFulfillment.fulfill(
-                fakeRequestHandler,
-                "OPTIONS",
-            );
+            const result = await requestFulfillment.fulfill("ID", {
+                handler: fakeRequestHandler,
+            });
 
             // Assert
             expect(result).toStrictEqual({
@@ -117,22 +88,15 @@ describe("RequestFulfillment", () => {
             // Arrange
             const responseCache = new ResponseCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
-            const fakeRequestHandler: IRequestHandler<string, any> = {
-                fulfillRequest: () => Promise.resolve("DATA!"),
-                getKey: (o) => o,
-                type: "VALID_REQUEST",
-                hydrate: true,
-            };
+            const fakeRequestHandler = () => Promise.resolve("DATA!");
 
             // Act
-            const promise = requestFulfillment.fulfill(
-                fakeRequestHandler,
-                "OPTIONS",
-            );
-            const result = requestFulfillment.fulfill(
-                fakeRequestHandler,
-                "OPTIONS",
-            );
+            const promise = requestFulfillment.fulfill("ID", {
+                handler: fakeRequestHandler,
+            });
+            const result = requestFulfillment.fulfill("ID", {
+                handler: fakeRequestHandler,
+            });
 
             // Assert
             expect(result).toBe(promise);
@@ -142,23 +106,16 @@ describe("RequestFulfillment", () => {
             // Arrange
             const responseCache = new ResponseCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
-            const fakeRequestHandler: IRequestHandler<string, any> = {
-                fulfillRequest: () => Promise.resolve("DATA!"),
-                getKey: (o) => o,
-                type: "VALID_REQUEST",
-                hydrate: false,
-            };
+            const fakeRequestHandler = () => Promise.resolve("DATA!");
 
             // Act
-            const promise = requestFulfillment.fulfill(
-                fakeRequestHandler,
-                "OPTIONS",
-            );
+            const promise = requestFulfillment.fulfill("ID", {
+                handler: fakeRequestHandler,
+            });
             await promise;
-            const result = requestFulfillment.fulfill(
-                fakeRequestHandler,
-                "OPTIONS",
-            );
+            const result = requestFulfillment.fulfill("ID", {
+                handler: fakeRequestHandler,
+            });
 
             // Assert
             expect(result).not.toBe(promise);

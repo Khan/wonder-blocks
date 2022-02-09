@@ -1,7 +1,7 @@
-The `Data` component is the frontend piece of our data architecture that
-most folks will use. It describes a data requirement in terms of a handler, and
-some options. Handlers must implement the
-`IRequestHandler` interface.
+The `Data` component is the frontend piece of our data architecture.
+It describes a data requirement in terms of a handler and an identifier.
+It also has props to govern hydrate behavior as well as loading and client-side
+request behavior.
 
 The handler is responsible for fulfilling the request when asked to do so.
 
@@ -40,49 +40,30 @@ data or an error, we re-render.
 ```jsx
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Data, RequestHandler} from "@khanacademy/wonder-blocks-data";
+import {Data} from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-class MyValidHandler extends RequestHandler {
-    constructor() {
-        super("CACHE_MISS_HANDLER_VALID");
-    }
+const myValidHandler = () => new Promise((resolve, reject) =>
+    setTimeout(() => resolve("I'm DATA from a request"), 3000),
+);
 
-    fulfillRequest(options) {
-        return new Promise((resolve, reject) =>
-            setTimeout(() => resolve("I'm DATA from a request"), 3000),
-        );
-    }
-}
-
-class MyInvalidHandler extends RequestHandler {
-    constructor() {
-        super("CACHE_MISS_HANDLER_ERROR");
-    }
-
-    fulfillRequest(options) {
-        return new Promise((resolve, reject) =>
-            setTimeout(() => reject("I'm an ERROR from a request"), 3000),
-        );
-    }
-}
-
-const valid = new MyValidHandler();
-const invalid = new MyInvalidHandler();
+const myInvalidHandler = () => new Promise((resolve, reject) =>
+    setTimeout(() => reject("I'm an ERROR from a request"), 3000),
+);
 
 <View>
     <View>
         <Body>This request will succeed and give us data!</Body>
-        <Data handler={valid} options={{some: "options"}}>
-            {({loading, data}) => {
-                if (loading) {
+        <Data handler={myValidHandler} requestId="VALID">
+            {(result) => {
+                if (result.status === "loading") {
                     return "Loading...";
                 }
 
                 return (
-                    <BodyMonospace>{data}</BodyMonospace>
+                    <BodyMonospace>{result.data}</BodyMonospace>
                 );
             }}
         </Data>
@@ -90,14 +71,14 @@ const invalid = new MyInvalidHandler();
     <Strut size={Spacing.small_12} />
     <View>
         <Body>This request will go boom and give us an error!</Body>
-        <Data handler={invalid} options={{some: "options"}}>
-            {({loading, error}) => {
-                if (loading) {
+        <Data handler={myInvalidHandler} requestId="INVALID">
+            {(result) => {
+                if (result.status === "loading") {
                     return "Loading...";
                 }
 
                 return (
-                    <BodyMonospace style={{color: Color.red}}>ERROR: {error}</BodyMonospace>
+                    <BodyMonospace style={{color: Color.red}}>ERROR: {result.error}</BodyMonospace>
                 );
             }}
         </Data>
@@ -114,49 +95,37 @@ populated using the `initializeCache` method before rendering.
 ```jsx
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Data, RequestHandler, initializeCache} from "@khanacademy/wonder-blocks-data";
+import {Data, initializeCache} from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-class MyHandler extends RequestHandler {
-    constructor() {
-        super("CACHE_HIT_HANDLER");
-    }
+const myHandler = () => {
+    throw new Error(
+        "If you're seeing this error, the examples are broken and data isn't in the cache that should be.",
+    );
+};
 
-    /**
-     * fulfillRequest should not get called as we already have data cached.
-     */
-    fulfillRequest(options) {
-        throw new Error(
-            "If you're seeing this error, the examples are broken and data isn't in the cache that should be.",
-        );
-    }
-}
-
-const handler = new MyHandler();
 initializeCache({
-    CACHE_HIT_HANDLER: {
-        DATA: {
-            data: "I'm DATA from the hydration cache"
-        },
-        ERROR: {
-            error: "I'm an ERROR from hydration cache"
-        }
+    DATA: {
+        data: "I'm DATA from the hydration cache"
+    },
+    ERROR: {
+        error: "I'm an ERROR from hydration cache"
     }
 });
 
 <View>
     <View>
         <Body>This cache has data!</Body>
-        <Data handler={handler} options={"DATA"}>
-            {({loading, data}) => {
-                if (loading) {
+        <Data handler={myHandler} requestId="DATA">
+            {(result) => {
+                if (result.status !== "success") {
                     return "If you see this, the example is broken!";
                 }
 
                 return (
-                    <BodyMonospace>{data}</BodyMonospace>
+                    <BodyMonospace>{result.data}</BodyMonospace>
                 );
             }}
         </Data>
@@ -164,14 +133,14 @@ initializeCache({
     <Strut size={Spacing.small_12} />
     <View>
         <Body>This cache has error!</Body>
-        <Data handler={handler} options={"ERROR"}>
-            {({loading, error}) => {
-                if (loading) {
+        <Data handler={myHandler} requestId="ERROR">
+            {(result) => {
+                if (result.status !== "error") {
                     return "If you see this, the example is broken!";
                 }
 
                 return (
-                    <BodyMonospace style={{color: Color.red}}>ERROR: {error}</BodyMonospace>
+                    <BodyMonospace style={{color: Color.red}}>ERROR: {result.error}</BodyMonospace>
                 );
             }}
         </Data>

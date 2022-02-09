@@ -3,75 +3,64 @@ import * as React from "react";
 
 import InterceptContext from "./intercept-context.js";
 
-import type {
-    ValidData,
-    IRequestHandler,
-    InterceptFulfillRequestFn,
-} from "../util/types.js";
+import type {ValidData} from "../util/types.js";
 
-type Props<TOptions, TData> = {|
+type Props<TData: ValidData> = {|
     /**
-     * A handler of the type to be intercepted.
+     * The ID of the request to intercept.
      */
-    handler: IRequestHandler<TOptions, TData>,
+    requestId: string,
 
     /**
-     * The children to render within this component. Any requests by `Data`
-     * components that use a handler of the same type as the handler for this
-     * component that are rendered within these children will be intercepted by
-     * this component (unless another `InterceptData` component overrides this
-     * one).
-     */
-    children: React.Node,
-
-    /**
-     * Called to fulfill a request.
+     * Called to intercept and fulfill the request.
      * If this returns null, the request will be fulfilled by the
      * handler of the original request being intercepted.
      */
-    fulfillRequest: InterceptFulfillRequestFn<TOptions, TData>,
+    handler: () => ?Promise<?TData>,
+
+    /**
+     * The children to render within this component. Any requests by `Data`
+     * components that use same ID as this component will be intercepted.
+     * (unless another `InterceptData` component overrides this one).
+     */
+    children: React.Node,
 |};
 
 /**
- * This component provides a mechanism to intercept the data requests for the
- * type of a given handler and provide alternative results. This is mostly
- * useful for testing.
+ * This component provides a mechanism to intercept data requests.
+ * This is for use in testing.
  *
  * This component is not recommended for use in production code as it
  * can prevent predictable functioning of the Wonder Blocks Data framework.
  * One possible side-effect is that inflight requests from the interceptor could
- * be picked up by `Data` component requests of the same handler type from
- * outside the children of this component.
+ * be picked up by `Data` component requests from outside the children of this
+ * component.
  *
  * These components do not chain. If a different `InterceptData` instance is
- * rendered within this one that intercepts the same handler type, then that
+ * rendered within this one that intercepts the same id, then that
  * new instance will replace this interceptor for its children. All methods
  * will be replaced.
  */
-export default class InterceptData<
-    TOptions,
-    TData: ValidData,
-> extends React.Component<Props<TOptions, TData>> {
-    render(): React.Node {
-        return (
-            <InterceptContext.Consumer>
-                {(value) => {
-                    const handlerType = this.props.handler.type;
-                    const interceptor = {
-                        ...value[handlerType],
-                        fulfillRequest: this.props.fulfillRequest,
-                    };
-                    const newValue = {
-                        ...value,
-                        [handlerType]: interceptor,
-                    };
-                    return (
-                        <InterceptContext.Provider value={newValue}>
-                            {this.props.children}
-                        </InterceptContext.Provider>
-                    );
-                }}
-            </InterceptContext.Consumer>
-        );
-    }
-}
+const InterceptData = <TData: ValidData>({
+    requestId,
+    handler,
+    children,
+}: Props<TData>): React.Node => {
+    const interceptMap = React.useContext(InterceptContext);
+
+    const updatedInterceptMap = React.useMemo(
+        () => ({
+            ...interceptMap,
+            [requestId]: handler,
+        }),
+        [interceptMap, requestId, handler],
+    );
+
+    return (
+        <InterceptContext.Provider value={updatedInterceptMap}>
+            {children}
+        </InterceptContext.Provider>
+    );
+};
+
+export default InterceptData;

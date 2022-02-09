@@ -55,20 +55,7 @@ exports[`wonder-blocks-data example 1 1`] = `
     >
       This request will succeed and give us data!
     </span>
-    <span
-      className=""
-      style={
-        Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
-          "display": "block",
-          "fontFamily": "Inconsolata, monospace",
-          "fontSize": 17,
-          "fontWeight": 400,
-          "lineHeight": "22px",
-        }
-      }
-    />
+    Loading...
   </div>
   <div
     aria-hidden="true"
@@ -131,23 +118,7 @@ exports[`wonder-blocks-data example 1 1`] = `
     >
       This request will go boom and give us an error!
     </span>
-    <span
-      className=""
-      style={
-        Object {
-          "MozOsxFontSmoothing": "grayscale",
-          "WebkitFontSmoothing": "antialiased",
-          "color": "#d92916",
-          "display": "block",
-          "fontFamily": "Inconsolata, monospace",
-          "fontSize": 17,
-          "fontWeight": 400,
-          "lineHeight": "22px",
-        }
-      }
-    >
-      ERROR: 
-    </span>
+    Loading...
   </div>
 </div>
 `;
@@ -220,7 +191,9 @@ exports[`wonder-blocks-data example 2 1`] = `
           "lineHeight": "22px",
         }
       }
-    />
+    >
+      I'm DATA from the hydration cache
+    </span>
   </div>
   <div
     aria-hidden="true"
@@ -299,6 +272,7 @@ exports[`wonder-blocks-data example 2 1`] = `
       }
     >
       ERROR: 
+      I'm an ERROR from hydration cache
     </span>
   </div>
 </div>
@@ -340,20 +314,7 @@ exports[`wonder-blocks-data example 3 1`] = `
   >
     This received intercepted data!
   </span>
-  <span
-    className=""
-    style={
-      Object {
-        "MozOsxFontSmoothing": "grayscale",
-        "WebkitFontSmoothing": "antialiased",
-        "display": "block",
-        "fontFamily": "Inconsolata, monospace",
-        "fontSize": 17,
-        "fontWeight": 400,
-        "lineHeight": "22px",
-      }
-    }
-  />
+  If you see this, the example is broken!
 </div>
 `;
 

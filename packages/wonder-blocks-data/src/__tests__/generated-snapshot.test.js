@@ -12,7 +12,6 @@ import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View, Server} from "@khanacademy/wonder-blocks-core";
 import {
     Data,
-    RequestHandler,
     initializeCache,
     InterceptData,
     TrackData,
@@ -25,65 +24,36 @@ import Button from "@khanacademy/wonder-blocks-button";
 
 describe("wonder-blocks-data", () => {
     it("example 1", () => {
-        class MyValidHandler extends RequestHandler {
-            constructor() {
-                super("CACHE_MISS_HANDLER_VALID");
-            }
+        const myValidHandler = () =>
+            new Promise((resolve, reject) =>
+                setTimeout(() => resolve("I'm DATA from a request"), 3000),
+            );
 
-            fulfillRequest(options) {
-                return new Promise((resolve, reject) =>
-                    setTimeout(() => resolve("I'm DATA from a request"), 3000),
-                );
-            }
-        }
+        const myInvalidHandler = () =>
+            new Promise((resolve, reject) =>
+                setTimeout(() => reject("I'm an ERROR from a request"), 3000),
+            );
 
-        class MyInvalidHandler extends RequestHandler {
-            constructor() {
-                super("CACHE_MISS_HANDLER_ERROR");
-            }
-
-            fulfillRequest(options) {
-                return new Promise((resolve, reject) =>
-                    setTimeout(
-                        () => reject("I'm an ERROR from a request"),
-                        3000,
-                    ),
-                );
-            }
-        }
-
-        const valid = new MyValidHandler();
-        const invalid = new MyInvalidHandler();
         const example = (
             <View>
                 <View>
                     <Body>This request will succeed and give us data!</Body>
-                    <Data
-                        handler={valid}
-                        options={{
-                            some: "options",
-                        }}
-                    >
-                        {({loading, data}) => {
-                            if (loading) {
+                    <Data handler={myValidHandler} requestId="VALID">
+                        {(result) => {
+                            if (result.status === "loading") {
                                 return "Loading...";
                             }
 
-                            return <BodyMonospace>{data}</BodyMonospace>;
+                            return <BodyMonospace>{result.data}</BodyMonospace>;
                         }}
                     </Data>
                 </View>
                 <Strut size={Spacing.small_12} />
                 <View>
                     <Body>This request will go boom and give us an error!</Body>
-                    <Data
-                        handler={invalid}
-                        options={{
-                            some: "options",
-                        }}
-                    >
-                        {({loading, error}) => {
-                            if (loading) {
+                    <Data handler={myInvalidHandler} requestId="INVALID">
+                        {(result) => {
+                            if (result.status === "loading") {
                                 return "Loading...";
                             }
 
@@ -93,7 +63,7 @@ describe("wonder-blocks-data", () => {
                                         color: Color.red,
                                     }}
                                 >
-                                    ERROR: {error}
+                                    ERROR: {result.error}
                                 </BodyMonospace>
                             );
                         }}
@@ -106,52 +76,40 @@ describe("wonder-blocks-data", () => {
     });
 
     it("example 2", () => {
-        class MyHandler extends RequestHandler {
-            constructor() {
-                super("CACHE_HIT_HANDLER");
-            }
-            /**
-             * fulfillRequest should not get called as we already have data cached.
-             */
+        const myHandler = () => {
+            throw new Error(
+                "If you're seeing this error, the examples are broken and data isn't in the cache that should be.",
+            );
+        };
 
-            fulfillRequest(options) {
-                throw new Error(
-                    "If you're seeing this error, the examples are broken and data isn't in the cache that should be.",
-                );
-            }
-        }
-
-        const handler = new MyHandler();
         initializeCache({
-            CACHE_HIT_HANDLER: {
-                DATA: {
-                    data: "I'm DATA from the hydration cache",
-                },
-                ERROR: {
-                    error: "I'm an ERROR from hydration cache",
-                },
+            DATA: {
+                data: "I'm DATA from the hydration cache",
+            },
+            ERROR: {
+                error: "I'm an ERROR from hydration cache",
             },
         });
         const example = (
             <View>
                 <View>
                     <Body>This cache has data!</Body>
-                    <Data handler={handler} options={"DATA"}>
-                        {({loading, data}) => {
-                            if (loading) {
+                    <Data handler={myHandler} requestId="DATA">
+                        {(result) => {
+                            if (result.status !== "success") {
                                 return "If you see this, the example is broken!";
                             }
 
-                            return <BodyMonospace>{data}</BodyMonospace>;
+                            return <BodyMonospace>{result.data}</BodyMonospace>;
                         }}
                     </Data>
                 </View>
                 <Strut size={Spacing.small_12} />
                 <View>
                     <Body>This cache has error!</Body>
-                    <Data handler={handler} options={"ERROR"}>
-                        {({loading, error}) => {
-                            if (loading) {
+                    <Data handler={myHandler} requestId="ERROR">
+                        {(result) => {
+                            if (result.status !== "error") {
                                 return "If you see this, the example is broken!";
                             }
 
@@ -161,7 +119,7 @@ describe("wonder-blocks-data", () => {
                                         color: Color.red,
                                     }}
                                 >
-                                    ERROR: {error}
+                                    ERROR: {result.error}
                                 </BodyMonospace>
                             );
                         }}
@@ -174,40 +132,25 @@ describe("wonder-blocks-data", () => {
     });
 
     it("example 3", () => {
-        class MyHandler extends RequestHandler {
-            constructor() {
-                super("INTERCEPT_DATA_HANDLER1");
-            }
+        const myHandler = () =>
+            Promise.reject(new Error("You should not see this!"));
 
-            fulfillRequest(options) {
-                return Promise.reject(new Error("You should not see this!"));
-            }
-        }
-
-        const handler = new MyHandler();
-
-        const fulfillRequestInterceptor = function (options) {
-            if (options === "DATA") {
-                return Promise.resolve("INTERCEPTED DATA!");
-            }
-
-            return null;
-        };
+        const interceptHandler = () => Promise.resolve("INTERCEPTED DATA!");
 
         const example = (
             <InterceptData
-                handler={handler}
-                fulfillRequest={fulfillRequestInterceptor}
+                handler={interceptHandler}
+                requestId="INTERCEPT_EXAMPLE"
             >
                 <View>
                     <Body>This received intercepted data!</Body>
-                    <Data handler={handler} options={"DATA"}>
-                        {({loading, data}) => {
-                            if (loading) {
+                    <Data handler={myHandler} requestId="INTERCEPT_EXAMPLE">
+                        {(result) => {
+                            if (result.status !== "success") {
                                 return "If you see this, the example is broken!";
                             }
 
-                            return <BodyMonospace>{data}</BodyMonospace>;
+                            return <BodyMonospace>{result.data}</BodyMonospace>;
                         }}
                     </Data>
                 </View>
@@ -265,17 +208,10 @@ describe("wonder-blocks-data", () => {
     });
 
     it("example 5", () => {
-        class MyPretendHandler extends RequestHandler {
-            constructor() {
-                super("MY_PRETEND_HANDLER");
-            }
-
-            fulfillRequest(options) {
-                return new Promise((resolve, reject) =>
-                    setTimeout(() => resolve("DATA!"), 3000),
-                );
-            }
-        }
+        const myPretendHandler = () =>
+            new Promise((resolve, reject) =>
+                setTimeout(() => resolve("DATA!"), 3000),
+            );
 
         class Example extends React.Component {
             constructor() {
@@ -286,7 +222,6 @@ describe("wonder-blocks-data", () => {
                  */
 
                 this.state = {};
-                this._handler = new MyPretendHandler();
             }
 
             static getDerivedStateFromError(error) {
@@ -344,12 +279,17 @@ describe("wonder-blocks-data", () => {
                     <React.Fragment>
                         <Strut size={Spacing.small_12} />
                         <TrackData>
-                            <Data handler={this._handler} options={{}}>
-                                {({loading, data, error}) => (
+                            <Data
+                                handler={myPretendHandler}
+                                requestId="TRACK_DATA_EXAMPLE"
+                            >
+                                {(result) => (
                                     <View>
-                                        <BodyMonospace>{`Loading: ${loading}`}</BodyMonospace>
+                                        <BodyMonospace>{`Loading: ${
+                                            result.status === "loading"
+                                        }`}</BodyMonospace>
                                         <BodyMonospace>{`Data: ${JSON.stringify(
-                                            data,
+                                            result.data,
                                         )}`}</BodyMonospace>
                                     </View>
                                 )}
@@ -370,12 +310,6 @@ describe("wonder-blocks-data", () => {
                                 that when it does, the above still doesn't
                                 update. That's because during SSR, the data is
                                 not updated in the rendered tree.
-                            </Body>
-                            <Strut size={Spacing.small_12} />
-                            <Body>
-                                If you click to remount after the data appears,
-                                we'll rerender with the now cached data, and
-                                above should update accordingly.
                             </Body>
                             <Strut size={Spacing.small_12} />
                             <BodyMonospace>{data}</BodyMonospace>

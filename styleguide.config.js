@@ -63,7 +63,6 @@ module.exports = {
                 "packages/wonder-blocks-data/src/components/data.js",
                 "packages/wonder-blocks-data/src/components/intercept-data.js",
                 "packages/wonder-blocks-data/src/components/track-data.js",
-                "packages/wonder-blocks-data/src/util/request-handler.js",
             ],
         },
         {

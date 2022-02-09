@@ -346,13 +346,34 @@ function extractExamplesAndComponentsForFile(sourceFile, componentFileMap) {
 
     // get the default exported module
     const defaultExport = ast.program.body
-        .filter(
+        .filter((node) => {
+            if (node.type === "ExportDefaultDeclaration") {
+                // If the export is an identifier, we need to check what it
+                // identifies.
+                if (node.declaration.type === "Identifier") {
+                    return ast.program.body.some(
+                        (n) =>
+                            n.type === "VariableDeclaration" &&
+                            n.declarations[0].id.name ===
+                                node.declaration.name &&
+                            // If the matching thing is an arrow function,
+                            // let's assume that's a React component.
+                            n.declarations[0].init.type ===
+                                "ArrowFunctionExpression",
+                    );
+                }
+                return (
+                    node.declaration.type === "FunctionDeclaration" ||
+                    node.declaration.type === "ClassDeclaration"
+                );
+            }
+            return false;
+        })
+        .map(
             (node) =>
-                node.type === "ExportDefaultDeclaration" &&
-                (node.declaration.type === "FunctionDeclaration" ||
-                    node.declaration.type === "ClassDeclaration"),
+                (node.declaration.id && node.declaration.id.name) ||
+                node.declaration.name,
         )
-        .map((node) => node.declaration.id.name)
         .join();
 
     // Guard against files without default exports.

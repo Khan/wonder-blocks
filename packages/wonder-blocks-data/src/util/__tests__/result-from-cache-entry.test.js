@@ -19,7 +19,7 @@ describe("#resultFromCacheEntry", () => {
         // Arrange
         const cacheEntry = {
             data: "DATA",
-            error: null,
+            error: undefined,
         };
 
         // Act
@@ -32,7 +32,7 @@ describe("#resultFromCacheEntry", () => {
         });
     });
 
-    it("should return error status if cache entry has no data and no error", () => {
+    it("should return aborted status if cache entry has no data and no error", () => {
         // Arrange
         const cacheEntry: any = {
             data: null,
@@ -44,8 +44,7 @@ describe("#resultFromCacheEntry", () => {
 
         // Assert
         expect(result).toStrictEqual({
-            status: "error",
-            error: "Loaded result has invalid state where data and error are missing",
+            status: "aborted",
         });
     });
 

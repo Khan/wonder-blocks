@@ -1,15 +1,10 @@
 // @flow
 import {ResponseCache} from "./response-cache.js";
 
-import type {ValidData, CacheEntry, IRequestHandler} from "./types.js";
-
-type Subcache = {
-    [key: string]: Promise<any>,
-    ...
-};
+import type {ValidData, CacheEntry} from "./types.js";
 
 type RequestCache = {
-    [handlerType: string]: Subcache,
+    [id: string]: Promise<any>,
     ...
 };
 
@@ -30,37 +25,32 @@ export class RequestFulfillment {
         this._responseCache = responseCache || ResponseCache.Default;
     }
 
-    _getHandlerSubcache: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-    ) => Subcache = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-    ): Subcache => {
-        if (!this._requests[handler.type]) {
-            this._requests[handler.type] = {};
-        }
-        return this._requests[handler.type];
-    };
-
     /**
      * Get a promise of a request for a given handler and options.
      *
      * This will return an inflight request if one exists, otherwise it will
      * make a new request. Inflight requests are deleted once they resolve.
      */
-    fulfill: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ) => Promise<CacheEntry<TData>> = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ): Promise<CacheEntry<TData>> => {
-        const handlerRequests = this._getHandlerSubcache(handler);
-        const key = handler.getKey(options);
-
+    fulfill: <TData: ValidData>(
+        id: string,
+        options: {|
+            handler: () => Promise<?TData>,
+            hydrate?: boolean,
+        |},
+    ) => Promise<?CacheEntry<TData>> = <TData: ValidData>(
+        id: string,
+        {
+            handler,
+            hydrate = true,
+        }: {|
+            handler: () => Promise<?TData>,
+            hydrate?: boolean,
+        |},
+    ): Promise<?CacheEntry<TData>> => {
         /**
          * If we have an inflight request, we'll provide that.
          */
-        const inflight = handlerRequests[key];
+        const inflight = this._requests[id];
         if (inflight) {
             return inflight;
         }
@@ -70,36 +60,38 @@ export class RequestFulfillment {
          */
         const {cacheData, cacheError} = this._responseCache;
         try {
-            const request = handler
-                .fulfillRequest(options)
-                .then((data: TData) => {
-                    delete handlerRequests[key];
+            const request = handler()
+                .then((data: ?TData) => {
+                    delete this._requests[id];
+                    if (data == null) {
+                        // Request aborted. We won't cache this.
+                        return null;
+                    }
+
                     /**
                      * Let's cache the data!
                      *
                      * NOTE: This only caches when we're server side.
                      */
-                    return cacheData<TOptions, TData>(handler, options, data);
+                    return cacheData<TData>(id, data, hydrate);
                 })
                 .catch((error: string | Error) => {
-                    delete handlerRequests[key];
+                    delete this._requests[id];
                     /**
                      * Let's cache the error!
                      *
                      * NOTE: This only caches when we're server side.
                      */
-                    return cacheError<TOptions, TData>(handler, options, error);
+                    return cacheError<TData>(id, error, hydrate);
                 });
-            handlerRequests[key] = request;
+            this._requests[id] = request;
             return request;
         } catch (e) {
             /**
              * In this case, we don't cache an inflight request, because there
              * really isn't one.
              */
-            return Promise.resolve(
-                cacheError<TOptions, TData>(handler, options, e),
-            );
+            return Promise.resolve(cacheError<TData>(id, e, hydrate));
         }
     };
 }
