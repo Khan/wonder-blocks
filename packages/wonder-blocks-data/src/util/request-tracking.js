@@ -3,9 +3,9 @@ import * as React from "react";
 import {ResponseCache} from "./response-cache.js";
 import {RequestFulfillment} from "./request-fulfillment.js";
 
-import type {Cache, ValidData} from "./types.js";
+import type {CachedResponses, ValidCacheData} from "./types.js";
 
-type TrackerFn = <TData: ValidData>(
+type TrackerFn = <TData: ValidCacheData>(
     id: string,
     handler: () => Promise<?TData>,
     hydrate: boolean,
@@ -64,11 +64,11 @@ export class RequestTracker {
      * This method caches a request and its handler for use during server-side
      * rendering to allow us to fulfill requests before producing a final render.
      */
-    trackDataRequest: <TData: ValidData>(
+    trackDataRequest: <TData: ValidCacheData>(
         id: string,
         handler: () => Promise<?TData>,
         hydrate: boolean,
-    ) => void = <TData: ValidData>(
+    ) => void = <TData: ValidCacheData>(
         id: string,
         handler: () => Promise<?TData>,
         hydrate: boolean,
@@ -108,46 +108,45 @@ export class RequestTracker {
      * Calling this method marks tracked requests as fulfilled; requests are
      * removed from the list of tracked requests by calling this method.
      *
-     * @returns {Promise<Cache>} A frozen cache of the data that was cached
-     * as a result of fulfilling the tracked requests.
+     * @returns {Promise<CachedResponses>} The promise of the data that was
+     * cached as a result of fulfilling the tracked requests.
      */
-    fulfillTrackedRequests: () => Promise<$ReadOnly<Cache>> = (): Promise<
-        $ReadOnly<Cache>,
-    > => {
-        const promises = [];
+    fulfillTrackedRequests: () => Promise<CachedResponses> =
+        (): Promise<CachedResponses> => {
+            const promises = [];
 
-        for (const requestKey of Object.keys(this._trackedRequests)) {
-            const promise = this._requestFulfillment.fulfill(
-                requestKey,
-                this._trackedRequests[requestKey],
+            for (const requestKey of Object.keys(this._trackedRequests)) {
+                const promise = this._requestFulfillment.fulfill(
+                    requestKey,
+                    this._trackedRequests[requestKey],
+                );
+                promises.push(promise);
+            }
+
+            /**
+             * Clear out our tracked info.
+             *
+             * We call this now for a simpler API.
+             *
+             * If we reset the tracked calls after all promises resolve, any
+             * requst tracking done while promises are in flight would be lost.
+             *
+             * If we don't reset at all, then we have to expose the `reset` call
+             * for consumers to use, or they'll only ever be able to accumulate
+             * more and more tracked requests, having to fulfill them all every
+             * time.
+             *
+             * Calling it here means we can have multiple "track -> request" cycles
+             * in a row and in an easy to reason about manner.
+             *
+             */
+            this.reset();
+
+            /**
+             * Let's wait for everything to fulfill, and then clone the cached data.
+             */
+            return Promise.all(promises).then(() =>
+                this._responseCache.cloneHydratableData(),
             );
-            promises.push(promise);
-        }
-
-        /**
-         * Clear out our tracked info.
-         *
-         * We call this now for a simpler API.
-         *
-         * If we reset the tracked calls after all promises resolve, any
-         * requst tracking done while promises are in flight would be lost.
-         *
-         * If we don't reset at all, then we have to expose the `reset` call
-         * for consumers to use, or they'll only ever be able to accumulate
-         * more and more tracked requests, having to fulfill them all every
-         * time.
-         *
-         * Calling it here means we can have multiple "track -> request" cycles
-         * in a row and in an easy to reason about manner.
-         *
-         */
-        this.reset();
-
-        /**
-         * Let's wait for everything to fulfill, and then clone the cached data.
-         */
-        return Promise.all(promises).then(() =>
-            this._responseCache.cloneHydratableData(),
-        );
-    };
+        };
 }

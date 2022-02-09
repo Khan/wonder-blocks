@@ -4,7 +4,7 @@ import {useContext} from "react";
 import {TrackerContext} from "../util/request-tracking.js";
 import {ResponseCache} from "../util/response-cache.js";
 
-import type {CacheEntry, ValidData} from "../util/types.js";
+import type {CachedResponse, ValidCacheData} from "../util/types.js";
 
 /**
  * Hook to perform an asynchronous action during server-side rendering.
@@ -21,11 +21,11 @@ import type {CacheEntry, ValidData} from "../util/types.js";
  *
  * The asynchronous action is never invoked on the client-side.
  */
-export const useServerEffect = <TData: ValidData>(
+export const useServerEffect = <TData: ValidCacheData>(
     id: string,
     handler: () => Promise<?TData>,
     hydrate: boolean = true,
-): ?CacheEntry<TData> => {
+): ?CachedResponse<TData> => {
     // If we're server-side or hydrating, we'll have a cached entry to use.
     // So we get that and use it to initialize our state.
     // This works in both hydration and SSR because the very first call to

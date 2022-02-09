@@ -2,12 +2,7 @@
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {InMemoryCache} from "./in-memory-cache.js";
 
-import type {
-    ValidData,
-    CacheEntry,
-    Cache,
-    ResponseCache as ResCache,
-} from "./types.js";
+import type {ValidCacheData, CachedResponse, CachedResponses} from "./types.js";
 
 const DefaultScope = "default";
 
@@ -43,11 +38,11 @@ export class ResponseCache {
         this._hydrationCache = hydrationCache || new InMemoryCache();
     }
 
-    _setCacheEntry<TData: ValidData>(
+    _setCachedResponse<TData: ValidCacheData>(
         id: string,
-        entry: CacheEntry<TData>,
+        entry: CachedResponse<TData>,
         hydrate: boolean,
-    ): CacheEntry<TData> {
+    ): CachedResponse<TData> {
         const frozenEntry = Object.freeze(entry);
         if (Server.isServerSide()) {
             // We are server-side.
@@ -69,14 +64,14 @@ export class ResponseCache {
      *
      * This can only be called if the cache is not already in use.
      */
-    initialize: (source: ResCache) => void = (source) => {
+    initialize: (source: CachedResponses) => void = (source) => {
         if (this._hydrationCache.inUse) {
             throw new Error(
                 "Cannot initialize data response cache more than once",
             );
         }
         this._hydrationCache = new InMemoryCache({
-            // $FlowIgnore[incompatible-variance]
+            // $FlowIgnore[incompatible-call]
             [DefaultScope]: source,
         });
     };
@@ -86,62 +81,65 @@ export class ResponseCache {
      *
      * This is a noop when client-side.
      */
-    cacheData: <TData: ValidData>(
+    cacheData: <TData: ValidCacheData>(
         id: string,
         data: TData,
         hydrate: boolean,
-    ) => CacheEntry<TData> = <TData: ValidData>(
+    ) => CachedResponse<TData> = <TData: ValidCacheData>(
         id: string,
         data: TData,
         hydrate: boolean,
-    ): CacheEntry<TData> => this._setCacheEntry(id, {data}, hydrate);
+    ): CachedResponse<TData> => this._setCachedResponse(id, {data}, hydrate);
 
     /**
      * Cache an error for a specific response.
      *
      * This is a noop when client-side.
      */
-    cacheError: <TData: ValidData>(
+    cacheError: <TData: ValidCacheData>(
         id: string,
         error: Error | string,
         hydrate: boolean,
-    ) => CacheEntry<TData> = <TData: ValidData>(
+    ) => CachedResponse<TData> = <TData: ValidCacheData>(
         id: string,
         error: Error | string,
         hydrate: boolean,
-    ): CacheEntry<TData> => {
+    ): CachedResponse<TData> => {
         const errorMessage = typeof error === "string" ? error : error.message;
-        return this._setCacheEntry(id, {error: errorMessage}, hydrate);
+        return this._setCachedResponse(id, {error: errorMessage}, hydrate);
     };
 
     /**
      * Retrieve data from our cache.
      */
-    getEntry: <TData: ValidData>(id: string) => ?$ReadOnly<CacheEntry<TData>> =
-        <TData: ValidData>(id: string): ?$ReadOnly<CacheEntry<TData>> => {
-            // Get the cached entry for this value.
+    getEntry: <TData: ValidCacheData>(
+        id: string,
+    ) => ?$ReadOnly<CachedResponse<TData>> = <TData: ValidCacheData>(
+        id: string,
+    ): ?$ReadOnly<CachedResponse<TData>> => {
+        // Get the cached entry for this value.
 
-            // We first look in the ssr cache and then the hydration cache.
-            const internalEntry =
-                this._ssrOnlyCache?.get(DefaultScope, id) ??
-                this._hydrationCache.get(DefaultScope, id);
+        // We first look in the ssr cache and then the hydration cache.
+        const internalEntry =
+            this._ssrOnlyCache?.get(DefaultScope, id) ??
+            this._hydrationCache.get(DefaultScope, id);
 
-            // If we are not server-side and we hydrated something, let's clear
-            // that from the hydration cache to save memory.
-            if (this._ssrOnlyCache == null && internalEntry != null) {
-                // We now delete this from our hydration cache as we don't need it.
-                // This does mean that if another handler of the same type but
-                // without some sort of linked cache won't get the value, but
-                // that's not an expected use-case. If two different places use the
-                // same handler and options (i.e. the same request), then the
-                // handler should cater to that to ensure they share the result.
-                this._hydrationCache.purge(DefaultScope, id);
-            }
-            // Getting the typing right between the in-memory cache and this
-            // is hard. Just telling flow it's OK.
-            // $FlowIgnore[incompatible-return]
-            return internalEntry;
-        };
+        // If we are not server-side and we hydrated something, let's clear
+        // that from the hydration cache to save memory.
+        if (this._ssrOnlyCache == null && internalEntry != null) {
+            // We now delete this from our hydration cache as we don't need it.
+            // This does mean that if another handler of the same type but
+            // without some sort of linked cache won't get the value, but
+            // that's not an expected use-case. If two different places use the
+            // same handler and options (i.e. the same request), then the
+            // handler should cater to that to ensure they share the result.
+            this._hydrationCache.purge(DefaultScope, id);
+        }
+        // Getting the typing right between the in-memory cache and this
+        // is hard. Just telling flow it's OK.
+        // $FlowIgnore[incompatible-return]
+        return internalEntry;
+    };
 
     /**
      * Remove from cache, the entry matching the given handler and options.
@@ -174,7 +172,7 @@ export class ResponseCache {
     removeAll: (
         predicate?: (
             key: string,
-            cachedEntry: $ReadOnly<CacheEntry<ValidData>>,
+            cachedEntry: $ReadOnly<CachedResponse<ValidCacheData>>,
         ) => boolean,
     ) => void = (predicate) => {
         const realPredicate = predicate
@@ -194,7 +192,7 @@ export class ResponseCache {
      *
      * By design, this only clones the data that is to be used for hydration.
      */
-    cloneHydratableData: () => $ReadOnly<Cache> = (): $ReadOnly<Cache> => {
+    cloneHydratableData: () => CachedResponses = (): CachedResponses => {
         // We return our hydration cache only.
         const cache = this._hydrationCache.clone();
 

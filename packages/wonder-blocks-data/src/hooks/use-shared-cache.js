@@ -2,12 +2,12 @@
 import * as React from "react";
 import {KindError, Errors} from "@khanacademy/wonder-stuff-core";
 import {InMemoryCache} from "../util/in-memory-cache.js";
-import type {ValidData} from "../util/types.js";
+import type {ValidCacheData} from "../util/types.js";
 
 /**
  * A function for inserting a value into the cache or clearing it.
  */
-type CacheValueFn<TValue: ValidData> = (value: ?TValue) => void;
+type CacheValueFn<TValue: ValidCacheData> = (value: ?TValue) => void;
 
 /**
  * This is the cache.
@@ -50,7 +50,7 @@ export const clearSharedCache = (scope: string = "") => {
  * sure this toggling is optional - or we could use a callback argument, to
  * achieve this on an as-needed basis.
  */
-export const useSharedCache = <TValue: ValidData>(
+export const useSharedCache = <TValue: ValidCacheData>(
     id: string,
     scope: string,
     initialValue?: ?TValue | (() => ?TValue),

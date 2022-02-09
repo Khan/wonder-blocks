@@ -1,13 +1,13 @@
 // @flow
-import {resultFromCacheEntry} from "../result-from-cache-entry.js";
+import {resultFromCachedResponse} from "../result-from-cache-entry.js";
 
-describe("#resultFromCacheEntry", () => {
+describe("#resultFromCachedResponse", () => {
     it("should return loading status if cache entry is null", () => {
         // Arrange
         const cacheEntry = null;
 
         // Act
-        const result = resultFromCacheEntry(cacheEntry);
+        const result = resultFromCachedResponse(cacheEntry);
 
         // Assert
         expect(result).toStrictEqual({
@@ -23,7 +23,7 @@ describe("#resultFromCacheEntry", () => {
         };
 
         // Act
-        const result = resultFromCacheEntry(cacheEntry);
+        const result = resultFromCachedResponse(cacheEntry);
 
         // Assert
         expect(result).toStrictEqual({
@@ -40,7 +40,7 @@ describe("#resultFromCacheEntry", () => {
         };
 
         // Act
-        const result = resultFromCacheEntry(cacheEntry);
+        const result = resultFromCachedResponse(cacheEntry);
 
         // Assert
         expect(result).toStrictEqual({
@@ -56,7 +56,7 @@ describe("#resultFromCacheEntry", () => {
         };
 
         // Act
-        const result = resultFromCacheEntry(cacheEntry);
+        const result = resultFromCachedResponse(cacheEntry);
 
         // Assert
         expect(result).toStrictEqual({

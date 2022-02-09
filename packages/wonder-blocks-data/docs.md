@@ -18,7 +18,7 @@ rehydrate that result.
 ### Usage
 
 ```js static
-fulfillAllDataRequests(): Promise<$ReadOnly<ResponseCache>>;
+fulfillAllDataRequests(): Promise<CachedResponses>;
 ```
 
 ## initializeCache
@@ -38,14 +38,14 @@ needs.
 ### Usage
 
 ```js static
-initializeCache(sourceCache: $ReadOnly<ResponseCache>): void;
+initializeCache(sourceCache: CachedResponses): void;
 ```
 
 #### Function arguments
 
 | Argument | Flow&nbsp;Type | Default | Description |
 | --- | --- | --- | --- |
-| `sourceData` | `$ReadOnly<ResponseCache>` | _Required_ | The source cache that will be used to initialize the response cache. |
+| `sourceData` | `CachedResponses` | _Required_ | The source cache that will be used to initialize the response cache. |
 
 ## removeFromCache
 
@@ -81,21 +81,21 @@ If the predicate is not given, all items are removed.
 ### Usage
 
 ```js static
-removeAllFromCache(predicate?: (key: string, entry: $ReadOnly<CacheEntry<TData>>) => boolean): number;
+removeAllFromCache(predicate?: (key: string, entry: $ReadOnly<CachedResponse<TData>>) => boolean): number;
 ```
 
 #### Function arguments
 
 | Argument | Flow&nbsp;Type | Default | Description |
 | --- | --- | --- | --- |
-| `predicate` | `(key: string, entry: $ReadOnly<CacheEntry<TData>>) => boolean)` | _Optional_ | A predicate to identify which entries to remove. If absent, all data is removed; if present, any entries for which the predicate returns `true` will be returned. |
+| `predicate` | `(key: string, entry: $ReadOnly<CachedResponse<TData>>) => boolean)` | _Optional_ | A predicate to identify which entries to remove. If absent, all data is removed; if present, any entries for which the predicate returns `true` will be returned. |
 
 ## Types
 
-### ResponseCache
+### CachedResponses
 
 ```js static
-type CacheEntry =
+type CachedResponse =
     | {|
         data: any,
       |}
@@ -103,8 +103,8 @@ type CacheEntry =
         error: string,
       |};
 
-type ResponseCache = {
-    [id: string]: CacheEntry,
+type CachedResponses = {
+    [id: string]: CachedResponse,
     ...,
 };
 ```

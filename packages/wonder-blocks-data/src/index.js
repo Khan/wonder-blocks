@@ -1,22 +1,25 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {ResponseCache as SsrCache} from "./util/response-cache.js";
+import {ResponseCache} from "./util/response-cache.js";
 import {RequestTracker} from "./util/request-tracking.js";
 
-import type {ValidData, CacheEntry, ResponseCache} from "./util/types.js";
+import type {
+    ValidCacheData,
+    CachedResponse,
+    CachedResponses,
+} from "./util/types.js";
 
 export type {
-    Cache,
-    CacheEntry,
+    CachedResponses,
+    CachedResponse,
     Result,
-    ResponseCache,
     ScopedCache,
 } from "./util/types.js";
 
-export const initializeCache = (source: ResponseCache): void =>
-    SsrCache.Default.initialize(source);
+export const initializeCache = (source: CachedResponses): void =>
+    ResponseCache.Default.initialize(source);
 
-export const fulfillAllDataRequests = (): Promise<ResponseCache> => {
+export const fulfillAllDataRequests = (): Promise<CachedResponses> => {
     if (!Server.isServerSide()) {
         return Promise.reject(
             new Error("Data requests are not tracked when client-side"),
@@ -33,14 +36,14 @@ export const hasUnfulfilledRequests = (): boolean => {
 };
 
 export const removeFromCache = (id: string): boolean =>
-    SsrCache.Default.remove(id);
+    ResponseCache.Default.remove(id);
 
 export const removeAllFromCache = (
     predicate?: (
         key: string,
-        cacheEntry: ?$ReadOnly<CacheEntry<ValidData>>,
+        cacheEntry: ?$ReadOnly<CachedResponse<ValidCacheData>>,
     ) => boolean,
-): void => SsrCache.Default.removeAll(predicate);
+): void => ResponseCache.Default.removeAll(predicate);
 
 export {default as TrackData} from "./components/track-data.js";
 export {default as Data} from "./components/data.js";

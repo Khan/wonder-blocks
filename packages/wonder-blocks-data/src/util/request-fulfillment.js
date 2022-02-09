@@ -1,7 +1,7 @@
 // @flow
 import {ResponseCache} from "./response-cache.js";
 
-import type {ValidData, CacheEntry} from "./types.js";
+import type {ValidCacheData, CachedResponse} from "./types.js";
 
 type RequestCache = {
     [id: string]: Promise<any>,
@@ -31,13 +31,13 @@ export class RequestFulfillment {
      * This will return an inflight request if one exists, otherwise it will
      * make a new request. Inflight requests are deleted once they resolve.
      */
-    fulfill: <TData: ValidData>(
+    fulfill: <TData: ValidCacheData>(
         id: string,
         options: {|
             handler: () => Promise<?TData>,
             hydrate?: boolean,
         |},
-    ) => Promise<?CacheEntry<TData>> = <TData: ValidData>(
+    ) => Promise<?CachedResponse<TData>> = <TData: ValidCacheData>(
         id: string,
         {
             handler,
@@ -46,7 +46,7 @@ export class RequestFulfillment {
             handler: () => Promise<?TData>,
             hydrate?: boolean,
         |},
-    ): Promise<?CacheEntry<TData>> => {
+    ): Promise<?CachedResponse<TData>> => {
         /**
          * If we have an inflight request, we'll provide that.
          */
