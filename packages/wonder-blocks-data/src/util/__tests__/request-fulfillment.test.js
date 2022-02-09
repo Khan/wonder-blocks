@@ -1,5 +1,5 @@
 // @flow
-import {ResponseCache} from "../response-cache.js";
+import {SsrCache} from "../ssr-cache.js";
 import {RequestFulfillment} from "../request-fulfillment.js";
 
 describe("RequestFulfillment", () => {
@@ -17,7 +17,7 @@ describe("RequestFulfillment", () => {
     describe("#fulfill", () => {
         it("should attempt to cache errors caused directly by handlers", async () => {
             // Arrange
-            const responseCache = new ResponseCache();
+            const responseCache = new SsrCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
             const error = new Error("OH NO!");
             const fakeBadHandler = () => {
@@ -36,7 +36,7 @@ describe("RequestFulfillment", () => {
 
         it("should cache errors occurring in promises", async () => {
             // Arrange
-            const responseCache = new ResponseCache();
+            const responseCache = new SsrCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
             const fakeBadRequestHandler = () =>
                 new Promise((resolve, reject) => reject("OH NO!"));
@@ -53,7 +53,7 @@ describe("RequestFulfillment", () => {
 
         it("should cache data from requests", async () => {
             // Arrange
-            const responseCache = new ResponseCache();
+            const responseCache = new SsrCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
             const fakeRequestHandler = () => Promise.resolve("DATA!");
             const cacheDataSpy = jest.spyOn(responseCache, "cacheData");
@@ -69,7 +69,7 @@ describe("RequestFulfillment", () => {
 
         it("should return a promise of the result", async () => {
             // Arrange
-            const responseCache = new ResponseCache();
+            const responseCache = new SsrCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
             const fakeRequestHandler = () => Promise.resolve("DATA!");
 
@@ -86,7 +86,7 @@ describe("RequestFulfillment", () => {
 
         it("should reuse inflight requests", () => {
             // Arrange
-            const responseCache = new ResponseCache();
+            const responseCache = new SsrCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
             const fakeRequestHandler = () => Promise.resolve("DATA!");
 
@@ -104,7 +104,7 @@ describe("RequestFulfillment", () => {
 
         it("should remove inflight requests upon completion", async () => {
             // Arrange
-            const responseCache = new ResponseCache();
+            const responseCache = new SsrCache();
             const requestFulfillment = new RequestFulfillment(responseCache);
             const fakeRequestHandler = () => Promise.resolve("DATA!");
 

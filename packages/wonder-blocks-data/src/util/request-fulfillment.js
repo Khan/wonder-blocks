@@ -1,5 +1,5 @@
 // @flow
-import {ResponseCache} from "./response-cache.js";
+import {SsrCache} from "./ssr-cache.js";
 
 import type {ValidCacheData, CachedResponse} from "./types.js";
 
@@ -18,11 +18,11 @@ export class RequestFulfillment {
         return _default;
     }
 
-    _responseCache: ResponseCache;
+    _responseCache: SsrCache;
     _requests: RequestCache = {};
 
-    constructor(responseCache: ?ResponseCache = undefined) {
-        this._responseCache = responseCache || ResponseCache.Default;
+    constructor(responseCache: ?SsrCache = undefined) {
+        this._responseCache = responseCache || SsrCache.Default;
     }
 
     /**

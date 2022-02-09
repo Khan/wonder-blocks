@@ -10,17 +10,17 @@ const DefaultScope = "default";
  * The default instance is stored here.
  * It's created below in the Default() static property.
  */
-let _default: ResponseCache;
+let _default: SsrCache;
 
 /**
  * Implements the response cache.
  *
  * INTERNAL USE ONLY
  */
-export class ResponseCache {
-    static get Default(): ResponseCache {
+export class SsrCache {
+    static get Default(): SsrCache {
         if (!_default) {
-            _default = new ResponseCache();
+            _default = new SsrCache();
         }
         return _default;
     }

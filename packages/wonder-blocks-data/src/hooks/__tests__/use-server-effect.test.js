@@ -6,17 +6,15 @@ import {Server} from "@khanacademy/wonder-blocks-core";
 
 import TrackData from "../../components/track-data.js";
 import {RequestFulfillment} from "../../util/request-fulfillment.js";
-import {ResponseCache} from "../../util/response-cache.js";
+import {SsrCache} from "../../util/ssr-cache.js";
 import {RequestTracker} from "../../util/request-tracking.js";
 
 import {useServerEffect} from "../use-server-effect.js";
 
 describe("#useServerEffect", () => {
     beforeEach(() => {
-        const responseCache = new ResponseCache();
-        jest.spyOn(ResponseCache, "Default", "get").mockReturnValue(
-            responseCache,
-        );
+        const responseCache = new SsrCache();
+        jest.spyOn(SsrCache, "Default", "get").mockReturnValue(responseCache);
         jest.spyOn(RequestFulfillment, "Default", "get").mockReturnValue(
             new RequestFulfillment(responseCache),
         );
@@ -86,7 +84,7 @@ describe("#useServerEffect", () => {
         it("should return data cached result", () => {
             // Arrange
             const fakeHandler = jest.fn();
-            jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValueOnce({
+            jest.spyOn(SsrCache.Default, "getEntry").mockReturnValueOnce({
                 data: "DATA",
                 error: null,
             });
@@ -103,7 +101,7 @@ describe("#useServerEffect", () => {
         it("should return error cached result", () => {
             // Arrange
             const fakeHandler = jest.fn();
-            jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValueOnce({
+            jest.spyOn(SsrCache.Default, "getEntry").mockReturnValueOnce({
                 data: null,
                 error: "ERROR",
             });
@@ -142,7 +140,7 @@ describe("#useServerEffect", () => {
         it("should return data cached result", () => {
             // Arrange
             const fakeHandler = jest.fn();
-            jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValueOnce({
+            jest.spyOn(SsrCache.Default, "getEntry").mockReturnValueOnce({
                 data: "DATA",
                 error: null,
             });
@@ -159,7 +157,7 @@ describe("#useServerEffect", () => {
         it("should return error cached result", () => {
             // Arrange
             const fakeHandler = jest.fn();
-            jest.spyOn(ResponseCache.Default, "getEntry").mockReturnValueOnce({
+            jest.spyOn(SsrCache.Default, "getEntry").mockReturnValueOnce({
                 data: null,
                 error: "ERROR",
             });

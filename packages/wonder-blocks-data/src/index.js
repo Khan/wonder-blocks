@@ -1,6 +1,6 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {ResponseCache} from "./util/response-cache.js";
+import {SsrCache} from "./util/ssr-cache.js";
 import {RequestTracker} from "./util/request-tracking.js";
 
 import type {
@@ -17,7 +17,7 @@ export type {
 } from "./util/types.js";
 
 export const initializeCache = (source: CachedResponses): void =>
-    ResponseCache.Default.initialize(source);
+    SsrCache.Default.initialize(source);
 
 export const fulfillAllDataRequests = (): Promise<CachedResponses> => {
     if (!Server.isServerSide()) {
@@ -36,14 +36,14 @@ export const hasUnfulfilledRequests = (): boolean => {
 };
 
 export const removeFromCache = (id: string): boolean =>
-    ResponseCache.Default.remove(id);
+    SsrCache.Default.remove(id);
 
 export const removeAllFromCache = (
     predicate?: (
         key: string,
         cacheEntry: ?$ReadOnly<CachedResponse<ValidCacheData>>,
     ) => boolean,
-): void => ResponseCache.Default.removeAll(predicate);
+): void => SsrCache.Default.removeAll(predicate);
 
 export {default as TrackData} from "./components/track-data.js";
 export {default as Data} from "./components/data.js";

@@ -1,9 +1,9 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {ResponseCache} from "../response-cache.js";
+import {SsrCache} from "../ssr-cache.js";
 import {InMemoryCache} from "../in-memory-cache.js";
 
-describe("../response-cache.js", () => {
+describe("../ssr-cache.js", () => {
     afterEach(() => {
         /**
          * This is needed or the JSON.stringify mocks need to be
@@ -17,22 +17,22 @@ describe("../response-cache.js", () => {
     });
 
     describe("@Default", () => {
-        it("should return an instance of ResponseCache", () => {
+        it("should return an instance of SsrCache", () => {
             // Arrange
 
             // Act
-            const result = ResponseCache.Default;
+            const result = SsrCache.Default;
 
             // Assert
-            expect(result).toBeInstanceOf(ResponseCache);
+            expect(result).toBeInstanceOf(SsrCache);
         });
 
         it("should return the same instance on each call", () => {
             // Arrange
 
             // Act
-            const result1 = ResponseCache.Default;
-            const result2 = ResponseCache.Default;
+            const result1 = SsrCache.Default;
+            const result2 = SsrCache.Default;
 
             // Assert
             expect(result1).toBe(result2);
@@ -42,7 +42,7 @@ describe("../response-cache.js", () => {
     describe("#initialize", () => {
         it("should initialize the cache with the given data", () => {
             // Arrange
-            const cache = new ResponseCache();
+            const cache = new SsrCache();
 
             // Act
             cache.initialize({
@@ -59,7 +59,7 @@ describe("../response-cache.js", () => {
             const internalCache = new InMemoryCache({
                 MY_KEY: {data: "THE_DATA"},
             });
-            const cache = new ResponseCache(internalCache);
+            const cache = new SsrCache(internalCache);
 
             // Act
             const underTest = () =>
@@ -75,7 +75,7 @@ describe("../response-cache.js", () => {
 
         it("should deep clone the cached data", () => {
             // Arrange
-            const cache = new ResponseCache();
+            const cache = new SsrCache();
             const sourceData = {
                 MY_KEY: {data: "THE_DATA"},
             };
@@ -96,7 +96,7 @@ describe("../response-cache.js", () => {
             it("should not store the entry in the hydration cache", () => {
                 // Arrange
                 const hydrationCache = new InMemoryCache();
-                const cache = new ResponseCache(hydrationCache);
+                const cache = new SsrCache(hydrationCache);
                 const hydrationStoreSpy = jest.spyOn(hydrationCache, "set");
 
                 // Act
@@ -110,7 +110,7 @@ describe("../response-cache.js", () => {
                 // Arrange
                 const hydrationCache = new InMemoryCache();
                 const ssrOnlyCache = new InMemoryCache();
-                const cache = new ResponseCache(hydrationCache, ssrOnlyCache);
+                const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                 const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "set");
 
                 // Act
@@ -130,7 +130,7 @@ describe("../response-cache.js", () => {
                 it("should store the entry in the hydration cache", () => {
                     // Arrange
                     const hydrationCache = new InMemoryCache();
-                    const cache = new ResponseCache(hydrationCache);
+                    const cache = new SsrCache(hydrationCache);
                     const hydrationStoreSpy = jest.spyOn(hydrationCache, "set");
 
                     // Act
@@ -150,10 +150,7 @@ describe("../response-cache.js", () => {
                     // Arrange
                     const hydrationCache = new InMemoryCache();
                     const ssrOnlyCache = new InMemoryCache();
-                    const cache = new ResponseCache(
-                        hydrationCache,
-                        ssrOnlyCache,
-                    );
+                    const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                     const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "set");
 
                     // Act
@@ -169,10 +166,7 @@ describe("../response-cache.js", () => {
                     // Arrange
                     const hydrationCache = new InMemoryCache();
                     const ssrOnlyCache = new InMemoryCache();
-                    const cache = new ResponseCache(
-                        hydrationCache,
-                        ssrOnlyCache,
-                    );
+                    const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                     const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "set");
 
                     // Act
@@ -192,10 +186,7 @@ describe("../response-cache.js", () => {
                     // Arrange
                     const hydrationCache = new InMemoryCache();
                     const ssrOnlyCache = new InMemoryCache();
-                    const cache = new ResponseCache(
-                        hydrationCache,
-                        ssrOnlyCache,
-                    );
+                    const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                     const hydrationStoreSpy = jest.spyOn(hydrationCache, "set");
 
                     // Act
@@ -213,7 +204,7 @@ describe("../response-cache.js", () => {
             it("should not store the entry in the hydration cache", () => {
                 // Arrange
                 const hydrationCache = new InMemoryCache();
-                const cache = new ResponseCache(hydrationCache);
+                const cache = new SsrCache(hydrationCache);
                 const hydrationStoreSpy = jest.spyOn(hydrationCache, "set");
 
                 // Act
@@ -227,7 +218,7 @@ describe("../response-cache.js", () => {
                 // Arrange
                 const hydrationCache = new InMemoryCache();
                 const ssrOnlyCache = new InMemoryCache();
-                const cache = new ResponseCache(hydrationCache, ssrOnlyCache);
+                const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                 const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "set");
 
                 // Act
@@ -247,7 +238,7 @@ describe("../response-cache.js", () => {
                 it("should store the entry in the hydration cache", () => {
                     // Arrange
                     const hydrationCache = new InMemoryCache();
-                    const cache = new ResponseCache(hydrationCache);
+                    const cache = new SsrCache(hydrationCache);
                     const hydrationStoreSpy = jest.spyOn(hydrationCache, "set");
 
                     // Act
@@ -267,10 +258,7 @@ describe("../response-cache.js", () => {
                     // Arrange
                     const hydrationCache = new InMemoryCache();
                     const ssrOnlyCache = new InMemoryCache();
-                    const cache = new ResponseCache(
-                        hydrationCache,
-                        ssrOnlyCache,
-                    );
+                    const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                     const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "set");
 
                     // Act
@@ -286,10 +274,7 @@ describe("../response-cache.js", () => {
                     // Arrange
                     const hydrationCache = new InMemoryCache();
                     const ssrOnlyCache = new InMemoryCache();
-                    const cache = new ResponseCache(
-                        hydrationCache,
-                        ssrOnlyCache,
-                    );
+                    const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                     const ssrOnlyStoreSpy = jest.spyOn(ssrOnlyCache, "set");
 
                     // Act
@@ -309,10 +294,7 @@ describe("../response-cache.js", () => {
                     // Arrange
                     const hydrationCache = new InMemoryCache();
                     const ssrOnlyCache = new InMemoryCache();
-                    const cache = new ResponseCache(
-                        hydrationCache,
-                        ssrOnlyCache,
-                    );
+                    const cache = new SsrCache(hydrationCache, ssrOnlyCache);
                     const hydrationStoreSpy = jest.spyOn(hydrationCache, "set");
 
                     // Act
@@ -335,7 +317,7 @@ describe("../response-cache.js", () => {
                 // Arrange
                 const hydrationCache = new InMemoryCache();
                 jest.spyOn(hydrationCache, "get").mockReturnValue(null);
-                const cache = new ResponseCache(hydrationCache);
+                const cache = new SsrCache(hydrationCache);
 
                 // Act
                 const result = cache.getEntry("MY_KEY");
@@ -350,7 +332,7 @@ describe("../response-cache.js", () => {
                 jest.spyOn(hydrationCache, "get").mockReturnValue({
                     data: "data!",
                 });
-                const cache = new ResponseCache(hydrationCache);
+                const cache = new SsrCache(hydrationCache);
 
                 // Act
                 const result = cache.getEntry("MY_KEY");
@@ -369,7 +351,7 @@ describe("../response-cache.js", () => {
                 // Arrange
                 const hydrationCache = new InMemoryCache();
                 const ssrOnlyCache = new InMemoryCache();
-                const cache = new ResponseCache(hydrationCache, ssrOnlyCache);
+                const cache = new SsrCache(hydrationCache, ssrOnlyCache);
 
                 // Act
                 const result = cache.getEntry("MY_KEY");
@@ -384,7 +366,7 @@ describe("../response-cache.js", () => {
                 jest.spyOn(hydrationCache, "get").mockReturnValue({
                     data: "data!",
                 });
-                const cache = new ResponseCache(hydrationCache);
+                const cache = new SsrCache(hydrationCache);
 
                 // Act
                 const result = cache.getEntry("MY_KEY");
@@ -400,7 +382,7 @@ describe("../response-cache.js", () => {
                 jest.spyOn(ssrOnlyCache, "get").mockReturnValue({
                     data: "data!",
                 });
-                const cache = new ResponseCache(hydrationCache, ssrOnlyCache);
+                const cache = new SsrCache(hydrationCache, ssrOnlyCache);
 
                 // Act
                 const result = cache.getEntry("MY_KEY");
@@ -418,7 +400,7 @@ describe("../response-cache.js", () => {
             const ssrOnlycache = new InMemoryCache();
             jest.spyOn(hydrationCache, "purge").mockReturnValue(false);
             jest.spyOn(ssrOnlycache, "purge").mockReturnValue(false);
-            const cache = new ResponseCache(hydrationCache, ssrOnlycache);
+            const cache = new SsrCache(hydrationCache, ssrOnlycache);
 
             // Act
             const result = cache.remove("A");
@@ -431,7 +413,7 @@ describe("../response-cache.js", () => {
             // Arrange
             const hydrationCache = new InMemoryCache();
             jest.spyOn(hydrationCache, "purge").mockReturnValue(true);
-            const cache = new ResponseCache(hydrationCache);
+            const cache = new SsrCache(hydrationCache);
 
             // Act
             const result = cache.remove("A");
@@ -450,7 +432,7 @@ describe("../response-cache.js", () => {
                 const hydrationCache = new InMemoryCache();
                 const ssrOnlyCache = new InMemoryCache();
                 jest.spyOn(ssrOnlyCache, "purge").mockReturnValue(true);
-                const cache = new ResponseCache(hydrationCache, ssrOnlyCache);
+                const cache = new SsrCache(hydrationCache, ssrOnlyCache);
 
                 // Act
                 const result = cache.remove("A");
@@ -470,7 +452,7 @@ describe("../response-cache.js", () => {
                 .mockReturnValue({
                     default: "CLONE!",
                 });
-            const cache = new ResponseCache(hydrationCache);
+            const cache = new SsrCache(hydrationCache);
             // Let's add to the initialized state to check that everything
             // is cloning as we expect.
             cache.cacheData("KEY1", "DATA", true);
@@ -495,7 +477,7 @@ describe("../response-cache.js", () => {
                 // Arrange
                 const hydrationCache = new InMemoryCache();
                 const purgeAllSpy = jest.spyOn(hydrationCache, "purgeAll");
-                const cache = new ResponseCache(hydrationCache);
+                const cache = new SsrCache(hydrationCache);
 
                 // Act
                 cache.removeAll();
@@ -508,10 +490,7 @@ describe("../response-cache.js", () => {
                 // Arrange
                 const hydrationCache = new InMemoryCache();
                 const purgeAllSpy = jest.spyOn(hydrationCache, "purgeAll");
-                const cache = new ResponseCache(
-                    hydrationCache,
-                    new InMemoryCache(),
-                );
+                const cache = new SsrCache(hydrationCache, new InMemoryCache());
 
                 // Act
                 cache.removeAll(() => true);
@@ -529,10 +508,7 @@ describe("../response-cache.js", () => {
                         },
                     },
                 });
-                const cache = new ResponseCache(
-                    hydrationCache,
-                    new InMemoryCache(),
-                );
+                const cache = new SsrCache(hydrationCache, new InMemoryCache());
                 const predicate = jest.fn().mockReturnValue(false);
 
                 // Act
@@ -555,10 +531,7 @@ describe("../response-cache.js", () => {
                     hydrationCache,
                     "purgeAll",
                 );
-                const cache = new ResponseCache(
-                    hydrationCache,
-                    new InMemoryCache(),
-                );
+                const cache = new SsrCache(hydrationCache, new InMemoryCache());
 
                 // Act
                 cache.removeAll();
@@ -571,10 +544,7 @@ describe("../response-cache.js", () => {
                 // Arrange
                 const ssrOnlyCache = new InMemoryCache();
                 const ssrPurgeAllSpy = jest.spyOn(ssrOnlyCache, "purgeAll");
-                const cache = new ResponseCache(
-                    new InMemoryCache(),
-                    ssrOnlyCache,
-                );
+                const cache = new SsrCache(new InMemoryCache(), ssrOnlyCache);
 
                 // Act
                 cache.removeAll();
@@ -587,10 +557,7 @@ describe("../response-cache.js", () => {
                 // Arrange
                 const hydrationCache = new InMemoryCache();
                 const purgeAllSpy = jest.spyOn(hydrationCache, "purgeAll");
-                const cache = new ResponseCache(
-                    hydrationCache,
-                    new InMemoryCache(),
-                );
+                const cache = new SsrCache(hydrationCache, new InMemoryCache());
 
                 // Act
                 cache.removeAll(() => true);
@@ -603,10 +570,7 @@ describe("../response-cache.js", () => {
                 // Arrange
                 const ssrOnlyCache = new InMemoryCache();
                 const purgeAllSpy = jest.spyOn(ssrOnlyCache, "purgeAll");
-                const cache = new ResponseCache(
-                    new InMemoryCache(),
-                    ssrOnlyCache,
-                );
+                const cache = new SsrCache(new InMemoryCache(), ssrOnlyCache);
 
                 // Act
                 cache.removeAll(() => true);
@@ -618,10 +582,7 @@ describe("../response-cache.js", () => {
             it("should pass a predicate to the hydration cache that calls the predicate it was given", () => {
                 // Arrange
                 const hydrationCache = new InMemoryCache();
-                const cache = new ResponseCache(
-                    hydrationCache,
-                    new InMemoryCache(),
-                );
+                const cache = new SsrCache(hydrationCache, new InMemoryCache());
                 cache.cacheData("KEY1", "DATA", true);
                 const predicate = jest.fn().mockReturnValue(false);
 
@@ -635,10 +596,7 @@ describe("../response-cache.js", () => {
             it("should pass a predicate to the ssr cache that calls the predicate it was given", () => {
                 // Arrange
                 const ssrOnlyCache = new InMemoryCache();
-                const cache = new ResponseCache(
-                    new InMemoryCache(),
-                    ssrOnlyCache,
-                );
+                const cache = new SsrCache(new InMemoryCache(), ssrOnlyCache);
                 cache.cacheData(
                     "KEY1",
                     "DATA",

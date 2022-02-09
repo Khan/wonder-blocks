@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {ResponseCache} from "./response-cache.js";
+import {SsrCache} from "./ssr-cache.js";
 import {RequestFulfillment} from "./request-fulfillment.js";
 
 import type {CachedResponses, ValidCacheData} from "./types.js";
@@ -50,11 +50,11 @@ export class RequestTracker {
      * These are the caches for tracked requests, their handlers, and responses.
      */
     _trackedRequests: RequestCache = {};
-    _responseCache: ResponseCache;
+    _responseCache: SsrCache;
     _requestFulfillment: RequestFulfillment;
 
-    constructor(responseCache: ?ResponseCache = undefined) {
-        this._responseCache = responseCache || ResponseCache.Default;
+    constructor(responseCache: ?SsrCache = undefined) {
+        this._responseCache = responseCache || SsrCache.Default;
         this._requestFulfillment = new RequestFulfillment(responseCache);
     }
 
