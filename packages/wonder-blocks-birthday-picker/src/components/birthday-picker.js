@@ -50,6 +50,11 @@ type Props = {|
     labels?: Labels,
 
     /**
+     * Whether we want to hide the day field.
+     */
+    monthYearOnly?: boolean,
+
+    /**
      * Listen for changes to the birthdate. Could be a string in the YYYY-MM-DD
      * format or `null`.
      */
@@ -86,6 +91,11 @@ export const defaultLabels: Labels = Object.freeze({
     year: "Year",
     day: "Day",
 });
+
+// Default minWidth value when we include the full DOB.
+const FIELD_MIN_WIDTH_FULL = 110;
+// Alternative minWidth value when we hide the day field.
+const FIELD_MIN_WIDTH_MONTH_YEAR = 167;
 
 /**
  * Birthday Picker. Similar to a datepicker, but specifically for birthdates.
@@ -134,10 +144,10 @@ export default class BirthdayPicker extends React.Component<Props, State> {
      * Calculates the initial state values based on the default value.
      */
     getStateFromDefault(): State {
-        const {defaultValue} = this.props;
+        const {defaultValue, monthYearOnly} = this.props;
         const initialState: State = {
             month: null,
-            day: null,
+            day: monthYearOnly ? "1" : null,
             year: null,
             error: null,
         };
@@ -148,7 +158,12 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         // If a default value was provided then we use moment to convert it
         // into a date that we can use to populate the
         if (defaultValue) {
-            const date = moment(defaultValue);
+            let date = moment(defaultValue);
+
+            // Override the default day if monthYearOnly mode is set.
+            if (monthYearOnly) {
+                date = date.startOf("month");
+            }
 
             if (date.isValid()) {
                 initialState.month = String(date.month());
@@ -252,63 +267,99 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         );
     }
 
-    render(): React.Element<any> {
-        const {disabled} = this.props;
-        const {month, day, year} = this.state;
+    renderMonth(): React.Node {
+        const {disabled, monthYearOnly} = this.props;
+        const {month} = this.state;
+        const minWidth = monthYearOnly
+            ? FIELD_MIN_WIDTH_MONTH_YEAR
+            : FIELD_MIN_WIDTH_FULL;
+
+        return (
+            <SingleSelect
+                disabled={disabled}
+                placeholder={this.labels.month}
+                onChange={this.handleMonthChange}
+                selectedValue={month}
+                style={{minWidth}}
+                testId="birthday-picker-month"
+            >
+                {moment.monthsShort().map((month, i) => (
+                    <OptionItem key={month} label={month} value={String(i)} />
+                ))}
+            </SingleSelect>
+        );
+    }
+
+    maybeRenderDay(): ?React.Node {
+        const {disabled, monthYearOnly} = this.props;
+        const {day} = this.state;
+
+        // Hide the day field if the month/year only mode is enabled.
+        if (monthYearOnly) {
+            return null;
+        }
 
         return (
             <>
+                <Strut size={Spacing.xSmall_8} />
+                <SingleSelect
+                    disabled={disabled}
+                    placeholder={this.labels.day}
+                    onChange={this.handleDayChange}
+                    selectedValue={day}
+                    style={{minWidth: 100}}
+                    testId="birthday-picker-day"
+                >
+                    {Array.from(Array(31)).map((_, day) => (
+                        <OptionItem
+                            key={String(day + 1)}
+                            label={String(day + 1)}
+                            value={String(day + 1)}
+                        />
+                    ))}
+                </SingleSelect>
+            </>
+        );
+    }
+
+    renderYear(): React.Node {
+        const {disabled, monthYearOnly} = this.props;
+        const {year} = this.state;
+        const minWidth = monthYearOnly
+            ? FIELD_MIN_WIDTH_MONTH_YEAR
+            : FIELD_MIN_WIDTH_FULL;
+
+        return (
+            <SingleSelect
+                disabled={disabled}
+                placeholder={this.labels.year}
+                onChange={this.handleYearChange}
+                selectedValue={year}
+                style={{minWidth}}
+                testId="birthday-picker-year"
+            >
+                {Array.from(Array(120)).map((_, yearOffset) => (
+                    <OptionItem
+                        key={String(CUR_YEAR - yearOffset)}
+                        label={String(CUR_YEAR - yearOffset)}
+                        value={String(CUR_YEAR - yearOffset)}
+                    />
+                ))}
+            </SingleSelect>
+        );
+    }
+
+    render(): React.Element<any> {
+        return (
+            <>
                 <View testId="birthday-picker" style={{flexDirection: "row"}}>
-                    <SingleSelect
-                        disabled={disabled}
-                        placeholder={this.labels.month}
-                        onChange={this.handleMonthChange}
-                        selectedValue={month}
-                        style={{minWidth: 110}}
-                        testId="birthday-picker-month"
-                    >
-                        {moment.monthsShort().map((month, i) => (
-                            <OptionItem
-                                key={month}
-                                label={month}
-                                value={String(i)}
-                            />
-                        ))}
-                    </SingleSelect>
+                    {this.renderMonth()}
+
+                    {this.maybeRenderDay()}
+
                     <Strut size={Spacing.xSmall_8} />
-                    <SingleSelect
-                        disabled={disabled}
-                        placeholder={this.labels.day}
-                        onChange={this.handleDayChange}
-                        selectedValue={day}
-                        style={{minWidth: 100}}
-                        testId="birthday-picker-day"
-                    >
-                        {Array.from(Array(31)).map((_, day) => (
-                            <OptionItem
-                                key={String(day + 1)}
-                                label={String(day + 1)}
-                                value={String(day + 1)}
-                            />
-                        ))}
-                    </SingleSelect>
-                    <Strut size={Spacing.xSmall_8} />
-                    <SingleSelect
-                        disabled={disabled}
-                        placeholder={this.labels.year}
-                        onChange={this.handleYearChange}
-                        selectedValue={year}
-                        style={{minWidth: 110}}
-                        testId="birthday-picker-year"
-                    >
-                        {Array.from(Array(120)).map((_, yearOffset) => (
-                            <OptionItem
-                                key={String(CUR_YEAR - yearOffset)}
-                                label={String(CUR_YEAR - yearOffset)}
-                                value={String(CUR_YEAR - yearOffset)}
-                            />
-                        ))}
-                    </SingleSelect>
+
+                    {this.renderYear()}
                 </View>
                 {this.maybeRenderError()}
             </>
