@@ -125,7 +125,10 @@ export const BirthdayPickerWithYearAndMonthOnly: StoryComponentType =
 
 BirthdayPickerWithYearAndMonthOnly.args = {
     monthYearOnly: true,
-    onChange: () => {},
+    onChange: (date: ?string) => {
+        // eslint-disable-next-line no-console
+        console.log("Date selected: ", date);
+    },
 };
 
 BirthdayPickerWithYearAndMonthOnly.parameters = {
