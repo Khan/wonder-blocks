@@ -6,6 +6,21 @@ import {ResponseCache} from "../util/response-cache.js";
 
 import type {CacheEntry, ValidData} from "../util/types.js";
 
+/**
+ * Hook to perform an asynchronous action during server-side rendering.
+ *
+ * This hook registers an asynchronous action to be performed during
+ * server-side rendering. The action is performed only once, and the result
+ * is cached against the given identifier so that subsequent calls return that
+ * cached result allowing components to render more of the component.
+ *
+ * This hook requires the Wonder Blocks Data functionality for resolving
+ * pending requests, as well as support for the hydration cache to be
+ * embedded into a page so that the result can by hydrated (if that is a
+ * requirement).
+ *
+ * The asynchronous action is never invoked on the client-side.
+ */
 export const useServerEffect = <TData: ValidData>(
     id: string,
     handler: () => Promise<?TData>,
