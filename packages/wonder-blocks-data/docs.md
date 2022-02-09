@@ -18,7 +18,7 @@ rehydrate that result.
 ### Usage
 
 ```js static
-fulfillAllDataRequests(): Promise<CachedResponses>;
+fulfillAllDataRequests(): Promise<ResponseCache>;
 ```
 
 ## initializeCache
@@ -38,14 +38,14 @@ needs.
 ### Usage
 
 ```js static
-initializeCache(sourceCache: CachedResponses): void;
+initializeCache(sourceCache: ResponseCache): void;
 ```
 
 #### Function arguments
 
 | Argument | Flow&nbsp;Type | Default | Description |
 | --- | --- | --- | --- |
-| `sourceData` | `CachedResponses` | _Required_ | The source cache that will be used to initialize the response cache. |
+| `sourceData` | `ResponseCache` | _Required_ | The source cache that will be used to initialize the response cache. |
 
 ## removeFromCache
 
@@ -92,7 +92,7 @@ removeAllFromCache(predicate?: (key: string, entry: $ReadOnly<CachedResponse<TDa
 
 ## Types
 
-### CachedResponses
+### ResponseCache
 
 ```js static
 type CachedResponse =
@@ -103,7 +103,7 @@ type CachedResponse =
         error: string,
       |};
 
-type CachedResponses = {
+type ResponseCache = {
     [id: string]: CachedResponse,
     ...,
 };

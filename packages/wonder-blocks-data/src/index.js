@@ -6,20 +6,20 @@ import {RequestTracker} from "./util/request-tracking.js";
 import type {
     ValidCacheData,
     CachedResponse,
-    CachedResponses,
+    ResponseCache,
 } from "./util/types.js";
 
 export type {
-    CachedResponses,
+    ResponseCache,
     CachedResponse,
     Result,
     ScopedCache,
 } from "./util/types.js";
 
-export const initializeCache = (source: CachedResponses): void =>
+export const initializeCache = (source: ResponseCache): void =>
     SsrCache.Default.initialize(source);
 
-export const fulfillAllDataRequests = (): Promise<CachedResponses> => {
+export const fulfillAllDataRequests = (): Promise<ResponseCache> => {
     if (!Server.isServerSide()) {
         return Promise.reject(
             new Error("Data requests are not tracked when client-side"),

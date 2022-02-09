@@ -47,7 +47,7 @@ export type CachedResponse<TData: ValidCacheData> =
 /**
  * A cache of fulfilled request responses.
  */
-export type CachedResponses = {
+export type ResponseCache = {
     [key: string]: CachedResponse<any>,
     ...
 };

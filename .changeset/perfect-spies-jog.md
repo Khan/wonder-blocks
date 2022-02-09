@@ -3,8 +3,7 @@
 ---
 
 Rename types and update signatures
-- `ValidData` is now ValidCacheData
-- `Cache` type is now `CachedResponses`
-- `ResponseCache` type removed (can be created with `$ReadOnly<CachedResponses>`)
+- `ValidData` is now `ValidCacheData`
+- `Cache` type is now `ResponseCache` (old `ResponseCache` can be created with `$ReadOnly<ResponseCache>`)
 - `CacheEntry` type is now `CachedResponse`
-- Signatures that were typed as `$ReadOnly<Cache>` or `ResponseCache` types previously are now typed as `CachedResponses` which is more appropriate to how they work
+- Signatures that were typed as `$ReadOnly<Cache>` previously are now typed as `ResponseCache` which is more appropriate to how they work

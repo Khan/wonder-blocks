@@ -2,7 +2,7 @@
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {InMemoryCache} from "./in-memory-cache.js";
 
-import type {ValidCacheData, CachedResponse, CachedResponses} from "./types.js";
+import type {ValidCacheData, CachedResponse, ResponseCache} from "./types.js";
 
 const DefaultScope = "default";
 
@@ -64,7 +64,7 @@ export class SsrCache {
      *
      * This can only be called if the cache is not already in use.
      */
-    initialize: (source: CachedResponses) => void = (source) => {
+    initialize: (source: ResponseCache) => void = (source) => {
         if (this._hydrationCache.inUse) {
             throw new Error(
                 "Cannot initialize data response cache more than once",
@@ -192,7 +192,7 @@ export class SsrCache {
      *
      * By design, this only clones the data that is to be used for hydration.
      */
-    cloneHydratableData: () => CachedResponses = (): CachedResponses => {
+    cloneHydratableData: () => ResponseCache = (): ResponseCache => {
         // We return our hydration cache only.
         const cache = this._hydrationCache.clone();
 

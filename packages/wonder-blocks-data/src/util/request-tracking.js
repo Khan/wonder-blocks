@@ -3,7 +3,7 @@ import * as React from "react";
 import {SsrCache} from "./ssr-cache.js";
 import {RequestFulfillment} from "./request-fulfillment.js";
 
-import type {CachedResponses, ValidCacheData} from "./types.js";
+import type {ResponseCache, ValidCacheData} from "./types.js";
 
 type TrackerFn = <TData: ValidCacheData>(
     id: string,
@@ -108,11 +108,11 @@ export class RequestTracker {
      * Calling this method marks tracked requests as fulfilled; requests are
      * removed from the list of tracked requests by calling this method.
      *
-     * @returns {Promise<CachedResponses>} The promise of the data that was
+     * @returns {Promise<ResponseCache>} The promise of the data that was
      * cached as a result of fulfilling the tracked requests.
      */
-    fulfillTrackedRequests: () => Promise<CachedResponses> =
-        (): Promise<CachedResponses> => {
+    fulfillTrackedRequests: () => Promise<ResponseCache> =
+        (): Promise<ResponseCache> => {
             const promises = [];
 
             for (const requestKey of Object.keys(this._trackedRequests)) {
