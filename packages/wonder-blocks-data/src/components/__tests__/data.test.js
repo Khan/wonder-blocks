@@ -450,7 +450,11 @@ describe("Data", () => {
 
                 // Act
                 const wrapper = render(
-                    <Data handler={fakeHandler1} requestId="ID">
+                    <Data
+                        handler={fakeHandler1}
+                        requestId="ID"
+                        showOldDataWhileLoading={false}
+                    >
                         {fakeChildrenFn}
                     </Data>,
                 );
