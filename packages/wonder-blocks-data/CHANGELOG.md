@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 5.0.0
+
+### Major Changes
+
+-   5b5f85ac: Replace `InterceptData` with `InterceptRequests` and introduce new `useRequestInterception` hook
+
 ## 4.0.0
 
 ### Major Changes
