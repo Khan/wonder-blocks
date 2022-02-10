@@ -13,7 +13,7 @@ import {View, Server} from "@khanacademy/wonder-blocks-core";
 import {
     Data,
     initializeCache,
-    InterceptData,
+    InterceptRequests,
     TrackData,
     fulfillAllDataRequests,
 } from "@khanacademy/wonder-blocks-data";
@@ -135,13 +135,13 @@ describe("wonder-blocks-data", () => {
         const myHandler = () =>
             Promise.reject(new Error("You should not see this!"));
 
-        const interceptHandler = () => Promise.resolve("INTERCEPTED DATA!");
+        const interceptor = (requestId) =>
+            requestId === "INTERCEPT_EXAMPLE"
+                ? Promise.resolve("INTERCEPTED DATA!")
+                : null;
 
         const example = (
-            <InterceptData
-                handler={interceptHandler}
-                requestId="INTERCEPT_EXAMPLE"
-            >
+            <InterceptRequests interceptor={interceptor}>
                 <View>
                     <Body>This received intercepted data!</Body>
                     <Data handler={myHandler} requestId="INTERCEPT_EXAMPLE">
@@ -154,7 +154,7 @@ describe("wonder-blocks-data", () => {
                         }}
                     </Data>
                 </View>
-            </InterceptData>
+            </InterceptRequests>
         );
         const tree = renderer.create(example).toJSON();
         expect(tree).toMatchSnapshot();

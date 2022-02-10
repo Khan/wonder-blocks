@@ -3,8 +3,8 @@ import * as React from "react";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {RequestFulfillment} from "../util/request-fulfillment.js";
-import InterceptContext from "./intercept-context.js";
 import {useServerEffect} from "../hooks/use-server-effect.js";
+import {useRequestInterception} from "../hooks/use-request-interception.js";
 import {resultFromCachedResponse} from "../util/result-from-cache-response.js";
 
 import type {Result, ValidCacheData} from "../util/types.js";
@@ -80,25 +80,11 @@ const Data = <TData: ValidCacheData>({
     showOldDataWhileLoading,
     alwaysRequestOnHydration,
 }: Props<TData>): React.Node => {
-    // Lookup to see if there's an interceptor for the handler.
-    // If we have one, we need to replace the handler with one that
-    // uses the interceptor.
-    const interceptorMap = React.useContext(InterceptContext);
-
-    // If we have an interceptor, we need to replace the handler with one
-    // that uses the interceptor. This helper function generates a new
-    // handler.
-    const maybeInterceptedHandler = React.useMemo(() => {
-        const interceptor = interceptorMap[requestId];
-        if (interceptor == null) {
-            return handler;
-        }
-        return () => interceptor() ?? handler();
-    }, [handler, interceptorMap, requestId]);
+    const interceptedHandler = useRequestInterception(requestId, handler);
 
     const hydrateResult = useServerEffect(
         requestId,
-        maybeInterceptedHandler,
+        interceptedHandler,
         hydrate,
     );
     const [currentResult, setResult] = React.useState(hydrateResult);
@@ -137,7 +123,7 @@ const Data = <TData: ValidCacheData>({
         // hydrated value.
         let cancel = false;
         RequestFulfillment.Default.fulfill(requestId, {
-            handler: maybeInterceptedHandler,
+            handler: interceptedHandler,
         })
             .then((result) => {
                 if (cancel) {
