@@ -61,7 +61,7 @@ module.exports = {
             content: "packages/wonder-blocks-data/docs.md",
             components: [
                 "packages/wonder-blocks-data/src/components/data.js",
-                "packages/wonder-blocks-data/src/components/intercept-data.js",
+                "packages/wonder-blocks-data/src/components/intercept-requests.js",
                 "packages/wonder-blocks-data/src/components/track-data.js",
             ],
         },

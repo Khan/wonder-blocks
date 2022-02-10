@@ -5,7 +5,7 @@ import {render} from "@testing-library/react";
 import InterceptContext from "../intercept-context.js";
 import InterceptRequests from "../intercept-requests.js";
 
-describe("InterceptData", () => {
+describe("InterceptRequests", () => {
     afterEach(() => {
         jest.resetAllMocks();
     });
