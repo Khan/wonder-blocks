@@ -10,7 +10,7 @@ import {VariableSizeList as List} from "react-window";
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
@@ -24,6 +24,8 @@ import SeparatorItem from "./separator-item.js";
 import SearchTextInput from "./search-text-input.js";
 import {defaultLabels, keyCodes, searchInputStyle} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
+
+const StyledSpan = addStyle("span");
 
 type Labels = {|
     noResults: string,
@@ -750,6 +752,14 @@ class DropdownCore extends React.Component<Props, State> {
                 style={[styles.menuWrapper, style]}
                 className={className}
             >
+                <StyledSpan
+                    aria-live="polite"
+                    aria-atomic="true"
+                    aria-relevant="additions text"
+                    style={styles.srOnly}
+                >
+                    {open && `${this.props.items.length} options available.`}
+                </StyledSpan>
                 {opener}
                 {open && this.renderDropdown()}
             </View>
@@ -786,6 +796,17 @@ const styles = StyleSheet.create({
         color: Color.offBlack64,
         alignSelf: "center",
         marginTop: Spacing.xxSmall_6,
+    },
+
+    srOnly: {
+        border: 0,
+        clip: "rect(0,0,0,0)",
+        height: 1,
+        margin: -1,
+        overflow: "hidden",
+        padding: 0,
+        position: "absolute",
+        width: 1,
     },
 });
 

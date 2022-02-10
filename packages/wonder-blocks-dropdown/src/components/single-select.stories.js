@@ -189,3 +189,24 @@ DisabledSingleSelect.parameters = {
             "`SingleSelect` can be disabled by passing `disabled={true}`. This can be useful when you want to disable a control temporarily.",
     },
 };
+
+const ControlledSingleSelect = () => {
+    const [value, setValue] = React.useState(null);
+
+    return (
+        <SingleSelect
+            placeholder="Choose a juice"
+            onChange={setValue}
+            selectedValue={value}
+        >
+            <OptionItem label="Banana juice" value="banana" />
+            <OptionItem label="Guava juice" value="guava" />
+            <OptionItem label="Strawberry juice" value="strawberry" />
+            <OptionItem label="White grape juice" value="grape" />
+        </SingleSelect>
+    );
+};
+
+export const SingleSelectWithOptions: StoryComponentType = () => (
+    <ControlledSingleSelect />
+);
