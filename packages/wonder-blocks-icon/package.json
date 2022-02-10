@@ -15,14 +15,14 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
-    "@khanacademy/wonder-blocks-core": "^4.2.1"
+    "@babel/runtime": "^7.16.3"
   },
   "devDependencies": {
     "wb-dev-build-settings": "^0.3.0"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
-    "react": "16.14.0"
+    "react": "16.14.0",
+    "@khanacademy/wonder-blocks-core": "^4.2.1"
   }
 }
