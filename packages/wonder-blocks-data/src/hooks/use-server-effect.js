@@ -22,7 +22,7 @@ import type {CachedResponse, ValidCacheData} from "../util/types.js";
  * The asynchronous action is never invoked on the client-side.
  */
 export const useServerEffect = <TData: ValidCacheData>(
-    id: string,
+    requestId: string,
     handler: () => Promise<?TData>,
     hydrate: boolean = true,
 ): ?CachedResponse<TData> => {
@@ -31,14 +31,14 @@ export const useServerEffect = <TData: ValidCacheData>(
     // This works in both hydration and SSR because the very first call to
     // this will have cached data in those cases as it will be present on the
     // initial render - and subsequent renders on the client it will be null.
-    const cachedResult = SsrCache.Default.getEntry<TData>(id);
+    const cachedResult = SsrCache.Default.getEntry<TData>(requestId);
 
     // We only track data requests when we are server-side and we don't
     // already have a result, as given by the cachedData (which is also the
     // initial value for the result state).
     const maybeTrack = useContext(TrackerContext);
     if (cachedResult == null && Server.isServerSide()) {
-        maybeTrack?.(id, handler, hydrate);
+        maybeTrack?.(requestId, handler, hydrate);
     }
 
     return cachedResult;

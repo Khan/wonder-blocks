@@ -11,7 +11,7 @@ import TrackData from "../track-data.js";
 import {RequestFulfillment} from "../../util/request-fulfillment.js";
 import {SsrCache} from "../../util/ssr-cache.js";
 import {RequestTracker} from "../../util/request-tracking.js";
-import InterceptData from "../intercept-data.js";
+import InterceptRequests from "../intercept-requests.js";
 import Data from "../data.js";
 
 describe("Data", () => {
@@ -362,14 +362,11 @@ describe("Data", () => {
 
                     // Act
                     render(
-                        <InterceptData
-                            requestId="ID"
-                            handler={interceptHandler}
-                        >
+                        <InterceptRequests interceptor={interceptHandler}>
                             <Data handler={fakeHandler} requestId="ID">
                                 {fakeChildrenFn}
                             </Data>
-                        </InterceptData>,
+                        </InterceptRequests>,
                     );
 
                     // Assert
@@ -385,14 +382,11 @@ describe("Data", () => {
 
                     // Act
                     render(
-                        <InterceptData
-                            handler={interceptHandler}
-                            requestId="ID"
-                        >
+                        <InterceptRequests interceptor={interceptHandler}>
                             <Data handler={fakeHandler} requestId="ID">
                                 {fakeChildrenFn}
                             </Data>
-                        </InterceptData>,
+                        </InterceptRequests>,
                     );
 
                     // Assert
@@ -662,14 +656,11 @@ describe("Data", () => {
 
                     // Act
                     ReactDOMServer.renderToString(
-                        <InterceptData
-                            handler={interceptedHandler}
-                            requestId="ID"
-                        >
+                        <InterceptRequests interceptor={interceptedHandler}>
                             <Data handler={fakeHandler} requestId="ID">
                                 {fakeChildrenFn}
                             </Data>
-                        </InterceptData>,
+                        </InterceptRequests>,
                     );
 
                     // Assert
@@ -692,14 +683,11 @@ describe("Data", () => {
                     // Act
                     ReactDOMServer.renderToString(
                         <TrackData>
-                            <InterceptData
-                                requestId="ID"
-                                handler={interceptedHandler}
-                            >
+                            <InterceptRequests interceptor={interceptedHandler}>
                                 <Data handler={fakeHandler} requestId="ID">
                                     {fakeChildrenFn}
                                 </Data>
-                            </InterceptData>
+                            </InterceptRequests>
                         </TrackData>,
                     );
 
@@ -817,14 +805,11 @@ describe("Data", () => {
 
                     // Act
                     ReactDOMServer.renderToString(
-                        <InterceptData
-                            handler={interceptHandler}
-                            requestId="ID"
-                        >
+                        <InterceptRequests interceptor={interceptHandler}>
                             <Data handler={fakeHandler} requestId="ID">
                                 {fakeChildrenFn}
                             </Data>
-                        </InterceptData>,
+                        </InterceptRequests>,
                     );
 
                     // Assert

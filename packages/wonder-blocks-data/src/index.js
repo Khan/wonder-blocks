@@ -47,8 +47,9 @@ export const removeAllFromCache = (
 
 export {default as TrackData} from "./components/track-data.js";
 export {default as Data} from "./components/data.js";
-export {default as InterceptData} from "./components/intercept-data.js";
+export {default as InterceptRequests} from "./components/intercept-requests.js";
 export {useServerEffect} from "./hooks/use-server-effect.js";
+export {useRequestInterception} from "./hooks/use-request-interception.js";
 export {useSharedCache, clearSharedCache} from "./hooks/use-shared-cache.js";
 export {ScopedInMemoryCache} from "./util/scoped-in-memory-cache.js";
 
