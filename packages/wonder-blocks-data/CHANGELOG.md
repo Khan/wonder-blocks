@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 5.0.1
+
+### Patch Changes
+
+-   c9922b34: Export resultFromCachedResponse
+
 ## 5.0.0
 
 ### Major Changes
