@@ -52,6 +52,7 @@ export {useServerEffect} from "./hooks/use-server-effect.js";
 export {useRequestInterception} from "./hooks/use-request-interception.js";
 export {useSharedCache, clearSharedCache} from "./hooks/use-shared-cache.js";
 export {ScopedInMemoryCache} from "./util/scoped-in-memory-cache.js";
+export {resultFromCachedResponse} from "./util/result-from-cache-response.js";
 
 // GraphQL
 export {GqlRouter} from "./components/gql-router.js";
