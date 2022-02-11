@@ -206,12 +206,10 @@ export const WithClosedFocusId: StoryComponentType = () => {
     const [opened, setOpened] = React.useState(false);
 
     const handleOpen = () => {
-        console.log("opening modal");
         setOpened(true);
     };
 
     const handleClose = () => {
-        console.log("closing modal");
         setOpened(false);
     };
 
@@ -238,4 +236,13 @@ export const WithClosedFocusId: StoryComponentType = () => {
             />
         </View>
     );
+};
+
+WithClosedFocusId.parameters = {
+    chromatic: {
+        // Don't take screenshots of this story since the case we want
+        // to test doesn't appear on first render - it occurs after
+        // we complete a series of steps.
+        disableSnapshot: true,
+    },
 };

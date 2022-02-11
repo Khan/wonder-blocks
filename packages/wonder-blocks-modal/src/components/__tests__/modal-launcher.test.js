@@ -1,15 +1,15 @@
 // @flow
 import * as React from "react";
-import {mount, shallow} from "enzyme";
+import {mount} from "enzyme";
 import "jest-enzyme";
 import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import {View} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
+
 import ModalLauncher from "../modal-launcher.js";
 import OnePaneDialog from "../one-pane-dialog.js";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {Body} from "@khanacademy/wonder-blocks-typography";
-import Button from "@khanacademy/wonder-blocks-button";
 
 import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
 import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document.js";
@@ -54,6 +54,7 @@ describe("ModalLauncher", () => {
         wrapper.find("button").simulate("click");
         await wait();
 
+        // eslint-disable-next-line testing-library/no-node-access
         const portal = global.document.querySelector(
             "[data-modal-launcher-portal]",
         );
@@ -113,6 +114,7 @@ describe("ModalLauncher", () => {
             </ModalLauncher>,
         );
         expect(
+            // eslint-disable-next-line testing-library/no-node-access
             global.document.querySelector("[data-modal-launcher-portal]"),
         ).toBeNull();
 
@@ -120,6 +122,7 @@ describe("ModalLauncher", () => {
         // the modal function.
         opened = true;
         wrapper.find("button").simulate("click");
+        // eslint-disable-next-line testing-library/no-node-access
         const portal = global.document.querySelector(
             "[data-modal-launcher-portal]",
         );
@@ -137,6 +140,7 @@ describe("ModalLauncher", () => {
 
         // Launch the modal.
         wrapper.find("button").simulate("click");
+        // eslint-disable-next-line testing-library/no-node-access
         expect(document.querySelector("[data-modal-child]")).toBeTruthy();
 
         // Simulate an Escape keypress.
@@ -151,6 +155,7 @@ describe("ModalLauncher", () => {
         // NOTE(mdr): This might be fragile once React's async rendering lands.
         //     I wonder if we'll be able to force synchronous rendering in unit
         //     tests?
+        // eslint-disable-next-line testing-library/no-node-access
         expect(document.querySelector("[data-modal-child]")).toBeFalsy();
     });
 
@@ -289,6 +294,7 @@ describe("ModalLauncher", () => {
         await wait();
 
         // Assert
+        // eslint-disable-next-line testing-library/no-node-access
         expect(document.activeElement).not.toBe(lastButton);
     });
 
@@ -339,17 +345,15 @@ describe("ModalLauncher", () => {
             const [opened, setOpened] = React.useState(false);
 
             const handleOpen = () => {
-                console.log("opening modal");
                 setOpened(true);
             };
 
             const handleClose = () => {
-                console.log("closing modal");
                 setOpened(false);
             };
 
             return (
-                <View style={{gap: 20}}>
+                <View>
                     <Button>Top of page (should not receive focus)</Button>
                     <Button id="button-to-focus-on" testId="focused-button">
                         Focus here after close
@@ -385,11 +389,11 @@ describe("ModalLauncher", () => {
 
         render(<ModalLauncherWrapper />);
 
-        // Act
         // Launch modal
         const launcherButton = await screen.findByTestId("launcher-button");
         userEvent.click(launcherButton);
 
+        // Act
         // Close modal
         const modalCloseButton = await screen.findByTestId(
             "modal-close-button",

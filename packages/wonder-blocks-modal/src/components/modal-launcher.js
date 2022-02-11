@@ -51,8 +51,8 @@ type CommonProps = {|
 
     /**
      * The selector for the element that will be focused after the dialog
-     * closes. When not set, the last element focused outside modal will be
-     * used if it exists.
+     * closes. When not set, the last element focused outside the modal will
+     * be used if it exists.
      */
     closedFocusId?: string,
 
@@ -171,36 +171,41 @@ class ModalLauncher extends React.Component<Props, State> {
         this.setState({opened: true});
     };
 
+    _returnFocus: () => void = () => {
+        const {closedFocusId, schedule} = this.props;
+        const lastElement = this.lastElementFocusedOutsideModal;
+
+        // Focus on the specified element after closing the modal.
+        if (closedFocusId) {
+            const focusElement = (ReactDOM.findDOMNode(
+                document.getElementById(closedFocusId),
+            ): any);
+
+            if (focusElement) {
+                // Wait for the modal to leave the DOM before trying
+                // to focus on the specified element.
+                schedule.animationFrame(() => {
+                    focusElement.focus();
+                });
+                return;
+            }
+        }
+
+        if (lastElement != null) {
+            // Wait for the modal to leave the DOM before trying to
+            // return focus to the element that triggered the modal.
+            schedule.animationFrame(() => {
+                lastElement.focus();
+            });
+        }
+    };
+
     handleCloseModal: () => void = () => {
         this.setState({opened: false}, () => {
-            const {onClose, closedFocusId, schedule} = this.props;
-            const lastElement = this.lastElementFocusedOutsideModal;
+            const {onClose} = this.props;
 
             onClose && onClose();
-
-            // Focus on the specified element after closing the modal.
-            if (closedFocusId) {
-                const focusElement = (ReactDOM.findDOMNode(
-                    document.getElementById(closedFocusId),
-                ): any);
-
-                if (focusElement) {
-                    // Wait for the modal to leave the DOM before trying
-                    // to focus on the specified element.
-                    schedule.animationFrame(() => {
-                        focusElement.focus();
-                    });
-                    return;
-                }
-            }
-
-            if (lastElement != null) {
-                // Wait for the modal to leave the DOM before trying to
-                // return focus to the element that triggered the modal.
-                schedule.animationFrame(() => {
-                    lastElement.focus();
-                });
-            }
+            this._returnFocus();
         });
     };
 
