@@ -221,8 +221,6 @@ const disabledHandlers = {
     onTouchCancel: () => void 0,
     onKeyDown: () => void 0,
     onKeyUp: () => void 0,
-    onFocus: () => void 0,
-    onBlur: () => void 0,
     // Clickable components should still be tabbable so they can
     // be used as anchors.
     tabIndex: 0,
@@ -334,9 +332,10 @@ export default class ClickableBehavior extends React.Component<
         props: Props,
         state: ClickableState,
     ): ?Partial<ClickableState> {
-        // If new props are disabled, reset the hovered/focused/pressed states
+        // If new props are disabled, reset the hovered/pressed states
         if (props.disabled) {
-            return startState;
+            // Keep the focused state for enabling keyboard navigation.
+            return {...startState, focused: state.focused};
         } else {
             // Cannot return undefined
             return null;
@@ -610,7 +609,12 @@ export default class ClickableBehavior extends React.Component<
 
     render(): React.Node {
         const childrenProps: ChildrenProps = this.props.disabled
-            ? disabledHandlers
+            ? {
+                  ...disabledHandlers,
+                  // Keep these handlers for keyboard accessibility.
+                  onFocus: this.handleFocus,
+                  onBlur: this.handleBlur,
+              }
             : {
                   onClick: this.handleClick,
                   onMouseEnter: this.handleMouseEnter,

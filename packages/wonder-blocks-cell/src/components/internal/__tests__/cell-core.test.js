@@ -74,7 +74,10 @@ describe("CellCore", () => {
         );
 
         // Assert
-        expect(screen.getByRole("button")).toBeDisabled();
+        expect(screen.getByRole("button")).toHaveAttribute(
+            "aria-disabled",
+            "true",
+        );
     });
 
     it("should add aria-current if active is set", () => {

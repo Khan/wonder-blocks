@@ -285,6 +285,9 @@ const styles = StyleSheet.create({
 
     disabled: {
         color: Color.offBlack32,
+        ":hover": {
+            cursor: "not-allowed",
+        },
     },
 
     accessoryActive: {
