@@ -181,9 +181,9 @@ describe("BirthdayPicker", () => {
             // Arrange
             const onChange = jest.fn();
 
-            // Act
             render(<BirthdayPicker onChange={onChange} />);
 
+            // Act
             userEvent.click(screen.getByTestId("birthday-picker-month"));
             const monthOption = await screen.findByRole("option", {
                 name: "Jul",
@@ -270,7 +270,6 @@ describe("BirthdayPicker", () => {
             // Arrange
             const onChange = jest.fn();
 
-            // Act
             render(
                 <BirthdayPicker
                     defaultValue="2017-07-17"
@@ -278,6 +277,7 @@ describe("BirthdayPicker", () => {
                 />,
             );
 
+            // Act
             userEvent.click(screen.getByTestId("birthday-picker-month"));
             const monthOption = await screen.findByRole("option", {
                 name: "Aug",
@@ -339,7 +339,6 @@ describe("BirthdayPicker", () => {
             // Arrange
             const onChange = jest.fn();
 
-            // Act
             render(
                 <BirthdayPicker
                     defaultValue="2021-02-31"
@@ -347,6 +346,7 @@ describe("BirthdayPicker", () => {
                 />,
             );
 
+            // Act
             userEvent.click(screen.getByTestId("birthday-picker-year"));
             const yearOption = await screen.findByRole("option", {
                 name: "2020",
@@ -363,9 +363,9 @@ describe("BirthdayPicker", () => {
             // Arrange
             const onChange = jest.fn();
 
-            // Act
             render(<BirthdayPicker monthYearOnly={true} onChange={onChange} />);
 
+            // Act
             userEvent.click(screen.getByTestId("birthday-picker-month"));
             const monthOption = await screen.findByRole("option", {
                 name: "Aug",
@@ -391,7 +391,6 @@ describe("BirthdayPicker", () => {
             // Arrange
             const onChange = jest.fn();
 
-            // Act
             render(
                 <BirthdayPicker
                     defaultValue="2017-07-17"
@@ -400,6 +399,7 @@ describe("BirthdayPicker", () => {
                 />,
             );
 
+            // Act
             userEvent.click(screen.getByTestId("birthday-picker-month"));
             const monthOption = await screen.findByRole("option", {
                 name: "Aug",

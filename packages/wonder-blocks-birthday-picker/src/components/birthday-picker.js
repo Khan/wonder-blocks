@@ -52,10 +52,10 @@ type Props = {|
     /**
      * Whether we want to hide the day field.
      *
-     * **NOTE:** We will set the day to the _FIRST_ day of the _SELECTED_ month
+     * **NOTE:** We will set the day to the _first_ day of the _selected_ month
      * if the day field is hidden. Please make sure to modify the passed date
-     * value to fit different needs (e.g. if you want to set the _FIRST_ day of
-     * the _FOLLOWING_ month instead).
+     * value to fit different needs (e.g. if you want to set the _first_ day of
+     * the _following_ month instead).
      */
     monthYearOnly?: boolean,
 
@@ -99,7 +99,9 @@ export const defaultLabels: Labels = Object.freeze({
 
 // Default minWidth value when we include the full DOB.
 const FIELD_MIN_WIDTH_FULL = 110;
+
 // Alternative minWidth value when we hide the day field.
+// See: https://www.figma.com/file/uJZi9ZvuEz5N8GJ3HqKFAa/(2021)-Account-records?node-id=20%3A398
 const FIELD_MIN_WIDTH_MONTH_YEAR = 167;
 
 /**
