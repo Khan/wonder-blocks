@@ -34,6 +34,18 @@ describe("BirthdayPicker", () => {
             expect(yearPicker).toHaveTextContent("Year");
         });
 
+        it("renders without the day field if monthYearOnly is set", () => {
+            // Arrange
+
+            // Act
+            render(<BirthdayPicker monthYearOnly={true} onChange={() => {}} />);
+
+            const dayPicker = screen.queryByTestId("birthday-picker-day");
+
+            // Assert
+            expect(dayPicker).not.toBeInTheDocument();
+        });
+
         it("renders with a valid default value", () => {
             // Arrange
             const date = moment(today);
@@ -169,9 +181,9 @@ describe("BirthdayPicker", () => {
             // Arrange
             const onChange = jest.fn();
 
-            // Act
             render(<BirthdayPicker onChange={onChange} />);
 
+            // Act
             userEvent.click(screen.getByTestId("birthday-picker-month"));
             const monthOption = await screen.findByRole("option", {
                 name: "Jul",
@@ -258,7 +270,6 @@ describe("BirthdayPicker", () => {
             // Arrange
             const onChange = jest.fn();
 
-            // Act
             render(
                 <BirthdayPicker
                     defaultValue="2017-07-17"
@@ -266,6 +277,7 @@ describe("BirthdayPicker", () => {
                 />,
             );
 
+            // Act
             userEvent.click(screen.getByTestId("birthday-picker-month"));
             const monthOption = await screen.findByRole("option", {
                 name: "Aug",
@@ -327,7 +339,6 @@ describe("BirthdayPicker", () => {
             // Arrange
             const onChange = jest.fn();
 
-            // Act
             render(
                 <BirthdayPicker
                     defaultValue="2021-02-31"
@@ -335,6 +346,7 @@ describe("BirthdayPicker", () => {
                 />,
             );
 
+            // Act
             userEvent.click(screen.getByTestId("birthday-picker-year"));
             const yearOption = await screen.findByRole("option", {
                 name: "2020",
@@ -345,6 +357,68 @@ describe("BirthdayPicker", () => {
 
             // Assert
             expect(onChange).toHaveBeenCalledTimes(1);
+        });
+
+        it("onChange triggers the first day of the month when monthYearOnly is set", async () => {
+            // Arrange
+            const onChange = jest.fn();
+
+            render(<BirthdayPicker monthYearOnly={true} onChange={onChange} />);
+
+            // Act
+            userEvent.click(screen.getByTestId("birthday-picker-month"));
+            const monthOption = await screen.findByRole("option", {
+                name: "Aug",
+            });
+            userEvent.click(monthOption, undefined, {
+                skipPointerEventsCheck: true,
+            });
+
+            userEvent.click(screen.getByTestId("birthday-picker-year"));
+            const yearOption = await screen.findByRole("option", {
+                name: "2018",
+            });
+            userEvent.click(yearOption, undefined, {
+                skipPointerEventsCheck: true,
+            });
+
+            // Assert
+            // Verify that we passed the first day of the month
+            expect(onChange).toHaveBeenCalledWith("2018-08-01");
+        });
+
+        it("onChange triggers the passed-in day intact when defaultValue and monthYearOnly are set", async () => {
+            // Arrange
+            const onChange = jest.fn();
+
+            render(
+                <BirthdayPicker
+                    defaultValue="2017-07-17"
+                    monthYearOnly={true}
+                    onChange={onChange}
+                />,
+            );
+
+            // Act
+            userEvent.click(screen.getByTestId("birthday-picker-month"));
+            const monthOption = await screen.findByRole("option", {
+                name: "Aug",
+            });
+            userEvent.click(monthOption, undefined, {
+                skipPointerEventsCheck: true,
+            });
+
+            userEvent.click(screen.getByTestId("birthday-picker-year"));
+            const yearOption = await screen.findByRole("option", {
+                name: "2018",
+            });
+            userEvent.click(yearOption, undefined, {
+                skipPointerEventsCheck: true,
+            });
+
+            // Assert
+            // Verify that we passed the same day originally passed in.
+            expect(onChange).toHaveBeenCalledWith("2018-08-17");
         });
     });
 

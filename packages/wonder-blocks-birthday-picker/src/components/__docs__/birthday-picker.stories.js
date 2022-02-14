@@ -119,3 +119,21 @@ DisabledBirthdayPicker.parameters = {
             "A BirthdayPicker can be disabled by passing the `disabled` prop. This will disable all the dropdown controls and prevent them from being interacted with.",
     },
 };
+
+export const BirthdayPickerWithYearAndMonthOnly: StoryComponentType =
+    Template.bind({});
+
+BirthdayPickerWithYearAndMonthOnly.args = {
+    monthYearOnly: true,
+    onChange: (date: ?string) => {
+        // eslint-disable-next-line no-console
+        console.log("Date selected: ", date);
+    },
+};
+
+BirthdayPickerWithYearAndMonthOnly.parameters = {
+    docs: {
+        storyDescription:
+            "A BirthdayPicker can be configured to only show the year and month dropdowns. This can be useful when we want to display and collect a birthday that doesn't require the full DOB for privacy reasons.",
+    },
+};
