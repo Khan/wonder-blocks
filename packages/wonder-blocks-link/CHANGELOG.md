@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-link
 
+## 3.8.4
+
+### Patch Changes
+
+-   Updated dependencies [166ecc97]
+    -   @khanacademy/wonder-blocks-clickable@2.2.4
+
 ## 3.8.3
 
 ### Patch Changes
