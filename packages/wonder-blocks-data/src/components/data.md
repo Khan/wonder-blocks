@@ -140,7 +140,7 @@ initializeCache({
                 }
 
                 return (
-                    <BodyMonospace style={{color: Color.red}}>ERROR: {result.error}</BodyMonospace>
+                    <BodyMonospace style={{color: Color.red}}>ERROR: {result.error.message}</BodyMonospace>
                 );
             }}
         </Data>

@@ -119,7 +119,7 @@ describe("wonder-blocks-data", () => {
                                         color: Color.red,
                                     }}
                                 >
-                                    ERROR: {result.error}
+                                    ERROR: {result.error.message}
                                 </BodyMonospace>
                             );
                         }}
