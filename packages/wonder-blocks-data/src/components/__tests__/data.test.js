@@ -107,7 +107,7 @@ describe("Data", () => {
                 expect(fakeHandler).toHaveBeenCalledTimes(1);
             });
 
-            it("should render with an error if the request rejects to an error", async () => {
+            it("should render with an error if the handler request rejects to an error", async () => {
                 // Arrange
                 const fulfillSpy = jest.spyOn(
                     RequestFulfillment.Default,
@@ -168,7 +168,35 @@ describe("Data", () => {
                 });
             });
 
-            it("should render with an error if the request rejects with an error", async () => {
+            it("should render with aborted if the request resolves to null data", async () => {
+                // Arrange
+                const fulfillSpy = jest.spyOn(
+                    RequestFulfillment.Default,
+                    "fulfill",
+                );
+
+                const fakeHandler = () => Promise.resolve(null);
+                const fakeChildrenFn = jest.fn(() => null);
+
+                // Act
+                render(
+                    <Data handler={fakeHandler} requestId="ID">
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+                /**
+                 * We wait for the fulfillment to resolve.
+                 */
+                await act(() => fulfillSpy.mock.results[0].value);
+
+                // Assert
+                expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
+                expect(fakeChildrenFn).toHaveBeenLastCalledWith({
+                    status: "aborted",
+                });
+            });
+
+            it("should render with an error if the RequestFulfillment rejects with an error", async () => {
                 // Arrange
                 const fulfillSpy = jest
                     .spyOn(RequestFulfillment.Default, "fulfill")
