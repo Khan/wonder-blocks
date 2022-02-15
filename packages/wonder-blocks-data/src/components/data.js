@@ -131,6 +131,9 @@ const Data = <TData: ValidCacheData>({
                 if (cancel) {
                     return;
                 }
+                // TODO(somewhatabstract, FEI-4327): separate inflight request
+                // tracking and response caching so that we're not "hydrating"
+                // a non-server error in this scenario.
                 setResult(resultFromCachedResponse(result));
                 return;
             })
