@@ -1,7 +1,8 @@
 // @flow
-import {useContext, useCallback} from "react";
+import {useCallback} from "react";
 
-import {GqlRouterContext} from "../util/gql-router-context.js";
+import {mergeGqlContext} from "../util/merge-gql-context.js";
+import {useGqlRouterContext} from "./use-gql-router-context.js";
 import {getGqlDataFromResponse} from "../util/get-gql-data-from-response.js";
 import {GqlError, GqlErrors} from "../util/gql-error.js";
 
@@ -21,16 +22,17 @@ import type {
  * Values in the partial context given to the returned fetch function will
  * only be included if they have a value other than undefined.
  */
-export const useGql = (): (<TData, TVariables: {...}, TContext: GqlContext>(
+export const useGql = <TContext: GqlContext>(
+    context: Partial<TContext> = ({}: $Shape<TContext>),
+): (<TData, TVariables: {...}>(
     operation: GqlOperation<TData, TVariables>,
     options?: GqlFetchOptions<TVariables, TContext>,
 ) => Promise<?TData>) => {
     // This hook only works if the `GqlRouter` has been used to setup context.
-    const gqlRouterContext = useContext(GqlRouterContext);
+    const gqlRouterContext = useGqlRouterContext(context);
     if (gqlRouterContext == null) {
         throw new GqlError("No GqlRouter", GqlErrors.Internal);
     }
-    const {fetch, defaultContext} = gqlRouterContext;
 
     // Let's memoize the gqlFetch function we create based off our context.
     // That way, even if the context happens to change, if its values don't
@@ -38,29 +40,16 @@ export const useGql = (): (<TData, TVariables: {...}, TContext: GqlContext>(
     // making a new one. That then means they can safely use the return value
     // in hooks deps without fear of it triggering extra renders.
     const gqlFetch = useCallback(
-        <TData, TVariables: {...}, TContext: GqlContext>(
+        <TData, TVariables: {...}>(
             operation: GqlOperation<TData, TVariables>,
             options: GqlFetchOptions<TVariables, TContext> = Object.freeze({}),
         ) => {
+            const {fetch, defaultContext} = gqlRouterContext;
             const {variables, context = {}} = options;
-
-            // Let's merge the partial context of the fetch with the
-            // default context. We deliberately don't spread because
-            // spreading would overwrite default context values with
-            // undefined if the partial context includes a value explicitly
-            // set to undefined. Instead, we use a map/reduce of keys.
-            const mergedContext = Object.keys(context).reduce(
-                (acc, key) => {
-                    if (context[key] !== undefined) {
-                        acc[key] = context[key];
-                    }
-                    return acc;
-                },
-                {...defaultContext},
-            );
+            const finalContext = mergeGqlContext(defaultContext, context);
 
             // Invoke the fetch and extract the data.
-            return fetch(operation, variables, mergedContext).then(
+            return fetch(operation, variables, finalContext).then(
                 getGqlDataFromResponse,
                 (error) => {
                     // Return null if the request was aborted.
@@ -76,7 +65,7 @@ export const useGql = (): (<TData, TVariables: {...}, TContext: GqlContext>(
                 },
             );
         },
-        [fetch, defaultContext],
+        [gqlRouterContext],
     );
     return gqlFetch;
 };
