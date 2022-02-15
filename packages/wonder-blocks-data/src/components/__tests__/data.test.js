@@ -19,7 +19,7 @@ describe("Data", () => {
         const responseCache = new SsrCache();
         jest.spyOn(SsrCache, "Default", "get").mockReturnValue(responseCache);
         jest.spyOn(RequestFulfillment, "Default", "get").mockReturnValue(
-            new RequestFulfillment(responseCache),
+            new RequestFulfillment(),
         );
         jest.spyOn(RequestTracker, "Default", "get").mockReturnValue(
             new RequestTracker(responseCache),
@@ -125,7 +125,11 @@ describe("Data", () => {
                 /**
                  * We wait for the fulfillment to resolve.
                  */
-                await act(() => fulfillSpy.mock.results[0].value);
+                await act(() =>
+                    fulfillSpy.mock.results[0].value.catch(() => {
+                        /* do nothing */
+                    }),
+                );
 
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
@@ -172,11 +176,6 @@ describe("Data", () => {
 
                 const fakeHandler = () => Promise.resolve("YAY!");
                 const fakeChildrenFn = jest.fn(() => null);
-                const consoleSpy = jest
-                    .spyOn(console, "error")
-                    .mockImplementation(() => {
-                        /* Just to shut it up */
-                    });
 
                 // Act
                 render(
@@ -197,11 +196,6 @@ describe("Data", () => {
                     status: "error",
                     error: expect.any(Error),
                 });
-                expect(consoleSpy).toHaveBeenCalledWith(
-                    expect.stringMatching(
-                        "Unexpected error occurred during data fulfillment:(?: Error:)? CATASTROPHE!",
-                    ),
-                );
             });
 
             it("should start loading if the id changes and request not cached", async () => {
@@ -232,12 +226,13 @@ describe("Data", () => {
                 );
 
                 // Assert
-                // Render 1: Caused by handler changed
-                // Render 2: Caused by result state changing to null
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
                 expect(fakeChildrenFn).toHaveBeenLastCalledWith({
                     status: "loading",
                 });
+
+                // We have to do this or testing-library gets very upset.
+                await act(() => fulfillSpy.mock.results[0].value);
             });
 
             it("should ignore resolution of pending handler fulfillment when id changes", async () => {
@@ -345,7 +340,7 @@ describe("Data", () => {
             });
 
             describe("with data interceptor", () => {
-                it("should request data from interceptor", () => {
+                it("should request data from interceptor", async () => {
                     // Arrange
                     const fakeHandler = jest.fn().mockResolvedValue("data");
                     const fakeChildrenFn = jest.fn(() => null);
@@ -361,13 +356,14 @@ describe("Data", () => {
                             </Data>
                         </InterceptRequests>,
                     );
+                    await act(() => interceptHandler.mock.results[0].value);
 
                     // Assert
                     expect(interceptHandler).toHaveBeenCalledTimes(1);
                     expect(fakeHandler).not.toHaveBeenCalled();
                 });
 
-                it("should invoke handler method if interceptor method returns null", () => {
+                it("should invoke handler method if interceptor method returns null", async () => {
                     // Arrange
                     const fakeHandler = jest.fn().mockResolvedValue("data");
                     const fakeChildrenFn = jest.fn(() => null);
@@ -381,6 +377,7 @@ describe("Data", () => {
                             </Data>
                         </InterceptRequests>,
                     );
+                    await act(() => fakeHandler.mock.results[0].value);
 
                     // Assert
                     expect(interceptHandler).toHaveBeenCalledTimes(1);
@@ -442,6 +439,7 @@ describe("Data", () => {
                         {fakeChildrenFn}
                     </Data>,
                 );
+                await act(() => response1);
                 wrapper.rerender(
                     <Data
                         handler={fakeHandler2}
@@ -451,6 +449,7 @@ describe("Data", () => {
                         {fakeChildrenFn}
                     </Data>,
                 );
+                await act(() => response2);
 
                 // Assert
                 expect(fakeChildrenFn).not.toHaveBeenCalledWith({
@@ -478,7 +477,7 @@ describe("Data", () => {
                 expect(fakeHandler).not.toHaveBeenCalled();
             });
 
-            it("should request data if cached data value is valid but alwaysRequestOnHydration is true", () => {
+            it("should request data if cached data value is valid but alwaysRequestOnHydration is true", async () => {
                 // Arrange
                 const fakeHandler = jest.fn().mockResolvedValue("data");
                 const fakeChildrenFn = jest.fn(() => null);
@@ -493,6 +492,7 @@ describe("Data", () => {
                         {fakeChildrenFn}
                     </Data>,
                 );
+                await act(() => fakeHandler.mock.results[0].value);
 
                 // Assert
                 expect(fakeHandler).toHaveBeenCalledTimes(1);
@@ -514,7 +514,7 @@ describe("Data", () => {
                 });
             });
 
-            it("should request data if cached data value is null (i.e. represents an aborted request)", () => {
+            it("should request data if cached data value is null (i.e. represents an aborted request)", async () => {
                 // Arrange
                 const fakeHandler = jest.fn().mockResolvedValue("data");
                 const fakeChildrenFn = jest.fn(() => null);
@@ -525,6 +525,7 @@ describe("Data", () => {
                         {fakeChildrenFn}
                     </Data>,
                 );
+                await act(() => fakeHandler.mock.results[0].value);
 
                 // Assert
                 expect(fakeHandler).toHaveBeenCalledTimes(1);
@@ -546,7 +547,7 @@ describe("Data", () => {
                 });
             });
 
-            it("should always request data if there's a cached error", () => {
+            it("should always request data if there's a cached error", async () => {
                 // Arrange
                 const fakeHandler = jest.fn().mockResolvedValue("data");
                 const fakeChildrenFn = jest.fn(() => null);
@@ -557,6 +558,8 @@ describe("Data", () => {
                         {fakeChildrenFn}
                     </Data>,
                 );
+                // Have to await the promise in an act to keep TL/R happy.
+                await act(() => fakeHandler.mock.results[0].value);
 
                 // Assert
                 expect(fakeHandler).toHaveBeenCalledTimes(1);

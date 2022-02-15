@@ -124,31 +124,27 @@ const Data = <TData: ValidCacheData>({
         // same ID and the result will be in the same format as the
         // hydrated value.
         let cancel = false;
-        RequestFulfillment.Default.fulfill(requestId, {
+        RequestFulfillment.Default.fulfill<TData>(requestId, {
             handler: interceptedHandler,
         })
-            .then((result) => {
+            .then((data) => {
                 if (cancel) {
                     return;
                 }
-                // TODO(somewhatabstract, FEI-4327): separate inflight request
-                // tracking and response caching so that we're not "hydrating"
-                // a non-server error in this scenario.
-                setResult(resultFromCachedResponse(result));
+                if (data == null) {
+                    setResult({status: "aborted"});
+                    return;
+                }
+                setResult({
+                    status: "success",
+                    data,
+                });
                 return;
             })
             .catch((e) => {
                 if (cancel) {
                     return;
                 }
-                /**
-                 * We should never get here as errors in fulfillment are part
-                 * of the `then`, but if we do.
-                 */
-                // eslint-disable-next-line no-console
-                console.error(
-                    `Unexpected error occurred during data fulfillment: ${e}`,
-                );
                 setResult({
                     status: "error",
                     error: e,
