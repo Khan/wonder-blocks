@@ -18,8 +18,8 @@ import type {ValidCacheData} from "../util/types.js";
  */
 export const useRequestInterception = <TData: ValidCacheData>(
     requestId: string,
-    handler: () => Promise<?TData>,
-): (() => Promise<?TData>) => {
+    handler: () => Promise<TData>,
+): (() => Promise<TData>) => {
     // Get the interceptors that have been registered.
     const interceptors = React.useContext(InterceptContext);
 
@@ -28,7 +28,7 @@ export const useRequestInterception = <TData: ValidCacheData>(
     // if nothing intercepted it.
     // We memoize this so that it only changes if something related to it
     // changes.
-    const interceptedHandler = React.useCallback((): Promise<?TData> => {
+    const interceptedHandler = React.useCallback((): Promise<TData> => {
         // Call the interceptors from closest to furthest.
         // If one returns a non-null result, then we keep that.
         const interceptResponse = interceptors.reduceRight(

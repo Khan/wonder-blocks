@@ -7,14 +7,14 @@ import type {ResponseCache, ValidCacheData} from "./types.js";
 
 type TrackerFn = <TData: ValidCacheData>(
     id: string,
-    handler: () => Promise<?TData>,
+    handler: () => Promise<TData>,
     hydrate: boolean,
 ) => void;
 
 type RequestCache = {
     [id: string]: {|
         hydrate?: boolean,
-        handler: () => Promise<?any>,
+        handler: () => Promise<any>,
     |},
     ...
 };
@@ -66,11 +66,11 @@ export class RequestTracker {
      */
     trackDataRequest: <TData: ValidCacheData>(
         id: string,
-        handler: () => Promise<?TData>,
+        handler: () => Promise<TData>,
         hydrate: boolean,
     ) => void = <TData: ValidCacheData>(
         id: string,
-        handler: () => Promise<?TData>,
+        handler: () => Promise<TData>,
         hydrate: boolean,
     ): void => {
         /**
@@ -124,29 +124,55 @@ export class RequestTracker {
                     promises.push(
                         this._requestFulfillment
                             .fulfill(requestKey, options)
-                            .then((data) => {
-                                if (data == null) {
-                                    // Request aborted. We won't cache this.
-                                    return null;
-                                }
+                            .then((result) => {
+                                switch (result.status) {
+                                    case "loading":
+                                        // Could never get here unless we wrote
+                                        // the code wrong. Rather than bloat
+                                        // code with useless error, just ignore.
+                                        break;
 
-                                /**
-                                 * Let's cache the data!
-                                 *
-                                 * NOTE: This only caches when we're server side.
-                                 */
-                                return cacheData(requestKey, data, hydrate);
-                            })
-                            .catch((error) => {
-                                /**
-                                 * Let's cache the error!
-                                 *
-                                 * NOTE: This only caches when we're server side.
-                                 */
-                                return cacheError(requestKey, error, hydrate);
+                                    case "aborted":
+                                        // Request aborted. We won't cache this.
+                                        // We don't hydrate aborted requests,
+                                        // so the client would just see them
+                                        // as unfulfilled data.
+                                        break;
+
+                                    case "success":
+                                        /**
+                                         * Let's cache the data!
+                                         *
+                                         * NOTE: This only caches when we're
+                                         * server side.
+                                         */
+                                        cacheData(
+                                            requestKey,
+                                            result.data,
+                                            hydrate,
+                                        );
+                                        break;
+
+                                    case "error":
+                                        /**
+                                         * Let's cache the error!
+                                         *
+                                         * NOTE: This only caches when we're
+                                         * server side.
+                                         */
+                                        cacheError(
+                                            requestKey,
+                                            result.error,
+                                            hydrate,
+                                        );
+                                        break;
+                                }
+                                return;
                             }),
                     );
                 } catch (e) {
+                    // This captures if there are problems in the code that
+                    // begins the requests.
                     promises.push(
                         Promise.resolve(cacheError(requestKey, e, hydrate)),
                     );
@@ -159,16 +185,15 @@ export class RequestTracker {
              * We call this now for a simpler API.
              *
              * If we reset the tracked calls after all promises resolve, any
-             * requst tracking done while promises are in flight would be lost.
+             * request tracking done while promises are in flight would be lost.
              *
              * If we don't reset at all, then we have to expose the `reset` call
              * for consumers to use, or they'll only ever be able to accumulate
              * more and more tracked requests, having to fulfill them all every
              * time.
              *
-             * Calling it here means we can have multiple "track -> request" cycles
-             * in a row and in an easy to reason about manner.
-             *
+             * Calling it here means we can have multiple "track -> request"
+             * cycles in a row and in an easy to reason about manner.
              */
             this.reset();
 

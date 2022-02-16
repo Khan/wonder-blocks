@@ -15,7 +15,7 @@ different request IDs..
 The `interceptor` intercept function has the form:
 
 ```js static
-(requestId: string) => ?Promise<?TData>;
+(requestId: string) => ?Promise<TData>;
 ```
 
 If this method returns `null`, then the next interceptor in the chain is

@@ -139,7 +139,7 @@ describe("Data", () => {
                 });
             });
 
-            it("should render with data if the request resolves with data", async () => {
+            it("should render with data if the handler resolves with data", async () => {
                 // Arrange
                 const fulfillSpy = jest.spyOn(
                     RequestFulfillment.Default,
@@ -200,7 +200,10 @@ describe("Data", () => {
                 // Arrange
                 const fulfillSpy = jest
                     .spyOn(RequestFulfillment.Default, "fulfill")
-                    .mockReturnValue(Promise.reject(new Error("CATASTROPHE!")));
+                    .mockResolvedValue({
+                        status: "error",
+                        error: new Error("CATASTROPHE!"),
+                    });
 
                 const fakeHandler = () => Promise.resolve("YAY!");
                 const fakeChildrenFn = jest.fn(() => null);
@@ -335,7 +338,10 @@ describe("Data", () => {
 
             it("should ignore catastrophic request fulfillment when id changes", async () => {
                 // Arrange
-                const catastrophe = Promise.reject("CATASTROPHE!");
+                const catastrophe = Promise.resolve({
+                    status: "error",
+                    error: new Error("CATASTROPHE!"),
+                });
                 jest.spyOn(
                     RequestFulfillment.Default,
                     "fulfill",
@@ -363,7 +369,7 @@ describe("Data", () => {
                 // Assert
                 expect(fakeChildrenFn).not.toHaveBeenCalledWith({
                     status: "error",
-                    error: "CATASTROPHE!",
+                    error: expect.any(Error),
                 });
             });
 

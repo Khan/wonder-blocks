@@ -1,5 +1,6 @@
 // @flow
 import {RequestFulfillment} from "../request-fulfillment.js";
+import {GqlError} from "../gql-error.js";
 
 describe("RequestFulfillment", () => {
     it("should provide static default instance", () => {
@@ -14,23 +15,42 @@ describe("RequestFulfillment", () => {
     });
 
     describe("#fulfill", () => {
-        it("should return a promise rejecting to the error", async () => {
+        it("should resolve to an error result", async () => {
             // Arrange
             const requestFulfillment = new RequestFulfillment();
             const fakeBadRequestHandler = () => Promise.reject("OH NO!");
 
             // Act
-            const underTest = requestFulfillment.fulfill("ID", {
+            const result = await requestFulfillment.fulfill("ID", {
                 handler: fakeBadRequestHandler,
             });
 
             // Assert
-            await expect(underTest).rejects.toThrowErrorMatchingInlineSnapshot(
-                `"Request failed"`,
-            );
+            expect(result).toStrictEqual({
+                status: "error",
+                error: expect.any(GqlError),
+            });
         });
 
-        it("should return a promise resolving to the data result", async () => {
+        it("should resolve to an aborted result", async () => {
+            // Arrange
+            const requestFulfillment = new RequestFulfillment();
+            const abortError = new Error("abort abort abort, awoooga");
+            abortError.name = "AbortError";
+            const fakeBadRequestHandler = () => Promise.reject(abortError);
+
+            // Act
+            const result = await requestFulfillment.fulfill("ID", {
+                handler: fakeBadRequestHandler,
+            });
+
+            // Assert
+            expect(result).toStrictEqual({
+                status: "aborted",
+            });
+        });
+
+        it("should resolve to a data result", async () => {
             // Arrange
             const requestFulfillment = new RequestFulfillment();
             const fakeRequestHandler = () => Promise.resolve("DATA!");
@@ -41,7 +61,10 @@ describe("RequestFulfillment", () => {
             });
 
             // Assert
-            expect(result).toStrictEqual("DATA!");
+            expect(result).toStrictEqual({
+                status: "success",
+                data: "DATA!",
+            });
         });
 
         it("should reuse inflight requests", () => {

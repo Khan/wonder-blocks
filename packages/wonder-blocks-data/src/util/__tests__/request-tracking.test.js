@@ -78,7 +78,7 @@ describe("../request-tracking.js", () => {
             it("should track each matching request once", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
-                const fakeHandler = jest.fn().mockResolvedValue(null);
+                const fakeHandler = jest.fn().mockResolvedValue("DATA");
 
                 // Act
                 requestTracker.trackDataRequest("ID", fakeHandler, true);
@@ -285,7 +285,7 @@ describe("../request-tracking.js", () => {
             it("should clear the tracked data requests", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
-                const fakeHandler = jest.fn().mockResolvedValue(null);
+                const fakeHandler = jest.fn().mockResolvedValue("DATA");
                 requestTracker.trackDataRequest("ID", fakeHandler, true);
 
                 // Act

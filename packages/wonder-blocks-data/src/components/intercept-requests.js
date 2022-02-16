@@ -20,7 +20,7 @@ type Props<TData: ValidCacheData> = {|
      * so make sure to only intercept requests that you recognize from the
      * identifier.
      */
-    interceptor: (requestId: string) => ?Promise<?TData>,
+    interceptor: (requestId: string) => ?Promise<TData>,
 
     /**
      * The children to render within this component. Any requests by `Data`

@@ -3,8 +3,9 @@ import {Server} from "@khanacademy/wonder-blocks-core";
 import {useContext} from "react";
 import {TrackerContext} from "../util/request-tracking.js";
 import {SsrCache} from "../util/ssr-cache.js";
+import {resultFromCachedResponse} from "../util/result-from-cache-response.js";
 
-import type {CachedResponse, ValidCacheData} from "../util/types.js";
+import type {Result, ValidCacheData} from "../util/types.js";
 
 /**
  * Hook to perform an asynchronous action during server-side rendering.
@@ -23,9 +24,9 @@ import type {CachedResponse, ValidCacheData} from "../util/types.js";
  */
 export const useServerEffect = <TData: ValidCacheData>(
     requestId: string,
-    handler: () => Promise<?TData>,
+    handler: () => Promise<TData>,
     hydrate: boolean = true,
-): ?CachedResponse<TData> => {
+): ?Result<TData> => {
     // If we're server-side or hydrating, we'll have a cached entry to use.
     // So we get that and use it to initialize our state.
     // This works in both hydration and SSR because the very first call to
@@ -41,5 +42,6 @@ export const useServerEffect = <TData: ValidCacheData>(
         maybeTrack?.(requestId, handler, hydrate);
     }
 
-    return cachedResult;
+    // A null result means there was no result to hydrate.
+    return cachedResult == null ? null : resultFromCachedResponse(cachedResult);
 };
