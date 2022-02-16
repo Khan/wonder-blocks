@@ -13,7 +13,7 @@ type TrackerFn = <TData: ValidCacheData>(
 
 type RequestCache = {
     [id: string]: {|
-        hydrate?: boolean,
+        hydrate: boolean,
         handler: () => Promise<any>,
     |},
     ...
@@ -118,27 +118,13 @@ export class RequestTracker {
 
             for (const requestKey of Object.keys(this._trackedRequests)) {
                 const options = this._trackedRequests[requestKey];
-                const hydrate = options.hydrate ?? true;
 
                 try {
                     promises.push(
                         this._requestFulfillment
-                            .fulfill(requestKey, options)
+                            .fulfill(requestKey, {...options})
                             .then((result) => {
                                 switch (result.status) {
-                                    case "loading":
-                                        // Could never get here unless we wrote
-                                        // the code wrong. Rather than bloat
-                                        // code with useless error, just ignore.
-                                        break;
-
-                                    case "aborted":
-                                        // Request aborted. We won't cache this.
-                                        // We don't hydrate aborted requests,
-                                        // so the client would just see them
-                                        // as unfulfilled data.
-                                        break;
-
                                     case "success":
                                         /**
                                          * Let's cache the data!
@@ -149,7 +135,7 @@ export class RequestTracker {
                                         cacheData(
                                             requestKey,
                                             result.data,
-                                            hydrate,
+                                            options.hydrate,
                                         );
                                         break;
 
@@ -163,10 +149,21 @@ export class RequestTracker {
                                         cacheError(
                                             requestKey,
                                             result.error,
-                                            hydrate,
+                                            options.hydrate,
                                         );
                                         break;
                                 }
+
+                                // For status === "loading":
+                                // Could never get here unless we wrote
+                                // the code wrong. Rather than bloat
+                                // code with useless error, just ignore.
+
+                                // For status === "aborted":
+                                // We won't cache this.
+                                // We don't hydrate aborted requests,
+                                // so the client would just see them
+                                // as unfulfilled data.
                                 return;
                             }),
                     );
@@ -174,7 +171,9 @@ export class RequestTracker {
                     // This captures if there are problems in the code that
                     // begins the requests.
                     promises.push(
-                        Promise.resolve(cacheError(requestKey, e, hydrate)),
+                        Promise.resolve(
+                            cacheError(requestKey, e, options.hydrate),
+                        ),
                     );
                 }
             }

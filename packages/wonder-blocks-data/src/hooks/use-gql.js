@@ -4,7 +4,6 @@ import {useCallback} from "react";
 import {mergeGqlContext} from "../util/merge-gql-context.js";
 import {useGqlRouterContext} from "./use-gql-router-context.js";
 import {getGqlDataFromResponse} from "../util/get-gql-data-from-response.js";
-import {GqlError, GqlErrors} from "../util/gql-error.js";
 
 import type {
     GqlContext,
@@ -30,9 +29,6 @@ export const useGql = <TContext: GqlContext>(
 ) => Promise<TData>) => {
     // This hook only works if the `GqlRouter` has been used to setup context.
     const gqlRouterContext = useGqlRouterContext(context);
-    if (gqlRouterContext == null) {
-        throw new GqlError("No GqlRouter", GqlErrors.Internal);
-    }
 
     // Let's memoize the gqlFetch function we create based off our context.
     // That way, even if the context happens to change, if its values don't

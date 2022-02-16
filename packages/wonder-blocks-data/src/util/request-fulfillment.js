@@ -57,17 +57,10 @@ export class RequestFulfillment {
          * We don't have an inflight request, so let's set one up.
          */
         const request = handler()
-            .then((data: ?TData): Result<TData> => {
-                if (data == null) {
-                    return {
-                        status: "aborted",
-                    };
-                }
-                return {
-                    status: "success",
-                    data,
-                };
-            })
+            .then((data: TData): Result<TData> => ({
+                status: "success",
+                data,
+            }))
             .catch((error: string | Error): Result<TData> => {
                 const actualError =
                     typeof error === "string"

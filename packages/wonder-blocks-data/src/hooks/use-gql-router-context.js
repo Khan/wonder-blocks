@@ -30,18 +30,20 @@ export const useGqlRouterContext = <TContext: GqlContext>(
     const shouldWeUpdateRef =
         refKeys.length !== mergedKeys.length ||
         mergedKeys.every(
-            (key) => contextRef.current[key] === mergedContext[key],
+            (key) => contextRef.current[key] !== mergedContext[key],
         );
     if (shouldWeUpdateRef) {
         contextRef.current = mergedContext;
     }
 
+    // OK, now we're up-to-date, let's memoize our final result.
+    const finalContext = contextRef.current;
     const finalRouterContext = useMemo(
         () => ({
             fetch,
-            defaultContext: contextRef.current,
+            defaultContext: finalContext,
         }),
-        [fetch],
+        [fetch, finalContext],
     );
 
     return finalRouterContext;
