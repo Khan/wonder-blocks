@@ -49,7 +49,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
             id: "getMyStuff",
         };
         const data = {myStuff: "stuff"};
-        const RenderError = () => {
+        const RenderData = () => {
             const [result, setResult] = React.useState(null);
             const gqlFetch = useGql();
             React.useEffect(() => {
@@ -67,7 +67,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
         mockFetch.mockOperation({operation: query}, RespondWith.data(data));
         render(
             <GqlRouter defaultContext={{}} fetch={mockFetch}>
-                <RenderError />
+                <RenderData />
             </GqlRouter>,
         );
         const result = screen.getByTestId("result");
@@ -78,7 +78,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
         );
     });
 
-    it("should respond with null data for RespondWith.abortedRequest", async () => {
+    it("should reject with AbortError for RespondWith.abortedRequest", async () => {
         // Arrange
         const mockFetch = mockGqlFetch();
         const query = {
@@ -90,8 +90,8 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
             const gqlFetch = useGql();
             React.useEffect(() => {
                 // eslint-disable-next-line promise/catch-or-return
-                gqlFetch(query).then((r) => {
-                    setResult(JSON.stringify(r ?? "(null)"));
+                gqlFetch(query).catch((e) => {
+                    setResult(e.message);
                     return;
                 });
             }, [gqlFetch]);
@@ -112,7 +112,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
         const result = screen.getByTestId("result");
 
         // Assert
-        await waitFor(() => expect(result).toHaveTextContent('"(null)"'));
+        await waitFor(() => expect(result).toHaveTextContent("aborted"));
     });
 
     it("should reject with unsuccessful response error for RespondWith.errorStatusCode", async () => {

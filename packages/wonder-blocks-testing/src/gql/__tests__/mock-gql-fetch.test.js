@@ -50,7 +50,7 @@ describe("#mockGqlFetch", () => {
                 id: "getMyStuff",
             };
             const data = {myStuff: "stuff"};
-            const RenderError = () => {
+            const RenderData = () => {
                 const [result, setResult] = React.useState(null);
                 const gqlFetch = useGql();
                 React.useEffect(() => {
@@ -68,7 +68,7 @@ describe("#mockGqlFetch", () => {
             mockFetch.mockOperation({operation: query}, RespondWith.data(data));
             render(
                 <GqlRouter defaultContext={{}} fetch={mockFetch}>
-                    <RenderError />
+                    <RenderData />
                 </GqlRouter>,
             );
             const result = screen.getByTestId("result");
@@ -79,7 +79,7 @@ describe("#mockGqlFetch", () => {
             );
         });
 
-        it("should provide null data if aborted response", async () => {
+        it("should reject when request aborted", async () => {
             // Arrange
             const mockFetch = mockGqlFetch();
             const query = {
@@ -91,8 +91,8 @@ describe("#mockGqlFetch", () => {
                 const gqlFetch = useGql();
                 React.useEffect(() => {
                     // eslint-disable-next-line promise/catch-or-return
-                    gqlFetch(query).then((r) => {
-                        setResult(JSON.stringify(r ?? "(null)"));
+                    gqlFetch(query).catch((e) => {
+                        setResult(e.message);
                         return;
                     });
                 }, [gqlFetch]);
@@ -113,7 +113,7 @@ describe("#mockGqlFetch", () => {
             const result = screen.getByTestId("result");
 
             // Assert
-            await waitFor(() => expect(result).toHaveTextContent('"(null)"'));
+            await waitFor(() => expect(result).toHaveTextContent("aborted"));
         });
 
         it("should reject when request gives failed error code", async () => {
