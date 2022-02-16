@@ -168,14 +168,16 @@ describe("Data", () => {
                 });
             });
 
-            it("should render with aborted if the request resolves to null data", async () => {
+            it("should render with aborted if the request rejects with an abort error", async () => {
                 // Arrange
                 const fulfillSpy = jest.spyOn(
                     RequestFulfillment.Default,
                     "fulfill",
                 );
 
-                const fakeHandler = () => Promise.resolve(null);
+                const abortError = new Error("bang bang, abort!");
+                abortError.name = "AbortError";
+                const fakeHandler = () => Promise.reject(abortError);
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
@@ -523,39 +525,6 @@ describe("Data", () => {
                         requestId="ID"
                         alwaysRequestOnHydration={true}
                     >
-                        {fakeChildrenFn}
-                    </Data>,
-                );
-                await act(() => fakeHandler.mock.results[0].value);
-
-                // Assert
-                expect(fakeHandler).toHaveBeenCalledTimes(1);
-            });
-        });
-
-        describe("with cached abort", () => {
-            beforeEach(() => {
-                /**
-                 * Each of these test cases will start out with a cached abort.
-                 */
-                jest.spyOn(
-                    SsrCache.Default,
-                    "getEntry",
-                    // Fake once because that's how the cache would work,
-                    // deleting the hydrated value as soon as it was used.
-                ).mockReturnValueOnce({
-                    data: null,
-                });
-            });
-
-            it("should request data if cached data value is null (i.e. represents an aborted request)", async () => {
-                // Arrange
-                const fakeHandler = jest.fn().mockResolvedValue("data");
-                const fakeChildrenFn = jest.fn(() => null);
-
-                // Act
-                render(
-                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );
