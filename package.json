@@ -13,6 +13,7 @@
     "build:styleguidist": "yarn run gen-styleguide-prod-config && styleguidist build --config styleguide.prod.config.js",
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules",
     "coverage": "yarn run test:coverage && open coverage/lcov-report/index.html",
+    "coveragefor": "bash -c 'yarn --silent jest --coverage --collectCoverageFrom=$0 $(node ./utils/test-file-for.js \"$0\")'",
     "coverage:ci": "yarn run jest --coverage",
     "dry-run-publish": "yarn run publish --skip-npm --skip-git",
     "flow-ci": "flow check --max-workers 0",
