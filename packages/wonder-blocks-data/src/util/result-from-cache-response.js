@@ -1,4 +1,5 @@
 // @flow
+import {Status} from "./status.js";
 import {GqlError, GqlErrors} from "./gql-error.js";
 import type {ValidCacheData, CachedResponse, Result} from "./types.js";
 
@@ -15,24 +16,16 @@ export const resultFromCachedResponse = <TData: ValidCacheData>(
 
     const {data, error} = cacheEntry;
     if (error != null) {
-        return {
-            status: "error",
-            // Let's hydrate the error. We don't persist everything about the
-            // original error on the server, hence why we only superficially
-            // hydrate it to a GqlHydratedError.
-            error: new GqlError(error, GqlErrors.Hydrated),
-        };
+        // Let's hydrate the error. We don't persist everything about the
+        // original error on the server, hence why we only superficially
+        // hydrate it to a GqlHydratedError.
+        return Status.Error(new GqlError(error, GqlErrors.Hydrated));
     }
 
     if (data != null) {
-        return {
-            status: "success",
-            data,
-        };
+        return Status.Success(data);
     }
 
     // We shouldn't get here since we don't actually cache null data.
-    return {
-        status: "aborted",
-    };
+    return Status.Aborted();
 };

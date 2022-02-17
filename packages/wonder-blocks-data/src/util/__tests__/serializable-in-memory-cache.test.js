@@ -1,7 +1,48 @@
 // @flow
-import {ScopedInMemoryCache} from "../scoped-in-memory-cache.js";
+import * as WSCore from "@khanacademy/wonder-stuff-core";
+import {SerializableInMemoryCache} from "../serializable-in-memory-cache.js";
 
-describe("ScopedInMemoryCache", () => {
+describe("SerializableInMemoryCache", () => {
+    describe("#constructor", () => {
+        it("should clone the passed source data", () => {
+            // Arrange
+            const sourceData = {
+                scope: {
+                    key: "value",
+                },
+            };
+
+            // Act
+            const cache = new SerializableInMemoryCache(sourceData);
+            // Try to mutate the cache.
+            sourceData["scope"] = {key: "SOME_NEW_DATA"};
+            const result = cache.get("scope", "key");
+
+            // Assert
+            expect(result).toStrictEqual("value");
+        });
+
+        it("should throw if the cloning fails", () => {
+            // Arrange
+            jest.spyOn(WSCore, "clone").mockImplementationOnce(() => {
+                throw new Error("BANG!");
+            });
+
+            // Act
+            const underTest = () =>
+                new SerializableInMemoryCache({
+                    scope: {
+                        BAD: "FOOD",
+                    },
+                });
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                `"An error occurred trying to initialize from a response cache snapshot: Error: BANG!"`,
+            );
+        });
+    });
+
     describe("#set", () => {
         it.each`
             id
@@ -11,7 +52,7 @@ describe("ScopedInMemoryCache", () => {
             ${() => "BOO"}
         `("should throw if the id is $id", ({id}) => {
             // Arrange
-            const cache = new ScopedInMemoryCache();
+            const cache = new SerializableInMemoryCache();
 
             // Act
             const underTest = () => cache.set("scope", id, "value");
@@ -28,7 +69,7 @@ describe("ScopedInMemoryCache", () => {
             ${() => "BOO"}
         `("should throw if the scope is $scope", ({scope}) => {
             // Arrange
-            const cache = new ScopedInMemoryCache();
+            const cache = new SerializableInMemoryCache();
 
             // Act
             const underTest = () => cache.set(scope, "key", "value");
@@ -39,7 +80,7 @@ describe("ScopedInMemoryCache", () => {
 
         it("should throw if the value is a function", () => {
             // Arrange
-            const cache = new ScopedInMemoryCache();
+            const cache = new SerializableInMemoryCache();
 
             // Act
             const underTest = () => cache.set("scope", "key", () => "value");
@@ -50,7 +91,7 @@ describe("ScopedInMemoryCache", () => {
 
         it("should store the entry in the cache", () => {
             // Arrange
-            const cache = new ScopedInMemoryCache();
+            const cache = new SerializableInMemoryCache();
 
             // Act
             cache.set("scope", "key", "data");
@@ -62,7 +103,7 @@ describe("ScopedInMemoryCache", () => {
 
         it("should replace the entry in the cache", () => {
             // Arrange
-            const cache = new ScopedInMemoryCache({
+            const cache = new SerializableInMemoryCache({
                 scope: {
                     key: "data",
                 },
@@ -80,7 +121,7 @@ describe("ScopedInMemoryCache", () => {
     describe("#retrieve", () => {
         it("should return null if the scope is not cached", () => {
             // Arrange
-            const cache = new ScopedInMemoryCache();
+            const cache = new SerializableInMemoryCache();
 
             // Act
             const result = cache.get("scope", "key");
@@ -91,7 +132,7 @@ describe("ScopedInMemoryCache", () => {
 
         it("should return null if the value is not in the cache scope", () => {
             // Arrange
-            const cache = new ScopedInMemoryCache({
+            const cache = new SerializableInMemoryCache({
                 scope: {
                     key1: "data",
                 },
@@ -106,7 +147,7 @@ describe("ScopedInMemoryCache", () => {
 
         it("should return the entry if it exists", () => {
             // Arrange
-            const cache = new ScopedInMemoryCache({
+            const cache = new SerializableInMemoryCache({
                 scope: {key: "value"},
             });
 
@@ -121,7 +162,7 @@ describe("ScopedInMemoryCache", () => {
     describe("#purge", () => {
         it("should remove the entry", () => {
             // Arrange
-            const cache = new ScopedInMemoryCache({
+            const cache = new SerializableInMemoryCache({
                 scope1: {
                     key1: "data1",
                     key2: "data2",
@@ -134,7 +175,7 @@ describe("ScopedInMemoryCache", () => {
 
             // Act
             cache.purge("scope1", "key2");
-            const result = cache._cache;
+            const result = cache.clone();
 
             // Assert
             expect(result).toStrictEqual({
@@ -149,7 +190,7 @@ describe("ScopedInMemoryCache", () => {
         });
 
         it("should remove the entire scope if the purged item is the last item in the scope", () => {
-            const cache = new ScopedInMemoryCache({
+            const cache = new SerializableInMemoryCache({
                 scope1: {
                     key2: "data2",
                 },
@@ -161,7 +202,7 @@ describe("ScopedInMemoryCache", () => {
 
             // Act
             cache.purge("scope1", "key2");
-            const result = cache._cache;
+            const result = cache.clone();
 
             // Assert
             expect(result).toStrictEqual({
@@ -176,7 +217,7 @@ describe("ScopedInMemoryCache", () => {
     describe("#purgeScope", () => {
         it("should remove matching entries only", () => {
             // Arrange
-            const cache = new ScopedInMemoryCache({
+            const cache = new SerializableInMemoryCache({
                 scope1: {
                     key1: "a",
                     key2: "b",
@@ -191,7 +232,7 @@ describe("ScopedInMemoryCache", () => {
 
             // Act
             cache.purgeScope("scope1", (id, value) => value === "a");
-            const result = cache._cache;
+            const result = cache.clone();
 
             // Assert
             expect(result).toStrictEqual({
@@ -208,7 +249,7 @@ describe("ScopedInMemoryCache", () => {
 
         it("should remove the entire scope when there is no predicate", () => {
             // Arrange
-            const cache = new ScopedInMemoryCache({
+            const cache = new SerializableInMemoryCache({
                 scope1: {
                     key1: "data1",
                     key2: "data2",
@@ -221,7 +262,7 @@ describe("ScopedInMemoryCache", () => {
 
             // Act
             cache.purgeScope("scope1");
-            const result = cache._cache;
+            const result = cache.clone();
 
             // Assert
             expect(result).toStrictEqual({
@@ -234,7 +275,7 @@ describe("ScopedInMemoryCache", () => {
 
         it("should not throw if the scope does not exist", () => {
             // Arrange
-            const cache = new ScopedInMemoryCache({
+            const cache = new SerializableInMemoryCache({
                 scope1: {
                     key1: "data1",
                 },
@@ -250,7 +291,7 @@ describe("ScopedInMemoryCache", () => {
 
     describe("#purgeAll", () => {
         it("should remove matching entries only", () => {
-            const cache = new ScopedInMemoryCache({
+            const cache = new SerializableInMemoryCache({
                 scope1: {key: "2"},
                 scope2: {key: "1"},
                 scope3: {key: "2"},
@@ -258,7 +299,7 @@ describe("ScopedInMemoryCache", () => {
 
             // Act
             cache.purgeAll((scope, id, value) => value === "2");
-            const result = cache._cache;
+            const result = cache.clone();
 
             // Assert
             expect(result).toStrictEqual({
@@ -267,7 +308,7 @@ describe("ScopedInMemoryCache", () => {
         });
 
         it("should remove the all items if there is no predicate", () => {
-            const cache = new ScopedInMemoryCache({
+            const cache = new SerializableInMemoryCache({
                 scope1: {key: "2"},
                 scope2: {key: "1"},
                 scope3: {key: "2"},
@@ -275,17 +316,55 @@ describe("ScopedInMemoryCache", () => {
 
             // Act
             cache.purgeAll();
-            const result = cache._cache;
+            const result = cache.clone();
 
             // Assert
             expect(result).toStrictEqual({});
         });
     });
 
+    describe("#clone", () => {
+        it("should return a copy of the cache data", () => {
+            // Arrange
+            const data = {
+                scope1: {key: "2"},
+                scope2: {key: "1"},
+                scope3: {key: "2"},
+            };
+            const cache = new SerializableInMemoryCache(data);
+
+            // Act
+            const result = cache.clone();
+
+            // Assert
+            expect(result).not.toBe(data);
+        });
+
+        it("should throw if there is an error during cloning", () => {
+            // Arrange
+            const cache = new SerializableInMemoryCache({
+                scope1: {key: "2"},
+                scope2: {key: "1"},
+                scope3: {key: "2"},
+            });
+            jest.spyOn(WSCore, "clone").mockImplementationOnce(() => {
+                throw new Error("BANG!");
+            });
+
+            // Act
+            const act = () => cache.clone();
+
+            // Assert
+            expect(act).toThrowErrorMatchingInlineSnapshot(
+                `"An error occurred while trying to clone the cache: Error: BANG!"`,
+            );
+        });
+    });
+
     describe("@inUse", () => {
         it("should return true if the cache contains data", () => {
             // Arrange
-            const cache = new ScopedInMemoryCache({
+            const cache = new SerializableInMemoryCache({
                 scope1: {key: "2"},
                 scope2: {key: "1"},
                 scope3: {key: "2"},
@@ -300,7 +379,7 @@ describe("ScopedInMemoryCache", () => {
 
         it("should return false if the cache is empty", () => {
             // Arrange
-            const cache = new ScopedInMemoryCache({
+            const cache = new SerializableInMemoryCache({
                 scope1: {key: "2"},
                 scope2: {key: "1"},
                 scope3: {key: "2"},

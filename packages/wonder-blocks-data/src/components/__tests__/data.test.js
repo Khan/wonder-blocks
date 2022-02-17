@@ -7,15 +7,25 @@ import {render, act} from "@testing-library/react";
 import * as ReactDOMServer from "react-dom/server";
 import {Server, View} from "@khanacademy/wonder-blocks-core";
 
+import {clearSharedCache} from "../../hooks/use-shared-cache.js";
 import TrackData from "../track-data.js";
 import {RequestFulfillment} from "../../util/request-fulfillment.js";
 import {SsrCache} from "../../util/ssr-cache.js";
 import {RequestTracker} from "../../util/request-tracking.js";
 import InterceptRequests from "../intercept-requests.js";
 import Data from "../data.js";
+import {
+    // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
+    // have fixed:
+    // https://github.com/import-js/eslint-plugin-import/issues/2073
+    // eslint-disable-next-line import/named
+    WhenClientSide,
+} from "../../hooks/use-hydratable-effect.js";
 
 describe("Data", () => {
     beforeEach(() => {
+        clearSharedCache();
+
         const responseCache = new SsrCache();
         jest.spyOn(SsrCache, "Default", "get").mockReturnValue(responseCache);
         jest.spyOn(RequestFulfillment, "Default", "get").mockReturnValue(
@@ -35,7 +45,7 @@ describe("Data", () => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(false);
         });
 
-        describe("without cached data", () => {
+        describe("without hydrated data", () => {
             beforeEach(() => {
                 /**
                  * Each of these test cases will not have cached data to be
@@ -122,6 +132,7 @@ describe("Data", () => {
                         {fakeChildrenFn}
                     </Data>,
                 );
+
                 /**
                  * We wait for the fulfillment to resolve.
                  */
@@ -132,8 +143,8 @@ describe("Data", () => {
                 );
 
                 // Assert
-                expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
-                expect(fakeChildrenFn).toHaveBeenLastCalledWith({
+                // expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
+                expect(fakeChildrenFn).toHaveBeenNthCalledWith(2, {
                     status: "error",
                     error: expect.any(Error),
                 });
@@ -259,7 +270,7 @@ describe("Data", () => {
                 );
 
                 // Assert
-                expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
+                expect(fakeChildrenFn).toHaveBeenCalledTimes(1);
                 expect(fakeChildrenFn).toHaveBeenLastCalledWith({
                     status: "loading",
                 });
@@ -420,9 +431,54 @@ describe("Data", () => {
                     expect(fakeHandler).toHaveBeenCalledTimes(1);
                 });
             });
+
+            it("should retain old data while reloading if retainResultOnChange is true", async () => {
+                // Arrange
+                const response1 = Promise.resolve("data1");
+                const response2 = Promise.resolve("data2");
+                const fakeHandler1 = () => response1;
+                const fakeHandler2 = () => response2;
+                const fakeChildrenFn = jest.fn(() => null);
+
+                // Act
+                const wrapper = render(
+                    <Data
+                        handler={fakeHandler1}
+                        requestId="ID1"
+                        retainResultOnChange={true}
+                    >
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+                fakeChildrenFn.mockClear();
+                await act(() => response1);
+                wrapper.rerender(
+                    <Data
+                        handler={fakeHandler2}
+                        requestId="ID2"
+                        retainResultOnChange={true}
+                    >
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+                await act(() => response2);
+
+                // Assert
+                expect(fakeChildrenFn).not.toHaveBeenCalledWith({
+                    status: "loading",
+                });
+                expect(fakeChildrenFn).toHaveBeenCalledWith({
+                    status: "success",
+                    data: "data1",
+                });
+                expect(fakeChildrenFn).toHaveBeenLastCalledWith({
+                    status: "success",
+                    data: "data2",
+                });
+            });
         });
 
-        describe("with cache data", () => {
+        describe("with hydrated data", () => {
             beforeEach(() => {
                 /**
                  * Each of these test cases will start out with some cached data
@@ -457,43 +513,7 @@ describe("Data", () => {
                 });
             });
 
-            it("should retain old data while reloading if showOldDataWhileLoading is true", async () => {
-                // Arrange
-                const response1 = Promise.resolve("data1");
-                const response2 = Promise.resolve("data2");
-                const fakeHandler1 = () => response1;
-                const fakeHandler2 = () => response2;
-                const fakeChildrenFn = jest.fn(() => null);
-
-                // Act
-                const wrapper = render(
-                    <Data
-                        handler={fakeHandler1}
-                        requestId="ID"
-                        showOldDataWhileLoading={false}
-                    >
-                        {fakeChildrenFn}
-                    </Data>,
-                );
-                await act(() => response1);
-                wrapper.rerender(
-                    <Data
-                        handler={fakeHandler2}
-                        requestId="ID"
-                        showOldDataWhileLoading={true}
-                    >
-                        {fakeChildrenFn}
-                    </Data>,
-                );
-                await act(() => response2);
-
-                // Assert
-                expect(fakeChildrenFn).not.toHaveBeenCalledWith({
-                    status: "loading",
-                });
-            });
-
-            it("should not request data when alwaysRequestOnHydration is false and cache has a valid data result", () => {
+            it("should not request data when clientBehavior is WhenClientSide.ExecuteWhenNoSuccessResult and cache has a valid success result", () => {
                 // Arrange
                 const fakeHandler = jest.fn().mockResolvedValue("data");
                 const fakeChildrenFn = jest.fn(() => null);
@@ -503,7 +523,9 @@ describe("Data", () => {
                     <Data
                         handler={fakeHandler}
                         requestId="ID"
-                        alwaysRequestOnHydration={false}
+                        clientBehavior={
+                            WhenClientSide.ExecuteWhenNoSuccessResult
+                        }
                     >
                         {fakeChildrenFn}
                     </Data>,
@@ -513,7 +535,7 @@ describe("Data", () => {
                 expect(fakeHandler).not.toHaveBeenCalled();
             });
 
-            it("should request data if cached data value is valid but alwaysRequestOnHydration is true", async () => {
+            it("should request data if cached data value is valid but clientBehavior is WhenClientSide.AlwaysExecute is true", async () => {
                 // Arrange
                 const fakeHandler = jest.fn().mockResolvedValue("data");
                 const fakeChildrenFn = jest.fn(() => null);
@@ -523,7 +545,7 @@ describe("Data", () => {
                     <Data
                         handler={fakeHandler}
                         requestId="ID"
-                        alwaysRequestOnHydration={true}
+                        clientBehavior={WhenClientSide.AlwaysExecute}
                     >
                         {fakeChildrenFn}
                     </Data>,

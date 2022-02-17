@@ -1,6 +1,6 @@
 // @flow
-import {KindError, Errors, clone} from "@khanacademy/wonder-stuff-core";
-import type {ValidCacheData, ScopedCache} from "./types.js";
+import {KindError, Errors} from "@khanacademy/wonder-stuff-core";
+import type {ScopedCache, ValidCacheData} from "./types.js";
 
 /**
  * Describe an in-memory cache.
@@ -8,15 +8,8 @@ import type {ValidCacheData, ScopedCache} from "./types.js";
 export class ScopedInMemoryCache {
     _cache: ScopedCache;
 
-    constructor(initialCache: ScopedCache = Object.freeze({})) {
-        try {
-            this._cache = clone(initialCache);
-        } catch (e) {
-            throw new KindError(
-                `An error occurred trying to initialize from a response cache snapshot: ${e}`,
-                Errors.InvalidInput,
-            );
-        }
+    constructor(initialCache: ScopedCache = {}) {
+        this._cache = initialCache;
     }
 
     /**
@@ -31,11 +24,11 @@ export class ScopedInMemoryCache {
     /**
      * Set a value in the cache.
      */
-    set: <TValue: ValidCacheData>(
+    set<TValue: ValidCacheData>(
         scope: string,
         id: string,
         value: TValue,
-    ) => void = <TValue: ValidCacheData>(scope, id, value: TValue): void => {
+    ): void {
         if (!id || typeof id !== "string") {
             throw new KindError(
                 "id must be non-empty string",
@@ -58,23 +51,20 @@ export class ScopedInMemoryCache {
         }
 
         this._cache[scope] = this._cache[scope] ?? {};
-        this._cache[scope][id] = Object.freeze(clone(value));
-    };
+        this._cache[scope][id] = value;
+    }
 
     /**
      * Retrieve a value from the cache.
      */
-    get: (scope: string, id: string) => ?ValidCacheData = (
-        scope,
-        id,
-    ): ?ValidCacheData => {
+    get(scope: string, id: string): ?ValidCacheData {
         return this._cache[scope]?.[id] ?? null;
-    };
+    }
 
     /**
      * Purge an item from the cache.
      */
-    purge: (scope: string, id: string) => void = (scope, id) => {
+    purge(scope: string, id: string): void {
         if (!this._cache[scope]?.[id]) {
             return;
         }
@@ -82,17 +72,17 @@ export class ScopedInMemoryCache {
         if (Object.keys(this._cache[scope]).length === 0) {
             delete this._cache[scope];
         }
-    };
+    }
 
     /**
      * Purge a scope of items that match the given predicate.
      *
      * If the predicate is omitted, then all items in the scope are purged.
      */
-    purgeScope: (
+    purgeScope(
         scope: string,
         predicate?: (id: string, value: ValidCacheData) => boolean,
-    ) => void = (scope, predicate) => {
+    ): void {
         if (!this._cache[scope]) {
             return;
         }
@@ -110,20 +100,20 @@ export class ScopedInMemoryCache {
         if (Object.keys(this._cache[scope]).length === 0) {
             delete this._cache[scope];
         }
-    };
+    }
 
     /**
      * Purge all items from the cache that match the given predicate.
      *
      * If the predicate is omitted, then all items in the cache are purged.
      */
-    purgeAll: (
+    purgeAll(
         predicate?: (
             scope: string,
             id: string,
             value: ValidCacheData,
         ) => boolean,
-    ) => void = (predicate) => {
+    ): void {
         if (predicate == null) {
             this._cache = {};
             return;
@@ -132,18 +122,5 @@ export class ScopedInMemoryCache {
         for (const scope of Object.keys(this._cache)) {
             this.purgeScope(scope, (id, value) => predicate(scope, id, value));
         }
-    };
-
-    /**
-     * Clone the cache.
-     */
-    clone: () => ScopedCache = () => {
-        try {
-            return clone(this._cache);
-        } catch (e) {
-            throw new Error(
-                `An error occurred while trying to clone the cache: ${e}`,
-            );
-        }
-    };
+    }
 }
