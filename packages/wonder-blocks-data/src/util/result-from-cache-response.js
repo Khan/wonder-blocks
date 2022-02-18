@@ -19,13 +19,13 @@ export const resultFromCachedResponse = <TData: ValidCacheData>(
         // Let's hydrate the error. We don't persist everything about the
         // original error on the server, hence why we only superficially
         // hydrate it to a GqlHydratedError.
-        return Status.Error(new GqlError(error, GqlErrors.Hydrated));
+        return Status.error(new GqlError(error, GqlErrors.Hydrated));
     }
 
     if (data != null) {
-        return Status.Success(data);
+        return Status.success(data);
     }
 
     // We shouldn't get here since we don't actually cache null data.
-    return Status.Aborted();
+    return Status.aborted();
 };

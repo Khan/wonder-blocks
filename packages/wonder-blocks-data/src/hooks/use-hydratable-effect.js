@@ -62,6 +62,9 @@ type HydratableEffectOptions<TData: ValidCacheData> = {|
      * This controls how the hook hydrates and executes when client-side.
      *
      * Default is `OnClientRender.ExecuteWhenNoSuccessResult`.
+     *
+     * Changing this value after the first call is irrelevant as it only
+     * affects the initial rende behavior.
      */
     clientBehavior?: WhenClientSide,
 
@@ -78,7 +81,7 @@ type HydratableEffectOptions<TData: ValidCacheData> = {|
 
     /**
      * When `true`, the effect will not reset the result to the loading status
-     * while executing if the requestID or handler changes, instead, returning
+     * while executing if the requestId changes, instead, returning
      * the existing result from before the change; otherwise, the result will
      * be set to loading status.
      *
@@ -105,9 +108,13 @@ type HydratableEffectOptions<TData: ValidCacheData> = {|
      *
      * When specified, the given scope will be used to isolate this hook's
      * cached results. Otherwise, a shared default scope will be used.
+     *
+     * Changing this value after the first call is not supported.
      */
     scope?: string,
 |};
+
+const DefaultScope = "useHydratableEffect";
 
 /**
  * Hook to execute an async operation on server and client.
@@ -128,10 +135,10 @@ export const useHydratableEffect = <TData: ValidCacheData>(
 ): Result<TData> => {
     const {
         clientBehavior = WhenClientSide.ExecuteWhenNoSuccessResult,
-        skip = false,
+        skip: hardSkip = false,
         retainResultOnChange = false,
         onResultChanged,
-        scope = "useHydrateableEffect",
+        scope = DefaultScope,
     } = options;
 
     // Plug in to the request interception framework for code that wants
@@ -141,12 +148,12 @@ export const useHydratableEffect = <TData: ValidCacheData>(
     // Now we instruct the server to perform the operation.
     // When client-side, this will look up any response for hydration; it does
     // not invoke the handler.
-    const hydrateValue = useServerEffect(
+    const serverValue = useServerEffect(
         requestId,
 
         // If we're skipped (unlikely in server worlds, but maybe),
         // just give an aborted response.
-        skip
+        hardSkip
             ? () => Promise.reject(new AbortError("skipped"))
             : interceptedHandler,
 
@@ -161,7 +168,7 @@ export const useHydratableEffect = <TData: ValidCacheData>(
     >(
         requestId, // The key of the cached item
         scope, // The scope of the cached items
-        hydrateValue, // The default value to cache if nothing is already cached
+        serverValue, // The default value to cache if nothing is already cached
     );
 
     // Build a function that will update the cache and either invoke the
@@ -189,26 +196,18 @@ export const useHydratableEffect = <TData: ValidCacheData>(
     // indicates its a different request. This is also a proxy for the
     // hydration step, hence why we don't default it.
     const requestIdRef = React.useRef();
+    const previousRequestId = requestIdRef.current;
 
-    // So now we make sure the client-side request happens per our various
-    // options.
-    React.useEffect(() => {
-        let cancel = false;
-
-        // We don't do anything if we've been told to skip.
-        if (skip) {
-            return;
-        }
-
+    const softSkip = React.useMemo(() => {
         // If the requestId is unchanged, it means we already rendered at least
         // once and so we already made the request at least once. So we can
         // bail out right here.
-        if (requestId === requestIdRef.current) {
-            return;
+        if (requestId === previousRequestId) {
+            return true;
         }
 
         // Now, determine if we need to do a request or not.
-        if (requestIdRef.current == null) {
+        if (previousRequestId == null) {
             // If we don't have a requestId, it's our first render, the one
             // where we hydrated. So defer to our clientBehavior value.
             switch (clientBehavior) {
@@ -221,20 +220,37 @@ export const useHydratableEffect = <TData: ValidCacheData>(
 
                 case WhenClientSide.ExecuteWhenNoResult:
                     // We only execute if we didn't hydrate something.
-                    if (hydrateValue != null) {
+                    if (serverValue != null) {
                         // We hydrated something; bail.
-                        return;
+                        return true;
                     }
                     break;
 
                 case WhenClientSide.ExecuteWhenNoSuccessResult:
                     // We only execute if we didn't hydrate a success result.
-                    if (hydrateValue?.status === "success") {
+                    if (serverValue?.status === "success") {
                         // We hydrated a success result; bail.
-                        return;
+                        return true;
                     }
                     break;
             }
+        }
+        return false;
+    }, [requestId, serverValue, clientBehavior, previousRequestId]);
+
+    // So now we make sure the client-side request happens per our various
+    // options.
+    React.useEffect(() => {
+        let cancel = false;
+
+        // We don't do anything if we've been told to skip (a hard skip that
+        // means we should cancel the previous request and is therefore a
+        // dependency on that), or we have determined we have already done
+        // enough (a soft skip that doesn't trigger the request to re-run
+        // because why would we when we're just going to get here and quit
+        // anyway).
+        if (hardSkip || softSkip) {
+            return;
         }
 
         // If we got here, we're going to perform the request.
@@ -273,16 +289,17 @@ export const useHydratableEffect = <TData: ValidCacheData>(
         // We only want to run this effect if the requestId, or skip values
         // change. These are the only two things that should affect the
         // cancellation of a pending request. We do not update if the handler
-        // changes, as that is not a supported use.
+        // changes, in order to simplify the API - otherwise, callers would
+        // not be able to use inline functions with this hook.
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [skip, requestId]);
+    }, [hardSkip, requestId]);
 
     // We track the last result we returned in order to support the
     // "retainResultOnChange" option.
-    const lastResultAgnosticOfIdRef = React.useRef(Status.Loading());
+    const lastResultAgnosticOfIdRef = React.useRef(Status.loading());
     const loadingResult = retainResultOnChange
         ? lastResultAgnosticOfIdRef.current
-        : Status.Loading();
+        : Status.loading();
 
     // Loading is a transient state, so we only use it here; it's not something
     // we cache.

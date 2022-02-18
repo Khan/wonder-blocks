@@ -9,14 +9,21 @@ const abortedStatus = Object.freeze({
     status: "aborted",
 });
 
+/**
+ * Create Result<TData> instances with specific statuses.
+ */
 export const Status = Object.freeze({
-    Loading: (): Result<any> => loadingStatus,
-    Aborted: (): Result<any> => abortedStatus,
-    Success: <TData: ValidCacheData>(data: TData): Result<TData> => ({
+    loading: <TData: ValidCacheData = ValidCacheData>(): Result<TData> =>
+        loadingStatus,
+    aborted: <TData: ValidCacheData = ValidCacheData>(): Result<TData> =>
+        abortedStatus,
+    success: <TData: ValidCacheData>(data: TData): Result<TData> => ({
         status: "success",
         data,
     }),
-    Error: (error: Error): Result<any> => ({
+    error: <TData: ValidCacheData = ValidCacheData>(
+        error: Error,
+    ): Result<TData> => ({
         status: "error",
         error,
     }),
