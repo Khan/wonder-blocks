@@ -49,6 +49,7 @@ export {default as TrackData} from "./components/track-data.js";
 export {default as Data} from "./components/data.js";
 export {default as InterceptRequests} from "./components/intercept-requests.js";
 export {useServerEffect} from "./hooks/use-server-effect.js";
+export {useCachedEffect} from "./hooks/use-cached-effect.js";
 export {useRequestInterception} from "./hooks/use-request-interception.js";
 export {useSharedCache, clearSharedCache} from "./hooks/use-shared-cache.js";
 export {
