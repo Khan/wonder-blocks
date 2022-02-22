@@ -1,6 +1,6 @@
 // @flow
 import {RequestFulfillment} from "../request-fulfillment.js";
-import {GqlError} from "../gql-error.js";
+import {DataError} from "../data-error.js";
 
 describe("RequestFulfillment", () => {
     it("should provide static default instance", () => {
@@ -28,7 +28,7 @@ describe("RequestFulfillment", () => {
             // Assert
             expect(result).toStrictEqual({
                 status: "error",
-                error: expect.any(GqlError),
+                error: expect.any(DataError),
             });
         });
 

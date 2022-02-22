@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {KindError, Errors} from "@khanacademy/wonder-stuff-core";
+import {DataError, DataErrors} from "../util/data-error.js";
 import {ScopedInMemoryCache} from "../util/scoped-in-memory-cache.js";
 import type {ValidCacheData} from "../util/types.js";
 
@@ -57,16 +57,16 @@ export const useSharedCache = <TValue: ValidCacheData>(
 ): [?TValue, CacheValueFn<TValue>] => {
     // Verify arguments.
     if (!id || typeof id !== "string") {
-        throw new KindError(
+        throw new DataError(
             "id must be a non-empty string",
-            Errors.InvalidInput,
+            DataErrors.InvalidInput,
         );
     }
 
     if (!scope || typeof scope !== "string") {
-        throw new KindError(
+        throw new DataError(
             "scope must be a non-empty string",
-            Errors.InvalidInput,
+            DataErrors.InvalidInput,
         );
     }
 

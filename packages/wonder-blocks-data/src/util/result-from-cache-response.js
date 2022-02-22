@@ -1,6 +1,6 @@
 // @flow
 import {Status} from "./status.js";
-import {GqlError, GqlErrors} from "./gql-error.js";
+import {DataError, DataErrors} from "./data-error.js";
 import type {ValidCacheData, CachedResponse, Result} from "./types.js";
 
 /**
@@ -19,7 +19,7 @@ export const resultFromCachedResponse = <TData: ValidCacheData>(
         // Let's hydrate the error. We don't persist everything about the
         // original error on the server, hence why we only superficially
         // hydrate it to a GqlHydratedError.
-        return Status.error(new GqlError(error, GqlErrors.Hydrated));
+        return Status.error(new DataError(error, DataErrors.Hydrated));
     }
 
     if (data != null) {

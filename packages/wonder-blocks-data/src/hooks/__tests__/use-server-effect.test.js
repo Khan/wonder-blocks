@@ -8,7 +8,7 @@ import TrackData from "../../components/track-data.js";
 import {RequestFulfillment} from "../../util/request-fulfillment.js";
 import {SsrCache} from "../../util/ssr-cache.js";
 import {RequestTracker} from "../../util/request-tracking.js";
-import {GqlError} from "../../util/gql-error.js";
+import {DataError} from "../../util/data-error.js";
 import * as UseRequestInterception from "../use-request-interception.js";
 
 import {useServerEffect} from "../use-server-effect.js";
@@ -142,7 +142,7 @@ describe("#useServerEffect", () => {
             // Assert
             expect(result).toEqual({
                 status: "error",
-                error: expect.any(GqlError),
+                error: expect.any(DataError),
             });
         });
     });
@@ -198,7 +198,7 @@ describe("#useServerEffect", () => {
             // Assert
             expect(result).toEqual({
                 status: "error",
-                error: expect.any(GqlError),
+                error: expect.any(DataError),
             });
         });
 
