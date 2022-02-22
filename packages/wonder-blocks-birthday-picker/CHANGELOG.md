@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 1.2.0
+
+### Minor Changes
+
+-   5536d12e: Add `monthYearOnly` prop to hide the `day` field from the UI. Passes the first day of the selected month for this case.
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-dropdown@2.6.5
+
 ## 1.1.0
 
 ### Minor Changes

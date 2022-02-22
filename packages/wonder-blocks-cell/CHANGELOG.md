@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-cell
 
+## 2.0.1
+
+### Patch Changes
+
+-   166ecc97: Use `aria-disabled` instead of disabled, fix focused + disabled styles.
+-   Updated dependencies [166ecc97]
+    -   @khanacademy/wonder-blocks-clickable@2.2.4
+
 ## 2.0.0
 
 ### Major Changes

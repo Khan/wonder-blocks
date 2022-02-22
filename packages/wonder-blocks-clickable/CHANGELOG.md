@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 2.2.4
+
+### Patch Changes
+
+-   166ecc97: Use `aria-disabled` instead of disabled, fix focused + disabled styles.
+
 ## 2.2.3
 
 ### Patch Changes
