@@ -2,7 +2,7 @@
 import {resultFromCachedResponse} from "../result-from-cache-response.js";
 
 describe("#resultFromCachedResponse", () => {
-    it("should return loading status if cache entry is null", () => {
+    it("should return null cache entry is null", () => {
         // Arrange
         const cacheEntry = null;
 
@@ -10,9 +10,7 @@ describe("#resultFromCachedResponse", () => {
         const result = resultFromCachedResponse(cacheEntry);
 
         // Assert
-        expect(result).toStrictEqual({
-            status: "loading",
-        });
+        expect(result).toBeNull();
     });
 
     it("should return success status if cache entry has data", () => {
@@ -73,6 +71,7 @@ describe("#resultFromCachedResponse", () => {
         };
 
         // Act
+        // $FlowIgnore[incompatible-use]
         // $FlowIgnore[prop-missing]
         const {error} = resultFromCachedResponse(cacheEntry);
 

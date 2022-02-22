@@ -5,7 +5,6 @@ import {Server} from "@khanacademy/wonder-blocks-core";
 import {RequestFulfillment} from "../util/request-fulfillment.js";
 import {useServerEffect} from "../hooks/use-server-effect.js";
 import {useRequestInterception} from "../hooks/use-request-interception.js";
-import {resultFromCachedResponse} from "../util/result-from-cache-response.js";
 
 import type {Result, ValidCacheData} from "../util/types.js";
 
@@ -29,7 +28,7 @@ type Props<
      * old handler result may be given. This is not a supported mode of
      * operation.
      */
-    handler: () => Promise<?TData>,
+    handler: () => Promise<TData>,
 
     /**
      * When true, the result will be hydrated when client-side. Otherwise,
@@ -82,13 +81,17 @@ const Data = <TData: ValidCacheData>({
 }: Props<TData>): React.Node => {
     const interceptedHandler = useRequestInterception(requestId, handler);
 
+    // A null hydrateResult means there was no result to hydrate.
     const hydrateResult = useServerEffect(
         requestId,
         interceptedHandler,
         hydrate,
     );
-    const [currentResult, setResult] = React.useState<Result<TData>>(() =>
-        resultFromCachedResponse(hydrateResult),
+    const [currentResult, setResult] = React.useState<Result<TData>>(
+        () =>
+            hydrateResult ?? {
+                status: "loading",
+            },
     );
 
     // Here we make sure the request still occurs client-side as needed.
@@ -124,33 +127,21 @@ const Data = <TData: ValidCacheData>({
         // same ID and the result will be in the same format as the
         // hydrated value.
         let cancel = false;
+
+        // We don't need a catch here. If it fails, that's a bigger problem.
+        // eslint-disable-next-line promise/catch-or-return
         RequestFulfillment.Default.fulfill<TData>(requestId, {
             handler: interceptedHandler,
-        })
-            .then((data) => {
-                if (cancel) {
-                    return;
-                }
-                if (data == null) {
-                    setResult({status: "aborted"});
-                    return;
-                }
-                setResult({
-                    status: "success",
-                    data,
-                });
+        }).then((result) => {
+            if (cancel) {
+                // The effect has been run with different settings and so we
+                // don't care about this result anymore.
                 return;
-            })
-            .catch((e) => {
-                if (cancel) {
-                    return;
-                }
-                setResult({
-                    status: "error",
-                    error: e,
-                });
-                return;
-            });
+            }
+
+            setResult(result);
+            return;
+        });
 
         return () => {
             cancel = true;

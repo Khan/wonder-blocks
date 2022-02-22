@@ -78,7 +78,7 @@ describe("../request-tracking.js", () => {
             it("should track each matching request once", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
-                const fakeHandler = jest.fn().mockResolvedValue(null);
+                const fakeHandler = jest.fn().mockResolvedValue("DATA");
 
                 // Act
                 requestTracker.trackDataRequest("ID", fakeHandler, true);
@@ -244,14 +244,33 @@ describe("../request-tracking.js", () => {
                 });
             });
 
-            it("should cope gracefully with null fulfillments", async () => {
+            it("should ignore loading results", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
                 jest.spyOn(
                     requestTracker._requestFulfillment,
                     "fulfill",
-                ).mockReturnValue(null);
-                const fakeValidHandler = () => Promise.resolve("DATA");
+                ).mockResolvedValue({status: "loading"});
+                const fakeValidHandler = () =>
+                    Promise.reject(new Error("Not called for this test case"));
+                requestTracker.trackDataRequest("ID", fakeValidHandler, true);
+
+                // Act
+                const result = await requestTracker.fulfillTrackedRequests();
+
+                // Assert
+                expect(result).toStrictEqual({});
+            });
+
+            it("should ignore aborted results", async () => {
+                // Arrange
+                const requestTracker = createRequestTracker();
+                jest.spyOn(
+                    requestTracker._requestFulfillment,
+                    "fulfill",
+                ).mockResolvedValue({status: "aborted"});
+                const fakeValidHandler = () =>
+                    Promise.reject(new Error("Not called for this test case"));
                 requestTracker.trackDataRequest("ID", fakeValidHandler, false);
 
                 // Act
@@ -285,7 +304,7 @@ describe("../request-tracking.js", () => {
             it("should clear the tracked data requests", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
-                const fakeHandler = jest.fn().mockResolvedValue(null);
+                const fakeHandler = jest.fn().mockResolvedValue("DATA");
                 requestTracker.trackDataRequest("ID", fakeHandler, true);
 
                 // Act

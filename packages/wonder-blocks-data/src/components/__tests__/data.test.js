@@ -139,7 +139,7 @@ describe("Data", () => {
                 });
             });
 
-            it("should render with data if the request resolves with data", async () => {
+            it("should render with data if the handler resolves with data", async () => {
                 // Arrange
                 const fulfillSpy = jest.spyOn(
                     RequestFulfillment.Default,
@@ -168,14 +168,16 @@ describe("Data", () => {
                 });
             });
 
-            it("should render with aborted if the request resolves to null data", async () => {
+            it("should render with aborted if the request rejects with an abort error", async () => {
                 // Arrange
                 const fulfillSpy = jest.spyOn(
                     RequestFulfillment.Default,
                     "fulfill",
                 );
 
-                const fakeHandler = () => Promise.resolve(null);
+                const abortError = new Error("bang bang, abort!");
+                abortError.name = "AbortError";
+                const fakeHandler = () => Promise.reject(abortError);
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act
@@ -200,7 +202,10 @@ describe("Data", () => {
                 // Arrange
                 const fulfillSpy = jest
                     .spyOn(RequestFulfillment.Default, "fulfill")
-                    .mockReturnValue(Promise.reject(new Error("CATASTROPHE!")));
+                    .mockResolvedValue({
+                        status: "error",
+                        error: new Error("CATASTROPHE!"),
+                    });
 
                 const fakeHandler = () => Promise.resolve("YAY!");
                 const fakeChildrenFn = jest.fn(() => null);
@@ -335,7 +340,10 @@ describe("Data", () => {
 
             it("should ignore catastrophic request fulfillment when id changes", async () => {
                 // Arrange
-                const catastrophe = Promise.reject("CATASTROPHE!");
+                const catastrophe = Promise.resolve({
+                    status: "error",
+                    error: new Error("CATASTROPHE!"),
+                });
                 jest.spyOn(
                     RequestFulfillment.Default,
                     "fulfill",
@@ -363,7 +371,7 @@ describe("Data", () => {
                 // Assert
                 expect(fakeChildrenFn).not.toHaveBeenCalledWith({
                     status: "error",
-                    error: "CATASTROPHE!",
+                    error: expect.any(Error),
                 });
             });
 
@@ -517,39 +525,6 @@ describe("Data", () => {
                         requestId="ID"
                         alwaysRequestOnHydration={true}
                     >
-                        {fakeChildrenFn}
-                    </Data>,
-                );
-                await act(() => fakeHandler.mock.results[0].value);
-
-                // Assert
-                expect(fakeHandler).toHaveBeenCalledTimes(1);
-            });
-        });
-
-        describe("with cached abort", () => {
-            beforeEach(() => {
-                /**
-                 * Each of these test cases will start out with a cached abort.
-                 */
-                jest.spyOn(
-                    SsrCache.Default,
-                    "getEntry",
-                    // Fake once because that's how the cache would work,
-                    // deleting the hydrated value as soon as it was used.
-                ).mockReturnValueOnce({
-                    data: null,
-                });
-            });
-
-            it("should request data if cached data value is null (i.e. represents an aborted request)", async () => {
-                // Arrange
-                const fakeHandler = jest.fn().mockResolvedValue("data");
-                const fakeChildrenFn = jest.fn(() => null);
-
-                // Act
-                render(
-                    <Data handler={fakeHandler} requestId="ID">
                         {fakeChildrenFn}
                     </Data>,
                 );

@@ -8,6 +8,7 @@ import TrackData from "../../components/track-data.js";
 import {RequestFulfillment} from "../../util/request-fulfillment.js";
 import {SsrCache} from "../../util/ssr-cache.js";
 import {RequestTracker} from "../../util/request-tracking.js";
+import {GqlError} from "../../util/gql-error.js";
 
 import {useServerEffect} from "../use-server-effect.js";
 
@@ -95,7 +96,7 @@ describe("#useServerEffect", () => {
             } = serverRenderHook(() => useServerEffect("ID", fakeHandler));
 
             // Assert
-            expect(result).toEqual({data: "DATA", error: null});
+            expect(result).toEqual({status: "success", data: "DATA"});
         });
 
         it("should return error cached result", () => {
@@ -113,8 +114,8 @@ describe("#useServerEffect", () => {
 
             // Assert
             expect(result).toEqual({
-                data: null,
-                error: "ERROR",
+                status: "error",
+                error: expect.any(GqlError),
             });
         });
     });
@@ -151,7 +152,7 @@ describe("#useServerEffect", () => {
             } = clientRenderHook(() => useServerEffect("ID", fakeHandler));
 
             // Assert
-            expect(result).toEqual({data: "DATA", error: null});
+            expect(result).toEqual({status: "success", data: "DATA"});
         });
 
         it("should return error cached result", () => {
@@ -169,8 +170,8 @@ describe("#useServerEffect", () => {
 
             // Assert
             expect(result).toEqual({
-                data: null,
-                error: "ERROR",
+                status: "error",
+                error: expect.any(GqlError),
             });
         });
 
