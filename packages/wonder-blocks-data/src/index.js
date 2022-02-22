@@ -61,6 +61,7 @@ export {
 } from "./hooks/use-hydratable-effect.js";
 export {ScopedInMemoryCache} from "./util/scoped-in-memory-cache.js";
 export {RequestFulfillment} from "./util/request-fulfillment.js";
+export {Status} from "./util/status.js";
 
 // GraphQL
 export {GqlRouter} from "./components/gql-router.js";
