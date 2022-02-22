@@ -47,7 +47,13 @@ describe("#useHydratableEffect", () => {
         jest.spyOn(UseSharedCache, "useSharedCache").mockImplementation(
             (id, _, defaultValue) => {
                 const setCache = (v) => (cache[id] = v);
-                return [cache[id] ?? defaultValue, setCache];
+                const currentValue =
+                    cache[id] ??
+                    (typeof defaultValue === "function"
+                        ? defaultValue()
+                        : defaultValue);
+                cache[id] = currentValue;
+                return [currentValue, setCache];
             },
         );
     });
@@ -82,14 +88,9 @@ describe("#useHydratableEffect", () => {
             ${WhenClientSide.ExecuteWhenNoSuccessResult} | ${true}
             ${undefined /*default*/}                     | ${true}
         `(
-            "should call useServerEffect with the interecepted handler and hydrate=$hydrate for $clientBehavior",
+            "should call useServerEffect with the handler and hydrate=$hydrate for $clientBehavior",
             ({hydrate, clientBehavior}) => {
                 // Arrange
-                const interceptedHandler = jest.fn();
-                jest.spyOn(
-                    UseRequestInterception,
-                    "useRequestInterception",
-                ).mockReturnValue(interceptedHandler);
                 const useServerEffectSpy = jest
                     .spyOn(UseServerEffect, "useServerEffect")
                     .mockReturnValue(null);
@@ -105,7 +106,7 @@ describe("#useHydratableEffect", () => {
                 // Assert
                 expect(useServerEffectSpy).toHaveBeenCalledWith(
                     "ID",
-                    interceptedHandler,
+                    fakeHandler,
                     hydrate,
                 );
             },
@@ -135,15 +136,15 @@ describe("#useHydratableEffect", () => {
         });
 
         it.each`
-            hydrateResult                            | scope        | expectedScope
-            ${Status.success({thisIs: "some data"})} | ${undefined} | ${"useHydratableEffect"}
-            ${null}                                  | ${"foo"}     | ${"foo"}
+            scope        | expectedScope
+            ${undefined} | ${"useHydratableEffect"}
+            ${"foo"}     | ${"foo"}
         `(
-            "should call useSharedCache with id, scope=$scope, and default to $hydrateResult",
-            ({scope, hydrateResult, expectedScope}) => {
+            "should call useSharedCache with id, scope=$scope, and a function to set the default",
+            ({scope, expectedScope}) => {
                 const fakeHandler = jest.fn();
                 jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                    hydrateResult,
+                    Status.success({thisIs: "some data"}),
                 );
                 const useSharedCacheSpy = jest.spyOn(
                     UseSharedCache,
@@ -159,7 +160,7 @@ describe("#useHydratableEffect", () => {
                 expect(useSharedCacheSpy).toHaveBeenCalledWith(
                     "ID",
                     expectedScope,
-                    hydrateResult,
+                    expect.any(Function),
                 );
             },
         );
@@ -219,23 +220,6 @@ describe("#useHydratableEffect", () => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(false);
         });
 
-        it("should call useRequestInterception", () => {
-            // Arrange
-            const useRequestInterceptSpy = jest
-                .spyOn(UseRequestInterception, "useRequestInterception")
-                .mockReturnValue(jest.fn());
-            const fakeHandler = jest.fn();
-
-            // Act
-            clientRenderHook(() => useHydratableEffect("ID", fakeHandler));
-
-            // Assert
-            expect(useRequestInterceptSpy).toHaveBeenCalledWith(
-                "ID",
-                fakeHandler,
-            );
-        });
-
         it.each`
             clientBehavior                               | hydrate
             ${WhenClientSide.DoNotHydrate}               | ${false}
@@ -244,14 +228,9 @@ describe("#useHydratableEffect", () => {
             ${WhenClientSide.ExecuteWhenNoSuccessResult} | ${true}
             ${undefined /*default*/}                     | ${true}
         `(
-            "should call useServerEffect with the interecepted handler and hydrate=$hydrate for $clientBehavior",
+            "should call useServerEffect with the handler and hydrate=$hydrate for $clientBehavior",
             ({hydrate, clientBehavior}) => {
                 // Arrange
-                const interceptedHandler = jest.fn();
-                jest.spyOn(
-                    UseRequestInterception,
-                    "useRequestInterception",
-                ).mockReturnValue(interceptedHandler);
                 const useServerEffectSpy = jest
                     .spyOn(UseServerEffect, "useServerEffect")
                     .mockReturnValue(null);
@@ -267,7 +246,7 @@ describe("#useHydratableEffect", () => {
                 // Assert
                 expect(useServerEffectSpy).toHaveBeenCalledWith(
                     "ID",
-                    interceptedHandler,
+                    fakeHandler,
                     hydrate,
                 );
             },
