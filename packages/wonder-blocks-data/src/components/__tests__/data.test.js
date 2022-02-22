@@ -143,11 +143,11 @@ describe("Data", () => {
                 );
 
                 // Assert
-                // expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
                 expect(fakeChildrenFn).toHaveBeenNthCalledWith(2, {
                     status: "error",
                     error: expect.any(Error),
                 });
+                expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
             });
 
             it("should render with data if the handler resolves with data", async () => {
