@@ -51,6 +51,14 @@ export {default as InterceptRequests} from "./components/intercept-requests.js";
 export {useServerEffect} from "./hooks/use-server-effect.js";
 export {useRequestInterception} from "./hooks/use-request-interception.js";
 export {useSharedCache, clearSharedCache} from "./hooks/use-shared-cache.js";
+export {
+    useHydratableEffect,
+    // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
+    // have fixed:
+    // https://github.com/import-js/eslint-plugin-import/issues/2073
+    // eslint-disable-next-line import/named
+    WhenClientSide,
+} from "./hooks/use-hydratable-effect.js";
 export {ScopedInMemoryCache} from "./util/scoped-in-memory-cache.js";
 export {RequestFulfillment} from "./util/request-fulfillment.js";
 
