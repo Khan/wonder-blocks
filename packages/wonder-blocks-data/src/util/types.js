@@ -25,7 +25,7 @@ export type Result<TData: ValidCacheData> =
       |}
     | {|
           status: "error",
-          error: string,
+          error: Error,
       |}
     | {|
           status: "aborted",

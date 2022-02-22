@@ -1,4 +1,5 @@
 // @flow
+import {GqlError, GqlErrors} from "./gql-error.js";
 import type {ValidCacheData, CachedResponse, Result} from "./types.js";
 
 /**
@@ -18,7 +19,7 @@ export const resultFromCachedResponse = <TData: ValidCacheData>(
     if (error != null) {
         return {
             status: "error",
-            error,
+            error: new GqlError(error, GqlErrors.Hydrated),
         };
     }
 

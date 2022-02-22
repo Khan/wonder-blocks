@@ -61,7 +61,22 @@ describe("#resultFromCachedResponse", () => {
         // Assert
         expect(result).toStrictEqual({
             status: "error",
-            error: "ERROR",
+            error: expect.any(Error),
         });
+    });
+
+    it("should hydrate the error into an error object", () => {
+        // Arrange
+        const cacheEntry: any = {
+            data: null,
+            error: "ERROR",
+        };
+
+        // Act
+        // $FlowIgnore[prop-missing]
+        const {error} = resultFromCachedResponse(cacheEntry);
+
+        // Assert
+        expect(error).toMatchInlineSnapshot(`[GqlHydratedError: ERROR]`);
     });
 });

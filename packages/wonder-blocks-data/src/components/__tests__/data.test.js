@@ -131,7 +131,7 @@ describe("Data", () => {
                 expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
                 expect(fakeChildrenFn).toHaveBeenLastCalledWith({
                     status: "error",
-                    error: "OH NOES!",
+                    error: expect.any(Error),
                 });
             });
 
@@ -164,52 +164,45 @@ describe("Data", () => {
                 });
             });
 
-            it.each`
-                error
-                ${"CATASTROPHE!"}
-                ${new Error("CATASTROPHE!")}
-            `(
-                "should render with an error if the request rejects with $error",
-                async ({error}) => {
-                    // Arrange
-                    const fulfillSpy = jest
-                        .spyOn(RequestFulfillment.Default, "fulfill")
-                        .mockReturnValue(Promise.reject(error));
+            it("should render with an error if the request rejects with an error", async () => {
+                // Arrange
+                const fulfillSpy = jest
+                    .spyOn(RequestFulfillment.Default, "fulfill")
+                    .mockReturnValue(Promise.reject(new Error("CATASTROPHE!")));
 
-                    const fakeHandler = () => Promise.resolve("YAY!");
-                    const fakeChildrenFn = jest.fn(() => null);
-                    const consoleSpy = jest
-                        .spyOn(console, "error")
-                        .mockImplementation(() => {
-                            /* Just to shut it up */
-                        });
-
-                    // Act
-                    render(
-                        <Data handler={fakeHandler} requestId="ID">
-                            {fakeChildrenFn}
-                        </Data>,
-                    );
-                    /**
-                     * We wait for the fulfillment to reject.
-                     */
-                    await act(() =>
-                        fulfillSpy.mock.results[0].value.catch(() => {}),
-                    );
-
-                    // Assert
-                    expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
-                    expect(fakeChildrenFn).toHaveBeenLastCalledWith({
-                        status: "error",
-                        error: "CATASTROPHE!",
+                const fakeHandler = () => Promise.resolve("YAY!");
+                const fakeChildrenFn = jest.fn(() => null);
+                const consoleSpy = jest
+                    .spyOn(console, "error")
+                    .mockImplementation(() => {
+                        /* Just to shut it up */
                     });
-                    expect(consoleSpy).toHaveBeenCalledWith(
-                        expect.stringMatching(
-                            "Unexpected error occurred during data fulfillment:(?: Error:)? CATASTROPHE!",
-                        ),
-                    );
-                },
-            );
+
+                // Act
+                render(
+                    <Data handler={fakeHandler} requestId="ID">
+                        {fakeChildrenFn}
+                    </Data>,
+                );
+                /**
+                 * We wait for the fulfillment to reject.
+                 */
+                await act(() =>
+                    fulfillSpy.mock.results[0].value.catch(() => {}),
+                );
+
+                // Assert
+                expect(fakeChildrenFn).toHaveBeenCalledTimes(2);
+                expect(fakeChildrenFn).toHaveBeenLastCalledWith({
+                    status: "error",
+                    error: expect.any(Error),
+                });
+                expect(consoleSpy).toHaveBeenCalledWith(
+                    expect.stringMatching(
+                        "Unexpected error occurred during data fulfillment:(?: Error:)? CATASTROPHE!",
+                    ),
+                );
+            });
 
             it("should start loading if the id changes and request not cached", async () => {
                 // Arrange
@@ -765,7 +758,7 @@ describe("Data", () => {
                 // Assert
                 expect(fakeChildrenFn).toHaveBeenCalledWith({
                     status: "error",
-                    error: "OH NO! IT GO BOOM",
+                    error: expect.any(Error),
                 });
             });
 

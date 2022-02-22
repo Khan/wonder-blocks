@@ -87,7 +87,9 @@ const Data = <TData: ValidCacheData>({
         interceptedHandler,
         hydrate,
     );
-    const [currentResult, setResult] = React.useState(hydrateResult);
+    const [currentResult, setResult] = React.useState<Result<TData>>(() =>
+        resultFromCachedResponse(hydrateResult),
+    );
 
     // Here we make sure the request still occurs client-side as needed.
     // This is for legacy usage that expects this. Eventually we will want
@@ -111,9 +113,9 @@ const Data = <TData: ValidCacheData>({
         // If we're not hydrating a result and we're not going to render
         // with old data until we're loaded, we want to make sure we set our
         // result to null so that we're in the loading state.
-        if (!showOldDataWhileLoading) {
+        if (!showOldDataWhileLoading && currentResult.status !== "loading") {
             // Mark ourselves as loading.
-            setResult(null);
+            setResult({status: "loading"});
         }
 
         // We aren't server-side, so let's make the request.
@@ -129,7 +131,10 @@ const Data = <TData: ValidCacheData>({
                 if (cancel) {
                     return;
                 }
-                setResult(result);
+                // TODO(somewhatabstract, FEI-4327): separate inflight request
+                // tracking and response caching so that we're not "hydrating"
+                // a non-server error in this scenario.
+                setResult(resultFromCachedResponse(result));
                 return;
             })
             .catch((e) => {
@@ -145,7 +150,8 @@ const Data = <TData: ValidCacheData>({
                     `Unexpected error occurred during data fulfillment: ${e}`,
                 );
                 setResult({
-                    error: typeof e === "string" ? e : e.message,
+                    status: "error",
+                    error: e,
                 });
                 return;
             });
@@ -166,7 +172,7 @@ const Data = <TData: ValidCacheData>({
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [requestId]);
 
-    return children(resultFromCachedResponse(currentResult));
+    return children(currentResult);
 };
 
 export default Data;
