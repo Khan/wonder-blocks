@@ -86,9 +86,6 @@ describe("wonder-blocks-data", () => {
             DATA: {
                 data: "I'm DATA from the hydration cache",
             },
-            ERROR: {
-                error: "I'm an ERROR from hydration cache",
-            },
         });
         const example = (
             <View>
@@ -101,27 +98,6 @@ describe("wonder-blocks-data", () => {
                             }
 
                             return <BodyMonospace>{result.data}</BodyMonospace>;
-                        }}
-                    </Data>
-                </View>
-                <Strut size={Spacing.small_12} />
-                <View>
-                    <Body>This cache has error!</Body>
-                    <Data handler={myHandler} requestId="ERROR">
-                        {(result) => {
-                            if (result.status !== "error") {
-                                return "If you see this, the example is broken!";
-                            }
-
-                            return (
-                                <BodyMonospace
-                                    style={{
-                                        color: Color.red,
-                                    }}
-                                >
-                                    ERROR: {result.error.message}
-                                </BodyMonospace>
-                            );
                         }}
                     </Data>
                 </View>

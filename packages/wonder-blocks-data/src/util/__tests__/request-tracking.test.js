@@ -177,7 +177,7 @@ describe("../request-tracking.js", () => {
                 // Assert
                 expect(result).toStrictEqual({
                     ID: {
-                        error: "OH NO!",
+                        error: "Request failed",
                     },
                 });
             });
@@ -230,7 +230,7 @@ describe("../request-tracking.js", () => {
                 // Assert
                 expect(result).toStrictEqual({
                     BAD_REQUEST: {
-                        error: "OH NO!",
+                        error: "Request failed",
                     },
                     BAD_HANDLER: {
                         error: "OH NO!",

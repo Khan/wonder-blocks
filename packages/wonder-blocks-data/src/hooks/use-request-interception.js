@@ -28,27 +28,24 @@ export const useRequestInterception = <TData: ValidCacheData>(
     // if nothing intercepted it.
     // We memoize this so that it only changes if something related to it
     // changes.
-    const interceptedHandler = React.useMemo(
-        () => (): Promise<?TData> => {
-            // Call the interceptors from closest to furthest.
-            // If one returns a non-null result, then we keep that.
-            const interceptResponse = interceptors.reduceRight(
-                (prev, interceptor) => {
-                    if (prev != null) {
-                        return prev;
-                    }
-                    return interceptor(requestId);
-                },
-                null,
-            );
-            // If nothing intercepted this request, invoke the original handler.
-            // NOTE: We can't guarantee all interceptors return the same type
-            // as our handler, so how can flow know? Let's just suppress that.
-            // $FlowFixMe[incompatible-return]
-            return interceptResponse ?? handler();
-        },
-        [handler, interceptors, requestId],
-    );
+    const interceptedHandler = React.useCallback((): Promise<?TData> => {
+        // Call the interceptors from closest to furthest.
+        // If one returns a non-null result, then we keep that.
+        const interceptResponse = interceptors.reduceRight(
+            (prev, interceptor) => {
+                if (prev != null) {
+                    return prev;
+                }
+                return interceptor(requestId);
+            },
+            null,
+        );
+        // If nothing intercepted this request, invoke the original handler.
+        // NOTE: We can't guarantee all interceptors return the same type
+        // as our handler, so how can flow know? Let's just suppress that.
+        // $FlowFixMe[incompatible-return]
+        return interceptResponse ?? handler();
+    }, [handler, interceptors, requestId]);
 
     return interceptedHandler;
 };

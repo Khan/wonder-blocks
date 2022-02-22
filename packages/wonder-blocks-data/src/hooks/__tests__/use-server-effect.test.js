@@ -16,7 +16,7 @@ describe("#useServerEffect", () => {
         const responseCache = new SsrCache();
         jest.spyOn(SsrCache, "Default", "get").mockReturnValue(responseCache);
         jest.spyOn(RequestFulfillment, "Default", "get").mockReturnValue(
-            new RequestFulfillment(responseCache),
+            new RequestFulfillment(),
         );
         jest.spyOn(RequestTracker, "Default", "get").mockReturnValue(
             new RequestTracker(responseCache),

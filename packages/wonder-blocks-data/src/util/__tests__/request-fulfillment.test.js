@@ -1,5 +1,4 @@
 // @flow
-import {SsrCache} from "../ssr-cache.js";
 import {RequestFulfillment} from "../request-fulfillment.js";
 
 describe("RequestFulfillment", () => {
@@ -15,62 +14,25 @@ describe("RequestFulfillment", () => {
     });
 
     describe("#fulfill", () => {
-        it("should attempt to cache errors caused directly by handlers", async () => {
+        it("should return a promise rejecting to the error", async () => {
             // Arrange
-            const responseCache = new SsrCache();
-            const requestFulfillment = new RequestFulfillment(responseCache);
-            const error = new Error("OH NO!");
-            const fakeBadHandler = () => {
-                throw error;
-            };
-            const cacheErrorSpy = jest.spyOn(responseCache, "cacheError");
+            const requestFulfillment = new RequestFulfillment();
+            const fakeBadRequestHandler = () => Promise.reject("OH NO!");
 
             // Act
-            await requestFulfillment.fulfill("ID", {
-                handler: fakeBadHandler,
-            });
-
-            // Assert
-            expect(cacheErrorSpy).toHaveBeenCalledWith("ID", error, true);
-        });
-
-        it("should cache errors occurring in promises", async () => {
-            // Arrange
-            const responseCache = new SsrCache();
-            const requestFulfillment = new RequestFulfillment(responseCache);
-            const fakeBadRequestHandler = () =>
-                new Promise((resolve, reject) => reject("OH NO!"));
-            const cacheErrorSpy = jest.spyOn(responseCache, "cacheError");
-
-            // Act
-            await requestFulfillment.fulfill("ID", {
+            const underTest = requestFulfillment.fulfill("ID", {
                 handler: fakeBadRequestHandler,
             });
 
             // Assert
-            expect(cacheErrorSpy).toHaveBeenCalledWith("ID", "OH NO!", true);
+            await expect(underTest).rejects.toThrowErrorMatchingInlineSnapshot(
+                `"Request failed"`,
+            );
         });
 
-        it("should cache data from requests", async () => {
+        it("should return a promise resolving to the data result", async () => {
             // Arrange
-            const responseCache = new SsrCache();
-            const requestFulfillment = new RequestFulfillment(responseCache);
-            const fakeRequestHandler = () => Promise.resolve("DATA!");
-            const cacheDataSpy = jest.spyOn(responseCache, "cacheData");
-
-            // Act
-            await requestFulfillment.fulfill("ID", {
-                handler: fakeRequestHandler,
-            });
-
-            // Assert
-            expect(cacheDataSpy).toHaveBeenCalledWith("ID", "DATA!", true);
-        });
-
-        it("should return a promise of the result", async () => {
-            // Arrange
-            const responseCache = new SsrCache();
-            const requestFulfillment = new RequestFulfillment(responseCache);
+            const requestFulfillment = new RequestFulfillment();
             const fakeRequestHandler = () => Promise.resolve("DATA!");
 
             // Act
@@ -79,15 +41,12 @@ describe("RequestFulfillment", () => {
             });
 
             // Assert
-            expect(result).toStrictEqual({
-                data: "DATA!",
-            });
+            expect(result).toStrictEqual("DATA!");
         });
 
         it("should reuse inflight requests", () => {
             // Arrange
-            const responseCache = new SsrCache();
-            const requestFulfillment = new RequestFulfillment(responseCache);
+            const requestFulfillment = new RequestFulfillment();
             const fakeRequestHandler = () => Promise.resolve("DATA!");
 
             // Act
@@ -104,8 +63,7 @@ describe("RequestFulfillment", () => {
 
         it("should remove inflight requests upon completion", async () => {
             // Arrange
-            const responseCache = new SsrCache();
-            const requestFulfillment = new RequestFulfillment(responseCache);
+            const requestFulfillment = new RequestFulfillment();
             const fakeRequestHandler = () => Promise.resolve("DATA!");
 
             // Act

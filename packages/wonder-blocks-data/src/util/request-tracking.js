@@ -55,7 +55,7 @@ export class RequestTracker {
 
     constructor(responseCache: ?SsrCache = undefined) {
         this._responseCache = responseCache || SsrCache.Default;
-        this._requestFulfillment = new RequestFulfillment(responseCache);
+        this._requestFulfillment = new RequestFulfillment();
     }
 
     /**
@@ -114,13 +114,43 @@ export class RequestTracker {
     fulfillTrackedRequests: () => Promise<ResponseCache> =
         (): Promise<ResponseCache> => {
             const promises = [];
+            const {cacheData, cacheError} = this._responseCache;
 
             for (const requestKey of Object.keys(this._trackedRequests)) {
-                const promise = this._requestFulfillment.fulfill(
-                    requestKey,
-                    this._trackedRequests[requestKey],
-                );
-                promises.push(promise);
+                const options = this._trackedRequests[requestKey];
+                const hydrate = options.hydrate ?? true;
+
+                try {
+                    promises.push(
+                        this._requestFulfillment
+                            .fulfill(requestKey, options)
+                            .then((data) => {
+                                if (data == null) {
+                                    // Request aborted. We won't cache this.
+                                    return null;
+                                }
+
+                                /**
+                                 * Let's cache the data!
+                                 *
+                                 * NOTE: This only caches when we're server side.
+                                 */
+                                return cacheData(requestKey, data, hydrate);
+                            })
+                            .catch((error) => {
+                                /**
+                                 * Let's cache the error!
+                                 *
+                                 * NOTE: This only caches when we're server side.
+                                 */
+                                return cacheError(requestKey, error, hydrate);
+                            }),
+                    );
+                } catch (e) {
+                    promises.push(
+                        Promise.resolve(cacheError(requestKey, e, hydrate)),
+                    );
+                }
             }
 
             /**

@@ -72,8 +72,8 @@ export const useSharedCache = <TValue: ValidCacheData>(
 
     // Memoize our APIs.
     // This one allows callers to set or replace the cached value.
-    const cacheValue = React.useMemo(
-        () => (value: ?TValue) =>
+    const cacheValue = React.useCallback(
+        (value: ?TValue) =>
             value == null
                 ? cache.purge(scope, id)
                 : cache.set(scope, id, value),

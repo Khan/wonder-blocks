@@ -1,7 +1,7 @@
 // @flow
-import {SsrCache} from "./ssr-cache.js";
+import type {ValidCacheData} from "./types.js";
 
-import type {ValidCacheData, CachedResponse} from "./types.js";
+import {GqlError, GqlErrors} from "./gql-error.js";
 
 type RequestCache = {
     [id: string]: Promise<any>,
@@ -10,6 +10,9 @@ type RequestCache = {
 
 let _default: RequestFulfillment;
 
+/**
+ * This fulfills a request, making sure that in-flight requests are shared.
+ */
 export class RequestFulfillment {
     static get Default(): RequestFulfillment {
         if (!_default) {
@@ -18,12 +21,7 @@ export class RequestFulfillment {
         return _default;
     }
 
-    _responseCache: SsrCache;
     _requests: RequestCache = {};
-
-    constructor(responseCache: ?SsrCache = undefined) {
-        this._responseCache = responseCache || SsrCache.Default;
-    }
 
     /**
      * Get a promise of a request for a given handler and options.
@@ -37,7 +35,7 @@ export class RequestFulfillment {
             handler: () => Promise<?TData>,
             hydrate?: boolean,
         |},
-    ) => Promise<?CachedResponse<TData>> = <TData: ValidCacheData>(
+    ) => Promise<?TData> = <TData: ValidCacheData>(
         id: string,
         {
             handler,
@@ -46,7 +44,7 @@ export class RequestFulfillment {
             handler: () => Promise<?TData>,
             hydrate?: boolean,
         |},
-    ): Promise<?CachedResponse<TData>> => {
+    ): Promise<?TData> => {
         /**
          * If we have an inflight request, we'll provide that.
          */
@@ -58,40 +56,21 @@ export class RequestFulfillment {
         /**
          * We don't have an inflight request, so let's set one up.
          */
-        const {cacheData, cacheError} = this._responseCache;
-        try {
-            const request = handler()
-                .then((data: ?TData) => {
-                    delete this._requests[id];
-                    if (data == null) {
-                        // Request aborted. We won't cache this.
-                        return null;
-                    }
-
-                    /**
-                     * Let's cache the data!
-                     *
-                     * NOTE: This only caches when we're server side.
-                     */
-                    return cacheData<TData>(id, data, hydrate);
-                })
-                .catch((error: string | Error) => {
-                    delete this._requests[id];
-                    /**
-                     * Let's cache the error!
-                     *
-                     * NOTE: This only caches when we're server side.
-                     */
-                    return cacheError<TData>(id, error, hydrate);
+        const request = handler()
+            .catch((error: string | Error) => {
+                if (error instanceof Error) {
+                    throw error;
+                }
+                throw new GqlError("Request failed", GqlErrors.Unknown, {
+                    metadata: {
+                        unexpectedError: error,
+                    },
                 });
-            this._requests[id] = request;
-            return request;
-        } catch (e) {
-            /**
-             * In this case, we don't cache an inflight request, because there
-             * really isn't one.
-             */
-            return Promise.resolve(cacheError<TData>(id, e, hydrate));
-        }
+            })
+            .finally(() => {
+                delete this._requests[id];
+            });
+        this._requests[id] = request;
+        return request;
     };
 }
