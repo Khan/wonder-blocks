@@ -355,9 +355,11 @@ describe("SerializableInMemoryCache", () => {
             const act = () => cache.clone();
 
             // Assert
-            expect(act).toThrowErrorMatchingInlineSnapshot(
-                `"An error occurred while trying to clone the cache: Error: BANG!"`,
-            );
+            expect(act).toThrowErrorMatchingInlineSnapshot(`
+                "An error occurred while trying to clone the cache
+                	caused by
+                		Error: BANG!"
+            `);
         });
     });
 
