@@ -10,23 +10,14 @@ import {Status} from "../../util/status.js";
 
 import {RequestFulfillment} from "../../util/request-fulfillment.js";
 import * as UseRequestInterception from "../use-request-interception.js";
-import * as UseServerEffect from "../use-server-effect.js";
 import * as UseSharedCache from "../use-shared-cache.js";
 
-import {
-    useHydratableEffect,
-    // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-    // have fixed:
-    // https://github.com/import-js/eslint-plugin-import/issues/2073
-    // eslint-disable-next-line import/named
-    WhenClientSide,
-} from "../use-hydratable-effect.js";
+import {useCachedEffect} from "../use-cached-effect.js";
 
 jest.mock("../use-request-interception.js");
-jest.mock("../use-server-effect.js");
 jest.mock("../use-shared-cache.js");
 
-describe("#useHydratableEffect", () => {
+describe("#useCachedEffect", () => {
     beforeEach(() => {
         jest.resetAllMocks();
 
@@ -47,13 +38,7 @@ describe("#useHydratableEffect", () => {
         jest.spyOn(UseSharedCache, "useSharedCache").mockImplementation(
             (id, _, defaultValue) => {
                 const setCache = (v) => (cache[id] = v);
-                const currentValue =
-                    cache[id] ??
-                    (typeof defaultValue === "function"
-                        ? defaultValue()
-                        : defaultValue);
-                cache[id] = currentValue;
-                return [currentValue, setCache];
+                return [cache[id] ?? defaultValue, setCache];
             },
         );
     });
@@ -71,7 +56,7 @@ describe("#useHydratableEffect", () => {
             const fakeHandler = jest.fn();
 
             // Act
-            serverRenderHook(() => useHydratableEffect("ID", fakeHandler));
+            serverRenderHook(() => useCachedEffect("ID", fakeHandler));
 
             // Assert
             expect(useRequestInterceptSpy).toHaveBeenCalledWith(
@@ -81,71 +66,13 @@ describe("#useHydratableEffect", () => {
         });
 
         it.each`
-            clientBehavior                               | hydrate
-            ${WhenClientSide.DoNotHydrate}               | ${false}
-            ${WhenClientSide.AlwaysExecute}              | ${true}
-            ${WhenClientSide.ExecuteWhenNoResult}        | ${true}
-            ${WhenClientSide.ExecuteWhenNoSuccessResult} | ${true}
-            ${undefined /*default*/}                     | ${true}
-        `(
-            "should call useServerEffect with the handler and hydrate=$hydrate for $clientBehavior",
-            ({hydrate, clientBehavior}) => {
-                // Arrange
-                const useServerEffectSpy = jest
-                    .spyOn(UseServerEffect, "useServerEffect")
-                    .mockReturnValue(null);
-                const fakeHandler = jest.fn();
-
-                // Act
-                serverRenderHook(() =>
-                    useHydratableEffect("ID", fakeHandler, {
-                        clientBehavior,
-                    }),
-                );
-
-                // Assert
-                expect(useServerEffectSpy).toHaveBeenCalledWith(
-                    "ID",
-                    fakeHandler,
-                    hydrate,
-                );
-            },
-        );
-
-        it("should pass an abort handler to useServerEffect when skip is true", async () => {
-            // Arrange
-            jest.spyOn(
-                UseRequestInterception,
-                "useRequestInterception",
-            ).mockReturnValue(jest.fn());
-            const fakeHandler = jest.fn();
-            const useServerEffectSpy = jest
-                .spyOn(UseServerEffect, "useServerEffect")
-                .mockReturnValue(null);
-
-            // Act
-            serverRenderHook(() =>
-                useHydratableEffect("ID", fakeHandler, {skip: true}),
-            );
-            const underTest = useServerEffectSpy.mock.calls[0][1]();
-
-            // Assert
-            await expect(underTest).rejects.toMatchInlineSnapshot(
-                `[AbortError: skipped]`,
-            );
-        });
-
-        it.each`
             scope        | expectedScope
-            ${undefined} | ${"useHydratableEffect"}
+            ${undefined} | ${"useCachedEffect"}
             ${"foo"}     | ${"foo"}
         `(
-            "should call useSharedCache with id, scope=$scope, and a function to set the default",
-            ({scope, expectedScope}) => {
+            "should call useSharedCache with id, scope=$scope, without a default",
+            ({scope, cachedResult, expectedScope}) => {
                 const fakeHandler = jest.fn();
-                jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                    Status.success({thisIs: "some data"}),
-                );
                 const useSharedCacheSpy = jest.spyOn(
                     UseSharedCache,
                     "useSharedCache",
@@ -153,14 +80,13 @@ describe("#useHydratableEffect", () => {
 
                 // Act
                 serverRenderHook(() =>
-                    useHydratableEffect("ID", fakeHandler, {scope}),
+                    useCachedEffect("ID", fakeHandler, {scope}),
                 );
 
                 // Assert
                 expect(useSharedCacheSpy).toHaveBeenCalledWith(
                     "ID",
                     expectedScope,
-                    expect.any(Function),
                 );
             },
         );
@@ -170,13 +96,13 @@ describe("#useHydratableEffect", () => {
             const fakeHandler = jest.fn().mockResolvedValue("data");
 
             // Act
-            serverRenderHook(() => useHydratableEffect("ID", fakeHandler));
+            serverRenderHook(() => useCachedEffect("ID", fakeHandler));
 
             // Assert
             expect(fakeHandler).not.toHaveBeenCalled();
         });
 
-        describe("without server result", () => {
+        describe("without cached result", () => {
             it("should return a loading result", () => {
                 // Arrange
                 const fakeHandler = jest.fn();
@@ -184,33 +110,30 @@ describe("#useHydratableEffect", () => {
                 // Act
                 const {
                     result: {current: result},
-                } = serverRenderHook(() =>
-                    useHydratableEffect("ID", fakeHandler),
-                );
+                } = serverRenderHook(() => useCachedEffect("ID", fakeHandler));
 
                 // Assert
-                expect(result).toEqual(Status.loading());
+                expect(result).toStrictEqual(Status.loading());
             });
         });
 
-        describe("with server result", () => {
+        describe("with cached result", () => {
             it("should return the result", () => {
                 // Arrange
                 const fakeHandler = jest.fn();
-                const serverResult = Status.success("data");
-                jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                    serverResult,
-                );
+                const cachedResult = Status.success("data");
+                jest.spyOn(UseSharedCache, "useSharedCache").mockReturnValue([
+                    cachedResult,
+                    jest.fn(),
+                ]);
 
                 // Act
                 const {
                     result: {current: result},
-                } = serverRenderHook(() =>
-                    useHydratableEffect("ID", fakeHandler),
-                );
+                } = serverRenderHook(() => useCachedEffect("ID", fakeHandler));
 
                 // Assert
-                expect(result).toEqual(serverResult);
+                expect(result).toEqual(cachedResult);
             });
         });
     });
@@ -220,47 +143,33 @@ describe("#useHydratableEffect", () => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(false);
         });
 
-        it.each`
-            clientBehavior                               | hydrate
-            ${WhenClientSide.DoNotHydrate}               | ${false}
-            ${WhenClientSide.AlwaysExecute}              | ${true}
-            ${WhenClientSide.ExecuteWhenNoResult}        | ${true}
-            ${WhenClientSide.ExecuteWhenNoSuccessResult} | ${true}
-            ${undefined /*default*/}                     | ${true}
-        `(
-            "should call useServerEffect with the handler and hydrate=$hydrate for $clientBehavior",
-            ({hydrate, clientBehavior}) => {
-                // Arrange
-                const useServerEffectSpy = jest
-                    .spyOn(UseServerEffect, "useServerEffect")
-                    .mockReturnValue(null);
-                const fakeHandler = jest.fn();
-
-                // Act
-                clientRenderHook(() =>
-                    useHydratableEffect("ID", fakeHandler, {
-                        clientBehavior,
-                    }),
-                );
-
-                // Assert
-                expect(useServerEffectSpy).toHaveBeenCalledWith(
-                    "ID",
-                    fakeHandler,
-                    hydrate,
-                );
-            },
-        );
-
-        it("should fulfill request when there is no server value to hydrate", () => {
+        it("should call useRequestInterception", () => {
             // Arrange
+            const useRequestInterceptSpy = jest
+                .spyOn(UseRequestInterception, "useRequestInterception")
+                .mockReturnValue(jest.fn());
             const fakeHandler = jest.fn();
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
-            clientRenderHook(() => useHydratableEffect("ID", fakeHandler));
+            clientRenderHook(() => useCachedEffect("ID", fakeHandler));
+
+            // Assert
+            expect(useRequestInterceptSpy).toHaveBeenCalledWith(
+                "ID",
+                fakeHandler,
+            );
+        });
+
+        it("should fulfill request when there is no cached value", () => {
+            // Arrange
+            const fakeHandler = jest.fn();
+            jest.spyOn(UseSharedCache, "useSharedCache").mockReturnValue([
+                null,
+                jest.fn(),
+            ]);
+
+            // Act
+            clientRenderHook(() => useCachedEffect("ID", fakeHandler));
 
             // Assert
             expect(fakeHandler).toHaveBeenCalled();
@@ -274,101 +183,29 @@ describe("#useHydratableEffect", () => {
             const fakeHandler = jest.fn().mockReturnValue(pending);
 
             // Act
-            clientRenderHook(() => useHydratableEffect("ID", fakeHandler));
-            clientRenderHook(() => useHydratableEffect("ID", fakeHandler));
+            clientRenderHook(() => useCachedEffect("ID", fakeHandler));
+            clientRenderHook(() => useCachedEffect("ID", fakeHandler));
 
             // Assert
             expect(fakeHandler).toHaveBeenCalledTimes(1);
         });
 
         it.each`
-            serverResult
-            ${null}
-            ${Status.error(new Error("some error"))}
-        `(
-            "should fulfill request when server value is $serverResult and clientBehavior is ExecuteWhenNoSuccessResult",
-            ({serverResult}) => {
-                // Arrange
-                const fakeHandler = jest.fn();
-                jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                    serverResult,
-                );
-
-                // Act
-                clientRenderHook(() =>
-                    useHydratableEffect("ID", fakeHandler, {
-                        clientBehavior:
-                            WhenClientSide.ExecuteWhenNoSuccessResult,
-                    }),
-                );
-
-                // Assert
-                expect(fakeHandler).toHaveBeenCalled();
-            },
-        );
-
-        it.each`
-            serverResult
-            ${null}
+            cachedResult
             ${Status.error(new Error("some error"))}
             ${Status.success("data")}
+            ${Status.aborted()}
         `(
-            "should fulfill request when server value is $serveResult and clientBehavior is AlwaysExecute",
-            ({serverResult}) => {
-                // Arrange
+            "should not fulfill request when there is a cached response of $cachedResult",
+            ({cachedResult}) => {
                 const fakeHandler = jest.fn();
-                jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                    serverResult,
-                );
+                jest.spyOn(UseSharedCache, "useSharedCache").mockReturnValue([
+                    cachedResult,
+                    jest.fn(),
+                ]);
 
                 // Act
-                clientRenderHook(() =>
-                    useHydratableEffect("ID", fakeHandler, {
-                        clientBehavior: WhenClientSide.AlwaysExecute,
-                    }),
-                );
-
-                // Assert
-                expect(fakeHandler).toHaveBeenCalled();
-            },
-        );
-
-        it("should not fulfill request when server value is success and clientBehavior is ExecuteWhenNoSuccessResult", () => {
-            // Arrange
-            const fakeHandler = jest.fn();
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                Status.success("data"),
-            );
-
-            // Act
-            clientRenderHook(() =>
-                useHydratableEffect("ID", fakeHandler, {
-                    clientBehavior: WhenClientSide.ExecuteWhenNoSuccessResult,
-                }),
-            );
-
-            // Assert
-            expect(fakeHandler).not.toHaveBeenCalled();
-        });
-
-        it.each`
-            serverResult
-            ${Status.error(new Error("some error"))}
-            ${Status.success("data")}
-        `(
-            "should not fulfill request when server value is $serverResult and clientBehavior is ExecuteWhenNoResult",
-            ({serverResult}) => {
-                const fakeHandler = jest.fn();
-                jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                    serverResult,
-                );
-
-                // Act
-                clientRenderHook(() =>
-                    useHydratableEffect("ID", fakeHandler, {
-                        clientBehavior: WhenClientSide.ExecuteWhenNoResult,
-                    }),
-                );
+                clientRenderHook(() => useCachedEffect("ID", fakeHandler));
 
                 // Assert
                 expect(fakeHandler).not.toHaveBeenCalled();
@@ -376,14 +213,12 @@ describe("#useHydratableEffect", () => {
         );
 
         it("should fulfill request once only if requestId does not change", async () => {
+            // Arrange
             const fakeHandler = jest.fn().mockResolvedValue("data");
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
             const {rerender, waitForNextUpdate} = clientRenderHook(() =>
-                useHydratableEffect("ID", fakeHandler),
+                useCachedEffect("ID", fakeHandler),
             );
             rerender();
             await waitForNextUpdate();
@@ -395,13 +230,10 @@ describe("#useHydratableEffect", () => {
         it("should fulfill request again if requestId changes", async () => {
             // Arrange
             const fakeHandler = jest.fn().mockResolvedValue("data");
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
             const {rerender, waitForNextUpdate} = clientRenderHook(
-                ({requestId}) => useHydratableEffect(requestId, fakeHandler),
+                ({requestId}) => useCachedEffect(requestId, fakeHandler),
                 {
                     initialProps: {requestId: "ID"},
                 },
@@ -424,7 +256,7 @@ describe("#useHydratableEffect", () => {
 
             // Act
             const {waitForNextUpdate} = clientRenderHook(() =>
-                useHydratableEffect("ID", fakeHandler),
+                useCachedEffect("ID", fakeHandler),
             );
             await waitForNextUpdate();
 
@@ -440,13 +272,10 @@ describe("#useHydratableEffect", () => {
                 .fn()
                 .mockReturnValueOnce(response1)
                 .mockReturnValueOnce(response2);
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
             const {rerender, result} = clientRenderHook(
-                ({requestId}) => useHydratableEffect(requestId, fakeHandler),
+                ({requestId}) => useCachedEffect(requestId, fakeHandler),
                 {
                     initialProps: {requestId: "ID"},
                 },
@@ -468,13 +297,10 @@ describe("#useHydratableEffect", () => {
                 .fn()
                 .mockReturnValueOnce(response1)
                 .mockReturnValueOnce(response2);
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
             const {rerender, result} = clientRenderHook(
-                ({requestId}) => useHydratableEffect(requestId, fakeHandler),
+                ({requestId}) => useCachedEffect(requestId, fakeHandler),
                 {
                     initialProps: {requestId: "ID"},
                 },
@@ -491,13 +317,10 @@ describe("#useHydratableEffect", () => {
         it("should not fulfill request when skip is true", () => {
             // Arrange
             const fakeHandler = jest.fn();
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
             clientRenderHook(() =>
-                useHydratableEffect("ID", fakeHandler, {skip: true}),
+                useCachedEffect("ID", fakeHandler, {skip: true}),
             );
 
             // Assert
@@ -508,13 +331,10 @@ describe("#useHydratableEffect", () => {
             // Arrange
             const response1 = Promise.resolve("DATA1");
             const fakeHandler = jest.fn().mockReturnValueOnce(response1);
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
             const {rerender, result} = clientRenderHook(
-                ({skip}) => useHydratableEffect("ID", fakeHandler, {skip}),
+                ({skip}) => useCachedEffect("ID", fakeHandler, {skip}),
                 {
                     initialProps: {skip: false},
                 },
@@ -532,13 +352,10 @@ describe("#useHydratableEffect", () => {
             const response2 = Promise.resolve("DATA2");
             const fakeHandler1 = jest.fn().mockReturnValueOnce(response1);
             const fakeHandler2 = jest.fn().mockReturnValueOnce(response2);
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
             const {rerender, result} = clientRenderHook(
-                ({handler}) => useHydratableEffect("ID", handler),
+                ({handler}) => useCachedEffect("ID", handler),
                 {
                     initialProps: {handler: fakeHandler1},
                 },
@@ -556,13 +373,10 @@ describe("#useHydratableEffect", () => {
             // Arrange
             const response1 = Promise.resolve("DATA1");
             const fakeHandler = jest.fn().mockReturnValueOnce(response1);
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
             const {rerender, result} = clientRenderHook(
-                ({options}) => useHydratableEffect("ID", fakeHandler),
+                ({options}) => useCachedEffect("ID", fakeHandler),
                 {
                     initialProps: {options: undefined},
                 },
@@ -586,9 +400,6 @@ describe("#useHydratableEffect", () => {
                 .fn()
                 .mockReturnValueOnce(response1)
                 .mockReturnValueOnce(response2);
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
             const {
@@ -597,7 +408,7 @@ describe("#useHydratableEffect", () => {
                 waitForNextUpdate,
             } = clientRenderHook(
                 ({requestId}) =>
-                    useHydratableEffect(requestId, fakeHandler, {
+                    useCachedEffect(requestId, fakeHandler, {
                         retainResultOnChange: true,
                     }),
                 {
@@ -623,14 +434,11 @@ describe("#useHydratableEffect", () => {
                 .fn()
                 .mockReturnValueOnce(response1)
                 .mockReturnValueOnce(response2);
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
             const {rerender, result} = clientRenderHook(
                 ({requestId}) =>
-                    useHydratableEffect(requestId, fakeHandler, {
+                    useCachedEffect(requestId, fakeHandler, {
                         retainResultOnChange: false,
                     }),
                 {
@@ -648,13 +456,10 @@ describe("#useHydratableEffect", () => {
             // Arrange
             const response = Promise.resolve("DATA");
             const fakeHandler = jest.fn().mockReturnValue(response);
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
             const {result} = clientRenderHook(() =>
-                useHydratableEffect("ID", fakeHandler),
+                useCachedEffect("ID", fakeHandler),
             );
             await act((): Promise<mixed> => response);
 
@@ -666,13 +471,10 @@ describe("#useHydratableEffect", () => {
             // Arrange
             const response = Promise.resolve("DATA");
             const fakeHandler = jest.fn().mockReturnValue(response);
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
 
             // Act
             const {result} = clientRenderHook(() =>
-                useHydratableEffect("ID", fakeHandler, {
+                useCachedEffect("ID", fakeHandler, {
                     onResultChanged: () => {},
                 }),
             );
@@ -686,14 +488,11 @@ describe("#useHydratableEffect", () => {
             // Arrange
             const response = Promise.resolve("DATA");
             const fakeHandler = jest.fn().mockReturnValue(response);
-            jest.spyOn(UseServerEffect, "useServerEffect").mockReturnValue(
-                null,
-            );
             const onResultChanged = jest.fn();
 
             // Act
             clientRenderHook(() =>
-                useHydratableEffect("ID", fakeHandler, {
+                useCachedEffect("ID", fakeHandler, {
                     onResultChanged,
                 }),
             );

@@ -9,11 +9,16 @@ import {RequestFulfillment} from "../../util/request-fulfillment.js";
 import {SsrCache} from "../../util/ssr-cache.js";
 import {RequestTracker} from "../../util/request-tracking.js";
 import {GqlError} from "../../util/gql-error.js";
+import * as UseRequestInterception from "../use-request-interception.js";
 
 import {useServerEffect} from "../use-server-effect.js";
 
+jest.mock("../use-request-interception.js");
+
 describe("#useServerEffect", () => {
     beforeEach(() => {
+        jest.resetAllMocks();
+
         const responseCache = new SsrCache();
         jest.spyOn(SsrCache, "Default", "get").mockReturnValue(responseCache);
         jest.spyOn(RequestFulfillment, "Default", "get").mockReturnValue(
@@ -22,10 +27,27 @@ describe("#useServerEffect", () => {
         jest.spyOn(RequestTracker, "Default", "get").mockReturnValue(
             new RequestTracker(responseCache),
         );
+
+        // Simple implementation of request interception that just returns
+        // the handler.
+        jest.spyOn(
+            UseRequestInterception,
+            "useRequestInterception",
+        ).mockImplementation((_, handler) => handler);
     });
 
-    afterEach(() => {
-        jest.resetAllMocks();
+    it("should call useRequestInterception", () => {
+        // Arrange
+        const useRequestInterceptSpy = jest
+            .spyOn(UseRequestInterception, "useRequestInterception")
+            .mockReturnValue(jest.fn());
+        const fakeHandler = jest.fn();
+
+        // Act
+        serverRenderHook(() => useServerEffect("ID", fakeHandler));
+
+        // Assert
+        expect(useRequestInterceptSpy).toHaveBeenCalledWith("ID", fakeHandler);
     });
 
     describe("when server-side", () => {
@@ -61,9 +83,14 @@ describe("#useServerEffect", () => {
             expect(fulfillRequestSpy).not.toHaveBeenCalled();
         });
 
-        it("should track the request", () => {
+        it("should track the intercepted request", () => {
             // Arrange
             const fakeHandler = jest.fn();
+            const interceptedHandler = jest.fn();
+            jest.spyOn(
+                UseRequestInterception,
+                "useRequestInterception",
+            ).mockReturnValue(interceptedHandler);
             const trackDataRequestSpy = jest.spyOn(
                 RequestTracker.Default,
                 "trackDataRequest",
@@ -77,7 +104,7 @@ describe("#useServerEffect", () => {
             // Assert
             expect(trackDataRequestSpy).toHaveBeenCalledWith(
                 "ID",
-                fakeHandler,
+                interceptedHandler,
                 true,
             );
         });

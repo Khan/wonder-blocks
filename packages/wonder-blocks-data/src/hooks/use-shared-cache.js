@@ -94,11 +94,13 @@ export const useSharedCache = <TValue: ValidCacheData>(
         const value =
             typeof initialValue === "function" ? initialValue() : initialValue;
 
-        // Update the cache.
-        cacheValue(value);
+        if (value != null) {
+            // Update the cache.
+            cacheValue(value);
 
-        // Make sure we return this value as our current value.
-        currentValue = value;
+            // Make sure we return this value as our current value.
+            currentValue = value;
+        }
     }
 
     // Now we have everything, let's return it.

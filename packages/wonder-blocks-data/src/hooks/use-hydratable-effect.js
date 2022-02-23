@@ -1,14 +1,11 @@
 // @flow
 import * as React from "react";
-import {useForceUpdate} from "@khanacademy/wonder-blocks-core";
 
 import {AbortError} from "../util/abort-error.js";
-import {RequestFulfillment} from "../util/request-fulfillment.js";
-import {Status} from "../util/status.js";
 
 import {useServerEffect} from "./use-server-effect.js";
 import {useSharedCache} from "./use-shared-cache.js";
-import {useRequestInterception} from "./use-request-interception.js";
+import {useCachedEffect} from "./use-cached-effect.js";
 
 import type {Result, ValidCacheData} from "../util/types.js";
 
@@ -135,179 +132,75 @@ export const useHydratableEffect = <TData: ValidCacheData>(
 ): Result<TData> => {
     const {
         clientBehavior = WhenClientSide.ExecuteWhenNoSuccessResult,
-        skip: hardSkip = false,
+        skip = false,
         retainResultOnChange = false,
         onResultChanged,
         scope = DefaultScope,
     } = options;
 
-    // Plug in to the request interception framework for code that wants
-    // to use that.
-    const interceptedHandler = useRequestInterception(requestId, handler);
-
     // Now we instruct the server to perform the operation.
     // When client-side, this will look up any response for hydration; it does
     // not invoke the handler.
-    const serverValue = useServerEffect(
+    const serverResult = useServerEffect(
         requestId,
 
         // If we're skipped (unlikely in server worlds, but maybe),
         // just give an aborted response.
-        hardSkip
-            ? () => Promise.reject(new AbortError("skipped"))
-            : interceptedHandler,
+        skip ? () => Promise.reject(new AbortError("skipped")) : handler,
 
         // Only hydrate if our behavior isn't telling us not to.
         clientBehavior !== WhenClientSide.DoNotHydrate,
     );
 
+    const getDefaultCacheValue: () => ?Result<TData> = React.useCallback(() => {
+        // If we don't have a requestId, it's our first render, the one
+        // where we hydrated. So defer to our clientBehavior value.
+        switch (clientBehavior) {
+            case WhenClientSide.DoNotHydrate:
+            case WhenClientSide.AlwaysExecute:
+                // Either we weren't hydrating at all, or we don't care
+                // if we hydrated something or not, either way, we're
+                // doing a request.
+                return null;
+
+            case WhenClientSide.ExecuteWhenNoResult:
+                // We only execute if we didn't hydrate something.
+                // So, returning the hydration result as default for our
+                // cache, will then prevent the cached effect running.
+                return serverResult;
+
+            case WhenClientSide.ExecuteWhenNoSuccessResult:
+                // We only execute if we didn't hydrate a success result.
+                if (serverResult?.status === "success") {
+                    // So, returning the hydration result as default for our
+                    // cache, will then prevent the cached effect running.
+                    return serverResult;
+                }
+                return null;
+        }
+        // There is no reason for this to change after the first render.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     // Instead of using state, which would be local to just this hook instance,
     // we use a shared in-memory cache.
-    const [mostRecentResult, setMostRecentResult] = useSharedCache<
-        Result<TData>,
-    >(
+    useSharedCache<Result<TData>>(
         requestId, // The key of the cached item
         scope, // The scope of the cached items
-        serverValue, // The default value to cache if nothing is already cached
+        getDefaultCacheValue,
     );
 
-    // Build a function that will update the cache and either invoke the
-    // callback provided in options, or force an update.
-    const forceUpdate = useForceUpdate();
-    const setCacheAndNotify = React.useCallback(
-        (value: Result<TData>) => {
-            setMostRecentResult(value);
+    // When we're client-side, we ultimately want the result from this call.
+    const clientResult = useCachedEffect(requestId, handler, {
+        skip,
+        onResultChanged,
+        retainResultOnChange,
+        scope,
+    });
 
-            // If our caller provided a cacheUpdated callback, we use that.
-            // Otherwise, we toggle our little state update.
-            if (onResultChanged != null) {
-                onResultChanged(value);
-            } else {
-                forceUpdate();
-            }
-        },
-        [setMostRecentResult, onResultChanged, forceUpdate],
-    );
-
-    // At this point, the server has done its part and we can even hydrate
-    // a value, but the client-side is still not going to do anything.
-
-    // We need to trigger a re-render when the request ID changes as that
-    // indicates its a different request. This is also a proxy for the
-    // hydration step, hence why we don't default it.
-    const requestIdRef = React.useRef();
-    const previousRequestId = requestIdRef.current;
-
-    const softSkip = React.useMemo(() => {
-        // If the requestId is unchanged, it means we already rendered at least
-        // once and so we already made the request at least once. So we can
-        // bail out right here.
-        if (requestId === previousRequestId) {
-            return true;
-        }
-
-        // Now, determine if we need to do a request or not.
-        if (previousRequestId == null) {
-            // If we don't have a requestId, it's our first render, the one
-            // where we hydrated. So defer to our clientBehavior value.
-            switch (clientBehavior) {
-                case WhenClientSide.DoNotHydrate:
-                case WhenClientSide.AlwaysExecute:
-                    // Either we weren't hydrating at all, or we don't care
-                    // if we hydrated something or not, either way, we're
-                    // doing a request.
-                    break;
-
-                case WhenClientSide.ExecuteWhenNoResult:
-                    // We only execute if we didn't hydrate something.
-                    if (serverValue != null) {
-                        // We hydrated something; bail.
-                        return true;
-                    }
-                    break;
-
-                case WhenClientSide.ExecuteWhenNoSuccessResult:
-                    // We only execute if we didn't hydrate a success result.
-                    if (serverValue?.status === "success") {
-                        // We hydrated a success result; bail.
-                        return true;
-                    }
-                    break;
-            }
-        }
-        return false;
-    }, [requestId, serverValue, clientBehavior, previousRequestId]);
-
-    // So now we make sure the client-side request happens per our various
-    // options.
-    React.useEffect(() => {
-        let cancel = false;
-
-        // We don't do anything if we've been told to skip (a hard skip that
-        // means we should cancel the previous request and is therefore a
-        // dependency on that), or we have determined we have already done
-        // enough (a soft skip that doesn't trigger the request to re-run
-        // because why would we when we're just going to get here and quit
-        // anyway).
-        if (hardSkip || softSkip) {
-            return;
-        }
-
-        // If we got here, we're going to perform the request.
-        // Let's make sure our ref is set to the most recent requestId.
-        requestIdRef.current = requestId;
-
-        // OK, we've done all our checks and things. It's time to make the
-        // request. We use our request fulfillment here so that in-flight
-        // requests are shared.
-        // NOTE: Our request fulfillment handles the error cases here.
-        // Catching shouldn't serve a purpose.
-        // eslint-disable-next-line promise/catch-or-return
-        RequestFulfillment.Default.fulfill(requestId, {
-            handler: interceptedHandler,
-        }).then((result) => {
-            if (cancel) {
-                // We don't modify our result if an earlier effect was
-                // cancelled as it means that this hook no longer cares about
-                // that old request.
-                return;
-            }
-
-            setCacheAndNotify(result);
-            return; // Shut up eslint always-return rule.
-        });
-
-        return () => {
-            // TODO(somewhatabstract, FEI-4276): Eventually, we will want to be
-            // able abort in-flight requests, but for now, we don't have that.
-            // (Of course, we will only want to abort them if no one is waiting
-            // on them)
-            // For now, we just block cancelled requests from changing our
-            // cache.
-            cancel = true;
-        };
-        // We only want to run this effect if the requestId, or skip values
-        // change. These are the only two things that should affect the
-        // cancellation of a pending request. We do not update if the handler
-        // changes, in order to simplify the API - otherwise, callers would
-        // not be able to use inline functions with this hook.
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [hardSkip, requestId]);
-
-    // We track the last result we returned in order to support the
-    // "retainResultOnChange" option.
-    const lastResultAgnosticOfIdRef = React.useRef(Status.loading());
-    const loadingResult = retainResultOnChange
-        ? lastResultAgnosticOfIdRef.current
-        : Status.loading();
-
-    // Loading is a transient state, so we only use it here; it's not something
-    // we cache.
-    const result = React.useMemo(
-        () => mostRecentResult ?? loadingResult,
-        [mostRecentResult, loadingResult],
-    );
-    lastResultAgnosticOfIdRef.current = result;
-
-    return result;
+    // OK, now which result do we return.
+    // Well, we return the serverResult on our very first call and then
+    // the clientResult thereafter. The great thing is that after the very
+    // first call, the serverResult is going to be `null` anyway.
+    return serverResult ?? clientResult;
 };
