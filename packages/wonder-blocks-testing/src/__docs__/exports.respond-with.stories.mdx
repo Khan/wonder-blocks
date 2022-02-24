@@ -1,0 +1,27 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Exports / RespondWith"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# RespondWith
+
+```ts
+interface RespondWith {
+    data: <TData>(data: TData) => GqlMockResponse<TData>;
+    unparseableBody: () => GqlMockResponse<any>;
+    abortedRequest: () => GqlMockResponse<any>;
+    errorStatusCode: (statusCode: number) => GqlMockResponse<any>,
+    nonGraphQLBody: () => GqlMockResponse<any>,
+    graphQLErrors: (
+        errorMessages: $ReadOnlyArray<string>,
+    ) => GqlMockResponse<any>,
+});
+```
+
+The `RespondWith` object is a helper for defining mock responses to use with the [`mockGqlFetch`](/docs/testing-exports-mockgqlfetch--page) API.

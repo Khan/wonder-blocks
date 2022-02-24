@@ -9,4 +9,27 @@ import {Meta} from "@storybook/addon-docs";
     }}
 />
 
-TODO
+# GraphQL in Wonder Blocks Data
+
+Wonder Blocks Data provides some utility types and functionality to assist in performing GraphQL requests. To use them, your React app should include the [`GqlRouter`](/docs/data-exports-gqlrouter--page) component to specify the method responsible for actually making the GraphQL requests, as well as any default context that requests should include.
+
+The [`GqlRouter`](/docs/data-exports-gqlrouter--page) component uses React context to convey this information to the [`useGql`](/docs/data-exports-usegql--page) hook, which provides a wrapper to the fetch function, allowing for simplified invocation of requests that can merge context changes with the default context as well as only provide context and variables when needed.
+
+## Testing
+
+By using the [`GqlRouter`](/docs/data-exports-gqlrouter--page) in combination with the [`mockGqlFetch()`](/docs/testing-exports-mockgqlfetch) API from Wonder Blocks Testing, you can easily mock your GraphQL responses in tests and stories.
+
+```tsx
+const mockFetch = mockGqlFetch()
+    .mockOperation(...);
+
+<GqlRouter fetch={mockFetch} defaultContext={{}}>
+    <MyComponent />
+</GqlRouter>
+```
+
+## Server-side rendering and hydration of GraphQL
+
+Server-side rendering and hydration of GraphQL data can be achieved by combining the [`useGql`](/docs/data-exports-usegql--page) hook with the [`useHydrationEffect`](/docs/data-exports/usehydrationeffect--page) hook.
+
+More details about server-side rendering with Wonder Blocks Data can be found in the [relevant overview section](/docs/data-server-side-rendering-and-hydration--page).

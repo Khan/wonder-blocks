@@ -1,0 +1,73 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / useGql()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# useGql()
+
+```ts
+type FetchFn = <TData, TVariables: {...}>(
+    operation: GqlOperation<TData, TVariables>,
+    options?: GqlFetchOptions<TVariables, TContext>,
+) => Promise<TData>;
+
+function useGql<TContext: GqlContext>(
+    context: Partial<TContext> = ({}: $Shape<TContext>),
+): FetchFn;
+```
+
+The `useGql` hook requires that the calling component has been rendered with a [`GqlRouter`](/docs/data-exports-gqlrouter--page) as an ancestor component since it relies on the default context and fetch operation that is specified therein.
+
+The `useGql` hook can take a partial context value which will be combined with the default context to create the context used for a specific request.
+
+The return value of `useGql` is a fetch function that can be used to invoke a GraphQL request. It takes as arguments the [`GqlOperation`](/docs/data-types-gqloperation--page) operation to be performed and some options (which, by their nature, are optional). These options can be used to provide variables for the operation as well as additional customization of the context.
+
+The result of calling the function returned by `useGql` is a promise of the data that the request will return. This is compatible with the [`useServerEffect`](/docs/data-exports-useservereffect--page), [`useCachedEffect`](/docs/data-exports-usecachedeffect--page),  and [`useHydratableEffect`](/docs/data-exports-usehydratableeffect--page) hooks, allowing a variety of scenarios to be easily constructed.
+
+Below is an example request identifier generation function that could be used to generate request identifiers (we hope to include a base implementation for this purpose in a future release of Wonder Blocks Data):
+
+```ts
+const getGqlRequestId = <TData, TVariables: {...}>(
+    operation: GqlOperation<TData, TVariables>,
+    variables: ?TVariables,
+    context: GqlContext,
+): string => {
+    // We add all the bits for this into an array and then join them with
+    // a chosen separator.
+    const parts = [];
+    parts.push(operation.id);
+    if (context != null) {
+        // Turn the context into a string of the form,
+        //     "key1=;key2=value"
+        const sortedContext = Object.keys(context || {})
+            .sort()
+            .map((key) => `${key}=${JSON.stringify(context?.[key]) || ""}`)
+            .join(";");
+        parts.push(sortedContext);
+    }
+    if (variables != null) {
+        // Turn the variables into a string of the form,
+        //     "key1=;key2=value"
+        const sortedVariables = Object.keys(variables || {})
+            .sort()
+            .map((key) => `${key}=${JSON.stringify(variables?.[key]) || ""}`)
+            .join(";");
+        parts.push(sortedVariables);
+    }
+    return parts.join("|");
+};
+```
+
+## Context Merging
+
+Context overrides are combined such that any values that are explicitly or implicitly `undefined` on the partial context will be ignored. Any values that are explicitly `null` on the partial context will be removed from the merged context. The order of precedence is as follows:
+
+ 1. Values from the fetch partial context, then,
+ 2. Values from the `useGql` partial context, then,
+ 3. Values from the default context.

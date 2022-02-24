@@ -1,0 +1,23 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / DataError"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# DataError
+
+
+```ts
+new DataError(
+    message: string,
+    kind: $Values<typeof DataErrors>,
+    options?: ErrorOptions,
+);
+```
+
+The `DataError` class is a derivation of the Wonder Blocks Core `KindError` (which is itself a derivation of `Error`). It is used by the Wonder Blocks Data framework to encapsulate errors that can occur when using its API. The different kinds of errors supported are defined by the [`DataErrors`](/docs/data-exports-dataerrors--page) export.

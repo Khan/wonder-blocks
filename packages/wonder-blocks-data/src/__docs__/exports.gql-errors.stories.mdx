@@ -1,0 +1,20 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / GqlErrors"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# GqlErrors
+
+This export defines the error taxonomy used by Wonder Blocks Data to describe the GraphQL-related errors that can occur with GraphQL requests. These are for use with [`GqlError`](/docs/data-exports-gqlerror--page).
+
+| Kind | Description |
+| ---- | ----------- |
+| `GqlErrors.Unknown` | The type of error is unknown. |
+| `GqlErrors.BadResponse` | Response does not have the correct structure for a GraphQL response. |
+| `GqlErrors.ErrorResult` | A valid GraphQL result with errors field in the payload. |

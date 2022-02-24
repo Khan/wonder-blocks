@@ -1,0 +1,41 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / useCachedEffect()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# useCachedEffect()
+
+```ts
+function useCachedEffect<TData: ValidCacheData>(
+    requestId: string,
+    handler: () => Promise<TData>,
+    options?: CachedEffectOptions<TData>,
+): Result<TData>;
+```
+
+This hook is a wrapper around `useEffect`. Internally it uses the [`useSharedCache`](/docs/data-exports-usesharedcache--page) hook to store the result of the effect and, if that result is available, returns it without rerunning the effect. The precise behavior of the
+hook can be modified using the options.
+
+There is currently no way to reinvoke the effect without changing the `requestId`.
+
+```ts
+type CachedEffectOptions<TData: ValidCacheData> = {|
+    skip?: boolean,
+    retainResultOnChange?: boolean,
+    onResultChanged?: (result: Result<TData>) => void,
+    scope?: string,
+|};
+```
+
+| Option | Default | Description |
+| ------ | ------- | ----------- |
+| `skip` | `false` | When `true`, the effect will not be executed; otherwise, the effect will be executed.  If this is set to `true` while the effect is still pending, the pending effect will be cancelled. |
+| `retainResultOnChange` | `false` | When `true`, the effect will not reset the result to the loading status while executing if the requestId changes, instead, returning the existing result from before the change; otherwise, the result will be set to loading status.  If the status is loading when the changes are made, it will remain as loading; old pending effects are discarded on changes and as such this value has no effect in that case.|
+| `onResultChanged` | `undefined` | Callback that is invoked if the result for the given hook has changed. When defined, the hook will invoke this callback whenever it has reason to change the result and will not otherwise affect component rendering directly. When not defined, the hook will ensure the component re-renders to pick up the latest result. |
+| `scope` | `"useCachedEffect"` | Scope to use with the shared cache. When specified, the given scope will be used to isolate this hook's cached results. Otherwise, the default scope will be used. Changing this value after the first call is not supported. |

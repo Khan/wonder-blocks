@@ -1,0 +1,23 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / GqlError"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# GqlError
+
+
+```ts
+new GqlError(
+    message: string,
+    kind: $Values<typeof GqlErrors>,
+    options?: ErrorOptions,
+);
+```
+
+The `GqlError` class is a derivation of the Wonder Blocks Core `KindError` (which is itself a derivation of `Error`). It is used by the Wonder Blocks Data GraphQL framework to encapsulate errors that can occur within the GraphQL API. The different kinds of errors supported are defined by the [`GqlErrors`](/docs/data-exports-gqlerrors--page) export.
