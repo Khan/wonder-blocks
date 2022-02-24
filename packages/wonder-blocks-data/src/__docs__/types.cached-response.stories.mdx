@@ -1,0 +1,29 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Types / CachedResponse<>"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# CachedResponse&lt;&gt;
+
+```ts
+type CachedResponse<TData: ValidCacheData> =
+    | {|
+          +error: string,
+          +data?: void,
+      |}
+    | {|
+          +data: TData,
+          +error?: void,
+      |};
+```
+
+`CachedResponse<>` is a special union type that is used to represent the serialized result of a request, which can be used by Wonder Blocks Data to
+hydrate the response.
+
+See the section on [server-side rendering](/docs/data-server-side-rendering-and-hydration--page) for more information.

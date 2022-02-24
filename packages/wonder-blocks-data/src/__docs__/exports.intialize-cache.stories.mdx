@@ -1,0 +1,29 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / initializeCache()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# initializeCache()
+
+```ts
+initializeCache(sourceCache: ResponseCache): void;
+```
+
+| Argument | Flow&nbsp;Type | Default | Description |
+| --- | --- | --- | --- |
+| `sourceData` | `ResponseCache` | _Required_ | The source cache that will be used to initialize the response cache. |
+
+Wonder Blocks Data caches data in its response cache for hydration. This cache can be initialized with data using the `initializeCache` method.
+The `initializeCache` method can only be called when the hydration cache is empty.
+
+Usually, the data to be passed to `initializeCache` will be obtained by calling [`fulfillAllDataRequests`](/docs/data-exports-fulfillalldatarequests--page) after tracking data requests (see [`TrackData`](/docs/data-exports-trackdata--page)) during server-side rendering.
+
+Combine with [`removeFromCache`](/docs/data-exports-removefromcache--page) or [`removeAllFromCache`](/docs/data-exports-removeallfromcache--page) to support your testing needs.
+
+More details about server-side rendering with Wonder Blocks Data can be found in the [relevant overview section](/docs/data-server-side-rendering-and-hydration--page).

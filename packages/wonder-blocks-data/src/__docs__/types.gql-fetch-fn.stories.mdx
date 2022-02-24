@@ -1,0 +1,24 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Types / GqlFetchFn<>"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# GqlFetchFn&lt;&gt;
+
+```ts
+type GqlFetchFn<TData, TVariables: {...}, TContext: GqlContext> = (
+    operation: GqlOperation<TData, TVariables>,
+    variables: ?TVariables,
+    context: TContext,
+) => Promise<Response>;
+```
+
+The `GqlFetchFn<>` type describes the function that will perform a GraphQL request. A function that fits this signature is configured in Wonder Blocks Data using the [`GqlRouter`](/docs/data-exports-gqlrouter--page) component. The [`useGql`](/docs/data-exports-usegql--page) hook and derivatives are then built on top of this to abstract away complexities, such as converting the `Response` to a valid [`Result<>`](/docs/data-types-result--page) instance, as various use cases see fit.
+
+See the section on [GraphQL](/docs/data-graphql--page) for more information.

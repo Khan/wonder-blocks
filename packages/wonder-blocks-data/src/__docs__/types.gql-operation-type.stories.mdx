@@ -1,0 +1,24 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Types / GqlOperationType"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# GqlOperationType
+
+```ts
+type GqlOperationType = "mutation" | "query";
+```
+
+Unlike some GraphQL clients, the Wonder Blocks Data GraphQL support avoids requiring the full GraphQL document node at runtime. This allows the client to be lighter weight and introduces the option for calling code to perform some GraphQL request optimizations at build time, such as formatting the document node as a string and therefore not requiring additional dependencies at runtime.
+
+In order to allow consumers of our GraphQL support to include some validation of the GraphQL document node at runtime (such as ensuring that mutations are not performed in unsupported scenarios), we the type of the operation is included in the operation definition.
+
+This type represents the valid values for that field.
+
+See the section on [GraphQL](/docs/data-graphql--page) for more information.

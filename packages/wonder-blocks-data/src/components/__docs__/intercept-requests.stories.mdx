@@ -1,3 +1,18 @@
+import {Meta} from "@storybook/addon-docs";
+import {InterceptRequests} from "../intercept-requests.js";
+
+<Meta
+    title="Data / Exports / InterceptRequests"
+    component={InterceptRequests}
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# InterceptRequests
+
 When you want to generate tests that check the loading state and
 subsequent loaded state are working correctly for your uses of `Data` you can
 use the `InterceptRequests` component. You can also use this component to

@@ -1,0 +1,20 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Types / GqlContext"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# GqlContext
+
+```ts
+type GqlContext = {|
+    [key: string]: string,
+|};
+```
+
+`GqlContext` represents the valid range of values for the `context` of a GraphQL query or mutation.

@@ -1,1 +1,0 @@
-Wonder Blocks Data is documented via storybook.

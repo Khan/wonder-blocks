@@ -1,0 +1,67 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Types / GqlOperation<>"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# GqlOperation&lt;&gt;
+
+```ts
+type GqlOperation<
+    TData,
+    TVariables: {...} = Empty,
+> = {
+    type: GqlOperationType,
+    id: string,
+    [key: string]: mixed,
+    ...
+};
+```
+
+The `GqlOperation<>` type provides the Wonder Blocks Data definition of a GraphQL query or mutation. It has two required fields:
+
+ * `type`: The type of operation. It can be either `"query"` or `"mutation"`.
+ * `id`: The unique identifier of the operation.
+
+Unlike some GraphQL clients, the definition of the operation (the document node, for example) is not required by the Wonder Blocks Data implementation. If a specific use requires that information, the calling code is able to provide it.
+
+Consider the following GraphQL query (using `graphql-tag`):
+
+```ts
+const MyQuery = gql`
+    query myQuery {
+        user {
+            id
+            name
+        }
+    }
+`;
+```
+
+Rather than using the full `DocumentNode` at runtime, one could envisage a build step that converts it to a `GqlOperation<>` at compile time by parsing the `DocumentNode` to determine the operation type and extract the name of the operation. If the actual definition is needed for sending to the server in the request, this can be obtained from `graphql/language/printer`. This would then reduce the dependencies needed to perform GraphQL operations at runtime.
+
+The resulting `GqlOperation<>` would look like this:
+
+```ts
+{
+    type: "query",
+    id: "myQuery",
+}
+```
+
+Or, if say, the query definition were needed (for example, Apollo will send requests with the `query` field):
+
+```ts
+{
+    type: "query",
+    id: "myQuery",
+    query: "query myQuery { user { id name } }",
+}
+```
+
+See the section on [GraphQL](/docs/data-graphql--page) for more information.
