@@ -57,6 +57,10 @@ module.exports = {
             ],
         },
         {
+            name: "Data",
+            content: "packages/wonder-blocks-data/legacy-docs.md",
+        },
+        {
             name: "Dropdown",
             content: "packages/wonder-blocks-dropdown/docs.md",
             components: [
