@@ -12,7 +12,7 @@ import ArgTypes from "./birthday-picker.argtypes.js";
 import BirthdayPicker from "../birthday-picker.js";
 
 export default {
-    title: "BirthdayPicker / BirthdayPicker",
+    title: "BirthdayPicker",
     component: BirthdayPicker,
     argTypes: ArgTypes,
     parameters: {
