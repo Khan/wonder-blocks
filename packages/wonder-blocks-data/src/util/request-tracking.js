@@ -1,22 +1,21 @@
 // @flow
 import * as React from "react";
-import {ResponseCache} from "./response-cache.js";
+import {SsrCache} from "./ssr-cache.js";
 import {RequestFulfillment} from "./request-fulfillment.js";
 
-import type {Cache, IRequestHandler} from "./types.js";
+import type {ResponseCache, ValidCacheData} from "./types.js";
 
-type TrackerFn = (handler: IRequestHandler<any, any>, options: any) => void;
-
-type HandlerCache = {
-    [type: string]: IRequestHandler<any, any>,
-    ...
-};
+type TrackerFn = <TData: ValidCacheData>(
+    id: string,
+    handler: () => Promise<TData>,
+    hydrate: boolean,
+) => void;
 
 type RequestCache = {
-    [handlerType: string]: {
-        [key: string]: any,
-        ...
-    },
+    [id: string]: {|
+        hydrate: boolean,
+        handler: () => Promise<any>,
+    |},
     ...
 };
 
@@ -50,14 +49,13 @@ export class RequestTracker {
     /**
      * These are the caches for tracked requests, their handlers, and responses.
      */
-    _trackedHandlers: HandlerCache = {};
     _trackedRequests: RequestCache = {};
-    _responseCache: ResponseCache;
+    _responseCache: SsrCache;
     _requestFulfillment: RequestFulfillment;
 
-    constructor(responseCache: ?ResponseCache = undefined) {
-        this._responseCache = responseCache || ResponseCache.Default;
-        this._requestFulfillment = new RequestFulfillment(responseCache);
+    constructor(responseCache: ?SsrCache = undefined) {
+        this._responseCache = responseCache || SsrCache.Default;
+        this._requestFulfillment = new RequestFulfillment();
     }
 
     /**
@@ -66,26 +64,23 @@ export class RequestTracker {
      * This method caches a request and its handler for use during server-side
      * rendering to allow us to fulfill requests before producing a final render.
      */
-    trackDataRequest: (
-        handler: IRequestHandler<any, any>,
-        options: any,
-    ) => void = (handler: IRequestHandler<any, any>, options: any): void => {
-        const key = handler.getKey(options);
-        const type = handler.type;
-
-        /**
-         * Make sure we have stored the handler for use when fulfilling requests.
-         */
-        if (this._trackedHandlers[type] == null) {
-            this._trackedHandlers[type] = handler;
-            this._trackedRequests[type] = {};
-        }
-
+    trackDataRequest: <TData: ValidCacheData>(
+        id: string,
+        handler: () => Promise<TData>,
+        hydrate: boolean,
+    ) => void = <TData: ValidCacheData>(
+        id: string,
+        handler: () => Promise<TData>,
+        hydrate: boolean,
+    ): void => {
         /**
          * If we don't already have this tracked, then let's track it.
          */
-        if (this._trackedRequests[type][key] == null) {
-            this._trackedRequests[type][key] = options;
+        if (this._trackedRequests[id] == null) {
+            this._trackedRequests[id] = {
+                handler,
+                hydrate,
+            };
         }
     };
 
@@ -93,7 +88,6 @@ export class RequestTracker {
      * Reset our tracking info.
      */
     reset: () => void = () => {
-        this._trackedHandlers = {};
         this._trackedRequests = {};
     };
 
@@ -114,52 +108,99 @@ export class RequestTracker {
      * Calling this method marks tracked requests as fulfilled; requests are
      * removed from the list of tracked requests by calling this method.
      *
-     * @returns {Promise<Cache>} A frozen cache of the data that was cached
-     * as a result of fulfilling the tracked requests.
+     * @returns {Promise<ResponseCache>} The promise of the data that was
+     * cached as a result of fulfilling the tracked requests.
      */
-    fulfillTrackedRequests: () => Promise<$ReadOnly<Cache>> = (): Promise<
-        $ReadOnly<Cache>,
-    > => {
-        const promises = [];
+    fulfillTrackedRequests: () => Promise<ResponseCache> =
+        (): Promise<ResponseCache> => {
+            const promises = [];
+            const {cacheData, cacheError} = this._responseCache;
 
-        for (const handlerType of Object.keys(this._trackedHandlers)) {
-            const handler = this._trackedHandlers[handlerType];
+            for (const requestKey of Object.keys(this._trackedRequests)) {
+                const options = this._trackedRequests[requestKey];
 
-            // For each handler, we will perform the request fulfillments!
-            const requests = this._trackedRequests[handlerType];
-            for (const requestKey of Object.keys(requests)) {
-                const promise = this._requestFulfillment.fulfill(
-                    handler,
-                    requests[requestKey],
-                );
-                promises.push(promise);
+                try {
+                    promises.push(
+                        this._requestFulfillment
+                            .fulfill(requestKey, {...options})
+                            .then((result) => {
+                                switch (result.status) {
+                                    case "success":
+                                        /**
+                                         * Let's cache the data!
+                                         *
+                                         * NOTE: This only caches when we're
+                                         * server side.
+                                         */
+                                        cacheData(
+                                            requestKey,
+                                            result.data,
+                                            options.hydrate,
+                                        );
+                                        break;
+
+                                    case "error":
+                                        /**
+                                         * Let's cache the error!
+                                         *
+                                         * NOTE: This only caches when we're
+                                         * server side.
+                                         */
+                                        cacheError(
+                                            requestKey,
+                                            result.error,
+                                            options.hydrate,
+                                        );
+                                        break;
+                                }
+
+                                // For status === "loading":
+                                // Could never get here unless we wrote
+                                // the code wrong. Rather than bloat
+                                // code with useless error, just ignore.
+
+                                // For status === "aborted":
+                                // We won't cache this.
+                                // We don't hydrate aborted requests,
+                                // so the client would just see them
+                                // as unfulfilled data.
+                                return;
+                            }),
+                    );
+                } catch (e) {
+                    // This captures if there are problems in the code that
+                    // begins the requests.
+                    promises.push(
+                        Promise.resolve(
+                            cacheError(requestKey, e, options.hydrate),
+                        ),
+                    );
+                }
             }
-        }
 
-        /**
-         * Clear out our tracked info.
-         *
-         * We call this now for a simpler API.
-         *
-         * If we reset the tracked calls after all promises resolve, any
-         * requst tracking done while promises are in flight would be lost.
-         *
-         * If we don't reset at all, then we have to expose the `reset` call
-         * for consumers to use, or they'll only ever be able to accumulate
-         * more and more tracked requests, having to fulfill them all every
-         * time.
-         *
-         * Calling it here means we can have multiple "track -> request" cycles
-         * in a row and in an easy to reason about manner.
-         *
-         */
-        this.reset();
+            /**
+             * Clear out our tracked info.
+             *
+             * We call this now for a simpler API.
+             *
+             * If we reset the tracked calls after all promises resolve, any
+             * request tracking done while promises are in flight would be lost.
+             *
+             * If we don't reset at all, then we have to expose the `reset` call
+             * for consumers to use, or they'll only ever be able to accumulate
+             * more and more tracked requests, having to fulfill them all every
+             * time.
+             *
+             * Calling it here means we can have multiple "track -> request"
+             * cycles in a row and in an easy to reason about manner.
+             */
+            this.reset();
 
-        /**
-         * Let's wait for everything to fulfill, and then clone the cached data.
-         */
-        return Promise.all(promises).then(() =>
-            this._responseCache.cloneHydratableData(),
-        );
-    };
+            /**
+             * Let's wait for everything to fulfill, and then clone the cached data.
+             */
+            return Promise.all(promises).then(() =>
+                this._responseCache.cloneHydratableData(),
+            );
+        };
 }

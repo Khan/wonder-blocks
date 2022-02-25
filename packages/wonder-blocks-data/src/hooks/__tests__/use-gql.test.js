@@ -80,6 +80,7 @@ describe("#useGql", () => {
                 id: "MyQuery",
             };
             const gqlOpContext = {
+                a: undefined, // This should not get included.
                 b: "overrideB",
             };
             const gqlOpVariables = {
@@ -164,35 +165,6 @@ describe("#useGql", () => {
             await expect(act).rejects.toThrowErrorMatchingInlineSnapshot(
                 `"FAKE_ERROR"`,
             );
-        });
-
-        it("should resolve to null if the fetch was aborted", async () => {
-            // Arrange
-            const abortError = new Error("Aborted");
-            abortError.name = "AbortError";
-            const gqlRouterContext = {
-                fetch: jest.fn().mockRejectedValue(abortError),
-                defaultContext: {},
-            };
-            const {
-                result: {current: gqlFetch},
-            } = renderHook(() => useGql(), {
-                wrapper: ({children}) => (
-                    <GqlRouterContext.Provider value={gqlRouterContext}>
-                        {children}
-                    </GqlRouterContext.Provider>
-                ),
-            });
-            const gqlOp = {
-                type: "query",
-                id: "MyQuery",
-            };
-
-            // Act
-            const result = await gqlFetch(gqlOp);
-
-            // Assert
-            expect(result).toBeNull();
         });
 
         it("should resolve to the response data", async () => {

@@ -5,9 +5,7 @@ import "jest-enzyme";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {RequestTracker, TrackerContext} from "../request-tracking.js";
-import {ResponseCache} from "../response-cache.js";
-
-import type {IRequestHandler} from "../types.js";
+import {SsrCache} from "../ssr-cache.js";
 
 describe("../request-tracking.js", () => {
     describe("TrackerContext", () => {
@@ -38,7 +36,7 @@ describe("../request-tracking.js", () => {
              * We pass our own response cache instance so that the test cases
              * are not sharing the same default instance.
              */
-            new RequestTracker(new ResponseCache());
+            new RequestTracker(new SsrCache());
 
         describe("@Default", () => {
             it("should return an instance of RequestTracker", () => {
@@ -64,100 +62,31 @@ describe("../request-tracking.js", () => {
         });
 
         describe("#trackDataRequest", () => {
-            it("should get the key for the request", () => {
-                // Arrange
-                const getKeySpy = jest.fn();
-                const requestTracker = createRequestTracker();
-                const fakeHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn(() => Promise.resolve(null)),
-                    getKey: getKeySpy,
-                    type: "MY_TYPE",
-                    hydrate: true,
-                };
-                const options = {these: "are options"};
-
-                // Act
-                requestTracker.trackDataRequest(fakeHandler, options);
-
-                // Assert
-                expect(getKeySpy).toHaveBeenCalledWith(options);
-            });
-
             it("should track a request", async () => {
                 // Arrange
                 const requestTracker = new RequestTracker();
-                const fulfillRequestSpy = jest.fn();
-                const fakeHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: fulfillRequestSpy,
-                    getKey: jest.fn().mockReturnValue("MY_KEY"),
-                    type: "MY_TYPE",
-                    hydrate: true,
-                };
-                const options = {these: "are options"};
+                const fakeHandler = jest.fn();
 
                 // Act
-                requestTracker.trackDataRequest(fakeHandler, options);
+                requestTracker.trackDataRequest("ID", fakeHandler, false);
                 await requestTracker.fulfillTrackedRequests();
 
                 // Assert
-                expect(fulfillRequestSpy).toHaveBeenCalledWith(options);
-                expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
+                expect(fakeHandler).toHaveBeenCalledTimes(1);
             });
 
             it("should track each matching request once", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
-                const fulfillRequestSpy = jest.fn().mockResolvedValue(null);
-                const fakeHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: fulfillRequestSpy,
-                    getKey: (options) => JSON.stringify(options),
-                    type: "MY_TYPE",
-                    hydrate: true,
-                };
-                const options1 = {these: "are options"};
-                const options2 = {these: "are options"};
+                const fakeHandler = jest.fn().mockResolvedValue("DATA");
 
                 // Act
-                requestTracker.trackDataRequest(fakeHandler, options1);
-                requestTracker.trackDataRequest(fakeHandler, options2);
+                requestTracker.trackDataRequest("ID", fakeHandler, true);
+                requestTracker.trackDataRequest("ID", fakeHandler, true);
                 await requestTracker.fulfillTrackedRequests();
 
                 // Assert
-                expect(fulfillRequestSpy).toHaveBeenCalledWith(options1);
-                expect(fulfillRequestSpy).toHaveBeenCalledTimes(1);
-            });
-
-            it("should reuse the existing handler for the handler type from the cache", async () => {
-                // Arrange
-                const requestTracker = createRequestTracker();
-                const handlerType = "MY_TYPE";
-                const fulfillRequestSpy1 = jest.fn();
-                const fakeHandler1: IRequestHandler<any, any> = {
-                    fulfillRequest: fulfillRequestSpy1,
-                    getKey: jest.fn().mockReturnValue("MY_KEY1"),
-                    type: handlerType,
-                    hydrate: true,
-                };
-                const fulfillRequestSpy2 = jest.fn();
-                const fakeHandler2: IRequestHandler<any, any> = {
-                    fulfillRequest: fulfillRequestSpy2,
-                    getKey: jest.fn().mockReturnValue("MY_KEY2"),
-                    type: handlerType,
-                    hydrate: true,
-                };
-                const options1 = {these: "are options"};
-                const options2 = {these: "are also options"};
-
-                // Act
-                requestTracker.trackDataRequest(fakeHandler1, options1);
-                requestTracker.trackDataRequest(fakeHandler2, options2);
-                await requestTracker.fulfillTrackedRequests();
-
-                // Assert
-                expect(fulfillRequestSpy1).toHaveBeenCalledTimes(2);
-                expect(fulfillRequestSpy1).toHaveBeenCalledWith(options1);
-                expect(fulfillRequestSpy1).toHaveBeenCalledWith(options2);
-                expect(fulfillRequestSpy2).not.toHaveBeenCalled();
+                expect(fakeHandler).toHaveBeenCalledTimes(1);
             });
         });
 
@@ -176,14 +105,8 @@ describe("../request-tracking.js", () => {
             it("should return true if there are requests waiting to be fulfilled", () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
-                const fakeHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn(),
-                    getKey: jest.fn().mockReturnValue("MY_KEY"),
-                    type: "MY_TYPE",
-                    hydrate: true,
-                };
-                const options = {these: "are options"};
-                requestTracker.trackDataRequest(fakeHandler, options);
+                const fakeHandler = jest.fn();
+                requestTracker.trackDataRequest("ID", fakeHandler, true);
 
                 // Act
                 const result = requestTracker.hasUnfulfilledRequests;
@@ -195,14 +118,8 @@ describe("../request-tracking.js", () => {
             it("should return false if all tracked requests have been fulfilled", () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
-                const fakeHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: jest.fn().mockResolvedValue(5),
-                    getKey: jest.fn().mockReturnValue("MY_KEY"),
-                    type: "MY_TYPE",
-                    hydrate: true,
-                };
-                const options = {these: "are options"};
-                requestTracker.trackDataRequest(fakeHandler, options);
+                const fakeHandler = jest.fn().mockResolvedValue(5);
+                requestTracker.trackDataRequest("ID", fakeHandler, false);
                 requestTracker.fulfillTrackedRequests();
 
                 // Act
@@ -228,25 +145,18 @@ describe("../request-tracking.js", () => {
             it("should cache errors caused directly by handlers", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
-                const fakeBadHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: () => {
-                        throw new Error("OH NO!");
-                    },
-                    getKey: jest.fn().mockReturnValue("MY_KEY"),
-                    type: "MY_TYPE",
-                    hydrate: true,
+                const fakeBadHandler = () => {
+                    throw new Error("OH NO!");
                 };
-                requestTracker.trackDataRequest(fakeBadHandler, "OPTIONS");
+                requestTracker.trackDataRequest("ID", fakeBadHandler, true);
 
                 // Act
                 const result = await requestTracker.fulfillTrackedRequests();
 
                 // Assert
                 expect(result).toStrictEqual({
-                    MY_TYPE: {
-                        MY_KEY: {
-                            error: "OH NO!",
-                        },
+                    ID: {
+                        error: "OH NO!",
                     },
                 });
             });
@@ -254,26 +164,20 @@ describe("../request-tracking.js", () => {
             it("should cache errors occurring in promises", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
-                const fakeBadRequestHandler: IRequestHandler<string, any> = {
-                    fulfillRequest: () =>
-                        new Promise((resolve, reject) => reject("OH NO!")),
-                    getKey: (o) => o,
-                    type: "BAD_REQUEST",
-                    hydrate: true,
-                };
+                const fakeBadRequestHandler = () =>
+                    new Promise((resolve, reject) => reject("OH NO!"));
                 requestTracker.trackDataRequest(
+                    "ID",
                     fakeBadRequestHandler,
-                    "OPTIONS1",
+                    true,
                 );
                 // Act
                 const result = await requestTracker.fulfillTrackedRequests();
 
                 // Assert
                 expect(result).toStrictEqual({
-                    BAD_REQUEST: {
-                        OPTIONS1: {
-                            error: "OH NO!",
-                        },
+                    ID: {
+                        error: "Request failed",
                     },
                 });
             });
@@ -287,40 +191,38 @@ describe("../request-tracking.js", () => {
                  * - Handlers that reject the promise
                  * - Handlers that resolve
                  */
-                const fakeBadRequestHandler: IRequestHandler<string, any> = {
-                    fulfillRequest: () =>
-                        new Promise((resolve, reject) => reject("OH NO!")),
-                    getKey: (o) => o,
-                    type: "BAD_REQUEST",
-                    hydrate: true,
+                const fakeBadRequestHandler = () =>
+                    new Promise((resolve, reject) => reject("OH NO!"));
+                const fakeBadHandler = () => {
+                    throw new Error("OH NO!");
                 };
-                const fakeBadHandler: IRequestHandler<string, any> = {
-                    fulfillRequest: () => {
-                        throw new Error("OH NO!");
-                    },
-                    getKey: (o) => o,
-                    type: "BAD_HANDLER",
-                    hydrate: true,
-                };
-                const fakeValidHandler: IRequestHandler<string, any> = {
-                    fulfillRequest: (() => {
-                        let counter = 0;
-                        return (o) => {
-                            counter++;
-                            return Promise.resolve(`DATA:${counter}`);
-                        };
-                    })(),
-                    getKey: (o) => o,
-                    type: "VALID",
-                    hydrate: true,
-                };
+                const fakeValidHandler = (() => {
+                    let counter = 0;
+                    return (o) => {
+                        counter++;
+                        return Promise.resolve(`DATA:${counter}`);
+                    };
+                })();
                 requestTracker.trackDataRequest(
+                    "BAD_REQUEST",
                     fakeBadRequestHandler,
-                    "OPTIONS1",
+                    true,
                 );
-                requestTracker.trackDataRequest(fakeBadHandler, "OPTIONS2");
-                requestTracker.trackDataRequest(fakeValidHandler, "OPTIONS3");
-                requestTracker.trackDataRequest(fakeValidHandler, "OPTIONS4");
+                requestTracker.trackDataRequest(
+                    "BAD_HANDLER",
+                    fakeBadHandler,
+                    true,
+                );
+                requestTracker.trackDataRequest(
+                    "VALID_HANDLER1",
+                    fakeValidHandler,
+                    true,
+                );
+                requestTracker.trackDataRequest(
+                    "VALID_HANDLER2",
+                    fakeValidHandler,
+                    true,
+                );
 
                 // Act
                 const result = await requestTracker.fulfillTrackedRequests();
@@ -328,40 +230,48 @@ describe("../request-tracking.js", () => {
                 // Assert
                 expect(result).toStrictEqual({
                     BAD_REQUEST: {
-                        OPTIONS1: {
-                            error: "OH NO!",
-                        },
+                        error: "Request failed",
                     },
                     BAD_HANDLER: {
-                        OPTIONS2: {
-                            error: "OH NO!",
-                        },
+                        error: "OH NO!",
                     },
-                    VALID: {
-                        OPTIONS3: {
-                            data: "DATA:1",
-                        },
-                        OPTIONS4: {
-                            data: "DATA:2",
-                        },
+                    VALID_HANDLER1: {
+                        data: "DATA:1",
+                    },
+                    VALID_HANDLER2: {
+                        data: "DATA:2",
                     },
                 });
             });
 
-            it("should cope gracefully with null fulfillments", async () => {
+            it("should ignore loading results", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
                 jest.spyOn(
                     requestTracker._requestFulfillment,
                     "fulfill",
-                ).mockReturnValue(null);
-                const fakeValidHandler: IRequestHandler<string, any> = {
-                    fulfillRequest: () => Promise.resolve("DATA"),
-                    getKey: (o) => o,
-                    type: "VALID",
-                    hydrate: true,
-                };
-                requestTracker.trackDataRequest(fakeValidHandler, "OPTIONS1");
+                ).mockResolvedValue({status: "loading"});
+                const fakeValidHandler = () =>
+                    Promise.reject(new Error("Not called for this test case"));
+                requestTracker.trackDataRequest("ID", fakeValidHandler, true);
+
+                // Act
+                const result = await requestTracker.fulfillTrackedRequests();
+
+                // Assert
+                expect(result).toStrictEqual({});
+            });
+
+            it("should ignore aborted results", async () => {
+                // Arrange
+                const requestTracker = createRequestTracker();
+                jest.spyOn(
+                    requestTracker._requestFulfillment,
+                    "fulfill",
+                ).mockResolvedValue({status: "aborted"});
+                const fakeValidHandler = () =>
+                    Promise.reject(new Error("Not called for this test case"));
+                requestTracker.trackDataRequest("ID", fakeValidHandler, false);
 
                 // Act
                 const result = await requestTracker.fulfillTrackedRequests();
@@ -373,24 +283,20 @@ describe("../request-tracking.js", () => {
             it("should clear the tracked requests", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
-                const fakeFulfiller = jest.fn(() => Promise.resolve("DATA"));
-                const fakeStaticHandler: IRequestHandler<string, any> = {
-                    fulfillRequest: fakeFulfiller,
-                    getKey: (o) => o,
-                    type: "STATIC",
-                    hydrate: true,
-                };
-                requestTracker.trackDataRequest(fakeStaticHandler, "1");
-                requestTracker.trackDataRequest(fakeStaticHandler, "2");
-                requestTracker.trackDataRequest(fakeStaticHandler, "3");
+                const fakeStaticHandler = jest.fn(() =>
+                    Promise.resolve("DATA"),
+                );
+                requestTracker.trackDataRequest("1", fakeStaticHandler, true);
+                requestTracker.trackDataRequest("2", fakeStaticHandler, true);
+                requestTracker.trackDataRequest("3", fakeStaticHandler, true);
 
                 // Act
                 await requestTracker.fulfillTrackedRequests();
-                fakeFulfiller.mockClear();
+                fakeStaticHandler.mockClear();
                 await requestTracker.fulfillTrackedRequests();
 
                 // Assert
-                expect(fakeFulfiller).not.toHaveBeenCalled();
+                expect(fakeStaticHandler).not.toHaveBeenCalled();
             });
         });
 
@@ -398,21 +304,15 @@ describe("../request-tracking.js", () => {
             it("should clear the tracked data requests", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
-                const fulfillRequestSpy = jest.fn().mockResolvedValue(null);
-                const fakeHandler: IRequestHandler<any, any> = {
-                    fulfillRequest: fulfillRequestSpy,
-                    getKey: jest.fn().mockReturnValue("MY_KEY"),
-                    type: "MY_TYPE",
-                    hydrate: true,
-                };
-                requestTracker.trackDataRequest(fakeHandler, "OPTIONS");
+                const fakeHandler = jest.fn().mockResolvedValue("DATA");
+                requestTracker.trackDataRequest("ID", fakeHandler, true);
 
                 // Act
                 requestTracker.reset();
                 await requestTracker.fulfillTrackedRequests();
 
                 // Assert
-                expect(fulfillRequestSpy).not.toHaveBeenCalled();
+                expect(fakeHandler).not.toHaveBeenCalled();
             });
         });
     });

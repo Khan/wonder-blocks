@@ -1,5 +1,35 @@
 # @khanacademy/wonder-blocks-testing
 
+## 2.0.5
+
+### Patch Changes
+
+-   Updated dependencies [c9922b34]
+    -   @khanacademy/wonder-blocks-data@5.0.1
+
+## 2.0.4
+
+### Patch Changes
+
+-   Updated dependencies [5b5f85ac]
+    -   @khanacademy/wonder-blocks-data@5.0.0
+
+## 2.0.3
+
+### Patch Changes
+
+-   Updated dependencies [7c9dd09b]
+-   Updated dependencies [febc7309]
+-   Updated dependencies [bffc345e]
+    -   @khanacademy/wonder-blocks-data@4.0.0
+
+## 2.0.2
+
+### Patch Changes
+
+-   Updated dependencies [6973afa2]
+    -   @khanacademy/wonder-blocks-data@3.2.0
+
 ## 2.0.1
 
 ### Patch Changes

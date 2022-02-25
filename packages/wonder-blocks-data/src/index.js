@@ -1,25 +1,23 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {ResponseCache as ResCache} from "./util/response-cache.js";
+import {SsrCache} from "./util/ssr-cache.js";
 import {RequestTracker} from "./util/request-tracking.js";
 
 import type {
-    ValidData,
-    CacheEntry,
-    IRequestHandler,
+    ValidCacheData,
+    CachedResponse,
     ResponseCache,
 } from "./util/types.js";
 
 export type {
-    Cache,
-    CacheEntry,
-    Result,
-    IRequestHandler,
     ResponseCache,
+    CachedResponse,
+    Result,
+    ScopedCache,
 } from "./util/types.js";
 
 export const initializeCache = (source: ResponseCache): void =>
-    ResCache.Default.initialize(source);
+    SsrCache.Default.initialize(source);
 
 export const fulfillAllDataRequests = (): Promise<ResponseCache> => {
     if (!Server.isServerSide()) {
@@ -37,24 +35,34 @@ export const hasUnfulfilledRequests = (): boolean => {
     return RequestTracker.Default.hasUnfulfilledRequests;
 };
 
-export const removeFromCache = <TOptions, TData: ValidData>(
-    handler: IRequestHandler<TOptions, TData>,
-    options: TOptions,
-): boolean => ResCache.Default.remove<TOptions, TData>(handler, options);
+export const removeFromCache = (id: string): boolean =>
+    SsrCache.Default.remove(id);
 
-export const removeAllFromCache = <TOptions, TData: ValidData>(
-    handler: IRequestHandler<TOptions, TData>,
+export const removeAllFromCache = (
     predicate?: (
         key: string,
-        cacheEntry: ?$ReadOnly<CacheEntry<TData>>,
+        cacheEntry: ?$ReadOnly<CachedResponse<ValidCacheData>>,
     ) => boolean,
-): number => ResCache.Default.removeAll<TOptions, TData>(handler, predicate);
+): void => SsrCache.Default.removeAll(predicate);
 
-export {default as RequestHandler} from "./util/request-handler.js";
 export {default as TrackData} from "./components/track-data.js";
 export {default as Data} from "./components/data.js";
-export {default as InterceptData} from "./components/intercept-data.js";
-export {useData} from "./hooks/use-data.js";
+export {default as InterceptRequests} from "./components/intercept-requests.js";
+export {useServerEffect} from "./hooks/use-server-effect.js";
+export {useCachedEffect} from "./hooks/use-cached-effect.js";
+export {useRequestInterception} from "./hooks/use-request-interception.js";
+export {useSharedCache, clearSharedCache} from "./hooks/use-shared-cache.js";
+export {
+    useHydratableEffect,
+    // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
+    // have fixed:
+    // https://github.com/import-js/eslint-plugin-import/issues/2073
+    // eslint-disable-next-line import/named
+    WhenClientSide,
+} from "./hooks/use-hydratable-effect.js";
+export {ScopedInMemoryCache} from "./util/scoped-in-memory-cache.js";
+export {RequestFulfillment} from "./util/request-fulfillment.js";
+export {Status} from "./util/status.js";
 
 // GraphQL
 export {GqlRouter} from "./components/gql-router.js";

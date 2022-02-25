@@ -1,36 +1,56 @@
 // @flow
 import * as React from "react";
 
-import {useData} from "../hooks/use-data.js";
+import {
+    useHydratableEffect,
+    // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
+    // have fixed:
+    // https://github.com/import-js/eslint-plugin-import/issues/2073
+    // eslint-disable-next-line import/named
+    WhenClientSide,
+} from "../hooks/use-hydratable-effect.js";
 
-import type {Result, IRequestHandler, ValidData} from "../util/types.js";
+import type {Result, ValidCacheData} from "../util/types.js";
 
 type Props<
     /**
-     * The type of options that the handler requires to define a request.
-     */
-    TOptions,
-    /**
      * The type of data resolved by the handler's fulfillRequest method.
      */
-    TData,
+    TData: ValidCacheData,
 > = {|
     /**
-     * An `IRequestHandler` instance of the type this component will use to
-     * resolve its requests.
+     * A unique identifier for the request.
      *
-     * The framework deduplicates handlers based on their `type` property.
-     * Handlers with the same `type` property are assumed to be the same.
+     * This should not be shared by other uses of this component.
      */
-    handler: IRequestHandler<TOptions, TData>,
+    requestId: string,
 
     /**
-     * The handler-specific options that define what requestt is to be made.
+     * This defines how the request is fulfilled.
      *
-     * Changing these options will only cause the data to update if the key
-     * from `handler.getKey(options)` changes.
+     * If this is changed without changing the ID, there are cases where the
+     * old handler result may be given. This is not a supported mode of
+     * operation.
      */
-    options: TOptions,
+    handler: () => Promise<TData>,
+
+    /**
+     * How the hook should behave when rendering client-side for the first time.
+     *
+     * This controls how the hook hydrates and executes when client-side.
+     *
+     * Default is `OnClientRender.ExecuteWhenNoSuccessResult`.
+     */
+    clientBehavior?: WhenClientSide,
+
+    /**
+     * When true, the children will be rendered with the existing result
+     * until the pending load is completed. Otherwise, the children will be
+     * given a loading state until the request is fulfilled.
+     *
+     * Defaults to false.
+     */
+    retainResultOnChange?: boolean,
 
     /**
      * A function that will render the content of this component using the
@@ -45,10 +65,18 @@ type Props<
  * requirements can be placed in a React application in a manner that will
  * support server-side rendering and efficient caching.
  */
-const Data = <TOptions, TData: ValidData>(
-    props: Props<TOptions, TData>,
-): React.Node => {
-    const data = useData(props.handler, props.options);
-    return props.children(data);
+const Data = <TData: ValidCacheData>({
+    requestId,
+    handler,
+    children,
+    retainResultOnChange = false,
+    clientBehavior = WhenClientSide.ExecuteWhenNoSuccessResult,
+}: Props<TData>): React.Node => {
+    const result = useHydratableEffect(requestId, handler, {
+        retainResultOnChange,
+        clientBehavior,
+    });
+    return children(result);
 };
+
 export default Data;

@@ -12,10 +12,31 @@ type GqlErrorOptions = {|
  */
 export const GqlErrors = Object.freeze({
     ...Errors,
+
+    /**
+     * A network error occurred.
+     */
     Network: "Network",
+
+    /**
+     * Response could not be parsed.
+     */
     Parse: "Parse",
+
+    /**
+     * Response does not have the correct structure for a GraphQL response.
+     */
     BadResponse: "BadResponse",
+
+    /**
+     * A valid GraphQL result with errors field in the payload.
+     */
     ErrorResult: "ErrorResult",
+
+    /**
+     * An error that occurred during SSR and was hydrated from cache
+     */
+    Hydrated: "Hydrated",
 });
 
 /**

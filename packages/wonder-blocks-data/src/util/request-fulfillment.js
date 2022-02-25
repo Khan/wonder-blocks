@@ -1,20 +1,18 @@
 // @flow
-import {ResponseCache} from "./response-cache.js";
+import type {Result, ValidCacheData} from "./types.js";
 
-import type {ValidData, CacheEntry, IRequestHandler} from "./types.js";
-
-type Subcache = {
-    [key: string]: Promise<any>,
-    ...
-};
+import {GqlError, GqlErrors} from "./gql-error.js";
 
 type RequestCache = {
-    [handlerType: string]: Subcache,
+    [id: string]: Promise<Result<any>>,
     ...
 };
 
 let _default: RequestFulfillment;
 
+/**
+ * This fulfills a request, making sure that in-flight requests are shared.
+ */
 export class RequestFulfillment {
     static get Default(): RequestFulfillment {
         if (!_default) {
@@ -23,23 +21,7 @@ export class RequestFulfillment {
         return _default;
     }
 
-    _responseCache: ResponseCache;
     _requests: RequestCache = {};
-
-    constructor(responseCache: ?ResponseCache = undefined) {
-        this._responseCache = responseCache || ResponseCache.Default;
-    }
-
-    _getHandlerSubcache: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-    ) => Subcache = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-    ): Subcache => {
-        if (!this._requests[handler.type]) {
-            this._requests[handler.type] = {};
-        }
-        return this._requests[handler.type];
-    };
 
     /**
      * Get a promise of a request for a given handler and options.
@@ -47,20 +29,26 @@ export class RequestFulfillment {
      * This will return an inflight request if one exists, otherwise it will
      * make a new request. Inflight requests are deleted once they resolve.
      */
-    fulfill: <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ) => Promise<CacheEntry<TData>> = <TOptions, TData: ValidData>(
-        handler: IRequestHandler<TOptions, TData>,
-        options: TOptions,
-    ): Promise<CacheEntry<TData>> => {
-        const handlerRequests = this._getHandlerSubcache(handler);
-        const key = handler.getKey(options);
-
+    fulfill: <TData: ValidCacheData>(
+        id: string,
+        options: {|
+            handler: () => Promise<TData>,
+            hydrate?: boolean,
+        |},
+    ) => Promise<Result<TData>> = <TData: ValidCacheData>(
+        id: string,
+        {
+            handler,
+            hydrate = true,
+        }: {|
+            handler: () => Promise<TData>,
+            hydrate?: boolean,
+        |},
+    ): Promise<Result<TData>> => {
         /**
          * If we have an inflight request, we'll provide that.
          */
-        const inflight = handlerRequests[key];
+        const inflight = this._requests[id];
         if (inflight) {
             return inflight;
         }
@@ -68,38 +56,45 @@ export class RequestFulfillment {
         /**
          * We don't have an inflight request, so let's set one up.
          */
-        const {cacheData, cacheError} = this._responseCache;
-        try {
-            const request = handler
-                .fulfillRequest(options)
-                .then((data: TData) => {
-                    delete handlerRequests[key];
-                    /**
-                     * Let's cache the data!
-                     *
-                     * NOTE: This only caches when we're server side.
-                     */
-                    return cacheData<TOptions, TData>(handler, options, data);
-                })
-                .catch((error: string | Error) => {
-                    delete handlerRequests[key];
-                    /**
-                     * Let's cache the error!
-                     *
-                     * NOTE: This only caches when we're server side.
-                     */
-                    return cacheError<TOptions, TData>(handler, options, error);
-                });
-            handlerRequests[key] = request;
-            return request;
-        } catch (e) {
-            /**
-             * In this case, we don't cache an inflight request, because there
-             * really isn't one.
-             */
-            return Promise.resolve(
-                cacheError<TOptions, TData>(handler, options, e),
-            );
-        }
+        const request = handler()
+            .then((data: TData): Result<TData> => ({
+                status: "success",
+                data,
+            }))
+            .catch((error: string | Error): Result<TData> => {
+                const actualError =
+                    typeof error === "string"
+                        ? new GqlError("Request failed", GqlErrors.Unknown, {
+                              metadata: {
+                                  unexpectedError: error,
+                              },
+                          })
+                        : error;
+
+                // Return aborted result if the request was aborted.
+                // The only way to detect this reliably, it seems, is to
+                // check the error name and see if it's "AbortError" (this
+                // is also what Apollo does).
+                // Even then, it's reliant on the handler supporting aborts.
+                // TODO(somewhatabstract, FEI-4276): Add first class abort
+                // support to the handler API.
+                if (actualError.name === "AbortError") {
+                    return {
+                        status: "aborted",
+                    };
+                }
+                return {
+                    status: "error",
+                    error: actualError,
+                };
+            })
+            .finally(() => {
+                delete this._requests[id];
+            });
+
+        // Store the request in our cache.
+        this._requests[id] = request;
+
+        return request;
     };
 }

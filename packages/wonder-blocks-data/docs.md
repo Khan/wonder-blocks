@@ -18,7 +18,7 @@ rehydrate that result.
 ### Usage
 
 ```js static
-fulfillAllDataRequests(): Promise<$ReadOnly<ResponseCache>>;
+fulfillAllDataRequests(): Promise<ResponseCache>;
 ```
 
 ## initializeCache
@@ -38,18 +38,18 @@ needs.
 ### Usage
 
 ```js static
-initializeCache(sourceCache: $ReadOnly<ResponseCache>): void;
+initializeCache(sourceCache: ResponseCache): void;
 ```
 
 #### Function arguments
 
 | Argument | Flow&nbsp;Type | Default | Description |
 | --- | --- | --- | --- |
-| `sourceData` | `$ReadOnly<ResponseCache>` | _Required_ | The source cache that will be used to initialize the response cache. |
+| `sourceData` | `ResponseCache` | _Required_ | The source cache that will be used to initialize the response cache. |
 
 ## removeFromCache
 
-Removes an entry associated with the given handler from the hydration cache. The given handler and options identify the entry to be removed.
+Removes an entry from the cache. The given handler and options identify the entry to be removed.
 
 If an item is removed, this returns `true`; otherwise, `false`.
 
@@ -59,44 +59,43 @@ This can be useful during testing.
 ### Usage
 
 ```js static
-removeFromCache(handler: IRequestHandler<TOptions, TData>, options: TOptions): boolean;
+removeFromCache(id: string): boolean;
 ```
 
 #### Function arguments
 
 | Argument | Flow&nbsp;Type | Default | Description |
 | --- | --- | --- | --- |
-| `handler` | `IRequestHandler<TOptions, TData>` | _Required_ | The handler type for the data to be removed. |
-| `options` | `TOptions` | _Required_ | The options that identify the cached request data to be removed. |
+| `id` | `string` | _Required_ | The id of the item to be removed. |
 
 ## removeAllFromCache
 
-Removes all entries associated to the given handler that match a given predicate from the hydration cache. If no predicate is given, all cached entries for the given handler are removed.
+Removes all entries that match a given predicate from the cache. If no predicate is given, all cached entries for the given handler are removed.
 
 This returns the count of entries removed.
 
 This can be used after `initializeCache` to manipulate the cache prior to hydration.
 This can be useful during testing (especially to clear the cache so that it can be initialized again).
+If the predicate is not given, all items are removed.
 
 ### Usage
 
 ```js static
-removeAllFromCache(handler: IRequestHandler<TOptions, TData>, predicate: (key: string, entry: $ReadOnly<CacheEntry<TData>>) => boolean): number;
+removeAllFromCache(predicate?: (key: string, entry: $ReadOnly<CachedResponse<TData>>) => boolean): number;
 ```
 
 #### Function arguments
 
 | Argument | Flow&nbsp;Type | Default | Description |
 | --- | --- | --- | --- |
-| `handler` | `IRequestHandler<TOptions, TData>` | _Required_ | The handler type for the data to be removed. |
-| `predicate` | `(key: string, entry: $ReadOnly<CacheEntry<TData>>) => boolean)` | _Optional_ | A predicate to identify which entries to remove. If absent, all data for the handler type is removed; if present, any entries for which the predicate returns `true` will be returned. |
+| `predicate` | `(key: string, entry: $ReadOnly<CachedResponse<TData>>) => boolean)` | _Optional_ | A predicate to identify which entries to remove. If absent, all data is removed; if present, any entries for which the predicate returns `true` will be returned. |
 
 ## Types
 
 ### ResponseCache
 
 ```js static
-type CacheEntry =
+type CachedResponse =
     | {|
         data: any,
       |}
@@ -104,37 +103,20 @@ type CacheEntry =
         error: string,
       |};
 
-type HandlerSubcache = {
-    [key: string]: CacheEntry,
-    ...,
-};
-
 type ResponseCache = {
-    [handlerType: string]: HandlerSubcache,
+    [id: string]: CachedResponse,
     ...,
 };
 ```
 
-A response cache is divided into subcaches by handler type. An example is
-shown below.
+An example is of the response cache is shown below.
 
 ```js static
 const responseCache = {
-    HANDLER_TYPE_A: {
-        DATA_ID_1: {error: "It go 💥boom 😢"},
-        DATA_ID_2: {data: ["array", "of", "data"]},
-    },
-    HANDLER_TYPE_B: {
-        DATA_ID_3: {
-            data: {
-                some: "data",
-            },
-        },
-    },
+    DATA_ID_1: {error: "It go 💥boom 😢"},
+    DATA_ID_2: {data: ["array", "of", "data"]},
+    DATA_ID_3: {data: {some: "data"}},
 };
 ```
 
-In this example, the cache contains data retrieved by two handlers; one with
-type `HANDLER_TYPE_A` and one with type `HANDLER_TYPE_B`. Within each subcache,
-the data responses are keyed by the returned value of the respective [request
-handler](#requesthandler)'s `getKey` method for the relevant request.
+In this example, the cache contains data retrieved for three different requests.

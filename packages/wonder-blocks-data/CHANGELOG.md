@@ -1,5 +1,46 @@
 # @khanacademy/wonder-blocks-data
 
+## 5.0.1
+
+### Patch Changes
+
+-   c9922b34: Export resultFromCachedResponse
+
+## 5.0.0
+
+### Major Changes
+
+-   5b5f85ac: Replace `InterceptData` with `InterceptRequests` and introduce new `useRequestInterception` hook
+
+## 4.0.0
+
+### Major Changes
+
+-   febc7309: Rename types and update signatures
+    -   `ValidData` is now `ValidCacheData`
+    -   `Cache` type is now `ResponseCache` (old `ResponseCache` can be created with `$ReadOnly<ResponseCache>`)
+    -   `CacheEntry` type is now `CachedResponse`
+    -   Signatures that were typed as `$ReadOnly<Cache>` previously are now typed as `ResponseCache` which is more appropriate to how they work
+-   bffc345e: Simplified, more versatile API
+
+    -   NEW: `useServerEffect` hook - a way to perform asynchronous tasks on the server and have the value available for hydration
+    -   UPDATED: `Data` component - New API that does away with the `IRequestHandler` interface. Includes new props to control behavior on hydration and when new requests occur.
+    -   UPDATED: `InterceptData` component - New API to reflect changes in `Data` component.
+
+    -   REMOVED: `IRequestHandler` API. All associated call signatures have been updated to reflect this.
+    -   REMOVED: `useData` hook - The `Data` component should be used
+
+### Minor Changes
+
+-   7c9dd09b: - New `useSharedData` hook
+    -   New `ScopedInMemoryCache` export
+
+## 3.2.0
+
+### Minor Changes
+
+-   6973afa2: useGql method now merges defaultContext and partial context by ignoring values explicitly set to undefined in the partial context. This ensures that that existing default context values are not overridden unless explicitly given a value other than undefined.
+
 ## 3.1.3
 
 ### Patch Changes

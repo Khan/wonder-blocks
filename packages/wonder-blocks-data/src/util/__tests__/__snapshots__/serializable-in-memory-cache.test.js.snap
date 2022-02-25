@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SerializableInMemoryCache #set should throw if the id is  1`] = `"id must be non-empty string"`;
+
+exports[`SerializableInMemoryCache #set should throw if the id is [Function anonymous] 1`] = `"id must be non-empty string"`;
+
+exports[`SerializableInMemoryCache #set should throw if the id is 5 1`] = `"id must be non-empty string"`;
+
+exports[`SerializableInMemoryCache #set should throw if the id is null 1`] = `"id must be non-empty string"`;
+
+exports[`SerializableInMemoryCache #set should throw if the scope is  1`] = `"scope must be non-empty string"`;
+
+exports[`SerializableInMemoryCache #set should throw if the scope is [Function anonymous] 1`] = `"scope must be non-empty string"`;
+
+exports[`SerializableInMemoryCache #set should throw if the scope is 5 1`] = `"scope must be non-empty string"`;
+
+exports[`SerializableInMemoryCache #set should throw if the scope is null 1`] = `"scope must be non-empty string"`;
+
+exports[`SerializableInMemoryCache #set should throw if the value is a function 1`] = `"value must be a non-function value"`;
