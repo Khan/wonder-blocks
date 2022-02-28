@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-data
 
+## 6.0.0
+
+### Major Changes
+
+-   1f34c4e8: `Result<TData>` is now the main return type, `useGql` supports context modification, and context overrides that are set explicitly to null now mean those values are deleted when merging
+-   885fe62b: [NEW] `useCachedEffect` hook for performing asynchronous work client-side and caching the result. Updated `useHydratableEffect` to use `useCachedEffect`. `useServerEffect` handler is now interceptable with Wonder Blocks Data `InterceptData` component.
+-   5c852025: [NEW] Added the `useHydratableEffect` hook and updated the `Data` component to use it. Breaking change: `Data` props have been renamed and retyped to fit `useHydratableResult` API.
+-   c91f3959: New `DataError` type and changes to the `GqlError` type. Also changes what errors are thrown in various code
+-   753220a4: Exported in-flight request tracking mechanism and reworked Data component so that client-side requests don't get morphed to and from a cache-style value
+
+### Minor Changes
+
+-   5d614ed4: Changed `Result<TData>` error status so that error field is an error object, not a string
+
+### Patch Changes
+
+-   Updated dependencies [246a921d]
+    -   @khanacademy/wonder-blocks-core@4.3.0
+
 ## 5.0.1
 
 ### Patch Changes
