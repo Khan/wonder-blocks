@@ -1,0 +1,27 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Types / ScopedCache"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# ScopedCache
+
+```ts
+type ScopedCache = {
+    [scope: string]: {
+        [id: string]: ValidCacheData,
+        ...
+    },
+    ...
+};
+
+```
+
+`ScopedCache` describes a cache that has distinct scoped sections. This is the representation of the caches used internally by Wonder Blocks Data to support the scoping of requests when using hooks such as [`useSharedCache`](/docs/data-exports-use-shared-cache--page), [`useCachedEffect`](/docs/data-exports-use-cached-effect--page), and [`useHydratableEffect`](/docs/data-exports-use-hydratable-effect--page).
+
+See the section on [server-side rendering](/docs/data-server-side-rendering-and-hydration--page) for more information.

@@ -58,12 +58,7 @@ module.exports = {
         },
         {
             name: "Data",
-            content: "packages/wonder-blocks-data/docs.md",
-            components: [
-                "packages/wonder-blocks-data/src/components/data.js",
-                "packages/wonder-blocks-data/src/components/intercept-requests.js",
-                "packages/wonder-blocks-data/src/components/track-data.js",
-            ],
+            content: "packages/wonder-blocks-data/legacy-docs.md",
         },
         {
             name: "Dropdown",

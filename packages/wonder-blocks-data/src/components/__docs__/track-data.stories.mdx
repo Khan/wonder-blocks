@@ -1,3 +1,18 @@
+import {Meta} from "@storybook/addon-docs";
+import {TrackData} from "../track-data.js";
+
+<Meta
+    title="Data / Exports / TrackData"
+    component={TrackData}
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# TrackData
+
 The `TrackData` component is a server-side only component. It should be used as
 a parent to the components whose data requests you want to fulfill during
 server-side rendering.

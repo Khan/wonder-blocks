@@ -1,0 +1,24 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / removeAllFromCache()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# removeAllFromCache()
+
+```ts
+removeAllFromCache(predicate?: (key: string, cacheEntry: $ReadOnly<CachedResponse<ValidCacheData>>) => boolean): void;
+```
+
+| Argument | Flow&nbsp;Type | Default | Description |
+| --- | --- | --- | --- |
+| `predicate` | `(key: string, entry: $ReadOnly<CachedResponse<TData>>) => boolean)` | _Optional_ | A predicate to identify which entries to remove. If absent, all data is removed; if present, any entries for which the predicate returns `true` will be returned. |
+
+Removes all entries that match a given predicate from the cache. If no predicate is given, all cached entries.
+
+This can be used after [`initializeCache`](/docs/data-exports-initializecache--page)  to manipulate the cache prior to hydration wich can be useful during testing (especially to clear the cache so that it can be initialized again).

@@ -1,0 +1,24 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Types / GqlFetchOptions<>"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# GqlFetchOptions&lt;&gt;
+
+```ts
+type GqlFetchOptions<TVariables: {...}, TContext: GqlContext> = {|
+    variables?: TVariables,
+    context?: Partial<TContext>,
+|};
+```
+
+This type describes optional configuration to apply when fulfilling a GraphQL request.
+
+See the section on [GraphQL](/docs/data-graphql--page) for more information.
+

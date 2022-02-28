@@ -1,0 +1,33 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Types / ResponseCache"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# ResponseCache
+
+```ts
+type ResponseCache = {
+    [key: string]: CachedResponse<any>,
+    ...
+};
+```
+
+`ResponseCache` describes the serialized cache that is used to hydrate responses. An example of a valid `ResponseCache` instance is shown below. Generally, you would not generate this object directly, but rather use the returned data from [`fulfillAllDataRequests`](/docs/data-exports-fulfillalldatarequests--page).
+
+```ts
+const responseCache: ResponseCache = {
+    DATA_ID_1: {error: "It go 💥boom 😢"},
+    DATA_ID_2: {data: ["array", "of", "data"]},
+    DATA_ID_3: {data: {some: "data"}},
+};
+```
+
+In this example, the cache contains data retrieved for three different requests.
+
+Each entry in the cache is of type [`CachedResponse`](/docs/data-types-cachedresponse--page). See the section on [server-side rendering](/docs/data-server-side-rendering-and-hydration--page) for more information.

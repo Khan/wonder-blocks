@@ -1,3 +1,18 @@
+import {Meta} from "@storybook/addon-docs";
+import {Data} from "../data.js";
+
+<Meta
+    title="Data / Exports / Data"
+    component={Data}
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# Data
+
 The `Data` component is the frontend piece of our data architecture.
 It describes a data requirement in terms of a handler and an identifier.
 It also has props to govern hydrate behavior as well as loading and client-side

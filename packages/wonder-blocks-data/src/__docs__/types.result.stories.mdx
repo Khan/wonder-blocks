@@ -1,0 +1,39 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Types / Result<>"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# Result&lt;&gt;
+
+```ts
+type Result<TData: ValidCacheData> =
+    | {|
+          status: "loading",
+      |}
+    | {|
+          status: "success",
+          data: TData,
+      |}
+    | {|
+          status: "error",
+          error: Error,
+      |}
+    | {|
+          status: "aborted",
+      |};
+```
+
+The `Result<>` type is used to describe the result of an asynchronous operation. It is the primary type used by hooks and components in Wonder Blocks Data to convey the status of asynchronous tasks.
+
+There are four states represented by the `Result<>` type:
+
+ * `loading`: The operation is in pending.
+ * `success`: The operation completed successfully.
+ * `error`: The operation failed.
+ * `aborted`: The operation was aborted.
