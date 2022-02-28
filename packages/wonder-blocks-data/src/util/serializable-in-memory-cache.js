@@ -1,19 +1,20 @@
 // @flow
-import {KindError, Errors, clone} from "@khanacademy/wonder-stuff-core";
+import {clone} from "@khanacademy/wonder-stuff-core";
+import {DataError, DataErrors} from "./data-error.js";
 import {ScopedInMemoryCache} from "./scoped-in-memory-cache.js";
 import type {ValidCacheData, ScopedCache} from "./types.js";
 
 /**
- * Describe an in-memory cache.
+ * Describe a serializable in-memory cache.
  */
 export class SerializableInMemoryCache extends ScopedInMemoryCache {
     constructor(initialCache: ScopedCache = {}) {
         try {
             super(clone(initialCache));
         } catch (e) {
-            throw new KindError(
+            throw new DataError(
                 `An error occurred trying to initialize from a response cache snapshot: ${e}`,
-                Errors.InvalidInput,
+                DataErrors.InvalidInput,
             );
         }
     }
@@ -36,9 +37,9 @@ export class SerializableInMemoryCache extends ScopedInMemoryCache {
         try {
             return clone(this._cache);
         } catch (e) {
-            throw new KindError(
+            throw new DataError(
                 "An error occurred while trying to clone the cache",
-                Errors.Internal,
+                DataErrors.Internal,
                 {
                     cause: e,
                 },

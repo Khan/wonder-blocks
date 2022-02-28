@@ -1,4 +1,5 @@
 // @flow
+import {DataError, DataErrors} from "./data-error.js";
 import {GqlError, GqlErrors} from "./gql-error.js";
 
 /**
@@ -14,7 +15,7 @@ export const getGqlDataFromResponse = async <TData>(
     try {
         result = JSON.parse(bodyText);
     } catch (e) {
-        throw new GqlError("Failed to parse response", GqlErrors.Parse, {
+        throw new DataError("Failed to parse response", DataErrors.Parse, {
             metadata: {
                 statusCode: response.status,
                 bodyText,
@@ -25,7 +26,7 @@ export const getGqlDataFromResponse = async <TData>(
 
     // Check for a bad status code.
     if (response.status >= 300) {
-        throw new GqlError("Response unsuccessful", GqlErrors.Network, {
+        throw new DataError("Response unsuccessful", DataErrors.Network, {
             metadata: {
                 statusCode: response.status,
                 result,

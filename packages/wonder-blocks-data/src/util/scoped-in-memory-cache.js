@@ -1,5 +1,5 @@
 // @flow
-import {KindError, Errors} from "@khanacademy/wonder-stuff-core";
+import {DataError, DataErrors} from "./data-error.js";
 import type {ScopedCache, ValidCacheData} from "./types.js";
 
 /**
@@ -30,23 +30,23 @@ export class ScopedInMemoryCache {
         value: TValue,
     ): void {
         if (!id || typeof id !== "string") {
-            throw new KindError(
+            throw new DataError(
                 "id must be non-empty string",
-                Errors.InvalidInput,
+                DataErrors.InvalidInput,
             );
         }
 
         if (!scope || typeof scope !== "string") {
-            throw new KindError(
+            throw new DataError(
                 "scope must be non-empty string",
-                Errors.InvalidInput,
+                DataErrors.InvalidInput,
             );
         }
 
         if (typeof value === "function") {
-            throw new KindError(
+            throw new DataError(
                 "value must be a non-function value",
-                Errors.InvalidInput,
+                DataErrors.InvalidInput,
             );
         }
 

@@ -1,4 +1,6 @@
 // @flow
+import type {Metadata} from "@khanacademy/wonder-stuff-core";
+
 /**
  * Define what can be cached.
  *
@@ -68,3 +70,18 @@ export type ScopedCache = {
     },
     ...
 };
+
+/**
+ * Options to pass to error construction.
+ */
+export type ErrorOptions = {|
+    /**
+     * Metadata to attach to the error.
+     */
+    metadata?: ?Metadata,
+
+    /**
+     * The error that caused the error being constructed.
+     */
+    cause?: ?Error,
+|};

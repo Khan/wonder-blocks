@@ -16,7 +16,7 @@ describe("#useGqlRouterContext", () => {
 
         // Assert
         expect(result).toMatchInlineSnapshot(
-            `[GqlInternalError: No GqlRouter]`,
+            `[InternalGqlError: No GqlRouter]`,
         );
     });
 

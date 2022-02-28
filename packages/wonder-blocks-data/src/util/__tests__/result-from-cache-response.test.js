@@ -76,6 +76,6 @@ describe("#resultFromCachedResponse", () => {
         const {error} = resultFromCachedResponse(cacheEntry);
 
         // Assert
-        expect(error).toMatchInlineSnapshot(`[GqlHydratedError: ERROR]`);
+        expect(error).toMatchInlineSnapshot(`[HydratedDataError: ERROR]`);
     });
 });

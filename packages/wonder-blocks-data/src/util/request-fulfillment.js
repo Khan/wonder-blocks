@@ -1,7 +1,7 @@
 // @flow
 import type {Result, ValidCacheData} from "./types.js";
 
-import {GqlError, GqlErrors} from "./gql-error.js";
+import {DataError, DataErrors} from "./data-error.js";
 
 type RequestCache = {
     [id: string]: Promise<Result<any>>,
@@ -64,7 +64,7 @@ export class RequestFulfillment {
             .catch((error: string | Error): Result<TData> => {
                 const actualError =
                     typeof error === "string"
-                        ? new GqlError("Request failed", GqlErrors.Unknown, {
+                        ? new DataError("Request failed", DataErrors.Unknown, {
                               metadata: {
                                   unexpectedError: error,
                               },
