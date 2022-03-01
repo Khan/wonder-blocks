@@ -1,7 +1,12 @@
 // @flow
 import * as React from "react";
-import {mount, shallow} from "enzyme";
+import {mount} from "enzyme";
 import "jest-enzyme";
+import {render, screen, waitFor} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+
+import {View} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
 
 import ModalLauncher from "../modal-launcher.js";
 import OnePaneDialog from "../one-pane-dialog.js";
@@ -49,6 +54,7 @@ describe("ModalLauncher", () => {
         wrapper.find("button").simulate("click");
         await wait();
 
+        // eslint-disable-next-line testing-library/no-node-access
         const portal = global.document.querySelector(
             "[data-modal-launcher-portal]",
         );
@@ -108,6 +114,7 @@ describe("ModalLauncher", () => {
             </ModalLauncher>,
         );
         expect(
+            // eslint-disable-next-line testing-library/no-node-access
             global.document.querySelector("[data-modal-launcher-portal]"),
         ).toBeNull();
 
@@ -115,6 +122,7 @@ describe("ModalLauncher", () => {
         // the modal function.
         opened = true;
         wrapper.find("button").simulate("click");
+        // eslint-disable-next-line testing-library/no-node-access
         const portal = global.document.querySelector(
             "[data-modal-launcher-portal]",
         );
@@ -132,6 +140,7 @@ describe("ModalLauncher", () => {
 
         // Launch the modal.
         wrapper.find("button").simulate("click");
+        // eslint-disable-next-line testing-library/no-node-access
         expect(document.querySelector("[data-modal-child]")).toBeTruthy();
 
         // Simulate an Escape keypress.
@@ -146,6 +155,7 @@ describe("ModalLauncher", () => {
         // NOTE(mdr): This might be fragile once React's async rendering lands.
         //     I wonder if we'll be able to force synchronous rendering in unit
         //     tests?
+        // eslint-disable-next-line testing-library/no-node-access
         expect(document.querySelector("[data-modal-child]")).toBeFalsy();
     });
 
@@ -156,7 +166,7 @@ describe("ModalLauncher", () => {
 
         // Rather than test this rigorously, we'll just check that a
         // ScrollDisabler is present, and trust ScrollDisabler to do its job.
-        const wrapper = shallow(
+        const wrapper = mount(
             <ModalLauncher
                 modal={({closeModal}) => {
                     savedCloseModal = closeModal;
@@ -189,7 +199,7 @@ describe("ModalLauncher", () => {
         jest.spyOn(console, "warn");
 
         // Act
-        shallow(
+        render(
             // $FlowIgnore
             <ModalLauncher
                 modal={exampleModal}
@@ -213,7 +223,7 @@ describe("ModalLauncher", () => {
 
         // Act
         // $FlowIgnore
-        shallow(<ModalLauncher modal={exampleModal} opened={false} />);
+        render(<ModalLauncher modal={exampleModal} opened={false} />);
 
         // Assert
         // eslint-disable-next-line no-console
@@ -228,7 +238,7 @@ describe("ModalLauncher", () => {
 
         // Act
         // $FlowIgnore
-        shallow(<ModalLauncher modal={exampleModal} />);
+        render(<ModalLauncher modal={exampleModal} />);
 
         // Assert
         // eslint-disable-next-line no-console
@@ -284,50 +294,140 @@ describe("ModalLauncher", () => {
         await wait();
 
         // Assert
+        // eslint-disable-next-line testing-library/no-node-access
         expect(document.activeElement).not.toBe(lastButton);
     });
 
     test("if modal is closed, return focus to the last element focused outside the modal", async () => {
         // Arrange
-        // We need the elements in the DOM document, it seems, for this test
-        // to work. Changing to testing-library will likely fix this.
-        const containerDiv = getElementAttachedToDocument("container");
-        let savedCloseModal = () => {
-            throw new Error(`closeModal wasn't saved`);
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(false);
+
+            const handleOpen = () => {
+                setOpened(true);
+            };
+
+            const handleClose = () => {
+                setOpened(false);
+            };
+
+            return (
+                <View>
+                    <Button>Top of page (should not receive focus)</Button>
+                    <Button
+                        testId="launcher-button"
+                        onClick={() => handleOpen()}
+                    >
+                        Open modal
+                    </Button>
+                    <ModalLauncher
+                        onClose={() => handleClose()}
+                        opened={opened}
+                        modal={({closeModal}) => (
+                            <OnePaneDialog
+                                title="Regular modal"
+                                content={<View>Hello World</View>}
+                                footer={
+                                    <Button
+                                        testId="modal-close-button"
+                                        onClick={closeModal}
+                                    >
+                                        Close Modal
+                                    </Button>
+                                }
+                            />
+                        )}
+                    />
+                </View>
+            );
         };
 
-        const wrapper = mount(
-            <ModalLauncher
-                modal={({closeModal}) => {
-                    savedCloseModal = closeModal;
-                    return exampleModal;
-                }}
-            >
-                {({openModal}) => (
-                    <button onClick={openModal} data-last-focused-button />
-                )}
-            </ModalLauncher>,
-            {attachTo: containerDiv},
-        );
+        render(<ModalLauncherWrapper />);
 
-        const lastButton = wrapper
-            .find("[data-last-focused-button]")
-            .getDOMNode();
-        // force focus
-        lastButton.focus();
+        const lastButton = await screen.findByTestId("launcher-button");
 
         // Launch the modal.
-        wrapper.find("button").simulate("click");
-
-        // wait for styles to be applied
-        await wait();
+        userEvent.click(lastButton);
 
         // Act
-        savedCloseModal(); // close the modal
-        wrapper.update();
+        // Close modal
+        const modalCloseButton = await screen.findByTestId(
+            "modal-close-button",
+        );
+        userEvent.click(modalCloseButton);
 
         // Assert
-        expect(document.activeElement).toBe(lastButton);
+        await waitFor(() => {
+            expect(lastButton).toHaveFocus();
+        });
+    });
+
+    test("if `closedFocusId` is passed, shift focus to specified element after the modal closes", async () => {
+        // Arrange
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(false);
+
+            const handleOpen = () => {
+                setOpened(true);
+            };
+
+            const handleClose = () => {
+                setOpened(false);
+            };
+
+            return (
+                <View>
+                    <Button>Top of page (should not receive focus)</Button>
+                    <Button id="button-to-focus-on" testId="focused-button">
+                        Focus here after close
+                    </Button>
+                    <Button
+                        testId="launcher-button"
+                        onClick={() => handleOpen()}
+                    >
+                        Open modal
+                    </Button>
+                    <ModalLauncher
+                        onClose={() => handleClose()}
+                        opened={opened}
+                        closedFocusId="button-to-focus-on"
+                        modal={({closeModal}) => (
+                            <OnePaneDialog
+                                title="Triggered from action menu"
+                                content={<View>Hello World</View>}
+                                footer={
+                                    <Button
+                                        testId="modal-close-button"
+                                        onClick={closeModal}
+                                    >
+                                        Close Modal
+                                    </Button>
+                                }
+                            />
+                        )}
+                    />
+                </View>
+            );
+        };
+
+        render(<ModalLauncherWrapper />);
+
+        // Launch modal
+        const launcherButton = await screen.findByTestId("launcher-button");
+        userEvent.click(launcherButton);
+
+        // Act
+        // Close modal
+        const modalCloseButton = await screen.findByTestId(
+            "modal-close-button",
+        );
+        userEvent.click(modalCloseButton);
+
+        // Assert
+        const focusedButton = await screen.findByTestId("focused-button");
+        await waitFor(() => {
+            expect(focusedButton).toHaveFocus();
+        });
     });
 
     test("testId should be added to the Backdrop", () => {
