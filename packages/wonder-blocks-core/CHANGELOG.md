@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 4.3.0
+
+### Minor Changes
+
+-   246a921d: NEW: `useForceUpdate` hook. This should rarely be used and likely only ever from other hooks.
+
 ## 4.2.1
 
 ## 4.2.0
