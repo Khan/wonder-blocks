@@ -300,38 +300,63 @@ describe("ModalLauncher", () => {
 
     test("if modal is closed, return focus to the last element focused outside the modal", async () => {
         // Arrange
-        let savedCloseModal = () => {
-            throw new Error(`closeModal wasn't saved`);
+        const ModalLauncherWrapper = () => {
+            const [opened, setOpened] = React.useState(false);
+
+            const handleOpen = () => {
+                setOpened(true);
+            };
+
+            const handleClose = () => {
+                setOpened(false);
+            };
+
+            return (
+                <View>
+                    <Button>Top of page (should not receive focus)</Button>
+                    <Button
+                        testId="launcher-button"
+                        onClick={() => handleOpen()}
+                    >
+                        Open modal
+                    </Button>
+                    <ModalLauncher
+                        onClose={() => handleClose()}
+                        opened={opened}
+                        modal={({closeModal}) => (
+                            <OnePaneDialog
+                                title="Regular modal"
+                                content={<View>Hello World</View>}
+                                footer={
+                                    <Button
+                                        testId="modal-close-button"
+                                        onClick={closeModal}
+                                    >
+                                        Close Modal
+                                    </Button>
+                                }
+                            />
+                        )}
+                    />
+                </View>
+            );
         };
 
-        render(
-            <View>
-                <Button>Not last element button</Button>
-                <ModalLauncher
-                    modal={({closeModal}) => {
-                        savedCloseModal = closeModal;
-                        return exampleModal;
-                    }}
-                >
-                    {({openModal}) => (
-                        <button
-                            onClick={openModal}
-                            data-test-id="data-last-focused-button"
-                        />
-                    )}
-                </ModalLauncher>
-            </View>,
-        );
+        render(<ModalLauncherWrapper />);
 
         const lastButton = await screen.findByTestId(
-            "data-last-focused-button",
+            "launcher-button",
         );
 
         // Launch the modal.
         userEvent.click(lastButton);
 
         // Act
-        savedCloseModal(); // close the modal
+        // Close modal
+        const modalCloseButton = await screen.findByTestId(
+            "modal-close-button",
+        );
+        userEvent.click(modalCloseButton);
 
         // Assert
         await waitFor(() => {
