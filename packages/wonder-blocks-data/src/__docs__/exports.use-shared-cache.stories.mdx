@@ -1,0 +1,30 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / useSharedCache()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# useSharedCache()
+
+```ts
+function useSharedCache<TValue: ValidCacheData>(
+    id: string,
+    scope: string,
+    initialValue?: ?TValue | (() => ?TValue),
+): [?TValue, CacheValueFn<TValue>];
+```
+
+The `useSharedCache` hook provides access to a shared in-memory cache. This cache is not part of the cache hydrated by Wonder Blocks Data, so [`clearSharedCache`](/docs/data-exports-clearsharedcache--page) must be called between server-side render cycles.
+
+The hook returns a tuple of the currently cached value, or `null` if none is cached, and a function that can be used to set the cached value.
+
+The shared cache is passive and as such does not notify of changes to its contents.
+
+Each cached item is identified by an id and a scope. The scope is used to group items. Whole scopes can be cleared by specifying the specific scope when calling [`clearSharedCache`](/docs/data-exports-clearsharedcache--page).
+
+An optional argument, `initialValue` can be given. This can be either the value to be cached itself or a function that returns the value to be cached  (functions themselves are not valid cachable values). This allows for expensive initialization to only occur when it is necessary.

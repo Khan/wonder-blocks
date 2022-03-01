@@ -1,0 +1,92 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / ScopedInMemoryCache"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# ScopedInMemoryCache
+
+This class implements an in-memory cache that can contain different scopes of cached data. This allows for quick removal of entire classes of data as identified by their scopes without having to iterate each cached item to find them.
+
+## constructor()
+
+```ts
+new ScopedInMemoryCache(initialCache?: ScopedCache)
+```
+
+Creates a new instance. An initial state for the cache can be provided.
+
+## inUse
+
+```ts
+    if (cache.inUse) {
+        // Cache is in use
+    }
+```
+
+Is `true` if the cache contains any data; otherwise, `false`.
+
+## set()
+
+```ts
+set<TValue: ValidCacheData>(
+    scope: string,
+    id: string,
+    value: TValue,
+): void;
+```
+
+Sets a value in the cache within a given scope.
+
+### Throws
+
+| Error Type | Error Name | Reason |
+| ------ | ------ | ------ |
+| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `id` and `scope` must be non-empty strings |
+| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `value` must be a non-function value |
+
+## get()
+
+```ts
+get(scope: string, id: string): ?ValidCacheData;
+```
+
+Gets a value from the cache. If a value with the given identifier (`id`) is not found within the given scope (`scope`) of the cache, `null` is returned.
+
+## purge()
+
+```ts
+purge(scope: string, id: string): void;
+```
+
+Purges the value from the cache. If a value with the given identifier (`id`) is not found within the given scope (`scope`) of the cache, nothing happens.
+
+## purgeScope()
+
+```ts
+purgeScope(
+    scope: string,
+    predicate?: (id: string, value: ValidCacheData) => boolean,
+): void;
+```
+
+Purges items within a given scope (`scope`) of the cache from that scope. If a predicate is provided, only items for which the predicate returns `true` will be purged; otherwise, the entire scope will be purged.
+
+## purgeAll()
+
+```ts
+purgeAll(
+    predicate?: (
+        scope: string,
+        id: string,
+        value: ValidCacheData,
+    ) => boolean,
+): void;
+```
+
+Purges all items from the cache. If a predicate is provided, only items for which the predicate returns `true` will be purged; otherwise, the entire cache will be purged.

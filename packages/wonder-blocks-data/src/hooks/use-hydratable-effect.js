@@ -58,10 +58,10 @@ type HydratableEffectOptions<TData: ValidCacheData> = {|
      *
      * This controls how the hook hydrates and executes when client-side.
      *
-     * Default is `OnClientRender.ExecuteWhenNoSuccessResult`.
+     * Default is `WhenClientSide.ExecuteWhenNoSuccessResult`.
      *
      * Changing this value after the first call is irrelevant as it only
-     * affects the initial rende behavior.
+     * affects the initial render behavior.
      */
     clientBehavior?: WhenClientSide,
 

@@ -1,0 +1,21 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Types / ErrorOptions"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# ErrorOptions
+
+```ts
+type ErrorOptions = {|
+    metadata?: ?Metadata,
+    cause?: ?Error,
+|};
+```
+
+These options allow for the provision of a causal error instance as well as additional metadata that may be useful to the specific error being constructed (such as [`DataError`](/docs/data-exports-dataerror--page) or [`GqlError`](/docs/data-exports-gqlerror--page)).

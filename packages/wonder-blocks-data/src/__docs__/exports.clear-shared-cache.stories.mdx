@@ -1,0 +1,20 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / clearSharedCache()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# clearSharedCache()
+
+```ts
+clearSharedCache(scope?: string): void;
+```
+
+The `clearSharedCache` method can be used to clear the shared in-memory cache used by the [`useSharedCache`](/docs/data-exports-clearsharedcache--page) hook. Either a single scope or all scopes can be cleared.
+
+Common uses for calling this method are during [server-side rendering](/docs/data-server-side-rendering-and-hydration--page) to ensure each render cycle remains isolated, or during testing in a `beforeEach` to cover for where previous test cases may have changed the shared cache.

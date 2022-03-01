@@ -1,0 +1,23 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Types / ValidCacheData"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# ValidCacheData
+
+```ts
+type ValidCacheData =
+    | string
+    | boolean
+    | number
+    | {...}
+    | Array<?ValidCacheData>;
+```
+
+This type represents the data that is allowed into the various caches provided and used by Wonder Blocks Data.

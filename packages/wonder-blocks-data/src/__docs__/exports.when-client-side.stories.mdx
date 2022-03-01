@@ -1,0 +1,33 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / WhenClientSide"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# WhenClientSide
+
+This enumeration is used with [`useHydratableEffect`](/docs/data-exports-usehydratableeffect--page). It defines how the hook should behave when rendering on the client.
+
+## WhenClientSide.DoNotHydrate
+
+The effect will not be hydrated and as such the effect will always be executed on initial render in the client. This is an advanced use-case that you should avoid unless you are certain of what you are doing.
+
+Without hydration support to ensure the data is available for hydration on the client, your server and client rendered pages may differ and the hydration will fail. This option is useful if something else is responsible for data capture and hydration of the action that gets executed. For example, if the action uses Apollo Client to perform the asynchronous action executed by this effect, then that may be also performing hydration responsibilities. However, be cautious; the code that calls `useHydratableEffect` will have to have access to that data on hydration as `useHydratableEffect` will return a "loading" state on initial render, which is not what you will want.
+
+## WhenClientSide.ExecuteWhenNoResult
+
+On initial render in the client, the effect is hydrated from the server-side rendered result. However, it is only executed if there was no server-side render result to hydrate (this can happen if the server-side rendered request was aborted, or if the component is rendering for the first time on the client and was never part of the server-side rendered content).
+
+## WhenClientSide.ExecuteWhenNoSuccessResult
+
+This behavior will hydrate the server-side result, but it will only execute the effect on the client if the hydrated result is not a success result.
+
+## WhenClientSide.AlwaysExecute
+
+When the effect is executed with this behavior, the server-side result will be hydrated and the effect will be executed on the initial client-side render, regardless of the hydrated result status.
+

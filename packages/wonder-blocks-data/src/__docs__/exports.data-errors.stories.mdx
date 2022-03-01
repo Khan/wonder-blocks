@@ -1,0 +1,23 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / DataErrors"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# DataErrors
+
+This export defines the error taxonomy used by Wonder Blocks Data to describe the errors that can occur. These are for use with [`DataError`](/docs/data-exports-dataerror--page).
+
+| Kind | Description |
+| ---- | ----------- |
+| `DataErrors.Unknown` | The kind of error is not known. |
+| `DataErrors.Internal` | The error is internal to the executing code. |
+| `DataErrors.InvalidInput` | There was a problem with the provided input. |
+| `DataErrors.Network` | A network error occurred. |
+| `DataErrors.Parse` | Response could not be parsed. |
+| `DataErrors.Hydrated` | An error that occurred during SSR and was hydrated from cache |

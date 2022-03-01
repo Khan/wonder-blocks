@@ -1,0 +1,112 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / SerializableInMemoryCache"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# SerializableInMemoryCache
+
+This class is a specialization of [`ScopedInMemoryCache`](/docs/data-exports-scopedinmemorycache--page). This specialization requires that values added can be serialized to and from strings.
+
+## constructor()
+
+```ts
+new SerializableInMemoryCache(initialCache?: ScopedCache)
+```
+
+Creates a new instance. The `initialCache`, if provided, will be cloned and used as the initial state of the cache.
+
+### Throws
+
+| Error Type | Error Name | Reason |
+| ------ | ------ | ------ |
+| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | Could not clone the initial cache. |
+
+## inUse
+
+```ts
+    if (cache.inUse) {
+        // Cache is in use
+    }
+```
+
+Is `true` if the cache contains any data; otherwise, `false`.
+
+## set()
+
+```ts
+set<TValue: ValidCacheData>(
+    scope: string,
+    id: string,
+    value: TValue,
+): void;
+```
+
+Sets a value in the cache within a given scope. The value is cloned and the clone is frozen before being added to the cache.
+
+### Throws
+
+| Error Type | Error Name | Reason |
+| ------ | ------ | ------ |
+| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `id` and `scope` must be non-empty strings |
+| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `value` must be a non-function value |
+
+## get()
+
+```ts
+get(scope: string, id: string): ?ValidCacheData;
+```
+
+Gets a value from the cache. If a value with the given identifier (`id`) is not found within the given scope (`scope`) of the cache, `null` is returned.
+
+## clone()
+
+```ts
+clone(): ScopedCache;
+```
+
+Returns a clone of the current cache.
+
+### Throws
+
+| Error Type | Error Name | Reason |
+| ------ | ------ | ------ |
+| [`DataError`](/docs/data-exports-dataerror--page) | `InternalDataError` | Could not clone the cache. |
+
+## purge()
+
+```ts
+purge(scope: string, id: string): void;
+```
+
+Purges the value from the cache. If a value with the given identifier (`id`) is not found within the given scope (`scope`) of the cache, nothing happens.
+
+## purgeScope()
+
+```ts
+purgeScope(
+    scope: string,
+    predicate?: (id: string, value: ValidCacheData) => boolean,
+): void;
+```
+
+Purges items within a given scope (`scope`) of the cache from that scope. If a predicate is provided, only items for which the predicate returns `true` will be purged; otherwise, the entire scope will be purged.
+
+## purgeAll()
+
+```ts
+purgeAll(
+    predicate?: (
+        scope: string,
+        id: string,
+        value: ValidCacheData,
+    ) => boolean,
+): void;
+```
+
+Purges all items from the cache. If a predicate is provided, only items for which the predicate returns `true` will be purged; otherwise, the entire cache will be purged.
