@@ -344,9 +344,7 @@ describe("ModalLauncher", () => {
 
         render(<ModalLauncherWrapper />);
 
-        const lastButton = await screen.findByTestId(
-            "launcher-button",
-        );
+        const lastButton = await screen.findByTestId("launcher-button");
 
         // Launch the modal.
         userEvent.click(lastButton);
