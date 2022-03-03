@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.6.7
+
+### Patch Changes
+
+-   Updated dependencies [7eaf74bd]
+    -   @khanacademy/wonder-blocks-modal@2.3.0
+
 ## 2.6.6
 
 ### Patch Changes
