@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 2.3.0
+
+### Minor Changes
+
+-   7eaf74bd: Added `closedFocusId` prop so users can specify the element to receive focus after the modal is closed
+
 ## 2.2.3
 
 ### Patch Changes
