@@ -40,7 +40,7 @@ const ComponentInfo = ({name, version}: Props): React.Node => {
             </Caption>
             <Button
                 kind="secondary"
-                href={`https://github.com/Khan/wonder-blocks/tree/master/packages/${packageFolder}`}
+                href={`https://github.com/Khan/wonder-blocks/tree/main/packages/${packageFolder}`}
                 target="_blank"
                 style={{color: "black"}}
                 icon={githubIconAsset}

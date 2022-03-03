@@ -3,11 +3,11 @@ name: Release
 on:
   push:
     branches:
-      - master
+      - main
 
 # This workflow will run changesets depending on two different scenarios:
 #
-# 1. If we are landing a specific commit into master (Author PR), then
+# 1. If we are landing a specific commit into main (Author PR), then
 #    changesets will check if there are changes verifying the Markdown files
 #    generated automatically:
 #
@@ -21,7 +21,7 @@ on:
 #    package.json for each package, and will remove the MD files as part of the
 #    Release PR).
 #
-# 2. If we are landing the Release PR into master, then the changesets action
+# 2. If we are landing the Release PR into main, then the changesets action
 #    will publish the changes to npm.
 #
 # For more info about this workflow, see:
