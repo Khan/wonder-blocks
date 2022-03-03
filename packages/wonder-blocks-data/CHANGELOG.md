@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 6.0.1
+
+### Patch Changes
+
+-   5ad01891: [FIX] Make sure hydratable effect properly renders when requestId changes
+
 ## 6.0.0
 
 ### Major Changes
