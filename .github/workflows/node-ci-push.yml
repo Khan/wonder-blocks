@@ -1,9 +1,9 @@
-name: Node CI (landed on master)
+name: Node CI (landed on main)
 
 on:
   push:
     branches:
-    - master
+    - main
     - changeset-release/*
     - feature/*
 
@@ -141,7 +141,7 @@ jobs:
         autoAcceptChanges: true
 
   # NOTE: This step is copied from render-gateway. See
-  # https://github.com/Khan/render-gateway/blob/master/.github/workflows/node-ci.yml
+  # https://github.com/Khan/render-gateway/blob/main/.github/workflows/node-ci.yml
   publish_to_branch:
     needs: [prime_cache_primary]
     name: Publish to branch

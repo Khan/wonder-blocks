@@ -45,7 +45,7 @@ StyleSheet as well inline style objects (see example 4).
 
 #### CSSProperties
 
-[See source file](https://github.com/Khan/wonder-blocks/blob/master/flow-typed/aphrodite.flow.js#L13)
+[See source file](https://github.com/Khan/wonder-blocks/blob/main/flow-typed/aphrodite.flow.js#L13)
 
 
 ### Examples
