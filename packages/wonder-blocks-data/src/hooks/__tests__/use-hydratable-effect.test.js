@@ -413,6 +413,26 @@ describe("#useHydratableEffect", () => {
             expect(fakeHandler).toHaveBeenCalledTimes(2);
         });
 
+        it("should default shared cache to hydrate value for new requestId", async () => {
+            // Arrange
+            const fakeHandler = jest.fn().mockResolvedValue("data");
+            jest.spyOn(UseServerEffect, "useServerEffect")
+                .mockReturnValueOnce(Status.success("BADDATA"))
+                .mockReturnValue(null);
+
+            // Act
+            const {rerender, result} = clientRenderHook(
+                ({requestId}) => useHydratableEffect(requestId, fakeHandler),
+                {
+                    initialProps: {requestId: "ID"},
+                },
+            );
+            rerender({requestId: "ID2"});
+
+            // Assert
+            expect(result.current).toStrictEqual(Status.loading());
+        });
+
         it("should update shared cache with result when request is fulfilled", async () => {
             // Arrange
             const setCacheFn = jest.fn();
