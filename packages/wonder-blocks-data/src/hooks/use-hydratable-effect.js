@@ -179,7 +179,7 @@ export const useHydratableEffect = <TData: ValidCacheData>(
                 return null;
         }
         // There is no reason for this to change after the first render,
-        // you might thing, but the function closes around serverResult and if
+        // you might think, but the function closes around serverResult and if
         // the requestId changes, it still returns the hydrate result of the
         // first render of the previous requestId. This then means that the
         // hydrate result is still the same, and the effect is not re-executed
