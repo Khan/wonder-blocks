@@ -4,6 +4,9 @@
   "version": "0.0.1",
   "description": "React components for Wonder Blocks design system.",
   "main": "index.js",
+  "engines": {
+    "node": ">=12.22"
+  },
   "scripts": {
     "alex": "alex packages/",
     "build:all": "yarn run build:cjs && yarn run build:es6",
