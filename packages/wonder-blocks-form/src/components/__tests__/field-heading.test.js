@@ -41,6 +41,24 @@ describe("FieldHeading", () => {
         expect(wrapper).toIncludeText(description);
     });
 
+    it("fieldheading renders the error wrapper always", () => {
+        // Arrange
+        const testId = "testid";
+
+        // Act
+        const wrapper = mount(
+            <FieldHeading
+                field={<TextField id="tf-1" value="" onChange={() => {}} />}
+                label="Label"
+                testId={testId}
+            />,
+        );
+
+        // Assert
+        const error = wrapper.find(`[data-test-id="${testId}-error"]`);
+        expect(error).toExist();
+    });
+
     it("fieldheading renders the error text", () => {
         // Arrange
         const error = "Error";

@@ -121,14 +121,15 @@ export default class FieldHeading extends React.Component<Props> {
     maybeRenderError(): ?React.Node {
         const {error, id, testId} = this.props;
 
-        if (!error) {
-            return null;
-        }
-
+        // NOTE(jeresig, FEI-3472): We need to always display the error
+        // element, even if there is no error. This is because the error
+        // uses an ARIA alert role, which requires that the element be
+        // in the DOM before the text is inserted. Doing otherwise will
+        // mean that the alert will not be read.
         return (
             <React.Fragment>
-                <Strut size={Spacing.small_12} />
-                {typeof error === "string" ? (
+                {error && <Strut size={Spacing.small_12} />}
+                {typeof error === "string" || !error ? (
                     <LabelSmall
                         style={styles.error}
                         role="alert"
