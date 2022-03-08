@@ -2,7 +2,7 @@
 // A TextField with a search icon on its left side and X icon on its right side
 
 import * as React from "react";
-import {StyleSheet, css} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -13,7 +13,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
-import {defaultLabels, DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
+import {defaultLabels} from "../util/constants.js";
 
 type Props = {|
     ...AriaProps,
@@ -61,31 +61,31 @@ type Props = {|
     testId?: string,
 
     /**
-     * Called when the input value is changed
+     * Called when the value has changed.
      */
-    onChange: (searchText: string) => mixed,
+    onChange: (newValue: string) => mixed,
 
     /**
      * Handler that is triggered when this component is clicked. For example,
      * use this to adjust focus in parent component. This gets called when we
-     * click the dismiss icon button within the SearchTextInput.
+     * click the dismiss icon button within the SearchField.
      */
     onClick?: () => mixed,
 
     /**
      * Called when a key is pressed.
      */
-     onKeyDown?: (event: SyntheticKeyboardEvent<HTMLInputElement>) => mixed,
+    onKeyDown?: (event: SyntheticKeyboardEvent<HTMLInputElement>) => mixed,
 
-     /**
-      * Called when the element has been focused.
-      */
-     onFocus?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
+    /**
+     * Called when the element has been focused.
+     */
+    onFocus?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 
-     /**
-      * Called when the element has been blurred.
-      */
-     onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
+    /**
+     * Called when the element has been blurred.
+     */
+    onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 |};
 
 type DefaultProps = {|
@@ -101,7 +101,7 @@ type State = {|
     focused: boolean,
 |};
 
-export default class SearchTextInput extends React.Component<Props, State> {
+export default class SearchField extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         clearAriaLabel: defaultLabels.clearSearch,
         disabled: false,
@@ -112,19 +112,31 @@ export default class SearchTextInput extends React.Component<Props, State> {
         focused: false,
     };
 
-    handleChange: (e: SyntheticInputEvent<>) => void = (e) => {
-        e.preventDefault();
-        this.props.onChange(e.target.value);
-    };
-
     handleDismiss: () => void = () => {
         const {onClick, onChange} = this.props;
-        // Empty the search text and focus the SearchTextInput
+        // Empty the search text and focus the SearchField
         onChange("");
         if (onClick) {
             onClick();
         }
     };
+
+    maybeRenderDismissIconButton(): React.Node {
+        const {clearAriaLabel, value} = this.props;
+
+        if (value.length > 0) {
+            return (
+                <IconButton
+                    icon={icons.dismiss}
+                    kind="tertiary"
+                    onClick={this.handleDismiss}
+                    style={styles.dismissIcon}
+                    aria-label={clearAriaLabel}
+                />
+            );
+        }
+        return null;
+    }
 
     handleFocus: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
         event,
@@ -148,29 +160,29 @@ export default class SearchTextInput extends React.Component<Props, State> {
         });
     };
 
-    maybeRenderDismissIconButton(): React.Node {
-        const {clearAriaLabel, value} = this.props;
-
-        if (value.length > 0) {
-            return (
-                <IconButton
-                    icon={icons.dismiss}
-                    kind="tertiary"
-                    onClick={this.handleDismiss}
-                    style={styles.dismissIcon}
-                    aria-label={clearAriaLabel}
-                />
-            );
-        }
-        return null;
-    }
-
     render(): React.Node {
-        const {disabled, id, light, onClick, placeholder, style, testId, value} = this.props;
+        const {
+            disabled,
+            id,
+            light,
+            onChange,
+            onClick,
+            placeholder,
+            style,
+            testId,
+            value,
+            // The following props are being included here to avoid
+            // passing them down to the otherProps spread
+            /* eslint-disable no-unused-vars */
+            onBlur,
+            onFocus,
+            /* eslint-enable no-unused-vars */
+            // Should only include Aria related props
+            ...otherProps
+        } = this.props;
 
         return (
             <View
-                id={id}
                 onClick={onClick}
                 style={[
                     styles.inputContainer,
@@ -186,10 +198,11 @@ export default class SearchTextInput extends React.Component<Props, State> {
                     aria-hidden="true"
                 />
                 <TextField
+                    id={id}
                     type="text"
                     disabled={disabled}
                     light={light}
-                    onChange={this.handleChange}
+                    onChange={onChange}
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
                     placeholder={placeholder}
@@ -199,6 +212,7 @@ export default class SearchTextInput extends React.Component<Props, State> {
                         typographyStyles.LabelMedium,
                     ]}
                     testId={testId}
+                    {...otherProps}
                 />
                 {this.maybeRenderDismissIconButton()}
             </View>
@@ -212,12 +226,7 @@ const styles = StyleSheet.create({
         border: `1px solid ${Color.offBlack16}`,
         borderRadius: Spacing.xxxSmall_4,
         alignItems: "center",
-        // The height of the text input is 40 in design spec and we need to
-        // specify the height as well as minHeight to make sure the search text
-        // input takes enough height to render. (otherwise, it will get
-        // squashed)
-        height: DROPDOWN_ITEM_HEIGHT,
-        minHeight: DROPDOWN_ITEM_HEIGHT,
+        height: 40,
     },
     focused: {
         border: `1px solid ${Color.blue}`,
@@ -243,5 +252,6 @@ const styles = StyleSheet.create({
         },
         width: "100%",
         color: "inherit",
+        paddingLeft: 4,
     },
 });
