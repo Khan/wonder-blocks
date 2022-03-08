@@ -31,16 +31,17 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
-        uses: actions/checkout@master
+      - uses: webfactory/ssh-agent@v0.4.1
         with:
-          # This makes Actions fetch all Git history so that Changesets can
-          # generate changelogs with the correct commits
-          fetch-depth: 0
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      - name: Clone repository
+        run: git clone git@github.com:Khan/wonder-blocks.git .
 
       - name: Setup Node.js 12.x
         uses: actions/setup-node@master
         with:
+          # This is our target Node version.
+          # This should match the engine value in the root package.json
           node-version: 12.x
 
       - name: Install Dependencies
@@ -52,7 +53,7 @@ jobs:
         with:
           publish: yarn publish:ci
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.KHAN_ACTIONS_BOT_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Build Slack message

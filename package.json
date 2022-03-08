@@ -4,6 +4,9 @@
   "version": "0.0.1",
   "description": "React components for Wonder Blocks design system.",
   "main": "index.js",
+  "engines": {
+    "node": ">=12.22"
+  },
   "scripts": {
     "alex": "alex packages/",
     "build:all": "yarn run build:cjs && yarn run build:es6",
@@ -56,6 +59,9 @@
     "@testing-library/react": "^12.1.2",
     "@testing-library/react-hooks": "^7.0.2",
     "@testing-library/user-event": "^13.5.0",
+    "@webpack-blocks/babel": "^2.1.0",
+    "@webpack-blocks/postcss": "^2.1.0",
+    "@webpack-blocks/webpack": "^2.1.0",
     "alex": "^10.0.0",
     "babel-jest": "^27.4.2",
     "babel-loader": "^8.2.3",
@@ -103,7 +109,6 @@
     "storybook-addon-designs": "^6.2.1",
     "storybook-addon-jsx": "^7.3.14",
     "webpack": "^4.6.0",
-    "webpack-blocks": "^2.0.1",
     "webpack-cli": "^3.3.9"
   },
   "dependencies": {

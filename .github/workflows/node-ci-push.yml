@@ -1,4 +1,4 @@
-name: Node CI (landed on main)
+name: Node CI (landed on protected branch)
 
 on:
   push:
@@ -13,8 +13,6 @@ on:
 #      cache.
 #   2. Coverage
 #   3. Chromatic autoApprove on squash commits
-#   4. Publish to branch (to ensure that the required checks will run on
-#      protected branches)
 #
 # For pushes directly to a branch, we assume a PR has been used with wider
 # checks, this just makes sure our coverage data is up-to-date.
@@ -29,7 +27,7 @@ jobs:
       # which is very helpful.
       matrix:
         os: [ubuntu-latest]
-        node-version: [12]
+        node-version: [16.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -69,7 +67,7 @@ jobs:
         # Use a matrix as it means we get the version info in the job name
         # which is very helpful.
         os: [ubuntu-latest]
-        node-version: [12]
+        node-version: [16.x]
     steps:
     - uses: actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
@@ -107,7 +105,7 @@ jobs:
         # Use a matrix as it means we get the version info in the job name
         # which is very helpful.
         os: [ubuntu-latest]
-        node-version: [12]
+        node-version: [16.x]
     steps:
     - uses: actions/checkout@v2
       with:
@@ -139,55 +137,3 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
         autoAcceptChanges: true
-
-  # NOTE: This step is copied from render-gateway. See
-  # https://github.com/Khan/render-gateway/blob/main/.github/workflows/node-ci.yml
-  publish_to_branch:
-    needs: [prime_cache_primary]
-    name: Publish to branch
-    env:
-      CI: true
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [12.x]
-    steps:
-    - uses: webfactory/ssh-agent@v0.4.1
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-    - name: Clone repository
-      run: git clone git@github.com:Khan/wonder-blocks.git .
-
-      # For PRs, we can use github.head_ref to get the branch that the PR
-      # is made from. We cannot use github.ref as that points to the PR, not
-      # its branch. For pushes, we have to get the branch name from GITHUB_REF
-      # which, instead of just being a branch name, is of the form
-      # refs/heads/<BRANCH NAME>
-      # Note if we end up with a blank branch name, we quit as otherwise, we
-      # would update the default branch, which is not what we want at all.
-    - name: Determine checkout branch
-      run: |
-        _PUBLISH_BRANCH=$(test $GITHUB_HEAD_REF && echo $GITHUB_HEAD_REF || echo $GITHUB_REF | sed -e "s/refs\/heads\///g")
-        test $_PUBLISH_BRANCH || exit 1
-        echo "PUBLISH_BRANCH=$_PUBLISH_BRANCH" >> $GITHUB_ENV
-    - name: Checkout via SSH
-      run: git checkout ${{ env.PUBLISH_BRANCH }}
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v2
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: Detect changes
-      run: echo "HAS_CHANGES=$(git status --porcelain | wc -l | xargs echo)" >> $GITHUB_ENV
-    - name: Commit changes
-      if: env.HAS_CHANGES != '0'
-      # If we have changes, we push them and then fail out. This prevents
-      # us from running more testing than we want since the push will
-      # trigger another test run anyway.
-      run: |
-        git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-        git config user.name "$GITHUB_ACTOR"
-        git add dist
-        git commit -m "Updating branch with build artifacts (https://github.com/Khan/wonder-blocks/actions/runs/${{ github.run_id }})"
-        git push
-        exit 1
