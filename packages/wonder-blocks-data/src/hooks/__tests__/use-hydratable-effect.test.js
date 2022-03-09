@@ -107,33 +107,10 @@ describe("#useHydratableEffect", () => {
                 expect(useServerEffectSpy).toHaveBeenCalledWith(
                     "ID",
                     fakeHandler,
-                    hydrate,
+                    {hydrate, skip: false},
                 );
             },
         );
-
-        it("should pass an abort handler to useServerEffect when skip is true", async () => {
-            // Arrange
-            jest.spyOn(
-                UseRequestInterception,
-                "useRequestInterception",
-            ).mockReturnValue(jest.fn());
-            const fakeHandler = jest.fn();
-            const useServerEffectSpy = jest
-                .spyOn(UseServerEffect, "useServerEffect")
-                .mockReturnValue(null);
-
-            // Act
-            serverRenderHook(() =>
-                useHydratableEffect("ID", fakeHandler, {skip: true}),
-            );
-            const underTest = useServerEffectSpy.mock.calls[0][1]();
-
-            // Assert
-            await expect(underTest).rejects.toMatchInlineSnapshot(
-                `[AbortError: skipped]`,
-            );
-        });
 
         it.each`
             scope        | expectedScope
@@ -247,7 +224,7 @@ describe("#useHydratableEffect", () => {
                 expect(useServerEffectSpy).toHaveBeenCalledWith(
                     "ID",
                     fakeHandler,
-                    hydrate,
+                    {hydrate, skip: false},
                 );
             },
         );
