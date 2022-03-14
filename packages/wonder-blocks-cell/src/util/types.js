@@ -126,4 +126,10 @@ export type CellProps = {|
      * Used to announce the cell's content to screen readers.
      */
     "aria-label"?: string,
+
+    /**
+     * Optinal href which Cell should direct to, uses client-side routing
+     * by default if react-router is present.
+     */
+    href?: string,
 |};
