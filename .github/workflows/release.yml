@@ -48,7 +48,7 @@ jobs:
         run: yarn
 
       - name: Build Storybook
-        # Generate a static version of storybook inside "build/"
+        # Generate a static version of storybook inside "storybook-static/"
         run: yarn build-storybook
 
       - name: Deploy to GitHub pages
@@ -57,7 +57,7 @@ jobs:
           # The branch the action should deploy to.
           branch: gh-pages
           # The folder the action should deploy.
-          folder: build
+          folder: storybook-static
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
