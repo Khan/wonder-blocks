@@ -27,7 +27,7 @@ export const AccessoryMappings = {
         </View>
     ): React.Element<typeof View>),
     withImage: ((
-        <img src="/avatar.png" alt="ItemAvatar" width={48} height={48} />
+        <img src="./avatar.png" alt="ItemAvatar" width={48} height={48} />
     ): React$Element<"img">),
 };
 

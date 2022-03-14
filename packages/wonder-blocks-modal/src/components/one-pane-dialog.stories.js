@@ -81,7 +81,7 @@ export const Simple: StoryComponentType = () => {
 
 const styles = StyleSheet.create({
     above: {
-        background: "url(/modal-above.png)",
+        background: "url(./modal-above.png)",
         width: 874,
         height: 551,
         position: "absolute",
@@ -90,7 +90,7 @@ const styles = StyleSheet.create({
     },
 
     below: {
-        background: "url(/modal-below.png)",
+        background: "url(./modal-below.png)",
         width: 868,
         height: 521,
         position: "absolute",
