@@ -121,6 +121,17 @@ export default {
             },
         },
     },
+    href: {
+        description:
+            "Optional href which Cell should direct to, uses client-side routing by default if react-router is present.",
+        control: {type: "text"},
+        table: {
+            category: "Navigation",
+            type: {
+                summary: "string",
+            },
+        },
+    },
     onClick: {
         action: "clicked",
         description: `Called when the cell is clicked.
