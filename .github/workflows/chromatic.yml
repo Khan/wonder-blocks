@@ -53,6 +53,9 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
         autoAcceptChanges: "main"
+        # Generate snapshots for only changed stories
+        # See: https://www.chromatic.com/docs/turbosnap
+        onlyChanged: true
     # (else) Run this step on dependabot PRs.
     - name: Skip Chromatic builds
       if: ${{ github.actor == 'dependabot[bot]' }}
