@@ -8,7 +8,7 @@ export default create({
     base: "light",
     brandTitle: "Wonder Blocks",
     brandUrl: "/",
-    brandImage: "/logo.svg",
+    brandImage: "./logo.svg",
 
     // Typography
     fontBase: '"Lato", sans-serif',
