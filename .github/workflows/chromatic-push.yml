@@ -6,7 +6,7 @@ jobs:
   chromatic:
     steps:
     - name: Install and build
-      uses: /.github/workflows/chromatic-build.yml
+      uses: ./.github/workflows/chromatic-build.yml
     # (if) Run this step on non-dependabot PRs.
     - name: Publish to Chromatic for visual testing
       if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
