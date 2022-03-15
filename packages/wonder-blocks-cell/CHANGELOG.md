@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-cell
 
+## 2.1.0
+
+### Minor Changes
+
+-   9819c13f: Add href prop for client-side navigation
+
 ## 2.0.2
 
 ### Patch Changes
