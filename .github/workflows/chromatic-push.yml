@@ -3,9 +3,10 @@ name: Chromatic - Push
 on: push
 
 jobs:
+  setup:
+    uses: Khan/wonder-blocks/.github/workflows/chromatic-build.yml@main
   chromatic:
     runs-on: ${{ matrix.os }}
-    uses: Khan/wonder-blocks/.github/workflows/chromatic-build.yml@main
     env:
       CI: true
     strategy:
