@@ -10,6 +10,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       CI: true
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [16.x]
     # Only run this workflow when the Release PR is opened/created.
     if: startsWith(github.head_ref, 'changeset-release/')
     steps:

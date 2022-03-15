@@ -7,6 +7,11 @@ jobs:
     runs-on: ${{ matrix.os }}
     env:
       CI: true
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [16.x]
     steps:
     - name: Install and build
       uses: ./.github/workflows/chromatic-build.yml
