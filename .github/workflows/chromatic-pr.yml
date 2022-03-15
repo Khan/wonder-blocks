@@ -8,6 +8,7 @@ on:
 jobs:
   chromatic:
     runs-on: ${{ matrix.os }}
+    uses: Khan/wonder-blocks/.github/workflows/chromatic-build.yml@main
     env:
       CI: true
     strategy:
@@ -17,7 +18,6 @@ jobs:
         node-version: [16.x]
     # Only run this workflow when the Release PR is opened/created.
     if: startsWith(github.head_ref, 'changeset-release/')
-    uses: Khan/wonder-blocks/.github/workflows/chromatic-build.yml@main
     steps:
     - name: Publish to Chromatic for visual testing
       if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'

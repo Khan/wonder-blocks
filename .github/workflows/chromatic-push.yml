@@ -5,6 +5,7 @@ on: push
 jobs:
   chromatic:
     runs-on: ${{ matrix.os }}
+    uses: Khan/wonder-blocks/.github/workflows/chromatic-build.yml@main
     env:
       CI: true
     strategy:
@@ -12,7 +13,6 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         node-version: [16.x]
-    uses: Khan/wonder-blocks/.github/workflows/chromatic-build.yml@main
     steps:
     # (if) Run this step on non-dependabot PRs.
     - name: Publish to Chromatic for visual testing
