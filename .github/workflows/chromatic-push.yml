@@ -12,9 +12,8 @@ jobs:
       matrix:
         os: [ubuntu-latest]
         node-version: [16.x]
+    uses: Khan/wonder-blocks/.github/workflows/chromatic-build.yml@main
     steps:
-    - name: Install and build
-      uses: Khan/wonder-blocks/.github/workflows/chromatic-build.yml@main
     # (if) Run this step on non-dependabot PRs.
     - name: Publish to Chromatic for visual testing
       if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'

@@ -17,10 +17,8 @@ jobs:
         node-version: [16.x]
     # Only run this workflow when the Release PR is opened/created.
     if: startsWith(github.head_ref, 'changeset-release/')
+    uses: Khan/wonder-blocks/.github/workflows/chromatic-build.yml@main
     steps:
-    - name: Install and build
-      uses: Khan/wonder-blocks/.github/workflows/chromatic-build.yml@main
-
     - name: Publish to Chromatic for visual testing
       if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
       uses: chromaui/action@v1
