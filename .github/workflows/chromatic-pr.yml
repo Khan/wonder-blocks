@@ -19,7 +19,7 @@ jobs:
     if: startsWith(github.head_ref, 'changeset-release/')
     steps:
     - name: Install and build
-      uses: ./.github/workflows/chromatic-build.yml
+      uses: /.github/workflows/chromatic-build.yml@main
 
     - name: Publish to Chromatic for visual testing
       if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
