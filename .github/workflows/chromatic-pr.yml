@@ -6,11 +6,15 @@ on:
       - opened
 
 jobs:
+
   setup:
     # Only run this workflow when the Release PR is opened/created.
     if: startsWith(github.head_ref, 'changeset-release/')
-    uses: .github/workflows/chromatic-build.yml
+    uses: ./.github/workflows/chromatic-build.yml
+
   chromatic:
+    needs: [setup]
+    name: Publish to Chromatic
     runs-on: ${{ matrix.os }}
     env:
       CI: true
@@ -22,7 +26,7 @@ jobs:
     # Only run this workflow when the Release PR is opened/created.
     if: startsWith(github.head_ref, 'changeset-release/')
     steps:
-    - name: Publish to Chromatic for visual testing
+    - name: Auto-accept Chromatic changes
       if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
       uses: chromaui/action@v1
       with:

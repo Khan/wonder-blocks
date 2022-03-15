@@ -3,9 +3,13 @@ name: Chromatic - Push
 on: push
 
 jobs:
+
   setup:
     uses: ./.github/workflows/chromatic-build.yml
+
   chromatic:
+    needs: [setup]
+    name: Publish to Chromatic
     runs-on: ${{ matrix.os }}
     env:
       CI: true
