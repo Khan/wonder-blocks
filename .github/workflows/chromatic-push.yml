@@ -1,9 +1,12 @@
-name: Chromatic
+name: Chromatic - Push
 
 on: push
 
 jobs:
   chromatic:
+    runs-on: ${{ matrix.os }}
+    env:
+      CI: true
     steps:
     - name: Install and build
       uses: ./.github/workflows/chromatic-build.yml
