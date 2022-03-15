@@ -9,7 +9,7 @@ jobs:
   setup:
     # Only run this workflow when the Release PR is opened/created.
     if: startsWith(github.head_ref, 'changeset-release/')
-    uses: Khan/wonder-blocks/.github/workflows/chromatic-build.yml@main
+    uses: .github/workflows/chromatic-build.yml
   chromatic:
     runs-on: ${{ matrix.os }}
     env:
