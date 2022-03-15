@@ -1,0 +1,22 @@
+name: Chromatic
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  chromatic:
+    # Only run this workflow when the Release PR is opened/created.
+    if: startsWith(github.head_ref, 'changeset-release/')
+    steps:
+    - name: Install and build
+      uses: /.github/workflows/chromatic-build.yml
+
+    - name: Publish to Chromatic for visual testing
+      if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
+      uses: chromaui/action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+        autoAcceptChanges: true

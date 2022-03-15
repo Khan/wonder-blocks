@@ -1,13 +1,14 @@
-name: Chromatic
+# This reusable workflow is executed to install and build the dependencies for
+# the project.
+name: Install and build Chromatic dependencies
 
-on: push
+on: workflow_call
 
 jobs:
   chromatic:
     runs-on: ${{ matrix.os }}
     env:
       CI: true
-      CHROMATIC_PROJECT_TOKEN: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
     strategy:
       fail-fast: false
       matrix:
@@ -45,26 +46,3 @@ jobs:
 
     - name: yarn build:all
       run: yarn build:all
-    # (if) Run this step on non-dependabot PRs.
-    - name: Publish to Chromatic for visual testing
-      if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-      uses: chromaui/action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-        autoAcceptChanges: "main"
-        # Generate snapshots for only changed stories
-        # See: https://www.chromatic.com/docs/turbosnap
-        onlyChanged: true
-    # (else) Run this step on dependabot PRs.
-    - name: Skip Chromatic builds
-      if: ${{ github.actor == 'dependabot[bot]' }}
-      uses: chromaui/action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-        exitZeroOnChanges: true
-        # This is a flag that allows us to skip the build in the case of a
-        # dependabot PR. We still need to report the build as successful so that
-        # the checks are valid and Dependabot can continue.
-        skip: true
