@@ -130,6 +130,7 @@ const CellCore = (props: CellCoreProps): React.Node => {
         testId,
         "aria-label": ariaLabel,
         innerStyle,
+        target,
     } = props;
 
     const renderCell = (eventState?: ClickableState): React.Node => {
@@ -200,6 +201,7 @@ const CellCore = (props: CellCoreProps): React.Node => {
                 href={href}
                 hideDefaultFocusRing={true}
                 aria-label={ariaLabel ? ariaLabel : undefined}
+                target={target}
             >
                 {(eventState) => renderCell(eventState)}
             </Clickable>

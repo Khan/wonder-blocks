@@ -16,6 +16,7 @@ import Clickable from "@khanacademy/wonder-blocks-clickable";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import Link from "@khanacademy/wonder-blocks-link";
+import {CompactCell, DetailCell} from "@khanacademy/wonder-blocks-cell";
 
 // We create a wrapper around Clickable since it expects a render function for
 // is children while all of the other components do not.
@@ -33,6 +34,8 @@ describe.each`
     ${ActionItem}        | ${"ActionItem"}
     ${Button}            | ${"Button"}
     ${ClickableWrapper}  | ${"Clickable"}
+    ${CompactCell}       | ${"CompactCell"}
+    ${DetailCell}        | ${"DetailCell"}
     ${IconButtonWrapper} | ${"IconButton"}
     ${Link}              | ${"Link"}
 `("$name with an href", ({Component, name}) => {
@@ -114,6 +117,8 @@ describe.each`
     ${ActionItem}        | ${"ActionItem"}
     ${Button}            | ${"Button"}
     ${ClickableWrapper}  | ${"Clickable"}
+    ${CompactCell}       | ${"CompactCell"}
+    ${DetailCell}        | ${"DetailCell"}
     ${IconButtonWrapper} | ${"IconButton"}
 `("$name without an href", ({Component, name}) => {
     beforeEach(() => {

@@ -132,4 +132,10 @@ export type CellProps = {|
      * by default if react-router is present.
      */
     href?: string,
+
+    /**
+     * A target destination window for a link to open in. Should only be used
+     * when `href` is specified.
+     */
+    target?: "_blank",
 |};
