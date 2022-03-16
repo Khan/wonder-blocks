@@ -8,7 +8,6 @@ on:
 jobs:
   chromatic:
     # Only run this workflow when the Release PR is opened/created.
-    name: Chromatic - Build on release PR (PR opened)
     if: startsWith(github.head_ref, 'changeset-release/')
     uses: ./.github/workflows/chromatic-build.yml
     with:
