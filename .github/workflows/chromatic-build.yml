@@ -55,9 +55,6 @@ jobs:
     - name: Install dependencies
       run: yarn install --frozen-lockfile
 
-    - name: yarn build:all
-      run: yarn build:all
-
     # (if) Run this step on non-dependabot PRs.
     - name: Publish to Chromatic for visual testing (review PRs only)
       if: ${{ inputs.target == 'review' }}
