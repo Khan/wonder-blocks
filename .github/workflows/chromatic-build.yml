@@ -10,6 +10,10 @@ on:
       target:
         required: true
         type: string
+    secrets:
+      # The project token for the Chromatic app.
+      projectToken:
+        required: true
 
 jobs:
   chromatic:
@@ -60,7 +64,7 @@ jobs:
       uses: chromaui/action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+        projectToken: ${{ secrets.projectToken }}
         autoAcceptChanges: "main"
 
     # (if) Run this step on dependabot PRs.
@@ -69,7 +73,7 @@ jobs:
       uses: chromaui/action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+        projectToken: ${{ secrets.projectToken }}
         exitZeroOnChanges: true
         # This is a flag that allows us to skip the build in the case of a
         # dependabot PR. We still need to report the build as successful so that
@@ -82,5 +86,5 @@ jobs:
       uses: chromaui/action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
-        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+        projectToken: ${{ secrets.projectToken }}
         autoAcceptChanges: true

@@ -6,13 +6,19 @@ jobs:
   chromatic_review:
     # (if) Run this step on non-dependabot PRs.
     if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
+    name: Chromatic - Build on review PR (push)
     uses: ./.github/workflows/chromatic-build.yml
     with:
       target: 'review'
+    secrets:
+      projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
 
   chromatic_dependabot:
     # (else) Run this step on dependabot PRs.
     if: github.actor == 'dependabot[bot]'
+    name: Chromatic - Skip on dependabot PRs (push)
     uses: ./.github/workflows/chromatic-build.yml
     with:
       target: 'dependabot'
+    secrets:
+      projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
