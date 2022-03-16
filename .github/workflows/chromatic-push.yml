@@ -3,13 +3,14 @@ name: Chromatic - Push
 on: push
 
 jobs:
-  chromatic:
+  chromatic_review:
     # (if) Run this step on non-dependabot PRs.
     if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
     uses: ./.github/workflows/chromatic-build.yml
     with:
       target: 'review'
 
+  chromatic_dependabot:
     # (else) Run this step on dependabot PRs.
     if: github.actor == 'dependabot[bot]'
     uses: ./.github/workflows/chromatic-build.yml
