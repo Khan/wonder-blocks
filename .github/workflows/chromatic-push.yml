@@ -3,39 +3,17 @@ name: Chromatic - Push
 on: push
 
 jobs:
-
-  setup:
-    uses: ./.github/workflows/chromatic-build.yml
-
   chromatic:
-    needs: [setup]
-    name: Publish to Chromatic
-    runs-on: ${{ matrix.os }}
-    env:
-      CI: true
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [16.x]
-    steps:
     # (if) Run this step on non-dependabot PRs.
-    - name: Publish to Chromatic for visual testing
-      if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-      uses: chromaui/action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-        autoAcceptChanges: "main"
+    if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
+    name: Chromatic - Build on review PR (push)
+    uses: ./.github/workflows/chromatic-build.yml
+    with:
+      target: 'review'
+
     # (else) Run this step on dependabot PRs.
-    - name: Skip Chromatic builds
-      if: ${{ github.actor == 'dependabot[bot]' }}
-      uses: chromaui/action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-        exitZeroOnChanges: true
-        # This is a flag that allows us to skip the build in the case of a
-        # dependabot PR. We still need to report the build as successful so that
-        # the checks are valid and Dependabot can continue.
-        skip: true
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    name: Chromatic - Skip on dependabot PR (push)
+    uses: ./.github/workflows/chromatic-build.yml
+    with:
+      target: 'dependabot'

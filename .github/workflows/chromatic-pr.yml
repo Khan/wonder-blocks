@@ -1,4 +1,4 @@
-name: Chromatic - Release PR
+name: Chromatic - Release PR opened
 
 on:
   pull_request:
@@ -6,30 +6,10 @@ on:
       - opened
 
 jobs:
-
-  setup:
-    # Only run this workflow when the Release PR is opened/created.
-    if: startsWith(github.head_ref, 'changeset-release/')
-    uses: ./.github/workflows/chromatic-build.yml
-
   chromatic:
-    needs: [setup]
-    name: Publish to Chromatic
-    runs-on: ${{ matrix.os }}
-    env:
-      CI: true
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [16.x]
     # Only run this workflow when the Release PR is opened/created.
     if: startsWith(github.head_ref, 'changeset-release/')
-    steps:
-    - name: Auto-accept Chromatic changes
-      if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
-      uses: chromaui/action@v1
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-        autoAcceptChanges: true
+    name: Chromatic - Build on release PR (PR opened)
+    uses: ./.github/workflows/chromatic-build.yml
+    with:
+      target: "release"

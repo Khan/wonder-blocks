@@ -2,7 +2,14 @@
 # the project.
 name: Install and build Chromatic dependencies
 
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      # Determines which Chromatic step to run.
+      # One of: "review" | "dependabot" | "release".
+      target:
+        required: true
+        type: string
 
 jobs:
   chromatic:
@@ -46,3 +53,34 @@ jobs:
 
     - name: yarn build:all
       run: yarn build:all
+
+    # (if) Run this step on non-dependabot PRs.
+    - name: Publish to Chromatic for visual testing (review PRs only)
+      if: ${{inputs.target}} == 'review'
+      uses: chromaui/action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+        autoAcceptChanges: "main"
+
+    # (if) Run this step on dependabot PRs.
+    - name: Skip Chromatic builds (dependabot PRs only)
+      if: ${{inputs.target}} == 'dependabot'
+      uses: chromaui/action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+        exitZeroOnChanges: true
+        # This is a flag that allows us to skip the build in the case of a
+        # dependabot PR. We still need to report the build as successful so that
+        # the checks are valid and Dependabot can continue.
+        skip: true
+
+    # (if) Run this step on release PRs.
+    - name: Auto-accept Chromatic changes (release PRs only)
+      if: ${{inputs.target}} == 'release'
+      uses: chromaui/action@v1
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
+        autoAcceptChanges: true
