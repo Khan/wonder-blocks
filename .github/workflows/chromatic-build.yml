@@ -60,16 +60,19 @@ jobs:
 
     # (if) Run this step on non-dependabot PRs.
     - name: Publish to Chromatic for visual testing (review PRs only)
-      if: ${{inputs.target}} == 'review'
+      if: ${{ inputs.target == 'review' }}
       uses: chromaui/action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
         autoAcceptChanges: "main"
+        # Generate snapshots for only changed stories
+        # See: https://www.chromatic.com/docs/turbosnap
+        onlyChanged: true
 
     # (if) Run this step on dependabot PRs.
     - name: Skip Chromatic builds (dependabot PRs only)
-      if: ${{inputs.target}} == 'dependabot'
+      if: ${{ inputs.target == 'dependabot' }}
       uses: chromaui/action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -82,7 +85,7 @@ jobs:
 
     # (if) Run this step on release PRs.
     - name: Auto-accept Chromatic changes (release PRs only)
-      if: ${{inputs.target}} == 'release'
+      if: ${{ inputs.target == 'release' }}
       uses: chromaui/action@v1
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
