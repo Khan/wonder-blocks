@@ -24,10 +24,8 @@ describe("SingleSelect", () => {
         window.scrollTo.mockClear();
         onChange.mockReset();
         jest.spyOn(console, "error").mockReset();
-    });
-
-    afterEach(() => {
-        window.scrollTo.mockClear();
+        jest.runOnlyPendingTimers();
+        jest.useRealTimers();
     });
 
     describe("uncontrolled", () => {
@@ -186,43 +184,33 @@ describe("SingleSelect", () => {
             onToggle?: (opened: boolean) => mixed,
         |};
 
-        type State = {|
-            opened?: boolean,
-        |};
+        function ControlledComponent(props: Props) {
+            const [opened, setOpened] = React.useState(props.opened);
 
-        class ControlledComponent extends React.Component<Props, State> {
-            state: State = {
-                opened: this.props.opened,
+            const handleToggleMenu = (opened) => {
+                setOpened(opened);
+
+                props.onToggle && props.onToggle(opened);
             };
 
-            handleToggleMenu = (opened) => {
-                this.setState({
-                    opened: opened,
-                });
-
-                this.props.onToggle && this.props.onToggle(opened);
-            };
-
-            render(): React.Node {
-                return (
-                    <React.Fragment>
-                        <SingleSelect
-                            opened={this.state.opened}
-                            onToggle={this.handleToggleMenu}
-                            onChange={onChange}
-                            placeholder="Choose"
-                        >
-                            <OptionItem label="item 1" value="1" />
-                            <OptionItem label="item 2" value="2" />
-                            <OptionItem label="item 3" value="3" />
-                        </SingleSelect>
-                        <button
-                            data-test-id="parent-button"
-                            onClick={() => this.handleToggleMenu(true)}
-                        />
-                    </React.Fragment>
-                );
-            }
+            return (
+                <React.Fragment>
+                    <SingleSelect
+                        opened={opened}
+                        onToggle={handleToggleMenu}
+                        onChange={onChange}
+                        placeholder="Choose"
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </SingleSelect>
+                    <button
+                        data-test-id="parent-button"
+                        onClick={() => handleToggleMenu(true)}
+                    />
+                </React.Fragment>
+            );
         }
 
         it("opens the menu when the parent updates its state", () => {
