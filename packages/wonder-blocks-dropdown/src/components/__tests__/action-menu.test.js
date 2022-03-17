@@ -1,15 +1,13 @@
 //@flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
+
+import userEvent from "../../../../../utils/testing/user-event.js";
 
 import ActionItem from "../action-item.js";
 import OptionItem from "../option-item.js";
 import SeparatorItem from "../separator-item.js";
 import ActionMenu from "../action-menu.js";
-import DropdownOpener from "../dropdown-opener.js";
-import {keyCodes} from "../../util/constants.js";
-import ActionMenuOpenerCore from "../action-menu-opener-core.js";
 
 jest.mock("../dropdown-core-virtualized.js");
 
@@ -18,9 +16,18 @@ describe("ActionMenu", () => {
     const onToggle = jest.fn();
     const onChange = jest.fn();
 
+    beforeEach(() => {
+        jest.useFakeTimers();
+    });
+
+    afterEach(() => {
+        jest.runOnlyPendingTimers();
+        jest.useRealTimers();
+    });
+
     it("opens the menu on mouse click", () => {
         // Arrange
-        const menu = mount(
+        render(
             <ActionMenu
                 menuText={"Action menu!"}
                 testId="openTest"
@@ -34,16 +41,16 @@ describe("ActionMenu", () => {
         );
 
         // Act
-        const opener = menu.find(DropdownOpener);
-        opener.simulate("click");
+        const opener = screen.getByRole("button");
+        userEvent.click(opener);
 
         // Assert
-        expect(menu.state("opened")).toBe(true);
+        expect(screen.getByRole("menu")).toBeInTheDocument();
     });
 
     it("opens the menu on enter", () => {
         // Arrange
-        const menu = mount(
+        render(
             <ActionMenu
                 menuText={"Action menu!"}
                 testId="openTest"
@@ -57,17 +64,16 @@ describe("ActionMenu", () => {
         );
 
         // Act
-        const opener = menu.find(DropdownOpener);
-        opener.simulate("keydown", {keyCode: keyCodes.enter});
-        opener.simulate("keyup", {keyCode: keyCodes.enter});
+        userEvent.tab();
+        userEvent.keyboard("{enter}");
 
         // Assert
-        expect(menu.state("opened")).toBe(true);
+        expect(screen.getByRole("menu")).toBeInTheDocument();
     });
 
     it("closes itself on escape", () => {
         // Arrange
-        const menu = mount(
+        render(
             <ActionMenu
                 menuText={"Action menu!"}
                 testId="openTest"
@@ -80,21 +86,19 @@ describe("ActionMenu", () => {
             </ActionMenu>,
         );
 
+        userEvent.tab();
+        userEvent.keyboard("{enter}");
+
         // Act
-        const opener = menu.find(DropdownOpener);
-        // open using the mouse
-        opener.simulate("click");
-        // use keyboard to simulate the ESC key
-        opener.simulate("keydown", {keyCode: keyCodes.escape});
-        opener.simulate("keyup", {keyCode: keyCodes.escape});
+        userEvent.keyboard("{escape}");
 
         // Assert
-        expect(menu.state("opened")).toBe(false);
+        expect(screen.queryByRole("menu")).not.toBeInTheDocument();
     });
 
     it("closes itself on tab", () => {
         // Arrange
-        const menu = mount(
+        render(
             <ActionMenu
                 menuText={"Action menu!"}
                 testId="openTest"
@@ -107,21 +111,19 @@ describe("ActionMenu", () => {
             </ActionMenu>,
         );
 
+        userEvent.tab();
+        userEvent.keyboard("{enter}");
+
         // Act
-        const opener = menu.find(DropdownOpener);
-        // open using the mouse
-        opener.simulate("click");
-        // use keyboard to simulate the TAB key
-        opener.simulate("keydown", {keyCode: keyCodes.tab});
-        opener.simulate("keyup", {keyCode: keyCodes.tab});
+        userEvent.tab();
 
         // Assert
-        expect(menu.state("opened")).toBe(false);
+        expect(screen.queryByRole("menu")).not.toBeInTheDocument();
     });
 
     it("closes itself on an external mouse click", () => {
         // Arrange
-        const menu = mount(
+        const {container} = render(
             <ActionMenu
                 menuText={"Action menu!"}
                 testId="openTest"
@@ -134,20 +136,21 @@ describe("ActionMenu", () => {
             </ActionMenu>,
         );
 
-        // Act
-        const opener = menu.find(DropdownOpener);
+        const opener = screen.getByRole("button");
         // open using the mouse
-        opener.simulate("click");
+        userEvent.click(opener);
+
+        // Act
         // trigger body click
-        document.dispatchEvent(new MouseEvent("mouseup"));
+        userEvent.click(container);
 
         // Assert
-        expect(menu.state("opened")).toBe(false);
+        expect(screen.queryByRole("menu")).not.toBeInTheDocument();
     });
 
-    it("updates the aria-expanded value when opening and closing", () => {
+    it("updates the aria-expanded value when opening", () => {
         // Arrange
-        const menu = mount(
+        render(
             <ActionMenu
                 menuText={"Action menu!"}
                 testId="openTest"
@@ -160,51 +163,43 @@ describe("ActionMenu", () => {
             </ActionMenu>,
         );
 
-        let opener = menu.find(DropdownOpener);
-        let openerCore = menu.find(ActionMenuOpenerCore);
-        expect(openerCore.prop("opened")).toBe(false);
-        expect(opener.find("[aria-expanded='false']")).toExist();
-
         // Act
-        opener.simulate("keydown", {keyCode: keyCodes.enter});
-        opener.simulate("keyup", {keyCode: keyCodes.enter});
-        menu.update();
-        openerCore = menu.find(ActionMenuOpenerCore);
-        opener = menu.find(DropdownOpener);
+        const opener = screen.getByRole("button");
+        userEvent.click(opener);
 
         // Assert
-        expect(openerCore.prop("opened")).toBe(true);
-        expect(opener.find("[aria-expanded='true']")).toExist();
+        expect(opener).toHaveAttribute("aria-expanded", "true");
     });
 
     it("triggers actions", () => {
         // Arrange
         const onChange = jest.fn();
-        const menu = mount(
+        render(
             <ActionMenu
                 menuText={"Action menu!"}
                 onChange={onChange}
-                selectedValues={["toggle_a", "toggle_b"]}
+                selectedValues={["toggle_a"]}
             >
                 <OptionItem label="Toggle A" value="toggle_a" />
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.find(DropdownOpener).simulate("click");
+
+        userEvent.click(screen.getByRole("button"));
 
         // Act
         // toggle second OptionItem
-        const optionItem = menu.find(OptionItem).at(1);
-        optionItem.props().onToggle("toggle_b");
+        const optionItem = screen.getByText("Toggle B");
+        userEvent.click(optionItem);
 
         // Assert
-        expect(onChange).toHaveBeenCalledWith(["toggle_a"]);
+        expect(onChange).toHaveBeenCalledWith(["toggle_a", "toggle_b"]);
     });
 
     it("toggles select items", () => {
         // Arrange
         const onChange = jest.fn();
-        const menu = mount(
+        render(
             <ActionMenu
                 menuText={"Action menu!"}
                 onChange={onChange}
@@ -214,11 +209,11 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.find(DropdownOpener).simulate("click");
+        userEvent.click(screen.getByRole("button"));
 
         // Act
-        const optionItem = menu.find(OptionItem).at(0);
-        optionItem.props().onToggle("toggle_a");
+        const optionItem = screen.getByText("Toggle A");
+        userEvent.click(optionItem);
 
         // Assert
         expect(onChange).toHaveBeenCalledWith(["toggle_a"]);
@@ -227,7 +222,7 @@ describe("ActionMenu", () => {
     it("deselects selected OptionItems", () => {
         // Arrange
         const onChange = jest.fn();
-        const menu = mount(
+        render(
             <ActionMenu
                 menuText={"Action menu!"}
                 onChange={onChange}
@@ -237,12 +232,13 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.find(DropdownOpener).simulate("click");
+
+        userEvent.click(screen.getByRole("button"));
 
         // Act
-        // toggle second OptionItem
-        const optionItem = menu.find(OptionItem).at(1);
-        optionItem.props().onToggle("toggle_b");
+        // Deselect second OptionItem
+        const optionItem = screen.getByText("Toggle B");
+        userEvent.click(optionItem);
 
         // Assert
         expect(onChange).toHaveBeenCalledWith(["toggle_a"]);
@@ -250,7 +246,7 @@ describe("ActionMenu", () => {
 
     it("doesn't break with OptionItems but no onChange callback", () => {
         // Arrange
-        const menu = mount(
+        render(
             <ActionMenu
                 menuText={"Action menu!"}
                 selectedValues={["toggle_a", "toggle_b"]}
@@ -259,21 +255,22 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.find(DropdownOpener).simulate("click");
+
+        userEvent.click(screen.getByRole("button"));
 
         // Act, Assert
         expect(() => {
             // toggle second OptionItem
             // eslint-disable-next-line no-console
-            const optionItem = menu.find(OptionItem).at(1);
-            optionItem.props().onToggle("toggle_b");
+            const optionItem = screen.getByText("Toggle B");
+            userEvent.click(optionItem);
         }).not.toThrow();
     });
 
     it("works with extra selected values", () => {
         // Arrange
         const onChange = jest.fn();
-        const menu = mount(
+        render(
             <ActionMenu
                 menuText={"Action menu!"}
                 onChange={onChange}
@@ -283,68 +280,74 @@ describe("ActionMenu", () => {
                 <OptionItem label="Toggle B" value="toggle_b" />
             </ActionMenu>,
         );
-        menu.find(DropdownOpener).simulate("click");
+        userEvent.click(screen.getByRole("button"));
 
         // Act
         // toggle second OptionItem
-        const optionItem = menu.find(OptionItem).at(0);
-        optionItem.props().onToggle("toggle_a");
+        const optionItem = screen.getByText("Toggle A");
+        userEvent.click(optionItem);
 
         // Assert
         expect(onChange).toHaveBeenCalledWith(["toggle_z"]);
     });
 
     it("can have a menu with a single item", () => {
-        // Arrange, Act
-        const menu = mount(
+        // Arrange
+        render(
             <ActionMenu menuText={"Action menu!"}>
                 <ActionItem label="Action" />
             </ActionMenu>,
         );
-        menu.find(DropdownOpener).simulate("click");
+
+        // Act
+        userEvent.click(screen.getByRole("button"));
 
         // Assert
-        expect(menu.find(ActionItem)).toHaveLength(1);
+        expect(screen.getAllByRole("menuitem")).toHaveLength(1);
     });
 
     it("can have a menu with no items", () => {
-        // Arrange, Act
-        const menu = mount(<ActionMenu menuText={"Action menu!"} />);
-        menu.find(DropdownOpener).simulate("click");
+        // Arrange
+        render(<ActionMenu menuText={"Action menu!"} />);
+
+        // Act
+        userEvent.click(screen.getByRole("button"));
 
         // Assert
-        expect(menu.find(ActionItem)).toHaveLength(0);
+        expect(screen.queryByRole("menuitem")).not.toBeInTheDocument();
     });
 
     it("can have falsy items", () => {
-        // Arrange, Act
+        // Arrange
         const showDeleteAction = false;
-        const menu = mount(
+        render(
             <ActionMenu menuText={"Action menu!"}>
                 <ActionItem label="Create" />
                 {showDeleteAction && <ActionItem label="Delete" />}
             </ActionMenu>,
         );
-        menu.find(DropdownOpener).simulate("click");
+
+        // Act
+        userEvent.click(screen.getByRole("button"));
 
         // Assert
-        expect(menu.find(ActionItem)).toHaveLength(1);
-        expect(menu.find(ActionItem).first()).toHaveProp("label", "Create");
+        expect(screen.getAllByRole("menuitem")).toHaveLength(1);
+        expect(screen.getByText("Create")).toBeInTheDocument();
     });
 
     it("verifies testId is added to the opener", () => {
         // Arrange
-        const menu = mount(
+        render(
             <ActionMenu menuText={"Action menu!"} testId="some-test-id">
                 <ActionItem label="Create" />
             </ActionMenu>,
         );
 
         // Act
-        const opener = menu.find(DropdownOpener).find("button");
+        const opener = screen.getByRole("button");
 
         // Assert
-        expect(opener.prop("data-test-id")).toBe("some-test-id");
+        expect(opener).toHaveAttribute("data-test-id", "some-test-id");
     });
 
     describe("Controlled component", () => {
@@ -353,51 +356,39 @@ describe("ActionMenu", () => {
             onToggle?: (opened: boolean) => mixed,
         |};
 
-        type State = {|
-            opened?: boolean,
-        |};
-        class ControlledComponent extends React.Component<Props, State> {
-            state: State = {
-                opened: this.props.opened,
+        function ControlledComponent(props: Props) {
+            const [opened, setOpened] = React.useState(props.opened);
+
+            const handleToggleMenu = (opened) => {
+                setOpened(opened);
+                props.onToggle && props.onToggle(opened);
             };
 
-            handleToggleMenu = (opened) => {
-                this.setState({
-                    opened: opened,
-                });
-
-                this.props.onToggle && this.props.onToggle(opened);
-            };
-
-            render(): React.Node {
-                return (
-                    <React.Fragment>
-                        <ActionMenu
-                            opened={this.state.opened}
-                            onToggle={this.handleToggleMenu}
-                            menuText={"Action menu!"}
-                        >
-                            <ActionItem label="Create" />
-                            <ActionItem label="Delete" />
-                        </ActionMenu>
-                        <button
-                            data-test-id="parent-button"
-                            onClick={() => this.handleToggleMenu(true)}
-                        />
-                    </React.Fragment>
-                );
-            }
+            return (
+                <React.Fragment>
+                    <ActionMenu
+                        opened={opened}
+                        onToggle={handleToggleMenu}
+                        menuText={"Action menu!"}
+                    >
+                        <ActionItem label="Create" />
+                        <ActionItem label="Delete" />
+                    </ActionMenu>
+                    <button
+                        data-test-id="parent-button"
+                        onClick={() => handleToggleMenu(true)}
+                    />
+                </React.Fragment>
+            );
         }
 
         it("opens the menu when the parent updates its state", () => {
             // Arrange
             const onToggleMock = jest.fn();
-            const wrapper = mount(
-                <ControlledComponent onToggle={onToggleMock} />,
-            );
+            render(<ControlledComponent onToggle={onToggleMock} />);
 
             // Act
-            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            userEvent.click(screen.getByTestId("parent-button"));
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(true);
@@ -405,51 +396,37 @@ describe("ActionMenu", () => {
 
         it("closes the menu when the parent updates its state", () => {
             const onToggleMock = jest.fn();
-            const wrapper = mount(
-                <ControlledComponent onToggle={onToggleMock} />,
-            );
+            render(<ControlledComponent onToggle={onToggleMock} />);
 
             // Act
             // open the menu from the outside
-            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            userEvent.click(screen.getByTestId("parent-button"));
             // click on first item
-            wrapper.find(ActionItem).at(0).simulate("click");
+            userEvent.click(screen.getByText("Create"));
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(false);
         });
 
-        it("opens the menu when the anchor is clicked once", () => {
-            // Arrange
-            const wrapper = mount(<ControlledComponent />);
-
-            // Act
-            // click on the anchor
-            wrapper.find(DropdownOpener).simulate("click");
-
-            // Assert
-            expect(wrapper.find(ActionMenu).prop("opened")).toBe(true);
-        });
-
         it("closes the menu when an option is clicked", () => {
             // Arrange
-            const wrapper = mount(<ControlledComponent />);
+            render(<ControlledComponent />);
 
             // Act
             // open the menu from the outside
-            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            userEvent.click(screen.getByTestId("parent-button"));
             // pick an option to close the menu
-            wrapper.find(ActionItem).at(0).simulate("click");
+            userEvent.click(screen.getByText("Create"));
 
             // Assert
-            expect(wrapper.find(ActionMenu).prop("opened")).toBe(false);
+            expect(screen.queryByRole("menu")).not.toBeInTheDocument();
         });
     });
 
     describe("Custom Opener", () => {
         it("opens the menu when clicking on the custom opener", () => {
             // Arrange
-            const menu = mount(
+            render(
                 <ActionMenu
                     menuText={"Action menu!"}
                     testId="openTest"
@@ -464,18 +441,17 @@ describe("ActionMenu", () => {
             );
 
             // Act
-            const opener = menu.find(DropdownOpener);
-            opener.simulate("click");
+            userEvent.click(screen.getByLabelText("Search"));
 
             // Assert
-            expect(menu.state("opened")).toBe(true);
+            expect(screen.getByRole("menu")).toBeInTheDocument();
         });
 
         it("calls the custom onClick handler", () => {
             // Arrange
             const onClickMock = jest.fn();
 
-            const menu = mount(
+            render(
                 <ActionMenu
                     menuText={"Action menu!"}
                     testId="openTest"
@@ -490,8 +466,7 @@ describe("ActionMenu", () => {
             );
 
             // Act
-            const opener = menu.find(DropdownOpener);
-            opener.simulate("click");
+            userEvent.click(screen.getByLabelText("Search"));
 
             // Assert
             expect(onClickMock).toHaveBeenCalledTimes(1);
@@ -499,7 +474,7 @@ describe("ActionMenu", () => {
 
         it("verifies testId is passed from the custom opener", () => {
             // Arrange
-            const menu = mount(
+            render(
                 <ActionMenu
                     onChange={onChange}
                     menuText="Action menu!"
@@ -516,15 +491,15 @@ describe("ActionMenu", () => {
             );
 
             // Act
-            const opener = menu.find(DropdownOpener).find("button");
+            const opener = screen.getByLabelText("Custom opener");
 
             // Assert
-            expect(opener.prop("data-test-id")).toBe("custom-opener");
+            expect(opener).toHaveAttribute("data-test-id", "custom-opener");
         });
 
         it("verifies testId is not passed from the parent element", () => {
             // Arrange
-            const menu = mount(
+            render(
                 <ActionMenu
                     onChange={onChange}
                     menuText="Action menu!"
@@ -537,15 +512,15 @@ describe("ActionMenu", () => {
             );
 
             // Act
-            const opener = menu.find(DropdownOpener).find("button");
+            const opener = screen.getByLabelText("Custom opener");
 
             // Assert
-            expect(opener.prop("data-test-id")).not.toBeDefined();
+            expect(opener).not.toHaveAttribute("data-test-id");
         });
 
         it("passes the menu text to the custom opener", () => {
             // Arrange
-            const menu = mount(
+            render(
                 <ActionMenu
                     menuText="Action menu!"
                     testId="openTest"
@@ -566,13 +541,10 @@ describe("ActionMenu", () => {
             );
 
             // Act
-            const opener = menu.find(DropdownOpener);
-            // open dropdown
-            opener.simulate("click");
-            const openerElement = menu.find(`[data-test-id="custom-opener"]`);
+            const opener = screen.getByTestId("custom-opener");
 
             // Assert
-            expect(openerElement).toHaveText("Action menu!");
+            expect(opener).toHaveTextContent("Action menu!");
         });
     });
 });

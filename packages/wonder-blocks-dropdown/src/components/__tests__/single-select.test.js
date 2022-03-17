@@ -579,5 +579,33 @@ describe("SingleSelect", () => {
             // Assert
             expect(searchInput.textContent).toEqual("");
         });
+
+        it("should move focus to the dismiss button after pressing {tab} on the text input", () => {
+            // Arrange
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    isFilterable={true}
+                    placeholder="Choose"
+                    selectedValue="2"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+            // open the dropdown menu
+            userEvent.click(screen.getByRole("button"));
+
+            const searchInput = screen.getByPlaceholderText("Filter");
+            userEvent.paste(searchInput, "some text");
+
+            // Act
+            userEvent.tab();
+
+            // Assert
+            const dismissBtn = screen.getByLabelText("Clear search");
+            expect(dismissBtn).toHaveFocus();
+        });
     });
 });
