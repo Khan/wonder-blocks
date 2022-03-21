@@ -132,4 +132,12 @@ export type CellProps = {|
      * by default if react-router is present.
      */
     href?: string,
+
+    /**
+     * A target destination window for a link to open in. Should only be used
+     * when `href` is specified.
+     *
+     * TODO(WB-1262): only allow this prop when `href` is also set.t
+     */
+    target?: "_blank",
 |};
