@@ -109,6 +109,57 @@ describe("#useServerEffect", () => {
             );
         });
 
+        it("should not track the intercepted request if skip is true", () => {
+            // Arrange
+            const fakeHandler = jest.fn();
+            const interceptedHandler = jest.fn();
+            jest.spyOn(
+                UseRequestInterception,
+                "useRequestInterception",
+            ).mockReturnValue(interceptedHandler);
+            const trackDataRequestSpy = jest.spyOn(
+                RequestTracker.Default,
+                "trackDataRequest",
+            );
+
+            // Act
+            serverRenderHook(
+                () => useServerEffect("ID", fakeHandler, {skip: true}),
+                {
+                    wrapper: TrackData,
+                },
+            );
+
+            // Assert
+            expect(trackDataRequestSpy).not.toHaveBeenCalled();
+        });
+
+        it("should not track the intercepted request if there is a cached result", () => {
+            // Arrange
+            const fakeHandler = jest.fn();
+            const interceptedHandler = jest.fn();
+            jest.spyOn(SsrCache.Default, "getEntry").mockReturnValueOnce({
+                data: "DATA",
+                error: null,
+            });
+            jest.spyOn(
+                UseRequestInterception,
+                "useRequestInterception",
+            ).mockReturnValue(interceptedHandler);
+            const trackDataRequestSpy = jest.spyOn(
+                RequestTracker.Default,
+                "trackDataRequest",
+            );
+
+            // Act
+            serverRenderHook(() => useServerEffect("ID", fakeHandler), {
+                wrapper: TrackData,
+            });
+
+            // Assert
+            expect(trackDataRequestSpy).not.toHaveBeenCalled();
+        });
+
         it("should return data cached result", () => {
             // Arrange
             const fakeHandler = jest.fn();

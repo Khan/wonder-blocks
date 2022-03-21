@@ -47,6 +47,20 @@ describe("CellCore", () => {
         expect(screen.getByRole("button")).toBeInTheDocument();
     });
 
+    it("should add an anchor if href is set", () => {
+        // Arrange
+
+        // Act
+        render(
+            <CellCore href="/math">
+                <div>cell core content</div>
+            </CellCore>,
+        );
+
+        // Assert
+        expect(screen.getByRole("link")).toHaveAttribute("href", "/math");
+    });
+
     it("should add aria-label to the button", () => {
         // Arrange
 

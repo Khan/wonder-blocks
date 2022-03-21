@@ -15,11 +15,23 @@ import {Meta} from "@storybook/addon-docs";
 function useServerEffect<TData: ValidCacheData>(
     requestId: string,
     handler: () => Promise<TData>,
-    hydrate: boolean = true,
+    options?: ServerEffectOptions,
 ): ?Result<TData>;
 ```
 
 The `useServerEffect` hook is an integral part of server-side rendering. It has different behavior depending on whether it is running on the server (and in what context) or the client.
+
+```ts
+type ServerEffectOptions = {|
+    skip?: boolean,
+    hydrate?: boolean,
+|};
+```
+
+| Option | Default | Description |
+| ------ | ------- | ----------- |
+| `hydrate` | `true` | When `true`, the result of the effect when fulfilled using Wonder Blocks Data will be stored in the hydration cache for hydrating client-side; otherwise, the result will be stored in the server-side-only cache. |
+| `skip` | `false` | When `true`, the effect will not be tracked for fulfillment; otherwise, the effect will be tracked for fulfillment. |
 
 ## Server-side behavior
 

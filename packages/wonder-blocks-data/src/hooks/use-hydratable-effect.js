@@ -1,8 +1,6 @@
 // @flow
 import * as React from "react";
 
-import {AbortError} from "../util/abort-error.js";
-
 import {useServerEffect} from "./use-server-effect.js";
 import {useSharedCache} from "./use-shared-cache.js";
 import {useCachedEffect} from "./use-cached-effect.js";
@@ -141,16 +139,11 @@ export const useHydratableEffect = <TData: ValidCacheData>(
     // Now we instruct the server to perform the operation.
     // When client-side, this will look up any response for hydration; it does
     // not invoke the handler.
-    const serverResult = useServerEffect(
-        requestId,
-
-        // If we're skipped (unlikely in server worlds, but maybe),
-        // just give an aborted response.
-        skip ? () => Promise.reject(new AbortError("skipped")) : handler,
-
+    const serverResult = useServerEffect(requestId, handler, {
         // Only hydrate if our behavior isn't telling us not to.
-        clientBehavior !== WhenClientSide.DoNotHydrate,
-    );
+        hydrate: clientBehavior !== WhenClientSide.DoNotHydrate,
+        skip,
+    });
 
     const getDefaultCacheValue: () => ?Result<TData> = React.useCallback(() => {
         // If we don't have a requestId, it's our first render, the one

@@ -27,7 +27,7 @@ export const AccessoryMappings = {
         </View>
     ): React.Element<typeof View>),
     withImage: ((
-        <img src="/avatar.png" alt="ItemAvatar" width={48} height={48} />
+        <img src="./avatar.png" alt="ItemAvatar" width={48} height={48} />
     ): React$Element<"img">),
 };
 
@@ -116,6 +116,17 @@ export default {
         description: "Test ID used for e2e testing.",
         control: {type: "text"},
         table: {
+            type: {
+                summary: "string",
+            },
+        },
+    },
+    href: {
+        description:
+            "Optional href which Cell should direct to, uses client-side routing by default if react-router is present.",
+        control: {type: "text"},
+        table: {
+            category: "Navigation",
             type: {
                 summary: "string",
             },

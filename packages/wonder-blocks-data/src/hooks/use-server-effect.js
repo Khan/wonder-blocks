@@ -8,6 +8,29 @@ import {useRequestInterception} from "./use-request-interception.js";
 
 import type {Result, ValidCacheData} from "../util/types.js";
 
+type ServerEffectOptions = {|
+    /**
+     * When `true`, the result of the effect when fulfilled using Wonder Blocks
+     * Data will be stored in the hydration cache for hydrating client-side;
+     * otherwise, the result will be stored in the server-side-only cache.
+     *
+     * This should only be set to `false` if something else will be responsible
+     * for hydration of the data on the client-side (for example, if Apollo's
+     * hydration support is used).
+     *
+     * Default is `true`.
+     */
+    hydrate?: boolean,
+
+    /**
+     * When `true`, the effect will not be tracked for fulfillment; otherwise,
+     * the effect will be tracked for fulfillment.
+     *
+     * Default is `false`.
+     */
+    skip?: boolean,
+|};
+
 /**
  * Hook to perform an asynchronous action during server-side rendering.
  *
@@ -26,8 +49,10 @@ import type {Result, ValidCacheData} from "../util/types.js";
 export const useServerEffect = <TData: ValidCacheData>(
     requestId: string,
     handler: () => Promise<TData>,
-    hydrate: boolean = true,
+    options: ServerEffectOptions = ({}: $Shape<ServerEffectOptions>),
 ): ?Result<TData> => {
+    const {hydrate = true, skip = false} = options;
+
     // Plug in to the request interception framework for code that wants
     // to use that.
     const interceptedHandler = useRequestInterception(requestId, handler);
@@ -39,11 +64,11 @@ export const useServerEffect = <TData: ValidCacheData>(
     // initial render - and subsequent renders on the client it will be null.
     const cachedResult = SsrCache.Default.getEntry<TData>(requestId);
 
-    // We only track data requests when we are server-side and we don't
-    // already have a result, as given by the cachedData (which is also the
-    // initial value for the result state).
+    // We only track data requests when we are server-side, we are not skipping
+    // the request, and we don't already have a result, as given by the
+    // cachedData (which is also the initial value for the result state).
     const maybeTrack = useContext(TrackerContext);
-    if (cachedResult == null && Server.isServerSide()) {
+    if (!skip && cachedResult == null && Server.isServerSide()) {
         maybeTrack?.(requestId, interceptedHandler, hydrate);
     }
 

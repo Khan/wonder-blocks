@@ -119,6 +119,7 @@ const CellCore = (props: CellCoreProps): React.Node => {
         active,
         children,
         disabled,
+        href,
         horizontalRule = "inset",
         leftAccessory = undefined,
         leftAccessoryStyle = undefined,
@@ -129,6 +130,7 @@ const CellCore = (props: CellCoreProps): React.Node => {
         testId,
         "aria-label": ariaLabel,
         innerStyle,
+        target,
     } = props;
 
     const renderCell = (eventState?: ClickableState): React.Node => {
@@ -191,13 +193,15 @@ const CellCore = (props: CellCoreProps): React.Node => {
     };
 
     // Pressable cell.
-    if (onClick) {
+    if (onClick || href) {
         return (
             <Clickable
                 disabled={disabled}
                 onClick={onClick}
+                href={href}
                 hideDefaultFocusRing={true}
                 aria-label={ariaLabel ? ariaLabel : undefined}
+                target={target}
             >
                 {(eventState) => renderCell(eventState)}
             </Clickable>

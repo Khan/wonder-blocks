@@ -81,6 +81,8 @@ export type SharedProps = {|
 
     /**
      * A target destination window for a link to open in.
+     *
+     * TODO(WB-1262): only allow this prop when `href` is also set.t
      */
     target?: "_blank",
 
