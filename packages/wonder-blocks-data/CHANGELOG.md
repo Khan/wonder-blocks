@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 7.0.0
+
+### Major Changes
+
+-   34407c4a: `useServerEffect` now has a `skip` option, preventing the request from getting tracked for server-side fulfillment
+
 ## 6.0.1
 
 ### Patch Changes

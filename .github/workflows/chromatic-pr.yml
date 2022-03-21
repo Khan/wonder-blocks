@@ -1,0 +1,17 @@
+name: Chromatic - Release PR opened
+
+on:
+  pull_request:
+    types:
+      - opened
+
+jobs:
+  chromatic:
+    # Only run this workflow when the Release PR is opened/created.
+    if: startsWith(github.head_ref, 'changeset-release/')
+    name: Chromatic - Build on Release PR (PR opened)
+    uses: ./.github/workflows/chromatic-build.yml
+    with:
+      target: 'release'
+    secrets:
+      projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
