@@ -52,8 +52,8 @@ describe("DropdownCoreVirtualized", () => {
             />,
         );
 
-        // Assert
-        // make sure we are rendering the longest item first
+        // Assert make sure we are rendering from the longest item to the
+        // shortest item.
         expect(container).toHaveTextContent(/ccc.*bb.*a/i);
     });
 
