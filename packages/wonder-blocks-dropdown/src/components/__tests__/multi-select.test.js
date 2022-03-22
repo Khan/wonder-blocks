@@ -1,215 +1,200 @@
 /* eslint-disable max-lines */
 //@flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
 
-import {ClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
-import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import userEvent from "../../../../../utils/testing/user-event.js";
 
-import DropdownOpener from "../dropdown-opener.js";
-import SelectOpener from "../select-opener.js";
-import ActionItem from "../action-item.js";
 import OptionItem from "../option-item.js";
 import MultiSelect from "../multi-select.js";
-import {keyCodes} from "../../util/constants.js";
-import SearchTextInput from "../search-text-input.js";
-
-import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
 
 import type {Labels} from "../multi-select.js";
 
-jest.useFakeTimers();
-
 jest.mock("../dropdown-core-virtualized.js");
 
-describe("MultiSelect", () => {
-    let select;
-    const allChanges = [];
-    const saveUpdate = (update) => {
-        allChanges.push(update);
-    };
-    const onChange = jest.fn();
+const labels: $Shape<Labels> = {
+    selectAllLabel: (numOptions) => `Sellect all (${numOptions})`,
+    noneSelected: "Choose",
+    someSelected: (numSelectedValues) => `${numSelectedValues} students`,
+    allSelected: "All students",
+};
 
+describe("MultiSelect", () => {
     beforeEach(() => {
         jest.useFakeTimers();
+    });
 
-        // Jest doesn't fake out the animation frame API, so we're going to do
-        // it here and map it to timeouts, that way we can use the fake timer
-        // API to test our animation frame things.
-        jest.spyOn(global, "requestAnimationFrame").mockImplementation((fn) =>
-            setTimeout(fn, 0),
-        );
-        jest.spyOn(global, "cancelAnimationFrame").mockImplementation((id) =>
-            clearTimeout(id),
-        );
+    afterEach(() => {
+        jest.runOnlyPendingTimers();
+        jest.useRealTimers();
+    });
 
-        const labels: $Shape<Labels> = {
-            selectAllLabel: (numOptions) => `Sellect all (${numOptions})`,
-            noneSelected: "Choose",
-            someSelected: (numSelectedValues) =>
-                `${numSelectedValues} students`,
-            allSelected: "All students",
-        };
-
-        select = mount(
+    describe("uncontrolled", () => {
+        const onChange = jest.fn();
+        const uncontrolledSingleSelect = (
             <MultiSelect
-                onChange={(selectedValues) => {
-                    saveUpdate(selectedValues);
-                    onChange();
-                }}
-                selectedValues={["2"]}
-                shortcuts={true}
+                onChange={onChange}
+                selectedValues={[]}
                 labels={labels}
             >
                 <OptionItem label="item 1" value="1" />
                 <OptionItem label="item 2" value="2" />
                 <OptionItem label="item 3" value="3" />
                 {false && <OptionItem label="item 4" value="4" />}
-            </MultiSelect>,
-        );
-    });
-
-    afterEach(() => {
-        // We have to explicitly unmount before clearing mocks, otherwise jest
-        // timers will throw because we'll try to clear an animation frame that
-        // we set with a setTimeout but are clearing with clearAnimationFrame
-        // because we restored the clearAnimationFrame mock (and we won't
-        // have cleared the timeout we actually set!)
-        unmountAll();
-        jest.restoreAllMocks();
-    });
-
-    it("closes/opens the select on mouse click, space, and enter", () => {
-        const opener = select.find(SelectOpener);
-        expect(select.state("open")).toEqual(false);
-
-        // Open select with mouse
-        opener.simulate("mousedown");
-        opener.simulate("mouseup");
-        opener.simulate("click");
-        expect(select.state("open")).toEqual(true);
-
-        // Close select with space
-        opener.simulate("keydown", {keyCode: keyCodes.space});
-        opener.simulate("keyup", {keyCode: keyCodes.space});
-        expect(select.state("open")).toEqual(false);
-
-        // Should open with enter
-        opener.simulate("keydown", {keyCode: keyCodes.enter});
-        opener.simulate("keyup", {keyCode: keyCodes.enter});
-        expect(select.state("open")).toEqual(true);
-    });
-
-    it("selects items as expected", () => {
-        select.setState({open: true});
-        const noop = jest.fn();
-        const nativeEvent = {
-            nativeEvent: {stopImmediatePropagation: noop},
-        };
-
-        expect(select.prop("selectedValues")).toEqual(["2"]);
-
-        // Grab the second item in the list
-        const item = select.find(OptionItem).at(0);
-        expect(item.text()).toEqual("item 1");
-        // Click the item 2, deselecting it
-        item.simulate("mousedown");
-        item.simulate("mouseup", nativeEvent);
-        item.simulate("click");
-
-        // Expect select's onChange callback to have been called
-        expect(onChange).toHaveBeenCalledTimes(1);
-        expect(allChanges.length).toEqual(1);
-        const currentlySelected = allChanges.pop();
-
-        // Expected selected items are now 1 and 2
-        expect(currentlySelected.length).toEqual(2);
-        expect(currentlySelected.includes("1")).toEqual(true);
-        expect(currentlySelected.includes("2")).toEqual(true);
-        expect(currentlySelected.includes("3")).toEqual(false);
-
-        // Now manually set the selectedValues like clients would
-        select.setProps({selectedValues: ["1", "2"]});
-
-        // This select should still be open afer a selection
-        expect(select.state("open")).toEqual(true);
-
-        // Select all of the items
-        const selectAll = select.find(ActionItem).at(0);
-        selectAll.simulate("mousedown");
-        selectAll.simulate("mouseup", nativeEvent);
-        selectAll.simulate("click");
-        expect(allChanges.pop().length).toEqual(3);
-
-        // Select none of the items
-        const selectNone = select.find(ActionItem).at(1);
-        selectNone.simulate("mousedown");
-        selectNone.simulate("mouseup", nativeEvent);
-        selectNone.simulate("click");
-        expect(allChanges.pop().length).toEqual(0);
-
-        // Menu should still be open
-        expect(select.state("open")).toEqual(true);
-    });
-
-    it("displays correct text for opener", () => {
-        const opener = select.find(SelectOpener);
-
-        // No items are selected, display placeholder because there is one
-        select.setProps({selectedValues: []});
-        expect(opener.text()).toEqual("Choose");
-
-        // One item is selected, display that item's label
-        select.setProps({selectedValues: ["1"]});
-        expect(opener.text()).toEqual("item 1");
-
-        // More than one item is selected, display n itemTypes
-        select.setProps({selectedValues: ["1", "2"]});
-        expect(opener.text()).toEqual("2 students");
-
-        // All items are selected
-        select.setProps({selectedValues: ["1", "2", "3"]});
-        expect(opener.text()).toEqual("All students");
-    });
-
-    it("displays All selected text when no items is selected for opener with implicitAllEnabled", () => {
-        // Arrange, Act
-        const opener = select.find(SelectOpener);
-        select.setProps({implicitAllEnabled: true, selectedValues: []});
-
-        // Assert
-        expect(opener.text()).toEqual("All students");
-    });
-
-    it("verifies testId is added to the opener", () => {
-        // Arrange
-        const wrapper = mount(
-            <MultiSelect
-                selectedValues={["2"]}
-                onChange={onChange}
-                testId="some-test-id"
-            >
-                <OptionItem label="item 1" value="1" />
-                <OptionItem label="item 2" value="2" />
-            </MultiSelect>,
+            </MultiSelect>
         );
 
-        // Act
-        const opener = wrapper.find(SelectOpener).find("button");
+        it("opens the select on mouse click", () => {
+            // Arrange
+            render(uncontrolledSingleSelect);
 
-        // Assert
-        expect(opener.prop("data-test-id")).toBe("some-test-id");
+            // Act
+            userEvent.click(screen.getByRole("button"));
+
+            // Assert
+            expect(screen.getByRole("listbox")).toBeInTheDocument();
+        });
+
+        it("closes the select on {escape}", () => {
+            // Arrange
+            render(uncontrolledSingleSelect);
+
+            userEvent.tab();
+            userEvent.keyboard("{enter}"); // open
+
+            // Act
+            userEvent.keyboard("{escape}");
+
+            // Assert
+            expect(onChange).not.toHaveBeenCalled();
+            expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+        });
+
+        it("displays correct text for opener", () => {
+            // Arrange
+            render(uncontrolledSingleSelect);
+
+            // Act
+            const opener = screen.getByRole("button");
+
+            // Assert
+            // No items are selected, display placeholder because there is one
+            expect(opener).toHaveTextContent("Choose");
+        });
+
+        it("displays correct text for opener when there's one item selected", () => {
+            // Arrange
+
+            // Act
+            render(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={["1"]}
+                    labels={labels}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Assert
+            expect(screen.getByRole("button")).toHaveTextContent("item 1");
+        });
+
+        it("displays correct text for opener when there's more than one item selected", () => {
+            // Arrange
+
+            // Act
+            render(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={["1", "2"]}
+                    labels={labels}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Assert
+            // More than one item is selected, display n itemTypes
+            expect(screen.getByRole("button")).toHaveTextContent("2 students");
+        });
+
+        it("displays correct text for opener when all items are selected", () => {
+            // Arrange
+
+            // Act
+            render(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={["1", "2", "3"]}
+                    labels={labels}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Assert
+            // All items are selected
+            expect(screen.getByRole("button")).toHaveTextContent(
+                "All students",
+            );
+        });
+
+        it("displays All selected text when no items is selected for opener with implicitAllEnabled", () => {
+            // Arrange
+
+            // Act
+            render(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={[]}
+                    labels={labels}
+                    implicitAllEnabled={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Assert
+            expect(screen.getByRole("button")).toHaveTextContent(
+                "All students",
+            );
+        });
+
+        it("verifies testId is added to the opener", () => {
+            // Arrange
+            render(
+                <MultiSelect
+                    selectedValues={["2"]}
+                    onChange={onChange}
+                    testId="some-test-id"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+
+            // Act
+            const opener = screen.getByRole("button");
+
+            // Assert
+            expect(opener).toHaveAttribute("data-test-id", "some-test-id");
+        });
     });
 
     describe("Controlled component", () => {
         type Props = {|
             opened?: boolean,
             onToggle?: (opened: boolean) => mixed,
-        |};
-
-        type State = {|
-            opened?: boolean,
+            shortcuts?: boolean,
         |};
 
         const labels: $Shape<Labels> = {
@@ -218,50 +203,49 @@ describe("MultiSelect", () => {
             someSelected: (numSelectedValues) => `${numSelectedValues} fruits`,
         };
 
-        class ControlledComponent extends React.Component<Props, State> {
-            state: State = {
-                opened: this.props.opened,
+        function ControlledComponent(props: Props) {
+            const [opened, setOpened] = React.useState(props.opened ?? false);
+            const [selectedValues, setSelectedValues] = React.useState([]);
+
+            const handleToggleMenu = (opened) => {
+                setOpened(opened);
+                props.onToggle && props.onToggle(opened);
             };
 
-            handleToggleMenu = (opened) => {
-                this.setState({
-                    opened: opened,
-                });
-
-                this.props.onToggle && this.props.onToggle(opened);
+            const handleChange = (newValues) => {
+                setSelectedValues(newValues);
             };
 
-            render(): React.Node {
-                return (
-                    <React.Fragment>
-                        <MultiSelect
-                            labels={labels}
-                            onChange={onChange}
-                            opened={this.state.opened}
-                            onToggle={this.handleToggleMenu}
-                        >
-                            <OptionItem label="item 1" value="1" />
-                            <OptionItem label="item 2" value="2" />
-                            <OptionItem label="item 3" value="3" />
-                        </MultiSelect>
-                        <button
-                            data-test-id="parent-button"
-                            onClick={() => this.handleToggleMenu(true)}
-                        />
-                    </React.Fragment>
-                );
-            }
+            return (
+                <React.Fragment>
+                    <MultiSelect
+                        labels={labels}
+                        onChange={handleChange}
+                        opened={opened}
+                        onToggle={handleToggleMenu}
+                        testId="multi-select-opener"
+                        selectedValues={selectedValues}
+                        shortcuts={props.shortcuts}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                    <button
+                        data-test-id="parent-button"
+                        onClick={() => handleToggleMenu(true)}
+                    />
+                </React.Fragment>
+            );
         }
 
         it("opens the menu when the parent updates its state", () => {
             // Arrange
             const onToggleMock = jest.fn();
-            const wrapper = mount(
-                <ControlledComponent onToggle={onToggleMock} />,
-            );
+            render(<ControlledComponent onToggle={onToggleMock} />);
 
             // Act
-            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            userEvent.click(screen.getByTestId("parent-button"));
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(true);
@@ -270,29 +254,28 @@ describe("MultiSelect", () => {
         it("closes the menu when the parent updates its state", () => {
             // Arrange
             const onToggleMock = jest.fn();
-            const wrapper = mount(
-                <ControlledComponent onToggle={onToggleMock} />,
-            );
+            render(<ControlledComponent onToggle={onToggleMock} />);
 
             // Act
             // open the menu from the outside
-            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            userEvent.click(screen.getByTestId("parent-button"));
             // click on the opener
-            wrapper.find(SelectOpener).simulate("click");
+            userEvent.click(screen.getByTestId("multi-select-opener"));
 
             // Assert
-            expect(onToggleMock).toHaveBeenCalledWith(false);
+            expect(onToggleMock).toHaveBeenCalledTimes(2);
+            expect(onToggleMock).toHaveBeenNthCalledWith(1, true);
+            expect(onToggleMock).toHaveBeenNthCalledWith(2, false);
         });
 
         it("should still allow the opener to open the menu", () => {
             // Arrange
             const onToggleMock = jest.fn();
-            const wrapper = mount(
-                <ControlledComponent onToggle={onToggleMock} />,
-            );
+            render(<ControlledComponent onToggle={onToggleMock} />);
 
             // Act
-            wrapper.find(SelectOpener).simulate("click");
+            // click on the opener
+            userEvent.click(screen.getByTestId("multi-select-opener"));
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(true);
@@ -300,183 +283,399 @@ describe("MultiSelect", () => {
 
         it("opens the menu when the anchor is clicked once", () => {
             // Arrange
-            const wrapper = mount(<ControlledComponent />);
+            render(<ControlledComponent />);
 
             // Act
-            // click on the anchor
-            wrapper.find(SelectOpener).simulate("click");
+            userEvent.click(screen.getByTestId("multi-select-opener"));
 
             // Assert
-            expect(wrapper.find(MultiSelect).prop("opened")).toBe(true);
+            expect(screen.getByRole("listbox")).toBeInTheDocument();
         });
 
         it("closes the menu when the anchor is clicked", () => {
             // Arrange
-            const wrapper = mount(<ControlledComponent />);
+            render(<ControlledComponent />);
 
             // Act
             // open the menu from the outside
-            wrapper.find(`[data-test-id="parent-button"]`).simulate("click");
+            userEvent.click(screen.getByTestId("parent-button"));
             // click on the dropdown anchor to hide the menu
-            wrapper.find(SelectOpener).simulate("click");
+            userEvent.click(screen.getByTestId("multi-select-opener"));
 
             // Assert
-            expect(wrapper.find(MultiSelect).prop("opened")).toBe(false);
+            expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+        });
+
+        it("selects on item as expected", async () => {
+            // Arrange
+            render(<ControlledComponent />);
+
+            const opener = screen.getByTestId("multi-select-opener");
+            userEvent.click(opener);
+
+            // Act
+            // Grab the second item in the list
+            const item = await screen.findByRole("option", {
+                name: "item 2",
+            });
+            userEvent.click(item, undefined, {
+                skipPointerEventsCheck: true, // Popper compatibility
+            });
+
+            // Assert
+            expect(item).toHaveAttribute("aria-selected", "true");
+            expect(opener).toHaveTextContent("item 2");
+        });
+
+        it("dropdown menu is still open after selection", async () => {
+            // Arrange
+            const onToggleMock = jest.fn();
+            render(<ControlledComponent onToggle={onToggleMock} />);
+
+            const opener = screen.getByTestId("multi-select-opener");
+            userEvent.click(opener);
+
+            // Act
+            // Grab the second item in the list
+            const item = await screen.findByRole("option", {
+                name: "item 2",
+            });
+            userEvent.click(item, undefined, {
+                skipPointerEventsCheck: true, // Popper compatibility
+            });
+
+            // Assert
+            expect(onToggleMock).toHaveBeenCalledTimes(1);
+            // expect(screen.getByRole("listbox")).toBeInTheDocument();
+        });
+
+        it("selects two items as expected", () => {
+            // Arrange
+            render(<ControlledComponent />);
+
+            const opener = screen.getByTestId("multi-select-opener");
+            userEvent.click(opener);
+
+            // Act
+            // Select the second and third items in the list
+            const secondOption = screen.getByText("item 2");
+            userEvent.click(secondOption, undefined, {
+                skipPointerEventsCheck: true, // Popper compatibility
+            });
+            const thirdOption = screen.getByText("item 3");
+            userEvent.click(thirdOption, undefined, {
+                skipPointerEventsCheck: true, // Popper compatibility
+            });
+
+            // Assert
+            expect(opener).toHaveTextContent("2 fruits");
+
+            // // Select none of the items
+            // const selectNone = select.find(ActionItem).at(1);
+            // selectNone.simulate("mousedown");
+            // selectNone.simulate("mouseup", nativeEvent);
+            // selectNone.simulate("click");
+            // expect(allChanges.pop().length).toEqual(0)
+        });
+
+        it("selects two items, then unselect one as expected", () => {
+            // Arrange
+            const onToggleMock = jest.fn();
+            render(<ControlledComponent onToggle={onToggleMock} />);
+
+            const opener = screen.getByTestId("multi-select-opener");
+            userEvent.click(opener);
+
+            // Select the second and third items in the list
+            const secondOption = screen.getByText("item 2");
+            userEvent.click(secondOption, undefined, {
+                skipPointerEventsCheck: true, // Popper compatibility
+            });
+            const thirdOption = screen.getByText("item 3");
+            userEvent.click(thirdOption, undefined, {
+                skipPointerEventsCheck: true, // Popper compatibility
+            });
+
+            // Act
+            // Unselect the first item selected
+            userEvent.click(secondOption, undefined, {
+                skipPointerEventsCheck: true, // Popper compatibility
+            });
+
+            // Assert
+            expect(opener).toHaveTextContent("item 3");
+        });
+
+        it("selects all the items when the 'All items' shortcut is selected", () => {
+            // Arrange
+            render(<ControlledComponent shortcuts={true} />);
+
+            const opener = screen.getByTestId("multi-select-opener");
+            userEvent.click(opener);
+
+            // Act
+            // Select all of the items
+            const selectAll = screen.getByText(/Select all/i);
+            userEvent.click(selectAll, undefined, {
+                skipPointerEventsCheck: true, // Popper compatibility
+            });
+
+            // Assert
+            expect(opener).toHaveTextContent("All fruits");
+        });
+
+        it("deselects all the items when the 'Select none' shortcut is selected", () => {
+            // Arrange
+            render(<ControlledComponent shortcuts={true} />);
+
+            const opener = screen.getByTestId("multi-select-opener");
+            userEvent.click(opener);
+
+            // First, select all of the items
+            const selectAll = screen.getByText(/Select all/i);
+            userEvent.click(selectAll, undefined, {
+                skipPointerEventsCheck: true, // Popper compatibility
+            });
+
+            // Act
+            const selectNone = screen.getByText(/Select none/i);
+            userEvent.click(selectNone, undefined, {
+                skipPointerEventsCheck: true, // Popper compatibility
+            });
+
+            // Assert
+            expect(opener).toHaveTextContent("0 items");
         });
     });
 
-    it("displays SearchTextInput when isFilterable is true", () => {
-        // Arrange
-        select.setProps({isFilterable: true});
-        select.setState({open: true});
+    describe("isFilterable", () => {
+        const onChange = jest.fn();
 
-        // Act
-        const searchInput = select.find(SearchTextInput);
+        const filterableSingleSelect = (
+            <MultiSelect
+                onChange={onChange}
+                selectedValues={[]}
+                labels={labels}
+                isFilterable={true}
+            >
+                <OptionItem label="item 1" value="1" />
+                <OptionItem label="item 2" value="2" />
+                <OptionItem label="item 3" value="3" />
+                {false && <OptionItem label="item 4" value="4" />}
+            </MultiSelect>
+        );
 
-        // Assert
-        expect(searchInput.exists()).toBe(true);
-    });
+        it("displays SearchTextInput when isFilterable is true", () => {
+            // Arrange
+            render(filterableSingleSelect);
+            // open the dropdown menu
+            userEvent.click(screen.getByRole("button"));
 
-    it("displays SearchTextInput with dismiss button when search text exists", () => {
-        // Arrange
-        select.setProps({isFilterable: true});
-        select.setState({open: true});
-        expect(select.find(IconButton).exists()).toBe(false);
+            // Act
+            const searchInput = screen.getByPlaceholderText("Filter");
 
-        // Act
-        select.setState({searchText: "text"});
-
-        // Assert
-        expect(select.find(IconButton).exists()).toBe(true);
-    });
-
-    it("filters the items by the search input (case insensitive)", () => {
-        // Arrange
-        select.setProps({isFilterable: true});
-
-        // Act
-        select.setState({
-            open: true,
-            searchText: "Item 1",
+            // Assert
+            expect(searchInput).toBeInTheDocument();
         });
 
-        // Assert
-        expect(select.find(OptionItem).at(0).text()).toEqual("item 1");
-        expect(select.find(OptionItem).at(1).exists()).toBe(false);
-    });
+        it("displays SearchTextInput with dismiss button when search text exists", () => {
+            // Arrange
+            render(filterableSingleSelect);
+            // open the dropdown menu
+            userEvent.click(screen.getByRole("button"));
 
-    it("Hides shortcuts when there are any text in search text input", () => {
-        // Arrange
-        select.setProps({isFilterable: true});
+            const searchInput = screen.getByPlaceholderText("Filter");
 
-        // Act
-        select.setState({open: true});
-        expect(select.find(ActionItem).at(0).exists()).toBe(true);
+            // Act
+            userEvent.type(searchInput, "text");
 
-        // Assert
-        select.setState({searchText: "2"});
-
-        expect(select.find(ActionItem).at(0).exists()).toBe(false);
-    });
-
-    it("Pressing arrow up from search input moves focus to previous focusable item", () => {
-        // Arrange
-        select.setProps({isFilterable: true, shortcuts: false});
-        select.setState({open: true});
-        const searchInput = select.find(SearchTextInput);
-        const lastOption = select
-            .find(OptionItem)
-            .at(2)
-            .find(ClickableBehavior);
-        jest.runAllTimers();
-        expect(searchInput.state("focused")).toBe(true);
-
-        // Act
-        select.simulate("keydown", {keyCode: keyCodes.up});
-        select.simulate("keyup", {keyCode: keyCodes.up});
-        jest.runAllTimers();
-
-        // Assert
-        expect(lastOption.state("focused")).toBe(true);
-    });
-
-    it("Pressing arrow down from search input moves focus to previous focusable item", () => {
-        // Arrange
-        select.setProps({isFilterable: true});
-        select.setState({open: true});
-        const searchInput = select.find(SearchTextInput);
-        const selectAll = select.find(ActionItem).at(0).find(ClickableBehavior);
-        jest.runAllTimers();
-        expect(searchInput.state("focused")).toBe(true);
-
-        // Act
-        select.simulate("keydown", {keyCode: keyCodes.down});
-        select.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers();
-
-        // Assert
-        expect(selectAll.state("focused")).toBe(true);
-    });
-
-    it("Selected items are at the top of the items when isFilterable is true", () => {
-        // Arrange
-        const opener = select.find(SelectOpener);
-        select.setProps({
-            isFilterable: true,
-            selectedValues: ["3"],
+            // Assert
+            expect(screen.getByLabelText("Clear search")).toBeInTheDocument();
         });
 
-        // Act
-        opener.simulate("click");
+        it("filters the items by the search input (case insensitive)", () => {
+            // Arrange
+            render(filterableSingleSelect);
+            // open the dropdown menu
+            userEvent.click(screen.getByRole("button"));
 
-        // Assert
-        const item3 = select.find(OptionItem).at(0);
-        expect(item3.text()).toEqual("item 3");
-    });
+            const searchInput = screen.getByPlaceholderText("Filter");
 
-    it("Type something in SearchTextInput should update searchText in MultiSelect", () => {
-        // Arrange
-        select.setProps({isFilterable: true});
-        select.setState({open: true});
-        const searchInput = select.find(SearchTextInput).find("input");
+            // Act
+            userEvent.type(searchInput, "Item 1");
 
-        // Act
-        searchInput.simulate("change", {target: {value: "Item 1"}});
+            // Assert
+            expect(screen.getAllByRole("option")).toHaveLength(1);
+        });
 
-        // Assert
-        expect(select.state("searchText")).toEqual("Item 1");
-    });
+        it("Hides shortcuts when there are any text in search text input", () => {
+            // Arrange
+            render(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={[]}
+                    labels={labels}
+                    isFilterable={true}
+                    shortcuts={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </MultiSelect>,
+            );
+            // open the dropdown menu
+            userEvent.click(screen.getByRole("button"));
 
-    it("Click dismiss button should clear the searchText in MultiSelect", () => {
-        // Arrange
-        select.setProps({isFilterable: true});
-        select.setState({open: true, searchText: "Should be cleared"});
-        const dismissBtn = select.find(IconButton);
+            const searchInput = screen.getByPlaceholderText("Filter");
 
-        // Act
-        dismissBtn.simulate("click");
+            // Act
+            userEvent.type(searchInput, "2");
 
-        // Assert
-        expect(select.state("searchText")).toEqual("");
-    });
+            // Assert
+            expect(screen.queryByText(/Select all/i)).not.toBeInTheDocument();
+        });
 
-    it("Open MultiSelect should clear the searchText", () => {
-        // Arrange
-        select.setProps({isFilterable: true});
-        select.setState({searchText: "some text"});
-        const opener = select.find(SelectOpener);
+        it("should focus on the search input after opening the dropdown", () => {
+            // Arrange
+            render(filterableSingleSelect);
+            // open the dropdown menu
+            userEvent.click(screen.getByRole("button"));
 
-        // Act
-        opener.simulate("click");
+            // Act
+            const searchInput = screen.getByPlaceholderText("Filter");
 
-        // Assert
-        expect(select.state("searchText")).toEqual("");
+            // Assert
+            expect(searchInput).toHaveFocus();
+        });
+
+        it("Selected items are at the top of the items when isFilterable is true", () => {
+            // Arrange
+            render(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={["3"]}
+                    labels={labels}
+                    isFilterable={true}
+                    shortcuts={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Act
+            // open the dropdown menu
+            userEvent.click(screen.getByRole("button"));
+
+            // Assert
+            expect(screen.getByRole("listbox")).toHaveTextContent(
+                /item 3.*item 1.*item 2/i,
+            );
+        });
+
+        it("Type something in SearchTextInput should update searchText in MultiSelect", () => {
+            // Arrange
+            render(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={[]}
+                    labels={labels}
+                    isFilterable={true}
+                    shortcuts={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+
+            userEvent.click(screen.getByRole("button"));
+
+            const searchInput = screen.getByPlaceholderText("Filter");
+            userEvent.paste(searchInput, "Item 2");
+
+            // Act
+            userEvent.clear(searchInput);
+            userEvent.paste(searchInput, "Item 1");
+
+            // Assert
+            const options = screen.getAllByRole("option");
+            expect(options).toHaveLength(1);
+            expect(options[0]).toHaveTextContent("item 1");
+        });
+
+        it("should move focus to the dismiss button after pressing {tab} on the text input", () => {
+            // Arrange
+            render(
+                <MultiSelect
+                    onChange={onChange}
+                    selectedValues={["1"]}
+                    labels={labels}
+                    isFilterable={true}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </MultiSelect>,
+            );
+            // open the dropdown menu
+            userEvent.click(screen.getByRole("button"));
+
+            const searchInput = screen.getByPlaceholderText("Filter");
+            userEvent.paste(searchInput, "some text");
+
+            // Act
+            userEvent.tab();
+
+            // Assert
+            const dismissBtn = screen.getByLabelText("Clear search");
+            expect(dismissBtn).toHaveFocus();
+        });
+
+        it("Click dismiss button should clear the searchText in MultiSelect", () => {
+            // Arrange
+            render(filterableSingleSelect);
+            // open the dropdown menu
+            userEvent.click(screen.getByRole("button"));
+
+            const searchInput = screen.getByPlaceholderText("Filter");
+            userEvent.paste(searchInput, "Should be cleared");
+
+            const dismissBtn = screen.getByLabelText("Clear search");
+
+            // Act
+            userEvent.click(dismissBtn);
+
+            // Assert
+            expect(searchInput).toHaveValue("");
+        });
+
+        it("Open MultiSelect should clear the searchText", () => {
+            // Arrange
+            render(filterableSingleSelect);
+            // open the dropdown menu
+            const opener = screen.getByRole("button");
+            userEvent.click(opener);
+
+            const searchInput = screen.getByPlaceholderText("Filter");
+            userEvent.paste(searchInput, "Should be cleared");
+
+            // Close the dropdown menu
+            userEvent.click(opener);
+
+            // Act
+            // Reopen it
+            userEvent.click(opener);
+
+            // Assert
+            expect(screen.getByPlaceholderText("Filter")).toHaveValue("");
+        });
     });
 
     describe("Custom Opener", () => {
         it("opens the menu when clicking on the custom opener", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MultiSelect
                     onChange={jest.fn()}
                     opener={(eventState) => (
@@ -490,18 +689,18 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = wrapper.find(DropdownOpener);
-            opener.simulate("click");
+            const opener = screen.getByLabelText("Search");
+            userEvent.click(opener);
 
             // Assert
-            expect(wrapper.state("open")).toBe(true);
+            expect(screen.getByRole("listbox")).toBeInTheDocument();
         });
 
         it("calls the custom onClick handler", () => {
             // Arrange
             const onClickMock = jest.fn();
 
-            const wrapper = mount(
+            render(
                 <MultiSelect
                     onChange={jest.fn()}
                     opener={() => (
@@ -515,8 +714,8 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = wrapper.find(DropdownOpener);
-            opener.simulate("click");
+            const opener = screen.getByLabelText("Search");
+            userEvent.click(opener);
 
             // Assert
             expect(onClickMock).toHaveBeenCalledTimes(1);
@@ -524,7 +723,9 @@ describe("MultiSelect", () => {
 
         it("verifies testId is passed from the custom opener", () => {
             // Arrange
-            const menu = mount(
+            const onChange = jest.fn();
+
+            render(
                 <MultiSelect
                     onChange={onChange}
                     opener={() => (
@@ -540,15 +741,17 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = menu.find(DropdownOpener).find("button");
+            const opener = screen.getByLabelText("Custom opener");
 
             // Assert
-            expect(opener.prop("data-test-id")).toBe("custom-opener");
+            expect(opener).toHaveAttribute("data-test-id", "custom-opener");
         });
 
         it("verifies testId is not passed from the parent element", () => {
             // Arrange
-            const menu = mount(
+            const onChange = jest.fn();
+
+            render(
                 <MultiSelect
                     onChange={onChange}
                     testId="custom-opener"
@@ -560,10 +763,10 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = menu.find(DropdownOpener).find("button");
+            const opener = screen.getByLabelText("Custom opener");
 
             // Assert
-            expect(opener.prop("data-test-id")).not.toBeDefined();
+            expect(opener).not.toHaveAttribute("data-test-id", "custom-opener");
         });
 
         it("passes the current label to the custom opener (no items selected)", () => {
@@ -571,7 +774,8 @@ describe("MultiSelect", () => {
             const labels: $Shape<Labels> = {
                 noneSelected: "No items selected",
             };
-            const menu = mount(
+
+            render(
                 <MultiSelect
                     labels={labels}
                     testId="openTest"
@@ -592,113 +796,134 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = menu.find(DropdownOpener);
-            // open dropdown
-            opener.simulate("click");
-            const openerElement = menu.find(`[data-test-id="custom-opener"]`);
+            const opener = screen.getByTestId("custom-opener");
 
             // Assert
-            expect(openerElement).toHaveText("No items selected");
+            expect(opener).toHaveTextContent("No items selected");
         });
 
-        it("passes the current label to the custom opener (1 item selected)", () => {
+        it("passes the current label to the custom opener (1 item selected)", async () => {
             // Arrange
-            const menu = mount(
-                <MultiSelect
-                    testId="openTest"
-                    onChange={jest.fn()}
-                    opener={({text}) => (
-                        <button
-                            onClick={jest.fn()}
-                            data-test-id="custom-opener"
-                        >
-                            {text}
-                        </button>
-                    )}
-                >
-                    <OptionItem label="item 1" value="1" />
-                    <OptionItem label="item 2" value="2" />
-                    <OptionItem label="item 3" value="3" />
-                </MultiSelect>,
-            );
+            const ControlledMultiSelect = () => {
+                const [selected, setSelected] = React.useState([]);
+                return (
+                    <MultiSelect
+                        testId="openTest"
+                        onChange={(values) => {
+                            setSelected(values);
+                        }}
+                        selectedValues={selected}
+                        opener={({text}) => (
+                            <button
+                                onClick={jest.fn()}
+                                data-test-id="custom-opener"
+                            >
+                                {text}
+                            </button>
+                        )}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+
+            render(<ControlledMultiSelect />);
+
+            const opener = screen.getByTestId("custom-opener");
+            // open dropdown
+            userEvent.click(opener);
 
             // Act
-            const opener = menu.find(DropdownOpener);
-            // open dropdown
-            opener.simulate("click");
-            // select the first item manually via selectedValues on MultiSelect
-            menu.setProps({selectedValues: ["1"]});
-            const openerElement = menu.find(`[data-test-id="custom-opener"]`);
+            const option = screen.getByText("item 1");
+            userEvent.click(option);
 
             // Assert
-            expect(openerElement).toHaveText("item 1");
+            expect(opener).toHaveTextContent("item 1");
         });
 
         it("passes the current label to the custom opener (2 items selected)", () => {
             // Arrange
-            const menu = mount(
-                <MultiSelect
-                    testId="openTest"
-                    onChange={jest.fn()}
-                    opener={({text}) => (
-                        <button
-                            onClick={jest.fn()}
-                            data-test-id="custom-opener"
-                        >
-                            {text}
-                        </button>
-                    )}
-                >
-                    <OptionItem label="item 1" value="1" />
-                    <OptionItem label="item 2" value="2" />
-                    <OptionItem label="item 3" value="3" />
-                </MultiSelect>,
-            );
+            const ControlledMultiSelect = () => {
+                const [selected, setSelected] = React.useState([]);
+                return (
+                    <MultiSelect
+                        testId="openTest"
+                        onChange={(values) => {
+                            setSelected(values);
+                        }}
+                        selectedValues={selected}
+                        opener={({text}) => (
+                            <button
+                                onClick={jest.fn()}
+                                data-test-id="custom-opener"
+                            >
+                                {text}
+                            </button>
+                        )}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+
+            render(<ControlledMultiSelect />);
+
+            const opener = screen.getByTestId("custom-opener");
+            // open dropdown
+            userEvent.click(opener);
 
             // Act
-            const opener = menu.find(DropdownOpener);
-            // open dropdown
-            opener.simulate("click");
-            // select the first and second items manually via selectedValues on
-            // MultiSelect
-            menu.setProps({selectedValues: ["1", "2"]});
-            const openerElement = menu.find(`[data-test-id="custom-opener"]`);
+            userEvent.click(screen.getByText("item 1"));
+            userEvent.click(screen.getByText("item 2"));
 
             // Assert
-            expect(openerElement).toHaveText("2 items");
+            expect(opener).toHaveTextContent("2 items");
         });
 
         it("passes the current label to the custom opener (all items selected)", () => {
             // Arrange
-            const menu = mount(
-                <MultiSelect
-                    testId="openTest"
-                    onChange={jest.fn()}
-                    opener={({text}) => (
-                        <button
-                            onClick={jest.fn()}
-                            data-test-id="custom-opener"
-                        >
-                            {text}
-                        </button>
-                    )}
-                >
-                    <OptionItem label="item 1" value="1" />
-                    <OptionItem label="item 2" value="2" />
-                    <OptionItem label="item 3" value="3" />
-                </MultiSelect>,
-            );
+            const ControlledMultiSelect = () => {
+                const [selected, setSelected] = React.useState([]);
+                return (
+                    <MultiSelect
+                        testId="openTest"
+                        onChange={(values) => {
+                            setSelected(values);
+                        }}
+                        selectedValues={selected}
+                        opener={({text}) => (
+                            <button
+                                onClick={jest.fn()}
+                                data-test-id="custom-opener"
+                            >
+                                {text}
+                            </button>
+                        )}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </MultiSelect>
+                );
+            };
+
+            render(<ControlledMultiSelect />);
+
+            const opener = screen.getByTestId("custom-opener");
+            // open dropdown
+            userEvent.click(opener);
 
             // Act
-            const opener = menu.find(DropdownOpener);
-            // open dropdown
-            opener.simulate("click");
-            // select all items manually via selectedValues on MultiSelect
-            menu.setProps({selectedValues: ["1", "2", "3"]});
-            const openerElement = menu.find(`[data-test-id="custom-opener"]`);
+            userEvent.click(screen.getByText("item 1"));
+            userEvent.click(screen.getByText("item 2"));
+            userEvent.click(screen.getByText("item 3"));
 
             // Assert
-            expect(openerElement).toHaveText("All items");
+            expect(opener).toHaveTextContent("All items");
         });
     });
 
@@ -708,7 +933,7 @@ describe("MultiSelect", () => {
             const labels: $Shape<Labels> = {
                 noneSelected: "0 escuelas",
             };
-            const wrapper = mount(
+            render(
                 <MultiSelect
                     onChange={jest.fn()}
                     testId="translated-multi-select"
@@ -721,12 +946,10 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = wrapper
-                .find(`[data-test-id="translated-multi-select"]`)
-                .last();
+            const opener = screen.getByTestId("translated-multi-select");
 
             // Assert
-            expect(opener).toHaveText("0 escuelas");
+            expect(opener).toHaveTextContent("0 escuelas");
         });
 
         it("passes the custom label to the opener (2 items selected)", () => {
@@ -735,11 +958,12 @@ describe("MultiSelect", () => {
                 someSelected: (numSelectedValues) =>
                     `${numSelectedValues} escuelas`,
             };
-            const wrapper = mount(
+            render(
                 <MultiSelect
                     onChange={jest.fn()}
                     testId="translated-multi-select"
                     labels={labels}
+                    selectedValues={["1", "2"]}
                 >
                     <OptionItem label="school 1" value="1" />
                     <OptionItem label="school 2" value="2" />
@@ -748,18 +972,10 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = wrapper.find(SelectOpener);
-            // open dropdown
-            opener.simulate("click");
-            // select the first and second items manually via selectedValues on
-            // MultiSelect
-            wrapper.setProps({selectedValues: ["1", "2"]});
-            const openerElement = wrapper
-                .find(`[data-test-id="translated-multi-select"]`)
-                .last();
+            const opener = screen.getByTestId("translated-multi-select");
 
             // Assert
-            expect(openerElement).toHaveText("2 escuelas");
+            expect(opener).toHaveTextContent("2 escuelas");
         });
 
         it("passes the custom label to the opener (all items selected)", () => {
@@ -767,11 +983,12 @@ describe("MultiSelect", () => {
             const labels: $Shape<Labels> = {
                 allSelected: "Todas las escuelas",
             };
-            const wrapper = mount(
+            render(
                 <MultiSelect
                     onChange={jest.fn()}
                     testId="translated-multi-select"
                     labels={labels}
+                    selectedValues={["1", "2", "3"]}
                 >
                     <OptionItem label="school 1" value="1" />
                     <OptionItem label="school 2" value="2" />
@@ -780,17 +997,10 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = wrapper.find(SelectOpener);
-            // open dropdown
-            opener.simulate("click");
-            // select all items manually via selectedValues on MultiSelect
-            wrapper.setProps({selectedValues: ["1", "2", "3"]});
-            const openerElement = wrapper
-                .find(`[data-test-id="translated-multi-select"]`)
-                .last();
+            const opener = screen.getByTestId("translated-multi-select");
 
             // Assert
-            expect(openerElement).toHaveText("Todas las escuelas");
+            expect(opener).toHaveTextContent("Todas las escuelas");
         });
 
         it("passes the custom label to the dismiss icon", () => {
@@ -798,7 +1008,7 @@ describe("MultiSelect", () => {
             const labels: $Shape<Labels> = {
                 clearSearch: "Limpiar busqueda",
             };
-            const wrapper = mount(
+            render(
                 <MultiSelect
                     onChange={jest.fn()}
                     isFilterable={true}
@@ -812,16 +1022,16 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = wrapper.find(SelectOpener);
+            const opener = screen.getByTestId("translated-multi-select");
             // open dropdown
-            opener.simulate("click");
+            userEvent.click(opener);
             // search text
-            wrapper.setState({searchText: "text"});
+            userEvent.type(screen.getByPlaceholderText("Filter"), "school");
             // get icon instance
-            const searchIcon = wrapper.find(SearchTextInput).find(IconButton);
+            const dismissIcon = screen.getByLabelText("Limpiar busqueda");
 
             // Assert
-            expect(searchIcon).toHaveProp("aria-label", "Limpiar busqueda");
+            expect(dismissIcon).toBeInTheDocument();
         });
 
         it("passes the custom label to the search input field", () => {
@@ -829,7 +1039,7 @@ describe("MultiSelect", () => {
             const labels: $Shape<Labels> = {
                 filter: "Filtrar",
             };
-            const wrapper = mount(
+            render(
                 <MultiSelect
                     onChange={jest.fn()}
                     isFilterable={true}
@@ -843,16 +1053,14 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = wrapper.find(SelectOpener);
+            const opener = screen.getByTestId("translated-multi-select");
             // open dropdown
-            opener.simulate("click");
-            // search text
-            wrapper.setState({searchText: "text"});
-            // get text field instance
-            const searchInput = wrapper.find(SearchTextInput).find("input");
+            userEvent.click(opener);
+
+            const searchInput = screen.getByPlaceholderText("Filtrar");
 
             // Assert
-            expect(searchInput).toHaveProp("placeholder", "Filtrar");
+            expect(searchInput).toBeInTheDocument();
         });
 
         it("passes the custom label to the no results label", () => {
@@ -860,7 +1068,7 @@ describe("MultiSelect", () => {
             const labels: $Shape<Labels> = {
                 noResults: "No hay resultados",
             };
-            const wrapper = mount(
+            render(
                 <MultiSelect
                     onChange={jest.fn()}
                     isFilterable={true}
@@ -873,19 +1081,17 @@ describe("MultiSelect", () => {
                 </MultiSelect>,
             );
 
-            // Act
-            const opener = wrapper.find(SelectOpener);
+            const opener = screen.getByTestId("translated-multi-select");
             // open dropdown
-            opener.simulate("click");
-            // search text
-            wrapper.setState({searchText: "text"});
-            // get dropdown instance
-            const noResultsLabel = wrapper.find(
-                `[data-test-id="dropdown-core-no-results"]`,
-            );
+            userEvent.click(opener);
+
+            // Act
+            userEvent.type(screen.getByPlaceholderText("Filter"), "other");
 
             // Assert
-            expect(noResultsLabel).toHaveText("No hay resultados");
+            expect(screen.getByRole("listbox")).toHaveTextContent(
+                "No hay resultados",
+            );
         });
 
         it("passes the custom label to the select all shortcut", () => {
@@ -894,7 +1100,7 @@ describe("MultiSelect", () => {
                 selectAllLabel: (numOptions) =>
                     `Seleccionar todas las escuelas (${numOptions})`,
             };
-            const wrapper = mount(
+            render(
                 <MultiSelect
                     onChange={jest.fn()}
                     isFilterable={true}
@@ -909,16 +1115,14 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = wrapper.find(SelectOpener);
+            const opener = screen.getByTestId("translated-multi-select");
             // open dropdown
-            opener.simulate("click");
-            // `select all` shortcut
-            const selectAllItem = wrapper.find(ActionItem).at(0);
+            userEvent.click(opener);
 
             // Assert
-            expect(selectAllItem).toHaveText(
-                "Seleccionar todas las escuelas (3)",
-            );
+            expect(
+                screen.getByText("Seleccionar todas las escuelas (3)"),
+            ).toBeInTheDocument();
         });
 
         it("passes the custom label to the select none shortcut", () => {
@@ -926,7 +1130,7 @@ describe("MultiSelect", () => {
             const labels: $Shape<Labels> = {
                 selectNoneLabel: "Deseleccionar todas las escuelas",
             };
-            const wrapper = mount(
+            render(
                 <MultiSelect
                     onChange={jest.fn()}
                     isFilterable={true}
@@ -941,24 +1145,27 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = wrapper.find(SelectOpener);
+            const opener = screen.getByTestId("translated-multi-select");
             // open dropdown
-            opener.simulate("click");
-            // `select none` shortcut
-            const selectNoneItem = wrapper.find(ActionItem).at(1);
+            userEvent.click(opener);
 
             // Assert
-            expect(selectNoneItem).toHaveText(
-                "Deseleccionar todas las escuelas",
-            );
+            expect(
+                screen.getByText("Deseleccionar todas las escuelas"),
+            ).toBeInTheDocument();
         });
 
         it("verifies a custom label is updated when props change", () => {
             // Arrange
-            const labels: $Shape<Labels> = {
+            const initialLabels: $Shape<Labels> = {
                 selectNoneLabel: "Deseleccionar todas las escuelas",
             };
-            const wrapper = mount(
+
+            const TranslatedComponent = ({
+                labels,
+            }: {|
+                labels: $Shape<Labels>,
+            |}) => (
                 <MultiSelect
                     onChange={jest.fn()}
                     isFilterable={true}
@@ -968,24 +1175,29 @@ describe("MultiSelect", () => {
                     <OptionItem label="school 1" value="1" />
                     <OptionItem label="school 2" value="2" />
                     <OptionItem label="school 3" value="3" />
-                </MultiSelect>,
+                </MultiSelect>
             );
 
-            // Act
-            const opener = wrapper.find(SelectOpener);
-            // open dropdown
-            opener.simulate("click");
+            const {rerender} = render(
+                <TranslatedComponent labels={initialLabels} />,
+            );
+
             // update label value
-            wrapper.setProps({
-                labels: {
-                    selectNoneLabel: "Ninguna seleccionada",
-                },
-            });
-            // `select none` shortcut
-            const selectNoneItem = wrapper.find(ActionItem).at(1);
+            const updatedLabels: $Shape<Labels> = {
+                selectNoneLabel: "Ninguna seleccionada",
+            };
+
+            rerender(<TranslatedComponent labels={updatedLabels} />);
+
+            // Act
+            const opener = screen.getByRole("button");
+            // open dropdown
+            userEvent.click(opener);
 
             // Assert
-            expect(selectNoneItem).toHaveText("Ninguna seleccionada");
+            expect(
+                screen.getByText(updatedLabels.selectNoneLabel),
+            ).toBeInTheDocument();
         });
     });
 });
