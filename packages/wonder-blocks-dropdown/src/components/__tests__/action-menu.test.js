@@ -1,15 +1,12 @@
 //@flow
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-
-import userEvent from "../../../../../utils/testing/user-event.js";
+import userEvent from "@testing-library/user-event";
 
 import ActionItem from "../action-item.js";
 import OptionItem from "../option-item.js";
 import SeparatorItem from "../separator-item.js";
 import ActionMenu from "../action-menu.js";
-
-jest.mock("../dropdown-core-virtualized.js");
 
 describe("ActionMenu", () => {
     const onClick = jest.fn();

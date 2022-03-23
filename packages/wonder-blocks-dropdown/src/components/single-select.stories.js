@@ -15,6 +15,52 @@ import {SingleSelect, OptionItem} from "../index.js";
 
 export default {
     title: "Dropdown / SingleSelect",
+    component: SingleSelect,
+    args: {
+        isFilterable: true,
+        opened: true,
+        disabled: false,
+        light: false,
+        placeholder: "Choose a fruit",
+    },
+};
+
+const SingleSelectTemplate = (args) => <SingleSelect {...args} />;
+
+export const DefaultSingleSelectOpened: StoryComponentType = (args) => {
+    const [selectedValue, setSelectedValue] = React.useState("pear");
+    const [opened, setOpened] = React.useState(args.opened);
+    React.useEffect(() => {
+        // Only update opened if the args.opened prop changes (using the
+        // controls panel).
+        setOpened(args.opened);
+    }, [args.opened]);
+
+    return (
+        <SingleSelectTemplate
+            {...args}
+            onChange={setSelectedValue}
+            selectedValue={selectedValue}
+            opened={opened}
+            onToggle={setOpened}
+        >
+            <OptionItem label="Banana" value="banana" />
+            <OptionItem label="Strawberry" value="strawberry" disabled />
+            <OptionItem label="Pear" value="pear" />
+            <OptionItem label="Orange" value="orange" />
+            <OptionItem label="Watermelon" value="watermelon" />
+            <OptionItem label="Apple" value="apple" />
+            <OptionItem label="Grape" value="grape" />
+            <OptionItem label="Lemon" value="lemon" />
+        </SingleSelectTemplate>
+    );
+};
+
+DefaultSingleSelectOpened.parameters = {
+    docs: {
+        storyDescription:
+            "This select starts with a starting selected item. One of the items is disabled and thus cannot be selected.",
+    },
 };
 
 const fruits = ["banana", "strawberry", "pear", "orange"];
@@ -93,7 +139,7 @@ const styles = StyleSheet.create({
     },
     wrapper: {
         height: "800px",
-        width: "1200px",
+        width: "600px",
     },
     centered: {
         alignItems: "center",

@@ -1,11 +1,10 @@
 //@flow
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import OptionItem from "../option-item.js";
 import SingleSelect from "../single-select.js";
-
-import userEvent from "../../../../../utils/testing/user-event.js";
 
 describe("SingleSelect", () => {
     const onChange = jest.fn();

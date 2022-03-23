@@ -3,12 +3,12 @@
 
 import * as React from "react";
 import ReactDOM from "react-dom";
-import {Popper} from "react-popper";
+
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
 
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
-import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
+
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
@@ -24,6 +24,19 @@ import SeparatorItem from "./separator-item.js";
 import SearchTextInput from "./search-text-input.js";
 import {defaultLabels, keyCodes, searchInputStyle} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
+import DropdownPopper from "./dropdown-popper.js";
+
+/**
+ * The number of options to apply the virtualized list to.
+ *
+ * NOTE: The threshold is defined taking into account performance
+ * implications (e.g. process input events for users should not be longer
+ * than 100ms).
+ * @see https://web.dev/rail/?utm_source=devtools#goals-and-guidelines
+ *
+ * TODO(juan, WB-1263): Improve performance by refactoring this component.
+ */
+const VIRTUALIZE_THRESHOLD = 80;
 
 type Labels = {|
     noResults: string,
@@ -170,7 +183,7 @@ class DropdownCore extends React.Component<Props, State> {
     itemsClicked: boolean;
     popperElement: ?HTMLElement;
     // Keeps a reference of the virtualized list instance
-    listRef: {|
+    virtualizedListRef: {|
         current: null | React.ElementRef<typeof List>,
     |};
 
@@ -246,7 +259,7 @@ class DropdownCore extends React.Component<Props, State> {
             },
         };
 
-        this.listRef = React.createRef();
+        this.virtualizedListRef = React.createRef();
     }
 
     componentDidMount() {
@@ -382,8 +395,13 @@ class DropdownCore extends React.Component<Props, State> {
     };
 
     scheduleToFocusCurrentItem() {
-        // wait for windowed items to be recalculated
-        this.props.schedule.animationFrame(() => this.focusCurrentItem());
+        if (this.shouldVirtualizeList()) {
+            // wait for windowed items to be recalculated
+            this.props.schedule.animationFrame(() => this.focusCurrentItem());
+        } else {
+            // immediately focus the current item if we're not virtualizing
+            this.focusCurrentItem();
+        }
     }
 
     focusCurrentItem() {
@@ -391,12 +409,14 @@ class DropdownCore extends React.Component<Props, State> {
 
         if (fousedItemRef) {
             // force react-window to scroll to ensure the focused item is visible
-            if (this.listRef.current) {
+            if (this.virtualizedListRef.current) {
                 // Our focused index does not include disabled items, but the
                 // react-window index system does include the disabled items
                 // in the count.  So we need to use "originalIndex", which
                 // does account for disabled items.
-                this.listRef.current.scrollToItem(fousedItemRef.originalIndex);
+                this.virtualizedListRef.current.scrollToItem(
+                    fousedItemRef.originalIndex,
+                );
             }
 
             const node = ((ReactDOM.findDOMNode(
@@ -580,10 +600,97 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     /**
-     * Process the items and wrap them into an array that react-window can
-     * interpret
+     * Handles click events for each item in the dropdown.
      */
-    parseItemsList(): Array<DropdownItem> {
+    handleItemClick: (focusIndex: number, item: DropdownItem) => void = (
+        focusIndex: number,
+        item: DropdownItem,
+    ) => {
+        this.handleClickFocus(focusIndex);
+        if (item.component.props.onClick) {
+            item.component.props.onClick();
+        }
+        if (item.populatedProps.onClick) {
+            item.populatedProps.onClick();
+        }
+    };
+
+    /**
+     * Determines which rendering strategy we are going to apply to the options
+     * list.
+     */
+    shouldVirtualizeList(): boolean {
+        // Verify if the list is long enough to be virtualized (passes the
+        // threshold).
+        return this.props.items.length > VIRTUALIZE_THRESHOLD;
+    }
+
+    /**
+     * Renders the non-virtualized list of items.
+     */
+    renderList(): React.Node {
+        let focusCounter = 0;
+        const itemRole = this.getItemRole();
+
+        // if we don't need to virtualize, we can render the list directly
+        return this.props.items.map((item, index) => {
+            if (SeparatorItem.isClassOf(item.component)) {
+                return item.component;
+            }
+
+            const {component, focusable, populatedProps} = item;
+
+            if (focusable) {
+                focusCounter += 1;
+            }
+
+            const focusIndex = focusCounter - 1;
+            // The reference to the item is used to restore focus.
+            const currentRef = this.state.itemRefs[focusIndex]
+                ? this.state.itemRefs[focusIndex].ref
+                : null;
+
+            // Render the SearchField component.
+            if (SearchTextInput.isClassOf(component)) {
+                return React.cloneElement(component, {
+                    ...populatedProps,
+
+                    key: "search-text-input",
+                    // pass the current ref down to the input element
+                    itemRef: currentRef,
+                    // override to avoid losing focus when pressing a key
+                    onClick: () => {
+                        this.handleClickFocus(0);
+                        this.focusCurrentItem();
+                    },
+                    // apply custom styles
+                    style: searchInputStyle,
+                });
+            }
+
+            // Render OptionItem and/or ActionItem elements.
+            return React.cloneElement(component, {
+                ...populatedProps,
+                key: index,
+                onClick: () => {
+                    this.handleItemClick(focusIndex, item);
+                },
+                // Only pass the ref if the item is focusable.
+                ref: focusable ? currentRef : null,
+                role: itemRole,
+            });
+        });
+    }
+
+    /**
+     * Process the items and wrap them into an array that react-window can
+     * interpret.
+     *
+     * NOTE: The main difference with the collection in renderList() is that we
+     * massage the items to be able to clone them later in
+     * DropdownVirtualizedItem, where as renderList() clones the items directly.
+     */
+    parseVirtualizedItems(): Array<DropdownItem> {
         let focusCounter = 0;
         const itemRole = this.getItemRole();
 
@@ -621,19 +728,30 @@ class DropdownCore extends React.Component<Props, State> {
                         : null
                     : null,
                 onClick: () => {
-                    this.handleClickFocus(focusIndex);
-                    if (item.component.props.onClick) {
-                        item.component.props.onClick();
-                    }
-                    if (item.populatedProps.onClick) {
-                        item.populatedProps.onClick();
-                    }
+                    this.handleItemClick(focusIndex, item);
                 },
             };
         });
     }
 
-    renderItems(isReferenceHidden: ?boolean): React.Node {
+    /**
+     * Render the items using a virtualized list
+     */
+    renderVirtualizedList(): React.Node {
+        // preprocess items data to pass it to the renderer
+        const virtualizedItems = this.parseVirtualizedItems();
+        return (
+            <DropdownCoreVirtualized
+                data={virtualizedItems}
+                listRef={this.virtualizedListRef}
+            />
+        );
+    }
+
+    renderDropdownMenu(
+        listRenderer: React.Node,
+        isReferenceHidden: ?boolean,
+    ): React.Node {
         const {dropdownStyle, light, openerElement} = this.props;
 
         // The dropdown width is at least the width of the opener.
@@ -643,9 +761,6 @@ class DropdownCore extends React.Component<Props, State> {
         const minDropdownWidth = openerStyle
             ? openerStyle.getPropertyValue("width")
             : 0;
-
-        // preprocess items data to pass it to the renderer
-        const itemsList = this.parseItemsList();
 
         return (
             <View
@@ -661,11 +776,7 @@ class DropdownCore extends React.Component<Props, State> {
                     dropdownStyle,
                 ]}
             >
-                <DropdownCoreVirtualized
-                    data={itemsList}
-                    listRef={this.listRef}
-                />
-
+                {listRenderer}
                 {this.maybeRenderNoResults()}
             </View>
         );
@@ -673,71 +784,29 @@ class DropdownCore extends React.Component<Props, State> {
 
     renderDropdown(): React.Node {
         const {alignment, openerElement} = this.props;
-        // If we are in a modal, we find where we should be portalling the menu
-        // by using the helper function from the modal package on the opener
-        // element.
-        // If we are not in a modal, we use body as the location to portal to.
-        const modalHost =
-            maybeGetPortalMountedModalHostElement(openerElement) ||
-            document.querySelector("body");
 
-        if (modalHost) {
-            return ReactDOM.createPortal(
-                <Popper
-                    innerRef={(node: ?HTMLElement) => {
-                        if (node) {
-                            this.popperElement = node;
-                        }
-                    }}
-                    referenceElement={this.props.openerElement}
-                    strategy="fixed"
-                    placement={
-                        alignment === "left" ? "bottom-start" : "bottom-end"
-                    }
-                    modifiers={[
-                        {
-                            name: "preventOverflow",
-                            options: {
-                                rootBoundary: "viewport",
-                                // Allows to overlap the popper in case there's
-                                // no more vertical room in the viewport.
-                                altAxis: true,
-                                // Also needed to make sure the Popper will be
-                                // displayed correctly in different contexts
-                                // (e.g inside a Modal)
-                                tether: false,
-                            },
-                        },
-                    ]}
-                >
-                    {({
-                        placement,
-                        ref,
-                        style,
-                        hasPopperEscaped,
-                        isReferenceHidden,
-                    }) => {
-                        // For some reason react-popper includes `pointerEvents: "none"`
-                        // in the `style` it passes to us, but only when running the tests.
-                        const {pointerEvents: _, ...restStyle} = style;
-                        return (
-                            <div
-                                ref={ref}
-                                style={restStyle}
-                                data-placement={placement}
-                            >
-                                {this.renderItems(
-                                    hasPopperEscaped || isReferenceHidden,
-                                )}
-                            </div>
-                        );
-                    }}
-                </Popper>,
-                modalHost,
-            );
-        }
+        // Preprocess the items that are used inside the Popper instance. By
+        // doing this, we optimize the list to be processed only one time
+        // instead of every time popper changes.
+        // NOTE: This improves the performance impact of the dropdown by
+        // reducing the execution time up to 2.5X.
+        const listRenderer = this.shouldVirtualizeList()
+            ? this.renderVirtualizedList()
+            : this.renderList();
 
-        return null;
+        return (
+            <DropdownPopper
+                alignment={alignment}
+                onPopperElement={(popperElement) => {
+                    this.popperElement = popperElement;
+                }}
+                referenceElement={openerElement}
+            >
+                {(isReferenceHidden) =>
+                    this.renderDropdownMenu(listRenderer, isReferenceHidden)
+                }
+            </DropdownPopper>
+        );
     }
 
     render(): React.Node {
