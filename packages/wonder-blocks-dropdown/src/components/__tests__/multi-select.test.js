@@ -17,15 +17,6 @@ const labels: $Shape<Labels> = {
 };
 
 describe("MultiSelect", () => {
-    beforeEach(() => {
-        jest.useFakeTimers();
-    });
-
-    afterEach(() => {
-        jest.runOnlyPendingTimers();
-        jest.useRealTimers();
-    });
-
     describe("uncontrolled", () => {
         const onChange = jest.fn();
         const uncontrolledSingleSelect = (

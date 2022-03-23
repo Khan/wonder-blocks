@@ -13,15 +13,6 @@ describe("ActionMenu", () => {
     const onToggle = jest.fn();
     const onChange = jest.fn();
 
-    beforeEach(() => {
-        jest.useFakeTimers();
-    });
-
-    afterEach(() => {
-        jest.runOnlyPendingTimers();
-        jest.useRealTimers();
-    });
-
     it("opens the menu on mouse click", () => {
         // Arrange
         render(

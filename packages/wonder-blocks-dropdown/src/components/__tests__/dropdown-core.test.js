@@ -32,13 +32,32 @@ const items = [
 ];
 
 describe("DropdownCore", () => {
-    beforeEach(() => {
-        jest.useFakeTimers();
-    });
+    it("should throw for invalid role", () => {
+        // Arrange
+        // Passing an invalid role will throw an error.
+        jest.spyOn(console, "error").mockImplementation(() => {});
 
-    afterEach(() => {
-        jest.runOnlyPendingTimers();
-        jest.useRealTimers();
+        // Act
+        const underTest = () =>
+            render(
+                <div>
+                    <button data-test-id="external-button" />
+                    <DropdownCore
+                        initialFocusedIndex={0}
+                        // mock the items
+                        items={[]}
+                        role={("invalid": any)}
+                        open={true}
+                        // mock the opener elements
+                        opener={<button />}
+                        openerElement={null}
+                        onOpenChanged={jest.fn()}
+                    />
+                </div>,
+            );
+
+        // Assert
+        expect(underTest).toThrow();
     });
 
     it("focus on the correct option", () => {
@@ -711,5 +730,103 @@ describe("DropdownCore", () => {
 
         // Assert
         expect(preventDefaultMock).toHaveBeenCalledTimes(0);
+    });
+
+    describe("VirtualizedList", () => {
+        const optionItems = new Array(100).fill(null).map((_, i) => ({
+            component: (
+                <OptionItem
+                    key={i}
+                    value={(i + 1).toString()}
+                    label={`Fruit # ${i + 1}`}
+                    testId={`item-${i}`}
+                />
+            ),
+            focusable: true,
+            populatedProps: {},
+        }));
+
+        it("should render a virtualized list of options and focus on the search field", async () => {
+            // Arrange
+            render(
+                <DropdownCore
+                    initialFocusedIndex={undefined}
+                    onSearchTextChanged={jest.fn()}
+                    searchText=""
+                    // mock the items
+                    items={[
+                        {
+                            component: (
+                                <SearchTextInput
+                                    testId="search-text-input"
+                                    key="search-text-input"
+                                    onChange={jest.fn()}
+                                    searchText={""}
+                                />
+                            ),
+                            focusable: true,
+                            populatedProps: {},
+                        },
+                        ...optionItems,
+                    ]}
+                    role="listbox"
+                    open={true}
+                    // mock the opener elements
+                    opener={<button />}
+                    openerElement={null}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            await screen.findByRole("listbox");
+
+            // Act
+            const searchField = await screen.findByPlaceholderText("Filter");
+
+            // Assert
+            expect(searchField).toHaveFocus();
+        });
+
+        it("should focus on the item after clicking on it", async () => {
+            // Arrange
+            render(
+                <DropdownCore
+                    initialFocusedIndex={undefined}
+                    onSearchTextChanged={jest.fn()}
+                    searchText=""
+                    // mock the items
+                    items={[
+                        {
+                            component: (
+                                <SearchTextInput
+                                    testId="search-text-input"
+                                    key="search-text-input"
+                                    onChange={jest.fn()}
+                                    searchText={""}
+                                />
+                            ),
+                            focusable: true,
+                            populatedProps: {},
+                        },
+                        ...optionItems,
+                    ]}
+                    role="listbox"
+                    open={true}
+                    // mock the opener elements
+                    opener={<button />}
+                    openerElement={null}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            await screen.findByRole("listbox");
+
+            // Act
+            const item = await screen.findByTestId("item-1");
+            userEvent.click(item);
+
+            // Assert
+            expect(item).toHaveFocus();
+        });
     });
 });

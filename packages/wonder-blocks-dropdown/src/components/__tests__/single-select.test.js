@@ -10,8 +10,6 @@ describe("SingleSelect", () => {
     const onChange = jest.fn();
 
     beforeEach(() => {
-        jest.useFakeTimers();
-
         window.scrollTo = jest.fn();
 
         // We mock console.error() because React logs a bunch of errors pertaining
@@ -23,8 +21,6 @@ describe("SingleSelect", () => {
         window.scrollTo.mockClear();
         onChange.mockReset();
         jest.spyOn(console, "error").mockReset();
-        jest.runOnlyPendingTimers();
-        jest.useRealTimers();
     });
 
     describe("uncontrolled", () => {
