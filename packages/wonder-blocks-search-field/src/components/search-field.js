@@ -121,7 +121,7 @@ export default class SearchField extends React.Component<Props, State> {
         }
     };
 
-    maybeRenderDismissIconButton(): React.Node {
+    maybeRenderClearIconButton(): React.Node {
         const {clearAriaLabel, value} = this.props;
 
         if (value.length > 0) {
@@ -214,7 +214,7 @@ export default class SearchField extends React.Component<Props, State> {
                     testId={testId}
                     {...otherProps}
                 />
-                {this.maybeRenderDismissIconButton()}
+                {this.maybeRenderClearIconButton()}
             </View>
         );
     }
