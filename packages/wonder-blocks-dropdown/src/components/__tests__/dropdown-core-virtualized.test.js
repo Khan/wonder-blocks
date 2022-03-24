@@ -1,39 +1,20 @@
 //@flow
 import * as React from "react";
-import {VariableSizeList as List} from "react-window";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
 
 import OptionItem from "../option-item.js";
 import SeparatorItem from "../separator-item.js";
 import DropdownCoreVirtualized from "../dropdown-core-virtualized.js";
 import SearchTextInput from "../search-text-input.js";
 
-import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
-
 describe("DropdownCoreVirtualized", () => {
     beforeEach(() => {
         jest.useFakeTimers();
-
-        // Jest doesn't fake out the animation frame API, so we're going to do
-        // it here and map it to timeouts, that way we can use the fake timer
-        // API to test our animation frame things.
-        jest.spyOn(global, "requestAnimationFrame").mockImplementation((fn) =>
-            setTimeout(fn, 0),
-        );
-        jest.spyOn(global, "cancelAnimationFrame").mockImplementation((id) =>
-            clearTimeout(id),
-        );
     });
 
     afterEach(() => {
-        // We have to explicitly unmount before clearing mocks, otherwise jest
-        // timers will throw because we'll try to clear an animation frame that
-        // we set with a setTimeout but are clearing with clearAnimationFrame
-        // because we restored the clearAnimationFrame mock (and we won't
-        // have cleared the timeout we actually set!)
-        unmountAll();
-        jest.restoreAllMocks();
+        jest.runOnlyPendingTimers();
+        jest.useRealTimers();
     });
 
     it("should sort the items on first load", () => {
@@ -64,20 +45,16 @@ describe("DropdownCoreVirtualized", () => {
             },
         ];
 
-        const wrapper = mount(
+        // Act
+        const {container} = render(
             <DropdownCoreVirtualized
                 data={[...initialItems, ...optionItems]}
             />,
         );
 
-        jest.runAllTimers();
-
-        // Act
-        const firstLabel = wrapper.find(OptionItem).first().text();
-
-        // Assert
-        // make sure we are rendering the longest item first
-        expect(firstLabel).toEqual("ccc");
+        // Assert make sure we are rendering from the longest item to the
+        // shortest item.
+        expect(container).toHaveTextContent(/ccc.*bb.*a/i);
     });
 
     it("should render a virtualized list", () => {
@@ -87,7 +64,7 @@ describe("DropdownCoreVirtualized", () => {
                 <OptionItem
                     key={i}
                     value={(i + 1).toString()}
-                    label={`School ${i + 1} in Wizarding World`}
+                    label={`School ${i + 1}`}
                 />
             ),
             focusable: true,
@@ -114,15 +91,23 @@ describe("DropdownCoreVirtualized", () => {
             },
         ];
 
-        const wrapper = mount(
+        const {rerender} = render(
             <DropdownCoreVirtualized data={initialItems} width={300} />,
         );
 
         // Act
         // append items to update container height
-        wrapper.setProps({data: [...initialItems, ...optionItems]});
+        rerender(
+            <DropdownCoreVirtualized
+                data={[...initialItems, ...optionItems]}
+                width={300}
+            />,
+        );
+
+        const option = screen.getAllByRole("option")[0];
 
         // Assert
-        expect(wrapper.find(List)).toExist();
+        // `left` is only injected by the virtualized list
+        expect(option).toHaveStyle("left: 0px");
     });
 });

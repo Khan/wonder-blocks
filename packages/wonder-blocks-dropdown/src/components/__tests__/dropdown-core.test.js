@@ -1,42 +1,497 @@
 // @flow
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import userEvent from "../../../../../utils/testing/user-event.js";
 
 import OptionItem from "../option-item.js";
 import SearchTextInput from "../search-text-input.js";
 import DropdownCore from "../dropdown-core.js";
-import {keyCodes} from "../../util/constants.js";
-
-import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
 
 jest.mock("../dropdown-core-virtualized.js");
 
-const elementAtIndex = (wrapper, index) =>
-    wrapper.find(`[data-test-id="item-${index}"]`).first().getDOMNode();
+const items = [
+    {
+        component: (
+            <OptionItem testId="item-0" label="item 0" value="0" key="0" />
+        ),
+        focusable: true,
+        populatedProps: {},
+    },
+    {
+        component: (
+            <OptionItem testId="item-1" label="item 1" value="1" key="1" />
+        ),
+        focusable: true,
+        populatedProps: {},
+    },
+    {
+        component: (
+            <OptionItem testId="item-2" label="item 2" value="2" key="2" />
+        ),
+        focusable: true,
+        populatedProps: {},
+    },
+];
 
 describe("DropdownCore", () => {
-    window.getComputedStyle = jest.fn();
-
-    let dropdown;
-
     beforeEach(() => {
         jest.useFakeTimers();
+    });
 
-        // Jest doesn't fake out the animation frame API, so we're going to do
-        // it here and map it to timeouts, that way we can use the fake timer
-        // API to test our animation frame things.
-        jest.spyOn(global, "requestAnimationFrame").mockImplementation((fn) =>
-            setTimeout(fn, 0),
-        );
-        jest.spyOn(global, "cancelAnimationFrame").mockImplementation((id) =>
-            clearTimeout(id),
+    afterEach(() => {
+        jest.runOnlyPendingTimers();
+        jest.useRealTimers();
+    });
+
+    it("focus on the correct option", async () => {
+        // Arrange
+        render(
+            <DropdownCore
+                initialFocusedIndex={0}
+                // mock the items
+                items={items}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={jest.fn()}
+            />,
         );
 
+        // Act
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+
+        // Assert
+        waitFor(() => {
+            expect(screen.getByTestId("item-0")).toHaveFocus();
+        });
+    });
+
+    it("handles basic keyboard navigation as expected", async () => {
+        // Arrange
         const dummyOpener = <button />;
         const openChanged = jest.fn();
-        dropdown = mount(
+
+        render(
+            <DropdownCore
+                initialFocusedIndex={0}
+                // mock the items
+                items={items}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={dummyOpener}
+                openerElement={null}
+                onOpenChanged={openChanged}
+            />,
+        );
+
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+
+        // RTL's focuses on `document.body` by default, so we need to focus on
+        // the dropdown menu
+        userEvent.tab();
+
+        // Act
+        // navigate down two times
+        userEvent.keyboard("{arrowdown}"); // 0 -> 1
+        userEvent.keyboard("{arrowdown}"); // 1 -> 2
+
+        // Assert
+        expect(screen.queryByTestId("item-2")).toHaveFocus();
+    });
+
+    it("keyboard works backwards as expected", async () => {
+        // Arrange
+        render(
+            <DropdownCore
+                initialFocusedIndex={0}
+                // mock the items
+                items={items}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={jest.fn()}
+            />,
+        );
+
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+
+        // RTL's focuses on `document.body` by default, so we need to focus on
+        // the dropdown menu
+        userEvent.tab();
+
+        // Act
+        // navigate down tree times
+        userEvent.keyboard("{arrowdown}"); // 0 -> 1
+        userEvent.keyboard("{arrowdown}"); // 1 -> 2
+        userEvent.keyboard("{arrowdown}"); // 2 -> 0
+
+        // navigate up back two times
+        userEvent.keyboard("{arrowup}"); // 0 -> 2
+        userEvent.keyboard("{arrowup}"); // 2 -> 1
+
+        // Assert
+        expect(screen.getByTestId("item-1")).toHaveFocus();
+    });
+
+    it("closes on tab as expected", async () => {
+        // Arrange
+        const handleOpenChangedMock = jest.fn();
+
+        render(
+            <DropdownCore
+                initialFocusedIndex={0}
+                // mock the items
+                items={items}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={handleOpenChangedMock}
+            />,
+        );
+
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+
+        // RTL's focuses on `document.body` by default, so we need to focus on
+        // the dropdown menu
+        userEvent.tab();
+
+        // Act
+        // close the dropdown by tabbing out
+        userEvent.tab();
+
+        // Assert
+        expect(handleOpenChangedMock).toHaveBeenNthCalledWith(1, false);
+    });
+
+    it("closes on escape as expected", async () => {
+        // Arrange
+        const handleOpenChangedMock = jest.fn();
+
+        render(
+            <DropdownCore
+                initialFocusedIndex={0}
+                // mock the items
+                items={items}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={handleOpenChangedMock}
+            />,
+        );
+
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+
+        // RTL's focuses on `document.body` by default, so we need to focus on
+        // the dropdown menu
+        userEvent.tab();
+
+        // Act
+        // close the dropdown by pressing "Escape"
+        userEvent.keyboard("{escape}");
+
+        // Assert
+        expect(handleOpenChangedMock).toHaveBeenNthCalledWith(1, false);
+    });
+
+    it("closes on external mouse click", async () => {
+        // Arrange
+        const handleOpenChangedMock = jest.fn();
+
+        const {container} = render(
+            <div>
+                <button data-test-id="external-button" />
+                <DropdownCore
+                    initialFocusedIndex={0}
+                    // mock the items
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    // mock the opener elements
+                    opener={<button />}
+                    openerElement={null}
+                    onOpenChanged={handleOpenChangedMock}
+                />
+            </div>,
+        );
+
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+        userEvent.tab();
+        userEvent.keyboard("arrowdown");
+
+        // Act
+        // close the dropdown by clicking outside the dropdown
+        userEvent.click(container);
+
+        // Assert
+        expect(handleOpenChangedMock).toHaveBeenNthCalledWith(1, false);
+    });
+
+    it("doesn't close on external mouse click if already closed", () => {
+        // Arrange
+        const handleOpenChangedMock = jest.fn();
+
+        render(
+            <DropdownCore
+                initialFocusedIndex={0}
+                // mock the items
+                items={items}
+                role="listbox"
+                open={false}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={handleOpenChangedMock}
+            />,
+        );
+
+        // Act
+        // click outside the dropdown
+        userEvent.click(document.body);
+
+        // Assert
+        expect(handleOpenChangedMock).toHaveBeenCalledTimes(0);
+    });
+
+    it("opens on down key as expected", async () => {
+        // Arrange
+        const handleOpenChangedMock = jest.fn();
+        const opener = <button data-test-id="opener" />;
+
+        render(
+            <DropdownCore
+                initialFocusedIndex={0}
+                // mock the items
+                items={items}
+                role="listbox"
+                open={false}
+                // mock the opener elements
+                opener={opener}
+                openerElement={null}
+                onOpenChanged={handleOpenChangedMock}
+            />,
+        );
+
+        const openerElement = await screen.findByTestId("opener");
+        openerElement.focus();
+
+        // Act
+        userEvent.keyboard("{arrowdown}");
+
+        // Assert
+        expect(handleOpenChangedMock).toHaveBeenNthCalledWith(1, true);
+    });
+
+    it("selects correct item when starting off at an undefined index", async () => {
+        // Arrange
+        render(
+            <DropdownCore
+                initialFocusedIndex={undefined}
+                // mock the items
+                items={items}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={jest.fn()}
+            />,
+        );
+
+        // Act
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+
+        // Assert
+        waitFor(() => {
+            expect(screen.queryByTestId("item-0")).toHaveFocus();
+        });
+    });
+
+    it("selects correct item when starting off at an undefined index and a searchbox", async () => {
+        // Arrange
+        render(
+            <DropdownCore
+                initialFocusedIndex={undefined}
+                searchText=""
+                // mock the items
+                items={[
+                    {
+                        component: (
+                            <SearchTextInput
+                                testId="item-0"
+                                key="search-text-input"
+                                onChange={jest.fn()}
+                                searchText={""}
+                            />
+                        ),
+                        focusable: true,
+                        populatedProps: {},
+                    },
+                ]}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={jest.fn()}
+            />,
+        );
+
+        // Act
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+
+        // Assert
+        waitFor(() => {
+            expect(screen.queryByTestId("item-0")).toHaveFocus();
+        });
+    });
+
+    it("selects correct item when starting off at a different index and a searchbox", async () => {
+        // Arrange
+        render(
+            <DropdownCore
+                initialFocusedIndex={1}
+                searchText=""
+                // mock the items
+                items={[
+                    {
+                        component: (
+                            <SearchTextInput
+                                testId="search"
+                                key="search-text-input"
+                                onChange={jest.fn()}
+                                searchText={""}
+                            />
+                        ),
+                        focusable: true,
+                        populatedProps: {},
+                    },
+                    {
+                        component: (
+                            <OptionItem
+                                testId="item-0"
+                                label="item 1"
+                                value="1"
+                                key="1"
+                            />
+                        ),
+                        focusable: false,
+                        populatedProps: {},
+                    },
+                    {
+                        component: (
+                            <OptionItem
+                                testId="item-1"
+                                label="item 2"
+                                value="2"
+                                key="2"
+                            />
+                        ),
+                        focusable: true,
+                        populatedProps: {},
+                    },
+                ]}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={jest.fn()}
+            />,
+        );
+
+        // Act
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+
+        // Assert
+        waitFor(() => {
+            expect(screen.queryByTestId("item-1")).toHaveFocus();
+        });
+    });
+
+    it("selects correct item when starting off at a different index", async () => {
+        // Arrange
+        render(
+            <DropdownCore
+                initialFocusedIndex={2}
+                // mock the items
+                items={items}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={jest.fn()}
+            />,
+        );
+
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+
+        // RTL's focuses on `document.body` by default, so we need to focus on
+        // the dropdown menu
+        userEvent.tab();
+
+        // Act
+        // navigate down
+        userEvent.keyboard("{arrowdown}"); // 2 -> 0
+
+        // Assert
+        expect(screen.getByTestId("item-0")).toHaveFocus();
+    });
+
+    it("focuses correct item with clicking/pressing with initial focused of not 0", async () => {
+        // Arrange
+        render(
+            <DropdownCore
+                initialFocusedIndex={2}
+                // mock the items
+                items={items}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={jest.fn()}
+            />,
+        );
+
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+
+        // RTL's focuses on `document.body` by default, so we need to focus on
+        // the dropdown menu
+        userEvent.tab();
+
+        // Act
+        userEvent.click(screen.getByTestId("item-1"));
+        // navigate down
+        userEvent.keyboard("{arrowdown}"); // 1 -> 2
+
+        // Assert
+        expect(screen.getByTestId("item-2")).toHaveFocus();
+    });
+
+    it("focuses correct item with a disabled item", async () => {
+        // Arrange
+        render(
             <DropdownCore
                 initialFocusedIndex={0}
                 // mock the items
@@ -62,7 +517,7 @@ describe("DropdownCore", () => {
                                 key="1"
                             />
                         ),
-                        focusable: true,
+                        focusable: false,
                         populatedProps: {},
                     },
                     {
@@ -79,570 +534,91 @@ describe("DropdownCore", () => {
                     },
                 ]}
                 role="listbox"
-                light={false}
-                open={false}
+                open={true}
                 // mock the opener elements
-                opener={dummyOpener}
+                opener={<button />}
                 openerElement={null}
-                onOpenChanged={openChanged}
+                onOpenChanged={jest.fn()}
             />,
         );
+
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+
+        // RTL's focuses on `document.body` by default, so we need to focus on
+        // the dropdown menu
+        userEvent.tab();
+
+        // Act
+        // navigate down
+        userEvent.keyboard("{arrowdown}"); // 0 -> 2 (1 is disabled)
+
+        // Assert
+        expect(screen.getByTestId("item-2")).toHaveFocus();
     });
 
-    afterEach(() => {
-        // We have to explicitly unmount before clearing mocks, otherwise jest
-        // timers will throw because we'll try to clear an animation frame that
-        // we set with a setTimeout but are clearing with clearAnimationFrame
-        // because we restored the clearAnimationFrame mock (and we won't
-        // have cleared the timeout we actually set!)
-        unmountAll();
-        jest.restoreAllMocks();
-    });
-
-    it("handles basic keyboard navigation as expected", () => {
-        const handleOpen = jest.fn();
-        dropdown.setProps({
-            initialFocusedIndex: 0,
-            onOpenChanged: (open) => handleOpen(open),
-            open: true,
-        });
-
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
-
-        // navigate down three times
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
-
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 2));
-
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
-
-        // navigate up back two times
-        // to last item
-        dropdown.simulate("keydown", {keyCode: keyCodes.up});
-        dropdown.simulate("keyup", {keyCode: keyCodes.up});
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 2));
-        // to the previous one
-        dropdown.simulate("keydown", {keyCode: keyCodes.up});
-        dropdown.simulate("keyup", {keyCode: keyCodes.up});
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
-    });
-
-    it("doesn't close on touch interaction with option", () => {
-        const handleOpen = jest.fn();
-        dropdown.setProps({
-            onOpenChanged: (open) => handleOpen(open),
-            open: true,
-        });
-
-        const option0 = dropdown.find("OptionItem").at(0);
-        // This is the full order of events fired when tapping an element
-        // on mobile
-        // https://developer.mozilla.org/en-US/docs/Web/API/Touch_events/Supporting_both_TouchEvent_and_MouseEvent#Event_order
-        option0.simulate("touchstart");
-        option0.simulate("touchend");
-        option0.simulate("mousemove");
-        option0.simulate("mousedown");
-        option0.simulate("mouseup");
-        option0.simulate("click");
-
-        expect(handleOpen).toHaveBeenCalledTimes(0);
-    });
-
-    it("closes on tab and escape as expected", () => {
-        const handleOpen = jest.fn();
-        dropdown.setProps({
-            onOpenChanged: (open) => handleOpen(open),
-            open: true,
-        });
-
-        // "close" some menus
-        dropdown.simulate("keydown", {keyCode: keyCodes.tab});
-        dropdown.simulate("keyup", {keyCode: keyCodes.tab});
-        dropdown.simulate("keydown", {keyCode: keyCodes.escape});
-        dropdown.simulate("keyup", {keyCode: keyCodes.escape});
-        expect(handleOpen).toHaveBeenCalledTimes(2);
-        // Test that we pass "false" to handleOpenChanged both times
-        expect(handleOpen.mock.calls[0][0]).toBe(false);
-        expect(handleOpen.mock.calls[1][0]).toBe(false);
-    });
-
-    it("closes on external mouse click", () => {
-        const handleOpen = jest.fn();
-        dropdown.setProps({
-            onOpenChanged: (open) => handleOpen(open),
-            open: true,
-        });
-
-        const event = new MouseEvent("mouseup");
-        document.dispatchEvent(event);
-
-        expect(handleOpen).toHaveBeenCalledTimes(1);
-        expect(handleOpen.mock.calls[0][0]).toBe(false);
-    });
-
-    it("closes on external mouse click on an element inside document.body", () => {
-        const handleOpen = jest.fn();
-        const container = document.createElement("container");
-        if (!document.body) {
-            throw new Error("No document.body");
-        }
-        document.body.appendChild(container);
-
-        /**
-         * According to https://stackoverflow.com/questions/36803733/jsdom-dispatchevent-addeventlistener-doesnt-seem-to-work
-         * Enzyme uses renderIntoDocument from React.TestUtils which doesn't actually
-         * render the component into document.body so testing behavior that relies
-         * on bubbling won't work.  This test works around this limitation by using
-         * ReactDOM.render() to render our test component into a container that lives
-         * in document.body.
-         */
-
-        ReactDOM.render(
-            <div>
-                <h1 id="foo">DropdownCore test</h1>
-                <DropdownCore
-                    initialFocusedIndex={0}
-                    // mock the items
-                    items={[
-                        {
-                            component: (
-                                <OptionItem label="item 0" value="0" key="0" />
-                            ),
-                            focusable: true,
-                            populatedProps: {},
-                        },
-                        {
-                            component: (
-                                <OptionItem label="item 1" value="1" key="1" />
-                            ),
-                            focusable: true,
-                            populatedProps: {},
-                        },
-                        {
-                            component: (
-                                <OptionItem label="item 2" value="2" key="2" />
-                            ),
-                            focusable: true,
-                            populatedProps: {},
-                        },
-                    ]}
-                    role="listbox"
-                    light={false}
-                    open={true}
-                    // mock the opener elements
-                    opener={<button />}
-                    openerElement={null}
-                    onOpenChanged={(open) => handleOpen(open)}
-                />
-            </div>,
-            container,
+    it("calls correct onclick for an option item", async () => {
+        // Arrange
+        const onClick1 = jest.fn();
+        render(
+            <DropdownCore
+                initialFocusedIndex={0}
+                // mock the items
+                items={[
+                    {
+                        component: (
+                            <OptionItem
+                                label="item 0"
+                                value="0"
+                                key="0"
+                                testId="item-0"
+                            />
+                        ),
+                        focusable: true,
+                        populatedProps: {},
+                    },
+                    {
+                        component: (
+                            <OptionItem
+                                label="item 1"
+                                value="1"
+                                key="1"
+                                testId="item-1"
+                                onClick={onClick1}
+                            />
+                        ),
+                        focusable: true,
+                        populatedProps: {},
+                    },
+                    {
+                        component: (
+                            <OptionItem
+                                label="item 2"
+                                testId="item-2"
+                                value="2"
+                                key="2"
+                            />
+                        ),
+                        focusable: true,
+                        populatedProps: {},
+                    },
+                ]}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={jest.fn()}
+            />,
         );
 
-        const title = document.querySelector("#foo");
-        if (!title) {
-            throw new Error("Couldn't find title");
-        }
-        const event = new MouseEvent("mouseup", {bubbles: true});
-        title.dispatchEvent(event);
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
 
-        expect(handleOpen).toHaveBeenCalledTimes(1);
-        expect(handleOpen.mock.calls[0][0]).toBe(false);
+        // Act
+        userEvent.click(screen.getByTestId("item-1"));
 
-        // cleanup
-        ReactDOM.unmountComponentAtNode(container);
-        if (!document.body) {
-            throw new Error("No document.body");
-        }
-        document.body.removeChild(container);
-    });
-
-    it("doesn't close on external mouse click if already closed", () => {
-        const handleOpen = jest.fn();
-        dropdown.setProps({
-            onOpenChanged: (open) => handleOpen(open),
-            open: false,
-        });
-
-        const event = new MouseEvent("mouseup");
-        document.dispatchEvent(event);
-
-        expect(handleOpen).toHaveBeenCalledTimes(0);
-    });
-
-    it("opens on down key as expected", () => {
-        const handleOpen = jest.fn();
-        dropdown.setProps({
-            onOpenChanged: (open) => handleOpen(open),
-        });
-
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-
-        expect(handleOpen).toHaveBeenCalledTimes(1);
-        expect(handleOpen.mock.calls[0][0]).toBe(true);
-    });
-
-    it("selects correct item when starting off at an undefined index", () => {
-        const handleOpen = jest.fn();
-        dropdown.setProps({
-            initialFocusedIndex: undefined,
-            onOpenChanged: (open) => handleOpen(open),
-            open: true,
-        });
-
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
-    });
-
-    it("selects correct item when starting off at an undefined index and a searchbox", () => {
-        const handleOpen = jest.fn();
-        const handleSearchTextChanged = jest.fn();
-        dropdown.setProps({
-            initialFocusedIndex: undefined,
-            onOpenChanged: (open) => handleOpen(open),
-            searchText: "",
-            items: [
-                {
-                    component: (
-                        <SearchTextInput
-                            testId="item-0"
-                            key="search-text-input"
-                            onChange={handleSearchTextChanged}
-                            searchText={""}
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-            ],
-            open: true,
-        });
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
-    });
-
-    it("selects correct item when starting off at a different index and a searchbox", () => {
-        const handleOpen = jest.fn();
-        const handleSearchTextChanged = jest.fn();
-        dropdown.setProps({
-            initialFocusedIndex: 1,
-            onOpenChanged: (open) => handleOpen(open),
-            searchText: "",
-            items: [
-                {
-                    component: (
-                        <SearchTextInput
-                            testId="search"
-                            key="search-text-input"
-                            onChange={handleSearchTextChanged}
-                            searchText={""}
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-                {
-                    component: (
-                        <OptionItem
-                            testId="item-0"
-                            label="item 1"
-                            value="1"
-                            key="1"
-                        />
-                    ),
-                    focusable: false,
-                    populatedProps: {},
-                },
-                {
-                    component: (
-                        <OptionItem
-                            testId="item-1"
-                            label="item 2"
-                            value="2"
-                            key="2"
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-            ],
-            open: true,
-        });
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
-    });
-
-    it("selects correct item when starting off at a different index", () => {
-        const handleOpen = jest.fn();
-        dropdown.setProps({
-            initialFocusedIndex: 2,
-            onOpenChanged: (open) => handleOpen(open),
-            open: true,
-        });
-
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 2));
-
-        // navigate down
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
-    });
-
-    it("focuses correct item with clicking/pressing with initial focused of not 0", () => {
-        // Same as the previous test, expect initialFocusedIndex is 2 now
-        dropdown.setProps({
-            initialFocusedIndex: 2,
-            open: true,
-        });
-
-        const option1 = dropdown.find("OptionItem").at(1);
-
-        // Click on item at index 1
-        option1.simulate("click");
-
-        // should move to next item
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 2));
-    });
-
-    it("focuses correct item with a disabled item", () => {
-        dropdown.setProps({
-            initialFocusedIndex: 0,
-            items: [
-                {
-                    component: (
-                        <OptionItem
-                            testId="item-0"
-                            label="item 0"
-                            value="0"
-                            key="0"
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-                {
-                    component: (
-                        <OptionItem
-                            testId="item-1"
-                            label="item 1"
-                            value="1"
-                            key="1"
-                        />
-                    ),
-                    focusable: false,
-                    populatedProps: {},
-                },
-                {
-                    component: (
-                        <OptionItem
-                            testId="item-2"
-                            label="item 2"
-                            value="2"
-                            key="2"
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-            ],
-            open: true,
-        });
-
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
-
-        // Should select option2
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 2));
-
-        // Should select option0
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
-    });
-
-    it("focuses correct item after different items become focusable", () => {
-        dropdown.setProps({
-            initialFocusedIndex: 0,
-            open: true,
-        });
-
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
-
-        // Should select option1
-        dropdown.simulate("keydown", {keyCode: keyCodes.down});
-        dropdown.simulate("keyup", {keyCode: keyCodes.down});
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
-
-        dropdown.setProps({
-            items: [
-                {
-                    component: (
-                        <OptionItem
-                            testId="item-0"
-                            label="item 0"
-                            value="0"
-                            key="0"
-                        />
-                    ),
-                    focusable: false,
-                    populatedProps: {},
-                },
-                {
-                    component: (
-                        <OptionItem
-                            testId="item-1"
-                            label="item 1"
-                            value="1"
-                            key="1"
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-                {
-                    component: (
-                        <OptionItem
-                            testId="item-2"
-                            label="item 2"
-                            value="2"
-                            key="2"
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-            ],
-        });
-
-        // Should figure out that option1, which is now at index 0, is selected
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
-    });
-
-    it("focuses first item after currently focused item is no longer focusable", () => {
-        dropdown.setProps({
-            initialFocusedIndex: 0,
-            open: true,
-        });
-
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
-
-        const option0 = dropdown.find("OptionItem").at(0);
-        option0.simulate("click");
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
-
-        dropdown.setProps({
-            items: [
-                {
-                    component: (
-                        <OptionItem
-                            testId="item-0"
-                            label="item 0"
-                            value="0"
-                            key="0"
-                        />
-                    ),
-                    focusable: false,
-                    populatedProps: {},
-                },
-                {
-                    component: (
-                        <OptionItem
-                            testId="item-1"
-                            label="item 1"
-                            value="1"
-                            key="1"
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-                {
-                    component: (
-                        <OptionItem
-                            testId="item-2"
-                            label="item 2"
-                            value="2"
-                            key="2"
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-            ],
-        });
-
-        // Should figure out that option1 is now selected
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 1));
-    });
-
-    it("calls correct onclick for an option item", () => {
-        const onClick0 = jest.fn();
-        const onClick1 = jest.fn();
-        dropdown.setProps({
-            items: [
-                {
-                    component: (
-                        <OptionItem
-                            label="item 0"
-                            value="0"
-                            key="0"
-                            onClick={onClick0}
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-                {
-                    component: (
-                        <OptionItem
-                            label="item 1"
-                            value="1"
-                            key="1"
-                            onClick={onClick1}
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-                {
-                    component: <OptionItem label="item 2" value="2" key="2" />,
-                    focusable: true,
-                    populatedProps: {},
-                },
-            ],
-            open: true,
-        });
-
-        const option1 = dropdown.find("OptionItem").at(1);
-
-        option1.simulate("click");
+        // Assert
         expect(onClick1).toHaveBeenCalledTimes(1);
     });
 
@@ -651,106 +627,170 @@ describe("DropdownCore", () => {
         const handleSearchTextChanged = jest.fn();
 
         // Act
-        dropdown.setProps({
-            onSearchTextChanged: (text) => handleSearchTextChanged(text),
-            searchText: "ab",
-            items: [
-                {
-                    component: (
-                        <SearchTextInput
-                            key="search-text-input"
-                            onChange={handleSearchTextChanged}
-                            searchText={""}
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-            ],
-            open: true,
-        });
+        render(
+            <DropdownCore
+                onSearchTextChanged={handleSearchTextChanged}
+                searchText="ab"
+                items={[
+                    {
+                        component: (
+                            <SearchTextInput
+                                key="search-text-input"
+                                onChange={handleSearchTextChanged}
+                                searchText={""}
+                            />
+                        ),
+                        focusable: true,
+                        populatedProps: {},
+                    },
+                ]}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={jest.fn()}
+            />,
+        );
 
         // Assert
-        expect(dropdown).toContainMatchingElement(
-            `[data-test-id="dropdown-core-no-results"]`,
-        );
+        expect(
+            screen.getByTestId("dropdown-core-no-results"),
+        ).toBeInTheDocument();
     });
 
-    it("When SearchTextInput has input and focused, tab key should not close the select", () => {
+    it("SearchTextInput should be focused when opened", async () => {
         // Arrange
         const handleSearchTextChanged = jest.fn();
         const handleOpen = jest.fn();
 
-        dropdown.setProps({
-            onOpenChanged: (open) => handleOpen(open),
-            onSearchTextChanged: (text) => handleSearchTextChanged(text),
-            searchText: "ab",
-            open: true,
-            items: [
-                {
-                    component: (
-                        <SearchTextInput
-                            testId="item-0"
-                            key="search-text-input"
-                            onChange={handleSearchTextChanged}
-                            searchText={""}
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-            ],
-        });
-        // SearchTextInput should be focused
-        const searchInput = dropdown.find(SearchTextInput);
-        jest.runAllTimers();
+        // Act
+        render(
+            <DropdownCore
+                initialFocusedIndex={0}
+                onOpenChanged={handleOpen}
+                onSearchTextChanged={handleSearchTextChanged}
+                searchText="ab"
+                items={[
+                    {
+                        component: (
+                            <SearchTextInput
+                                testId="item-0"
+                                key="search-text-input"
+                                onChange={handleSearchTextChanged}
+                                searchText={""}
+                            />
+                        ),
+                        focusable: true,
+                        populatedProps: {},
+                    },
+                ]}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+            />,
+        );
 
-        expect(searchInput.state("focused")).toBe(true);
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+
+        // Assert
+        waitFor(() => {
+            expect(screen.getByPlaceholderText("Filter")).toHaveFocus();
+        });
+    });
+
+    it("When SearchTextInput has input and focused, tab key should not close the select", async () => {
+        // Arrange
+        const handleSearchTextChanged = jest.fn();
+        const handleOpen = jest.fn();
+
+        render(
+            <DropdownCore
+                onOpenChanged={handleOpen}
+                onSearchTextChanged={handleSearchTextChanged}
+                searchText="ab"
+                items={[
+                    {
+                        component: (
+                            <SearchTextInput
+                                testId="item-0"
+                                key="search-text-input"
+                                onChange={handleSearchTextChanged}
+                                searchText={""}
+                            />
+                        ),
+                        focusable: true,
+                        populatedProps: {},
+                    },
+                ]}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+            />,
+        );
+
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
 
         // Act
-        dropdown.simulate("keydown", {keyCode: keyCodes.tab});
-        jest.runAllTimers();
+        userEvent.keyboard("{tab}");
 
         // Assert
         expect(handleOpen).toHaveBeenCalledTimes(0);
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
+        expect(screen.getByTestId("item-0")).toHaveFocus();
     });
 
-    it("When SearchTextInput exists and focused, space key pressing should be allowed", () => {
+    it("When SearchTextInput exists and focused, space key pressing should be allowed", async () => {
         // Arrange
         const handleSearchTextChanged = jest.fn();
         const preventDefaultMock = jest.fn();
-        dropdown.setProps({
-            onSearchTextChanged: (text) => handleSearchTextChanged(text),
-            searchText: "",
-            items: [
-                {
-                    component: (
-                        <SearchTextInput
-                            testId="item-0"
-                            key="search-text-input"
-                            onChange={handleSearchTextChanged}
-                            searchText={""}
-                        />
-                    ),
-                    focusable: true,
-                    populatedProps: {},
-                },
-            ],
-            open: true,
-        });
-        // SearchTextInput should be focused
-        const searchInput = dropdown.find(SearchTextInput).find("input");
-        jest.runAllTimers();
-        expect(document.activeElement).toBe(elementAtIndex(dropdown, 0));
+
+        render(
+            <DropdownCore
+                onSearchTextChanged={jest.fn()}
+                searchText="ab"
+                items={[
+                    {
+                        component: (
+                            <SearchTextInput
+                                testId="item-0"
+                                key="search-text-input"
+                                onChange={handleSearchTextChanged}
+                                searchText={"ab"}
+                            />
+                        ),
+                        focusable: true,
+                        populatedProps: {},
+                    },
+                ]}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={jest.fn()}
+            />,
+        );
+
+        // Wait until the dropdown is open
+        await screen.findByRole("listbox");
+        userEvent.tab();
 
         // Act
-        searchInput.simulate("keydown", {
-            keyCode: keyCodes.space,
+        const searchInput = await screen.findByTestId("item-0");
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.keyDown(searchInput, {
+            keyCode: 32,
             preventDefault: preventDefaultMock,
         });
-        searchInput.simulate("keyup", {
-            keyCode: keyCodes.space,
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.keyUp(searchInput, {
+            keyCode: 32,
             preventDefault: preventDefaultMock,
         });
 
