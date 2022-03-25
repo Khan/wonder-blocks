@@ -61,6 +61,8 @@ DefaultSingleSelectOpened.parameters = {
         storyDescription:
             "This select starts with a starting selected item. One of the items is disabled and thus cannot be selected.",
     },
+    // Added to ensure that the dropdown menu is rendered using PopperJS.
+    chromatic: {delay: 200},
 };
 
 const fruits = ["banana", "strawberry", "pear", "orange"];

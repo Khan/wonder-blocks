@@ -36,7 +36,7 @@ import DropdownPopper from "./dropdown-popper.js";
  *
  * TODO(juan, WB-1263): Improve performance by refactoring this component.
  */
-const VIRTUALIZE_THRESHOLD = 80;
+const VIRTUALIZE_THRESHOLD = 125;
 
 type Labels = {|
     noResults: string,
