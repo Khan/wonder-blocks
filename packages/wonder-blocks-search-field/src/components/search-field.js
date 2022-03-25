@@ -2,6 +2,7 @@
 // A TextField with a search icon on its left side and X icon on its right side
 
 import * as React from "react";
+import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
@@ -68,7 +69,7 @@ type Props = {|
     /**
      * Handler that is triggered when this component is clicked. For example,
      * use this to adjust focus in parent component. This gets called when we
-     * click the dismiss icon button within the SearchField.
+     * click the dismiss/clear icon button within the SearchField.
      */
     onClick?: () => mixed,
 
@@ -112,30 +113,36 @@ export default class SearchField extends React.Component<Props, State> {
         focused: false,
     };
 
-    handleDismiss: () => void = () => {
-        const {onClick, onChange} = this.props;
+    handleClear: () => void = () => {
+        const {id, onChange} = this.props;
+
         // Empty the search text and focus the SearchField
         onChange("");
-        if (onClick) {
-            onClick();
-        }
+
+        // Focus back on the text field since the clear button disappears after
+        // the field is cleared.
+        const currentField = (ReactDOM.findDOMNode(
+            document.getElementById(id),
+        ): any);
+        currentField.focus();
     };
 
     maybeRenderClearIconButton(): React.Node {
         const {clearAriaLabel, value} = this.props;
 
-        if (value.length > 0) {
-            return (
-                <IconButton
-                    icon={icons.dismiss}
-                    kind="tertiary"
-                    onClick={this.handleDismiss}
-                    style={styles.dismissIcon}
-                    aria-label={clearAriaLabel}
-                />
-            );
+        if (!value.length) {
+            return null;
         }
-        return null;
+
+        return (
+            <IconButton
+                icon={icons.dismiss}
+                kind="tertiary"
+                onClick={this.handleClear}
+                style={styles.dismissIcon}
+                aria-label={clearAriaLabel}
+            />
+        );
     }
 
     handleFocus: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
@@ -173,11 +180,10 @@ export default class SearchField extends React.Component<Props, State> {
             value,
             // The following props are being included here to avoid
             // passing them down to the otherProps spread
-            /* eslint-disable no-unused-vars */
-            onBlur,
-            onFocus,
-            /* eslint-enable no-unused-vars */
-            // Should only include Aria related props
+            clearAriaLabel: _,
+            onBlur: __,
+            onFocus: ___,
+            // Include Aria props and onKeyDown
             ...otherProps
         } = this.props;
 
@@ -252,6 +258,6 @@ const styles = StyleSheet.create({
         },
         width: "100%",
         color: "inherit",
-        paddingLeft: 4,
+        paddingLeft: Spacing.xxxSmall_4,
     },
 });

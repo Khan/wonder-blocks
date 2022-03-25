@@ -31,6 +31,7 @@ describe("SearchField", () => {
         // Assert
         expect(searchField).toHaveValue("a");
     });
+
     test("aria props are passed down", () => {
         // Arrange
 
@@ -110,6 +111,49 @@ describe("SearchField", () => {
         expect(searchField).not.toHaveFocus();
     });
 
+    test("onFocus prop is called when field is focused", () => {
+        // Arrange
+        const focusFn = jest.fn(() => {});
+        render(
+            <SearchField
+                id="sf-id"
+                value=""
+                onChange={() => {}}
+                testId="search-field-test"
+                onFocus={focusFn}
+            />,
+        );
+
+        // Act
+        userEvent.tab();
+
+        // Assert
+        expect(focusFn).toHaveBeenCalled();
+    });
+
+    test("onBlur prop is called when field is blurred", () => {
+        // Arrange
+        const blurFn = jest.fn(() => {});
+        render(
+            <SearchField
+                id="sf-id"
+                value=""
+                onChange={() => {}}
+                testId="search-field-test"
+                onBlur={blurFn}
+            />,
+        );
+
+        // Act
+        // focus
+        userEvent.tab();
+        // blur
+        userEvent.tab();
+
+        // Assert
+        expect(blurFn).toHaveBeenCalled();
+    });
+
     test("does not have clear icon by default", () => {
         // Arrange
 
@@ -177,5 +221,68 @@ describe("SearchField", () => {
 
         // Assert
         expect(searchField).toHaveValue("");
+    });
+
+    test("focus is returned to text field after pressing clear button", () => {
+        // Arrange
+        const SearchFieldWrapper = () => {
+            const [value, setValue] = React.useState("");
+            return (
+                <SearchField
+                    id="sf-id"
+                    value={value}
+                    onChange={setValue}
+                    testId="search-field-test"
+                    clearAriaLabel="test-clear-label"
+                />
+            );
+        };
+
+        render(<SearchFieldWrapper />);
+
+        // Type something so the clear button appears.
+        const searchField = screen.getByTestId("search-field-test");
+        searchField.focus();
+        userEvent.paste(searchField, "a");
+
+        // Act
+        const clearButton = screen.getByRole("button", {
+            name: "test-clear-label",
+        });
+        clearButton.focus();
+        userEvent.keyboard("{enter}");
+
+        // Assert
+        expect(searchField).toHaveFocus();
+    });
+
+    test("clearAriaLabel is applied to the clear button as its aria label", () => {
+        // Arrange
+        const SearchFieldWrapper = () => {
+            const [value, setValue] = React.useState("");
+            return (
+                <SearchField
+                    id="sf-id"
+                    value={value}
+                    onChange={setValue}
+                    testId="search-field-test"
+                    clearAriaLabel="test-clear-label"
+                />
+            );
+        };
+
+        render(<SearchFieldWrapper />);
+
+        // Type something so the clear button appears.
+        const searchField = screen.getByTestId("search-field-test");
+        searchField.focus();
+        userEvent.paste(searchField, "a");
+
+        // Act
+        const clearButton = screen.getByRole("button");
+        userEvent.click(clearButton);
+
+        // Assert
+        expect(clearButton).toHaveAttribute("aria-label", "test-clear-label");
     });
 });

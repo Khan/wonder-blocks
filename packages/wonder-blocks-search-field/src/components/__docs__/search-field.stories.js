@@ -3,10 +3,11 @@ import * as React from "react";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import SearchField from "../index.js";
+import SearchField from "../search-field.js";
 
 export default {
-    title: "SearchField",
+    component: SearchField,
+    title: "Search Field/SearchField",
 };
 
 export const Default: StoryComponentType = () => {
