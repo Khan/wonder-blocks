@@ -1,7 +1,6 @@
 // @flow
 import Accents from "./i18n-accents.js";
 import Boxes from "./i18n-boxes.js";
-import parseQueryString from "./parse-query-string.js";
 import {getLocale} from "./get-locale.js";
 
 import type {IProvideTranslation} from "./types.js";
@@ -31,8 +30,6 @@ export const Translators: TranslatorMap = {
  * @implements {IProvideTranslation}
  */
 export default class FakeTranslate implements IProvideTranslation {
-    static langParam: ?string;
-
     get _translator(): ?IProvideTranslation {
         // We look up our fake translator on the fly in case the kaLocale
         // was changed.
@@ -40,7 +37,7 @@ export default class FakeTranslate implements IProvideTranslation {
             translate: (s: string) => s,
         };
 
-        const language = FakeTranslate.langParam || getLocale();
+        const language = getLocale();
         const translator = language && Translators[language];
         return translator || identityTranslator;
     }
@@ -172,20 +169,3 @@ export default class FakeTranslate implements IProvideTranslation {
     translate: (input: string) => string = (input: string): string =>
         this._parseAndTranslate(input);
 }
-
-export const init = ({search}: {search: string, ...}) => {
-    // We can rely on needing a page refresh to update the language.
-    if (typeof FakeTranslate.langParam !== "string") {
-        const query = parseQueryString(search);
-
-        // We support "_lang" for a couple of reasons.
-        // 1. Situations where we want to bypass the i18n middleware that,
-        //    due to bugs or otherwise, can redirect based on the lang
-        //    param.
-        // 2. Checking client-side translation in webpack (which currently
-        //    doesn't support different languages).
-        // 3. Seeing what is i18n in client-side code versus not i18n or
-        //    handled by content.
-        FakeTranslate.langParam = query.lang || query._lang;
-    }
-};

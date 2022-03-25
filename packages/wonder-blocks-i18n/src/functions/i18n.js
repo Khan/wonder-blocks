@@ -55,11 +55,6 @@ interface internalTranslateOverloads {
     ): string;
 }
 
-type HandlebarsOptions = {|
-    fn: (scope: any) => any,
-    inverse: (scope: any) => any,
-|};
-
 const {translate: fakeTranslate} = new FakeTranslate();
 
 // Pluralization rule should be `likeEnglish` unless specified by
@@ -392,73 +387,6 @@ export const doNotTranslate: _Overloads = (s, o) =>
 export const doNotTranslateYet: _Overloads = doNotTranslate;
 
 /**
- * Dummy Handlebars _ function. Is a noop.
- * Should be used as: {{#_}}...{{/_}}
- * The text is extracted, at compile-time, by server-side scripts.
- * This is just used for marking up those fragments that need translation.
- * The translated text is injected at deploy-time.
- */
-export const handlebarsUnderscore = function (options: HandlebarsOptions): any {
-    return options.fn(this);
-};
-
-/**
- *  Mark text as not needing translation.
- *
- * This function is used to let i18nize_templates.py know that
- * everything within it does not need to be translate.
- * Should be used as: {{#i18nDoNotTranslate}}...{{/i18nDoNotTranslate}}
- * It does not need to actually do anything and hence returns the contents
- * as is.
- */
-export const handlebarsDoNotTranslate = function (
-    options: HandlebarsOptions,
-): any {
-    return options.fn(this);
-};
-
-/**
- * Handlebars ngettext function.
- * Doesn't do any translation, is used for showing the correct string
- * based upon the specified number and language.
- * All strings are extracted (at compile-time) and injected (at
- * deploy-time). By default this should be used as:
- *   {{#ngettext NUM}}singular{{else}}plural{{/ngettext}}
- * After injecting the translated strings into the page it'll read as:
- *   {{#ngettext NUM "lang" 0}}singular{{else}}plural{{/ngettext}}
- * (May depend upon the language used and how many different plural
- * forms the language has.)
- *
- * Arguments:
- *  - num: The number upon which to toggle the plural forms.
- *  - lang: The language to use as the basis for the pluralization.
- *  - pos: The expected plural form (depends upon the language)
- */
-export const handlebarsNgettext = function (
-    num: number,
-    lang: Language,
-    pos: number,
-    options: HandlebarsOptions,
-): any {
-    // This method has two signatures:
-    // (num) (the default for when the code is run in dev mode)
-    // (num, lang, pos) (for when the code is run in prod mode)
-    if (typeof lang !== "string") {
-        options = lang;
-        lang = "en";
-        pos = 0;
-    }
-
-    // Add in 'num' as a magic variable.
-    this.num = this.num || num;
-
-    // If the result of the plural form function given the specified
-    // number matches the expected position then we give the first
-    // result, otherwise we give the inverse result.
-    return ngetpos(num) === pos ? options.fn(this) : options.inverse(this);
-};
-
-/**
  * Rounds num to X places, and uses the proper decimal seperator.
  * But does *not* insert thousands separators.
  */
@@ -499,18 +427,3 @@ export const getDecimalSeparator = (): string => {
             return match?.[0] ?? ".";
     }
 };
-
-if (typeof window !== "undefined") {
-    // This is necessary for live-editor.  Even though live-editor defines its
-    // own copy of i18n, some of the scratchpad and project feedback unit tests
-    // fail when the global is removed.
-    window.i18n = {
-        _: _,
-        ngettext: ngettext,
-        i18nDoNotTranslate: doNotTranslate,
-        i18nDoNotTranslateYet: doNotTranslateYet,
-    };
-
-    // TODO(csilvers): is it still necessary to make these globals?
-    window.$_ = $_;
-}

@@ -1,10 +1,10 @@
 // @flow
 import * as GetLocale from "../get-locale.js";
-import FakeTranslate, {Translators, init} from "../i18n-faketranslate.js";
+import FakeTranslate, {Translators} from "../i18n-faketranslate.js";
 
 import type {IProvideTranslation} from "../types.js";
 
-describe.skip("i18n-faketranslate", () => {
+describe("i18n-faketranslate", () => {
     describe("Translators", () => {
         it("has the entries we expect", () => {
             // Arrange
@@ -31,40 +31,6 @@ describe.skip("i18n-faketranslate", () => {
 
             // Assert
             expect(result).toBe(true);
-        });
-    });
-
-    describe("init", () => {
-        afterEach(() => {
-            FakeTranslate.langParam = null;
-        });
-        // Just one test as we assume the tests for lang already test all
-        // the other paths.
-        // This just tests that we are actually supporting this param.
-        it("sets the `queryParams.lang` langParam on FakeTranslate to override kaLocale", () => {
-            // Arrange
-            init({search: "lang=boxes"});
-            const underTest = new FakeTranslate();
-            const expectation = Translators["boxes"].translate("Test");
-
-            // Act
-            const result = underTest.translate("Test");
-
-            // Assert
-            expect(result).toEqual(expectation);
-        });
-
-        it("sets the `queryParams._lang` langParam on FakeTranslate to override kaLocale", () => {
-            // Arrange
-            init({search: "_lang=boxes"});
-            const underTest = new FakeTranslate();
-            const expectation = Translators["boxes"].translate("Test");
-
-            // Act
-            const result = underTest.translate("Test");
-
-            // Assert
-            expect(result).toEqual(expectation);
         });
     });
 
