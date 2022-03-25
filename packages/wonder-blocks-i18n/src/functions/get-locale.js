@@ -1,5 +1,4 @@
 // @flow
-
 const HEADERS_GLOBAL = "__HEADERS__";
 
 const getHeader = (name: string) => {
