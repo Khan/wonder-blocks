@@ -28,6 +28,11 @@ module.exports = {
             },
         },
     ],
+    globals: {
+        // `no-undef` doesn't support `globalThis`, for details see
+        // https://github.com/eslint/eslint/issues/15199.
+        globalThis: false, // means it isn't writeable
+    },
     rules: {
         "flowtype/require-exact-type": ["error", "always"],
         "flowtype/no-types-missing-file-annotation": "error",
