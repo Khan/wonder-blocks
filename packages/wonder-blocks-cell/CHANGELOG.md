@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-cell
 
+## 2.2.0
+
+### Minor Changes
+
+-   35b9ef9c: Add target prop to cell.
+
 ## 2.1.0
 
 ### Minor Changes

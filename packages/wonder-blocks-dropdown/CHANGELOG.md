@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.6.8
+
+### Patch Changes
+
+-   f36d2f21: Use `react-window` conditionally (80+ items)
+
 ## 2.6.7
 
 ### Patch Changes
