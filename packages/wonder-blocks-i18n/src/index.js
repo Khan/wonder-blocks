@@ -5,6 +5,6 @@ export {
     ngettext,
     doNotTranslate,
     doNotTranslateYet,
-    localeToFixed,
-    getDecimalSeparator,
 } from "./functions/i18n.js";
+
+export {localeToFixed, getDecimalSeparator} from "./functions/l10n.js";
