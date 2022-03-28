@@ -33,6 +33,7 @@ describe("i18n", () => {
         // "en" is the default locale so that's going to be our default
         // mock for `getLocale()`.
         jest.spyOn(GetLocale, "getLocale").mockImplementation(() => "en");
+        jest.clearAllMocks();
     });
 
     describe("integration tests", () => {
@@ -271,6 +272,44 @@ describe("i18n", () => {
 
             // Assert
             expect(spy).toHaveBeenCalled();
+        });
+
+        it("should pass-through markers that don't appear in options", () => {
+            // Arrange
+
+            // Act
+            $_("Test %(num)s %(str)s", {num: 2});
+
+            // Assert
+            expect(React.createElement).toHaveBeenCalledWith(
+                "<Fragment>",
+                {},
+                "Test ",
+                2,
+                " ",
+                "%(str)s",
+                "",
+            );
+        });
+
+        it("should handle reused markers", () => {
+            // Arrange
+
+            // Act
+            $_("Test %(num)s %(num)s %(num)s", {num: 2});
+
+            // Assert
+            expect(React.createElement).toHaveBeenCalledWith(
+                "<Fragment>",
+                {},
+                "Test ",
+                2,
+                " ",
+                2,
+                " ",
+                2,
+                "",
+            );
         });
     });
 

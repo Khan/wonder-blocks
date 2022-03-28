@@ -1,17 +1,16 @@
 /* eslint-disable @babel/no-invalid-this */
 // @flow
-/* eslint-disable eqeqeq */
 /* TODO(csilvers): fix these lint errors (http://eslint.org/docs/rules): */
 /* To fix, remove an entry above, run ka-lint, and fix errors. */
 import * as React from "react";
 
 import FakeTranslate from "./i18n-faketranslate.js";
 import {getLocale} from "./get-locale.js";
+import {allPluralForms} from "./plural-forms.js";
 
 type InterpolationOptions<T> = {[string]: T, ...};
 
 type NGetOptions = {[string]: any, ...};
-type PluralFormsMap = {[string]: (count: number) => boolean | number, ...};
 
 type PluralConfigurationObject = {|
     lang: string,
@@ -56,121 +55,6 @@ interface internalTranslateOverloads {
 }
 
 const {translate: fakeTranslate} = new FakeTranslate();
-
-// Pluralization rule should be `likeEnglish` unless specified by
-// someone on the language's advocate team in the Jira ticket.
-
-const likeEnglish = (n) => n != 1;
-
-// sync-start:i18n-plurals 410708641 services/emails/i18n/i18n.go
-
-// If you need to add a new locale, find the Crowdin locale code and assign it
-// to a shell variable `CROWDIN_LOCALE`, and run the following:
-//
-//     gsutil cat $(
-//         gsutil ls "gs://ka_translations_archive/$CROWDIN_LOCALE/*.tar.gz" \
-//             | grep -v pofiles \
-//             | tail -n 1
-//     ) \
-//         | tar xzf - -O 1_high_priority_platform/about.donate.po \
-//         | grep '"Plural-Forms:'
-//
-// This grabs a tar/gzip file with the most recent set of translation files
-// we've downloaded from Crowdin, and opens one of them and looks for an
-// annotation that describes the plural rule in a `gettext`-specific format.
-// If it prints exactly the following, use `likeEnglish` below.
-//
-//     "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-//
-// If it prints anything else, use the `plural` expression, which should
-// hopefully be usable in JavaScript.
-//
-// TODO(csilvers): auto-generate this list instead.
-//
-// NOTE(mdr): Disable Prettier for this object, because intl_js_test.py
-//     expects it to be in a particular format.
-//     prettier-ignore
-const allPluralForms: PluralFormsMap = {
-    "accents": likeEnglish,  // a 'fake' language
-    "af": likeEnglish,
-    "ar": (n) => n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5,
-    "as": likeEnglish,
-    "az": likeEnglish,
-    "bg": likeEnglish,
-    "bn": likeEnglish,
-    "boxes": likeEnglish,    // a 'fake' language
-    "ca": likeEnglish,
-    "cs": (n) => (n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2,
-    "da": likeEnglish,
-    "de": likeEnglish,
-    "el": likeEnglish,
-    "empty": likeEnglish,    // a 'fake' language
-    "en": likeEnglish,
-    "en-pt": likeEnglish,    // a 'fake' language, used by crowdin for JIPT
-    "es": likeEnglish,
-    "et": likeEnglish,
-    "fa": (n) => 0,
-    "fa-af": (n) => 0,
-    "fi": likeEnglish,
-    "fil": (n) => (n > 1),
-    "fr": (n) => (n > 1),
-    "fv": (n) => (n > 1),
-    "gu": likeEnglish,
-    "he": likeEnglish,
-    "hi": likeEnglish,
-    "hr": (n) => (n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2),
-    "hu": likeEnglish,
-    "hy": likeEnglish,
-    "id": (n) => 0,
-    "is": likeEnglish,
-    "it": likeEnglish,
-    "ja": (n) => 0,
-    "ka": likeEnglish,
-    "kk": likeEnglish,
-    "km": likeEnglish,
-    "kn": likeEnglish,
-    "ko": (n) => 0,
-    "ky": (n) => 0,
-    "lol": likeEnglish,    // a 'fake' language
-    "lt": (n) => (n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2),
-    "lv": (n) => (n==0 ? 0 : n%10==1 && n%100!=11 ? 1 : 2),
-    "mn": likeEnglish,
-    "mr": likeEnglish,
-    "ms": (n) => 0,
-    "my": (n) => 0,
-    "nb": likeEnglish,
-    "nl": likeEnglish,
-    "nn": likeEnglish,
-    "or": likeEnglish,
-    "pa": likeEnglish,
-    "pl": (n) => (n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2),
-    "pt": likeEnglish,
-    "pt-pt": likeEnglish,
-    "ro": (n) => (n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < 20)) ? 1 : 2),
-    "ru": (n) => n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2,
-    "rw": likeEnglish,
-    "sgn-us": likeEnglish,
-    "si": likeEnglish,
-    "si-LK": likeEnglish,
-    "sk": (n) => (n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2,
-    "sr": (n) => (n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2),
-    "sv": likeEnglish,
-    "sv-SE": likeEnglish,
-    "sw": likeEnglish,
-    "ta": likeEnglish,
-    "te": likeEnglish,
-    "th": (n) => 0,
-    "tr": (n) => 0,
-    "uk": (n) => (n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2),
-    "ur": likeEnglish,
-    "uz": (n) => (n > 1),
-    "vi": (n) => 0,
-    "xh": likeEnglish,
-    "zh-hans": (n) => 0,
-    "zh-hant": (n) => 0,
-    "zu": likeEnglish,
-};
-// sync-end:i18n-plurals
 
 type Language = $Keys<typeof allPluralForms>;
 
