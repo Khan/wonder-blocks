@@ -1,6 +1,4 @@
 // @flow
-// A TextField with a search icon on its left side and X icon on its right side
-
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
@@ -68,8 +66,7 @@ type Props = {|
 
     /**
      * Handler that is triggered when this component is clicked. For example,
-     * use this to adjust focus in parent component. This gets called when we
-     * click the dismiss/clear icon button within the SearchField.
+     * use this to adjust focus in parent component.
      */
     onClick?: () => mixed,
 
@@ -102,6 +99,27 @@ type State = {|
     focused: boolean,
 |};
 
+/**
+ * Search Field. A TextField with a search icon on its left side
+ * and an X icon on its right side.
+ *
+ * ### Usage
+ * ```jsx
+ * import {SearchField} from "@khanacademy/wonder-blocks-search-field";
+ *
+ * const [value, setValue] = React.useState("");
+ *
+ * const handleChange = (newValue: string) => {
+ *     setValue(newValue);
+ * };
+ *
+ * <SearchField
+ *     id="some-id"
+ *     value={value}
+ *     onChange={handleChange}
+ * />
+ * ```
+ */
 export default class SearchField extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         clearAriaLabel: defaultLabels.clearSearch,
@@ -228,21 +246,21 @@ export default class SearchField extends React.Component<Props, State> {
 
 const styles = StyleSheet.create({
     inputContainer: {
+        boxSizing: "border-box",
         flexDirection: "row",
-        border: `1px solid ${Color.offBlack16}`,
         borderRadius: Spacing.xxxSmall_4,
         alignItems: "center",
         height: 40,
     },
-    focused: {
-        border: `1px solid ${Color.blue}`,
-    },
     searchIcon: {
         marginLeft: Spacing.xSmall_8,
         marginRight: Spacing.xSmall_8,
+        position: "absolute",
     },
     dismissIcon: {
         margin: 0,
+        position: "absolute",
+        right: 0,
         ":hover": {
             border: "none",
         },
@@ -250,14 +268,12 @@ const styles = StyleSheet.create({
     inputStyleReset: {
         display: "flex",
         flex: 1,
-        background: "inherit",
-        border: "none",
-        outline: "none",
         "::placeholder": {
             color: Color.offBlack64,
         },
         width: "100%",
         color: "inherit",
-        paddingLeft: Spacing.xxxSmall_4,
+        paddingLeft: Spacing.large_24 + Spacing.medium_16,
+        paddingRight: Spacing.large_24 + Spacing.medium_16,
     },
 });
