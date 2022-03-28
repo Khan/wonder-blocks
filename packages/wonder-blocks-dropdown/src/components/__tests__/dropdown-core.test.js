@@ -733,7 +733,7 @@ describe("DropdownCore", () => {
     });
 
     describe("VirtualizedList", () => {
-        const optionItems = new Array(100).fill(null).map((_, i) => ({
+        const optionItems = new Array(200).fill(null).map((_, i) => ({
             component: (
                 <OptionItem
                     key={i}
