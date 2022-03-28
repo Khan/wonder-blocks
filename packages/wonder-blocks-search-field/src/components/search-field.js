@@ -206,14 +206,7 @@ export default class SearchField extends React.Component<Props, State> {
         } = this.props;
 
         return (
-            <View
-                onClick={onClick}
-                style={[
-                    styles.inputContainer,
-                    this.state.focused && styles.focused,
-                    style,
-                ]}
-            >
+            <View onClick={onClick} style={[styles.inputContainer, style]}>
                 <Icon
                     icon={icons.search}
                     size="medium"
