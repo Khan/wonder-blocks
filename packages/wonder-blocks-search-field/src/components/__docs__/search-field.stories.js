@@ -70,6 +70,13 @@ export const Light: StoryComponentType = () => {
     );
 };
 
+Light.parameters = {
+    docs: {
+        storyDescription:
+            "SearchField takes a `light` prop, which gives it an extra white ring on focus to make it visible against a dark background.",
+    },
+};
+
 export const Disabled: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
@@ -93,6 +100,13 @@ export const Disabled: StoryComponentType = () => {
             disabled={true}
         />
     );
+};
+
+Disabled.parameters = {
+    docs: {
+        storyDescription:
+            "SearchField takes a `disabled` prop, which makes it unusable. Try to avoid using this if possible as it is bad for accessibility.",
+    },
 };
 
 const styles = StyleSheet.create({
