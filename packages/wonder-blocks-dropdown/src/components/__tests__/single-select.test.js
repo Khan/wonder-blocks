@@ -1,18 +1,15 @@
 //@flow
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import OptionItem from "../option-item.js";
 import SingleSelect from "../single-select.js";
-
-import userEvent from "../../../../../utils/testing/user-event.js";
 
 describe("SingleSelect", () => {
     const onChange = jest.fn();
 
     beforeEach(() => {
-        jest.useFakeTimers();
-
         window.scrollTo = jest.fn();
 
         // We mock console.error() because React logs a bunch of errors pertaining
@@ -24,8 +21,6 @@ describe("SingleSelect", () => {
         window.scrollTo.mockClear();
         onChange.mockReset();
         jest.spyOn(console, "error").mockReset();
-        jest.runOnlyPendingTimers();
-        jest.useRealTimers();
     });
 
     describe("uncontrolled", () => {
