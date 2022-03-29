@@ -8,7 +8,7 @@ import {
     SingleShallowSubstitution,
     MultipleShallowSubstitution,
     ElementWrapper,
-} from "../i18n-inline-markup.stories.js";
+} from "../__docs__/i18n-inline-markup.stories.js";
 
 describe("I18nInlineMarkup", () => {
     test("SingleShallowSubstitution", () => {
