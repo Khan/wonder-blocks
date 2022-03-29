@@ -3,7 +3,7 @@ import * as React from "react";
 
 import {setupFixtures, fixtures, adapters} from "../index.js";
 
-// Normally would call setup from the storybook.main.js for a project.
+// Normally would call setup from the storybook.preview.js for a project.
 setupFixtures({
     adapter: adapters.storybook(),
 });
