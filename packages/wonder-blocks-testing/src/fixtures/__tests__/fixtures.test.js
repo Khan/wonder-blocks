@@ -11,6 +11,28 @@ describe("#fixtures", () => {
         jest.clearAllMocks();
     });
 
+    it("should declare a group on the configured adapter based off the given component", () => {
+        // Arrange
+        const fakeGroup = {
+            closeGroup: jest.fn(),
+        };
+        const adapter = {
+            declareGroup: jest.fn().mockReturnValue(fakeGroup),
+            name: "testadapter",
+        };
+        jest.spyOn(SetupModule, "getConfiguration").mockReturnValue({
+            adapter,
+        });
+
+        // Act
+        fixtures(() => "COMPONENT", jest.fn());
+
+        // Assert
+        expect(adapter.declareGroup).toHaveBeenCalledWith({
+            getDefaultTitle: expect.any(Function),
+        });
+    });
+
     it("should declare a group on the configured adapter with the given title and description", () => {
         // Arrange
         const fakeGroup = {
@@ -88,12 +110,7 @@ describe("#fixtures", () => {
         };
 
         // Act
-        fixtures(
-            {
-                component,
-            },
-            jest.fn(),
-        );
+        fixtures(component, jest.fn());
         const {getDefaultTitle} = adapter.declareGroup.mock.calls[0][0];
         const result = getDefaultTitle();
 
@@ -115,12 +132,7 @@ describe("#fixtures", () => {
         });
 
         // Act
-        fixtures(
-            {
-                component: ({}: any),
-            },
-            jest.fn(),
-        );
+        fixtures(() => "test", jest.fn());
         const {getDefaultTitle} = adapter.declareGroup.mock.calls[0][0];
         const result = getDefaultTitle();
 
