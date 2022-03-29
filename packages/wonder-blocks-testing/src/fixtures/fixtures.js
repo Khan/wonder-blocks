@@ -48,8 +48,10 @@ export const fixtures = <TProps: {...}>(
 
     // 1. Create a new adapter group.
     const group = adapter.declareGroup<TProps>({
-        title: title || component.displayName || component.name || "Component",
+        title,
         description: groupDescription,
+        getDefaultTitle: () =>
+            component.displayName || component.name || "Component",
     });
 
     // 2. Invoke fn with a function that can add a new fixture.
