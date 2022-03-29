@@ -79,7 +79,7 @@
 
 import * as React from "react";
 
-import parseSimpleHTML from "./parse-simple-html.js";
+import {parseSimpleHTML} from "./parse-simple-html.js";
 import type {SimpleHtmlNode} from "./parse-simple-html.js";
 
 type Props = {|
@@ -172,6 +172,7 @@ export class I18nInlineMarkup extends React.PureComponent<Props> {
                 );
             }
 
+            // istanbul ignore
             throw new Error("Unknown child type.");
         });
         return nodes;

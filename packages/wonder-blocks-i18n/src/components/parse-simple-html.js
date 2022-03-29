@@ -18,7 +18,7 @@ export type Text = {|
 
 export type SimpleHtmlNode = Tag | Text;
 
-function parseSimpleHTML(html: string): $ReadOnlyArray<SimpleHtmlNode> {
+export function parseSimpleHTML(html: string): $ReadOnlyArray<SimpleHtmlNode> {
     // This is a regex that can capture the following kinds of things:
     //  - self-closing tags: (e.g., <myimg />)
     //  - non self-closing tags. This regex captures an opening tag, and the
@@ -118,5 +118,3 @@ function parseSimpleHTML(html: string): $ReadOnlyArray<SimpleHtmlNode> {
     }
     return result;
 }
-
-export default parseSimpleHTML;

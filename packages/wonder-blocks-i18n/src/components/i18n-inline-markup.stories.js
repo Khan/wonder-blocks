@@ -7,6 +7,7 @@ import {I18nInlineMarkup} from "./i18n-inline-markup.js";
 
 export default {
     title: "Translations/I18nInlineMarkup",
+    component: I18nInlineMarkup,
     parameters: {
         // We don't really care what the output looks for these stories.
         chromatic: {
@@ -31,7 +32,7 @@ export const SingleShallowSubstitution = (): React.Node => {
     );
 };
 
-export const MultipleShallowSubstituion = (): React.Node => {
+export const MultipleShallowSubstitution = (): React.Node => {
     return (
         <I18nInlineMarkup
             u={(t) => (
