@@ -9,3 +9,5 @@ export {
 } from "./functions/i18n.js";
 
 export {localeToFixed, getDecimalSeparator} from "./functions/l10n.js";
+
+export {getLocale, setLocale} from "./functions/locale.js";

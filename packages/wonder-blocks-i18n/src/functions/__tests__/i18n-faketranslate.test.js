@@ -1,5 +1,5 @@
 // @flow
-import * as GetLocale from "../get-locale.js";
+import * as Locale from "../locale.js";
 import FakeTranslate, {Translators} from "../i18n-faketranslate.js";
 
 import type {IProvideTranslation} from "../types.js";
@@ -37,7 +37,7 @@ describe("i18n-faketranslate", () => {
     describe("FakeTranslate", () => {
         it("should return the input when there is no specified locale", () => {
             // Arrange
-            jest.spyOn(GetLocale, "getLocale").mockImplementation(() => "en");
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "en");
             const underTest = new FakeTranslate();
 
             // Act
@@ -50,7 +50,7 @@ describe("i18n-faketranslate", () => {
         describe("Use kaLocale as default", () => {
             it("should return the input when there is no matching language", () => {
                 // Arrange
-                jest.spyOn(GetLocale, "getLocale").mockImplementation(
+                jest.spyOn(Locale, "getLocale").mockImplementation(
                     () => "gubbins",
                 );
                 const underTest = new FakeTranslate();
@@ -64,7 +64,7 @@ describe("i18n-faketranslate", () => {
 
             it("should return the result of translation when there is a match", () => {
                 // Arrange
-                jest.spyOn(GetLocale, "getLocale").mockImplementation(
+                jest.spyOn(Locale, "getLocale").mockImplementation(
                     () => "boxes",
                 );
                 const underTest = new FakeTranslate();
@@ -79,7 +79,7 @@ describe("i18n-faketranslate", () => {
 
             it("should not translate HTML element tags and attributes", () => {
                 // Arrange
-                jest.spyOn(GetLocale, "getLocale").mockImplementation(
+                jest.spyOn(Locale, "getLocale").mockImplementation(
                     () => "boxes",
                 );
 
@@ -95,7 +95,7 @@ describe("i18n-faketranslate", () => {
 
             it("should not translate code tag contents", () => {
                 // Arrange
-                jest.spyOn(GetLocale, "getLocale").mockImplementation(
+                jest.spyOn(Locale, "getLocale").mockImplementation(
                     () => "boxes",
                 );
 
@@ -113,7 +113,7 @@ describe("i18n-faketranslate", () => {
 
             it("should not translate pre tag contents", () => {
                 // Arrange
-                jest.spyOn(GetLocale, "getLocale").mockImplementation(
+                jest.spyOn(Locale, "getLocale").mockImplementation(
                     () => "boxes",
                 );
 
@@ -131,7 +131,7 @@ describe("i18n-faketranslate", () => {
 
             it("should not translate variable substitutions", () => {
                 // Arrange
-                jest.spyOn(GetLocale, "getLocale").mockImplementation(
+                jest.spyOn(Locale, "getLocale").mockImplementation(
                     () => "boxes",
                 );
 
@@ -147,7 +147,7 @@ describe("i18n-faketranslate", () => {
 
             it("should not translate URLs", () => {
                 // Arrange
-                jest.spyOn(GetLocale, "getLocale").mockImplementation(
+                jest.spyOn(Locale, "getLocale").mockImplementation(
                     () => "boxes",
                 );
 
@@ -166,7 +166,7 @@ describe("i18n-faketranslate", () => {
 
             it("should not add HTML entities", () => {
                 // Arrange
-                jest.spyOn(GetLocale, "getLocale").mockImplementation(
+                jest.spyOn(Locale, "getLocale").mockImplementation(
                     () => "boxes",
                 );
 

@@ -1,5 +1,5 @@
 // @flow
-import * as GetLocale from "../get-locale.js";
+import * as Locale from "../locale.js";
 import * as FakeTranslate from "../i18n-faketranslate.js";
 import {localeToFixed, getDecimalSeparator} from "../l10n.js";
 
@@ -7,7 +7,7 @@ describe("l10n", () => {
     beforeEach(() => {
         // "en" is the default locale so that's going to be our default
         // mock for `getLocale()`.
-        jest.spyOn(GetLocale, "getLocale").mockImplementation(() => "en");
+        jest.spyOn(Locale, "getLocale").mockImplementation(() => "en");
         jest.clearAllMocks();
     });
 
@@ -95,7 +95,7 @@ describe("l10n", () => {
     describe("# getDecimalSeparator", () => {
         it("should handle 'en'", () => {
             // Arrange
-            jest.spyOn(GetLocale, "getLocale").mockImplementation(() => "en");
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "en");
             jest.spyOn(Intl, "NumberFormat").mockImplementation(() => {
                 return {
                     format: () => "1.1",
@@ -111,7 +111,7 @@ describe("l10n", () => {
 
         it("should handle 'pl'", () => {
             // Arrange
-            jest.spyOn(GetLocale, "getLocale").mockImplementation(() => "pl");
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "pl");
             jest.spyOn(Intl, "NumberFormat").mockImplementation(() => {
                 return {
                     format: () => "1,1",
@@ -127,7 +127,7 @@ describe("l10n", () => {
 
         it("should handle 'ar'", () => {
             // Arrange
-            jest.spyOn(GetLocale, "getLocale").mockImplementation(() => "ar");
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "ar");
             jest.spyOn(Intl, "NumberFormat").mockImplementation(() => {
                 return {
                     format: () => "١٫١",
@@ -143,9 +143,7 @@ describe("l10n", () => {
 
         it("should handle 'fa-af'", () => {
             // Arrange
-            jest.spyOn(GetLocale, "getLocale").mockImplementation(
-                () => "fa-af",
-            );
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "fa-af");
             jest.spyOn(Intl, "NumberFormat").mockImplementation(() => {
                 return {
                     format: () => "۱٫۱",
@@ -161,7 +159,7 @@ describe("l10n", () => {
 
         it("should handle 'ka'", () => {
             // Arrange
-            jest.spyOn(GetLocale, "getLocale").mockImplementation(() => "ka");
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "ka");
 
             // Act
             const result = getDecimalSeparator();

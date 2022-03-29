@@ -1,5 +1,5 @@
 // @flow
-import {getLocale} from "./get-locale.js";
+import {getLocale} from "./locale.js";
 
 /**
  * Rounds num to X places, and uses the proper decimal seperator.

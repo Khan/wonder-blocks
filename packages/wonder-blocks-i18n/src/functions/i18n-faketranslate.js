@@ -1,7 +1,7 @@
 // @flow
 import Accents from "./i18n-accents.js";
 import Boxes from "./i18n-boxes.js";
-import {getLocale} from "./get-locale.js";
+import {getLocale} from "./locale.js";
 
 import type {IProvideTranslation} from "./types.js";
 

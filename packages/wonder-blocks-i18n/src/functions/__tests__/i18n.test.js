@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import * as GetLocale from "../get-locale.js";
+import * as Locale from "../locale.js";
 import * as FakeTranslate from "../i18n-faketranslate.js";
 import {_, $_, ngettext, doNotTranslate, doNotTranslateYet} from "../i18n.js";
 
@@ -24,15 +24,13 @@ describe("i18n", () => {
     beforeEach(() => {
         // "en" is the default locale so that's going to be our default
         // mock for `getLocale()`.
-        jest.spyOn(GetLocale, "getLocale").mockImplementation(() => "en");
+        jest.spyOn(Locale, "getLocale").mockImplementation(() => "en");
         jest.clearAllMocks();
     });
 
     describe("integration tests", () => {
         beforeEach(() => {
-            jest.spyOn(GetLocale, "getLocale").mockImplementation(
-                () => "boxes",
-            );
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "boxes");
         });
 
         it("_ should translate", () => {
@@ -155,9 +153,7 @@ describe("i18n", () => {
 
         it("calls our fake translation", () => {
             // Arrange
-            jest.spyOn(GetLocale, "getLocale").mockImplementation(
-                () => "boxes",
-            );
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "boxes");
 
             const spy = jest.spyOn(
                 FakeTranslate.Translators["boxes"],
@@ -251,9 +247,7 @@ describe("i18n", () => {
 
         it("calls our fake translation", () => {
             // Arrange
-            jest.spyOn(GetLocale, "getLocale").mockImplementation(
-                () => "boxes",
-            );
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "boxes");
             const spy = jest.spyOn(
                 FakeTranslate.Translators["boxes"],
                 "translate",
@@ -308,9 +302,7 @@ describe("i18n", () => {
     describe("# ngettext", () => {
         it("calls our fake translation", () => {
             // Arrange
-            jest.spyOn(GetLocale, "getLocale").mockImplementation(
-                () => "boxes",
-            );
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "boxes");
             const spy = jest.spyOn(
                 FakeTranslate.Translators["boxes"],
                 "translate",
@@ -654,9 +646,7 @@ describe("i18n", () => {
     describe("# doNotTranslate", () => {
         it("should not call our fake translation", () => {
             // Arrange
-            jest.spyOn(GetLocale, "getLocale").mockImplementation(
-                () => "boxes",
-            );
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "boxes");
             const spy = jest.spyOn(
                 FakeTranslate.Translators["boxes"],
                 "translate",
@@ -737,9 +727,7 @@ describe("i18n", () => {
     describe("# doNotTranslateYet", () => {
         it("should not call our fake translation", () => {
             // Arrange
-            jest.spyOn(GetLocale, "getLocale").mockImplementation(
-                () => "boxes",
-            );
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "boxes");
             const spy = jest.spyOn(
                 FakeTranslate.Translators["boxes"],
                 "translate",
