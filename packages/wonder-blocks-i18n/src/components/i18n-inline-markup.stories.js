@@ -1,6 +1,8 @@
 // @flow
 import * as React from "react";
 
+import * as i18n from "../functions/i18n.js";
+
 import {I18nInlineMarkup} from "./i18n-inline-markup.js";
 
 export default {
@@ -14,50 +16,62 @@ export default {
 };
 
 export const SingleShallowSubstitution = (): React.Node => {
-    const props = {
-        u: (t) => (
-            <React.Fragment>
-                [Underline:<u>{t}</u>]
-            </React.Fragment>
-        ),
-        children: "-6\u00b0C, Sunny, Fells like: <u>-12</u>,  Wind: VR 5 km/h",
-    };
-    return <I18nInlineMarkup {...props} />;
+    return (
+        <I18nInlineMarkup
+            u={(t) => (
+                <React.Fragment>
+                    [Underline:<u>{t}</u>]
+                </React.Fragment>
+            )}
+        >
+            {i18n._(
+                "-6\u00b0C, Sunny, Fells like: <u>-12</u>, Wind: VR 5 km/h",
+            )}
+        </I18nInlineMarkup>
+    );
 };
 
 export const MultipleShallowSubstituion = (): React.Node => {
-    const props = {
-        u: (t) => (
-            <React.Fragment>
-                __<u>{t}</u>__
-            </React.Fragment>
-        ),
-        i: (t) => (
-            <span style={{background: "lightblue"}}>
-                *<i style={{fontStyle: "italic"}}>{t}</i>*
-            </span>
-        ),
-        children:
-            "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
-    };
-    return <I18nInlineMarkup {...props} />;
+    return (
+        <I18nInlineMarkup
+            u={(t) => (
+                <React.Fragment>
+                    __<u>{t}</u>__
+                </React.Fragment>
+            )}
+            i={(t) => (
+                <span style={{background: "lightblue"}}>
+                    *<i style={{fontStyle: "italic"}}>{t}</i>*
+                </span>
+            )}
+        >
+            {i18n._(
+                "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
+            )}
+        </I18nInlineMarkup>
+    );
 };
 
 export const ElementWrapper = (): React.Node => {
-    const props = {
-        elementWrapper: (t) => <span style={{background: "yellow"}}>{t}</span>,
-        u: (t) => (
-            <span style={{background: "red"}}>
-                __<u>{t}</u>__
-            </span>
-        ),
-        i: (t) => (
-            <span style={{background: "lightblue"}}>
-                *<i style={{fontStyle: "italic"}}>{t}</i>*
-            </span>
-        ),
-        children:
-            "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
-    };
-    return <I18nInlineMarkup {...props} />;
+    return (
+        <I18nInlineMarkup
+            elementWrapper={(t) => (
+                <span style={{background: "yellow"}}>{t}</span>
+            )}
+            u={(t) => (
+                <span style={{background: "red"}}>
+                    __<u>{t}</u>__
+                </span>
+            )}
+            i={(t) => (
+                <span style={{background: "lightblue"}}>
+                    *<i style={{fontStyle: "italic"}}>{t}</i>*
+                </span>
+            )}
+        >
+            {i18n._(
+                "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
+            )}
+        </I18nInlineMarkup>
+    );
 };
