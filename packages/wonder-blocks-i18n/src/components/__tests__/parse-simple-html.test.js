@@ -1,5 +1,5 @@
 // @flow
-import parseSimpleHTML from "../parse-simple-html.js";
+import {parseSimpleHTML} from "../parse-simple-html.js";
 
 describe("parseSimpleHTML", () => {
     it("Parses a self-closing tag", () => {

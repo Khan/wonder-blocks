@@ -1,0 +1,115 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`I18nInlineMarkup ElementWrapper 1`] = `
+<div>
+  <span
+    style="background: yellow;"
+  >
+    -6°C, 
+  </span>
+  <span
+    style="background: yellow;"
+  >
+    <span
+      style="background: red;"
+    >
+      __
+      <u>
+        Sunny
+      </u>
+      __
+    </span>
+  </span>
+  <span
+    style="background: yellow;"
+  >
+    , Fells 
+  </span>
+  <span
+    style="background: yellow;"
+  >
+    <span
+      style="background: lightblue;"
+    >
+      *
+      <i
+        style="font-style: italic;"
+      >
+        like
+      </i>
+      *
+    </span>
+  </span>
+  <span
+    style="background: yellow;"
+  >
+    : 
+  </span>
+  <span
+    style="background: yellow;"
+  >
+    <span
+      style="background: red;"
+    >
+      __
+      <u>
+        -12
+      </u>
+      __
+    </span>
+  </span>
+  <span
+    style="background: yellow;"
+  >
+    ,  Wind: VR 5 km/h
+  </span>
+</div>
+`;
+
+exports[`I18nInlineMarkup MultipleShallowSubstitution 1`] = `
+<div>
+  -6°C, 
+  __
+  <u>
+    Sunny
+  </u>
+  __
+  , Fells 
+  <span
+    style="background: lightblue;"
+  >
+    *
+    <i
+      style="font-style: italic;"
+    >
+      like
+    </i>
+    *
+  </span>
+  : 
+  __
+  <u>
+    -12
+  </u>
+  __
+  ,  Wind: VR 5 km/h
+</div>
+`;
+
+exports[`I18nInlineMarkup SingleShallowSubstitution 1`] = `
+<div>
+  -6°C, Sunny, Fells like: 
+  [Underline:
+  <u>
+    -12
+  </u>
+  ]
+  , Wind: VR 5 km/h
+</div>
+`;
+
+exports[`I18nInlineMarkup errors should call \`onError\` callback if set when an parse error is thrown 1`] = `
+<div>
+  Hello world!
+</div>
+`;

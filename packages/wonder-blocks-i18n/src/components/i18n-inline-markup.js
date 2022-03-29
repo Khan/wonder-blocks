@@ -79,7 +79,7 @@
 
 import * as React from "react";
 
-import parseSimpleHTML from "./parse-simple-html.js";
+import {parseSimpleHTML} from "./parse-simple-html.js";
 import type {SimpleHtmlNode} from "./parse-simple-html.js";
 
 type Props = {|
@@ -109,7 +109,7 @@ type Props = {|
     [tag: string]: (content: string) => React.Node,
 |};
 
-export default class I18nInlineMarkup extends React.PureComponent<Props> {
+export class I18nInlineMarkup extends React.PureComponent<Props> {
     render(): React.Node {
         const {children, elementWrapper, onError, ...renderers} = this.props;
         let tree: $ReadOnlyArray<SimpleHtmlNode>;
@@ -172,6 +172,7 @@ export default class I18nInlineMarkup extends React.PureComponent<Props> {
                 );
             }
 
+            // istanbul ignore
             throw new Error("Unknown child type.");
         });
         return nodes;
