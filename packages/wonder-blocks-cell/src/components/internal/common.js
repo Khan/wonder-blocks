@@ -27,11 +27,6 @@ export const CellMeasurements = {
     },
 
     /**
-     * The extra vertical spacing added to the title/content wrapper.
-     */
-    contentVerticalSpacing: Spacing.xxxSmall_4,
-
-    /**
      * The horizontal spacing between the left and right accessory.
      */
     accessoryHorizontalSpacing: Spacing.medium_16,
