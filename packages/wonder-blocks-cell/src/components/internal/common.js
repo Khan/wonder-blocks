@@ -14,7 +14,7 @@ export const CellMeasurements = {
      * The cell wrapper's gap.
      */
     cellPadding: {
-        paddingVertical: Spacing.xSmall_8,
+        paddingVertical: Spacing.small_12,
         paddingHorizontal: Spacing.medium_16,
     },
 
@@ -22,7 +22,7 @@ export const CellMeasurements = {
      * The DetailCell wrapper's gap.
      */
     detailCellPadding: {
-        paddingVertical: Spacing.small_12,
+        paddingVertical: Spacing.medium_16,
         paddingHorizontal: Spacing.medium_16,
     },
 
