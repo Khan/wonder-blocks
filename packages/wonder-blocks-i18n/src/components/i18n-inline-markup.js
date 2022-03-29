@@ -109,7 +109,7 @@ type Props = {|
     [tag: string]: (content: string) => React.Node,
 |};
 
-export default class I18nInlineMarkup extends React.PureComponent<Props> {
+export class I18nInlineMarkup extends React.PureComponent<Props> {
     render(): React.Node {
         const {children, elementWrapper, onError, ...renderers} = this.props;
         let tree: $ReadOnlyArray<SimpleHtmlNode>;
