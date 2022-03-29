@@ -244,7 +244,7 @@ export const ngettext: ngettextOverloads = (singular, plural, num, options) => {
  *  - num: The number upon which to toggle the plural forms.
  *  - lang: The language to use as the basis for the pluralization.
  */
-const ngetpos = function (num: number, lang?: Language) {
+export const ngetpos = function (num: number, lang?: Language): number {
     const pluralForm = (lang && allPluralForms[lang]) || allPluralForms["en"];
     const pos = pluralForm(num);
     // Map true to 1 and false to 0, keep any numeric return value the same.
