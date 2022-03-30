@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 1.2.1
+
+### Patch Changes
+
+-   399394bb: Don't package 'react' in the dist bundles
+
 ## 1.2.0
 
 ### Minor Changes
