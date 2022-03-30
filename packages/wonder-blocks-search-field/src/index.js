@@ -1,4 +1,4 @@
 // @flow
+import SearchField from "./components/search-field.js";
 
-// Just a temporary export to have some code.
-export const NOTHING = "NOTHING";
+export default SearchField;
