@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-testing
 
+## 3.0.0
+
+### Major Changes
+
+-   9a43cc06: Allow for autogenerating titles in Storybook
+
+### Patch Changes
+
+-   222cb8db: Add simplified signature for common usage of `fixtures` function
+
 ## 2.0.8
 
 ### Patch Changes
