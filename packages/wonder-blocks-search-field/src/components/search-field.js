@@ -86,19 +86,6 @@ type Props = {|
     onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 |};
 
-type DefaultProps = {|
-    clearAriaLabel: $PropertyType<Props, "clearAriaLabel">,
-    disabled: $PropertyType<Props, "disabled">,
-    light: $PropertyType<Props, "light">,
-|};
-
-type State = {|
-    /**
-     * The user focuses on this field.
-     */
-    focused: boolean,
-|};
-
 /**
  * Search Field. A TextField with a search icon on its left side
  * and an X icon on its right side.
@@ -120,21 +107,25 @@ type State = {|
  * />
  * ```
  */
-export default class SearchField extends React.Component<Props, State> {
-    static defaultProps: DefaultProps = {
-        clearAriaLabel: defaultLabels.clearSearch,
-        disabled: false,
-        light: false,
-    };
+export default function SearchField(props: Props): React.Node {
+    const {
+        clearAriaLabel = defaultLabels.clearSearch,
+        disabled = false,
+        light = false,
+        id,
+        value,
+        placeholder,
+        style,
+        testId,
+        onClick,
+        onChange,
+        onFocus,
+        onBlur,
+        ...otherProps
+    } = props;
 
-    state: State = {
-        focused: false,
-    };
-
-    handleClear: () => void = () => {
-        const {id, onChange} = this.props;
-
-        // Empty the search text and focus the SearchField
+    const handleClear: () => void = () => {
+        // Empty the search text.
         onChange("");
 
         // Focus back on the text field since the clear button disappears after
@@ -145,9 +136,7 @@ export default class SearchField extends React.Component<Props, State> {
         currentField.focus();
     };
 
-    maybeRenderClearIconButton(): React.Node {
-        const {clearAriaLabel, value} = this.props;
-
+    const maybeRenderClearIconButton: () => React.Node = () => {
         if (!value.length) {
             return null;
         }
@@ -156,85 +145,39 @@ export default class SearchField extends React.Component<Props, State> {
             <IconButton
                 icon={icons.dismiss}
                 kind="tertiary"
-                onClick={this.handleClear}
+                onClick={handleClear}
                 style={styles.dismissIcon}
                 aria-label={clearAriaLabel}
             />
         );
-    }
-
-    handleFocus: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
-        event,
-    ) => {
-        const {onFocus} = this.props;
-        this.setState({focused: true}, () => {
-            if (onFocus) {
-                onFocus(event);
-            }
-        });
     };
 
-    handleBlur: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
-        event,
-    ) => {
-        const {onBlur} = this.props;
-        this.setState({focused: false}, () => {
-            if (onBlur) {
-                onBlur(event);
-            }
-        });
-    };
-
-    render(): React.Node {
-        const {
-            disabled,
-            id,
-            light,
-            onChange,
-            onClick,
-            placeholder,
-            style,
-            testId,
-            value,
-            // The following props are being included here to avoid
-            // passing them down to the otherProps spread
-            clearAriaLabel: _,
-            onBlur: __,
-            onFocus: ___,
-            // Include Aria props and onKeyDown
-            ...otherProps
-        } = this.props;
-
-        return (
-            <View onClick={onClick} style={[styles.inputContainer, style]}>
-                <Icon
-                    icon={icons.search}
-                    size="medium"
-                    color={Color.offBlack64}
-                    style={styles.searchIcon}
-                    aria-hidden="true"
-                />
-                <TextField
-                    id={id}
-                    type="text"
-                    disabled={disabled}
-                    light={light}
-                    onChange={onChange}
-                    onFocus={this.handleFocus}
-                    onBlur={this.handleBlur}
-                    placeholder={placeholder}
-                    value={value}
-                    style={[
-                        styles.inputStyleReset,
-                        typographyStyles.LabelMedium,
-                    ]}
-                    testId={testId}
-                    {...otherProps}
-                />
-                {this.maybeRenderClearIconButton()}
-            </View>
-        );
-    }
+    return (
+        <View onClick={onClick} style={[styles.inputContainer, style]}>
+            <Icon
+                icon={icons.search}
+                size="medium"
+                color={Color.offBlack64}
+                style={styles.searchIcon}
+                aria-hidden="true"
+            />
+            <TextField
+                id={id}
+                type="text"
+                disabled={disabled}
+                light={light}
+                onChange={onChange}
+                onFocus={onFocus}
+                onBlur={onBlur}
+                placeholder={placeholder}
+                value={value}
+                style={[styles.inputStyleReset, typographyStyles.LabelMedium]}
+                testId={testId}
+                {...otherProps}
+            />
+            {maybeRenderClearIconButton()}
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
