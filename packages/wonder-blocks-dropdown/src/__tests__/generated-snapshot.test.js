@@ -880,7 +880,7 @@ describe("wonder-blocks-dropdown", () => {
             constructor() {
                 super();
                 this.state = {
-                    opened: true,
+                    opened: false,
                     selectedValue: null,
                 };
                 this.handleChange = this.handleChange.bind(this);

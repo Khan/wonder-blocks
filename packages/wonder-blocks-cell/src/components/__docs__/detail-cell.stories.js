@@ -110,6 +110,7 @@ export const DetailCellWithCustomStyles: StoryComponentType = () => (
         leftAccessory={<Icon icon={icons.contentVideo} size="medium" />}
         leftAccessoryStyle={{
             minWidth: Spacing.xxLarge_48,
+            alignSelf: "flex-start",
         }}
         rightAccessory={<Icon icon={icons.caretRight} size="small" />}
         rightAccessoryStyle={{

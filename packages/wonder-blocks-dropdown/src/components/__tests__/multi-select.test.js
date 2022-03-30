@@ -2,15 +2,12 @@
 //@flow
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
-
-import userEvent from "../../../../../utils/testing/user-event.js";
+import userEvent from "@testing-library/user-event";
 
 import OptionItem from "../option-item.js";
 import MultiSelect from "../multi-select.js";
 
 import type {Labels} from "../multi-select.js";
-
-jest.mock("../dropdown-core-virtualized.js");
 
 const labels: $Shape<Labels> = {
     selectAllLabel: (numOptions) => `Sellect all (${numOptions})`,
@@ -20,15 +17,6 @@ const labels: $Shape<Labels> = {
 };
 
 describe("MultiSelect", () => {
-    beforeEach(() => {
-        jest.useFakeTimers();
-    });
-
-    afterEach(() => {
-        jest.runOnlyPendingTimers();
-        jest.useRealTimers();
-    });
-
     describe("uncontrolled", () => {
         const onChange = jest.fn();
         const uncontrolledSingleSelect = (
@@ -306,7 +294,7 @@ describe("MultiSelect", () => {
             expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
         });
 
-        it("selects on item as expected", async () => {
+        it("selects on item as expected", () => {
             // Arrange
             render(<ControlledComponent />);
 
@@ -315,7 +303,7 @@ describe("MultiSelect", () => {
 
             // Act
             // Grab the second item in the list
-            const item = await screen.findByRole("option", {
+            const item = screen.getByRole("option", {
                 name: "item 2",
             });
             userEvent.click(item, undefined, {
@@ -327,7 +315,7 @@ describe("MultiSelect", () => {
             expect(opener).toHaveTextContent("item 2");
         });
 
-        it("dropdown menu is still open after selection", async () => {
+        it("dropdown menu is still open after selection", () => {
             // Arrange
             const onToggleMock = jest.fn();
             render(<ControlledComponent onToggle={onToggleMock} />);
@@ -337,7 +325,7 @@ describe("MultiSelect", () => {
 
             // Act
             // Grab the second item in the list
-            const item = await screen.findByRole("option", {
+            const item = screen.getByRole("option", {
                 name: "item 2",
             });
             userEvent.click(item, undefined, {
@@ -346,7 +334,6 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledTimes(1);
-            // expect(screen.getByRole("listbox")).toBeInTheDocument();
         });
 
         it("selects two items as expected", () => {
@@ -802,7 +789,7 @@ describe("MultiSelect", () => {
             expect(opener).toHaveTextContent("No items selected");
         });
 
-        it("passes the current label to the custom opener (1 item selected)", async () => {
+        it("passes the current label to the custom opener (1 item selected)", () => {
             // Arrange
             const ControlledMultiSelect = () => {
                 const [selected, setSelected] = React.useState([]);
