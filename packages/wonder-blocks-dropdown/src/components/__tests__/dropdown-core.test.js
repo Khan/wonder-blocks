@@ -1,13 +1,11 @@
 // @flow
 import * as React from "react";
-import {fireEvent, render, screen, waitFor} from "@testing-library/react";
-import userEvent from "../../../../../utils/testing/user-event.js";
+import {fireEvent, render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import OptionItem from "../option-item.js";
 import SearchTextInput from "../search-text-input.js";
 import DropdownCore from "../dropdown-core.js";
-
-jest.mock("../dropdown-core-virtualized.js");
 
 const items = [
     {
@@ -34,16 +32,35 @@ const items = [
 ];
 
 describe("DropdownCore", () => {
-    beforeEach(() => {
-        jest.useFakeTimers();
+    it("should throw for invalid role", () => {
+        // Arrange
+        // Passing an invalid role will throw an error.
+        jest.spyOn(console, "error").mockImplementation(() => {});
+
+        // Act
+        const underTest = () =>
+            render(
+                <div>
+                    <button data-test-id="external-button" />
+                    <DropdownCore
+                        initialFocusedIndex={0}
+                        // mock the items
+                        items={[]}
+                        role={("invalid": any)}
+                        open={true}
+                        // mock the opener elements
+                        opener={<button />}
+                        openerElement={null}
+                        onOpenChanged={jest.fn()}
+                    />
+                </div>,
+            );
+
+        // Assert
+        expect(underTest).toThrow();
     });
 
-    afterEach(() => {
-        jest.runOnlyPendingTimers();
-        jest.useRealTimers();
-    });
-
-    it("focus on the correct option", async () => {
+    it("focus on the correct option", () => {
         // Arrange
         render(
             <DropdownCore
@@ -60,16 +77,13 @@ describe("DropdownCore", () => {
         );
 
         // Act
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
+        const item = screen.getByTestId("item-0");
 
         // Assert
-        waitFor(() => {
-            expect(screen.getByTestId("item-0")).toHaveFocus();
-        });
+        expect(item).toHaveFocus();
     });
 
-    it("handles basic keyboard navigation as expected", async () => {
+    it("handles basic keyboard navigation as expected", () => {
         // Arrange
         const dummyOpener = <button />;
         const openChanged = jest.fn();
@@ -88,13 +102,6 @@ describe("DropdownCore", () => {
             />,
         );
 
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-
-        // RTL's focuses on `document.body` by default, so we need to focus on
-        // the dropdown menu
-        userEvent.tab();
-
         // Act
         // navigate down two times
         userEvent.keyboard("{arrowdown}"); // 0 -> 1
@@ -104,7 +111,7 @@ describe("DropdownCore", () => {
         expect(screen.queryByTestId("item-2")).toHaveFocus();
     });
 
-    it("keyboard works backwards as expected", async () => {
+    it("keyboard works backwards as expected", () => {
         // Arrange
         render(
             <DropdownCore
@@ -120,13 +127,6 @@ describe("DropdownCore", () => {
             />,
         );
 
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-
-        // RTL's focuses on `document.body` by default, so we need to focus on
-        // the dropdown menu
-        userEvent.tab();
-
         // Act
         // navigate down tree times
         userEvent.keyboard("{arrowdown}"); // 0 -> 1
@@ -141,7 +141,7 @@ describe("DropdownCore", () => {
         expect(screen.getByTestId("item-1")).toHaveFocus();
     });
 
-    it("closes on tab as expected", async () => {
+    it("closes on tab as expected", () => {
         // Arrange
         const handleOpenChangedMock = jest.fn();
 
@@ -158,13 +158,6 @@ describe("DropdownCore", () => {
                 onOpenChanged={handleOpenChangedMock}
             />,
         );
-
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-
-        // RTL's focuses on `document.body` by default, so we need to focus on
-        // the dropdown menu
-        userEvent.tab();
 
         // Act
         // close the dropdown by tabbing out
@@ -174,7 +167,7 @@ describe("DropdownCore", () => {
         expect(handleOpenChangedMock).toHaveBeenNthCalledWith(1, false);
     });
 
-    it("closes on escape as expected", async () => {
+    it("closes on escape as expected", () => {
         // Arrange
         const handleOpenChangedMock = jest.fn();
 
@@ -192,13 +185,6 @@ describe("DropdownCore", () => {
             />,
         );
 
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-
-        // RTL's focuses on `document.body` by default, so we need to focus on
-        // the dropdown menu
-        userEvent.tab();
-
         // Act
         // close the dropdown by pressing "Escape"
         userEvent.keyboard("{escape}");
@@ -207,7 +193,7 @@ describe("DropdownCore", () => {
         expect(handleOpenChangedMock).toHaveBeenNthCalledWith(1, false);
     });
 
-    it("closes on external mouse click", async () => {
+    it("closes on external mouse click", () => {
         // Arrange
         const handleOpenChangedMock = jest.fn();
 
@@ -227,11 +213,6 @@ describe("DropdownCore", () => {
                 />
             </div>,
         );
-
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-        userEvent.tab();
-        userEvent.keyboard("arrowdown");
 
         // Act
         // close the dropdown by clicking outside the dropdown
@@ -267,7 +248,7 @@ describe("DropdownCore", () => {
         expect(handleOpenChangedMock).toHaveBeenCalledTimes(0);
     });
 
-    it("opens on down key as expected", async () => {
+    it("opens on down key as expected", () => {
         // Arrange
         const handleOpenChangedMock = jest.fn();
         const opener = <button data-test-id="opener" />;
@@ -286,7 +267,7 @@ describe("DropdownCore", () => {
             />,
         );
 
-        const openerElement = await screen.findByTestId("opener");
+        const openerElement = screen.getByTestId("opener");
         openerElement.focus();
 
         // Act
@@ -296,7 +277,7 @@ describe("DropdownCore", () => {
         expect(handleOpenChangedMock).toHaveBeenNthCalledWith(1, true);
     });
 
-    it("selects correct item when starting off at an undefined index", async () => {
+    it("selects correct item when starting off at an undefined index", () => {
         // Arrange
         render(
             <DropdownCore
@@ -312,17 +293,11 @@ describe("DropdownCore", () => {
             />,
         );
 
-        // Act
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-
         // Assert
-        waitFor(() => {
-            expect(screen.queryByTestId("item-0")).toHaveFocus();
-        });
+        expect(screen.queryByTestId("item-0")).toHaveFocus();
     });
 
-    it("selects correct item when starting off at an undefined index and a searchbox", async () => {
+    it("selects correct item when starting off at an undefined index and a searchbox", () => {
         // Arrange
         render(
             <DropdownCore
@@ -353,16 +328,13 @@ describe("DropdownCore", () => {
         );
 
         // Act
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
+        const firstItem = screen.queryByTestId("item-0");
 
         // Assert
-        waitFor(() => {
-            expect(screen.queryByTestId("item-0")).toHaveFocus();
-        });
+        expect(firstItem).toHaveFocus();
     });
 
-    it("selects correct item when starting off at a different index and a searchbox", async () => {
+    it("selects correct item when starting off at a different index and a searchbox", () => {
         // Arrange
         render(
             <DropdownCore
@@ -391,7 +363,7 @@ describe("DropdownCore", () => {
                                 key="1"
                             />
                         ),
-                        focusable: false,
+                        focusable: true,
                         populatedProps: {},
                     },
                     {
@@ -417,16 +389,13 @@ describe("DropdownCore", () => {
         );
 
         // Act
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
+        const firstItem = screen.queryByTestId("item-0");
 
         // Assert
-        waitFor(() => {
-            expect(screen.queryByTestId("item-1")).toHaveFocus();
-        });
+        expect(firstItem).toHaveFocus();
     });
 
-    it("selects correct item when starting off at a different index", async () => {
+    it("selects correct item when starting off at a different index", () => {
         // Arrange
         render(
             <DropdownCore
@@ -441,13 +410,6 @@ describe("DropdownCore", () => {
                 onOpenChanged={jest.fn()}
             />,
         );
-
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-
-        // RTL's focuses on `document.body` by default, so we need to focus on
-        // the dropdown menu
-        userEvent.tab();
 
         // Act
         // navigate down
@@ -457,7 +419,7 @@ describe("DropdownCore", () => {
         expect(screen.getByTestId("item-0")).toHaveFocus();
     });
 
-    it("focuses correct item with clicking/pressing with initial focused of not 0", async () => {
+    it("focuses correct item with clicking/pressing with initial focused of not 0", () => {
         // Arrange
         render(
             <DropdownCore
@@ -472,13 +434,6 @@ describe("DropdownCore", () => {
                 onOpenChanged={jest.fn()}
             />,
         );
-
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-
-        // RTL's focuses on `document.body` by default, so we need to focus on
-        // the dropdown menu
-        userEvent.tab();
 
         // Act
         userEvent.click(screen.getByTestId("item-1"));
@@ -489,7 +444,7 @@ describe("DropdownCore", () => {
         expect(screen.getByTestId("item-2")).toHaveFocus();
     });
 
-    it("focuses correct item with a disabled item", async () => {
+    it("focuses correct item with a disabled item", () => {
         // Arrange
         render(
             <DropdownCore
@@ -515,6 +470,7 @@ describe("DropdownCore", () => {
                                 label="item 1"
                                 value="1"
                                 key="1"
+                                disabled={true}
                             />
                         ),
                         focusable: false,
@@ -536,18 +492,11 @@ describe("DropdownCore", () => {
                 role="listbox"
                 open={true}
                 // mock the opener elements
-                opener={<button />}
+                opener={<button data-test-id="opener" />}
                 openerElement={null}
                 onOpenChanged={jest.fn()}
             />,
         );
-
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-
-        // RTL's focuses on `document.body` by default, so we need to focus on
-        // the dropdown menu
-        userEvent.tab();
 
         // Act
         // navigate down
@@ -557,7 +506,7 @@ describe("DropdownCore", () => {
         expect(screen.getByTestId("item-2")).toHaveFocus();
     });
 
-    it("calls correct onclick for an option item", async () => {
+    it("calls correct onclick for an option item", () => {
         // Arrange
         const onClick1 = jest.fn();
         render(
@@ -612,9 +561,6 @@ describe("DropdownCore", () => {
             />,
         );
 
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-
         // Act
         userEvent.click(screen.getByTestId("item-1"));
 
@@ -659,7 +605,7 @@ describe("DropdownCore", () => {
         ).toBeInTheDocument();
     });
 
-    it("SearchTextInput should be focused when opened", async () => {
+    it("SearchTextInput should be focused when opened", () => {
         // Arrange
         const handleSearchTextChanged = jest.fn();
         const handleOpen = jest.fn();
@@ -693,16 +639,11 @@ describe("DropdownCore", () => {
             />,
         );
 
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-
         // Assert
-        waitFor(() => {
-            expect(screen.getByPlaceholderText("Filter")).toHaveFocus();
-        });
+        expect(screen.getByPlaceholderText("Filter")).toHaveFocus();
     });
 
-    it("When SearchTextInput has input and focused, tab key should not close the select", async () => {
+    it("When SearchTextInput has input and focused, tab key should not close the select", () => {
         // Arrange
         const handleSearchTextChanged = jest.fn();
         const handleOpen = jest.fn();
@@ -734,9 +675,6 @@ describe("DropdownCore", () => {
             />,
         );
 
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-
         // Act
         userEvent.keyboard("{tab}");
 
@@ -745,7 +683,7 @@ describe("DropdownCore", () => {
         expect(screen.getByTestId("item-0")).toHaveFocus();
     });
 
-    it("When SearchTextInput exists and focused, space key pressing should be allowed", async () => {
+    it("When SearchTextInput exists and focused, space key pressing should be allowed", () => {
         // Arrange
         const handleSearchTextChanged = jest.fn();
         const preventDefaultMock = jest.fn();
@@ -777,12 +715,8 @@ describe("DropdownCore", () => {
             />,
         );
 
-        // Wait until the dropdown is open
-        await screen.findByRole("listbox");
-        userEvent.tab();
-
         // Act
-        const searchInput = await screen.findByTestId("item-0");
+        const searchInput = screen.getByTestId("item-0");
         // eslint-disable-next-line testing-library/prefer-user-event
         fireEvent.keyDown(searchInput, {
             keyCode: 32,
@@ -796,5 +730,103 @@ describe("DropdownCore", () => {
 
         // Assert
         expect(preventDefaultMock).toHaveBeenCalledTimes(0);
+    });
+
+    describe("VirtualizedList", () => {
+        const optionItems = new Array(200).fill(null).map((_, i) => ({
+            component: (
+                <OptionItem
+                    key={i}
+                    value={(i + 1).toString()}
+                    label={`Fruit # ${i + 1}`}
+                    testId={`item-${i}`}
+                />
+            ),
+            focusable: true,
+            populatedProps: {},
+        }));
+
+        it("should render a virtualized list of options and focus on the search field", async () => {
+            // Arrange
+            render(
+                <DropdownCore
+                    initialFocusedIndex={undefined}
+                    onSearchTextChanged={jest.fn()}
+                    searchText=""
+                    // mock the items
+                    items={[
+                        {
+                            component: (
+                                <SearchTextInput
+                                    testId="search-text-input"
+                                    key="search-text-input"
+                                    onChange={jest.fn()}
+                                    searchText={""}
+                                />
+                            ),
+                            focusable: true,
+                            populatedProps: {},
+                        },
+                        ...optionItems,
+                    ]}
+                    role="listbox"
+                    open={true}
+                    // mock the opener elements
+                    opener={<button />}
+                    openerElement={null}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            await screen.findByRole("listbox");
+
+            // Act
+            const searchField = await screen.findByPlaceholderText("Filter");
+
+            // Assert
+            expect(searchField).toHaveFocus();
+        });
+
+        it("should focus on the item after clicking on it", async () => {
+            // Arrange
+            render(
+                <DropdownCore
+                    initialFocusedIndex={undefined}
+                    onSearchTextChanged={jest.fn()}
+                    searchText=""
+                    // mock the items
+                    items={[
+                        {
+                            component: (
+                                <SearchTextInput
+                                    testId="search-text-input"
+                                    key="search-text-input"
+                                    onChange={jest.fn()}
+                                    searchText={""}
+                                />
+                            ),
+                            focusable: true,
+                            populatedProps: {},
+                        },
+                        ...optionItems,
+                    ]}
+                    role="listbox"
+                    open={true}
+                    // mock the opener elements
+                    opener={<button />}
+                    openerElement={null}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            await screen.findByRole("listbox");
+
+            // Act
+            const item = await screen.findByTestId("item-1");
+            userEvent.click(item);
+
+            // Assert
+            expect(item).toHaveFocus();
+        });
     });
 });

@@ -11,6 +11,28 @@ describe("#fixtures", () => {
         jest.clearAllMocks();
     });
 
+    it("should declare a group on the configured adapter based off the given component", () => {
+        // Arrange
+        const fakeGroup = {
+            closeGroup: jest.fn(),
+        };
+        const adapter = {
+            declareGroup: jest.fn().mockReturnValue(fakeGroup),
+            name: "testadapter",
+        };
+        jest.spyOn(SetupModule, "getConfiguration").mockReturnValue({
+            adapter,
+        });
+
+        // Act
+        fixtures(() => "COMPONENT", jest.fn());
+
+        // Assert
+        expect(adapter.declareGroup).toHaveBeenCalledWith({
+            getDefaultTitle: expect.any(Function),
+        });
+    });
+
     it("should declare a group on the configured adapter with the given title and description", () => {
         // Arrange
         const fakeGroup = {
@@ -38,6 +60,7 @@ describe("#fixtures", () => {
         expect(adapter.declareGroup).toHaveBeenCalledWith({
             title: "TITLE",
             description: "DESCRIPTION",
+            getDefaultTitle: expect.any(Function),
         });
     });
 
@@ -63,11 +86,11 @@ describe("#fixtures", () => {
             },
             jest.fn(),
         );
+        const {getDefaultTitle} = adapter.declareGroup.mock.calls[0][0];
+        const result = getDefaultTitle();
 
         // Assert
-        expect(adapter.declareGroup).toHaveBeenCalledWith({
-            title: "DISPLAYNAME",
-        });
+        expect(result).toBe("DISPLAYNAME");
     });
 
     it("should default the title to the component.name in the absence of component.displayName", () => {
@@ -87,17 +110,12 @@ describe("#fixtures", () => {
         };
 
         // Act
-        fixtures(
-            {
-                component,
-            },
-            jest.fn(),
-        );
+        fixtures(component, jest.fn());
+        const {getDefaultTitle} = adapter.declareGroup.mock.calls[0][0];
+        const result = getDefaultTitle();
 
         // Assert
-        expect(adapter.declareGroup).toHaveBeenCalledWith({
-            title: "FUNCTIONNAME",
-        });
+        expect(result).toBe("FUNCTIONNAME");
     });
 
     it("should default the title to 'Component' in the absence of component.name", () => {
@@ -114,17 +132,12 @@ describe("#fixtures", () => {
         });
 
         // Act
-        fixtures(
-            {
-                component: ({}: any),
-            },
-            jest.fn(),
-        );
+        fixtures(() => "test", jest.fn());
+        const {getDefaultTitle} = adapter.declareGroup.mock.calls[0][0];
+        const result = getDefaultTitle();
 
         // Assert
-        expect(adapter.declareGroup).toHaveBeenCalledWith({
-            title: "Component",
-        });
+        expect(result).toBe("Component");
     });
 
     it("should invoke the passed fn with function argument", () => {

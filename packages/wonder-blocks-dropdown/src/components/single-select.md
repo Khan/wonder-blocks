@@ -477,7 +477,7 @@ class ExampleWithFilter extends React.Component {
     constructor() {
         super();
         this.state = {
-            opened: true,
+            opened: false,
             selectedValue: null,
         };
         this.handleChange = this.handleChange.bind(this);

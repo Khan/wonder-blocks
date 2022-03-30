@@ -9,6 +9,35 @@ type FixtureProps<TProps: {...}> =
     | $ReadOnly<TProps>
     | ((options: $ReadOnly<GetPropsOptions>) => $ReadOnly<TProps>);
 
+const normalizeOptions = <TProps: {...}>(
+    componentOrOptions:
+        | React.ComponentType<TProps>
+        | $ReadOnly<FixturesOptions<TProps>>,
+): $ReadOnly<FixturesOptions<TProps>> => {
+    // To differentiate between a React component and a FixturesOptions object,
+    // we have to do some type checking. Since all React components, whether
+    // functional or class-based, are inherently functions in JavaScript
+    // this should do the trick without relying on internal React details like
+    // protoype.isReactComponent. This should be sufficient for our purposes.
+    // Alternatives I considered were:
+    // - Use an additional parameter for the options and then do an arg number
+    //   check, but that always makes typing a function harder and often breaks
+    //   types. I didn't want that battle today.
+    // - Use a tuple when providing component and options with the first element
+    //   being the component and the second being the options. However that
+    //   feels like an obscure API even though it's really easy to do the
+    //   typing.
+    if (typeof componentOrOptions === "function") {
+        return {
+            component: componentOrOptions,
+        };
+    }
+    // We can't test for React.ComponentType at runtime.
+    // Let's assume our simple heuristic above is sufficient.
+    // $FlowIgnore[incompatible-return]
+    return componentOrOptions;
+};
+
 /**
  * Describe a group of fixtures for a given component.
  *
@@ -28,7 +57,9 @@ type FixtureProps<TProps: {...}> =
  * its interface.
  */
 export const fixtures = <TProps: {...}>(
-    options: $ReadOnly<FixturesOptions<TProps>>,
+    componentOrOptions:
+        | React.ComponentType<TProps>
+        | $ReadOnly<FixturesOptions<TProps>>,
     fn: (
         fixture: (
             description: string,
@@ -38,18 +69,21 @@ export const fixtures = <TProps: {...}>(
     ) => void,
 ): ?$ReadOnly<mixed> => {
     const {adapter, defaultAdapterOptions} = getConfiguration();
+
     const {
         title,
         component,
         description: groupDescription,
         defaultWrapper,
         additionalAdapterOptions,
-    } = options;
+    } = normalizeOptions(componentOrOptions);
 
     // 1. Create a new adapter group.
     const group = adapter.declareGroup<TProps>({
-        title: title || component.displayName || component.name || "Component",
+        title,
         description: groupDescription,
+        getDefaultTitle: () =>
+            component.displayName || component.name || "Component",
     });
 
     // 2. Invoke fn with a function that can add a new fixture.

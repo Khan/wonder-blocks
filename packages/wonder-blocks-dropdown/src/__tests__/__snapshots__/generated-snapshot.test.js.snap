@@ -2475,7 +2475,7 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
     }
   >
     <button
-      aria-expanded="true"
+      aria-expanded="false"
       aria-haspopup="listbox"
       className=""
       disabled={false}

@@ -12,6 +12,9 @@ describe("AdapterGroup", () => {
                 new AdapterGroup(badCloseGroupFn, {
                     title: "TITLE",
                     description: null,
+                    getDefaultTitle: () => {
+                        throw new Error("NOT IMPLEMENTED");
+                    },
                 });
 
             expect(act).toThrowErrorMatchingInlineSnapshot(
@@ -40,6 +43,9 @@ describe("AdapterGroup", () => {
             const groupOptions = {
                 title: "TITLE",
                 description: null,
+                getDefaultTitle: () => {
+                    throw new Error("NOT IMPLEMENTED");
+                },
             };
             const adapterGroup = new AdapterGroup(closeGroupFn, groupOptions);
 
@@ -56,6 +62,9 @@ describe("AdapterGroup", () => {
             const groupOptions = {
                 title: "TITLE",
                 description: null,
+                getDefaultTitle: () => {
+                    throw new Error("NOT IMPLEMENTED");
+                },
             };
             const adapterSpecificOptions = {
                 adapterSpecificOption: "adapterSpecificOption",
@@ -79,6 +88,9 @@ describe("AdapterGroup", () => {
             const groupOptions = {
                 title: "TITLE",
                 description: "DESCRIPTION",
+                getDefaultTitle: () => {
+                    throw new Error("NOT IMPLEMENTED");
+                },
             };
             const adapterGroup = new AdapterGroup(closeGroupFn, groupOptions);
             const fixture = {
@@ -103,6 +115,9 @@ describe("AdapterGroup", () => {
             const groupOptions = {
                 title: "TITLE",
                 description: null,
+                getDefaultTitle: () => {
+                    throw new Error("NOT IMPLEMENTED");
+                },
             };
             const adapterGroup = new AdapterGroup(closeGroupFn, groupOptions);
             adapterGroup.closeGroup();
@@ -126,6 +141,9 @@ describe("AdapterGroup", () => {
                 const groupOptions = {
                     title: "TITLE",
                     description: null,
+                    getDefaultTitle: () => {
+                        throw new Error("NOT IMPLEMENTED");
+                    },
                 };
                 const adapterGroup = new AdapterGroup(
                     closeGroupFn,
@@ -147,6 +165,9 @@ describe("AdapterGroup", () => {
             const groupOptions = {
                 title: "TITLE",
                 description: "DESCRIPTION",
+                getDefaultTitle: () => {
+                    throw new Error("NOT IMPLEMENTED");
+                },
             };
             const adapterGroup = new AdapterGroup(closeGroupFn, groupOptions);
             const fixture1 = {
@@ -178,6 +199,9 @@ describe("AdapterGroup", () => {
             const groupOptions = {
                 title: "TITLE",
                 description: null,
+                getDefaultTitle: () => {
+                    throw new Error("NOT IMPLEMENTED");
+                },
             };
             const adapterGroup = new AdapterGroup(closeGroupFn, groupOptions);
             adapterGroup.closeGroup();

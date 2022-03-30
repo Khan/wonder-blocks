@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-cell
 
+## 2.2.1
+
+### Patch Changes
+
+-   eadd9c0d: Fix top vertical alignment between accessories and content
+
+## 2.2.0
+
+### Minor Changes
+
+-   35b9ef9c: Add target prop to cell.
+
 ## 2.1.0
 
 ### Minor Changes
