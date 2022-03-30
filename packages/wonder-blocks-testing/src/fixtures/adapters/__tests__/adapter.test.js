@@ -56,6 +56,9 @@ describe("Adapter", () => {
             const options = {
                 title: "group_title",
                 description: "group_description",
+                getDefaultTitle: () => {
+                    throw new Error("NOT IMPLEMENTED");
+                },
             };
             const adapterGroupSpy = jest
                 .spyOn(AdapterGroupModule, "AdapterGroup")
@@ -82,6 +85,9 @@ describe("Adapter", () => {
             const result = adapter.declareGroup({
                 title: "group_title",
                 description: "group_description",
+                getDefaultTitle: () => {
+                    throw new Error("NOT IMPLEMENTED");
+                },
             });
 
             // Assert

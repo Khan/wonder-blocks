@@ -81,13 +81,22 @@ export type AdapterFixtureOptions<TProps: {...}> = {|
 export type AdapterGroupOptions = {|
     /**
      * The title of the group.
+     *
+     * If omitted, the adapter is free to generate a default or ask for one
+     * using the passed getDefaultTitle() function.
      */
-    +title: string,
+    +title: ?string,
 
     /**
      * Description of the group.
      */
     +description: ?string,
+
+    /**
+     * Function that will generate a default title if an adapter cannot
+     * generate its own.
+     */
+    +getDefaultTitle: () => string,
 |};
 
 /**

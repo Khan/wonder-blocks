@@ -26,7 +26,7 @@ export type StorybookOptions = {|
 |};
 
 type DefaultExport = {|
-    title: string,
+    title?: ?string,
     ...StorybookOptions,
 |};
 
@@ -47,6 +47,9 @@ export const getAdapter: AdapterFactory<StorybookOptions, Exports<any>> = (
             {
                 title,
                 description: groupDescription,
+                // We don't use the default title in Storybook as storybook
+                // will generate titles for us if we pass a nullish title.
+                getDefaultTitle: _,
             }: $ReadOnly<AdapterGroupOptions>,
             adapterOptions: ?$ReadOnly<StorybookOptions>,
             declaredFixtures: $ReadOnlyArray<AdapterFixtureOptions<TProps>>,
