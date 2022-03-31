@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing
 
+## 3.0.1
+
+### Patch Changes
+
+-   6e4fbeed: Make sure simplified fixtures call copes with return values from React.forwardRef
+
 ## 3.0.0
 
 ### Major Changes
