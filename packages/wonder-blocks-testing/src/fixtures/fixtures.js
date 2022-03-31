@@ -15,10 +15,8 @@ const normalizeOptions = <TProps: {...}>(
         | $ReadOnly<FixturesOptions<TProps>>,
 ): $ReadOnly<FixturesOptions<TProps>> => {
     // To differentiate between a React component and a FixturesOptions object,
-    // we have to do some type checking. Since all React components, whether
-    // functional or class-based, are inherently functions in JavaScript
-    // this should do the trick without relying on internal React details like
-    // protoype.isReactComponent. This should be sufficient for our purposes.
+    // we have to do some type checking.
+    //
     // Alternatives I considered were:
     // - Use an additional parameter for the options and then do an arg number
     //   check, but that always makes typing a function harder and often breaks
@@ -27,8 +25,20 @@ const normalizeOptions = <TProps: {...}>(
     //   being the component and the second being the options. However that
     //   feels like an obscure API even though it's really easy to do the
     //   typing.
-    if (typeof componentOrOptions === "function") {
+    if (
+        // Most React components, whether functional or class-based, are
+        // inherently functions in JavaScript, so a check for functions is
+        // usually sufficient.
+        typeof componentOrOptions === "function" ||
+        // However, the return of React.forwardRef is not a function,
+        // so we also have to cope with that.
+        // A forwardRef has $$typeof = Symbol(react.forward_ref) and a
+        // render function.
+        // $FlowIgnore[prop-missing]
+        typeof componentOrOptions.render === "function"
+    ) {
         return {
+            // $FlowIgnore[incompatible-return]
             component: componentOrOptions,
         };
     }
