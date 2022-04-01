@@ -14,6 +14,8 @@ import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants.js";
 
+type WithForwardRef = {|forwardedRef: React.Ref<"input">|};
+
 type Props = {|
     ...AriaProps,
 
@@ -86,6 +88,11 @@ type Props = {|
     onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 |};
 
+type PropsWithForwardRef = {|
+    ...Props,
+    ...WithForwardRef,
+|};
+
 /**
  * Search Field. A TextField with a search icon on its left side
  * and an X icon on its right side.
@@ -107,13 +114,14 @@ type Props = {|
  * />
  * ```
  */
-export default function SearchField(props: Props): React.Node {
+function SearchField(props: PropsWithForwardRef): React.Node {
     const {
         clearAriaLabel = defaultLabels.clearSearch,
         disabled = false,
         light = false,
         id,
         value,
+        forwardedRef,
         placeholder,
         style,
         testId,
@@ -170,6 +178,7 @@ export default function SearchField(props: Props): React.Node {
                 onFocus={onFocus}
                 onBlur={onBlur}
                 placeholder={placeholder}
+                ref={forwardedRef}
                 value={value}
                 style={[styles.inputStyleReset, typographyStyles.LabelMedium]}
                 testId={testId}
@@ -213,3 +222,17 @@ const styles = StyleSheet.create({
         paddingRight: Spacing.large_24 + Spacing.medium_16,
     },
 });
+
+type ExportProps = $Diff<
+    React.ElementConfig<typeof SearchField>,
+    WithForwardRef,
+>;
+
+const ForwardedSearchField: React.AbstractComponent<
+    ExportProps,
+    HTMLInputElement,
+> = React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
+    <SearchField {...props} forwardedRef={ref} />
+));
+
+export default ForwardedSearchField;
