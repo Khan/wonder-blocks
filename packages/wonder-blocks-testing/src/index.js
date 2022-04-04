@@ -19,6 +19,6 @@ export type {
 
 // GraphQL framework
 export {mockGqlFetch} from "./gql/mock-gql-fetch.js";
-export type {GqlMockResponse} from "./gql/make-gql-mock-response.js";
-export {RespondWith} from "./gql/make-gql-mock-response.js";
+export type {MockResponse} from "./make-mock-response.js";
+export {RespondWith} from "./make-mock-response.js";
 export type {GqlFetchMockFn, GqlMock, GqlMockOperation} from "./gql/types.js";

@@ -1,5 +1,5 @@
 // @flow
-export opaque type GqlMockResponse<TData> =
+export opaque type MockResponse<TData> =
     | {|
           type: "data",
           data: TData,
@@ -20,16 +20,16 @@ export opaque type GqlMockResponse<TData> =
     | {|type: "graphql", errors: $ReadOnlyArray<string>|};
 
 /**
- * Helpers to define rejection states for mocking GQL requests.
+ * Helpers to define rejection states for mocking requests.
  */
 export const RespondWith = Object.freeze({
-    data: <TData>(data: TData): GqlMockResponse<TData> => ({
+    data: <TData>(data: TData): MockResponse<TData> => ({
         type: "data",
         data,
     }),
-    unparseableBody: (): GqlMockResponse<any> => ({type: "parse"}),
-    abortedRequest: (): GqlMockResponse<any> => ({type: "abort"}),
-    errorStatusCode: (statusCode: number): GqlMockResponse<any> => {
+    unparseableBody: (): MockResponse<any> => ({type: "parse"}),
+    abortedRequest: (): MockResponse<any> => ({type: "abort"}),
+    errorStatusCode: (statusCode: number): MockResponse<any> => {
         if (statusCode < 300) {
             throw new Error(`${statusCode} is not a valid error status code`);
         }
@@ -38,10 +38,10 @@ export const RespondWith = Object.freeze({
             statusCode,
         };
     },
-    nonGraphQLBody: (): GqlMockResponse<any> => ({type: "invalid"}),
+    nonGraphQLBody: (): MockResponse<any> => ({type: "invalid"}),
     graphQLErrors: (
         errorMessages: $ReadOnlyArray<string>,
-    ): GqlMockResponse<any> => ({
+    ): MockResponse<any> => ({
         type: "graphql",
         errors: errorMessages,
     }),
@@ -51,8 +51,8 @@ export const RespondWith = Object.freeze({
  * Turns an ErrorResponse value in an actual Response that will invoke
  * that error.
  */
-export const makeGqlMockResponse = <TData>(
-    response: GqlMockResponse<TData>,
+export const makeMockResponse = <TData>(
+    response: MockResponse<TData>,
 ): Promise<Response> => {
     switch (response.type) {
         case "data":

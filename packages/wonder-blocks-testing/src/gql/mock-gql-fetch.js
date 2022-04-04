@@ -1,8 +1,8 @@
 // @flow
 import type {GqlContext} from "@khanacademy/wonder-blocks-data";
 import {gqlRequestMatchesMock} from "./gql-request-matches-mock.js";
-import {makeGqlMockResponse} from "./make-gql-mock-response.js";
-import type {GqlMockResponse} from "./make-gql-mock-response.js";
+import {makeMockResponse} from "../make-mock-response.js";
+import type {MockResponse} from "../make-mock-response.js";
 import type {GqlMock, GqlMockOperation, GqlFetchMockFn} from "./types.js";
 
 /**
@@ -54,10 +54,10 @@ export const mockGqlFetch = (): GqlFetchMockFn => {
 
     const addMockedOperation = <TData, TVariables: {...}, TContext: GqlContext>(
         operation: GqlMockOperation<TData, TVariables, TContext>,
-        response: GqlMockResponse<TData>,
+        response: MockResponse<TData>,
         onceOnly: boolean,
     ): GqlFetchMockFn => {
-        const mockResponse = () => makeGqlMockResponse(response);
+        const mockResponse = () => makeMockResponse(response);
         mocks.push({
             operation,
             response: mockResponse,
@@ -73,7 +73,7 @@ export const mockGqlFetch = (): GqlFetchMockFn => {
         TContext: GqlContext,
     >(
         operation: GqlMockOperation<TData, TVariables, TContext>,
-        response: GqlMockResponse<TData>,
+        response: MockResponse<TData>,
     ): GqlFetchMockFn => addMockedOperation(operation, response, false);
 
     gqlFetchMock.mockOperationOnce = <
@@ -82,7 +82,7 @@ export const mockGqlFetch = (): GqlFetchMockFn => {
         TContext: GqlContext,
     >(
         operation: GqlMockOperation<TData, TVariables, TContext>,
-        response: GqlMockResponse<TData>,
+        response: MockResponse<TData>,
     ): GqlFetchMockFn => addMockedOperation(operation, response, true);
 
     return gqlFetchMock;

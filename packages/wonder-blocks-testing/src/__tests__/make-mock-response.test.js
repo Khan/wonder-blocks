@@ -1,5 +1,5 @@
 // @flow
-import {RespondWith, makeGqlMockResponse} from "../make-gql-mock-response.js";
+import {RespondWith, makeMockResponse} from "../make-mock-response.js";
 
 describe("RespondWith", () => {
     describe("#data", () => {
@@ -127,7 +127,7 @@ describe("#makeGqlErrorResponse", () => {
 
         // Act
         const result = () =>
-            makeGqlMockResponse(({type: "NOT A VALID TYPE"}: any));
+            makeMockResponse(({type: "NOT A VALID TYPE"}: any));
 
         // Assert
         expect(result).toThrowErrorMatchingInlineSnapshot(
@@ -141,7 +141,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.data({});
 
             // Act
-            const result = await makeGqlMockResponse(mockResponse);
+            const result = await makeMockResponse(mockResponse);
 
             // Assert
             expect(result.status).toBe(200);
@@ -155,7 +155,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.data(data);
 
             // Act
-            const response = await makeGqlMockResponse(mockResponse);
+            const response = await makeMockResponse(mockResponse);
             const result = await response.text();
 
             // Assert
@@ -169,7 +169,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.unparseableBody();
 
             // Act
-            const result = await makeGqlMockResponse(mockResponse);
+            const result = await makeMockResponse(mockResponse);
 
             // Assert
             expect(result.status).toBe(200);
@@ -180,7 +180,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.unparseableBody();
 
             // Act
-            const response = await makeGqlMockResponse(mockResponse);
+            const response = await makeMockResponse(mockResponse);
             const text = await response.text();
             const act = () => JSON.parse(text);
 
@@ -195,7 +195,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.abortedRequest();
 
             // Act
-            const act = () => makeGqlMockResponse(mockResponse);
+            const act = () => makeMockResponse(mockResponse);
 
             // Assert
             await expect(act).rejects.toBeInstanceOf(Error);
@@ -206,7 +206,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.abortedRequest();
 
             // Act
-            const act = makeGqlMockResponse(mockResponse);
+            const act = makeMockResponse(mockResponse);
 
             // Assert
             await expect(act).rejects.toHaveProperty("name", "AbortError");
@@ -219,7 +219,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.errorStatusCode(400);
 
             // Act
-            const result = await makeGqlMockResponse(mockResponse);
+            const result = await makeMockResponse(mockResponse);
 
             // Assert
             expect(result.status).toBe(400);
@@ -230,7 +230,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.errorStatusCode(400);
 
             // Act
-            const response = await makeGqlMockResponse(mockResponse);
+            const response = await makeMockResponse(mockResponse);
             const text = await response.text();
             const act = () => JSON.parse(text);
 
@@ -245,7 +245,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.nonGraphQLBody();
 
             // Act
-            const result = await makeGqlMockResponse(mockResponse);
+            const result = await makeMockResponse(mockResponse);
 
             // Assert
             expect(result.status).toBe(200);
@@ -256,7 +256,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.nonGraphQLBody();
 
             // Act
-            const response = await makeGqlMockResponse(mockResponse);
+            const response = await makeMockResponse(mockResponse);
             const text = await response.text();
             const result = JSON.parse(text);
 
@@ -272,7 +272,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.graphQLErrors([]);
 
             // Act
-            const result = await makeGqlMockResponse(mockResponse);
+            const result = await makeMockResponse(mockResponse);
 
             // Assert
             expect(result.status).toBe(200);
@@ -284,7 +284,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.graphQLErrors(errorMessages);
 
             // Act
-            const response = await makeGqlMockResponse(mockResponse);
+            const response = await makeMockResponse(mockResponse);
             const text = await response.text();
             const result = JSON.parse(text);
 
