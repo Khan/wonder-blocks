@@ -36,7 +36,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
         // Assert
         await waitFor(() =>
             expect(result).toHaveTextContent(
-                "No matching GraphQL mock response found for request",
+                "No matching mock response found for request",
             ),
         );
     });

@@ -37,7 +37,7 @@ describe("#mockGqlFetch", () => {
             // Assert
             await waitFor(() =>
                 expect(result).toHaveTextContent(
-                    "No matching GraphQL mock response found for request",
+                    "No matching mock response found for request",
                 ),
             );
         });
@@ -174,7 +174,7 @@ describe("#mockGqlFetch", () => {
 
         // Assert
         await expect(result).rejects.toThrowErrorMatchingInlineSnapshot(`
-                    "No matching GraphQL mock response found for request:
+                    "No matching mock response found for request:
                         Operation: query getMyStuff
                         Variables: {
                       \\"a\\": \\"variable\\"

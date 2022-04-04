@@ -1,5 +1,6 @@
 // @flow
 import {ResponseImpl} from "./response-impl.js";
+import type {GraphQLJson} from "./types.js";
 
 /**
  * Describes a mock response to a fetch request.
@@ -13,20 +14,6 @@ export opaque type MockResponse<TJson> =
     | {|
           type: "reject",
           error: Error | (() => Error),
-      |};
-
-/**
- * A valid GraphQL response as supported by our mocking framework.
- * Note that we don't currently support both data and errors being set.
- */
-export type GraphQLJson<TData: {...}> =
-    | {|
-          data: TData,
-      |}
-    | {|
-          errors: Array<{|
-              message: string,
-          |}>,
       |};
 
 /**
@@ -92,6 +79,11 @@ export const RespondWith = Object.freeze({
         }),
 
     /**
+     * Rejects with the given error.
+     */
+    reject: (error: Error): MockResponse<any> => rejectResponse(error),
+
+    /**
      * A non-200 status code with empty text body.
      * Equivalent to calling `ResponseWith.text("", statusCode)`.
      */
@@ -99,7 +91,7 @@ export const RespondWith = Object.freeze({
         if (statusCode < 300) {
             throw new Error(`${statusCode} is not a valid error status code`);
         }
-        return textResponse("", statusCode);
+        return textResponse("{}", statusCode);
     },
 
     /**
@@ -132,8 +124,8 @@ export const RespondWith = Object.freeze({
  * Turns an ErrorResponse value in an actual Response that will invoke
  * that error.
  */
-export const makeMockResponse = <TJson>(
-    response: MockResponse<TJson>,
+export const makeMockResponse = (
+    response: MockResponse<any>,
 ): Promise<Response> => {
     switch (response.type) {
         case "text":
@@ -141,6 +133,7 @@ export const makeMockResponse = <TJson>(
                 typeof response.text === "function"
                     ? response.text()
                     : response.text;
+
             return Promise.resolve(
                 new ResponseImpl(text, {status: response.statusCode}),
             );

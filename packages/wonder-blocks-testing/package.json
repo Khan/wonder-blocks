@@ -20,7 +20,7 @@
         "@khanacademy/wonder-stuff-core": "^0.1.2",
         "@khanacademy/wonder-stuff-testing": "^0.0.2",
         "@storybook/addon-actions": "^6.4.8",
-        "node-fetch": "^3.2.3",
+        "node-fetch": "^2.6.7",
         "react": "16.14.0"
     },
     "devDependencies": {
