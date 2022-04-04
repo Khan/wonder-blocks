@@ -2,7 +2,7 @@
 import type {GqlContext} from "@khanacademy/wonder-blocks-data";
 import {gqlRequestMatchesMock} from "./gql-request-matches-mock.js";
 import {makeMockResponse} from "../make-mock-response.js";
-import type {MockResponse} from "../make-mock-response.js";
+import type {MockResponse, GraphQLJson} from "../make-mock-response.js";
 import type {GqlMock, GqlMockOperation, GqlFetchMockFn} from "./types.js";
 
 /**
@@ -54,7 +54,7 @@ export const mockGqlFetch = (): GqlFetchMockFn => {
 
     const addMockedOperation = <TData, TVariables: {...}, TContext: GqlContext>(
         operation: GqlMockOperation<TData, TVariables, TContext>,
-        response: MockResponse<TData>,
+        response: MockResponse<GraphQLJson<TData>>,
         onceOnly: boolean,
     ): GqlFetchMockFn => {
         const mockResponse = () => makeMockResponse(response);
@@ -68,21 +68,21 @@ export const mockGqlFetch = (): GqlFetchMockFn => {
     };
 
     gqlFetchMock.mockOperation = <
-        TData,
+        TData: {...},
         TVariables: {...},
         TContext: GqlContext,
     >(
         operation: GqlMockOperation<TData, TVariables, TContext>,
-        response: MockResponse<TData>,
+        response: MockResponse<GraphQLJson<TData>>,
     ): GqlFetchMockFn => addMockedOperation(operation, response, false);
 
     gqlFetchMock.mockOperationOnce = <
-        TData,
+        TData: {...},
         TVariables: {...},
         TContext: GqlContext,
     >(
         operation: GqlMockOperation<TData, TVariables, TContext>,
-        response: MockResponse<TData>,
+        response: MockResponse<GraphQLJson<TData>>,
     ): GqlFetchMockFn => addMockedOperation(operation, response, true);
 
     return gqlFetchMock;

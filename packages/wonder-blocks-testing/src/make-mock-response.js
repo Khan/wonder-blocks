@@ -1,122 +1,156 @@
 // @flow
-export opaque type MockResponse<TData> =
+import {ResponseImpl} from "./response-impl.js";
+
+/**
+ * Describes a mock response to a fetch request.
+ */
+export opaque type MockResponse<TJson> =
     | {|
-          type: "data",
-          data: TData,
-      |}
-    | {|
-          type: "parse",
-      |}
-    | {|
-          type: "abort",
-      |}
-    | {|
-          type: "status",
+          type: "text",
+          text: string | (() => string),
           statusCode: number,
       |}
     | {|
-          type: "invalid",
-      |}
-    | {|type: "graphql", errors: $ReadOnlyArray<string>|};
+          type: "reject",
+          error: Error | (() => Error),
+      |};
 
 /**
- * Helpers to define rejection states for mocking requests.
+ * A valid GraphQL response as supported by our mocking framework.
+ * Note that we don't currently support both data and errors being set.
+ */
+export type GraphQLJson<TData: {...}> =
+    | {|
+          data: TData,
+      |}
+    | {|
+          errors: Array<{|
+              message: string,
+          |}>,
+      |};
+
+/**
+ * Helper for creating a text-based mock response.
+ */
+const textResponse = <TData>(
+    text: string | (() => string),
+    statusCode: number = 200,
+): MockResponse<TData> => ({
+    type: "text",
+    text,
+    statusCode,
+});
+
+/**
+ * Helper for creating a rejected mock response.
+ */
+const rejectResponse = (error: Error | (() => Error)): MockResponse<empty> => ({
+    type: "reject",
+    error,
+});
+
+/**
+ * Helpers to define mock responses for mocked requests.
  */
 export const RespondWith = Object.freeze({
-    data: <TData>(data: TData): MockResponse<TData> => ({
-        type: "data",
-        data,
-    }),
-    unparseableBody: (): MockResponse<any> => ({type: "parse"}),
-    abortedRequest: (): MockResponse<any> => ({type: "abort"}),
+    /**
+     * Response with text body and status code.
+     * Status code defaults to 200.
+     */
+    text: <TData = string>(
+        text: string,
+        statusCode: number = 200,
+    ): MockResponse<TData> => textResponse<TData>(text, statusCode),
+
+    /**
+     * Response with JSON body and status code 200.
+     */
+    json: <TJson: {...}>(json: TJson): MockResponse<TJson> =>
+        textResponse<TJson>(() => JSON.stringify(json)),
+
+    /**
+     * Response with GraphQL data JSON body and status code 200.
+     */
+    graphQLData: <TData: {...}>(
+        data: TData,
+    ): MockResponse<GraphQLJson<TData>> =>
+        textResponse<GraphQLJson<TData>>(() => JSON.stringify({data})),
+
+    /**
+     * Response with body that will not parse as JSON and status code 200.
+     */
+    unparseableBody: (): MockResponse<any> => textResponse("INVALID JSON"),
+
+    /**
+     * Rejects with an AbortError to simulate an aborted request.
+     */
+    abortedRequest: (): MockResponse<any> =>
+        rejectResponse(() => {
+            const abortError = new Error("Mock request aborted");
+            abortError.name = "AbortError";
+            return abortError;
+        }),
+
+    /**
+     * A non-200 status code with empty text body.
+     * Equivalent to calling `ResponseWith.text("", statusCode)`.
+     */
     errorStatusCode: (statusCode: number): MockResponse<any> => {
         if (statusCode < 300) {
             throw new Error(`${statusCode} is not a valid error status code`);
         }
-        return {
-            type: "status",
-            statusCode,
-        };
+        return textResponse("", statusCode);
     },
-    nonGraphQLBody: (): MockResponse<any> => ({type: "invalid"}),
+
+    /**
+     * Response body that is valid JSON but not a valid GraphQL response.
+     */
+    nonGraphQLBody: (): MockResponse<any> =>
+        textResponse(() =>
+            JSON.stringify({
+                valid: "json",
+                that: "is not a valid graphql response",
+            }),
+        ),
+
+    /**
+     * Response that is a GraphQL errors response with status code 200.
+     */
     graphQLErrors: (
         errorMessages: $ReadOnlyArray<string>,
-    ): MockResponse<any> => ({
-        type: "graphql",
-        errors: errorMessages,
-    }),
+    ): MockResponse<GraphQLJson<any>> =>
+        textResponse<GraphQLJson<any>>(() =>
+            JSON.stringify({
+                errors: errorMessages.map((e) => ({
+                    message: e,
+                })),
+            }),
+        ),
 });
 
 /**
  * Turns an ErrorResponse value in an actual Response that will invoke
  * that error.
  */
-export const makeMockResponse = <TData>(
-    response: MockResponse<TData>,
+export const makeMockResponse = <TJson>(
+    response: MockResponse<TJson>,
 ): Promise<Response> => {
     switch (response.type) {
-        case "data":
+        case "text":
+            const text =
+                typeof response.text === "function"
+                    ? response.text()
+                    : response.text;
             return Promise.resolve(
-                ({
-                    status: 200,
-                    text: () =>
-                        Promise.resolve(
-                            JSON.stringify({
-                                data: response.data,
-                            }),
-                        ),
-                }: any),
+                new ResponseImpl(text, {status: response.statusCode}),
             );
 
-        case "parse":
-            return Promise.resolve(
-                ({
-                    status: 200,
-                    text: () => Promise.resolve("INVALID JSON"),
-                }: any),
-            );
-
-        case "abort":
-            const abortError = new Error("Mock request aborted");
-            abortError.name = "AbortError";
-            return Promise.reject(abortError);
-
-        case "status":
-            return Promise.resolve(
-                ({
-                    status: response.statusCode,
-                    text: () => Promise.resolve(JSON.stringify({})),
-                }: any),
-            );
-
-        case "invalid":
-            return Promise.resolve(
-                ({
-                    status: 200,
-                    text: () =>
-                        Promise.resolve(
-                            JSON.stringify({
-                                valid: "json",
-                                that: "is not a valid graphql response",
-                            }),
-                        ),
-                }: any),
-            );
-
-        case "graphql":
-            return Promise.resolve(
-                ({
-                    status: 200,
-                    text: () =>
-                        Promise.resolve(
-                            JSON.stringify({
-                                errors: response.errors.map((e) => ({
-                                    message: e,
-                                })),
-                            }),
-                        ),
-                }: any),
-            );
+        case "reject":
+            const error =
+                response.error instanceof Error
+                    ? response.error
+                    : response.error();
+            return Promise.reject(error);
 
         default:
             throw new Error(`Unknown response type: ${response.type}`);

@@ -7,7 +7,7 @@ describe("RespondWith", () => {
             // Arrange
 
             // Act
-            const result = RespondWith.data({});
+            const result = RespondWith.graphQLData({});
 
             // Assert
             expect(result).toHaveProperty("type", "data");
@@ -20,7 +20,7 @@ describe("RespondWith", () => {
             };
 
             // Act
-            const result = RespondWith.data(data);
+            const result = RespondWith.graphQLData(data);
 
             // Assert
             expect(result).toHaveProperty("data", data);
@@ -138,7 +138,7 @@ describe("#makeGqlErrorResponse", () => {
     describe("data response", () => {
         it("should resolve to have a successful status code", async () => {
             // Arrange
-            const mockResponse = RespondWith.data({});
+            const mockResponse = RespondWith.graphQLData({});
 
             // Act
             const result = await makeMockResponse(mockResponse);
@@ -152,7 +152,7 @@ describe("#makeGqlErrorResponse", () => {
             const data = {
                 foo: "bar",
             };
-            const mockResponse = RespondWith.data(data);
+            const mockResponse = RespondWith.graphQLData(data);
 
             // Act
             const response = await makeMockResponse(mockResponse);

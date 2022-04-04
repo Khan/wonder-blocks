@@ -65,7 +65,10 @@ describe("#mockGqlFetch", () => {
             };
 
             // Act
-            mockFetch.mockOperation({operation: query}, RespondWith.data(data));
+            mockFetch.mockOperation(
+                {operation: query},
+                RespondWith.graphQLData(data),
+            );
             render(
                 <GqlRouter defaultContext={{}} fetch={mockFetch}>
                     <RenderData />
@@ -195,7 +198,7 @@ describe("#mockGqlFetch", () => {
             };
 
             // Act
-            mockFetch.mockOperation({operation}, RespondWith.data(data));
+            mockFetch.mockOperation({operation}, RespondWith.graphQLData(data));
             const result = mockFetch(
                 operation,
                 {a: "variable"},
@@ -218,7 +221,7 @@ describe("#mockGqlFetch", () => {
             };
 
             // Act
-            mockFetch.mockOperation({operation}, RespondWith.data(data));
+            mockFetch.mockOperation({operation}, RespondWith.graphQLData(data));
             const result = mockFetch(
                 {type: "mutation", id: "putMyStuff"},
                 {a: "variable"},
@@ -246,7 +249,7 @@ describe("#mockGqlFetch", () => {
             // Act
             mockFetch.mockOperation(
                 {operation, variables},
-                RespondWith.data(data),
+                RespondWith.graphQLData(data),
             );
             const result = mockFetch(operation, variables, {my: "context"});
 
@@ -271,7 +274,7 @@ describe("#mockGqlFetch", () => {
             // Act
             mockFetch.mockOperation(
                 {operation, variables},
-                RespondWith.data(data),
+                RespondWith.graphQLData(data),
             );
             const result = mockFetch(
                 operation,
@@ -300,7 +303,7 @@ describe("#mockGqlFetch", () => {
             // Act
             mockFetch.mockOperation(
                 {operation, context},
-                RespondWith.data(data),
+                RespondWith.graphQLData(data),
             );
             const result = mockFetch(operation, {a: "variable"}, context);
 
@@ -325,7 +328,7 @@ describe("#mockGqlFetch", () => {
             // Act
             mockFetch.mockOperation(
                 {operation, context},
-                RespondWith.data(data),
+                RespondWith.graphQLData(data),
             );
             const result = mockFetch(
                 operation,
@@ -357,7 +360,7 @@ describe("#mockGqlFetch", () => {
             // Act
             mockFetch.mockOperation(
                 {operation, variables, context},
-                RespondWith.data(data),
+                RespondWith.graphQLData(data),
             );
             const result = mockFetch(operation, variables, context);
 
@@ -385,7 +388,7 @@ describe("#mockGqlFetch", () => {
             // Act
             mockFetch.mockOperation(
                 {operation, variables, context},
-                RespondWith.data(data),
+                RespondWith.graphQLData(data),
             );
             const response = await mockFetch(operation, variables, context);
             const result = await response.text();
@@ -406,7 +409,7 @@ describe("#mockGqlFetch", () => {
             };
 
             // Act
-            mockFetch.mockOperation({operation}, RespondWith.data(data));
+            mockFetch.mockOperation({operation}, RespondWith.graphQLData(data));
             const result = Promise.all([
                 mockFetch(operation, {a: "variable"}, {my: "context"}),
                 mockFetch(operation, {b: "variable"}, {another: "context"}),
@@ -433,7 +436,10 @@ describe("#mockGqlFetch", () => {
             };
 
             // Act
-            mockFetch.mockOperationOnce({operation}, RespondWith.data(data));
+            mockFetch.mockOperationOnce(
+                {operation},
+                RespondWith.graphQLData(data),
+            );
             const result = mockFetch(
                 operation,
                 {a: "variable"},
@@ -456,7 +462,10 @@ describe("#mockGqlFetch", () => {
             };
 
             // Act
-            mockFetch.mockOperationOnce({operation}, RespondWith.data(data));
+            mockFetch.mockOperationOnce(
+                {operation},
+                RespondWith.graphQLData(data),
+            );
             const result = Promise.all([
                 mockFetch(operation, {a: "variable"}, {my: "context"}),
                 mockFetch(operation, {b: "variable"}, {another: "context"}),

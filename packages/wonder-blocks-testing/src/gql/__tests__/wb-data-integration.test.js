@@ -41,7 +41,7 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
         );
     });
 
-    it("should resolve with data for RespondWith.data", async () => {
+    it("should resolve with data for RespondWith.graphQLData", async () => {
         // Arrange
         const mockFetch = mockGqlFetch();
         const query = {
@@ -64,7 +64,10 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
         };
 
         // Act
-        mockFetch.mockOperation({operation: query}, RespondWith.data(data));
+        mockFetch.mockOperation(
+            {operation: query},
+            RespondWith.graphQLData(data),
+        );
         render(
             <GqlRouter defaultContext={{}} fetch={mockFetch}>
                 <RenderData />
