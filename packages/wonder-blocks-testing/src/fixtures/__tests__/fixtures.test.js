@@ -1,4 +1,5 @@
 // @flow
+import * as React from "react";
 import * as SetupModule from "../setup.js";
 import * as CombineOptionsModule from "../combine-options.js";
 import {fixtures} from "../fixtures.js";
@@ -284,7 +285,7 @@ describe("#fixtures", () => {
     });
 
     describe("injected fixture fn", () => {
-        it("should call group.declareFixture with description and props getter", () => {
+        it("should call group.declareFixture with description, props getter, and component", () => {
             // Arrange
             const fakeGroup = {
                 declareFixture: jest.fn(),
@@ -310,6 +311,36 @@ describe("#fixtures", () => {
                     fixture("FIXTURE_DESCRIPTION", {these: "areProps"});
                 },
             );
+
+            // Assert
+            expect(fakeGroup.declareFixture).toHaveBeenCalledWith({
+                description: "FIXTURE_DESCRIPTION",
+                getProps: expect.any(Function),
+                component,
+            });
+        });
+
+        it("should call group.declareFixture with component if component is forward ref", () => {
+            // Arrange
+            const fakeGroup = {
+                declareFixture: jest.fn(),
+                closeGroup: jest.fn(),
+            };
+            const adapter = {
+                declareGroup: jest.fn().mockReturnValue(fakeGroup),
+                name: "testadapter",
+            };
+            jest.spyOn(SetupModule, "getConfiguration").mockReturnValue({
+                adapter,
+            });
+            const component = React.forwardRef((props, ref) => (
+                <div {...props} ref={ref} />
+            ));
+
+            // Act
+            fixtures(component, (fixture) => {
+                fixture("FIXTURE_DESCRIPTION", {these: "areProps"});
+            });
 
             // Assert
             expect(fakeGroup.declareFixture).toHaveBeenCalledWith({
