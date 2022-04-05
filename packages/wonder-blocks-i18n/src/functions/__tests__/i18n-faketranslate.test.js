@@ -180,5 +180,34 @@ describe("i18n-faketranslate", () => {
                 expect(result).toEqual(expectation);
             });
         });
+
+        it("should not call document.createElement() for real locales", () => {
+            // Arrange
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "es");
+            const createElementSpy = jest.spyOn(document, "createElement");
+            const underTest = new FakeTranslate();
+
+            // Act
+            // We use a Symbol to ensure that .translate() is a passthrough.
+            underTest.translate("hello, world");
+
+            // Assert
+            expect(createElementSpy).not.toHaveBeenCalled();
+        });
+
+        it("should passthrough the arg for real locales", () => {
+            // Arrange
+            jest.spyOn(Locale, "getLocale").mockImplementation(() => "es");
+            const underTest = new FakeTranslate();
+            const arg = Symbol("Hello, world!");
+
+            // Act
+            // We use a Symbol to ensure that .translate() is a passthrough.
+            // $FlowIgnore[incompatible-call]
+            const result = underTest.translate(arg);
+
+            // Assert
+            expect(result).toBe(arg);
+        });
     });
 });
