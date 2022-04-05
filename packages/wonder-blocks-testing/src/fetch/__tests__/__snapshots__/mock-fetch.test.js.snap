@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`#mockFetch should reject with a useful error when there are no matching mocks for %s 1`] = `
+"No matching mock response found for request:
+    Input: http://example.com/foo
+    Options: None"
+`;
+
+exports[`#mockFetch should reject with a useful error when there are no matching mocks for %s 2`] = `
+"No matching mock response found for request:
+    Input: \\"http://example.com/foo\\"
+    Options: {
+  \\"method\\": \\"GET\\"
+}"
+`;
+
+exports[`#mockFetch should reject with a useful error when there are no matching mocks for %s 3`] = `
+"No matching mock response found for request:
+    Input: {
+  \\"size\\": 0,
+  \\"timeout\\": 0,
+  \\"follow\\": 20,
+  \\"compress\\": true,
+  \\"counter\\": 0
+}
+    Options: {
+  \\"method\\": \\"POST\\"
+}"
+`;

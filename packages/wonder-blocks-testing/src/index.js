@@ -17,8 +17,14 @@ export type {
     FixturesOptions,
 } from "./fixtures/types.js";
 
-// GraphQL framework
+// Fetch mocking framework
+export type {MockResponse} from "./make-mock-response.js";
+export {RespondWith} from "./make-mock-response.js";
+export {mockFetch} from "./fetch/mock-fetch.js";
+export type {
+    FetchMockFn,
+    FetchMock,
+    FetchMockOperation,
+} from "./fetch/types.js";
 export {mockGqlFetch} from "./gql/mock-gql-fetch.js";
-export type {GqlMockResponse} from "./gql/make-gql-mock-response.js";
-export {RespondWith} from "./gql/make-gql-mock-response.js";
 export type {GqlFetchMockFn, GqlMock, GqlMockOperation} from "./gql/types.js";

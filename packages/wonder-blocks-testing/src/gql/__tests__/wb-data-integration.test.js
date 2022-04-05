@@ -3,7 +3,7 @@ import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 
 import {GqlRouter, useGql} from "@khanacademy/wonder-blocks-data";
-import {RespondWith} from "../make-gql-mock-response.js";
+import {RespondWith} from "../../make-mock-response.js";
 import {mockGqlFetch} from "../mock-gql-fetch.js";
 
 describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
@@ -36,12 +36,12 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
         // Assert
         await waitFor(() =>
             expect(result).toHaveTextContent(
-                "No matching GraphQL mock response found for request",
+                "No matching mock response found for request",
             ),
         );
     });
 
-    it("should resolve with data for RespondWith.data", async () => {
+    it("should resolve with data for RespondWith.graphQLData", async () => {
         // Arrange
         const mockFetch = mockGqlFetch();
         const query = {
@@ -64,7 +64,10 @@ describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
         };
 
         // Act
-        mockFetch.mockOperation({operation: query}, RespondWith.data(data));
+        mockFetch.mockOperation(
+            {operation: query},
+            RespondWith.graphQLData(data),
+        );
         render(
             <GqlRouter defaultContext={{}} fetch={mockFetch}>
                 <RenderData />
