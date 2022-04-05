@@ -600,13 +600,14 @@ class DropdownCore extends React.Component<Props, State> {
             }
             // Update the focus reference.
             this.focusedIndex = foundIndex;
-            const node = this.scheduleToFocusCurrentItem();
 
-            // Force click only if the dropdown is closed and we are using the
-            // SingleSelect component.
-            if (this.props.selectionType === "single" && isClosed && node) {
-                node.click();
-            }
+            this.scheduleToFocusCurrentItem((node) => {
+                // Force click only if the dropdown is closed and we are using
+                // the SingleSelect component.
+                if (this.props.selectionType === "single" && isClosed && node) {
+                    node.click();
+                }
+            });
         }
 
         // Otherwise, reset current text
