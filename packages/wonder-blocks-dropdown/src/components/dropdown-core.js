@@ -22,9 +22,19 @@ import type {
 import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 import SeparatorItem from "./separator-item.js";
 import SearchTextInput from "./search-text-input.js";
-import {defaultLabels, keyCodes, searchInputStyle} from "../util/constants.js";
-import type {DropdownItem} from "../util/types.js";
+import {
+    defaultLabels,
+    keyCodes,
+    searchInputStyle,
+    DROPDOWN_ITEM_HEIGHT,
+    MAX_VISIBLE_ITEMS,
+    SEARCH_ITEM_HEIGHT,
+    SEPARATOR_ITEM_HEIGHT,
+} from "../util/constants.js";
+import {debounce, getStringForKey} from "../util/helpers.js";
 import DropdownPopper from "./dropdown-popper.js";
+
+import type {DropdownItem} from "../util/types.js";
 
 /**
  * The number of options to apply the virtualized list to.
@@ -68,6 +78,8 @@ type DefaultProps = {|
      * use when the item is used on a dark background.
      */
     light: boolean,
+
+    selectionType: "single" | "multi",
 |};
 
 type DropdownAriaRole = "listbox" | "menu";
@@ -187,6 +199,10 @@ class DropdownCore extends React.Component<Props, State> {
         current: null | React.ElementRef<typeof List>,
     |};
 
+    handleKeyDownDebounced: (key: string) => void;
+
+    textSuggestion: string;
+
     // Figure out if the same items are focusable. If an item has been added or
     // removed, this method will return false.
     static sameItemsFocusable(
@@ -210,6 +226,7 @@ class DropdownCore extends React.Component<Props, State> {
             noResults: defaultLabels.noResults,
         },
         light: false,
+        selectionType: "multi",
     };
 
     // This is here to avoid calling React.createRef on each rerender. Instead,
@@ -260,6 +277,14 @@ class DropdownCore extends React.Component<Props, State> {
         };
 
         this.virtualizedListRef = React.createRef();
+
+        // We debounce the keydown handler to get the ASCII chars because it's
+        // called on every keydown
+        this.handleKeyDownDebounced = debounce(
+            this.handleKeyDownDebounceResult,
+            250,
+        );
+        this.textSuggestion = "";
     }
 
     componentDidMount() {
@@ -394,17 +419,23 @@ class DropdownCore extends React.Component<Props, State> {
         }
     };
 
-    scheduleToFocusCurrentItem() {
+    scheduleToFocusCurrentItem(onFocus?: (node: void | HTMLElement) => void) {
         if (this.shouldVirtualizeList()) {
             // wait for windowed items to be recalculated
-            this.props.schedule.animationFrame(() => this.focusCurrentItem());
+            this.props.schedule.animationFrame(() => {
+                this.focusCurrentItem(onFocus);
+            });
         } else {
             // immediately focus the current item if we're not virtualizing
-            this.focusCurrentItem();
+            this.focusCurrentItem(onFocus);
         }
     }
 
-    focusCurrentItem() {
+    /**
+     * Focus on the current item.
+     * @param [onFocus] - Callback to be called when the item is focused.
+     */
+    focusCurrentItem(onFocus?: (node: HTMLElement) => void) {
         const fousedItemRef = this.state.itemRefs[this.focusedIndex];
 
         if (fousedItemRef) {
@@ -427,6 +458,11 @@ class DropdownCore extends React.Component<Props, State> {
                 // Keep track of the original index of the newly focused item.
                 // To be used if the set of focusable items in the menu changes
                 this.focusedOriginalIndex = fousedItemRef.originalIndex;
+
+                if (onFocus) {
+                    // Call the callback with the node that was focused.
+                    onFocus(node);
+                }
             }
         }
     }
@@ -464,6 +500,14 @@ class DropdownCore extends React.Component<Props, State> {
     handleKeyDown: (event: SyntheticKeyboardEvent<>) => void = (event) => {
         const {onOpenChanged, open, searchText} = this.props;
         const keyCode = event.which || event.keyCode;
+
+        // Listen for the keydown events if we are using ASCII characters.
+        if (getStringForKey(event.key)) {
+            event.stopPropagation();
+            this.textSuggestion += event.key;
+            this.handleKeyDownDebounced(this.textSuggestion);
+        }
+
         // If menu isn't open and user presses down, open the menu
         if (!open) {
             if (keyCode === keyCodes.down) {
@@ -509,6 +553,64 @@ class DropdownCore extends React.Component<Props, State> {
                 this.focusNextItem();
                 return;
         }
+    };
+
+    /**
+     * The list height that is automatically calculated depending on the
+     * component's type of each item (e.g. Separator, Option, Search, etc)
+     */
+    getHeight(): number {
+        // calculate using the first 10 items on the array as we want to display
+        // this number of elements in the visible area
+        return this.props.items
+            .slice(0, MAX_VISIBLE_ITEMS)
+            .reduce((sum, item) => {
+                if (SeparatorItem.isClassOf(item.component)) {
+                    return sum + SEPARATOR_ITEM_HEIGHT;
+                } else if (SearchTextInput.isClassOf(item.component)) {
+                    // search text input height
+                    return sum + SEARCH_ITEM_HEIGHT;
+                } else {
+                    return sum + DROPDOWN_ITEM_HEIGHT;
+                }
+            }, 0);
+    }
+
+    handleKeyDownDebounceResult: (key: string) => void = (key) => {
+        const foundIndex = this.props.items.findIndex(({component}) => {
+            if (
+                SearchTextInput.isClassOf(component) ||
+                SeparatorItem.isClassOf(component)
+            ) {
+                return false;
+            }
+
+            // Flow doesn't know that the component is an OptionItem
+            // $FlowIgnore[prop-missing]
+            const label = component.props?.label.toLowerCase();
+            return label.startsWith(key);
+        });
+
+        if (foundIndex >= 0) {
+            const isClosed = !this.props.open;
+            if (isClosed) {
+                // Open the menu to be able to focus on the item that matches
+                // the text suggested.
+                this.props.onOpenChanged(true);
+            }
+            // Update the focus reference.
+            this.focusedIndex = foundIndex;
+            const node = this.scheduleToFocusCurrentItem();
+
+            // Force click only if the dropdown is closed and we are using the
+            // SingleSelect component.
+            if (this.props.selectionType === "single" && isClosed && node) {
+                node.click();
+            }
+        }
+
+        // Otherwise, reset current text
+        this.textSuggestion = "";
     };
 
     // Some keys should be handled during the keyup event instead.
@@ -772,7 +874,7 @@ class DropdownCore extends React.Component<Props, State> {
                     styles.dropdown,
                     light && styles.light,
                     isReferenceHidden && styles.hidden,
-                    {minWidth: minDropdownWidth},
+                    {minWidth: minDropdownWidth, maxHeight: this.getHeight()},
                     dropdownStyle,
                 ]}
             >

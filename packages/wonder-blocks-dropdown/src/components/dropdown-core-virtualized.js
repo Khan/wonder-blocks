@@ -16,6 +16,7 @@ import type {DropdownItem} from "../util/types.js";
 
 import {
     DROPDOWN_ITEM_HEIGHT,
+    MAX_VISIBLE_ITEMS,
     SEARCH_ITEM_HEIGHT,
     SEPARATOR_ITEM_HEIGHT,
 } from "../util/constants.js";
@@ -55,14 +56,6 @@ type State = {|
      */
     height: ?number,
 |};
-
-/**
- * Maximum visible items inside the dropdown list.
- * Based on the defined height that we're using, this is the maximium
- * number of items that can fit into the visible porition of the
- * dropdowns list box.
- */
-const MAX_VISIBLE_ITEMS = 9;
 
 /**
  * A react-window's List wrapper that instantiates the virtualized list and

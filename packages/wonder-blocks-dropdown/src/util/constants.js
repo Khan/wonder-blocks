@@ -30,6 +30,13 @@ export const searchInputStyle = {
 // The default item height
 export const DROPDOWN_ITEM_HEIGHT = 40;
 
+/**
+ * Maximum visible items inside the dropdown list. Based on the defined height
+ * that we're using, this is the maximum number of items that can fit into the
+ * visible portion of the dropdown's listbox.
+ */
+export const MAX_VISIBLE_ITEMS = 9;
+
 export const SEPARATOR_ITEM_HEIGHT = 9;
 
 export const SEARCH_ITEM_HEIGHT: number =

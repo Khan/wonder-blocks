@@ -414,6 +414,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                     isFilterable ? this.handleSearchTextChanged : null
                 }
                 searchText={isFilterable ? searchText : ""}
+                selectionType="single"
             />
         );
     }
