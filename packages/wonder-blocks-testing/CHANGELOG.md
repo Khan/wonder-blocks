@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing
 
+## 4.0.0
+
+### Major Changes
+
+-   fce91b39: Introduced `mockFetch` and expanded `RespondWith` options. `RespondWith` responses will now be real `Response` instances (needs node-fetch peer dependency if no other implementation exists). Breaking changes: `RespondWith.data` is now `RespondWith.graphQLData`.
+
 ## 3.0.1
 
 ### Patch Changes
