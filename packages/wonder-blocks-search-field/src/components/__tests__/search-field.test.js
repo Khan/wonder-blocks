@@ -321,6 +321,6 @@ describe("SearchField", () => {
         );
 
         // Assert
-        expect(ref.current.value).toBe("some-value");
+        expect(ref.current && ref.current.value).toBe("some-value");
     });
 });
