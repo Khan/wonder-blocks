@@ -121,8 +121,7 @@ export const RespondWith = Object.freeze({
 });
 
 /**
- * Turns an ErrorResponse value in an actual Response that will invoke
- * that error.
+ * Turns a MockResponse value to an actual Response that represents the mock.
  */
 export const makeMockResponse = (
     response: MockResponse<any>,
