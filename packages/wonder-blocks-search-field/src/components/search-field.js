@@ -14,8 +14,6 @@ import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 import {defaultLabels} from "../util/constants.js";
 
-type WithForwardRef = {|forwardedRef: React.Ref<"input">|};
-
 type Props = {|
     ...AriaProps,
 
@@ -88,11 +86,6 @@ type Props = {|
     onBlur?: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed,
 |};
 
-type PropsWithForwardRef = {|
-    ...Props,
-    ...WithForwardRef,
-|};
-
 /**
  * Search Field. A TextField with a search icon on its left side
  * and an X icon on its right side.
@@ -114,80 +107,83 @@ type PropsWithForwardRef = {|
  * />
  * ```
  */
-function SearchField(props: PropsWithForwardRef): React.Node {
-    const {
-        clearAriaLabel = defaultLabels.clearSearch,
-        disabled = false,
-        light = false,
-        id,
-        value,
-        forwardedRef,
-        placeholder,
-        style,
-        testId,
-        onClick,
-        onChange,
-        onFocus,
-        onBlur,
-        ...otherProps
-    } = props;
+const SearchField: React.AbstractComponent<Props, HTMLInputElement> =
+    React.forwardRef<Props, HTMLInputElement>((props: Props, ref) => {
+        const {
+            clearAriaLabel = defaultLabels.clearSearch,
+            disabled = false,
+            light = false,
+            id,
+            value,
+            placeholder,
+            style,
+            testId,
+            onClick,
+            onChange,
+            onFocus,
+            onBlur,
+            ...otherProps
+        } = props;
 
-    const handleClear: () => void = () => {
-        // Empty the search text.
-        onChange("");
+        const handleClear: () => void = () => {
+            // Empty the search text.
+            onChange("");
 
-        // Focus back on the text field since the clear button disappears after
-        // the field is cleared.
-        const currentField = (ReactDOM.findDOMNode(
-            document.getElementById(id),
-        ): any);
-        currentField.focus();
-    };
+            // Focus back on the text field since the clear button disappears after
+            // the field is cleared.
+            const currentField = (ReactDOM.findDOMNode(
+                document.getElementById(id),
+            ): any);
+            currentField.focus();
+        };
 
-    const maybeRenderClearIconButton: () => React.Node = () => {
-        if (!value.length) {
-            return null;
-        }
+        const maybeRenderClearIconButton: () => React.Node = () => {
+            if (!value.length) {
+                return null;
+            }
+
+            return (
+                <IconButton
+                    icon={icons.dismiss}
+                    kind="tertiary"
+                    onClick={handleClear}
+                    style={styles.dismissIcon}
+                    aria-label={clearAriaLabel}
+                />
+            );
+        };
 
         return (
-            <IconButton
-                icon={icons.dismiss}
-                kind="tertiary"
-                onClick={handleClear}
-                style={styles.dismissIcon}
-                aria-label={clearAriaLabel}
-            />
+            <View onClick={onClick} style={[styles.inputContainer, style]}>
+                <Icon
+                    icon={icons.search}
+                    size="medium"
+                    color={Color.offBlack64}
+                    style={styles.searchIcon}
+                    aria-hidden="true"
+                />
+                <TextField
+                    id={id}
+                    type="text"
+                    disabled={disabled}
+                    light={light}
+                    onChange={onChange}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    placeholder={placeholder}
+                    ref={ref}
+                    value={value}
+                    style={[
+                        styles.inputStyleReset,
+                        typographyStyles.LabelMedium,
+                    ]}
+                    testId={testId}
+                    {...otherProps}
+                />
+                {maybeRenderClearIconButton()}
+            </View>
         );
-    };
-
-    return (
-        <View onClick={onClick} style={[styles.inputContainer, style]}>
-            <Icon
-                icon={icons.search}
-                size="medium"
-                color={Color.offBlack64}
-                style={styles.searchIcon}
-                aria-hidden="true"
-            />
-            <TextField
-                id={id}
-                type="text"
-                disabled={disabled}
-                light={light}
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                placeholder={placeholder}
-                ref={forwardedRef}
-                value={value}
-                style={[styles.inputStyleReset, typographyStyles.LabelMedium]}
-                testId={testId}
-                {...otherProps}
-            />
-            {maybeRenderClearIconButton()}
-        </View>
-    );
-}
+    });
 
 const styles = StyleSheet.create({
     inputContainer: {
@@ -223,16 +219,4 @@ const styles = StyleSheet.create({
     },
 });
 
-type ExportProps = $Diff<
-    React.ElementConfig<typeof SearchField>,
-    WithForwardRef,
->;
-
-const ForwardedSearchField: React.AbstractComponent<
-    ExportProps,
-    HTMLInputElement,
-> = React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
-    <SearchField {...props} forwardedRef={ref} />
-));
-
-export default ForwardedSearchField;
+export default SearchField;
