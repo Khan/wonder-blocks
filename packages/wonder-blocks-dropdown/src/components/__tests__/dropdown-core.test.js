@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {fireEvent, render, screen} from "@testing-library/react";
+import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import OptionItem from "../option-item.js";
@@ -784,7 +784,9 @@ describe("DropdownCore", () => {
             const searchField = await screen.findByPlaceholderText("Filter");
 
             // Assert
-            expect(searchField).toHaveFocus();
+            waitFor(() => {
+                expect(searchField).toHaveFocus();
+            });
         });
 
         it("should focus on the item after clicking on it", async () => {
@@ -826,7 +828,9 @@ describe("DropdownCore", () => {
             userEvent.click(item);
 
             // Assert
-            expect(item).toHaveFocus();
+            waitFor(() => {
+                expect(item).toHaveFocus();
+            });
         });
     });
 });

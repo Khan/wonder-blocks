@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 1.2.2
+
+### Patch Changes
+
+-   9a6641e2: Pass-through strings if the current locale is not a pseudo-lang
+
 ## 1.2.1
 
 ### Patch Changes

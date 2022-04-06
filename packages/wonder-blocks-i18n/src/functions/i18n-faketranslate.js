@@ -33,13 +33,7 @@ export default class FakeTranslate implements IProvideTranslation {
     get _translator(): ?IProvideTranslation {
         // We look up our fake translator on the fly in case the kaLocale
         // was changed.
-        const identityTranslator = {
-            translate: (s: string) => s,
-        };
-
-        const language = getLocale();
-        const translator = language && Translators[language];
-        return translator || identityTranslator;
+        return Translators[getLocale()];
     }
 
     _translateSegment(input: string): string {

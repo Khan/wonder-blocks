@@ -228,6 +228,8 @@ const styles = StyleSheet.create({
 
     content: {
         alignSelf: "center",
+        // Expand the content to fill the available space.
+        flex: 1,
         overflowWrap: "break-word",
     },
 
@@ -244,10 +246,6 @@ const styles = StyleSheet.create({
         // The right accessory will have this color by default. Unless the
         // accessory element overrides that color internally.
         color: Color.offBlack64,
-        // Align the right accessory to the right side of the cell, so we can
-        // prevent the accessory from shifting left, if the content is too
-        // short.
-        marginLeft: "auto",
     },
 
     /**

@@ -1,65 +1,171 @@
 // @flow
-import {RespondWith, makeGqlMockResponse} from "../make-gql-mock-response.js";
+import {RespondWith, makeMockResponse} from "../make-mock-response.js";
 
 describe("RespondWith", () => {
-    describe("#data", () => {
-        it("should have type data", () => {
+    describe("#text", () => {
+        it("should have type text", () => {
             // Arrange
 
             // Act
-            const result = RespondWith.data({});
+            const result = RespondWith.text("SOME TEXT");
 
             // Assert
-            expect(result).toHaveProperty("type", "data");
+            expect(result).toHaveProperty("type", "text");
         });
 
-        it("should include the given data", () => {
+        it("should provide the given text", () => {
+            // Arrange
+
+            // Act
+            const mockResponse = RespondWith.text("SOME TEXT");
+            // $FlowIgnore[incompatible-use]
+            const result = mockResponse.text;
+
+            // Assert
+            expect(result).toEqual("SOME TEXT");
+        });
+    });
+
+    describe("#json", () => {
+        it("should have type text", () => {
+            // Arrange
+
+            // Act
+            const result = RespondWith.json({});
+
+            // Assert
+            expect(result).toHaveProperty("type", "text");
+        });
+
+        it("should provide the given data in the text", () => {
+            // Arrange
+            const json = {
+                foo: "bar",
+            };
+
+            // Act
+            const mockResponse = RespondWith.json(json);
+            // $FlowIgnore[incompatible-use]
+            const result = mockResponse.text();
+
+            // Assert
+            expect(result).toEqual(JSON.stringify(json));
+        });
+    });
+
+    describe("#graphQLData", () => {
+        it("should have type text", () => {
+            // Arrange
+
+            // Act
+            const result = RespondWith.graphQLData({});
+
+            // Assert
+            expect(result).toHaveProperty("type", "text");
+        });
+
+        it("should provide the given data in the text", () => {
             // Arrange
             const data = {
                 foo: "bar",
             };
 
             // Act
-            const result = RespondWith.data(data);
+            const mockResponse = RespondWith.graphQLData(data);
+            // $FlowIgnore[incompatible-use]
+            const result = mockResponse.text();
 
             // Assert
-            expect(result).toHaveProperty("data", data);
+            expect(result).toEqual(JSON.stringify({data}));
         });
     });
 
     describe("#unparseableBody", () => {
-        it("should have type parse", () => {
+        it("should have type text", () => {
             // Arrange
 
             // Act
             const result = RespondWith.unparseableBody();
 
             // Assert
-            expect(result).toHaveProperty("type", "parse");
+            expect(result).toHaveProperty("type", "text");
+        });
+
+        it("should have text that is unparseable json", () => {
+            // Arrange
+
+            // Act
+            const mockResponse = RespondWith.unparseableBody();
+            // $FlowIgnore[incompatible-use]
+            const underTest = () => JSON.parse(mockResponse.text);
+
+            // Assert
+            expect(underTest).toThrowErrorMatchingInlineSnapshot(
+                `"Unexpected token I in JSON at position 0"`,
+            );
         });
     });
 
     describe("#abortedRequest", () => {
-        it("should have type abort", () => {
+        it("should have type reject", () => {
             // Arrange
 
             // Act
             const result = RespondWith.abortedRequest();
 
             // Assert
-            expect(result).toHaveProperty("type", "abort");
+            expect(result).toHaveProperty("type", "reject");
+        });
+
+        it("should provide AbortError", () => {
+            // Arrange
+
+            // Act
+            const mockResponse = RespondWith.abortedRequest();
+            // $FlowIgnore[incompatible-use]
+            const result = mockResponse.error();
+
+            // Assert
+            expect(result).toMatchInlineSnapshot(
+                `[AbortError: Mock request aborted]`,
+            );
+        });
+    });
+
+    describe("#reject", () => {
+        it("should have type reject", () => {
+            // Arrange
+
+            // Act
+            const result = RespondWith.reject(new Error("BOOM!"));
+
+            // Assert
+            expect(result).toHaveProperty("type", "reject");
+        });
+
+        it("should have the given error", () => {
+            // Arrange
+            const error = new Error("BOOM!");
+
+            // Act
+            const mockResponse = RespondWith.reject(error);
+            // $FlowIgnore[incompatible-use]
+            const result = mockResponse.error;
+
+            // Assert
+            expect(result).toBe(error);
         });
     });
 
     describe("#errorStatusCode", () => {
-        it("should have type status", () => {
+        it("should have type text", () => {
             // Arrange
 
             // Act
             const result = RespondWith.errorStatusCode(400);
 
             // Assert
-            expect(result).toHaveProperty("type", "status");
+            expect(result).toHaveProperty("type", "text");
         });
 
         it("should include the given status code", () => {
@@ -93,19 +199,48 @@ describe("RespondWith", () => {
             const result = RespondWith.nonGraphQLBody();
 
             // Assert
-            expect(result).toHaveProperty("type", "invalid");
+            expect(result).toHaveProperty("type", "text");
+        });
+
+        it("should have text that is valid json", () => {
+            // Arrange
+
+            // Act
+            const mockResponse = RespondWith.nonGraphQLBody();
+            // $FlowIgnore[incompatible-use]
+            const underTest = () => JSON.parse(mockResponse.text());
+
+            // Assert
+            expect(underTest).not.toThrow();
+        });
+
+        it("should have text that is not a valid GraphQL response", () => {
+            // Arrange
+
+            // Act
+            const mockResponse = RespondWith.nonGraphQLBody();
+            // $FlowIgnore[incompatible-use]
+            const result = JSON.parse(mockResponse.text());
+
+            // Assert
+            expect(result).toMatchInlineSnapshot(`
+                Object {
+                  "that": "is not a valid graphql response",
+                  "valid": "json",
+                }
+            `);
         });
     });
 
     describe("#graphQLErrors", () => {
-        it("should have type graphql", () => {
+        it("should have type test", () => {
             // Arrange
 
             // Act
             const result = RespondWith.graphQLErrors([]);
 
             // Assert
-            expect(result).toHaveProperty("type", "graphql");
+            expect(result).toHaveProperty("type", "text");
         });
 
         it("should include the given error messages", () => {
@@ -113,10 +248,23 @@ describe("RespondWith", () => {
             const errorMessages = ["foo", "bar"];
 
             // Act
-            const result = RespondWith.graphQLErrors(errorMessages);
+            const mockResponse = RespondWith.graphQLErrors(errorMessages);
+            // $FlowIgnore[incompatible-use]
+            const result = JSON.parse(mockResponse.text());
 
             // Assert
-            expect(result).toHaveProperty("errors", errorMessages);
+            expect(result).toMatchInlineSnapshot(`
+                Object {
+                  "errors": Array [
+                    Object {
+                      "message": "foo",
+                    },
+                    Object {
+                      "message": "bar",
+                    },
+                  ],
+                }
+            `);
         });
     });
 });
@@ -127,7 +275,7 @@ describe("#makeGqlErrorResponse", () => {
 
         // Act
         const result = () =>
-            makeGqlMockResponse(({type: "NOT A VALID TYPE"}: any));
+            makeMockResponse(({type: "NOT A VALID TYPE"}: any));
 
         // Assert
         expect(result).toThrowErrorMatchingInlineSnapshot(
@@ -138,10 +286,10 @@ describe("#makeGqlErrorResponse", () => {
     describe("data response", () => {
         it("should resolve to have a successful status code", async () => {
             // Arrange
-            const mockResponse = RespondWith.data({});
+            const mockResponse = RespondWith.graphQLData({});
 
             // Act
-            const result = await makeGqlMockResponse(mockResponse);
+            const result = await makeMockResponse(mockResponse);
 
             // Assert
             expect(result.status).toBe(200);
@@ -152,10 +300,10 @@ describe("#makeGqlErrorResponse", () => {
             const data = {
                 foo: "bar",
             };
-            const mockResponse = RespondWith.data(data);
+            const mockResponse = RespondWith.graphQLData(data);
 
             // Act
-            const response = await makeGqlMockResponse(mockResponse);
+            const response = await makeMockResponse(mockResponse);
             const result = await response.text();
 
             // Assert
@@ -169,7 +317,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.unparseableBody();
 
             // Act
-            const result = await makeGqlMockResponse(mockResponse);
+            const result = await makeMockResponse(mockResponse);
 
             // Assert
             expect(result.status).toBe(200);
@@ -180,7 +328,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.unparseableBody();
 
             // Act
-            const response = await makeGqlMockResponse(mockResponse);
+            const response = await makeMockResponse(mockResponse);
             const text = await response.text();
             const act = () => JSON.parse(text);
 
@@ -195,7 +343,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.abortedRequest();
 
             // Act
-            const act = () => makeGqlMockResponse(mockResponse);
+            const act = () => makeMockResponse(mockResponse);
 
             // Assert
             await expect(act).rejects.toBeInstanceOf(Error);
@@ -206,10 +354,24 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.abortedRequest();
 
             // Act
-            const act = makeGqlMockResponse(mockResponse);
+            const act = makeMockResponse(mockResponse);
 
             // Assert
             await expect(act).rejects.toHaveProperty("name", "AbortError");
+        });
+    });
+
+    describe("rejection", () => {
+        it("should reject with error", async () => {
+            // Arrange
+            const error = new Error("BOOM!");
+            const mockResponse = RespondWith.reject(error);
+
+            // Act
+            const act = () => makeMockResponse(mockResponse);
+
+            // Assert
+            await expect(act).rejects.toBe(error);
         });
     });
 
@@ -219,7 +381,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.errorStatusCode(400);
 
             // Act
-            const result = await makeGqlMockResponse(mockResponse);
+            const result = await makeMockResponse(mockResponse);
 
             // Assert
             expect(result.status).toBe(400);
@@ -230,7 +392,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.errorStatusCode(400);
 
             // Act
-            const response = await makeGqlMockResponse(mockResponse);
+            const response = await makeMockResponse(mockResponse);
             const text = await response.text();
             const act = () => JSON.parse(text);
 
@@ -245,7 +407,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.nonGraphQLBody();
 
             // Act
-            const result = await makeGqlMockResponse(mockResponse);
+            const result = await makeMockResponse(mockResponse);
 
             // Assert
             expect(result.status).toBe(200);
@@ -256,7 +418,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.nonGraphQLBody();
 
             // Act
-            const response = await makeGqlMockResponse(mockResponse);
+            const response = await makeMockResponse(mockResponse);
             const text = await response.text();
             const result = JSON.parse(text);
 
@@ -272,7 +434,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.graphQLErrors([]);
 
             // Act
-            const result = await makeGqlMockResponse(mockResponse);
+            const result = await makeMockResponse(mockResponse);
 
             // Assert
             expect(result.status).toBe(200);
@@ -284,7 +446,7 @@ describe("#makeGqlErrorResponse", () => {
             const mockResponse = RespondWith.graphQLErrors(errorMessages);
 
             // Act
-            const response = await makeGqlMockResponse(mockResponse);
+            const response = await makeMockResponse(mockResponse);
             const text = await response.text();
             const result = JSON.parse(text);
 
