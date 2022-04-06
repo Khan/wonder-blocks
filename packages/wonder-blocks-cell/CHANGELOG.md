@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-cell
 
+## 2.2.2
+
+### Patch Changes
+
+-   f74b7379: Fixes `CellCore` to set the styles properly (removed `marginLeft: auto` from accessory and expanded the content wrapper).
+
 ## 2.2.1
 
 ### Patch Changes
