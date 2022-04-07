@@ -107,78 +107,83 @@ type Props = {|
  * />
  * ```
  */
-export default function SearchField(props: Props): React.Node {
-    const {
-        clearAriaLabel = defaultLabels.clearSearch,
-        disabled = false,
-        light = false,
-        id,
-        value,
-        placeholder,
-        style,
-        testId,
-        onClick,
-        onChange,
-        onFocus,
-        onBlur,
-        ...otherProps
-    } = props;
+const SearchField: React.AbstractComponent<Props, HTMLInputElement> =
+    React.forwardRef<Props, HTMLInputElement>((props: Props, ref) => {
+        const {
+            clearAriaLabel = defaultLabels.clearSearch,
+            disabled = false,
+            light = false,
+            id,
+            value,
+            placeholder,
+            style,
+            testId,
+            onClick,
+            onChange,
+            onFocus,
+            onBlur,
+            ...otherProps
+        } = props;
 
-    const handleClear: () => void = () => {
-        // Empty the search text.
-        onChange("");
+        const handleClear: () => void = () => {
+            // Empty the search text.
+            onChange("");
 
-        // Focus back on the text field since the clear button disappears after
-        // the field is cleared.
-        const currentField = (ReactDOM.findDOMNode(
-            document.getElementById(id),
-        ): any);
-        currentField.focus();
-    };
+            // Focus back on the text field since the clear button disappears after
+            // the field is cleared.
+            const currentField = (ReactDOM.findDOMNode(
+                document.getElementById(id),
+            ): any);
+            currentField.focus();
+        };
 
-    const maybeRenderClearIconButton: () => React.Node = () => {
-        if (!value.length) {
-            return null;
-        }
+        const maybeRenderClearIconButton: () => React.Node = () => {
+            if (!value.length) {
+                return null;
+            }
+
+            return (
+                <IconButton
+                    icon={icons.dismiss}
+                    kind="tertiary"
+                    onClick={handleClear}
+                    style={styles.dismissIcon}
+                    aria-label={clearAriaLabel}
+                />
+            );
+        };
 
         return (
-            <IconButton
-                icon={icons.dismiss}
-                kind="tertiary"
-                onClick={handleClear}
-                style={styles.dismissIcon}
-                aria-label={clearAriaLabel}
-            />
+            <View onClick={onClick} style={[styles.inputContainer, style]}>
+                <Icon
+                    icon={icons.search}
+                    size="medium"
+                    color={Color.offBlack64}
+                    style={styles.searchIcon}
+                    aria-hidden="true"
+                />
+                <TextField
+                    id={id}
+                    type="text"
+                    disabled={disabled}
+                    light={light}
+                    onChange={onChange}
+                    onFocus={onFocus}
+                    onBlur={onBlur}
+                    placeholder={placeholder}
+                    ref={ref}
+                    value={value}
+                    style={[
+                        styles.inputStyleReset,
+                        typographyStyles.LabelMedium,
+                    ]}
+                    testId={testId}
+                    {...otherProps}
+                />
+                {maybeRenderClearIconButton()}
+            </View>
         );
-    };
-
-    return (
-        <View onClick={onClick} style={[styles.inputContainer, style]}>
-            <Icon
-                icon={icons.search}
-                size="medium"
-                color={Color.offBlack64}
-                style={styles.searchIcon}
-                aria-hidden="true"
-            />
-            <TextField
-                id={id}
-                type="text"
-                disabled={disabled}
-                light={light}
-                onChange={onChange}
-                onFocus={onFocus}
-                onBlur={onBlur}
-                placeholder={placeholder}
-                value={value}
-                style={[styles.inputStyleReset, typographyStyles.LabelMedium]}
-                testId={testId}
-                {...otherProps}
-            />
-            {maybeRenderClearIconButton()}
-        </View>
-    );
-}
+    });
 
 const styles = StyleSheet.create({
     inputContainer: {
@@ -213,3 +218,5 @@ const styles = StyleSheet.create({
         paddingRight: Spacing.large_24 + Spacing.medium_16,
     },
 });
+
+export default SearchField;

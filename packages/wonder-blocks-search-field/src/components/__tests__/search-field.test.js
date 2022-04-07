@@ -285,4 +285,42 @@ describe("SearchField", () => {
         // Assert
         expect(clearButton).toHaveAttribute("aria-label", "test-clear-label");
     });
+
+    test("forwards the ref to the input element", () => {
+        // Arrange
+        const ref = React.createRef();
+
+        // Act
+        render(
+            <SearchField
+                id="sf-id"
+                value="some-value"
+                onChange={() => {}}
+                testId="search-field-test"
+                ref={ref}
+            />,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    });
+
+    test("forwards the ref to the input element with the expected value", () => {
+        // Arrange
+        const ref = React.createRef();
+
+        // Act
+        render(
+            <SearchField
+                id="sf-id"
+                value="some-value"
+                onChange={() => {}}
+                testId="search-field-test"
+                ref={ref}
+            />,
+        );
+
+        // Assert
+        expect(ref.current?.value).toBe("some-value");
+    });
 });
