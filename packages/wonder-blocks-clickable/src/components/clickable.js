@@ -33,13 +33,13 @@ type CommonProps = {|
     onClick?: (e: SyntheticEvent<>) => mixed,
 
     /**
-     * Optinal href which Clickable should direct to, uses client-side routing
+     * Optional href which Clickable should direct to, uses client-side routing
      * by default if react-router is present
      */
     href?: string,
 
     /**
-     * Styles to apply to the Clickable compoenent
+     * Styles to apply to the Clickable component
      */
     style?: StyleType,
 

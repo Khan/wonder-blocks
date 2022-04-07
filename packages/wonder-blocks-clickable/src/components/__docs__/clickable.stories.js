@@ -21,7 +21,9 @@ export default {
     argTypes: argTypes,
     args: {
         testId: "",
+        disabled: false,
         light: false,
+        hideDefaultFocusRing: false,
     },
     parameters: {
         componentSubtitle: ((
