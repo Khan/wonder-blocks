@@ -186,11 +186,20 @@ const StyledLink = addStyle<typeof Link>(Link);
 /**
  * A component to turn any custom component into a clickable one.
  *
- * Works by wrapping ClickableBehavior around the child element and styling the
- * child appropriately and encapsulates routing logic which can be customized.
- * Expects a function which returns an element as it's child.
+ * Works by wrapping `ClickableBehavior` around the child element and styling
+ * the child appropriately and encapsulates routing logic which can be
+ * customized. Expects a function which returns an element as its child.
  *
- * Example usage:
+ * Clickable allows your components to:
+ *
+ * - Handle mouse / touch / keyboard events
+ * - Match the standard behavior of the given role
+ * - Apply custom styles based on pressed / focused / hovered state
+ * - Perform Client Side Navigation when href is passed and the component is a
+ *   descendent of a react-router Router.
+ *
+ * ### Usage
+ *
  * ```jsx
  * <Clickable onClick={() => alert("You clicked me!")}>
  *     {({hovered, focused, pressed}) =>
@@ -293,6 +302,7 @@ export default class Clickable extends React.Component<Props> {
             !hideDefaultFocusRing &&
                 state.focused &&
                 (light ? styles.focusedLight : styles.focused),
+            disabled && styles.disabled,
             style,
         ];
 
@@ -387,9 +397,21 @@ const styles = StyleSheet.create({
         cursor: "pointer",
     },
     focused: {
-        outline: `solid 2px ${Color.blue}`,
+        ":focus": {
+            outline: `solid 2px ${Color.blue}`,
+        },
     },
     focusedLight: {
         outline: `solid 2px ${Color.white}`,
+    },
+    disabled: {
+        color: Color.offBlack32,
+        cursor: "not-allowed",
+        ":focus": {
+            outline: "none",
+        },
+        ":focus-visible": {
+            outline: `solid 2px ${Color.blue}`,
+        },
     },
 });

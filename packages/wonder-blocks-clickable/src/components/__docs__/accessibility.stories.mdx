@@ -1,0 +1,148 @@
+import {Meta, Story, Canvas} from "@storybook/addon-docs";
+import {StyleSheet} from "aphrodite";
+
+import Clickable from "@khanacademy/wonder-blocks-clickable";
+import Color from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+
+<Meta
+    title="Clickable / Clickable / Accessibility"
+    component={Clickable}
+    parameters={{
+        previewTabs: {
+            canvas: {hidden: true},
+        },
+        viewMode: "docs",
+        chromatic: {
+            // Disables chromatic testing for these stories.
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# Accessibility
+
+## Keyboard interactions
+
+| Key | Action |
+| --- | --- |
+| Enter or Space | Activates the clickable element |
+
+
+## Roles
+
+| Component | Role | Usage |
+| --- | --- | --- |
+| `<Clickable onClick={} />`  | button | A clickable button element |
+| `<Clickable href="/math" skipClientNav={true} />`  | link | A clickable anchor element |
+| `<Clickable href="/math" />`  | link | A clickable anchor element (using `react-router`'s Link) |
+
+## Attributes
+| Attribute | Usage |
+| --- | --- |
+| tabindex="0" | Includes the clickable element in the tab sequence. |
+| aria-disabled="true" | Indicates that the element is perceivable but disabled. |
+| aria-label="value" | Defines a string value that labels the clickable element. Use it in case the clickable element doesn't include any descriptive text (e.g. Icons, images) |
+
+## Examples
+
+### Labeling
+
+`Clickable` has an accessible label by default and should be used when using
+graphical elements. to let people using screen readers the purpose of the
+clickable element.
+
+This is an example of a component with an accessible label:
+
+<Canvas>
+    <Story name="Labeling">
+        <View>
+            <Clickable onClick={()=>{}} aria-label="Press to get more information.">
+                {({hovered, focused, pressed}) => (
+                    <Icon icon={icons.info} />
+                )}
+            </Clickable>
+        </View>
+    </Story>
+</Canvas>
+
+### Disabled state
+
+Clickable does not need an `aria-disabled` attribute, if it also has a `disabled`
+attribute. Users operating the web page through a screen reader may not be able
+to fully evaluate the implied behaviors of the button element itself.
+
+<Canvas>
+    <Story name="Disabled state">
+        <Clickable
+            onClick={(e) => console.log("Hello, world!")}
+            disabled={true}
+        >
+            {({hovered, focused, pressed}) => (
+                "This is a disabled clickable element"
+            )}
+        </Clickable>
+    </Story>
+</Canvas>
+
+### Keyboard navigation
+
+Clickable adds support to keyboard navigation and setting ARIA attributes. This
+way, your components are accessible and emulate better the browser's behavior.
+
+**NOTE:** If you want to navigate to an external URL and/or reload the window,
+make sure to use `href` and `skipClientNav={true}.
+
+<Canvas>
+    <Story name="Keyboard navigation">
+        <View>
+            <Clickable role="tab" aria-controls="panel-1" id="tab-1">
+                {({hovered, focused, pressed}) => (
+                    <View
+                        style={[
+                            styles.resting,
+                            hovered && styles.hovered,
+                            focused && styles.focused,
+                            pressed && styles.pressed,
+                        ]}
+                    >
+                        <Body>Open School Info</Body>
+                    </View>
+                )}
+            </Clickable>
+            <View
+                id="panel-1"
+                role="tabpanel"
+                tabindex="0"
+                aria-labelledby="tab-1"
+                style={styles.panel}
+            >
+                This is the information for the school.
+            </View>
+        </View>
+    </Story>
+</Canvas>
+
+export const styles = StyleSheet.create({
+    resting: {
+        boxShadow: `inset 0px 0px 1px 1px ${Color.lightBlue}`,
+        padding: Spacing.xSmall_8,
+    },
+    hovered: {
+        textDecoration: "underline",
+        backgroundColor: Color.blue,
+        color: Color.white,
+    },
+    pressed: {
+        color: Color.darkBlue,
+    },
+    focused: {
+        outline: `solid 4px ${Color.lightBlue}`,
+    },
+    panel: {
+        padding: Spacing.medium_16,
+        boxShadow: `inset 0px 0px 0 1px ${Color.offBlack8}`,
+    }
+});
