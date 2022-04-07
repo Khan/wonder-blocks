@@ -1,0 +1,65 @@
+import {Meta, Story, Canvas} from "@storybook/addon-docs";
+import {StyleSheet} from "aphrodite";
+
+import {
+    Breadcrumbs,
+    BreadcrumbsItem,
+} from "@khanacademy/wonder-blocks-breadcrumbs";
+import Link from "@khanacademy/wonder-blocks-link";
+
+<Meta
+    title="Breadcrumbs/Breadcrumbs/Accessibility"
+    component={Breadcrumbs}
+    parameters={{
+        previewTabs: {
+            canvas: {hidden: true},
+        },
+        viewMode: "docs",
+        chromatic: {
+            // Disables chromatic testing for these stories.
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+## Accessibility
+
+### Labeling
+
+`Breadcrumbs` has an `ariaLabel` prop that sets the accessible name on the
+the component. By default, this is "Breadcrumbs" as per recommended guidelines.
+
+This is an example of a component with an accessible label:
+
+<Canvas>
+    <Story name="Labeling">
+        <View>
+            <Breadcrumbs ariaLabel="Navigation Menu">
+                <BreadcrumbsItem>
+                    <Link href="">Course</Link>
+                </BreadcrumbsItem>
+                <BreadcrumbsItem>
+                    <Link href="">Unit</Link>
+                </BreadcrumbsItem>
+                <BreadcrumbsItem>
+                    <Link href="">Lesson</Link>
+                </BreadcrumbsItem>
+            </Breadcrumbs>
+        </View>
+    </Story>
+</Canvas>
+
+### Nav Role
+
+Breadcrumbs are `nav` elements. They show up as navigation landmarks to
+screen readers.
+
+### Current Page
+
+The last link in a list of breadcrumbs (the last `BreadcrumbsItem`)
+should have the attribute `aria-current="page"` to indicate that it represents
+the current page.
+
+### References
+
+[W3C Breadcrumbs Guidelines](https://www.w3.org/TR/wai-aria-practices-1.1/examples/breadcrumb/index.html)

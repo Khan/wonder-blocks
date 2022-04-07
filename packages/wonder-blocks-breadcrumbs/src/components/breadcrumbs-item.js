@@ -17,6 +17,7 @@ type Props = {|
 
     /**
      * When true, the separator is shown; otherwise, the separator is not shown.
+     * Note: This is only for use by the Breadcrumbs component!!
      * @ignore
      */
     showSeparator?: boolean,
