@@ -1,10 +1,9 @@
 // @flow
 import * as React from "react";
-import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {View, IDProvider} from "@khanacademy/wonder-blocks-core";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
@@ -23,9 +22,10 @@ type Props = {|
     clearAriaLabel?: string,
 
     /**
-     * The unique identifier for the input.
+     * The unique identifier for the input. If one is not provided,
+     * a unique id will be generated.
      */
-    id: string,
+    id?: string,
 
     /**
      * The text input value.
@@ -125,16 +125,18 @@ const SearchField: React.AbstractComponent<Props, HTMLInputElement> =
             ...otherProps
         } = props;
 
+        // We can't just use ref.current to clear the input because ref isn't
+        // always being passed in, so we use an innerRef to allow the
+        // handleClear() function to focus on the input element ref.
+        const innerRef = React.useRef<?HTMLInputElement>(null);
+
         const handleClear: () => void = () => {
             // Empty the search text.
             onChange("");
 
             // Focus back on the text field since the clear button disappears after
             // the field is cleared.
-            const currentField = (ReactDOM.findDOMNode(
-                document.getElementById(id),
-            ): any);
-            currentField.focus();
+            innerRef?.current?.focus();
         };
 
         const maybeRenderClearIconButton: () => React.Node = () => {
@@ -154,34 +156,49 @@ const SearchField: React.AbstractComponent<Props, HTMLInputElement> =
         };
 
         return (
-            <View onClick={onClick} style={[styles.inputContainer, style]}>
-                <Icon
-                    icon={icons.search}
-                    size="medium"
-                    color={Color.offBlack64}
-                    style={styles.searchIcon}
-                    aria-hidden="true"
-                />
-                <TextField
-                    id={id}
-                    type="text"
-                    disabled={disabled}
-                    light={light}
-                    onChange={onChange}
-                    onFocus={onFocus}
-                    onBlur={onBlur}
-                    placeholder={placeholder}
-                    ref={ref}
-                    value={value}
-                    style={[
-                        styles.inputStyleReset,
-                        typographyStyles.LabelMedium,
-                    ]}
-                    testId={testId}
-                    {...otherProps}
-                />
-                {maybeRenderClearIconButton()}
-            </View>
+            <IDProvider id={id} scope="search-field">
+                {(uniqueId) => (
+                    <View
+                        onClick={onClick}
+                        style={[styles.inputContainer, style]}
+                    >
+                        <Icon
+                            icon={icons.search}
+                            size="medium"
+                            color={Color.offBlack64}
+                            style={styles.searchIcon}
+                            aria-hidden="true"
+                        />
+                        <TextField
+                            id={`${uniqueId}-field`}
+                            type="text"
+                            disabled={disabled}
+                            light={light}
+                            onChange={onChange}
+                            onFocus={onFocus}
+                            onBlur={onBlur}
+                            placeholder={placeholder}
+                            ref={(node) => {
+                                // We have to set the value of both refs to
+                                // the HTMLInputElement from TextField.
+                                if (ref) {
+                                    // $FlowIgnore[prop-missing]
+                                    ref.current = node;
+                                }
+                                innerRef.current = node;
+                            }}
+                            value={value}
+                            style={[
+                                styles.inputStyleReset,
+                                typographyStyles.LabelMedium,
+                            ]}
+                            testId={testId}
+                            {...otherProps}
+                        />
+                        {maybeRenderClearIconButton()}
+                    </View>
+                )}
+            </IDProvider>
         );
     });
 
