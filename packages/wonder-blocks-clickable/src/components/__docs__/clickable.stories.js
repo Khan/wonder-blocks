@@ -92,6 +92,12 @@ Basic.parameters = {
             story: "You can make custom components Clickable by returning them in a function of the Clickable child. The eventState parameter the function takes allows access to states pressed, hovered and clicked, which you may use to create custom styles.\n\nClickable has a default focus ring style built-in.  If you are creating your own custom focus ring it should be disabled using by setting `hideDefaultFocusRing={true}` in the props passed to `Clickable`.",
         },
     },
+    chromatic: {
+        // we don't need screenshots because this story is already covered in
+        // `Default`. We add this story to the `Docs` tab to present the
+        // description above along with the example.
+        disableSnapshot: true,
+    },
 };
 
 /**
