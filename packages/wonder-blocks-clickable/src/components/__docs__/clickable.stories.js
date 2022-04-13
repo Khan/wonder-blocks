@@ -25,6 +25,13 @@ export default {
         light: false,
         hideDefaultFocusRing: false,
     },
+    decorators: [
+        (Story: StoryComponentType): React.Element<typeof View> => (
+            <View style={styles.centerText}>
+                <Story />
+            </View>
+        ),
+    ],
     parameters: {
         componentSubtitle: ((
             <ComponentInfo name={name} version={version} />
@@ -47,6 +54,7 @@ export const Default: StoryComponentType = (args) => (
             return (
                 <View
                     style={[
+                        styles.clickable,
                         hovered && styles.hovered,
                         pressed && styles.pressed,
                     ]}
@@ -86,8 +94,11 @@ Basic.parameters = {
     },
 };
 
+/**
+ * Clickable usage on dark backgrounds
+ */
 export const Light: StoryComponentType = () => (
-    <View style={[styles.centerText, styles.dark]}>
+    <View style={styles.dark}>
         <Clickable
             href="https://www.khanacademy.org/about/tos"
             skipClientNav={true}
@@ -96,6 +107,7 @@ export const Light: StoryComponentType = () => (
             {({hovered, focused, pressed}) => (
                 <View
                     style={[
+                        styles.clickable,
                         hovered && styles.hovered,
                         pressed && styles.pressed,
                     ]}
@@ -108,9 +120,68 @@ export const Light: StoryComponentType = () => (
 );
 
 Light.parameters = {
+    chromatic: {
+        // Not needed because the default state doesn't test the disabled
+        // clickable behavior.
+        disableSnapshot: true,
+    },
     docs: {
         description: {
             story: "Clickable has a `light` prop which changes the default focus ring color to fit a dark background.",
+        },
+    },
+    backgrounds: {
+        default: "darkBlue",
+    },
+};
+
+/**
+ * Disabled state
+ */
+export const Disabled: StoryComponentType = (args) => (
+    <>
+        <Clickable onClick={() => {}} {...args}>
+            {({hovered, focused, pressed}) => (
+                <View
+                    style={[
+                        styles.clickable,
+                        hovered && styles.hovered,
+                        pressed && styles.pressed,
+                    ]}
+                >
+                    <Body>
+                        Disabled clickable using the default disabled style
+                    </Body>
+                </View>
+            )}
+        </Clickable>
+        <Clickable onClick={() => {}} {...args}>
+            {({hovered, focused, pressed}) => (
+                <View
+                    style={[
+                        styles.clickable,
+                        hovered && styles.hovered,
+                        pressed && styles.pressed,
+                        args.disabled && styles.disabled,
+                    ]}
+                >
+                    <Body>
+                        Disabled clickable passing custom disabled styles
+                    </Body>
+                </View>
+            )}
+        </Clickable>
+    </>
+);
+
+Disabled.args = {
+    disabled: true,
+};
+
+Disabled.parameters = {
+    docs: {
+        description: {
+            story: "Clickable has a `disabled` prop which prevents the element from being operable. Note that the default disabled style is applied to the element, but you can also pass custom styles to the children element by passing any `disabled` styles (see the second clickable element in the example below).",
         },
     },
 };
@@ -122,7 +193,10 @@ export const ClientSideNavigation: StoryComponentType = () => (
                 <Clickable
                     href="/foo"
                     style={styles.heading}
-                    onClick={() => console.log("I'm still on the same page!")}
+                    onClick={() => {
+                        // eslint-disable-next-line no-console
+                        console.log("I'm still on the same page!");
+                    }}
                 >
                     {(eventState) => (
                         <LabelLarge>Uses Client-side Nav</LabelLarge>
@@ -174,6 +248,10 @@ ClientSideNavigation.parameters = {
 };
 
 const styles = StyleSheet.create({
+    clickable: {
+        borderWidth: 1,
+        padding: Spacing.medium_16,
+    },
     hovered: {
         textDecoration: "underline",
         backgroundColor: Color.teal,
@@ -185,6 +263,7 @@ const styles = StyleSheet.create({
         outline: `solid 4px ${Color.lightBlue}`,
     },
     centerText: {
+        gap: Spacing.medium_16,
         textAlign: "center",
     },
     dark: {
@@ -203,5 +282,9 @@ const styles = StyleSheet.create({
         border: `1px dashed ${Color.lightBlue}`,
         marginTop: Spacing.large_24,
         padding: Spacing.large_24,
+    },
+    disabled: {
+        color: Color.white,
+        backgroundColor: Color.offBlack64,
     },
 });

@@ -7,6 +7,7 @@ declare module "@storybook/react" {
         args?: {[key: string]: any, ...},
         parameters?: {[key: string]: any, ...},
         storyName?: string,
+        decorators?: Array<Function>,
         ...
     };
 }

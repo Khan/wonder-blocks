@@ -102,6 +102,7 @@ export default {
                 detail: "`onClick` is optional if `href` is present, but must be defined if `href` is not",
             },
         },
+        action: "clicked",
     },
     onkeyDown: {
         description: "Respond to raw `keydown` event.",
