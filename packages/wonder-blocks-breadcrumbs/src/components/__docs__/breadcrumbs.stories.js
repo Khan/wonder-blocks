@@ -27,8 +27,7 @@ export default {
  * Default Breadcrumbs example. It will be rendered as the first/default
  * story and it can be interacted with the controls panel in the Browser.
  */
-
-const Template = (args) => (
+export const DefaultBreadcrumbs: StoryComponentType = (args) => (
     <Breadcrumbs {...args}>
         <BreadcrumbsItem>
             <Link href="">Course</Link>
@@ -41,5 +40,3 @@ const Template = (args) => (
         </BreadcrumbsItem>
     </Breadcrumbs>
 );
-
-export const DefaultBreadcrumbs: StoryComponentType = Template.bind({});

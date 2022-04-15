@@ -2,6 +2,10 @@
 import {parseSimpleHTML} from "../parse-simple-html.js";
 
 describe("parseSimpleHTML", () => {
+    beforeEach(() => {
+        jest.clearAllMocks();
+    });
+
     it("Parses a self-closing tag", () => {
         expect(parseSimpleHTML("Test: <myImg />")).toEqual([
             {
@@ -117,21 +121,22 @@ describe("parseSimpleHTML", () => {
         );
     });
 
-    it("Does not accept unnecessary use", () => {
-        const action1 = () => parseSimpleHTML("Test");
-        expect(action1).toThrowErrorMatchingInlineSnapshot(
-            `"Unnecessary use of I18nInlineMarkup."`,
-        );
+    describe("Does warns on unnecessary use", () => {
+        it.each`
+            html
+            ${"Test"}
+            ${" Test "}
+            ${"<hello></hello>"}
+        `("$html", ({html}) => {
+            const warnSpy = jest
+                .spyOn(console, "warn")
+                .mockImplementation(() => {});
 
-        const action2 = () => parseSimpleHTML(" Test ");
-        expect(action2).toThrowErrorMatchingInlineSnapshot(
-            `"Unnecessary use of I18nInlineMarkup."`,
-        );
-
-        const action3 = () => parseSimpleHTML("<hello></hello>");
-        expect(action3).toThrowErrorMatchingInlineSnapshot(
-            `"Unnecessary use of I18nInlineMarkup."`,
-        );
+            parseSimpleHTML(html);
+            expect(warnSpy).toHaveBeenCalledWith(
+                "Unnecessary use of I18nInlineMarkup.",
+            );
+        });
     });
 
     it("Parses tag enclosing all text", () => {
