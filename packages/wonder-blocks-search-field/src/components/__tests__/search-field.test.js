@@ -214,7 +214,7 @@ describe("SearchField", () => {
         expect(searchField).toHaveValue("");
     });
 
-    test("focus is returned to text field after pressing clear button", async () => {
+    test("focus is returned to text field after pressing clear button", () => {
         // Arrange
         const SearchFieldWrapper = () => {
             const [value, setValue] = React.useState("");
@@ -224,7 +224,6 @@ describe("SearchField", () => {
                     onChange={setValue}
                     testId="search-field-test"
                     clearAriaLabel="test-clear-label"
-                    id="something"
                 />
             );
         };
