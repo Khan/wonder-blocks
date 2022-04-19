@@ -334,6 +334,7 @@ describe("SearchField", () => {
     });
 
     test("uses a unique ID if one is not provided", () => {
+        // Arrange
         render(
             <SearchField
                 testId="search-field-test"
@@ -342,8 +343,10 @@ describe("SearchField", () => {
             />,
         );
 
+        // Act
         const searchField = screen.getByTestId("search-field-test");
 
+        // Assert
         expect(searchField.getAttribute("id")).toMatch(/^uid-.*-field$/);
     });
 });
