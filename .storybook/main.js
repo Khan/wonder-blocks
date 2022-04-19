@@ -14,6 +14,7 @@ module.exports = {
     reactOptions: {
         fastRefresh: true,
     },
+    staticDirs: ["../static"],
     // Overriding the default webpack config to allow using storybook with our
     // monorepo.
     // See https://storybook.js.org/docs/react/configure/webpack

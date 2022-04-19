@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 1.2.3
+
+### Patch Changes
+
+-   49c041e5: Warn instead of throwing an execption if the use of I18nInlineMarkup isn't necessary
+
 ## 1.2.2
 
 ### Patch Changes
