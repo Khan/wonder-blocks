@@ -114,7 +114,8 @@ export function parseSimpleHTML(html: string): $ReadOnlyArray<SimpleHtmlNode> {
         // A tag is allowed to wrap all NL text in the html.
         (result[0].type === "text" || !result[0].children)
     ) {
-        throw new Error("Unnecessary use of I18nInlineMarkup.");
+        // eslint-disable-next-line no-console
+        console.warn("Unnecessary use of I18nInlineMarkup.");
     }
     return result;
 }
