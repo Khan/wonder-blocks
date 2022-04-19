@@ -56,9 +56,11 @@ screen readers.
 
 ### Current Page
 
-The last link in a list of breadcrumbs (the last `BreadcrumbsItem`)
-should have the attribute `aria-current="page"` to indicate that it represents
-the current page.
+Guidelines state that the last link in a list of breadcrumbs (the last
+`BreadcrumbsItem`) should have the attribute `aria-current="page"` to
+indicate that it represents the current page. The implementation already
+sets `aria-current="page` to the last element, so developers do not need
+to add it themeselves.
 
 ### References
 

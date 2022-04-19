@@ -28,7 +28,7 @@ export default {
         },
         table: {
             type: {
-                summary: "boolean",
+                summary: "string",
             },
         },
     },
