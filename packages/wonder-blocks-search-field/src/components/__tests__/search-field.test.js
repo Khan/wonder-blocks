@@ -319,7 +319,7 @@ describe("SearchField", () => {
         // Arrange
         render(
             <SearchField
-                id={"some-random-id"}
+                id="some-random-id"
                 testId="search-field-test"
                 onChange={() => {}}
                 value=""
