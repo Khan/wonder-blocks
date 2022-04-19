@@ -208,7 +208,11 @@ export const ClientSideNavigation: StoryComponentType = () => (
                         <LabelLarge>Uses Client-side Nav</LabelLarge>
                     )}
                 </Clickable>
-                <Clickable href="/foo" style={styles.heading} skipClientNav>
+                <Clickable
+                    href="/iframe.html?id=clickable-clickable--default&viewMode=story"
+                    style={styles.heading}
+                    skipClientNav
+                >
                     {(eventState) => (
                         <LabelLarge>Avoids Client-side Nav</LabelLarge>
                     )}

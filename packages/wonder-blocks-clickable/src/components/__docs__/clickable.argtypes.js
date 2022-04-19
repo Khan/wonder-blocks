@@ -197,7 +197,8 @@ export default {
      * Accessibility
      */
     "aria-label": {
-        description: "A label for the clickable element.",
+        description:
+            "A label for the clickable element read by a screen reader.",
         control: {
             type: "text",
         },
