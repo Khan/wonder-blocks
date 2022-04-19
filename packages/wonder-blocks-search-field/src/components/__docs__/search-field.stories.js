@@ -14,7 +14,7 @@ import SearchField from "../search-field.js";
 export default {
     component: SearchField,
     title: "Search Field/SearchField",
-    args: {id: "test-id", disabled: false, placeholder: "Placeholder"},
+    args: {disabled: false, placeholder: "Placeholder"},
 };
 
 export const Default: StoryComponentType = (args) => {
@@ -59,7 +59,6 @@ export const Light: StoryComponentType = () => {
     return (
         <View style={styles.darkBackground}>
             <SearchField
-                id="sf-1"
                 value={value}
                 placeholder="Placeholder"
                 onChange={handleChange}
@@ -92,7 +91,6 @@ export const Disabled: StoryComponentType = () => {
 
     return (
         <SearchField
-            id="sf-1"
             value={value}
             placeholder="Placeholder"
             onChange={handleChange}
