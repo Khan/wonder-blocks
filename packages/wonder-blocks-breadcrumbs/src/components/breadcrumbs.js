@@ -36,6 +36,30 @@ const StyledList = addStyle("ol");
  *
  * 1. Breadcrumbs Item: Represents a section within the page.
  * 2. Separator: Adds a separator between each item.
+ *
+ * NOTE: `<BreadcrumbsItem />` only accepts two element types:
+ *
+ * 1. `string`
+ * 2. `<Link />`
+ *
+ * ```jsx
+ * import {
+ *     Breadcrumbs,
+ *     BreadcrumbsItem
+ * } from "@khanacademy/wonder-blocks-breadcrumbs";
+ *
+ * <Breadcrumbs>
+ *     <BreadcrumbsItem>
+ *         <Link href="">Course</Link>
+ *     </BreadcrumbsItem>
+ *     <BreadcrumbsItem>
+ *         <Link href="">Unit</Link>
+ *     </BreadcrumbsItem>
+ *     <BreadcrumbsItem>
+ *         <Link href="">Lesson</Link>
+ *     </BreadcrumbsItem>
+ * </Breadcrumbs>
+ * ```
  */
 export default class Breadcrumbs extends React.Component<Props> {
     // Moved it here, in case we need to override the label for a different
