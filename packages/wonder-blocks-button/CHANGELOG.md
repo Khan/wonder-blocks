@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-button
 
+## 2.11.5
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-clickable@2.2.6
+-   @khanacademy/wonder-blocks-core@4.3.1
+-   @khanacademy/wonder-blocks-icon@1.2.27
+-   @khanacademy/wonder-blocks-progress-spinner@1.1.31
+-   @khanacademy/wonder-blocks-typography@1.1.31
+
 ## 2.11.4
 
 ### Patch Changes
