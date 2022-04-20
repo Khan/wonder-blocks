@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-icon",
-  "version": "1.2.26",
+  "version": "1.2.27",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -16,10 +16,10 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@khanacademy/wonder-blocks-core": "^4.3.0"
+    "@khanacademy/wonder-blocks-core": "^4.3.1"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.3.0"
+    "wb-dev-build-settings": "^0.4.0"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",

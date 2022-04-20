@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 2.2.6
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-core@4.3.1
+
 ## 2.2.5
 
 ### Patch Changes
