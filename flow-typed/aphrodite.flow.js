@@ -330,6 +330,7 @@ type _CSSProperties = {|
     ":active"?: _CSSProperties,
     ":hover"?: _CSSProperties,
     ":focus"?: _CSSProperties,
+    ":focus-visible"?: _CSSProperties,
     ":link"?: _CSSProperties,
     ":visited"?: _CSSProperties,
     ":disabled"?: _CSSProperties,

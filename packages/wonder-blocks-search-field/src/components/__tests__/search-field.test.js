@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import SearchField from "../search-field.js";
@@ -12,7 +12,6 @@ describe("SearchField", () => {
             const [value, setValue] = React.useState("");
             return (
                 <SearchField
-                    id="sf-id"
                     value={value}
                     onChange={setValue}
                     testId="search-field-test"
@@ -38,7 +37,6 @@ describe("SearchField", () => {
         // Act
         render(
             <SearchField
-                id="sf-id"
                 value=""
                 onChange={() => {}}
                 testId="search-field-test"
@@ -55,7 +53,6 @@ describe("SearchField", () => {
         // Arrange
         render(
             <SearchField
-                id="sf-id"
                 value=""
                 onChange={() => {}}
                 testId="search-field-test"
@@ -74,7 +71,6 @@ describe("SearchField", () => {
         // Arrange
         render(
             <SearchField
-                id="sf-id"
                 value=""
                 onChange={() => {}}
                 testId="search-field-test"
@@ -93,7 +89,6 @@ describe("SearchField", () => {
         // Arrange
         render(
             <SearchField
-                id="sf-id"
                 value=""
                 onChange={() => {}}
                 testId="search-field-test"
@@ -116,7 +111,6 @@ describe("SearchField", () => {
         const focusFn = jest.fn(() => {});
         render(
             <SearchField
-                id="sf-id"
                 value=""
                 onChange={() => {}}
                 testId="search-field-test"
@@ -136,7 +130,6 @@ describe("SearchField", () => {
         const blurFn = jest.fn(() => {});
         render(
             <SearchField
-                id="sf-id"
                 value=""
                 onChange={() => {}}
                 testId="search-field-test"
@@ -158,7 +151,7 @@ describe("SearchField", () => {
         // Arrange
 
         // Act
-        render(<SearchField id="sf-id" value="" onChange={() => {}} />);
+        render(<SearchField value="" onChange={() => {}} />);
 
         // Assert
         const dismissIcon = screen.queryByRole("button");
@@ -171,7 +164,6 @@ describe("SearchField", () => {
             const [value, setValue] = React.useState("");
             return (
                 <SearchField
-                    id="sf-id"
                     value={value}
                     onChange={setValue}
                     testId="search-field-test"
@@ -197,7 +189,6 @@ describe("SearchField", () => {
             const [value, setValue] = React.useState("");
             return (
                 <SearchField
-                    id="sf-id"
                     value={value}
                     onChange={setValue}
                     testId="search-field-test"
@@ -229,7 +220,6 @@ describe("SearchField", () => {
             const [value, setValue] = React.useState("");
             return (
                 <SearchField
-                    id="sf-id"
                     value={value}
                     onChange={setValue}
                     testId="search-field-test"
@@ -262,7 +252,6 @@ describe("SearchField", () => {
             const [value, setValue] = React.useState("");
             return (
                 <SearchField
-                    id="sf-id"
                     value={value}
                     onChange={setValue}
                     testId="search-field-test"
@@ -286,14 +275,13 @@ describe("SearchField", () => {
         expect(clearButton).toHaveAttribute("aria-label", "test-clear-label");
     });
 
-    test("forwards the ref to the input element", () => {
+    test("forwards the ref to the input element", async () => {
         // Arrange
         const ref = React.createRef();
 
         // Act
         render(
             <SearchField
-                id="sf-id"
                 value="some-value"
                 onChange={() => {}}
                 testId="search-field-test"
@@ -302,17 +290,18 @@ describe("SearchField", () => {
         );
 
         // Assert
-        expect(ref.current).toBeInstanceOf(HTMLInputElement);
+        waitFor(() => {
+            expect(ref.current).toBeInstanceOf(HTMLInputElement);
+        });
     });
 
-    test("forwards the ref to the input element with the expected value", () => {
+    test("forwards the ref to the input element with the expected value", async () => {
         // Arrange
         const ref = React.createRef();
 
         // Act
         render(
             <SearchField
-                id="sf-id"
                 value="some-value"
                 onChange={() => {}}
                 testId="search-field-test"
@@ -321,6 +310,43 @@ describe("SearchField", () => {
         );
 
         // Assert
-        expect(ref.current?.value).toBe("some-value");
+        waitFor(() => {
+            expect(ref.current?.value).toBe("some-value");
+        });
+    });
+
+    test("uses the passed in ID if one is provided", () => {
+        // Arrange
+        render(
+            <SearchField
+                id="some-random-id"
+                testId="search-field-test"
+                onChange={() => {}}
+                value=""
+            />,
+        );
+
+        // Act
+        const searchField = screen.getByTestId("search-field-test");
+
+        // Assert
+        expect(searchField).toHaveAttribute("id", "some-random-id-field");
+    });
+
+    test("uses a unique ID if one is not provided", () => {
+        // Arrange
+        render(
+            <SearchField
+                testId="search-field-test"
+                onChange={() => {}}
+                value=""
+            />,
+        );
+
+        // Act
+        const searchField = screen.getByTestId("search-field-test");
+
+        // Assert
+        expect(searchField.getAttribute("id")).toMatch(/^uid-.*-field$/);
     });
 });
