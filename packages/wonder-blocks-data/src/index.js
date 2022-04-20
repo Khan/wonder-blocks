@@ -105,6 +105,7 @@ export {RequestFulfillment} from "./util/request-fulfillment.js";
 export {Status} from "./util/status.js";
 
 // GraphQL
+export {getGqlRequestId} from "./util/get-gql-request-id.js";
 export {GqlRouter} from "./components/gql-router.js";
 export {useGql} from "./hooks/use-gql.js";
 export {GqlError, GqlErrors} from "./util/gql-error.js";
