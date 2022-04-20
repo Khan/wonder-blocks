@@ -118,6 +118,32 @@ describe("SearchTextInput", () => {
         expect(input).toHaveValue("");
     });
 
+    test("focus should return to the input element after clear button is clicked", () => {
+        // Arrange
+        const SearchFieldWrapper = () => {
+            const [value, setValue] = React.useState("");
+            return (
+                <SearchTextInput
+                    searchText={value}
+                    testId="search-text-input"
+                    onChange={setValue}
+                />
+            );
+        };
+
+        render(<SearchFieldWrapper />);
+
+        const input = screen.getByTestId("search-text-input");
+        userEvent.paste(input, "something");
+
+        // Act
+        const clearIconButton = screen.queryByRole("button");
+        userEvent.click(clearIconButton);
+
+        // Assert
+        expect(input).toHaveFocus();
+    });
+
     test("placeholder should be updated by the parent component", () => {
         // Arrange
         const {rerender} = render(
