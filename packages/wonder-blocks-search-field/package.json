@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-search-field",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "design": "v1",
   "description": "Search Field components for Wonder Blocks.",
   "main": "dist/index.js",
