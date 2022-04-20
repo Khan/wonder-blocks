@@ -1,6 +1,6 @@
 {
     "name": "@khanacademy/wonder-blocks-testing",
-    "version": "4.0.0",
+    "version": "4.0.1",
     "design": "v1",
     "publishConfig": {
         "access": "public"
@@ -14,7 +14,7 @@
     },
     "dependencies": {
         "@babel/runtime": "^7.16.3",
-        "@khanacademy/wonder-blocks-data": "^7.0.0"
+        "@khanacademy/wonder-blocks-data": "^7.0.1"
     },
     "peerDependencies": {
         "@khanacademy/wonder-stuff-core": "^0.1.2",
@@ -24,7 +24,7 @@
         "react": "16.14.0"
     },
     "devDependencies": {
-        "wb-dev-build-settings": "^0.3.0"
+        "wb-dev-build-settings": "^0.4.0"
     },
     "author": "",
     "license": "MIT"

@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-toolbar",
-  "version": "2.1.30",
+  "version": "2.1.31",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -17,14 +17,14 @@
   "dependencies": {
     "@babel/runtime": "^7.16.3",
     "@khanacademy/wonder-blocks-color": "^1.1.20",
-    "@khanacademy/wonder-blocks-core": "^4.3.0",
-    "@khanacademy/wonder-blocks-typography": "^1.1.30"
+    "@khanacademy/wonder-blocks-core": "^4.3.1",
+    "@khanacademy/wonder-blocks-typography": "^1.1.31"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
     "react": "16.14.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.3.0"
+    "wb-dev-build-settings": "^0.4.0"
   }
 }
