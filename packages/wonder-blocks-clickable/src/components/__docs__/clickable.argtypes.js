@@ -215,6 +215,17 @@ export default {
     role: {
         description:
             "The role of the component, can be a role of type `ClickableRole`",
+        control: {type: "select"},
+        options: [
+            "button",
+            "checkbox",
+            "link",
+            "listbox",
+            "menu",
+            "menuitem",
+            "radio",
+            "tab",
+        ],
         table: {
             category: "Accessibility",
             type: {
