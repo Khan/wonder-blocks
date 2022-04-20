@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-cell
 
+## 2.2.3
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-clickable@2.2.6
+-   @khanacademy/wonder-blocks-core@4.3.1
+-   @khanacademy/wonder-blocks-layout@1.4.9
+-   @khanacademy/wonder-blocks-typography@1.1.31
+
 ## 2.2.2
 
 ### Patch Changes

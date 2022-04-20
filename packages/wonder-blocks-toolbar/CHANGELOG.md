@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-toolbar
 
+## 2.1.31
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-core@4.3.1
+-   @khanacademy/wonder-blocks-typography@1.1.31
+
 ## 2.1.30
 
 ### Patch Changes

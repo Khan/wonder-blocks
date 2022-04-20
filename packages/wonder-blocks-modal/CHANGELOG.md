@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-modal
 
+## 2.3.1
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-breadcrumbs@1.0.30
+-   @khanacademy/wonder-blocks-core@4.3.1
+-   @khanacademy/wonder-blocks-icon@1.2.27
+-   @khanacademy/wonder-blocks-icon-button@3.4.6
+-   @khanacademy/wonder-blocks-layout@1.4.9
+-   @khanacademy/wonder-blocks-toolbar@2.1.31
+-   @khanacademy/wonder-blocks-typography@1.1.31
+
 ## 2.3.0
 
 ### Minor Changes
