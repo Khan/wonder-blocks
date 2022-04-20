@@ -57,7 +57,7 @@ type DefaultProps = {|
     labels: $PropertyType<Props, "labels">,
 |};
 
-export default class SearchTextInput extends React.Component<Props, State> {
+export default class SearchTextInput extends React.Component<Props> {
     static isClassOf(instance: React.Element<any>): boolean {
         return (
             instance && instance.type && instance.type.__IS_SEARCH_TEXT_INPUT__
@@ -79,7 +79,6 @@ export default class SearchTextInput extends React.Component<Props, State> {
 
         return (
             <SearchField
-                // id={"DO NOT KEEP THIS HERE"}
                 clearAriaLabel={labels.clearSearch}
                 onChange={onChange}
                 onClick={onClick}

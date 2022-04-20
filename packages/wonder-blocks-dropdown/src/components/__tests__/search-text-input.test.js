@@ -2,8 +2,6 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-// import {shallow} from "enzyme";
-// import "jest-enzyme";
 
 import SearchTextInput from "../search-text-input.js";
 
@@ -72,14 +70,18 @@ describe("SearchTextInput", () => {
 
     test("displays the dismiss button when search text exists", () => {
         // Arrange
-        render(
-            <SearchTextInput
-                searchText="query"
-                testId="search-text-input"
-                onChange={() => jest.fn()}
-                onClick={() => jest.fn()}
-            />,
-        );
+        const SearchFieldWrapper = () => {
+            const [value, setValue] = React.useState("");
+            return (
+                <SearchTextInput
+                    searchText={value}
+                    testId="search-text-input"
+                    onChange={setValue}
+                />
+            );
+        };
+
+        render(<SearchFieldWrapper />);
 
         const input = screen.getByTestId("search-text-input");
 
@@ -93,19 +95,21 @@ describe("SearchTextInput", () => {
 
     test("search should be cleared if the clear icon is clicked", () => {
         // Arrange
+        const SearchFieldWrapper = () => {
+            const [value, setValue] = React.useState("initial value");
+            return (
+                <SearchTextInput
+                    searchText={value}
+                    testId="search-text-input"
+                    onChange={setValue}
+                />
+            );
+        };
 
-        render(
-            <SearchTextInput
-                searchText="query"
-                onChange={() => jest.fn()}
-                testId="search-text-input"
-            />,
-        );
+        render(<SearchFieldWrapper />);
 
         const input = screen.getByTestId("search-text-input");
         const clearIconButton = screen.queryByRole("button");
-
-        userEvent.paste(input, "value");
 
         // Act
         userEvent.click(clearIconButton);
@@ -114,27 +118,69 @@ describe("SearchTextInput", () => {
         expect(input).toHaveValue("");
     });
 
-    //     it("labels should be updated by the parent component", () => {
-    //         // Arrange
-    //         const wrapper = shallow(
-    //             <SearchTextInput
-    //                 searchText="query"
-    //                 onChange={() => jest.fn()}
-    //                 labels={{
-    //                     clearSearch: "Clear",
-    //                     filter: "Filter",
-    //                 }}
-    //             />,
-    //         );
+    test("placeholder should be updated by the parent component", () => {
+        // Arrange
+        const {rerender} = render(
+            <SearchTextInput
+                searchText="query"
+                onChange={() => {}}
+                labels={{
+                    clearSearch: "Clear",
+                    filter: "Filter",
+                }}
+                testId="search-text-input"
+            />,
+        );
 
-    //         // Act
-    //         wrapper.setProps({labels: {clearSearch: "Dismiss", filter: "Search"}});
+        const input = screen.getByTestId("search-text-input");
 
-    //         wrapper.update();
+        // Act
+        rerender(
+            <SearchTextInput
+                searchText="query"
+                onChange={() => {}}
+                labels={{
+                    clearSearch: "Dismiss",
+                    filter: "Search",
+                }}
+                testId="search-text-input"
+            />,
+        );
 
-    //         // Assert
-    //         expect(wrapper).toHaveState({
-    //             labels: {clearSearch: "Dismiss", filter: "Search"},
-    //         });
-    //     });
+        // Assert
+        expect(input).toHaveAttribute("placeholder", "Search");
+    });
+
+    test("button label should be updated by the parent component", () => {
+        // Arrange
+        const {rerender} = render(
+            <SearchTextInput
+                searchText="query"
+                onChange={() => {}}
+                labels={{
+                    clearSearch: "Clear",
+                    filter: "Filter",
+                }}
+                testId="search-text-input"
+            />,
+        );
+
+        const clearIconButton = screen.queryByRole("button");
+
+        // Act
+        rerender(
+            <SearchTextInput
+                searchText="query"
+                onChange={() => {}}
+                labels={{
+                    clearSearch: "Dismiss",
+                    filter: "Search",
+                }}
+                testId="search-text-input"
+            />,
+        );
+
+        // Assert
+        expect(clearIconButton).toHaveAttribute("aria-label", "Dismiss");
+    });
 });
