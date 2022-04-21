@@ -109,7 +109,9 @@ describe("#useCachedEffect", () => {
 
                 // Act
                 const {
-                    result: {current: result},
+                    result: {
+                        current: [result],
+                    },
                 } = serverRenderHook(() => useCachedEffect("ID", fakeHandler));
 
                 // Assert
@@ -129,7 +131,9 @@ describe("#useCachedEffect", () => {
 
                 // Act
                 const {
-                    result: {current: result},
+                    result: {
+                        current: [result],
+                    },
                 } = serverRenderHook(() => useCachedEffect("ID", fakeHandler));
 
                 // Assert
@@ -311,7 +315,7 @@ describe("#useCachedEffect", () => {
             );
 
             // Assert
-            expect(result.current).toStrictEqual(Status.success("DATA2"));
+            expect(result.current[0]).toStrictEqual(Status.success("DATA2"));
         });
 
         it("should not fulfill request when skip is true", () => {
@@ -366,7 +370,7 @@ describe("#useCachedEffect", () => {
             );
 
             // Assert
-            expect(result.current).toStrictEqual(Status.success("DATA1"));
+            expect(result.current[0]).toStrictEqual(Status.success("DATA1"));
         });
 
         it("should not ignore inflight request if options (other than skip) change", async () => {
@@ -389,7 +393,7 @@ describe("#useCachedEffect", () => {
             await act((): Promise<mixed> => response1);
 
             // Assert
-            expect(result.current).toStrictEqual(Status.success("DATA1"));
+            expect(result.current[0]).toStrictEqual(Status.success("DATA1"));
         });
 
         it("should return previous result when requestId changes and retainResultOnChange is true", async () => {
@@ -417,7 +421,7 @@ describe("#useCachedEffect", () => {
             );
             await act((): Promise<mixed> => response1);
             rerender({requestId: "ID2"});
-            const result = hookResult.current;
+            const [result] = hookResult.current;
             await waitForNextUpdate();
 
             // Assert
@@ -449,7 +453,7 @@ describe("#useCachedEffect", () => {
             rerender({requestId: "ID2"});
 
             // Assert
-            expect(result.current).toStrictEqual(Status.loading());
+            expect(result.current[0]).toStrictEqual(Status.loading());
         });
 
         it("should trigger render when request is fulfilled and onResultChanged is undefined", async () => {
@@ -464,7 +468,7 @@ describe("#useCachedEffect", () => {
             await act((): Promise<mixed> => response);
 
             // Assert
-            expect(result.current).toStrictEqual(Status.success("DATA"));
+            expect(result.current[0]).toStrictEqual(Status.success("DATA"));
         });
 
         it("should not trigger render when request is fulfilled and onResultChanged is defined", async () => {
@@ -481,7 +485,7 @@ describe("#useCachedEffect", () => {
             await act((): Promise<mixed> => response);
 
             // Assert
-            expect(result.current).toStrictEqual(Status.loading());
+            expect(result.current[0]).toStrictEqual(Status.loading());
         });
 
         it("should call onResultChanged when request is fulfilled and onResultChanged is defined", async () => {
