@@ -30,10 +30,8 @@ describe("#useHydratableEffect", () => {
     beforeEach(() => {
         jest.resetAllMocks();
 
-        // When we have request aborting and things, this can be nicer, but
-        // for now, let's just clear out inflight requests between tests
-        // by being cheeky.
-        RequestFulfillment.Default._requests = {};
+        // Clear out inflight requests between tests.
+        RequestFulfillment.Default.abortAll();
 
         // Simple implementation of request interception that just returns
         // the handler.

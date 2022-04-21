@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {useForceUpdate} from "@khanacademy/wonder-blocks-core";
+import {DataError, DataErrors} from "../util/data-error.js";
 
 import {RequestFulfillment} from "../util/request-fulfillment.js";
 import {Status} from "../util/status.js";
@@ -120,49 +121,51 @@ export const useCachedEffect = <TData: ValidCacheData>(
         // request is done, we want the cache to be empty until that point.
     );
     const forceUpdate = useForceUpdate();
-    // For the NetworkOnly fetch policy, we bypass the shared cache entirely.
-    // So we need somewhere else to store the value, but we only use this
-    // if there's no onResultChanged callback.
-    const [networkOnlyResult, setNetworkOnlyResult] = React.useState();
+    // For the NetworkOnly fetch policy, we ignore the cached value.
+    // So we need somewhere else to store the network value.
+    const networkResultRef = React.useRef();
 
     // Set up the function that will do the fetching.
-    const inflightRequestRef = React.useRef();
+    const currentRequestRef = React.useRef();
     const fetchRequest = React.useMemo(() => {
         // We aren't using useCallback here because we need to make sure that
         // if we are rememo-izing, we cancel any inflight request for the old
         // callback.
-        inflightRequestRef.current?.cancel();
-        inflightRequestRef.current = null;
+        currentRequestRef.current?.cancel();
+        currentRequestRef.current = null;
+        networkResultRef.current = null;
 
         // Now we can return the new fetch function.
         return () => {
-            // TODO(somewhatabstract, FEI-4276):
-            // Until our RequestFulfillment API supports cancelling/aborting, we
-            // will have to do it.
-            let cancel = false;
-
+            if (fetchPolicy === FetchPolicy.CacheOnly) {
+                throw new DataError(
+                    "Cannot fetch with CacheOnly policy",
+                    DataErrors.NotAllowed,
+                );
+            }
             // We use our request fulfillment here so that in-flight
             // requests are shared.
             const request = RequestFulfillment.Default.fulfill(requestId, {
                 handler: interceptedHandler,
             });
 
-            if (request === inflightRequestRef.current?.request) {
+            if (request === currentRequestRef.current?.request) {
                 // The request inflight is the same, so do nothing.
                 // NOTE: Perhaps if invoked via a refetch, we will want to
                 // override this behavior and force a new request?
                 return;
             }
 
-            if (fetchPolicy === FetchPolicy.NetworkOnly) {
-                // For the NetworkOnly fetch policy, we need to clear the
-                // state so we'll render a loading state if necessary.
-                setNetworkOnlyResult(null);
-            }
+            // Clear the last network result.
+            networkResultRef.current = null;
 
             // Cancel the previous request.
-            inflightRequestRef.current?.cancel();
-            inflightRequestRef.current = null;
+            currentRequestRef.current?.cancel();
+
+            // TODO(somewhatabstract, FEI-4276):
+            // Until our RequestFulfillment API supports cancelling/aborting, we
+            // will have to do it.
+            let cancel = false;
 
             // NOTE: Our request fulfillment handles the error cases here.
             // Catching shouldn't serve a purpose.
@@ -175,20 +178,14 @@ export const useCachedEffect = <TData: ValidCacheData>(
                     return;
                 }
 
-                // We don't have an inflight request to worry about anymore.
-                inflightRequestRef.current = null;
-
                 // Now we need to update the cache and notify or force a rerender.
                 setMostRecentResult(result);
+                networkResultRef.current = result;
 
                 if (onResultChanged != null) {
                     // If we have a callback, call it to let our caller know we
                     // got a result.
                     onResultChanged(result);
-                } else if (fetchPolicy === FetchPolicy.NetworkOnly) {
-                    // For the NetworkOnly fetch policy, we don't use the cached
-                    // value, so we need to store it in state.
-                    setNetworkOnlyResult(result);
                 } else {
                     // If there's no callback, and this is using cache in some
                     // capacity, just force a rerender.
@@ -197,7 +194,7 @@ export const useCachedEffect = <TData: ValidCacheData>(
                 return; // Shut up eslint always-return rule.
             });
 
-            inflightRequestRef.current = {
+            currentRequestRef.current = {
                 request,
                 cancel() {
                     cancel = true;
@@ -207,10 +204,9 @@ export const useCachedEffect = <TData: ValidCacheData>(
     }, [
         requestId,
         interceptedHandler,
-        setMostRecentResult,
-        setNetworkOnlyResult,
         onResultChanged,
         forceUpdate,
+        setMostRecentResult,
         fetchPolicy,
     ]);
 
@@ -243,12 +239,10 @@ export const useCachedEffect = <TData: ValidCacheData>(
 
             case FetchPolicy.CacheAndNetwork:
             case FetchPolicy.NetworkOnly:
-                // We don't care about the cache. We need to fetch.
-                return true;
+                // We don't care about the cache. If we don't have a network
+                // result, then we need to fetch one.
+                return networkResultRef.current == null;
         }
-
-        // Default, just in case a bad fetch policy is given.
-        return true;
     }, [requestId, mostRecentResult, fetchPolicy, hardSkip]);
 
     // Let's make sure our ref is set to the most recent requestId.
@@ -259,6 +253,10 @@ export const useCachedEffect = <TData: ValidCacheData>(
             return;
         }
         fetchRequest();
+        return () => {
+            currentRequestRef.current?.cancel();
+            currentRequestRef.current = null;
+        };
     }, [shouldFetch, fetchRequest]);
 
     // We track the last result we returned in order to support the
@@ -270,13 +268,10 @@ export const useCachedEffect = <TData: ValidCacheData>(
 
     // Loading is a transient state, so we only use it here; it's not something
     // we cache.
-    const result = React.useMemo(
-        () =>
-            (fetchPolicy === FetchPolicy.NetworkOnly
-                ? networkOnlyResult
-                : mostRecentResult) ?? loadingResult,
-        [fetchPolicy, networkOnlyResult, mostRecentResult, loadingResult],
-    );
+    const result =
+        (fetchPolicy === FetchPolicy.NetworkOnly
+            ? networkResultRef.current
+            : mostRecentResult) ?? loadingResult;
     lastResultAgnosticOfIdRef.current = result;
 
     // We return the result and a function for triggering a refetch.
