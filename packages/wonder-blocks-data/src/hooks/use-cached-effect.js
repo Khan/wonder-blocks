@@ -198,12 +198,18 @@ export const useCachedEffect = <TData: ValidCacheData>(
                 request,
                 cancel() {
                     cancel = true;
+                    RequestFulfillment.Default.abort(requestId);
                 },
             };
         };
+        // We deliberately ignore the handler here because we want folks to use
+        // interceptor functions inline in props for simplicity. This is OK
+        // since changing the handler without changing the requestId doesn't
+        // really make sense - the same requestId should be handled the same as
+        // each other.
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [
         requestId,
-        interceptedHandler,
         onResultChanged,
         forceUpdate,
         setMostRecentResult,
