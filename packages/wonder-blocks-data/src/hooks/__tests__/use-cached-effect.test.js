@@ -650,6 +650,40 @@ describe("#useCachedEffect", () => {
                 (e) => e !== FetchPolicy.CacheOnly,
             ),
         )(
+            "should trigger render once per inflight request being fulfilled and onResultChanged is undefined for FetchPolicy.%s",
+            async (fetchPolicy) => {
+                // Arrange
+                const response = Promise.resolve("DATA");
+                const fakeHandler = jest.fn().mockReturnValue(response);
+                let renderCount = 0;
+                const Component = React.memo(() => {
+                    const [, refetch] = useCachedEffect("ID", fakeHandler, {
+                        fetchPolicy,
+                    });
+                    React.useEffect(() => {
+                        refetch();
+                        refetch();
+                        refetch();
+                        refetch();
+                    }, [refetch]);
+                    renderCount++;
+                    return <div>Hello :)</div>;
+                });
+
+                // Act
+                render(<Component />);
+                await reactAct((): Promise<mixed> => response);
+
+                // Assert
+                expect(renderCount).toBe(2);
+            },
+        );
+
+        it.each(
+            Array.from(FetchPolicy.members()).filter(
+                (e) => e !== FetchPolicy.CacheOnly,
+            ),
+        )(
             "should not trigger render when request is fulfilled and onResultChanged is defined for FetchPolicy.%s",
             async (fetchPolicy) => {
                 // Arrange
@@ -699,6 +733,40 @@ describe("#useCachedEffect", () => {
                 expect(onResultChanged).toHaveBeenCalledWith(
                     Status.success("DATA"),
                 );
+            },
+        );
+
+        it.each(
+            Array.from(FetchPolicy.members()).filter(
+                (e) => e !== FetchPolicy.CacheOnly,
+            ),
+        )(
+            "should call onResultChanged once per inflight request being fulfilled and onResultChanged is defined for FetchPolicy.%s",
+            async (fetchPolicy) => {
+                // Arrange
+                const response = Promise.resolve("DATA");
+                const fakeHandler = jest.fn().mockReturnValue(response);
+                const onResultChanged = jest.fn();
+
+                // Act
+                const {
+                    result: {
+                        current: [, refetch],
+                    },
+                } = clientRenderHook(() =>
+                    useCachedEffect("ID", fakeHandler, {
+                        onResultChanged,
+                        fetchPolicy,
+                    }),
+                );
+                act(refetch);
+                act(refetch);
+                act(refetch);
+                act(refetch);
+                await act((): Promise<mixed> => response);
+
+                // Assert
+                expect(onResultChanged).toHaveBeenCalledTimes(1);
             },
         );
     });
