@@ -3,10 +3,7 @@ import clickableArgtypes from "./clickable.argtypes.js";
 export default {
     children: {
         description:
-            "A function that returns the a React `Element`.  The function is passed an object with three boolean properties: hovered, focused, and pressed, and a `childrenProps` argument that contains all the event handlers that should be passed to the React `Element` itself.",
-        control: {
-            type: "text",
-        },
+            "A function that returns the a React `Element`. The function is passed an object with three boolean properties: hovered, focused, and pressed, and a `childrenProps` argument that contains all the event handlers that should be passed to the React `Element` itself.",
         type: {
             required: true,
         },

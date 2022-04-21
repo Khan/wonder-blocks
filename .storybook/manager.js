@@ -11,4 +11,7 @@ import wonderBlocksTheme from "./wonder-blocks-theme.js";
  */
 addons.setConfig({
     theme: wonderBlocksTheme,
+    sidebar: {
+        showRoots: false,
+    },
 });
