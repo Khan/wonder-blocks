@@ -171,6 +171,7 @@ export const useCachedEffect = <TData: ValidCacheData>(
             // Catching shouldn't serve a purpose.
             // eslint-disable-next-line promise/catch-or-return
             request.then((result) => {
+                currentRequestRef.current = null;
                 if (cancel) {
                     // We don't modify our result if the request was cancelled
                     // as it means that this hook no longer cares about that old
@@ -195,6 +196,7 @@ export const useCachedEffect = <TData: ValidCacheData>(
             });
 
             currentRequestRef.current = {
+                requestId,
                 request,
                 cancel() {
                     cancel = true;
@@ -236,7 +238,7 @@ export const useCachedEffect = <TData: ValidCacheData>(
                 return false;
 
             case FetchPolicy.CacheBeforeNetwork:
-                // If we don't a cached value or this is a new requestId,
+                // If we don't have a cached value or this is a new requestId,
                 // then we need to fetch.
                 return (
                     mostRecentResult == null ||

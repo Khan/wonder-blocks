@@ -1,4 +1,5 @@
 // @flow
+import * as React from "react";
 import {
     renderHook as clientRenderHook,
     act,
@@ -44,7 +45,10 @@ describe("#useHydratableEffect", () => {
         const cache = {};
         jest.spyOn(UseSharedCache, "useSharedCache").mockImplementation(
             (id, _, defaultValue) => {
-                const setCache = (v) => (cache[id] = v);
+                const setCache = React.useCallback(
+                    (v) => (cache[id] = v),
+                    [id],
+                );
                 const currentValue =
                     cache[id] ??
                     (typeof defaultValue === "function"
@@ -388,12 +392,16 @@ describe("#useHydratableEffect", () => {
             expect(fakeHandler).toHaveBeenCalledTimes(2);
         });
 
-        it("should default shared cache to hydrate value for new requestId", async () => {
+        it("should default shared cache to hydrate value for new requestId", () => {
             // Arrange
-            const fakeHandler = jest.fn().mockResolvedValue("data");
+            const fakeHandler = jest.fn().mockResolvedValue("NEVER CALLED");
             jest.spyOn(UseServerEffect, "useServerEffect")
+                // First requestId will get hydrated value. No fetch will occur.
+                // The hook result will be this value.
                 .mockReturnValueOnce(Status.success("BADDATA"))
-                .mockReturnValue(null);
+                // Second requestId will get a different hydrated value.
+                // No fetch will occur. The hook will then be this value.
+                .mockReturnValueOnce(Status.success("GOODDATA"));
 
             // Act
             const {rerender, result} = clientRenderHook(
@@ -405,7 +413,7 @@ describe("#useHydratableEffect", () => {
             rerender({requestId: "ID2"});
 
             // Assert
-            expect(result.current).toStrictEqual(Status.loading());
+            expect(result.current).toStrictEqual(Status.success("GOODDATA"));
         });
 
         it("should update shared cache with result when request is fulfilled", async () => {
