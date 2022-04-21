@@ -261,18 +261,19 @@ const startState: ClickableState = {
  * 3. Keyup (spacebar/enter) -> focus state
  *
  * Warning: The event handlers returned (onClick, onMouseEnter, onMouseLeave,
- * onMouseDown, onMouseUp, onDragStart, onTouchStart, onTouchEnd, onTouchCancel, onKeyDown,
- * onKeyUp, onFocus, onBlur, tabIndex) should be passed on to the component
- * that has the ClickableBehavior. You cannot override these handlers without
- * potentially breaking the functionality of ClickableBehavior.
+ * onMouseDown, onMouseUp, onDragStart, onTouchStart, onTouchEnd, onTouchCancel,
+ * onKeyDown, onKeyUp, onFocus, onBlur, tabIndex) should be passed on to the
+ * component that has the ClickableBehavior. You cannot override these handlers
+ * without potentially breaking the functionality of ClickableBehavior.
  *
- * There are internal props triggerOnEnter and triggerOnSpace that can be set
- * to false if one of those keys shouldn't count as a click on this component.
- * Be careful about setting those to false -- make certain that the component
+ * There are internal props triggerOnEnter and triggerOnSpace that can be set to
+ * false if one of those keys shouldn't count as a click on this component. Be
+ * careful about setting those to false -- make certain that the component
  * shouldn't process that key.
  *
- * See [this document](https://docs.google.com/document/d/1DG5Rg2f0cawIL5R8UqnPQpd7pbdObk8OyjO5ryYQmBM/edit#)
- * for a more thorough explanation of expected behaviors and potential cavaets.
+ * See [this
+   document](https://docs.google.com/document/d/1DG5Rg2f0cawIL5R8UqnPQpd7pbdObk8OyjO5ryYQmBM/edit#)
+   for a more thorough explanation of expected behaviors and potential cavaets.
  *
  * `ClickableBehavior` accepts a function as `children` which is passed state
  * and an object containing event handlers and some other props. The `children`
@@ -280,32 +281,30 @@ const startState: ClickableState = {
  *
  * Example:
  *
- * ```js
- * class MyClickableComponent extends React.Component<Props> {
- *     render(): React.Node {
- *         const ClickableBehavior = getClickableBehavior();
- *         return <ClickableBehavior
- *             disabled={this.props.disabled}
- *             onClick={this.props.onClick}
- *         >
- *             {({hovered}, childrenProps) =>
- *                 <RoundRect
- *                      textcolor='white'
- *                      backgroundColor={hovered ? 'red' : 'blue'}}
- *                      {...childrenProps}
- *                 >
- *                      {this.props.children}
- *                 </RoundRect>
- *             }
- *         </ClickableBehavior>
- *     }
+ * ```jsx
+ * function MyClickableComponent(props: Props) {
+ *   const ClickableBehavior = getClickableBehavior();
+ *
+ *   return (
+ *       <ClickableBehavior disabled={props.disabled} onClick={props.onClick}>
+ *           {({hovered}, childrenProps) => (
+ *               <RoundRect
+ *                   textcolor="white"
+ *                   backgroundColor={hovered ? "red" : "blue"}
+ *                   {...childrenProps}
+ *               >
+ *                   {props.children}
+ *               </RoundRect>
+ *           )}
+ *      </ClickableBehavior>
+ *   );
  * }
  * ```
  *
- * This follows a pattern called [Function as Child Components]
- * (https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9).
+ * This follows a pattern called [Function as Child
+ * Components](https://medium.com/merrickchristensen/function-as-child-components-5f3920a9ace9).
  *
- * WARNING: Do not use this component directly, use getClickableBehavior
+ * **WARNING:** Do not use this component directly, use getClickableBehavior
  * instead. getClickableBehavior takes three arguments (href, directtNav, and
  * router) and returns either the default ClickableBehavior or a react-router
  * aware version.
@@ -313,9 +312,9 @@ const startState: ClickableState = {
  * The react-router aware version is returned if `router` is a react-router-dom
  * router, `skipClientNav` is not `true`, and `href` is an internal URL.
  *
- * The `router` can be accessed via __RouterContext (imported from 'react-router')
- * from a component rendered as a descendant of a BrowserRouter.
- * See https://reacttraining.com/react-router/web/guides/basic-components.
+ * The `router` can be accessed via __RouterContext (imported from
+   'react-router') from a component rendered as a descendant of a BrowserRouter.
+   See https://reacttraining.com/react-router/web/guides/basic-components.
  */
 export default class ClickableBehavior extends React.Component<
     Props,
