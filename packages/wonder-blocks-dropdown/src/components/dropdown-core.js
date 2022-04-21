@@ -25,6 +25,10 @@ import SearchTextInput from "./search-text-input.js";
 import {defaultLabels, keyCodes, searchInputStyle} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
 import DropdownPopper from "./dropdown-popper.js";
+import {
+    generateDropdownMenuStyles,
+    getDropdownMenuHeight,
+} from "../util/dropdown-menu-styles.js";
 
 /**
  * The number of options to apply the virtualized list to.
@@ -762,6 +766,14 @@ class DropdownCore extends React.Component<Props, State> {
             ? openerStyle.getPropertyValue("width")
             : 0;
 
+        // Vertical padding of the dropdown menu + borders
+        const initialHeight = 12;
+
+        const maxDropdownHeight = getDropdownMenuHeight(
+            this.props.items,
+            initialHeight,
+        );
+
         return (
             <View
                 // Stop propagation to prevent the mouseup listener on the
@@ -772,7 +784,11 @@ class DropdownCore extends React.Component<Props, State> {
                     styles.dropdown,
                     light && styles.light,
                     isReferenceHidden && styles.hidden,
-                    {minWidth: minDropdownWidth},
+                    generateDropdownMenuStyles(
+                        minDropdownWidth,
+                        maxDropdownHeight,
+                    ),
+
                     dropdownStyle,
                 ]}
             >

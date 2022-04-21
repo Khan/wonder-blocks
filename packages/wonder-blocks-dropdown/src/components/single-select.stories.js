@@ -52,6 +52,7 @@ export const DefaultSingleSelectOpened: StoryComponentType = (args) => {
             <OptionItem label="Apple" value="apple" />
             <OptionItem label="Grape" value="grape" />
             <OptionItem label="Lemon" value="lemon" />
+            <OptionItem label="Mango" value="mango" />
         </SingleSelectTemplate>
     );
 };
