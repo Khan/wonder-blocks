@@ -111,6 +111,8 @@ export {Status} from "./util/status.js";
 
 // GraphQL
 export {getGqlRequestId} from "./util/get-gql-request-id.js";
+export {graphQLDocumentNodeParser} from "./util/graphql-document-node-parser.js";
+export {toGqlOperation} from "./util/to-gql-operation.js";
 export {GqlRouter} from "./components/gql-router.js";
 export {useGql} from "./hooks/use-gql.js";
 export {GqlError, GqlErrors} from "./util/gql-error.js";
