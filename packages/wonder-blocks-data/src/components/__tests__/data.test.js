@@ -28,11 +28,11 @@ describe("Data", () => {
 
         const responseCache = new SsrCache();
         jest.spyOn(SsrCache, "Default", "get").mockReturnValue(responseCache);
-        jest.spyOn(RequestTracker, "Default", "get").mockReturnValue(
-            new RequestTracker(responseCache),
-        );
         jest.spyOn(RequestFulfillment, "Default", "get").mockReturnValue(
             new RequestFulfillment(),
+        );
+        jest.spyOn(RequestTracker, "Default", "get").mockReturnValue(
+            new RequestTracker(responseCache),
         );
     });
 
@@ -90,7 +90,7 @@ describe("Data", () => {
                 });
             });
 
-            it("should share single request across all uses", async () => {
+            it("should share single request across all uses", () => {
                 // Arrange
                 const fakeHandler = jest.fn(
                     () => new Promise((resolve, reject) => {}),
