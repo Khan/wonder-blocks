@@ -28,16 +28,12 @@ describe("Data", () => {
 
         const responseCache = new SsrCache();
         jest.spyOn(SsrCache, "Default", "get").mockReturnValue(responseCache);
-        jest.spyOn(RequestFulfillment, "Default", "get").mockReturnValue(
-            new RequestFulfillment(),
-        );
         jest.spyOn(RequestTracker, "Default", "get").mockReturnValue(
             new RequestTracker(responseCache),
         );
-    });
-
-    afterEach(() => {
-        jest.resetAllMocks();
+        jest.spyOn(RequestFulfillment, "Default", "get").mockReturnValue(
+            new RequestFulfillment(),
+        );
     });
 
     describe("CSR: isServerSide false", () => {
@@ -94,7 +90,7 @@ describe("Data", () => {
                 });
             });
 
-            it("should share single request across all uses", () => {
+            it("should share single request across all uses", async () => {
                 // Arrange
                 const fakeHandler = jest.fn(
                     () => new Promise((resolve, reject) => {}),
