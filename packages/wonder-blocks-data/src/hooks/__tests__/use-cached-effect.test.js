@@ -25,6 +25,10 @@ import {FetchPolicy} from "../../util/types.js";
 jest.mock("../use-request-interception.js");
 jest.mock("../use-shared-cache.js");
 
+const allPolicies = Array.from(FetchPolicy.members());
+const allPoliciesBut = (policy: FetchPolicy) =>
+    allPolicies.filter((p) => p !== policy);
+
 describe("#useCachedEffect", () => {
     beforeEach(() => {
         jest.resetAllMocks();
@@ -100,7 +104,7 @@ describe("#useCachedEffect", () => {
             },
         );
 
-        it.each(Array.from(FetchPolicy.members()))(
+        it.each(allPolicies)(
             "should not request data for FetchPolicy.%s",
             (fetchPolicy) => {
                 // Arrange
@@ -116,7 +120,7 @@ describe("#useCachedEffect", () => {
             },
         );
 
-        describe.each(Array.from(FetchPolicy.members()))(
+        describe.each(allPolicies)(
             "with FetchPolicy.%s without cached result",
             (fetchPolicy) => {
                 it("should return a loading result", () => {
@@ -138,33 +142,32 @@ describe("#useCachedEffect", () => {
             },
         );
 
-        describe.each(
-            Array.from(FetchPolicy.members()).filter(
-                (e) => e !== FetchPolicy.NetworkOnly,
-            ),
-        )("with FetchPolicy.%s with cached result", (fetchPolicy) => {
-            it("should return the result", () => {
-                // Arrange
-                const fakeHandler = jest.fn();
-                const cachedResult = Status.success("data");
-                jest.spyOn(UseSharedCache, "useSharedCache").mockReturnValue([
-                    cachedResult,
-                    jest.fn(),
-                ]);
+        describe.each(allPoliciesBut(FetchPolicy.NetworkOnly))(
+            "with FetchPolicy.%s with cached result",
+            (fetchPolicy) => {
+                it("should return the result", () => {
+                    // Arrange
+                    const fakeHandler = jest.fn();
+                    const cachedResult = Status.success("data");
+                    jest.spyOn(
+                        UseSharedCache,
+                        "useSharedCache",
+                    ).mockReturnValue([cachedResult, jest.fn()]);
 
-                // Act
-                const {
-                    result: {
-                        current: [result],
-                    },
-                } = serverRenderHook(() =>
-                    useCachedEffect("ID", fakeHandler, {fetchPolicy}),
-                );
+                    // Act
+                    const {
+                        result: {
+                            current: [result],
+                        },
+                    } = serverRenderHook(() =>
+                        useCachedEffect("ID", fakeHandler, {fetchPolicy}),
+                    );
 
-                // Assert
-                expect(result).toEqual(cachedResult);
-            });
-        });
+                    // Assert
+                    expect(result).toEqual(cachedResult);
+                });
+            },
+        );
 
         describe("with FetchPolicy.NetworkOnly with cached result", () => {
             it("should return a loading result", () => {
@@ -229,11 +232,7 @@ describe("#useCachedEffect", () => {
             expect(fakeHandler).toHaveBeenCalledTimes(1);
         });
 
-        it.each(
-            Array.from(FetchPolicy.members()).filter(
-                (e) => e !== FetchPolicy.CacheOnly,
-            ),
-        )(
+        it.each(allPoliciesBut(FetchPolicy.CacheOnly))(
             "should provide function that causes refetch with FetchPolicy.%s",
             async (fetchPolicy) => {
                 // Arrange
@@ -280,11 +279,7 @@ describe("#useCachedEffect", () => {
             );
         });
 
-        it.each(
-            Array.from(FetchPolicy.members()).filter(
-                (e) => e !== FetchPolicy.CacheOnly,
-            ),
-        )(
+        it.each(allPoliciesBut(FetchPolicy.CacheOnly))(
             "should fulfill request when there is no cached value and FetchPolicy.%s",
             (fetchPolicy) => {
                 // Arrange
@@ -619,11 +614,7 @@ describe("#useCachedEffect", () => {
             expect(result.current[0]).toStrictEqual(Status.loading());
         });
 
-        it.each(
-            Array.from(FetchPolicy.members()).filter(
-                (e) => e !== FetchPolicy.CacheOnly,
-            ),
-        )(
+        it.each(allPoliciesBut(FetchPolicy.CacheOnly))(
             "should trigger render when request is fulfilled and onResultChanged is undefined for FetchPolicy.%s",
             async (fetchPolicy) => {
                 // Arrange
@@ -645,11 +636,7 @@ describe("#useCachedEffect", () => {
             },
         );
 
-        it.each(
-            Array.from(FetchPolicy.members()).filter(
-                (e) => e !== FetchPolicy.CacheOnly,
-            ),
-        )(
+        it.each(allPoliciesBut(FetchPolicy.CacheOnly))(
             "should trigger render once per inflight request being fulfilled and onResultChanged is undefined for FetchPolicy.%s",
             async (fetchPolicy) => {
                 // Arrange
@@ -679,11 +666,7 @@ describe("#useCachedEffect", () => {
             },
         );
 
-        it.each(
-            Array.from(FetchPolicy.members()).filter(
-                (e) => e !== FetchPolicy.CacheOnly,
-            ),
-        )(
+        it.each(allPoliciesBut(FetchPolicy.CacheOnly))(
             "should not trigger render when request is fulfilled and onResultChanged is defined for FetchPolicy.%s",
             async (fetchPolicy) => {
                 // Arrange
@@ -708,11 +691,7 @@ describe("#useCachedEffect", () => {
             },
         );
 
-        it.each(
-            Array.from(FetchPolicy.members()).filter(
-                (e) => e !== FetchPolicy.CacheOnly,
-            ),
-        )(
+        it.each(allPoliciesBut(FetchPolicy.CacheOnly))(
             "should call onResultChanged when request is fulfilled and onResultChanged is defined for FetchPolicy.%s",
             async (fetchPolicy) => {
                 // Arrange
@@ -736,11 +715,7 @@ describe("#useCachedEffect", () => {
             },
         );
 
-        it.each(
-            Array.from(FetchPolicy.members()).filter(
-                (e) => e !== FetchPolicy.CacheOnly,
-            ),
-        )(
+        it.each(allPoliciesBut(FetchPolicy.CacheOnly))(
             "should call onResultChanged once per inflight request being fulfilled and onResultChanged is defined for FetchPolicy.%s",
             async (fetchPolicy) => {
                 // Arrange

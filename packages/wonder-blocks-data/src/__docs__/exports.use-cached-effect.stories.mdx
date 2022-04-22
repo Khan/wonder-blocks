@@ -19,9 +19,9 @@ function useCachedEffect<TData: ValidCacheData>(
 ): [Result<TData>, () => void];
 ```
 
-This hook invokes the given handler and caches the result using the [`useSharedCache`](/docs/data-exports-usesharedcache--page) hook. The `requestId` is used to both share identify inflight requests that can be shared, and to identify the cached value to use.
+This hook invokes the given handler and caches the result using the [`useSharedCache`](/docs/data-exports-usesharedcache--page) hook. The `requestId` is used to both identify inflight requests that can be shared, and to identify the cached value to use.
 
-The hook returns an array containing the current state of the requested data, and a function that can be used to `refetch` the data on demand. Note that calling `refetch` while an inflight request is in progress for the given `requestId` will be a no-op.
+The hook returns an array containing the current state of the request, and a function that can be used to `refetch` that request on demand. Calling `refetch` while an inflight request is in progress for the given `requestId` will be a no-op.
 
 The behavior of the hook can be modified with the options.
 

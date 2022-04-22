@@ -135,8 +135,7 @@ export const useCachedEffect = <TData: ValidCacheData>(
         currentRequestRef.current = null;
         networkResultRef.current = null;
 
-        // Now we can return the new fetch function.
-        return () => {
+        const fetchFn = () => {
             if (fetchPolicy === FetchPolicy.CacheOnly) {
                 throw new DataError(
                     "Cannot fetch with CacheOnly policy",
@@ -204,6 +203,10 @@ export const useCachedEffect = <TData: ValidCacheData>(
                 },
             };
         };
+
+        // Now we can return the new fetch function.
+        return fetchFn;
+
         // We deliberately ignore the handler here because we want folks to use
         // interceptor functions inline in props for simplicity. This is OK
         // since changing the handler without changing the requestId doesn't
