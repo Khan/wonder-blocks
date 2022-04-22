@@ -27,6 +27,12 @@ export const DataErrors = Object.freeze({
     Network: "Network",
 
     /**
+     * There was a problem due to the state of the system not matching the
+     * requested operation or input.
+     */
+    NotAllowed: "NotAllowed",
+
+    /**
      * Response could not be parsed.
      */
     Parse: "Parse",

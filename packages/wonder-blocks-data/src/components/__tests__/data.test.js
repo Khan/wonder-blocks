@@ -36,10 +36,6 @@ describe("Data", () => {
         );
     });
 
-    afterEach(() => {
-        jest.resetAllMocks();
-    });
-
     describe("CSR: isServerSide false", () => {
         beforeEach(() => {
             jest.spyOn(Server, "isServerSide").mockReturnValue(false);

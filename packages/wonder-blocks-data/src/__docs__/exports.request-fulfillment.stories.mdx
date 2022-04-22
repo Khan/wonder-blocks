@@ -23,14 +23,25 @@ The `RequestFulfillment` class encapsulates tracking of inflight asynchronous ac
             hydrate?: boolean,
         |},
     ) => Promise<Result<TData>>;
+
+    abort: (id: string) => void;
+
+    abortAll: () => void;
 ```
 
-There is a single function on the `RequestFulfillment` class, called `fulfill`.
+There are three functions on the `RequestFulfillment` class, called `fulfill`, `abort`, and `abortAll`.
 
+### `fulfull()`
 The `fulfill` method takes the request identifier (used to deduplicate requests) and an options object. The options object contains the following properties:
 
  * `handler`: A function that returns a promise resolving to the result of the request. This is the asynchronous work that will be tracked by the given identifier.
  * `hydrate`: A boolean indicating whether the data should be hydrated. This is used during server-side rendering to determine if the response data should be included in the hydration cache. This defaults to `true` and should only be set to `false` if you are performing server-side rendering of the request and you know that the data will not be needed for hydration to succeed.
+
+ ### `abort()`
+The `abort` method takes the request identifier and aborts any pending request for that identifier. Currently, full abort signalling is not implemented. This will simply remove that request from the tracking and sharing of inflight requests.
+
+### `abortAll()`
+The `abortAll` method aborts all pending requests. Currently, full abort signalling is not implemented. This will simply remove all requests from the tracking and sharing of inflight requests.
 
 ## RequestFulfillment.Default
 The `RequestFulfillment` class provides a static instance, `RequestFulfillment.Default`, which is used by the Wonder Blocks Data framework. However, a custom instance can be constructed should your specific use case need to be isolated from others.

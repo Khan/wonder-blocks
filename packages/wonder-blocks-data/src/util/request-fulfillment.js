@@ -97,4 +97,29 @@ export class RequestFulfillment {
 
         return request;
     };
+
+    /**
+     * Abort an inflight request.
+     *
+     * NOTE: Currently, this does not perform an actual abort. It merely
+     * removes the request from being tracked.
+     */
+    abort: (id: string) => void = (id: string): void => {
+        // TODO(somewhatabstract, FEI-4276): Add first class abort
+        // support to the handler API.
+        // For now, we will just clear the request out of the list.
+        // When abort is implemented, the `finally` in the `fulfill` method
+        // would handle the deletion.
+        delete this._requests[id];
+    };
+
+    /**
+     * Abort all inflight requests.
+     *
+     * NOTE: Currently, this does not perform actual aborts. It merely
+     * removes the requests from our tracking.
+     */
+    abortAll: () => void = (): void => {
+        Object.keys(this._requests).forEach(this.abort);
+    };
 }
