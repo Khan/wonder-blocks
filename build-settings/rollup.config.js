@@ -24,6 +24,7 @@ const createConfig = (pkgName) => {
                 plugins,
                 exclude: "node_modules/**",
                 runtimeHelpers: true,
+                comments: false,
             }),
             autoExternal({
                 packagePath: `packages/${pkgName}/package.json`,

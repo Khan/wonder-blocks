@@ -428,7 +428,6 @@ describe("SingleSelect", () => {
             // open dropdown
             userEvent.click(opener);
             userEvent.click(screen.getByText("Toggle B"));
-            jest.advanceTimersByTime(100);
 
             // Assert
             // NOTE: the opener text is only updated in response to changes to the
@@ -589,6 +588,108 @@ describe("SingleSelect", () => {
             // Assert
             const dismissBtn = screen.getByLabelText("Clear search");
             expect(dismissBtn).toHaveFocus();
+        });
+    });
+
+    describe("Custom listbox styles", () => {
+        it("should apply the default maxHeight to the listbox", () => {
+            // Arrange
+
+            // Act
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    opened={true}
+                    placeholder="Choose"
+                    selectedValue="2"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Assert
+            const dropdownMenu = screen.getByRole("listbox");
+            expect(dropdownMenu).toHaveStyle("max-height: 132px");
+        });
+
+        it("should apply the default maxHeight to a filterable listbox", () => {
+            // Arrange
+
+            // Act
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    opened={true}
+                    isFilterable={true}
+                    placeholder="Choose"
+                    selectedValue="2"
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Assert
+            const dropdownMenu = screen.getByRole("listbox");
+            expect(dropdownMenu).toHaveStyle("max-height: 184px");
+        });
+
+        it("should apply the default maxHeight to a virtualized listbox", () => {
+            // Arrange
+            const optionItems = new Array(1000)
+                .fill(null)
+                .map((_, i) => (
+                    <OptionItem
+                        key={i}
+                        value={(i + 1).toString()}
+                        label={`item ${i + 1}`}
+                    />
+                ));
+
+            // Act
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    opened={true}
+                    isFilterable={true}
+                    placeholder="Choose"
+                    selectedValue="2"
+                >
+                    {optionItems}
+                </SingleSelect>,
+            );
+
+            // Assert
+            const dropdownMenu = screen.getByRole("listbox");
+            // Max allowed height
+            expect(dropdownMenu).toHaveStyle("max-height: 384px");
+        });
+
+        it("should override the default maxHeight to the listbox if a custom dropdownStyle is set", () => {
+            // Arrange
+            const customMaxHeight = 200;
+
+            // Act
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    opened={true}
+                    placeholder="Choose"
+                    selectedValue="2"
+                    dropdownStyle={{maxHeight: customMaxHeight}}
+                >
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                    <OptionItem label="item 3" value="3" />
+                </SingleSelect>,
+            );
+
+            // Assert
+            const dropdownMenu = screen.getByRole("listbox");
+            expect(dropdownMenu).toHaveStyle("max-height: 200px");
         });
     });
 });

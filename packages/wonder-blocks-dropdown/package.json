@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
-  "version": "2.6.8",
+  "version": "2.6.10",
   "design": "v1",
   "description": "Dropdown variants for Wonder Blocks.",
   "main": "dist/index.js",
@@ -16,17 +16,17 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@khanacademy/wonder-blocks-button": "^2.11.4",
-    "@khanacademy/wonder-blocks-clickable": "^2.2.5",
+    "@khanacademy/wonder-blocks-button": "^2.11.5",
+    "@khanacademy/wonder-blocks-clickable": "^2.2.6",
     "@khanacademy/wonder-blocks-color": "^1.1.20",
-    "@khanacademy/wonder-blocks-core": "^4.3.0",
-    "@khanacademy/wonder-blocks-icon": "^1.2.26",
-    "@khanacademy/wonder-blocks-icon-button": "^3.4.5",
-    "@khanacademy/wonder-blocks-layout": "^1.4.8",
-    "@khanacademy/wonder-blocks-modal": "^2.3.0",
+    "@khanacademy/wonder-blocks-core": "^4.3.1",
+    "@khanacademy/wonder-blocks-icon": "^1.2.27",
+    "@khanacademy/wonder-blocks-icon-button": "^3.4.6",
+    "@khanacademy/wonder-blocks-layout": "^1.4.9",
+    "@khanacademy/wonder-blocks-modal": "^2.3.1",
     "@khanacademy/wonder-blocks-spacing": "^3.0.5",
     "@khanacademy/wonder-blocks-timing": "^2.1.0",
-    "@khanacademy/wonder-blocks-typography": "^1.1.30"
+    "@khanacademy/wonder-blocks-typography": "^1.1.31"
   },
   "peerDependencies": {
     "@popperjs/core": "^2.10.1",
@@ -39,6 +39,6 @@
     "react-window": "^1.8.5"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.3.0"
+    "wb-dev-build-settings": "^0.4.0"
   }
 }

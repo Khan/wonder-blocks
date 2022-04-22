@@ -33,6 +33,10 @@ import {
 } from "../util/constants.js";
 import {debounce, getStringForKey} from "../util/helpers.js";
 import DropdownPopper from "./dropdown-popper.js";
+import {
+    generateDropdownMenuStyles,
+    getDropdownMenuHeight,
+} from "../util/dropdown-menu-styles.js";
 
 import type {DropdownItem} from "../util/types.js";
 
@@ -865,6 +869,14 @@ class DropdownCore extends React.Component<Props, State> {
             ? openerStyle.getPropertyValue("width")
             : 0;
 
+        // Vertical padding of the dropdown menu + borders
+        const initialHeight = 12;
+
+        const maxDropdownHeight = getDropdownMenuHeight(
+            this.props.items,
+            initialHeight,
+        );
+
         return (
             <View
                 // Stop propagation to prevent the mouseup listener on the
@@ -875,7 +887,11 @@ class DropdownCore extends React.Component<Props, State> {
                     styles.dropdown,
                     light && styles.light,
                     isReferenceHidden && styles.hidden,
-                    {minWidth: minDropdownWidth, maxHeight: this.getHeight()},
+                    generateDropdownMenuStyles(
+                        minDropdownWidth,
+                        maxDropdownHeight,
+                    ),
+
                     dropdownStyle,
                 ]}
             >

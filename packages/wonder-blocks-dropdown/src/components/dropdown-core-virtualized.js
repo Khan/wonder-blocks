@@ -20,6 +20,7 @@ import {
     SEARCH_ITEM_HEIGHT,
     SEPARATOR_ITEM_HEIGHT,
 } from "../util/constants.js";
+import {getDropdownMenuHeight} from "../util/dropdown-menu-styles.js";
 
 type Props = {|
     /**
@@ -62,10 +63,14 @@ type State = {|
  * dynamically calculates the item height depending on the type
  */
 class DropdownCoreVirtualized extends React.Component<Props, State> {
-    state: State = {
-        height: this.getHeight(),
-        width: this.props.width,
-    };
+    constructor(props: Props) {
+        super(props);
+
+        this.state = {
+            height: getDropdownMenuHeight(props.data),
+            width: props.width,
+        };
+    }
 
     componentDidMount() {
         const {schedule} = this.props;
@@ -115,29 +120,8 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
      */
     setHeight() {
         // calculate dropdown's height depending on the type of items
-        const height = this.getHeight();
+        const height = getDropdownMenuHeight(this.props.data);
         this.setState({height});
-    }
-
-    /**
-     * The list height that is automatically calculated depending on the
-     * component's type of each item (e.g. Separator, Option, Search, etc)
-     */
-    getHeight(): number {
-        // calculate using the first 10 items on the array as we want to display
-        // this number of elements in the visible area
-        return this.props.data
-            .slice(0, MAX_VISIBLE_ITEMS)
-            .reduce((sum, item) => {
-                if (SeparatorItem.isClassOf(item.component)) {
-                    return sum + SEPARATOR_ITEM_HEIGHT;
-                } else if (SearchTextInput.isClassOf(item.component)) {
-                    // search text input height
-                    return sum + SEARCH_ITEM_HEIGHT;
-                } else {
-                    return sum + DROPDOWN_ITEM_HEIGHT;
-                }
-            }, 0);
     }
 
     /**

@@ -1,4 +1,5 @@
 import React from "react";
+import wonderBlocksTheme from "./wonder-blocks-theme.js";
 
 export const parameters = {
     backgrounds: {
@@ -23,5 +24,8 @@ export const parameters = {
         storySort: {
             order: ["Components", "**/__docs__/**"],
         },
+    },
+    docs: {
+        theme: wonderBlocksTheme,
     },
 };

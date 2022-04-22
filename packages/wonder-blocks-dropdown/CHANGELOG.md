@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.6.10
+
+### Patch Changes
+
+-   0b94d616: Adds a max-height value to the dropdown menu to avoid displaying long lists that might cut off on small screen resolutions
+
+## 2.6.9
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-button@2.11.5
+-   @khanacademy/wonder-blocks-clickable@2.2.6
+-   @khanacademy/wonder-blocks-core@4.3.1
+-   @khanacademy/wonder-blocks-icon@1.2.27
+-   @khanacademy/wonder-blocks-icon-button@3.4.6
+-   @khanacademy/wonder-blocks-layout@1.4.9
+-   @khanacademy/wonder-blocks-modal@2.3.1
+-   @khanacademy/wonder-blocks-typography@1.1.31
+
 ## 2.6.8
 
 ### Patch Changes
