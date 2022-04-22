@@ -22,15 +22,7 @@ import type {
 import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 import SeparatorItem from "./separator-item.js";
 import SearchTextInput from "./search-text-input.js";
-import {
-    defaultLabels,
-    keyCodes,
-    searchInputStyle,
-    DROPDOWN_ITEM_HEIGHT,
-    MAX_VISIBLE_ITEMS,
-    SEARCH_ITEM_HEIGHT,
-    SEPARATOR_ITEM_HEIGHT,
-} from "../util/constants.js";
+import {defaultLabels, keyCodes, searchInputStyle} from "../util/constants.js";
 import {debounce, getStringForKey} from "../util/helpers.js";
 import DropdownPopper from "./dropdown-popper.js";
 import {
@@ -558,27 +550,6 @@ class DropdownCore extends React.Component<Props, State> {
                 return;
         }
     };
-
-    /**
-     * The list height that is automatically calculated depending on the
-     * component's type of each item (e.g. Separator, Option, Search, etc)
-     */
-    getHeight(): number {
-        // calculate using the first 10 items on the array as we want to display
-        // this number of elements in the visible area
-        return this.props.items
-            .slice(0, MAX_VISIBLE_ITEMS)
-            .reduce((sum, item) => {
-                if (SeparatorItem.isClassOf(item.component)) {
-                    return sum + SEPARATOR_ITEM_HEIGHT;
-                } else if (SearchTextInput.isClassOf(item.component)) {
-                    // search text input height
-                    return sum + SEARCH_ITEM_HEIGHT;
-                } else {
-                    return sum + DROPDOWN_ITEM_HEIGHT;
-                }
-            }, 0);
-    }
 
     handleKeyDownDebounceResult: (key: string) => void = (key) => {
         const foundIndex = this.props.items.findIndex(({component}) => {
