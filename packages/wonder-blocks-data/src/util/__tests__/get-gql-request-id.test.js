@@ -40,7 +40,7 @@ describe("#getGqlRequestId", () => {
 
         // Assert
         expect(result).toContain(
-            `context1=value1;context2=value2;context3=value3`,
+            `context1=value1&context2=value2&context3=value3`,
         );
     });
 
@@ -68,7 +68,7 @@ describe("#getGqlRequestId", () => {
 
         // Assert
         expect(result).toContain(
-            `variable1=value1;variable2=42;variable3=;variable4=null;variable5=true`,
+            `variable1=value1&variable2=42&variable3=&variable4=null&variable5=true`,
         );
     });
 });

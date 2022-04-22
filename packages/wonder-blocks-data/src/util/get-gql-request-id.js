@@ -21,24 +21,30 @@ export const getGqlRequestId = <TData, TVariables: {...}>(
     const parts = [];
 
     // First, we push the context values.
-    const sortedContext = Object.keys(context)
-        .sort()
-        .map((key) => `${key}=${context[key]}`)
-        .join(";");
-    parts.push(sortedContext);
+    const sortableContext = new URLSearchParams(context);
+    // $FlowIgnore[prop-missing] Flow has incomplete support for URLSearchParams
+    sortableContext.sort();
+    parts.push(sortableContext.toString());
 
     // Now we add the operation identifier.
     parts.push(operation.id);
 
     // Finally, if we have variables, we add those too.
     if (variables != null) {
-        // Turn the variables into a string of the form,
-        //     "key1=;key2=value"
-        const sortedVariables = Object.keys(variables)
-            .sort()
-            .map((key) => `${key}=${toString(variables[key])}`)
-            .join(";");
-        parts.push(sortedVariables);
+        // We need to turn each variable into a string.
+        const stringifiedVariables = Object.keys(variables).reduce(
+            (acc, key) => {
+                acc[key] = toString(variables[key]);
+                return acc;
+            },
+            {},
+        );
+        // We use the same mechanism as context to sort and arrange the
+        // variables.
+        const sortableVariables = new URLSearchParams(stringifiedVariables);
+        // $FlowIgnore[prop-missing] Flow has incomplete support for URLSearchParams
+        sortableVariables.sort();
+        parts.push(sortableVariables.toString());
     }
     return parts.join("|");
 };
