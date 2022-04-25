@@ -143,10 +143,15 @@ export const useCachedEffect = <TData: ValidCacheData>(
                 );
             }
             // We use our request fulfillment here so that in-flight
-            // requests are shared.
-            const request = RequestFulfillment.Default.fulfill(requestId, {
-                handler: interceptedHandler,
-            });
+            // requests are shared. In order to ensure that we don't share
+            // in-flight requests for different scopes, we add the scope to the
+            // requestId. This is just internal, so nothing else will care.
+            const request = RequestFulfillment.Default.fulfill(
+                `${requestId}|${scope}`,
+                {
+                    handler: interceptedHandler,
+                },
+            );
 
             if (request === currentRequestRef.current?.request) {
                 // The request inflight is the same, so do nothing.
