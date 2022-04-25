@@ -1,7 +1,4 @@
 // @flow
-export * from "./util/hydration-cache-api.js";
-export * from "./util/request-api.js";
-
 // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
 // have fixed:
 // https://github.com/import-js/eslint-plugin-import/issues/2073
@@ -16,6 +13,9 @@ export type {
     ValidCacheData,
 } from "./util/types.js";
 
+export * from "./util/hydration-cache-api.js";
+export * from "./util/request-api.js";
+export {purgeCaches} from "./util/purge-caches.js";
 export {default as TrackData} from "./components/track-data.js";
 export {default as Data} from "./components/data.js";
 export {default as InterceptRequests} from "./components/intercept-requests.js";
@@ -36,7 +36,9 @@ export {SerializableInMemoryCache} from "./util/serializable-in-memory-cache.js"
 export {RequestFulfillment} from "./util/request-fulfillment.js";
 export {Status} from "./util/status.js";
 
+////////////////////////////////////////////////////////////////////////////////
 // GraphQL
+////////////////////////////////////////////////////////////////////////////////
 export {getGqlRequestId} from "./util/get-gql-request-id.js";
 export {graphQLDocumentNodeParser} from "./util/graphql-document-node-parser.js";
 export {toGqlOperation} from "./util/to-gql-operation.js";
