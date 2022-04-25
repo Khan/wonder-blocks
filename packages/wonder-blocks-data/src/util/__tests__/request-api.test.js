@@ -1,8 +1,10 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
+import {RequestFulfillment} from "../request-fulfillment.js";
 import {RequestTracker} from "../request-tracking.js";
 
 import {
+    abortInflightRequests,
     fetchTrackedRequests,
     hasTrackedRequestsToBeFetched,
 } from "../request-api.js";
@@ -169,5 +171,18 @@ describe("#hasTrackedRequestsToBeFetched", () => {
                 );
             });
         });
+    });
+});
+
+describe("#abortInflightRequests", () => {
+    it("should call RequestFulfillment.Default.abortAll", () => {
+        // Arrange
+        const abortAllSpy = jest.spyOn(RequestFulfillment.Default, "abortAll");
+
+        // Act
+        abortInflightRequests();
+
+        // Assert
+        expect(abortAllSpy).toHaveBeenCalled();
     });
 });

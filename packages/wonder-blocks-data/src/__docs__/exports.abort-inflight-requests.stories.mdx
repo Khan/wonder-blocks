@@ -1,0 +1,20 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / abortInflightRequests()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# abortInflightRequests()
+
+```ts
+abortInflightRequests(): void;
+```
+
+Aborts all inflight requests that were started via [`useCachedEffect`](/docs/data-exports-usecachedeffect--page), [`useHydratableEffect`](/docs/data-exports-usehydratableeffect--page), or [`fetchTrackedRequests()`](/docs/data-exports-fetchtrackedrequests--page).
+
+NOTE: Full abort signalling is not currently implemented. The effect of this call is to remove any inflight requests from our inflight request tracking such that a new matching request will cause a new fetch to occur rather than sharing any existing one.

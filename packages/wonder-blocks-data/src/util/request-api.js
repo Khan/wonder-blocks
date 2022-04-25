@@ -1,6 +1,7 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {RequestTracker} from "./request-tracking.js";
+import {RequestFulfillment} from "./request-fulfillment.js";
 import {DataError, DataErrors} from "./data-error.js";
 
 import type {ResponseCache} from "./types.js";
@@ -52,4 +53,14 @@ export const hasTrackedRequestsToBeFetched = (): boolean => {
         throw ssrCheck;
     }
     return RequestTracker.Default.hasUnfulfilledRequests;
+};
+
+/**
+ * Abort all in-flight requests.
+ *
+ * This aborts all requests currently inflight via our default request
+ * fulfillment.
+ */
+export const abortInflightRequests = (): void => {
+    RequestFulfillment.Default.abortAll();
 };
