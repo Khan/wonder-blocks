@@ -19,6 +19,6 @@ When performing server-side rendering (SSR), the data requests that are being ma
 
 This method returns a promise that resolves to a copy of the data that was cached by fulfilling the tracked requests. In the process, it clears the record of tracked requests so that new requests can be tracked and fulfilled if so required.
 
-The returned copy of the data cache can be used with the [`initializeCache`](/docs/data-exports-initializecache--page) method to prepare the data cache before a subsequent render. This is useful on the server to then SSR a more complete result, and again on the client, to rehydrate that result.
+The returned copy of the data cache can be used with the [`initializeHydrationCache`](/docs/data-exports-initializehydrationcache--page) method to prepare the data cache before a subsequent render. This is useful on the server to then SSR a more complete result, and again on the client, to rehydrate that result.
 
 More details about server-side rendering with Wonder Blocks Data can be found in the [relevant overview section](/docs/data-server-side-rendering-and-hydration--page).

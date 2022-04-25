@@ -143,26 +143,6 @@ export class SsrCache {
     };
 
     /**
-     * Remove from cache, the entry matching the given handler and options.
-     *
-     * This will, if present therein, remove the value from the custom cache
-     * associated with the handler and the framework in-memory cache.
-     *
-     * Returns true if something was removed from any cache; otherwise, false.
-     */
-    remove: (id: string) => boolean = (id: string): boolean => {
-        // NOTE(somewhatabstract): We could invoke removeAll with a predicate
-        // to match the key of the entry we're removing, but that's an
-        // inefficient way to remove a single item, so let's not do that.
-
-        // Delete the entry from the appropriate cache.
-        return (
-            this._hydrationCache.purge(DefaultScope, id) ||
-            (this._ssrOnlyCache?.purge(DefaultScope, id) ?? false)
-        );
-    };
-
-    /**
      * Remove from cache, any entries matching the given handler and predicate.
      *
      * This will, if present therein, remove matching values from the framework
@@ -170,7 +150,7 @@ export class SsrCache {
      *
      * It returns a count of all records removed.
      */
-    removeAll: (
+    purgeData: (
         predicate?: (
             key: string,
             cachedEntry: $ReadOnly<CachedResponse<ValidCacheData>>,

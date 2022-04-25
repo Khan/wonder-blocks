@@ -393,56 +393,6 @@ describe("../ssr-cache.js", () => {
         });
     });
 
-    describe("#remove", () => {
-        it("should return false if nothing was removed", () => {
-            // Arrange
-            const hydrationCache = new SerializableInMemoryCache();
-            const ssrOnlycache = new SerializableInMemoryCache();
-            jest.spyOn(hydrationCache, "purge").mockReturnValue(false);
-            jest.spyOn(ssrOnlycache, "purge").mockReturnValue(false);
-            const cache = new SsrCache(hydrationCache, ssrOnlycache);
-
-            // Act
-            const result = cache.remove("A");
-
-            // Assert
-            expect(result).toBeFalsy();
-        });
-
-        it("should return true if something was removed from hydration cache", () => {
-            // Arrange
-            const hydrationCache = new SerializableInMemoryCache();
-            jest.spyOn(hydrationCache, "purge").mockReturnValue(true);
-            const cache = new SsrCache(hydrationCache);
-
-            // Act
-            const result = cache.remove("A");
-
-            // Assert
-            expect(result).toBeTruthy();
-        });
-
-        describe("when server-side", () => {
-            beforeEach(() => {
-                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
-            });
-
-            it("should return true if something was removed from ssr-only cache", () => {
-                // Arrange
-                const hydrationCache = new SerializableInMemoryCache();
-                const ssrOnlyCache = new SerializableInMemoryCache();
-                jest.spyOn(ssrOnlyCache, "purge").mockReturnValue(true);
-                const cache = new SsrCache(hydrationCache, ssrOnlyCache);
-
-                // Act
-                const result = cache.remove("A");
-
-                // Assert
-                expect(result).toBeTruthy();
-            });
-        });
-    });
-
     describe("#cloneHydratableData", () => {
         it("should clone the hydration cache", () => {
             // Arrange
@@ -467,7 +417,7 @@ describe("../ssr-cache.js", () => {
         });
     });
 
-    describe("#removeAll", () => {
+    describe("#purgeData", () => {
         describe("when client-side", () => {
             beforeEach(() => {
                 jest.spyOn(Server, "isServerSide").mockReturnValue(false);
@@ -480,7 +430,7 @@ describe("../ssr-cache.js", () => {
                 const cache = new SsrCache(hydrationCache);
 
                 // Act
-                cache.removeAll();
+                cache.purgeData();
 
                 // Assert
                 expect(purgeAllSpy).toHaveBeenCalledWith(undefined);
@@ -496,7 +446,7 @@ describe("../ssr-cache.js", () => {
                 );
 
                 // Act
-                cache.removeAll(() => true);
+                cache.purgeData(() => true);
 
                 // Assert
                 expect(purgeAllSpy).toHaveBeenCalledWith(expect.any(Function));
@@ -518,7 +468,7 @@ describe("../ssr-cache.js", () => {
                 const predicate = jest.fn().mockReturnValue(false);
 
                 // Act
-                cache.removeAll(predicate);
+                cache.purgeData(predicate);
 
                 // Assert
                 expect(predicate).toHaveBeenCalledWith("KEY1", {data: "DATA"});
@@ -543,7 +493,7 @@ describe("../ssr-cache.js", () => {
                 );
 
                 // Act
-                cache.removeAll();
+                cache.purgeData();
 
                 // Assert
                 expect(hydrationPurgeAllSpy).toHaveBeenCalledWith(undefined);
@@ -559,7 +509,7 @@ describe("../ssr-cache.js", () => {
                 );
 
                 // Act
-                cache.removeAll();
+                cache.purgeData();
 
                 // Assert
                 expect(ssrPurgeAllSpy).toHaveBeenCalledWith(undefined);
@@ -575,7 +525,7 @@ describe("../ssr-cache.js", () => {
                 );
 
                 // Act
-                cache.removeAll(() => true);
+                cache.purgeData(() => true);
 
                 // Assert
                 expect(purgeAllSpy).toHaveBeenCalledWith(expect.any(Function));
@@ -591,7 +541,7 @@ describe("../ssr-cache.js", () => {
                 );
 
                 // Act
-                cache.removeAll(() => true);
+                cache.purgeData(() => true);
 
                 // Assert
                 expect(purgeAllSpy).toHaveBeenCalledWith(expect.any(Function));
@@ -608,7 +558,7 @@ describe("../ssr-cache.js", () => {
                 const predicate = jest.fn().mockReturnValue(false);
 
                 // Act
-                cache.removeAll(predicate);
+                cache.purgeData(predicate);
 
                 // Assert
                 expect(predicate).toHaveBeenCalledWith("KEY1", {data: "DATA"});
@@ -629,7 +579,7 @@ describe("../ssr-cache.js", () => {
                 const predicate = jest.fn().mockReturnValue(false);
 
                 // Act
-                cache.removeAll(predicate);
+                cache.purgeData(predicate);
 
                 // Assert
                 expect(predicate).toHaveBeenCalledWith("KEY1", {data: "DATA"});

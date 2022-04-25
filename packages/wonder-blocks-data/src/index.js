@@ -1,13 +1,10 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {SsrCache} from "./util/ssr-cache.js";
 import {RequestTracker} from "./util/request-tracking.js";
 
-import type {
-    ValidCacheData,
-    CachedResponse,
-    ResponseCache,
-} from "./util/types.js";
+import type {ResponseCache} from "./util/types.js";
+
+export * from "./util/hydration-cache-api.js";
 
 // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
 // have fixed:
@@ -22,16 +19,6 @@ export type {
     ScopedCache,
     ValidCacheData,
 } from "./util/types.js";
-
-/**
- * Initialize the hydration cache.
- *
- * @param {ResponseCache} source The cache content to use for initializing the
- * cache.
- * @throws {Error} If the cache is already initialized.
- */
-export const initializeCache = (source: ResponseCache): void =>
-    SsrCache.Default.initialize(source);
 
 /**
  * Fulfill all tracked data requests.
@@ -66,28 +53,6 @@ export const hasUnfulfilledRequests = (): boolean => {
     }
     return RequestTracker.Default.hasUnfulfilledRequests;
 };
-
-/**
- * Remove the request identified from the cached hydration responses.
- *
- * @param {string} id The request ID of the response to remove from the cache.
- */
-export const removeFromCache = (id: string): boolean =>
-    SsrCache.Default.remove(id);
-
-/**
- * Remove all cached hydration responses that match the given predicate.
- *
- * @param {(id: string) => boolean} [predicate] The predicate to match against
- * the cached hydration responses. If no predicate is provided, all cached
- * hydration responses will be removed.
- */
-export const removeAllFromCache = (
-    predicate?: (
-        key: string,
-        cacheEntry: ?$ReadOnly<CachedResponse<ValidCacheData>>,
-    ) => boolean,
-): void => SsrCache.Default.removeAll(predicate);
 
 export {default as TrackData} from "./components/track-data.js";
 export {default as Data} from "./components/data.js";

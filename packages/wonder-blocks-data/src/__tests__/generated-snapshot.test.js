@@ -12,7 +12,7 @@ import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View, Server} from "@khanacademy/wonder-blocks-core";
 import {
     Data,
-    initializeCache,
+    initializeHydrationCache,
     InterceptRequests,
     TrackData,
     fulfillAllDataRequests,
@@ -82,7 +82,7 @@ describe("wonder-blocks-data", () => {
             );
         };
 
-        initializeCache({
+        initializeHydrationCache({
             DATA: {
                 data: "I'm DATA from the hydration cache",
             },
