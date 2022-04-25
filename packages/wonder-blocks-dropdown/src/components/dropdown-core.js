@@ -278,7 +278,7 @@ class DropdownCore extends React.Component<Props, State> {
         // called on every keydown
         this.handleKeyDownDebounced = debounce(
             this.handleKeyDownDebounceResult,
-            250,
+            500,
         );
         this.textSuggestion = "";
     }
@@ -581,6 +581,7 @@ class DropdownCore extends React.Component<Props, State> {
                 // the SingleSelect component.
                 if (this.props.selectionType === "single" && isClosed && node) {
                     node.click();
+                    this.props.onOpenChanged(false);
                 }
             });
         }

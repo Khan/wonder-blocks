@@ -25,7 +25,6 @@ const getAppropriateTriggersForRole = (role: ?ClickableRole) => {
         case "checkbox":
         case "radio":
         case "listbox":
-        case "option":
             return {
                 triggerOnEnter: false,
                 triggerOnSpace: true,
@@ -34,6 +33,7 @@ const getAppropriateTriggersForRole = (role: ?ClickableRole) => {
         case "button":
         case "menuitem":
         case "menu":
+        case "option":
         default:
             return {
                 triggerOnEnter: true,
