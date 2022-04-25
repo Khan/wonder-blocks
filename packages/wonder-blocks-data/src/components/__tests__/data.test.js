@@ -7,7 +7,7 @@ import {render, act} from "@testing-library/react";
 import * as ReactDOMServer from "react-dom/server";
 import {Server, View} from "@khanacademy/wonder-blocks-core";
 
-import {clearSharedCache} from "../../hooks/use-shared-cache.js";
+import {purgeSharedCache} from "../../hooks/use-shared-cache.js";
 import TrackData from "../track-data.js";
 import {RequestFulfillment} from "../../util/request-fulfillment.js";
 import {SsrCache} from "../../util/ssr-cache.js";
@@ -24,7 +24,7 @@ import {
 
 describe("Data", () => {
     beforeEach(() => {
-        clearSharedCache();
+        purgeSharedCache();
 
         const responseCache = new SsrCache();
         jest.spyOn(SsrCache, "Default", "get").mockReturnValue(responseCache);

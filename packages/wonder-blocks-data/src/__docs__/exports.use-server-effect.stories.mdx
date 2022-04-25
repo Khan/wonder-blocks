@@ -39,7 +39,7 @@ First, this hook checks the server-side rendering cache for the request identifi
 
 If there is no cached value, it will return a "loading" state. In addition, if the current rendering component has a [`TrackData`](/docs/data-exports-trackdata--page) ancestor, `useServerEffect` will register the request for fulfillment.
 
-This then allows that pending request to be fulfilled with [`fulfillAllDataRequests`](/docs/data-exports-fulfillalldatarequests--page), the response to be placed into the cache, and the render to be reexecuted, at which point, this hook will be able to provide that result instead of "loading.
+This then allows that pending request to be fulfilled with [`fetchTrackedRequests`](/docs/data-exports-fetchtrackddatarequests--page), the response to be placed into the cache, and the render to be reexecuted, at which point, this hook will be able to provide that result instead of "loading.
 
 More details about server-side rendering with Wonder Blocks Data can be found in the [relevant overview section](/docs/data-server-side-rendering-and-hydration--page).
 

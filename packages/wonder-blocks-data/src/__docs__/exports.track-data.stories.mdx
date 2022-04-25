@@ -71,7 +71,7 @@ class ErrorBoundary extends React.Component {
 
 When used server-side, this component tracks any data requests made through
 the `Data` component during a render cycle. This data can then be obtained
-using the `fulfillAllDataRequests` method. The data can then be used in an
+using the `fetchTrackedRequests` method. The data can then be used in an
 additional render cycle to render with that data.
 
 ```jsx
@@ -80,7 +80,7 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Server, View} from "@khanacademy/wonder-blocks-core";
-import {Data, TrackData, fulfillAllDataRequests} from "@khanacademy/wonder-blocks-data";
+import {Data, TrackData, fetchTrackedRequests} from "@khanacademy/wonder-blocks-data";
 
 const myPretendHandler = () => new Promise((resolve, reject) =>
     setTimeout(() => resolve("DATA!"), 3000),
@@ -158,7 +158,7 @@ class Example extends React.Component {
                     <Body>
                         The above components requested data, but we're server-side,
                         so all that happened is we tracked the request.
-                        In this example, we've also called `fulfillAllDataRequests`
+                        In this example, we've also called `fetchTrackedRequests`
                         to fetch that tracked data.
                     </Body>
                     <Strut size={Spacing.small_12} />
@@ -195,7 +195,7 @@ class Example extends React.Component {
             );
         } finally {
             if (!this.state.data && Server.isServerSide()) {
-                setTimeout(() => fulfillAllDataRequests().then((data) => {
+                setTimeout(() => fetchTrackedRequests().then((data) => {
                     if (this._mounted) {
                         this.setState({data});
                     }
