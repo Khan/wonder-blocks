@@ -86,7 +86,7 @@ import {
     TrackData,
     hasUnfulfilledRequests,
     fulfillAllDataRequests,
-    clearSharedCache,
+    purgeSharedCache,
 } from "@khanacademy/wonder-blocks-data";
 
 // Don't forget to import your app!
@@ -113,7 +113,7 @@ async function renderApp(): Promise<string> {
          * shared cache used by the `useSharedCache` hook as this is transient
          * cache that does not itself get directly hydrated.
          */
-        clearSharedCache();
+        purgeSharedCache();
 
         // Render the tracked component.
         renderedComponent = renderToString(trackedElement);

@@ -17,9 +17,9 @@ type CacheValueFn<TValue: ValidCacheData> = (value: ?TValue) => void;
 const cache = new ScopedInMemoryCache();
 
 /**
- * Clear the in-memory cache or a single scope within it.
+ * Purge the in-memory cache or a single scope within it.
  */
-export const clearSharedCache = (scope: string = "") => {
+export const purgeSharedCache = (scope: string = "") => {
     // If we have a valid scope (empty string is falsy), then clear that scope.
     if (scope && typeof scope === "string") {
         cache.purgeScope(scope);
