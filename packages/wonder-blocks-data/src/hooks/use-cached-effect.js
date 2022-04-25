@@ -145,7 +145,13 @@ export const useCachedEffect = <TData: ValidCacheData>(
             // We use our request fulfillment here so that in-flight
             // requests are shared. In order to ensure that we don't share
             // in-flight requests for different scopes, we add the scope to the
-            // requestId. This is just internal, so nothing else will care.
+            // requestId.
+            // We do this as a courtesy to simplify usage in sandboxed
+            // uses like storybook where we want each story to perform their
+            // own requests from scratch and not share inflight requests across
+            // stories.
+            // Since this only occurs here, nothing else will care about this
+            // change except the request tracking.
             const request = RequestFulfillment.Default.fulfill(
                 `${requestId}|${scope}`,
                 {
