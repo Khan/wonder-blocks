@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 8.0.1
+
+### Patch Changes
+
+-   e5fa4d9e: Make sure ssr-only cache is initialized when purging caches in test environment
+
 ## 8.0.0
 
 ### Major Changes
