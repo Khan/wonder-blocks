@@ -32,9 +32,16 @@ export class SsrCache {
         hydrationCache: ?SerializableInMemoryCache = null,
         ssrOnlyCache: ?SerializableInMemoryCache = null,
     ) {
-        this._ssrOnlyCache = Server.isServerSide()
-            ? ssrOnlyCache || new SerializableInMemoryCache()
-            : undefined;
+        // The default instance gets made on first reference and if that happens
+        // before server-side mode is turned on, the Default instance would
+        // never have an SSR-only cache instance, which would then mean that if
+        // server-side mode got turned on, it wouldn't work right.
+        // This should only be an issue of surprise during testing, so, let's
+        // always have an instance in that circumstance.
+        this._ssrOnlyCache =
+            process.env.NODE_ENV === "test" || Server.isServerSide()
+                ? ssrOnlyCache || new SerializableInMemoryCache()
+                : undefined;
         this._hydrationCache =
             hydrationCache || new SerializableInMemoryCache();
     }
