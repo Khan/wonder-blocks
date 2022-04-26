@@ -26,22 +26,13 @@ export class SsrCache {
     }
 
     _hydrationCache: SerializableInMemoryCache;
-    _ssrOnlyCache: ?SerializableInMemoryCache;
+    _ssrOnlyCache: SerializableInMemoryCache;
 
     constructor(
         hydrationCache: ?SerializableInMemoryCache = null,
         ssrOnlyCache: ?SerializableInMemoryCache = null,
     ) {
-        // The default instance gets made on first reference and if that happens
-        // before server-side mode is turned on, the Default instance would
-        // never have an SSR-only cache instance, which would then mean that if
-        // server-side mode got turned on, it wouldn't work right.
-        // This should only be an issue of surprise during testing, so, let's
-        // always have an instance in that circumstance.
-        this._ssrOnlyCache =
-            process.env.NODE_ENV === "test" || Server.isServerSide()
-                ? ssrOnlyCache || new SerializableInMemoryCache()
-                : undefined;
+        this._ssrOnlyCache = ssrOnlyCache || new SerializableInMemoryCache();
         this._hydrationCache =
             hydrationCache || new SerializableInMemoryCache();
     }
@@ -61,7 +52,7 @@ export class SsrCache {
                 // Usually, when server-side, this cache will always be present.
                 // We do fake server-side in our doc example though, when it
                 // won't be.
-                this._ssrOnlyCache?.set(DefaultScope, id, frozenEntry);
+                this._ssrOnlyCache.set(DefaultScope, id, frozenEntry);
             }
         }
         return frozenEntry;
@@ -127,14 +118,18 @@ export class SsrCache {
     ): ?$ReadOnly<CachedResponse<TData>> => {
         // Get the cached entry for this value.
 
-        // We first look in the ssr cache and then the hydration cache.
+        // We first look in the ssr cache, if we need to.
+        const ssrEntry = Server.isServerSide()
+            ? this._ssrOnlyCache.get(DefaultScope, id)
+            : null;
+
+        // Now we defer to the SSR value, and fallback to the hydration cache.
         const internalEntry =
-            this._ssrOnlyCache?.get(DefaultScope, id) ??
-            this._hydrationCache.get(DefaultScope, id);
+            ssrEntry ?? this._hydrationCache.get(DefaultScope, id);
 
         // If we are not server-side and we hydrated something, let's clear
         // that from the hydration cache to save memory.
-        if (this._ssrOnlyCache == null && internalEntry != null) {
+        if (!Server.isServerSide() && internalEntry != null) {
             // We now delete this from our hydration cache as we don't need it.
             // This does mean that if another handler of the same type but
             // without some sort of linked cache won't get the value, but
@@ -172,7 +167,7 @@ export class SsrCache {
 
         // Apply the predicate to what we have in our caches.
         this._hydrationCache.purgeAll(realPredicate);
-        this._ssrOnlyCache?.purgeAll(realPredicate);
+        this._ssrOnlyCache.purgeAll(realPredicate);
     };
 
     /**

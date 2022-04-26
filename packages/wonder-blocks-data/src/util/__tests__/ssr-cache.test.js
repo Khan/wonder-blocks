@@ -17,35 +17,8 @@ describe("../ssr-cache.js", () => {
     });
 
     describe("#constructor", () => {
-        const NODE_ENV = process.env.NODE_ENV;
-
-        afterEach(() => {
-            if (NODE_ENV == null) {
-                delete process.env.NODE_ENV;
-            } else {
-                process.env.NODE_ENV = NODE_ENV;
-            }
-        });
-
-        it.each(["development", "production"])(
-            "should default the ssr-only cache to a undefined when client-side in %s",
-            (nodeEnv) => {
-                // Arrange
-                jest.spyOn(Server, "isServerSide").mockReturnValue(false);
-                process.env.NODE_ENV = nodeEnv;
-
-                // Act
-                const cache = new SsrCache();
-
-                // Assert
-                expect(cache._ssrOnlyCache).toBeUndefined();
-            },
-        );
-
-        it("should default the ssr-only cache to a cache instance when client-side in test", () => {
+        it("should default the ssr-only cache to a cache instance", () => {
             // Arrange
-            jest.spyOn(Server, "isServerSide").mockReturnValue(false);
-            process.env.NODE_ENV = "test";
 
             // Act
             const cache = new SsrCache();
@@ -56,22 +29,39 @@ describe("../ssr-cache.js", () => {
             );
         });
 
-        it.each(["development", "production"])(
-            "should default the ssr-only cache to a cache instance when server-side in %s",
-            (nodeEnv) => {
-                // Arrange
-                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
-                process.env.NODE_ENV = nodeEnv;
+        it("should set the hydration cache to the passed instance if there is one", () => {
+            // Arrange
+            const passedInstance = new SerializableInMemoryCache();
 
-                // Act
-                const cache = new SsrCache();
+            // Act
+            const cache = new SsrCache(null, passedInstance);
 
-                // Assert
-                expect(cache._ssrOnlyCache).toBeInstanceOf(
-                    SerializableInMemoryCache,
-                );
-            },
-        );
+            // Assert
+            expect(cache._ssrOnlyCache).toBe(passedInstance);
+        });
+
+        it("should default the hydration cache to a cache instance", () => {
+            // Arrange
+
+            // Act
+            const cache = new SsrCache();
+
+            // Assert
+            expect(cache._hydrationCache).toBeInstanceOf(
+                SerializableInMemoryCache,
+            );
+        });
+
+        it("should set the hydration cache to the passed instance if there is one", () => {
+            // Arrange
+            const passedInstance = new SerializableInMemoryCache();
+
+            // Act
+            const cache = new SsrCache(passedInstance);
+
+            // Assert
+            expect(cache._hydrationCache).toBe(passedInstance);
+        });
     });
 
     describe("@Default", () => {
