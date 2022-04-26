@@ -1,5 +1,37 @@
 # @khanacademy/wonder-blocks-data
 
+## 8.0.2
+
+### Patch Changes
+
+-   580141ed: Always initialize SSR-only cache
+
+## 8.0.1
+
+### Patch Changes
+
+-   e5fa4d9e: Make sure ssr-only cache is initialized when purging caches in test environment
+
+## 8.0.0
+
+### Major Changes
+
+-   0720470e: Renamed `initializeCache` to `initializeHydrationCache`, deleted `removeFromCache`, renamed `removeAllFromCache` to `purgeHydrationCache`
+-   cf9ed87f: Add `fetchPolicy` to `useCachedEffect` options, add `refetch` to `useCachedEffect` return value (return value is now a tuple of [result, refetch]), add abort API to request fulfillment (not truly aborting though)
+-   b882b082: Stop exporting `RequestFulfillment`, update `useCachedEffect` to consider scope with sharing inflight requests
+-   0720470e: Rename `fulfillAllDataRequests` to `fetchTrackedRequests`, rename `hasUnfulfilledRequests` to `hasTrackedRequestsToBeFetched`
+-   0720470e: Renamed `clearSharedCache` to `purgeSharedCache`
+
+### Minor Changes
+
+-   0720470e: Add `purgeCaches` export for purging all caches with one call
+-   75c10036: Add `abortInflightRequests` to exports
+-   a85f2f3a: Provide `getGqlRequestId` function
+
+### Patch Changes
+
+-   1385f468: Removed unnecessary `new` on tracking context creation
+
 ## 7.0.1
 
 ### Patch Changes

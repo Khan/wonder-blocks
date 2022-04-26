@@ -1,0 +1,20 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / hasTrackedRequestsToBeFetched()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# hasTrackedRequestsToBeFetched()
+
+```ts
+hasTrackedRequestsToBeFetched(): boolean;
+```
+
+When performing server-side rendering (SSR), any requests that have been tracked will cause this method to return `true`. Once [`fetchTrackedRequests`](/docs/data-exports-fetchtrackedrequests--page) has been called and the promise is settled, this method will return `false` to indicate that there are no more pending requests.
+
+More details about server-side rendering with Wonder Blocks Data can be found in the [relevant overview section](/docs/data-server-side-rendering-and-hydration--page).

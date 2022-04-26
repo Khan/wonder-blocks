@@ -87,7 +87,7 @@
     "eslint-plugin-storybook": "^0.5.7",
     "eslint-plugin-testing-library": "^5.0.0",
     "eslint-watch": "^8.0.0",
-    "flow-bin": "^0.165.1",
+    "flow-bin": "^0.176.3",
     "glob": "^7.1.2",
     "husky": "^4.2.5",
     "inquirer": "^8.2.0",

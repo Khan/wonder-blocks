@@ -5,8 +5,12 @@ import {DataError, DataErrors} from "./data-error.js";
 
 type RequestCache = {
     [id: string]: Promise<Result<any>>,
-    ...
 };
+
+type FulfillOptions<TData: ValidCacheData> = {|
+    handler: () => Promise<TData>,
+    hydrate?: boolean,
+|};
 
 let _default: RequestFulfillment;
 
@@ -31,19 +35,10 @@ export class RequestFulfillment {
      */
     fulfill: <TData: ValidCacheData>(
         id: string,
-        options: {|
-            handler: () => Promise<TData>,
-            hydrate?: boolean,
-        |},
+        options: FulfillOptions<TData>,
     ) => Promise<Result<TData>> = <TData: ValidCacheData>(
         id: string,
-        {
-            handler,
-            hydrate = true,
-        }: {|
-            handler: () => Promise<TData>,
-            hydrate?: boolean,
-        |},
+        {handler, hydrate = true}: FulfillOptions<TData>,
     ): Promise<Result<TData>> => {
         /**
          * If we have an inflight request, we'll provide that.
@@ -96,5 +91,30 @@ export class RequestFulfillment {
         this._requests[id] = request;
 
         return request;
+    };
+
+    /**
+     * Abort an inflight request.
+     *
+     * NOTE: Currently, this does not perform an actual abort. It merely
+     * removes the request from being tracked.
+     */
+    abort: (id: string) => void = (id) => {
+        // TODO(somewhatabstract, FEI-4276): Add first class abort
+        // support to the handler API.
+        // For now, we will just clear the request out of the list.
+        // When abort is implemented, the `finally` in the `fulfill` method
+        // would handle the deletion.
+        delete this._requests[id];
+    };
+
+    /**
+     * Abort all inflight requests.
+     *
+     * NOTE: Currently, this does not perform actual aborts. It merely
+     * removes the requests from our tracking.
+     */
+    abortAll: () => void = (): void => {
+        Object.keys(this._requests).forEach((id) => this.abort(id));
     };
 }

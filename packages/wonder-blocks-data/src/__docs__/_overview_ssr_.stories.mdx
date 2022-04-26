@@ -56,11 +56,11 @@ renderToString(trackedElement);
 
 After each render, we want to see if there are any tracked requests needing to be fulfilled. If there are, we will want to fulfill them and render again; if there are not, we are ready to finish the page rendering and move on.
 
-To determine which path to take, we can use [`hasUnfullfilledRequests`](/docs/data-exports-hasunfulfilledrequests--page), and then based off that result, either fulfill the requests, or finish rendering our page.
+To determine which path to take, we can use [`hasTrackedRequestsToBeFetched`](/docs/data-exports-hastrackedrequeststobefetched--page), and then based off that result, either fulfill the requests, or finish rendering our page.
 
 ```ts
-if (hasUnfulfilledRequests()) {
-    await fulfillAllDataRequests();
+if (hasTrackedRequestsToBeFetched()) {
+    await fetchTrackedRequests();
 
     // Render again.
     // ...
@@ -72,7 +72,7 @@ if (hasUnfulfilledRequests()) {
 
 Internally, Wonder Blocks Data caches the responses of fulfilled requests and does not track them again. Each cycle of the rendering should occur with the same knowledge you expect the client-side to have when it performs the render, so although we want to retain our hydration cache response, we need to make sure any transient caches are cleared.
 
-Once the rendered component no longer requires any further data, the cached responses can be obtained to include in the rendered page for the client to hydrate. The hydration cache is promised by `fulfillAllDataRequests()`, regardless of whether it actually had any pending requests or not.
+Once the rendered component no longer requires any further data, the cached responses can be obtained to include in the rendered page for the client to hydrate. The hydration cache is promised by `fetchTrackedRequests()`, regardless of whether it actually had any pending requests or not.
 
 ### Putting it all together
 
@@ -84,9 +84,9 @@ A function for server-side rendering with Wonder Blocks Data could look somethin
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {
     TrackData,
-    hasUnfulfilledRequests,
-    fulfillAllDataRequests,
-    clearSharedCache,
+    hasTrackedRequestsToBeFetched,
+    fetchTrackedRequests,
+    purgeSharedCache,
 } from "@khanacademy/wonder-blocks-data";
 
 // Don't forget to import your app!
@@ -113,14 +113,14 @@ async function renderApp(): Promise<string> {
          * shared cache used by the `useSharedCache` hook as this is transient
          * cache that does not itself get directly hydrated.
          */
-        clearSharedCache();
+        purgeSharedCache();
 
         // Render the tracked component.
         renderedComponent = renderToString(trackedElement);
 
-        if (hasUnfulfilledRequests()) {
+        if (hasTrackedRequestsToBeFetched()) {
             // Fulfill any pending requests.
-            await fulfillAllDataRequests();
+            await fetchTrackedRequests();
 
             // We can't leave the loop yet as we want to render the element
             // again with the newly fulfilled data.
@@ -130,7 +130,7 @@ async function renderApp(): Promise<string> {
 
         // We rendered with all the data fulfilled, so we can grab the
         // hydration cache contents and exit the loop now.
-        hydrationCache = await fulfillAllDataRequests();
+        hydrationCache = await fetchTrackedRequests();
     } while (hydrationCache == null);
 
     // Finally, render the page with our hydration cache and rendered
@@ -164,12 +164,12 @@ In the previous section, this was displayed as the `hydrate.js` script. Here is 
 
 ```tsx
 import {hydrate} from "react-dom";
-import {initializeCache} from "@khanacademy/wonder-blocks-data";
+import {initializeHydrationCache} from "@khanacademy/wonder-blocks-data";
 
 // Don't forget to import your app!
 import App from "./App.js";
 
-initializeCache(window._WONDER_BLOCKS_DATA_);
+initializeHydrationCache(window._WONDER_BLOCKS_DATA_);
 
 React.hydrate(
     // This should match whatever was passed to the server-side rendering

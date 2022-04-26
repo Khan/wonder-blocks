@@ -26,15 +26,13 @@ export class SsrCache {
     }
 
     _hydrationCache: SerializableInMemoryCache;
-    _ssrOnlyCache: ?SerializableInMemoryCache;
+    _ssrOnlyCache: SerializableInMemoryCache;
 
     constructor(
         hydrationCache: ?SerializableInMemoryCache = null,
         ssrOnlyCache: ?SerializableInMemoryCache = null,
     ) {
-        this._ssrOnlyCache = Server.isServerSide()
-            ? ssrOnlyCache || new SerializableInMemoryCache()
-            : undefined;
+        this._ssrOnlyCache = ssrOnlyCache || new SerializableInMemoryCache();
         this._hydrationCache =
             hydrationCache || new SerializableInMemoryCache();
     }
@@ -54,7 +52,7 @@ export class SsrCache {
                 // Usually, when server-side, this cache will always be present.
                 // We do fake server-side in our doc example though, when it
                 // won't be.
-                this._ssrOnlyCache?.set(DefaultScope, id, frozenEntry);
+                this._ssrOnlyCache.set(DefaultScope, id, frozenEntry);
             }
         }
         return frozenEntry;
@@ -120,14 +118,18 @@ export class SsrCache {
     ): ?$ReadOnly<CachedResponse<TData>> => {
         // Get the cached entry for this value.
 
-        // We first look in the ssr cache and then the hydration cache.
+        // We first look in the ssr cache, if we need to.
+        const ssrEntry = Server.isServerSide()
+            ? this._ssrOnlyCache.get(DefaultScope, id)
+            : null;
+
+        // Now we defer to the SSR value, and fallback to the hydration cache.
         const internalEntry =
-            this._ssrOnlyCache?.get(DefaultScope, id) ??
-            this._hydrationCache.get(DefaultScope, id);
+            ssrEntry ?? this._hydrationCache.get(DefaultScope, id);
 
         // If we are not server-side and we hydrated something, let's clear
         // that from the hydration cache to save memory.
-        if (this._ssrOnlyCache == null && internalEntry != null) {
+        if (!Server.isServerSide() && internalEntry != null) {
             // We now delete this from our hydration cache as we don't need it.
             // This does mean that if another handler of the same type but
             // without some sort of linked cache won't get the value, but
@@ -143,26 +145,6 @@ export class SsrCache {
     };
 
     /**
-     * Remove from cache, the entry matching the given handler and options.
-     *
-     * This will, if present therein, remove the value from the custom cache
-     * associated with the handler and the framework in-memory cache.
-     *
-     * Returns true if something was removed from any cache; otherwise, false.
-     */
-    remove: (id: string) => boolean = (id: string): boolean => {
-        // NOTE(somewhatabstract): We could invoke removeAll with a predicate
-        // to match the key of the entry we're removing, but that's an
-        // inefficient way to remove a single item, so let's not do that.
-
-        // Delete the entry from the appropriate cache.
-        return (
-            this._hydrationCache.purge(DefaultScope, id) ||
-            (this._ssrOnlyCache?.purge(DefaultScope, id) ?? false)
-        );
-    };
-
-    /**
      * Remove from cache, any entries matching the given handler and predicate.
      *
      * This will, if present therein, remove matching values from the framework
@@ -170,7 +152,7 @@ export class SsrCache {
      *
      * It returns a count of all records removed.
      */
-    removeAll: (
+    purgeData: (
         predicate?: (
             key: string,
             cachedEntry: $ReadOnly<CachedResponse<ValidCacheData>>,
@@ -185,7 +167,7 @@ export class SsrCache {
 
         // Apply the predicate to what we have in our caches.
         this._hydrationCache.purgeAll(realPredicate);
-        this._ssrOnlyCache?.purgeAll(realPredicate);
+        this._ssrOnlyCache.purgeAll(realPredicate);
     };
 
     /**

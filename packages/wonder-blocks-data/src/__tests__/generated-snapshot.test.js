@@ -12,10 +12,10 @@ import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View, Server} from "@khanacademy/wonder-blocks-core";
 import {
     Data,
-    initializeCache,
+    initializeHydrationCache,
     InterceptRequests,
     TrackData,
-    fulfillAllDataRequests,
+    fetchTrackedRequests,
 } from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -82,7 +82,7 @@ describe("wonder-blocks-data", () => {
             );
         };
 
-        initializeCache({
+        initializeHydrationCache({
             DATA: {
                 data: "I'm DATA from the hydration cache",
             },
@@ -277,7 +277,7 @@ describe("wonder-blocks-data", () => {
                                 The above components requested data, but we're
                                 server-side, so all that happened is we tracked
                                 the request. In this example, we've also called
-                                `fulfillAllDataRequests` to fetch that tracked
+                                `fetchTrackedRequests` to fetch that tracked
                                 data.
                             </Body>
                             <Strut size={Spacing.small_12} />
@@ -329,7 +329,7 @@ describe("wonder-blocks-data", () => {
                     if (!this.state.data && Server.isServerSide()) {
                         setTimeout(
                             () =>
-                                fulfillAllDataRequests().then((data) => {
+                                fetchTrackedRequests().then((data) => {
                                     if (this._mounted) {
                                         this.setState({
                                             data,

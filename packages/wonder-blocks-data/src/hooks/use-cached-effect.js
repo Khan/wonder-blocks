@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import {useForceUpdate} from "@khanacademy/wonder-blocks-core";
+import {DataError, DataErrors} from "../util/data-error.js";
 
 import {RequestFulfillment} from "../util/request-fulfillment.js";
 import {Status} from "../util/status.js";
@@ -10,7 +11,21 @@ import {useRequestInterception} from "./use-request-interception.js";
 
 import type {Result, ValidCacheData} from "../util/types.js";
 
+// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
+// have fixed:
+// https://github.com/import-js/eslint-plugin-import/issues/2073
+// eslint-disable-next-line import/named
+import {FetchPolicy} from "../util/types.js";
+
 type CachedEffectOptions<TData: ValidCacheData> = {|
+    /**
+     * The policy to use when determining how to retrieve the request data from
+     * cache and network.
+     *
+     * Defaults to `FetchPolicy.CacheBeforeNetwork`.
+     */
+    fetchPolicy?: FetchPolicy,
+
     /**
      * When `true`, the effect will not be executed; otherwise, the effect will
      * be executed.
@@ -81,8 +96,9 @@ export const useCachedEffect = <TData: ValidCacheData>(
     options: CachedEffectOptions<TData> = ({}: $Shape<
         CachedEffectOptions<TData>,
     >),
-): Result<TData> => {
+): [Result<TData>, () => void] => {
     const {
+        fetchPolicy = FetchPolicy.CacheBeforeNetwork,
         skip: hardSkip = false,
         retainResultOnChange = false,
         onResultChanged,
@@ -104,107 +120,166 @@ export const useCachedEffect = <TData: ValidCacheData>(
         // that all calls when the request is in-flight will update once that
         // request is done, we want the cache to be empty until that point.
     );
-
-    // Build a function that will update the cache and either invoke the
-    // callback provided in options, or force an update.
     const forceUpdate = useForceUpdate();
-    const setCacheAndNotify = React.useCallback(
-        (value: Result<TData>) => {
-            setMostRecentResult(value);
+    // For the NetworkOnly fetch policy, we ignore the cached value.
+    // So we need somewhere else to store the network value.
+    const networkResultRef = React.useRef();
 
-            // If our caller provided a cacheUpdated callback, we use that.
-            // Otherwise, we toggle our little state update.
-            if (onResultChanged != null) {
-                onResultChanged(value);
-            } else {
-                forceUpdate();
+    // Set up the function that will do the fetching.
+    const currentRequestRef = React.useRef();
+    const fetchRequest = React.useMemo(() => {
+        // We aren't using useCallback here because we need to make sure that
+        // if we are rememo-izing, we cancel any inflight request for the old
+        // callback.
+        currentRequestRef.current?.cancel();
+        currentRequestRef.current = null;
+        networkResultRef.current = null;
+
+        const fetchFn = () => {
+            if (fetchPolicy === FetchPolicy.CacheOnly) {
+                throw new DataError(
+                    "Cannot fetch with CacheOnly policy",
+                    DataErrors.NotAllowed,
+                );
             }
-        },
-        [setMostRecentResult, onResultChanged, forceUpdate],
-    );
+            // We use our request fulfillment here so that in-flight
+            // requests are shared. In order to ensure that we don't share
+            // in-flight requests for different scopes, we add the scope to the
+            // requestId.
+            // We do this as a courtesy to simplify usage in sandboxed
+            // uses like storybook where we want each story to perform their
+            // own requests from scratch and not share inflight requests across
+            // stories.
+            // Since this only occurs here, nothing else will care about this
+            // change except the request tracking.
+            const request = RequestFulfillment.Default.fulfill(
+                `${requestId}|${scope}`,
+                {
+                    handler: interceptedHandler,
+                },
+            );
 
-    // We need to trigger a re-render when the request ID changes as that
-    // indicates its a different request. We don't default the current id as
-    // this is a proxy for the first render, where we will make the request
-    // if we don't already have a cached value.
-    const requestIdRef = React.useRef();
-    const previousRequestId = requestIdRef.current;
-
-    // Calculate our soft skip state.
-    // Soft skip changes are things that should skip the effect if something
-    // else triggers the effect to run, but should not itself trigger the effect
-    // (which would cancel a previous invocation).
-    const softSkip = React.useMemo(() => {
-        if (requestId === previousRequestId) {
-            // If the requestId is unchanged, it means we already rendered at
-            // least once and so we already made the request at least once. So
-            // we can bail out right here.
-            return true;
-        }
-
-        // If we already have a cached value, we're going to skip.
-        if (mostRecentResult != null) {
-            return true;
-        }
-
-        return false;
-    }, [requestId, previousRequestId, mostRecentResult]);
-
-    // So now we make sure the client-side request happens per our various
-    // options.
-    React.useEffect(() => {
-        let cancel = false;
-
-        // We don't do anything if we've been told to hard skip (a hard skip
-        // means we should cancel the previous request and is therefore a
-        // dependency on that), or we have determined we have already done
-        // enough and can soft skip (a soft skip doesn't trigger the request
-        // to re-run; we don't want to cancel the in progress effect if we're
-        // soft skipping.
-        if (hardSkip || softSkip) {
-            return;
-        }
-
-        // If we got here, we're going to perform the request.
-        // Let's make sure our ref is set to the most recent requestId.
-        requestIdRef.current = requestId;
-
-        // OK, we've done all our checks and things. It's time to make the
-        // request. We use our request fulfillment here so that in-flight
-        // requests are shared.
-        // NOTE: Our request fulfillment handles the error cases here.
-        // Catching shouldn't serve a purpose.
-        // eslint-disable-next-line promise/catch-or-return
-        RequestFulfillment.Default.fulfill(requestId, {
-            handler: interceptedHandler,
-        }).then((result) => {
-            if (cancel) {
-                // We don't modify our result if an earlier effect was
-                // cancelled as it means that this hook no longer cares about
-                // that old request.
+            if (request === currentRequestRef.current?.request) {
+                // The request inflight is the same, so do nothing.
+                // NOTE: Perhaps if invoked via a refetch, we will want to
+                // override this behavior and force a new request?
                 return;
             }
 
-            setCacheAndNotify(result);
-            return; // Shut up eslint always-return rule.
-        });
+            // Clear the last network result.
+            networkResultRef.current = null;
 
-        return () => {
-            // TODO(somewhatabstract, FEI-4276): Eventually, we will want to be
-            // able abort in-flight requests, but for now, we don't have that.
-            // (Of course, we will only want to abort them if no one is waiting
-            // on them)
-            // For now, we just block cancelled requests from changing our
-            // cache.
-            cancel = true;
+            // Cancel the previous request.
+            currentRequestRef.current?.cancel();
+
+            // TODO(somewhatabstract, FEI-4276):
+            // Until our RequestFulfillment API supports cancelling/aborting, we
+            // will have to do it.
+            let cancel = false;
+
+            // NOTE: Our request fulfillment handles the error cases here.
+            // Catching shouldn't serve a purpose.
+            // eslint-disable-next-line promise/catch-or-return
+            request.then((result) => {
+                currentRequestRef.current = null;
+                if (cancel) {
+                    // We don't modify our result if the request was cancelled
+                    // as it means that this hook no longer cares about that old
+                    // request.
+                    return;
+                }
+
+                // Now we need to update the cache and notify or force a rerender.
+                setMostRecentResult(result);
+                networkResultRef.current = result;
+
+                if (onResultChanged != null) {
+                    // If we have a callback, call it to let our caller know we
+                    // got a result.
+                    onResultChanged(result);
+                } else {
+                    // If there's no callback, and this is using cache in some
+                    // capacity, just force a rerender.
+                    forceUpdate();
+                }
+                return; // Shut up eslint always-return rule.
+            });
+
+            currentRequestRef.current = {
+                requestId,
+                request,
+                cancel() {
+                    cancel = true;
+                    RequestFulfillment.Default.abort(requestId);
+                },
+            };
         };
-        // We only want to run this effect if the requestId, or skip values
-        // change. These are the only two things that should affect the
-        // cancellation of a pending request. We do not update if the handler
-        // changes, in order to simplify the API - otherwise, callers would
-        // not be able to use inline functions with this hook.
+
+        // Now we can return the new fetch function.
+        return fetchFn;
+
+        // We deliberately ignore the handler here because we want folks to use
+        // interceptor functions inline in props for simplicity. This is OK
+        // since changing the handler without changing the requestId doesn't
+        // really make sense - the same requestId should be handled the same as
+        // each other.
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [hardSkip, requestId]);
+    }, [
+        requestId,
+        onResultChanged,
+        forceUpdate,
+        setMostRecentResult,
+        fetchPolicy,
+    ]);
+
+    // We need to trigger a re-render when the request ID changes as that
+    // indicates its a different request.
+    const requestIdRef = React.useRef(requestId);
+
+    // Calculate if we want to fetch the result or not.
+    // If this is true, we will do a new fetch, cancelling the previous fetch
+    // if there is one inflight.
+    const shouldFetch = React.useMemo(() => {
+        if (hardSkip) {
+            // We don't fetch if we've been told to hard skip.
+            return false;
+        }
+
+        switch (fetchPolicy) {
+            case FetchPolicy.CacheOnly:
+                // Don't want to do a network request if we're only
+                // interested in the cache.
+                return false;
+
+            case FetchPolicy.CacheBeforeNetwork:
+                // If we don't have a cached value or this is a new requestId,
+                // then we need to fetch.
+                return (
+                    mostRecentResult == null ||
+                    requestId !== requestIdRef.current
+                );
+
+            case FetchPolicy.CacheAndNetwork:
+            case FetchPolicy.NetworkOnly:
+                // We don't care about the cache. If we don't have a network
+                // result, then we need to fetch one.
+                return networkResultRef.current == null;
+        }
+    }, [requestId, mostRecentResult, fetchPolicy, hardSkip]);
+
+    // Let's make sure our ref is set to the most recent requestId.
+    requestIdRef.current = requestId;
+
+    React.useEffect(() => {
+        if (!shouldFetch) {
+            return;
+        }
+        fetchRequest();
+        return () => {
+            currentRequestRef.current?.cancel();
+            currentRequestRef.current = null;
+        };
+    }, [shouldFetch, fetchRequest]);
 
     // We track the last result we returned in order to support the
     // "retainResultOnChange" option.
@@ -215,11 +290,12 @@ export const useCachedEffect = <TData: ValidCacheData>(
 
     // Loading is a transient state, so we only use it here; it's not something
     // we cache.
-    const result = React.useMemo(
-        () => mostRecentResult ?? loadingResult,
-        [mostRecentResult, loadingResult],
-    );
+    const result =
+        (fetchPolicy === FetchPolicy.NetworkOnly
+            ? networkResultRef.current
+            : mostRecentResult) ?? loadingResult;
     lastResultAgnosticOfIdRef.current = result;
 
-    return result;
+    // We return the result and a function for triggering a refetch.
+    return [result, fetchRequest];
 };

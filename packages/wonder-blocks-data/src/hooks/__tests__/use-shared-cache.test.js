@@ -1,11 +1,11 @@
 // @flow
 import {renderHook as clientRenderHook} from "@testing-library/react-hooks";
 
-import {useSharedCache, clearSharedCache} from "../use-shared-cache.js";
+import {useSharedCache, purgeSharedCache} from "../use-shared-cache.js";
 
 describe("#useSharedCache", () => {
     beforeEach(() => {
-        clearSharedCache();
+        purgeSharedCache();
     });
 
     it.each`
@@ -258,9 +258,9 @@ describe("#useSharedCache", () => {
     });
 });
 
-describe("#clearSharedCache", () => {
+describe("#purgeSharedCache", () => {
     beforeEach(() => {
-        clearSharedCache();
+        purgeSharedCache();
     });
 
     it("should clear the entire cache if no scope given", () => {
@@ -274,7 +274,7 @@ describe("#clearSharedCache", () => {
         hook2.rerender();
 
         // Act
-        clearSharedCache();
+        purgeSharedCache();
         // Make sure we refresh the hook results.
         hook1.rerender();
         hook2.rerender();
@@ -295,7 +295,7 @@ describe("#clearSharedCache", () => {
         hook2.rerender();
 
         // Act
-        clearSharedCache("scope2");
+        purgeSharedCache("scope2");
         // Make sure we refresh the hook results.
         hook1.rerender();
         hook2.rerender();

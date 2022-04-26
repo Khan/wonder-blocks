@@ -1,0 +1,44 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Types / FetchPolicy"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# FetchPolicy
+
+```ts
+export enum FetchPolicy {
+    /**
+     * If the data is in the cache, return that; otherwise, fetch from the server.
+     */
+    CacheBeforeNetwork,
+
+    /**
+     * If the data is in the cache, return that; always fetch from the server
+     * regardless of cache.
+     */
+    CacheAndNetwork,
+
+    /**
+     * If the data is in the cache, return that; otherwise, do nothing.
+     */
+    CacheOnly,
+
+    /**
+     * Ignore any existing cached result; fetch from the server.
+     */
+    NetworkOnly,
+}
+```
+
+The `FetchPolicy` type is used with our request framework to define how a request should be fulfilled with respect to the cache and the network.
+
+ * `CacheBeforeNetwork`: If the data is in the cache, return that; otherwise, fetch from the server.
+ * `CacheAndNetwork`:  If the data is in the cache, return that; always fetch from the server regardless of cache.
+ * `CacheOnly`: If the data is in the cache, return that; otherwise, do nothing.
+ * `NetworkOnly`: Ignore any existing cached result; always fetch from the server.

@@ -5,6 +5,11 @@ import {useServerEffect} from "./use-server-effect.js";
 import {useSharedCache} from "./use-shared-cache.js";
 import {useCachedEffect} from "./use-cached-effect.js";
 
+// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
+// have fixed:
+// https://github.com/import-js/eslint-plugin-import/issues/2073
+// eslint-disable-next-line import/named
+import {FetchPolicy} from "../util/types.js";
 import type {Result, ValidCacheData} from "../util/types.js";
 
 /**
@@ -191,11 +196,13 @@ export const useHydratableEffect = <TData: ValidCacheData>(
     );
 
     // When we're client-side, we ultimately want the result from this call.
-    const clientResult = useCachedEffect(requestId, handler, {
+    const [clientResult] = useCachedEffect(requestId, handler, {
         skip,
         onResultChanged,
         retainResultOnChange,
         scope,
+        // Be explicit about our fetch policy for clarity.
+        fetchPolicy: FetchPolicy.CacheBeforeNetwork,
     });
 
     // OK, now which result do we return.

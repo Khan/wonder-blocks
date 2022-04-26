@@ -1,6 +1,37 @@
 // @flow
 import type {Metadata} from "@khanacademy/wonder-stuff-core";
 
+// TODO(somewhatabstract, FEI-4172): Update eslint-plugin-flowtype when
+// they've fixed https://github.com/gajus/eslint-plugin-flowtype/issues/502
+/* eslint-disable no-undef */
+/**
+ * Defines the various fetch policies that can be applied to requests.
+ */
+export enum FetchPolicy {
+    /**
+     * If the data is in the cache, return that; otherwise, fetch from the
+     * server.
+     */
+    CacheBeforeNetwork,
+
+    /**
+     * If the data is in the cache, return that; always fetch from the server
+     * regardless of cache.
+     */
+    CacheAndNetwork,
+
+    /**
+     * If the data is in the cache, return that; otherwise, do nothing.
+     */
+    CacheOnly,
+
+    /**
+     * Ignore any existing cached result; always fetch from the server.
+     */
+    NetworkOnly,
+}
+/* eslint-enable no-undef */
+
 /**
  * Define what can be cached.
  *
