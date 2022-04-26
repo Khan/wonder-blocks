@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 8.0.2
+
+### Patch Changes
+
+-   580141ed: Always initialize SSR-only cache
+
 ## 8.0.1
 
 ### Patch Changes
