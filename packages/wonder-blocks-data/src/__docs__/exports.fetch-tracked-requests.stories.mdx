@@ -1,0 +1,24 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / fetchTrackedRequests()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# fetchTrackedRequests()
+
+```ts
+fetchTrackedRequests(): Promise<ResponseCache>;
+```
+
+When performing server-side rendering (SSR), the data requests that are being made via the [`Data`](/docs/data-exports-data--page) component can be tracked by rendering the React tree inside the [`TrackData`](/docs/data-exports-trackdata--page) component. After this has occurred, the tracked requests can be fulfilled using `fetchTrackedRequests`.
+
+This method returns a promise that resolves to a copy of the data that was cached by fulfilling the tracked requests. In the process, it clears the record of tracked requests so that new requests can be tracked and fulfilled if so required.
+
+The returned copy of the data cache can be used with the [`initializeHydrationCache`](/docs/data-exports-initializehydrationcache--page) method to prepare the data cache before a subsequent render. This is useful on the server to then SSR a more complete result, and again on the client, to rehydrate that result.
+
+More details about server-side rendering with Wonder Blocks Data can be found in the [relevant overview section](/docs/data-server-side-rendering-and-hydration--page).

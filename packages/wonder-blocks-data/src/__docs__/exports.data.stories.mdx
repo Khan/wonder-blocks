@@ -105,12 +105,12 @@ const myInvalidHandler = () => new Promise((resolve, reject) =>
 
 If the hydration cache already contains data or an error for our request, then
 the `Data` component will render it immediately. The hydration cache is
-populated using the `initializeCache` method before rendering.
+populated using the `initializeHydrationCache` method before rendering.
 
 ```jsx
 import {Body, BodyMonospace} from "@khanacademy/wonder-blocks-typography";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Data, initializeCache} from "@khanacademy/wonder-blocks-data";
+import {Data, initializeHydrationCache} from "@khanacademy/wonder-blocks-data";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -121,7 +121,7 @@ const myHandler = () => {
     );
 };
 
-initializeCache({
+initializeHydrationCache({
     DATA: {
         data: "I'm DATA from the hydration cache"
     },

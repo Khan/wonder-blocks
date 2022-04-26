@@ -1,0 +1,24 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / getGqlRequestId()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# getGqlRequestId()
+
+```ts
+function getGqlRequestId<TData, TVariables: {...}>(
+    operation: GqlOperation<TData, TVariables>,
+    variables: ?TVariables,
+    context: GqlContext,
+): string;
+```
+
+The `getGqlRequestId` function generates an identifier based on the operation, variables, and context of a specific GraphQL request. This identifier is guaranteed to be the same for all requests that share the same operation, variables, and context, even if variables and context values are in different orders.
+
+The identifier returned by this function can then be used with our [`useCachedEffect`](/docs/data-exports-usecachedeffect--page), [`useServerEffect`](/docs/data-exports-useservereffect--page), and [`useHydratableEffect`](/docs/data-exports-usehydratableeffect--page) hooks as the `requestId` parameter, allowing them to be combined with the fetch operation from the [`useGql`](/docs/data-exports-usegql--page) hook.

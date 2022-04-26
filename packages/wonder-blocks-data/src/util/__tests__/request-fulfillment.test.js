@@ -102,4 +102,46 @@ describe("RequestFulfillment", () => {
             expect(result).not.toBe(promise);
         });
     });
+
+    describe("#abort", () => {
+        it("should delete the given request from the inflight requests", () => {
+            // Arrange
+            const requestFulfillment = new RequestFulfillment();
+            const fakeRequestHandler = () => Promise.resolve("DATA!");
+            const promise = requestFulfillment.fulfill("ID", {
+                handler: fakeRequestHandler,
+            });
+
+            // Act
+            requestFulfillment.abort("ID");
+            const result = requestFulfillment.fulfill("ID", {
+                handler: fakeRequestHandler,
+            });
+
+            // Assert
+            expect(result).not.toBe(promise);
+        });
+    });
+
+    describe("#abortAll", () => {
+        it("should abort all inflight requests", () => {
+            // Arrange
+            const requestFulfillment = new RequestFulfillment();
+            const abortSpy = jest.spyOn(requestFulfillment, "abort");
+            const fakeRequestHandler = () => Promise.resolve("DATA!");
+            requestFulfillment.fulfill("ID1", {
+                handler: fakeRequestHandler,
+            });
+            requestFulfillment.fulfill("ID2", {
+                handler: fakeRequestHandler,
+            });
+
+            // Act
+            requestFulfillment.abortAll();
+
+            // Assert
+            expect(abortSpy).toHaveBeenCalledWith("ID1");
+            expect(abortSpy).toHaveBeenCalledWith("ID2");
+        });
+    });
 });

@@ -1,0 +1,29 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Data / Exports / initializeHydrationCache()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# initializeHydrationCache()
+
+```ts
+initializeHydrationCache(sourceCache: ResponseCache): void;
+```
+
+| Argument | Flow&nbsp;Type | Default | Description |
+| --- | --- | --- | --- |
+| `sourceData` | `ResponseCache` | _Required_ | The source cache that will be used to initialize the response cache. |
+
+Wonder Blocks Data caches data in its response cache for hydration. This cache can be initialized with data using the `initializeHydrationCache` method.
+The `initializeHydrationCache` method can only be called when the hydration cache is empty.
+
+Usually, the data to be passed to `v` will be obtained by calling [`fetchTrackedRequests`](/docs/data-exports-fetchtrackedrequests--page) after tracking data requests (see [`TrackData`](/docs/data-exports-trackdata--page)) during server-side rendering.
+
+Combine with [`purgeHydrationCache`](/docs/data-exports-purgehydrationcache--page) to support your testing needs.
+
+More details about server-side rendering with Wonder Blocks Data can be found in the [relevant overview section](/docs/data-server-side-rendering-and-hydration--page).

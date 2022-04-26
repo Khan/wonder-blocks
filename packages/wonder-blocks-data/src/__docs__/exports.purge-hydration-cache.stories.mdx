@@ -1,7 +1,7 @@
 import {Meta} from "@storybook/addon-docs";
 
 <Meta
-    title="Data / Exports / removeAllFromCache()"
+    title="Data / Exports / purgeHydrationCache()"
     parameters={{
         chromatic: {
             disableSnapshot: true,
@@ -9,10 +9,10 @@ import {Meta} from "@storybook/addon-docs";
     }}
 />
 
-# removeAllFromCache()
+# purgeHydrationCache()
 
 ```ts
-removeAllFromCache(predicate?: (key: string, cacheEntry: $ReadOnly<CachedResponse<ValidCacheData>>) => boolean): void;
+purgeHydrationCache(predicate?: (key: string, cacheEntry: $ReadOnly<CachedResponse<ValidCacheData>>) => boolean): void;
 ```
 
 | Argument | Flow&nbsp;Type | Default | Description |
@@ -21,4 +21,4 @@ removeAllFromCache(predicate?: (key: string, cacheEntry: $ReadOnly<CachedRespons
 
 Removes all entries that match a given predicate from the cache. If no predicate is given, all cached entries.
 
-This can be used after [`initializeCache`](/docs/data-exports-initializecache--page)  to manipulate the cache prior to hydration wich can be useful during testing (especially to clear the cache so that it can be initialized again).
+This can be used after [`initializeHydrationCache`](/docs/data-exports-initializehydrationcache--page)  to manipulate the cache prior to hydration wich can be useful during testing (especially to clear the cache so that it can be initialized again).
