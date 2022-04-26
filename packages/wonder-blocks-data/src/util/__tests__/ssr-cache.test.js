@@ -16,6 +16,64 @@ describe("../ssr-cache.js", () => {
         jest.restoreAllMocks();
     });
 
+    describe("#constructor", () => {
+        const NODE_ENV = process.env.NODE_ENV;
+
+        afterEach(() => {
+            if (NODE_ENV == null) {
+                delete process.env.NODE_ENV;
+            } else {
+                process.env.NODE_ENV = NODE_ENV;
+            }
+        });
+
+        it.each(["development", "production"])(
+            "should default the ssr-only cache to a undefined when client-side in %s",
+            (nodeEnv) => {
+                // Arrange
+                jest.spyOn(Server, "isServerSide").mockReturnValue(false);
+                process.env.NODE_ENV = nodeEnv;
+
+                // Act
+                const cache = new SsrCache();
+
+                // Assert
+                expect(cache._ssrOnlyCache).toBeUndefined();
+            },
+        );
+
+        it("should default the ssr-only cache to a cache instance when client-side in test", () => {
+            // Arrange
+            jest.spyOn(Server, "isServerSide").mockReturnValue(false);
+            process.env.NODE_ENV = "test";
+
+            // Act
+            const cache = new SsrCache();
+
+            // Assert
+            expect(cache._ssrOnlyCache).toBeInstanceOf(
+                SerializableInMemoryCache,
+            );
+        });
+
+        it.each(["development", "production"])(
+            "should default the ssr-only cache to a cache instance when server-side in %s",
+            (nodeEnv) => {
+                // Arrange
+                jest.spyOn(Server, "isServerSide").mockReturnValue(true);
+                process.env.NODE_ENV = nodeEnv;
+
+                // Act
+                const cache = new SsrCache();
+
+                // Assert
+                expect(cache._ssrOnlyCache).toBeInstanceOf(
+                    SerializableInMemoryCache,
+                );
+            },
+        );
+    });
+
     describe("@Default", () => {
         it("should return an instance of SsrCache", () => {
             // Arrange
