@@ -1,47 +1,63 @@
-name: Linting and Testing
+name: Node CI (PR)
 
 on:
   pull_request:
     types: [edited, opened, synchronize, reopened]
 
-# We run a single job with multiple steps to run the workflow faster.
-# Steps: Setup/build > lint > flow > test > coverage > codecov
+# Our jobs run like this to minimize wasting resource cycles:
+#   1. Prime caches for primary configuration (ubuntu on node 16).
+#      This way the next two jobs can run in parallel but rely on this primed
+#      cache.
+#   2. Lint and Test
+#     a. Lint
+#     b. Test/Coverage
+#   3. Verify that build sizes are reasonable
 jobs:
-  lint_and_test:
+  prime_cache_primary:
+    name: Prime node_modules cache for primary configuration
     runs-on: ${{ matrix.os }}
-    env:
-      CI: true
     strategy:
       matrix:
         os: [ubuntu-latest]
         node-version: [16.x]
-      fail-fast: false
     steps:
-      - name: Checking out latest commit
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-
-      # Cache and install dependencies
-      - name: Get yarn cache
-        id: yarn-cache
-        run: echo "::set-output name=dir::$(yarn cache dir)"
       - uses: actions/cache@v2
-        with:
-          path: ${{ steps.yarn-cache.outputs.dir }}
-          key: ${{ runner.os }}-${{ matrix.node-version }}-yarn-cache-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-yarn-cache-
-      - name: Cache node modules
-        uses: actions/cache@v2
+        id: node-modules-cache # use this to check for `cache-hit` (`steps.node-modules-cache.outputs.cache-hit != 'true'`)
         with:
           path: node_modules
-          key: ${{ runner.os }}-${{ matrix.node-version }}-modules-${{ hashFiles('**/yarn.lock') }}
+          key: ${{ runner.os }}${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
           restore-keys: |
-            ${{ runner.os }}-${{ matrix.node-version }}-modules-
+            ${{ runner.os }}${{ matrix.node-version }}-node-modules-
       - name: Install dependencies
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
+
+  lint_and_test:
+    needs: prime_cache_primary
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v2
+        id: node-modules-cache # use this to check for `cache-hit` (`steps.node-modules-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: node_modules
+          key: ${{ runner.os }}${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}${{ matrix.node-version }}-node-modules-
+      - name: Install dependencies
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
         run: yarn install --frozen-lockfile
 
       - name: Get All Changed Files
@@ -79,6 +95,30 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/coverage-final.json
+
+  check_builds:
+    name: Check build sizes
+    needs: prime_cache_primary
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - uses: actions/cache@v2
+        id: node-modules-cache # use this to check for `cache-hit` (`steps.node-modules-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: node_modules
+          key: ${{ runner.os }}${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}${{ matrix.node-version }}-node-modules-
+      - name: Install dependencies
+        if: steps.node-modules-cache.outputs.cache-hit != 'true'
+        run: yarn install --frozen-lockfile
 
       # Make sure our packages aren't growing unexpectedly
       - name: Check Builds
