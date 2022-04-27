@@ -108,7 +108,10 @@ type Props = {|
  * ```
  */
 const SearchField: React.AbstractComponent<Props, HTMLInputElement> =
-    React.forwardRef<Props, HTMLInputElement>((props: Props, ref) => {
+    React.forwardRef<Props, HTMLInputElement>(function SearchField(
+        props: Props,
+        ref,
+    ) {
         const {
             clearAriaLabel = defaultLabels.clearSearch,
             disabled = false,
