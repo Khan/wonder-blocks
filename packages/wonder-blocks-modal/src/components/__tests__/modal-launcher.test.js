@@ -25,10 +25,6 @@ const exampleModal = (
 );
 
 describe("ModalLauncher", () => {
-    beforeEach(() => {
-        jest.useRealTimers();
-    });
-
     afterEach(() => {
         unmountAll();
         if (document.body) {

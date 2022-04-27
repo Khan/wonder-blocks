@@ -11,10 +11,6 @@ import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
 import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document.js";
 
 describe("FocusManager", () => {
-    beforeEach(() => {
-        jest.useRealTimers();
-    });
-
     afterEach(() => {
         unmountAll();
         if (document.body) {

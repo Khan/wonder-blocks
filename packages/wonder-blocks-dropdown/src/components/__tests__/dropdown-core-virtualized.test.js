@@ -8,15 +8,6 @@ import DropdownCoreVirtualized from "../dropdown-core-virtualized.js";
 import SearchTextInput from "../search-text-input.js";
 
 describe("DropdownCoreVirtualized", () => {
-    beforeEach(() => {
-        jest.useFakeTimers();
-    });
-
-    afterEach(() => {
-        jest.runOnlyPendingTimers();
-        jest.useRealTimers();
-    });
-
     it("should sort the items on first load", () => {
         // Arrange
         const optionItems = ["a", "bb", "ccc"].map((item, i) => ({
