@@ -24,6 +24,7 @@ export const filterableDropdownStyle = {
 export const searchInputStyle = {
     margin: Spacing.xSmall_8,
     marginTop: Spacing.xxxSmall_4,
+    minHeight: "auto",
 };
 
 // The default item height
