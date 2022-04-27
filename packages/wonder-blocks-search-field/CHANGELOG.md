@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 1.0.4
+
+### Patch Changes
+
+-   b3960766: Made SearchField not anonymous
+
 ## 1.0.3
 
 ### Patch Changes

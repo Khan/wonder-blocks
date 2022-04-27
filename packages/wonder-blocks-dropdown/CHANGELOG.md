@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.7.0
+
+### Minor Changes
+
+-   b3960766: Replaced core elements with Wonder Blocks SearchField (added dependency to SearchField)
+
+### Patch Changes
+
+-   Updated dependencies [b3960766]
+    -   @khanacademy/wonder-blocks-search-field@1.0.4
+
 ## 2.6.10
 
 ### Patch Changes
