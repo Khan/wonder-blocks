@@ -1,0 +1,41 @@
+import {Meta, Story, Canvas} from "@storybook/addon-docs";
+
+import {Checkbox} from "@khanacademy/wonder-blocks-form";
+
+<Meta
+    title="Form/Checkbox/Accessibility"
+    component={Checkbox}
+    parameters={{
+        previewTabs: {
+            canvas: {hidden: true},
+        },
+        viewMode: "docs",
+        chromatic: {
+            // Disables chromatic testing for these stories.
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+## Accessibility
+
+### ARIA
+
+`Checkbox` can take in all ARIA props defined in Wonder Blocks Core types.
+
+Elements with role `"checkbox"` can have an `aria-checked` property that
+exposes the checked state to assistive technology. The dev does not have
+to worry about this because the Wonder Blocks Checkbox component is an
+`input` element with type `"checkbox"`, as this has built-in semantics and
+does not require ARIA.
+
+When the checkbox is in an error state, `aria-invalid` is set to true.
+(More info in the Error section.)
+
+### Error state
+
+
+### Disabled state
+
+
+### References
