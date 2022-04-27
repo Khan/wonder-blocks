@@ -89,7 +89,7 @@
     "eslint-watch": "^8.0.0",
     "flow-bin": "^0.176.3",
     "glob": "^7.1.2",
-    "husky": "^4.2.5",
+    "husky": "^7.0.4",
     "inquirer": "^8.2.0",
     "jest": "^28.0.1",
     "jest-date-mock": "^1.0.8",
