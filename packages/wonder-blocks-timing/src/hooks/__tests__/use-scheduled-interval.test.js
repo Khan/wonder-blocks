@@ -359,9 +359,7 @@ describe("useScheduledInterval", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() =>
-                useScheduledInterval(action, 500, {
-                    clearPolicy: ClearPolicy.Resolve,
-                }),
+                useScheduledInterval(action, 500),
             );
             act(() => {
                 result.current.set();
