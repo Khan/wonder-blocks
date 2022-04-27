@@ -17,7 +17,7 @@ module.exports = {
     setupFilesAfterEnv: [
         "@testing-library/jest-dom/extend-expect",
         "<rootDir>/config/jest/test-setup.js",
-        "jest-extended/all"
+        "jest-extended/all",
     ],
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-(.*)$":
@@ -35,5 +35,8 @@ module.exports = {
     ],
     // Only output log messages on test failure. From:
     // https://github.com/facebook/jest/issues/4156#issuecomment-490764080
-    reporters: ["<rootDir>/config/jest/log-on-fail-reporter.js"],
+    reporters: [
+        "<rootDir>/config/jest/log-on-fail-reporter.js",
+        "github-actions",
+    ],
 };

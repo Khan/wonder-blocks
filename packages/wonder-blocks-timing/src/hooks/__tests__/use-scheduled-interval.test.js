@@ -306,6 +306,8 @@ describe("useScheduledInterval", () => {
             // Act
             act(() => {
                 result.current.set();
+            });
+            act(() => {
                 jest.advanceTimersByTime(501);
             });
 
@@ -344,6 +346,8 @@ describe("useScheduledInterval", () => {
             // Act
             act(() => {
                 result.current.clear();
+            });
+            act(() => {
                 jest.advanceTimersByTime(501);
             });
 
@@ -364,6 +368,8 @@ describe("useScheduledInterval", () => {
             // Act
             act(() => {
                 result.current.clear(ClearPolicy.Resolve);
+            });
+            act(() => {
                 jest.advanceTimersByTime(501);
             });
 
@@ -386,6 +392,8 @@ describe("useScheduledInterval", () => {
             // Act
             act(() => {
                 result.current.clear(ClearPolicy.Cancel);
+            });
+            act(() => {
                 jest.advanceTimersByTime(501);
             });
 
