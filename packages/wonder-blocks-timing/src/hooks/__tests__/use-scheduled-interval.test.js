@@ -306,6 +306,8 @@ describe("useScheduledInterval", () => {
             // Act
             act(() => {
                 result.current.set();
+            });
+            act(() => {
                 jest.advanceTimersByTime(501);
             });
 
@@ -344,6 +346,8 @@ describe("useScheduledInterval", () => {
             // Act
             act(() => {
                 result.current.clear();
+            });
+            act(() => {
                 jest.advanceTimersByTime(501);
             });
 
@@ -355,7 +359,9 @@ describe("useScheduledInterval", () => {
             // Arrange
             const action = jest.fn();
             const {result} = renderHook(() =>
-                useScheduledInterval(action, 500),
+                useScheduledInterval(action, 500, {
+                    clearPolicy: ClearPolicy.Resolve,
+                }),
             );
             act(() => {
                 result.current.set();
@@ -364,6 +370,8 @@ describe("useScheduledInterval", () => {
             // Act
             act(() => {
                 result.current.clear(ClearPolicy.Resolve);
+            });
+            act(() => {
                 jest.advanceTimersByTime(501);
             });
 
@@ -386,6 +394,8 @@ describe("useScheduledInterval", () => {
             // Act
             act(() => {
                 result.current.clear(ClearPolicy.Cancel);
+            });
+            act(() => {
                 jest.advanceTimersByTime(501);
             });
 

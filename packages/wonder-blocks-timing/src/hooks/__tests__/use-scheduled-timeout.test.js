@@ -195,7 +195,11 @@ describe("useScheduledTimeout", () => {
             // Act
             act(() => {
                 jest.advanceTimersByTime(1001);
+            });
+            act(() => {
                 result.current.set();
+            });
+            act(() => {
                 jest.advanceTimersByTime(1001);
             });
 
@@ -300,6 +304,8 @@ describe("useScheduledTimeout", () => {
             // Act
             act(() => {
                 result.current.clear();
+            });
+            act(() => {
                 jest.advanceTimersByTime(1000);
             });
 
@@ -417,6 +423,8 @@ describe("useScheduledTimeout", () => {
             // Act
             act(() => {
                 result.current.set();
+            });
+            act(() => {
                 jest.advanceTimersByTime(1000);
             });
 
@@ -458,6 +466,8 @@ describe("useScheduledTimeout", () => {
             act(() => {
                 result.current.set();
                 jest.advanceTimersByTime(500);
+            });
+            act(() => {
                 result.current.set();
                 jest.advanceTimersByTime(1000);
             });

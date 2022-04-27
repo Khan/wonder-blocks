@@ -38,10 +38,6 @@ const exampleModalWithButtons = (
 );
 
 describe("ModalBackdrop", () => {
-    beforeEach(() => {
-        jest.useRealTimers();
-    });
-
     afterEach(() => {
         unmountAll();
         if (document.body) {

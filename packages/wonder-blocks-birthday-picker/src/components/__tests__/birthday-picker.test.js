@@ -3,7 +3,7 @@ import * as React from "react";
 import moment from "moment";
 import {render, screen} from "@testing-library/react";
 import * as DateMock from "jest-date-mock";
-import userEvent from "../../../../../utils/testing/user-event.js";
+import userEvent from "@testing-library/user-event";
 
 import BirthdayPicker, {defaultLabels} from "../birthday-picker.js";
 
@@ -14,7 +14,6 @@ describe("BirthdayPicker", () => {
 
     describe("render", () => {
         beforeEach(() => {
-            jest.useRealTimers();
             DateMock.advanceTo(today);
         });
 
@@ -72,7 +71,6 @@ describe("BirthdayPicker", () => {
 
         it("renders with a invalid default future value", () => {
             // Arrange
-            jest.useRealTimers();
             DateMock.advanceTo(today);
             const date = moment(today).add(1, "day");
             const defaultValue = date.format("YYYY-MM-DD");
@@ -95,7 +93,7 @@ describe("BirthdayPicker", () => {
             expect(yearPicker).toHaveTextContent("2021");
         });
 
-        it("renders an error with a invalid default future value", async () => {
+        it("renders an error with a invalid default future value", () => {
             // Arrange
             const date = moment(today).add(1, "day");
             const defaultValue = date.format("YYYY-MM-DD");
@@ -150,7 +148,7 @@ describe("BirthdayPicker", () => {
             expect(yearPicker).toBeDisabled();
         });
 
-        it("renders an error with an invalid default value", async () => {
+        it("renders an error with an invalid default value", () => {
             // Arrange
             const defaultValue = "2021-02-31";
 
@@ -168,16 +166,7 @@ describe("BirthdayPicker", () => {
     });
 
     describe("onChange", () => {
-        beforeEach(() => {
-            jest.useFakeTimers();
-        });
-
-        afterEach(() => {
-            jest.runOnlyPendingTimers();
-            jest.useRealTimers();
-        });
-
-        it("onChange triggers when a new value is selected", async () => {
+        it("onChange triggers when a new value is selected", () => {
             // Arrange
             const onChange = jest.fn();
 
@@ -185,7 +174,7 @@ describe("BirthdayPicker", () => {
 
             // Act
             userEvent.click(screen.getByTestId("birthday-picker-month"));
-            const monthOption = await screen.findByRole("option", {
+            const monthOption = screen.getByRole("option", {
                 name: "Jul",
             });
             userEvent.click(monthOption, undefined, {
@@ -193,13 +182,13 @@ describe("BirthdayPicker", () => {
             });
 
             userEvent.click(screen.getByTestId("birthday-picker-day"));
-            const dayOption = await screen.findByRole("option", {name: "5"});
+            const dayOption = screen.getByRole("option", {name: "5"});
             userEvent.click(dayOption, undefined, {
                 skipPointerEventsCheck: true,
             });
 
             userEvent.click(screen.getByTestId("birthday-picker-year"));
-            const yearOption = await screen.findByRole("option", {
+            const yearOption = screen.getByRole("option", {
                 name: "2021",
             });
             userEvent.click(yearOption, undefined, {
@@ -210,13 +199,13 @@ describe("BirthdayPicker", () => {
             expect(onChange).toHaveBeenCalledWith("2021-07-05");
         });
 
-        it("onChange triggers multiple times when a new value is selected", async () => {
+        it("onChange triggers multiple times when a new value is selected", () => {
             // Arrange
             const onChange = jest.fn();
             render(<BirthdayPicker onChange={onChange} />);
             // Pick one date
             userEvent.click(screen.getByTestId("birthday-picker-month"));
-            const monthOption = await screen.findByRole("option", {
+            const monthOption = screen.getByRole("option", {
                 name: "Jul",
             });
             userEvent.click(monthOption, undefined, {
@@ -224,14 +213,14 @@ describe("BirthdayPicker", () => {
             });
 
             userEvent.click(screen.getByTestId("birthday-picker-day"));
-            const dayOption = await screen.findByRole("option", {name: "5"});
+            const dayOption = screen.getByRole("option", {name: "5"});
 
             userEvent.click(dayOption, undefined, {
                 skipPointerEventsCheck: true,
             });
 
             userEvent.click(screen.getByTestId("birthday-picker-year"));
-            const yearOption = await screen.findByRole("option", {
+            const yearOption = screen.getByRole("option", {
                 name: "2021",
             });
             userEvent.click(yearOption, undefined, {
@@ -241,7 +230,7 @@ describe("BirthdayPicker", () => {
             // Act
             // Pick Another Date
             userEvent.click(screen.getByTestId("birthday-picker-month"));
-            const monthOptionNew = await screen.findByRole("option", {
+            const monthOptionNew = screen.getByRole("option", {
                 name: "Aug",
             });
             userEvent.click(monthOptionNew, undefined, {
@@ -249,13 +238,13 @@ describe("BirthdayPicker", () => {
             });
 
             userEvent.click(screen.getByTestId("birthday-picker-day"));
-            const dayOptionNew = await screen.findByRole("option", {name: "9"});
+            const dayOptionNew = screen.getByRole("option", {name: "9"});
             userEvent.click(dayOptionNew, undefined, {
                 skipPointerEventsCheck: true,
             });
 
             userEvent.click(screen.getByTestId("birthday-picker-year"));
-            const yearOptionNew = await screen.findByRole("option", {
+            const yearOptionNew = screen.getByRole("option", {
                 name: "2020",
             });
             userEvent.click(yearOptionNew, undefined, {
@@ -266,7 +255,7 @@ describe("BirthdayPicker", () => {
             expect(onChange).toHaveBeenLastCalledWith("2020-08-09");
         });
 
-        it("onChange triggers when a new value is selected after a default value is set", async () => {
+        it("onChange triggers when a new value is selected after a default value is set", () => {
             // Arrange
             const onChange = jest.fn();
 
@@ -279,7 +268,7 @@ describe("BirthdayPicker", () => {
 
             // Act
             userEvent.click(screen.getByTestId("birthday-picker-month"));
-            const monthOption = await screen.findByRole("option", {
+            const monthOption = screen.getByRole("option", {
                 name: "Aug",
             });
             userEvent.click(monthOption, undefined, {
@@ -287,14 +276,14 @@ describe("BirthdayPicker", () => {
             });
 
             userEvent.click(screen.getByTestId("birthday-picker-day"));
-            const dayOption = await screen.findByRole("option", {name: "9"});
+            const dayOption = screen.getByRole("option", {name: "9"});
 
             userEvent.click(dayOption, undefined, {
                 skipPointerEventsCheck: true,
             });
 
             userEvent.click(screen.getByTestId("birthday-picker-year"));
-            const yearOption = await screen.findByRole("option", {
+            const yearOption = screen.getByRole("option", {
                 name: "2018",
             });
             userEvent.click(yearOption, undefined, {
@@ -335,7 +324,7 @@ describe("BirthdayPicker", () => {
             expect(onChange).toHaveBeenCalledWith(null);
         });
 
-        it("onChange triggers only one null when multiple invalid values are selected after a default value is set", async () => {
+        it("onChange triggers only one null when multiple invalid values are selected after a default value is set", () => {
             // Arrange
             const onChange = jest.fn();
 
@@ -348,7 +337,7 @@ describe("BirthdayPicker", () => {
 
             // Act
             userEvent.click(screen.getByTestId("birthday-picker-year"));
-            const yearOption = await screen.findByRole("option", {
+            const yearOption = screen.getByRole("option", {
                 name: "2020",
             });
             userEvent.click(yearOption, undefined, {
@@ -359,7 +348,7 @@ describe("BirthdayPicker", () => {
             expect(onChange).toHaveBeenCalledTimes(1);
         });
 
-        it("onChange triggers the first day of the month when monthYearOnly is set", async () => {
+        it("onChange triggers the first day of the month when monthYearOnly is set", () => {
             // Arrange
             const onChange = jest.fn();
 
@@ -367,7 +356,7 @@ describe("BirthdayPicker", () => {
 
             // Act
             userEvent.click(screen.getByTestId("birthday-picker-month"));
-            const monthOption = await screen.findByRole("option", {
+            const monthOption = screen.getByRole("option", {
                 name: "Aug",
             });
             userEvent.click(monthOption, undefined, {
@@ -375,7 +364,7 @@ describe("BirthdayPicker", () => {
             });
 
             userEvent.click(screen.getByTestId("birthday-picker-year"));
-            const yearOption = await screen.findByRole("option", {
+            const yearOption = screen.getByRole("option", {
                 name: "2018",
             });
             userEvent.click(yearOption, undefined, {
@@ -387,7 +376,7 @@ describe("BirthdayPicker", () => {
             expect(onChange).toHaveBeenCalledWith("2018-08-01");
         });
 
-        it("onChange triggers the passed-in day intact when defaultValue and monthYearOnly are set", async () => {
+        it("onChange triggers the passed-in day intact when defaultValue and monthYearOnly are set", () => {
             // Arrange
             const onChange = jest.fn();
 
@@ -401,7 +390,7 @@ describe("BirthdayPicker", () => {
 
             // Act
             userEvent.click(screen.getByTestId("birthday-picker-month"));
-            const monthOption = await screen.findByRole("option", {
+            const monthOption = screen.getByRole("option", {
                 name: "Aug",
             });
             userEvent.click(monthOption, undefined, {
@@ -409,7 +398,7 @@ describe("BirthdayPicker", () => {
             });
 
             userEvent.click(screen.getByTestId("birthday-picker-year"));
-            const yearOption = await screen.findByRole("option", {
+            const yearOption = screen.getByRole("option", {
                 name: "2018",
             });
             userEvent.click(yearOption, undefined, {
@@ -431,7 +420,6 @@ describe("BirthdayPicker", () => {
         };
 
         beforeEach(() => {
-            jest.useRealTimers();
             DateMock.advanceTo(today);
         });
 
@@ -488,7 +476,7 @@ describe("BirthdayPicker", () => {
             expect(screen.getByText("Day")).toBeInTheDocument(); // EN
         });
 
-        it("renders a translated error with an invalid default value", async () => {
+        it("renders a translated error with an invalid default value", () => {
             // Arrange
             const defaultValue = "2021-02-31"; // There is no Feb 31st
 
