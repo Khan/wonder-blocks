@@ -38,6 +38,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
   lint_and_test:
+    name: Lint and Test
     needs: prime_cache_primary
     runs-on: ${{ matrix.os }}
     strategy:
