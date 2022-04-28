@@ -28,6 +28,12 @@ export const makeHookHarness = <TAdapters: Adapters>(
     configs?: $Shape<Configs<TAdapters>>,
 ) => React.AbstractComponent<any, any>) => {
     const testHarness = makeTestHarness<TAdapters>(adapters, defaultConfigs);
+    /**
+     * Create a harness to use as a wrapper when rendering hooks.
+     *
+     * @param {$Shape<Configs<typeof DefaultAdapters>>} [configs] Any adapter
+     * configuration that you want to override from the DefaultConfigs values.
+     */
     return (configs?: $Shape<Configs<TAdapters>>) =>
         testHarness<any, any>(HookHarness, configs);
 };

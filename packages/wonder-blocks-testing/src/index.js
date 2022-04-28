@@ -1,7 +1,7 @@
 // @flow
 
 // Fixtures framework
-export * as adapters from "./fixtures/adapters/adapters.js";
+export * as fixtureAdapters from "./fixtures/adapters/adapters.js";
 export {fixtures} from "./fixtures/fixtures.js";
 export {setup as setupFixtures} from "./fixtures/setup.js";
 export type {
@@ -28,3 +28,9 @@ export type {
 } from "./fetch/types.js";
 export {mockGqlFetch} from "./gql/mock-gql-fetch.js";
 export type {GqlFetchMockFn, GqlMock, GqlMockOperation} from "./gql/types.js";
+
+// Test harness framework
+export * from "./harness/types.js";
+export {makeHookHarness} from "./harness/make-hook-harness.js";
+export {makeTestHarness} from "./harness/make-test-harness.js";
+export * as harnessAdapters from "./harness/adapters/adapters.js";

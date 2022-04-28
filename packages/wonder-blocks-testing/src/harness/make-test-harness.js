@@ -30,10 +30,6 @@ export const makeTestHarness = <TAdapters: Adapters>(
     /**
      * Create a harnessed version of the given component.
      *
-     * This uses our default test harness adaptation. Default configuration
-     * can be overridden by specifying the configuration overrides as needed.
-     * All non-overridden config will use the default config values.
-     *
      * @param {React.AbstractComponent<TProps, Instance>} component The
      * component to be wrapped.
      * @param {$Shape<Configs<TAdapters>>} [configs] Any adapter

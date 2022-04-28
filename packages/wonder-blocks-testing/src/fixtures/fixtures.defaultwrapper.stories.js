@@ -1,7 +1,11 @@
 // @flow
 import * as React from "react";
 
-import {setupFixtures, fixtures, adapters} from "../index.js";
+import {
+    setupFixtures,
+    fixtures,
+    fixtureAdapters as adapters,
+} from "../index.js";
 
 // Normally would call setup from the storybook.preview.js for a project.
 setupFixtures({
