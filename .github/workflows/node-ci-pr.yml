@@ -21,21 +21,10 @@ jobs:
         os: [ubuntu-latest]
         node-version: [16.x]
     steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
+      - name: Install & cache node_modules
+        uses: ./.github/actions/shared-node-cache
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/cache@v2
-        id: node-modules-cache # use this to check for `cache-hit` (`steps.node-modules-cache.outputs.cache-hit != 'true'`)
-        with:
-          path: node_modules
-          key: ${{ runner.os }}${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}${{ matrix.node-version }}-node-modules-
-      - name: Install dependencies
-        if: steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
 
   lint_and_test:
     name: Lint and Test
@@ -44,22 +33,18 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+        node-version: [16.x]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/cache@v2
-        id: node-modules-cache # use this to check for `cache-hit` (`steps.node-modules-cache.outputs.cache-hit != 'true'`)
+
+      - name: Install & cache node_modules
+        uses: ./.github/actions/shared-node-cache
         with:
-          path: node_modules
-          key: ${{ runner.os }}${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}${{ matrix.node-version }}-node-modules-
-      - name: Install dependencies
-        if: steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+          node-version: ${{ matrix.node-version }}
 
       - name: Get All Changed Files
         uses: jaredly/get-changed-files@v1.0.1
@@ -104,22 +89,18 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest]
+        node-version: [16.x]
     steps:
       - uses: actions/checkout@v2
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node-version }}
-      - uses: actions/cache@v2
-        id: node-modules-cache # use this to check for `cache-hit` (`steps.node-modules-cache.outputs.cache-hit != 'true'`)
+
+      - name: Install & cache node_modules
+        uses: ./.github/actions/shared-node-cache
         with:
-          path: node_modules
-          key: ${{ runner.os }}${{ matrix.node-version }}-node-modules-${{ hashFiles('**/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}${{ matrix.node-version }}-node-modules-
-      - name: Install dependencies
-        if: steps.node-modules-cache.outputs.cache-hit != 'true'
-        run: yarn install --frozen-lockfile
+          node-version: ${{ matrix.node-version }}
 
       # Make sure our packages aren't growing unexpectedly
       - name: Check Builds
