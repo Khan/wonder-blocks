@@ -56,15 +56,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     # Cache and install dependencies
-    - name: Cache node modules
-      uses: actions/cache@v2
+    - name: Install & cache node_modules
+      uses: ./.github/actions/shared-node-cache
       with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ matrix.node-version }}-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ matrix.node-version }}-modules-
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
+        node-version: ${{ matrix.node-version }}
 
     - name: Run Jest with coverage
       run: yarn coverage:ci
@@ -99,15 +94,10 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     # Cache and install dependencies
-    - name: Cache node modules
-      uses: actions/cache@v2
+    - name: Install & cache node_modules
+      uses: ./.github/actions/shared-node-cache
       with:
-        path: node_modules
-        key: ${{ runner.os }}-${{ matrix.node-version }}-modules-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-${{ matrix.node-version }}-modules-
-    - name: Install dependencies
-      run: yarn install --frozen-lockfile
+        node-version: ${{ matrix.node-version }}
 
     - name: Build all packages
       run: yarn build:all
