@@ -49,12 +49,20 @@ export const makeTestHarness = <TAdapters: Adapters>(
             ...defaultConfigs,
             ...configs,
         };
-        return React.forwardRef((props, ref) =>
+        const harnessedComponent = React.forwardRef((props, ref) =>
             renderAdapters<TAdapters>(
                 adapters,
                 fullConfig,
                 <Component {...props} ref={ref} />,
             ),
         );
+
+        // We add a name for the component here so that we can detect that
+        // later and also see it in traces and what have you.
+        harnessedComponent.displayName = `testHarness(${
+            Component.displayName || Component.name || "Component"
+        })`;
+
+        return harnessedComponent;
     };
 };
