@@ -51,6 +51,13 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Automatically focus on this search field on mount.
+     * TODO(WB-1310): Remove the autofocus prop after making
+     * the search field sticky in dropdowns.
+     */
+    autofocus?: boolean,
 |};
 
 type DefaultProps = {|
@@ -70,6 +77,21 @@ export default class SearchTextInput extends React.Component<Props> {
             filter: defaultLabels.filter,
         },
     };
+
+    // TODO(WB-1310): Remove `componentDidMount` autofocus on the search field
+    // after making the search field sticky.
+    componentDidMount() {
+        // We need to re-focus on the text input after it mounts because of
+        // the case in which the dropdown switches between virtualized and
+        // non-virtualized. It can rerender the search field as the user is
+        // typing based on the number of search results, which results
+        // in losing focus on the field so the user can't type anymore.
+        // To work around this issue, this temporary fix auto-focuses on the
+        // search field on mount.
+        if (this.props.autofocus) {
+            this.props.itemRef?.current.focus();
+        }
+    }
 
     static __IS_SEARCH_TEXT_INPUT__: boolean = true;
 
