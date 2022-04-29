@@ -31,6 +31,8 @@ export type {GqlFetchMockFn, GqlMock, GqlMockOperation} from "./gql/types.js";
 
 // Test harness framework
 export * from "./harness/types.js";
+export * as harnessAdapters from "./harness/adapters/adapters.js";
 export {makeHookHarness} from "./harness/make-hook-harness.js";
 export {makeTestHarness} from "./harness/make-test-harness.js";
-export * as harnessAdapters from "./harness/adapters/adapters.js";
+export {hookHarness} from "./harness/hook-harness.js";
+export {testHarness} from "./harness/test-harness.js";
