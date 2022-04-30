@@ -1,0 +1,137 @@
+import {Meta, Story, Canvas} from "@storybook/addon-docs";
+import {StyleSheet} from "aphrodite";
+
+import Color from "@khanacademy/wonder-blocks-color";
+import {Checkbox} from "@khanacademy/wonder-blocks-form";
+import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
+
+<Meta
+    title="Form/Checkbox/Accessibility"
+    component={Checkbox}
+    parameters={{
+        previewTabs: {
+            canvas: {hidden: true},
+        },
+        viewMode: "docs",
+        chromatic: {
+            // Disables chromatic testing for these stories.
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+export const ErrorTemplate = (args) => {
+    const [checked, setChecked] = React.useState(false);
+    const errorState = !checked;
+    return (
+        <View>
+            <Checkbox
+                checked={checked}
+                onChange={setChecked}
+                error={errorState}
+                aria-describedby={errorState && "error-message"}
+                aria-required={true}
+                {...args}
+            />
+            {errorState && (
+                <LabelSmall style={styles.error} id="error-message">
+                    You must agree to the terms to continue
+                </LabelSmall>
+            )}
+        </View>
+    );
+};
+
+export const DisabledTemplate = (args) => {
+    const [checked, setChecked] = React.useState(false);
+    const errorState = !checked;
+    return (
+        <Checkbox
+            checked={checked}
+            onChange={setChecked}
+            label="Some setting"
+            description="You do not have permission to change this setting"
+            disabled={true}
+        />
+    );
+};
+
+## Accessibility
+
+### ARIA
+
+`Checkbox` can take in all ARIA props defined in Wonder Blocks Core types.
+
+Elements with role `"checkbox"` can have an `aria-checked` property that
+exposes the checked state to assistive technology. The dev does not have
+to worry about this because the Wonder Blocks Checkbox component is an
+`input` element with type `"checkbox"`, as this has built-in semantics and
+does not require ARIA.
+
+The current implementation of `Checkbox` uses `aria-describedby` with the
+label and description that may be passed in as props.
+
+See the Error section for information about `aria-invalid` and
+`aria-required`.
+
+### Error state
+
+The Wonder Blocks `Checkbox` component takes an `error` boolean prop. Setting
+this prop to true will set `aria-invalid` to true, and the color of the
+checkbox to red.
+
+When a form input is invalid, the dev should provide a reason for why
+this is.
+
+Generally, it is also suggested this is the validation error message is
+passed to the checkbox's `aria-describedby` prop so assistive tech can
+read it. However, this is not possible with the current implementation of
+the Wonder Blocks Form Checkbox component.
+
+The error state can be used to signal that a required checkbox has not been
+checked. In cases where a checkbox is required, the checkbox component should
+set the `aria-required` prop to true for assistive tech.
+There should also be some sort of visual indication that checking
+the box is required, such as a "Required" label or an asterisk.
+
+<Canvas>
+    <Story
+        name="Error state"
+        args={{
+            label: "I accept the terms and conditions",
+        }}
+    >
+        {ErrorTemplate.bind({})}
+    </Story>
+</Canvas>
+
+### Disabled state
+
+The Wonder Blocks `Checkbox` compoenent takes a `disabled` boolean prop.
+This sets the underlying `input` element's `disabled` prop to true.
+This makes is so that the checkbox is not interactable. Also, assistive
+tech will indicated that the checkbox is dimmed.
+
+A user will not be able to navigate to the checkbox with a keyboard.
+Screen reader users will be able to navigate to the checkbox with
+screen reader controls.
+
+It is suggested that if an element is disabled, an explanation as to why
+should to provided somewhere.
+
+<Canvas>
+    <Story name="Disabled state">{DisabledTemplate.bind({})}</Story>
+</Canvas>
+
+### References
+
+-   [Accessible validation of checkbox and radiobutton groups](https://blog.tenon.io/accessible-validation-of-checkbox-and-radiobutton-groups/)
+-   [HTML: Validating a checkbox with HTML5](https://www.the-art-of-web.com/html/html5-checkbox-required/#example1)
+-   [aria-checked MDN Docs](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Attributes/aria-checked)
+-   [ARIA: checkbox role MDN Docs](https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/Roles/checkbox_role)
+
+export const styles = StyleSheet.create({
+    error: {
+        color: Color.red,
+    },
+});
