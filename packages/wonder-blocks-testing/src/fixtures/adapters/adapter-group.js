@@ -1,12 +1,12 @@
 // @flow
 import type {
-    AdapterGroup as AdapterGroupInterface,
-    AdapterGroupOptions,
+    FixturesAdapterGroup,
+    FixturesAdapterGroupOptions,
     AdapterFixtureOptions,
 } from "../types.js";
 
 export type CloseGroupFn<TProps: {...}, Options: {...}, Exports: {...}> = (
-    options: $ReadOnly<AdapterGroupOptions>,
+    options: $ReadOnly<FixturesAdapterGroupOptions>,
     adapterOptions: ?$ReadOnly<Options>,
     declaredFixtures: $ReadOnlyArray<AdapterFixtureOptions<TProps>>,
 ) => ?$ReadOnly<Exports>;
@@ -15,11 +15,11 @@ export type CloseGroupFn<TProps: {...}, Options: {...}, Exports: {...}> = (
  * Simple adapter group implementation.
  */
 export class AdapterGroup<TProps: {...}, Options: {...}, Exports: {...}>
-    implements AdapterGroupInterface<TProps, Options, Exports>
+    implements FixturesAdapterGroup<TProps, Options, Exports>
 {
     _closeGroupFn: ?CloseGroupFn<TProps, Options, Exports>;
     +_fixtures: Array<AdapterFixtureOptions<TProps>>;
-    +_options: $ReadOnly<AdapterGroupOptions>;
+    +_options: $ReadOnly<FixturesAdapterGroupOptions>;
 
     /**
      * Create an adapter group.
@@ -30,7 +30,7 @@ export class AdapterGroup<TProps: {...}, Options: {...}, Exports: {...}>
      */
     constructor(
         closeGroupFn: CloseGroupFn<TProps, Options, Exports>,
-        options: $ReadOnly<AdapterGroupOptions>,
+        options: $ReadOnly<FixturesAdapterGroupOptions>,
     ) {
         if (typeof closeGroupFn !== "function") {
             throw new TypeError("closeGroupFn must be a function");

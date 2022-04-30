@@ -4,9 +4,9 @@ import {action} from "@storybook/addon-actions";
 import {Adapter} from "./adapter.js";
 
 import type {
-    AdapterGroupOptions,
+    FixturesAdapterGroupOptions,
     AdapterFixtureOptions,
-    AdapterFactory,
+    FixturesAdapterFactory,
 } from "../types.js";
 
 type StoryContext = {|
@@ -38,9 +38,10 @@ type Exports<TProps: {...}> = {|
 /**
  * Get a fixture framework adapter for Storybook support.
  */
-export const getAdapter: AdapterFactory<StorybookOptions, Exports<any>> = (
-    MountingComponent = null,
-) =>
+export const getAdapter: FixturesAdapterFactory<
+    StorybookOptions,
+    Exports<any>,
+> = (MountingComponent = null) =>
     new Adapter<StorybookOptions, Exports<any>>(
         "storybook",
         <TProps: {...}>(
@@ -50,7 +51,7 @@ export const getAdapter: AdapterFactory<StorybookOptions, Exports<any>> = (
                 // We don't use the default title in Storybook as storybook
                 // will generate titles for us if we pass a nullish title.
                 getDefaultTitle: _,
-            }: $ReadOnly<AdapterGroupOptions>,
+            }: $ReadOnly<FixturesAdapterGroupOptions>,
             adapterOptions: ?$ReadOnly<StorybookOptions>,
             declaredFixtures: $ReadOnlyArray<AdapterFixtureOptions<TProps>>,
         ): ?$ReadOnly<Exports<TProps>> => {

@@ -1,0 +1,23 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Types / FixturesAdapterFactory<>"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# FixturesAdapterFactory&lt;&gt;
+
+```ts
+type FixturesAdapterFactory<
+    TAdapterOptions: {...},
+    TAdapterExports: {...},
+> = (
+    MountingComponent: ?React.ComponentType<CustomWrapperProps<any>>,
+) => FixturesAdapter<TAdapterOptions, TAdapterExports>;
+```
+
+When implementing a custom [`FixturesAdapter<>`](/docs/testing-types-fixturesadapter--page), you should provide a factory function for producing instances of the adapter. This type describes the signature of the factory function.

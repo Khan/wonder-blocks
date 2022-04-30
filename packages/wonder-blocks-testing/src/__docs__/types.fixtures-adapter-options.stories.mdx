@@ -1,0 +1,21 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Types / FixturesAdapterOptions"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# FixturesAdapterOptions
+
+```ts
+type FixturesAdapterOptions = {|
+    storybook?: StorybookOptions,
+    [adapterName: string]: {...},
+|};
+```
+
+Defines the adapter-implementation-specific options that can be used with fixtures when needing to configure them for specific adapters.

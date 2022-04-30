@@ -15,7 +15,7 @@ export type GetPropsOptions = {|
 /**
  * Adapter options keyed by the adapter name.
  */
-export type AdapterOptions = {|
+export type FixturesAdapterOptions = {|
     storybook?: StorybookOptions,
     [adapterName: string]: {...},
 |};
@@ -49,7 +49,7 @@ export type FixturesOptions<TProps: {...}> = {|
     /**
      * Additional options to apply to specific adapters.
      */
-    additionalAdapterOptions?: AdapterOptions,
+    additionalAdapterOptions?: FixturesAdapterOptions,
 |};
 
 /**
@@ -78,7 +78,7 @@ export type AdapterFixtureOptions<TProps: {...}> = {|
 /**
  * Describes a group of fixtures.
  */
-export type AdapterGroupOptions = {|
+export type FixturesAdapterGroupOptions = {|
     /**
      * The title of the group.
      *
@@ -122,7 +122,7 @@ export type CustomWrapperProps<TProps: {...}> = {|
 /**
  * Declares the API for describing a fixture group provided by an adapter.
  */
-export interface AdapterGroup<
+export interface FixturesAdapterGroup<
     TProps: {...},
     TAdapterOptions: {...},
     TAdapterExports: {...},
@@ -150,7 +150,10 @@ export interface AdapterGroup<
 /**
  * Declares the API for an adapter.
  */
-export interface Adapter<TAdapterOptions: {...}, TAdapterExports: {...}> {
+export interface FixturesAdapter<
+    TAdapterOptions: {...},
+    TAdapterExports: {...},
+> {
     /**
      * The name of the adapter.
      */
@@ -163,8 +166,8 @@ export interface Adapter<TAdapterOptions: {...}, TAdapterExports: {...}> {
      * declared group.
      */
     declareGroup<TProps: {...}>(
-        options: $ReadOnly<AdapterGroupOptions>,
-    ): AdapterGroup<TProps, TAdapterOptions, TAdapterExports>;
+        options: $ReadOnly<FixturesAdapterGroupOptions>,
+    ): FixturesAdapterGroup<TProps, TAdapterOptions, TAdapterExports>;
 }
 
 /**
@@ -174,7 +177,7 @@ export type Configuration<TAdapterOptions: {...}, TAdapterExports: {...}> = {|
     /**
      * The adapter to use for declaring fixtures.
      */
-    +adapter: Adapter<TAdapterOptions, TAdapterExports>,
+    +adapter: FixturesAdapter<TAdapterOptions, TAdapterExports>,
 
     /**
      * Default options to apply to every fixture group.
@@ -186,6 +189,9 @@ export type Configuration<TAdapterOptions: {...}, TAdapterExports: {...}> = {|
     +defaultAdapterOptions?: $ReadOnly<Partial<TAdapterOptions>>,
 |};
 
-export type AdapterFactory<TAdapterOptions: {...}, TAdapterExports: {...}> = (
+export type FixturesAdapterFactory<
+    TAdapterOptions: {...},
+    TAdapterExports: {...},
+> = (
     MountingComponent: ?React.ComponentType<CustomWrapperProps<any>>,
-) => Adapter<TAdapterOptions, TAdapterExports>;
+) => FixturesAdapter<TAdapterOptions, TAdapterExports>;

@@ -5,16 +5,16 @@ export * as fixtureAdapters from "./fixtures/adapters/adapters.js";
 export {fixtures} from "./fixtures/fixtures.js";
 export {setup as setupFixtures} from "./fixtures/setup.js";
 export type {
-    Adapter,
-    AdapterFactory,
     AdapterFixtureOptions,
-    AdapterGroup,
-    AdapterGroupOptions,
-    AdapterOptions,
     Configuration,
     CustomWrapperProps,
-    GetPropsOptions,
     FixturesOptions,
+    GetPropsOptions,
+    FixturesAdapter,
+    FixturesAdapterFactory,
+    FixturesAdapterGroup,
+    FixturesAdapterGroupOptions,
+    FixturesAdapterOptions,
 } from "./fixtures/types.js";
 
 // Fetch mocking framework
