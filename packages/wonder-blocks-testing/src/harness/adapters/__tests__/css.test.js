@@ -5,6 +5,19 @@ import {render, screen} from "@testing-library/react";
 import * as Css from "../css.js";
 
 describe("Css.adapter", () => {
+    it("should throw if the config is invalid", () => {
+        // Arrange
+        const badConfig: any = 42;
+
+        // Act
+        const underTest = () => Css.adapter("CHILDREN", badConfig);
+
+        // Assert
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(
+            `"Invalid config: 42"`,
+        );
+    });
+
     it("should render the children", () => {
         // Arrange
         const children = <div data-test-id="children">CHILDREN!</div>;
