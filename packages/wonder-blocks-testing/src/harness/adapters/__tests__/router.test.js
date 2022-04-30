@@ -1,10 +1,25 @@
 // @flow
 import * as React from "react";
-import {withRouter} from "react-router-dom";
+import {withRouter, Prompt} from "react-router-dom";
 import {render} from "@testing-library/react";
 import * as Router from "../router.js";
 
 describe("Router.adapter", () => {
+    it("should throw if the config does not match any expecations", () => {
+        // Arrange
+        const badConfig: any = {
+            bad: "config",
+        };
+
+        // Act
+        const underTest = () => Router.adapter("CHILDREN", badConfig);
+
+        // Assert
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(
+            `"A location or initial history entries must be provided."`,
+        );
+    });
+
     describe.each`
         type          | config
         ${"string"}   | ${"/math"}
@@ -124,6 +139,95 @@ describe("Router.adapter", () => {
 
             // Assert
             expect(historyListen).not.toHaveBeenCalled();
+        });
+    });
+
+    describe("with initialEntries", () => {
+        it("should use the defaultConfig location if initialEntries is empty", () => {
+            // Arrange
+            const matchCatcherFn = jest.fn();
+            const MatchCatcher = withRouter(({match, history}): React.Node => {
+                React.useEffect(() => {
+                    matchCatcherFn(match);
+                }, [match, history]);
+                return null;
+            });
+
+            // Act
+            render(
+                Router.adapter(<MatchCatcher />, {
+                    initialEntries: [],
+                }),
+            );
+
+            // Assert
+            expect(matchCatcherFn).toHaveBeenLastCalledWith(
+                expect.objectContaining({
+                    url: Router.defaultConfig.location,
+                }),
+            );
+        });
+
+        it("should set initialIndex prop on MemoryRouter if given in configuration", () => {
+            // Arrange
+            const matchCatcherFn = jest.fn();
+            const MatchCatcher = withRouter(({match}): React.Node => {
+                React.useEffect(() => {
+                    matchCatcherFn(match);
+                }, [match]);
+                return null;
+            });
+
+            // Act
+            render(
+                Router.adapter(<MatchCatcher />, {
+                    initialEntries: ["/location/old", "/location/current"],
+                    initialIndex: 1,
+                    path: "/location/*",
+                }),
+            );
+
+            // Assert
+            expect(matchCatcherFn).toHaveBeenLastCalledWith(
+                expect.objectContaining({
+                    url: "/location/current",
+                }),
+            );
+        });
+
+        it("should set getUserConfirmation prop on MemoryRouter if given in configuration", () => {
+            // Arrange
+            const getUserConfirmationSpy = jest
+                .fn()
+                .mockImplementation((message, cb) => {
+                    cb(true);
+                });
+            const matchCatcherFn = jest.fn();
+            const MatchCatcher = withRouter(({match, history}): React.Node => {
+                React.useEffect(() => {
+                    if (history.location.pathname === "/location/old") {
+                        // Fire off a location change.
+                        history.goForward();
+                    }
+                    matchCatcherFn(match);
+                }, [match, history]);
+                return <Prompt message="Are you sure?" />;
+            });
+
+            // Act
+            render(
+                Router.adapter(<MatchCatcher />, {
+                    initialEntries: ["/location/old", "/location/current"],
+                    getUserConfirmation: getUserConfirmationSpy,
+                    path: "/location/*",
+                }),
+            );
+
+            // Assert
+            expect(getUserConfirmationSpy).toHaveBeenCalledWith(
+                "Are you sure?",
+                expect.any(Function),
+            );
         });
     });
 });
