@@ -167,6 +167,23 @@ export const WithFilterOpened: StoryComponentType = () => (
     <SingleSelectWithFilter opened={true} />
 );
 
+export const WithFilterOpenedNoValueSelected: StoryComponentType = () => {
+    const [value, setValue] = React.useState(null);
+    const [opened, setOpened] = React.useState(true);
+    return (
+        <SingleSelect
+            onChange={(selected) => setValue(selected)}
+            isFilterable={true}
+            opened={opened}
+            onToggle={(opened) => setOpened(opened)}
+            placeholder="Select a fruit"
+            selectedValue={value}
+        >
+            {optionItems}
+        </SingleSelect>
+    );
+};
+
 export const DropdownInModal: StoryComponentType = () => {
     const [value, setValue] = React.useState(null);
     const [opened, setOpened] = React.useState(true);
