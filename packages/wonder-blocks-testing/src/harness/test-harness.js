@@ -4,7 +4,7 @@ import * as React from "react";
 import {makeTestHarness} from "./make-test-harness.js";
 import {DefaultAdapters, DefaultConfigs} from "./adapters/adapters.js";
 
-import type {Configs} from "./types.js";
+import type {TestHarnessConfigs} from "./types.js";
 
 /**
  * Wrap a component with a test harness using Wonder Blocks default adapters.
@@ -17,7 +17,7 @@ import type {Configs} from "./types.js";
  */
 export const testHarness: <-TProps, +Instance = mixed>(
     Component: React.AbstractComponent<TProps, Instance>,
-    configs?: $Shape<Configs<typeof DefaultAdapters>>,
+    configs?: $Shape<TestHarnessConfigs<typeof DefaultAdapters>>,
 ) => React.AbstractComponent<TProps, Instance> = makeTestHarness(
     DefaultAdapters,
     DefaultConfigs,

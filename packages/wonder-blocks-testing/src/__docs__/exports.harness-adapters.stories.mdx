@@ -1,0 +1,38 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Test Harness / Exports / harnessAdapters"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# harnessAdapters
+
+```ts
+/**
+ * The default adapters provided by Wonder Blocks.
+ */
+const DefaultAdapters = {
+    css: css.adapter,
+    data: data.adapter,
+    portal: portal.adapter,
+    router: router.adapter,
+};
+
+/**
+ * The default configurations to use with the `DefaultAdapters`.
+ */
+const DefaultConfigs: Configs<typeof DefaultAdapters> = {
+    css: css.defaultConfig,
+    data: data.defaultConfig,
+    portal: portal.defaultConfig,
+    router: router.defaultConfig,
+};
+```
+
+These are the adapters available for use with the test harness framework and their default configurations. The [`testHarness()`](/docs/testing-test-harness-exports-testharness--page) and [`hookHarness()`](/docs/testing-test-harness-exports-hookharness--page) methods are constructed using these.
+
+If you want to make your own test harness or hook harness using some of these defaults and some of your own, you can combine them into your call to [`makeTestHarness()`](/docs/testing-test-harness-exports-maketestharness--page) or [`makeHookHarness()`](/docs/testing-test-harness-exports-makehookharness--page).

@@ -4,7 +4,7 @@ import * as React from "react";
 import {makeHookHarness} from "./make-hook-harness.js";
 import {DefaultAdapters, DefaultConfigs} from "./adapters/adapters.js";
 
-import type {Configs} from "./types.js";
+import type {TestHarnessConfigs} from "./types.js";
 
 /**
  * Create test wrapper for hook testing with Wonder Blocks default adapters.
@@ -16,7 +16,7 @@ import type {Configs} from "./types.js";
  * function.
  */
 export const hookHarness: (
-    configs?: $Shape<Configs<typeof DefaultAdapters>>,
+    configs?: $Shape<TestHarnessConfigs<typeof DefaultAdapters>>,
 ) => React.AbstractComponent<any, any> = makeHookHarness(
     DefaultAdapters,
     DefaultConfigs,

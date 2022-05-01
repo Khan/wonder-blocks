@@ -1,14 +1,14 @@
 // @flow
 import * as React from "react";
 
-import type {Configs, Adapters} from "./types.js";
+import type {TestHarnessConfigs, TestHarnessAdapters} from "./types.js";
 
 /**
  * Render test adapters around a child component.
  */
-export const renderAdapters = <TAdapters: Adapters>(
+export const renderAdapters = <TAdapters: TestHarnessAdapters>(
     adapters: TAdapters,
-    configs: Configs<TAdapters>,
+    configs: TestHarnessConfigs<TAdapters>,
     children: React.Node,
 ): React.Node => {
     let currentChildren = children;

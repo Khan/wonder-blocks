@@ -2,7 +2,7 @@
 import * as React from "react";
 import {renderAdapters} from "../render-adapters.js";
 
-import type {Adapter, Configs} from "../types.js";
+import type {TestHarnessAdapter, TestHarnessConfigs} from "../types.js";
 
 describe("#renderAdapters", () => {
     it("should return children if no adapters", () => {
@@ -20,9 +20,9 @@ describe("#renderAdapters", () => {
         // Arrange
         const children = <div>Adapt me!</div>;
         const adapters = {
-            adapterA: ((jest.fn(): any): Adapter<string>),
+            adapterA: ((jest.fn(): any): TestHarnessAdapter<string>),
         };
-        const configs: Configs<typeof adapters> = {
+        const configs: TestHarnessConfigs<typeof adapters> = {
             adapterA: "APPLY A CONFIG",
         };
 
@@ -39,7 +39,7 @@ describe("#renderAdapters", () => {
     it("should render each adapter and the children", () => {
         // Arrange
         const children = "Adapt me!";
-        const adapter: Adapter<string> = (c, conf) => {
+        const adapter: TestHarnessAdapter<string> = (c, conf) => {
             // $FlowIgnore[incompatible-type] We know, it's ok.
             return `${conf}:${c}`;
         };
@@ -48,7 +48,7 @@ describe("#renderAdapters", () => {
             adapterB: adapter,
             adapterC: adapter,
         };
-        const configs: Configs<typeof adapters> = {
+        const configs: TestHarnessConfigs<typeof adapters> = {
             adapterA: "A",
             adapterB: "B",
             adapterC: "C",
@@ -64,7 +64,7 @@ describe("#renderAdapters", () => {
     it("should skip adapters where the corresponding config is null", () => {
         // Arrange
         const children = "Adapt me!";
-        const adapter: Adapter<string> = (c, conf) => {
+        const adapter: TestHarnessAdapter<string> = (c, conf) => {
             // $FlowIgnore[incompatible-type] We know, it's ok.
             return `${conf}:${c}`;
         };
@@ -73,7 +73,7 @@ describe("#renderAdapters", () => {
             adapterB: adapter,
             adapterC: adapter,
         };
-        const configs: Configs<typeof adapters> = {
+        const configs: TestHarnessConfigs<typeof adapters> = {
             adapterA: "A",
             adapterB: null,
             adapterC: "C",

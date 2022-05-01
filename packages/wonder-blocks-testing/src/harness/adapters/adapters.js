@@ -4,7 +4,7 @@ import * as data from "./data.js";
 import * as portal from "./portal.js";
 import * as router from "./router.js";
 
-import type {Configs} from "../types.js";
+import type {TestHarnessConfigs} from "../types.js";
 
 /**
  * NOTE: We do not type `DefaultAdapters` with `Adapters` here because we want
@@ -25,14 +25,9 @@ export const DefaultAdapters = {
 /**
  * The default configurations to use with the `DefaultAdapters`.
  */
-export const DefaultConfigs: Configs<typeof DefaultAdapters> = {
+export const DefaultConfigs: TestHarnessConfigs<typeof DefaultAdapters> = {
     css: css.defaultConfig,
     data: data.defaultConfig,
     portal: portal.defaultConfig,
     router: router.defaultConfig,
 };
-
-export {css};
-export {data};
-export {portal};
-export {router};

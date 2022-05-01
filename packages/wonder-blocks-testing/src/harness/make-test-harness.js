@@ -3,7 +3,7 @@ import * as React from "react";
 
 import {renderAdapters} from "./render-adapters.js";
 
-import type {Adapters, Configs} from "./types.js";
+import type {TestHarnessAdapters, TestHarnessConfigs} from "./types.js";
 
 /**
  * Create a test harness method for use with React components.
@@ -20,12 +20,12 @@ import type {Adapters, Configs} from "./types.js";
  *     configs?: $Shape<Configs<TAdapters>>,
  * ) => React.AbstractComponent<TProps, Instance>} A test harness.
  */
-export const makeTestHarness = <TAdapters: Adapters>(
+export const makeTestHarness = <TAdapters: TestHarnessAdapters>(
     adapters: TAdapters,
-    defaultConfigs: Configs<TAdapters>,
+    defaultConfigs: TestHarnessConfigs<TAdapters>,
 ): (<-TProps, +Instance = mixed>(
     Component: React.AbstractComponent<TProps, Instance>,
-    configs?: $Shape<Configs<TAdapters>>,
+    configs?: $Shape<TestHarnessConfigs<TAdapters>>,
 ) => React.AbstractComponent<TProps, Instance>) => {
     /**
      * Create a harnessed version of the given component.
@@ -37,7 +37,7 @@ export const makeTestHarness = <TAdapters: Adapters>(
      */
     return <-TProps, +Instance = mixed>(
         Component: React.AbstractComponent<TProps, Instance>,
-        configs?: $Shape<Configs<TAdapters>>,
+        configs?: $Shape<TestHarnessConfigs<TAdapters>>,
     ): React.AbstractComponent<TProps, Instance> => {
         /**
          * $FlowIgnore[cannot-spread-indexer]
@@ -45,7 +45,7 @@ export const makeTestHarness = <TAdapters: Adapters>(
          * The interface definition handles the typing for us so we're ok
          * with it not being inferred here.
          */
-        const fullConfig: Configs<TAdapters> = {
+        const fullConfig: TestHarnessConfigs<TAdapters> = {
             ...defaultConfigs,
             ...configs,
         };
