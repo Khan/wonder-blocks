@@ -3,12 +3,7 @@ import * as React from "react";
 import {InterceptRequests} from "@khanacademy/wonder-blocks-data";
 import type {TestHarnessAdapter} from "../types.js";
 
-type InterceptConfig<K> = $Diff<
-    React.ElementConfig<K>,
-    {|children: React.Node|},
->;
-type InterceptRequestsConfig = InterceptConfig<typeof InterceptRequests>;
-type Interceptor = InterceptRequestsConfig["interceptor"];
+type Interceptor = React.ElementConfig<typeof InterceptRequests>["interceptor"];
 
 type Config = Interceptor | Array<Interceptor>;
 
