@@ -34,7 +34,7 @@ const stories: Array<mixed> = Object.values(
     fixtures(
         {
             component: MyComponent,
-            title: "Testing/Fixtures Framework/DefaultWrapper",
+            title: "Testing / Fixtures / DefaultWrapper",
             defaultWrapper: DefaultWrapper,
         },
         (fixture) => {

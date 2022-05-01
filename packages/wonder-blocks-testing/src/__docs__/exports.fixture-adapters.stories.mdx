@@ -1,7 +1,7 @@
 import {Meta} from "@storybook/addon-docs";
 
 <Meta
-    title="Testing / Exports / fixtureAdapters"
+    title="Testing / Fixtures / Exports / fixtureAdapters"
     parameters={{
         chromatic: {
             disableSnapshot: true,
@@ -38,11 +38,12 @@ type Exports<TProps: {...}> = {|
     [story: string]: React.ComponentType<TProps>,
 |};
 
-{
+
+const fixtureAdapters = {
     storybook: AdapterFactory<StorybookOptions, Exports<any>>,
 }
 ```
 
-These are the adapters available for use with the fixtures framework. If an adapter is not listed here for the framework you want, you can create your own conforming to the [`FixturesAdapterFactory`](/docs/testing-types-fixturesadapterfactory--page) type.
+These are the adapters available for use with the fixtures framework. If an adapter is not listed here for the framework you want, you can create your own conforming to the [`FixturesAdapterFactory`](/docs/testing-fixtures-types-fixturesadapterfactory--page) type.
 
-To configure the fixtures framework, use an adapter with the [`setupFixtures`](/docs/testing-exports-setupfixtures--page) function.
+To configure the fixtures framework, use an adapter with the [`setupFixtures`](/docs/testing-fixtures-exports-setupfixtures--page) function.

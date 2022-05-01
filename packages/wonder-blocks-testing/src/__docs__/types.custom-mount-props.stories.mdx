@@ -1,0 +1,35 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Fixtures / Types / CustomMountProps<>"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# CustomMountProps&lt;&gt;
+
+```ts
+type CustomMountProps<TProps: {...}> = {|
+    /**
+     * The fixture props for the component to be rendered.
+     */
+    props: TProps,
+
+    /**
+     * The component to render.
+     */
+    component: React.ComponentType<TProps>,
+
+    /**
+     * The log callback for logging information.
+     */
+    log: (message: string, ...args: Array<any>) => mixed,
+|};
+```
+
+When creating a new adapter instance, the [`FixtureAdapterFactory`](/docs/testing-fixtures-types-fixtureadapterfactory--page) can take an optional component to be used as the root component for each fixture, also know as the mounting component.
+
+The `CustomMountProps<>` type defines the props that will be applied to that mounting component. It includes the `component` to be rendered as the fixture, the `props` to pass to that component, and the `log` callback, which the mounting component can use for any logging it may require.

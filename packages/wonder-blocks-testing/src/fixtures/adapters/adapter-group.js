@@ -2,13 +2,13 @@
 import type {
     FixturesAdapterGroup,
     FixturesAdapterGroupOptions,
-    AdapterFixtureOptions,
+    FixturesAdapterFixtureOptions,
 } from "../types.js";
 
 export type CloseGroupFn<TProps: {...}, Options: {...}, Exports: {...}> = (
     options: $ReadOnly<FixturesAdapterGroupOptions>,
     adapterOptions: ?$ReadOnly<Options>,
-    declaredFixtures: $ReadOnlyArray<AdapterFixtureOptions<TProps>>,
+    declaredFixtures: $ReadOnlyArray<FixturesAdapterFixtureOptions<TProps>>,
 ) => ?$ReadOnly<Exports>;
 
 /**
@@ -18,7 +18,7 @@ export class AdapterGroup<TProps: {...}, Options: {...}, Exports: {...}>
     implements FixturesAdapterGroup<TProps, Options, Exports>
 {
     _closeGroupFn: ?CloseGroupFn<TProps, Options, Exports>;
-    +_fixtures: Array<AdapterFixtureOptions<TProps>>;
+    +_fixtures: Array<FixturesAdapterFixtureOptions<TProps>>;
     +_options: $ReadOnly<FixturesAdapterGroupOptions>;
 
     /**
@@ -71,11 +71,11 @@ export class AdapterGroup<TProps: {...}, Options: {...}, Exports: {...}>
     /**
      * Declare a fixture within the group.
      *
-     * @param {AdapterFixtureOptions<Config>} fixtureOptions The options
+     * @param {FixturesAdapterFixtureOptions<TProps>} fixtureOptions The options
      * describing the fixture.
      */
     +declareFixture: (
-        options: $ReadOnly<AdapterFixtureOptions<TProps>>,
+        options: $ReadOnly<FixturesAdapterFixtureOptions<TProps>>,
     ) => void = (options) => {
         if (typeof options !== "object" || options === null) {
             throw new TypeError("options must be an object");

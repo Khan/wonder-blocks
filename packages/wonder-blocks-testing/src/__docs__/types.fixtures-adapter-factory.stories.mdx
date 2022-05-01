@@ -1,7 +1,7 @@
 import {Meta} from "@storybook/addon-docs";
 
 <Meta
-    title="Testing / Types / FixturesAdapterFactory<>"
+    title="Testing / Fixtures / Types / FixturesAdapterFactory<>"
     parameters={{
         chromatic: {
             disableSnapshot: true,
@@ -20,4 +20,4 @@ type FixturesAdapterFactory<
 ) => FixturesAdapter<TAdapterOptions, TAdapterExports>;
 ```
 
-When implementing a custom [`FixturesAdapter<>`](/docs/testing-types-fixturesadapter--page), you should provide a factory function for producing instances of the adapter. This type describes the signature of the factory function.
+When implementing a custom [`FixturesAdapter<>`](/docs/testing-fixtures-types-fixturesadapter--page), you should provide a factory function for producing instances of the adapter. This type describes the signature of the factory function.

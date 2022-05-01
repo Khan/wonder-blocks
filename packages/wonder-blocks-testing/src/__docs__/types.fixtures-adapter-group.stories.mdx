@@ -1,7 +1,7 @@
 import {Meta} from "@storybook/addon-docs";
 
 <Meta
-    title="Testing / Types / FixturesAdapterGroup<>"
+    title="Testing / Fixtures / Types / FixturesAdapterGroup<>"
     parameters={{
         chromatic: {
             disableSnapshot: true,
@@ -20,7 +20,9 @@ interface FixturesAdapterGroup<
     /**
      * Declare a fixture.
      */
-    declareFixture(options: $ReadOnly<AdapterFixtureOptions<TProps>>): void;
+    declareFixture(
+        options: $ReadOnly<FixturesAdapterFixtureOptions<TProps>>,
+    ): void;
 
     /**
      * Close the group and obtain the exports, if the adapter requires any.
@@ -38,4 +40,4 @@ interface FixturesAdapterGroup<
 }
 ```
 
-Each call to the [`fixtures()`](/docs/testing-exports-fixtures--page) function invokes the `declareGroup()` method on the [`FixturesAdapter<>`](/docs/testing-types-fixturesadapter--page) instance that has been configured using [`setupFixtures()`](/docs/testing-exports-setupfixtures--page). The group that is returned by `declareGroup()` must match this interface.
+Each call to the [`fixtures()`](/docs/testing-fixtures-exports-fixtures--page) function invokes the `declareGroup()` method on the [`FixturesAdapter<>`](/docs/testing-fixtures-types-fixturesadapter--page) instance that has been configured using [`setupFixtures()`](/docs/testing-fixtures-exports-setupfixtures--page). The group that is returned by `declareGroup()` must match this interface.

@@ -5,7 +5,7 @@ import {Adapter} from "./adapter.js";
 
 import type {
     FixturesAdapterGroupOptions,
-    AdapterFixtureOptions,
+    FixturesAdapterFixtureOptions,
     FixturesAdapterFactory,
 } from "../types.js";
 
@@ -53,7 +53,9 @@ export const getAdapter: FixturesAdapterFactory<
                 getDefaultTitle: _,
             }: $ReadOnly<FixturesAdapterGroupOptions>,
             adapterOptions: ?$ReadOnly<StorybookOptions>,
-            declaredFixtures: $ReadOnlyArray<AdapterFixtureOptions<TProps>>,
+            declaredFixtures: $ReadOnlyArray<
+                FixturesAdapterFixtureOptions<TProps>,
+            >,
         ): ?$ReadOnly<Exports<TProps>> => {
             const templateMap = new WeakMap();
 

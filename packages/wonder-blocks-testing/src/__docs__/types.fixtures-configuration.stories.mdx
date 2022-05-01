@@ -1,0 +1,35 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Fixtures / Types / FixturesConfiguration<>"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# FixturesConfiguration&lt;&gt;
+
+```ts
+type FixturesConfiguration<
+    TAdapterOptions: {...},
+    TAdapterExports: {...},
+> = {|
+    /**
+     * The adapter to use for declaring fixtures.
+     */
+    +adapter: FixturesAdapter<TAdapterOptions, TAdapterExports>,
+
+    /**
+     * Default options to apply to every fixture group.
+     *
+     * Each top-level option in this object will be merged with the equivalent
+     * top-level option that a specific fixture requests. Where collisions
+     * occur, the fixture options win.
+     */
+    +defaultAdapterOptions?: $ReadOnly<Partial<TAdapterOptions>>,
+|};
+```
+
+The configuration type passed to [`setupFixtures()`](/docs/testing-fixtures-exports-setupfixtures--page).

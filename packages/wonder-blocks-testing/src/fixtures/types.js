@@ -55,7 +55,7 @@ export type FixturesOptions<TProps: {...}> = {|
 /**
  * Describes a single fixture.
  */
-export type AdapterFixtureOptions<TProps: {...}> = {|
+export type FixturesAdapterFixtureOptions<TProps: {...}> = {|
     /**
      * Description of the fixture.
      */
@@ -100,9 +100,9 @@ export type FixturesAdapterGroupOptions = {|
 |};
 
 /**
- * Describes the props that an adapter will inject for custom wrappers.
+ * Describes props that an adapter will inject for custom mounting components.
  */
-export type CustomWrapperProps<TProps: {...}> = {|
+export type CustomMountProps<TProps: {...}> = {|
     /**
      * The fixture props for the component to be rendered.
      */
@@ -130,7 +130,9 @@ export interface FixturesAdapterGroup<
     /**
      * Declare a fixture.
      */
-    declareFixture(options: $ReadOnly<AdapterFixtureOptions<TProps>>): void;
+    declareFixture(
+        options: $ReadOnly<FixturesAdapterFixtureOptions<TProps>>,
+    ): void;
 
     /**
      * Close the group and obtain the exports, if the adapter requires any.
@@ -173,7 +175,10 @@ export interface FixturesAdapter<
 /**
  * Describes the configuration for the fixture framework.
  */
-export type Configuration<TAdapterOptions: {...}, TAdapterExports: {...}> = {|
+export type FixturesConfiguration<
+    TAdapterOptions: {...},
+    TAdapterExports: {...},
+> = {|
     /**
      * The adapter to use for declaring fixtures.
      */
@@ -193,5 +198,5 @@ export type FixturesAdapterFactory<
     TAdapterOptions: {...},
     TAdapterExports: {...},
 > = (
-    MountingComponent: ?React.ComponentType<CustomWrapperProps<any>>,
+    MountingComponent: ?React.ComponentType<CustomMountProps<any>>,
 ) => FixturesAdapter<TAdapterOptions, TAdapterExports>;

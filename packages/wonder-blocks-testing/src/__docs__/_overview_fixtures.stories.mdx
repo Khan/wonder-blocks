@@ -1,0 +1,22 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Fixtures / Overview"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# Fixtures
+
+The fixtures framework provides an agnostic way to declare component fixtures that can then be adapted via runtime configuration to the fixture rendering environment of choice.
+
+To use the framework for defining fixtures, import the [`fixtures()`](/docs/testing-fixtures-exports-fixtures--page) method. You can configure the framework for your specific environment (such as Storybook) using the [`setupFixtures()`](/docs/testing-fixtures-exports-setupfixtures--page) method.
+
+An adapter to output fixtures for [Storybook](/docs/testing-fixtures-exports-fixtureadapters--page) is included.
+
+Some examples of this framework in use with Storybook can be seen [here](/docs/testing-fixtures-basic--f-1).
+
+Types are also exported to enable the creation of adapters for other environments as you may need.
