@@ -4,7 +4,7 @@ import * as React from "react";
 /**
  * A adapter to be composed with our test harnass infrastructure.
  */
-export type TestHarnessAdapter<TConfig> = (
+export type TestHarnessAdapter<-TConfig> = (
     children: React.Node,
     config: TConfig,
 ) => React.Element<any>;
@@ -34,24 +34,24 @@ type ExtractMaybeConfig = <TConfig>(TestHarnessAdapter<TConfig>) => ?TConfig;
 /**
  * Type for easily defining an adapter's config type.
  *
- * This is the Adapter equivalent of React.ElementConfig.
+ * This is the `TestHarnessAdapter` equivalent of `React.ElementConfig`.
  */
-export type TestHarnessConfig<TAdapter> = $Call<ExtractConfig, TAdapter>;
+export type TestHarnessConfig<-TAdapter> = $Call<ExtractConfig, TAdapter>;
 
 /**
- * The Configs type as defined by parsing a given set of adapters.
+ * The `TestHarnessConfigs` type as defined by parsing a given set of adapters.
  *
- * NOTE: This only works if the properties of the passed TAdapters type
+ * NOTE: This only works if the properties of the passed `TAdapters` type
  * are explicitly typed as `TestHarnessAdapter<TConfig>` so if passing in a
- * non-Adapters type (which we should be, to get strong TConfig types instead
+ * non-Adapters type (which we should be, to get strong `TConfig` types instead
  * of `any`), then that object should make sure that each adapter is strongly
  * marked as `TestHarnessAdapter<TConfig>` - flow does not appear to pattern
- * match against the type definition when invoking the ExtractConfig type and I
+ * match against the type definition when invoking the `ExtractConfig` type and I
  * haven't worked out how to get it to multi-dispatch so that it matches
  * functions too. Even worse, if the type doesn't match, it just allows `any`
- * in the Configs object, rather than indicating any kind of problem.
+ * in the `Configs` object, rather than indicating any kind of problem.
  */
-export type TestHarnessConfigs<TAdapters: TestHarnessAdapters> = $ObjMap<
+export type TestHarnessConfigs<-TAdapters: TestHarnessAdapters> = $ObjMap<
     TAdapters,
     ExtractMaybeConfig,
 >;
