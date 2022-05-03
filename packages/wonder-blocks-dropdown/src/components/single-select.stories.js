@@ -184,6 +184,12 @@ export const WithFilterOpenedNoValueSelected: StoryComponentType = () => {
     );
 };
 
+WithFilterOpenedNoValueSelected.parameters = {
+    // Set a delay so chromatic takes a screenshot of the whole open
+    // dropdown list, not just the opener element.
+    chromatic: {delay: 300},
+};
+
 export const DropdownInModal: StoryComponentType = () => {
     const [value, setValue] = React.useState(null);
     const [opened, setOpened] = React.useState(true);
