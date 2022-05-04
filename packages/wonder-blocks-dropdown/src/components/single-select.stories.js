@@ -79,12 +79,12 @@ const optionItems = new Array(1000)
     ));
 
 type Props = {|
-    selectedValue: string,
+    selectedValue?: ?string,
     opened: boolean,
 |};
 
 type State = {|
-    selectedValue: string,
+    selectedValue?: ?string,
     opened: boolean,
 |};
 
