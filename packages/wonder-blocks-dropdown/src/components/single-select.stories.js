@@ -79,6 +79,7 @@ const optionItems = new Array(1000)
     ));
 
 type Props = {|
+    selectedValue: string,
     opened: boolean,
 |};
 
@@ -88,16 +89,18 @@ type State = {|
 |};
 
 type DefaultProps = {|
+    selectedValue: $PropertyType<Props, "selectedValue">,
     opened: $PropertyType<Props, "opened">,
 |};
 
 class SingleSelectWithFilter extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
+        selectedValue: "2",
         opened: false,
     };
 
     state: State = {
-        selectedValue: "2",
+        selectedValue: this.props.selectedValue,
         opened: this.props.opened,
     };
 
@@ -167,28 +170,9 @@ export const WithFilterOpened: StoryComponentType = () => (
     <SingleSelectWithFilter opened={true} />
 );
 
-export const WithFilterOpenedNoValueSelected: StoryComponentType = () => {
-    const [value, setValue] = React.useState(null);
-    const [opened, setOpened] = React.useState(true);
-    return (
-        <SingleSelect
-            onChange={(selected) => setValue(selected)}
-            isFilterable={true}
-            opened={opened}
-            onToggle={(opened) => setOpened(opened)}
-            placeholder="Select a fruit"
-            selectedValue={value}
-        >
-            {optionItems}
-        </SingleSelect>
-    );
-};
-
-WithFilterOpenedNoValueSelected.parameters = {
-    // Set a delay so chromatic takes a screenshot of the whole open
-    // dropdown list, not just the opener element.
-    chromatic: {delay: 300},
-};
+export const WithFilterOpenedNoValueSelected: StoryComponentType = () => (
+    <SingleSelectWithFilter opened={true} selectedValue={null} />
+);
 
 export const DropdownInModal: StoryComponentType = () => {
     const [value, setValue] = React.useState(null);
