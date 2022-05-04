@@ -79,25 +79,28 @@ const optionItems = new Array(1000)
     ));
 
 type Props = {|
+    selectedValue?: ?string,
     opened: boolean,
 |};
 
 type State = {|
-    selectedValue: string,
+    selectedValue?: ?string,
     opened: boolean,
 |};
 
 type DefaultProps = {|
+    selectedValue: $PropertyType<Props, "selectedValue">,
     opened: $PropertyType<Props, "opened">,
 |};
 
 class SingleSelectWithFilter extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
+        selectedValue: "2",
         opened: false,
     };
 
     state: State = {
-        selectedValue: "2",
+        selectedValue: this.props.selectedValue,
         opened: this.props.opened,
     };
 
@@ -165,6 +168,10 @@ WithFilter.parameters = {
 
 export const WithFilterOpened: StoryComponentType = () => (
     <SingleSelectWithFilter opened={true} />
+);
+
+export const WithFilterOpenedNoValueSelected: StoryComponentType = () => (
+    <SingleSelectWithFilter opened={true} selectedValue={null} />
 );
 
 export const DropdownInModal: StoryComponentType = () => {

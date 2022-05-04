@@ -24,6 +24,9 @@ export const filterableDropdownStyle = {
 export const searchInputStyle = {
     margin: Spacing.xSmall_8,
     marginTop: Spacing.xxxSmall_4,
+    // Set `minHeight` to "auto" to stop the search field from having
+    // a height of 0 and being cut off.
+    minHeight: "auto",
 };
 
 // The default item height

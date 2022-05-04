@@ -669,6 +669,12 @@ class DropdownCore extends React.Component<Props, State> {
                     },
                     // apply custom styles
                     style: searchInputStyle,
+                    // TODO(WB-1310): Remove the autofocus prop after making
+                    // the search field sticky.
+                    // Currently autofocusing on the search field to work
+                    // around it losing focus on mount when switching between
+                    // virtualized and non-virtualized dropdown filter results.
+                    autofocus: this.focusedIndex === 0,
                 });
             }
 
@@ -719,6 +725,12 @@ class DropdownCore extends React.Component<Props, State> {
                         itemRef: this.state.itemRefs[focusIndex]
                             ? this.state.itemRefs[focusIndex].ref
                             : null,
+                        // TODO(WB-1310): Remove the autofocus prop after making
+                        // the search field sticky.
+                        // Currently autofocusing on the search field to work
+                        // around it losing focus on mount when switching between
+                        // virtualized and non-virtualized dropdown filter results.
+                        autofocus: this.focusedIndex === 0,
                     },
                 };
             }
