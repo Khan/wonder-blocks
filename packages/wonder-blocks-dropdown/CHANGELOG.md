@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.7.1
+
+### Patch Changes
+
+-   9c2580e6: Fixed the search field focus bug in dropdowns
+
 ## 2.7.0
 
 ### Minor Changes
