@@ -1,0 +1,37 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Fixtures / Types / FixturesAdapterGroupOptions"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# FixturesAdapterGroupOptions
+
+```ts
+type FixturesAdapterGroupOptions = {|
+    /**
+     * The title of the group.
+     *
+     * If omitted, the adapter is free to generate a default or ask for one
+     * using the passed getDefaultTitle() function.
+     */
+    +title: ?string,
+
+    /**
+     * Description of the group.
+     */
+    +description: ?string,
+
+    /**
+     * Function that will generate a default title if an adapter cannot
+     * generate its own.
+     */
+    +getDefaultTitle: () => string,
+|};
+```
+
+These are options that the fixtures framework provides when `declareGroup()` is called on the configured adapter to create a new [`FixturesAdapterGroup<>`](/docs/testing-fixtures-types-fixturesadaptergroup--page).

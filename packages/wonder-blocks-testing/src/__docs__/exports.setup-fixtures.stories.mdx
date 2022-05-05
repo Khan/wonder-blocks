@@ -1,0 +1,22 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Fixtures / Exports / setupFixtures()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# setupFixtures()
+
+```ts
+setupFixtures<TAdapterOptions: {...}, TAdapterExports: {...}>(
+    configuration: $ReadOnly<
+        FixturesConfiguration<TAdapterOptions, TAdapterExports>,
+    >,
+);
+```
+
+This method configures the fixtures framework so that it can adapt defined fixtures to the framework that is to be supported. The configuration is of type [`FixturesConfiguration`](/docs/testing-fixtures-types-fixturesconfiguration--page).

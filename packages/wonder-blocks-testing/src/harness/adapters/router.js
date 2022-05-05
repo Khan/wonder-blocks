@@ -4,7 +4,7 @@ import * as React from "react";
 import {StaticRouter, MemoryRouter, Route, Switch} from "react-router-dom";
 
 import type {LocationShape, Location} from "react-router-dom";
-import type {Adapter} from "../types.js";
+import type {TestHarnessAdapter} from "../types.js";
 
 type MemoryRouterProps = React.ElementConfig<typeof MemoryRouter>;
 
@@ -130,7 +130,7 @@ const maybeWithRoute = (children: React.Node, path: ?string): React.Node => {
  * adapter with the App component will have zero-effect since AppShell will
  * override it.
  */
-export const adapter: Adapter<Config> = (
+export const adapter: TestHarnessAdapter<Config> = (
     children: React.Node,
     config: Config,
 ): React.Element<any> => {

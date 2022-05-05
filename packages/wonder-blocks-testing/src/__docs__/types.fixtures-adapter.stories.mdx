@@ -1,0 +1,35 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Fixtures / Types / FixturesAdapter<>"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# FixturesAdapter&lt;&gt;
+
+```ts
+interface FixturesAdapter<TAdapterOptions: {...}, TAdapterExports: {...}> {
+    /**
+     * The name of the adapter.
+     */
+    get name(): string;
+
+    /**
+     * Declare a fixture group.
+     *
+     * @returns {FixturesAdapterGroup<TProps, TAdapterOptions, TAdapterExports>} The
+     * declared group.
+     */
+    declareGroup<TProps: {...}>(
+        options: $ReadOnly<AdapterGroupOptions>,
+    ): FixturesAdapterGroup<TProps, TAdapterOptions, TAdapterExports>;
+}
+```
+
+This type describes an adapter for use with our fixtures framework.
+
+

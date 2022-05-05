@@ -1,0 +1,53 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Fixtures / Exports / fixtures()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# fixtures()
+
+```ts
+type FixtureProps<TProps: {...}> =
+    | $ReadOnly<TProps>
+    | ((options: $ReadOnly<GetPropsOptions>) => $ReadOnly<TProps>);
+
+fixtures<TProps: {...}>(
+    component: React.ComponentType<TProps>,
+    fn: (
+        fixture: (
+            description: string,
+            props: FixtureProps<TProps>,
+            wrapper?: React.ComponentType<TProps>,
+        ) => void,
+    ) => void,
+): ?$ReadOnly<mixed>;
+
+
+fixtures<TProps: {...}>(
+    options: $ReadOnly<FixturesOptions<TProps>>,
+    fn: (
+        fixture: (
+            description: string,
+            props: FixtureProps<TProps>,
+            wrapper?: React.ComponentType<TProps>,
+        ) => void,
+    ) => void,
+): ?$ReadOnly<mixed>;
+```
+
+The `fixtures()` method is used to define a set of fixtures for a component. It provides a way to describe fixtures as one might describe unit tests. Fixtures are like stories in Storybook (and, if the fixtures framework is configured for storybook, will be stories).
+
+The return value provides the module exports that your fixture file should export. If your build system supports CommonJS syntax, this can be exported using `module.exports = returnValue`; however, if you need to use ESM syntax, you may need to do something like we do in [our Fixtures Framework example stories](/docs/testing-fixtures-basic--f-1).
+
+There are two ways to call the `fixtures()` function; with a component and callback, or with a set of [options](/docs/testing-fixtures-types-fixtureoptions--page) and callback.
+
+The second argument is a callback in which you should define your fixture susing the passed `fixture` function (the first and only argument of the callback). The `fixture` function takes two or three arguments:
+
+- `description: string`: A string describing the fixture. This should be used to explain what the fixture is expected to show.
+- `props: FixtureProps<TProps>`: The props that the fixture should be rendered with. This can be either a plain object, or a function that returns a plain object. The function will be called with an API to assist in generating the props (see [`GetPropsOptions`](/docs/testing-fixtures-types-getpropsoptions--page)).
+- `wrapper?: React.ComponentType<TProps>`: An optional component that will be rendered around the fixture. This can be used to wrap the fixture in a component that adds additional functionality, such as a test harness (see [`makeTestHarness`](/docs/testing-test-harness-exports-maketestharness--page)).

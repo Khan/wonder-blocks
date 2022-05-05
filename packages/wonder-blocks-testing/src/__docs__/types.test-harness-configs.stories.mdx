@@ -1,0 +1,59 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Test Harness / Types / TestHarnessConfigs<>"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# TestHarnessConfigs&lt;&gt;
+
+```ts
+type TestHarnessConfigs<TAdapters: TestHarnessAdapters>;
+```
+
+When given the type of a set of adapters conforming to [`TestHarnessAdapters`](/docs/testing-test-harness-types-testharnessadapters--page), this type will represent a set of configurations for those adapters.
+
+It is important to note here that if the `TAdapters` type passed in is the actual `TestHarnessAdapters` type, then the resulting configuration type will have each adapter's config being set to `any`. Instead of using the `TestHarnessAdapters` type directly, the passed object should not be typed as that, but should merely conform to that type.
+
+For example, the [`harnessAdapters.DefaultAdapters`](/docs/testing-test-harness-exports-harnessadapters--page) type is specific to the adapters it contains.
+
+```ts
+const DefaultAdapters = {
+    css: css.adapter,
+    data: data.adapter,
+    portal: portal.adapter,
+    router: router.adapter,
+};
+```
+
+`DefaultAdapters` is not strongly typed to `TestHarnessAdapters`. Instead, its type is:
+
+```ts
+type DefaultAdaptersType = {|
+   css: typeof css.adapter,
+   data: typeof data.adapter,
+   portal: typeof portal.adapter,
+   router: typeof router.adapter,
+|};
+```
+
+It conforms to the `TestHarnessAdapters` type, but it is not equivalent to the `TestHarnessAdapters` type. This is important when we consider the companion export, [`harnessAdapters.DefaultConfigs`](/docs/testing-test-harness-exports-harnessadapters--page).
+
+```ts
+const DefaultConfigs: TestHarnessConfigs<typeof DefaultAdapters> = {
+    css: css.defaultConfig,
+    data: data.defaultConfig,
+    portal: portal.defaultConfig,
+    router: router.defaultConfig,
+};
+```
+
+`DefaultConfigs` is typed using `TestHarnessConfigs<typeof DefaultAdapters>`. Because `DefaultAdapters` is strongly typed specifically to each adapter it contains, the type that `TestHarnessConfigs<>` creates ensures that there is one configuration per adapter key, and that the configuration type for each adapter key is correct for the corresponding adapter.
+
+If we had typed `DefaultAdapters` as `TestHarnessAdapters`, then although we would still enforce one configuration per adapter key, we would allow `any` type to provide that configuration, which does not give us any real type safety.
+
+So, to summarize, use `TestHarnessAdapters` in input locations to verify a set of adapters conforms to that type, but avoid using it in output locations as it can erase useful type information.

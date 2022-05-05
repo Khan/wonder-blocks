@@ -3,7 +3,7 @@ import * as React from "react";
 
 import type {CSSProperties} from "aphrodite";
 
-import type {Adapter} from "../types.js";
+import type {TestHarnessAdapter} from "../types.js";
 
 type Config =
     | string
@@ -48,7 +48,7 @@ const normalizeConfig = (
 /**
  * Test harness adapter for adding CSS to the harnessed component wrapper.
  */
-export const adapter: Adapter<Config> = (
+export const adapter: TestHarnessAdapter<Config> = (
     children: React.Node,
     config: Config,
 ): React.Element<any> => {

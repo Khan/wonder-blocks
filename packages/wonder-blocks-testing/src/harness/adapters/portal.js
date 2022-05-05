@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import type {Adapter} from "../types.js";
+import type {TestHarnessAdapter} from "../types.js";
 
 type Config = string;
 
@@ -15,7 +15,7 @@ export const defaultConfig: ?Config = null;
  * that the DOM contains a mounting point for the portal with the expected
  * identifier.
  */
-export const adapter: Adapter<Config> = (
+export const adapter: TestHarnessAdapter<Config> = (
     children: React.Node,
     config: Config,
 ): React.Element<any> => (

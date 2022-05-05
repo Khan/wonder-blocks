@@ -3,7 +3,7 @@ import * as React from "react";
 
 import {makeTestHarness} from "./make-test-harness.js";
 
-import type {Adapters, Configs} from "./types.js";
+import type {TestHarnessAdapters, TestHarnessConfigs} from "./types.js";
 
 const HookHarness = ({children}) => children;
 
@@ -15,17 +15,17 @@ const HookHarness = ({children}) => children;
  *
  * @param {TAdapters} adapters All the adapters to be supported by the returned
  * test harness.
- * @param {Configs<TAdapters>} defaultConfigs Default configuration values for
+ * @param {TestHarnessConfigs<TAdapters>} defaultConfigs Default configuration values for
  * the adapters.
  * @returns {(
- *     configs?: $Shape<Configs<TAdapters>>,
+ *     configs?: $Shape<TestHarnessConfigs<TAdapters>>,
  * ) => React.AbstractComponent<any, any>} A test harness.
  */
-export const makeHookHarness = <TAdapters: Adapters>(
+export const makeHookHarness = <TAdapters: TestHarnessAdapters>(
     adapters: TAdapters,
-    defaultConfigs: Configs<TAdapters>,
+    defaultConfigs: TestHarnessConfigs<TAdapters>,
 ): ((
-    configs?: $Shape<Configs<TAdapters>>,
+    configs?: $Shape<TestHarnessConfigs<TAdapters>>,
 ) => React.AbstractComponent<any, any>) => {
     const testHarness = makeTestHarness<TAdapters>(adapters, defaultConfigs);
     /**
@@ -34,6 +34,6 @@ export const makeHookHarness = <TAdapters: Adapters>(
      * @param {$Shape<Configs<typeof DefaultAdapters>>} [configs] Any adapter
      * configuration that you want to override from the DefaultConfigs values.
      */
-    return (configs?: $Shape<Configs<TAdapters>>) =>
+    return (configs?: $Shape<TestHarnessConfigs<TAdapters>>) =>
         testHarness<any, any>(HookHarness, configs);
 };

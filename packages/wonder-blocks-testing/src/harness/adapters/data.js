@@ -1,14 +1,9 @@
 // @flow
 import * as React from "react";
 import {InterceptRequests} from "@khanacademy/wonder-blocks-data";
-import type {Adapter} from "../types.js";
+import type {TestHarnessAdapter} from "../types.js";
 
-type InterceptConfig<K> = $Diff<
-    React.ElementConfig<K>,
-    {|children: React.Node|},
->;
-type InterceptRequestsConfig = InterceptConfig<typeof InterceptRequests>;
-type Interceptor = InterceptRequestsConfig["interceptor"];
+type Interceptor = React.ElementConfig<typeof InterceptRequests>["interceptor"];
 
 type Config = Interceptor | Array<Interceptor>;
 
@@ -24,7 +19,7 @@ export const defaultConfig = ([]: Array<Interceptor>);
  * This component does not validate the configuration to ensure interceptors
  * are not overriding one another.
  */
-export const adapter: Adapter<Config> = (
+export const adapter: TestHarnessAdapter<Config> = (
     children: React.Node,
     config: Config,
 ): React.Element<any> => {

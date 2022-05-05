@@ -1,0 +1,18 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Test Harness / Types / TestHarnessConfig<>"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# TestHarnessConfig&lt;&gt;
+
+```ts
+type TestHarnessConfig<TAdapter>;
+```
+
+When given an adapter type conforming to [`TestHarnessAdapter`](/docs/testing-test-harness-types-testharnessadapter--page), this type will represent that adapter type's configuration type.

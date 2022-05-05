@@ -1,0 +1,43 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Fixtures / Types / FixturesAdapterGroup<>"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# FixturesAdapterGroup&lt;&gt;
+
+```ts
+interface FixturesAdapterGroup<
+    TProps: {...},
+    TAdapterOptions: {...},
+    TAdapterExports: {...},
+> {
+    /**
+     * Declare a fixture.
+     */
+    declareFixture(
+        options: $ReadOnly<FixturesAdapterFixtureOptions<TProps>>,
+    ): void;
+
+    /**
+     * Close the group and obtain the exports, if the adapter requires any.
+     *
+     * @param {Options} adapterOptions Some options to pass to the adapter.
+     * Allows callers to tailor things to a specific adapter. How these options
+     * are used is adapter-specific.
+     *
+     * @returns {?Exports} The exports that the adapter requires fixture files
+     * to export.
+     */
+    closeGroup(
+        adapterOptions: $ReadOnly<Partial<TAdapterOptions>>,
+    ): ?$ReadOnly<TAdapterExports>;
+}
+```
+
+Each call to the [`fixtures()`](/docs/testing-fixtures-exports-fixtures--page) function invokes the `declareGroup()` method on the [`FixturesAdapter<>`](/docs/testing-fixtures-types-fixturesadapter--page) instance that has been configured using [`setupFixtures()`](/docs/testing-fixtures-exports-setupfixtures--page). The group that is returned by `declareGroup()` must match this interface.

@@ -1,7 +1,7 @@
 import {Meta} from "@storybook/addon-docs";
 
 <Meta
-    title="Testing / Exports / mockGqlFetch()"
+    title="Testing / Mocking / Exports / mockGqlFetch()"
     parameters={{
         chromatic: {
             disableSnapshot: true,
@@ -19,19 +19,24 @@ The `mockGqlFetch` function provides an API to easily mock GraphQL responses for
 
 # API
 
-Besides being a function that fits the [`GqlFetchFn`](/docs/data-types-gqlfetchfn--page) signature, the return value of `mockGqlFetch()` has an API to customize the behavior of that function. Used in conjunction with the [`RespondWith`](/docs/testing-exports-respondwith--page) API, this can create a variety of GraphQL responses for testing and stories.
+Besides being a function that fits the [`GqlFetchFn`](/docs/data-types-gqlfetchfn--page) signature, the return value of `mockGqlFetch()` has an API to customize the behavior of that function. Used in conjunction with the [`RespondWith`](/docs/testing-mocking-exports-respondwith--page) API, this can create a variety of GraphQL responses for testing and stories.
 
 | Function | Purpose |
 | -------- | ------- |
 | `mockOperation` | When called, any GraphQL operation that matches the defined mock operation will respond with the given response. |
-| `mockOperationOnce` | When called, the first GraphQL operation that matches the defined mock operation will respond with the given response. The mock is only used by once. |
+| `mockOperationOnce` | When called, the first GraphQL operation that matches the defined mock operation will respond with the given response. The mock is only used once. |
 
 Both of these functions have the same signature:
 
 ```ts
-type GqlMockOperationFn = <TData, TVariables: {...}, TContext: GqlContext>(
-    matchOperation: GqlMockOperation<TData, TVariables, TContext>,
-    response: GqlMockResponse<TData>,
+type GqlMockOperationFn = <
+    TData: {...},
+    TVariables: {...},
+    TContext: GqlContext,
+    TResponseData: GraphQLJson<TData>,
+>(
+    operation: GqlMockOperation<TData, TVariables, TContext>,
+    response: MockResponse<TResponseData>,
 ) => GqlFetchMockFn;
 ```
 
@@ -40,8 +45,8 @@ type GqlMockOperationFn = <TData, TVariables: {...}, TContext: GqlContext>(
 The `matchOperation` parameter given to a `mockOperation` or `mockOperationOnce` function is a `GqlMockOperation` defining the actual GraphQL operation to be matched by the mock. The variables and context of the mocked operation change how the mock is matched against requests.
 
 ```ts
- type GqlMockOperation<
-    TData,
+type GqlMockOperation<
+    TData: {...},
     TVariables: {...},
     TContext: GqlContext,
 > = {|

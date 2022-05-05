@@ -1,7 +1,7 @@
 import {Meta} from "@storybook/addon-docs";
 
 <Meta
-    title="Testing / Exports / RespondWith"
+    title="Testing / Mocking / Exports / RespondWith"
     parameters={{
         chromatic: {
             disableSnapshot: true,
@@ -13,24 +13,61 @@ import {Meta} from "@storybook/addon-docs";
 
 ```ts
 interface RespondWith {
+    /**
+     * Rejects with an AbortError to simulate an aborted request.
+     */
     abortedRequest: () => MockResponse<any>;
+
+    /**
+     * A non-200 status code with empty text body.
+     * Equivalent to calling `ResponseWith.text("", statusCode)`.
+     */
     errorStatusCode: (statusCode: number) => MockResponse<any>;
+
+    /**
+     * Response with GraphQL data JSON body and status code 200.
+     */
     graphQLData: <TData: {...}>(
         data: TData,
     ) => MockResponse<GraphQLJson<TData>>;
+
+    /**
+     * Response that is a GraphQL errors response with status code 200.
+     */
     graphQLErrors: (
         errorMessages: $ReadOnlyArray<string>,
     ) => MockResponse<any>;
+
+    /**
+     * Response with JSON body and status code 200.
+     */
     json: <TJson: {...}>(json: TJson): MockResponse<TJson>;
+
+    /**
+     * Response body that is valid JSON but not a valid GraphQL response.
+     */
     nonGraphQLBody: () => MockResponse<any>;
+
+    /**
+     * Rejects with the given error.
+     */
     reject: (error: Error) => MockResponse<any>;
+
+    /**
+     * Response with text body and status code.
+     * Status code defaults to 200.
+     */
     text: <TData = string>(
         text: string,
         statusCode: number = 200,
     ) => MockResponse<TData>;
+
+    /**
+     * Response with body that will not parse as JSON and status code 200.
+     */
     unparseableBody: () => MockResponse<any>;
 });
 ```
 
 The `RespondWith` object is a helper for defining mock responses to use with
-mock request methods such as [`mockGqlFetch`](/docs/testing-exports-mockgqlfetch--page).
+mock request methods such as [`mockGqlFetch`](/docs/testing-mocking-exports-mockgqlfetch--page).

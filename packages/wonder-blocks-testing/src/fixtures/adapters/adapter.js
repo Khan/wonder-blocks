@@ -1,16 +1,16 @@
 // @flow
 import {AdapterGroup, type CloseGroupFn} from "./adapter-group.js";
 import type {
-    Adapter as AdapterInterface,
-    AdapterGroup as AdapterGroupInterface,
-    AdapterGroupOptions,
+    FixturesAdapter,
+    FixturesAdapterGroup,
+    FixturesAdapterGroupOptions,
 } from "../types.js";
 
 /**
  * Class for implementing a custom adapter.
  */
 export class Adapter<Options: {...}, Exports: {...}>
-    implements AdapterInterface<Options, Exports>
+    implements FixturesAdapter<Options, Exports>
 {
     +_name: string;
     +_closeGroupFn: CloseGroupFn<any, Options, Exports>;
@@ -51,13 +51,13 @@ export class Adapter<Options: {...}, Exports: {...}>
     /**
      * Declare a new fixture group.
      *
-     * @param {AdapterGroupOptions} options The options describing the fixture
+     * @param {FixturesAdapterGroupOptions} options The options describing the fixture
      * group.
-     * @returns {AdapterGroupInterface} The new fixture group.
+     * @returns {FixturesAdapterGroup} The new fixture group.
      */
     declareGroup<Config: {...}>(
-        options: $ReadOnly<AdapterGroupOptions>,
-    ): AdapterGroupInterface<Config, Options, Exports> {
+        options: $ReadOnly<FixturesAdapterGroupOptions>,
+    ): FixturesAdapterGroup<Config, Options, Exports> {
         return new AdapterGroup(this._closeGroupFn, options);
     }
 }

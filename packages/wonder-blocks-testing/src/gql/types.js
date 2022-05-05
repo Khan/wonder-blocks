@@ -1,6 +1,6 @@
 //@flow
 import type {GqlOperation, GqlContext} from "@khanacademy/wonder-blocks-data";
-import type {OperationMock, GraphQLJson} from "../types.js";
+import type {GraphQLJson} from "../types.js";
 import type {MockResponse} from "../make-mock-response.js";
 
 export type GqlMockOperation<
@@ -32,5 +32,3 @@ export type GqlFetchMockFn = {|
     mockOperation: GqlMockOperationFn,
     mockOperationOnce: GqlMockOperationFn,
 |};
-
-export type GqlMock = OperationMock<GqlMockOperation<any, any, any>>;

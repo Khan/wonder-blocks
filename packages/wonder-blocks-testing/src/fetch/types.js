@@ -1,5 +1,4 @@
 //@flow
-import type {OperationMock} from "../types.js";
 import type {MockResponse} from "../make-mock-response.js";
 
 export type FetchMockOperation = RegExp | string;
@@ -14,5 +13,3 @@ export type FetchMockFn = {|
     mockOperation: FetchMockOperationFn,
     mockOperationOnce: FetchMockOperationFn,
 |};
-
-export type FetchMock = OperationMock<FetchMockOperation>;

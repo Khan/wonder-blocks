@@ -1,25 +1,25 @@
 // @flow
 import type {
-    AdapterGroup as AdapterGroupInterface,
-    AdapterGroupOptions,
-    AdapterFixtureOptions,
+    FixturesAdapterGroup,
+    FixturesAdapterGroupOptions,
+    FixturesAdapterFixtureOptions,
 } from "../types.js";
 
 export type CloseGroupFn<TProps: {...}, Options: {...}, Exports: {...}> = (
-    options: $ReadOnly<AdapterGroupOptions>,
+    options: $ReadOnly<FixturesAdapterGroupOptions>,
     adapterOptions: ?$ReadOnly<Options>,
-    declaredFixtures: $ReadOnlyArray<AdapterFixtureOptions<TProps>>,
+    declaredFixtures: $ReadOnlyArray<FixturesAdapterFixtureOptions<TProps>>,
 ) => ?$ReadOnly<Exports>;
 
 /**
  * Simple adapter group implementation.
  */
 export class AdapterGroup<TProps: {...}, Options: {...}, Exports: {...}>
-    implements AdapterGroupInterface<TProps, Options, Exports>
+    implements FixturesAdapterGroup<TProps, Options, Exports>
 {
     _closeGroupFn: ?CloseGroupFn<TProps, Options, Exports>;
-    +_fixtures: Array<AdapterFixtureOptions<TProps>>;
-    +_options: $ReadOnly<AdapterGroupOptions>;
+    +_fixtures: Array<FixturesAdapterFixtureOptions<TProps>>;
+    +_options: $ReadOnly<FixturesAdapterGroupOptions>;
 
     /**
      * Create an adapter group.
@@ -30,7 +30,7 @@ export class AdapterGroup<TProps: {...}, Options: {...}, Exports: {...}>
      */
     constructor(
         closeGroupFn: CloseGroupFn<TProps, Options, Exports>,
-        options: $ReadOnly<AdapterGroupOptions>,
+        options: $ReadOnly<FixturesAdapterGroupOptions>,
     ) {
         if (typeof closeGroupFn !== "function") {
             throw new TypeError("closeGroupFn must be a function");
@@ -71,11 +71,11 @@ export class AdapterGroup<TProps: {...}, Options: {...}, Exports: {...}>
     /**
      * Declare a fixture within the group.
      *
-     * @param {AdapterFixtureOptions<Config>} fixtureOptions The options
+     * @param {FixturesAdapterFixtureOptions<TProps>} fixtureOptions The options
      * describing the fixture.
      */
     +declareFixture: (
-        options: $ReadOnly<AdapterFixtureOptions<TProps>>,
+        options: $ReadOnly<FixturesAdapterFixtureOptions<TProps>>,
     ) => void = (options) => {
         if (typeof options !== "object" || options === null) {
             throw new TypeError("options must be an object");

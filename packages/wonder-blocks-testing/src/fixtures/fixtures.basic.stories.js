@@ -27,7 +27,7 @@ const stories: Array<mixed> = Object.values(
     fixtures(
         {
             component: MyComponent,
-            title: "Testing/Fixtures/Basic",
+            title: "Testing / Fixtures / Basic",
         },
         (fixture) => {
             fixture("This is a fixture with some regular props", {
