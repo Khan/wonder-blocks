@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-testing
 
+## 5.0.0
+
+### Major Changes
+
+-   217b2c7b: Add test harness framework
+-   a8d9a825: Adapters for fixture framework now exported as `fixtureAdapters`, adapters for test harness framework now exported as `harnessAdapters`. Various types renamed for disambiguation. `FetchMock` and `GqlMock` export types removed.
+
 ## 4.0.4
 
 ### Patch Changes
