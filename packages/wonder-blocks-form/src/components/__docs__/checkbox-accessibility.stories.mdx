@@ -80,7 +80,7 @@ The Wonder Blocks `Checkbox` component takes an `error` boolean prop. Setting
 this prop to true will set `aria-invalid` to true, and the color of the
 checkbox to red.
 
-When a form input is invalid, the dev should provide a reason for why
+When a form input is invalid, the user should provide a reason for why
 this is.
 
 Generally, it is also suggested this is the validation error message is
@@ -122,6 +122,16 @@ should to provided somewhere.
 <Canvas>
     <Story name="Disabled state">{DisabledTemplate.bind({})}</Story>
 </Canvas>
+
+### Keyboard Interaction
+
+If a checkbox is not disabled, a user can tab to it using standard
+keyboard navigation. The Space key toggles the checked state of the checkbox.
+
+Note the the Space key triggers the `onChange` function of the
+Wonder Blocks Checkbox component. If the user does not specify an `onChange`
+funciton prop that in turn updates the value of `checked`, neither clicking
+nor the Space key will toggle the Checkbox.
 
 ### References
 

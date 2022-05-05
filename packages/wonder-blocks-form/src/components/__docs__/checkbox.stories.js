@@ -21,28 +21,39 @@ export default {
     },
 };
 
-export const CheckboxDefault: StoryComponentType = (args) => (
-    <Checkbox {...args} />
-);
+export const Default: StoryComponentType = (args) => <Checkbox {...args} />;
 
-CheckboxDefault.args = {
+Default.args = {
     checked: false,
     onChange: () => {},
 };
 
-export const CheckboxBasic: StoryComponentType = () => {
+Default.parameters = {
+    chromatic: {
+        // We already have screenshots of another story that covers
+        // this and more cases.
+        disableSnapshot: true,
+    },
+};
+
+export const Controlled: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
     return <Checkbox checked={checked} onChange={setChecked} />;
 };
 
-CheckboxBasic.parameters = {
+Controlled.parameters = {
+    chromatic: {
+        // Disabling because this doesn't test visuals, its for testing
+        // that `state` works as expected.
+        disableSnapshot: true,
+    },
     docs: {
         storyDescription:
             "Use state to keep track of whether the checkbox is checked or not",
     },
 };
 
-export const CheckboxVariations: StoryComponentType = () => (
+export const Variants: StoryComponentType = () => (
     <View style={styles.row}>
         <Checkbox
             error={false}
@@ -83,14 +94,14 @@ export const CheckboxVariations: StoryComponentType = () => (
     </View>
 );
 
-CheckboxVariations.parameters = {
+Variants.parameters = {
     docs: {
         storyDescription:
             "The checkbox has various styles for clickable states. Here are sets of default checkboxes, checkboxes in an error state, and disabled checkboxes.",
     },
 };
 
-export const CheckboxLabel: StoryComponentType = () => {
+export const WithLabel: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
 
     return (
@@ -103,14 +114,14 @@ export const CheckboxLabel: StoryComponentType = () => {
     );
 };
 
-CheckboxLabel.parameters = {
+WithLabel.parameters = {
     docs: {
         storyDescription:
             "The checkbox can have a optional label and description. This allows it to be used as a settings-like item. The user of this component is responsible for keeping track of checked state and providing an onChange callback.",
     },
 };
 
-export const CheckboxContext: StoryComponentType = () => {
+export const AdditionalClickTarget: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
     const headingText = "Functions";
     const descriptionText = `A great cook knows how to take basic
@@ -131,7 +142,7 @@ export const CheckboxContext: StoryComponentType = () => {
     );
 };
 
-CheckboxContext.parameters = {
+AdditionalClickTarget.parameters = {
     docs: {
         storyDescription:
             "Sometimes one may wish to use a checkbox in a different context (label may not be right next to the checkbox), like in this example content item. Use a `<label htmlFor={id}>` element where the id matches the `id` prop of the Checkbox. This is for accessibility purposes, and doing this also automatically makes the label a click target for the checkbox.",
