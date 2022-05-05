@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing
 
+## 5.0.1
+
+### Patch Changes
+
+-   5b1c80d2: Fix test harness types
+
 ## 5.0.0
 
 ### Major Changes
