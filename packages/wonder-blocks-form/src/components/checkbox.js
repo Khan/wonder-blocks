@@ -79,8 +79,22 @@ type DefaultProps = {|
  * ☑️ A nicely styled checkbox for all your checking needs. Can optionally take
  * label and description props.
  *
+ * If used by itself, a checkbox provides two options - checked and unchecked.
+ * A group of checkboxes can be used to allow a user to select multiple values
+ * from a list of options.
+ *
  * If you want a whole group of Checkbox[es] that are related, see the Choice
  * and CheckboxGroup components.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {Checkbox} from "@khanacademy/wonder-blocks-form";
+ *
+ * const [checked, setChecked] = React.useState(false);
+ *
+ * <Checkbox checked={checked} onChange={setChecked} />
+ * ```
  */
 export default class Checkbox extends React.Component<ChoiceComponentProps> {
     static defaultProps: DefaultProps = {
