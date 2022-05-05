@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Router.adapter with full config including path should throw if the path does not match the location 1`] = `"The configured path must match the configured location or your harnessed component will not render."`;
+
+exports[`Router.adapter with location config including path should throw if the path does not match the location 1`] = `"The configured path must match the configured location or your harnessed component will not render."`;
