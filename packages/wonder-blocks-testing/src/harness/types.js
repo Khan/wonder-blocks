@@ -4,7 +4,7 @@ import * as React from "react";
 /**
  * A adapter to be composed with our test harnass infrastructure.
  */
-export type TestHarnessAdapter<-TConfig> = (
+export type TestHarnessAdapter<TConfig> = (
     children: React.Node,
     config: TConfig,
 ) => React.Element<any>;
@@ -36,7 +36,7 @@ type ExtractMaybeConfig = <TConfig>(TestHarnessAdapter<TConfig>) => ?TConfig;
  *
  * This is the `TestHarnessAdapter` equivalent of `React.ElementConfig`.
  */
-export type TestHarnessConfig<-TAdapter> = $Call<ExtractConfig, TAdapter>;
+export type TestHarnessConfig<TAdapter> = $Call<ExtractConfig, TAdapter>;
 
 /**
  * The `TestHarnessConfigs` type as defined by parsing a given set of adapters.
@@ -51,7 +51,7 @@ export type TestHarnessConfig<-TAdapter> = $Call<ExtractConfig, TAdapter>;
  * functions too. Even worse, if the type doesn't match, it just allows `any`
  * in the `Configs` object, rather than indicating any kind of problem.
  */
-export type TestHarnessConfigs<-TAdapters: TestHarnessAdapters> = $ObjMap<
+export type TestHarnessConfigs<TAdapters: TestHarnessAdapters> = $ObjMap<
     TAdapters,
     ExtractMaybeConfig,
 >;
