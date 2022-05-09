@@ -14,7 +14,8 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.16.3",
-    "@khanacademy/wonder-blocks-core": "^4.3.1"
+    "@khanacademy/wonder-blocks-core": "^4.3.1",
+    "flow-enums-runtime": "^0.0.6"
   },
   "peerDependencies": {
     "@khanacademy/wonder-stuff-core": "^0.1.2",
