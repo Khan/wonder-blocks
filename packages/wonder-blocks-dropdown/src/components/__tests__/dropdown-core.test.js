@@ -31,6 +31,19 @@ const items = [
     },
 ];
 
+const searchFieldItem = {
+    component: (
+        <SearchTextInput
+            testId="search-text-input"
+            key="search-text-input"
+            onChange={jest.fn()}
+            searchText={""}
+        />
+    ),
+    focusable: true,
+    populatedProps: {},
+};
+
 describe("DropdownCore", () => {
     it("should throw for invalid role", () => {
         // Arrange
@@ -342,18 +355,7 @@ describe("DropdownCore", () => {
                 searchText=""
                 // mock the items
                 items={[
-                    {
-                        component: (
-                            <SearchTextInput
-                                testId="search"
-                                key="search-text-input"
-                                onChange={jest.fn()}
-                                searchText={""}
-                            />
-                        ),
-                        focusable: true,
-                        populatedProps: {},
-                    },
+                    searchFieldItem,
                     {
                         component: (
                             <OptionItem
@@ -754,21 +756,7 @@ describe("DropdownCore", () => {
                     onSearchTextChanged={jest.fn()}
                     searchText=""
                     // mock the items
-                    items={[
-                        {
-                            component: (
-                                <SearchTextInput
-                                    testId="search-text-input"
-                                    key="search-text-input"
-                                    onChange={jest.fn()}
-                                    searchText={""}
-                                />
-                            ),
-                            focusable: true,
-                            populatedProps: {},
-                        },
-                        ...optionItems,
-                    ]}
+                    items={[searchFieldItem, ...optionItems]}
                     role="listbox"
                     open={true}
                     // mock the opener elements
@@ -797,21 +785,7 @@ describe("DropdownCore", () => {
                     onSearchTextChanged={jest.fn()}
                     searchText=""
                     // mock the items
-                    items={[
-                        {
-                            component: (
-                                <SearchTextInput
-                                    testId="search-text-input"
-                                    key="search-text-input"
-                                    onChange={jest.fn()}
-                                    searchText={""}
-                                />
-                            ),
-                            focusable: true,
-                            populatedProps: {},
-                        },
-                        ...optionItems,
-                    ]}
+                    items={[searchFieldItem, ...optionItems]}
                     role="listbox"
                     open={true}
                     // mock the opener elements
@@ -831,6 +805,55 @@ describe("DropdownCore", () => {
             waitFor(() => {
                 expect(item).toHaveFocus();
             });
+        });
+    });
+
+    describe("a11y > Live region", () => {
+        it("should render a live region announcing the number of options", async () => {
+            // Arrange
+
+            // Act
+            const {container} = render(
+                <DropdownCore
+                    initialFocusedIndex={undefined}
+                    onSearchTextChanged={jest.fn()}
+                    // mock the items (3 options)
+                    items={items}
+                    role="listbox"
+                    open={true}
+                    // mock the opener elements
+                    opener={<button />}
+                    openerElement={null}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Assert
+            expect(container).toHaveTextContent("3 items");
+        });
+
+        it("shouldn't include the search field as part of the options", async () => {
+            // Arrange
+
+            // Act
+            const {container} = render(
+                <DropdownCore
+                    initialFocusedIndex={undefined}
+                    onSearchTextChanged={jest.fn()}
+                    searchText=""
+                    // mock the items (3 options + search field)
+                    items={[searchFieldItem, ...items]}
+                    role="listbox"
+                    open={true}
+                    // mock the opener elements
+                    opener={<button />}
+                    openerElement={null}
+                    onOpenChanged={jest.fn()}
+                />,
+            );
+
+            // Assert
+            expect(container).toHaveTextContent("3 items");
         });
     });
 });
