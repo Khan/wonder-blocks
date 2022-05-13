@@ -48,6 +48,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -60,9 +61,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
           "width": 1,
         }
       }
-    >
-      7 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="menu"
@@ -271,6 +270,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -283,9 +283,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
           "width": 1,
         }
       }
-    >
-      6 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="menu"
@@ -472,6 +470,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -484,9 +483,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
           "width": 1,
         }
       }
-    >
-      6 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="menu"
@@ -673,6 +670,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -685,9 +683,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
           "width": 1,
         }
       }
-    >
-      0 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="menu"
@@ -874,6 +870,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -886,9 +883,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
           "width": 1,
         }
       }
-    >
-      7 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="menu"
@@ -1076,6 +1071,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -1088,9 +1084,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
           "width": 1,
         }
       }
-    >
-      8 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="menu"
@@ -1356,6 +1350,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
     aria-live="polite"
     aria-relevant="additions text"
     className=""
+    data-test-id="dropdown-live-region"
     style={
       Object {
         "border": 0,
@@ -1368,9 +1363,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
         "width": 1,
       }
     }
-  >
-    7 items
-  </span>
+  />
   <span
     className=""
     data-test-id="teacher-menu-custom-opener"
@@ -1454,6 +1447,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -1466,9 +1460,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
           "width": 1,
         }
       }
-    >
-      3 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -1611,6 +1603,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -1623,9 +1616,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
           "width": 1,
         }
       }
-    >
-      3 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -1767,6 +1758,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -1779,9 +1771,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
           "width": 1,
         }
       }
-    >
-      3 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -1949,6 +1939,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
         aria-live="polite"
         aria-relevant="additions text"
         className=""
+        data-test-id="dropdown-live-region"
         style={
           Object {
             "border": 0,
@@ -1961,9 +1952,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
             "width": 1,
           }
         }
-      >
-        3 items
-      </span>
+      />
       <button
         aria-expanded="false"
         aria-haspopup="listbox"
@@ -2106,6 +2095,7 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -2118,9 +2108,7 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
           "width": 1,
         }
       }
-    >
-      0 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -2281,6 +2269,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -2293,9 +2282,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
           "width": 1,
         }
       }
-    >
-      2 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -2439,6 +2426,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -2451,9 +2439,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
           "width": 1,
         }
       }
-    >
-      3 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -2674,6 +2660,7 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
     aria-live="polite"
     aria-relevant="additions text"
     className=""
+    data-test-id="dropdown-live-region"
     style={
       Object {
         "border": 0,
@@ -2686,9 +2673,7 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
         "width": 1,
       }
     }
-  >
-    3 items
-  </span>
+  />
   <h2
     className=""
     data-test-id="single-select-custom-opener"
@@ -2779,6 +2764,7 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -2791,9 +2777,7 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
           "width": 1,
         }
       }
-    >
-      1000 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -2935,6 +2919,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -2947,9 +2932,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
           "width": 1,
         }
       }
-    >
-      4 colors
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -3092,6 +3075,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -3104,9 +3088,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
           "width": 1,
         }
       }
-    >
-      8 planets
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -3248,6 +3230,7 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -3260,9 +3243,7 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
           "width": 1,
         }
       }
-    >
-      12 interns
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -3499,6 +3480,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -3511,9 +3493,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
           "width": 1,
         }
       }
-    >
-      0 items
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -3674,6 +3654,7 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -3686,9 +3667,7 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
           "width": 1,
         }
       }
-    >
-      2 planets
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -3832,6 +3811,7 @@ exports[`wonder-blocks-dropdown example 23 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -3844,9 +3824,7 @@ exports[`wonder-blocks-dropdown example 23 1`] = `
           "width": 1,
         }
       }
-    >
-      4 fruits
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -3988,6 +3966,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -4000,9 +3979,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
           "width": 1,
         }
       }
-    >
-      4 fruits
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -4242,6 +4219,7 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
       aria-live="polite"
       aria-relevant="additions text"
       className=""
+      data-test-id="dropdown-live-region"
       style={
         Object {
           "border": 0,
@@ -4254,9 +4232,7 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
           "width": 1,
         }
       }
-    >
-      1003 schools
-    </span>
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -4379,6 +4355,7 @@ exports[`wonder-blocks-dropdown example 26 1`] = `
     aria-live="polite"
     aria-relevant="additions text"
     className=""
+    data-test-id="dropdown-live-region"
     style={
       Object {
         "border": 0,
@@ -4391,9 +4368,7 @@ exports[`wonder-blocks-dropdown example 26 1`] = `
         "width": 1,
       }
     }
-  >
-    4 fruits
-  </span>
+  />
   <h2
     className=""
     data-test-id="multi-select-custom-opener"
@@ -4465,6 +4440,7 @@ exports[`wonder-blocks-dropdown example 27 1`] = `
     aria-live="polite"
     aria-relevant="additions text"
     className=""
+    data-test-id="dropdown-live-region"
     style={
       Object {
         "border": 0,
@@ -4477,9 +4453,7 @@ exports[`wonder-blocks-dropdown example 27 1`] = `
         "width": 1,
       }
     }
-  >
-    13 escuelas seleccionadas
-  </span>
+  />
   <button
     aria-expanded="false"
     aria-haspopup="listbox"
