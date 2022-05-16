@@ -88,6 +88,7 @@
     "eslint-plugin-testing-library": "^5.0.0",
     "eslint-watch": "^8.0.0",
     "flow-bin": "^0.176.3",
+    "flow-enums-runtime": "^0.0.6",
     "glob": "^7.1.2",
     "husky": "^4.2.5",
     "inquirer": "^8.2.0",
