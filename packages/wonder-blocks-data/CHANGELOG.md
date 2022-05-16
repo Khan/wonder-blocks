@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-data
 
+## 8.0.3
+
+### Patch Changes
+
+-   5f4a4297: Make dependency on `flow-enums-runtime` explicit
+-   2b96fd59: Change flow-enums-runtime to be peer dependencies
+-   Updated dependencies [5f4a4297]
+-   Updated dependencies [2b96fd59]
+    -   @khanacademy/wonder-blocks-core@4.3.2
+
 ## 8.0.2
 
 ### Patch Changes
