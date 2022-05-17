@@ -10,7 +10,7 @@ import {VariableSizeList as List} from "react-window";
 import Color, {fade} from "@khanacademy/wonder-blocks-color";
 
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
@@ -42,8 +42,17 @@ import {
  */
 const VIRTUALIZE_THRESHOLD = 125;
 
+const StyledSpan = addStyle("span");
+
 type Labels = {|
     noResults: string,
+    /**
+     * The number total of items available.
+     *
+     * NOTE: We are reusing the same label for both the total number of items
+     * and the number of selected items.
+     */
+    someSelected: (numOptions: number) => string,
 |};
 
 // we need to define a DefaultProps type to allow the HOC expose the default
@@ -212,6 +221,7 @@ class DropdownCore extends React.Component<Props, State> {
         alignment: "left",
         labels: {
             noResults: defaultLabels.noResults,
+            someSelected: defaultLabels.someSelected,
         },
         light: false,
     };
@@ -837,6 +847,26 @@ class DropdownCore extends React.Component<Props, State> {
         );
     }
 
+    renderLiveRegion(): React.Node {
+        const {items, open} = this.props;
+        const {labels} = this.state;
+        const totalItems = this.hasSearchBox()
+            ? items.length - 1
+            : items.length;
+
+        return (
+            <StyledSpan
+                aria-live="polite"
+                aria-atomic="true"
+                aria-relevant="additions text"
+                style={styles.srOnly}
+                data-test-id="dropdown-live-region"
+            >
+                {open && labels.someSelected(totalItems)}
+            </StyledSpan>
+        );
+    }
+
     render(): React.Node {
         const {open, opener, style, className} = this.props;
 
@@ -847,6 +877,7 @@ class DropdownCore extends React.Component<Props, State> {
                 style={[styles.menuWrapper, style]}
                 className={className}
             >
+                {this.renderLiveRegion()}
                 {opener}
                 {open && this.renderDropdown()}
             </View>
@@ -883,6 +914,17 @@ const styles = StyleSheet.create({
         color: Color.offBlack64,
         alignSelf: "center",
         marginTop: Spacing.xxSmall_6,
+    },
+
+    srOnly: {
+        border: 0,
+        clip: "rect(0,0,0,0)",
+        height: 1,
+        margin: -1,
+        overflow: "hidden",
+        padding: 0,
+        position: "absolute",
+        width: 1,
     },
 });
 
