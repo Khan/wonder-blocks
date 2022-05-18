@@ -56,7 +56,8 @@ export const InlineStyles: StoryComponentType = () => (
                 },
             ]}
         >
-            Even with an array and inline styles!
+            The style prop can accept a (nested) array of Aphrodite styles and
+            inline styles.
         </View>
     </View>
 );
@@ -89,7 +90,7 @@ OtherProps.storyName = "Using other props";
 OtherProps.parameters = {
     docs: {
         storyDescription:
-            "Other props can be passed through `View` as if they were normal tags.",
+            "Other props can be passed through `View`s as if they were normal tags.",
     },
 };
 

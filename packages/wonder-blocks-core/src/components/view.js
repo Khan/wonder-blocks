@@ -59,6 +59,12 @@ const StyledSection = addStyle<"section">("section", styles.default);
  * - An `aphrodite` StyleSheet style
  * - An array combining the above
  *
+ * `View` sets the following defaults:
+ *
+ * - `display: "flex"`
+ * - `flexDirection: "column"`
+ * - they each get their own stacking context.
+ *
  * ### Usage
  *
  * ```jsx
