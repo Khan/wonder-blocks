@@ -29,6 +29,10 @@ type ValidViewTags = "div" | "article" | "aside" | "nav" | "section";
 // eslint-disable-next-line flowtype/require-exact-type
 type Props = {
     ...TextViewSharedProps,
+
+    /**
+     * The HTML tag to render.
+     */
     tag: ValidViewTags,
     ...
 };
@@ -45,9 +49,8 @@ const StyledSection = addStyle<"section">("section", styles.default);
 
 /**
  * View is a building block for constructing other components. `View` roughly
- * maps to `div` and `Text` roughly maps to `span`. You can override which tag
- * is used to render the component (for semantic purposes) by specifying the
- * `tag` prop.
+ * maps to `div`. You can override which tag is used to render the component
+ * (for semantic purposes) by specifying the `tag` prop.
  *
  * These components can take styles (via the `style` prop) in a variety of
  * manners:
@@ -55,6 +58,20 @@ const StyledSection = addStyle<"section">("section", styles.default);
  * - An inline style object
  * - An `aphrodite` StyleSheet style
  * - An array combining the above
+ *
+ * `View` sets the following defaults:
+ *
+ * - `display: "flex"`
+ * - `flexDirection: "column"`
+ * - they each get their own stacking context.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {View} from "@khanacademy/wonder-blocks-core";
+ *
+ * <View>This is a View!</View>
+ * ```
  */
 export default class View extends React.Component<Props> {
     static defaultProps: DefaultProps = {
