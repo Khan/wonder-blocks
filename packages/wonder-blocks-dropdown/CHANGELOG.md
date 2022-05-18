@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.7.3
+
+### Patch Changes
+
+-   d0a76cf5: Add live region to announce the number of options (fixing an iOS issue)
+
 ## 2.7.2
 
 ### Patch Changes
