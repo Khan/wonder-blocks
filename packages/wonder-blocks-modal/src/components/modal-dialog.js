@@ -78,6 +78,7 @@ export default class ModalDialog extends React.Component<Props> {
             children,
             testId,
             "aria-labelledby": ariaLabelledBy,
+            "aria-label": ariaLabel,
         } = this.props;
 
         const contextValue: MediaLayoutContextValue = {
@@ -95,6 +96,7 @@ export default class ModalDialog extends React.Component<Props> {
                                 role={role}
                                 aria-modal="true"
                                 aria-labelledby={ariaLabelledBy}
+                                aria-label={ariaLabel}
                                 style={styles.dialog}
                                 testId={testId}
                             >
