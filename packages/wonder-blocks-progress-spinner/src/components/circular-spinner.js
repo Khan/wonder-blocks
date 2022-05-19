@@ -66,7 +66,7 @@ export default class CircularSpinner extends React.Component<Props> {
     };
 
     render(): React.Node {
-        const {size, light, style} = this.props;
+        const {size, light, style, testId} = this.props;
 
         const height = heights[size];
         const path = paths[size];
@@ -78,6 +78,7 @@ export default class CircularSpinner extends React.Component<Props> {
                 width={height}
                 height={height}
                 viewBox={`0 0 ${height} ${height}`}
+                data-test-id={testId}
             >
                 <StyledPath
                     style={[styles.loadingSpinner, {fill: color}]}
