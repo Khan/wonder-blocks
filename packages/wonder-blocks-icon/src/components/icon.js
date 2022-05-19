@@ -94,7 +94,7 @@ export default class Icon extends React.PureComponent<Props> {
     };
 
     render(): React.Node {
-        const {color, icon, size, style, ...sharedProps} = this.props;
+        const {color, icon, size, style, testId, ...sharedProps} = this.props;
 
         const {assetSize, path} = getPathForIcon(icon, size);
         const pixelSize = viewportPixelsForSize(size);
@@ -106,6 +106,7 @@ export default class Icon extends React.PureComponent<Props> {
                 width={pixelSize}
                 height={pixelSize}
                 viewBox={`0 0 ${viewboxPixelSize} ${viewboxPixelSize}`}
+                data-test-id={testId}
             >
                 <path fill={color} d={path} />
             </StyledSVG>
