@@ -110,6 +110,15 @@ type Props = {|
      * top. The items will be filtered by the input.
      */
     isFilterable?: boolean,
+
+    /**
+     * When this is set, and isFilterable is true, the dropdown will filter
+     * elements using the provided function instead of the default text search
+     */
+    searchFilter?: (
+        children: Array<React.Element<OptionItem>>,
+        searchText: string,
+    ) => Array<React.Element<OptionItem>>,
 |};
 
 type State = {|
@@ -251,7 +260,12 @@ export default class SingleSelect extends React.Component<Props, State> {
     filterChildren(
         children: Array<React.Element<OptionItem>>,
     ): Array<React.Element<OptionItem>> {
+        const {searchFilter} = this.props;
         const {searchText} = this.state;
+
+        if (searchFilter) {
+            return searchFilter(children, searchText);
+        }
 
         const lowercasedSearchText = searchText.toLowerCase();
 
@@ -330,6 +344,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             alignment,
             dropdownStyle,
             isFilterable,
+            searchFilter,
             onChange,
             onToggle,
             opened,
