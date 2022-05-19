@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-progress-spinner
 
+## 1.1.33
+
+### Patch Changes
+
+-   83486dba: Setting data-test-id attribute based on testId prop
+
 ## 1.1.32
 
 ### Patch Changes

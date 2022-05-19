@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon
 
+## 1.2.29
+
+### Patch Changes
+
+-   83486dba: Setting data-test-id attribute based on testId prop
+
 ## 1.2.28
 
 ### Patch Changes
