@@ -31,18 +31,33 @@ type Props = {|
 |};
 
 /**
- * This is a wrapper that returns an identifier. If the `id` prop is set, the component will
- * return the same id to be consumed by its children. Otherwise, a unique id will be provided.
- * This is beneficial for accessibility purposes, among other things.
+ * This is a wrapper that returns an identifier. If the `id` prop is set, the
+ * component will return the same id to be consumed by its children. Otherwise,
+ * a unique id will be provided. This is beneficial for accessibility purposes,
+ * among other things.
  *
- * The main difference with UniqueIDProvider is that IDProvider has a single responsibility,
- * to return an identifier that can by used by the children that are rendered internally.
+ * The main difference with `UniqueIDProvider` is that `IDProvider` has a single
+ * responsibility, to return an identifier that can by used by the children that
+ * are rendered internally.
  *
- * This way, the wrapped component will receive this custom ID and will use it to connect
- * different elements.
+ * This way, the wrapped component will receive this custom ID and will use it
+ * to connect different elements.
  *
- * e.g. It uses the same generated id to connect a Dialog with its main title, or form label
- * with the associated input element, etc.
+ * e.g. It uses the same generated id to connect a Dialog with its main title,
+ * or form label with the associated input element, etc.
+ *
+ * ## Usage
+ *
+ * ```jsx
+ * import {IDProvider} from "@khanacademy/wonder-blocks-core";
+ *
+ * <IDProvider scope="field">
+ *  {(uniqueId) => (
+ *     Unique ID: {uniqueId}
+ *  )}
+ * </IDProvider>
+ * ```
+ *
  */
 export default class IDProvider extends React.Component<Props> {
     static defaultId: string = "wb-id";
