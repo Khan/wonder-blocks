@@ -27,8 +27,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-  lint_and_test:
-    name: Lint and Test
+  lint:
+    name: Lint
     needs: prime_cache_primary
     runs-on: ${{ matrix.os }}
     strategy:
@@ -74,9 +74,29 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
+test:
+    name: Test
+    needs: prime_cache_primary
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest]
+        node-version: [16.x]
+        shard: ["1/2", "2/2"]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install & cache node_modules
+        uses: ./.github/actions/shared-node-cache
+        with:
+          node-version: ${{ matrix.node-version }}
       # Testing and coverage
       - name: Run jest tests with coverage
-        run: yarn coverage:ci
+        run: yarn coverage:ci --shard ${{ matrix.shard }}
       - name: Upload Coverage
         uses: codecov/codecov-action@v2
         with:
