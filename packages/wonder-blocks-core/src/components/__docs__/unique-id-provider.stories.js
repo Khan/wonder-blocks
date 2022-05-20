@@ -94,7 +94,7 @@ export const Scoped: StoryComponentType = () => {
     const children = (ids) => (
         <View>
             <Body>
-                The id returned for "my-identifier": {ids.get("my-identifier")}
+                The id returned for my-identifier: {ids.get("my-identifier")}
             </Body>
         </View>
     );
