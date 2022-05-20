@@ -74,7 +74,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-test:
+  test:
     name: Test
     needs: prime_cache_primary
     runs-on: ${{ matrix.os }}
