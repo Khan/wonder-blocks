@@ -11,8 +11,42 @@ import Button from "@khanacademy/wonder-blocks-button";
 
 import type {StoryComponentType} from "@storybook/react";
 
+import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import {name, version} from "../../../package.json";
+import TextFieldArgTypes from "./text-field.argtypes.js";
+
 export default {
     title: "Form / TextField",
+    component: TextField,
+    parameters: {
+        componentSubtitle: ((
+            <ComponentInfo name={name} version={version} />
+        ): any),
+    },
+    argTypes: TextFieldArgTypes,
+};
+
+export const Default: StoryComponentType = (args) => {
+    return <TextField {...args} />;
+};
+
+Default.args = {
+    id: "some-id",
+    type: "text",
+    value: "",
+    disabled: false,
+    placeholder: "",
+    required: false,
+    light: false,
+    testId: "",
+    readOnly: false,
+    autoComplete: "off",
+    validate: () => {},
+    onValidate: () => {},
+    onChange: () => {},
+    onKeyDown: () => {},
+    onFocus: () => {},
+    onBlur: () => {},
 };
 
 export const Text: StoryComponentType = () => {
@@ -40,6 +74,13 @@ export const Text: StoryComponentType = () => {
     );
 };
 
+Text.parameters = {
+    docs: {
+        storyDescription:
+            "An input field with type `text` takes all kinds of characters.",
+    },
+};
+
 export const Required: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
@@ -55,7 +96,7 @@ export const Required: StoryComponentType = () => {
 
     return (
         <TextField
-            id="tf-1"
+            id="tf-2"
             type="text"
             value={value}
             onChange={handleChange}
@@ -63,6 +104,19 @@ export const Required: StoryComponentType = () => {
             required={true}
         />
     );
+};
+
+Required.parameters = {
+    docs: {
+        storyDescription: `A required field will have error styling if the
+        field is left blank. To observe this, type something into the
+        field, backspace all the way, and then shift focus out of the field.`,
+    },
+    chromatic: {
+        // Disabling snapshot because it doesn't show the error style
+        // until after the user interacts with this field.
+        disableSnapshot: true,
+    },
 };
 
 export const Number: StoryComponentType = () => {
@@ -80,7 +134,7 @@ export const Number: StoryComponentType = () => {
 
     return (
         <TextField
-            id="tf-1"
+            id="tf-3"
             type="number"
             value={value}
             placeholder="Number"
@@ -88,6 +142,13 @@ export const Number: StoryComponentType = () => {
             onKeyDown={handleKeyDown}
         />
     );
+};
+
+Number.parameters = {
+    docs: {
+        storyDescription:
+            "An input field with type `number` will only take numeric characters as input.",
+    },
 };
 
 export const Password: StoryComponentType = () => {
@@ -129,7 +190,7 @@ export const Password: StoryComponentType = () => {
     return (
         <View>
             <TextField
-                id="tf-1"
+                id="tf-4"
                 type="password"
                 value={value}
                 placeholder="Password"
@@ -148,6 +209,15 @@ export const Password: StoryComponentType = () => {
             )}
         </View>
     );
+};
+
+Password.parameters = {
+    docs: {
+        storyDescription: `An input field with type \`password\` will
+        obscure the input value. It also often contains validation.
+        In this example, the password must be over 8 characters long and
+        must contain a numeric value.`,
+    },
 };
 
 export const Email: StoryComponentType = () => {
@@ -187,7 +257,7 @@ export const Email: StoryComponentType = () => {
     return (
         <View>
             <TextField
-                id="tf-1"
+                id="tf-5"
                 type="email"
                 value={value}
                 placeholder="Email"
@@ -206,6 +276,15 @@ export const Email: StoryComponentType = () => {
             )}
         </View>
     );
+};
+
+Email.parameters = {
+    docs: {
+        storyDescription: `An input field with type \`email\` will automatically
+        validate an input on submit to ensure it's either formatted properly
+        or blank. \`TextField\` will run validation on blur if the
+        \`validate\` prop is passed in, as in this example.`,
+    },
 };
 
 export const Telephone: StoryComponentType = () => {
@@ -245,7 +324,7 @@ export const Telephone: StoryComponentType = () => {
     return (
         <View>
             <TextField
-                id="tf-1"
+                id="tf-6"
                 type="tel"
                 value={value}
                 placeholder="Telephone"
@@ -264,6 +343,15 @@ export const Telephone: StoryComponentType = () => {
             )}
         </View>
     );
+};
+
+Telephone.parameters = {
+    docs: {
+        storyDescription: `An input field with type \`tel\` will NOT
+        validate an input on submit by default as telephone numbers
+        can vary considerably. \`TextField\` will run validation on blur
+        if the \`validate\` prop is passed in, as in this example.`,
+    },
 };
 
 export const Error: StoryComponentType = () => {
@@ -303,7 +391,7 @@ export const Error: StoryComponentType = () => {
     return (
         <View>
             <TextField
-                id="tf-1"
+                id="tf-7"
                 type="email"
                 value={value}
                 placeholder="Email"
@@ -324,15 +412,29 @@ export const Error: StoryComponentType = () => {
     );
 };
 
+Error.parameters = {
+    docs: {
+        storyDescription: `If an input value fails validation,
+        \`TextField\` will have error styling.`,
+    },
+};
+
 export const Disabled: StoryComponentType = () => (
     <TextField
-        id="tf-1"
+        id="tf-8"
         value=""
         placeholder="This field is disabled."
         onChange={() => {}}
         disabled={true}
     />
 );
+
+Disabled.parameters = {
+    docs: {
+        storyDescription: `If the \`disabled\` prop is set to true,
+        \`TextField\` will have disabled styling and will not be interactable.`,
+    },
+};
 
 export const Light: StoryComponentType = () => {
     const [value, setValue] = React.useState("khan@khanacademy.org");
@@ -371,7 +473,7 @@ export const Light: StoryComponentType = () => {
     return (
         <View style={styles.darkBackground}>
             <TextField
-                id="tf-1"
+                id="tf-9"
                 type="email"
                 value={value}
                 placeholder="Email"
@@ -395,6 +497,15 @@ export const Light: StoryComponentType = () => {
     );
 };
 
+Light.parameters = {
+    docs: {
+        storyDescription: `If the \`light\` prop is set to true,
+        \`TextField\` will have light styling. This is intended to be used
+        on a dark background. It also has specific light styling for the
+        error state.`,
+    },
+};
+
 export const CustomStyle: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
@@ -410,7 +521,7 @@ export const CustomStyle: StoryComponentType = () => {
 
     return (
         <TextField
-            id="tf-1"
+            id="tf-10"
             style={styles.customField}
             type="text"
             value={value}
@@ -419,6 +530,15 @@ export const CustomStyle: StoryComponentType = () => {
             onKeyDown={handleKeyDown}
         />
     );
+};
+
+CustomStyle.parameters = {
+    docs: {
+        storyDescription: `\`TextField\` can take in custom styles that
+        override the default styles. This example has custom styles for the
+        \`backgroundColor\`, \`color\`, \`border\`, \`maxWidth\`, and
+        placeholder \`color\` properties.`,
+    },
 };
 
 export const Ref: StoryComponentType = () => {
@@ -444,7 +564,7 @@ export const Ref: StoryComponentType = () => {
     return (
         <View>
             <TextField
-                id="tf-1"
+                id="tf-11"
                 type="text"
                 value={value}
                 placeholder="Text"
@@ -458,6 +578,23 @@ export const Ref: StoryComponentType = () => {
             </Button>
         </View>
     );
+};
+
+Ref.parameters = {
+    docs: {
+        storyDescription: `If you need to save a reference to the input
+        field, you can do so by using the \`ref\` prop. In this example,
+        we want the input field to receieve focus when the button is
+        pressed. We can do this by creating a React ref of type
+        \`HTMLInputElement\` and passing it into \`TextField\`'s \`ref\` prop.
+        Now we can use the ref variable in the \`handleSubmit\` function to
+        shift focus to the field.`,
+        chromatic: {
+            // Disabling snapshot because this is testing interaction,
+            // not visuals.
+            disableSnapshot: true,
+        },
+    },
 };
 
 export const ReadOnly: StoryComponentType = () => {
@@ -475,7 +612,7 @@ export const ReadOnly: StoryComponentType = () => {
 
     return (
         <TextField
-            id="tf-1"
+            id="tf-12"
             type="text"
             value={value}
             placeholder="Text"
@@ -484,6 +621,20 @@ export const ReadOnly: StoryComponentType = () => {
             readOnly={true}
         />
     );
+};
+
+ReadOnly.parameters = {
+    docs: {
+        storyDescription: `An input field with the prop \`readOnly\` set
+        to true is not interactable. It looks the same as if it were not
+        read only, and it can still receive focus, but the interaction
+        point will not appear and the input will not change.`,
+        chromatic: {
+            // Disabling snapshot because this is testing interaction,
+            // not visuals.
+            disableSnapshot: true,
+        },
+    },
 };
 
 export const AutoComplete: StoryComponentType = () => {
@@ -501,7 +652,7 @@ export const AutoComplete: StoryComponentType = () => {
 
     return (
         <TextField
-            id="tf-1"
+            id="tf-13"
             type="text"
             value={value}
             placeholder="Name"
@@ -510,6 +661,20 @@ export const AutoComplete: StoryComponentType = () => {
             autoComplete="name"
         />
     );
+};
+
+AutoComplete.parameters = {
+    docs: {
+        storyDescription: `If \`TextField\`'s \`autocomplete\` prop is set,
+        the browser can predict values for the input. When the user starts
+        to type in the field, a list of options will show up based on
+        values that may have been inputted at a previous time.`,
+        chromatic: {
+            // Disabling snapshot because this is testing interaction,
+            // not visuals.
+            disableSnapshot: true,
+        },
+    },
 };
 
 const styles = StyleSheet.create({
