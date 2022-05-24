@@ -4,6 +4,8 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import {ngettext} from "@khanacademy/wonder-blocks-i18n";
+
 import OptionItem from "../option-item.js";
 import MultiSelect from "../multi-select.js";
 
@@ -1185,6 +1187,61 @@ describe("MultiSelect", () => {
             expect(
                 screen.getByText(updatedLabels.selectNoneLabel),
             ).toBeInTheDocument();
+        });
+    });
+
+    describe("a11y > Live region", () => {
+        it("should announce the number of options when the listbox is open", async () => {
+            // Arrange
+            const labels: $Shape<Labels> = {
+                someSelected: (numOptions: number): string =>
+                    ngettext("%(num)s school", "%(num)s schools", numOptions),
+            };
+
+            // Act
+            const {container} = render(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    labels={labels}
+                    opened={true}
+                >
+                    <OptionItem label="school 1" value="1" />
+                    <OptionItem label="school 2" value="2" />
+                    <OptionItem label="school 3" value="3" />
+                </MultiSelect>,
+            );
+
+            // Assert
+            expect(container).toHaveTextContent("3 schools");
+        });
+
+        it("should change the number of options after using the search filter", async () => {
+            // Arrange
+            const labels: $Shape<Labels> = {
+                someSelected: (numOptions: number): string =>
+                    ngettext("%(num)s planet", "%(num)s planets", numOptions),
+            };
+
+            const {container} = render(
+                <MultiSelect
+                    onChange={jest.fn()}
+                    isFilterable={true}
+                    shortcuts={true}
+                    labels={labels}
+                    opened={true}
+                >
+                    <OptionItem label="Earth" value="earth" />
+                    <OptionItem label="Venus" value="venus" />
+                    <OptionItem label="Mars" value="mars" />
+                </MultiSelect>,
+            );
+
+            // Act
+            userEvent.paste(screen.getByRole("textbox"), "Ear");
+
+            // Assert
+            expect(container).toHaveTextContent("1 planet");
         });
     });
 });

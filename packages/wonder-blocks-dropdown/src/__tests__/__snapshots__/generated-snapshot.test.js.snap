@@ -43,6 +43,25 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="menu"
@@ -246,6 +265,25 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="menu"
@@ -427,6 +465,25 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="menu"
@@ -608,6 +665,25 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="menu"
@@ -789,6 +865,25 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="menu"
@@ -971,6 +1066,25 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="menu"
@@ -1232,6 +1346,25 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
   }
 >
   <span
+    aria-atomic="true"
+    aria-live="polite"
+    aria-relevant="additions text"
+    className=""
+    data-test-id="dropdown-live-region"
+    style={
+      Object {
+        "border": 0,
+        "clip": "rect(0,0,0,0)",
+        "height": 1,
+        "margin": -1,
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "absolute",
+        "width": 1,
+      }
+    }
+  />
+  <span
     className=""
     data-test-id="teacher-menu-custom-opener"
     disabled={false}
@@ -1309,6 +1442,25 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -1446,6 +1598,25 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -1582,6 +1753,25 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -1744,6 +1934,25 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
         }
       }
     >
+      <span
+        aria-atomic="true"
+        aria-live="polite"
+        aria-relevant="additions text"
+        className=""
+        data-test-id="dropdown-live-region"
+        style={
+          Object {
+            "border": 0,
+            "clip": "rect(0,0,0,0)",
+            "height": 1,
+            "margin": -1,
+            "overflow": "hidden",
+            "padding": 0,
+            "position": "absolute",
+            "width": 1,
+          }
+        }
+      />
       <button
         aria-expanded="false"
         aria-haspopup="listbox"
@@ -1881,6 +2090,25 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -2036,6 +2264,25 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -2174,6 +2421,25 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -2389,6 +2655,25 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
     }
   }
 >
+  <span
+    aria-atomic="true"
+    aria-live="polite"
+    aria-relevant="additions text"
+    className=""
+    data-test-id="dropdown-live-region"
+    style={
+      Object {
+        "border": 0,
+        "clip": "rect(0,0,0,0)",
+        "height": 1,
+        "margin": -1,
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "absolute",
+        "width": 1,
+      }
+    }
+  />
   <h2
     className=""
     data-test-id="single-select-custom-opener"
@@ -2474,6 +2759,25 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -2610,6 +2914,25 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -2747,6 +3070,25 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -2883,6 +3225,25 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -3114,6 +3475,25 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -3269,6 +3649,25 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -3407,6 +3806,25 @@ exports[`wonder-blocks-dropdown example 23 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -3543,6 +3961,25 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -3777,6 +4214,25 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"
@@ -3894,6 +4350,25 @@ exports[`wonder-blocks-dropdown example 26 1`] = `
     }
   }
 >
+  <span
+    aria-atomic="true"
+    aria-live="polite"
+    aria-relevant="additions text"
+    className=""
+    data-test-id="dropdown-live-region"
+    style={
+      Object {
+        "border": 0,
+        "clip": "rect(0,0,0,0)",
+        "height": 1,
+        "margin": -1,
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "absolute",
+        "width": 1,
+      }
+    }
+  />
   <h2
     className=""
     data-test-id="multi-select-custom-opener"
@@ -3960,6 +4435,25 @@ exports[`wonder-blocks-dropdown example 27 1`] = `
     }
   }
 >
+  <span
+    aria-atomic="true"
+    aria-live="polite"
+    aria-relevant="additions text"
+    className=""
+    data-test-id="dropdown-live-region"
+    style={
+      Object {
+        "border": 0,
+        "clip": "rect(0,0,0,0)",
+        "height": 1,
+        "margin": -1,
+        "overflow": "hidden",
+        "padding": 0,
+        "position": "absolute",
+        "width": 1,
+      }
+    }
+  />
   <button
     aria-expanded="false"
     aria-haspopup="listbox"

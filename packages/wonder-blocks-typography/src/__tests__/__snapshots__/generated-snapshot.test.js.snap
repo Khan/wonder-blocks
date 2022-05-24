@@ -1041,6 +1041,25 @@ exports[`wonder-blocks-typography example 6 1`] = `
       }
     }
   >
+    <span
+      aria-atomic="true"
+      aria-live="polite"
+      aria-relevant="additions text"
+      className=""
+      data-test-id="dropdown-live-region"
+      style={
+        Object {
+          "border": 0,
+          "clip": "rect(0,0,0,0)",
+          "height": 1,
+          "margin": -1,
+          "overflow": "hidden",
+          "padding": 0,
+          "position": "absolute",
+          "width": 1,
+        }
+      }
+    />
     <button
       aria-expanded="false"
       aria-haspopup="listbox"

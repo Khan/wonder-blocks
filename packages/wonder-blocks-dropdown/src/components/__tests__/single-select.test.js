@@ -692,4 +692,34 @@ describe("SingleSelect", () => {
             expect(dropdownMenu).toHaveStyle("max-height: 200px");
         });
     });
+
+    describe("a11y > Live region", () => {
+        it("should change the number of options after using the search filter", async () => {
+            // Arrange
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    placeholder="Choose"
+                    isFilterable={true}
+                    opened={true}
+                >
+                    <OptionItem label="item 0" value="0" />
+                    <OptionItem label="item 1" value="1" />
+                    <OptionItem label="item 2" value="2" />
+                </SingleSelect>,
+            );
+
+            // Act
+            userEvent.paste(screen.getByRole("textbox"), "item 0");
+
+            // Assert
+            const liveRegionText = screen.getByTestId(
+                "dropdown-live-region",
+            ).textContent;
+
+            // TODO(WB-1318): Change this assertion to `1 item` after adding the
+            // `labels` prop to the component.
+            expect(liveRegionText).toEqual("1 items");
+        });
+    });
 });

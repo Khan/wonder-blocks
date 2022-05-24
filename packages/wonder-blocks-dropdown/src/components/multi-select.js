@@ -556,7 +556,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             isFilterable,
         } = this.props;
         const {open, searchText} = this.state;
-        const {noResults} = this.state.labels;
+        const {noResults, someSelected} = this.state.labels;
 
         const allChildren = React.Children.toArray(children).filter(Boolean);
         const numOptions = allChildren.length;
@@ -590,6 +590,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 searchText={isFilterable ? searchText : ""}
                 labels={{
                     noResults,
+                    someSelected,
                 }}
             />
         );
