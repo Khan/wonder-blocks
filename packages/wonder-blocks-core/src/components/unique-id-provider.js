@@ -60,6 +60,18 @@ type Props = {|
  * unique. Therefore, `get("test")` will always equal `get("test")`, and
  * `get("test2")` will always equal `get("test2")`, but `get("test")` will
  * never equal `get("test2")`.
+ *
+ * ## Usage
+ *
+ * ```jsx
+ * import {UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
+ *
+ * <UniqueIDProvider mockOnFirstRender={false} scope="field">
+ *  {(ids) => (
+ *     <>The id returned for "my-identifier": {ids.get("my-identifier")}</>
+ *  )}
+ * </UniqueIDProvider>
+ * ```
  */
 export default class UniqueIDProvider extends React.Component<Props> {
     _idFactory: IIdentifierFactory;
