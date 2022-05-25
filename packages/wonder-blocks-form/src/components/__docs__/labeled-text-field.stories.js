@@ -12,8 +12,43 @@ import {StyleSheet} from "aphrodite";
 
 import type {StoryComponentType} from "@storybook/react";
 
+import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import {name, version} from "../../../package.json";
+import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes.js";
+
 export default {
     title: "Form / LabeledTextField",
+    component: LabeledTextField,
+    parameters: {
+        componentSubtitle: ((
+            <ComponentInfo name={name} version={version} />
+        ): any),
+    },
+    argTypes: LabeledTextFieldArgTypes,
+};
+
+export const Default: StoryComponentType = (args) => {
+    return <LabeledTextField {...args} />;
+};
+
+Default.args = {
+    id: "some-ltf-id",
+    type: "text",
+    label: "Label",
+    description: "Hello, this is the description for this field",
+    value: "",
+    disabled: false,
+    required: false,
+    light: false,
+    placeholder: "Placeholder",
+    readOnly: false,
+    autoComplete: false,
+    validate: () => {},
+    onValidate: () => {},
+    onChange: () => {},
+    onKeyDown: () => {},
+    onFocus: () => {},
+    onBlur: () => {},
 };
 
 export const Text: StoryComponentType = () => {
