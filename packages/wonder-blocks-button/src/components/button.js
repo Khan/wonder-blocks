@@ -60,9 +60,9 @@ export type SharedProps = {|
 
     /**
      * The size of the button. "medium" = height: 40; "small" = height: 32;
-     * "xlarge" = height: 60;
+     * "large" = height: 56;
      */
-    size: "medium" | "small" | "xlarge",
+    size: "medium" | "small" | "large",
 
     /**
      * Whether the button is disabled.

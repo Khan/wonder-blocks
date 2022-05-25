@@ -312,14 +312,14 @@ export const Size: StoryComponentType = () => (
             </Button>
         </View>
         <View style={styles.row}>
-            <Button style={styles.button} onClick={() => {}} size="xlarge">
+            <Button style={styles.button} onClick={() => {}} size="large">
                 Label
             </Button>
             <Button
                 style={styles.button}
                 onClick={() => {}}
                 kind="secondary"
-                size="xlarge"
+                size="large"
             >
                 Label
             </Button>
@@ -327,7 +327,7 @@ export const Size: StoryComponentType = () => (
                 style={styles.button}
                 onClick={() => {}}
                 kind="tertiary"
-                size="xlarge"
+                size="large"
             >
                 Label
             </Button>
@@ -338,7 +338,7 @@ export const Size: StoryComponentType = () => (
 Size.parameters = {
     docs: {
         storyDescription:
-            "Buttons have a size that's either `medium` (default), `small`, or `xlarge`.",
+            "Buttons have a size that's either `medium` (default), `small`, or `large`.",
     },
 };
 
@@ -347,7 +347,7 @@ export const Spinner: StoryComponentType = () => (
         <Button
             onClick={() => {}}
             spinner={true}
-            size="xlarge"
+            size="large"
             aria-label={"waiting"}
         >
             Hello, world
