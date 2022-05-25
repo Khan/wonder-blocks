@@ -2,8 +2,8 @@
 import * as React from "react";
 
 import type {StoryComponentType} from "@storybook/react";
-import ActionMenu from "./action-menu.js";
-import ActionItem from "./action-item.js";
+import ActionMenu from "../action-menu.js";
+import ActionItem from "../action-item.js";
 
 export default {
     title: "Dropdown / ActionMenu",

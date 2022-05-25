@@ -11,7 +11,7 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import {SingleSelect, OptionItem} from "../index.js";
+import {SingleSelect, OptionItem} from "../../index.js";
 
 export default {
     title: "Dropdown / SingleSelect",
