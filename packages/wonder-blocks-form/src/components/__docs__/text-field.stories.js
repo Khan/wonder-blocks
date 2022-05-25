@@ -709,6 +709,6 @@ const styles = StyleSheet.create({
         maxWidth: 150,
     },
     fieldWithButton: {
-        marginBottom: 20,
+        marginBottom: Spacing.medium_16,
     },
 });
