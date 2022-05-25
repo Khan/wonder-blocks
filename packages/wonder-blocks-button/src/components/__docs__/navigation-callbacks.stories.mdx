@@ -4,8 +4,10 @@ import {StyleSheet} from "aphrodite";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 
+import {styles} from "./button.stories.js";
+
 <Meta
-    title="Navigation/Button/Navigation Callbacks"
+    title="Button / Navigation Callbacks"
     component={Button}
     parameters={{
         previewTabs: {
@@ -19,7 +21,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
     }}
 />
 
-## Running Callbacks on Navigation
+# Running Callbacks on Navigation
 
 Sometimes you may need to run some code and also navigate when the user
 clicks the button. For example, you might want to send a request to the
@@ -66,3 +68,120 @@ rejects, `safeWithNav` will not be run.
 
 If the `onClick` handler calls `preventDefault()`, then `beforeNav`
 and `safeWithNav` will still run, but navigation will not occur.
+
+export const BeforeNavCallbacks = () => (
+    <MemoryRouter>
+        <View style={styles.row}>
+            <Button
+                href="/foo"
+                style={styles.button}
+                beforeNav={() =>
+                    new Promise((resolve, reject) => {
+                        setTimeout(resolve, 1000);
+                    })
+                }
+            >
+                beforeNav, client-side nav
+            </Button>
+            <Button
+                href="/foo"
+                style={styles.button}
+                skipClientNav={true}
+                beforeNav={() =>
+                    new Promise((resolve, reject) => {
+                        setTimeout(resolve, 1000);
+                    })
+                }
+            >
+                beforeNav, server-side nav
+            </Button>
+            <Button
+                href="https://google.com"
+                style={styles.button}
+                skipClientNav={true}
+                beforeNav={() =>
+                    new Promise((resolve, reject) => {
+                        setTimeout(resolve, 1000);
+                    })
+                }
+            >
+                beforeNav, open URL in new tab
+            </Button>
+            <Switch>
+                <Route path="/foo">
+                    <View id="foo">Hello, world!</View>
+                </Route>
+            </Switch>
+        </View>
+    </MemoryRouter>
+);
+
+export const SafeWithNavCallbacks = () => (
+    <MemoryRouter>
+        <View style={styles.row}>
+            <Button
+                href="/foo"
+                style={styles.button}
+                safeWithNav={() =>
+                    new Promise((resolve, reject) => {
+                        setTimeout(resolve, 1000);
+                    })
+                }
+            >
+                safeWithNav, client-side nav
+            </Button>
+            <Button
+                href="/foo"
+                style={styles.button}
+                skipClientNav={true}
+                safeWithNav={() =>
+                    new Promise((resolve, reject) => {
+                        setTimeout(resolve, 1000);
+                    })
+                }
+            >
+                safeWithNav, server-side nav
+            </Button>
+            <Button
+                href="https://google.com"
+                style={styles.button}
+                skipClientNav={true}
+                safeWithNav={() =>
+                    new Promise((resolve, reject) => {
+                        setTimeout(resolve, 1000);
+                    })
+                }
+            >
+                safeWithNav, open URL in new tab
+            </Button>
+            <Switch>
+                <Route path="/foo">
+                    <View id="foo">Hello, world!</View>
+                </Route>
+            </Switch>
+        </View>
+    </MemoryRouter>
+);
+
+## Stories
+
+### beforeNav Callbacks
+
+These buttons always wait until the async callback code completes before
+starting navigation.
+
+<Canvas>
+    <Story name="beforeNav Callbacks">
+        {BeforeNavCallbacks.bind({})}
+    </Story>
+</Canvas>
+
+### safeWithNav Callbacks
+
+If the `onClick` callback calls `preventDefault()`, then navigation will not occur.
+
+<Canvas>
+    <Story name="safeWithNav Callbacks">
+        {SafeWithNavCallbacks.bind({})}
+    </Story>
+</Canvas>

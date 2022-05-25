@@ -12,14 +12,16 @@ import {icons} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {StoryComponentType} from "@storybook/react";
-import Button from "./button.js";
+import type {StyleDeclaration} from "aphrodite";
 
-import ComponentInfo from "../../../../.storybook/components/component-info.js";
-import ButtonArgTypes from "./__docs__/button.argtypes.js";
-import {name, version} from "../../package.json";
+import Button from "../button.js";
+
+import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ButtonArgTypes from "./button.argtypes.js";
+import {name, version} from "../../../package.json";
 
 export default {
-    title: "Navigation/Button",
+    title: "Button",
     component: Button,
     parameters: {
         componentSubtitle: ((
@@ -32,9 +34,9 @@ export default {
 
 const Template = (args) => <Button {...args} />;
 
-export const DefaultButton: StoryComponentType = Template.bind({});
+export const Default: StoryComponentType = Template.bind({});
 
-DefaultButton.args = {
+Default.args = {
     children: "Hello, world!",
     kind: "primary",
     color: "default",
@@ -45,7 +47,7 @@ DefaultButton.args = {
     onClick: () => {},
 };
 
-DefaultButton.parameters = {
+Default.parameters = {
     design: {
         type: "figma",
         url: "https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks-(Web)?node-id=401%3A307",
@@ -56,7 +58,18 @@ DefaultButton.parameters = {
     },
 };
 
-export const BasicButtons: StoryComponentType = () => (
+// eslint-disable-next-line storybook/prefer-pascal-case
+export const styles: StyleDeclaration = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+        marginBottom: Spacing.xSmall_8,
+    },
+    button: {
+        marginRight: Spacing.xSmall_8,
+    },
+});
+
+export const Variants: StoryComponentType = () => (
     <View>
         <View style={{flexDirection: "row"}}>
             <Button onClick={() => {}}>Hello, world!</Button>
@@ -100,14 +113,14 @@ export const BasicButtons: StoryComponentType = () => (
     </View>
 );
 
-BasicButtons.parameters = {
+Variants.parameters = {
     docs: {
         storyDescription:
             "There are three kinds of buttons: `primary` (default), `secondary`, and `tertiary`.",
     },
 };
 
-export const ButtonsWithColors: StoryComponentType = () => (
+export const WithColor: StoryComponentType = () => (
     <View style={styles.row}>
         <Button style={styles.button} onClick={() => {}} color="destructive">
             Primary
@@ -131,14 +144,16 @@ export const ButtonsWithColors: StoryComponentType = () => (
     </View>
 );
 
-ButtonsWithColors.parameters = {
+WithColor.storyName = "Color";
+
+WithColor.parameters = {
     docs: {
         storyDescription:
             "Buttons have a `color` that is either `default` (the default, as shown above) or `destructive` (as can seen below):",
     },
 };
 
-export const DarkBackgroundButtons: StoryComponentType = () => (
+export const Dark: StoryComponentType = () => (
     <View style={{backgroundColor: Color.darkBlue}}>
         <View style={{flexDirection: "row"}}>
             <Button onClick={() => {}} light={true}>
@@ -204,7 +219,7 @@ export const DarkBackgroundButtons: StoryComponentType = () => (
     </View>
 );
 
-DarkBackgroundButtons.parameters = {
+Dark.parameters = {
     backgrounds: {
         default: "darkBlue",
     },
@@ -214,7 +229,45 @@ DarkBackgroundButtons.parameters = {
     },
 };
 
-export const ButtonsWithSize: StoryComponentType = () => (
+const kinds = ["primary", "secondary", "tertiary"];
+
+export const Icon: StoryComponentType = () => (
+    <View>
+        <View style={styles.row}>
+            {kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    icon={icons.contentExercise}
+                    style={styles.button}
+                    key={idx}
+                >
+                    {kind}
+                </Button>
+            ))}
+        </View>
+        <View style={styles.row}>
+            {kinds.map((kind, idx) => (
+                <Button
+                    kind={kind}
+                    icon={icons.contentExercise}
+                    style={styles.button}
+                    key={idx}
+                    size="small"
+                >
+                    {`${kind} small`}
+                </Button>
+            ))}
+        </View>
+    </View>
+);
+
+Icon.parameters = {
+    docs: {
+        storyDescription: "Buttons can have an icon on it's left side.",
+    },
+};
+
+export const Size: StoryComponentType = () => (
     <View>
         <View style={styles.row}>
             <Button style={styles.button} onClick={() => {}} size="small">
@@ -282,14 +335,14 @@ export const ButtonsWithSize: StoryComponentType = () => (
     </View>
 );
 
-ButtonsWithSize.parameters = {
+Size.parameters = {
     docs: {
         storyDescription:
             "Buttons have a size that's either `medium` (default), `small`, or `xlarge`.",
     },
 };
 
-export const ButtonWithSpinner: StoryComponentType = () => (
+export const Spinner: StoryComponentType = () => (
     <View style={{flexDirection: "row"}}>
         <Button
             onClick={() => {}}
@@ -315,160 +368,58 @@ export const ButtonWithSpinner: StoryComponentType = () => (
     </View>
 );
 
-ButtonWithSpinner.parameters = {
+Spinner.parameters = {
     docs: {
         storyDescription:
             "Buttons can show a spinner. This is useful when indicating to a user that their input has been recognized but that the operation will take some time. While the spinner property is set to true the button is disabled.",
     },
 };
 
-export const ButtonsWithRouter: StoryComponentType = () => (
-    <MemoryRouter>
-        <View style={styles.row}>
-            <Button href="/foo" style={styles.button}>
-                Uses Client-side Nav
-            </Button>
-            <Button href="/foo" style={styles.button} skipClientNav>
-                Avoids Client-side Nav
-            </Button>
-            <Switch>
-                <Route path="/foo">
-                    <View id="foo">Hello, world!</View>
-                </Route>
-            </Switch>
-        </View>
-    </MemoryRouter>
+export const TruncatingLabels: StoryComponentType = () => (
+    <Button onClick={() => {}} style={{maxWidth: 200}}>
+        label too long for the parent container
+    </Button>
 );
 
-ButtonsWithRouter.storyName = "Navigation with React Router";
-
-ButtonsWithRouter.parameters = {
+TruncatingLabels.parameters = {
     docs: {
         storyDescription:
-            "Buttons do client-side navigation by default, if React Router exists:",
+            "If the label is too long for the button width, the text will be truncated.",
+    },
+};
+
+TruncatingLabels.storyName = "Truncating labels";
+
+export const SubmittingForms: StoryComponentType = () => (
+    <form
+        onSubmit={(e) => {
+            e.preventDefault();
+            window.alert("form submitted"); // eslint-disable-line no-alert
+        }}
+    >
+        <View>
+            Foo: <input id="foo" value="bar" />
+            <Button type="submit">Submit</Button>
+        </View>
+    </form>
+);
+
+SubmittingForms.parameters = {
+    docs: {
+        storyDescription:
+            'If the button is inside a form, you can use the `type="submit"` variant, so the form will be submitted on click.',
+    },
+    options: {
+        showAddonPanel: true,
     },
     chromatic: {
+        // We already have screenshots of other stories that cover more of the
+        // button states.
         disableSnapshot: true,
     },
 };
 
-export const BeforeNavCallbacks: StoryComponentType = () => (
-    <MemoryRouter>
-        <View style={styles.row}>
-            <Button
-                href="/foo"
-                style={styles.button}
-                beforeNav={() =>
-                    new Promise((resolve, reject) => {
-                        setTimeout(resolve, 1000);
-                    })
-                }
-            >
-                beforeNav, client-side nav
-            </Button>
-            <Button
-                href="/foo"
-                style={styles.button}
-                skipClientNav={true}
-                beforeNav={() =>
-                    new Promise((resolve, reject) => {
-                        setTimeout(resolve, 1000);
-                    })
-                }
-            >
-                beforeNav, server-side nav
-            </Button>
-            <Button
-                href="https://google.com"
-                style={styles.button}
-                skipClientNav={true}
-                beforeNav={() =>
-                    new Promise((resolve, reject) => {
-                        setTimeout(resolve, 1000);
-                    })
-                }
-            >
-                beforeNav, open URL in new tab
-            </Button>
-            <Switch>
-                <Route path="/foo">
-                    <View id="foo">Hello, world!</View>
-                </Route>
-            </Switch>
-        </View>
-    </MemoryRouter>
-);
-
-BeforeNavCallbacks.storyName = "beforeNav Callbacks";
-
-BeforeNavCallbacks.parameters = {
-    docs: {
-        storyDescription:
-            "These buttons always wait until the async callback code completes before starting navigation.",
-    },
-    chromatic: {
-        disableSnapshot: true,
-    },
-};
-
-export const SafeWithNavCallbacks: StoryComponentType = () => (
-    <MemoryRouter>
-        <View style={styles.row}>
-            <Button
-                href="/foo"
-                style={styles.button}
-                safeWithNav={() =>
-                    new Promise((resolve, reject) => {
-                        setTimeout(resolve, 1000);
-                    })
-                }
-            >
-                safeWithNav, client-side nav
-            </Button>
-            <Button
-                href="/foo"
-                style={styles.button}
-                skipClientNav={true}
-                safeWithNav={() =>
-                    new Promise((resolve, reject) => {
-                        setTimeout(resolve, 1000);
-                    })
-                }
-            >
-                safeWithNav, server-side nav
-            </Button>
-            <Button
-                href="https://google.com"
-                style={styles.button}
-                skipClientNav={true}
-                safeWithNav={() =>
-                    new Promise((resolve, reject) => {
-                        setTimeout(resolve, 1000);
-                    })
-                }
-            >
-                safeWithNav, open URL in new tab
-            </Button>
-            <Switch>
-                <Route path="/foo">
-                    <View id="foo">Hello, world!</View>
-                </Route>
-            </Switch>
-        </View>
-    </MemoryRouter>
-);
-
-SafeWithNavCallbacks.storyName = "safeWithNav Callbacks";
-
-SafeWithNavCallbacks.parameters = {
-    docs: {
-        storyDescription:
-            "If the `onClick` callback calls `preventDefault()`, then navigation will not occur.",
-    },
-    chromatic: {
-        disableSnapshot: true,
-    },
-};
+SubmittingForms.storyName = "Submitting forms";
 
 export const PreventNavigation: StoryComponentType = () => (
     <MemoryRouter>
@@ -492,8 +443,7 @@ export const PreventNavigation: StoryComponentType = () => (
     </MemoryRouter>
 );
 
-PreventNavigation.storyName =
-    "Prevent navigation by calling e.preventDefault()";
+PreventNavigation.storyName = "Preventing navigation";
 
 PreventNavigation.parameters = {
     docs: {
@@ -505,81 +455,32 @@ PreventNavigation.parameters = {
     },
 };
 
-const kinds = ["primary", "secondary", "tertiary"];
-
-export const ButtonsWithIcons: StoryComponentType = () => (
-    <View>
+export const WithRouter: StoryComponentType = () => (
+    <MemoryRouter>
         <View style={styles.row}>
-            {kinds.map((kind, idx) => (
-                <Button
-                    kind={kind}
-                    icon={icons.contentExercise}
-                    style={styles.button}
-                    key={idx}
-                >
-                    {kind}
-                </Button>
-            ))}
+            <Button href="/foo" style={styles.button}>
+                Uses Client-side Nav
+            </Button>
+            <Button href="/foo" style={styles.button} skipClientNav>
+                Avoids Client-side Nav
+            </Button>
+            <Switch>
+                <Route path="/foo">
+                    <View id="foo">Hello, world!</View>
+                </Route>
+            </Switch>
         </View>
-        <View style={styles.row}>
-            {kinds.map((kind, idx) => (
-                <Button
-                    kind={kind}
-                    icon={icons.contentExercise}
-                    style={styles.button}
-                    key={idx}
-                    size="small"
-                >
-                    {`${kind} small`}
-                </Button>
-            ))}
-        </View>
-    </View>
+    </MemoryRouter>
 );
 
-ButtonsWithIcons.parameters = {
+WithRouter.storyName = "Navigation with React Router";
+
+WithRouter.parameters = {
     docs: {
-        storyDescription: "Buttons can have an icon on it's left side.",
-    },
-};
-
-export const LongLabelsAreEllipsized: StoryComponentType = () => (
-    <Button onClick={() => {}} style={{maxWidth: 200}}>
-        label too long for the parent container
-    </Button>
-);
-
-export const SubmitButtonInForm: StoryComponentType = () => (
-    <form
-        onSubmit={(e) => {
-            e.preventDefault();
-            window.alert("form submitted"); // eslint-disable-line no-alert
-        }}
-    >
-        <View>
-            Foo: <input id="foo" value="bar" />
-            <Button type="submit">Submit</Button>
-        </View>
-    </form>
-);
-
-SubmitButtonInForm.parameters = {
-    options: {
-        showAddonPanel: true,
+        storyDescription:
+            "Buttons do client-side navigation by default, if React Router exists:",
     },
     chromatic: {
-        // We already have screenshots of other stories that cover more of the
-        // button states.
         disableSnapshot: true,
     },
 };
-
-const styles = StyleSheet.create({
-    row: {
-        flexDirection: "row",
-        marginBottom: Spacing.xSmall_8,
-    },
-    button: {
-        marginRight: Spacing.xSmall_8,
-    },
-});
