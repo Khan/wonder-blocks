@@ -30,6 +30,7 @@ export default {
     },
     decorators: [withDesign],
     argTypes: ButtonArgTypes,
+    excludeStories: ["styles"],
 };
 
 const Template = (args) => <Button {...args} />;
@@ -58,7 +59,6 @@ Default.parameters = {
     },
 };
 
-// eslint-disable-next-line storybook/prefer-pascal-case
 export const styles: StyleDeclaration = StyleSheet.create({
     row: {
         flexDirection: "row",
