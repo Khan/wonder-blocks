@@ -1936,10 +1936,10 @@
   resolved "https://registry.yarnpkg.com/@khanacademy/eslint-config/-/eslint-config-0.1.0.tgz#e2b2c935be685f76075ee83136752b184c1ac733"
   integrity sha512-fskDM6GuRgZWmHHt2oUspcbsYNh6HNSB211372P98m3YRwkZNOeRCTFB7Byd3owfSm1z2jDYtUozgQv9zCWiVA==
 
-"@khanacademy/wonder-stuff-core@^0.1.2":
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/@khanacademy/wonder-stuff-core/-/wonder-stuff-core-0.1.2.tgz#886759e6b65ee391b6d92bcc4c4f1f679a2dc0a4"
-  integrity sha512-/alC283ZM7g7fpJoSWigbBaFAlVc9JJIQ3NCtokBwb65X+WNC1T9yDWhEXhdE/IB/IOQWTKpYnA14OA2Eq67xg==
+"@khanacademy/wonder-stuff-core@^0.1.3":
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/@khanacademy/wonder-stuff-core/-/wonder-stuff-core-0.1.3.tgz#5d6a2646d8d8f92ba98a695751b6efd4d8137eae"
+  integrity sha512-6iw5Jt5LkIADYFD8XZ0PDULNw4UroHlBzBOKiKOxLvRaI0SED5rkrCQrFIS+2g3FytndqLy0g9KCPyHuaq2qkg==
 
 "@khanacademy/wonder-stuff-testing@^0.0.2":
   version "0.0.2"
