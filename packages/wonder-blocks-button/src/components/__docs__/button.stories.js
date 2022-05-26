@@ -11,6 +11,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import type {StoryComponentType} from "@storybook/react";
 import type {StyleDeclaration} from "aphrodite";
 
@@ -62,10 +63,18 @@ Default.parameters = {
 export const styles: StyleDeclaration = StyleSheet.create({
     row: {
         flexDirection: "row",
+        alignItems: "center",
         marginBottom: Spacing.xSmall_8,
     },
     button: {
         marginRight: Spacing.xSmall_8,
+    },
+    fillSpace: {
+        minWidth: 140,
+    },
+    example: {
+        background: Color.offWhite,
+        padding: Spacing.medium_16,
     },
 });
 
@@ -270,67 +279,77 @@ Icon.parameters = {
 export const Size: StoryComponentType = () => (
     <View>
         <View style={styles.row}>
-            <Button style={styles.button} onClick={() => {}} size="small">
-                Label
-            </Button>
-            <Button
-                style={styles.button}
-                onClick={() => {}}
-                kind="secondary"
-                size="small"
-            >
-                Label
-            </Button>
-            <Button
-                style={styles.button}
-                onClick={() => {}}
-                kind="tertiary"
-                size="small"
-            >
-                Label
-            </Button>
+            <LabelMedium style={styles.fillSpace}>small</LabelMedium>
+            <View style={[styles.row, styles.example]}>
+                <Button style={styles.button} onClick={() => {}} size="small">
+                    Label
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="secondary"
+                    size="small"
+                >
+                    Label
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="tertiary"
+                    size="small"
+                >
+                    Label
+                </Button>
+            </View>
         </View>
         <View style={styles.row}>
-            <Button style={styles.button} onClick={() => {}} size="medium">
-                Label
-            </Button>
-            <Button
-                style={styles.button}
-                onClick={() => {}}
-                kind="secondary"
-                size="medium"
-            >
-                Label
-            </Button>
-            <Button
-                style={styles.button}
-                onClick={() => {}}
-                kind="tertiary"
-                size="medium"
-            >
-                Label
-            </Button>
+            <LabelMedium style={styles.fillSpace}>medium (default)</LabelMedium>
+
+            <View style={[styles.row, styles.example]}>
+                <Button style={styles.button} onClick={() => {}} size="medium">
+                    Label
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="secondary"
+                    size="medium"
+                >
+                    Label
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="tertiary"
+                    size="medium"
+                >
+                    Label
+                </Button>
+            </View>
         </View>
         <View style={styles.row}>
-            <Button style={styles.button} onClick={() => {}} size="xlarge">
-                Label
-            </Button>
-            <Button
-                style={styles.button}
-                onClick={() => {}}
-                kind="secondary"
-                size="xlarge"
-            >
-                Label
-            </Button>
-            <Button
-                style={styles.button}
-                onClick={() => {}}
-                kind="tertiary"
-                size="xlarge"
-            >
-                Label
-            </Button>
+            <LabelMedium style={styles.fillSpace}>large</LabelMedium>
+            <View style={[styles.row, styles.example]}>
+                <Button style={styles.button} onClick={() => {}} size="large">
+                    Label
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="secondary"
+                    size="large"
+                >
+                    Label
+                </Button>
+                <Button
+                    style={styles.button}
+                    onClick={() => {}}
+                    kind="tertiary"
+                    size="large"
+                >
+                    Label
+                </Button>
+            </View>
         </View>
     </View>
 );
@@ -338,7 +357,7 @@ export const Size: StoryComponentType = () => (
 Size.parameters = {
     docs: {
         storyDescription:
-            "Buttons have a size that's either `medium` (default), `small`, or `xlarge`.",
+            "Buttons have a size that's either `medium` (default), `small`, or `large`.",
     },
 };
 
@@ -347,7 +366,7 @@ export const Spinner: StoryComponentType = () => (
         <Button
             onClick={() => {}}
             spinner={true}
-            size="xlarge"
+            size="large"
             aria-label={"waiting"}
         >
             Hello, world
