@@ -100,6 +100,8 @@ export default class ButtonCore extends React.Component<Props> {
 
         const Label = size === "small" ? LabelSmall : LabelLarge;
 
+        // We have to use `medium` for both md and lg buttons so we can fit the
+        // icons in large buttons.
         const iconSize = size === "small" ? "small" : "medium";
 
         const label = (
@@ -144,6 +146,7 @@ export default class ButtonCore extends React.Component<Props> {
                             }[size]
                         }
                         light={kind === "primary"}
+                        testId={`${testId || "button"}-spinner`}
                     />
                 )}
             </React.Fragment>
