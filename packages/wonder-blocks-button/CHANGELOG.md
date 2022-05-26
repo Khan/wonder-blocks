@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 3.0.0
+
+### Major Changes
+
+-   85c31780: Changed size prop value: From `xlarge` to `large`
+
 ## 2.11.7
 
 ### Patch Changes

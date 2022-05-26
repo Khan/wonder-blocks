@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.7.5
+
+### Patch Changes
+
+-   Updated dependencies [85c31780]
+    -   @khanacademy/wonder-blocks-button@3.0.0
+
 ## 2.7.4
 
 ### Patch Changes

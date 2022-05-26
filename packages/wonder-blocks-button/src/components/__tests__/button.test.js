@@ -1,23 +1,10 @@
 // @flow
 import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
-import {render, screen} from "@testing-library/react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen, waitFor} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Button from "../button.js";
-
-const wait = (delay: number = 0) =>
-    new Promise((resolve, reject) => {
-        // eslint-disable-next-line no-restricted-syntax
-        return setTimeout(resolve, delay);
-    });
-
-const keyCodes = {
-    tab: 9,
-    enter: 13,
-    space: 32,
-};
 
 describe("Button", () => {
     const {location} = window;
@@ -33,7 +20,7 @@ describe("Button", () => {
 
     test("client-side navigation", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button href="/foo">Click me!</Button>
@@ -47,16 +34,16 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
-        expect(wrapper.find("#foo")).toExist();
+        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
     });
 
-    test("beforeNav rejection blocks client-side navigation", async () => {
+    test("beforeNav rejection blocks client-side navigation", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button href="/foo" beforeNav={(e) => Promise.reject()}>
@@ -72,19 +59,17 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
-        await wait(0);
-        buttonWrapper.update();
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
-        expect(wrapper.find("#foo")).not.toExist();
+        expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
-    test("beforeNav rejection blocks calling safeWithNav", async () => {
+    test("beforeNav rejection blocks calling safeWithNav", () => {
         // Arrange
         const safeWithNavMock = jest.fn();
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button
@@ -104,10 +89,8 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
-        await wait(0);
-        buttonWrapper.update();
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
         expect(safeWithNavMock).not.toHaveBeenCalled();
@@ -115,7 +98,7 @@ describe("Button", () => {
 
     test("beforeNav resolution results in client-side navigation", async () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button href="/foo" beforeNav={(e) => Promise.resolve()}>
@@ -131,19 +114,19 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
-        await wait(0);
-        buttonWrapper.update();
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
-        expect(wrapper.find("#foo")).toExist();
+        waitFor(() => {
+            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        });
     });
 
     test("beforeNav resolution results in safeWithNav being called", async () => {
         // Arrange
         const safeWithNavMock = jest.fn();
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button
@@ -163,18 +146,18 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
-        await wait(0);
-        buttonWrapper.update();
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
-        expect(safeWithNavMock).toHaveBeenCalled();
+        waitFor(() => {
+            expect(safeWithNavMock).toHaveBeenCalled();
+        });
     });
 
-    test("show circular spinner before beforeNav resolves", async () => {
+    test("show circular spinner before beforeNav resolves", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button href="/foo" beforeNav={(e) => Promise.resolve()}>
@@ -190,20 +173,18 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
-        // We want the button to look exactly the same as if someone had passed
-        // `spinner={true}` as a prop.
-        expect(wrapper.find("ButtonCore")).toHaveProp({spinner: true});
-        expect(wrapper.find("CircularSpinner")).toExist();
+        // TODO(juan): Find a way to use a more accessible query.
+        expect(screen.getByTestId("button-spinner")).toBeInTheDocument();
     });
 
     test("safeWithNav with skipClientNav=true waits for promise resolution", async () => {
         // Arrange
         jest.spyOn(window.location, "assign");
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button
@@ -223,19 +204,19 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
-        await wait(0);
-        buttonWrapper.update();
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
-        expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        waitFor(() => {
+            expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        });
     });
 
     test("safeWithNav with skipClientNav=true shows spinner", async () => {
         // Arrange
         jest.spyOn(window.location, "assign");
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button
@@ -255,17 +236,17 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
-        expect(wrapper.find("CircularSpinner")).toExist();
+        expect(screen.getByTestId("button-spinner")).toBeInTheDocument();
     });
 
     test("beforeNav resolution and safeWithNav with skipClientNav=true waits for promise resolution", async () => {
         // Arrange
         jest.spyOn(window.location, "assign");
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button
@@ -286,21 +267,19 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
-        await wait(0);
-        buttonWrapper.update();
-        await wait(0);
-        buttonWrapper.update();
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
-        expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        waitFor(() => {
+            expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        });
     });
 
     test("safeWithNav with skipClientNav=true waits for promise rejection", async () => {
         // Arrange
         jest.spyOn(window.location, "assign");
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button
@@ -320,10 +299,8 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
-        await wait(0);
-        buttonWrapper.update();
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
         expect(window.location.assign).toHaveBeenCalledWith("/foo");
@@ -333,7 +310,7 @@ describe("Button", () => {
         // Arrange
         jest.spyOn(window.location, "assign");
         const safeWithNavMock = jest.fn();
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button
@@ -353,8 +330,8 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
         expect(safeWithNavMock).toHaveBeenCalled();
@@ -365,7 +342,7 @@ describe("Button", () => {
         // Arrange
         jest.spyOn(window.location, "assign");
         const safeWithNavMock = jest.fn();
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button
@@ -386,19 +363,21 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
-        await wait(0);
-        buttonWrapper.update();
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
-        expect(safeWithNavMock).toHaveBeenCalled();
-        expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        waitFor(() => {
+            expect(safeWithNavMock).toHaveBeenCalled();
+        });
+        waitFor(() => {
+            expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        });
     });
 
     test("client-side navigation with unknown URL fails", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button href="/unknown">Click me!</Button>
@@ -412,16 +391,16 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
-        expect(wrapper.find("#foo")).not.toExist();
+        expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
     test("client-side navigation with `skipClientNav` set to `true` fails", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button href="/foo" skipClientNav>
@@ -437,16 +416,16 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
-        expect(wrapper.find("#foo")).not.toExist();
+        expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
     test("disallow navigation when href and disabled are both set", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button href="/foo" disabled={true}>
@@ -462,17 +441,17 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
-        expect(wrapper.find("#foo")).not.toExist();
+        expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
     test("don't call beforeNav when href and disabled are both set", () => {
         // Arrange
         const beforeNavMock = jest.fn();
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button
@@ -492,8 +471,8 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
         expect(beforeNavMock).not.toHaveBeenCalled();
@@ -502,7 +481,7 @@ describe("Button", () => {
     test("don't call safeWithNav when href and disabled are both set", () => {
         // Arrange
         const safeWithNavMock = jest.fn();
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <Button
@@ -522,39 +501,45 @@ describe("Button", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper.find("Button");
-        buttonWrapper.simulate("click", {button: 0});
+        const button = screen.getByRole("button");
+        userEvent.click(button);
 
         // Assert
         expect(safeWithNavMock).not.toHaveBeenCalled();
     });
 
-    it("should set label on the underlying button", () => {
+    it("should set attribute on the underlying button", () => {
         // Arrange
-        const wrapper = mount(
+
+        // Act
+        render(
             <Button id="foo" onClick={() => {}}>
                 Click me!
             </Button>,
         );
 
-        expect(wrapper.find("button")).toHaveProp({id: "foo"});
+        // Assert
+        expect(screen.getByRole("button")).toHaveAttribute("id", "foo");
     });
 
-    it("should set label on the underlying link", () => {
+    it("should set attribute on the underlying link", () => {
         // Arrange
-        const wrapper = mount(
+
+        // Act
+        render(
             <Button id="foo" href="/bar">
                 Click me!
             </Button>,
         );
 
-        expect(wrapper.find("a")).toHaveProp({id: "foo"});
+        // Assert
+        expect(screen.getByRole("button")).toHaveAttribute("href", "/bar");
     });
 
     describe("client-side navigation with keyboard", () => {
         it("should navigate on pressing the space key", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Button href="/foo">Click me!</Button>
@@ -568,21 +553,16 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find("Button");
-            buttonWrapper.simulate("keydown", {
-                keyCode: keyCodes.space,
-            });
-            buttonWrapper.simulate("keyup", {
-                keyCode: keyCodes.space,
-            });
+            const button = screen.getByRole("button");
+            userEvent.type(button, "{space}");
 
             // Assert
-            expect(wrapper.find("#foo")).toExist();
+            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
         });
 
         it("should navigate on pressing the enter key", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Button href="/foo">Click me!</Button>
@@ -596,21 +576,16 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find("Button");
-            buttonWrapper.simulate("keydown", {
-                keyCode: keyCodes.enter,
-            });
-            buttonWrapper.simulate("keyup", {
-                keyCode: keyCodes.enter,
-            });
+            const button = screen.getByRole("button");
+            userEvent.type(button, "{enter}");
 
             // Assert
-            expect(wrapper.find("#foo")).toExist();
+            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
         });
 
         test("beforeNav rejection blocks client-side navigation ", async () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Button href="/foo" beforeNav={(e) => Promise.reject()}>
@@ -626,23 +601,16 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find("Button");
-            buttonWrapper.simulate("keydown", {
-                keyCode: keyCodes.enter,
-            });
-            buttonWrapper.simulate("keyup", {
-                keyCode: keyCodes.enter,
-            });
-            await wait(0);
-            buttonWrapper.update();
+            const button = screen.getByRole("button");
+            userEvent.type(button, "{enter}");
 
             // Assert
-            expect(wrapper.find("#foo")).not.toExist();
+            expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
         });
 
         test("beforeNav resolution results in client-side navigation", async () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Button
@@ -661,24 +629,19 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find("Button");
-            buttonWrapper.simulate("keydown", {
-                keyCode: keyCodes.enter,
-            });
-            buttonWrapper.simulate("keyup", {
-                keyCode: keyCodes.enter,
-            });
-            await wait(0);
-            buttonWrapper.update();
+            const button = screen.getByRole("button");
+            userEvent.type(button, "{enter}");
 
             // Assert
-            expect(wrapper.find("#foo")).toExist();
+            waitFor(() => {
+                expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+            });
         });
 
         test("safeWithNav with skipClientNav=true waits for promise resolution", async () => {
             // Arrange
             jest.spyOn(window.location, "assign");
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Button
@@ -698,15 +661,8 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find("Button");
-            buttonWrapper.simulate("keydown", {
-                keyCode: keyCodes.enter,
-            });
-            buttonWrapper.simulate("keyup", {
-                keyCode: keyCodes.enter,
-            });
-            await wait(0);
-            buttonWrapper.update();
+            const button = screen.getByRole("button");
+            userEvent.type(button, "{enter}");
 
             // Assert
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
@@ -715,7 +671,7 @@ describe("Button", () => {
         test("safeWithNav with skipClientNav=true waits for promise rejection", async () => {
             // Arrange
             jest.spyOn(window.location, "assign");
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Button
@@ -735,25 +691,20 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find("Button");
-            buttonWrapper.simulate("keydown", {
-                keyCode: keyCodes.enter,
-            });
-            buttonWrapper.simulate("keyup", {
-                keyCode: keyCodes.enter,
-            });
-            await wait(0);
-            buttonWrapper.update();
+            const button = screen.getByRole("button");
+            userEvent.type(button, "{enter}");
 
             // Assert
-            expect(window.location.assign).toHaveBeenCalledWith("/foo");
+            waitFor(() => {
+                expect(window.location.assign).toHaveBeenCalledWith("/foo");
+            });
         });
 
         test("safeWithNav with skipClientNav=false calls safeWithNav but doesn't wait to navigate", async () => {
             // Arrange
             jest.spyOn(window.location, "assign");
             const safeWithNavMock = jest.fn();
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Button
@@ -773,17 +724,16 @@ describe("Button", () => {
             );
 
             // Act
-            const buttonWrapper = wrapper.find("Button");
-            buttonWrapper.simulate("keydown", {
-                keyCode: keyCodes.enter,
-            });
-            buttonWrapper.simulate("keyup", {
-                keyCode: keyCodes.enter,
-            });
+            const button = screen.getByRole("button");
+            userEvent.type(button, "{enter}");
 
             // Assert
-            expect(safeWithNavMock).toHaveBeenCalled();
-            expect(window.location.assign).toHaveBeenCalledWith("/foo");
+            waitFor(() => {
+                expect(safeWithNavMock).toHaveBeenCalled();
+            });
+            waitFor(() => {
+                expect(window.location.assign).toHaveBeenCalledWith("/foo");
+            });
         });
     });
 
@@ -841,14 +791,15 @@ describe("Button", () => {
         test("submit button within form via click", () => {
             // Arrange
             const submitFnMock = jest.fn();
-            const wrapper = mount(
+            render(
                 <form onSubmit={submitFnMock}>
                     <Button type="submit">Click me!</Button>
                 </form>,
             );
 
             // Act
-            wrapper.find("button").simulate("click");
+            const button = screen.getByRole("button");
+            userEvent.click(button);
 
             // Assert
             expect(submitFnMock).toHaveBeenCalled();
@@ -857,19 +808,15 @@ describe("Button", () => {
         test("submit button within form via keyboard", () => {
             // Arrange
             const submitFnMock = jest.fn();
-            const wrapper = mount(
+            render(
                 <form onSubmit={submitFnMock}>
                     <Button type="submit">Click me!</Button>
                 </form>,
             );
 
             // Act
-            wrapper.find("button").simulate("keydown", {
-                keyCode: keyCodes.enter,
-            });
-            wrapper.find("button").simulate("keyup", {
-                keyCode: keyCodes.enter,
-            });
+            const button = screen.getByRole("button");
+            userEvent.type(button, "{enter}");
 
             // Assert
             expect(submitFnMock).toHaveBeenCalled();
@@ -877,12 +824,12 @@ describe("Button", () => {
 
         test("submit button doesn't break if it's not in a form", () => {
             // Arrange
-            const wrapper = mount(<Button type="submit">Click me!</Button>);
+            render(<Button type="submit">Click me!</Button>);
 
             // Act
             expect(() => {
                 // Assert
-                wrapper.find("button").simulate("click");
+                userEvent.click(screen.getByRole("button"));
             }).not.toThrow();
         });
     });

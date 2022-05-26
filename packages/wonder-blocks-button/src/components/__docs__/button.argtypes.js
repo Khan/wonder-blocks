@@ -66,15 +66,15 @@ export default {
     },
     size: {
         description: "The size of the button.",
-        options: ["small", "medium", "xlarge"],
+        options: ["small", "medium", "large"],
         control: {type: "select"},
         table: {
             category: "Layout",
             defaultValue: {
-                detail: `"medium" = height: 40; "small" = height: 32; "xlarge" = height: 60;`,
+                detail: `"medium" = height: 40; "small" = height: 32; "large" = height: 56;`,
             },
             type: {
-                summary: `"medium" | "small" | "xlarge"`,
+                summary: `"medium" | "small" | "large"`,
             },
         },
     },
