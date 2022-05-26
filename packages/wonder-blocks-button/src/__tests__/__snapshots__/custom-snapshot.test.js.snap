@@ -225,6 +225,620 @@ exports[`Button <Link tabIndex={1}> 1`] = `
 </button>
 `;
 
+exports[`ButtonCore kind:primary color:default size:large light:false disabled 1`] = `
+<button
+  aria-disabled={true}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px rgba(33,36,44,0.32)",
+      },
+      "alignItems": "center",
+      "background": "rgba(33,36,44,0.32)",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "rgba(255,255,255,0.64)",
+      "cursor": "default",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:default size:large light:false focused 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#1865f2",
+      "border": "none",
+      "borderRadius": 6,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:default size:large light:false hovered 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#1865f2",
+      "border": "none",
+      "borderRadius": 6,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:default size:large light:false pressed 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#1b50b3",
+      "border": "none",
+      "borderRadius": 6,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1b50b3",
+      "boxSizing": "border-box",
+      "color": "#b5cefb",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:default size:large light:true disabled 1`] = `
+<button
+  aria-disabled={true}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "boxShadow": "0 0 0 1px rgba(33,36,44,0.32), 0 0 0 3px #b5cefb",
+      },
+      "alignItems": "center",
+      "background": "#b5cefb",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "default",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:default size:large light:true focused 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#ffffff",
+      "border": "none",
+      "borderRadius": 6,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:default size:large light:true hovered 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#ffffff",
+      "border": "none",
+      "borderRadius": 6,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:default size:large light:true pressed 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#b5cefb",
+      "border": "none",
+      "borderRadius": 6,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #b5cefb",
+      "boxSizing": "border-box",
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
 exports[`ButtonCore kind:primary color:default size:medium light:false disabled 1`] = `
 <button
   aria-disabled={true}
@@ -1441,6 +2055,620 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:destructive size:large light:false disabled 1`] = `
+<button
+  aria-disabled={true}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px rgba(33,36,44,0.32)",
+      },
+      "alignItems": "center",
+      "background": "rgba(33,36,44,0.32)",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "rgba(255,255,255,0.64)",
+      "cursor": "default",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:destructive size:large light:false focused 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#d92916",
+      "border": "none",
+      "borderRadius": 6,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:destructive size:large light:false hovered 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#d92916",
+      "border": "none",
+      "borderRadius": 6,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:destructive size:large light:false pressed 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#9e271d",
+      "border": "none",
+      "borderRadius": 6,
+      "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #9e271d",
+      "boxSizing": "border-box",
+      "color": "#f3bbb4",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:destructive size:large light:true disabled 1`] = `
+<button
+  aria-disabled={true}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "boxShadow": "0 0 0 1px rgba(33,36,44,0.32), 0 0 0 3px #f3bbb4",
+      },
+      "alignItems": "center",
+      "background": "#f3bbb4",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "default",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:destructive size:large light:true focused 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#ffffff",
+      "border": "none",
+      "borderRadius": 6,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:destructive size:large light:true hovered 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#ffffff",
+      "border": "none",
+      "borderRadius": 6,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #ffffff",
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:primary color:destructive size:large light:true pressed 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#f3bbb4",
+      "border": "none",
+      "borderRadius": 6,
+      "boxShadow": "0 0 0 1px #0a2a66, 0 0 0 3px #f3bbb4",
+      "boxSizing": "border-box",
+      "color": "#9e271d",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
@@ -2941,6 +4169,644 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
 </button>
 `;
 
+exports[`ButtonCore kind:secondary color:default size:large light:false disabled 1`] = `
+<button
+  aria-disabled={true}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "borderColor": "rgba(33,36,44,0.32)",
+        "borderWidth": 2,
+        "paddingLeft": 31,
+        "paddingRight": 31,
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "rgba(33,36,44,0.32)",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 1,
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "default",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:default size:large light:false focused 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#ffffff",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 31,
+      "paddingRight": 31,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:default size:large light:false hovered 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#ffffff",
+      "border": "none",
+      "borderColor": "#1865f2",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 31,
+      "paddingRight": 31,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:default size:large light:false pressed 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#b5cefb",
+      "border": "none",
+      "borderColor": "#1b50b3",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 31,
+      "paddingRight": 31,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:default size:large light:true disabled 1`] = `
+<button
+  aria-disabled={true}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "borderColor": "rgba(255,255,255,0.50)",
+        "borderWidth": 2,
+        "paddingLeft": 31,
+        "paddingRight": 31,
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#b5cefb",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 1,
+      "boxSizing": "border-box",
+      "color": "rgba(255,255,255,0.50)",
+      "cursor": "default",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:default size:large light:true focused 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "transparent",
+      "border": "none",
+      "borderColor": "#ffffff",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 31,
+      "paddingRight": 31,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:default size:large light:true hovered 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "transparent",
+      "border": "none",
+      "borderColor": "#ffffff",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 31,
+      "paddingRight": 31,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:default size:large light:true pressed 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#1b50b3",
+      "border": "none",
+      "borderColor": "#b5cefb",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#b5cefb",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 31,
+      "paddingRight": 31,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
 exports[`ButtonCore kind:secondary color:default size:medium light:false disabled 1`] = `
 <button
   aria-disabled={true}
@@ -4205,6 +6071,644 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:destructive size:large light:false disabled 1`] = `
+<button
+  aria-disabled={true}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "borderColor": "rgba(33,36,44,0.32)",
+        "borderWidth": 2,
+        "paddingLeft": 31,
+        "paddingRight": 31,
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "rgba(33,36,44,0.32)",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 1,
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "default",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:destructive size:large light:false focused 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#ffffff",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 31,
+      "paddingRight": 31,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:destructive size:large light:false hovered 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#ffffff",
+      "border": "none",
+      "borderColor": "#d92916",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 31,
+      "paddingRight": 31,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:destructive size:large light:false pressed 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#f3bbb4",
+      "border": "none",
+      "borderColor": "#9e271d",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#9e271d",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 31,
+      "paddingRight": 31,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:destructive size:large light:true disabled 1`] = `
+<button
+  aria-disabled={true}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "borderColor": "rgba(255,255,255,0.50)",
+        "borderWidth": 2,
+        "paddingLeft": 31,
+        "paddingRight": 31,
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderColor": "#f3bbb4",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 1,
+      "boxSizing": "border-box",
+      "color": "rgba(255,255,255,0.50)",
+      "cursor": "default",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 32,
+      "paddingRight": 32,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:destructive size:large light:true focused 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "transparent",
+      "border": "none",
+      "borderColor": "#ffffff",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 31,
+      "paddingRight": 31,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:destructive size:large light:true hovered 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "transparent",
+      "border": "none",
+      "borderColor": "#ffffff",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 31,
+      "paddingRight": 31,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:secondary color:destructive size:large light:true pressed 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "#9e271d",
+      "border": "none",
+      "borderColor": "#f3bbb4",
+      "borderRadius": 6,
+      "borderStyle": "solid",
+      "borderWidth": 2,
+      "boxSizing": "border-box",
+      "color": "#f3bbb4",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 31,
+      "paddingRight": 31,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
         "textOverflow": "ellipsis",
@@ -5765,6 +8269,684 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
 </button>
 `;
 
+exports[`ButtonCore kind:tertiary color:default size:large light:false disabled 1`] = `
+<button
+  aria-disabled={true}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "default",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:default size:large light:false focused 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        ":after": Object {
+          "background": "#1865f2",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:default size:large light:false hovered 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        ":after": Object {
+          "background": "#1865f2",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:default size:large light:false pressed 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        ":after": Object {
+          "background": "#1b50b3",
+          "borderRadius": 2,
+          "bottom": "calc(50% - 11px)",
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "color": "#1b50b3",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:default size:large light:true disabled 1`] = `
+<button
+  aria-disabled={true}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#b5cefb",
+      "cursor": "default",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:default size:large light:true focused 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        ":after": Object {
+          "background": "#ffffff",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:default size:large light:true hovered 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        ":after": Object {
+          "background": "#ffffff",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:default size:large light:true pressed 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        ":after": Object {
+          "background": "#b5cefb",
+          "borderRadius": 2,
+          "bottom": "calc(50% - 11px)",
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "color": "#b5cefb",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
 exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled 1`] = `
 <button
   aria-disabled={true}
@@ -7108,6 +10290,684 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
         "fontSize": 14,
         "fontWeight": "bold",
         "lineHeight": "18px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:destructive size:large light:false disabled 1`] = `
+<button
+  aria-disabled={true}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "rgba(33,36,44,0.32)",
+      "cursor": "default",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:destructive size:large light:false focused 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        ":after": Object {
+          "background": "#d92916",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:destructive size:large light:false hovered 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        ":after": Object {
+          "background": "#d92916",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:destructive size:large light:false pressed 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#d92916",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        ":after": Object {
+          "background": "#9e271d",
+          "borderRadius": 2,
+          "bottom": "calc(50% - 11px)",
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "color": "#9e271d",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:destructive size:large light:true disabled 1`] = `
+<button
+  aria-disabled={true}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#f3bbb4",
+      "cursor": "default",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={-1}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:destructive size:large light:true focused 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        ":after": Object {
+          "background": "#ffffff",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:destructive size:large light:true hovered 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        ":after": Object {
+          "background": "#ffffff",
+          "borderRadius": 2,
+          "bottom": 0,
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
+        "overflow": "hidden",
+        "pointerEvents": "none",
+        "position": "relative",
+        "textOverflow": "ellipsis",
+        "whiteSpace": "nowrap",
+      }
+    }
+  >
+    Click me
+  </span>
+</button>
+`;
+
+exports[`ButtonCore kind:tertiary color:destructive size:large light:true pressed 1`] = `
+<button
+  aria-disabled={false}
+  aria-label=""
+  className=""
+  onBlur={[Function]}
+  onClick={[Function]}
+  onDragStart={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  role="button"
+  style={
+    Object {
+      "::MozFocusInner": Object {
+        "border": 0,
+      },
+      ":focus": Object {
+        "WebkitTapHighlightColor": "rgba(0,0,0,0)",
+      },
+      "alignItems": "center",
+      "background": "none",
+      "border": "none",
+      "borderRadius": 6,
+      "boxSizing": "border-box",
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "height": 56,
+      "justifyContent": "center",
+      "margin": 0,
+      "outline": "none",
+      "paddingBottom": 0,
+      "paddingLeft": 0,
+      "paddingRight": 0,
+      "paddingTop": 0,
+      "position": "relative",
+      "textDecoration": "none",
+      "touchAction": "manipulation",
+      "userSelect": "none",
+    }
+  }
+  tabIndex={0}
+  type="button"
+>
+  <span
+    className=""
+    style={
+      Object {
+        ":after": Object {
+          "background": "#f3bbb4",
+          "borderRadius": 2,
+          "bottom": "calc(50% - 11px)",
+          "content": "''",
+          "height": 2,
+          "position": "absolute",
+          "right": 0,
+          "width": "calc(100% - 0px)",
+        },
+        "MozOsxFontSmoothing": "grayscale",
+        "WebkitFontSmoothing": "antialiased",
+        "alignItems": "center",
+        "color": "#f3bbb4",
+        "display": "inline-block",
+        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontSize": 18,
+        "fontWeight": "bold",
+        "lineHeight": "20px",
         "overflow": "hidden",
         "pointerEvents": "none",
         "position": "relative",
