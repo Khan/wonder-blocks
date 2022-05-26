@@ -367,8 +367,12 @@ describe("Button", () => {
         userEvent.click(button);
 
         // Assert
-        expect(safeWithNavMock).toHaveBeenCalled();
-        expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        waitFor(() => {
+            expect(safeWithNavMock).toHaveBeenCalled();
+        });
+        waitFor(() => {
+            expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        });
     });
 
     test("client-side navigation with unknown URL fails", () => {
