@@ -82,7 +82,7 @@ export default {
     },
     required: {
         description:
-            "Whether this field is required to to continue, or the error message to render if this field is left blank. Pass in a message insetad of `true` if possible.",
+            "Whether this field is required to to continue, or the error message to render if this field is left blank. Pass in a message instead of `true` if possible.",
         table: {
             type: {
                 summary: "boolean | string",
@@ -162,6 +162,7 @@ export default {
     onChange: {
         description:
             "Called when the value has changed. Use this in conjunction with the `value` prop to update the string rendered in the input field.",
+        type: {required: true},
         table: {
             category: "Events",
             type: {

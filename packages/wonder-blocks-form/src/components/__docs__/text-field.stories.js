@@ -419,23 +419,6 @@ Error.parameters = {
     },
 };
 
-export const Disabled: StoryComponentType = () => (
-    <TextField
-        id="tf-8"
-        value=""
-        placeholder="This field is disabled."
-        onChange={() => {}}
-        disabled={true}
-    />
-);
-
-Disabled.parameters = {
-    docs: {
-        storyDescription: `If the \`disabled\` prop is set to true,
-        \`TextField\` will have disabled styling and will not be interactable.`,
-    },
-};
-
 export const Light: StoryComponentType = () => {
     const [value, setValue] = React.useState("khan@khanacademy.org");
     const [errorMessage, setErrorMessage] = React.useState();
@@ -501,8 +484,91 @@ Light.parameters = {
     docs: {
         storyDescription: `If the \`light\` prop is set to true,
         \`TextField\` will have light styling. This is intended to be used
-        on a dark background. It also has specific light styling for the
-        error state.`,
+        on a dark background. There is also a specific light styling for the
+        error state, as seen in the \`ErrorLight\` story.`,
+    },
+};
+
+export const ErrorLight: StoryComponentType = () => {
+    const [value, setValue] = React.useState("khan");
+    const [errorMessage, setErrorMessage] = React.useState();
+    const [focused, setFocused] = React.useState(false);
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+    };
+
+    const validate = (value: string) => {
+        const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+        if (!emailRegex.test(value)) {
+            return "Please enter a valid email";
+        }
+    };
+
+    const handleValidate = (errorMessage: ?string) => {
+        setErrorMessage(errorMessage);
+    };
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    const handleFocus = () => {
+        setFocused(true);
+    };
+
+    const handleBlur = () => {
+        setFocused(false);
+    };
+
+    return (
+        <View style={styles.darkBackground}>
+            <TextField
+                id="tf-7"
+                type="email"
+                value={value}
+                placeholder="Email"
+                light={true}
+                validate={validate}
+                onValidate={handleValidate}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
+            />
+            {!focused && errorMessage && (
+                <View>
+                    <Strut size={Spacing.xSmall_8} />
+                    <_Text style={styles.errorMessage}>{errorMessage}</_Text>
+                </View>
+            )}
+        </View>
+    );
+};
+
+ErrorLight.parameters = {
+    docs: {
+        storyDescription: `If an input value fails validation and the
+        \`light\` prop is true, \`TextField\` will have light error styling.`,
+    },
+};
+
+export const Disabled: StoryComponentType = () => (
+    <TextField
+        id="tf-8"
+        value=""
+        placeholder="This field is disabled."
+        onChange={() => {}}
+        disabled={true}
+    />
+);
+
+Disabled.parameters = {
+    docs: {
+        storyDescription: `If the \`disabled\` prop is set to true,
+        \`TextField\` will have disabled styling and will not be interactable.`,
     },
 };
 
@@ -584,7 +650,7 @@ Ref.parameters = {
     docs: {
         storyDescription: `If you need to save a reference to the input
         field, you can do so by using the \`ref\` prop. In this example,
-        we want the input field to receieve focus when the button is
+        we want the input field to receive focus when the button is
         pressed. We can do this by creating a React ref of type
         \`HTMLInputElement\` and passing it into \`TextField\`'s \`ref\` prop.
         Now we can use the ref variable in the \`handleSubmit\` function to
