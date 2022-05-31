@@ -12,7 +12,12 @@ setupFixtures({
     adapter: adapters.storybook(),
 });
 
-const MyComponent = (props) =>
+type Props = {|
+    propA: string,
+    propB?: string,
+|};
+
+const MyComponent = (props: Props) =>
     `I am a component. Here are my props: ${JSON.stringify(props, null, 2)}`;
 
 const Wrapper = (props) => (
@@ -24,15 +29,15 @@ const Wrapper = (props) => (
 );
 
 const stories: Array<mixed> = Object.values(
-    fixtures(
+    fixtures<typeof MyComponent, _>(
         {
             component: MyComponent,
             title: "Testing / Fixtures / Basic",
         },
         (fixture) => {
             fixture("This is a fixture with some regular props", {
-                see: "this is a prop",
-                and: "this is another",
+                propA: "this is a prop",
+                propB: "this is another",
             });
 
             fixture(
@@ -45,7 +50,7 @@ const stories: Array<mixed> = Object.values(
                         },
                     );
                     return {
-                        this: "prop was made from a function",
+                        propA: "prop was made from a function",
                     };
                 },
             );
@@ -53,8 +58,8 @@ const stories: Array<mixed> = Object.values(
             fixture(
                 "This fixture uses a custom wrapper",
                 {
-                    just: "some props again",
-                    like: "this one",
+                    propA: "some props again",
+                    propB: "this one",
                 },
                 Wrapper,
             );
