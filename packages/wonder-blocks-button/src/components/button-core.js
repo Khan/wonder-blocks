@@ -87,7 +87,7 @@ export default class ButtonCore extends React.Component<Props> {
                     ? buttonStyles.active
                     : (hovered || focused) && buttonStyles.focus),
             size === "small" && sharedStyles.small,
-            size === "xlarge" && sharedStyles.xlarge,
+            size === "large" && sharedStyles.large,
         ];
 
         const commonProps = {
@@ -100,11 +100,15 @@ export default class ButtonCore extends React.Component<Props> {
 
         const Label = size === "small" ? LabelSmall : LabelLarge;
 
+        // We have to use `medium` for both md and lg buttons so we can fit the
+        // icons in large buttons.
+        const iconSize = size === "small" ? "small" : "medium";
+
         const label = (
             <Label
                 style={[
                     sharedStyles.text,
-                    size === "xlarge" && sharedStyles.xlargeText,
+                    size === "large" && sharedStyles.largeText,
                     icon && sharedStyles.textWithIcon,
                     spinner && sharedStyles.hiddenText,
                     kind === "tertiary" && sharedStyles.textWithFocus,
@@ -118,7 +122,7 @@ export default class ButtonCore extends React.Component<Props> {
             >
                 {icon && (
                     <Icon
-                        size={size}
+                        size={iconSize}
                         color="currentColor"
                         icon={icon}
                         style={sharedStyles.icon}
@@ -138,10 +142,11 @@ export default class ButtonCore extends React.Component<Props> {
                             {
                                 medium: "small",
                                 small: "xsmall",
-                                xlarge: "medium",
+                                large: "medium",
                             }[size]
                         }
                         light={kind === "primary"}
+                        testId={`${testId || "button"}-spinner`}
                     />
                 )}
             </React.Fragment>
@@ -215,8 +220,9 @@ const sharedStyles = StyleSheet.create({
     small: {
         height: 32,
     },
-    xlarge: {
-        height: 60,
+    large: {
+        borderRadius: Spacing.xxSmall_6,
+        height: 56,
     },
     text: {
         alignItems: "center",
@@ -227,7 +233,7 @@ const sharedStyles = StyleSheet.create({
         display: "inline-block", // allows the button text to truncate
         pointerEvents: "none", // fix Safari bug where the browser was eating mouse events
     },
-    xlargeText: {
+    largeText: {
         fontSize: 18,
         lineHeight: "20px",
     },
@@ -260,7 +266,7 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
     const {white, white50, white64, offBlack32, offBlack50, darkBlue} = Color;
     const fadedColor = mix(fade(color, 0.32), white);
     const activeColor = mix(offBlack32, color);
-    const padding = size === "xlarge" ? Spacing.xLarge_32 : Spacing.medium_16;
+    const padding = size === "large" ? Spacing.xLarge_32 : Spacing.medium_16;
 
     let newStyles = {};
     if (kind === "primary") {

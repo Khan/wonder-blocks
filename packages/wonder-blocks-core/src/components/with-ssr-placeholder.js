@@ -39,24 +39,27 @@ type State = {|
 /**
  * Defer or change rendering until the component did mount.
  *
- * The purpose of this component is to disable or modify serverside rendering
+ * The purpose of this component is to disable or modify server-side rendering
  * of certain components. Disabling rendering on the server, by itself, would
- * not be sufficient, since the initial render of the component must match
- * what is rendered on the server. Therefore, this component also disables
- * rendering the first time around on the client.
+ * not be sufficient, since the initial render of the component must match what
+ * is rendered on the server. Therefore, this component also disables rendering
+ * the first time around on the client.
  *
- * If `WithSSRPlaceholder` components are nested within one another,
- * the root `WithSSRPlaceholder` component will handle the initial
- * render, but nested `WithSSRPlaceholder` components will delegate to
- * the root one, meaning that we don't cascade delayed rendering down
- * the component tree. This will also be the case across portal
- * boundaries.
+ * If `WithSSRPlaceholder` components are nested within one another, the root
+ * `WithSSRPlaceholder` component will handle the initial render, but nested
+ * `WithSSRPlaceholder` components will delegate to the root one, meaning that
+ * we don't cascade delayed rendering down the component tree. This will also be
+ * the case across portal boundaries.
  *
- * Example:
+ * ## Usage
  *
  * ```js
+ * import {WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";
+ *
  * <WithSSRPlaceholder placeholder={() => <div>Renders on the server!</div>}>
- *   {() => <div>Only renders on the client (after rehydration).</div>}
+ *   {() => (
+ *      <div>This is rendered only by the client, for all renders after the rehydration render</div>
+ *   )}
  * </WithSSRPlaceholder>
  * ```
  */

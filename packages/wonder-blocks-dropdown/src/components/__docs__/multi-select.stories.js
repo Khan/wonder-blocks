@@ -7,7 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 import type {StoryComponentType} from "@storybook/react";
 
-import {MultiSelect, OptionItem} from "../index.js";
+import {MultiSelect, OptionItem} from "../../index.js";
 
 export default {
     title: "Dropdown / MultiSelect",

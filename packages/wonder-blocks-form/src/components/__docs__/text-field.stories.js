@@ -651,15 +651,19 @@ export const AutoComplete: StoryComponentType = () => {
     };
 
     return (
-        <TextField
-            id="tf-13"
-            type="text"
-            value={value}
-            placeholder="Name"
-            onChange={handleChange}
-            onKeyDown={handleKeyDown}
-            autoComplete="name"
-        />
+        <form>
+            <TextField
+                id="tf-13"
+                type="text"
+                value={value}
+                placeholder="Name"
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                style={styles.fieldWithButton}
+                autoComplete="name"
+            />
+            <Button type="submit">Submit</Button>
+        </form>
     );
 };
 
@@ -668,7 +672,9 @@ AutoComplete.parameters = {
         storyDescription: `If \`TextField\`'s \`autocomplete\` prop is set,
         the browser can predict values for the input. When the user starts
         to type in the field, a list of options will show up based on
-        values that may have been inputted at a previous time.`,
+        values that may have been submitted at a previous time.
+        In this example, the text field provides options after you
+        input a value, press the submit button, and refresh the page.`,
         chromatic: {
             // Disabling snapshot because this is testing interaction,
             // not visuals.
@@ -701,5 +707,8 @@ const styles = StyleSheet.create({
     },
     button: {
         maxWidth: 150,
+    },
+    fieldWithButton: {
+        marginBottom: Spacing.medium_16,
     },
 });
