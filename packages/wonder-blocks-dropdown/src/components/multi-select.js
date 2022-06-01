@@ -211,6 +211,17 @@ type State = {|
  *
  * The multi select stays open until closed by the user. The onChange callback
  * happens every time there is a change in the selection of the items.
+ *
+ * ## Usage
+ *
+ * ```jsx
+ * import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
+ *
+ * <MultiSelect onChange={setSelectedValues} selectedValues={selectedValues}>
+ *  <OptionItem value="pear">Pear</OptionItem>
+ *  <OptionItem value="mango">Mango</OptionItem>
+ * </MultiSelect>
+ * ```
  */
 export default class MultiSelect extends React.Component<Props, State> {
     labels: Labels;

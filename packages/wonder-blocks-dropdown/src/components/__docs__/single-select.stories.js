@@ -19,7 +19,7 @@ import {
 } from "@khanacademy/wonder-blocks-dropdown";
 import ComponentInfo from "../../../../../.storybook/components/component-info.js";
 import {name, version} from "../../../package.json";
-import singleSelectArgtypes from "./single-select.argtypes.js";
+import singleSelectArgtypes from "./base-select.argtypes.js";
 
 export default {
     title: "Dropdown / SingleSelect",
