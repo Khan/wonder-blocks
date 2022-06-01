@@ -23,11 +23,14 @@ export type FixturesAdapterOptions = {|
 /**
  * Options to describe a collection of fixtures.
  */
-export type FixturesOptions<TProps: {...}> = {|
+export type FixturesOptions<
+    TComponent: React.ComponentType<any>,
+    TProps: React.ElementConfig<TComponent>,
+> = {|
     /**
      * The component being tested by the fixtures.
      */
-    component: React.ComponentType<TProps>,
+    component: TComponent,
 
     /**
      * Optional title of the fixture collection.

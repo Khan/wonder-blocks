@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing
 
+## 6.0.0
+
+### Major Changes
+
+-   af459222: Improve typing for fixtures call
+
 ## 5.0.2
 
 ### Patch Changes
