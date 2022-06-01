@@ -9,11 +9,14 @@ type FixtureProps<TProps: {...}> =
     | $ReadOnly<TProps>
     | ((options: $ReadOnly<GetPropsOptions>) => $ReadOnly<TProps>);
 
-const normalizeOptions = <TProps: {...}>(
+const normalizeOptions = <
+    TComponent: React.ComponentType<any>,
+    TProps: React.ElementConfig<TComponent>,
+>(
     componentOrOptions:
-        | React.ComponentType<TProps>
-        | $ReadOnly<FixturesOptions<TProps>>,
-): $ReadOnly<FixturesOptions<TProps>> => {
+        | TComponent
+        | $ReadOnly<FixturesOptions<TComponent, TProps>>,
+): $ReadOnly<FixturesOptions<TComponent, TProps>> => {
     // To differentiate between a React component and a FixturesOptions object,
     // we have to do some type checking.
     //
@@ -66,10 +69,13 @@ const normalizeOptions = <TProps: {...}>(
  * storybook, the popular framework, uses both default and named exports for
  * its interface.
  */
-export const fixtures = <TProps: {...}>(
+export const fixtures = <
+    TComponent: React.ComponentType<any>,
+    TProps: React.ElementConfig<TComponent>,
+>(
     componentOrOptions:
-        | React.ComponentType<TProps>
-        | $ReadOnly<FixturesOptions<TProps>>,
+        | TComponent
+        | $ReadOnly<FixturesOptions<TComponent, TProps>>,
     fn: (
         fixture: (
             description: string,
@@ -86,7 +92,7 @@ export const fixtures = <TProps: {...}>(
         description: groupDescription,
         defaultWrapper,
         additionalAdapterOptions,
-    } = normalizeOptions(componentOrOptions);
+    } = normalizeOptions<TComponent, TProps>(componentOrOptions);
 
     // 1. Create a new adapter group.
     const group = adapter.declareGroup<TProps>({

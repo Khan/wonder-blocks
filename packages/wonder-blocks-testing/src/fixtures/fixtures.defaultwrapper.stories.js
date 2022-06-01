@@ -31,7 +31,7 @@ const DefaultWrapper = (props) => (
 );
 
 const stories: Array<mixed> = Object.values(
-    fixtures(
+    fixtures<typeof MyComponent, _>(
         {
             component: MyComponent,
             title: "Testing / Fixtures / DefaultWrapper",

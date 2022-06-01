@@ -48,7 +48,7 @@ describe("#fixtures", () => {
         });
 
         // Act
-        fixtures(
+        fixtures<any, _>(
             {
                 title: "TITLE",
                 description: "DESCRIPTION",
@@ -81,7 +81,7 @@ describe("#fixtures", () => {
         component.displayName = "DISPLAYNAME";
 
         // Act
-        fixtures(
+        fixtures<any, _>(
             {
                 component,
             },
@@ -157,7 +157,7 @@ describe("#fixtures", () => {
         const fn = jest.fn();
 
         // Act
-        fixtures(
+        fixtures<any, _>(
             {
                 title: "GROUP_TITLE",
                 description: "GROUP_DESCRIPTION",
@@ -196,7 +196,7 @@ describe("#fixtures", () => {
         };
 
         // Act
-        fixtures(
+        fixtures<any, _>(
             {
                 component: () => "COMPONENT",
                 additionalAdapterOptions: {
@@ -241,7 +241,7 @@ describe("#fixtures", () => {
         };
 
         // Act
-        fixtures(
+        fixtures<any, _>(
             {
                 component: () => "COMPONENT",
                 additionalAdapterOptions: {
@@ -273,7 +273,7 @@ describe("#fixtures", () => {
         });
 
         // Act
-        const result = fixtures(
+        const result = fixtures<any, _>(
             {
                 component: () => "COMPONENT",
             },
@@ -301,7 +301,7 @@ describe("#fixtures", () => {
             const component = () => "COMPONENT";
 
             // Act
-            fixtures(
+            fixtures<any, _>(
                 {
                     title: "GROUP_TITLE",
                     description: "GROUP_DESCRIPTION",
@@ -367,7 +367,7 @@ describe("#fixtures", () => {
             const wrapper = () => "WRAPPER";
 
             // Act
-            fixtures(
+            fixtures<any, _>(
                 {
                     title: "GROUP_TITLE",
                     description: "GROUP_DESCRIPTION",
@@ -407,7 +407,7 @@ describe("#fixtures", () => {
             const defaultWrapper = () => "DEFAULT_WRAPPER";
 
             // Act
-            fixtures(
+            fixtures<any, _>(
                 {
                     title: "GROUP_TITLE",
                     description: "GROUP_DESCRIPTION",
@@ -443,7 +443,7 @@ describe("#fixtures", () => {
                 });
 
                 // Act
-                fixtures(
+                fixtures<any, _>(
                     {
                         component: () => "COMPONENT",
                     },
@@ -475,7 +475,7 @@ describe("#fixtures", () => {
                 const props = jest.fn().mockReturnValue({these: "areProps"});
 
                 // Act
-                fixtures(
+                fixtures<any, _>(
                     {
                         component: () => "COMPONENT",
                     },
@@ -507,7 +507,7 @@ describe("#fixtures", () => {
                 const props = jest.fn().mockReturnValue({these: "areProps"});
 
                 // Act
-                fixtures(
+                fixtures<any, _>(
                     {
                         component: () => "COMPONENT",
                     },
