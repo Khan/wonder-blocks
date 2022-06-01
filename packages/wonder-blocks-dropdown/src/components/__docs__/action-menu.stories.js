@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
