@@ -103,6 +103,17 @@ type DefaultProps = {|
 
 /**
  * A menu that consists of various types of items.
+ *
+ * ## Usage
+ *
+ * ```jsx
+ * import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
+ *
+ * <ActionMenu menuText="Menu">
+ *  <ActionItem href="/profile" label="Profile" />
+ *  <ActionItem label="Settings" onClick={() => {}} />
+ * </ActionMenu>
+ * ```
  */
 export default class ActionMenu extends React.Component<Props, State> {
     openerElement: ?HTMLElement;
