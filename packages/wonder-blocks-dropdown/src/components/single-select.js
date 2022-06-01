@@ -144,11 +144,21 @@ type DefaultProps = {|
  * The single select dropdown closes after the selection of an item. If the same
  * item is selected, there is no callback.
  *
- * *NOTE:* The component automatically uses
+ * **NOTE:** If there are more than 125 items, the component automatically uses
  * [react-window](https://github.com/bvaughn/react-window) to improve
  * performance when rendering these elements and is capable of handling many
  * hundreds of items without performance problems.
  *
+ * ## Usage
+ *
+ * ```jsx
+ * import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
+ *
+ * <SingleSelect placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
+ *  <OptionItem value="pear">Pear</OptionItem>
+ *  <OptionItem value="mango">Mango</OptionItem>
+ * </SingleSelect>
+ * ```
  */
 export default class SingleSelect extends React.Component<Props, State> {
     selectedIndex: number;
