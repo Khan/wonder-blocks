@@ -100,7 +100,7 @@ const styles = StyleSheet.create({
         width: "100%",
     },
     wrapper: {
-        height: "800px",
+        height: "500px",
         width: "600px",
     },
     centered: {
@@ -176,15 +176,17 @@ export const ControlledOpened: StoryComponentType = (args) => {
     }, [args.opened]);
 
     return (
-        <SingleSelect
-            {...args}
-            onChange={setSelectedValue}
-            selectedValue={selectedValue}
-            opened={opened}
-            onToggle={setOpened}
-        >
-            {items}
-        </SingleSelect>
+        <View style={styles.wrapper}>
+            <SingleSelect
+                {...args}
+                onChange={setSelectedValue}
+                selectedValue={selectedValue}
+                opened={opened}
+                onToggle={setOpened}
+            >
+                {items}
+            </SingleSelect>
+        </View>
     );
 };
 
