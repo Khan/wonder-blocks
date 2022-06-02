@@ -348,6 +348,23 @@ type ExportProps = $Diff<
     WithForwardRef,
 >;
 
+/**
+ * A TextField is an element used to accept a single line of text from the user.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {TextField} from "@khanacademy/wonder-blocks-form";
+ *
+ * const [value, setValue] = React.useState("");
+ *
+ * <TextField
+ *     id="some-unique-text-field-id"
+ *     value={value}
+ *     onChange={setValue}
+ * />
+ * ```
+ */
 const TextField: React.AbstractComponent<ExportProps, HTMLInputElement> =
     React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
         <TextFieldInternal {...props} forwardedRef={ref} />

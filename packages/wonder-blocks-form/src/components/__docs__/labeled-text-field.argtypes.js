@@ -2,8 +2,8 @@
 
 export default {
     id: {
-        description: "The unique identifier for the input.",
-        type: {required: true},
+        description: `An optional unique identifier for the TextField.
+        If no id is specified, a unique id will be auto-generated.`,
         table: {
             type: {
                 summary: "string",
@@ -29,6 +29,29 @@ export default {
             type: "select",
         },
     },
+    label: {
+        description: "Provide a label for the TextField.",
+        type: {required: true},
+        table: {
+            type: {
+                summary: "string | React.Element<Typography>",
+            },
+        },
+        control: {
+            type: "text",
+        },
+    },
+    description: {
+        description: "Provide a description for the TextField.",
+        table: {
+            type: {
+                summary: "string | React.Element<Typography>",
+            },
+        },
+        control: {
+            type: "text",
+        },
+    },
     value: {
         description: "The input value.",
         type: {required: true},
@@ -37,10 +60,12 @@ export default {
                 summary: "string",
             },
         },
-        control: {type: "text"},
+        control: {
+            type: "text",
+        },
     },
     autoComplete: {
-        description: "Specifies if the input field allows autocomplete.",
+        description: "Specifies if the TextField allows autocomplete.",
         table: {
             type: {
                 summary: "string",
@@ -67,7 +92,7 @@ export default {
     },
     light: {
         description:
-            "Change the default focus ring color to fit a dark background.",
+            "Change the field’s sub-components to fit a dark background.",
         table: {
             type: {
                 summary: "boolean",
@@ -78,19 +103,6 @@ export default {
         },
         control: {
             type: "boolean",
-        },
-    },
-    required: {
-        description:
-            "Whether this field is required to to continue, or the error message to render if this field is left blank. Pass in a message instead of `true` if possible.",
-        table: {
-            type: {
-                summary: "boolean | string",
-                detail: "The string will not be used if a `validate` prop is passed in.",
-            },
-        },
-        control: {
-            type: "null",
         },
     },
     placeholder: {
@@ -104,8 +116,21 @@ export default {
             type: "text",
         },
     },
+    required: {
+        description:
+            "Whether this field is required to to continue, or the error message to render if this field is left blank. Pass in a message instead of `true` if possible.",
+        table: {
+            type: {
+                summary: "boolean | string",
+                detail: "The string will not be used if a `validate` prop is passed in.",
+            },
+        },
+        control: {
+            type: "boolean",
+        },
+    },
     readOnly: {
-        description: "Specifies if the input field is read-only.",
+        description: "Specifies if the TextField is read-only.",
         table: {
             type: {
                 summary: "boolean",
@@ -148,10 +173,27 @@ export default {
     },
 
     /**
+     * Accessibility
+     */
+    ariaDescribedby: {
+        description:
+            "Identifies the element or elements that describes this text field.",
+        table: {
+            category: "Accessibility",
+            type: {
+                summary: "string | Array<string>",
+            },
+        },
+        control: {
+            type: "text",
+        },
+    },
+
+    /**
      * Events
      */
     onValidate: {
-        description: "Called right after the TextField input is validated.",
+        description: "Called when the TextField input is validated.",
         table: {
             category: "Events",
             type: {

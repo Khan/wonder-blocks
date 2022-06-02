@@ -293,6 +293,26 @@ type ExportProps = $Diff<
     WithForwardRef,
 >;
 
+/**
+ * A LabeledTextField is an element used to accept a single line of text
+ * from the user paired with a label, description, and error field elements.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+ *
+ * const [value, setValue] = React.useState("");
+ *
+ * <LabeledTextField
+ *     label="Label"
+ *     description="Hello, this is the description for this field"
+ *     placeholder="Placeholder"
+ *     value={value}
+ *     onChange={setValue}
+ * />
+ * ```
+ */
 const LabeledTextField: React.AbstractComponent<ExportProps, HTMLInputElement> =
     React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
         <LabeledTextFieldInternal {...props} forwardedRef={ref} />
