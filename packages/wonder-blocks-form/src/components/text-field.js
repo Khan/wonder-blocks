@@ -358,14 +358,10 @@ type ExportProps = $Diff<
  *
  * const [value, setValue] = React.useState("");
  *
- * const handleChange = (newValue: string) => {
- *     setValue(newValue);
- * };
- *
  * <TextField
  *     id="some-unique-text-field-id"
  *     value={value}
- *     onChange={handleChange}
+ *     onChange={setValue}
  * />
  * ```
  */

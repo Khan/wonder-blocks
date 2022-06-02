@@ -304,16 +304,12 @@ type ExportProps = $Diff<
  *
  * const [value, setValue] = React.useState("");
  *
- * const handleChange = (newValue: string) => {
- *     setValue(newValue);
- * };
- *
  * <LabeledTextField
  *     label="Label"
  *     description="Hello, this is the description for this field"
  *     placeholder="Placeholder"
  *     value={value}
- *     onChange={handleChange}
+ *     onChange={setValue}
  * />
  * ```
  */
