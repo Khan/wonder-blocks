@@ -214,7 +214,7 @@ describe("SingleSelect", () => {
             render(<ControlledComponent onToggle={onToggleMock} />);
 
             // Act
-            userEvent.click(screen.getByTestId("parent-button"));
+            userEvent.click(screen.getByRole("button", {name: "Choose"}));
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(true);
@@ -225,7 +225,7 @@ describe("SingleSelect", () => {
             const onToggleMock = jest.fn();
             render(<ControlledComponent onToggle={onToggleMock} />);
             // open the menu from the outside
-            userEvent.click(screen.getByTestId("parent-button"));
+            userEvent.click(screen.getByRole("button", {name: "Choose"}));
 
             // Act
             // click on first item
@@ -264,10 +264,11 @@ describe("SingleSelect", () => {
             render(<ControlledComponent />);
 
             // Act
+            const opener = screen.getByRole("button", {name: "Choose"});
             // open the menu from the outside
-            userEvent.click(screen.getByTestId("parent-button"));
+            userEvent.click(opener);
             // click on the dropdown anchor to hide the menu
-            userEvent.click(screen.getByText("Choose"));
+            userEvent.click(opener);
 
             // Assert
             expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
@@ -360,12 +361,7 @@ describe("SingleSelect", () => {
                     testId="openTest"
                     onChange={jest.fn()}
                     opener={({text}) => (
-                        <button
-                            onClick={jest.fn()}
-                            data-test-id="custom-opener"
-                        >
-                            {text}
-                        </button>
+                        <button onClick={jest.fn()}>{text}</button>
                     )}
                 >
                     <OptionItem label="Toggle A" value="toggle_a" />
@@ -374,7 +370,7 @@ describe("SingleSelect", () => {
             );
 
             // Act
-            const opener = screen.getByTestId("custom-opener");
+            const opener = screen.getByRole("button");
             // open dropdown
             userEvent.click(opener);
 
@@ -405,12 +401,7 @@ describe("SingleSelect", () => {
                                 selectedValue={this.state.selectedValue}
                                 placeholder="Custom placeholder"
                                 opener={({text}) => (
-                                    <button
-                                        onClick={jest.fn()}
-                                        data-test-id="custom-opener"
-                                    >
-                                        {text}
-                                    </button>
+                                    <button onClick={jest.fn()}>{text}</button>
                                 )}
                             >
                                 <OptionItem label="Toggle A" value="toggle_a" />
@@ -424,7 +415,7 @@ describe("SingleSelect", () => {
             render(<ControlledComponent />);
 
             // Act
-            const opener = screen.getByTestId("custom-opener");
+            const opener = screen.getByRole("button");
             // open dropdown
             userEvent.click(opener);
             userEvent.click(screen.getByText("Toggle B"));
@@ -437,7 +428,7 @@ describe("SingleSelect", () => {
     });
 
     describe("isFilterable", () => {
-        it("displays SearchTextInput when isFilterable is true", () => {
+        it("displays SearchField when isFilterable is true", () => {
             // Arrange
             render(
                 <SingleSelect
@@ -484,7 +475,7 @@ describe("SingleSelect", () => {
             expect(options[0]).toHaveTextContent("item 2");
         });
 
-        it("Type something in SearchTextInput should update searchText in SingleSelect", () => {
+        it("Type something in SearchField should update searchText in SingleSelect", () => {
             // Arrange
             render(
                 <SingleSelect
@@ -611,30 +602,7 @@ describe("SingleSelect", () => {
 
             // Assert
             const dropdownMenu = screen.getByRole("listbox");
-            expect(dropdownMenu).toHaveStyle("max-height: 132px");
-        });
-
-        it("should apply the default maxHeight to a filterable listbox", () => {
-            // Arrange
-
-            // Act
-            render(
-                <SingleSelect
-                    onChange={onChange}
-                    opened={true}
-                    isFilterable={true}
-                    placeholder="Choose"
-                    selectedValue="2"
-                >
-                    <OptionItem label="item 1" value="1" />
-                    <OptionItem label="item 2" value="2" />
-                    <OptionItem label="item 3" value="3" />
-                </SingleSelect>,
-            );
-
-            // Assert
-            const dropdownMenu = screen.getByRole("listbox");
-            expect(dropdownMenu).toHaveStyle("max-height: 184px");
+            expect(dropdownMenu).toHaveStyle("max-height: 120px");
         });
 
         it("should apply the default maxHeight to a virtualized listbox", () => {
@@ -665,7 +633,7 @@ describe("SingleSelect", () => {
             // Assert
             const dropdownMenu = screen.getByRole("listbox");
             // Max allowed height
-            expect(dropdownMenu).toHaveStyle("max-height: 384px");
+            expect(dropdownMenu).toHaveStyle("max-height: 360px");
         });
 
         it("should override the default maxHeight to the listbox if a custom dropdownStyle is set", () => {
@@ -688,7 +656,7 @@ describe("SingleSelect", () => {
             );
 
             // Assert
-            const dropdownMenu = screen.getByRole("listbox");
+            const dropdownMenu = screen.getByTestId("dropdown-core-container");
             expect(dropdownMenu).toHaveStyle("max-height: 200px");
         });
     });

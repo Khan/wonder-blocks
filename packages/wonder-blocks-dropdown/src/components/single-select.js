@@ -9,14 +9,12 @@ import DropdownCore from "./dropdown-core.js";
 import DropdownOpener from "./dropdown-opener.js";
 import SelectOpener from "./select-opener.js";
 import {
-    defaultLabels,
     selectDropdownStyle,
     filterableDropdownStyle,
 } from "../util/constants.js";
 
 import typeof OptionItem from "./option-item.js";
 import type {DropdownItem, OpenerProps} from "../util/types.js";
-import SearchTextInput from "./search-text-input.js";
 
 type Props = {|
     ...AriaProps,
@@ -287,28 +285,6 @@ export default class SingleSelect extends React.Component<Props, State> {
         );
     }
 
-    getSearchField(): ?DropdownItem {
-        if (!this.props.isFilterable) {
-            return null;
-        }
-
-        return {
-            component: (
-                <SearchTextInput
-                    key="search-text-input"
-                    onChange={this.handleSearchTextChanged}
-                    searchText={this.state.searchText}
-                    labels={{
-                        clearSearch: defaultLabels.clearSearch,
-                        filter: defaultLabels.filter,
-                    }}
-                />
-            ),
-            focusable: true,
-            populatedProps: {},
-        };
-    }
-
     handleSearchTextChanged: (searchText: string) => void = (searchText) => {
         this.setState({searchText});
     };
@@ -397,12 +373,8 @@ export default class SingleSelect extends React.Component<Props, State> {
         } = this.props;
         const {searchText} = this.state;
         const allChildren = React.Children.toArray(children).filter(Boolean);
-        const filteredItems = this.getMenuItems(allChildren);
+        const items = this.getMenuItems(allChildren);
         const opener = this.renderOpener(allChildren.length);
-        const searchField = this.getSearchField();
-        const items = searchField
-            ? [searchField, ...filteredItems]
-            : filteredItems;
 
         return (
             <DropdownCore
@@ -422,6 +394,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 openerElement={this.state.openerElement}
                 style={style}
                 className={className}
+                isFilterable={isFilterable}
                 onSearchTextChanged={
                     isFilterable ? this.handleSearchTextChanged : null
                 }

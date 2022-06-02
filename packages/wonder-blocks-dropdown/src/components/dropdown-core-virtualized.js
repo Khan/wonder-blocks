@@ -9,7 +9,6 @@ import type {
     WithoutActionScheduler,
 } from "@khanacademy/wonder-blocks-timing";
 import DropdownVirtualizedItem from "./dropdown-core-virtualized-item.js";
-import SearchTextInput from "./search-text-input.js";
 import SeparatorItem from "./separator-item.js";
 
 import type {DropdownItem} from "../util/types.js";
@@ -17,7 +16,6 @@ import type {DropdownItem} from "../util/types.js";
 import {
     DROPDOWN_ITEM_HEIGHT,
     MAX_VISIBLE_ITEMS,
-    SEARCH_ITEM_HEIGHT,
     SEPARATOR_ITEM_HEIGHT,
 } from "../util/constants.js";
 import {getDropdownMenuHeight} from "../util/dropdown-menu-styles.js";
@@ -134,9 +132,6 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
         if (SeparatorItem.isClassOf(item.component)) {
             // this is the separator's height (1px) + vertical margin (8px)
             return SEPARATOR_ITEM_HEIGHT;
-        } else if (SearchTextInput.isClassOf(item.component)) {
-            // search text input height
-            return SEARCH_ITEM_HEIGHT;
         } else {
             // default dropdown item height
             return DROPDOWN_ITEM_HEIGHT;

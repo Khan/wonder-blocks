@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import OptionItem from "../../components/option-item.js";
-import SearchTextInput from "../../components/search-text-input.js";
 import SeparatorItem from "../../components/separator-item.js";
 
 import {getDropdownMenuHeight} from "../dropdown-menu-styles.js";
@@ -29,19 +28,6 @@ const optionItems = [
         populatedProps: {},
     },
 ];
-
-const searchFieldItem = {
-    component: (
-        <SearchTextInput
-            testId="item-0"
-            key="search-text-input"
-            onChange={jest.fn()}
-            searchText={""}
-        />
-    ),
-    focusable: true,
-    populatedProps: {},
-};
 
 const separatorItem = {
     component: <SeparatorItem />,
@@ -72,18 +58,6 @@ describe("getDropdownMenuHeight", () => {
         // Assert
         // 3 option items + initial height (e.g. padding)
         expect(height).toBe(130);
-    });
-
-    it("should get a valid height for a filterable dropdown", () => {
-        // Arrange
-        const items = [searchFieldItem, ...optionItems];
-
-        // Act
-        const height = getDropdownMenuHeight(items);
-
-        // Assert
-        // search field + 3 option items
-        expect(height).toBe(172);
     });
 
     it("should get a valid height for a dropdown with a SeparatorItem", () => {
