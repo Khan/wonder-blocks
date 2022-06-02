@@ -3,31 +3,170 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import Button from "@khanacademy/wonder-blocks-button";
+import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {Body, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import {SingleSelect, OptionItem} from "../../index.js";
+import {
+    SingleSelect,
+    OptionItem,
+    SeparatorItem,
+} from "@khanacademy/wonder-blocks-dropdown";
+import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import {name, version} from "../../../package.json";
+import singleSelectArgtypes from "./single-select.argtypes.js";
 
 export default {
     title: "Dropdown / SingleSelect",
     component: SingleSelect,
+    subcomponents: {OptionItem, SeparatorItem},
+    argTypes: singleSelectArgtypes,
     args: {
         isFilterable: true,
-        opened: true,
+        opened: false,
         disabled: false,
         light: false,
         placeholder: "Choose a fruit",
+        selectedValue: "",
+    },
+    decorators: [
+        (Story: StoryComponentType): React.Element<typeof View> => (
+            <View style={styles.example}>
+                <Story />
+            </View>
+        ),
+    ],
+    parameters: {
+        componentSubtitle: ((
+            <ComponentInfo name={name} version={version} />
+        ): any),
+        docs: {
+            description: {
+                component: null,
+            },
+            source: {
+                // See https://github.com/storybookjs/storybook/issues/12596
+                excludeDecorators: true,
+            },
+        },
     },
 };
 
-const SingleSelectTemplate = (args) => <SingleSelect {...args} />;
+const styles = StyleSheet.create({
+    example: {
+        background: Color.offWhite,
+        padding: Spacing.medium_16,
+    },
+    rowRight: {
+        flexDirection: "row",
+        justifyContent: "flex-end",
+    },
+    row: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+    },
+    dropdown: {
+        maxHeight: 200,
+    },
+    /**
+     * Custom opener styles
+     */
+    customOpener: {
+        borderLeft: `5px solid ${Color.blue}`,
+        borderRadius: Spacing.xxxSmall_4,
+        background: Color.lightBlue,
+        color: Color.white,
+        padding: Spacing.medium_16,
+    },
+    focused: {
+        color: Color.offWhite,
+    },
+    hovered: {
+        textDecoration: "underline",
+        color: Color.offWhite,
+        cursor: "pointer",
+    },
+    pressed: {
+        color: Color.blue,
+    },
 
-export const DefaultSingleSelectOpened: StoryComponentType = (args) => {
+    fullBleed: {
+        width: "100%",
+    },
+    wrapper: {
+        height: "500px",
+        width: "600px",
+    },
+    centered: {
+        alignItems: "center",
+        justifyContent: "center",
+        height: `calc(100vh - 16px)`,
+    },
+    scrollableArea: {
+        height: "200vh",
+    },
+    /**
+     * Dark
+     */
+    darkBackgroundWrapper: {
+        flexDirection: "row",
+        justifyContent: "flex-end",
+        backgroundColor: Color.darkBlue,
+        width: "100%",
+        height: 200,
+        paddingRight: Spacing.medium_16,
+        paddingTop: Spacing.medium_16,
+    },
+});
+
+const items = [
+    <OptionItem label="Banana" value="banana" />,
+    <OptionItem label="Strawberry" value="strawberry" disabled />,
+    <OptionItem label="Pear" value="pear" />,
+    <OptionItem label="Orange" value="orange" />,
+    <OptionItem label="Watermelon" value="watermelon" />,
+    <OptionItem label="Apple" value="apple" />,
+    <OptionItem label="Grape" value="grape" />,
+    <OptionItem label="Lemon" value="lemon" />,
+    <OptionItem label="Mango" value="mango" />,
+];
+
+const Template = (args) => {
+    const [selectedValue, setSelectedValue] = React.useState(
+        args.selectedValue,
+    );
+    const [opened, setOpened] = React.useState(args.opened);
+    React.useEffect(() => {
+        // Only update opened if the args.opened prop changes (using the
+        // controls panel).
+        setOpened(args.opened);
+    }, [args.opened]);
+
+    return (
+        <SingleSelect
+            {...args}
+            onChange={setSelectedValue}
+            selectedValue={selectedValue}
+            opened={opened}
+            onToggle={setOpened}
+        >
+            {items}
+        </SingleSelect>
+    );
+};
+
+export const Default: StoryComponentType = Template.bind({});
+
+/**
+ * Controlled SingleSelect
+ */
+export const ControlledOpened: StoryComponentType = (args) => {
     const [selectedValue, setSelectedValue] = React.useState("pear");
     const [opened, setOpened] = React.useState(args.opened);
     React.useEffect(() => {
@@ -37,33 +176,100 @@ export const DefaultSingleSelectOpened: StoryComponentType = (args) => {
     }, [args.opened]);
 
     return (
-        <SingleSelectTemplate
-            {...args}
-            onChange={setSelectedValue}
-            selectedValue={selectedValue}
-            opened={opened}
-            onToggle={setOpened}
-        >
-            <OptionItem label="Banana" value="banana" />
-            <OptionItem label="Strawberry" value="strawberry" disabled />
-            <OptionItem label="Pear" value="pear" />
-            <OptionItem label="Orange" value="orange" />
-            <OptionItem label="Watermelon" value="watermelon" />
-            <OptionItem label="Apple" value="apple" />
-            <OptionItem label="Grape" value="grape" />
-            <OptionItem label="Lemon" value="lemon" />
-            <OptionItem label="Mango" value="mango" />
-        </SingleSelectTemplate>
+        <View style={styles.wrapper}>
+            <SingleSelect
+                {...args}
+                onChange={setSelectedValue}
+                selectedValue={selectedValue}
+                opened={opened}
+                onToggle={setOpened}
+            >
+                {items}
+            </SingleSelect>
+        </View>
     );
 };
 
-DefaultSingleSelectOpened.parameters = {
+ControlledOpened.args = {
+    opened: true,
+};
+
+ControlledOpened.storyName = "Controlled (opened)";
+
+ControlledOpened.parameters = {
     docs: {
-        storyDescription:
-            "This select starts with a starting selected item. One of the items is disabled and thus cannot be selected.",
+        description: {
+            story:
+                "Sometimes you'll want to trigger a dropdown programmatically. This can be done by setting a value to the `opened` prop (`true` or `false`). In this situation the `SingleSelect` is a controlled component. The parent is responsible for managing the opening/closing of the dropdown when using this prop.\n\n" +
+                "This means that you'll also have to update `opened` to the value triggered by the `onToggle` prop.",
+        },
     },
     // Added to ensure that the dropdown menu is rendered using PopperJS.
     chromatic: {delay: 400},
+};
+
+/**
+ * Disabled
+ */
+export const Disabled: StoryComponentType = (args) => (
+    <SingleSelect
+        {...args}
+        onChange={() => {}}
+        selectedValue=""
+        disabled={true}
+    >
+        {items}
+    </SingleSelect>
+);
+
+Disabled.parameters = {
+    docs: {
+        description: {
+            story: "This select is disabled and cannot be interacted with.",
+        },
+    },
+};
+
+/**
+ * On dark background, right-aligned
+ */
+export const Light: StoryComponentType = (args) => {
+    const [selectedValue, setSelectedValue] = React.useState("pear");
+
+    return (
+        <View style={styles.row}>
+            <View style={styles.darkBackgroundWrapper}>
+                <SingleSelect
+                    alignment="right"
+                    light={true}
+                    onChange={setSelectedValue}
+                    placeholder="Choose a drink"
+                    selectedValue={selectedValue}
+                >
+                    <OptionItem
+                        label="Regular milk tea with boba"
+                        value="regular"
+                    />
+                    <OptionItem
+                        label="Wintermelon milk tea with boba"
+                        value="wintermelon"
+                    />
+                    <OptionItem
+                        label="Taro milk tea, half sugar"
+                        value="taro"
+                    />
+                </SingleSelect>
+            </View>
+        </View>
+    );
+};
+
+Light.parameters = {
+    docs: {
+        description: {
+            story: "This single select is on a dark background and is also right-aligned.",
+        },
+    },
 };
 
 const fruits = ["banana", "strawberry", "pear", "orange"];
@@ -80,100 +286,85 @@ const optionItems = new Array(1000)
 
 type Props = {|
     selectedValue?: ?string,
-    opened: boolean,
+    opened?: boolean,
 |};
 
-type State = {|
-    selectedValue?: ?string,
-    opened: boolean,
-|};
+function VirtualizedSingleSelect(props: Props) {
+    const [selectedValue, setSelectedValue] = React.useState(
+        props.selectedValue,
+    );
+    const [opened, setOpened] = React.useState(props.opened || false);
 
-type DefaultProps = {|
-    selectedValue: $PropertyType<Props, "selectedValue">,
-    opened: $PropertyType<Props, "opened">,
-|};
-
-class SingleSelectWithFilter extends React.Component<Props, State> {
-    static defaultProps: DefaultProps = {
-        selectedValue: "2",
-        opened: false,
-    };
-
-    state: State = {
-        selectedValue: this.props.selectedValue,
-        opened: this.props.opened,
-    };
-
-    handleChange: (selected: string) => void = (selected) => {
-        this.setState({
-            selectedValue: selected,
-        });
-    };
-
-    handleToggleMenu: (opened: boolean) => void = (opened) => {
-        this.setState({
-            opened,
-        });
-    };
-
-    render(): React.Node {
-        return (
-            <View style={styles.wrapper}>
-                <SingleSelect
-                    onChange={this.handleChange}
-                    isFilterable={true}
-                    opened={this.state.opened}
-                    onToggle={this.handleToggleMenu}
-                    placeholder="Select a fruit"
-                    selectedValue={this.state.selectedValue}
-                    dropdownStyle={styles.fullBleed}
-                    style={styles.fullBleed}
-                >
-                    {optionItems}
-                </SingleSelect>
-            </View>
-        );
-    }
+    return (
+        <View style={styles.wrapper}>
+            <SingleSelect
+                onChange={setSelectedValue}
+                isFilterable={true}
+                opened={opened}
+                onToggle={setOpened}
+                placeholder="Select a fruit"
+                selectedValue={selectedValue}
+                dropdownStyle={styles.fullBleed}
+                style={styles.fullBleed}
+            >
+                {optionItems}
+            </SingleSelect>
+        </View>
+    );
 }
 
-const styles = StyleSheet.create({
-    row: {
-        flexDirection: "row",
-    },
-    fullBleed: {
-        width: "100%",
-    },
-    wrapper: {
-        height: "800px",
-        width: "600px",
-    },
-    centered: {
-        alignItems: "center",
-        justifyContent: "center",
-        height: `calc(100vh - 16px)`,
-    },
-    scrollableArea: {
-        height: "200vh",
-    },
-});
+/**
+ * Virtualized SingleSelect
+ */
+export const VirtualizedFilterable: StoryComponentType = () => (
+    <VirtualizedSingleSelect />
+);
 
-export const WithFilter: StoryComponentType = () => <SingleSelectWithFilter />;
+VirtualizedFilterable.storyName = "Virtualized (isFilterable)";
 
-WithFilter.parameters = {
+VirtualizedFilterable.parameters = {
+    docs: {
+        description: {
+            story: "When there are many options, you could use a search filter in the SingleSelect. The search filter will be performed toward the labels of the option items. Note that this example shows how we can add custom styles to the dropdown as well.",
+        },
+    },
     chromatic: {
         // we don't need screenshots because this story only tests behavior.
         disableSnapshot: true,
     },
 };
 
-export const WithFilterOpened: StoryComponentType = () => (
-    <SingleSelectWithFilter opened={true} />
+export const VirtualizedOpened: StoryComponentType = () => (
+    <VirtualizedSingleSelect opened={true} />
 );
 
-export const WithFilterOpenedNoValueSelected: StoryComponentType = () => (
-    <SingleSelectWithFilter opened={true} selectedValue={null} />
+VirtualizedOpened.storyName = "Virtualized (opened)";
+
+VirtualizedOpened.parameters = {
+    docs: {
+        description: {
+            story: "This example shows how to use the `opened` prop to open the dropdown.",
+        },
+    },
+};
+
+export const VirtualizedOpenedNoSelection: StoryComponentType = () => (
+    <VirtualizedSingleSelect opened={true} selectedValue={null} />
 );
 
+VirtualizedOpenedNoSelection.storyName = "Virtualized (opened, no selection)";
+
+VirtualizedOpenedNoSelection.parameters = {
+    docs: {
+        description: {
+            story: "This example shows how the focus is set to the search field if there's no current selection.",
+        },
+    },
+};
+
+/**
+ * Inside a modal
+ */
 export const DropdownInModal: StoryComponentType = () => {
     const [value, setValue] = React.useState(null);
     const [opened, setOpened] = React.useState(true);
@@ -221,6 +412,11 @@ export const DropdownInModal: StoryComponentType = () => {
 DropdownInModal.storyName = "Dropdown in a modal";
 
 DropdownInModal.parameters = {
+    docs: {
+        description: {
+            story: "Sometimes we want to include Dropdowns inside a Modal, and these controls can be accessed only by scrolling down. This example help us to demonstrate that `SingleSelect` components can correctly be displayed within the visible scrolling area.",
+        },
+    },
     chromatic: {
         // We don't need screenshots because this story can be tested after
         // the modal is opened.
@@ -228,20 +424,41 @@ DropdownInModal.parameters = {
     },
 };
 
-export const DisabledSingleSelect: StoryComponentType = () => (
-    <SingleSelect
-        disabled={true}
-        placeholder="Choose a juice"
-        onChange={() => {}}
-    >
-        <OptionItem label="Banana juice" value="banana" />
-        <OptionItem label="Strawberry juice" value="strawberry" />
-    </SingleSelect>
-);
+/**
+ * Custom opener
+ */
+export const CustomOpener: StoryComponentType = Template.bind({});
 
-DisabledSingleSelect.parameters = {
+CustomOpener.args = {
+    selectedValue: "",
+    opener: ({focused, hovered, pressed, text}) => (
+        <HeadingLarge
+            onClick={() => {
+                // eslint-disable-next-line no-console
+                console.log("custom click!!!!!");
+            }}
+            style={[
+                styles.customOpener,
+                focused && styles.focused,
+                hovered && styles.hovered,
+                pressed && styles.pressed,
+            ]}
+        >
+            {text}
+        </HeadingLarge>
+    ),
+};
+
+CustomOpener.storyName = "With custom opener";
+
+CustomOpener.parameters = {
     docs: {
-        storyDescription:
-            "`SingleSelect` can be disabled by passing `disabled={true}`. This can be useful when you want to disable a control temporarily.",
+        description: {
+            story:
+                "In case you need to use a custom opener with the `SingleSelect`, you can use the opener property to achieve this. In this example, the opener prop accepts a function with the following arguments:\n" +
+                "- `eventState`: lets you customize the style for different states, such as pressed, hovered and focused.\n" +
+                "- `text`: Passes the menu label defined in the parent component. This value is passed using the placeholder prop set in the `SingleSelect` component.\n\n" +
+                "**Note:** If you need to use a custom ID for testing the opener, make sure to pass the testId prop inside the opener component/element.",
+        },
     },
 };
