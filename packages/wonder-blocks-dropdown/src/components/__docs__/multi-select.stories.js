@@ -36,6 +36,8 @@ export default {
         light: false,
         shortcuts: false,
         implicitAllEnabled: false,
+        id: "",
+        testId: "",
     },
     decorators: [
         (Story: StoryComponentType): React.Element<typeof View> => (
@@ -400,7 +402,7 @@ function VirtualizedMultiSelect(props: Props) {
  * Virtualized MultiSelect
  */
 export const VirtualizedFilterable: StoryComponentType = () => (
-    <VirtualizedMultiSelect />
+    <VirtualizedMultiSelect opened={true} />
 );
 
 VirtualizedFilterable.storyName = "Virtualized (isFilterable)";
@@ -410,10 +412,6 @@ VirtualizedFilterable.parameters = {
         description: {
             story: "When there are many options, you could use a search filter in the `MultiSelect`. The search filter will be performed toward the labels of the option items. Note that this example shows how we can add custom styles to the dropdown as well.",
         },
-    },
-    chromatic: {
-        // we don't need screenshots because this story only tests behavior.
-        disableSnapshot: true,
     },
 };
 

@@ -154,6 +154,8 @@ type DefaultProps = {|
  * ```jsx
  * import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
  *
+ * const [selectedValue, setSelectedValue] = useState("");
+ *
  * <SingleSelect placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
  *  <OptionItem value="pear">Pear</OptionItem>
  *  <OptionItem value="mango">Mango</OptionItem>
