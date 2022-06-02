@@ -42,6 +42,8 @@ const StyledList = addStyle("ol");
  * 1. `string`
  * 2. `<Link />`
  *
+ * ## Usage
+ *
  * ```jsx
  * import {
  *     Breadcrumbs,
@@ -56,7 +58,7 @@ const StyledList = addStyle("ol");
  *         <Link href="">Unit</Link>
  *     </BreadcrumbsItem>
  *     <BreadcrumbsItem>
- *         <Link href="">Lesson</Link>
+ *         Lesson
  *     </BreadcrumbsItem>
  * </Breadcrumbs>
  * ```

@@ -12,7 +12,7 @@ import ComponentInfo from "../../../../../.storybook/components/component-info.j
 import {name, version} from "../../../package.json";
 
 export default {
-    title: "Breadcrumbs / Breadcrumbs",
+    title: "Breadcrumbs",
     component: Breadcrumbs,
     subcomponents: {BreadcrumbsItem},
     argTypes: BreadcrumbsArgTypes,
@@ -27,7 +27,7 @@ export default {
  * Default Breadcrumbs example. It will be rendered as the first/default
  * story and it can be interacted with the controls panel in the Browser.
  */
-export const DefaultBreadcrumbs: StoryComponentType = (args) => (
+export const Default: StoryComponentType = (args) => (
     <Breadcrumbs {...args}>
         <BreadcrumbsItem>
             <Link href="">Course</Link>
@@ -35,8 +35,6 @@ export const DefaultBreadcrumbs: StoryComponentType = (args) => (
         <BreadcrumbsItem>
             <Link href="">Unit</Link>
         </BreadcrumbsItem>
-        <BreadcrumbsItem>
-            <Link href="">Lesson</Link>
-        </BreadcrumbsItem>
+        <BreadcrumbsItem>Lesson</BreadcrumbsItem>
     </Breadcrumbs>
 );
