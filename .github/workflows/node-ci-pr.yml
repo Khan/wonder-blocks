@@ -81,6 +81,12 @@ jobs:
         if: steps.js-files.outputs.filtered != '[]'
         run: yarn flow
 
+      - uses: Khan/actions@check-for-changeset-v0
+        with:
+          exclude: |
+            .github/
+            .storybook/
+
   test:
     name: Test
     needs: prime_cache_primary
