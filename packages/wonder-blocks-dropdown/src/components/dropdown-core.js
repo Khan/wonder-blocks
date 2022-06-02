@@ -162,6 +162,10 @@ type Props = {|
      */
     role: DropdownAriaRole,
 
+    /**
+     * When this is true, the dropdown body shows a search text input at the
+     * top. The items will be filtered by the input.
+     */
     isFilterable?: boolean,
 
     ...WithActionSchedulerProps,
@@ -255,7 +259,7 @@ class DropdownCore extends React.Component<Props, State> {
             !DropdownCore.sameItemsFocusable(state.prevItems, props.items)
         ) {
             const itemRefs = [];
-            for (let i = itemRefs.length; i < props.items.length; i++) {
+            for (let i = 0; i < props.items.length; i++) {
                 if (props.items[i].focusable) {
                     const ref = React.createRef<null | HTMLDivElement>();
                     itemRefs.push({ref, originalIndex: i});

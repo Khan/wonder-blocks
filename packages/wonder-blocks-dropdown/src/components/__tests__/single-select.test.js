@@ -662,7 +662,7 @@ describe("SingleSelect", () => {
     });
 
     describe("a11y > Live region", () => {
-        it("should change the number of options after using the search filter", async () => {
+        it("should change the number of options after using the search filter", () => {
             // Arrange
             render(
                 <SingleSelect
