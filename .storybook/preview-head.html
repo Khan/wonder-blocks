@@ -9,7 +9,8 @@
         font-family: "Lato", sans-serif;
     }
 
-    /* Overrides the ArgTypes table tabs to avoid some issues with Popper */
+    /* Overrides the ArgTypes table tabs to avoid some z-index issues with
+    components that rely on PopperJS (specially Dropdown) */
     .os-padding {
         z-index: initial !important;
     }
