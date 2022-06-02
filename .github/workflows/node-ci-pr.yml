@@ -82,6 +82,7 @@ jobs:
         run: yarn flow
 
       - uses: Khan/actions@check-for-changeset-v0
+        if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
         with:
           exclude: .github/,.storybook/
 
