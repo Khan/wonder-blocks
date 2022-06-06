@@ -359,6 +359,9 @@ ImplicitAllEnabled.parameters = {
     },
 };
 
+/**
+ * Virtualized with search filter
+ */
 const fruits = ["banana", "strawberry", "pear", "orange"];
 
 const optionItems = new Array(1000)
@@ -375,9 +378,6 @@ type Props = {|
     opened?: boolean,
 |};
 
-/**
- * Virtualized with search filter
- */
 function VirtualizedMultiSelect(props: Props) {
     const [selectedValues, setSelectedValues] = React.useState([]);
     const [opened, setOpened] = React.useState(props.opened || false);

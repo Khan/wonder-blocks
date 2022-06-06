@@ -12,8 +12,43 @@ import {StyleSheet} from "aphrodite";
 
 import type {StoryComponentType} from "@storybook/react";
 
+import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import {name, version} from "../../../package.json";
+import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes.js";
+
 export default {
     title: "Form / LabeledTextField",
+    component: LabeledTextField,
+    parameters: {
+        componentSubtitle: ((
+            <ComponentInfo name={name} version={version} />
+        ): any),
+    },
+    argTypes: LabeledTextFieldArgTypes,
+};
+
+export const Default: StoryComponentType = (args) => {
+    return <LabeledTextField {...args} />;
+};
+
+Default.args = {
+    id: "some-ltf-id",
+    type: "text",
+    label: "Label",
+    description: "Hello, this is the description for this field",
+    value: "",
+    disabled: false,
+    required: false,
+    light: false,
+    placeholder: "Placeholder",
+    readOnly: false,
+    autoComplete: "off",
+    validate: () => {},
+    onValidate: () => {},
+    onChange: () => {},
+    onKeyDown: () => {},
+    onFocus: () => {},
+    onBlur: () => {},
 };
 
 export const Text: StoryComponentType = () => {
@@ -37,6 +72,13 @@ export const Text: StoryComponentType = () => {
     );
 };
 
+Text.parameters = {
+    docs: {
+        storyDescription:
+            "An input field with type `text` takes all kinds of characters.",
+    },
+};
+
 export const RequiredWithDefaultText: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
@@ -51,11 +93,27 @@ export const RequiredWithDefaultText: StoryComponentType = () => {
             label="Name"
             description="Please enter your name"
             value={value}
-            onChange={(newValue) => setValue(newValue)}
+            onChange={setValue}
             onKeyDown={handleKeyDown}
             required={true}
         />
     );
+};
+
+RequiredWithDefaultText.parameters = {
+    docs: {
+        storyDescription: `A required field will show the message
+        "This field is required." by default if someone types in it
+        at some point but leaves it blank. Type in the field, then
+        backspace all the way and click out of the field to see
+        this message. Note that this message would not appear if
+        the \`validation\` prop were set.`,
+    },
+    chromatic: {
+        // Disabling snapshot because it doesn't show the error message
+        // until after the user interacts with this field.
+        disableSnapshot: true,
+    },
 };
 
 export const RequiredWithSpecifiedText: StoryComponentType = () => {
@@ -72,7 +130,7 @@ export const RequiredWithSpecifiedText: StoryComponentType = () => {
             label="Name"
             description="Please enter your name"
             value={value}
-            onChange={(newValue) => setValue(newValue)}
+            onChange={setValue}
             onKeyDown={handleKeyDown}
             required="This specific field is super required."
         />
@@ -80,8 +138,16 @@ export const RequiredWithSpecifiedText: StoryComponentType = () => {
 };
 
 RequiredWithSpecifiedText.parameters = {
+    docs: {
+        storyDescription: `If a string is passed into the \`required\` prop,
+        the specified message will show when the field is left blank.
+        Type in the field, then backspace all the way and click out of
+        the field to see this message. Note that this message would not
+        appear if the \`validation\` prop were set.`,
+    },
     chromatic: {
-        // We have screenshots of other stories that cover this case.
+        // Disabling snapshot because it doesn't show the error message
+        // until after the user interacts with this field.
         disableSnapshot: true,
     },
 };
@@ -101,15 +167,22 @@ export const Number: StoryComponentType = () => {
             type="number"
             description="Please enter your age"
             value={value}
-            onChange={(newValue) => setValue(newValue)}
+            onChange={setValue}
             placeholder="Age"
             onKeyDown={handleKeyDown}
         />
     );
 };
 
+Number.parameters = {
+    docs: {
+        storyDescription:
+            "An input field with type `number` will only take numeric characters as input.",
+    },
+};
+
 export const Password: StoryComponentType = () => {
-    const [value, setValue] = React.useState("Password123");
+    const [value, setValue] = React.useState("$ecure123");
 
     const validate = (value: string) => {
         if (value.length < 8) {
@@ -132,12 +205,21 @@ export const Password: StoryComponentType = () => {
             type="password"
             description="Please enter a secure password"
             value={value}
-            onChange={(newValue) => setValue(newValue)}
+            onChange={setValue}
             placeholder="Password"
             validate={validate}
             onKeyDown={handleKeyDown}
         />
     );
+};
+
+Password.parameters = {
+    docs: {
+        storyDescription: `An input field with type \`password\` will
+        obscure the input value. It also often contains validation.
+        In this example, the password must be over 8 characters long and
+        must contain a numeric value.`,
+    },
 };
 
 export const Email: StoryComponentType = () => {
@@ -161,13 +243,22 @@ export const Email: StoryComponentType = () => {
             label="Email"
             type="email"
             value={value}
-            onChange={(newValue) => setValue(newValue)}
+            onChange={setValue}
             description="Please provide your personal email"
             placeholder="Email"
             validate={validate}
             onKeyDown={handleKeyDown}
         />
     );
+};
+
+Email.parameters = {
+    docs: {
+        storyDescription: `An input field with type \`email\` will automatically
+        validate an input on submit to ensure it's either formatted properly
+        or blank. \`TextField\` will run validation on blur if the
+        \`validate\` prop is passed in, as in this example.`,
+    },
 };
 
 export const EmailRequired: StoryComponentType = () => {
@@ -190,7 +281,7 @@ export const EmailRequired: StoryComponentType = () => {
         <LabeledTextField
             label="Email"
             type="email"
-            onChange={(newValue) => setValue(newValue)}
+            onChange={setValue}
             description="Please provide your personal email"
             value={value}
             validate={validate}
@@ -201,6 +292,13 @@ export const EmailRequired: StoryComponentType = () => {
 };
 
 EmailRequired.parameters = {
+    docs: {
+        storyDescription: `An example of a required field that also has
+        a \`validation\` prop passed in. \`required\` can be a boolean or
+        a string. In this case, \`required\` is set to \`true\` since a
+        string would not even be used if it were passed in because the
+        validation overrides it.`,
+    },
     chromatic: {
         // We have screenshots of other stories that cover this case.
         disableSnapshot: true,
@@ -228,13 +326,22 @@ export const Telephone: StoryComponentType = () => {
             label="Telephone"
             type="tel"
             value={value}
-            onChange={(newValue) => setValue(newValue)}
+            onChange={setValue}
             description="Please provide your personal phone number"
             placeholder="Telephone"
             validate={validate}
             onKeyDown={handleKeyDown}
         />
     );
+};
+
+Telephone.parameters = {
+    docs: {
+        storyDescription: `An input field with type \`tel\` will NOT
+        validate an input on submit by default as telephone numbers
+        can vary considerably. \`TextField\` will run validation on blur
+        if the \`validate\` prop is passed in, as in this example.`,
+    },
 };
 
 export const Error: StoryComponentType = () => {
@@ -258,7 +365,7 @@ export const Error: StoryComponentType = () => {
             label="Email"
             type="email"
             value={value}
-            onChange={(newValue) => setValue(newValue)}
+            onChange={setValue}
             description="Please provide your personal email"
             placeholder="Email"
             validate={validate}
@@ -267,16 +374,12 @@ export const Error: StoryComponentType = () => {
     );
 };
 
-export const Disabled: StoryComponentType = () => (
-    <LabeledTextField
-        label="Name"
-        description="Please enter your name"
-        value=""
-        onChange={() => {}}
-        placeholder="Name"
-        disabled={true}
-    />
-);
+Error.parameters = {
+    docs: {
+        storyDescription: `If an input value fails validation,
+        \`TextField\` will have error styling.`,
+    },
+};
 
 export const Light: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
@@ -299,13 +402,87 @@ export const Light: StoryComponentType = () => {
                     </LabelSmall>
                 }
                 value={value}
-                onChange={(newValue) => setValue(newValue)}
+                onChange={setValue}
                 placeholder="Name"
                 light={true}
                 onKeyDown={handleKeyDown}
             />
         </View>
     );
+};
+
+Light.parameters = {
+    docs: {
+        storyDescription: `If the \`light\` prop is set to true, the
+        underlying \`TextField\` will have a light border when focused.
+        This is intended to be used on a dark background. There is also a
+        specific light styling for the error state, as seen in the
+        \`ErrorLight\` story.`,
+    },
+};
+
+export const ErrorLight: StoryComponentType = () => {
+    const [value, setValue] = React.useState("khan");
+
+    const validate = (value: string) => {
+        const emailRegex = /^[^@\s]+@[^@\s.]+\.[^@.\s]+$/;
+        if (!emailRegex.test(value)) {
+            return "Please enter a valid email";
+        }
+    };
+
+    const handleKeyDown = (event: SyntheticKeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    return (
+        <View style={styles.darkBackground}>
+            <LabeledTextField
+                label={
+                    <LabelMedium style={styles.whiteColor}>Email</LabelMedium>
+                }
+                description={
+                    <LabelSmall style={styles.offWhiteColor}>
+                        Please provide your personal email
+                    </LabelSmall>
+                }
+                type="email"
+                value={value}
+                light={true}
+                onChange={setValue}
+                placeholder="Email"
+                validate={validate}
+                onKeyDown={handleKeyDown}
+            />
+        </View>
+    );
+};
+
+ErrorLight.parameters = {
+    docs: {
+        storyDescription: `If an input value fails validation and the
+        \`light\` prop is true, \`TextField\` will have light error styling.`,
+    },
+};
+
+export const Disabled: StoryComponentType = () => (
+    <LabeledTextField
+        label="Name"
+        description="Please enter your name"
+        value=""
+        onChange={() => {}}
+        placeholder="Name"
+        disabled={true}
+    />
+);
+
+Disabled.parameters = {
+    docs: {
+        storyDescription: `If the \`disabled\` prop is set to true,
+        \`TextField\` will have disabled styling and will not be interactable.`,
+    },
 };
 
 export const CustomStyle: StoryComponentType = () => {
@@ -324,7 +501,7 @@ export const CustomStyle: StoryComponentType = () => {
                 label="First name"
                 description="Please enter your first name"
                 value={firstName}
-                onChange={(newValue) => setFirstName(newValue)}
+                onChange={setFirstName}
                 placeholder="Khan"
                 style={styles.grow}
                 onKeyDown={handleKeyDown}
@@ -334,13 +511,21 @@ export const CustomStyle: StoryComponentType = () => {
                 label="Last name"
                 description="Please enter your last name"
                 value={lastName}
-                onChange={(newValue) => setLastName(newValue)}
+                onChange={setLastName}
                 placeholder="Academy"
                 style={styles.grow}
                 onKeyDown={handleKeyDown}
             />
         </View>
     );
+};
+
+CustomStyle.parameters = {
+    docs: {
+        storyDescription: `\`LabeledTextField\` can take in custom styles that
+        override the default styles. In this example, each field has the
+        style property \`flexGrow: 1\``,
+    },
 };
 
 export const Ref: StoryComponentType = () => {
@@ -365,7 +550,7 @@ export const Ref: StoryComponentType = () => {
                 label="Name"
                 description="Please enter your name"
                 value={value}
-                onChange={(newValue) => setValue(newValue)}
+                onChange={setValue}
                 placeholder="Name"
                 onKeyDown={handleKeyDown}
                 ref={inputRef}
@@ -376,6 +561,23 @@ export const Ref: StoryComponentType = () => {
             </Button>
         </View>
     );
+};
+
+Ref.parameters = {
+    docs: {
+        storyDescription: `If you need to save a reference to the input
+        field, you can do so by using the \`ref\` prop. In this example,
+        we want the input field to receive focus when the button is
+        pressed. We can do this by creating a React ref of type
+        \`HTMLInputElement\` and passing it into \`TextField\`'s \`ref\` prop.
+        Now we can use the ref variable in the \`handleSubmit\` function to
+        shift focus to the field.`,
+        chromatic: {
+            // Disabling snapshot because this is testing interaction,
+            // not visuals.
+            disableSnapshot: true,
+        },
+    },
 };
 
 export const ReadOnly: StoryComponentType = () => {
@@ -392,12 +594,26 @@ export const ReadOnly: StoryComponentType = () => {
             label="Read Only"
             description="This is a read-only field."
             value={value}
-            onChange={(newValue) => setValue(newValue)}
+            onChange={setValue}
             placeholder="Name"
             onKeyDown={handleKeyDown}
             readOnly={true}
         />
     );
+};
+
+ReadOnly.parameters = {
+    docs: {
+        storyDescription: `An input field with the prop \`readOnly\` set
+        to true is not interactable. It looks the same as if it were not
+        read only, and it can still receive focus, but the interaction
+        point will not appear and the input will not change.`,
+        chromatic: {
+            // Disabling snapshot because this is testing interaction,
+            // not visuals.
+            disableSnapshot: true,
+        },
+    },
 };
 
 export const AutoComplete: StoryComponentType = () => {
@@ -410,16 +626,36 @@ export const AutoComplete: StoryComponentType = () => {
     };
 
     return (
-        <LabeledTextField
-            label="Name"
-            description="Please enter your name."
-            value={value}
-            onChange={(newValue) => setValue(newValue)}
-            placeholder="Name"
-            onKeyDown={handleKeyDown}
-            autoComplete="name"
-        />
+        <form>
+            <LabeledTextField
+                label="Name"
+                description="Please enter your name."
+                value={value}
+                onChange={setValue}
+                placeholder="Name"
+                onKeyDown={handleKeyDown}
+                style={styles.fieldWithButton}
+                autoComplete="name"
+            />
+            <Button type="submit">Submit</Button>
+        </form>
     );
+};
+
+AutoComplete.parameters = {
+    docs: {
+        storyDescription: `If \`TextField\`'s \`autocomplete\` prop is set,
+        the browser can predict values for the input. When the user starts
+        to type in the field, a list of options will show up based on
+        values that may have been submitted at a previous time.
+        In this example, the text field provides options after you
+        input a value, press the submit button, and refresh the page.`,
+        chromatic: {
+            // Disabling snapshot because this is testing interaction,
+            // not visuals.
+            disableSnapshot: true,
+        },
+    },
 };
 
 const styles = StyleSheet.create({
@@ -441,5 +677,8 @@ const styles = StyleSheet.create({
     },
     grow: {
         flexGrow: 1,
+    },
+    fieldWithButton: {
+        marginBottom: Spacing.medium_16,
     },
 });

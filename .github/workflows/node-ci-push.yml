@@ -31,7 +31,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Install & cache node_modules
-        uses: ./.github/actions/shared-node-cache
+        uses: Khan/actions@shared-node-cache-v0
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -57,7 +57,7 @@ jobs:
 
     # Cache and install dependencies
     - name: Install & cache node_modules
-      uses: ./.github/actions/shared-node-cache
+      uses: Khan/actions@shared-node-cache-v0
       with:
         node-version: ${{ matrix.node-version }}
 
@@ -95,7 +95,7 @@ jobs:
 
     # Cache and install dependencies
     - name: Install & cache node_modules
-      uses: ./.github/actions/shared-node-cache
+      uses: Khan/actions@shared-node-cache-v0
       with:
         node-version: ${{ matrix.node-version }}
 
