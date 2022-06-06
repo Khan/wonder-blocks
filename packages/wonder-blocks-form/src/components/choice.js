@@ -80,6 +80,62 @@ type DefaultProps = {|
  *
  * If you wish to use just a single field, use Checkbox or Radio with the
  * optional label and description props.
+ *
+ * ### Checkbox Usage
+ *
+ * ```jsx
+ * import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
+ *
+ * const [selectedValues, setSelectedValues] = React.useState([]);
+ *
+ * // Checkbox usage
+ * <CheckboxGroup
+ *     label="some-label"
+ *     description="some-description"
+ *     groupName="some-group-name"
+ *     onChange={setSelectedValues}>
+ *     selectedValues={selectedValues}
+ * />
+ *     // Add as many choices as necessary
+ *     <Choice
+ *        label="Choice 1"
+ *        value="some-choice-value"
+ *        description="Some choice description."
+ *     />
+ *     <Choice
+ *        label="Choice 2"
+ *        value="some-choice-value-2"
+ *        description="Some choice description."
+ *     />
+ * </CheckboxGroup>
+ * ```
+ *
+ * ### Radio Usage
+ *
+ * ```jsx
+ * import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
+ * const [selectedValue, setSelectedValue] = React.useState("");
+ *
+ * <RadioGroup
+ *     label="some-label"
+ *     description="some-description"
+ *     groupName="some-group-name"
+ *     onChange={setSelectedValue}>
+ *     selectedValues={selectedValue}
+ * />
+ *     // Add as many choices as necessary
+ *     <Choice
+ *        label="Choice 1"
+ *        value="some-choice-value"
+ *        description="Some choice description."
+ *     />
+ *     <Choice
+ *        label="Choice 2"
+ *        value="some-choice-value-2"
+ *        description="Some choice description."
+ *     />
+ * </RadioGroup>
+ * ```
  */ export default class Choice extends React.Component<Props> {
     static defaultProps: DefaultProps = {
         checked: false,
