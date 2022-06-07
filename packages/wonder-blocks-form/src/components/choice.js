@@ -114,6 +114,7 @@ type DefaultProps = {|
  *
  * ```jsx
  * import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
+ *
  * const [selectedValue, setSelectedValue] = React.useState("");
  *
  * <RadioGroup
