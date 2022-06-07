@@ -6,12 +6,10 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import {
     DROPDOWN_ITEM_HEIGHT,
     MAX_VISIBLE_ITEMS,
-    SEARCH_ITEM_HEIGHT,
     SEPARATOR_ITEM_HEIGHT,
 } from "./constants.js";
 
 import SeparatorItem from "../components/separator-item.js";
-import SearchTextInput from "../components/search-text-input.js";
 
 import type {DropdownItem} from "./types.js";
 
@@ -33,9 +31,6 @@ export function getDropdownMenuHeight(
     return items.slice(0, MAX_VISIBLE_ITEMS).reduce((sum, item) => {
         if (SeparatorItem.isClassOf(item.component)) {
             return sum + SEPARATOR_ITEM_HEIGHT;
-        } else if (SearchTextInput.isClassOf(item.component)) {
-            // search text input height
-            return sum + SEARCH_ITEM_HEIGHT;
         } else {
             return sum + DROPDOWN_ITEM_HEIGHT;
         }

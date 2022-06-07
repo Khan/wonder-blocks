@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.7.6
+
+### Patch Changes
+
+-   3007ecd7: Move the search field out of the listbox container
+
 ## 2.7.5
 
 ### Patch Changes

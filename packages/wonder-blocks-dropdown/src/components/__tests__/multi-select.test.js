@@ -1078,9 +1078,7 @@ describe("MultiSelect", () => {
             userEvent.type(screen.getByPlaceholderText("Filter"), "other");
 
             // Assert
-            expect(screen.getByRole("listbox")).toHaveTextContent(
-                "No hay resultados",
-            );
+            expect(screen.getByText("No hay resultados")).toBeInTheDocument();
         });
 
         it("passes the custom label to the select all shortcut", () => {

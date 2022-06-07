@@ -8,7 +8,6 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import ActionItem from "./action-item.js";
 import DropdownCore from "./dropdown-core.js";
 import DropdownOpener from "./dropdown-opener.js";
-import SearchTextInput from "./search-text-input.js";
 import SelectOpener from "./select-opener.js";
 import SeparatorItem from "./separator-item.js";
 import {
@@ -211,6 +210,17 @@ type State = {|
  *
  * The multi select stays open until closed by the user. The onChange callback
  * happens every time there is a change in the selection of the items.
+ *
+ * ## Usage
+ *
+ * ```jsx
+ * import {OptionItem, MultiSelect} from "@khanacademy/wonder-blocks-dropdown";
+ *
+ * <MultiSelect onChange={setSelectedValues} selectedValues={selectedValues}>
+ *  <OptionItem value="pear">Pear</OptionItem>
+ *  <OptionItem value="mango">Mango</OptionItem>
+ * </MultiSelect>
+ * ```
  */
 export default class MultiSelect extends React.Component<Props, State> {
     labels: Labels;
@@ -327,32 +337,6 @@ export default class MultiSelect extends React.Component<Props, State> {
             default:
                 return someSelected(selectedValues.length);
         }
-    }
-
-    getSearchField(): Array<DropdownItem> {
-        if (!this.props.isFilterable) {
-            return [];
-        }
-
-        const {clearSearch, filter} = this.state.labels;
-
-        return [
-            {
-                component: (
-                    <SearchTextInput
-                        key="search-text-input"
-                        onChange={this.handleSearchTextChanged}
-                        searchText={this.state.searchText}
-                        labels={{
-                            clearSearch,
-                            filter,
-                        }}
-                    />
-                ),
-                focusable: true,
-                populatedProps: {},
-            },
-        ];
     }
 
     getShortcuts(numOptions: number): Array<DropdownItem> {
@@ -556,7 +540,8 @@ export default class MultiSelect extends React.Component<Props, State> {
             isFilterable,
         } = this.props;
         const {open, searchText} = this.state;
-        const {noResults, someSelected} = this.state.labels;
+        const {clearSearch, filter, noResults, someSelected} =
+            this.state.labels;
 
         const allChildren = React.Children.toArray(children).filter(Boolean);
         const numOptions = allChildren.length;
@@ -572,11 +557,8 @@ export default class MultiSelect extends React.Component<Props, State> {
                     selectDropdownStyle,
                     dropdownStyle,
                 ]}
-                items={[
-                    ...this.getSearchField(),
-                    ...this.getShortcuts(numOptions),
-                    ...filteredItems,
-                ]}
+                isFilterable={isFilterable}
+                items={[...this.getShortcuts(numOptions), ...filteredItems]}
                 light={light}
                 onOpenChanged={this.handleOpenChanged}
                 open={open}
@@ -589,6 +571,8 @@ export default class MultiSelect extends React.Component<Props, State> {
                 }
                 searchText={isFilterable ? searchText : ""}
                 labels={{
+                    clearSearch,
+                    filter,
                     noResults,
                     someSelected,
                 }}

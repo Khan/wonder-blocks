@@ -21,14 +21,6 @@ export const filterableDropdownStyle = {
     minHeight: 100,
 };
 
-export const searchInputStyle = {
-    margin: Spacing.xSmall_8,
-    marginTop: Spacing.xxxSmall_4,
-    // Set `minHeight` to "auto" to stop the search field from having
-    // a height of 0 and being cut off.
-    minHeight: "auto",
-};
-
 // The default item height
 export const DROPDOWN_ITEM_HEIGHT = 40;
 
@@ -40,9 +32,6 @@ export const DROPDOWN_ITEM_HEIGHT = 40;
 export const MAX_VISIBLE_ITEMS = 9;
 
 export const SEPARATOR_ITEM_HEIGHT = 9;
-
-export const SEARCH_ITEM_HEIGHT: number =
-    DROPDOWN_ITEM_HEIGHT + searchInputStyle.margin + searchInputStyle.marginTop;
 
 // The default labels that will be used by different components
 export const defaultLabels = {
