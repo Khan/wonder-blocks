@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -9,6 +8,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
+import {StyleSheet} from "aphrodite";
 
 import type {StoryComponentType} from "@storybook/react";
 
