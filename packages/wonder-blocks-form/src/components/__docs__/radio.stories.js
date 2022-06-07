@@ -3,17 +3,16 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
+import {Radio} from "@khanacademy/wonder-blocks-form";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import type {StoryComponentType} from "@storybook/react";
-
-import Checkbox from "../checkbox.js";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info.js";
 import {name, version} from "../../../package.json";
 
 export default {
-    title: "Form / Checkbox",
-    component: Checkbox,
+    title: "Form / Radio",
+    component: Radio,
     parameters: {
         componentSubtitle: ((
             <ComponentInfo name={name} version={version} />
@@ -21,7 +20,7 @@ export default {
     },
 };
 
-export const Default: StoryComponentType = (args) => <Checkbox {...args} />;
+export const Default: StoryComponentType = (args) => <Radio {...args} />;
 
 Default.args = {
     checked: false,
@@ -38,66 +37,54 @@ Default.parameters = {
 
 export const Controlled: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
-    return <Checkbox checked={checked} onChange={setChecked} />;
+    return <Radio checked={checked} onChange={setChecked} />;
 };
 
 Controlled.parameters = {
     chromatic: {
-        // Disabling because this doesn't test visuals, its for testing
-        // that `state` works as expected.
+        // Disabling because this doesn't test visuals, it tests
+        // that the `checked` state works as expected.
         disableSnapshot: true,
     },
     docs: {
-        storyDescription:
-            "Use state to keep track of whether the checkbox is checked or not",
+        storyDescription: `Use state to keep track of whether
+        the radio button has been checked. A radio button cannot be unchecked
+        by the user once it has been checked. It would become unchecked if a
+        different radio button is selected as part of a radio group.`,
     },
 };
 
 export const Variants: StoryComponentType = () => (
     <View style={styles.row}>
-        <Checkbox
-            error={false}
-            checked={false}
-            style={styles.marginRight}
-            onChange={() => {}}
-        />
-        <Checkbox
-            error={false}
-            checked={true}
-            style={styles.marginRight}
-            onChange={() => {}}
-        />
-        <Checkbox
+        <Radio checked={false} style={styles.marginRight} onChange={() => {}} />
+        <Radio checked={true} style={styles.marginRight} onChange={() => {}} />
+        <Radio
             error={true}
             checked={false}
             style={styles.marginRight}
             onChange={() => {}}
         />
-        <Checkbox
+        <Radio
             error={true}
             checked={true}
             style={styles.marginRight}
             onChange={() => {}}
         />
-        <Checkbox
+        <Radio
             disabled={true}
             checked={false}
             style={styles.marginRight}
             onChange={() => {}}
         />
-        <Checkbox
-            disabled={true}
-            checked={true}
-            style={styles.marginRight}
-            onChange={() => {}}
-        />
+        <Radio disabled={true} checked={true} onChange={() => {}} />
     </View>
 );
 
 Variants.parameters = {
     docs: {
-        storyDescription:
-            "The checkbox has various styles for clickable states. Here are sets of default checkboxes, checkboxes in an error state, and disabled checkboxes.",
+        storyDescription: `The radio button has various styles for
+        clickable states. Here are sets of default radio buttons,
+        radio buttons in an error state, and disabled radio buttons.`,
     },
 };
 
@@ -105,9 +92,9 @@ export const WithLabel: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
 
     return (
-        <Checkbox
-            label="Receive assignment reminders for Algebra"
-            description="You will receive a reminder 24 hours before each deadline"
+        <Radio
+            label="Easy"
+            description="Opt for a less difficult exercise set."
             checked={checked}
             onChange={setChecked}
         />
@@ -116,8 +103,9 @@ export const WithLabel: StoryComponentType = () => {
 
 WithLabel.parameters = {
     docs: {
-        storyDescription:
-            "The checkbox can have an optional label and description. This allows it to be used as a settings-like item. The user of this component is responsible for keeping track of checked state and providing an onChange callback.",
+        storyDescription: `The radio button can have an optional label
+            and description. This allows it to be used as a settings-like item,
+            as opposed to its usage in a radio grid.`,
     },
 };
 
@@ -137,15 +125,20 @@ export const AdditionalClickTarget: StoryComponentType = () => {
                 </label>
                 <LabelSmall>{descriptionText}</LabelSmall>
             </View>
-            <Checkbox checked={checked} id="topic-123" onChange={setChecked} />
+            <Radio checked={checked} id="topic-123" onChange={setChecked} />
         </View>
     );
 };
 
 AdditionalClickTarget.parameters = {
     docs: {
-        storyDescription:
-            "Sometimes one may wish to use a checkbox in a different context (label may not be right next to the checkbox), like in this example content item. Use a `<label htmlFor={id}>` element where the id matches the `id` prop of the Checkbox. This is for accessibility purposes, and doing this also automatically makes the label a click target for the checkbox.",
+        storyDescription: `Sometimes one may wish to use a radio button
+            in a different context (label may not be right next to the
+            radio button), like in this example content item. Use a
+            \`<label htmlFor={id}>\` element where the id matches the \`id\`
+            prop of the Radio. This is for accessibility purposes,
+            and doing this also automatically makes the label a click target
+            for the radio button.`,
     },
 };
 
