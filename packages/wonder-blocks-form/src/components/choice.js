@@ -137,7 +137,8 @@ type DefaultProps = {|
  *     />
  * </RadioGroup>
  * ```
- */ export default class Choice extends React.Component<Props> {
+ */
+export default class Choice extends React.Component<Props> {
     static defaultProps: DefaultProps = {
         checked: false,
         disabled: false,
