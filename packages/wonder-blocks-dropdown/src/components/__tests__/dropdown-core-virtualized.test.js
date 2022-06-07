@@ -5,7 +5,6 @@ import {render, screen} from "@testing-library/react";
 import OptionItem from "../option-item.js";
 import SeparatorItem from "../separator-item.js";
 import DropdownCoreVirtualized from "../dropdown-core-virtualized.js";
-import SearchTextInput from "../search-text-input.js";
 
 describe("DropdownCoreVirtualized", () => {
     it("should sort the items on first load", () => {
@@ -22,13 +21,6 @@ describe("DropdownCoreVirtualized", () => {
         }));
 
         const initialItems = [
-            {
-                component: (
-                    <SearchTextInput onChange={jest.fn()} searchText="" />
-                ),
-                focusable: true,
-                populatedProps: {},
-            },
             {
                 component: <SeparatorItem />,
                 focusable: false,
@@ -68,13 +60,6 @@ describe("DropdownCoreVirtualized", () => {
         }));
 
         const initialItems = [
-            {
-                component: (
-                    <SearchTextInput onChange={jest.fn()} searchText="" />
-                ),
-                focusable: true,
-                populatedProps: {},
-            },
             {
                 component: <SeparatorItem />,
                 focusable: false,

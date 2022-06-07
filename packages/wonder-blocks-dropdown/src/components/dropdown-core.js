@@ -11,6 +11,7 @@ import Color, {fade} from "@khanacademy/wonder-blocks-color";
 
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
+import SearchField from "@khanacademy/wonder-blocks-search-field";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
@@ -21,8 +22,7 @@ import type {
 } from "@khanacademy/wonder-blocks-timing";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
 import SeparatorItem from "./separator-item.js";
-import SearchTextInput from "./search-text-input.js";
-import {defaultLabels, keyCodes, searchInputStyle} from "../util/constants.js";
+import {defaultLabels, keyCodes} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
 import DropdownPopper from "./dropdown-popper.js";
 import {
@@ -45,6 +45,19 @@ const VIRTUALIZE_THRESHOLD = 125;
 const StyledSpan = addStyle("span");
 
 type Labels = {|
+    /**
+     * Label for describing the dismiss icon on the search filter.
+     */
+    clearSearch: string,
+
+    /**
+     * Label for the search placeholder.
+     */
+    filter: string,
+
+    /**
+     * Label for when the filter returns no results.
+     */
     noResults: string,
     /**
      * The number total of items available.
@@ -95,15 +108,15 @@ type Props = {|
 
     /**
      * An optional handler to set the searchText of the parent. When this and
-     * the searchText exist, SearchTextInput will be displayed at the top of
-     * the dropdown body.
+     * the searchText exist, SearchField will be displayed at the top of the
+     * dropdown body.
      */
     onSearchTextChanged?: ?(searchText: string) => mixed,
 
     /**
      * An optional string that the user entered to search the items. When this
-     * and the onSearchTextChanged exist, SearchTextInput will be displayed at
-     * the top of the dropdown body.
+     * and the onSearchTextChanged exist, SearchField will be displayed at the
+     * top of the dropdown body.
      */
     searchText?: ?string,
 
@@ -149,6 +162,12 @@ type Props = {|
      */
     role: DropdownAriaRole,
 
+    /**
+     * When this is true, the dropdown body shows a search text input at the
+     * top. The items will be filtered by the input.
+     */
+    isFilterable?: boolean,
+
     ...WithActionSchedulerProps,
 |};
 
@@ -158,6 +177,11 @@ type State = {|
      * Also keeps track of the original index of the item.
      */
     itemRefs: Array<{|ref: {|current: any|}, originalIndex: number|}>,
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels: Labels,
 
     /**
      * Because getDerivedStateFromProps doesn't store previous props (in the
@@ -172,11 +196,6 @@ type State = {|
      * resetting focusedIndex and focusedOriginalIndex when an update happens.
      */
     sameItemsFocusable: boolean,
-
-    /**
-     * The object containing the custom labels used inside this component.
-     */
-    labels: Labels,
 |};
 
 /**
@@ -220,6 +239,8 @@ class DropdownCore extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         alignment: "left",
         labels: {
+            clearSearch: defaultLabels.clearSearch,
+            filter: defaultLabels.filter,
             noResults: defaultLabels.noResults,
             someSelected: defaultLabels.someSelected,
         },
@@ -333,31 +354,21 @@ class DropdownCore extends React.Component<Props, State> {
         this.removeEventListeners();
     }
 
-    hasSearchBox(): boolean {
-        return (
-            !!this.props.onSearchTextChanged &&
-            typeof this.props.searchText === "string"
-        );
-    }
+    searchFieldRef: {|current: null | HTMLInputElement|} = React.createRef();
 
-    // Resets our initial focus index to what was passed in
-    // via the props
-    resetFocusedIndex() {
+    // Resets our initial focus index to what was passed in via the props
+    resetFocusedIndex(): void {
         const {initialFocusedIndex} = this.props;
 
-        // If we are given an initial focus index, select it.  Otherwise
-        // default to the first item
-        if (initialFocusedIndex) {
-            // If we have a search box visible, then our focus
-            // index is going to be offset by 1, since the orginal
-            // index doesn't account for the search box's
-            // existence.
-            if (this.hasSearchBox()) {
-                this.focusedIndex = initialFocusedIndex + 1;
-            } else {
-                this.focusedIndex = initialFocusedIndex;
-            }
+        // If we are given an initial focus index, select it. Otherwise default
+        // to the first item
+        if (typeof initialFocusedIndex !== "undefined") {
+            this.focusedIndex = initialFocusedIndex;
         } else {
+            if (this.hasSearchField() && !this.isSearchFieldFocused()) {
+                return this.focusSearchField();
+            }
+
             this.focusedIndex = 0;
         }
     }
@@ -419,9 +430,9 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     focusCurrentItem() {
-        const fousedItemRef = this.state.itemRefs[this.focusedIndex];
+        const focusedItemRef = this.state.itemRefs[this.focusedIndex];
 
-        if (fousedItemRef) {
+        if (focusedItemRef) {
             // force react-window to scroll to ensure the focused item is visible
             if (this.virtualizedListRef.current) {
                 // Our focused index does not include disabled items, but the
@@ -429,24 +440,45 @@ class DropdownCore extends React.Component<Props, State> {
                 // in the count.  So we need to use "originalIndex", which
                 // does account for disabled items.
                 this.virtualizedListRef.current.scrollToItem(
-                    fousedItemRef.originalIndex,
+                    focusedItemRef.originalIndex,
                 );
             }
 
             const node = ((ReactDOM.findDOMNode(
-                fousedItemRef.ref.current,
+                focusedItemRef.ref.current,
             ): any): HTMLElement);
             if (node) {
                 node.focus();
                 // Keep track of the original index of the newly focused item.
                 // To be used if the set of focusable items in the menu changes
-                this.focusedOriginalIndex = fousedItemRef.originalIndex;
+                this.focusedOriginalIndex = focusedItemRef.originalIndex;
             }
         }
     }
 
-    focusPreviousItem() {
+    focusSearchField() {
+        if (this.searchFieldRef.current) {
+            this.searchFieldRef.current.focus();
+        }
+    }
+
+    hasSearchField(): boolean {
+        return !!this.props.isFilterable;
+    }
+
+    isSearchFieldFocused(): boolean {
+        return (
+            this.hasSearchField() &&
+            document.activeElement === this.searchFieldRef.current
+        );
+    }
+
+    focusPreviousItem(): void {
         if (this.focusedIndex === 0) {
+            // Move the focus to the search field if it is the first item.
+            if (this.hasSearchField() && !this.isSearchFieldFocused()) {
+                return this.focusSearchField();
+            }
             this.focusedIndex = this.state.itemRefs.length - 1;
         } else {
             this.focusedIndex -= 1;
@@ -455,8 +487,12 @@ class DropdownCore extends React.Component<Props, State> {
         this.scheduleToFocusCurrentItem();
     }
 
-    focusNextItem() {
+    focusNextItem(): void {
         if (this.focusedIndex === this.state.itemRefs.length - 1) {
+            // Move the focus to the search field if it is the last item.
+            if (this.hasSearchField() && !this.isSearchFieldFocused()) {
+                return this.focusSearchField();
+            }
             this.focusedIndex = 0;
         } else {
             this.focusedIndex += 1;
@@ -491,24 +527,20 @@ class DropdownCore extends React.Component<Props, State> {
         // Handle all other key behavior
         switch (keyCode) {
             case keyCodes.tab:
-                // When we show SearchTextInput and that is focused and the
+                // When we show SearchField and that is focused and the
                 // searchText is entered at least one character, dismiss button
-                // is displayed. When user presses tab, we should move focus
-                // to the dismiss button.
-                if (
-                    this.hasSearchBox() &&
-                    this.focusedIndex === 0 &&
-                    searchText
-                ) {
+                // is displayed. When user presses tab, we should move focus to
+                // the dismiss button.
+                if (this.isSearchFieldFocused() && searchText) {
                     return;
                 }
                 this.restoreTabOrder();
                 onOpenChanged(false);
                 return;
             case keyCodes.space:
-                // When we display SearchTextInput and the focus is on it,
-                // we should let the user type space.
-                if (this.hasSearchBox() && this.focusedIndex === 0) {
+                // When we display SearchField and the focus is on it, we should
+                // let the user type space.
+                if (this.isSearchFieldFocused()) {
                     return;
                 }
                 // Prevent space from scrolling down the page
@@ -531,9 +563,9 @@ class DropdownCore extends React.Component<Props, State> {
         const keyCode = event.which || event.keyCode;
         switch (keyCode) {
             case keyCodes.space:
-                // When we display SearchTextInput and the focus is on it,
-                // we should let the user type space.
-                if (this.hasSearchBox() && this.focusedIndex === 0) {
+                // When we display SearchField and the focus is on it, we should
+                // let the user type space.
+                if (this.isSearchFieldFocused()) {
                     return;
                 }
                 // Prevent space from scrolling down the page
@@ -588,17 +620,11 @@ class DropdownCore extends React.Component<Props, State> {
     maybeRenderNoResults(): React.Node {
         const {
             items,
-            onSearchTextChanged,
-            searchText,
             labels: {noResults},
         } = this.props;
-        const showSearchTextInput =
-            !!onSearchTextChanged && typeof searchText === "string";
-
-        const includeSearchCount = showSearchTextInput ? 1 : 0;
 
         // Verify if there are items to be rendered or not
-        const numResults = items.length - includeSearchCount;
+        const numResults = items.length;
 
         if (numResults === 0) {
             return (
@@ -664,30 +690,6 @@ class DropdownCore extends React.Component<Props, State> {
                 ? this.state.itemRefs[focusIndex].ref
                 : null;
 
-            // Render the SearchField component.
-            if (SearchTextInput.isClassOf(component)) {
-                return React.cloneElement(component, {
-                    ...populatedProps,
-
-                    key: "search-text-input",
-                    // pass the current ref down to the input element
-                    itemRef: currentRef,
-                    // override to avoid losing focus when pressing a key
-                    onClick: () => {
-                        this.handleClickFocus(0);
-                        this.focusCurrentItem();
-                    },
-                    // apply custom styles
-                    style: searchInputStyle,
-                    // TODO(WB-1310): Remove the autofocus prop after making
-                    // the search field sticky.
-                    // Currently autofocusing on the search field to work
-                    // around it losing focus on mount when switching between
-                    // virtualized and non-virtualized dropdown filter results.
-                    autofocus: this.focusedIndex === 0,
-                });
-            }
-
             // Render OptionItem and/or ActionItem elements.
             return React.cloneElement(component, {
                 ...populatedProps,
@@ -721,30 +723,6 @@ class DropdownCore extends React.Component<Props, State> {
 
             const focusIndex = focusCounter - 1;
 
-            if (SearchTextInput.isClassOf(item.component)) {
-                return {
-                    ...item,
-                    // override to avoid losing focus when pressing a key
-                    onClick: () => {
-                        this.handleClickFocus(0);
-                        this.focusCurrentItem();
-                    },
-                    populatedProps: {
-                        style: searchInputStyle,
-                        // pass the current ref down to the input element
-                        itemRef: this.state.itemRefs[focusIndex]
-                            ? this.state.itemRefs[focusIndex].ref
-                            : null,
-                        // TODO(WB-1310): Remove the autofocus prop after making
-                        // the search field sticky.
-                        // Currently autofocusing on the search field to work
-                        // around it losing focus on mount when switching between
-                        // virtualized and non-virtualized dropdown filter results.
-                        autofocus: this.focusedIndex === 0,
-                    },
-                };
-            }
-
             return {
                 ...item,
                 role: itemRole,
@@ -774,6 +752,32 @@ class DropdownCore extends React.Component<Props, State> {
         );
     }
 
+    handleSearchTextChanged: (searchText: string) => void = (
+        searchText: string,
+    ) => {
+        const {onSearchTextChanged} = this.props;
+
+        if (onSearchTextChanged) {
+            onSearchTextChanged(searchText);
+        }
+    };
+
+    renderSearchField(): React.Node {
+        const {searchText} = this.props;
+        const {labels} = this.state;
+
+        return (
+            <SearchField
+                clearAriaLabel={labels.clearSearch}
+                onChange={this.handleSearchTextChanged}
+                placeholder={labels.filter}
+                ref={this.searchFieldRef}
+                style={styles.searchInputStyle}
+                value={searchText || ""}
+            />
+        );
+    }
+
     renderDropdownMenu(
         listRenderer: React.Node,
         isReferenceHidden: ?boolean,
@@ -788,33 +792,34 @@ class DropdownCore extends React.Component<Props, State> {
             ? openerStyle.getPropertyValue("width")
             : 0;
 
-        // Vertical padding of the dropdown menu + borders
-        const initialHeight = 12;
-
-        const maxDropdownHeight = getDropdownMenuHeight(
-            this.props.items,
-            initialHeight,
-        );
+        const maxDropdownHeight = getDropdownMenuHeight(this.props.items);
 
         return (
             <View
                 // Stop propagation to prevent the mouseup listener on the
                 // document from closing the menu.
                 onMouseUp={this.handleDropdownMouseUp}
-                role={this.props.role}
                 style={[
                     styles.dropdown,
                     light && styles.light,
                     isReferenceHidden && styles.hidden,
-                    generateDropdownMenuStyles(
-                        minDropdownWidth,
-                        maxDropdownHeight,
-                    ),
-
                     dropdownStyle,
                 ]}
+                testId="dropdown-core-container"
             >
-                {listRenderer}
+                {this.props.isFilterable && this.renderSearchField()}
+                <View
+                    role={this.props.role}
+                    style={[
+                        styles.listboxOrMenu,
+                        generateDropdownMenuStyles(
+                            minDropdownWidth,
+                            maxDropdownHeight,
+                        ),
+                    ]}
+                >
+                    {listRenderer}
+                </View>
                 {this.maybeRenderNoResults()}
             </View>
         );
@@ -850,9 +855,7 @@ class DropdownCore extends React.Component<Props, State> {
     renderLiveRegion(): React.Node {
         const {items, open} = this.props;
         const {labels} = this.state;
-        const totalItems = this.hasSearchBox()
-            ? items.length - 1
-            : items.length;
+        const totalItems = items.length;
 
         return (
             <StyledSpan
@@ -897,12 +900,15 @@ const styles = StyleSheet.create({
         paddingBottom: Spacing.xxxSmall_4,
         border: `solid 1px ${Color.offBlack16}`,
         boxShadow: `0px 8px 8px 0px ${fade(Color.offBlack, 0.1)}`,
-        overflowY: "auto",
     },
 
     light: {
         // Pretty much just remove the border
         border: "none",
+    },
+
+    listboxOrMenu: {
+        overflowY: "auto",
     },
 
     hidden: {
@@ -914,6 +920,14 @@ const styles = StyleSheet.create({
         color: Color.offBlack64,
         alignSelf: "center",
         marginTop: Spacing.xxSmall_6,
+    },
+
+    searchInputStyle: {
+        margin: Spacing.xSmall_8,
+        marginTop: Spacing.xxxSmall_4,
+        // Set `minHeight` to "auto" to stop the search field from having
+        // a height of 0 and being cut off.
+        minHeight: "auto",
     },
 
     srOnly: {

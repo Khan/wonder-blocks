@@ -4,45 +4,25 @@ import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import OptionItem from "../option-item.js";
-import SearchTextInput from "../search-text-input.js";
 import DropdownCore from "../dropdown-core.js";
 
 const items = [
     {
-        component: (
-            <OptionItem testId="item-0" label="item 0" value="0" key="0" />
-        ),
+        component: <OptionItem label="item 0" value="0" key="0" />,
         focusable: true,
         populatedProps: {},
     },
     {
-        component: (
-            <OptionItem testId="item-1" label="item 1" value="1" key="1" />
-        ),
+        component: <OptionItem label="item 1" value="1" key="1" />,
         focusable: true,
         populatedProps: {},
     },
     {
-        component: (
-            <OptionItem testId="item-2" label="item 2" value="2" key="2" />
-        ),
+        component: <OptionItem label="item 2" value="2" key="2" />,
         focusable: true,
         populatedProps: {},
     },
 ];
-
-const searchFieldItem = {
-    component: (
-        <SearchTextInput
-            testId="search-text-input"
-            key="search-text-input"
-            onChange={jest.fn()}
-            searchText={""}
-        />
-    ),
-    focusable: true,
-    populatedProps: {},
-};
 
 describe("DropdownCore", () => {
     it("should throw for invalid role", () => {
@@ -90,7 +70,7 @@ describe("DropdownCore", () => {
         );
 
         // Act
-        const item = screen.getByTestId("item-0");
+        const item = screen.getByRole("option", {name: "item 0"});
 
         // Assert
         expect(item).toHaveFocus();
@@ -121,7 +101,7 @@ describe("DropdownCore", () => {
         userEvent.keyboard("{arrowdown}"); // 1 -> 2
 
         // Assert
-        expect(screen.queryByTestId("item-2")).toHaveFocus();
+        expect(screen.getByRole("option", {name: "item 2"})).toHaveFocus();
     });
 
     it("keyboard works backwards as expected", () => {
@@ -137,6 +117,7 @@ describe("DropdownCore", () => {
                 opener={<button />}
                 openerElement={null}
                 onOpenChanged={jest.fn()}
+                isFilterable={false}
             />,
         );
 
@@ -151,7 +132,42 @@ describe("DropdownCore", () => {
         userEvent.keyboard("{arrowup}"); // 2 -> 1
 
         // Assert
-        expect(screen.getByTestId("item-1")).toHaveFocus();
+        expect(screen.getByRole("option", {name: "item 1"})).toHaveFocus();
+    });
+
+    it("keyboard works backwards with the search field included", () => {
+        // Arrange
+        render(
+            <DropdownCore
+                initialFocusedIndex={0}
+                onSearchTextChanged={jest.fn()}
+                searchText=""
+                isFilterable={true}
+                // mock the items
+                items={items}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+                onOpenChanged={jest.fn()}
+            />,
+        );
+
+        // Act
+        // navigate down four times
+        userEvent.keyboard("{arrowdown}"); // 0 -> 1
+        userEvent.keyboard("{arrowdown}"); // 1 -> 2
+        userEvent.keyboard("{arrowdown}"); // 2 -> search field
+        userEvent.keyboard("{arrowdown}"); // search field -> 0
+
+        // navigate up back three times
+        userEvent.keyboard("{arrowup}"); // 0 -> search field
+        userEvent.keyboard("{arrowup}"); // search field -> 2
+        userEvent.keyboard("{arrowup}"); // 2 -> 1
+
+        // Assert
+        expect(screen.getByRole("option", {name: "item 1"})).toHaveFocus();
     });
 
     it("closes on tab as expected", () => {
@@ -280,7 +296,7 @@ describe("DropdownCore", () => {
             />,
         );
 
-        const openerElement = screen.getByTestId("opener");
+        const openerElement = screen.getByRole("button");
         openerElement.focus();
 
         // Act
@@ -307,44 +323,7 @@ describe("DropdownCore", () => {
         );
 
         // Assert
-        expect(screen.queryByTestId("item-0")).toHaveFocus();
-    });
-
-    it("selects correct item when starting off at an undefined index and a searchbox", () => {
-        // Arrange
-        render(
-            <DropdownCore
-                initialFocusedIndex={undefined}
-                searchText=""
-                // mock the items
-                items={[
-                    {
-                        component: (
-                            <SearchTextInput
-                                testId="item-0"
-                                key="search-text-input"
-                                onChange={jest.fn()}
-                                searchText={""}
-                            />
-                        ),
-                        focusable: true,
-                        populatedProps: {},
-                    },
-                ]}
-                role="listbox"
-                open={true}
-                // mock the opener elements
-                opener={<button />}
-                openerElement={null}
-                onOpenChanged={jest.fn()}
-            />,
-        );
-
-        // Act
-        const firstItem = screen.queryByTestId("item-0");
-
-        // Assert
-        expect(firstItem).toHaveFocus();
+        expect(screen.getByRole("option", {name: "item 0"})).toHaveFocus();
     });
 
     it("selects correct item when starting off at a different index and a searchbox", () => {
@@ -353,29 +332,19 @@ describe("DropdownCore", () => {
             <DropdownCore
                 initialFocusedIndex={1}
                 searchText=""
+                isFilterable={true}
                 // mock the items
                 items={[
-                    searchFieldItem,
                     {
                         component: (
-                            <OptionItem
-                                testId="item-0"
-                                label="item 1"
-                                value="1"
-                                key="1"
-                            />
+                            <OptionItem label="item 1" value="1" key="1" />
                         ),
                         focusable: true,
                         populatedProps: {},
                     },
                     {
                         component: (
-                            <OptionItem
-                                testId="item-1"
-                                label="item 2"
-                                value="2"
-                                key="2"
-                            />
+                            <OptionItem label="item 2" value="2" key="2" />
                         ),
                         focusable: true,
                         populatedProps: {},
@@ -391,7 +360,7 @@ describe("DropdownCore", () => {
         );
 
         // Act
-        const firstItem = screen.queryByTestId("item-0");
+        const firstItem = screen.getByRole("option", {name: "item 2"});
 
         // Assert
         expect(firstItem).toHaveFocus();
@@ -418,7 +387,7 @@ describe("DropdownCore", () => {
         userEvent.keyboard("{arrowdown}"); // 2 -> 0
 
         // Assert
-        expect(screen.getByTestId("item-0")).toHaveFocus();
+        expect(screen.getByRole("option", {name: "item 0"})).toHaveFocus();
     });
 
     it("focuses correct item with clicking/pressing with initial focused of not 0", () => {
@@ -438,12 +407,12 @@ describe("DropdownCore", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("item-1"));
+        userEvent.click(screen.getByRole("option", {name: "item 1"}));
         // navigate down
         userEvent.keyboard("{arrowdown}"); // 1 -> 2
 
         // Assert
-        expect(screen.getByTestId("item-2")).toHaveFocus();
+        expect(screen.getByRole("option", {name: "item 2"})).toHaveFocus();
     });
 
     it("focuses correct item with a disabled item", () => {
@@ -455,12 +424,7 @@ describe("DropdownCore", () => {
                 items={[
                     {
                         component: (
-                            <OptionItem
-                                testId="item-0"
-                                label="item 0"
-                                value="0"
-                                key="0"
-                            />
+                            <OptionItem label="item 0" value="0" key="0" />
                         ),
                         focusable: true,
                         populatedProps: {},
@@ -468,7 +432,6 @@ describe("DropdownCore", () => {
                     {
                         component: (
                             <OptionItem
-                                testId="item-1"
                                 label="item 1"
                                 value="1"
                                 key="1"
@@ -480,12 +443,7 @@ describe("DropdownCore", () => {
                     },
                     {
                         component: (
-                            <OptionItem
-                                testId="item-2"
-                                label="item 2"
-                                value="2"
-                                key="2"
-                            />
+                            <OptionItem label="item 2" value="2" key="2" />
                         ),
                         focusable: true,
                         populatedProps: {},
@@ -505,7 +463,7 @@ describe("DropdownCore", () => {
         userEvent.keyboard("{arrowdown}"); // 0 -> 2 (1 is disabled)
 
         // Assert
-        expect(screen.getByTestId("item-2")).toHaveFocus();
+        expect(screen.getByRole("option", {name: "item 2"})).toHaveFocus();
     });
 
     it("calls correct onclick for an option item", () => {
@@ -518,12 +476,7 @@ describe("DropdownCore", () => {
                 items={[
                     {
                         component: (
-                            <OptionItem
-                                label="item 0"
-                                value="0"
-                                key="0"
-                                testId="item-0"
-                            />
+                            <OptionItem label="item 0" value="0" key="0" />
                         ),
                         focusable: true,
                         populatedProps: {},
@@ -534,7 +487,6 @@ describe("DropdownCore", () => {
                                 label="item 1"
                                 value="1"
                                 key="1"
-                                testId="item-1"
                                 onClick={onClick1}
                             />
                         ),
@@ -543,12 +495,7 @@ describe("DropdownCore", () => {
                     },
                     {
                         component: (
-                            <OptionItem
-                                label="item 2"
-                                testId="item-2"
-                                value="2"
-                                key="2"
-                            />
+                            <OptionItem label="item 2" value="2" key="2" />
                         ),
                         focusable: true,
                         populatedProps: {},
@@ -564,7 +511,7 @@ describe("DropdownCore", () => {
         );
 
         // Act
-        userEvent.click(screen.getByTestId("item-1"));
+        userEvent.click(screen.getByRole("option", {name: "item 1"}));
 
         // Assert
         expect(onClick1).toHaveBeenCalledTimes(1);
@@ -579,19 +526,8 @@ describe("DropdownCore", () => {
             <DropdownCore
                 onSearchTextChanged={handleSearchTextChanged}
                 searchText="ab"
-                items={[
-                    {
-                        component: (
-                            <SearchTextInput
-                                key="search-text-input"
-                                onChange={handleSearchTextChanged}
-                                searchText={""}
-                            />
-                        ),
-                        focusable: true,
-                        populatedProps: {},
-                    },
-                ]}
+                isFilterable={true}
+                items={[]}
                 role="listbox"
                 open={true}
                 // mock the opener elements
@@ -602,37 +538,21 @@ describe("DropdownCore", () => {
         );
 
         // Assert
-        expect(
-            screen.getByTestId("dropdown-core-no-results"),
-        ).toBeInTheDocument();
+        expect(screen.getByText("No results")).toBeInTheDocument();
     });
 
-    it("SearchTextInput should be focused when opened", () => {
+    it("SearchField should be focused when opened and there's no selection", async () => {
         // Arrange
-        const handleSearchTextChanged = jest.fn();
-        const handleOpen = jest.fn();
 
         // Act
         render(
             <DropdownCore
-                initialFocusedIndex={0}
-                onOpenChanged={handleOpen}
-                onSearchTextChanged={handleSearchTextChanged}
+                initialFocusedIndex={undefined}
+                onOpenChanged={jest.fn()}
+                onSearchTextChanged={jest.fn()}
                 searchText="ab"
-                items={[
-                    {
-                        component: (
-                            <SearchTextInput
-                                testId="item-0"
-                                key="search-text-input"
-                                onChange={handleSearchTextChanged}
-                                searchText={""}
-                            />
-                        ),
-                        focusable: true,
-                        populatedProps: {},
-                    },
-                ]}
+                isFilterable={true}
+                items={[]}
                 role="listbox"
                 open={true}
                 // mock the opener elements
@@ -642,33 +562,50 @@ describe("DropdownCore", () => {
         );
 
         // Assert
-        expect(screen.getByPlaceholderText("Filter")).toHaveFocus();
+        waitFor(() => {
+            expect(screen.getByRole("textbox")).toHaveFocus();
+        });
     });
 
-    it("When SearchTextInput has input and focused, tab key should not close the select", () => {
+    it("SearchField should trigger change when the user types in", () => {
         // Arrange
-        const handleSearchTextChanged = jest.fn();
+        const onSearchTextChangedMock = jest.fn();
+
+        render(
+            <DropdownCore
+                initialFocusedIndex={undefined}
+                onOpenChanged={jest.fn()}
+                onSearchTextChanged={onSearchTextChangedMock}
+                searchText=""
+                isFilterable={true}
+                items={[]}
+                role="listbox"
+                open={true}
+                // mock the opener elements
+                opener={<button />}
+                openerElement={null}
+            />,
+        );
+
+        // Act
+        const searchField = screen.getByRole("textbox");
+        userEvent.type(searchField, "option 1");
+
+        // Assert
+        expect(onSearchTextChangedMock).toHaveBeenCalled();
+    });
+
+    it("When SearchField has input and focused, tab key should not close the select", async () => {
+        // Arrange
         const handleOpen = jest.fn();
 
         render(
             <DropdownCore
                 onOpenChanged={handleOpen}
-                onSearchTextChanged={handleSearchTextChanged}
+                onSearchTextChanged={jest.fn()}
                 searchText="ab"
-                items={[
-                    {
-                        component: (
-                            <SearchTextInput
-                                testId="item-0"
-                                key="search-text-input"
-                                onChange={handleSearchTextChanged}
-                                searchText={""}
-                            />
-                        ),
-                        focusable: true,
-                        populatedProps: {},
-                    },
-                ]}
+                isFilterable={true}
+                items={[]}
                 role="listbox"
                 open={true}
                 // mock the opener elements
@@ -682,32 +619,23 @@ describe("DropdownCore", () => {
 
         // Assert
         expect(handleOpen).toHaveBeenCalledTimes(0);
-        expect(screen.getByTestId("item-0")).toHaveFocus();
+        waitFor(() => {
+            expect(
+                screen.getByRole("button", {name: "Clear search"}),
+            ).toHaveFocus();
+        });
     });
 
-    it("When SearchTextInput exists and focused, space key pressing should be allowed", () => {
+    it("When SearchField exists and focused, space key pressing should be allowed", () => {
         // Arrange
-        const handleSearchTextChanged = jest.fn();
         const preventDefaultMock = jest.fn();
 
         render(
             <DropdownCore
                 onSearchTextChanged={jest.fn()}
                 searchText="ab"
-                items={[
-                    {
-                        component: (
-                            <SearchTextInput
-                                testId="item-0"
-                                key="search-text-input"
-                                onChange={handleSearchTextChanged}
-                                searchText={"ab"}
-                            />
-                        ),
-                        focusable: true,
-                        populatedProps: {},
-                    },
-                ]}
+                isFilterable={true}
+                items={[]}
                 role="listbox"
                 open={true}
                 // mock the opener elements
@@ -718,7 +646,7 @@ describe("DropdownCore", () => {
         );
 
         // Act
-        const searchInput = screen.getByTestId("item-0");
+        const searchInput = screen.getByRole("textbox");
         // eslint-disable-next-line testing-library/prefer-user-event
         fireEvent.keyDown(searchInput, {
             keyCode: 32,
@@ -755,8 +683,9 @@ describe("DropdownCore", () => {
                     initialFocusedIndex={undefined}
                     onSearchTextChanged={jest.fn()}
                     searchText=""
+                    isFilterable={true}
                     // mock the items
-                    items={[searchFieldItem, ...optionItems]}
+                    items={optionItems}
                     role="listbox"
                     open={true}
                     // mock the opener elements
@@ -784,8 +713,9 @@ describe("DropdownCore", () => {
                     initialFocusedIndex={undefined}
                     onSearchTextChanged={jest.fn()}
                     searchText=""
+                    isFilterable={true}
                     // mock the items
-                    items={[searchFieldItem, ...optionItems]}
+                    items={optionItems}
                     role="listbox"
                     open={true}
                     // mock the opener elements
@@ -819,30 +749,6 @@ describe("DropdownCore", () => {
                     onSearchTextChanged={jest.fn()}
                     // mock the items (3 options)
                     items={items}
-                    role="listbox"
-                    open={true}
-                    // mock the opener elements
-                    opener={<button />}
-                    openerElement={null}
-                    onOpenChanged={jest.fn()}
-                />,
-            );
-
-            // Assert
-            expect(container).toHaveTextContent("3 items");
-        });
-
-        it("shouldn't include the search field as part of the options", async () => {
-            // Arrange
-
-            // Act
-            const {container} = render(
-                <DropdownCore
-                    initialFocusedIndex={undefined}
-                    onSearchTextChanged={jest.fn()}
-                    searchText=""
-                    // mock the items (3 options + search field)
-                    items={[searchFieldItem, ...items]}
                     role="listbox"
                     open={true}
                     // mock the opener elements
