@@ -16,9 +16,6 @@ import type {Result, ValidCacheData} from "../util/types.js";
  * Policies to define how a hydratable effect should behave client-side.
  */
 export enum WhenClientSide {
-    // TODO(somewhatabstract, FEI-4172): Update eslint-plugin-flowtype when
-    // they've fixed https://github.com/gajus/eslint-plugin-flowtype/issues/502
-    /* eslint-disable no-undef */
     /**
      * The result from executing the effect server-side will not be hydrated.
      * The effect will always be executed client-side.
@@ -52,7 +49,6 @@ export enum WhenClientSide {
      * hydrated result status.
      */
     AlwaysExecute,
-    /* eslint-enable no-undef */
 }
 
 type HydratableEffectOptions<TData: ValidCacheData> = {|

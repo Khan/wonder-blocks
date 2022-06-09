@@ -16,6 +16,9 @@ module.exports = {
     },
     plugins: ["import", "jest", "promise", "monorepo", "react-hooks", "@babel"],
     settings: {
+        "ft-flow": {
+            onlyFilesWithFlowAnnotation: true,
+        },
         react: {
             version: "detect",
         },
@@ -34,8 +37,8 @@ module.exports = {
         globalThis: false, // means it isn't writeable
     },
     rules: {
-        "flowtype/require-exact-type": ["error", "always"],
-        "flowtype/no-types-missing-file-annotation": "error",
+        "ft-flow/require-exact-type": ["error", "always"],
+        "ft-flow/no-types-missing-file-annotation": "error",
         "import/no-unresolved": "error",
         "import/named": "error",
         "import/default": "error",
