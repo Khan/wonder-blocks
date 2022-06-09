@@ -91,7 +91,7 @@ type IdRefList = IdRef | Array<IdRef>;
 
 // Source: https://www.w3.org/WAI/PF/aria-1.1/states_and_properties
 // TODO(kevinb): convert to disjoint union of exact object types keyed on role
-// eslint-disable-next-line flowtype/require-exact-type
+// eslint-disable-next-line ft-flow/require-exact-type
 export type AriaProps = {|
     role?: roles,
     "aria-activedescendant"?: IdRef,
@@ -199,7 +199,7 @@ type EventHandlers = {|
 // Props shared between Text and View components.
 // NOTE(jeresig): We want to leave the props for these open so that we can
 // handle uncommon props for elements (e.g. htmlFor for labels).
-// eslint-disable-next-line flowtype/require-exact-type
+// eslint-disable-next-line ft-flow/require-exact-type
 export type TextViewSharedProps = {|
     /**
      * Text to appear on the button.

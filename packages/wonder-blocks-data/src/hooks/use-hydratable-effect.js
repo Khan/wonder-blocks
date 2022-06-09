@@ -17,7 +17,7 @@ import type {Result, ValidCacheData} from "../util/types.js";
  */
 export enum WhenClientSide {
     // TODO(somewhatabstract, FEI-4172): Update eslint-plugin-flowtype when
-    // they've fixed https://github.com/gajus/eslint-plugin-flowtype/issues/502
+    // they've fixed https://github.com/gajus/eslint-plugin-ft-flow/issues/502
     /* eslint-disable no-undef */
     /**
      * The result from executing the effect server-side will not be hydrated.

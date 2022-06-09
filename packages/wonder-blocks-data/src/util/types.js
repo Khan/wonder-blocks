@@ -2,7 +2,7 @@
 import type {Metadata} from "@khanacademy/wonder-stuff-core";
 
 // TODO(somewhatabstract, FEI-4172): Update eslint-plugin-flowtype when
-// they've fixed https://github.com/gajus/eslint-plugin-flowtype/issues/502
+// they've fixed https://github.com/gajus/eslint-plugin-ft-flow/issues/502
 /* eslint-disable no-undef */
 /**
  * Defines the various fetch policies that can be applied to requests.
