@@ -59,7 +59,13 @@ export const getAdapter: FixturesAdapterFactory<
         ): ?$ReadOnly<Exports<TProps>> => {
             const templateMap = new WeakMap();
 
-            const log = (message, ...args) => action(message)(...args);
+            const getPropsOptions = {
+                log: (message, ...args) => action(message)(...args),
+                logHandler:
+                    (message) =>
+                    (...args) =>
+                        action(message)(...args),
+            };
 
             const exports = declaredFixtures.reduce(
                 (acc, {description, getProps, component: Component}, i) => {
@@ -91,7 +97,7 @@ export const getAdapter: FixturesAdapterFactory<
                                   <MountingComponent
                                       component={Component}
                                       props={args}
-                                      log={log}
+                                      log={getPropsOptions.log}
                                   />
                               )
                             : (args) => <Component {...args} />;
@@ -101,7 +107,7 @@ export const getAdapter: FixturesAdapterFactory<
                     // Each story that shares that component then reuses that
                     // template.
                     acc[exportName] = Template.bind({});
-                    acc[exportName].args = getProps({log});
+                    acc[exportName].args = getProps(getPropsOptions);
                     // Adding a story name here means that we don't have to
                     // care about naming the exports correctly, if we don't
                     // want (useful if we need to autogenerate or manually
