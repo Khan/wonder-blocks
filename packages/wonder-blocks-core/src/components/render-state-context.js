@@ -2,13 +2,9 @@
 import * as React from "react";
 
 export enum RenderState {
-    // TODO(somewhatabstract, FEI-4172): Update eslint-plugin-flowtype when
-    // they've fixed https://github.com/gajus/eslint-plugin-ft-flow/issues/502
-    /* eslint-disable no-undef */
     Root = "root",
     Initial = "initial",
     Standard = "standard",
-    /* eslint-enable no-undef */
 }
 
 /**
