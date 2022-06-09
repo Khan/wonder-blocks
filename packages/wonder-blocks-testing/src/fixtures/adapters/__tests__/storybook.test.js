@@ -162,7 +162,7 @@ describe("Storybook Adapter", () => {
                 expect(actionReturnFn).toHaveBeenCalledWith("ARG1", "ARG2");
             });
 
-            it("should inject makeLogHandler function that logs to storybook actions", () => {
+            it("should inject logHandler function that logs to storybook actions", () => {
                 // Arrange
                 const adapterSpy = jest
                     .spyOn(AdapterModule, "Adapter")

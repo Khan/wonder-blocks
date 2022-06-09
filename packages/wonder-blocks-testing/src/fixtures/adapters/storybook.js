@@ -61,10 +61,7 @@ export const getAdapter: FixturesAdapterFactory<
 
             const getPropsOptions = {
                 log: (message, ...args) => action(message)(...args),
-                logHandler:
-                    (message) =>
-                    (...args) =>
-                        action(message)(...args),
+                logHandler: action,
             };
 
             const exports = declaredFixtures.reduce(
