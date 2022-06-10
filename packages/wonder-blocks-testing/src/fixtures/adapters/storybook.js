@@ -81,7 +81,7 @@ export const getAdapter: FixturesAdapterFactory<
                     // component. We don't use decorators for the wrapper
                     // because we may not be in a storybook context and it
                     // keeps the framework API simpler this way.
-                    let Template = templateMap.get(Component);
+                    let Template = templateMap.get((Component: any));
                     if (Template == null) {
                         // The MountingComponent is a bit different than just a
                         // Storybook decorator. It's a React component that
@@ -98,7 +98,7 @@ export const getAdapter: FixturesAdapterFactory<
                                   />
                               )
                             : (args) => <Component {...args} />;
-                        templateMap.set(Component, Template);
+                        templateMap.set((Component: any), Template);
                     }
 
                     // Each story that shares that component then reuses that
