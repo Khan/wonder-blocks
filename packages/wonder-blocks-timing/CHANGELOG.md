@@ -7,5 +7,5 @@
   `interval()` method.
 - c57cd770: Rename `useInterval` and `useTimeout` to `useScheduledInterval`
   and `useScheduledTimeout` respectively.
-- 29766c8e: Add `useInterval` and `useTimeout` hooks to provide a simple API for
+- 29766c8e: Add `useInterval` and `useTimeout` hooks to provide an API for
   using intervals and timeouts.
