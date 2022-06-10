@@ -15,7 +15,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
+    "@babel/runtime": "^7.18.3",
     "@khanacademy/wonder-blocks-clickable": "^2.2.7",
     "@khanacademy/wonder-blocks-color": "^1.1.20",
     "@khanacademy/wonder-blocks-core": "^4.3.2",

@@ -15,7 +15,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "@babel/runtime": "^7.16.3",
+    "@babel/runtime": "^7.18.3",
     "@khanacademy/wonder-blocks-breadcrumbs": "^1.0.31",
     "@khanacademy/wonder-blocks-color": "^1.1.20",
     "@khanacademy/wonder-blocks-core": "^4.3.2",
