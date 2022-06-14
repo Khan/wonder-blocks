@@ -76,6 +76,33 @@ const StyledLegend = addStyle<"legend">("legend");
  * many props for its children Choice components. The Choice component is
  * exposed for the user to apply custom styles or to indicate which choices are
  * disabled.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
+ *
+ * const [selectedValues, setSelectedValues] = React.useState([]);
+ *
+ * <CheckboxGroup
+ *     label="some-label"
+ *     description="some-description"
+ *     groupName="some-group-name"
+ *     onChange={setSelectedValues}
+ *     selectedValues={selectedValues}
+ * />
+ *     // Add as many choices as necessary
+ *     <Choice
+ *        label="Choice 1"
+ *        value="some-choice-value"
+ *     />
+ *     <Choice
+ *        label="Choice 2"
+ *        value="some-choice-value-2"
+ *        description="Some choice description."
+ *     />
+ * </CheckboxGroup>
+ * ```
  */
 export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
     handleChange(changedValue: string, originalCheckedState: boolean) {
