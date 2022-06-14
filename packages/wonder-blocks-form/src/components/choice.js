@@ -93,7 +93,7 @@ type DefaultProps = {|
  *     label="some-label"
  *     description="some-description"
  *     groupName="some-group-name"
- *     onChange={setSelectedValues}>
+ *     onChange={setSelectedValues}
  *     selectedValues={selectedValues}
  * />
  *     // Add as many choices as necessary
