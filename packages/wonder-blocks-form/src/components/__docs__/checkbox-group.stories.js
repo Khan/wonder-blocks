@@ -128,9 +128,11 @@ export const Error: StoryComponentType = () => {
 Error.parameters = {
     docs: {
         storyDescription: `This is what a checkbox group looks like
-        if it has an error. It displays the error that is identified and then
-        passed into the \`errorMessage\` prop. Here, this is done by saving
-        the error as a state and updating it in the change handler.`,
+        if it has an error. It displays the error that is passed into the
+        \`errorMessage\` prop, provided the error is not null. It also
+        uses the error styling for all the checkboxes. Here, the error
+        message is saved as a state, updated in the change handler, and then
+        passed in as the \`errorMessage\` prop.`,
     },
 };
 
