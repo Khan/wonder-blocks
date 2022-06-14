@@ -5,6 +5,7 @@ import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
@@ -90,7 +91,10 @@ export const Error: StoryComponentType = () => {
     const [error, setError] = React.useState(toppingsError);
 
     // Returns an error message if more than 3 items are selected,
-    // and it returns null otherwise.
+    // and it returns undefined otherwise. We use undefined instead of
+    // null here because null would result in a flow error, whereas
+    // undefined would be the same as not passing in anything to the
+    // checkbox group's `errorMessage` prop.
     const checkForError = (input) => {
         if (input.length > 3) {
             return toppingsError;
@@ -238,11 +242,11 @@ const styles = StyleSheet.create({
         flexWrap: "wrap",
     },
     choice: {
-        marginTop: 8,
+        marginTop: Spacing.xSmall_8,
         width: 200,
     },
     title: {
-        paddingBottom: 8,
+        paddingBottom: Spacing.xSmall_8,
         borderBottom: `1px solid ${Color.offBlack64}`,
     },
     // Multiple choice styling
