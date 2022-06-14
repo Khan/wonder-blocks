@@ -91,7 +91,7 @@ jobs:
       - uses: Khan/actions@check-for-changeset-v0
         if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
         with:
-          exclude: .github/,.storybook/
+          exclude: .github/,.storybook/, *.test.js
 
   test:
     name: Test
