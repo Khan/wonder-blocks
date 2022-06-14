@@ -19,6 +19,19 @@ const labels: $Shape<Labels> = {
 };
 
 describe("MultiSelect", () => {
+    beforeEach(() => {
+        window.scrollTo = jest.fn();
+
+        // We mock console.error() because React logs a bunch of errors pertaining
+        // to the use href="javascript:void(0);".
+        jest.spyOn(console, "error").mockImplementation(() => {});
+    });
+
+    afterEach(() => {
+        window.scrollTo.mockClear();
+        jest.spyOn(console, "error").mockReset();
+    });
+
     describe("uncontrolled", () => {
         const onChange = jest.fn();
         const uncontrolledSingleSelect = (
