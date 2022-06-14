@@ -541,7 +541,7 @@ describe("DropdownCore", () => {
         expect(screen.getByText("No results")).toBeInTheDocument();
     });
 
-    it("SearchField should be focused when opened and there's no selection", async () => {
+    it("SearchField should be focused when opened and there's no selection", () => {
         // Arrange
 
         // Act
@@ -562,9 +562,7 @@ describe("DropdownCore", () => {
         );
 
         // Assert
-        waitFor(() => {
-            expect(screen.getByRole("textbox")).toHaveFocus();
-        });
+        expect(screen.getByRole("textbox")).toHaveFocus();
     });
 
     it("SearchField should trigger change when the user types in", () => {
@@ -739,7 +737,7 @@ describe("DropdownCore", () => {
     });
 
     describe("a11y > Live region", () => {
-        it("should render a live region announcing the number of options", async () => {
+        it("should render a live region announcing the number of options", () => {
             // Arrange
 
             // Act
