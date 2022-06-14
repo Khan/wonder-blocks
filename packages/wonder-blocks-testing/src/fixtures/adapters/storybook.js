@@ -59,7 +59,10 @@ export const getAdapter: FixturesAdapterFactory<
         ): ?$ReadOnly<Exports<TProps>> => {
             const templateMap = new WeakMap();
 
-            const log = (message, ...args) => action(message)(...args);
+            const getPropsOptions = {
+                log: (message, ...args) => action(message)(...args),
+                logHandler: action,
+            };
 
             const exports = declaredFixtures.reduce(
                 (acc, {description, getProps, component: Component}, i) => {
@@ -78,7 +81,7 @@ export const getAdapter: FixturesAdapterFactory<
                     // component. We don't use decorators for the wrapper
                     // because we may not be in a storybook context and it
                     // keeps the framework API simpler this way.
-                    let Template = templateMap.get(Component);
+                    let Template = templateMap.get((Component: any));
                     if (Template == null) {
                         // The MountingComponent is a bit different than just a
                         // Storybook decorator. It's a React component that
@@ -91,17 +94,17 @@ export const getAdapter: FixturesAdapterFactory<
                                   <MountingComponent
                                       component={Component}
                                       props={args}
-                                      log={log}
+                                      log={getPropsOptions.log}
                                   />
                               )
                             : (args) => <Component {...args} />;
-                        templateMap.set(Component, Template);
+                        templateMap.set((Component: any), Template);
                     }
 
                     // Each story that shares that component then reuses that
                     // template.
                     acc[exportName] = Template.bind({});
-                    acc[exportName].args = getProps({log});
+                    acc[exportName].args = getProps(getPropsOptions);
                     // Adding a story name here means that we don't have to
                     // care about naming the exports correctly, if we don't
                     // want (useful if we need to autogenerate or manually

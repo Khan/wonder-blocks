@@ -121,6 +121,7 @@ describe("Storybook Adapter", () => {
                 // Assert
                 expect(getPropsStub).toHaveBeenCalledWith({
                     log: expect.any(Function),
+                    logHandler: expect.any(Function),
                 });
             });
 
@@ -155,6 +156,45 @@ describe("Storybook Adapter", () => {
 
                 // Act
                 logFn("MESSAGE", "ARG1", "ARG2");
+
+                // Assert
+                expect(actionSpy).toHaveBeenCalledWith("MESSAGE");
+                expect(actionReturnFn).toHaveBeenCalledWith("ARG1", "ARG2");
+            });
+
+            it("should inject logHandler function that logs to storybook actions", () => {
+                // Arrange
+                const adapterSpy = jest
+                    .spyOn(AdapterModule, "Adapter")
+                    .mockImplementation(() => {});
+                getAdapter();
+                const actionReturnFn = jest.fn();
+                const actionSpy = jest
+                    .spyOn(AddonActionsModule, "action")
+                    .mockReturnValue(actionReturnFn);
+                const closeGroupFn = adapterSpy.mock.calls[0][1];
+                const getPropsStub = jest.fn();
+                closeGroupFn(
+                    {
+                        title: "TITLE",
+                        description: "DESCRIPTION",
+                    },
+                    null,
+                    [
+                        {
+                            description:
+                                "🎉 This is a story with legal and illegal characters",
+                            component: () => "I AM A COMPONENT",
+                            getProps: getPropsStub,
+                        },
+                    ],
+                );
+                const {logHandler: logHandlerFn} =
+                    getPropsStub.mock.calls[0][0];
+
+                // Act
+                const logFn = logHandlerFn("MESSAGE");
+                logFn("ARG1", "ARG2");
 
                 // Assert
                 expect(actionSpy).toHaveBeenCalledWith("MESSAGE");

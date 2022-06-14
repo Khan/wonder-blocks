@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing
 
+## 6.1.0
+
+### Minor Changes
+
+-   b79979b8: Add `logHandler` to GetPropsOptions to simplify generic event logging for common use cases
+
 ## 6.0.0
 
 ### Major Changes
