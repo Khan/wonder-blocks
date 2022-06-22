@@ -72,7 +72,7 @@ export const Basic: StoryComponentType = () => {
 
 Basic.parameters = {
     docs: {
-        storyDescription: `This is a basic example of a checkbox group.
+        storyDescription: `This is a basic example of a radio group.
         The Wonder Blocks \`RadioGroup\` component takes \`Choice\`
         components as children. One of the \`Choice\` components here
         includes a description.`,
@@ -88,7 +88,7 @@ export const Error: StoryComponentType = () => {
     // and it returns undefined otherwise. We use undefined instead of
     // null here because null would result in a flow error, whereas
     // undefined would be the same as not passing in anything to the
-    // checkbox group's `errorMessage` prop.
+    // radio group's `errorMessage` prop.
     const checkForError = (input) => {
         if (!input) {
             return emptyError;
@@ -158,7 +158,7 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
 MultipleChoiceStyling.parameters = {
     docs: {
         storyDescription: `This example shows how to use custom styling
-        to change the appearance of the checkbox group to look more like
+        to change the appearance of the radio group to look more like
         a multiple choice question. Here, there is a line in
         between each question, which is achieved using the
         \`{borderTop: "solid 1px #CCC"}\` style on each \`Choice\`
