@@ -73,6 +73,33 @@ const StyledLegend = addStyle<"legend">("legend");
  * indicate which choices are disabled. The use of the groupName prop is
  * important to maintain expected keyboard navigation behavior for
  * accessibility.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
+ *
+ * const [selectedValue, setSelectedValue] = React.useState([]);
+ *
+ * <RadioGroup
+ *     label="some-label"
+ *     description="some-description"
+ *     groupName="some-group-name"
+ *     onChange={setSelectedValue}
+ *     selectedValue={selectedValue}
+ * />
+ *     // Add as many choices as necessary
+ *     <Choice
+ *        label="Choice 1"
+ *        value="some-choice-value"
+ *     />
+ *     <Choice
+ *        label="Choice 2"
+ *        value="some-choice-value-2"
+ *        description="Some choice description."
+ *     />
+ * </RadioGroup>
+ * ```
  */
 export default class RadioGroup extends React.Component<RadioGroupProps> {
     handleChange(changedValue: string) {
