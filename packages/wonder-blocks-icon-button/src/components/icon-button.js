@@ -79,10 +79,9 @@ export type SharedProps = {|
      */
     href?: string,
 
+    // TODO(WB-1262): only allow this prop when `href` is also set.
     /**
      * A target destination window for a link to open in.
-     *
-     * TODO(WB-1262): only allow this prop when `href` is also set.t
      */
     target?: "_blank",
 
@@ -163,6 +162,7 @@ type DefaultProps = {|
  *
  * ```js
  * import {icons} from "@khanacademy/wonder-blocks-icon";
+ * import IconButton from "@khanacademy/wonder-blocks-icon-button";
  *
  * <IconButton
  *     icon={icons.anIcon}
