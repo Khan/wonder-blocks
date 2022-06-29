@@ -16,37 +16,23 @@ type FixtureProps<TProps: {...}> =
     | $ReadOnly<TProps>
     | ((options: $ReadOnly<GetPropsOptions>) => $ReadOnly<TProps>);
 
-fixtures<TProps: {...}>(
-    component: React.ComponentType<TProps>,
-    fn: (
-        fixture: (
-            description: string,
-            props: FixtureProps<TProps>,
-            wrapper?: React.ComponentType<TProps>,
-        ) => void,
-    ) => void,
-): ?$ReadOnly<mixed>;
-
-
-fixtures<TProps: {...}>(
-    options: $ReadOnly<FixturesOptions<TProps>>,
-    fn: (
-        fixture: (
-            description: string,
-            props: FixtureProps<TProps>,
-            wrapper?: React.ComponentType<TProps>,
-        ) => void,
-    ) => void,
-): ?$ReadOnly<mixed>;
+fixtures<
+    TComponent: React.ComponentType<any>,
+    TProps: React.ElementConfig<TComponent>,
+>(
+    Component: TComponent,
+): (
+    description: string,
+    props: FixtureProps<TProps>,
+    wrapper?: React.ComponentType<TProps>,
+) => void;
 ```
 
-The `fixtures()` method is used to define a set of fixtures for a component. It provides a way to describe fixtures as one might describe unit tests. Fixtures are like stories in Storybook (and, if the fixtures framework is configured for storybook, will be stories).
+The `fixtures()` method is used to define a set of fixtures for a component. Each fixture is a story compatible with the CSF format used by Storybook.
 
-The return value provides the module exports that your fixture file should export. If your build system supports CommonJS syntax, this can be exported using `module.exports = returnValue`; however, if you need to use ESM syntax, you may need to do something like we do in [our Fixtures Framework example stories](/docs/testing-fixtures-basic--f-1).
+The method returned by `fixtures(Component)` is a strongly-typed call for generating a named story with the given args, and using the given wrapper component, if provided. See [our Fixtures Framework example stories](/docs/testing-fixtures-basic--f-1) for examples.
 
-There are two ways to call the `fixtures()` function; with a component and callback, or with a set of [options](/docs/testing-fixtures-types-fixtureoptions--page) and callback.
-
-The second argument is a callback in which you should define your fixture susing the passed `fixture` function (the first and only argument of the callback). The `fixture` function takes two or three arguments:
+The `fixture` function takes two or three arguments:
 
 - `description: string`: A string describing the fixture. This should be used to explain what the fixture is expected to show.
 - `props: FixtureProps<TProps>`: The props that the fixture should be rendered with. This can be either a plain object, or a function that returns a plain object. The function will be called with an API to assist in generating the props (see [`GetPropsOptions`](/docs/testing-fixtures-types-getpropsoptions--page)).
