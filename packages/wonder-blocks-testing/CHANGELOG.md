@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing
 
+## 7.0.0
+
+### Major Changes
+
+-   d078f526: Simplify fixtures API to target only CSF/storybook
+
 ## 6.1.0
 
 ### Minor Changes
