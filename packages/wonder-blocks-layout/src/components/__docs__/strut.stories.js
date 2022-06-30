@@ -10,33 +10,40 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {StoryComponentType} from "@storybook/react";
 
+import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import {name, version} from "../../../package.json";
+
 export default {
     title: "Layout / Strut",
+    component: Strut,
+    parameters: {
+        componentSubtitle: ((
+            <ComponentInfo name={name} version={version} />
+        ): any),
+    },
+    argTypes: {
+        style: {
+            control: {
+                type: "object",
+            },
+        },
+    },
 };
 
-const styles = StyleSheet.create({
-    row: {
-        flexDirection: "row",
-    },
-    column: {
-        flexDirection: "column",
-    },
-    strut: {
-        alignSelf: "center",
-        backgroundColor: Color.darkBlue,
-    },
-    thin: {
-        height: "4px",
-    },
-    thick: {
-        height: "8px",
-    },
-});
+export const Default: StoryComponentType = (args) => (
+    <View style={styles.row}>
+        <Button>Hello, world!</Button>
+        <Strut {...args} />
+        <Button color="destructive">Hello, world!</Button>
+    </View>
+);
+
+Default.args = {size: Spacing.xxxLarge_64, style: {}};
 
 const smallSize = Spacing.medium_16;
 const largeSize = Spacing.xxxLarge_64;
 
-export const Simple: StoryComponentType = () => (
+export const Simple: StoryComponentType = (args) => (
     <View style={styles.column}>
         <View style={styles.row}>
             <Button>Hello, world!</Button>
@@ -96,3 +103,22 @@ WithStyle.parameters = {
         disableSnapshot: true,
     },
 };
+
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
+    },
+    column: {
+        flexDirection: "column",
+    },
+    strut: {
+        alignSelf: "center",
+        backgroundColor: Color.darkBlue,
+    },
+    thin: {
+        height: "4px",
+    },
+    thick: {
+        height: "8px",
+    },
+});
