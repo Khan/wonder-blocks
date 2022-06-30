@@ -123,7 +123,7 @@
     "react-popper": "^2.2.5",
     "react-router": "5.2.1",
     "react-router-dom": "5.3.0",
-    "react-window": "^1.8.5"
+    "react-window": "^1.8.7"
   },
   "workspaces": [
     "packages/*",

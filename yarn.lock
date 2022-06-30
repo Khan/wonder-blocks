@@ -14170,10 +14170,10 @@ react-test-renderer@^17.0.2:
     react-shallow-renderer "^16.13.1"
     scheduler "^0.20.2"
 
-react-window@^1.8.5:
-  version "1.8.5"
-  resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.8.5.tgz#a56b39307e79979721021f5d06a67742ecca52d1"
-  integrity sha512-HeTwlNa37AFa8MDZFZOKcNEkuF2YflA0hpGPiTT9vR7OawEt+GZbfM6wqkBahD3D3pUjIabQYzsnY/BSJbgq6Q==
+react-window@^1.8.7:
+  version "1.8.7"
+  resolved "https://registry.yarnpkg.com/react-window/-/react-window-1.8.7.tgz#5e9fd0d23f48f432d7022cdb327219353a15f0d4"
+  integrity sha512-JHEZbPXBpKMmoNO1bNhoXOOLg/ujhL/BU4IqVU9r8eQPcy5KQnGHIHDRkJ0ns9IM5+Aq5LNwt3j8t3tIrePQzA==
   dependencies:
     "@babel/runtime" "^7.0.0"
     memoize-one ">=3.1.1 <6"
