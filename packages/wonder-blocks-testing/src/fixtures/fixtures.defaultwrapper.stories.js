@@ -1,18 +1,12 @@
 // @flow
 import * as React from "react";
 
-import {
-    setupFixtures,
-    fixtures,
-    fixtureAdapters as adapters,
-} from "../index.js";
+import {fixtures} from "../index.js";
 
-// Normally would call setup from the storybook.preview.js for a project.
-setupFixtures({
-    adapter: adapters.storybook(),
-});
+type Props = {...};
 
-const MyComponent = (props) => `My props: ${JSON.stringify(props, null, 2)}`;
+const MyComponent = (props: Props) =>
+    `My props: ${JSON.stringify(props, null, 2)}`;
 
 const Wrapper = (props) => (
     <>
@@ -22,7 +16,7 @@ const Wrapper = (props) => (
     </>
 );
 
-const DefaultWrapper = (props) => (
+const DefaultWrapper = (props: Props): React.Node => (
     <>
         DefaultWrapper &gt;&gt;&gt;
         <MyComponent {...props} />
@@ -30,34 +24,26 @@ const DefaultWrapper = (props) => (
     </>
 );
 
-const stories: Array<mixed> = Object.values(
-    fixtures<typeof MyComponent, _>(
-        {
-            component: MyComponent,
-            title: "Testing / Fixtures / DefaultWrapper",
-            defaultWrapper: DefaultWrapper,
-        },
-        (fixture) => {
-            fixture(
-                "This is a fixture with some regular props and the default wrapper",
-                {
-                    see: "this is a prop",
-                    and: "this is another",
-                },
-            );
+const fixture = fixtures(DefaultWrapper);
 
-            fixture(
-                "This fixture uses a custom wrapper",
-                {
-                    just: "some props again",
-                    like: "this one",
-                },
-                Wrapper,
-            );
-        },
-    ) ?? {},
+export const F1: mixed = fixture(
+    "This is a fixture with some regular props and the default wrapper",
+    {
+        see: "this is a prop",
+        and: "this is another",
+    },
 );
 
-export default stories[0];
-export const F1 = stories[1];
-export const F2 = stories[2];
+export const F2: mixed = fixture(
+    "This fixture uses a custom wrapper",
+    {
+        just: "some props again",
+        like: "this one",
+    },
+    Wrapper,
+);
+
+export default {
+    title: "Testing / Fixtures / DefaultWrapper",
+    component: DefaultWrapper,
+};

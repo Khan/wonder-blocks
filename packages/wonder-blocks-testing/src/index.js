@@ -1,21 +1,8 @@
 // @flow
 
 // Fixtures framework
-export * as fixtureAdapters from "./fixtures/adapters/adapters.js";
 export {fixtures} from "./fixtures/fixtures.js";
-export {setup as setupFixtures} from "./fixtures/setup.js";
-export type {
-    CustomMountProps,
-    FixturesAdapter,
-    FixturesAdapterFactory,
-    FixturesAdapterFixtureOptions,
-    FixturesAdapterGroup,
-    FixturesAdapterGroupOptions,
-    FixturesAdapterOptions,
-    FixturesConfiguration,
-    FixturesOptions,
-    GetPropsOptions,
-} from "./fixtures/types.js";
+export type {GetPropsOptions} from "./fixtures/types.js";
 
 // Fetch mocking framework
 export {mockFetch} from "./fetch/mock-fetch.js";
