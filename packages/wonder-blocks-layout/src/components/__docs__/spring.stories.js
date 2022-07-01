@@ -9,28 +9,35 @@ import Button from "@khanacademy/wonder-blocks-button";
 
 import type {StoryComponentType} from "@storybook/react";
 
+import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import {name, version} from "../../../package.json";
+
 export default {
     title: "Layout / Spring",
+    component: Spring,
+    parameters: {
+        componentSubtitle: ((
+            <ComponentInfo name={name} version={version} />
+        ): any),
+    },
+    argTypes: {
+        style: {
+            control: {
+                type: "object",
+            },
+        },
+    },
 };
 
-const styles = StyleSheet.create({
-    row: {
-        flexDirection: "row",
-    },
-    column: {
-        flexDirection: "column",
-    },
-    spring: {
-        alignSelf: "center",
-        backgroundColor: Color.darkBlue,
-    },
-    thin: {
-        height: "4px",
-    },
-    thick: {
-        height: "8px",
-    },
-});
+export const Default: StoryComponentType = (args) => (
+    <View style={styles.row}>
+        <Button>Hello, world!</Button>
+        <Spring {...args} />
+        <Button color="destructive">Hello, world!</Button>
+    </View>
+);
+
+Default.args = {style: {}};
 
 export const Simple: StoryComponentType = () => (
     <View style={styles.column}>
@@ -68,16 +75,27 @@ export const WithStyle: StoryComponentType = () => (
     </View>
 );
 
-Simple.parameters = {
-    chromatic: {
-        // we don't need screenshots because this story only tests behavior.
-        disableSnapshot: true,
+WithStyle.parameters = {
+    docs: {
+        storyDescription: "`<Spring/>` can have a style.",
     },
 };
 
-WithStyle.parameters = {
-    chromatic: {
-        // we don't need screenshots because this story only tests behavior.
-        disableSnapshot: true,
+const styles = StyleSheet.create({
+    row: {
+        flexDirection: "row",
     },
-};
+    column: {
+        flexDirection: "column",
+    },
+    spring: {
+        alignSelf: "center",
+        backgroundColor: Color.darkBlue,
+    },
+    thin: {
+        height: "4px",
+    },
+    thick: {
+        height: "8px",
+    },
+});
