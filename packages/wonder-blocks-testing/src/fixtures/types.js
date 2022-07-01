@@ -1,4 +1,6 @@
 // @flow
+import * as React from "react";
+
 /**
  * Options injected to the function that returns the fixture props.
  */
@@ -19,3 +21,26 @@ export type GetPropsOptions = {|
 export type FixtureProps<TProps: {...}> =
     | $ReadOnly<TProps>
     | ((options: $ReadOnly<GetPropsOptions>) => $ReadOnly<TProps>);
+
+/**
+ * A function for defining a fixture.
+ */
+export type FixtureFn<TProps: {...}> = (
+    /**
+     * The name of the fixture.
+     */
+    description: string,
+
+    /**
+     * The props for the fixture or a function that returns the props.
+     * The function is injected with an API to facilitate logging.
+     */
+    props: FixtureProps<TProps>,
+
+    /**
+     * An alternative component to render for the fixture.
+     * Useful if the fixture requires some additional setup for testing the
+     * component.
+     */
+    wrapper?: React.ComponentType<TProps>,
+) => mixed;

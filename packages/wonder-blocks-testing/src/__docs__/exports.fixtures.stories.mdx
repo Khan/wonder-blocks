@@ -21,19 +21,11 @@ fixtures<
     TProps: React.ElementConfig<TComponent>,
 >(
     Component: TComponent,
-): (
-    description: string,
-    props: FixtureProps<TProps>,
-    wrapper?: React.ComponentType<TProps>,
-) => void;
+): FixtureFn<TProps>;
 ```
 
 The `fixtures()` method is used to define a set of fixtures for a component. Each fixture is a story compatible with the CSF format used by Storybook.
 
 The method returned by `fixtures(Component)` is a strongly-typed call for generating a named story with the given args, and using the given wrapper component, if provided. See [our Fixtures Framework example stories](/docs/testing-fixtures-basic--f-1) for examples.
 
-The `fixture` function takes two or three arguments:
-
-- `description: string`: A string describing the fixture. This should be used to explain what the fixture is expected to show.
-- `props: FixtureProps<TProps>`: The props that the fixture should be rendered with. This can be either a plain object, or a function that returns a plain object. The function will be called with an API to assist in generating the props (see [`GetPropsOptions`](/docs/testing-fixtures-types-getpropsoptions--page)).
-- `wrapper?: React.ComponentType<TProps>`: An optional component that will be rendered around the fixture. This can be used to wrap the fixture in a component that adds additional functionality, such as a test harness (see [`makeTestHarness`](/docs/testing-test-harness-exports-maketestharness--page)).
+The returned `fixture` function is of type [`FixtureFn<TProps>`](/docs/testing-fixtures-types-fixturefn--page).
