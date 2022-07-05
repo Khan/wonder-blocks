@@ -1,6 +1,6 @@
 {
     "name": "@khanacademy/wonder-blocks-testing",
-    "version": "7.0.1",
+    "version": "7.0.2",
     "design": "v1",
     "publishConfig": {
         "access": "public"
