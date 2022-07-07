@@ -65,6 +65,13 @@ Default.args = {
     },
 };
 
+Default.parameters = {
+    chromatic: {
+        // We don't need screenshots because this story only tests behavior.
+        disableSnapshot: true,
+    },
+};
+
 export const ScreenSizeStyles: StoryComponentType = () => {
     const styleSheets = {
         large: StyleSheet.create({
@@ -97,6 +104,10 @@ export const ScreenSizeStyles: StoryComponentType = () => {
 };
 
 ScreenSizeStyles.parameters = {
+    chromatic: {
+        // We don't need screenshots because this story only tests behavior.
+        disableSnapshot: true,
+    },
     docs: {
         storyDescription: `You can switch styles for different screen sizes.
         By default, MediaLayout uses \`MEDIA_DEFAULT_SPEC\`. Here you can
@@ -147,6 +158,10 @@ export const AllStyles: StoryComponentType = () => {
 };
 
 AllStyles.parameters = {
+    chromatic: {
+        // We don't need screenshots because this story only tests behavior.
+        disableSnapshot: true,
+    },
     docs: {
         storyDescription: `You can define a shared style for all sizes.
             You can use the \`all\` key to define styles for all the
@@ -226,6 +241,10 @@ export const CustomSpec: StoryComponentType = () => {
 };
 
 CustomSpec.parameters = {
+    chromatic: {
+        // We don't need screenshots because this story only tests behavior.
+        disableSnapshot: true,
+    },
     docs: {
         storyDescription: `You can use a custom spec.
         There are cases when you might need to use a custom media query spec.
