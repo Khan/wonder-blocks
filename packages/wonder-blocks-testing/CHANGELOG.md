@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-testing
 
+## 7.0.2
+
+### Patch Changes
+
+-   aa7993a8: Make sure wrapper component is used when provided
+
+## 7.0.1
+
+### Patch Changes
+
+-   79a3bc8e: Export more types for the fixtures framework
+
 ## 7.0.0
 
 ### Major Changes

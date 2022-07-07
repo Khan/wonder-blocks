@@ -2,13 +2,7 @@
 import * as React from "react";
 import {action} from "@storybook/addon-actions";
 
-import type {FixtureProps} from "./types.js";
-
-type FixtureFn<TProps: {...}> = (
-    description: string,
-    props: FixtureProps<TProps>,
-    wrapper?: React.ComponentType<TProps>,
-) => mixed;
+import type {FixtureFn, FixtureProps} from "./types.js";
 
 /**
  * Describe a group of fixtures for a given component.
@@ -50,16 +44,18 @@ export const fixtures = <
         const getProps = (options) =>
             typeof props === "function" ? props(options) : props;
 
+        const RealComponent = wrapper || Component;
+
         // We create a “template” of how args map to rendering
         // for each type of component as the component here could
         // be the component under test, or wrapped in a wrapper
         // component. We don't use decorators for the wrapper
         // because we may not be in a storybook context and it
         // keeps the framework API simpler this way.
-        let Template = templateMap.get((Component: any));
+        let Template = templateMap.get((RealComponent: any));
         if (Template == null) {
-            Template = (args) => <Component {...args} />;
-            templateMap.set((Component: any), Template);
+            Template = (args) => <RealComponent {...args} />;
+            templateMap.set((RealComponent: any), Template);
         }
 
         // Each story that shares that component then reuses that

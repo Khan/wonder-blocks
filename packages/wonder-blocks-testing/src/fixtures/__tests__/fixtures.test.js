@@ -128,5 +128,23 @@ describe("fixtures", () => {
                 screen.getByText('I rendered {"aProp":"aValue"}'),
             ).toBeInTheDocument();
         });
+
+        it("should render the wrapper", () => {
+            // Arrange
+            const fixture = fixtures(
+                (props) => `I rendered ${JSON.stringify(props)}`,
+            );
+            const Fixture: any = fixture(
+                "A simple story",
+                {},
+                () => "I am a wrapper",
+            );
+
+            // Act
+            render(<Fixture aProp="aValue" />);
+
+            // Assert
+            expect(screen.getByText("I am a wrapper")).toBeInTheDocument();
+        });
     });
 });
