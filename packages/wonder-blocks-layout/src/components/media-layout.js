@@ -234,6 +234,31 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
 }
 
 // gen-snapshot-tests.js only understands `export default class ...`
+/**
+ * ***NOTE: The MediaLayout component is being deprecated. Do not use this!!***
+ *
+ * MediaLayout is a container component that accepts a `styleSheets` object,
+ * whose keys are media sizes. It listens for changes to the current media
+ * size and passes the current `mediaSize`, `mediaSpec`, and `styles` to
+ * `children`, which is a render function taking those three values as an
+ * object.
+ *
+ * Valid keys for the `styleSheets` object are (in order of precedence):
+ * - `small`, `medium`, `large`
+ * - `mdOrSmaller`, `mdOrLarger`
+ * - `all`
+ *
+ * `MediaLayout` will merge style rules from multiple styles that match the
+ * current media query, e.g. `"(min-width: 1024px)"`.
+ *
+ * The `mediaSpec` is an object with one or more of the following keys:
+ * `small`, `medium`, or `large`. Each value contains the following data:
+ * - `query: string` e.g. "(min-width: 1024px)"
+ * - `totalColumns: number`
+ * - `gutterWidth: number`
+ * - `marginWidth: number`
+ * - `maxWidth: number`
+ */
 export default class MediaLayout extends React.Component<Props> {
     render(): React.Node {
         // We listen to the MediaLayoutContext to see what defaults we're
