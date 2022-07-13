@@ -379,6 +379,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         return (
             <DropdownCore
                 role="listbox"
+                selectionType="single"
                 alignment={alignment}
                 dropdownStyle={[
                     isFilterable && filterableDropdownStyle,
