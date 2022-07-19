@@ -99,6 +99,10 @@ describe("SingleSelect", () => {
         });
 
         describe("keyboard", () => {
+            beforeEach(() => {
+                jest.useFakeTimers();
+            });
+
             describe.each([{key: "{enter}"}, {key: "{space}"}])(
                 "$key",
                 ({key}) => {
@@ -129,7 +133,7 @@ describe("SingleSelect", () => {
                 },
             );
 
-            it("should not select an item when pressing {enter}", () => {
+            it("should select an item when pressing {enter}", () => {
                 // Arrange
                 render(uncontrolledSingleSelect);
                 userEvent.tab();
@@ -139,8 +143,8 @@ describe("SingleSelect", () => {
                 userEvent.keyboard("{enter}");
 
                 // Assert
-                expect(onChange).not.toHaveBeenCalled();
-                expect(screen.getByRole("listbox")).toBeInTheDocument();
+                expect(onChange).toHaveBeenCalledWith("1");
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
             });
 
             it("should select an item when pressing {space}", () => {
@@ -154,6 +158,27 @@ describe("SingleSelect", () => {
 
                 // Assert
                 expect(onChange).toHaveBeenCalledWith("1");
+                expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
+
+            it("should find and select an item using the keyboard", () => {
+                // Arrange
+                render(
+                    <SingleSelect onChange={onChange} placeholder="Choose">
+                        <OptionItem label="apple" value="apple" />
+                        <OptionItem label="orange" value="orange" />
+                        <OptionItem label="pear" value="pear" />
+                    </SingleSelect>,
+                );
+                userEvent.tab();
+
+                // Act
+                // find first occurrence
+                userEvent.keyboard("or");
+                jest.advanceTimersByTime(501);
+
+                // Assert
+                expect(onChange).toHaveBeenCalledWith("orange");
                 expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
             });
 

@@ -546,7 +546,7 @@ class DropdownCore extends React.Component<Props, State> {
         if (getStringForKey(event.key)) {
             event.stopPropagation();
             this.textSuggestion += event.key;
-            console.log("get text sugg: ", this.textSuggestion);
+            // Trigger the filter logic only after the debounce is resolved.
             this.handleKeyDownDebounced(this.textSuggestion);
         }
 
@@ -630,7 +630,8 @@ class DropdownCore extends React.Component<Props, State> {
                 // Flow doesn't know that the component is an OptionItem
                 // $FlowIgnore[incompatible-use]
                 const label = component.props?.label.toLowerCase();
-                return label.startsWith(key);
+
+                return label.startsWith(key.toLowerCase());
             });
 
         if (foundIndex >= 0) {
