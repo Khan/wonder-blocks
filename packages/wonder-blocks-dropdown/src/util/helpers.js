@@ -20,9 +20,11 @@ export function getStringForKey(key: string): string {
 
 /**
  *
- * @param {*} callback
- * @param {*} wait
- * @returns
+ * @param {fn} callback The function that will be executed after the debounce is resolved.
+ * @param {number} wait The period of time that will be executed the debounced
+ * function.
+ * @returns The function that will be executed after the wait period is
+ * fulfilled.
  */
 export function debounce(
     callback: (...args: any) => void,
