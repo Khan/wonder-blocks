@@ -1199,6 +1199,41 @@ describe("MultiSelect", () => {
                 screen.getByText(updatedLabels.selectNoneLabel),
             ).toBeInTheDocument();
         });
+
+        describe("keyboard", () => {
+            beforeEach(() => {
+                // Required due to the `debounce` call.
+                jest.useFakeTimers();
+            });
+
+            it("should find and focus an item using the keyboard", () => {
+                // Arrange
+                const onChangeMock = jest.fn();
+
+                render(
+                    <MultiSelect onChange={onChangeMock}>
+                        <OptionItem label="Mercury" value="mercury" />
+                        <OptionItem label="Venus" value="venus" />
+                        <OptionItem label="Mars" value="mars" />
+                    </MultiSelect>,
+                );
+                userEvent.tab();
+
+                // Act
+                // find first occurrence
+                userEvent.keyboard("v");
+                jest.advanceTimersByTime(501);
+
+                // Assert
+                const filteredOption = screen.getByRole("option", {
+                    name: /Venus/i,
+                });
+                // Verify that the element found is focused.
+                expect(filteredOption).toHaveFocus();
+                // And also verify that the listbox is opened.
+                expect(screen.getByRole("listbox")).toBeInTheDocument();
+            });
+        });
     });
 
     describe("a11y > Live region", () => {
