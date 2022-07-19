@@ -312,6 +312,7 @@ class DropdownCore extends React.Component<Props, State> {
         // called on every keydown
         this.handleKeyDownDebounced = debounce(
             this.handleKeyDownDebounceResult,
+            // Leaving enough time for the user to type a valid query (e.g. jul)
             500,
         );
         this.textSuggestion = "";
