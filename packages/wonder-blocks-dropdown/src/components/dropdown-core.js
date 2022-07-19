@@ -96,6 +96,11 @@ type DefaultProps = {|
      * use when the item is used on a dark background.
      */
     light: boolean,
+
+    /**
+     * Used to determine if we can automatically select an item using the keyboard.
+     */
+    selectionType: "single" | "multi",
 |};
 
 type DropdownAriaRole = "listbox" | "menu";
@@ -169,8 +174,6 @@ type Props = {|
      * top. The items will be filtered by the input.
      */
     isFilterable?: boolean,
-
-    selectionType: "single" | "multi",
 
     ...WithActionSchedulerProps,
 |};
@@ -253,6 +256,7 @@ class DropdownCore extends React.Component<Props, State> {
             someSelected: defaultLabels.someSelected,
         },
         light: false,
+        selectionType: "single",
     };
 
     // This is here to avoid calling React.createRef on each rerender. Instead,

@@ -564,6 +564,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 open={open}
                 opener={opener}
                 openerElement={this.state.openerElement}
+                selectionType="multi"
                 style={style}
                 className={className}
                 onSearchTextChanged={
