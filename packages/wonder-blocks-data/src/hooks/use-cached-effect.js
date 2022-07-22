@@ -232,10 +232,6 @@ export const useCachedEffect = <TData: ValidCacheData>(
         fetchPolicy,
     ]);
 
-    // We need to trigger a re-render when the request ID changes as that
-    // indicates its a different request.
-    const requestIdRef = React.useRef(requestId);
-
     // Calculate if we want to fetch the result or not.
     // If this is true, we will do a new fetch, cancelling the previous fetch
     // if there is one inflight.
@@ -252,12 +248,8 @@ export const useCachedEffect = <TData: ValidCacheData>(
                 return false;
 
             case FetchPolicy.CacheBeforeNetwork:
-                // If we don't have a cached value or this is a new requestId,
-                // then we need to fetch.
-                return (
-                    mostRecentResult == null ||
-                    requestId !== requestIdRef.current
-                );
+                // If we don't have a cached value then we need to fetch.
+                return mostRecentResult == null;
 
             case FetchPolicy.CacheAndNetwork:
             case FetchPolicy.NetworkOnly:
@@ -265,10 +257,7 @@ export const useCachedEffect = <TData: ValidCacheData>(
                 // result, then we need to fetch one.
                 return networkResultRef.current == null;
         }
-    }, [requestId, mostRecentResult, fetchPolicy, hardSkip]);
-
-    // Let's make sure our ref is set to the most recent requestId.
-    requestIdRef.current = requestId;
+    }, [mostRecentResult, fetchPolicy, hardSkip]);
 
     React.useEffect(() => {
         if (!shouldFetch) {
