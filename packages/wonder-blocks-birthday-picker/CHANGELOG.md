@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 1.2.13
+
+### Patch Changes
+
+-   ee6fc773: Added keyboard support to search items when the dropdown is focused, included "Enter" as a key to trigger actions with the "option" role
+-   Updated dependencies [ee6fc773]
+    -   @khanacademy/wonder-blocks-dropdown@2.8.0
+
 ## 1.2.12
 
 ### Patch Changes

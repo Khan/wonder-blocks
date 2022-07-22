@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 2.3.0
+
+### Minor Changes
+
+-   ee6fc773: Added keyboard support to search items when the dropdown is focused, included "Enter" as a key to trigger actions with the "option" role
+
 ## 2.2.7
 
 ### Patch Changes
