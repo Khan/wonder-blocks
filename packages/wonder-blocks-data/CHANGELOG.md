@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 8.0.5
+
+### Patch Changes
+
+-   08238b89: Export the `getGqlDataFromResponse` method so we can use it in custom `gqlFetch` scenarios for a consistent experience
+
 ## 8.0.4
 
 ### Patch Changes
