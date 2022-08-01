@@ -2,16 +2,22 @@
 
 export default {
     children: {
+        control: {type: "object"},
         description:
             "Text to appear on the link. It can be a plain text or Typography element.",
+        table: {type: {summary: "string | React.Element<Typography>"}},
         type: {required: true},
     },
     href: {
+        control: {type: "text"},
         description: "URL to navigate to.",
+        table: {type: {summary: "string"}},
         type: {required: true},
     },
     id: {
+        control: {type: "text"},
         description: "An optional id attribute.",
+        table: {type: {summary: "string"}},
         type: {required: false},
     },
     kind: {
@@ -72,5 +78,52 @@ export default {
             /math/algebra/eval-exprs, then it tries to use react-router-dom's
             Link component which handles the client-side navigation. You can set
             \`skipClientNav\` to true avoid using client-side nav entirely.`,
+        table: {
+            type: {summary: "boolean"},
+        },
+    },
+    style: {
+        control: {type: "object"},
+        description: "custom styles.",
+        table: {type: {summary: "StyleType"}},
+    },
+    className: {
+        control: {type: "text"},
+        description: "Adds CSS classes to the Link.",
+        table: {type: {summary: "string"}},
+    },
+    safeWithNav: {
+        description: `Run async code in the background while client-side
+        navigating. If the browser does a full page load navigation, the
+        callback promise must be settled before the navigation will occur.
+        Errors are ignored so that navigation is guaranteed to succeed.`,
+        table: {
+            type: {summary: "() => Promise<mixed>"},
+        },
+    },
+    onClick: {
+        description: `Function to call when button is clicked.
+        This should NOT be used to redirect to a different URL or to
+        prevent navigation via e.preventDefault(). The event passed to this
+        handler will have its preventDefault() and stopPropagation() methods
+        stubbed out.`,
+        table: {
+            category: "Events",
+            type: {summary: "(e: SyntheticEvent<>) => mixed"},
+        },
+    },
+    onKeyDown: {
+        description: `Respond to raw "keydown" event.`,
+        table: {
+            category: "Events",
+            type: {summary: "(e: SyntheticKeyboardEvent<>) => mixed"},
+        },
+    },
+    onKeyUp: {
+        description: `Respond to raw "keyup" event.`,
+        table: {
+            category: "Events",
+            type: {summary: "(e: SyntheticKeyboardEvent<>) => mixed"},
+        },
     },
 };
