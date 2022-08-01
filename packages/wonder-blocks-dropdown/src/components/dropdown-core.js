@@ -1,3 +1,4 @@
+/* eslint-disable max-lines */
 // @flow
 // A menu that consists of action items
 
@@ -25,6 +26,7 @@ import SeparatorItem from "./separator-item.js";
 import {defaultLabels, keyCodes} from "../util/constants.js";
 import type {DropdownItem} from "../util/types.js";
 import DropdownPopper from "./dropdown-popper.js";
+import {debounce, getStringForKey} from "../util/helpers.js";
 import {
     generateDropdownMenuStyles,
     getDropdownMenuHeight,
@@ -94,6 +96,11 @@ type DefaultProps = {|
      * use when the item is used on a dark background.
      */
     light: boolean,
+
+    /**
+     * Used to determine if we can automatically select an item using the keyboard.
+     */
+    selectionType: "single" | "multi",
 |};
 
 type DropdownAriaRole = "listbox" | "menu";
@@ -219,6 +226,10 @@ class DropdownCore extends React.Component<Props, State> {
         current: null | React.ElementRef<typeof List>,
     |};
 
+    handleKeyDownDebounced: (key: string) => void;
+
+    textSuggestion: string;
+
     // Figure out if the same items are focusable. If an item has been added or
     // removed, this method will return false.
     static sameItemsFocusable(
@@ -245,6 +256,7 @@ class DropdownCore extends React.Component<Props, State> {
             someSelected: defaultLabels.someSelected,
         },
         light: false,
+        selectionType: "single",
     };
 
     // This is here to avoid calling React.createRef on each rerender. Instead,
@@ -295,6 +307,15 @@ class DropdownCore extends React.Component<Props, State> {
         };
 
         this.virtualizedListRef = React.createRef();
+
+        // We debounce the keydown handler to get the ASCII chars because it's
+        // called on every keydown
+        this.handleKeyDownDebounced = debounce(
+            this.handleKeyDownDebounceResult,
+            // Leaving enough time for the user to type a valid query (e.g. jul)
+            500,
+        );
+        this.textSuggestion = "";
     }
 
     componentDidMount() {
@@ -419,17 +440,23 @@ class DropdownCore extends React.Component<Props, State> {
         }
     };
 
-    scheduleToFocusCurrentItem() {
+    scheduleToFocusCurrentItem(onFocus?: (node: void | HTMLElement) => void) {
         if (this.shouldVirtualizeList()) {
             // wait for windowed items to be recalculated
-            this.props.schedule.animationFrame(() => this.focusCurrentItem());
+            this.props.schedule.animationFrame(() => {
+                this.focusCurrentItem(onFocus);
+            });
         } else {
             // immediately focus the current item if we're not virtualizing
-            this.focusCurrentItem();
+            this.focusCurrentItem(onFocus);
         }
     }
 
-    focusCurrentItem() {
+    /**
+     * Focus on the current item.
+     * @param [onFocus] - Callback to be called when the item is focused.
+     */
+    focusCurrentItem(onFocus?: (node: HTMLElement) => void) {
         const focusedItemRef = this.state.itemRefs[this.focusedIndex];
 
         if (focusedItemRef) {
@@ -452,6 +479,11 @@ class DropdownCore extends React.Component<Props, State> {
                 // Keep track of the original index of the newly focused item.
                 // To be used if the set of focusable items in the menu changes
                 this.focusedOriginalIndex = focusedItemRef.originalIndex;
+
+                if (onFocus) {
+                    // Call the callback with the node that was focused.
+                    onFocus(node);
+                }
             }
         }
     }
@@ -514,6 +546,15 @@ class DropdownCore extends React.Component<Props, State> {
     handleKeyDown: (event: SyntheticKeyboardEvent<>) => void = (event) => {
         const {onOpenChanged, open, searchText} = this.props;
         const keyCode = event.which || event.keyCode;
+
+        // Listen for the keydown events if we are using ASCII characters.
+        if (getStringForKey(event.key)) {
+            event.stopPropagation();
+            this.textSuggestion += event.key;
+            // Trigger the filter logic only after the debounce is resolved.
+            this.handleKeyDownDebounced(this.textSuggestion);
+        }
+
         // If menu isn't open and user presses down, open the menu
         if (!open) {
             if (keyCode === keyCodes.down) {
@@ -581,6 +622,45 @@ class DropdownCore extends React.Component<Props, State> {
                 }
                 return;
         }
+    };
+
+    handleKeyDownDebounceResult: (key: string) => void = (key) => {
+        const foundIndex = this.props.items
+            .filter((item) => item.focusable)
+            .findIndex(({component}) => {
+                if (SeparatorItem.isClassOf(component)) {
+                    return false;
+                }
+
+                // Flow doesn't know that the component is an OptionItem
+                // $FlowIgnore[incompatible-use]
+                const label = component.props?.label.toLowerCase();
+
+                return label.startsWith(key.toLowerCase());
+            });
+
+        if (foundIndex >= 0) {
+            const isClosed = !this.props.open;
+            if (isClosed) {
+                // Open the menu to be able to focus on the item that matches
+                // the text suggested.
+                this.props.onOpenChanged(true);
+            }
+            // Update the focus reference.
+            this.focusedIndex = foundIndex;
+
+            this.scheduleToFocusCurrentItem((node) => {
+                // Force click only if the dropdown is closed and we are using
+                // the SingleSelect component.
+                if (this.props.selectionType === "single" && isClosed && node) {
+                    node.click();
+                    this.props.onOpenChanged(false);
+                }
+            });
+        }
+
+        // Otherwise, reset current text
+        this.textSuggestion = "";
     };
 
     handleClickFocus: (index: number) => void = (index) => {

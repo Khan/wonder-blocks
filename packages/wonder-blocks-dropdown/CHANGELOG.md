@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.8.0
+
+### Minor Changes
+
+-   ee6fc773: Added keyboard support to search items when the dropdown is focused, included "Enter" as a key to trigger actions with the "option" role
+
+### Patch Changes
+
+-   Updated dependencies [ee6fc773]
+    -   @khanacademy/wonder-blocks-clickable@2.3.0
+    -   @khanacademy/wonder-blocks-button@3.0.1
+    -   @khanacademy/wonder-blocks-icon-button@3.4.9
+    -   @khanacademy/wonder-blocks-modal@2.3.4
+    -   @khanacademy/wonder-blocks-search-field@1.0.7
+
 ## 2.7.6
 
 ### Patch Changes

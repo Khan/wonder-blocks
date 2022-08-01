@@ -495,4 +495,37 @@ describe("BirthdayPicker", () => {
             ).toBeInTheDocument();
         });
     });
+
+    describe("keyboard", () => {
+        beforeEach(() => {
+            jest.useFakeTimers();
+        });
+
+        it("should find and select an item using the keyboard", () => {
+            // Arrange
+            const onChange = jest.fn();
+
+            render(<BirthdayPicker onChange={onChange} />);
+
+            // Act
+            // Focus on the month selector
+            userEvent.tab();
+            userEvent.keyboard("Jul");
+            jest.advanceTimersByTime(501);
+
+            // Focus on the day selector
+            userEvent.tab();
+            userEvent.keyboard("5");
+            jest.advanceTimersByTime(501);
+
+            // Focus on the year selector
+            userEvent.tab();
+            // It should focus on the first occurrence (2022)
+            userEvent.keyboard("20");
+            jest.advanceTimersByTime(501);
+
+            // Assert
+            expect(onChange).toHaveBeenCalledWith("2022-07-05");
+        });
+    });
 });

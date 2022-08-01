@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-data
 
+## 8.0.5
+
+### Patch Changes
+
+-   08238b89: Export the `getGqlDataFromResponse` method so we can use it in custom `gqlFetch` scenarios for a consistent experience
+
+## 8.0.4
+
+### Patch Changes
+
+-   dc2e00f4: Do not fetch if FetchPolicy is CacheBeforeNetwork and there is already a cached value, even if the requestId changes
+
 ## 8.0.3
 
 ### Patch Changes
