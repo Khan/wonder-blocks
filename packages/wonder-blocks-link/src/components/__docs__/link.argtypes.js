@@ -2,7 +2,7 @@
 
 export default {
     children: {
-        control: {type: "object"},
+        control: {type: "text"},
         description:
             "Text to appear on the link. It can be a plain text or Typography element.",
         table: {type: {summary: "string | React.Element<Typography>"}},
@@ -71,17 +71,7 @@ export default {
             type: {summary: "string"},
         },
     },
-    skipClientNav: {
-        control: {type: "boolean"},
-        description: `Whether to avoid using client-side navigation.
-            If the URL passed to href is local to the client-side, e.g.
-            /math/algebra/eval-exprs, then it tries to use react-router-dom's
-            Link component which handles the client-side navigation. You can set
-            \`skipClientNav\` to true avoid using client-side nav entirely.`,
-        table: {
-            type: {summary: "boolean"},
-        },
-    },
+
     style: {
         control: {type: "object"},
         description: "custom styles.",
@@ -92,13 +82,37 @@ export default {
         description: "Adds CSS classes to the Link.",
         table: {type: {summary: "string"}},
     },
+    beforeNav: {
+        description: `Run async code before navigating to the URL passed to
+            \`href\`. If the promise returned rejects then navigation will not
+            occur. If both safeWithNav and beforeNav are provided, beforeNav
+            will be run first and safeWithNav will only be run if beforeNav
+            does not reject.`,
+        table: {
+            category: "Navigation",
+            type: {summary: "() => Promise<mixed>"},
+        },
+    },
     safeWithNav: {
         description: `Run async code in the background while client-side
         navigating. If the browser does a full page load navigation, the
         callback promise must be settled before the navigation will occur.
         Errors are ignored so that navigation is guaranteed to succeed.`,
         table: {
+            category: "Navigation",
             type: {summary: "() => Promise<mixed>"},
+        },
+    },
+    skipClientNav: {
+        control: {type: "boolean"},
+        description: `Whether to avoid using client-side navigation.
+            If the URL passed to href is local to the client-side, e.g.
+            /math/algebra/eval-exprs, then it tries to use react-router-dom's
+            Link component which handles the client-side navigation. You can set
+            \`skipClientNav\` to true avoid using client-side nav entirely.`,
+        table: {
+            category: "Navigation",
+            type: {summary: "boolean"},
         },
     },
     onClick: {
