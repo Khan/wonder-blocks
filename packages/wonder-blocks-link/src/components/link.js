@@ -172,7 +172,8 @@ type DefaultProps = {|
  * `LinkCore` is a stateless component which displays the different states
  * the `Link` can take.
  *
- * Example usage:
+ * ### Usage
+ *
  * ```jsx
  * <Link
  *     href="https://khanacademy.org/"
