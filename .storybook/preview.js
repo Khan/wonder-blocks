@@ -11,7 +11,7 @@ export const parameters = {
             },
             {
                 name: "darkBlue",
-                value: "#0a2a66",
+                value: "#0b2149",
             },
         ],
     },
