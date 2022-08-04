@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 1.0.8
+
+### Patch Changes
+
+-   Updated dependencies [34c7aacb]
+    -   @khanacademy/wonder-blocks-color@1.2.0
+    -   @khanacademy/wonder-blocks-icon-button@3.4.10
+
 ## 1.0.7
 
 ### Patch Changes
