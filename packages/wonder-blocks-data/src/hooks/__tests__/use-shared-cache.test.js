@@ -1,11 +1,11 @@
 // @flow
 import {renderHook as clientRenderHook} from "@testing-library/react-hooks";
 
-import {useSharedCache, purgeSharedCache} from "../use-shared-cache.js";
+import {useSharedCache, SharedCache} from "../use-shared-cache.js";
 
 describe("#useSharedCache", () => {
     beforeEach(() => {
-        purgeSharedCache();
+        SharedCache.purgeAll();
     });
 
     it.each`
@@ -255,53 +255,5 @@ describe("#useSharedCache", () => {
 
         // Assert
         expect(result).toBeNull();
-    });
-});
-
-describe("#purgeSharedCache", () => {
-    beforeEach(() => {
-        purgeSharedCache();
-    });
-
-    it("should clear the entire cache if no scope given", () => {
-        // Arrange
-        const hook1 = clientRenderHook(() => useSharedCache("id1", "scope1"));
-        const hook2 = clientRenderHook(() => useSharedCache("id2", "scope2"));
-        hook1.result.current[1]("VALUE_1");
-        hook2.result.current[1]("VALUE_2");
-        // Make sure both hook results include the updated value.
-        hook1.rerender();
-        hook2.rerender();
-
-        // Act
-        purgeSharedCache();
-        // Make sure we refresh the hook results.
-        hook1.rerender();
-        hook2.rerender();
-
-        // Assert
-        expect(hook1.result.current[0]).toBeNull();
-        expect(hook2.result.current[0]).toBeNull();
-    });
-
-    it("should clear the given scope only", () => {
-        // Arrange
-        const hook1 = clientRenderHook(() => useSharedCache("id1", "scope1"));
-        const hook2 = clientRenderHook(() => useSharedCache("id2", "scope2"));
-        hook1.result.current[1]("VALUE_1");
-        hook2.result.current[1]("VALUE_2");
-        // Make sure both hook results include the updated value.
-        hook1.rerender();
-        hook2.rerender();
-
-        // Act
-        purgeSharedCache("scope2");
-        // Make sure we refresh the hook results.
-        hook1.rerender();
-        hook2.rerender();
-
-        // Assert
-        expect(hook1.result.current[0]).toBe("VALUE_1");
-        expect(hook2.result.current[0]).toBeNull();
     });
 });

@@ -1,5 +1,5 @@
 // @flow
-import {purgeSharedCache} from "../hooks/use-shared-cache.js";
+import {SharedCache} from "../hooks/use-shared-cache.js";
 import {purgeHydrationCache} from "./hydration-cache-api.js";
 
 /**
@@ -10,6 +10,6 @@ import {purgeHydrationCache} from "./hydration-cache-api.js";
  * which caches may have been used during a given test run.
  */
 export const purgeCaches = () => {
-    purgeSharedCache();
+    SharedCache.purgeAll();
     purgeHydrationCache();
 };

@@ -22,11 +22,7 @@ export class SerializableInMemoryCache extends ScopedInMemoryCache {
     /**
      * Set a value in the cache.
      */
-    set<TValue: ValidCacheData>(
-        scope: string,
-        id: string,
-        value: TValue,
-    ): void {
+    set(scope: string, id: string, value: ValidCacheData): void {
         super.set(scope, id, Object.freeze(clone(value)));
     }
 

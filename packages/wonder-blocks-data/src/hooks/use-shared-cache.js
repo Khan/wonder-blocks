@@ -2,7 +2,7 @@
 import * as React from "react";
 import {DataError, DataErrors} from "../util/data-error.js";
 import {ScopedInMemoryCache} from "../util/scoped-in-memory-cache.js";
-import type {ValidCacheData} from "../util/types.js";
+import type {ValidCacheData, ScopedCache} from "../util/types.js";
 
 /**
  * A function for inserting a value into the cache or clearing it.
@@ -17,17 +17,12 @@ type CacheValueFn<TValue: ValidCacheData> = (value: ?TValue) => void;
 const cache = new ScopedInMemoryCache();
 
 /**
- * Purge the in-memory cache or a single scope within it.
+ * Access to the shared in-memory cache.
+ *
+ * This is the cache used by `useSharedCache` and related hooks and
+ * components.
  */
-export const purgeSharedCache = (scope: string = "") => {
-    // If we have a valid scope (empty string is falsy), then clear that scope.
-    if (scope && typeof scope === "string") {
-        cache.purgeScope(scope);
-    } else {
-        // Just reset the object. This should be sufficient.
-        cache.purgeAll();
-    }
-};
+export const SharedCache: ScopedCache = cache;
 
 /**
  * Hook to retrieve data from and store data in an in-memory cache.
