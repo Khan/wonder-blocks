@@ -54,7 +54,7 @@ const Color: ColorType = {
     white50: fade(white, 0.5),
 
     // Brand
-    darkBlue: "#0a2a66",
+    darkBlue: "#0b2149",
     teal: "#14bf96",
     lightBlue: "#37c5fd",
     pink: "#fa50ae",
