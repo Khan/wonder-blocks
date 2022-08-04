@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-link
 
+## 3.8.9
+
+### Patch Changes
+
+-   Updated dependencies [34c7aacb]
+    -   @khanacademy/wonder-blocks-color@1.2.0
+
 ## 3.8.8
 
 ### Patch Changes

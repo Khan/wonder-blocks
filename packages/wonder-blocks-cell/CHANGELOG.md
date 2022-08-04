@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-cell
 
+## 2.2.6
+
+### Patch Changes
+
+-   Updated dependencies [34c7aacb]
+    -   @khanacademy/wonder-blocks-color@1.2.0
+
 ## 2.2.5
 
 ### Patch Changes

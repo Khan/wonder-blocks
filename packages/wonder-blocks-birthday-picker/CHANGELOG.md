@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 1.2.14
+
+### Patch Changes
+
+-   Updated dependencies [34c7aacb]
+    -   @khanacademy/wonder-blocks-color@1.2.0
+    -   @khanacademy/wonder-blocks-dropdown@2.8.1
+
 ## 1.2.13
 
 ### Patch Changes

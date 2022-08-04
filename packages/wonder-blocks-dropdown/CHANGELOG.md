@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.8.1
+
+### Patch Changes
+
+-   Updated dependencies [34c7aacb]
+    -   @khanacademy/wonder-blocks-color@1.2.0
+    -   @khanacademy/wonder-blocks-button@3.0.2
+    -   @khanacademy/wonder-blocks-icon-button@3.4.10
+    -   @khanacademy/wonder-blocks-modal@2.3.5
+    -   @khanacademy/wonder-blocks-search-field@1.0.8
+
 ## 2.8.0
 
 ### Minor Changes
