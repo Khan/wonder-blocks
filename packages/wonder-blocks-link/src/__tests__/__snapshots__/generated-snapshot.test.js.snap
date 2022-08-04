@@ -130,7 +130,7 @@ exports[`wonder-blocks-link example 1 1`] = `
   <p
     style={
       Object {
-        "backgroundColor": "#0a2a66",
+        "backgroundColor": "#0b2149",
         "color": "rgba(255,255,255,0.64)",
         "padding": 10,
       }

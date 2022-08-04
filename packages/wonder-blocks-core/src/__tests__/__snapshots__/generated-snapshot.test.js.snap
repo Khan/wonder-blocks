@@ -208,7 +208,7 @@ exports[`wonder-blocks-core example 4 1`] = `
     Object {
       "alignItems": "stretch",
       "background": "#37c5fd",
-      "border": "1px solid #0a2a66",
+      "border": "1px solid #0b2149",
       "borderStyle": "solid",
       "borderWidth": 0,
       "boxSizing": "border-box",

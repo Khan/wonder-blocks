@@ -2573,7 +2573,7 @@ exports[`wonder-blocks-color example 2 1`] = `
         style={
           Object {
             "alignItems": "center",
-            "background": "#0a2a66",
+            "background": "#0b2149",
             "borderStyle": "solid",
             "borderWidth": 0,
             "boxSizing": "border-box",
@@ -2737,7 +2737,7 @@ exports[`wonder-blocks-color example 2 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "background": "#0a2a66",
+          "background": "#0b2149",
           "border": "solid 1px rgba(33,36,44,0.32)",
           "borderRadius": 4,
           "borderStyle": "solid",
@@ -2928,7 +2928,7 @@ exports[`wonder-blocks-color example 3 1`] = `
       style={
         Object {
           "alignItems": "center",
-          "background": "#0a2a66",
+          "background": "#0b2149",
           "border": "solid 1px rgba(33,36,44,0.32)",
           "borderRadius": 4,
           "borderStyle": "solid",

@@ -2996,7 +2996,7 @@ exports[`wonder-blocks-modal example 10 1`] = `
             style={
               Object {
                 "alignItems": "stretch",
-                "background": "#0a2a66",
+                "background": "#0b2149",
                 "borderStyle": "solid",
                 "borderWidth": 0,
                 "boxSizing": "border-box",
