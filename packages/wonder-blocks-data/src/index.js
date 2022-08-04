@@ -9,7 +9,7 @@ export type {
     ResponseCache,
     CachedResponse,
     Result,
-    ScopedCache,
+    RawScopedCache,
     ValidCacheData,
 } from "./util/types.js";
 

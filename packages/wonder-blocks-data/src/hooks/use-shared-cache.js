@@ -37,9 +37,6 @@ export const purgeSharedCache = (scope: string = "") => {
  * function to set the cache entry (passing null or undefined to this function
  * will delete the entry).
  *
- * To clear a single scope within the cache or the entire cache,
- * the `clearScopedCache` export is available.
- *
  * NOTE: Unlike useState or useReducer, we don't automatically update folks
  * if the value they reference changes. We might add it later (if we need to),
  * but the likelihood here is that things won't be changing in this cache in a

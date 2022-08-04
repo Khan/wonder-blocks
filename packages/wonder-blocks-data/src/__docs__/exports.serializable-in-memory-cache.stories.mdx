@@ -16,7 +16,7 @@ This class is a specialization of [`ScopedInMemoryCache`](/docs/data-exports-sco
 ## constructor()
 
 ```ts
-new SerializableInMemoryCache(initialCache?: ScopedCache)
+new SerializableInMemoryCache(initialCache?: RawScopedCache)
 ```
 
 Creates a new instance. The `initialCache`, if provided, will be cloned and used as the initial state of the cache.
@@ -67,7 +67,7 @@ Gets a value from the cache. If a value with the given identifier (`id`) is not 
 ## clone()
 
 ```ts
-clone(): ScopedCache;
+clone(): RawScopedCache;
 ```
 
 Returns a clone of the current cache.

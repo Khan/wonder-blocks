@@ -2,13 +2,13 @@
 import {clone} from "@khanacademy/wonder-stuff-core";
 import {DataError, DataErrors} from "./data-error.js";
 import {ScopedInMemoryCache} from "./scoped-in-memory-cache.js";
-import type {ValidCacheData, ScopedCache} from "./types.js";
+import type {ValidCacheData, RawScopedCache} from "./types.js";
 
 /**
  * Describe a serializable in-memory cache.
  */
 export class SerializableInMemoryCache extends ScopedInMemoryCache {
-    constructor(initialCache: ScopedCache = {}) {
+    constructor(initialCache: RawScopedCache = {}) {
         try {
             super(clone(initialCache));
         } catch (e) {
@@ -33,7 +33,7 @@ export class SerializableInMemoryCache extends ScopedInMemoryCache {
     /**
      * Clone the cache.
      */
-    clone(): ScopedCache {
+    clone(): RawScopedCache {
         try {
             return clone(this._cache);
         } catch (e) {

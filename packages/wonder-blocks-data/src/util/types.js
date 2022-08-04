@@ -84,7 +84,7 @@ export type ResponseCache = {
 /**
  * A cache with scoped sections.
  */
-export type ScopedCache = {
+export type RawScopedCache = {
     /**
      * The cache is scoped to allow easier clearing of different types of usage.
      */

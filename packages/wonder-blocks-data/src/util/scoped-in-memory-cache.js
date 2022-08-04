@@ -1,14 +1,14 @@
 // @flow
 import {DataError, DataErrors} from "./data-error.js";
-import type {ScopedCache, ValidCacheData} from "./types.js";
+import type {RawScopedCache, ValidCacheData} from "./types.js";
 
 /**
  * Describe an in-memory cache.
  */
 export class ScopedInMemoryCache {
-    _cache: ScopedCache;
+    _cache: RawScopedCache;
 
-    constructor(initialCache: ScopedCache = {}) {
+    constructor(initialCache: RawScopedCache = {}) {
         this._cache = initialCache;
     }
 
