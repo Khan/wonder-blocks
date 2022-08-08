@@ -9,8 +9,9 @@ export type {
     ResponseCache,
     CachedResponse,
     Result,
-    ScopedCache,
+    RawScopedCache,
     ValidCacheData,
+    ScopedCache,
 } from "./util/types.js";
 
 export * from "./util/hydration-cache-api.js";
@@ -22,7 +23,7 @@ export {default as InterceptRequests} from "./components/intercept-requests.js";
 export {DataError, DataErrors} from "./util/data-error.js";
 export {useServerEffect} from "./hooks/use-server-effect.js";
 export {useCachedEffect} from "./hooks/use-cached-effect.js";
-export {useSharedCache, purgeSharedCache} from "./hooks/use-shared-cache.js";
+export {useSharedCache, SharedCache} from "./hooks/use-shared-cache.js";
 export {
     useHydratableEffect,
     // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they

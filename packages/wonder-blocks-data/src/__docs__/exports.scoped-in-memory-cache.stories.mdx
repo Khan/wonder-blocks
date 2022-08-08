@@ -11,12 +11,12 @@ import {Meta} from "@storybook/addon-docs";
 
 # ScopedInMemoryCache
 
-This class implements an in-memory cache that can contain different scopes of cached data. This allows for quick removal of entire classes of data as identified by their scopes without having to iterate each cached item to find them.
+This class implements an in-memory cache that can contain different scopes of cached data. This allows for quick removal of entire classes of data as identified by their scopes without having to iterate each cached item to find them. It implemnents the [`ScopedCache`](/docs/data-types-scopedcache--page) interface.
 
 ## constructor()
 
 ```ts
-new ScopedInMemoryCache(initialCache?: ScopedCache)
+new ScopedInMemoryCache(initialCache?: RawScopedCache)
 ```
 
 Creates a new instance. An initial state for the cache can be provided.
@@ -34,7 +34,7 @@ Is `true` if the cache contains any data; otherwise, `false`.
 ## set()
 
 ```ts
-set<TValue: ValidCacheData>(
+set(
     scope: string,
     id: string,
     value: TValue,

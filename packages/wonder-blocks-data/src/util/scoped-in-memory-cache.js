@@ -1,14 +1,14 @@
 // @flow
 import {DataError, DataErrors} from "./data-error.js";
-import type {ScopedCache, ValidCacheData} from "./types.js";
+import type {ScopedCache, RawScopedCache, ValidCacheData} from "./types.js";
 
 /**
  * Describe an in-memory cache.
  */
-export class ScopedInMemoryCache {
-    _cache: ScopedCache;
+export class ScopedInMemoryCache implements ScopedCache {
+    _cache: RawScopedCache;
 
-    constructor(initialCache: ScopedCache = {}) {
+    constructor(initialCache: RawScopedCache = {}) {
         this._cache = initialCache;
     }
 
@@ -24,11 +24,7 @@ export class ScopedInMemoryCache {
     /**
      * Set a value in the cache.
      */
-    set<TValue: ValidCacheData>(
-        scope: string,
-        id: string,
-        value: TValue,
-    ): void {
+    set(scope: string, id: string, value: ValidCacheData): void {
         if (!id || typeof id !== "string") {
             throw new DataError(
                 "id must be non-empty string",

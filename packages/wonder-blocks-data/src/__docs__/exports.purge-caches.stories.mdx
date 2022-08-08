@@ -20,4 +20,4 @@ The `purgeCaches` method will purge the following caches managed by Wonder Block
 - Shared in-memory cache as used by  [`useSharedCache`](/docs/data-exports-usesharedcache--page) and other hooks
 - Hydration cache as used during server-side rendering
 
-This is equivalent to calling both `purgeSharedCache()` and `purgeHydrationCache()`, and is especially useful when writing tests or setting up a test environment.
+This is equivalent to calling both `SharedCache.purgeAll()` and `purgeHydrationCache()`, and is especially useful when writing tests or setting up a test environment.
