@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-data
 
+## 9.0.0
+
+### Major Changes
+
+-   778f8e43: `SharedCache` export added for interacting with the shared in-memory cache. `purgeSharedCache` method has been removed.
+-   778f8e43: Rename `ScopedCache` type to `RawScopedCache`
+
 ## 8.0.5
 
 ### Patch Changes
