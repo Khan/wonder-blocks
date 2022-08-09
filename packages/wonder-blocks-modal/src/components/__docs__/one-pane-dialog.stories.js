@@ -3,16 +3,15 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {View} from "@khanacademy/wonder-blocks-core";
-import {Body} from "@khanacademy/wonder-blocks-typography";
 import Button from "@khanacademy/wonder-blocks-button";
+import {View} from "@khanacademy/wonder-blocks-core";
 import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
-import OnePaneDialog from "./one-pane-dialog.js";
-import ModalLauncher from "./modal-launcher.js";
 
-import type {ModalElement} from "../util/types.js";
+import type {ModalElement} from "../../util/types.js";
 
 const customViewports = {
     phone: {
@@ -39,7 +38,7 @@ const customViewports = {
 };
 
 export default {
-    title: "Floating/Modal/OnePaneDialog",
+    title: "Modal/OnePaneDialog",
     parameters: {
         viewport: {
             viewports: customViewports,
