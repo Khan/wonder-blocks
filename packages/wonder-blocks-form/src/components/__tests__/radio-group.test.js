@@ -19,6 +19,7 @@ describe("RadioGroup", () => {
                 description="test description"
                 groupName="test"
                 onChange={(value) => {
+                    onChange(value);
                     switch (value) {
                         case "a":
                             break;
