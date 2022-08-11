@@ -6,6 +6,8 @@ import "jest-enzyme";
 import RadioGroup from "../radio-group.js";
 import Choice from "../choice.js";
 
+function logUnreachableCode(value: empty) {}
+
 describe("RadioGroup", () => {
     let group;
     const onChange = jest.fn();
@@ -16,12 +18,25 @@ describe("RadioGroup", () => {
                 label="Test"
                 description="test description"
                 groupName="test"
-                onChange={onChange}
+                onChange={(value) => {
+                    switch (value) {
+                        case "a":
+                            break;
+                        case "b":
+                            break;
+                        case "c":
+                            break;
+                        default:
+                            // there should be a type error here, since value could be "d"
+                            logUnreachableCode(value);
+                    }
+                }}
                 selectedValue="a"
             >
                 <Choice label="a" value="a" aria-labelledby="test-a" />
                 <Choice label="b" value="b" aria-labelledby="test-b" />
                 <Choice label="c" value="c" aria-labelledby="test-c" />
+                <Choice label="d" value="d" aria-labelledby="test-d" />
             </RadioGroup>,
         );
     });

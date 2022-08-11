@@ -6,7 +6,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import Checkbox from "./checkbox.js";
 import Radio from "./radio.js";
 
-type Props = {|
+type Props<T: string> = {|
     ...AriaProps,
 
     /** User-defined. Label for the field. */
@@ -16,7 +16,7 @@ type Props = {|
     description?: string,
 
     /** User-defined. Should be distinct for each item in the group. */
-    value: string,
+    value: T,
 
     /** User-defined. Whether this choice option is disabled. Default false. */
     disabled: boolean,
@@ -66,10 +66,15 @@ type Props = {|
     variant?: "radio" | "checkbox",
 |};
 
-type DefaultProps = {|
-    checked: $PropertyType<Props, "checked">,
-    disabled: $PropertyType<Props, "disabled">,
-    onChange: $PropertyType<Props, "onChange">,
+type DefaultProps<T: string> = {|
+    checked: $PropertyType<Props<T>, "checked">,
+    disabled: $PropertyType<Props<T>, "disabled">,
+    onChange: $PropertyType<Props<T>, "onChange">,
+|};
+
+export type ChoiceProps<T: string> = {|
+    ...Props<T>,
+    ...Partial<DefaultProps<T>>,
 |};
 
 /**
@@ -138,8 +143,8 @@ type DefaultProps = {|
  * </RadioGroup>
  * ```
  */
-export default class Choice extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
+export default class Choice<T: string> extends React.Component<Props<T>> {
+    static defaultProps: DefaultProps<T> = {
         checked: false,
         disabled: false,
         onChange: () => {},

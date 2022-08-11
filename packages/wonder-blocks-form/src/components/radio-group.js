@@ -9,14 +9,16 @@ import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import styles from "./group-styles.js";
-import typeof Choice from "./choice.js";
+import type {ChoiceProps} from "./choice.js";
+
+React.ElementConfig
 
 // Keep synced with RadioGroupProps in ../util/types.js
-type RadioGroupProps = {|
+type RadioGroupProps<T: string> = {|
     /**
      * Children should be Choice components.
      */
-    children: Array<React.Element<Choice>>,
+    children: Array<React.Element<React.ComponentType<ChoiceProps<T>>>>,
 
     /**
      * Group name for this checkbox or radio group. Should be unique for all
@@ -50,7 +52,7 @@ type RadioGroupProps = {|
     /**
      * Callback for when the selected value of the radio group has changed.
      */
-    onChange: (selectedValue: string) => mixed,
+    onChange: (selectedValue: T) => mixed,
 
     /**
      * Value of the selected radio item.
@@ -101,8 +103,8 @@ const StyledLegend = addStyle<"legend">("legend");
  * </RadioGroup>
  * ```
  */
-export default class RadioGroup extends React.Component<RadioGroupProps> {
-    handleChange(changedValue: string) {
+export default class RadioGroup<T: string> extends React.Component<RadioGroupProps<T>> {
+    handleChange(changedValue: T) {
         this.props.onChange(changedValue);
     }
 
