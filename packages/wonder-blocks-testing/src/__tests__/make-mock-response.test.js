@@ -1,5 +1,6 @@
 // @flow
 import {SettleSignal} from "../settle-signal.js";
+import {SettleController} from "../settle-controller.js";
 import {RespondWith, makeMockResponse} from "../make-mock-response.js";
 
 describe("RespondWith", () => {
@@ -453,19 +454,19 @@ describe("#makeMockResponse", () => {
 
         it("should resolve when signal is settled", async () => {
             // Arrange
-            const signal1 = new SettleSignal();
+            const signal1 = new SettleController();
             const mockResponse1 = RespondWith.graphQLData(
                 {
                     response: "stays pending",
                 },
-                signal1,
+                signal1.signal,
             );
-            const signal2 = new SettleSignal();
+            const signal2 = new SettleController();
             const mockResponse2 = RespondWith.graphQLData(
                 {
                     response: "resolves",
                 },
-                signal2,
+                signal2.signal,
             );
 
             // Act
@@ -512,15 +513,15 @@ describe("#makeMockResponse", () => {
 
         it("should resolve when signal is settled", async () => {
             // Arrange
-            const signal1 = new SettleSignal();
+            const signal1 = new SettleController();
             const mockResponse1 = RespondWith.graphQLData(
                 {
                     response: "stays pending",
                 },
-                signal1,
+                signal1.signal,
             );
-            const signal2 = new SettleSignal();
-            const mockResponse2 = RespondWith.unparseableBody();
+            const signal2 = new SettleController();
+            const mockResponse2 = RespondWith.unparseableBody(signal2.signal);
 
             // Act
             const underTest = Promise.race([
@@ -561,15 +562,15 @@ describe("#makeMockResponse", () => {
 
         it("should reject when signal is settled", async () => {
             // Arrange
-            const signal1 = new SettleSignal();
+            const signal1 = new SettleController();
             const mockResponse1 = RespondWith.graphQLData(
                 {
                     response: "stays pending",
                 },
-                signal1,
+                signal1.signal,
             );
-            const signal2 = new SettleSignal();
-            const mockResponse2 = RespondWith.abortedRequest();
+            const signal2 = new SettleController();
+            const mockResponse2 = RespondWith.abortedRequest(signal2.signal);
 
             // Act
             const underTest = Promise.race([
@@ -598,16 +599,16 @@ describe("#makeMockResponse", () => {
 
         it("should reject when signal is settled", async () => {
             // Arrange
-            const signal1 = new SettleSignal();
+            const signal1 = new SettleController();
             const mockResponse1 = RespondWith.graphQLData(
                 {
                     response: "stays pending",
                 },
-                signal1,
+                signal1.signal,
             );
-            const signal2 = new SettleSignal();
+            const signal2 = new SettleController();
             const error = new Error("BOOM!");
-            const mockResponse2 = RespondWith.reject(error, signal2);
+            const mockResponse2 = RespondWith.reject(error, signal2.signal);
 
             // Act
             const underTest = Promise.race([
@@ -647,15 +648,18 @@ describe("#makeMockResponse", () => {
 
         it("should resolve when signal is settled", async () => {
             // Arrange
-            const signal1 = new SettleSignal();
+            const signal1 = new SettleController();
             const mockResponse1 = RespondWith.graphQLData(
                 {
                     response: "stays pending",
                 },
-                signal1,
+                signal1.signal,
             );
-            const signal2 = new SettleSignal();
-            const mockResponse2 = RespondWith.errorStatusCode(400, signal2);
+            const signal2 = new SettleController();
+            const mockResponse2 = RespondWith.errorStatusCode(
+                400,
+                signal2.signal,
+            );
 
             // Act
             const underTest = Promise.race([
@@ -696,15 +700,15 @@ describe("#makeMockResponse", () => {
 
         it("should resolve when signal is settled", async () => {
             // Arrange
-            const signal1 = new SettleSignal();
+            const signal1 = new SettleController();
             const mockResponse1 = RespondWith.graphQLData(
                 {
                     response: "stays pending",
                 },
-                signal1,
+                signal1.signal,
             );
-            const signal2 = new SettleSignal();
-            const mockResponse2 = RespondWith.nonGraphQLBody(signal2);
+            const signal2 = new SettleController();
+            const mockResponse2 = RespondWith.nonGraphQLBody(signal2.signal);
 
             // Act
             const underTest = Promise.race([
@@ -750,18 +754,18 @@ describe("#makeMockResponse", () => {
 
         it("should resolve when signal is settled", async () => {
             // Arrange
-            const signal1 = new SettleSignal();
+            const signal1 = new SettleController();
             const mockResponse1 = RespondWith.graphQLData(
                 {
                     response: "stays pending",
                 },
-                signal1,
+                signal1.signal,
             );
-            const signal2 = new SettleSignal();
+            const signal2 = new SettleController();
             const errorMessages = ["foo", "bar"];
             const mockResponse2 = RespondWith.graphQLErrors(
                 errorMessages,
-                signal2,
+                signal2.signal,
             );
 
             // Act

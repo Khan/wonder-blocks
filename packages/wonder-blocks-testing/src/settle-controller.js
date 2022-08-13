@@ -5,10 +5,13 @@ import {SettleSignal} from "./settle-signal.js";
  * A controller for the `RespondWith` API to control response settlement.
  */
 export class SettleController {
+    #settleFn: () => void;
     #signal: SettleSignal;
 
     constructor() {
-        this.#signal = new SettleSignal();
+        this.#signal = new SettleSignal(
+            (settleFn) => (this.#settleFn = settleFn),
+        );
     }
 
     /**
@@ -24,6 +27,6 @@ export class SettleController {
      * @throws {Error} if the signal has already been settled.
      */
     settle(): void {
-        this.#signal.settle();
+        this.#settleFn();
     }
 }

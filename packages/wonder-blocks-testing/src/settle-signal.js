@@ -8,18 +8,17 @@
 export class SettleSignal extends EventTarget {
     #settled: boolean = false;
 
-    /**
-     * Settle the signal.
-     *
-     * This raises the `settled` event.
-     */
-    settle: () => void = () => {
-        if (this.#settled) {
-            throw new Error("SettleSignal already settled");
-        }
-        this.#settled = true;
-        this.dispatchEvent(new Event("settled"));
-    };
+    constructor(setSettleFn: ?(settleFn: () => void) => mixed = null) {
+        super();
+
+        setSettleFn?.(() => {
+            if (this.#settled) {
+                throw new Error("SettleSignal already settled");
+            }
+            this.#settled = true;
+            this.dispatchEvent(new Event("settled"));
+        });
+    }
 
     /**
      * An already settled signal.

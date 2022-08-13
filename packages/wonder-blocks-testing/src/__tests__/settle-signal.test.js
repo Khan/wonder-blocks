@@ -22,13 +22,27 @@ describe("SettleSignal", () => {
         expect(result).toHaveProperty("settled", false);
     });
 
-    describe("#settle", () => {
+    it("should invoke the passed function with a function", () => {
+        // Arrange
+        const setSettleFn = jest.fn();
+
+        // Act
+        // eslint-disable-next-line no-new
+        new SettleSignal(setSettleFn);
+
+        // Assert
+        expect(setSettleFn).toHaveBeenCalledWith(expect.any(Function));
+    });
+
+    describe("setSettleFn argument", () => {
         it("should set settled to true", () => {
             // Arrange
-            const signal = new SettleSignal();
+            const setSettleFn = jest.fn();
+            const signal = new SettleSignal(setSettleFn);
+            const settle = setSettleFn.mock.calls[0][0];
 
             // Act
-            signal.settle();
+            settle();
 
             // Assert
             expect(signal.settled).toBe(true);
@@ -36,12 +50,14 @@ describe("SettleSignal", () => {
 
         it("should raise the settled event", () => {
             // Arrange
-            const signal = new SettleSignal();
+            const setSettleFn = jest.fn();
+            const signal = new SettleSignal(setSettleFn);
+            const settle = setSettleFn.mock.calls[0][0];
             const handler = jest.fn();
             signal.addEventListener("settled", handler);
 
             // Act
-            signal.settle();
+            settle();
 
             // Assert
             expect(handler).toHaveBeenCalled();
@@ -49,11 +65,14 @@ describe("SettleSignal", () => {
 
         it("should throw if the signal has already been settled", () => {
             // Arrange
-            const signal = new SettleSignal();
-            signal.settle();
+            const setSettleFn = jest.fn();
+            // eslint-disable-next-line no-new
+            new SettleSignal(setSettleFn);
+            const settle = setSettleFn.mock.calls[0][0];
+            settle();
 
             // Act
-            const result = () => signal.settle();
+            const result = () => settle();
 
             // Assert
             expect(result).toThrowErrorMatchingInlineSnapshot(
