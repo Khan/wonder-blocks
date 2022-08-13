@@ -9,6 +9,9 @@ export class SettleController {
     #signal: SettleSignal;
 
     constructor() {
+        // Create our signal.
+        // We pass in a method to capture it's settle function so that
+        // only we can call it.
         this.#signal = new SettleSignal(
             (settleFn) => (this.#settleFn = settleFn),
         );

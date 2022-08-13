@@ -11,6 +11,9 @@ export class SettleSignal extends EventTarget {
     constructor(setSettleFn: ?(settleFn: () => void) => mixed = null) {
         super();
 
+        // If we were given a function, we call it with a method that will
+        // settle ourselves. This allows the appropriate SettleController
+        // to be in charge of settling this instance.
         setSettleFn?.(() => {
             if (this.#settled) {
                 throw new Error("SettleSignal already settled");
