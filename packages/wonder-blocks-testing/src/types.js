@@ -1,5 +1,5 @@
 // @flow
-import type {MockResponse} from "./make-mock-response.js";
+import type {MockResponse} from "./respond-with.js";
 
 /**
  * A valid GraphQL response as supported by our mocking framework.

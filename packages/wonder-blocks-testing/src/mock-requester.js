@@ -1,6 +1,5 @@
 // @flow
-import {makeMockResponse} from "./make-mock-response.js";
-import type {MockResponse} from "./make-mock-response.js";
+import type {MockResponse} from "./respond-with.js";
 import type {OperationMock, OperationMatcher, MockFn} from "./types.js";
 
 /**
@@ -51,7 +50,7 @@ export const mockRequester = <
         response: MockResponse<any>,
         onceOnly: boolean,
     ): MockFn<TOperationType> => {
-        const mockResponse = () => makeMockResponse(response);
+        const mockResponse = () => response.toPromise();
         mocks.push({
             operation,
             response: mockResponse,

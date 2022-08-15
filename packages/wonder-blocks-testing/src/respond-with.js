@@ -3,20 +3,37 @@ import {SettleSignal} from "./settle-signal.js";
 import {ResponseImpl} from "./response-impl.js";
 import type {GraphQLJson} from "./types.js";
 
+// We want the parameterization here so that folks can assert a response is
+// of a specific type if passing between various functions. For example,
+// the graphql mocking framework might want to assert a response is returning
+// the expected data structure. We could use `opaque` but that would then
+// hide the `toPromise` call we want to provide.
+/* eslint-disable no-unused-vars */
 /**
  * Describes a mock response to a fetch request.
  */
-export opaque type MockResponse<TJson> =
+export type MockResponse<TData> = {|
+    /**
+     * Create a promise from the mocked response.
+     *
+     * If a signal was provided when the mock response was created, the promise
+     * will only settle to resolution or rejection if the signal is raised.
+     */
+    +toPromise: () => Promise<Response>,
+|};
+/* eslint-enable no-unused-vars */
+
+type InternalMockResponse =
     | {|
-          type: "text",
-          text: string | (() => string),
-          statusCode: number,
-          signal: ?SettleSignal,
+          +type: "text",
+          +text: string | (() => string),
+          +statusCode: number,
+          +signal: ?SettleSignal,
       |}
     | {|
-          type: "reject",
-          error: Error | (() => Error),
-          signal: ?SettleSignal,
+          +type: "reject",
+          +error: Error | (() => Error),
+          +signal: ?SettleSignal,
       |};
 
 /**
@@ -27,10 +44,13 @@ const textResponse = <TData>(
     statusCode: number,
     signal: ?SettleSignal,
 ): MockResponse<TData> => ({
-    type: "text",
-    text,
-    statusCode,
-    signal,
+    toPromise: () =>
+        makeMockResponse({
+            type: "text",
+            text,
+            statusCode,
+            signal,
+        }),
 });
 
 /**
@@ -40,9 +60,12 @@ const rejectResponse = (
     error: Error | (() => Error),
     signal: ?SettleSignal,
 ): MockResponse<empty> => ({
-    type: "reject",
-    error,
-    signal,
+    toPromise: () =>
+        makeMockResponse({
+            type: "reject",
+            error,
+            signal,
+        }),
 });
 
 /**
@@ -166,8 +189,8 @@ const callOnSettled = (signal: ?SettleSignal, fn: () => void): void => {
 /**
  * Turns a MockResponse value to an actual Response that represents the mock.
  */
-export const makeMockResponse = (
-    response: MockResponse<any>,
+const makeMockResponse = (
+    response: InternalMockResponse,
 ): Promise<Response> => {
     const {signal} = response;
 
@@ -196,7 +219,18 @@ export const makeMockResponse = (
                 );
             });
 
+        /* istanbul ignore next */
         default:
-            throw new Error(`Unknown response type: ${response.type}`);
+            if (process.env.NODE_ENV !== "production") {
+                // If we're not in production, give an immediate signal that the
+                // dev forgot to support this new type.
+                throw new Error(`Unknown response type: ${response.type}`);
+            }
+            // Production; assume a rejection.
+            return makeMockResponse({
+                type: "reject",
+                error: new Error("Unknown response type"),
+                signal,
+            });
     }
 };

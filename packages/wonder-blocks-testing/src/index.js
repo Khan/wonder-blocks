@@ -11,9 +11,9 @@ export type {
 // Fetch mocking framework
 export {mockFetch} from "./fetch/mock-fetch.js";
 export {mockGqlFetch} from "./gql/mock-gql-fetch.js";
-export {RespondWith} from "./make-mock-response.js";
+export {RespondWith} from "./respond-with.js";
 export {SettleController} from "./settle-controller.js";
-export type {MockResponse} from "./make-mock-response.js";
+export type {MockResponse} from "./respond-with.js";
 export type {FetchMockFn, FetchMockOperation} from "./fetch/types.js";
 export type {GqlFetchMockFn, GqlMockOperation} from "./gql/types.js";
 
