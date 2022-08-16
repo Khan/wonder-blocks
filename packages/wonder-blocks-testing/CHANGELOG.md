@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-testing
 
+## 7.1.0
+
+### Minor Changes
+
+-   17301778: Add `toPromise` method to mock responses
+
+### Patch Changes
+
+-   d5a13e6d: `RespondWith` API now supports a signal for controlling the settlement of the promise. Introduces `SettleController` to support this new feature.
+
 ## 7.0.5
 
 ### Patch Changes
