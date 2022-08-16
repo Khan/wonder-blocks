@@ -1,0 +1,32 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Testing / Mocking / Exports / SettleController"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# SettleController
+
+```ts
+class SettleController {
+    /**
+     * The signal to pass to the `RespondWith` API.
+     */
+    get signal(): SettleSignal;
+
+    /**
+     * Settle the signal and therefore any associated responses.
+     *
+     * @throws {Error} if the signal has already been settled.
+     */
+    settle(): void;
+}
+```
+
+The `SettleController` is used to control the settling of a signal. This is specifically created to work with the [`RespondWith`](/docs/testing-mocking-exports-respondwith--page) API. The `signal` property it exposes can be passed to `RespondWith` methods and then the `settle` method can be invoked to settle the signal, causing the related responses to either reject or resolve as appropriate.
+
+This can be useful for tests where the order of operations needs to be controlled in order to verify the expected behaviour of the system under test.

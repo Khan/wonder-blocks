@@ -16,19 +16,23 @@ interface RespondWith {
     /**
      * Rejects with an AbortError to simulate an aborted request.
      */
-    abortedRequest: () => MockResponse<any>;
+    abortedRequest: (signal: ?SettleSignal = null) => MockResponse<any>;
 
     /**
      * A non-200 status code with empty text body.
      * Equivalent to calling `ResponseWith.text("", statusCode)`.
      */
-    errorStatusCode: (statusCode: number) => MockResponse<any>;
+    errorStatusCode: (
+        statusCode: number,
+        signal: ?SettleSignal = null,
+    ) => MockResponse<any>;
 
     /**
      * Response with GraphQL data JSON body and status code 200.
      */
     graphQLData: <TData: {...}>(
         data: TData,
+        signal: ?SettleSignal = null,
     ) => MockResponse<GraphQLJson<TData>>;
 
     /**
@@ -36,22 +40,26 @@ interface RespondWith {
      */
     graphQLErrors: (
         errorMessages: $ReadOnlyArray<string>,
+        signal: ?SettleSignal = null,
     ) => MockResponse<any>;
 
     /**
      * Response with JSON body and status code 200.
      */
-    json: <TJson: {...}>(json: TJson): MockResponse<TJson>;
+    json: <TJson: {...}>(
+        json: TJson,
+        signal: ?SettleSignal = null,
+    ): MockResponse<TJson>;
 
     /**
      * Response body that is valid JSON but not a valid GraphQL response.
      */
-    nonGraphQLBody: () => MockResponse<any>;
+    nonGraphQLBody: (signal: ?SettleSignal = null) => MockResponse<any>;
 
     /**
      * Rejects with the given error.
      */
-    reject: (error: Error) => MockResponse<any>;
+    reject: (error: Error, signal: ?SettleSignal = null) => MockResponse<any>;
 
     /**
      * Response with text body and status code.
@@ -60,14 +68,17 @@ interface RespondWith {
     text: <TData = string>(
         text: string,
         statusCode: number = 200,
+        signal: ?SettleSignal = null,
     ) => MockResponse<TData>;
 
     /**
      * Response with body that will not parse as JSON and status code 200.
      */
-    unparseableBody: () => MockResponse<any>;
+    unparseableBody: (signal: ?SettleSignal = null) => MockResponse<any>;
 });
 ```
 
 The `RespondWith` object is a helper for defining mock responses to use with
 mock request methods such as [`mockGqlFetch`](/docs/testing-mocking-exports-mockgqlfetch--page).
+
+Each call takes an optional `signal` that can be used to control when the promise generated from the call resolves. See [`SettleController`](/docs/testing-mocking-exports-settlecontroller--page) for related information.
