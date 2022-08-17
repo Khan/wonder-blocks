@@ -1,7 +1,7 @@
 //@flow
 import type {GqlOperation, GqlContext} from "@khanacademy/wonder-blocks-data";
 import type {GraphQLJson} from "../types.js";
-import type {MockResponse} from "../make-mock-response.js";
+import type {MockResponse} from "../respond-with.js";
 
 export type GqlMockOperation<
     TData: {...},

@@ -1,6 +1,6 @@
 // @flow
 import {Request} from "node-fetch";
-import {RespondWith} from "../../make-mock-response.js";
+import {RespondWith} from "../../respond-with.js";
 import {mockFetch} from "../mock-fetch.js";
 
 describe("#mockFetch", () => {
