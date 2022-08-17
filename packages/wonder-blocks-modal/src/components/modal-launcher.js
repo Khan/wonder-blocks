@@ -312,10 +312,42 @@ const styles = StyleSheet.create({
     },
 });
 
+/**
+ * This component enables you to launch a modal, covering the screen.
+ *
+ * Children have access to `openModal` function via the function-as-children
+ * pattern, so one common use case is for this component to wrap a button:
+ *
+ * ```js
+ * <ModalLauncher modal={<TwoColumnModal ... />}>
+ *     {({openModal}) => <button onClick={openModal}>Learn more</button>}
+ * </ModalLauncher>
+ * ```
+ *
+ * The actual modal itself is constructed separately, using a layout component
+ * like OnePaneDialog and is provided via
+ * the `modal` prop.
+ */
 type ExportProps = WithoutActionScheduler<
     React.ElementConfig<typeof ModalLauncher>,
 >;
 
+/**
+ * This component enables you to launch a modal, covering the screen.
+ *
+ * Children have access to `openModal` function via the function-as-children
+ * pattern, so one common use case is for this component to wrap a button:
+ *
+ * ```js
+ * <ModalLauncher modal={<TwoColumnModal ... />}>
+ *     {({openModal}) => <button onClick={openModal}>Learn more</button>}
+ * </ModalLauncher>
+ * ```
+ *
+ * The actual modal itself is constructed separately, using a layout component
+ * like OnePaneDialog and is provided via
+ * the `modal` prop.
+ */
 export default (withActionScheduler(
     ModalLauncher,
 ): React.ComponentType<ExportProps>);
