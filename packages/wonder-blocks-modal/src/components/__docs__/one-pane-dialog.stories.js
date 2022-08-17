@@ -370,7 +370,7 @@ export const WithLauncher: StoryComponentType = () => {
         closeModal: () => void,
     |};
 
-    const MyModal = ({closeModal}: MyModalProps): ModalElement => (
+    const MyModal = ({closeModal}: MyModalProps): React.Element<typeof OnePaneDialog> => (
         <OnePaneDialog
             title="Single-line title"
             content={
