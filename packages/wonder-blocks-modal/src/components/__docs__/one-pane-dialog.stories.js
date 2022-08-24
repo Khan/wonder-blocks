@@ -462,6 +462,10 @@ export const FlexibleModal: StoryComponentType = () => {
 };
 
 FlexibleModal.parameters = {
+    chromatic: {
+        // This example is behavior based, not visual.
+        disableSnapshot: true,
+    },
     docs: {
         storyDescription: `This example illustrates how we can update the
             Modal's contents by wrapping it into a new component/container.

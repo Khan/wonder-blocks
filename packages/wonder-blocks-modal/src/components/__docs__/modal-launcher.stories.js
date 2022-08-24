@@ -90,6 +90,13 @@ export const Default: StoryComponentType = (args) => (
     </ModalLauncher>
 );
 
+Default.parameters = {
+    chromatic: {
+        // All the examples for ModalLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+};
+
 export const Simple: StoryComponentType = () => (
     <ModalLauncher modal={DefaultModal}>
         {({openModal}) => (
@@ -99,6 +106,10 @@ export const Simple: StoryComponentType = () => (
 );
 
 Simple.parameters = {
+    chromatic: {
+        // All the examples for ModalLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
     docs: {
         storyDescription: `This is a basic modal launcher. Its child, the
             button, has access to the \`openModal\` function via the
@@ -148,6 +159,10 @@ export const WithCustomCloseButton: StoryComponentType = () => {
 };
 
 WithCustomCloseButton.parameters = {
+    chromatic: {
+        // All the examples for ModalLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
     docs: {
         storyDescription: `This is an example of a modal that uses
             a close button other than the default "X" button in the top
@@ -172,6 +187,10 @@ export const WithBackdropDismissDisabled: StoryComponentType = () => (
 );
 
 WithBackdropDismissDisabled.parameters = {
+    chromatic: {
+        // All the examples for ModalLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
     docs: {
         storyDescription: `This is an example in which the modal _cannot_
             be dismissed by clicking in in the backdrop. This is done by
@@ -220,6 +239,10 @@ export const TriggeringProgrammatically: StoryComponentType = () => {
 };
 
 TriggeringProgrammatically.parameters = {
+    chromatic: {
+        // All the examples for ModalLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
     docs: {
         storyDescription: `Sometimes you'll want to trigger a modal
             programmatically. This can be done by rendering \`<ModalLauncher>\`
@@ -264,9 +287,7 @@ export const WithClosedFocusId: StoryComponentType = () => {
 
 WithClosedFocusId.parameters = {
     chromatic: {
-        // Don't take screenshots of this story since the case we want
-        // to test doesn't appear on first render - it occurs after
-        // we complete a series of steps.
+        // All the examples for ModalLauncher are behavior based, not visual.
         disableSnapshot: true,
     },
     docs: {
@@ -342,6 +363,10 @@ export const WithInitialFocusId: StoryComponentType = () => {
 };
 
 WithInitialFocusId.parameters = {
+    chromatic: {
+        // All the examples for ModalLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
     docs: {
         storyDescription: `Sometimes, you may want a specific element inside
             the modal to receive focus first. This can be done using the
