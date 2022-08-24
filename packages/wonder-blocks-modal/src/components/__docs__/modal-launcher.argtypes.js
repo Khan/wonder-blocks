@@ -20,13 +20,6 @@ export default {
         },
         type: {required: true},
     },
-    onClose: {
-        description: `If the parent needs to be notified when the modal is
-            closed, use this prop. You probably want to use this instead of
-            \`onClose\` on the modals themselves, since this will capture a
-            more complete set of close events.`,
-        table: {type: {summary: "() => mixed"}},
-    },
     backdropDismissEnabled: {
         control: {type: "boolean"},
         defaultValue: "true",
@@ -69,6 +62,17 @@ export default {
         table: {
             category: "Controlled",
             type: {summary: "boolean"},
+        },
+    },
+    onClose: {
+        description: `If the parent needs to be notified when the modal is
+            closed, use this prop. You probably want to use this instead of
+            \`onClose\` on the modals themselves, since this will capture a
+            more complete set of close events. \`onClose\` is required when
+            the component is being used as a controlled component.`,
+        table: {
+            category: "Controlled",
+            type: {summary: "() => mixed"},
         },
     },
 };
