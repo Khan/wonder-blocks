@@ -10,7 +10,6 @@ import {
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
