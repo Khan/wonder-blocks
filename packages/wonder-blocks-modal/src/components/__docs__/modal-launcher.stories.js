@@ -83,7 +83,7 @@ export default {
 };
 
 export const Default: StoryComponentType = (args) => (
-    <ModalLauncher modal={DefaultModal}>
+    <ModalLauncher modal={DefaultModal} {...args}>
         {({openModal}) => (
             <Button onClick={openModal}>Click me to open the modal</Button>
         )}
