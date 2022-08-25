@@ -44,9 +44,13 @@ export default {
     },
     closeButtonVisible: {
         control: {type: "boolean"},
+        defaultValue: "true",
         description: `When true, the close button is shown; otherwise,
             the close button is not shown.`,
-        table: {type: {summary: "boolean"}},
+        table: {
+            defaultValue: {summary: "true"},
+            type: {summary: "boolean"},
+        },
     },
     above: {
         control: {type: null},
@@ -68,11 +72,15 @@ export default {
     },
     role: {
         control: {type: "select"},
+        defaultValue: "dialog",
         description: `When set, overrides the default role value. Default
             role is "dialog" Roles other than dialog and alertdialog aren't
             appropriate for this component`,
         options: ["dialog", "alertdialog"],
-        table: {type: {summary: `"dialog" | "alertdialog"`}},
+        table: {
+            defaultValue: {summary: "dialog"},
+            type: {summary: `"dialog" | "alertdialog"`},
+        },
     },
     style: {
         control: {type: "object"},

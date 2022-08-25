@@ -10,10 +10,10 @@ import {
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
@@ -354,6 +354,126 @@ WithStyle.parameters = {
     },
 };
 
+export const FlexibleModal: StoryComponentType = () => {
+    const styles = StyleSheet.create({
+        example: {
+            padding: Spacing.xLarge_32,
+            alignItems: "center",
+        },
+        row: {
+            flexDirection: "row",
+            justifyContent: "flex-end",
+        },
+        footer: {
+            alignItems: "center",
+            flexDirection: "row",
+            justifyContent: "space-between",
+            width: "100%",
+        },
+    });
+
+    type ExerciseModalProps = {|
+        current: number,
+        handleNextButton: () => mixed,
+        handlePrevButton: () => mixed,
+        question: string,
+        total: number,
+    |};
+
+    function ExerciseModal(props: ExerciseModalProps) {
+        const {current, handleNextButton, handlePrevButton, question, total} =
+            props;
+
+        return (
+            <OnePaneDialog
+                title="Exercises"
+                content={
+                    <View>
+                        <Body>This is the current question: {question}</Body>
+                    </View>
+                }
+                footer={
+                    <View style={styles.footer}>
+                        <LabelLarge>
+                            Step {current + 1} of {total}
+                        </LabelLarge>
+                        <View style={styles.row}>
+                            <Button kind="tertiary" onClick={handlePrevButton}>
+                                Previous
+                            </Button>
+                            <Strut size={16} />
+                            <Button kind="primary" onClick={handleNextButton}>
+                                Next
+                            </Button>
+                        </View>
+                    </View>
+                }
+            />
+        );
+    }
+
+    type ExerciseContainerProps = {|
+        questions: Array<string>,
+    |};
+
+    function ExerciseContainer(props: ExerciseContainerProps) {
+        const [currentQuestion, setCurrentQuestion] = React.useState(0);
+
+        const handleNextButton = () => {
+            setCurrentQuestion(
+                Math.min(currentQuestion + 1, props.questions.length - 1),
+            );
+        };
+
+        const handlePrevButton = () => {
+            setCurrentQuestion(Math.max(0, currentQuestion - 1));
+        };
+
+        return (
+            <ModalLauncher
+                modal={
+                    <ExerciseModal
+                        question={props.questions[currentQuestion]}
+                        current={currentQuestion}
+                        total={props.questions.length}
+                        handlePrevButton={handlePrevButton}
+                        handleNextButton={handleNextButton}
+                    />
+                }
+            >
+                {({openModal}) => (
+                    <Button onClick={openModal}>Open flexible modal</Button>
+                )}
+            </ModalLauncher>
+        );
+    }
+
+    return (
+        <View style={styles.example}>
+            <ExerciseContainer
+                questions={[
+                    "First question",
+                    "Second question",
+                    "Last question",
+                ]}
+            />
+        </View>
+    );
+};
+
+FlexibleModal.parameters = {
+    chromatic: {
+        // This example is behavior based, not visual.
+        disableSnapshot: true,
+    },
+    docs: {
+        storyDescription: `This example illustrates how we can update the
+            Modal's contents by wrapping it into a new component/container.
+            \`Modal\` is built in a way that provides great flexibility and
+            makes it work with different variations and/or layouts.`,
+    },
+};
+
 export const WithLauncher: StoryComponentType = () => {
     type MyModalProps = {|
         closeModal: () => void,
@@ -367,15 +487,15 @@ export const WithLauncher: StoryComponentType = () => {
             content={
                 <Body>
                     {`Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt
-                            ut labore et dolore magna aliqua. Ut enim ad minim
-                            veniam, quis nostrud exercitation ullamco laboris
-                            nisi ut aliquip ex ea commodo consequat. Duis aute
-                            irure dolor in reprehenderit in voluptate velit
-                            esse cillum dolore eu fugiat nulla pariatur.
-                            Excepteur sint occaecat cupidatat non proident,
-                            sunt in culpa qui officia deserunt mollit anim id
-                            est.`}
+                        adipiscing elit, sed do eiusmod tempor incididunt
+                        ut labore et dolore magna aliqua. Ut enim ad minim
+                        veniam, quis nostrud exercitation ullamco laboris
+                        nisi ut aliquip ex ea commodo consequat. Duis aute
+                        irure dolor in reprehenderit in voluptate velit
+                        esse cillum dolore eu fugiat nulla pariatur.
+                        Excepteur sint occaecat cupidatat non proident,
+                        sunt in culpa qui officia deserunt mollit anim id
+                        est.`}
                 </Body>
             }
             footer={<Button onClick={closeModal}>Close</Button>}
@@ -402,72 +522,6 @@ WithLauncher.parameters = {
             the launcher is a \`Button\` element whose \`onClick\` function
             opens the modal. To turn an element into a launcher, wrap the
             element in a \`<ModalLauncher>\` element.`,
-    },
-};
-
-// TODO(nisha): Move this example to the `ModalLauncher` section after
-// it is added to Storybook.
-export const WithClosedFocusId: StoryComponentType = () => {
-    const [opened, setOpened] = React.useState(false);
-
-    const handleOpen = () => {
-        setOpened(true);
-    };
-
-    const handleClose = () => {
-        setOpened(false);
-    };
-
-    return (
-        <View style={{gap: 20}}>
-            <Button>Top of page (should not receive focus)</Button>
-            <Button id="button-to-focus-on">Focus here after close</Button>
-            <ActionMenu menuText="actions">
-                <ActionItem label="Open modal" onClick={() => handleOpen()} />
-            </ActionMenu>
-            <ModalLauncher
-                onClose={() => handleClose()}
-                opened={opened}
-                closedFocusId="button-to-focus-on"
-                modal={({closeModal}) => (
-                    <OnePaneDialog
-                        title="Triggered from action menu"
-                        content={<View>Hello World</View>}
-                        footer={
-                            <Button onClick={closeModal}>Close Modal</Button>
-                        }
-                    />
-                )}
-            />
-        </View>
-    );
-};
-
-WithClosedFocusId.parameters = {
-    chromatic: {
-        // Don't take screenshots of this story since the case we want
-        // to test doesn't appear on first render - it occurs after
-        // we complete a series of steps.
-        disableSnapshot: true,
-    },
-    docs: {
-        storyDescription: `Clicking on a dropdown menu option to open a modal
-            causes the dropdown to close, and so all of the dropdown options
-            are removed from the DOM. This can be a problem because by
-            default, the focus shifts to the previously focused element after
-            a modal is closed; in this case, the element that opened the modal
-            cannot receive focus since it no longer exists in the DOM,
-            so when you close the modal, it doesn't know where to focus on the
-            page. When the previously focused element no longer exists,
-            the focus shifts to the page body, which causes a jump to
-            the top of the page. This can make it diffcult to find the original
-            dropdown. A solution to this is to use the \`closedFocusId\` prop.
-            You can use this prop on the \`ModalLauncher\` to specify where
-            to set the focus after the modal has been closed. In this example,
-            \`closedFocusId\` is set to the ID of the button labeled
-            "Focus here after close." If the focus shifts to the button labeled
-            "Top of page (should not receieve focus)," then the focus is on
-            the page body, and the \`closedFocusId\` did not work.`,
     },
 };
 
