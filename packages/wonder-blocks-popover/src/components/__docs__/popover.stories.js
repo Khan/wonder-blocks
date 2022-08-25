@@ -7,11 +7,10 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import type {StoryComponentType} from "@storybook/react";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
-import Popover from "./popover.js";
-import PopoverContent from "./popover-content.js";
+import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 
 export default {
-    title: "Floating/Popover",
+    title: "Popover/Popover",
     parameters: {
         // TODO(WB-1170): Reassess this after investigating more about Chromatic
         // flakyness.
