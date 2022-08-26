@@ -106,17 +106,17 @@ export const Simple: StoryComponentType = () => (
 
 Simple.parameters = {
     docs: {
-        storyDescription: `This is a basic \`ModalDialog\` that wraps a
-            \`<ModalPanel>\` element. The \`ModalDialog\` is just a a wrapper
+        storyDescription: `This is a basic \`<ModalDialog>\` that wraps a
+            \`<ModalPanel>\` element. The \`<ModalDialog>\` is just a a wrapper
             for the visual components of the overall modal. It sets
             the modal's role to \`"dialog"\`. If it did not have another
-            element as a child here (a \`ModalPanel\` in this case),
-            nothing would be visible. If the \`ModalDialog\` were not given
+            element as a child here (a \`<ModalPanel>\` in this case),
+            nothing would be visible. If the \`<ModalDialog>\` were not given
             a \`maxHeight\` or \`maxWidth\` style, it would take up the
             entire viewport. To demonstrate the difference between
-            the \`ModalDialog\` and the \`ModalPanel\` elements, the panel
-            has been given a smaller height and width than \`ModalDialog\`,
-            and \`ModalDialog\` has been given a dark blue background.`,
+            the \`<ModalDialog>\` and the \`<ModalPanel>\` elements, the panel
+            has been given a smaller height and width than \`<ModalDialog>\`,
+            and \`<ModalDialog>\` has been given a dark blue background.`,
     },
 };
 
@@ -159,7 +159,7 @@ export const WithAboveAndBelow: StoryComponentType = () => {
 WithAboveAndBelow.parameters = {
     docs: {
         storyDescription: `The \`above\` and \`below\` props work the same
-            for \`ModalDialog\` as they do for \`OnePaneDialog\`.
+            for \`<ModalDialog>\` as they do for \`<OnePaneDialog>\`.
             The element passed into the \`above\` prop is rendered in front
             of the modal. The element passed into the \`below\` prop is
             rendered behind the modal. In this example, a \`<View>\` element
