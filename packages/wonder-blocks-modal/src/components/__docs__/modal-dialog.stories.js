@@ -5,12 +5,14 @@ import {StyleSheet} from "aphrodite";
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {
     ModalLauncher,
     ModalDialog,
     ModalPanel,
 } from "@khanacademy/wonder-blocks-modal";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
@@ -75,9 +77,15 @@ export default {
 export const Default: StoryComponentType = (args) => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
-            <ModalDialog {...args}>
+            <ModalDialog aria-labelledby="modal-title-0" {...args}>
                 <ModalPanel
-                    content={<Body>Here is some text in the modal.</Body>}
+                    content={
+                        <>
+                            <Title id="modal-title-0">Modal Title</Title>
+                            <Strut size={Spacing.large_24} />
+                            <Body>Here is some text in the modal.</Body>
+                        </>
+                    }
                 />
             </ModalDialog>
         </View>
@@ -94,10 +102,18 @@ Default.args = {
 export const Simple: StoryComponentType = () => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
-            <ModalDialog style={styles.squareDialog}>
+            <ModalDialog
+                aria-labelledby="modal-title-1"
+                style={styles.squareDialog}
+            >
                 <ModalPanel
-                    style={styles.smallSquarePanel}
-                    content={<Body>Here is some text in the modal.</Body>}
+                    content={
+                        <>
+                            <Title id="modal-title-1">Modal Title</Title>
+                            <Strut size={Spacing.large_24} />
+                            <Body>Here is some text in the modal.</Body>
+                        </>
+                    }
                 />
             </ModalDialog>
         </View>
@@ -143,12 +159,19 @@ export const WithAboveAndBelow: StoryComponentType = () => {
         <View style={styles.previewSizer}>
             <View style={styles.modalPositioner}>
                 <ModalDialog
+                    aria-labelledby="modal-title-2"
                     style={styles.squareDialog}
                     above={<View style={aboveStyle} />}
                     below={<View style={belowStyle} />}
                 >
                     <ModalPanel
-                        content={<Body>Here is some text in the modal.</Body>}
+                        content={
+                            <>
+                                <Title id="modal-title-2">Modal Title</Title>
+                                <Strut size={Spacing.large_24} />
+                                <Body>Here is some text in the modal.</Body>
+                            </>
+                        }
                     />
                 </ModalDialog>
             </View>
@@ -180,9 +203,18 @@ export const WithLauncher: StoryComponentType = () => {
     const MyModal = ({
         closeModal,
     }: MyModalProps): React.Element<typeof ModalDialog> => (
-        <ModalDialog style={styles.squareDialog}>
+        <ModalDialog
+            aria-labelledby="modal-title-3"
+            style={styles.squareDialog}
+        >
             <ModalPanel
-                content={<Body>Here is some text in the modal.</Body>}
+                content={
+                    <>
+                        <Title id="modal-title-3">Modal Title</Title>
+                        <Strut size={Spacing.large_24} />
+                        <Body>Here is some text in the modal.</Body>
+                    </>
+                }
             />
         </ModalDialog>
     );
