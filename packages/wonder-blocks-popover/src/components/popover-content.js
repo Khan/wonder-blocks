@@ -91,6 +91,18 @@ const StyledImage = addStyle("img");
 /**
  * This is the container that is consumed by all the predefined variations. Its
  * main responsibility is populate the contents depending on the variation used.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
+ *
+ * <PopoverContent
+ *  closeButtonVisible
+ *  content="Some content for the popover"
+ *  title="Popover with text only"
+ * />
+ * ```
  */
 export default class PopoverContent extends React.Component<Props> {
     static defaultProps: DefaultProps = {
