@@ -186,11 +186,11 @@ Simple.parameters = {
 export const Dark: StoryComponentType = () => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-1" style={styles.dialog}>
+            <ModalDialog aria-labelledby="modal-title-a" style={styles.dialog}>
                 <ModalPanel
                     content={
                         <>
-                            <Title id="modal-title-1">Modal Title</Title>
+                            <Title id="modal-title-a">Modal Title</Title>
                             <Strut size={Spacing.large_24} />
                             {longBody}
                         </>
