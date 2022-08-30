@@ -161,6 +161,12 @@ export default class ModalHeader extends React.Component<Props> {
     }
 }
 
+// Dark
+
+// With Subtitle
+
+// With Breadcrumbs
+
 const styleSheets = {
     all: StyleSheet.create({
         header: {
