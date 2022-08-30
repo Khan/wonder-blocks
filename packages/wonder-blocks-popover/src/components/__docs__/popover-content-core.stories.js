@@ -22,10 +22,12 @@ import {name, version} from "../../../package.json";
 // composed by Cells.
 // eslint-disable-next-line monorepo/no-relative-import
 import {ClickableDetailCell} from "../../../../wonder-blocks-cell/src/components/__docs__/detail-cell.stories.js";
+import popoverContentCoreArgtypes from "./popover-content-core.argtypes.js";
 
 export default {
     title: "Popover/PopoverContentCore",
     component: PopoverContentCore,
+    argTypes: popoverContentCoreArgtypes,
     parameters: {
         componentSubtitle: ((
             <ComponentInfo name={name} version={version} />
