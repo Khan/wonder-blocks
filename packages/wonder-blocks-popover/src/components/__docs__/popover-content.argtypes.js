@@ -6,9 +6,11 @@ import {Spring, Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
-const ActionsMappings: {[key: string]: React.Node} = {
+type Mappings = {[key: string]: React.Node};
+
+const ActionsMappings: Mappings = {
     singleButton: <Button kind="primary">Continue</Button>,
-    singleButtonEmphasized: (
+    emphasizedSingleButton: (
         <Button kind="primary" light={true}>
             Continue
         </Button>
@@ -20,7 +22,7 @@ const ActionsMappings: {[key: string]: React.Node} = {
             <Button kind="primary">Next</Button>
         </>
     ),
-    paginationEmphasized: (
+    emphasizedPagination: (
         <>
             <Button kind="tertiary" light={true}>
                 Previous
@@ -38,7 +40,7 @@ const ActionsMappings: {[key: string]: React.Node} = {
             <Button kind="tertiary">Skip this step</Button>
         </>
     ),
-    stepsEmphasized: (
+    emphasizedSteps: (
         <>
             <LabelLarge>Step 1 of 5</LabelLarge>
             <Spring />
@@ -46,6 +48,24 @@ const ActionsMappings: {[key: string]: React.Node} = {
                 Skip this step
             </Button>
         </>
+    ),
+};
+
+const IconMappings: Mappings = {
+    logo: <img src="/logo.svg" width="100%" alt="Wonder Blocks logo" />,
+    itemAvatar: (
+        <img src="./avatar.png" alt="ItemAvatar" width={48} height={48} />
+    ),
+};
+
+const ImageMappings: Mappings = {
+    default: (
+        <img
+            src="/illustration.svg"
+            alt="An illustration of a person skating on a pencil"
+            width={288}
+            height={200}
+        />
     ),
 };
 
@@ -102,12 +122,16 @@ export default {
         type: {
             summary: `string | React.Element<"img"> | React.Element<"svg">`,
         },
+        options: (Object.keys(IconMappings): Array<React.Node>),
+        mapping: IconMappings,
     },
     image: {
         description: `Decorate the popover with a full-bleed illustration. It cannot be used at the same time with icon.`,
         type: {
             summary: `React.Element<"img"> | React.Element<"svg">`,
         },
+        options: (Object.keys(ImageMappings): Array<React.Node>),
+        mapping: ImageMappings,
     },
     emphasized: {
         description: `When true, changes the popover dialog background to blue; otherwise, the popover dialog background is not modified. It can be used only with Text-only popovers. It cannot be used with icon or image.`,
