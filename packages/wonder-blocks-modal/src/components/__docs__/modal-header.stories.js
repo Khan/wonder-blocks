@@ -2,16 +2,18 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
+import {
+    Breadcrumbs,
+    BreadcrumbsItem,
+} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Link from "@khanacademy/wonder-blocks-link";
 import {
     ModalDialog,
     ModalPanel,
     ModalHeader,
 } from "@khanacademy/wonder-blocks-modal";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {Body, Title} from "@khanacademy/wonder-blocks-typography";
+import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
@@ -152,13 +154,7 @@ export const Simple: StoryComponentType = () => (
                             titleId="modal-title-1"
                         />
                     }
-                    content={
-                        <>
-                            <Title id="modal-title-1">Modal Title</Title>
-                            <Strut size={Spacing.large_24} />
-                            {longBody}
-                        </>
-                    }
+                    content={longBody}
                 />
             </ModalDialog>
         </View>
@@ -167,16 +163,132 @@ export const Simple: StoryComponentType = () => (
 
 Simple.parameters = {
     docs: {
-        storyDescription: `This is a basic \`<ModalPanel>\`. It just has a
+        storyDescription: `This is a basic \`<ModalHeader>\`. It just has a
             \`content\` prop that contains a title and a body.`,
     },
 };
 
-// Dark
+export const Dark: StoryComponentType = () => (
+    <View style={styles.previewSizer}>
+        <View style={styles.modalPositioner}>
+            <ModalDialog aria-labelledby="modal-title-2" style={styles.dialog}>
+                <ModalPanel
+                    header={
+                        <ModalHeader
+                            title="Modal Title"
+                            titleId="modal-title-2"
+                            light={false}
+                        />
+                    }
+                    content={longBody}
+                    light={false}
+                />
+            </ModalDialog>
+        </View>
+    </View>
+);
 
-// With Subtitle
+Dark.parameters = {
+    docs: {
+        storyDescription: `This is \`<ModalHeader>\` when \`light\` is
+            set to false. This should only be false if the \`light\` prop
+            on the encompassing \`<ModalPanel>\` is also false . Note that
+            the close button is not visible on the header if the panel is
+            light.`,
+    },
+};
 
-// With Breadcrumbs
+export const WithSubtitle: StoryComponentType = () => (
+    <View style={styles.previewSizer}>
+        <View style={styles.modalPositioner}>
+            <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
+                <ModalPanel
+                    header={
+                        <ModalHeader
+                            title="Modal Title"
+                            titleId="modal-title-3"
+                            subtitle="This is what a subtitle looks like."
+                        />
+                    }
+                    content={longBody}
+                />
+            </ModalDialog>
+        </View>
+    </View>
+);
+
+WithSubtitle.parameters = {
+    docs: {
+        storyDescription: `This is \`<ModalHeader>\` with a subtitle, which
+            can be done by passing a string into the \`subtitle\` prop.`,
+    },
+};
+
+export const WithSubtitleDark: StoryComponentType = () => (
+    <View style={styles.previewSizer}>
+        <View style={styles.modalPositioner}>
+            <ModalDialog aria-labelledby="modal-title-4" style={styles.dialog}>
+                <ModalPanel
+                    header={
+                        <ModalHeader
+                            title="Modal Title"
+                            titleId="modal-title-4"
+                            subtitle="This is what a subtitle looks like."
+                            light={false}
+                        />
+                    }
+                    content={longBody}
+                    light={false}
+                />
+            </ModalDialog>
+        </View>
+    </View>
+);
+
+WithSubtitleDark.parameters = {
+    docs: {
+        storyDescription: `This is \`<ModalHeader>\` with a subtitle
+            when it also has \`light\` set to false.`,
+    },
+};
+
+export const WithBreadcrumbs: StoryComponentType = () => (
+    <View style={styles.previewSizer}>
+        <View style={styles.modalPositioner}>
+            <ModalDialog aria-labelledby="modal-title-5" style={styles.dialog}>
+                <ModalPanel
+                    header={
+                        <ModalHeader
+                            title="Modal Title"
+                            titleId="modal-title-5"
+                            breadcrumbs={
+                                <Breadcrumbs>
+                                    <BreadcrumbsItem>
+                                        <Link href="">Course</Link>
+                                    </BreadcrumbsItem>
+                                    <BreadcrumbsItem>
+                                        <Link href="">Unit</Link>
+                                    </BreadcrumbsItem>
+                                    <BreadcrumbsItem>Lesson</BreadcrumbsItem>
+                                </Breadcrumbs>
+                            }
+                        />
+                    }
+                    content={longBody}
+                />
+            </ModalDialog>
+        </View>
+    </View>
+);
+
+WithBreadcrumbs.parameters = {
+    docs: {
+        storyDescription: `This is \`<ModalHeader>\` with breadcrumbs, which
+            can be done by passing a Wonder Blocks \`<Breadcrumbs>\`
+            element into the \`breadcrumbs\` prop. Note that \`breadcrumbs\`
+            currently do not work when \`light\` is false.`,
+    },
+};
 
 const styles = StyleSheet.create({
     dialog: {

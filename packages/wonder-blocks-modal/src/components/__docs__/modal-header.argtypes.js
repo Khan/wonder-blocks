@@ -4,8 +4,6 @@ import {
     Breadcrumbs,
     BreadcrumbsItem,
 } from "@khanacademy/wonder-blocks-breadcrumbs";
-import Color from "@khanacademy/wonder-blocks-color";
-import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 
 const BreadcrumbsMappings: {[key: string]: React.Node} = {
@@ -20,23 +18,6 @@ const BreadcrumbsMappings: {[key: string]: React.Node} = {
             </BreadcrumbsItem>
             <BreadcrumbsItem>Lesson</BreadcrumbsItem>
         </Breadcrumbs>
-    ),
-    "lesson path light": (
-        <View style={{color: Color.white}}>
-            <Breadcrumbs>
-                <BreadcrumbsItem>
-                    <Link href="" light={true}>
-                        Course
-                    </Link>
-                </BreadcrumbsItem>
-                <BreadcrumbsItem>
-                    <Link light={true} href="">
-                        Unit
-                    </Link>
-                </BreadcrumbsItem>
-                <BreadcrumbsItem>Lesson</BreadcrumbsItem>
-            </Breadcrumbs>
-        </View>
     ),
 };
 
