@@ -158,6 +158,31 @@ export const Default: StoryComponentType = (args) => (
     </View>
 );
 
+export const Simple: StoryComponentType = () => (
+    <View style={styles.previewSizer}>
+        <View style={styles.modalPositioner}>
+            <ModalDialog aria-labelledby="modal-title-1" style={styles.dialog}>
+                <ModalPanel
+                    content={
+                        <>
+                            <Title id="modal-title-1">Modal Title</Title>
+                            <Strut size={Spacing.large_24} />
+                            {longBody}
+                        </>
+                    }
+                />
+            </ModalDialog>
+        </View>
+    </View>
+);
+
+Simple.parameters = {
+    docs: {
+        storyDescription: `This is a basic \`<ModalPanel>\`. It just has a
+            \`content\` prop that contains a title and a body.`,
+    },
+};
+
 export const Dark: StoryComponentType = () => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>
