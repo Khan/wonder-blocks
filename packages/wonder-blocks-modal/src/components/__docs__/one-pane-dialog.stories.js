@@ -519,9 +519,11 @@ WithLauncher.parameters = {
     },
     docs: {
         storyDescription: `A modal can be launched using a launcher. Here,
-            the launcher is a \`Button\` element whose \`onClick\` function
-            opens the modal. To turn an element into a launcher, wrap the
-            element in a \`<ModalLauncher>\` element.`,
+            the launcher is a \`<Button>\` element whose \`onClick\` function
+            opens the modal. The modal passed into the \`modal\` prop of
+            the \`<ModalLauncher>\` element is a \`<OnePaneDialog>\`.
+            To turn an element into a launcher, wrap the element in a
+            \`<ModalLauncher>\` element.`,
     },
 };
 
