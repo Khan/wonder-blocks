@@ -1,11 +1,26 @@
 // @flow
 import type {GqlOperation, GqlContext} from "./gql-types.js";
 
-const toString = (valid: mixed): string => {
-    if (typeof valid === "string") {
-        return valid;
+const toString = (value: mixed): string => {
+    if (typeof value === "string") {
+        return value;
     }
-    return JSON.stringify(valid) ?? "";
+    return JSON.stringify(value) ?? "";
+};
+
+const toStringifiedVariables = (acc: any, key: string, value: mixed): any => {
+    if (typeof value === "object" && value !== null) {
+        // If we have an object or array, we build sub-variables so that
+        // the ID is easily human-readable rather than having lots of
+        // extra %-encodings.
+        return Object.entries(value).reduce((innerAcc, [i, v]) => {
+            const subKey = `${key}.${i}`;
+            return toStringifiedVariables(innerAcc, subKey, v);
+        }, acc);
+    } else {
+        acc[key] = toString(value);
+    }
+    return acc;
 };
 
 /**
@@ -32,10 +47,11 @@ export const getGqlRequestId = <TData, TVariables: {...}>(
     // Finally, if we have variables, we add those too.
     if (variables != null) {
         // We need to turn each variable into a string.
+        // We also need to ensure we sort any sub-object keys.
         const stringifiedVariables = Object.keys(variables).reduce(
             (acc, key) => {
-                acc[key] = toString(variables[key]);
-                return acc;
+                const value = variables[key];
+                return toStringifiedVariables(acc, key, value);
             },
             {},
         );
