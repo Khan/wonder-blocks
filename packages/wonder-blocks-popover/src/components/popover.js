@@ -132,6 +132,20 @@ type DefaultProps = {|
  *
  * This component uses the `PopoverPopper` component to position the
  * `PopoverContentCore` component according to the children it is wrapping.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
+ *
+ * <Popover
+ *  onClose={() => {}}
+ *  content={
+ *      <PopoverContent title="Title" content="Some content" closeButtonVisible />
+ *  }>
+ *      {({ open }) => <Button onClick={open}>Open popover</Button>}
+ *  </Popover>
+ * ```
  */
 export default class Popover extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
