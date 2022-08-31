@@ -1,11 +1,28 @@
 // @flow
 import type {GqlOperation, GqlContext} from "./gql-types.js";
 
-const toString = (valid: mixed): string => {
-    if (typeof valid === "string") {
-        return valid;
+const toString = (value: mixed): string => {
+    if (typeof value === "string") {
+        return value;
     }
-    return JSON.stringify(valid) ?? "";
+    return JSON.stringify(value) ?? "";
+};
+
+const toStringifiedVariables = (acc: any, key: string, value: mixed): any => {
+    if (typeof value === "object" && value !== null) {
+        // If we have an object or array, we build sub-variables so that
+        // the ID is easily human-readable rather than having lots of
+        // extra %-encodings. This means that an object or array variable
+        // turns into x variables, where x is the field or element count of
+        // variable. See below for example.
+        return Object.entries(value).reduce((innerAcc, [i, v]) => {
+            const subKey = `${key}.${i}`;
+            return toStringifiedVariables(innerAcc, subKey, v);
+        }, acc);
+    } else {
+        acc[key] = toString(value);
+    }
+    return acc;
 };
 
 /**
@@ -32,10 +49,37 @@ export const getGqlRequestId = <TData, TVariables: {...}>(
     // Finally, if we have variables, we add those too.
     if (variables != null) {
         // We need to turn each variable into a string.
+        // We also need to ensure we sort any sub-object keys.
+        // `toStringifiedVariables` helps us with this by hoisting nested
+        // data to individual variables for the purposes of ID generation.
+        //
+        // For example, consider variables:
+        //    {x: [1,2,3], y: {a: 1, b: 2, c: 3}, z: 123}
+        //
+        // Each variable, x, y and z, would be stringified into
+        // stringifiedVariables as follows:
+        //  x becomes {"x.0": "1", "x.1": "2", "x.2": "3"}
+        //  y becomes {"y.a": "1", "y.b": "2", "y.c": "3"}
+        //  z becomes {"z": "123"}
+        //
+        // This then leads to stringifiedVariables being:
+        //  {
+        //    "x.0": "1",
+        //    "x.1": "2",
+        //    "x.2": "3",
+        //    "y.a": "1",
+        //    "y.b": "2",
+        //    "y.c": "3",
+        //    "z": "123",
+        //  }
+        //
+        // Thus allowing our use of URLSearchParams to both sort and easily
+        // encode the variables into an idempotent identifier for those
+        // variable values that is also human-readable.
         const stringifiedVariables = Object.keys(variables).reduce(
             (acc, key) => {
-                acc[key] = toString(variables[key]);
-                return acc;
+                const value = variables[key];
+                return toStringifiedVariables(acc, key, value);
             },
             {},
         );
