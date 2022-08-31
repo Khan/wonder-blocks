@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 9.1.0
+
+### Minor Changes
+
+-   944c3071: Make sure objects and arrays in variables are sorted and readable in generated request identifiers
+
 ## 9.0.0
 
 ### Major Changes
