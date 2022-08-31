@@ -58,6 +58,18 @@ type DefaultProps = {|
 /**
  * This is the base popover container. It’s used internally by all the variants.
  * Also, it can be used to create flexible popovers.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
+ *
+ * <PopoverContentCore>
+ *  <>
+ *      Some custom layout
+ *  </>
+ * </PopoverContentCore>
+ * ```
  */
 export default class PopoverContentCore extends React.Component<Props> {
     static defaultProps: DefaultProps = {
