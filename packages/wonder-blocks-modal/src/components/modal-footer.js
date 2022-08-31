@@ -17,6 +17,14 @@ type Props = {|
  * If you are creating a custom Dialog, make sure to follow these guidelines:
  * - Make sure to include it as part of [ModalPanel](/#modalpanel) by using the `footer` prop.
  * - The footer is completely flexible. Meaning the developer needs to add its own custom layout to match design specs.
+ *
+ * **Usage**
+ *
+ * ```js
+ * <ModalFooter>
+ *     <Button onClick={() => {}}>Submit</Button>
+ * </ModalFooter>
+ * ```
  */
 export default class ModalFooter extends React.Component<Props> {
     static isClassOf(instance: any): boolean {
