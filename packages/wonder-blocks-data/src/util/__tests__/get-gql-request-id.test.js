@@ -71,4 +71,37 @@ describe("#getGqlRequestId", () => {
             `variable1=value1&variable2=42&variable3=&variable4=null&variable5=true`,
         );
     });
+
+    it("should sort nested variable properties", () => {
+        // Arrange
+        const operation = {
+            type: "query",
+            id: "myQuery",
+        };
+        const variables = {
+            variable4: null,
+            variable2: 42,
+            variable1: "value1",
+            variable5: true,
+            variable3: undefined,
+            variable6: {
+                nested2: "nested2",
+                nested1: "nested1",
+            },
+            variable7: [1, 2, 3],
+        };
+
+        // Act
+        const requestId = getGqlRequestId(operation, variables, {
+            module: "MODULE",
+            curriculum: "CURRICULUM",
+            targetLocale: "LOCALE",
+        });
+        const result = new Set(requestId.split("|"));
+
+        // Assert
+        expect(result).toContain(
+            `variable1=value1&variable2=42&variable3=&variable4=null&variable5=true&variable6.nested1=nested1&variable6.nested2=nested2&variable7.0=1&variable7.1=2&variable7.2=3`,
+        );
+    });
 });
