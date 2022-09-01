@@ -181,27 +181,6 @@ export const Controlled: StoryComponentType = () => {
     );
 };
 
-Controlled.args = {
-    children: ({open}) => <Button onClick={open}>Trigger element</Button>,
-    content: (
-        <PopoverContent
-            closeButtonVisible
-            title="Title"
-            content="The popover content."
-            image={
-                <img
-                    src="/illustration.svg"
-                    alt="An illustration of a person skating on a pencil"
-                    width={288}
-                    height={200}
-                />
-            }
-        />
-    ),
-
-    dismissEnabled: true,
-};
-
 Controlled.parameters = {
     docs: {
         description: {
