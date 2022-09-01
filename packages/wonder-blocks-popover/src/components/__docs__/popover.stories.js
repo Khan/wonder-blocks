@@ -40,7 +40,9 @@ export default {
     },
     decorators: [
         (Story: any): React.Element<typeof View> => (
-            <View style={styles.example}>{Story()}</View>
+            <View style={styles.example}>
+                <Story />
+            </View>
         ),
     ],
 };
@@ -70,7 +72,7 @@ const Template = (args) => <Popover {...args} />;
 export const Default: StoryComponentType = Template.bind({});
 
 Default.args = {
-    children: ({open}) => <Button onClick={open}>Open default popover</Button>,
+    children: <Button>Open default popover</Button>,
     content: (
         <PopoverContent
             closeButtonVisible
@@ -91,28 +93,28 @@ Default.args = {
  * Using a trigger element
  */
 
-export const TriggerElement: StoryComponentType = Template.bind({});
-
-TriggerElement.args = {
-    children: ({open}) => <Button onClick={open}>Trigger element</Button>,
-    content: (
-        <PopoverContent
-            closeButtonVisible
-            title="Title"
-            content="The popover content."
-            image={
-                <img
-                    src="/illustration.svg"
-                    alt="An illustration of a person skating on a pencil"
-                    width={288}
-                    height={200}
-                />
-            }
-        />
-    ),
-
-    dismissEnabled: true,
-};
+export const TriggerElement: StoryComponentType = () => (
+    <Popover
+        dismissEnabled={true}
+        content={
+            <PopoverContent
+                closeButtonVisible
+                title="Title"
+                content="The popover content."
+                image={
+                    <img
+                        src="/illustration.svg"
+                        alt="An illustration of a person skating on a pencil"
+                        width={288}
+                        height={200}
+                    />
+                }
+            />
+        }
+    >
+        {({open}) => <Button onClick={open}>Trigger element</Button>}
+    </Popover>
+);
 
 TriggerElement.parameters = {
     docs: {
@@ -221,45 +223,46 @@ Controlled.parameters = {
 /**
  * With Actions
  */
-export const WithActions: StoryComponentType = Template.bind({});
 
-const PopoverContentWithActions = ({close}: {|close: () => void|}) => {
+export const WithActions: StoryComponentType = () => {
     const [step, setStep] = React.useState(1);
     const totalSteps = 5;
-    return (
-        <PopoverContent
-            title="Popover with actions"
-            content="This example shows a popover which contains a set of actions that can be used to control the popover itself."
-            actions={
-                <View style={[styles.row, styles.actions]}>
-                    <LabelLarge>
-                        Step {step} of {totalSteps}
-                    </LabelLarge>
-                    <Strut size={Spacing.medium_16} />
-                    <Button
-                        kind="tertiary"
-                        onClick={() => {
-                            if (step < totalSteps) {
-                                setStep(step + 1);
-                            } else {
-                                close();
-                            }
-                        }}
-                    >
-                        {step < totalSteps ? "Skip this step" : "Finish"}
-                    </Button>
-                </View>
-            }
-        />
-    );
-};
 
-WithActions.args = {
-    children: ({open}) => (
-        <Button onClick={open}>Open popover with actions</Button>
-    ),
-    placement: "top",
-    content: ({close}) => <PopoverContentWithActions close={close} />,
+    return (
+        <Popover
+            content={({close}) => (
+                <PopoverContent
+                    title="Popover with actions"
+                    content="This example shows a popover which contains a set of actions that can be used to control the popover itself."
+                    actions={
+                        <View style={[styles.row, styles.actions]}>
+                            <LabelLarge>
+                                Step {step} of {totalSteps}
+                            </LabelLarge>
+                            <Strut size={Spacing.medium_16} />
+                            <Button
+                                kind="tertiary"
+                                onClick={() => {
+                                    if (step < totalSteps) {
+                                        setStep(step + 1);
+                                    } else {
+                                        close();
+                                    }
+                                }}
+                            >
+                                {step < totalSteps
+                                    ? "Skip this step"
+                                    : "Finish"}
+                            </Button>
+                        </View>
+                    }
+                />
+            )}
+            placement="top"
+        >
+            <Button>Open popover with actions</Button>
+        </Popover>
+    );
 };
 
 WithActions.parameters = {
@@ -275,10 +278,8 @@ WithActions.parameters = {
 export const WithInitialFocusId: StoryComponentType = Template.bind({});
 
 WithInitialFocusId.args = {
-    children: ({open}) => (
-        <Button onClick={open}>
-            Open with initial focus on the &quot;Next&quot; button
-        </Button>
+    children: (
+        <Button>Open with initial focus on the &quot;Next&quot; button</Button>
     ),
     content: (
         <PopoverContent
