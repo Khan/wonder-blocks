@@ -7,7 +7,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
   <ol
     className=""
     style={
-      Object {
+      {
         "display": "flex",
         "listStyle": "none",
         "margin": 0,
@@ -19,7 +19,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
     <li
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "display": "flex",
           "justifyContent": "center",
@@ -44,7 +44,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         style={
-          Object {
+          {
             "color": "#1865f2",
             "cursor": "pointer",
             "outline": "none",
@@ -60,7 +60,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "marginLeft": 4,
           }
         }
@@ -77,7 +77,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
     <li
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "display": "flex",
           "justifyContent": "center",
@@ -102,7 +102,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         style={
-          Object {
+          {
             "color": "#1865f2",
             "cursor": "pointer",
             "outline": "none",
@@ -118,7 +118,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "marginLeft": 4,
           }
         }
@@ -136,7 +136,7 @@ exports[`wonder-blocks-breadcrumbs example 1 1`] = `
       aria-current="page"
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "display": "flex",
           "justifyContent": "center",

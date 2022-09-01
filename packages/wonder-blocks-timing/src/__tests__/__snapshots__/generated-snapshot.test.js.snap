@@ -4,7 +4,7 @@ exports[`wonder-blocks-timing example 1 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -23,7 +23,7 @@ exports[`wonder-blocks-timing example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -57,11 +57,11 @@ exports[`wonder-blocks-timing example 1 1`] = `
       onTouchStart={[Function]}
       role="button"
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
-          ":focus": Object {
+          ":focus": {
             "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
@@ -92,12 +92,12 @@ exports[`wonder-blocks-timing example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "alignItems": "center",
             "display": "inline-block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
             "lineHeight": "20px",
@@ -114,7 +114,7 @@ exports[`wonder-blocks-timing example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -136,7 +136,7 @@ exports[`wonder-blocks-timing example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -156,7 +156,7 @@ exports[`wonder-blocks-timing example 1 1`] = `
       className=""
       id="uid--0-wb-id"
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -180,7 +180,7 @@ exports[`wonder-blocks-timing example 2 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -199,7 +199,7 @@ exports[`wonder-blocks-timing example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -233,11 +233,11 @@ exports[`wonder-blocks-timing example 2 1`] = `
       onTouchStart={[Function]}
       role="button"
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
-          ":focus": Object {
+          ":focus": {
             "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
@@ -268,12 +268,12 @@ exports[`wonder-blocks-timing example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "alignItems": "center",
             "display": "inline-block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": "bold",
             "lineHeight": "20px",
@@ -290,7 +290,7 @@ exports[`wonder-blocks-timing example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -312,7 +312,7 @@ exports[`wonder-blocks-timing example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -332,7 +332,7 @@ exports[`wonder-blocks-timing example 2 1`] = `
       className=""
       id="uid--1-wb-id"
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,

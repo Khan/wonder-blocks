@@ -48,9 +48,9 @@ describe("#mockRequester", () => {
 
         // Assert
         await expect(underTest).rejects.toThrowErrorMatchingInlineSnapshot(`
-                    "No matching mock response found for request:
-                        TEST FORMATTING: [\\"any\\",\\"arguments\\",{\\"we\\":{\\"want\\":42}}]"
-                `);
+            "No matching mock response found for request:
+                TEST FORMATTING: ["any","arguments",{"we":{"want":42}}]"
+        `);
     });
 
     describe("mockOperation", () => {

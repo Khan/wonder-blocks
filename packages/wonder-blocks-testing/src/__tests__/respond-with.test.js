@@ -412,7 +412,7 @@ describe("RespondWith", () => {
 
             // Assert
             expect(result).toMatchInlineSnapshot(`
-                Object {
+                {
                   "that": "is not a valid graphql response",
                   "valid": "json",
                 }

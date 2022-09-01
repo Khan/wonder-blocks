@@ -4,7 +4,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "background": "#21242c",
       "borderStyle": "solid",
@@ -24,8 +24,8 @@ exports[`wonder-blocks-grid example 1 1`] = `
   <div
     className=""
     style={
-      Object {
-        "@media (minWidth: 1168px)": Object {
+      {
+        "@media (minWidth: 1168px)": {
           "margin": "0 auto",
         },
         "alignItems": "center",
@@ -49,7 +49,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -74,7 +74,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
@@ -100,7 +100,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -119,11 +119,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -140,7 +140,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
         <div
           className=""
           style={
-            Object {
+            {
               "alignItems": "stretch",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -160,11 +160,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -178,7 +178,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
         <div
           className=""
           style={
-            Object {
+            {
               "alignItems": "stretch",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -198,11 +198,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -218,7 +218,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -243,7 +243,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
@@ -269,7 +269,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -288,11 +288,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -309,7 +309,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
         <div
           className=""
           style={
-            Object {
+            {
               "alignItems": "stretch",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -329,11 +329,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -349,7 +349,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -374,7 +374,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.4166666666666667 + 128px)",
@@ -400,7 +400,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -419,11 +419,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -440,11 +440,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -457,7 +457,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
         <div
           className=""
           style={
-            Object {
+            {
               "alignItems": "stretch",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -477,11 +477,11 @@ exports[`wonder-blocks-grid example 1 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -497,7 +497,7 @@ exports[`wonder-blocks-grid example 1 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -527,7 +527,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "background": "#f7f8fa",
       "borderStyle": "solid",
@@ -547,8 +547,8 @@ exports[`wonder-blocks-grid example 2 1`] = `
   <div
     className=""
     style={
-      Object {
-        "@media (minWidth: 1168px)": Object {
+      {
+        "@media (minWidth: 1168px)": {
           "margin": "0 auto",
         },
         "alignItems": "center",
@@ -575,7 +575,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -601,7 +601,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -627,8 +627,8 @@ exports[`wonder-blocks-grid example 2 1`] = `
   <div
     className=""
     style={
-      Object {
-        "@media (minWidth: 1168px)": Object {
+      {
+        "@media (minWidth: 1168px)": {
           "margin": "0 auto",
         },
         "alignItems": "center",
@@ -654,7 +654,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -680,7 +680,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -706,8 +706,8 @@ exports[`wonder-blocks-grid example 2 1`] = `
   <div
     className=""
     style={
-      Object {
-        "@media (minWidth: 1168px)": Object {
+      {
+        "@media (minWidth: 1168px)": {
           "margin": "0 auto",
         },
         "alignItems": "center",
@@ -734,7 +734,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -759,7 +759,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
@@ -786,7 +786,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -811,7 +811,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -833,7 +833,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -859,8 +859,8 @@ exports[`wonder-blocks-grid example 2 1`] = `
   <div
     className=""
     style={
-      Object {
-        "@media (minWidth: 1168px)": Object {
+      {
+        "@media (minWidth: 1168px)": {
           "margin": "0 auto",
         },
         "alignItems": "center",
@@ -884,7 +884,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -909,7 +909,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.25 + 64px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.25 + 64px)",
@@ -944,7 +944,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -969,7 +969,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.75 + 256px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.75 + 256px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.75 + 256px)",
@@ -993,7 +993,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "background": "#ffffff",
             "border": "1px solid rgba(33,36,44,0.08)",
@@ -1017,7 +1017,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "background": "#ffffff",
             "border": "1px solid rgba(33,36,44,0.08)",
@@ -1044,7 +1044,7 @@ exports[`wonder-blocks-grid example 2 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -1074,7 +1074,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "background": "#21242c",
       "borderStyle": "solid",
@@ -1094,8 +1094,8 @@ exports[`wonder-blocks-grid example 3 1`] = `
   <div
     className=""
     style={
-      Object {
-        "@media (minWidth: 1168px)": Object {
+      {
+        "@media (minWidth: 1168px)": {
           "margin": "0 auto",
         },
         "alignItems": "center",
@@ -1119,7 +1119,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -1144,7 +1144,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
@@ -1173,7 +1173,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -1198,7 +1198,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
@@ -1227,7 +1227,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -1252,7 +1252,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
@@ -1281,7 +1281,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -1306,7 +1306,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
@@ -1335,7 +1335,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -1360,7 +1360,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
@@ -1389,7 +1389,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -1414,7 +1414,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
@@ -1443,7 +1443,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -1468,7 +1468,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
@@ -1497,7 +1497,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -1522,7 +1522,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
@@ -1551,7 +1551,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -1576,7 +1576,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
@@ -1605,7 +1605,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -1630,7 +1630,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
@@ -1659,7 +1659,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -1684,7 +1684,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
@@ -1713,7 +1713,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -1738,7 +1738,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.08333333333333333 + 0px)",
@@ -1767,7 +1767,7 @@ exports[`wonder-blocks-grid example 3 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -1797,7 +1797,7 @@ exports[`wonder-blocks-grid example 4 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "background": "#21242c",
       "borderStyle": "solid",
@@ -1817,8 +1817,8 @@ exports[`wonder-blocks-grid example 4 1`] = `
   <div
     className=""
     style={
-      Object {
-        "@media (minWidth: 1168px)": Object {
+      {
+        "@media (minWidth: 1168px)": {
           "margin": "0 auto",
         },
         "alignItems": "center",
@@ -1844,7 +1844,7 @@ exports[`wonder-blocks-grid example 4 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -1869,7 +1869,7 @@ exports[`wonder-blocks-grid example 4 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.5 + 160px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
@@ -1895,7 +1895,7 @@ exports[`wonder-blocks-grid example 4 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
           }
@@ -1908,7 +1908,7 @@ exports[`wonder-blocks-grid example 4 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -1933,7 +1933,7 @@ exports[`wonder-blocks-grid example 4 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.5 + 160px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.5 + 160px)",
@@ -1959,7 +1959,7 @@ exports[`wonder-blocks-grid example 4 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
           }
@@ -1972,7 +1972,7 @@ exports[`wonder-blocks-grid example 4 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -2002,7 +2002,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "background": "#21242c",
       "borderStyle": "solid",
@@ -2023,8 +2023,8 @@ exports[`wonder-blocks-grid example 5 1`] = `
   <div
     className=""
     style={
-      Object {
-        "@media (minWidth: 1168px)": Object {
+      {
+        "@media (minWidth: 1168px)": {
           "margin": "0 auto",
         },
         "alignItems": "stretch",
@@ -2051,7 +2051,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,
@@ -2076,7 +2076,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.3333333333333333 + 96px)",
@@ -2102,7 +2102,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
           }
@@ -2135,7 +2135,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 32,
           "MsFlexPreferredSize": 32,
           "WebkitFlexBasis": 32,
@@ -2160,7 +2160,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": "calc((100% - 352px - 48px) * 0.6666666666666666 + 224px)",
           "MsFlexPreferredSize": "calc((100% - 352px - 48px) * 0.6666666666666666 + 224px)",
           "WebkitFlexBasis": "calc((100% - 352px - 48px) * 0.6666666666666666 + 224px)",
@@ -2186,11 +2186,11 @@ exports[`wonder-blocks-grid example 5 1`] = `
       <p
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -2202,11 +2202,11 @@ exports[`wonder-blocks-grid example 5 1`] = `
       <p
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -2220,7 +2220,7 @@ exports[`wonder-blocks-grid example 5 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "MsFlexBasis": 24,
           "MsFlexPreferredSize": 24,
           "WebkitFlexBasis": 24,

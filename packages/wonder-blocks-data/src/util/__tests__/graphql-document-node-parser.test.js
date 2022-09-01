@@ -18,7 +18,7 @@ describe("#graphQLDocumentNodeParser", () => {
 
         it("should throw if the document lacks the kind property", () => {
             // Arrange
-            const documentNode = ({}: any);
+            const documentNode: any = {};
 
             // Act
             const underTest = () => graphQLDocumentNodeParser(documentNode);
@@ -283,7 +283,7 @@ describe("#graphQLDocumentNodeParser", () => {
 
             // Assert
             expect(underTest).toThrowErrorMatchingInlineSnapshot(
-                `"We do not support subscriptions. {\\"kind\\":\\"Document\\",\\"definitions\\":[{\\"kind\\":\\"OperationDefinition\\",\\"operation\\":\\"subscription\\",\\"variableDefinitions\\":[],\\"name\\":{\\"kind\\":\\"Name\\",\\"value\\":\\"subscription\\"}}]} had 1 subscriptions"`,
+                `"We do not support subscriptions. {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","variableDefinitions":[],"name":{"kind":"Name","value":"subscription"}}]} had 1 subscriptions"`,
             );
         });
 
@@ -318,7 +318,7 @@ describe("#graphQLDocumentNodeParser", () => {
 
             // Assert
             expect(underTest).toThrowErrorMatchingInlineSnapshot(
-                `"We only support one query or mutation per component. {\\"kind\\":\\"Document\\",\\"definitions\\":[{\\"kind\\":\\"OperationDefinition\\",\\"operation\\":\\"query\\",\\"variableDefinitions\\":[],\\"name\\":{\\"kind\\":\\"Name\\",\\"value\\":\\"query\\"}},{\\"kind\\":\\"OperationDefinition\\",\\"operation\\":\\"query\\",\\"variableDefinitions\\":[],\\"name\\":{\\"kind\\":\\"Name\\",\\"value\\":\\"query\\"}}]} had 2 queries and 0 mutations. "`,
+                `"We only support one query or mutation per component. {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","variableDefinitions":[],"name":{"kind":"Name","value":"query"}},{"kind":"OperationDefinition","operation":"query","variableDefinitions":[],"name":{"kind":"Name","value":"query"}}]} had 2 queries and 0 mutations. "`,
             );
         });
 
@@ -353,7 +353,7 @@ describe("#graphQLDocumentNodeParser", () => {
 
             // Assert
             expect(underTest).toThrowErrorMatchingInlineSnapshot(
-                `"We only support one query or mutation per component. {\\"kind\\":\\"Document\\",\\"definitions\\":[{\\"kind\\":\\"OperationDefinition\\",\\"operation\\":\\"mutation\\",\\"variableDefinitions\\":[],\\"name\\":{\\"kind\\":\\"Name\\",\\"value\\":\\"mutation\\"}},{\\"kind\\":\\"OperationDefinition\\",\\"operation\\":\\"mutation\\",\\"variableDefinitions\\":[],\\"name\\":{\\"kind\\":\\"Name\\",\\"value\\":\\"mutation\\"}}]} had 0 queries and 2 mutations. "`,
+                `"We only support one query or mutation per component. {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","variableDefinitions":[],"name":{"kind":"Name","value":"mutation"}},{"kind":"OperationDefinition","operation":"mutation","variableDefinitions":[],"name":{"kind":"Name","value":"mutation"}}]} had 0 queries and 2 mutations. "`,
             );
         });
 
@@ -388,7 +388,7 @@ describe("#graphQLDocumentNodeParser", () => {
 
             // Assert
             expect(underTest).toThrowErrorMatchingInlineSnapshot(
-                `"We only support one query or mutation per component. {\\"kind\\":\\"Document\\",\\"definitions\\":[{\\"kind\\":\\"OperationDefinition\\",\\"operation\\":\\"query\\",\\"variableDefinitions\\":[],\\"name\\":{\\"kind\\":\\"Name\\",\\"value\\":\\"query\\"}},{\\"kind\\":\\"OperationDefinition\\",\\"operation\\":\\"mutation\\",\\"variableDefinitions\\":[],\\"name\\":{\\"kind\\":\\"Name\\",\\"value\\":\\"mutation\\"}}]} had 1 queries and 1 mutations. "`,
+                `"We only support one query or mutation per component. {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","variableDefinitions":[],"name":{"kind":"Name","value":"query"}},{"kind":"OperationDefinition","operation":"mutation","variableDefinitions":[],"name":{"kind":"Name","value":"mutation"}}]} had 1 queries and 1 mutations. "`,
             );
         });
     });

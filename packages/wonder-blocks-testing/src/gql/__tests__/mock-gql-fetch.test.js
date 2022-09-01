@@ -174,15 +174,15 @@ describe("#mockGqlFetch", () => {
 
         // Assert
         await expect(result).rejects.toThrowErrorMatchingInlineSnapshot(`
-                    "No matching mock response found for request:
-                        Operation: query getMyStuff
-                        Variables: {
-                      \\"a\\": \\"variable\\"
-                    }
-                        Context: {
-                      \\"my\\": \\"context\\"
-                    }"
-                `);
+            "No matching mock response found for request:
+                Operation: query getMyStuff
+                Variables: {
+              "a": "variable"
+            }
+                Context: {
+              "my": "context"
+            }"
+        `);
     });
 
     describe("mockOperation", () => {
