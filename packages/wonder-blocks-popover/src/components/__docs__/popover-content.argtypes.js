@@ -9,6 +9,7 @@ import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 type Mappings = {[key: string]: React.Node};
 
 const ActionsMappings: Mappings = {
+    none: null,
     singleButton: <Button kind="primary">Continue</Button>,
     emphasizedSingleButton: (
         <Button kind="primary" light={true}>
@@ -52,6 +53,7 @@ const ActionsMappings: Mappings = {
 };
 
 const IconMappings: Mappings = {
+    none: null,
     logo: <img src="/logo.svg" width="100%" alt="Wonder Blocks logo" />,
     itemAvatar: (
         <img src="./avatar.png" alt="ItemAvatar" width={48} height={48} />
@@ -59,6 +61,7 @@ const IconMappings: Mappings = {
 };
 
 const ImageMappings: Mappings = {
+    none: null,
     default: (
         <img
             src="/illustration.svg"
