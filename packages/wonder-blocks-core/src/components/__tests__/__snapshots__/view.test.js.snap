@@ -4,7 +4,7 @@ exports[`View Should set the tag to be article 1`] = `
 <article
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -26,7 +26,7 @@ exports[`View Should set the tag to be aside 1`] = `
 <aside
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -48,7 +48,7 @@ exports[`View Should set the tag to be div 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -70,7 +70,7 @@ exports[`View Should set the tag to be nav 1`] = `
 <nav
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -92,7 +92,7 @@ exports[`View Should set the tag to be section 1`] = `
 <section
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -114,7 +114,7 @@ exports[`View Should set the tag to be section 2`] = `
 <section
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,

@@ -19,11 +19,11 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -51,7 +51,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false disa
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -88,11 +88,11 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -124,7 +124,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false focu
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -161,11 +161,11 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -197,7 +197,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false hove
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -234,11 +234,11 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -270,7 +270,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:false pres
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -307,11 +307,11 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -339,7 +339,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true disab
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -376,11 +376,11 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -412,7 +412,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true focus
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -449,11 +449,11 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -485,7 +485,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true hover
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -522,11 +522,11 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -558,7 +558,7 @@ exports[`IconButtonCore kind:primary color:default size:default light:true press
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -595,11 +595,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -627,7 +627,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false disabl
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -664,11 +664,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -700,7 +700,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false focuse
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -737,11 +737,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -773,7 +773,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false hovere
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -810,11 +810,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -846,7 +846,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:false presse
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -883,11 +883,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -915,7 +915,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true disable
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -952,11 +952,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -988,7 +988,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true focused
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1025,11 +1025,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1061,7 +1061,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true hovered
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1098,11 +1098,11 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1134,7 +1134,7 @@ exports[`IconButtonCore kind:primary color:default size:small light:true pressed
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1171,11 +1171,11 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1203,7 +1203,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1240,11 +1240,11 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1276,7 +1276,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1313,11 +1313,11 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1349,7 +1349,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1386,11 +1386,11 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1422,7 +1422,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:false 
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1459,11 +1459,11 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1491,7 +1491,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true d
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1528,11 +1528,11 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1564,7 +1564,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true f
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1601,11 +1601,11 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1637,7 +1637,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true h
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1674,11 +1674,11 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1710,7 +1710,7 @@ exports[`IconButtonCore kind:primary color:destructive size:default light:true p
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1747,11 +1747,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1779,7 +1779,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false di
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1816,11 +1816,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1852,7 +1852,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false fo
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1889,11 +1889,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1925,7 +1925,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false ho
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -1962,11 +1962,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -1998,7 +1998,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:false pr
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2035,11 +2035,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2067,7 +2067,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true dis
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2104,11 +2104,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2140,7 +2140,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true foc
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2177,11 +2177,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2213,7 +2213,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true hov
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2250,11 +2250,11 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2286,7 +2286,7 @@ exports[`IconButtonCore kind:primary color:destructive size:small light:true pre
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2323,11 +2323,11 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2355,7 +2355,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false di
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2392,11 +2392,11 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2428,7 +2428,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false fo
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2465,11 +2465,11 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2501,7 +2501,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false ho
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2538,11 +2538,11 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2574,7 +2574,7 @@ exports[`IconButtonCore kind:secondary color:default size:default light:false pr
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2611,11 +2611,11 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2643,7 +2643,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false disa
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2680,11 +2680,11 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2716,7 +2716,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false focu
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2753,11 +2753,11 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2789,7 +2789,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false hove
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2826,11 +2826,11 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2862,7 +2862,7 @@ exports[`IconButtonCore kind:secondary color:default size:small light:false pres
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2899,11 +2899,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -2931,7 +2931,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -2968,11 +2968,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3004,7 +3004,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3041,11 +3041,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3077,7 +3077,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3114,11 +3114,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3150,7 +3150,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:default light:fals
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3187,11 +3187,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3219,7 +3219,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3256,11 +3256,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3292,7 +3292,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3329,11 +3329,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3365,7 +3365,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3402,11 +3402,11 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3438,7 +3438,7 @@ exports[`IconButtonCore kind:secondary color:destructive size:small light:false 
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3475,11 +3475,11 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3507,7 +3507,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false dis
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3544,11 +3544,11 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3580,7 +3580,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false foc
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3617,11 +3617,11 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3653,7 +3653,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false hov
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3690,11 +3690,11 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3726,7 +3726,7 @@ exports[`IconButtonCore kind:tertiary color:default size:default light:false pre
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3763,11 +3763,11 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3795,7 +3795,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false disab
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3832,11 +3832,11 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3868,7 +3868,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false focus
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3905,11 +3905,11 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -3941,7 +3941,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false hover
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -3978,11 +3978,11 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -4014,7 +4014,7 @@ exports[`IconButtonCore kind:tertiary color:default size:small light:false press
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -4051,11 +4051,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -4083,7 +4083,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -4120,11 +4120,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -4156,7 +4156,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -4193,11 +4193,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -4229,7 +4229,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -4266,11 +4266,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -4302,7 +4302,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:default light:false
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -4339,11 +4339,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -4371,7 +4371,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false d
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -4408,11 +4408,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -4444,7 +4444,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false f
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -4481,11 +4481,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -4517,7 +4517,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false h
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,
@@ -4554,11 +4554,11 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
   onTouchEnd={[Function]}
   onTouchStart={[Function]}
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -4590,7 +4590,7 @@ exports[`IconButtonCore kind:tertiary color:destructive size:small light:false p
     className=""
     height={24}
     style={
-      Object {
+      {
         "display": "inline-block",
         "flexGrow": 0,
         "flexShrink": 0,

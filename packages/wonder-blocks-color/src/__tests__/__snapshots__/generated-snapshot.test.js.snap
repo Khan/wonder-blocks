@@ -4,7 +4,7 @@ exports[`wonder-blocks-color example 1 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -25,7 +25,7 @@ exports[`wonder-blocks-color example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -47,7 +47,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "border": "solid 1px rgba(33,36,44,0.32)",
           "borderRadius": 4,
@@ -69,7 +69,7 @@ exports[`wonder-blocks-color example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#1865f2",
             "borderStyle": "solid",
@@ -93,19 +93,19 @@ exports[`wonder-blocks-color example 1 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -118,7 +118,7 @@ exports[`wonder-blocks-color example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#f7f8fa",
             "borderStyle": "solid",
@@ -142,19 +142,19 @@ exports[`wonder-blocks-color example 1 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -167,7 +167,7 @@ exports[`wonder-blocks-color example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#ffffff",
             "borderStyle": "solid",
@@ -191,19 +191,19 @@ exports[`wonder-blocks-color example 1 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -217,7 +217,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -239,11 +239,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -255,11 +255,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -272,7 +272,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -291,11 +291,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -309,7 +309,7 @@ exports[`wonder-blocks-color example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -331,7 +331,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "border": "solid 1px rgba(33,36,44,0.32)",
           "borderRadius": 4,
@@ -353,7 +353,7 @@ exports[`wonder-blocks-color example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#9059ff",
             "borderStyle": "solid",
@@ -377,19 +377,19 @@ exports[`wonder-blocks-color example 1 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -402,7 +402,7 @@ exports[`wonder-blocks-color example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#f7f8fa",
             "borderStyle": "solid",
@@ -426,19 +426,19 @@ exports[`wonder-blocks-color example 1 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -451,7 +451,7 @@ exports[`wonder-blocks-color example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#ffffff",
             "borderStyle": "solid",
@@ -475,19 +475,19 @@ exports[`wonder-blocks-color example 1 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -501,7 +501,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -523,11 +523,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -539,11 +539,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -556,7 +556,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -575,11 +575,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -593,7 +593,7 @@ exports[`wonder-blocks-color example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -615,7 +615,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "background": "#ffb100",
           "border": "solid 1px rgba(33,36,44,0.32)",
@@ -642,7 +642,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -664,11 +664,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -681,7 +681,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -700,11 +700,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -718,7 +718,7 @@ exports[`wonder-blocks-color example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -740,7 +740,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "border": "solid 1px rgba(33,36,44,0.32)",
           "borderRadius": 4,
@@ -762,7 +762,7 @@ exports[`wonder-blocks-color example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#00a60e",
             "borderStyle": "solid",
@@ -786,19 +786,19 @@ exports[`wonder-blocks-color example 1 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -811,7 +811,7 @@ exports[`wonder-blocks-color example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#f7f8fa",
             "borderStyle": "solid",
@@ -835,19 +835,19 @@ exports[`wonder-blocks-color example 1 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -860,7 +860,7 @@ exports[`wonder-blocks-color example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#ffffff",
             "borderStyle": "solid",
@@ -884,19 +884,19 @@ exports[`wonder-blocks-color example 1 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -910,7 +910,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -932,11 +932,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -948,11 +948,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -965,7 +965,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -984,11 +984,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -1002,7 +1002,7 @@ exports[`wonder-blocks-color example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1024,7 +1024,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "border": "solid 1px rgba(33,36,44,0.32)",
           "borderRadius": 4,
@@ -1046,7 +1046,7 @@ exports[`wonder-blocks-color example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#d92916",
             "borderStyle": "solid",
@@ -1070,19 +1070,19 @@ exports[`wonder-blocks-color example 1 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -1095,7 +1095,7 @@ exports[`wonder-blocks-color example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#f7f8fa",
             "borderStyle": "solid",
@@ -1119,19 +1119,19 @@ exports[`wonder-blocks-color example 1 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -1144,7 +1144,7 @@ exports[`wonder-blocks-color example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#ffffff",
             "borderStyle": "solid",
@@ -1168,19 +1168,19 @@ exports[`wonder-blocks-color example 1 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -1194,7 +1194,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1216,11 +1216,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -1232,11 +1232,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -1249,7 +1249,7 @@ exports[`wonder-blocks-color example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1268,11 +1268,11 @@ exports[`wonder-blocks-color example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -1290,7 +1290,7 @@ exports[`wonder-blocks-color example 2 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1311,7 +1311,7 @@ exports[`wonder-blocks-color example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1333,7 +1333,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "border": "solid 1px rgba(33,36,44,0.32)",
           "borderRadius": 4,
@@ -1355,7 +1355,7 @@ exports[`wonder-blocks-color example 2 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#21242c",
             "borderStyle": "solid",
@@ -1379,19 +1379,19 @@ exports[`wonder-blocks-color example 2 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -1404,7 +1404,7 @@ exports[`wonder-blocks-color example 2 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#f7f8fa",
             "borderStyle": "solid",
@@ -1428,19 +1428,19 @@ exports[`wonder-blocks-color example 2 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -1453,7 +1453,7 @@ exports[`wonder-blocks-color example 2 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#ffffff",
             "borderStyle": "solid",
@@ -1477,19 +1477,19 @@ exports[`wonder-blocks-color example 2 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -1503,7 +1503,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1525,11 +1525,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -1541,11 +1541,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -1558,7 +1558,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1577,11 +1577,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -1595,7 +1595,7 @@ exports[`wonder-blocks-color example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1617,7 +1617,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "border": "solid 1px rgba(33,36,44,0.32)",
           "borderRadius": 4,
@@ -1639,7 +1639,7 @@ exports[`wonder-blocks-color example 2 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "rgba(33,36,44,0.64)",
             "borderStyle": "solid",
@@ -1663,19 +1663,19 @@ exports[`wonder-blocks-color example 2 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -1688,7 +1688,7 @@ exports[`wonder-blocks-color example 2 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#f7f8fa",
             "borderStyle": "solid",
@@ -1712,19 +1712,19 @@ exports[`wonder-blocks-color example 2 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -1737,7 +1737,7 @@ exports[`wonder-blocks-color example 2 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#ffffff",
             "borderStyle": "solid",
@@ -1761,19 +1761,19 @@ exports[`wonder-blocks-color example 2 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -1787,7 +1787,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1809,11 +1809,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -1825,11 +1825,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -1842,7 +1842,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1861,11 +1861,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -1879,7 +1879,7 @@ exports[`wonder-blocks-color example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1901,7 +1901,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "background": "rgba(33,36,44,0.50)",
           "border": "solid 1px rgba(33,36,44,0.32)",
@@ -1928,7 +1928,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1950,11 +1950,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -1967,7 +1967,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1986,11 +1986,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -2004,7 +2004,7 @@ exports[`wonder-blocks-color example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2026,7 +2026,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "background": "rgba(33,36,44,0.32)",
           "border": "solid 1px rgba(33,36,44,0.32)",
@@ -2053,7 +2053,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2075,11 +2075,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -2092,7 +2092,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2111,11 +2111,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -2129,7 +2129,7 @@ exports[`wonder-blocks-color example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2151,7 +2151,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "background": "rgba(33,36,44,0.16)",
           "border": "solid 1px rgba(33,36,44,0.32)",
@@ -2178,7 +2178,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2200,11 +2200,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -2217,7 +2217,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2236,11 +2236,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -2254,7 +2254,7 @@ exports[`wonder-blocks-color example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2276,7 +2276,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "background": "rgba(33,36,44,0.08)",
           "border": "solid 1px rgba(33,36,44,0.32)",
@@ -2303,7 +2303,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2325,11 +2325,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -2342,7 +2342,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2361,11 +2361,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -2379,7 +2379,7 @@ exports[`wonder-blocks-color example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2401,7 +2401,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "background": "#f7f8fa",
           "border": "solid 1px rgba(33,36,44,0.32)",
@@ -2428,7 +2428,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2450,11 +2450,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -2467,7 +2467,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2486,11 +2486,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -2504,7 +2504,7 @@ exports[`wonder-blocks-color example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2526,7 +2526,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "border": "solid 1px rgba(33,36,44,0.32)",
           "borderRadius": 4,
@@ -2548,7 +2548,7 @@ exports[`wonder-blocks-color example 2 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#ffffff",
             "borderStyle": "solid",
@@ -2571,7 +2571,7 @@ exports[`wonder-blocks-color example 2 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "background": "#0b2149",
             "borderStyle": "solid",
@@ -2595,19 +2595,19 @@ exports[`wonder-blocks-color example 2 1`] = `
         <h2
           className=""
           style={
-            Object {
-              "@media (maxWidth: 1023px)": Object {
+            {
+              "@media (maxWidth: 1023px)": {
                 "fontSize": 24,
                 "lineHeight": "28px",
               },
-              "@media (minWidth: 1024px)": Object {
+              "@media (minWidth: 1024px)": {
                 "fontSize": 28,
                 "lineHeight": "32px",
               },
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontWeight": 700,
               "marginBottom": 0,
               "marginTop": 0,
@@ -2621,7 +2621,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2643,11 +2643,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -2659,11 +2659,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -2676,7 +2676,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2695,11 +2695,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -2713,7 +2713,7 @@ exports[`wonder-blocks-color example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2735,7 +2735,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "background": "#0b2149",
           "border": "solid 1px rgba(33,36,44,0.32)",
@@ -2762,19 +2762,19 @@ exports[`wonder-blocks-color example 2 1`] = `
       <h2
         className=""
         style={
-          Object {
-            "@media (maxWidth: 1023px)": Object {
+          {
+            "@media (maxWidth: 1023px)": {
               "fontSize": 24,
               "lineHeight": "28px",
             },
-            "@media (minWidth: 1024px)": Object {
+            "@media (minWidth: 1024px)": {
               "fontSize": 28,
               "lineHeight": "32px",
             },
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontWeight": 700,
             "marginBottom": 0,
             "marginTop": 0,
@@ -2787,7 +2787,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2809,11 +2809,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -2825,11 +2825,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -2842,7 +2842,7 @@ exports[`wonder-blocks-color example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2861,11 +2861,11 @@ exports[`wonder-blocks-color example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -2883,7 +2883,7 @@ exports[`wonder-blocks-color example 3 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -2904,7 +2904,7 @@ exports[`wonder-blocks-color example 3 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2926,7 +2926,7 @@ exports[`wonder-blocks-color example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "background": "#0b2149",
           "border": "solid 1px rgba(33,36,44,0.32)",
@@ -2953,7 +2953,7 @@ exports[`wonder-blocks-color example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2975,11 +2975,11 @@ exports[`wonder-blocks-color example 3 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -2992,7 +2992,7 @@ exports[`wonder-blocks-color example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -3011,11 +3011,11 @@ exports[`wonder-blocks-color example 3 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -3029,7 +3029,7 @@ exports[`wonder-blocks-color example 3 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -3051,7 +3051,7 @@ exports[`wonder-blocks-color example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "background": "#37c5fd",
           "border": "solid 1px rgba(33,36,44,0.32)",
@@ -3078,7 +3078,7 @@ exports[`wonder-blocks-color example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -3100,11 +3100,11 @@ exports[`wonder-blocks-color example 3 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -3117,7 +3117,7 @@ exports[`wonder-blocks-color example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -3136,11 +3136,11 @@ exports[`wonder-blocks-color example 3 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -3154,7 +3154,7 @@ exports[`wonder-blocks-color example 3 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -3174,7 +3174,7 @@ exports[`wonder-blocks-color example 3 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -3196,7 +3196,7 @@ exports[`wonder-blocks-color example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "background": "#14bf96",
           "border": "solid 1px rgba(33,36,44,0.32)",
@@ -3223,7 +3223,7 @@ exports[`wonder-blocks-color example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -3245,11 +3245,11 @@ exports[`wonder-blocks-color example 3 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -3262,7 +3262,7 @@ exports[`wonder-blocks-color example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -3281,11 +3281,11 @@ exports[`wonder-blocks-color example 3 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -3299,7 +3299,7 @@ exports[`wonder-blocks-color example 3 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -3321,7 +3321,7 @@ exports[`wonder-blocks-color example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "background": "#fa50ae",
           "border": "solid 1px rgba(33,36,44,0.32)",
@@ -3348,7 +3348,7 @@ exports[`wonder-blocks-color example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -3370,11 +3370,11 @@ exports[`wonder-blocks-color example 3 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -3387,7 +3387,7 @@ exports[`wonder-blocks-color example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -3406,11 +3406,11 @@ exports[`wonder-blocks-color example 3 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",

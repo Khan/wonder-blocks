@@ -4,7 +4,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "border": "1px solid rgba(33, 36, 44, 0.16)",
       "borderStyle": "solid",
@@ -27,7 +27,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -48,7 +48,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -69,7 +69,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -90,7 +90,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -125,11 +125,11 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
         onTouchStart={[Function]}
         role="button"
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -161,12 +161,12 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 14,
               "fontWeight": "bold",
               "lineHeight": "18px",
@@ -184,7 +184,7 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 16,
             "MsFlexPreferredSize": 16,
             "WebkitFlexBasis": 16,
@@ -224,11 +224,11 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
         onTouchStart={[Function]}
         role="button"
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -263,12 +263,12 @@ exports[`wonder-blocks-toolbar example 1 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 14,
               "fontWeight": "bold",
               "lineHeight": "18px",
@@ -291,7 +291,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "border": "1px solid rgba(33, 36, 44, 0.16)",
       "borderStyle": "solid",
@@ -314,7 +314,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -335,7 +335,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -369,11 +369,11 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -401,7 +401,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
           className=""
           height={24}
           style={
-            Object {
+            {
               "display": "inline-block",
               "flexGrow": 0,
               "flexShrink": 0,
@@ -421,7 +421,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 16,
             "MsFlexPreferredSize": 16,
             "WebkitFlexBasis": 16,
@@ -460,11 +460,11 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -492,7 +492,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
           className=""
           height={24}
           style={
-            Object {
+            {
               "display": "inline-block",
               "flexGrow": 0,
               "flexShrink": 0,
@@ -513,7 +513,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -534,7 +534,7 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -569,11 +569,11 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         onTouchStart={[Function]}
         role="button"
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -604,12 +604,12 @@ exports[`wonder-blocks-toolbar example 2 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": "bold",
               "lineHeight": "20px",
@@ -633,7 +633,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "border": "1px solid rgba(33, 36, 44, 0.16)",
       "borderStyle": "solid",
@@ -656,7 +656,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -677,7 +677,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -711,11 +711,11 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -743,7 +743,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
           className=""
           height={24}
           style={
-            Object {
+            {
               "display": "inline-block",
               "flexGrow": 0,
               "flexShrink": 0,
@@ -764,7 +764,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -785,7 +785,7 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -820,11 +820,11 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
         onTouchStart={[Function]}
         role="button"
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -855,12 +855,12 @@ exports[`wonder-blocks-toolbar example 3 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": "bold",
               "lineHeight": "20px",
@@ -883,7 +883,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "border": "1px solid rgba(33, 36, 44, 0.16)",
       "borderStyle": "solid",
@@ -906,7 +906,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -927,7 +927,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -961,11 +961,11 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -993,7 +993,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
           className=""
           height={24}
           style={
-            Object {
+            {
               "display": "inline-block",
               "flexGrow": 0,
               "flexShrink": 0,
@@ -1014,7 +1014,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1036,7 +1036,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1058,11 +1058,11 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
         className=""
         id="wb-toolbar-title"
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 20,
             "fontWeight": 700,
             "lineHeight": "24px",
@@ -1078,7 +1078,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1099,7 +1099,7 @@ exports[`wonder-blocks-toolbar example 4 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1124,7 +1124,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "border": "1px solid rgba(33, 36, 44, 0.16)",
       "borderStyle": "solid",
@@ -1147,7 +1147,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1168,7 +1168,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1202,11 +1202,11 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -1234,7 +1234,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
           className=""
           height={24}
           style={
-            Object {
+            {
               "display": "inline-block",
               "flexGrow": 0,
               "flexShrink": 0,
@@ -1255,7 +1255,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1277,7 +1277,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1299,11 +1299,11 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
         className=""
         id="wb-toolbar-title"
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 20,
             "fontWeight": 700,
             "lineHeight": "24px",
@@ -1319,7 +1319,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1340,7 +1340,7 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1375,11 +1375,11 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
         onTouchStart={[Function]}
         role="button"
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -1410,12 +1410,12 @@ exports[`wonder-blocks-toolbar example 5 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": "bold",
               "lineHeight": "20px",
@@ -1438,7 +1438,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "border": "1px solid rgba(33, 36, 44, 0.16)",
       "borderStyle": "solid",
@@ -1461,7 +1461,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1482,7 +1482,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1503,7 +1503,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1524,7 +1524,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1544,11 +1544,11 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -1561,7 +1561,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 16,
             "MsFlexPreferredSize": 16,
             "WebkitFlexBasis": 16,
@@ -1601,11 +1601,11 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         onTouchStart={[Function]}
         role="button"
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -1640,12 +1640,12 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": "bold",
               "lineHeight": "20px",
@@ -1663,7 +1663,7 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 16,
             "MsFlexPreferredSize": 16,
             "WebkitFlexBasis": 16,
@@ -1703,11 +1703,11 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         onTouchStart={[Function]}
         role="button"
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -1739,12 +1739,12 @@ exports[`wonder-blocks-toolbar example 6 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": "bold",
               "lineHeight": "20px",
@@ -1767,7 +1767,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "border": "1px solid rgba(33, 36, 44, 0.16)",
       "borderStyle": "solid",
@@ -1790,7 +1790,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1811,7 +1811,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1845,11 +1845,11 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
-            ":focus": Object {
+            ":focus": {
               "WebkitTapHighlightColor": "rgba(0,0,0,0)",
             },
             "alignItems": "center",
@@ -1877,7 +1877,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
           className=""
           height={24}
           style={
-            Object {
+            {
               "display": "inline-block",
               "flexGrow": 0,
               "flexShrink": 0,
@@ -1898,7 +1898,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1920,7 +1920,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1942,11 +1942,11 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         className=""
         id="wb-toolbar-title"
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -1958,12 +1958,12 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "color": "rgba(33, 36, 44, 0.64)",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 14,
             "fontWeight": 400,
             "lineHeight": "18px",
@@ -1977,7 +1977,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1998,7 +1998,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2032,7 +2032,7 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         style={
-          Object {
+          {
             "color": "#1865f2",
             "cursor": "pointer",
             "outline": "none",
@@ -2044,11 +2044,11 @@ exports[`wonder-blocks-toolbar example 7 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 700,
               "lineHeight": "20px",
@@ -2067,7 +2067,7 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "backgroundColor": "#0a2a66",
       "borderStyle": "solid",
@@ -2090,7 +2090,7 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "backgroundColor": "#0b2149",
         "border": "1px solid rgba(33, 36, 44, 0.16)",
@@ -2116,7 +2116,7 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2137,7 +2137,7 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -2158,7 +2158,7 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2180,7 +2180,7 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -2202,11 +2202,11 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
           className=""
           id="wb-toolbar-title"
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 20,
               "fontWeight": 700,
               "lineHeight": "24px",
@@ -2222,7 +2222,7 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2243,7 +2243,7 @@ exports[`wonder-blocks-toolbar example 8 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "center",
             "borderStyle": "solid",
             "borderWidth": 0,

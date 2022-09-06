@@ -5,7 +5,7 @@ exports[`wonder-blocks-tooltip example 1 1`] = `
   aria-describedby="uid-tooltip-0-aria-content"
   className=""
   style={
-    Object {
+    {
       "MozOsxFontSmoothing": "grayscale",
       "WebkitFontSmoothing": "antialiased",
     }
@@ -19,7 +19,7 @@ exports[`wonder-blocks-tooltip example 2 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -46,7 +46,7 @@ exports[`wonder-blocks-tooltip example 3 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -65,7 +65,7 @@ exports[`wonder-blocks-tooltip example 3 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "border": "1px solid black",
         "borderStyle": "solid",
@@ -87,7 +87,7 @@ exports[`wonder-blocks-tooltip example 3 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -106,11 +106,11 @@ exports[`wonder-blocks-tooltip example 3 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -122,7 +122,7 @@ exports[`wonder-blocks-tooltip example 3 1`] = `
           aria-describedby="uid-tooltip-1-aria-content"
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
             }
@@ -159,11 +159,11 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
   onTouchStart={[Function]}
   role="button"
   style={
-    Object {
-      "::MozFocusInner": Object {
+    {
+      "::MozFocusInner": {
         "border": 0,
       },
-      ":focus": Object {
+      ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
       "alignItems": "center",
@@ -194,12 +194,12 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
         "display": "inline-block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": "bold",
         "lineHeight": "20px",
@@ -219,7 +219,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -238,11 +238,11 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -254,7 +254,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -274,7 +274,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
       aria-describedby="uid-tooltip-2-aria-content"
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "border": "solid 1px steelblue",
           "borderStyle": "solid",
@@ -300,7 +300,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
       aria-describedby="uid-tooltip-3-aria-content"
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "border": "solid 1px steelblue",
           "borderStyle": "solid",
@@ -326,7 +326,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
       aria-describedby="uid-tooltip-4-aria-content"
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "border": "solid 1px steelblue",
           "borderStyle": "solid",
@@ -352,7 +352,7 @@ exports[`wonder-blocks-tooltip example 5 1`] = `
       aria-describedby="uid-tooltip-5-aria-content"
       className=""
       style={
-        Object {
+        {
           "alignItems": "center",
           "border": "solid 1px steelblue",
           "borderStyle": "solid",
@@ -382,7 +382,7 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "center",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -417,11 +417,11 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
     onTouchStart={[Function]}
     role="button"
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
-        ":focus": Object {
+        ":focus": {
           "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
@@ -452,12 +452,12 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
     <span
       className=""
       style={
-        Object {
+        {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
           "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontFamily": "Lato, "Noto Sans", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
@@ -475,7 +475,7 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 16,
         "MsFlexPreferredSize": 16,
         "WebkitFlexBasis": 16,
@@ -516,11 +516,11 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
-        ":focus": Object {
+        ":focus": {
           "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
@@ -548,7 +548,7 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
       className=""
       height={24}
       style={
-        Object {
+        {
           "display": "inline-block",
           "flexGrow": 0,
           "flexShrink": 0,
@@ -571,7 +571,7 @@ exports[`wonder-blocks-tooltip example 7 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -590,11 +590,11 @@ exports[`wonder-blocks-tooltip example 7 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -610,7 +610,7 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -629,11 +629,11 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
   <h4
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 20,
         "fontWeight": 700,
         "lineHeight": "24px",
@@ -648,7 +648,7 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 4,
         "MsFlexPreferredSize": 4,
         "WebkitFlexBasis": 4,
@@ -673,11 +673,11 @@ exports[`wonder-blocks-tooltip example 8 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -693,7 +693,7 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -712,11 +712,11 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -729,7 +729,7 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 4,
         "MsFlexPreferredSize": 4,
         "WebkitFlexBasis": 4,
@@ -754,11 +754,11 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -770,11 +770,11 @@ exports[`wonder-blocks-tooltip example 9 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -790,7 +790,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -810,7 +810,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
     className=""
     data-placement="top"
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -834,7 +834,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
       className="arrow_oo4scr"
       height={12}
       style={
-        Object {
+        {
           "marginLeft": 8,
           "marginRight": 8,
           "paddingBottom": 8,
@@ -889,7 +889,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -909,7 +909,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "bisque",
           "borderStyle": "solid",
@@ -930,7 +930,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "green",
           "borderStyle": "solid",
@@ -951,7 +951,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "bisque",
           "borderStyle": "solid",
@@ -973,7 +973,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -998,7 +998,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1017,7 +1017,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1037,7 +1037,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "bisque",
           "borderStyle": "solid",
@@ -1058,7 +1058,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "green",
           "borderStyle": "solid",
@@ -1079,7 +1079,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "bisque",
           "borderStyle": "solid",
@@ -1101,7 +1101,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1123,7 +1123,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
     className=""
     data-placement="right"
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1147,7 +1147,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
       className="arrow_oo4scr"
       height={24}
       style={
-        Object {
+        {
           "marginBottom": 8,
           "marginTop": 8,
           "paddingLeft": 8,
@@ -1206,7 +1206,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1225,7 +1225,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1245,7 +1245,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "bisque",
           "borderStyle": "solid",
@@ -1266,7 +1266,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "green",
           "borderStyle": "solid",
@@ -1287,7 +1287,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "bisque",
           "borderStyle": "solid",
@@ -1309,7 +1309,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1331,7 +1331,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
     className=""
     data-placement="bottom"
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1355,7 +1355,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
       className="arrow_oo4scr"
       height={12}
       style={
-        Object {
+        {
           "marginLeft": 8,
           "marginRight": 8,
           "paddingTop": 8,
@@ -1386,7 +1386,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1406,7 +1406,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
     className=""
     data-placement="left"
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1430,7 +1430,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
       className="arrow_oo4scr"
       height={24}
       style={
-        Object {
+        {
           "marginBottom": 8,
           "marginTop": 8,
           "paddingRight": 8,
@@ -1485,7 +1485,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1505,7 +1505,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "bisque",
           "borderStyle": "solid",
@@ -1526,7 +1526,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "green",
           "borderStyle": "solid",
@@ -1547,7 +1547,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "bisque",
           "borderStyle": "solid",
@@ -1569,7 +1569,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
       aria-hidden="true"
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1594,7 +1594,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1617,7 +1617,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
     onMouseLeave={[Function]}
     role="tooltip"
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1636,7 +1636,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "#ffffff",
           "border": "solid 1px rgba(33,36,44,0.16)",
@@ -1661,7 +1661,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -1680,11 +1680,11 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -1699,7 +1699,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
       className=""
       data-placement="top"
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1723,7 +1723,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
         className="arrow_oo4scr"
         height={12}
         style={
-          Object {
+          {
             "marginLeft": 8,
             "marginRight": 8,
             "paddingBottom": 8,
@@ -1783,7 +1783,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "flex-start",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1806,7 +1806,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
     onMouseLeave={[Function]}
     role="tooltip"
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1825,7 +1825,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "#ffffff",
           "border": "solid 1px rgba(33,36,44,0.16)",
@@ -1850,7 +1850,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -1869,11 +1869,11 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -1888,7 +1888,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
       className=""
       data-placement="right"
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1912,7 +1912,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
         className="arrow_oo4scr"
         height={24}
         style={
-          Object {
+          {
             "marginBottom": 8,
             "marginTop": 8,
             "paddingLeft": 8,
@@ -1972,7 +1972,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1995,7 +1995,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
     onMouseLeave={[Function]}
     role="tooltip"
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2014,7 +2014,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "#ffffff",
           "border": "solid 1px rgba(33,36,44,0.16)",
@@ -2039,7 +2039,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -2058,11 +2058,11 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -2077,7 +2077,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
       className=""
       data-placement="bottom"
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2101,7 +2101,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
         className="arrow_oo4scr"
         height={12}
         style={
-          Object {
+          {
             "marginLeft": 8,
             "marginRight": 8,
             "paddingTop": 8,
@@ -2133,7 +2133,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -2156,7 +2156,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
     onMouseLeave={[Function]}
     role="tooltip"
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2175,7 +2175,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "#ffffff",
           "border": "solid 1px rgba(33,36,44,0.16)",
@@ -2200,7 +2200,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -2219,11 +2219,11 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -2238,7 +2238,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
       className=""
       data-placement="left"
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2262,7 +2262,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
         className="arrow_oo4scr"
         height={24}
         style={
-          Object {
+          {
             "marginBottom": 8,
             "marginTop": 8,
             "paddingRight": 8,
@@ -2322,7 +2322,7 @@ exports[`wonder-blocks-tooltip example 18 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -2345,7 +2345,7 @@ exports[`wonder-blocks-tooltip example 18 1`] = `
     onMouseLeave={[Function]}
     role="tooltip"
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2364,7 +2364,7 @@ exports[`wonder-blocks-tooltip example 18 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "#ffffff",
           "border": "solid 1px rgba(33,36,44,0.16)",
@@ -2389,7 +2389,7 @@ exports[`wonder-blocks-tooltip example 18 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -2408,11 +2408,11 @@ exports[`wonder-blocks-tooltip example 18 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -2427,7 +2427,7 @@ exports[`wonder-blocks-tooltip example 18 1`] = `
       className=""
       data-placement="bottom"
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2452,7 +2452,7 @@ exports[`wonder-blocks-tooltip example 18 1`] = `
         className="arrow_oo4scr"
         height={12}
         style={
-          Object {
+          {
             "marginLeft": 8,
             "marginRight": 8,
             "paddingTop": 8,
@@ -2484,7 +2484,7 @@ exports[`wonder-blocks-tooltip example 19 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -2507,7 +2507,7 @@ exports[`wonder-blocks-tooltip example 19 1`] = `
     onMouseLeave={[Function]}
     role="tooltip"
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "backgroundColor": "transparent",
         "borderStyle": "solid",
@@ -2530,7 +2530,7 @@ exports[`wonder-blocks-tooltip example 19 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "backgroundColor": "#ffffff",
           "border": "solid 1px rgba(33,36,44,0.16)",
@@ -2555,7 +2555,7 @@ exports[`wonder-blocks-tooltip example 19 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -2574,11 +2574,11 @@ exports[`wonder-blocks-tooltip example 19 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -2593,7 +2593,7 @@ exports[`wonder-blocks-tooltip example 19 1`] = `
       className=""
       data-placement="top"
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2617,7 +2617,7 @@ exports[`wonder-blocks-tooltip example 19 1`] = `
         className="arrow_oo4scr"
         height={12}
         style={
-          Object {
+          {
             "marginLeft": 8,
             "marginRight": 8,
             "paddingBottom": 8,

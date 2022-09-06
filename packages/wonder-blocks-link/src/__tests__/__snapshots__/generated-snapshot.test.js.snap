@@ -4,7 +4,7 @@ exports[`wonder-blocks-link example 1 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -39,7 +39,7 @@ exports[`wonder-blocks-link example 1 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "color": "#1865f2",
           "cursor": "pointer",
           "outline": "none",
@@ -54,7 +54,7 @@ exports[`wonder-blocks-link example 1 1`] = `
      
     <span
       style={
-        Object {
+        {
           "color": "rgba(33,36,44,0.64)",
         }
       }
@@ -77,7 +77,7 @@ exports[`wonder-blocks-link example 1 1`] = `
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         style={
-          Object {
+          {
             "color": "#21242c",
             "cursor": "pointer",
             "outline": "none",
@@ -110,8 +110,8 @@ exports[`wonder-blocks-link example 1 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          ":visited": Object {
+        {
+          ":visited": {
             "color": "#8755ee",
           },
           "color": "#1865f2",
@@ -129,7 +129,7 @@ exports[`wonder-blocks-link example 1 1`] = `
   </p>
   <p
     style={
-      Object {
+      {
         "backgroundColor": "#0b2149",
         "color": "rgba(255,255,255,0.64)",
         "padding": 10,
@@ -155,7 +155,7 @@ exports[`wonder-blocks-link example 1 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "color": "#ffffff",
           "cursor": "pointer",
           "outline": "none",
@@ -176,7 +176,7 @@ exports[`wonder-blocks-link example 2 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -210,7 +210,7 @@ exports[`wonder-blocks-link example 2 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
+      {
         "color": "#1865f2",
         "cursor": "pointer",
         "outline": "none",
@@ -222,11 +222,11 @@ exports[`wonder-blocks-link example 2 1`] = `
     <h4
       className=""
       style={
-        Object {
+        {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontFamily": "Lato, "Noto Sans", sans-serif",
           "fontSize": 20,
           "fontWeight": 700,
           "lineHeight": "24px",

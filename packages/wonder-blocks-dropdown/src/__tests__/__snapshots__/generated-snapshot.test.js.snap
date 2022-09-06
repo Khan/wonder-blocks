@@ -4,7 +4,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -26,7 +26,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -50,7 +50,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -82,11 +82,11 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
-          ":focus": Object {
+          ":focus": {
             "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
@@ -112,7 +112,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -131,12 +131,12 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": "bold",
               "lineHeight": "20px",
@@ -156,7 +156,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 4,
             "MsFlexPreferredSize": 4,
             "WebkitFlexBasis": 4,
@@ -182,7 +182,7 @@ exports[`wonder-blocks-dropdown example 1 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -206,7 +206,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -226,7 +226,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -248,7 +248,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -272,7 +272,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -303,11 +303,11 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
-          ":focus": Object {
+          ":focus": {
             "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
@@ -333,7 +333,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -352,12 +352,12 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": "bold",
               "lineHeight": "20px",
@@ -377,7 +377,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 4,
             "MsFlexPreferredSize": 4,
             "WebkitFlexBasis": 4,
@@ -403,7 +403,7 @@ exports[`wonder-blocks-dropdown example 2 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -427,7 +427,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -448,7 +448,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -472,7 +472,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -503,11 +503,11 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
-          ":focus": Object {
+          ":focus": {
             "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
@@ -533,7 +533,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -552,12 +552,12 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": "bold",
               "lineHeight": "20px",
@@ -577,7 +577,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 4,
             "MsFlexPreferredSize": 4,
             "WebkitFlexBasis": 4,
@@ -603,7 +603,7 @@ exports[`wonder-blocks-dropdown example 3 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -627,7 +627,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -648,7 +648,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -672,7 +672,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -703,11 +703,11 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
-          ":focus": Object {
+          ":focus": {
             "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
@@ -733,7 +733,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -752,12 +752,12 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": "bold",
               "lineHeight": "20px",
@@ -777,7 +777,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 4,
             "MsFlexPreferredSize": 4,
             "WebkitFlexBasis": 4,
@@ -803,7 +803,7 @@ exports[`wonder-blocks-dropdown example 4 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -827,7 +827,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -848,7 +848,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -872,7 +872,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -904,11 +904,11 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
-          ":focus": Object {
+          ":focus": {
             "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
@@ -934,7 +934,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -953,12 +953,12 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": "bold",
               "lineHeight": "20px",
@@ -978,7 +978,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 4,
             "MsFlexPreferredSize": 4,
             "WebkitFlexBasis": 4,
@@ -1004,7 +1004,7 @@ exports[`wonder-blocks-dropdown example 5 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -1028,7 +1028,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1049,7 +1049,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1073,7 +1073,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -1104,11 +1104,11 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
-          ":focus": Object {
+          ":focus": {
             "WebkitTapHighlightColor": "rgba(0,0,0,0)",
           },
           "alignItems": "center",
@@ -1134,7 +1134,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -1153,12 +1153,12 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "alignItems": "center",
               "display": "inline-block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": "bold",
               "lineHeight": "20px",
@@ -1178,7 +1178,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 4,
             "MsFlexPreferredSize": 4,
             "WebkitFlexBasis": 4,
@@ -1204,7 +1204,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -1225,7 +1225,7 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 16,
         "MsFlexPreferredSize": 16,
         "WebkitFlexBasis": 16,
@@ -1265,11 +1265,11 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
     onTouchStart={[Function]}
     role="button"
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
-        ":focus": Object {
+        ":focus": {
           "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
@@ -1300,12 +1300,12 @@ exports[`wonder-blocks-dropdown example 6 1`] = `
     <span
       className=""
       style={
-        Object {
+        {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
           "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontFamily": "Lato, "Noto Sans", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
@@ -1328,7 +1328,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1352,7 +1352,7 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
     className=""
     data-test-id="dropdown-live-region"
     style={
-      Object {
+      {
         "border": 0,
         "clip": "rect(0,0,0,0)",
         "height": 1,
@@ -1382,11 +1382,11 @@ exports[`wonder-blocks-dropdown example 7 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 700,
         "lineHeight": "20px",
@@ -1403,7 +1403,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1424,7 +1424,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1449,7 +1449,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -1481,8 +1481,8 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -1512,11 +1512,11 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -1535,7 +1535,7 @@ exports[`wonder-blocks-dropdown example 8 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -1560,7 +1560,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1581,7 +1581,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1605,7 +1605,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -1636,8 +1636,8 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -1667,11 +1667,11 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -1690,7 +1690,7 @@ exports[`wonder-blocks-dropdown example 9 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -1715,7 +1715,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1736,7 +1736,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1760,7 +1760,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -1791,8 +1791,8 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -1823,11 +1823,11 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -1846,7 +1846,7 @@ exports[`wonder-blocks-dropdown example 10 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -1871,7 +1871,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1890,7 +1890,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "backgroundColor": "#0b2149",
         "borderStyle": "solid",
@@ -1917,7 +1917,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
       onKeyDown={[Function]}
       onKeyUp={[Function]}
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1941,7 +1941,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
         className=""
         data-test-id="dropdown-live-region"
         style={
-          Object {
+          {
             "border": 0,
             "clip": "rect(0,0,0,0)",
             "height": 1,
@@ -1972,8 +1972,8 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
         onTouchEnd={[Function]}
         onTouchStart={[Function]}
         style={
-          Object {
-            "::MozFocusInner": Object {
+          {
+            "::MozFocusInner": {
               "border": 0,
             },
             "alignItems": "center",
@@ -2003,11 +2003,11 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -2026,7 +2026,7 @@ exports[`wonder-blocks-dropdown example 11 1`] = `
           className=""
           height={16}
           style={
-            Object {
+            {
               "display": "inline-block",
               "flexGrow": 0,
               "flexShrink": 0,
@@ -2052,7 +2052,7 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -2073,7 +2073,7 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2097,7 +2097,7 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -2128,8 +2128,8 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -2160,11 +2160,11 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -2183,7 +2183,7 @@ exports[`wonder-blocks-dropdown example 12 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -2208,7 +2208,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -2229,11 +2229,11 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
     htmlFor="unique-single-select"
     id="label-for-single-select"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 700,
         "lineHeight": "20px",
@@ -2247,7 +2247,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2271,7 +2271,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -2304,8 +2304,8 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -2335,11 +2335,11 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -2358,7 +2358,7 @@ exports[`wonder-blocks-dropdown example 13 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -2383,7 +2383,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -2404,7 +2404,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2428,7 +2428,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -2459,8 +2459,8 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -2490,11 +2490,11 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -2513,7 +2513,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -2535,7 +2535,7 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 16,
         "MsFlexPreferredSize": 16,
         "WebkitFlexBasis": 16,
@@ -2575,11 +2575,11 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
     onTouchStart={[Function]}
     role="button"
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
-        ":focus": Object {
+        ":focus": {
           "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
@@ -2610,12 +2610,12 @@ exports[`wonder-blocks-dropdown example 14 1`] = `
     <span
       className=""
       style={
-        Object {
+        {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
           "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontFamily": "Lato, "Noto Sans", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
@@ -2638,7 +2638,7 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -2662,7 +2662,7 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
     className=""
     data-test-id="dropdown-live-region"
     style={
-      Object {
+      {
         "border": 0,
         "clip": "rect(0,0,0,0)",
         "height": 1,
@@ -2692,19 +2692,19 @@ exports[`wonder-blocks-dropdown example 15 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 24,
           "lineHeight": "28px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 28,
           "lineHeight": "32px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 700,
         "marginBottom": 0,
         "marginTop": 0,
@@ -2721,7 +2721,7 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -2742,7 +2742,7 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2766,7 +2766,7 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -2797,8 +2797,8 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -2828,11 +2828,11 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -2851,7 +2851,7 @@ exports[`wonder-blocks-dropdown example 16 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -2876,7 +2876,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -2897,7 +2897,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -2921,7 +2921,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -2953,8 +2953,8 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -2984,11 +2984,11 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -3007,7 +3007,7 @@ exports[`wonder-blocks-dropdown example 17 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -3032,7 +3032,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -3053,7 +3053,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -3077,7 +3077,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -3108,8 +3108,8 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -3139,11 +3139,11 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -3162,7 +3162,7 @@ exports[`wonder-blocks-dropdown example 18 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -3187,7 +3187,7 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -3208,7 +3208,7 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -3232,7 +3232,7 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -3263,8 +3263,8 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -3294,11 +3294,11 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -3317,7 +3317,7 @@ exports[`wonder-blocks-dropdown example 19 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -3342,7 +3342,7 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "center",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -3376,11 +3376,11 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
     onTouchStart={[Function]}
     role="button"
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
-        ":focus": Object {
+        ":focus": {
           "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
@@ -3411,12 +3411,12 @@ exports[`wonder-blocks-dropdown example 20 1`] = `
     <span
       className=""
       style={
-        Object {
+        {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
           "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontFamily": "Lato, "Noto Sans", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
@@ -3437,7 +3437,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -3458,7 +3458,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -3482,7 +3482,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -3513,8 +3513,8 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -3545,11 +3545,11 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -3568,7 +3568,7 @@ exports[`wonder-blocks-dropdown example 21 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -3593,7 +3593,7 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -3614,11 +3614,11 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
     htmlFor="unique-multi-select"
     id="label-for-multi-select"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 700,
         "lineHeight": "20px",
@@ -3632,7 +3632,7 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -3656,7 +3656,7 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -3689,8 +3689,8 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -3720,11 +3720,11 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -3743,7 +3743,7 @@ exports[`wonder-blocks-dropdown example 22 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -3768,7 +3768,7 @@ exports[`wonder-blocks-dropdown example 23 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -3789,7 +3789,7 @@ exports[`wonder-blocks-dropdown example 23 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -3813,7 +3813,7 @@ exports[`wonder-blocks-dropdown example 23 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -3844,8 +3844,8 @@ exports[`wonder-blocks-dropdown example 23 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -3875,11 +3875,11 @@ exports[`wonder-blocks-dropdown example 23 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -3898,7 +3898,7 @@ exports[`wonder-blocks-dropdown example 23 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -3923,7 +3923,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -3944,7 +3944,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -3968,7 +3968,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -3999,8 +3999,8 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -4030,11 +4030,11 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -4053,7 +4053,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -4075,7 +4075,7 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 16,
         "MsFlexPreferredSize": 16,
         "WebkitFlexBasis": 16,
@@ -4115,11 +4115,11 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
     onTouchStart={[Function]}
     role="button"
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
-        ":focus": Object {
+        ":focus": {
           "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
@@ -4150,12 +4150,12 @@ exports[`wonder-blocks-dropdown example 24 1`] = `
     <span
       className=""
       style={
-        Object {
+        {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "alignItems": "center",
           "display": "inline-block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontFamily": "Lato, "Noto Sans", sans-serif",
           "fontSize": 16,
           "fontWeight": "bold",
           "lineHeight": "20px",
@@ -4176,7 +4176,7 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -4197,7 +4197,7 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -4221,7 +4221,7 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -4252,8 +4252,8 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -4283,11 +4283,11 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -4306,7 +4306,7 @@ exports[`wonder-blocks-dropdown example 25 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -4333,7 +4333,7 @@ exports[`wonder-blocks-dropdown example 26 1`] = `
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -4357,7 +4357,7 @@ exports[`wonder-blocks-dropdown example 26 1`] = `
     className=""
     data-test-id="dropdown-live-region"
     style={
-      Object {
+      {
         "border": 0,
         "clip": "rect(0,0,0,0)",
         "height": 1,
@@ -4387,19 +4387,19 @@ exports[`wonder-blocks-dropdown example 26 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 24,
           "lineHeight": "28px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 28,
           "lineHeight": "32px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 700,
         "marginBottom": 0,
         "marginTop": 0,
@@ -4418,7 +4418,7 @@ exports[`wonder-blocks-dropdown example 27 1`] = `
   onKeyDown={[Function]}
   onKeyUp={[Function]}
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -4442,7 +4442,7 @@ exports[`wonder-blocks-dropdown example 27 1`] = `
     className=""
     data-test-id="dropdown-live-region"
     style={
-      Object {
+      {
         "border": 0,
         "clip": "rect(0,0,0,0)",
         "height": 1,
@@ -4473,8 +4473,8 @@ exports[`wonder-blocks-dropdown example 27 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
         "alignItems": "center",
@@ -4504,11 +4504,11 @@ exports[`wonder-blocks-dropdown example 27 1`] = `
     <span
       className=""
       style={
-        Object {
+        {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontFamily": "Lato, "Noto Sans", sans-serif",
           "fontSize": 16,
           "fontWeight": 400,
           "lineHeight": "20px",
@@ -4527,7 +4527,7 @@ exports[`wonder-blocks-dropdown example 27 1`] = `
       className=""
       height={16}
       style={
-        Object {
+        {
           "display": "inline-block",
           "flexGrow": 0,
           "flexShrink": 0,

@@ -4,7 +4,7 @@ exports[`wonder-blocks-form example 1 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -23,7 +23,7 @@ exports[`wonder-blocks-form example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -56,7 +56,7 @@ exports[`wonder-blocks-form example 1 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -81,7 +81,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         disabled={false}
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -105,7 +105,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -132,7 +132,7 @@ exports[`wonder-blocks-form example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -165,7 +165,7 @@ exports[`wonder-blocks-form example 1 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -190,7 +190,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         disabled={false}
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -213,7 +213,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -234,7 +234,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -261,7 +261,7 @@ exports[`wonder-blocks-form example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -294,7 +294,7 @@ exports[`wonder-blocks-form example 1 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -319,7 +319,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         disabled={false}
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -343,7 +343,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -370,7 +370,7 @@ exports[`wonder-blocks-form example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -403,7 +403,7 @@ exports[`wonder-blocks-form example 1 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -428,7 +428,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         disabled={false}
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -451,7 +451,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -472,7 +472,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -499,7 +499,7 @@ exports[`wonder-blocks-form example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -532,7 +532,7 @@ exports[`wonder-blocks-form example 1 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -557,7 +557,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         disabled={true}
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -582,7 +582,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -609,7 +609,7 @@ exports[`wonder-blocks-form example 1 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -642,7 +642,7 @@ exports[`wonder-blocks-form example 1 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -667,7 +667,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         disabled={true}
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -692,7 +692,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -713,7 +713,7 @@ exports[`wonder-blocks-form example 1 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -744,7 +744,7 @@ exports[`wonder-blocks-form example 2 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -763,7 +763,7 @@ exports[`wonder-blocks-form example 2 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -795,7 +795,7 @@ exports[`wonder-blocks-form example 2 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -823,7 +823,7 @@ exports[`wonder-blocks-form example 2 1`] = `
         id="assignment"
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -847,7 +847,7 @@ exports[`wonder-blocks-form example 2 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -872,11 +872,11 @@ exports[`wonder-blocks-form example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -897,12 +897,12 @@ exports[`wonder-blocks-form example 2 1`] = `
       className=""
       id="uid-choice-6-description"
       style={
-        Object {
+        {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "color": "rgba(33,36,44,0.64)",
           "display": "block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontFamily": "Lato, "Noto Sans", sans-serif",
           "fontSize": 14,
           "fontWeight": 400,
           "lineHeight": "18px",
@@ -921,7 +921,7 @@ exports[`wonder-blocks-form example 3 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "center",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -941,7 +941,7 @@ exports[`wonder-blocks-form example 3 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -964,11 +964,11 @@ exports[`wonder-blocks-form example 3 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -981,11 +981,11 @@ exports[`wonder-blocks-form example 3 1`] = `
     <span
       className=""
       style={
-        Object {
+        {
           "MozOsxFontSmoothing": "grayscale",
           "WebkitFontSmoothing": "antialiased",
           "display": "block",
-          "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+          "fontFamily": "Lato, "Noto Sans", sans-serif",
           "fontSize": 14,
           "fontWeight": 400,
           "lineHeight": "18px",
@@ -1001,7 +1001,7 @@ exports[`wonder-blocks-form example 3 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1033,7 +1033,7 @@ exports[`wonder-blocks-form example 3 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1059,7 +1059,7 @@ exports[`wonder-blocks-form example 3 1`] = `
         id="topic-123"
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -1083,7 +1083,7 @@ exports[`wonder-blocks-form example 3 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -1114,7 +1114,7 @@ exports[`wonder-blocks-form example 4 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1133,7 +1133,7 @@ exports[`wonder-blocks-form example 4 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1166,7 +1166,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1191,7 +1191,7 @@ exports[`wonder-blocks-form example 4 1`] = `
         disabled={false}
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -1215,7 +1215,7 @@ exports[`wonder-blocks-form example 4 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -1242,7 +1242,7 @@ exports[`wonder-blocks-form example 4 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1275,7 +1275,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1300,7 +1300,7 @@ exports[`wonder-blocks-form example 4 1`] = `
         disabled={false}
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -1324,7 +1324,7 @@ exports[`wonder-blocks-form example 4 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -1351,7 +1351,7 @@ exports[`wonder-blocks-form example 4 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1384,7 +1384,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1409,7 +1409,7 @@ exports[`wonder-blocks-form example 4 1`] = `
         disabled={false}
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -1433,7 +1433,7 @@ exports[`wonder-blocks-form example 4 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -1460,7 +1460,7 @@ exports[`wonder-blocks-form example 4 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1493,7 +1493,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1518,7 +1518,7 @@ exports[`wonder-blocks-form example 4 1`] = `
         disabled={false}
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -1542,7 +1542,7 @@ exports[`wonder-blocks-form example 4 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -1569,7 +1569,7 @@ exports[`wonder-blocks-form example 4 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1602,7 +1602,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1627,7 +1627,7 @@ exports[`wonder-blocks-form example 4 1`] = `
         disabled={true}
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -1652,7 +1652,7 @@ exports[`wonder-blocks-form example 4 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -1679,7 +1679,7 @@ exports[`wonder-blocks-form example 4 1`] = `
   <div
     className=""
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1712,7 +1712,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
+        {
           "alignItems": "flex-start",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1737,7 +1737,7 @@ exports[`wonder-blocks-form example 4 1`] = `
         disabled={true}
         onChange={[Function]}
         style={
-          Object {
+          {
             "MozAppearance": "none",
             "WebkitAppearance": "none",
             "appearance": "none",
@@ -1760,7 +1760,7 @@ exports[`wonder-blocks-form example 4 1`] = `
       />
       <span
         style={
-          Object {
+          {
             "backgroundColor": "rgba(33,36,44,0.32)",
             "borderRadius": "50%",
             "height": 8,
@@ -1775,7 +1775,7 @@ exports[`wonder-blocks-form example 4 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 8,
             "MsFlexPreferredSize": 8,
             "WebkitFlexBasis": 8,
@@ -1806,7 +1806,7 @@ exports[`wonder-blocks-form example 5 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1826,7 +1826,7 @@ exports[`wonder-blocks-form example 5 1`] = `
   <fieldset
     className=""
     style={
-      Object {
+      {
         "border": "none",
         "margin": 0,
         "padding": 0,
@@ -1836,7 +1836,7 @@ exports[`wonder-blocks-form example 5 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -1855,7 +1855,7 @@ exports[`wonder-blocks-form example 5 1`] = `
       <legend
         className=""
         style={
-          Object {
+          {
             "padding": 0,
           }
         }
@@ -1863,11 +1863,11 @@ exports[`wonder-blocks-form example 5 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -1880,12 +1880,12 @@ exports[`wonder-blocks-form example 5 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "color": "rgba(33,36,44,0.64)",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 14,
             "fontWeight": 400,
             "lineHeight": "18px",
@@ -1899,7 +1899,7 @@ exports[`wonder-blocks-form example 5 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 12,
             "MsFlexPreferredSize": 12,
             "WebkitFlexBasis": 12,
@@ -1924,7 +1924,7 @@ exports[`wonder-blocks-form example 5 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -1956,7 +1956,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -1983,7 +1983,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             name="Toppings"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -2007,7 +2007,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -2032,11 +2032,11 @@ exports[`wonder-blocks-form example 5 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -2057,7 +2057,7 @@ exports[`wonder-blocks-form example 5 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -2090,7 +2090,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -2118,7 +2118,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             name="Toppings"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -2142,7 +2142,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -2167,11 +2167,11 @@ exports[`wonder-blocks-form example 5 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -2192,12 +2192,12 @@ exports[`wonder-blocks-form example 5 1`] = `
           className=""
           id="uid-choice-15-description"
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "color": "rgba(33,36,44,0.64)",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 14,
               "fontWeight": 400,
               "lineHeight": "18px",
@@ -2212,7 +2212,7 @@ exports[`wonder-blocks-form example 5 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -2245,7 +2245,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -2272,7 +2272,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             name="Toppings"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -2296,7 +2296,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -2321,11 +2321,11 @@ exports[`wonder-blocks-form example 5 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -2346,7 +2346,7 @@ exports[`wonder-blocks-form example 5 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -2379,7 +2379,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -2406,7 +2406,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             name="Toppings"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -2430,7 +2430,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -2455,11 +2455,11 @@ exports[`wonder-blocks-form example 5 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -2480,7 +2480,7 @@ exports[`wonder-blocks-form example 5 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -2513,7 +2513,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -2540,7 +2540,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             name="Toppings"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -2564,7 +2564,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -2589,11 +2589,11 @@ exports[`wonder-blocks-form example 5 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -2614,7 +2614,7 @@ exports[`wonder-blocks-form example 5 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -2647,7 +2647,7 @@ exports[`wonder-blocks-form example 5 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -2675,7 +2675,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             name="Toppings"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -2698,7 +2698,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             className=""
             height={16}
             style={
-              Object {
+              {
                 "display": "inline-block",
                 "flexGrow": 0,
                 "flexShrink": 0,
@@ -2719,7 +2719,7 @@ exports[`wonder-blocks-form example 5 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -2744,11 +2744,11 @@ exports[`wonder-blocks-form example 5 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -2769,12 +2769,12 @@ exports[`wonder-blocks-form example 5 1`] = `
           className=""
           id="uid-choice-19-description"
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "color": "rgba(33,36,44,0.64)",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 14,
               "fontWeight": 400,
               "lineHeight": "18px",
@@ -2795,7 +2795,7 @@ exports[`wonder-blocks-form example 6 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -2815,12 +2815,12 @@ exports[`wonder-blocks-form example 6 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "borderBottom": "1px solid rgba(33,36,44,0.64)",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 700,
         "lineHeight": "20px",
@@ -2833,7 +2833,7 @@ exports[`wonder-blocks-form example 6 1`] = `
   <fieldset
     className=""
     style={
-      Object {
+      {
         "border": "none",
         "margin": 0,
         "padding": 0,
@@ -2843,7 +2843,7 @@ exports[`wonder-blocks-form example 6 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -2863,7 +2863,7 @@ exports[`wonder-blocks-form example 6 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -2897,7 +2897,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -2924,7 +2924,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -2948,7 +2948,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -2973,11 +2973,11 @@ exports[`wonder-blocks-form example 6 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -2998,7 +2998,7 @@ exports[`wonder-blocks-form example 6 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -3032,7 +3032,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -3059,7 +3059,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -3083,7 +3083,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -3108,11 +3108,11 @@ exports[`wonder-blocks-form example 6 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -3133,7 +3133,7 @@ exports[`wonder-blocks-form example 6 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -3167,7 +3167,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -3194,7 +3194,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -3218,7 +3218,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -3243,11 +3243,11 @@ exports[`wonder-blocks-form example 6 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -3268,7 +3268,7 @@ exports[`wonder-blocks-form example 6 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -3302,7 +3302,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -3329,7 +3329,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -3353,7 +3353,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -3378,11 +3378,11 @@ exports[`wonder-blocks-form example 6 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -3403,7 +3403,7 @@ exports[`wonder-blocks-form example 6 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -3437,7 +3437,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -3464,7 +3464,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -3488,7 +3488,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -3513,11 +3513,11 @@ exports[`wonder-blocks-form example 6 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -3538,7 +3538,7 @@ exports[`wonder-blocks-form example 6 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -3572,7 +3572,7 @@ exports[`wonder-blocks-form example 6 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -3599,7 +3599,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -3623,7 +3623,7 @@ exports[`wonder-blocks-form example 6 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -3648,11 +3648,11 @@ exports[`wonder-blocks-form example 6 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -3679,7 +3679,7 @@ exports[`wonder-blocks-form example 7 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -3698,7 +3698,7 @@ exports[`wonder-blocks-form example 7 1`] = `
   <fieldset
     className=""
     style={
-      Object {
+      {
         "border": "none",
         "margin": 0,
         "padding": 0,
@@ -3708,7 +3708,7 @@ exports[`wonder-blocks-form example 7 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -3727,11 +3727,11 @@ exports[`wonder-blocks-form example 7 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 700,
             "lineHeight": "20px",
@@ -3743,12 +3743,12 @@ exports[`wonder-blocks-form example 7 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "color": "rgba(33,36,44,0.64)",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 12,
             "fontWeight": 400,
             "lineHeight": "16px",
@@ -3762,7 +3762,7 @@ exports[`wonder-blocks-form example 7 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 12,
             "MsFlexPreferredSize": 12,
             "WebkitFlexBasis": 12,
@@ -3787,8 +3787,8 @@ exports[`wonder-blocks-form example 7 1`] = `
       <div
         className=""
         style={
-          Object {
-            ":lastChild": Object {
+          {
+            ":lastChild": {
               "borderBottom": "solid 1px #CCC",
             },
             "alignItems": "stretch",
@@ -3825,7 +3825,7 @@ exports[`wonder-blocks-form example 7 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -3852,7 +3852,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -3876,7 +3876,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -3901,11 +3901,11 @@ exports[`wonder-blocks-form example 7 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -3926,8 +3926,8 @@ exports[`wonder-blocks-form example 7 1`] = `
       <div
         className=""
         style={
-          Object {
-            ":lastChild": Object {
+          {
+            ":lastChild": {
               "borderBottom": "solid 1px #CCC",
             },
             "alignItems": "stretch",
@@ -3965,7 +3965,7 @@ exports[`wonder-blocks-form example 7 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -3992,7 +3992,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -4016,7 +4016,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -4041,11 +4041,11 @@ exports[`wonder-blocks-form example 7 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -4066,8 +4066,8 @@ exports[`wonder-blocks-form example 7 1`] = `
       <div
         className=""
         style={
-          Object {
-            ":lastChild": Object {
+          {
+            ":lastChild": {
               "borderBottom": "solid 1px #CCC",
             },
             "alignItems": "stretch",
@@ -4105,7 +4105,7 @@ exports[`wonder-blocks-form example 7 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -4132,7 +4132,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -4156,7 +4156,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -4181,11 +4181,11 @@ exports[`wonder-blocks-form example 7 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -4206,8 +4206,8 @@ exports[`wonder-blocks-form example 7 1`] = `
       <div
         className=""
         style={
-          Object {
-            ":lastChild": Object {
+          {
+            ":lastChild": {
               "borderBottom": "solid 1px #CCC",
             },
             "alignItems": "stretch",
@@ -4245,7 +4245,7 @@ exports[`wonder-blocks-form example 7 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -4272,7 +4272,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -4296,7 +4296,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -4321,11 +4321,11 @@ exports[`wonder-blocks-form example 7 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -4346,8 +4346,8 @@ exports[`wonder-blocks-form example 7 1`] = `
       <div
         className=""
         style={
-          Object {
-            ":lastChild": Object {
+          {
+            ":lastChild": {
               "borderBottom": "solid 1px #CCC",
             },
             "alignItems": "stretch",
@@ -4385,7 +4385,7 @@ exports[`wonder-blocks-form example 7 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -4412,7 +4412,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -4436,7 +4436,7 @@ exports[`wonder-blocks-form example 7 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -4461,11 +4461,11 @@ exports[`wonder-blocks-form example 7 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -4492,7 +4492,7 @@ exports[`wonder-blocks-form example 8 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -4512,7 +4512,7 @@ exports[`wonder-blocks-form example 8 1`] = `
   <fieldset
     className=""
     style={
-      Object {
+      {
         "border": "none",
         "margin": 0,
         "padding": 0,
@@ -4522,7 +4522,7 @@ exports[`wonder-blocks-form example 8 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -4541,7 +4541,7 @@ exports[`wonder-blocks-form example 8 1`] = `
       <legend
         className=""
         style={
-          Object {
+          {
             "padding": 0,
           }
         }
@@ -4549,11 +4549,11 @@ exports[`wonder-blocks-form example 8 1`] = `
         <span
           className=""
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 16,
               "fontWeight": 400,
               "lineHeight": "20px",
@@ -4566,12 +4566,12 @@ exports[`wonder-blocks-form example 8 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "color": "rgba(33,36,44,0.64)",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 14,
             "fontWeight": 400,
             "lineHeight": "18px",
@@ -4585,7 +4585,7 @@ exports[`wonder-blocks-form example 8 1`] = `
         aria-hidden="true"
         className=""
         style={
-          Object {
+          {
             "MsFlexBasis": 12,
             "MsFlexPreferredSize": 12,
             "WebkitFlexBasis": 12,
@@ -4610,7 +4610,7 @@ exports[`wonder-blocks-form example 8 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -4642,7 +4642,7 @@ exports[`wonder-blocks-form example 8 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -4669,7 +4669,7 @@ exports[`wonder-blocks-form example 8 1`] = `
             name="Pokemon"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -4693,7 +4693,7 @@ exports[`wonder-blocks-form example 8 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -4718,11 +4718,11 @@ exports[`wonder-blocks-form example 8 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -4743,7 +4743,7 @@ exports[`wonder-blocks-form example 8 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -4776,7 +4776,7 @@ exports[`wonder-blocks-form example 8 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -4804,7 +4804,7 @@ exports[`wonder-blocks-form example 8 1`] = `
             name="Pokemon"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -4829,7 +4829,7 @@ exports[`wonder-blocks-form example 8 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -4854,12 +4854,12 @@ exports[`wonder-blocks-form example 8 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "color": "rgba(33,36,44,0.32)",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -4880,12 +4880,12 @@ exports[`wonder-blocks-form example 8 1`] = `
           className=""
           id="uid-choice-32-description"
           style={
-            Object {
+            {
               "MozOsxFontSmoothing": "grayscale",
               "WebkitFontSmoothing": "antialiased",
               "color": "rgba(33,36,44,0.64)",
               "display": "block",
-              "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+              "fontFamily": "Lato, "Noto Sans", sans-serif",
               "fontSize": 14,
               "fontWeight": 400,
               "lineHeight": "18px",
@@ -4900,7 +4900,7 @@ exports[`wonder-blocks-form example 8 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -4933,7 +4933,7 @@ exports[`wonder-blocks-form example 8 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -4960,7 +4960,7 @@ exports[`wonder-blocks-form example 8 1`] = `
             name="Pokemon"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -4984,7 +4984,7 @@ exports[`wonder-blocks-form example 8 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -5009,11 +5009,11 @@ exports[`wonder-blocks-form example 8 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -5034,7 +5034,7 @@ exports[`wonder-blocks-form example 8 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -5067,7 +5067,7 @@ exports[`wonder-blocks-form example 8 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -5094,7 +5094,7 @@ exports[`wonder-blocks-form example 8 1`] = `
             name="Pokemon"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -5118,7 +5118,7 @@ exports[`wonder-blocks-form example 8 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -5143,11 +5143,11 @@ exports[`wonder-blocks-form example 8 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -5168,7 +5168,7 @@ exports[`wonder-blocks-form example 8 1`] = `
       <div
         className=""
         style={
-          Object {
+          {
             "alignItems": "stretch",
             "borderStyle": "solid",
             "borderWidth": 0,
@@ -5201,7 +5201,7 @@ exports[`wonder-blocks-form example 8 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -5228,7 +5228,7 @@ exports[`wonder-blocks-form example 8 1`] = `
             name="Pokemon"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -5252,7 +5252,7 @@ exports[`wonder-blocks-form example 8 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -5277,11 +5277,11 @@ exports[`wonder-blocks-form example 8 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -5308,7 +5308,7 @@ exports[`wonder-blocks-form example 9 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -5327,11 +5327,11 @@ exports[`wonder-blocks-form example 9 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 700,
         "lineHeight": "20px",
@@ -5344,7 +5344,7 @@ exports[`wonder-blocks-form example 9 1`] = `
   <fieldset
     className=""
     style={
-      Object {
+      {
         "border": "none",
         "margin": 0,
         "padding": 0,
@@ -5354,7 +5354,7 @@ exports[`wonder-blocks-form example 9 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -5373,8 +5373,8 @@ exports[`wonder-blocks-form example 9 1`] = `
       <div
         className=""
         style={
-          Object {
-            ":lastChild": Object {
+          {
+            ":lastChild": {
               "borderBottom": "solid 1px #CCC",
             },
             "alignItems": "stretch",
@@ -5411,7 +5411,7 @@ exports[`wonder-blocks-form example 9 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -5438,7 +5438,7 @@ exports[`wonder-blocks-form example 9 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -5462,7 +5462,7 @@ exports[`wonder-blocks-form example 9 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -5487,11 +5487,11 @@ exports[`wonder-blocks-form example 9 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -5512,8 +5512,8 @@ exports[`wonder-blocks-form example 9 1`] = `
       <div
         className=""
         style={
-          Object {
-            ":lastChild": Object {
+          {
+            ":lastChild": {
               "borderBottom": "solid 1px #CCC",
             },
             "alignItems": "stretch",
@@ -5551,7 +5551,7 @@ exports[`wonder-blocks-form example 9 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -5578,7 +5578,7 @@ exports[`wonder-blocks-form example 9 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -5602,7 +5602,7 @@ exports[`wonder-blocks-form example 9 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -5627,11 +5627,11 @@ exports[`wonder-blocks-form example 9 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -5652,8 +5652,8 @@ exports[`wonder-blocks-form example 9 1`] = `
       <div
         className=""
         style={
-          Object {
-            ":lastChild": Object {
+          {
+            ":lastChild": {
               "borderBottom": "solid 1px #CCC",
             },
             "alignItems": "stretch",
@@ -5691,7 +5691,7 @@ exports[`wonder-blocks-form example 9 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -5718,7 +5718,7 @@ exports[`wonder-blocks-form example 9 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -5742,7 +5742,7 @@ exports[`wonder-blocks-form example 9 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -5767,11 +5767,11 @@ exports[`wonder-blocks-form example 9 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -5792,8 +5792,8 @@ exports[`wonder-blocks-form example 9 1`] = `
       <div
         className=""
         style={
-          Object {
-            ":lastChild": Object {
+          {
+            ":lastChild": {
               "borderBottom": "solid 1px #CCC",
             },
             "alignItems": "stretch",
@@ -5831,7 +5831,7 @@ exports[`wonder-blocks-form example 9 1`] = `
           onTouchEnd={[Function]}
           onTouchStart={[Function]}
           style={
-            Object {
+            {
               "alignItems": "flex-start",
               "borderStyle": "solid",
               "borderWidth": 0,
@@ -5858,7 +5858,7 @@ exports[`wonder-blocks-form example 9 1`] = `
             name="science-classes"
             onChange={[Function]}
             style={
-              Object {
+              {
                 "MozAppearance": "none",
                 "WebkitAppearance": "none",
                 "appearance": "none",
@@ -5882,7 +5882,7 @@ exports[`wonder-blocks-form example 9 1`] = `
             aria-hidden="true"
             className=""
             style={
-              Object {
+              {
                 "MsFlexBasis": 8,
                 "MsFlexPreferredSize": 8,
                 "WebkitFlexBasis": 8,
@@ -5907,11 +5907,11 @@ exports[`wonder-blocks-form example 9 1`] = `
           <span
             className=""
             style={
-              Object {
+              {
                 "MozOsxFontSmoothing": "grayscale",
                 "WebkitFontSmoothing": "antialiased",
                 "display": "block",
-                "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+                "fontFamily": "Lato, "Noto Sans", sans-serif",
                 "fontSize": 16,
                 "fontWeight": 400,
                 "lineHeight": "20px",
@@ -5938,7 +5938,7 @@ exports[`wonder-blocks-form example 10 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -5957,12 +5957,12 @@ exports[`wonder-blocks-form example 10 1`] = `
   <label
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "color": "#21242c",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -5975,7 +5975,7 @@ exports[`wonder-blocks-form example 10 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 4,
         "MsFlexPreferredSize": 4,
         "WebkitFlexBasis": 4,
@@ -6000,12 +6000,12 @@ exports[`wonder-blocks-form example 10 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "color": "rgba(33,36,44,0.64)",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -6018,7 +6018,7 @@ exports[`wonder-blocks-form example 10 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 4,
         "MsFlexPreferredSize": 4,
         "WebkitFlexBasis": 4,
@@ -6044,7 +6044,7 @@ exports[`wonder-blocks-form example 10 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 8,
         "MsFlexPreferredSize": 8,
         "WebkitFlexBasis": 8,
@@ -6082,7 +6082,7 @@ exports[`wonder-blocks-form example 10 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 12,
         "MsFlexPreferredSize": 12,
         "WebkitFlexBasis": 12,
@@ -6108,12 +6108,12 @@ exports[`wonder-blocks-form example 10 1`] = `
     className=""
     role="alert"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "color": "#d92916",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "18px",

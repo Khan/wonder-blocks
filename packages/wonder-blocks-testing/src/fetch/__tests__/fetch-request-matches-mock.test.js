@@ -20,7 +20,7 @@ describe("#fetchRequestMatchesMock", () => {
 
         // Assert
         expect(underTest).toThrowErrorMatchingInlineSnapshot(
-            `"Unsupported mock operation: {\\"operation\\":{\\"id\\":\\"foo\\",\\"type\\":\\"query\\"}}"`,
+            `"Unsupported mock operation: {"operation":{"id":"foo","type":"query"}}"`,
         );
     });
 

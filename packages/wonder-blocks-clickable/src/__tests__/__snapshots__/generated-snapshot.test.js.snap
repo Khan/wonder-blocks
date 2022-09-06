@@ -4,7 +4,7 @@ exports[`wonder-blocks-clickable example 1 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -39,8 +39,8 @@ exports[`wonder-blocks-clickable example 1 1`] = `
     onTouchStart={[Function]}
     role="tab"
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
         "MozOsxFontSmoothing": "inherit",
@@ -68,7 +68,7 @@ exports[`wonder-blocks-clickable example 1 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -87,11 +87,11 @@ exports[`wonder-blocks-clickable example 1 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -109,7 +109,7 @@ exports[`wonder-blocks-clickable example 2 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "backgroundColor": "#0b2149",
       "borderStyle": "solid",
@@ -146,8 +146,8 @@ exports[`wonder-blocks-clickable example 2 1`] = `
     onTouchStart={[Function]}
     role="tab"
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
         "MozOsxFontSmoothing": "inherit",
@@ -175,7 +175,7 @@ exports[`wonder-blocks-clickable example 2 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -194,11 +194,11 @@ exports[`wonder-blocks-clickable example 2 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",
@@ -216,7 +216,7 @@ exports[`wonder-blocks-clickable example 3 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "center",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -250,7 +250,7 @@ exports[`wonder-blocks-clickable example 3 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "inherit",
         "WebkitFontSmoothing": "inherit",
         "background": "transparent",
@@ -295,7 +295,7 @@ exports[`wonder-blocks-clickable example 3 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "inherit",
         "WebkitFontSmoothing": "inherit",
         "background": "transparent",
@@ -329,7 +329,7 @@ exports[`wonder-blocks-clickable example 4 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -363,7 +363,7 @@ exports[`wonder-blocks-clickable example 4 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "inherit",
         "WebkitFontSmoothing": "inherit",
         "background": "transparent",
@@ -388,7 +388,7 @@ exports[`wonder-blocks-clickable example 4 1`] = `
     <div
       className=""
       style={
-        Object {
+        {
           "alignItems": "stretch",
           "borderStyle": "solid",
           "borderWidth": 0,
@@ -407,11 +407,11 @@ exports[`wonder-blocks-clickable example 4 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "22px",

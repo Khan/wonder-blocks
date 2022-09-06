@@ -4,7 +4,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -24,19 +24,19 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-Title"
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 28,
           "lineHeight": "32px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 36,
           "lineHeight": "40px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 900,
         "marginBottom": 0,
         "marginTop": 0,
@@ -49,19 +49,19 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-HeadingLarge"
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 24,
           "lineHeight": "28px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 28,
           "lineHeight": "32px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 700,
         "marginBottom": 0,
         "marginTop": 0,
@@ -74,19 +74,19 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-HeadingMedium"
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 22,
           "lineHeight": "26px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 24,
           "lineHeight": "28px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 700,
         "marginBottom": 0,
         "marginTop": 0,
@@ -99,11 +99,11 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-HeadingSmall"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 20,
         "fontWeight": 700,
         "lineHeight": "24px",
@@ -118,11 +118,11 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-HeadingXSmall"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 12,
         "fontWeight": 700,
         "letterSpacing": 0.6,
@@ -139,11 +139,11 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-BodySerifBlock"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontFamily": ""Noto Serif", serif",
         "fontSize": 22,
         "fontWeight": 400,
         "lineHeight": "28px",
@@ -156,11 +156,11 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-BodySerif"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontFamily": ""Noto Serif", serif",
         "fontSize": 18,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -173,7 +173,7 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-BodyMonospace"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
@@ -190,11 +190,11 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-Body"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -207,11 +207,11 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-LabelLarge"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 700,
         "lineHeight": "20px",
@@ -224,11 +224,11 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-LabelMedium"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -241,11 +241,11 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-LabelSmall"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -258,11 +258,11 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-LabelXSmall"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 12,
         "fontWeight": 400,
         "lineHeight": "16px",
@@ -275,11 +275,11 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-Tagline"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 20,
         "fontWeight": 400,
         "lineHeight": "24px",
@@ -292,11 +292,11 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-Caption"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -309,11 +309,11 @@ exports[`wonder-blocks-typography example 1 1`] = `
     className=""
     id="example-Footnote"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 12,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -329,12 +329,12 @@ exports[`wonder-blocks-typography example 2 1`] = `
 <h1
   className=""
   style={
-    Object {
-      "@media (maxWidth: 1023px)": Object {
+    {
+      "@media (maxWidth: 1023px)": {
         "fontSize": 28,
         "lineHeight": "32px",
       },
-      "@media (minWidth: 1024px)": Object {
+      "@media (minWidth: 1024px)": {
         "fontSize": 36,
         "lineHeight": "40px",
       },
@@ -342,7 +342,7 @@ exports[`wonder-blocks-typography example 2 1`] = `
       "WebkitFontSmoothing": "antialiased",
       "color": "#1865f2",
       "display": "block",
-      "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+      "fontFamily": "Lato, "Noto Sans", sans-serif",
       "fontWeight": 900,
       "marginBottom": 0,
       "marginTop": 0,
@@ -358,19 +358,19 @@ exports[`wonder-blocks-typography example 3 1`] = `
   aria-label="Accessible Title"
   className=""
   style={
-    Object {
-      "@media (maxWidth: 1023px)": Object {
+    {
+      "@media (maxWidth: 1023px)": {
         "fontSize": 28,
         "lineHeight": "32px",
       },
-      "@media (minWidth: 1024px)": Object {
+      "@media (minWidth: 1024px)": {
         "fontSize": 36,
         "lineHeight": "40px",
       },
       "MozOsxFontSmoothing": "grayscale",
       "WebkitFontSmoothing": "antialiased",
       "display": "block",
-      "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+      "fontFamily": "Lato, "Noto Sans", sans-serif",
       "fontWeight": 900,
       "marginBottom": 0,
       "marginTop": 0,
@@ -385,7 +385,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -404,19 +404,19 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <h1
     className=""
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 28,
           "lineHeight": "32px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 36,
           "lineHeight": "40px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 900,
         "marginBottom": 0,
         "marginTop": 0,
@@ -428,19 +428,19 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <h2
     className=""
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 24,
           "lineHeight": "28px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 28,
           "lineHeight": "32px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 700,
         "marginBottom": 0,
         "marginTop": 0,
@@ -452,19 +452,19 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <h3
     className=""
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 22,
           "lineHeight": "26px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 24,
           "lineHeight": "28px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 700,
         "marginBottom": 0,
         "marginTop": 0,
@@ -476,11 +476,11 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <h4
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 20,
         "fontWeight": 700,
         "lineHeight": "24px",
@@ -494,11 +494,11 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <h4
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 12,
         "fontWeight": 700,
         "letterSpacing": 0.6,
@@ -514,11 +514,11 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontFamily": ""Noto Serif", serif",
         "fontSize": 22,
         "fontWeight": 400,
         "lineHeight": "28px",
@@ -530,11 +530,11 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontFamily": ""Noto Serif", serif",
         "fontSize": 18,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -546,7 +546,7 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
@@ -562,11 +562,11 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -578,11 +578,11 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 700,
         "lineHeight": "20px",
@@ -594,11 +594,11 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -610,11 +610,11 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -626,11 +626,11 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 12,
         "fontWeight": 400,
         "lineHeight": "16px",
@@ -642,11 +642,11 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 20,
         "fontWeight": 400,
         "lineHeight": "24px",
@@ -658,11 +658,11 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -674,11 +674,11 @@ exports[`wonder-blocks-typography example 4 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 12,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -694,7 +694,7 @@ exports[`wonder-blocks-typography example 5 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -713,19 +713,19 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <h1
     className=""
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 28,
           "lineHeight": "32px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 36,
           "lineHeight": "40px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 900,
         "marginBottom": 0,
         "marginTop": 0,
@@ -737,19 +737,19 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <h2
     className=""
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 24,
           "lineHeight": "28px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 28,
           "lineHeight": "32px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 700,
         "marginBottom": 0,
         "marginTop": 0,
@@ -761,19 +761,19 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <h3
     className=""
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 22,
           "lineHeight": "26px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 24,
           "lineHeight": "28px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 700,
         "marginBottom": 0,
         "marginTop": 0,
@@ -785,11 +785,11 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <h4
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 20,
         "fontWeight": 700,
         "lineHeight": "24px",
@@ -803,11 +803,11 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <h4
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 12,
         "fontWeight": 700,
         "letterSpacing": 0.6,
@@ -823,11 +823,11 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontFamily": ""Noto Serif", serif",
         "fontSize": 22,
         "fontWeight": 400,
         "lineHeight": "28px",
@@ -839,11 +839,11 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontFamily": ""Noto Serif", serif",
         "fontSize": 18,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -855,7 +855,7 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
@@ -871,11 +871,11 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -887,11 +887,11 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 700,
         "lineHeight": "20px",
@@ -903,11 +903,11 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -919,11 +919,11 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -935,11 +935,11 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 12,
         "fontWeight": 400,
         "lineHeight": "16px",
@@ -951,11 +951,11 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 20,
         "fontWeight": 400,
         "lineHeight": "24px",
@@ -967,11 +967,11 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -983,11 +983,11 @@ exports[`wonder-blocks-typography example 5 1`] = `
   <span
     className=""
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 12,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -1003,7 +1003,7 @@ exports[`wonder-blocks-typography example 6 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -1024,7 +1024,7 @@ exports[`wonder-blocks-typography example 6 1`] = `
     onKeyDown={[Function]}
     onKeyUp={[Function]}
     style={
-      Object {
+      {
         "alignItems": "stretch",
         "borderStyle": "solid",
         "borderWidth": 0,
@@ -1048,7 +1048,7 @@ exports[`wonder-blocks-typography example 6 1`] = `
       className=""
       data-test-id="dropdown-live-region"
       style={
-        Object {
+        {
           "border": 0,
           "clip": "rect(0,0,0,0)",
           "height": 1,
@@ -1081,8 +1081,8 @@ exports[`wonder-blocks-typography example 6 1`] = `
       onTouchEnd={[Function]}
       onTouchStart={[Function]}
       style={
-        Object {
-          "::MozFocusInner": Object {
+        {
+          "::MozFocusInner": {
             "border": 0,
           },
           "alignItems": "center",
@@ -1112,11 +1112,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
       <span
         className=""
         style={
-          Object {
+          {
             "MozOsxFontSmoothing": "grayscale",
             "WebkitFontSmoothing": "antialiased",
             "display": "block",
-            "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+            "fontFamily": "Lato, "Noto Sans", sans-serif",
             "fontSize": 16,
             "fontWeight": 400,
             "lineHeight": "20px",
@@ -1135,7 +1135,7 @@ exports[`wonder-blocks-typography example 6 1`] = `
         className=""
         height={16}
         style={
-          Object {
+          {
             "display": "inline-block",
             "flexGrow": 0,
             "flexShrink": 0,
@@ -1157,19 +1157,19 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 28,
           "lineHeight": "32px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 36,
           "lineHeight": "40px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 900,
         "marginBottom": 0,
         "marginTop": 0,
@@ -1182,19 +1182,19 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 24,
           "lineHeight": "28px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 28,
           "lineHeight": "32px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 700,
         "marginBottom": 0,
         "marginTop": 0,
@@ -1207,19 +1207,19 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
-        "@media (maxWidth: 1023px)": Object {
+      {
+        "@media (maxWidth: 1023px)": {
           "fontSize": 22,
           "lineHeight": "26px",
         },
-        "@media (minWidth: 1024px)": Object {
+        "@media (minWidth: 1024px)": {
           "fontSize": 24,
           "lineHeight": "28px",
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontWeight": 700,
         "marginBottom": 0,
         "marginTop": 0,
@@ -1232,11 +1232,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 20,
         "fontWeight": 700,
         "lineHeight": "24px",
@@ -1251,11 +1251,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 12,
         "fontWeight": 700,
         "letterSpacing": 0.6,
@@ -1272,11 +1272,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontFamily": ""Noto Serif", serif",
         "fontSize": 22,
         "fontWeight": 400,
         "lineHeight": "28px",
@@ -1289,11 +1289,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "\\"Noto Serif\\", serif",
+        "fontFamily": ""Noto Serif", serif",
         "fontSize": 18,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -1306,7 +1306,7 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
@@ -1323,11 +1323,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "22px",
@@ -1340,11 +1340,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 700,
         "lineHeight": "20px",
@@ -1357,11 +1357,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 16,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -1374,11 +1374,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -1391,11 +1391,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 12,
         "fontWeight": 400,
         "lineHeight": "16px",
@@ -1408,11 +1408,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 20,
         "fontWeight": 400,
         "lineHeight": "24px",
@@ -1425,11 +1425,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 14,
         "fontWeight": 400,
         "lineHeight": "20px",
@@ -1442,11 +1442,11 @@ exports[`wonder-blocks-typography example 6 1`] = `
     className=""
     dir="rtl"
     style={
-      Object {
+      {
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "display": "block",
-        "fontFamily": "Lato, \\"Noto Sans\\", sans-serif",
+        "fontFamily": "Lato, "Noto Sans", sans-serif",
         "fontSize": 12,
         "fontWeight": 400,
         "lineHeight": "18px",
@@ -1462,7 +1462,7 @@ exports[`wonder-blocks-typography example 7 1`] = `
 <span
   className=""
   style={
-    Object {
+    {
       "MozOsxFontSmoothing": "grayscale",
       "WebkitFontSmoothing": "antialiased",
       "display": "block",

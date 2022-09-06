@@ -4,7 +4,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "borderStyle": "solid",
       "borderWidth": 0,
@@ -38,11 +38,11 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
-        ":focus": Object {
+        ":focus": {
           "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
@@ -70,7 +70,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
       className=""
       height={24}
       style={
-        Object {
+        {
           "display": "inline-block",
           "flexGrow": 0,
           "flexShrink": 0,
@@ -90,7 +90,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 16,
         "MsFlexPreferredSize": 16,
         "WebkitFlexBasis": 16,
@@ -130,11 +130,11 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
-        ":focus": Object {
+        ":focus": {
           "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
@@ -162,7 +162,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
       className=""
       height={24}
       style={
-        Object {
+        {
           "display": "inline-block",
           "flexGrow": 0,
           "flexShrink": 0,
@@ -182,7 +182,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 16,
         "MsFlexPreferredSize": 16,
         "WebkitFlexBasis": 16,
@@ -222,8 +222,8 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
-        ":focus": Object {
+      {
+        ":focus": {
           "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
@@ -250,7 +250,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
       className=""
       height={24}
       style={
-        Object {
+        {
           "display": "inline-block",
           "flexGrow": 0,
           "flexShrink": 0,
@@ -270,7 +270,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 16,
         "MsFlexPreferredSize": 16,
         "WebkitFlexBasis": 16,
@@ -310,11 +310,11 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
-        ":focus": Object {
+        ":focus": {
           "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
@@ -342,7 +342,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
       className=""
       height={24}
       style={
-        Object {
+        {
           "display": "inline-block",
           "flexGrow": 0,
           "flexShrink": 0,
@@ -362,7 +362,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     aria-hidden="true"
     className=""
     style={
-      Object {
+      {
         "MsFlexBasis": 16,
         "MsFlexPreferredSize": 16,
         "WebkitFlexBasis": 16,
@@ -402,11 +402,11 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
-        ":focus": Object {
+        ":focus": {
           "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
@@ -434,7 +434,7 @@ exports[`wonder-blocks-icon-button example 1 1`] = `
       className=""
       height={24}
       style={
-        Object {
+        {
           "display": "inline-block",
           "flexGrow": 0,
           "flexShrink": 0,
@@ -457,7 +457,7 @@ exports[`wonder-blocks-icon-button example 2 1`] = `
 <div
   className=""
   style={
-    Object {
+    {
       "alignItems": "stretch",
       "backgroundColor": "#0b2149",
       "borderStyle": "solid",
@@ -492,11 +492,11 @@ exports[`wonder-blocks-icon-button example 2 1`] = `
     onTouchEnd={[Function]}
     onTouchStart={[Function]}
     style={
-      Object {
-        "::MozFocusInner": Object {
+      {
+        "::MozFocusInner": {
           "border": 0,
         },
-        ":focus": Object {
+        ":focus": {
           "WebkitTapHighlightColor": "rgba(0,0,0,0)",
         },
         "alignItems": "center",
@@ -524,7 +524,7 @@ exports[`wonder-blocks-icon-button example 2 1`] = `
       className=""
       height={24}
       style={
-        Object {
+        {
           "display": "inline-block",
           "flexGrow": 0,
           "flexShrink": 0,
