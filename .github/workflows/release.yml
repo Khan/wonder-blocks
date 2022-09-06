@@ -37,12 +37,12 @@ jobs:
       - name: Clone repository
         run: git clone git@github.com:Khan/wonder-blocks.git .
 
-      - name: Setup Node.js 12.x
+      - name: Setup Node.js 16.x
         uses: actions/setup-node@master
         with:
           # This is our target Node version.
           # This should match the engine value in the root package.json
-          node-version: 12.x
+          node-version: 16.x
 
       - name: Install Dependencies
         run: yarn
