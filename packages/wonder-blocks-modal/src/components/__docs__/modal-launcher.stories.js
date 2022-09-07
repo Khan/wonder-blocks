@@ -4,14 +4,17 @@ import * as React from "react";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
-import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+import {
+    LabeledTextField,
+    Choice,
+    RadioGroup,
+} from "@khanacademy/wonder-blocks-form";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
-
 import type {ModalElement} from "../../util/types.js";
 import ModalLauncherArgTypes from "./modal-launcher.argtypes.js";
 
@@ -377,4 +380,55 @@ WithInitialFocusId.parameters = {
             by default, but the bottom text field receives focus instead
             since its ID is passed into the \`initialFocusId\` prop.`,
     },
+};
+
+export const WithRadioGroup: StoryComponentType = () => {
+    const [selectedValue, setSelectedValue] = React.useState(null);
+
+    const modalInitialFocus = ({closeModal}) => (
+        <OnePaneDialog
+            title="Single-line title"
+            closeButtonVisible={true}
+            content={
+                <>
+                    <Body>
+                        There are currently two different test experiences for
+                        students taking the SAT. Please select where you plan to
+                        take the SAT so that we can direct you to the
+                        appropriate test prep material.
+                    </Body>
+                    <Strut size={Spacing.large_24} />
+                    <RadioGroup
+                        label="some-label"
+                        description="some-description"
+                        groupName="some-group-name"
+                        onChange={setSelectedValue}
+                        selectedValue={selectedValue ?? ""}
+                    >
+                        <Choice label="Choice 1" value="some-choice-value" />
+                        <Choice
+                            label="Choice 2"
+                            value="some-choice-value-2"
+                            description="Some choice description."
+                        />
+                    </RadioGroup>
+                </>
+            }
+            footer={
+                <Button onClick={closeModal} disabled={!selectedValue}>
+                    Next
+                </Button>
+            }
+        />
+    );
+
+    return (
+        <ModalLauncher modal={modalInitialFocus}>
+            {({openModal}) => (
+                <Button onClick={openModal}>
+                    Open modal with initial focus
+                </Button>
+            )}
+        </ModalLauncher>
+    );
 };
