@@ -388,7 +388,7 @@ export const WithRadioGroup: StoryComponentType = () => {
     const modalInitialFocus = ({closeModal}) => (
         <OnePaneDialog
             title="Single-line title"
-            closeButtonVisible={true}
+            closeButtonVisible={false}
             content={
                 <>
                     <Body>
