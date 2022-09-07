@@ -93,6 +93,15 @@ est.`}
 export default {
     title: "Modal/Building Blocks/ModalFooter",
     component: ModalFooter,
+    decorators: [
+        (Story: StoryComponentType): React.Element<typeof View> => (
+            <View style={styles.previewSizer}>
+                <View style={styles.modalPositioner}>
+                    <Story />
+                </View>
+            </View>
+        ),
+    ],
     parameters: {
         componentSubtitle: ((
             <ComponentInfo name={name} version={version} />
@@ -106,11 +115,6 @@ export default {
                 excludeDecorators: true,
             },
         },
-        decorators: [
-            (Story: any): React.Element<typeof View> => (
-                <View style={styles.example}>{Story()}</View>
-            ),
-        ],
         viewport: {
             viewports: customViewports,
             defaultViewport: "desktop",
@@ -127,45 +131,37 @@ export default {
 };
 
 export const Default: StoryComponentType = (args) => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby={"modal-id-0"} style={styles.dialog}>
-                <ModalPanel
-                    content={
-                        <>
-                            <Title id="modal-id-0">Modal Title</Title>
-                            <Strut size={Spacing.large_24} />
-                            {longBody}
-                        </>
-                    }
-                    footer={<ModalFooter {...args} />}
-                />
-            </ModalDialog>
-        </View>
-    </View>
+    <ModalDialog aria-labelledby={"modal-id-0"} style={styles.dialog}>
+        <ModalPanel
+            content={
+                <>
+                    <Title id="modal-id-0">Modal Title</Title>
+                    <Strut size={Spacing.large_24} />
+                    {longBody}
+                </>
+            }
+            footer={<ModalFooter {...args} />}
+        />
+    </ModalDialog>
 );
 
 export const Simple: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby={"modal-id-1"} style={styles.dialog}>
-                <ModalPanel
-                    content={
-                        <>
-                            <Title id="modal-id-1">Modal Title</Title>
-                            <Strut size={Spacing.large_24} />
-                            {longBody}
-                        </>
-                    }
-                    footer={
-                        <ModalFooter>
-                            <View />
-                        </ModalFooter>
-                    }
-                />
-            </ModalDialog>
-        </View>
-    </View>
+    <ModalDialog aria-labelledby={"modal-id-1"} style={styles.dialog}>
+        <ModalPanel
+            content={
+                <>
+                    <Title id="modal-id-1">Modal Title</Title>
+                    <Strut size={Spacing.large_24} />
+                    {longBody}
+                </>
+            }
+            footer={
+                <ModalFooter>
+                    <View />
+                </ModalFooter>
+            }
+        />
+    </ModalDialog>
 );
 
 Simple.parameters = {
@@ -176,26 +172,22 @@ Simple.parameters = {
 };
 
 export const WithButton: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby={"modal-id-2"} style={styles.dialog}>
-                <ModalPanel
-                    content={
-                        <>
-                            <Title id="modal-id-2">Modal Title</Title>
-                            <Strut size={Spacing.large_24} />
-                            {longBody}
-                        </>
-                    }
-                    footer={
-                        <ModalFooter>
-                            <Button onClick={() => {}}>Submit</Button>
-                        </ModalFooter>
-                    }
-                />
-            </ModalDialog>
-        </View>
-    </View>
+    <ModalDialog aria-labelledby={"modal-id-2"} style={styles.dialog}>
+        <ModalPanel
+            content={
+                <>
+                    <Title id="modal-id-2">Modal Title</Title>
+                    <Strut size={Spacing.large_24} />
+                    {longBody}
+                </>
+            }
+            footer={
+                <ModalFooter>
+                    <Button onClick={() => {}}>Submit</Button>
+                </ModalFooter>
+            }
+        />
+    </ModalDialog>
 );
 
 WithButton.parameters = {
@@ -231,39 +223,30 @@ export const WithThreeActions: StoryComponentType = () => {
     };
 
     return (
-        <View style={styles.previewSizer}>
-            <View style={styles.modalPositioner}>
-                <ModalDialog
-                    aria-labelledby={"modal-id-3"}
-                    style={styles.dialog}
-                >
-                    <ModalPanel
-                        content={
-                            <>
-                                <Title id="modal-id-3">Modal Title</Title>
-                                <Strut size={Spacing.large_24} />
-                                {longBody}
-                            </>
-                        }
-                        footer={
-                            <ModalFooter>
-                                <View style={containerStyle}>
-                                    <Button style={buttonStyle} kind="tertiary">
-                                        Tertiary action
-                                    </Button>
-                                    <Button style={buttonStyle} kind="tertiary">
-                                        Secondary action
-                                    </Button>
-                                    <Button style={buttonStyle}>
-                                        Primary action
-                                    </Button>
-                                </View>
-                            </ModalFooter>
-                        }
-                    />
-                </ModalDialog>
-            </View>
-        </View>
+        <ModalDialog aria-labelledby={"modal-id-3"} style={styles.dialog}>
+            <ModalPanel
+                content={
+                    <>
+                        <Title id="modal-id-3">Modal Title</Title>
+                        <Strut size={Spacing.large_24} />
+                        {longBody}
+                    </>
+                }
+                footer={
+                    <ModalFooter>
+                        <View style={containerStyle}>
+                            <Button style={buttonStyle} kind="tertiary">
+                                Tertiary action
+                            </Button>
+                            <Button style={buttonStyle} kind="tertiary">
+                                Secondary action
+                            </Button>
+                            <Button style={buttonStyle}>Primary action</Button>
+                        </View>
+                    </ModalFooter>
+                }
+            />
+        </ModalDialog>
     );
 };
 
@@ -289,38 +272,29 @@ export const WithMultipleActions: StoryComponentType = () => {
     };
 
     return (
-        <View style={styles.previewSizer}>
-            <View style={styles.modalPositioner}>
-                <ModalDialog
-                    aria-labelledby={"modal-id-4"}
-                    style={styles.dialog}
-                >
-                    <ModalPanel
-                        content={
-                            <>
-                                <Title id="modal-id-4">Modal Title</Title>
-                                <Strut size={Spacing.large_24} />
-                                {longBody}
-                            </>
-                        }
-                        footer={
-                            <ModalFooter>
-                                <View style={footerStyle}>
-                                    <LabelLarge>Step 1 of 4</LabelLarge>
-                                    <View style={rowStyle}>
-                                        <Button kind="tertiary">
-                                            Previous
-                                        </Button>
-                                        <Strut size={16} />
-                                        <Button kind="primary">Next</Button>
-                                    </View>
-                                </View>
-                            </ModalFooter>
-                        }
-                    />
-                </ModalDialog>
-            </View>
-        </View>
+        <ModalDialog aria-labelledby={"modal-id-4"} style={styles.dialog}>
+            <ModalPanel
+                content={
+                    <>
+                        <Title id="modal-id-4">Modal Title</Title>
+                        <Strut size={Spacing.large_24} />
+                        {longBody}
+                    </>
+                }
+                footer={
+                    <ModalFooter>
+                        <View style={footerStyle}>
+                            <LabelLarge>Step 1 of 4</LabelLarge>
+                            <View style={rowStyle}>
+                                <Button kind="tertiary">Previous</Button>
+                                <Strut size={16} />
+                                <Button kind="primary">Next</Button>
+                            </View>
+                        </View>
+                    </ModalFooter>
+                }
+            />
+        </ModalDialog>
     );
 };
 

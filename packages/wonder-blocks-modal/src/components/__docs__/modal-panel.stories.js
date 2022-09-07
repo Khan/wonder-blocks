@@ -95,6 +95,15 @@ est.`}
 export default {
     title: "Modal/Building Blocks/ModalPanel",
     component: ModalPanel,
+    decorators: [
+        (Story: StoryComponentType): React.Element<typeof View> => (
+            <View style={styles.previewSizer}>
+                <View style={styles.modalPositioner}>
+                    <Story />
+                </View>
+            </View>
+        ),
+    ],
     parameters: {
         componentSubtitle: ((
             <ComponentInfo name={name} version={version} />
@@ -108,11 +117,6 @@ export default {
                 excludeDecorators: true,
             },
         },
-        decorators: [
-            (Story: any): React.Element<typeof View> => (
-                <View style={styles.example}>{Story()}</View>
-            ),
-        ],
         viewport: {
             viewports: customViewports,
             defaultViewport: "desktop",
@@ -140,40 +144,32 @@ export default {
 };
 
 export const Default: StoryComponentType = (args) => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-0" style={styles.dialog}>
-                <ModalPanel
-                    content={
-                        <>
-                            <Title id="modal-title-0">Modal Title</Title>
-                            <Strut size={Spacing.large_24} />
-                            {longBody}
-                        </>
-                    }
-                    {...args}
-                />
-            </ModalDialog>
-        </View>
-    </View>
+    <ModalDialog aria-labelledby="modal-title-0" style={styles.dialog}>
+        <ModalPanel
+            content={
+                <>
+                    <Title id="modal-title-0">Modal Title</Title>
+                    <Strut size={Spacing.large_24} />
+                    {longBody}
+                </>
+            }
+            {...args}
+        />
+    </ModalDialog>
 );
 
 export const Simple: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-1" style={styles.dialog}>
-                <ModalPanel
-                    content={
-                        <>
-                            <Title id="modal-title-1">Modal Title</Title>
-                            <Strut size={Spacing.large_24} />
-                            {longBody}
-                        </>
-                    }
-                />
-            </ModalDialog>
-        </View>
-    </View>
+    <ModalDialog aria-labelledby="modal-title-1" style={styles.dialog}>
+        <ModalPanel
+            content={
+                <>
+                    <Title id="modal-title-1">Modal Title</Title>
+                    <Strut size={Spacing.large_24} />
+                    {longBody}
+                </>
+            }
+        />
+    </ModalDialog>
 );
 
 Simple.parameters = {
@@ -184,22 +180,18 @@ Simple.parameters = {
 };
 
 export const Dark: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-a" style={styles.dialog}>
-                <ModalPanel
-                    content={
-                        <>
-                            <Title id="modal-title-a">Modal Title</Title>
-                            <Strut size={Spacing.large_24} />
-                            {longBody}
-                        </>
-                    }
-                    light={false}
-                />
-            </ModalDialog>
-        </View>
-    </View>
+    <ModalDialog aria-labelledby="modal-title-a" style={styles.dialog}>
+        <ModalPanel
+            content={
+                <>
+                    <Title id="modal-title-a">Modal Title</Title>
+                    <Strut size={Spacing.large_24} />
+                    {longBody}
+                </>
+            }
+            light={false}
+        />
+    </ModalDialog>
 );
 
 Dark.parameters = {
@@ -210,21 +202,12 @@ Dark.parameters = {
 };
 
 export const WithHeader: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-2" style={styles.dialog}>
-                <ModalPanel
-                    header={
-                        <ModalHeader
-                            titleId="modal-title-2"
-                            title="Modal Title"
-                        />
-                    }
-                    content={longBody}
-                />
-            </ModalDialog>
-        </View>
-    </View>
+    <ModalDialog aria-labelledby="modal-title-2" style={styles.dialog}>
+        <ModalPanel
+            header={<ModalHeader titleId="modal-title-2" title="Modal Title" />}
+            content={longBody}
+        />
+    </ModalDialog>
 );
 
 WithHeader.parameters = {
@@ -237,26 +220,22 @@ WithHeader.parameters = {
 };
 
 export const WithFooter: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
-                <ModalPanel
-                    content={
-                        <>
-                            <Title id="modal-title-3">Modal Title</Title>
-                            <Strut size={Spacing.large_24} />
-                            {longBody}
-                        </>
-                    }
-                    footer={
-                        <ModalFooter>
-                            <Button onClick={() => {}}>Continue</Button>
-                        </ModalFooter>
-                    }
-                />
-            </ModalDialog>
-        </View>
-    </View>
+    <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
+        <ModalPanel
+            content={
+                <>
+                    <Title id="modal-title-3">Modal Title</Title>
+                    <Strut size={Spacing.large_24} />
+                    {longBody}
+                </>
+            }
+            footer={
+                <ModalFooter>
+                    <Button onClick={() => {}}>Continue</Button>
+                </ModalFooter>
+            }
+        />
+    </ModalDialog>
 );
 
 WithFooter.parameters = {
@@ -268,29 +247,20 @@ WithFooter.parameters = {
 };
 
 export const DarkWithHeaderAndFooter: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
-                <ModalPanel
-                    header={
-                        <ModalHeader
-                            titleId="modal-title-2"
-                            title="Modal Title"
-                        />
-                    }
-                    content={longBody}
-                    footer={
-                        <ModalFooter>
-                            <Button onClick={() => {}} light={true}>
-                                Continue
-                            </Button>
-                        </ModalFooter>
-                    }
-                    light={false}
-                />
-            </ModalDialog>
-        </View>
-    </View>
+    <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
+        <ModalPanel
+            header={<ModalHeader titleId="modal-title-2" title="Modal Title" />}
+            content={longBody}
+            footer={
+                <ModalFooter>
+                    <Button onClick={() => {}} light={true}>
+                        Continue
+                    </Button>
+                </ModalFooter>
+            }
+            light={false}
+        />
+    </ModalDialog>
 );
 
 DarkWithHeaderAndFooter.parameters = {
@@ -332,48 +302,43 @@ export const TwoPanels: StoryComponentType = () => {
     };
 
     return (
-        <View style={styles.previewSizer}>
-            <View style={styles.modalPositioner}>
-                <ModalDialog style={twoPaneDialogStyle}>
-                    <View style={panelGroupStyle}>
-                        <ModalPanel
-                            content={
-                                <View>
-                                    <Title>Sidebar</Title>
-                                    <Strut size={Spacing.large_24} />
-                                    <Body>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna
-                                        aliqua. Ut enim ad minim veniam, quis
-                                        nostrud exercitation ullamco laboris.
-                                    </Body>
-                                </View>
-                            }
-                            light={false}
-                            closeButtonVisible={false}
-                        />
-                        <ModalPanel
-                            content={
-                                <View>
-                                    <Title>Contents</Title>
-                                    <Strut size={Spacing.large_24} />
-                                    <Body>
-                                        Lorem ipsum dolor sit amet, consectetur
-                                        adipiscing elit, sed do eiusmod tempor
-                                        incididunt ut labore et dolore magna
-                                        aliqua.
-                                    </Body>
-                                    <Strut size={Spacing.large_24} />
-                                    <Button>Primary action</Button>
-                                </View>
-                            }
-                            closeButtonVisible={false}
-                        />
-                    </View>
-                </ModalDialog>
+        <ModalDialog style={twoPaneDialogStyle}>
+            <View style={panelGroupStyle}>
+                <ModalPanel
+                    content={
+                        <View>
+                            <Title>Sidebar</Title>
+                            <Strut size={Spacing.large_24} />
+                            <Body>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Ut
+                                enim ad minim veniam, quis nostrud exercitation
+                                ullamco laboris.
+                            </Body>
+                        </View>
+                    }
+                    light={false}
+                    closeButtonVisible={false}
+                />
+                <ModalPanel
+                    content={
+                        <View>
+                            <Title>Contents</Title>
+                            <Strut size={Spacing.large_24} />
+                            <Body>
+                                Lorem ipsum dolor sit amet, consectetur
+                                adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua.
+                            </Body>
+                            <Strut size={Spacing.large_24} />
+                            <Button>Primary action</Button>
+                        </View>
+                    }
+                    closeButtonVisible={false}
+                />
             </View>
-        </View>
+        </ModalDialog>
     );
 };
 
@@ -396,25 +361,15 @@ export const WithStyle: StoryComponentType = () => {
     };
 
     return (
-        <View style={styles.previewSizer}>
-            <View style={styles.modalPositioner}>
-                <ModalDialog
-                    aria-labelledby="modal-title-1"
-                    style={styles.dialog}
-                >
-                    <ModalPanel
-                        header={
-                            <ModalHeader
-                                titleId="modal-title-1"
-                                title="Modal Title"
-                            />
-                        }
-                        content={longBody}
-                        style={modalStyles}
-                    />
-                </ModalDialog>
-            </View>
-        </View>
+        <ModalDialog aria-labelledby="modal-title-1" style={styles.dialog}>
+            <ModalPanel
+                header={
+                    <ModalHeader titleId="modal-title-1" title="Modal Title" />
+                }
+                content={longBody}
+                style={modalStyles}
+            />
+        </ModalDialog>
     );
 };
 

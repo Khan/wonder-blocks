@@ -50,10 +50,26 @@ const customViewports = {
 export default {
     title: "Modal/OnePaneDialog",
     component: OnePaneDialog,
+    decorators: [
+        (Story: any): React.Element<typeof View> => (
+            <View style={styles.example}>
+                <Story />
+            </View>
+        ),
+    ],
     parameters: {
         componentSubtitle: ((
             <ComponentInfo name={name} version={version} />
         ): any),
+        docs: {
+            description: {
+                component: null,
+            },
+            source: {
+                // See https://github.com/storybookjs/storybook/issues/12596
+                excludeDecorators: true,
+            },
+        },
         viewport: {
             viewports: customViewports,
             defaultViewport: "desktop",
@@ -528,6 +544,10 @@ WithLauncher.parameters = {
 };
 
 const styles = StyleSheet.create({
+    example: {
+        alignItems: "center",
+        justifyContent: "center",
+    },
     modalPositioner: {
         // Checkerboard background
         backgroundImage:
