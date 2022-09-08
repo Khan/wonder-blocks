@@ -831,6 +831,7 @@ exports[`wonder-blocks-tooltip example 10 1`] = `
     }
   >
     <svg
+      aria-hidden={true}
       className="arrow_oo4scr"
       height={12}
       style={
@@ -1144,6 +1145,7 @@ exports[`wonder-blocks-tooltip example 11 1`] = `
     }
   >
     <svg
+      aria-hidden={true}
       className="arrow_oo4scr"
       height={24}
       style={
@@ -1352,6 +1354,7 @@ exports[`wonder-blocks-tooltip example 12 1`] = `
     }
   >
     <svg
+      aria-hidden={true}
       className="arrow_oo4scr"
       height={12}
       style={
@@ -1427,6 +1430,7 @@ exports[`wonder-blocks-tooltip example 13 1`] = `
     }
   >
     <svg
+      aria-hidden={true}
       className="arrow_oo4scr"
       height={24}
       style={
@@ -1720,6 +1724,7 @@ exports[`wonder-blocks-tooltip example 14 1`] = `
       }
     >
       <svg
+        aria-hidden={true}
         className="arrow_oo4scr"
         height={12}
         style={
@@ -1909,6 +1914,7 @@ exports[`wonder-blocks-tooltip example 15 1`] = `
       }
     >
       <svg
+        aria-hidden={true}
         className="arrow_oo4scr"
         height={24}
         style={
@@ -2098,6 +2104,7 @@ exports[`wonder-blocks-tooltip example 16 1`] = `
       }
     >
       <svg
+        aria-hidden={true}
         className="arrow_oo4scr"
         height={12}
         style={
@@ -2259,6 +2266,7 @@ exports[`wonder-blocks-tooltip example 17 1`] = `
       }
     >
       <svg
+        aria-hidden={true}
         className="arrow_oo4scr"
         height={24}
         style={
@@ -2449,6 +2457,7 @@ exports[`wonder-blocks-tooltip example 18 1`] = `
       }
     >
       <svg
+        aria-hidden={true}
         className="arrow_oo4scr"
         height={12}
         style={
@@ -2614,6 +2623,7 @@ exports[`wonder-blocks-tooltip example 19 1`] = `
       }
     >
       <svg
+        aria-hidden={true}
         className="arrow_oo4scr"
         height={12}
         style={
