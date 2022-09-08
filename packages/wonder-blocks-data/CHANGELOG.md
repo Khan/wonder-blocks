@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 9.1.1
+
+### Patch Changes
+
+-   eb59ce34: Update to latest Wonder Stuff Core
+
 ## 9.1.0
 
 ### Minor Changes
