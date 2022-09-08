@@ -566,7 +566,8 @@ const styles = StyleSheet.create({
         bottom: 0,
     },
     previewSizer: {
-        height: 600,
+        minHeight: 600,
+        width: "100%",
     },
     row: {
         flexDirection: "row",
