@@ -1,6 +1,6 @@
 // @flow
-import {useForceUpdate} from "@khanacademy/wonder-blocks-core";
 import {useEffect} from "react";
+import {useForceUpdate} from "./use-force-update.js";
 
 /**
  * Track the online status of the browser.
