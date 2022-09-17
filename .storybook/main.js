@@ -10,7 +10,13 @@ module.exports = {
         "@storybook/addon-a11y",
         // To link a component with the Figma spec
         "storybook-addon-designs",
+        // Other Storybook addons
+        "@storybook/addon-interactions",
     ],
+    features: {
+        // Enables playback controls
+        interactionsDebugger: true,
+    },
     reactOptions: {
         fastRefresh: true,
     },

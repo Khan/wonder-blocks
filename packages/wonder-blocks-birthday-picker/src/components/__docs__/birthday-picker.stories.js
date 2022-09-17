@@ -1,5 +1,7 @@
 // @flow
 import * as React from "react";
+import {expect, jest} from "@storybook/jest";
+import {userEvent, screen} from "@storybook/testing-library";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
@@ -39,9 +41,61 @@ export default {
 const Template = (args) => <BirthdayPicker {...args} />;
 
 export const BirthdayPickerDefault: StoryComponentType = Template.bind({});
+// $FlowIgnore[incompatible-use]
+BirthdayPickerDefault.play = async ({args, canvasElement}) => {
+    // Arrange
+    await userEvent.click(screen.getByTestId("birthday-picker-month"));
+    const monthOption = screen.getByRole("option", {
+        name: "Jul",
+    });
+    await userEvent.click(monthOption, undefined, {
+        skipPointerEventsCheck: true,
+    });
+
+    await userEvent.click(screen.getByTestId("birthday-picker-day"));
+    const dayOption = screen.getByRole("option", {name: "5"});
+    await userEvent.click(dayOption, undefined, {
+        skipPointerEventsCheck: true,
+    });
+
+    await userEvent.click(screen.getByTestId("birthday-picker-year"));
+    const yearOption = screen.getByRole("option", {
+        name: "2021",
+    });
+    await userEvent.click(yearOption, undefined, {
+        skipPointerEventsCheck: true,
+    });
+
+    // Act
+    // Pick Another Date
+    await userEvent.click(screen.getByTestId("birthday-picker-month"));
+    const monthOptionNew = screen.getByRole("option", {
+        name: "Aug",
+    });
+    await userEvent.click(monthOptionNew, undefined, {
+        skipPointerEventsCheck: true,
+    });
+
+    await userEvent.click(screen.getByTestId("birthday-picker-day"));
+    const dayOptionNew = screen.getByRole("option", {name: "9"});
+    await userEvent.click(dayOptionNew, undefined, {
+        skipPointerEventsCheck: true,
+    });
+
+    await userEvent.click(screen.getByTestId("birthday-picker-year"));
+    const yearOptionNew = screen.getByRole("option", {
+        name: "2020",
+    });
+    await userEvent.click(yearOptionNew, undefined, {
+        skipPointerEventsCheck: true,
+    });
+
+    // Assert
+    await expect(args.onChange).toHaveBeenLastCalledWith("2020-08-09");
+};
 
 BirthdayPickerDefault.args = {
-    onChange: () => {},
+    onChange: jest.fn().mockName("onChange"),
     defaultValue: "",
 };
 
