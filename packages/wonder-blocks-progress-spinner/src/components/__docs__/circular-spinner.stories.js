@@ -44,64 +44,66 @@ export const Default: StoryComponentType = (args) => (
 
 export const Sizes: StoryComponentType = () => (
     <table>
-        <tr>
-            <td>
-                <LabelLarge>xsmall</LabelLarge>
-            </td>
-            <td>
-                <LabelLarge>small</LabelLarge>
-            </td>
-            <td>
-                <LabelLarge>medium</LabelLarge>
-            </td>
-            <td>
-                <LabelLarge>large</LabelLarge>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <CircularSpinner size={"xsmall"} style={styles.distanced} />
-            </td>
-            <td>
-                <CircularSpinner size={"small"} style={styles.distanced} />
-            </td>
-            <td>
-                <CircularSpinner size={"medium"} style={styles.distanced} />
-            </td>
-            <td>
-                <CircularSpinner size={"large"} style={styles.distanced} />
-            </td>
-        </tr>
-        <tr className={css(styles.darkBackground)}>
-            <td>
-                <CircularSpinner
-                    light={true}
-                    size={"xsmall"}
-                    style={styles.distanced}
-                />
-            </td>
-            <td>
-                <CircularSpinner
-                    light={true}
-                    size={"small"}
-                    style={styles.distanced}
-                />
-            </td>
-            <td>
-                <CircularSpinner
-                    light={true}
-                    size={"medium"}
-                    style={styles.distanced}
-                />
-            </td>
-            <td>
-                <CircularSpinner
-                    light={true}
-                    size={"large"}
-                    style={styles.distanced}
-                />
-            </td>
-        </tr>
+        <tbody>
+            <tr>
+                <th>
+                    <LabelLarge>xsmall</LabelLarge>
+                </th>
+                <th>
+                    <LabelLarge>small</LabelLarge>
+                </th>
+                <th>
+                    <LabelLarge>medium</LabelLarge>
+                </th>
+                <th>
+                    <LabelLarge>large</LabelLarge>
+                </th>
+            </tr>
+            <tr>
+                <td>
+                    <CircularSpinner size={"xsmall"} style={styles.distanced} />
+                </td>
+                <td>
+                    <CircularSpinner size={"small"} style={styles.distanced} />
+                </td>
+                <td>
+                    <CircularSpinner size={"medium"} style={styles.distanced} />
+                </td>
+                <td>
+                    <CircularSpinner size={"large"} style={styles.distanced} />
+                </td>
+            </tr>
+            <tr className={css(styles.darkBackground)}>
+                <td>
+                    <CircularSpinner
+                        light={true}
+                        size={"xsmall"}
+                        style={styles.distanced}
+                    />
+                </td>
+                <td>
+                    <CircularSpinner
+                        light={true}
+                        size={"small"}
+                        style={styles.distanced}
+                    />
+                </td>
+                <td>
+                    <CircularSpinner
+                        light={true}
+                        size={"medium"}
+                        style={styles.distanced}
+                    />
+                </td>
+                <td>
+                    <CircularSpinner
+                        light={true}
+                        size={"large"}
+                        style={styles.distanced}
+                    />
+                </td>
+            </tr>
+        </tbody>
     </table>
 );
 
@@ -113,13 +115,12 @@ Sizes.parameters = {
     },
 };
 
-export const Light: StoryComponentType = () => (
-    <View style={styles.darkBackground}>
-        <CircularSpinner light={true} />
-    </View>
-);
+export const Light: StoryComponentType = () => <CircularSpinner light={true} />;
 
 Light.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
     docs: {
         storyDescription: `This is a progress spinner with its \`light\`
             prop set to true. This is for use on dark backgrounds.`,

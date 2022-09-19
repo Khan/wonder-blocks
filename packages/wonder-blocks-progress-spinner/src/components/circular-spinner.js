@@ -59,7 +59,7 @@ type DefaultProps = {|
  * A circular progress spinner. Used for indicating loading progress. Should
  * be used by default in most places where a loading indicator is needed.
  *
- * ## Usage
+ * ### Usage
  *
  * ```js
  * import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
