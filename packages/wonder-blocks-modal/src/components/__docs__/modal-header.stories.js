@@ -96,6 +96,15 @@ est.`}
 export default {
     title: "Modal/Building Blocks/ModalHeader",
     component: ModalHeader,
+    decorators: [
+        (Story: StoryComponentType): React.Element<typeof View> => (
+            <View style={styles.previewSizer}>
+                <View style={styles.modalPositioner}>
+                    <Story />
+                </View>
+            </View>
+        ),
+    ],
     parameters: {
         componentSubtitle: ((
             <ComponentInfo name={name} version={version} />
@@ -109,11 +118,6 @@ export default {
                 excludeDecorators: true,
             },
         },
-        decorators: [
-            (Story: any): React.Element<typeof View> => (
-                <View style={styles.example}>{Story()}</View>
-            ),
-        ],
         viewport: {
             viewports: customViewports,
             defaultViewport: "desktop",
@@ -126,16 +130,9 @@ export default {
 };
 
 export const Default: StoryComponentType = (args) => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby={args.titleId} style={styles.dialog}>
-                <ModalPanel
-                    header={<ModalHeader {...args} />}
-                    content={longBody}
-                />
-            </ModalDialog>
-        </View>
-    </View>
+    <ModalDialog aria-labelledby={args.titleId} style={styles.dialog}>
+        <ModalPanel header={<ModalHeader {...args} />} content={longBody} />
+    </ModalDialog>
 );
 
 Default.args = {
@@ -144,21 +141,12 @@ Default.args = {
 };
 
 export const Simple: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-1" style={styles.dialog}>
-                <ModalPanel
-                    header={
-                        <ModalHeader
-                            title="Modal Title"
-                            titleId="modal-title-1"
-                        />
-                    }
-                    content={longBody}
-                />
-            </ModalDialog>
-        </View>
-    </View>
+    <ModalDialog aria-labelledby="modal-title-1" style={styles.dialog}>
+        <ModalPanel
+            header={<ModalHeader title="Modal Title" titleId="modal-title-1" />}
+            content={longBody}
+        />
+    </ModalDialog>
 );
 
 Simple.parameters = {
@@ -169,23 +157,19 @@ Simple.parameters = {
 };
 
 export const Dark: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-2" style={styles.dialog}>
-                <ModalPanel
-                    header={
-                        <ModalHeader
-                            title="Modal Title"
-                            titleId="modal-title-2"
-                            light={false}
-                        />
-                    }
-                    content={longBody}
+    <ModalDialog aria-labelledby="modal-title-2" style={styles.dialog}>
+        <ModalPanel
+            header={
+                <ModalHeader
+                    title="Modal Title"
+                    titleId="modal-title-2"
                     light={false}
                 />
-            </ModalDialog>
-        </View>
-    </View>
+            }
+            content={longBody}
+            light={false}
+        />
+    </ModalDialog>
 );
 
 Dark.parameters = {
@@ -199,22 +183,18 @@ Dark.parameters = {
 };
 
 export const WithSubtitle: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
-                <ModalPanel
-                    header={
-                        <ModalHeader
-                            title="Modal Title"
-                            titleId="modal-title-3"
-                            subtitle="This is what a subtitle looks like."
-                        />
-                    }
-                    content={longBody}
+    <ModalDialog aria-labelledby="modal-title-3" style={styles.dialog}>
+        <ModalPanel
+            header={
+                <ModalHeader
+                    title="Modal Title"
+                    titleId="modal-title-3"
+                    subtitle="This is what a subtitle looks like."
                 />
-            </ModalDialog>
-        </View>
-    </View>
+            }
+            content={longBody}
+        />
+    </ModalDialog>
 );
 
 WithSubtitle.parameters = {
@@ -225,24 +205,20 @@ WithSubtitle.parameters = {
 };
 
 export const WithSubtitleDark: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-4" style={styles.dialog}>
-                <ModalPanel
-                    header={
-                        <ModalHeader
-                            title="Modal Title"
-                            titleId="modal-title-4"
-                            subtitle="This is what a subtitle looks like."
-                            light={false}
-                        />
-                    }
-                    content={longBody}
+    <ModalDialog aria-labelledby="modal-title-4" style={styles.dialog}>
+        <ModalPanel
+            header={
+                <ModalHeader
+                    title="Modal Title"
+                    titleId="modal-title-4"
+                    subtitle="This is what a subtitle looks like."
                     light={false}
                 />
-            </ModalDialog>
-        </View>
-    </View>
+            }
+            content={longBody}
+            light={false}
+        />
+    </ModalDialog>
 );
 
 WithSubtitleDark.parameters = {
@@ -253,32 +229,28 @@ WithSubtitleDark.parameters = {
 };
 
 export const WithBreadcrumbs: StoryComponentType = () => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-5" style={styles.dialog}>
-                <ModalPanel
-                    header={
-                        <ModalHeader
-                            title="Modal Title"
-                            titleId="modal-title-5"
-                            breadcrumbs={
-                                <Breadcrumbs>
-                                    <BreadcrumbsItem>
-                                        <Link href="">Course</Link>
-                                    </BreadcrumbsItem>
-                                    <BreadcrumbsItem>
-                                        <Link href="">Unit</Link>
-                                    </BreadcrumbsItem>
-                                    <BreadcrumbsItem>Lesson</BreadcrumbsItem>
-                                </Breadcrumbs>
-                            }
-                        />
+    <ModalDialog aria-labelledby="modal-title-5" style={styles.dialog}>
+        <ModalPanel
+            header={
+                <ModalHeader
+                    title="Modal Title"
+                    titleId="modal-title-5"
+                    breadcrumbs={
+                        <Breadcrumbs>
+                            <BreadcrumbsItem>
+                                <Link href="">Course</Link>
+                            </BreadcrumbsItem>
+                            <BreadcrumbsItem>
+                                <Link href="">Unit</Link>
+                            </BreadcrumbsItem>
+                            <BreadcrumbsItem>Lesson</BreadcrumbsItem>
+                        </Breadcrumbs>
                     }
-                    content={longBody}
                 />
-            </ModalDialog>
-        </View>
-    </View>
+            }
+            content={longBody}
+        />
+    </ModalDialog>
 );
 
 WithBreadcrumbs.parameters = {

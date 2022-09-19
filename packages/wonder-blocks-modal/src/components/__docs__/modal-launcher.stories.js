@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -67,10 +68,26 @@ const DefaultModal = (): ModalElement => (
 export default {
     title: "Modal/ModalLauncher",
     component: ModalLauncher,
+    decorators: [
+        (Story: StoryComponentType): React.Element<typeof View> => (
+            <View style={styles.example}>
+                <Story />
+            </View>
+        ),
+    ],
     parameters: {
         componentSubtitle: ((
             <ComponentInfo name={name} version={version} />
         ): any),
+        docs: {
+            description: {
+                component: null,
+            },
+            source: {
+                // See https://github.com/storybookjs/storybook/issues/12596
+                excludeDecorators: true,
+            },
+        },
         viewport: {
             viewports: customViewports,
             defaultViewport: "desktop",
@@ -378,3 +395,13 @@ WithInitialFocusId.parameters = {
             since its ID is passed into the \`initialFocusId\` prop.`,
     },
 };
+
+const styles = StyleSheet.create({
+    example: {
+        alignItems: "center",
+        justifyContent: "center",
+    },
+    row: {
+        flexDirection: "row",
+    },
+});
