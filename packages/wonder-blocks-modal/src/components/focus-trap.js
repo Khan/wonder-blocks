@@ -7,6 +7,13 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 /**
+ * List of elements that can be focused
+ * @see https://www.w3.org/TR/html5/editing.html#can-be-focused
+ */
+const FOCUSABLE_ELEMENTS =
+    'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+/**
  * This component ensures that focus stays within itself. If the user uses Tab
  * at the end of the modal, or Shift-Tab at the start of the modal, then this
  * component wraps focus to the start/end respectively.
@@ -35,34 +42,10 @@ type Props = {|
 |};
 
 export default class FocusTrap extends React.Component<Props> {
-    /** The most recent node _inside this component_ to receive focus. */
-    lastNodeFocusedInModal: ?Node;
-
-    /**
-     * Whether we're currently applying programmatic focus, and should therefore
-     * ignore focus change events.
-     */
-    ignoreFocusChanges: boolean;
-
     /**
      * Tabbing is restricted to descendents of this element.
      */
     modalRoot: ?Node;
-
-    constructor(props: Props) {
-        super(props);
-
-        this.lastNodeFocusedInModal = null;
-        this.ignoreFocusChanges = false;
-    }
-
-    componentDidMount() {
-        window.addEventListener("focus", this.handleGlobalFocus, true);
-    }
-
-    componentWillUnmount() {
-        window.removeEventListener("focus", this.handleGlobalFocus, true);
-    }
 
     getModalRoot: (node: any) => void = (node) => {
         if (!node) {
@@ -79,98 +62,54 @@ export default class FocusTrap extends React.Component<Props> {
         this.modalRoot = modalRoot;
     };
 
-    /** Try to focus the given node. Return true iff successful. */
+    /**
+     * Try to focus the given node. Return true if successful.
+     */
     tryToFocus(node: Node): ?boolean {
         if (node instanceof HTMLElement) {
-            this.ignoreFocusChanges = true;
             try {
                 node.focus();
             } catch (e) {
                 // ignore error
             }
-            this.ignoreFocusChanges = false;
 
             return document.activeElement === node;
         }
     }
 
     /**
-     * Focus the first focusable descendant of the given node.
+     * Focus the next available focusable element within the modal root.
      *
-     * Return true if we succeed. Or, if the given node has no focusable
-     * descendants, return false.
+     * @param {boolean} isLast Used to determine the next available item. true =
+     * First element within the modal, false = Last element within the modal.
      */
-    focusFirstElementIn(currentParent: Node): boolean {
-        const children = currentParent.childNodes;
-        for (let i = 0; i < children.length; i++) {
-            const child = children[i];
-            if (this.tryToFocus(child) || this.focusFirstElementIn(child)) {
-                return true;
-            }
-        }
-        return false;
+    focusElementIn(isLast: boolean) {
+        const modalRootAsHtmlEl = ((this.modalRoot: any): HTMLElement);
+        // Get the list of available focusable elements within the modal.
+        const focusableNodes = Array.from(
+            modalRootAsHtmlEl.querySelectorAll(FOCUSABLE_ELEMENTS),
+        );
+
+        const nodeIndex = !isLast ? focusableNodes.length - 1 : 0;
+
+        const focusableNode = focusableNodes[nodeIndex];
+        this.tryToFocus(focusableNode);
     }
 
     /**
-     * Focus the last focusable descendant of the given node.
-     *
-     * Return true if we succeed. Or, if the given node has no focusable
-     * descendants, return false.
+     * Triggered when the focus is set to the first sentinel. This way, the
+     * focus will be redirected to the last element inside the modal dialog.
      */
-    focusLastElementIn(currentParent: Node): boolean {
-        const children = currentParent.childNodes;
-        for (let i = children.length - 1; i >= 0; i--) {
-            const child = children[i];
-            if (this.tryToFocus(child) || this.focusLastElementIn(child)) {
-                return true;
-            }
-        }
-        return false;
-    }
+    handleFocusMoveToLast: () => void = () => {
+        this.focusElementIn(false);
+    };
 
-    /** This method is called when any node on the page is focused. */
-    handleGlobalFocus: (e: FocusEvent) => void = (e) => {
-        // If we're busy applying our own programmatic focus, we ignore focus
-        // changes, to avoid an infinite loop.
-        if (this.ignoreFocusChanges) {
-            return;
-        }
-
-        const target = e.target;
-        if (!(target instanceof Node)) {
-            // Sometimes focus events trigger on the document itself. Ignore!
-            return;
-        }
-
-        const modalRoot = this.modalRoot;
-        if (!modalRoot) {
-            return;
-        }
-
-        if (modalRoot.contains(target)) {
-            // If the newly focused node is inside the modal, we just keep track
-            // of that.
-            this.lastNodeFocusedInModal = target;
-        } else {
-            // If the newly focused node is outside the modal, we try refocusing
-            // the first focusable node of the modal. (This could be the user
-            // pressing Tab on the last node of the modal, or focus escaping in
-            // some other way.)
-            this.focusFirstElementIn(modalRoot);
-
-            // But, if it turns out that the first focusable node of the modal
-            // was what we were previously focusing, then this is probably the
-            // user pressing Shift-Tab on the first node, wanting to go to the
-            // end. So, we instead try focusing the last focusable node of the
-            // modal.
-            if (document.activeElement === this.lastNodeFocusedInModal) {
-                this.focusLastElementIn(modalRoot);
-            }
-
-            // Focus should now be inside the modal, so record the newly-focused
-            // node as the last node focused in the modal.
-            this.lastNodeFocusedInModal = document.activeElement;
-        }
+    /**
+     * Triggered when the focus is set to the last sentinel. This way, the focus
+     * will be redirected to the first element inside the modal dialog.
+     */
+    handleFocusMoveToFirst: () => void = () => {
+        this.focusElementIn(true);
     };
 
     render(): React.Node {
@@ -190,11 +129,21 @@ export default class FocusTrap extends React.Component<Props> {
                  * We set the sentinels to be position: fixed to make sure
                  * they're always in view, this prevents page scrolling when
                  * tabbing. */}
-                <div tabIndex="0" style={{position: "fixed"}} />
+                <div
+                    tabIndex="0"
+                    className="modal-focus-trap-first"
+                    onFocus={this.handleFocusMoveToLast}
+                    style={{position: "fixed"}}
+                />
                 <View style={style} ref={this.getModalRoot}>
                     {this.props.children}
                 </View>
-                <div tabIndex="0" style={{position: "fixed"}} />
+                <div
+                    tabIndex="0"
+                    className="modal-focus-trap-last"
+                    onFocus={this.handleFocusMoveToFirst}
+                    style={{position: "fixed"}}
+                />
             </React.Fragment>
         );
     }
