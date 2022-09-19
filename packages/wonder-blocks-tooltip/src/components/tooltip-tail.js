@@ -374,6 +374,7 @@ export default class TooltipTail extends React.Component<Props> {
                 style={this._getArrowStyle()}
                 width={width}
                 height={height}
+                aria-hidden
             >
                 {this._maybeRenderDropshadow(points)}
 

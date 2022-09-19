@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-testing
 
+## 7.1.2
+
+### Patch Changes
+
+-   Updated dependencies [eb59ce34]
+    -   @khanacademy/wonder-blocks-data@9.1.1
+
 ## 7.1.1
 
 ### Patch Changes
