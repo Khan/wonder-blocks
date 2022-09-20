@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 4.4.0
+
+### Minor Changes
+
+-   6ee20af9: Add `useOnline` hook to encapsulate navigator.onLine and the offline/online events
+
 ## 4.3.2
 
 ### Patch Changes
