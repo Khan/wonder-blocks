@@ -110,6 +110,8 @@ type Props = {|
 |};
 
 export class I18nInlineMarkup extends React.PureComponent<Props> {
+    static __I18N_INLINE_MARKUP__: boolean = true;
+
     render(): React.Node {
         const {children, elementWrapper, onError, ...renderers} = this.props;
         let tree: $ReadOnlyArray<SimpleHtmlNode>;

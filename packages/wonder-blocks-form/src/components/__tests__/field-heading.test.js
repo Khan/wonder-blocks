@@ -4,6 +4,13 @@ import {mount} from "enzyme";
 import "jest-enzyme";
 import {StyleSheet} from "aphrodite";
 
+import {I18nInlineMarkup} from "@khanacademy/wonder-blocks-i18n";
+import {
+    Body,
+    LabelMedium,
+    LabelSmall,
+} from "@khanacademy/wonder-blocks-typography";
+
 import FieldHeading from "../field-heading.js";
 import TextField from "../text-field.js";
 
@@ -179,5 +186,38 @@ describe("FieldHeading", () => {
         // Assert
         const container = wrapper.find("View").at(0);
         expect(container).toHaveStyle(styles.style1);
+    });
+
+    it("should render a LabelSmall when the 'label' prop is a I18nInlineMarkup", () => {
+        // Arrange
+
+        // Act
+        const wrapper = mount(
+            <FieldHeading
+                field={<TextField id="tf-1" value="" onChange={() => {}} />}
+                label={<I18nInlineMarkup>Hello, world!</I18nInlineMarkup>}
+            />,
+        );
+
+        // Assert
+        const label = wrapper.find(LabelMedium);
+        expect(label).toExist();
+    });
+
+    it("should render a LabelSmall when the 'description' prop is a I18nInlineMarkup", () => {
+        // Arrange
+
+        // Act
+        const wrapper = mount(
+            <FieldHeading
+                field={<TextField id="tf-1" value="" onChange={() => {}} />}
+                label={<Body>Hello, world</Body>}
+                description={<I18nInlineMarkup>description</I18nInlineMarkup>}
+            />,
+        );
+
+        // Assert
+        const label = wrapper.find(LabelSmall);
+        expect(label).toExist();
     });
 });

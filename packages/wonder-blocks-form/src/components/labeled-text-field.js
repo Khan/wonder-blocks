@@ -2,6 +2,7 @@
 import * as React from "react";
 
 import {IDProvider, type StyleType} from "@khanacademy/wonder-blocks-core";
+import {typeof I18nInlineMarkup} from "@khanacademy/wonder-blocks-i18n";
 import {type Typography} from "@khanacademy/wonder-blocks-typography";
 
 import FieldHeading from "./field-heading.js";
@@ -24,12 +25,12 @@ type Props = {|
     /**
      * Provide a label for the TextField.
      */
-    label: string | React.Element<Typography>,
+    label: string | React.Element<Typography | I18nInlineMarkup>,
 
     /**
      * Provide a description for the TextField.
      */
-    description?: string | React.Element<Typography>,
+    description?: string | React.Element<Typography | I18nInlineMarkup>,
 
     /**
      * The input value.

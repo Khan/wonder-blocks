@@ -4,6 +4,7 @@ import {StyleSheet} from "aphrodite";
 
 import {View, addStyle, type StyleType} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
+import {typeof I18nInlineMarkup} from "@khanacademy/wonder-blocks-i18n";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
@@ -21,12 +22,12 @@ type Props = {|
     /**
      * The title for the label element.
      */
-    label: string | React.Element<Typography>,
+    label: string | React.Element<Typography | I18nInlineMarkup>,
 
     /**
      * The text for the description element.
      */
-    description?: string | React.Element<Typography>,
+    description?: string | React.Element<Typography | I18nInlineMarkup>,
 
     /**
      * Whether this field is required to continue.
@@ -76,7 +77,8 @@ export default class FieldHeading extends React.Component<Props> {
 
         return (
             <React.Fragment>
-                {typeof label === "string" ? (
+                {typeof label === "string" ||
+                label.type?.__I18N_INLINE_MARKUP__ ? (
                     <LabelMedium
                         style={styles.label}
                         tag="label"
@@ -103,7 +105,8 @@ export default class FieldHeading extends React.Component<Props> {
 
         return (
             <React.Fragment>
-                {typeof description === "string" ? (
+                {typeof description === "string" ||
+                description.type?.__I18N_INLINE_MARKUP__ ? (
                     <LabelSmall
                         style={styles.description}
                         testId={testId && `${testId}-description`}
