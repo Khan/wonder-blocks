@@ -5,7 +5,11 @@ import {StyleSheet} from "aphrodite";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {ActionMenu, ActionItem} from "@khanacademy/wonder-blocks-dropdown";
-import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+import {
+    LabeledTextField,
+    RadioGroup,
+    Choice,
+} from "@khanacademy/wonder-blocks-form";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -393,6 +397,107 @@ WithInitialFocusId.parameters = {
             In this example, the top text input would have received the focus
             by default, but the bottom text field receives focus instead
             since its ID is passed into the \`initialFocusId\` prop.`,
+    },
+};
+
+/**
+ * Focus trap navigation
+ */
+const SubModal = () => (
+    <OnePaneDialog
+        title="Submodal"
+        content={
+            <View style={{gap: Spacing.medium_16}}>
+                <Body>
+                    This modal demonstrates how the focus trap works when a
+                    modal is opened from another modal.
+                </Body>
+                <Body>
+                    Try navigating this modal with the keyboard and then close
+                    it. The focus should be restored to the button that opened
+                    the modal.
+                </Body>
+                <LabeledTextField label="Label" value="" onChange={() => {}} />
+                <Button>A focusable element</Button>
+            </View>
+        }
+    />
+);
+
+export const FocusTrap: StoryComponentType = () => {
+    const [selectedValue, setSelectedValue] = React.useState(null);
+
+    const modalInitialFocus = ({closeModal}) => (
+        <OnePaneDialog
+            title="Testing the focus trap on multiple modals"
+            closeButtonVisible={false}
+            content={
+                <>
+                    <Body>
+                        This modal demonstrates how the focus trap works with
+                        form elements (or focusable elements). Also demonstrates
+                        how the focus trap is moved to the next modal when it is
+                        opened (focus/tap on the `Open another modal` button).
+                    </Body>
+                    <Strut size={Spacing.large_24} />
+                    <RadioGroup
+                        label="A RadioGroup component inside a modal"
+                        description="Some description"
+                        groupName="some-group-name"
+                        onChange={setSelectedValue}
+                        selectedValue={selectedValue ?? ""}
+                    >
+                        <Choice label="Choice 1" value="some-choice-value" />
+                        <Choice label="Choice 2" value="some-choice-value-2" />
+                    </RadioGroup>
+                </>
+            }
+            footer={
+                <>
+                    <ModalLauncher modal={SubModal}>
+                        {({openModal}) => (
+                            <Button kind="secondary" onClick={openModal}>
+                                Open another modal
+                            </Button>
+                        )}
+                    </ModalLauncher>
+                    <Strut size={Spacing.medium_16} />
+                    <Button onClick={closeModal} disabled={!selectedValue}>
+                        Next
+                    </Button>
+                </>
+            }
+        />
+    );
+
+    return (
+        <ModalLauncher modal={modalInitialFocus}>
+            {({openModal}) => (
+                <Button onClick={openModal}>Open modal with RadioGroup</Button>
+            )}
+        </ModalLauncher>
+    );
+};
+
+FocusTrap.storyName = "Navigation with focus trap";
+
+FocusTrap.parameters = {
+    chromatic: {
+        // All the examples for ModalLauncher are behavior based, not visual.
+        disableSnapshot: true,
+    },
+    docs: {
+        storyDescription:
+            `All modals have a focus trap, which means that the
+            focus is locked inside the modal. This is done to prevent the user
+            from tabbing out of the modal and losing their place. The focus
+            trap is also used to ensure that the focus is restored to the
+            correct element when the modal is closed. In this example, the
+            focus is trapped inside the modal, and the focus is restored to the
+            button that opened the modal when the modal is closed.\n\n` +
+            `Also, this example includes a sub-modal that is opened from the
+            first modal so we can test how the focus trap works when multiple
+            modals are open.`,
     },
 };
 
