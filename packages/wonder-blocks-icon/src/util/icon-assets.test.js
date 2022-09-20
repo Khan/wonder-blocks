@@ -2,13 +2,16 @@
 describe("icons", () => {
     test("default contains icons we expect", async () => {
         // Arrange
-        const importedModule = import("./icon-assets.js");
+        const importedModule = await import("./icon-assets.js");
 
         // Act
-        const result = (await importedModule).default;
 
         // Assert
-        expect(Object.keys(result).sort()).toEqual(
+        expect(
+            Object.keys(importedModule)
+                .sort()
+                .filter((key) => key !== "__esModule"),
+        ).toEqual(
             [
                 "add",
                 "caretDown",

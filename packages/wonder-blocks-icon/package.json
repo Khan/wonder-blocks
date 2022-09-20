@@ -19,6 +19,7 @@
     "@khanacademy/wonder-blocks-core": "^4.3.2"
   },
   "devDependencies": {
+    "@khanacademy/wonder-stuff-core": "^1.0.1",
     "wb-dev-build-settings": "^0.4.0"
   },
   "peerDependencies": {

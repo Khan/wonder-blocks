@@ -4,7 +4,7 @@ import * as Core from "@khanacademy/wonder-blocks-core";
 import {mount} from "enzyme";
 import "jest-enzyme";
 
-import icons from "../../util/icon-assets.js";
+import * as icons from "../../util/icon-assets.js";
 import {getPathForIcon, viewportPixelsForSize} from "../../util/icon-util.js";
 
 // We mock things out so that we're in control of what really gets rendered.
