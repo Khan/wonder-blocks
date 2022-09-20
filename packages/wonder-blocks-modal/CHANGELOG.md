@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 2.3.6
+
+### Patch Changes
+
+-   2546b126: Fix the focus trap navigation to be able to work properly in all scenarios
+
 ## 2.3.5
 
 ### Patch Changes
