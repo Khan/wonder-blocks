@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-grid
 
+## 1.0.33
+
+### Patch Changes
+
+-   Updated dependencies [6ee20af9]
+    -   @khanacademy/wonder-blocks-core@4.4.0
+
 ## 1.0.32
 
 ### Patch Changes
