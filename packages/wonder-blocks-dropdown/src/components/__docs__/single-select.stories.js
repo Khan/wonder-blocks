@@ -17,6 +17,9 @@ import {
     OptionItem,
     SeparatorItem,
 } from "@khanacademy/wonder-blocks-dropdown";
+
+import type {SingleSelectLabels} from "@khanacademy/wonder-blocks-dropdown";
+
 import ComponentInfo from "../../../../../.storybook/components/component-info.js";
 import {name, version} from "../../../package.json";
 import singleSelectArgtypes from "./base-select.argtypes.js";
@@ -459,6 +462,57 @@ CustomOpener.parameters = {
                 "- `eventState`: lets you customize the style for different states, such as pressed, hovered and focused.\n" +
                 "- `text`: Passes the menu label defined in the parent component. This value is passed using the placeholder prop set in the `SingleSelect` component.\n\n" +
                 "**Note:** If you need to use a custom ID for testing the opener, make sure to pass the testId prop inside the opener component/element.",
+        },
+    },
+};
+
+/**
+ * Custom labels
+ */
+const translatedItems = [
+    <OptionItem label="Banano" value="banano" />,
+    <OptionItem label="Fresa" value="fresa" disabled />,
+    <OptionItem label="Pera" value="pera" />,
+    <OptionItem label="Naranja" value="naranja" />,
+    <OptionItem label="Sandia" value="sandia" />,
+    <OptionItem label="Manzana" value="manzana" />,
+    <OptionItem label="Uva" value="uva" />,
+    <OptionItem label="Limon" value="limon" />,
+    <OptionItem label="Mango" value="mango" />,
+];
+
+export const CustomLabels: StoryComponentType = () => {
+    const [value, setValue] = React.useState(null);
+    const [opened, setOpened] = React.useState(true);
+
+    const translatedLabels: $Shape<SingleSelectLabels> = {
+        clearSearch: "Limpiar busqueda",
+        filter: "Filtrar",
+        noResults: "Sin resultados",
+        someResults: (numResults) => `${numResults} frutas`,
+    };
+
+    return (
+        <View style={styles.wrapper}>
+            <SingleSelect
+                isFilterable={true}
+                onChange={setValue}
+                selectedValue={value}
+                labels={translatedLabels}
+                opened={opened}
+                onToggle={setOpened}
+                placeholder="Selecciona una fruta"
+            >
+                {translatedItems}
+            </SingleSelect>
+        </View>
+    );
+};
+
+CustomLabels.parameters = {
+    docs: {
+        description: {
+            story: "This example illustrates how you can pass custom labels to the `SingleSelect` component.",
         },
     },
 };
