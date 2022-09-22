@@ -2,10 +2,10 @@
 describe("icons", () => {
     test("default contains icons we expect", async () => {
         // Arrange
-        // $FlowIgnore[prop-missing]: Flow doesn't know about __esModule
-        const {__esModule: _, ...icons} = await import("./icon-assets.js");
 
         // Act
+        // $FlowIgnore[prop-missing]: Flow doesn't know about __esModule
+        const {__esModule: _, ...icons} = await import("./icon-assets.js");
 
         // Assert
         expect(Object.keys(icons).sort()).toEqual(
