@@ -1,9 +1,18 @@
 // @flow
+import {entries} from "@khanacademy/wonder-stuff-core";
 import type {GqlOperation, GqlContext} from "./gql-types.js";
 
 const toString = (value: mixed): string => {
     if (typeof value === "string") {
         return value;
+    }
+
+    if (typeof value === "object" && value != null) {
+        if (value instanceof Date) {
+            return value.toISOString();
+        } else if (typeof value.toString === "function") {
+            return value.toString();
+        }
     }
     return JSON.stringify(value) ?? "";
 };
@@ -15,13 +24,20 @@ const toStringifiedVariables = (acc: any, key: string, value: mixed): any => {
         // extra %-encodings. This means that an object or array variable
         // turns into x variables, where x is the field or element count of
         // variable. See below for example.
-        return Object.entries(value).reduce((innerAcc, [i, v]) => {
-            const subKey = `${key}.${i}`;
-            return toStringifiedVariables(innerAcc, subKey, v);
-        }, acc);
-    } else {
-        acc[key] = toString(value);
+        const subValues = entries(value);
+
+        // If we don't get any entries, it's possible this is a Date, Error,
+        // or some other non-standard value. While these generally should be
+        // avoided as variables, we should handle them gracefully.
+        if (subValues.length !== 0) {
+            return subValues.reduce((innerAcc, [i, v]) => {
+                const subKey = `${key}.${i}`;
+                return toStringifiedVariables(innerAcc, subKey, v);
+            }, acc);
+        }
     }
+
+    acc[key] = toString(value);
     return acc;
 };
 
