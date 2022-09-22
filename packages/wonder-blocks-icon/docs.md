@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         </tr>
     </thead>
     <tbody>
-        {Object.keys(icons).filter((iconName) => iconName !== "__esModule").map(iconName => (
+        {Object.keys(icons).map(iconName => (
             <tr key={iconName}>
                 <td className={css(styles.nameCell, styles.tableBorder)}>
                     {iconName}

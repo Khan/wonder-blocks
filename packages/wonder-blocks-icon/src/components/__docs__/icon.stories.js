@@ -96,20 +96,18 @@ Sizes.parameters = {
 };
 
 export const Variants: StoryComponentType = () => {
-    const iconsWithLabels = entries(icons)
-        .filter(([name, icon]) => name !== "__esModule")
-        .map(([name, icon]) => {
-            return (
-                <tr>
-                    <td>
-                        <Icon icon={icon} />
-                    </td>
-                    <td>
-                        <LabelMedium>{name}</LabelMedium>
-                    </td>
-                </tr>
-            );
-        });
+    const iconsWithLabels = entries(icons).map(([name, icon]) => {
+        return (
+            <tr>
+                <td>
+                    <Icon icon={icon} />
+                </td>
+                <td>
+                    <LabelMedium>{name}</LabelMedium>
+                </td>
+            </tr>
+        );
+    });
 
     return <table>{iconsWithLabels}</table>;
 };

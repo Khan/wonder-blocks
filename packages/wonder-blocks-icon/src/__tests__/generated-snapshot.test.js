@@ -56,7 +56,6 @@ describe("wonder-blocks-icon", () => {
                 </thead>
                 <tbody>
                     {Object.keys(icons)
-                        .filter((iconName) => iconName !== "__esModule")
                         .map((iconName) => (
                             <tr key={iconName}>
                                 <td

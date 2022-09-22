@@ -2,16 +2,13 @@
 describe("icons", () => {
     test("default contains icons we expect", async () => {
         // Arrange
-        const importedModule = await import("./icon-assets.js");
+        // $FlowIgnore[prop-missing]: Flow doesn't know about __esModule
+        const {__esModule: _, ...icons} = await import("./icon-assets.js");
 
         // Act
 
         // Assert
-        expect(
-            Object.keys(importedModule)
-                .sort()
-                .filter((key) => key !== "__esModule"),
-        ).toEqual(
+        expect(Object.keys(icons).sort()).toEqual(
             [
                 "add",
                 "caretDown",
