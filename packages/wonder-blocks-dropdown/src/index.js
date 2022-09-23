@@ -7,6 +7,7 @@ import SingleSelect from "./components/single-select.js";
 import MultiSelect from "./components/multi-select.js";
 
 import type {Labels} from "./components/multi-select.js";
+import type {SingleSelectLabels} from "./components/single-select.js";
 
 export {
     ActionItem,
@@ -17,4 +18,4 @@ export {
     MultiSelect,
 };
 
-export type {Labels};
+export type {Labels, SingleSelectLabels};

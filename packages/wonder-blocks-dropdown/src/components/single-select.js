@@ -9,12 +9,35 @@ import DropdownCore from "./dropdown-core.js";
 import DropdownOpener from "./dropdown-opener.js";
 import SelectOpener from "./select-opener.js";
 import {
+    defaultLabels,
     selectDropdownStyle,
     filterableDropdownStyle,
 } from "../util/constants.js";
 
 import typeof OptionItem from "./option-item.js";
 import type {DropdownItem, OpenerProps} from "../util/types.js";
+
+export type SingleSelectLabels = {|
+    /**
+     * Label for describing the dismiss icon on the search filter.
+     */
+    clearSearch: string,
+
+    /**
+     * Label for the search placeholder.
+     */
+    filter: string,
+
+    /**
+     * Label for when the filter returns no results.
+     */
+    noResults: string,
+
+    /**
+     * Label for the opening component when there are some items selected.
+     */
+    someResults: (numOptions: number) => string,
+|};
 
 type Props = {|
     ...AriaProps,
@@ -108,6 +131,11 @@ type Props = {|
      * top. The items will be filtered by the input.
      */
     isFilterable?: boolean,
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels: SingleSelectLabels,
 |};
 
 type State = {|
@@ -130,9 +158,10 @@ type State = {|
 |};
 
 type DefaultProps = {|
-    alignment: $PropertyType<Props, "alignment">,
-    disabled: $PropertyType<Props, "disabled">,
-    light: $PropertyType<Props, "light">,
+    alignment: Props["alignment"],
+    disabled: Props["disabled"],
+    light: Props["light"],
+    labels: Props["labels"],
 |};
 
 /**
@@ -167,6 +196,12 @@ export default class SingleSelect extends React.Component<Props, State> {
         alignment: "left",
         disabled: false,
         light: false,
+        labels: {
+            clearSearch: defaultLabels.clearSearch,
+            filter: defaultLabels.filter,
+            noResults: defaultLabels.noResults,
+            someResults: defaultLabels.someSelected,
+        },
     };
 
     constructor(props: Props) {
@@ -318,6 +353,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             alignment,
             dropdownStyle,
             isFilterable,
+            labels,
             onChange,
             onToggle,
             opened,
@@ -365,11 +401,12 @@ export default class SingleSelect extends React.Component<Props, State> {
         const {
             alignment,
             children,
+            className,
             dropdownStyle,
             isFilterable,
+            labels,
             light,
             style,
-            className,
         } = this.props;
         const {searchText} = this.state;
         const allChildren = React.Children.toArray(children).filter(Boolean);
@@ -400,6 +437,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                     isFilterable ? this.handleSearchTextChanged : null
                 }
                 searchText={isFilterable ? searchText : ""}
+                labels={labels}
             />
         );
     }
