@@ -457,6 +457,7 @@ describe("SingleSelect", () => {
             // Arrange
             render(
                 <SingleSelect
+                    light={true}
                     onChange={onChange}
                     isFilterable={true}
                     placeholder="Choose"
