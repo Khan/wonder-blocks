@@ -62,12 +62,10 @@ type Labels = {|
      */
     noResults: string,
     /**
-     * The number total of items available.
-     *
-     * NOTE: We are reusing the same label for both the total number of items
-     * and the number of selected items.
+     * The total number of available options in the dropdown.
+     * These can be all items or only the ones that match the filter.
      */
-    someSelected: (numOptions: number) => string,
+    someResults: (numOptions: number) => string,
 |};
 
 // we need to define a DefaultProps type to allow the HOC expose the default
@@ -253,7 +251,7 @@ class DropdownCore extends React.Component<Props, State> {
             clearSearch: defaultLabels.clearSearch,
             filter: defaultLabels.filter,
             noResults: defaultLabels.noResults,
-            someSelected: defaultLabels.someSelected,
+            someResults: defaultLabels.someSelected,
         },
         light: false,
         selectionType: "single",
@@ -302,6 +300,8 @@ class DropdownCore extends React.Component<Props, State> {
             sameItemsFocusable: false,
             labels: {
                 noResults: defaultLabels.noResults,
+                // In case we are not overriding this from the caller.
+                someResults: defaultLabels.someSelected,
                 ...props.labels,
             },
         };
@@ -945,7 +945,7 @@ class DropdownCore extends React.Component<Props, State> {
                 style={styles.srOnly}
                 data-test-id="dropdown-live-region"
             >
-                {open && labels.someSelected(totalItems)}
+                {open && labels.someResults(totalItems)}
             </StyledSpan>
         );
     }

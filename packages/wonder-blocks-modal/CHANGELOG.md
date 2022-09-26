@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-modal
 
+## 2.3.7
+
+### Patch Changes
+
+-   Updated dependencies [6ee20af9]
+    -   @khanacademy/wonder-blocks-core@4.4.0
+    -   @khanacademy/wonder-blocks-breadcrumbs@1.0.33
+    -   @khanacademy/wonder-blocks-icon@1.2.30
+    -   @khanacademy/wonder-blocks-icon-button@3.4.11
+    -   @khanacademy/wonder-blocks-layout@1.4.11
+    -   @khanacademy/wonder-blocks-toolbar@2.1.34
+    -   @khanacademy/wonder-blocks-typography@1.1.33
+
+## 2.3.6
+
+### Patch Changes
+
+-   2546b126: Fix the focus trap navigation to be able to work properly in all scenarios
+
 ## 2.3.5
 
 ### Patch Changes

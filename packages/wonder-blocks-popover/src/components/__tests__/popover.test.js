@@ -1,22 +1,24 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen, waitFor} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Popover from "../popover.js";
 import PopoverContent from "../popover-content.js";
 import {PopoverContentCore} from "../../index.js";
 
 describe("Popover", () => {
-    it("should set the anchor as the popover ref", () => {
+    it("should set the anchor as the popover ref", async () => {
         // Arrange
-        const wrapper = mount(
+        const ref = React.createRef();
+
+        render(
             <Popover
                 placement="top"
                 content={<PopoverContent title="Title" content="content" />}
             >
                 {({open}) => (
-                    <button data-anchor onClick={open}>
+                    <button data-anchor onClick={open} ref={ref}>
                         Open default popover
                     </button>
                 )}
@@ -24,15 +26,16 @@ describe("Popover", () => {
         );
 
         // Act
-        const anchorElement = wrapper.find("[data-anchor]").getDOMNode();
 
         // Assert
-        expect(wrapper.state("anchorElement")).toBe(anchorElement);
+        waitFor(() => {
+            expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+        });
     });
 
     it("should hide the popover dialog by default", () => {
         // Arrange, Act
-        const wrapper = mount(
+        render(
             <Popover
                 placement="top"
                 content={<PopoverContent title="Title" content="content" />}
@@ -46,12 +49,12 @@ describe("Popover", () => {
         );
 
         // Assert
-        expect(wrapper.find(PopoverContent)).not.toExist();
+        expect(screen.queryByText("Title")).not.toBeInTheDocument();
     });
 
     it("should render the popover content after clicking the trigger", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <Popover
                 placement="top"
                 content={<PopoverContent title="Title" content="content" />}
@@ -65,17 +68,17 @@ describe("Popover", () => {
         );
 
         // Act
-        wrapper.find("[data-anchor]").simulate("click");
+        userEvent.click(screen.getByRole("button"));
 
         // Assert
-        expect(wrapper.find(PopoverContent)).toExist();
+        expect(screen.getByText("Title")).toBeInTheDocument();
     });
 
     it("should close the popover from inside the content", () => {
         // Arrange
         const onCloseMock = jest.fn();
 
-        const wrapper = mount(
+        render(
             <Popover
                 placement="top"
                 onClose={onCloseMock}
@@ -97,14 +100,86 @@ describe("Popover", () => {
         );
 
         // open the popover
-        wrapper.find("[data-anchor]").simulate("click");
+        userEvent.click(screen.getByRole("button"));
 
         // Act
         // we try to close it from inside the content
-        wrapper.find("[data-close-button]").simulate("click");
+        userEvent.click(screen.getByRole("button", {name: "close popover"}));
 
         // Assert
-        expect(wrapper.find(PopoverContentCore)).not.toExist();
+        expect(screen.queryByText("Title")).not.toBeInTheDocument();
         expect(onCloseMock).toBeCalled();
+    });
+
+    it("should close the Popover using the default close button", () => {
+        // Arrange
+        const onCloseMock = jest.fn();
+
+        render(
+            <Popover
+                placement="top"
+                onClose={onCloseMock}
+                content={
+                    <PopoverContent
+                        title="Title"
+                        content="content"
+                        closeButtonVisible={true}
+                        closeButtonLabel="Click to close popover"
+                    />
+                }
+            >
+                {({open}) => (
+                    <button data-anchor onClick={open}>
+                        Open default popover
+                    </button>
+                )}
+            </Popover>,
+        );
+
+        // open the popover
+        userEvent.click(screen.getByRole("button"));
+
+        // Act
+        // we try to close it using the default close button
+        userEvent.click(
+            screen.getByRole("button", {name: "Click to close popover"}),
+        );
+
+        // Assert
+        expect(screen.queryByText("Title")).not.toBeInTheDocument();
+        expect(onCloseMock).toBeCalled();
+    });
+
+    it("should close the Popover if dismissEnabled is set", async () => {
+        // Arrange
+        render(
+            <Popover
+                dismissEnabled={true}
+                placement="top"
+                content={<PopoverContent title="Title" content="content" />}
+            >
+                {({open}) => (
+                    <button data-anchor onClick={open}>
+                        Open default popover
+                    </button>
+                )}
+            </Popover>,
+        );
+
+        // open the popover
+        userEvent.click(
+            screen.getByRole("button", {name: "Open default popover"}),
+        );
+
+        // Act
+        // we try to close it using the same trigger element
+        userEvent.click(
+            screen.getByRole("button", {name: "Open default popover"}),
+        );
+
+        // Assert
+        waitFor(() => {
+            expect(screen.queryByText("Title")).not.toBeInTheDocument();
+        });
     });
 });

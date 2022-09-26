@@ -1,0 +1,34 @@
+{
+  "name": "@khanacademy/wonder-blocks-banner",
+  "version": "0.1.0",
+  "design": "v1",
+  "description": "Banner components for Wonder Blocks.",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "source": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@babel/runtime": "^7.18.6",
+    "@khanacademy/wonder-blocks-button": "^3.0.3",
+    "@khanacademy/wonder-blocks-color": "^1.2.0",
+    "@khanacademy/wonder-blocks-core": "^4.4.0",
+    "@khanacademy/wonder-blocks-icon": "^1.2.30",
+    "@khanacademy/wonder-blocks-icon-button": "^3.4.11",
+    "@khanacademy/wonder-blocks-spacing": "^3.0.5",
+    "@khanacademy/wonder-blocks-typography": "^1.1.33"
+  },
+  "peerDependencies": {
+    "aphrodite": "^1.2.5",
+    "react": "16.14.0"
+  },
+  "devDependencies": {
+    "wb-dev-build-settings": "^0.4.0"
+  }
+}

@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event";
 
 import OptionItem from "../option-item.js";
 import SingleSelect from "../single-select.js";
+import type {SingleSelectLabels} from "../single-select.js";
 
 describe("SingleSelect", () => {
     const onChange = jest.fn();
@@ -457,6 +458,7 @@ describe("SingleSelect", () => {
             // Arrange
             render(
                 <SingleSelect
+                    light={true}
                     onChange={onChange}
                     isFilterable={true}
                     placeholder="Choose"
@@ -713,6 +715,99 @@ describe("SingleSelect", () => {
             // TODO(WB-1318): Change this assertion to `1 item` after adding the
             // `labels` prop to the component.
             expect(liveRegionText).toEqual("1 items");
+        });
+    });
+
+    describe("Custom labels", () => {
+        const translatedItems = [
+            <OptionItem label="Banano" value="banano" />,
+            <OptionItem label="Fresa" value="fresa" disabled />,
+            <OptionItem label="Pera" value="pera" />,
+            <OptionItem label="Naranja" value="naranja" />,
+            <OptionItem label="Sandia" value="sandia" />,
+            <OptionItem label="Manzana" value="manzana" />,
+            <OptionItem label="Uva" value="uva" />,
+            <OptionItem label="Limon" value="limon" />,
+            <OptionItem label="Mango" value="mango" />,
+        ];
+
+        it("passes the custom label to the search input field", () => {
+            // Arrange
+            const labels: $Shape<SingleSelectLabels> = {
+                filter: "Filtrar",
+            };
+
+            // Act
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    placeholder="Escoge una fruta"
+                    isFilterable={true}
+                    opened={true}
+                    labels={labels}
+                >
+                    {translatedItems}
+                </SingleSelect>,
+            );
+
+            // Assert
+            expect(screen.getByPlaceholderText("Filtrar")).toBeInTheDocument();
+        });
+
+        it("passes the custom label to the dismiss filter icon", () => {
+            // Arrange
+            const labels: $Shape<SingleSelectLabels> = {
+                clearSearch: "Limpiar busqueda",
+                filter: "Filtrar",
+            };
+
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    placeholder="Escoge una fruta"
+                    isFilterable={true}
+                    opened={true}
+                    labels={labels}
+                >
+                    {translatedItems}
+                </SingleSelect>,
+            );
+
+            // Act
+            // Add text to the filter input to display the dismiss icon button.
+            userEvent.type(screen.getByPlaceholderText("Filtrar"), "m");
+
+            // Assert
+            expect(
+                screen.getByLabelText("Limpiar busqueda"),
+            ).toBeInTheDocument();
+        });
+
+        it("passes the custom label to the no results label", () => {
+            // Arrange
+            const labels: $Shape<SingleSelectLabels> = {
+                filter: "Filtrar",
+                noResults: "No hay resultados",
+            };
+
+            render(
+                <SingleSelect
+                    onChange={onChange}
+                    placeholder="Escoge una fruta"
+                    isFilterable={true}
+                    opened={true}
+                    labels={labels}
+                >
+                    {translatedItems}
+                </SingleSelect>,
+            );
+
+            // Act
+            // Add text to the filter input with a random word.
+            userEvent.type(screen.getByPlaceholderText("Filtrar"), "invalid");
+
+            // Assert
+            expect(screen.getByText("No hay resultados")).toBeInTheDocument();
         });
     });
 });

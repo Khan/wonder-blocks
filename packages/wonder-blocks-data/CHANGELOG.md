@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-data
 
+## 10.0.0
+
+### Major Changes
+
+-   5a3ec7f9: Make sure request ID generation handles objects like Date and Error instances better
+
+## 9.1.2
+
+### Patch Changes
+
+-   Updated dependencies [6ee20af9]
+    -   @khanacademy/wonder-blocks-core@4.4.0
+
 ## 9.1.1
 
 ### Patch Changes

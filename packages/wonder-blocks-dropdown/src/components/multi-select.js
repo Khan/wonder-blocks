@@ -575,7 +575,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                     clearSearch,
                     filter,
                     noResults,
-                    someSelected,
+                    someResults: someSelected,
                 }}
             />
         );

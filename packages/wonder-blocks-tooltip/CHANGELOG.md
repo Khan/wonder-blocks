@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 1.3.17
+
+### Patch Changes
+
+-   Updated dependencies [6ee20af9]
+    -   @khanacademy/wonder-blocks-core@4.4.0
+    -   @khanacademy/wonder-blocks-layout@1.4.11
+    -   @khanacademy/wonder-blocks-modal@2.3.7
+    -   @khanacademy/wonder-blocks-typography@1.1.33
+
+## 1.3.16
+
+### Patch Changes
+
+-   e9364406: hide tooltip-tail from screen readers
+-   Updated dependencies [2546b126]
+    -   @khanacademy/wonder-blocks-modal@2.3.6
+
 ## 1.3.15
 
 ### Patch Changes
