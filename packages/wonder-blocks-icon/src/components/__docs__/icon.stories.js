@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import type {StoryComponentType} from "@storybook/react";
+import {entries} from "@khanacademy/wonder-stuff-core";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -95,14 +96,14 @@ Sizes.parameters = {
 };
 
 export const Variants: StoryComponentType = () => {
-    const iconsWithLabels = Object.entries(icons).map(([iconName, _]) => {
+    const iconsWithLabels = entries(icons).map(([name, icon]) => {
         return (
             <tr>
                 <td>
-                    <Icon icon={icons[iconName]} />
+                    <Icon icon={icon} />
                 </td>
                 <td>
-                    <LabelMedium>{iconName}</LabelMedium>
+                    <LabelMedium>{name}</LabelMedium>
                 </td>
             </tr>
         );
