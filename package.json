@@ -88,7 +88,7 @@
     "eslint-plugin-storybook": "^0.5.12",
     "eslint-plugin-testing-library": "^5.0.0",
     "eslint-watch": "^8.0.0",
-    "flow-bin": "^0.180.0",
+    "flow-bin": "0.188.0",
     "flow-enums-runtime": "^0.0.6",
     "glob": "^7.1.2",
     "inquirer": "^8.2.0",

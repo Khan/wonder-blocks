@@ -156,7 +156,7 @@ describe("ModalLauncher", () => {
     });
 
     test("Disable scrolling when the modal is open", () => {
-        let savedCloseModal = () => {
+        let savedCloseModal: () => void = () => {
             throw new Error(`closeModal wasn't saved`);
         };
 
