@@ -41,12 +41,23 @@ type BannerLayout =
      */
     | "full-width";
 
-type ActionTrigger = {|
+type ActionTriggerBase = {|
     title: string,
-    onClick?: () => void,
-    href?: string,
     ariaLabel?: string,
 |};
+
+type ActionTriggerWithButton = {|
+    ...ActionTriggerBase,
+    onClick: () => void,
+|};
+
+type ActionTriggerWithLink = {|
+    ...ActionTriggerBase,
+    href: string,
+    onClick?: () => void,
+|};
+
+type ActionTrigger = ActionTriggerWithButton | ActionTriggerWithLink;
 
 type Props = {|
     /**
@@ -132,7 +143,7 @@ const iconForKind = (kind: BannerKind) => {
  */
 const Banner = (props: Props): React.Node => {
     const {actions, onDismiss, kind, layout = "full-width", text} = props;
-    const layoutstyle = {
+    const layoutStyle = {
         borderRadius: layout && layout === "full-width" ? 0 : 4,
     };
 
@@ -152,7 +163,7 @@ const Banner = (props: Props): React.Node => {
                         </Link>
                     </View>
                 );
-            } else if (action.onClick) {
+            } else {
                 return (
                     <View style={styles.action} key={action.title}>
                         <Button
@@ -165,10 +176,6 @@ const Banner = (props: Props): React.Node => {
                         </Button>
                     </View>
                 );
-            } else {
-                throw new Error(
-                    "An action must have an href or an onClick field.",
-                );
             }
         });
     };
@@ -177,14 +184,14 @@ const Banner = (props: Props): React.Node => {
         <View
             style={[
                 styles.containerOuter,
-                layoutstyle,
+                layoutStyle,
                 {borderInlineStartColor: colorForKind(kind ?? "info")},
             ]}
         >
             <View
                 style={[
                     styles.backgroundColor,
-                    layoutstyle,
+                    layoutStyle,
                     {backgroundColor: colorForKind(kind ?? "info")},
                 ]}
             />
@@ -205,12 +212,14 @@ const Banner = (props: Props): React.Node => {
                     )}
                 </View>
                 {onDismiss ? (
-                    <IconButton
-                        icon={icons.dismiss}
-                        kind={"tertiary"}
-                        onClick={onDismiss}
-                        style={styles.dismiss}
-                    />
+                    <View style={styles.dismissContainer}>
+                        <IconButton
+                            icon={icons.dismiss}
+                            kind={"tertiary"}
+                            onClick={onDismiss}
+                            style={styles.dismiss}
+                        />
+                    </View>
                 ) : null}
             </View>
         </View>
@@ -228,7 +237,6 @@ const styles = StyleSheet.create({
     },
     containerOuter: {
         borderInlineStartWidth: Spacing.xxSmall_6,
-        minHeight: 56,
         width: "100%",
         // Because of the background color's opacity value,
         // the base color needs to be hard-coded as white for the
@@ -242,7 +250,11 @@ const styles = StyleSheet.create({
     },
     icon: {
         marginTop: Spacing.xSmall_8,
+        // The total distance from the icon to the edge is 16px. The
+        // vertical identifier is already 6px, and the padding on inner
+        // conatiner is 8px. So that leaves 2px.
         marginInlineStart: Spacing.xxxxSmall_2,
+        marginInlineEnd: Spacing.xSmall_8,
         alignSelf: "flex-start",
         color: Color.offBlack64,
     },
@@ -253,28 +265,34 @@ const styles = StyleSheet.create({
         alignContent: "center",
         flexWrap: "wrap",
         justifyContent: "space-between",
-        marginLeft: Spacing.xSmall_8,
-        marginRight: Spacing.xSmall_8,
-        paddingInlineStart: Spacing.xSmall_8,
     },
     labelContainer: {
         flexShrink: 1,
-        marginTop: Spacing.small_12,
-        marginBottom: 10,
-        marginInlineEnd: Spacing.medium_16,
+        margin: Spacing.xSmall_8,
     },
     actionsContainer: {
         flexDirection: "row",
         justifyContent: "flex-start",
+        marginTop: Spacing.xSmall_8,
+        marginBottom: Spacing.xSmall_8,
     },
     action: {
-        marginInlineEnd: Spacing.medium_16,
+        marginLeft: Spacing.xSmall_8,
+        marginRight: Spacing.xSmall_8,
         justifyContent: "center",
+        // Set the height to remove the padding from buttons
+        height: 18,
     },
     dismiss: {
         flexShrink: 1,
-        top: Spacing.xSmall_8,
-        marginInlineEnd: Spacing.xSmall_8,
+    },
+    dismissContainer: {
+        height: 40,
+        width: 40,
+        justifyContent: "center",
+        alignItems: "center",
+        marginLeft: Spacing.xSmall_8,
+        marginRight: Spacing.xSmall_8,
     },
 });
 

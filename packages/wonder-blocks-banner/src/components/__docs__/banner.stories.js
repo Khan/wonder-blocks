@@ -4,12 +4,11 @@ import {StyleSheet} from "aphrodite";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
 import Button from "@khanacademy/wonder-blocks-button";
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
@@ -135,7 +134,7 @@ Variants.parameters = {
 };
 
 export const DarkBackground: StoryComponentType = () => (
-    <View style={styles.darkBackground}>
+    <View style={styles.variantColumn}>
         <View style={styles.spacing}>
             <Banner text="kind: info" kind="info" layout="floating" />
         </View>
@@ -152,6 +151,9 @@ export const DarkBackground: StoryComponentType = () => (
 );
 
 DarkBackground.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
     docs: {
         storyDescription: "This is how banners look on a dark background.",
     },
@@ -207,9 +209,9 @@ export const WithInlineLinks: StoryComponentType = () => (
         <Strut size={Spacing.medium_16} />
         <Banner
             text={
-                <span>
+                <LabelSmall>
                     Click {<Link href="">here</Link>} to go to some other page.
-                </span>
+                </LabelSmall>
             }
             kind="success"
             actions={[{title: "Button", onClick: () => {}}]}
@@ -342,11 +344,6 @@ const styles = StyleSheet.create({
     },
     spacing: {
         margin: Spacing.xSmall_8,
-    },
-    darkBackground: {
-        backgroundColor: Color.darkBlue,
-        padding: Spacing.medium_16,
-        width: "100%",
     },
     rightToLeft: {
         width: "100%",

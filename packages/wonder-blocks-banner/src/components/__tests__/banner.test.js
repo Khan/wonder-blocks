@@ -146,17 +146,4 @@ describe("Banner", () => {
         // Assert
         expect(link).toHaveAttribute("href", "/foo");
     });
-
-    test("passing an action with no href or onClick throws an error", () => {
-        // Arrange
-
-        // Act
-        const actionTest = () =>
-            render(<Banner text="" actions={[{title: "some button"}]} />);
-
-        // Assert
-        expect(actionTest).toThrow(
-            "An action must have an href or an onClick field.",
-        );
-    });
 });
