@@ -328,6 +328,34 @@ RightToLeft.parameters = {
     },
 };
 
+export const RightToLeftMultiline: StoryComponentType = () => (
+    <View style={styles.rightToLeft}>
+        <Banner
+            text={`یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ
+             اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ
+             اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ
+             اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ
+             اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔
+             اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔
+             اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔`}
+            actions={[
+                {title: "پہلا بٹن", onClick: () => {}},
+                {title: "دوسرا بٹن", onClick: () => {}},
+            ]}
+            layout="full-width"
+        />
+    </View>
+);
+
+RightToLeftMultiline.parameters = {
+    docs: {
+        storyDescription: `When in the right-to-left direction, the banner
+            is mirrored. This example has text in Urdu, which is a
+            right-to-left language. This example also has multiple lines
+            with the butotns on the bottom of the text.`,
+    },
+};
+
 const styles = StyleSheet.create({
     example: {
         alignItems: "center",
