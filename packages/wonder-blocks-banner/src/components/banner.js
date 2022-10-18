@@ -250,6 +250,7 @@ const styles = StyleSheet.create({
     },
     icon: {
         marginTop: Spacing.xSmall_8,
+        marginBottom: Spacing.xSmall_8,
         // The total distance from the icon to the edge is 16px. The
         // vertical identifier is already 6px, and the padding on inner
         // conatiner is 8px. So that leaves 2px.
