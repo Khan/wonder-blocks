@@ -180,7 +180,7 @@ const Banner = (props: Props): React.Node => {
         });
     };
 
-    return (
+    const bannerBody = (
         <View
             style={[
                 styles.containerOuter,
@@ -224,6 +224,12 @@ const Banner = (props: Props): React.Node => {
             </View>
         </View>
     );
+
+    return layout === "full-width" ? (
+        bannerBody
+    ) : (
+        <View style={styles.containerFloating}>{bannerBody}</View>
+    );
 };
 
 const styles = StyleSheet.create({
@@ -247,6 +253,10 @@ const styles = StyleSheet.create({
     containerInner: {
         flexDirection: "row",
         padding: Spacing.xSmall_8,
+    },
+    containerFloating: {
+        padding: Spacing.xSmall_8,
+        width: "100%",
     },
     icon: {
         marginTop: Spacing.xSmall_8,

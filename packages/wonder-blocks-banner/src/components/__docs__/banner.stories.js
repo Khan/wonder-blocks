@@ -127,7 +127,8 @@ Variants.parameters = {
     docs: {
         storyDescription: `Banners come with two layouts: full-width (default)
             and floating. Full-width layout gives the banner square edges,
-            and floating layout gives the banner rounded edges. Banners
+            and floating layout gives the banner rounded edges. Floating
+            banners also have 8 pixels of space on each side. Banners
             also come in four different kinds: info (default), success,
             warning, and critical.`,
     },
