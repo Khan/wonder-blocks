@@ -1,15 +1,22 @@
 // @flow
 import * as React from "react";
-import {StyleSheet, css} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Link from "@khanacademy/wonder-blocks-link";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
+
+import {
+    infoIcon,
+    successIcon,
+    warningIcon,
+    criticalIcon,
+} from "./banner-icons.js";
 
 type BannerKind =
     /**
@@ -108,15 +115,15 @@ const colorForKind = (kind: BannerKind) => {
 const iconForKind = (kind: BannerKind) => {
     switch (kind) {
         case "info":
-            return "/info.svg";
+            return infoIcon;
         case "success":
-            return "/success.svg";
+            return successIcon;
         case "warning":
-            return "/warning.svg";
+            return warningIcon;
         case "critical":
-            return "/critical.svg";
+            return criticalIcon;
         default:
-            return "/info.svg";
+            return infoIcon;
     }
 };
 
@@ -196,10 +203,10 @@ const Banner = (props: Props): React.Node => {
                 ]}
             />
             <View style={styles.containerInner}>
-                <img
-                    src={iconForKind(kind ?? "info")}
-                    alt={kind}
-                    className={css(styles.icon)}
+                <Icon
+                    icon={iconForKind(kind ?? "info")}
+                    size="medium"
+                    style={styles.icon}
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
