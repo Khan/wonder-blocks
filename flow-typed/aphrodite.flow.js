@@ -359,6 +359,9 @@ type _CSSProperties = {|
     // This is used by wonder-blocks-grid/util/styles.js
     "@media (min-width: 1168px)"?: _CSSProperties,
 
+    // This is used by wonder-blocks-banner/src/components/banner.js
+    "@media (max-width: 768px)"?: _CSSProperties,
+
     // Aphrodite Internal
     _definition?: _CSSProperties,
 |};

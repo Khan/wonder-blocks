@@ -254,7 +254,26 @@ export const MultilineWithButtons: StoryComponentType = () => (
 MultilineWithButtons.parameters = {
     docs: {
         storyDescription: `When a banner has long text, the actions
-            move from the right of the text to the bottom.`,
+            move from the right of the text to the bottom. Here, the
+            actions are buttons.`,
+    },
+};
+
+export const MultilineWithLinks: StoryComponentType = () => (
+    <Banner
+        text={longText}
+        actions={[
+            {title: "Link 1", href: "/"},
+            {title: "Link 2", href: "/"},
+        ]}
+    />
+);
+
+MultilineWithLinks.parameters = {
+    docs: {
+        storyDescription: `When a banner has long text, the actions
+            move from the right of the text to the bottom. Here, the
+            actions are links.`,
     },
 };
 
