@@ -95,8 +95,6 @@ type Props = {|
     onDismiss?: ?() => void,
 |};
 
-const SMALL_SCREEN = 768;
-
 const colorForKind = (kind: BannerKind) => {
     switch (kind) {
         case "info":
@@ -152,22 +150,11 @@ const iconForKind = (kind: BannerKind) => {
  */
 const Banner = (props: Props): React.Node => {
     const {actions, onDismiss, kind, layout, text} = props;
-    const [windowSize, setWindowSize] = React.useState(window.innerWidth);
-
-    // Keep track of the window size so we can update the button sizes
-    // as necessary.
-    React.useEffect(() => {
-        function handleResize() {
-            setWindowSize(window.innerWidth);
-        }
-        window.addEventListener("resize", handleResize);
-    });
+    const layoutStyle = {
+        borderRadius: layout && layout === "full-width" ? 0 : 4,
+    };
 
     const renderActions = () => {
-        // Determine whether to use the small or medium button size.
-        const isSmall = windowSize < SMALL_SCREEN;
-        const buttonSize = isSmall ? "small" : "medium";
-
         return actions?.filter(Boolean).map((action) => {
             const handleClick = action.onClick;
             if (action.href) {
@@ -189,7 +176,7 @@ const Banner = (props: Props): React.Node => {
                     <View style={styles.action} key={action.title}>
                         <Button
                             kind="tertiary"
-                            size={buttonSize}
+                            size="small"
                             aria-label={action.ariaLabel ?? action.title}
                             onClick={handleClick}
                         >
@@ -199,10 +186,6 @@ const Banner = (props: Props): React.Node => {
                 );
             }
         });
-    };
-
-    const layoutStyle = {
-        borderRadius: layout && layout === "full-width" ? 0 : 4,
     };
 
     const bannerBody = (
@@ -267,7 +250,6 @@ type DefaultProps = {|
 const defaultProps: DefaultProps = {layout: "full-width", kind: "info"};
 Banner.defaultProps = defaultProps;
 
-const SMALL_SCREEN_QUERY = "@media (max-width: 768px)";
 const styles = StyleSheet.create({
     backgroundColor: {
         position: "absolute",
@@ -329,14 +311,10 @@ const styles = StyleSheet.create({
         marginRight: Spacing.xSmall_8,
         justifyContent: "center",
         // Set the height to remove the padding from buttons
-        height: 20,
+        height: 18,
     },
     link: {
-        fontSize: Spacing.medium_16,
-
-        [SMALL_SCREEN_QUERY]: {
-            fontSize: 14,
-        },
+        fontSize: 14,
     },
     dismiss: {
         flexShrink: 1,

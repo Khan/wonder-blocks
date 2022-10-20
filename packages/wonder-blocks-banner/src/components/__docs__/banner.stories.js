@@ -276,13 +276,17 @@ MultilineWithButtons.parameters = {
 };
 
 export const MultilineWithLinks: StoryComponentType = () => (
-    <Banner
-        text={longText}
-        actions={[
-            {title: "Link 1", href: "/"},
-            {title: "Link 2", href: "/"},
-        ]}
-    />
+    <View style={styles.narrowBanner}>
+        <Banner
+            text={
+                "This is a multi-line banner. These have wrapping text and actions are below."
+            }
+            actions={[
+                {title: "Link 1", href: "/"},
+                {title: "Link 2", href: "/"},
+            ]}
+        />
+    </View>
 );
 
 MultilineWithLinks.parameters = {
