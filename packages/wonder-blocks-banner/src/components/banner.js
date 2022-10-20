@@ -63,12 +63,12 @@ type Props = {|
     /**
      * Determines the color and icon of the banner.
      */
-    kind?: BannerKind,
+    kind: BannerKind,
 
     /**
      * Determines the edge style of the Banner.
      */
-    layout?: BannerLayout,
+    layout: BannerLayout,
 
     /**
      * Text on the banner (LabelSmall) or a node if you want something different
@@ -142,7 +142,7 @@ const iconForKind = (kind: BannerKind) => {
  * ```
  */
 const Banner = (props: Props): React.Node => {
-    const {actions, onDismiss, kind, layout = "full-width", text} = props;
+    const {actions, onDismiss, kind, layout, text} = props;
     const layoutStyle = {
         borderRadius: layout && layout === "full-width" ? 0 : 4,
     };
@@ -232,6 +232,14 @@ const Banner = (props: Props): React.Node => {
     );
 };
 
+type DefaultProps = {|
+    layout: Props["layout"],
+    kind: Props["kind"],
+|};
+
+const defaultProps: DefaultProps = {layout: "full-width", kind: "info"};
+Banner.defaultProps = defaultProps;
+
 const styles = StyleSheet.create({
     backgroundColor: {
         position: "absolute",
@@ -280,6 +288,7 @@ const styles = StyleSheet.create({
     labelContainer: {
         flexShrink: 1,
         margin: Spacing.xSmall_8,
+        textAlign: "start",
     },
     actionsContainer: {
         flexDirection: "row",
