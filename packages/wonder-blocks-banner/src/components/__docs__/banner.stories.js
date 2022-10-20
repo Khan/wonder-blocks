@@ -145,7 +145,7 @@ Layouts.parameters = {
 };
 
 export const DarkBackground: StoryComponentType = () => (
-    <View style={styles.column}>
+    <View style={styles.container}>
         <Banner text="kind: info" kind="info" layout="floating" />
         <Banner text="kind: success" kind="success" layout="floating" />
         <Banner text="kind: warning" kind="warning" layout="floating" />
@@ -379,17 +379,6 @@ const styles = StyleSheet.create({
     },
     container: {
         width: "100%",
-        flexDirection: "column",
-    },
-    column: {
-        width: "100%",
-        flexDirection: "column",
-        textAlign: "center",
-    },
-    variantRow: {
-        width: "100%",
-        flexDirection: "row",
-        textAlign: "center",
     },
     narrowBanner: {
         maxWidth: 400,
