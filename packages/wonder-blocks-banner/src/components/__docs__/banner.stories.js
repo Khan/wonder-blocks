@@ -199,7 +199,7 @@ WithLinks.parameters = {
 export const WithInlineLinks: StoryComponentType = () => (
     <>
         <Banner
-            text="Oh no! The button and link look different."
+            text="Oh no! The button and link on the right look different! Don't mix button and link actions."
             kind="critical"
             actions={[
                 {title: "Link", href: "/"},
@@ -210,7 +210,8 @@ export const WithInlineLinks: StoryComponentType = () => (
         <Banner
             text={
                 <LabelSmall>
-                    Click {<Link href="">here</Link>} to go to some other page.
+                    Use inline links in the body of the text instead. Click{" "}
+                    {<Link href="">here</Link>} to go to some other page.
                 </LabelSmall>
             }
             kind="success"

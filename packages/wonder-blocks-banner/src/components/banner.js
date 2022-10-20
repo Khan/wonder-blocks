@@ -142,7 +142,7 @@ const iconForKind = (kind: BannerKind) => {
  * ```
  */
 const Banner = (props: Props): React.Node => {
-    const {actions, onDismiss, kind, layout = "full-width", text} = props;
+    const {actions, onDismiss, kind, layout, text} = props;
     const layoutStyle = {
         borderRadius: layout && layout === "full-width" ? 0 : 4,
     };
@@ -225,6 +225,14 @@ const Banner = (props: Props): React.Node => {
         </View>
     );
 };
+
+type DefaultProps = {|
+    layout: string,
+    kind: string,
+|};
+
+const defaultProps: DefaultProps = {layout: "full-width", kind: "info"};
+Banner.defaultProps = defaultProps;
 
 const styles = StyleSheet.create({
     backgroundColor: {
