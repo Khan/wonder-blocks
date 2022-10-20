@@ -278,6 +278,7 @@ const styles = StyleSheet.create({
     labelContainer: {
         flexShrink: 1,
         margin: Spacing.xSmall_8,
+        textAlign: "start",
     },
     actionsContainer: {
         flexDirection: "row",
