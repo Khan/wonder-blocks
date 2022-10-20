@@ -207,6 +207,8 @@ const Banner = (props: Props): React.Node => {
                     icon={iconForKind(kind ?? "info")}
                     size="medium"
                     style={styles.icon}
+                    aria-label={kind}
+                    testId="banner-kind-icon"
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
