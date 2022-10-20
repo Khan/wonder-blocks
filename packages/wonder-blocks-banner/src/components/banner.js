@@ -63,12 +63,12 @@ type Props = {|
     /**
      * Determines the color and icon of the banner.
      */
-    kind?: BannerKind,
+    kind: BannerKind,
 
     /**
      * Determines the edge style of the Banner.
      */
-    layout?: BannerLayout,
+    layout: BannerLayout,
 
     /**
      * Text on the banner (LabelSmall) or a node if you want something different
@@ -227,8 +227,8 @@ const Banner = (props: Props): React.Node => {
 };
 
 type DefaultProps = {|
-    layout: string,
-    kind: string,
+    layout: Props["layout"],
+    kind: Props["kind"],
 |};
 
 const defaultProps: DefaultProps = {layout: "full-width", kind: "info"};
