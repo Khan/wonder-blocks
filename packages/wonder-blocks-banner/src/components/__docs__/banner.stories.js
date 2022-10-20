@@ -4,11 +4,12 @@ import {StyleSheet} from "aphrodite";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
 import Button from "@khanacademy/wonder-blocks-button";
+import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
@@ -43,18 +44,6 @@ export default {
     argTypes: BannerArgTypes,
 };
 
-const longText = `Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Ut id porttitor mauris, id convallis lectus. Aliquam erat volutpat.
-    Ut quis varius enim. Ut metus dui, tincidunt sed fringilla vel, tempus
-    non velit. Proin erat magna, gravida id lacus ut, pharetra sollicitudin
-    ligula. Phasellus a porttitor felis. Aliquam dictum est vitae gravida
-    ullamcorper. Nulla gravida eget enim vel maximus. Etiam congue, nisi
-    eu venenatis semper, mauris erat vehicula lorem, elementum scelerisque
-    tortor dui sed quam. Ut ac efficitur est. Vivamus dignissim mauris vel
-    leo ultricies, eget sagittis orci ornare. Nunc tincidunt convallis ex,
-    at malesuada lorem efficitur vel. Cras sodales nunc sit amet sem suscipit
-    malesuada. Vivamus ullamcorper tellus non elit vehicula viverra.`;
-
 export const Default: StoryComponentType = (args) => <Banner {...args} />;
 
 Default.args = {
@@ -72,81 +61,95 @@ Simple.parameters = {
     },
 };
 
-export const Variants: StoryComponentType = () => (
+export const Kinds: StoryComponentType = () => (
     <View style={styles.container}>
-        <View style={styles.variantColumn}>
-            <LabelMedium>Full-width layout</LabelMedium>
-            <View style={styles.spacing}>
-                <Banner text="kind: info" kind="info" layout="full-width" />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: success"
-                    kind="success"
-                    layout="full-width"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: warning"
-                    kind="warning"
-                    layout="full-width"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: critical"
-                    kind="critical"
-                    layout="full-width"
-                />
-            </View>
+        <Banner
+            text="kind: info - This is a message about something informative like an announcement."
+            kind="info"
+            layout="floating"
+        />
+        <Banner
+            text="kind: success - This is a message about something positive or successful!"
+            kind="success"
+            layout="floating"
+        />
+        <Banner
+            text="kind: warning - This is a message warning the user about a potential issue."
+            kind="warning"
+            layout="floating"
+        />
+        <Banner
+            text="kind: critical - This is a message about something critical or an error."
+            kind="critical"
+            layout="floating"
+        />
+    </View>
+);
+
+Kinds.parameters = {
+    docs: {
+        storyDescription: `Banners have four possible kinds (\`kind\` prop) -
+            info (default), success, warning, and critical. Info is blue
+            with an info "i" icon, success is green with a smiling icon,
+            warning is yellow with a triangular "!" icon, and critical is
+            red with a round "!" icon.`,
+    },
+};
+
+export const Layouts: StoryComponentType = () => (
+    <View style={styles.container}>
+        <Banner
+            text="This banner has full-width layout. This is the default."
+            layout="full-width"
+            kind="success"
+        />
+        <Strut size={Spacing.medium_16} />
+        <Banner
+            text="This banner has floating layout."
+            layout="floating"
+            kind="success"
+        />
+        <Strut size={Spacing.medium_16} />
+        <View style={styles.border}>
+            <Banner
+                text="This banner has full-width layout. There is no space around it."
+                layout="full-width"
+                kind="success"
+            />
         </View>
-        <View style={styles.variantColumn}>
-            <LabelMedium>Floating layout</LabelMedium>
-            <View style={styles.spacing}>
-                <Banner text="kind: info" kind="info" layout="floating" />
-            </View>
-            <View style={styles.spacing}>
-                <Banner text="kind: success" kind="success" layout="floating" />
-            </View>
-            <View style={styles.spacing}>
-                <Banner text="kind: warning" kind="warning" layout="floating" />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: critical"
-                    kind="critical"
-                    layout="floating"
-                />
-            </View>
+        <Strut size={Spacing.medium_16} />
+        <View style={styles.border}>
+            <Banner
+                text="This banner has floating layout. There is space around it."
+                layout="floating"
+                kind="success"
+            />
         </View>
     </View>
 );
 
-Variants.parameters = {
+Layouts.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
     docs: {
         storyDescription: `Banners come with two layouts: full-width (default)
-            and floating. Full-width layout gives the banner square edges,
-            and floating layout gives the banner rounded edges. Banners
-            also come in four different kinds: info (default), success,
-            warning, and critical.`,
+        and floating. Full-width layout gives the banner squared edges,
+        and floating layout gives the banner rounded edges. Floating
+        banners also have 8 pixels of space on each side - to demonstrate
+        this, the container for each banner has also been given an outline.
+        Observe that there is no space between the banner and the outline
+        for the full-width banner, and there is noticable space between
+        the banner and the outline for the floating banner.`,
     },
 };
 
 export const DarkBackground: StoryComponentType = () => (
-    <View style={styles.variantColumn}>
-        <View style={styles.spacing}>
-            <Banner text="kind: info" kind="info" layout="floating" />
-        </View>
-        <View style={styles.spacing}>
-            <Banner text="kind: success" kind="success" layout="floating" />
-        </View>
-        <View style={styles.spacing}>
-            <Banner text="kind: warning" kind="warning" layout="floating" />
-        </View>
-        <View style={styles.spacing}>
-            <Banner text="kind: critical" kind="critical" layout="floating" />
-        </View>
+    <View style={styles.container}>
+        <Banner text="kind: info" kind="info" layout="floating" />
+        <Banner text="kind: success" kind="success" layout="floating" />
+        <Banner text="kind: warning" kind="warning" layout="floating" />
+        <Banner text="kind: critical" kind="critical" layout="floating" />
     </View>
 );
 
@@ -199,7 +202,7 @@ WithLinks.parameters = {
 export const WithInlineLinks: StoryComponentType = () => (
     <>
         <Banner
-            text="Oh no! The button and link look different."
+            text="Oh no! The button and link on the right look different! Don't mix button and link actions."
             kind="critical"
             actions={[
                 {title: "Link", href: "/"},
@@ -210,7 +213,8 @@ export const WithInlineLinks: StoryComponentType = () => (
         <Banner
             text={
                 <LabelSmall>
-                    Click {<Link href="">here</Link>} to go to some other page.
+                    Use inline links in the body of the text instead. Click{" "}
+                    {<Link href="">here</Link>} to go to some other page.
                 </LabelSmall>
             }
             kind="success"
@@ -232,23 +236,35 @@ WithInlineLinks.parameters = {
     },
 };
 
-export const Multiline: StoryComponentType = () => <Banner text={longText} />;
+export const Multiline: StoryComponentType = () => (
+    <View style={styles.narrowBanner}>
+        <Banner
+            text={
+                "This is a multi-line banner. These have wrapping text and actions would be below."
+            }
+        />
+    </View>
+);
 
 Multiline.parameters = {
     docs: {
-        storyDescription: `This is an example of a banner with a long
-            paragraph passed into the \`text\` prop.`,
+        storyDescription:
+            "This is an example of a banner with multiple lines of text.",
     },
 };
 
 export const MultilineWithButtons: StoryComponentType = () => (
-    <Banner
-        text={longText}
-        actions={[
-            {title: "Button 1", onClick: () => {}},
-            {title: "Button 2", onClick: () => {}},
-        ]}
-    />
+    <View style={styles.narrowBanner}>
+        <Banner
+            text={
+                "This is a multi-line banner. These have wrapping text and actions are below."
+            }
+            actions={[
+                {title: "Button 1", onClick: () => {}},
+                {title: "Button 2", onClick: () => {}},
+            ]}
+        />
+    </View>
 );
 
 MultilineWithButtons.parameters = {
@@ -363,15 +379,12 @@ const styles = StyleSheet.create({
     },
     container: {
         width: "100%",
-        flexDirection: "row",
     },
-    variantColumn: {
-        width: "100%",
-        flexDirection: "column",
-        textAlign: "center",
+    narrowBanner: {
+        maxWidth: 400,
     },
-    spacing: {
-        margin: Spacing.xSmall_8,
+    border: {
+        border: `2px solid ${Color.pink}`,
     },
     rightToLeft: {
         width: "100%",
