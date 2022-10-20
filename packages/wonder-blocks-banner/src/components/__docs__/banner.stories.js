@@ -4,11 +4,12 @@ import {StyleSheet} from "aphrodite";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
 import Button from "@khanacademy/wonder-blocks-button";
+import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
@@ -60,98 +61,95 @@ Simple.parameters = {
     },
 };
 
-export const Variants: StoryComponentType = () => (
+export const Kinds: StoryComponentType = () => (
     <View style={styles.container}>
-        <View style={styles.variantColumn}>
-            <LabelMedium>Full-width layout</LabelMedium>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: info - This is a message about something informative like an announcement."
-                    kind="info"
-                    layout="full-width"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: success - This is a message about something positive or successful!"
-                    kind="success"
-                    layout="full-width"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: warning - This is a message warning the user about a potential issue."
-                    kind="warning"
-                    layout="full-width"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: critical - This is a message about something critical or an error."
-                    kind="critical"
-                    layout="full-width"
-                />
-            </View>
+        <Banner
+            text="kind: info - This is a message about something informative like an announcement."
+            kind="info"
+            layout="floating"
+        />
+        <Banner
+            text="kind: success - This is a message about something positive or successful!"
+            kind="success"
+            layout="floating"
+        />
+        <Banner
+            text="kind: warning - This is a message warning the user about a potential issue."
+            kind="warning"
+            layout="floating"
+        />
+        <Banner
+            text="kind: critical - This is a message about something critical or an error."
+            kind="critical"
+            layout="floating"
+        />
+    </View>
+);
+
+Kinds.parameters = {
+    docs: {
+        storyDescription: `Banners have four possible kinds (\`kind\` prop) -
+            info (default), success, warning, and critical. Info is blue
+            with an info "i" icon, success is green with a smiling icon,
+            warning is yellow with a triangular "!" icon, and critical is
+            red with a round "!" icon.`,
+    },
+};
+
+export const Layouts: StoryComponentType = () => (
+    <View style={styles.container}>
+        <Banner
+            text="This banner has full-width layout. This is the default."
+            layout="full-width"
+            kind="success"
+        />
+        <Strut size={Spacing.medium_16} />
+        <Banner
+            text="This banner has floating layout."
+            layout="floating"
+            kind="success"
+        />
+        <Strut size={Spacing.medium_16} />
+        <View style={styles.border}>
+            <Banner
+                text="This banner has full-width layout. There is no space around it."
+                layout="full-width"
+                kind="success"
+            />
         </View>
-        <View style={styles.variantColumn}>
-            <LabelMedium>Floating layout</LabelMedium>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: info - This is a message about something informative like an announcement."
-                    kind="info"
-                    layout="floating"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: success - This is a message about something positive or successful!"
-                    kind="success"
-                    layout="floating"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: warning - This is a message warning the user about a potential issue."
-                    kind="warning"
-                    layout="floating"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: critical - This is a message about something critical or an error."
-                    kind="critical"
-                    layout="floating"
-                />
-            </View>
+        <Strut size={Spacing.medium_16} />
+        <View style={styles.border}>
+            <Banner
+                text="This banner has floating layout. There is space around it."
+                layout="floating"
+                kind="success"
+            />
         </View>
     </View>
 );
 
-Variants.parameters = {
+Layouts.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
     docs: {
         storyDescription: `Banners come with two layouts: full-width (default)
-            and floating. Full-width layout gives the banner square edges,
-            and floating layout gives the banner rounded edges. Floating
-            banners also have 8 pixels of space on each side. Banners
-            also come in four different kinds: info (default), success,
-            warning, and critical.`,
+        and floating. Full-width layout gives the banner squared edges,
+        and floating layout gives the banner rounded edges. Floating
+        banners also have 8 pixels of space on each side - to demonstrate
+        this, the container for each banner has also been given an outline.
+        Observe that there is no space between the banner and the outline
+        for the full-width banner, and there is noticable space between
+        the banner and the outline for the floating banner.`,
     },
 };
 
 export const DarkBackground: StoryComponentType = () => (
-    <View style={styles.variantColumn}>
-        <View style={styles.spacing}>
-            <Banner text="kind: info" kind="info" layout="floating" />
-        </View>
-        <View style={styles.spacing}>
-            <Banner text="kind: success" kind="success" layout="floating" />
-        </View>
-        <View style={styles.spacing}>
-            <Banner text="kind: warning" kind="warning" layout="floating" />
-        </View>
-        <View style={styles.spacing}>
-            <Banner text="kind: critical" kind="critical" layout="floating" />
-        </View>
+    <View style={styles.column}>
+        <Banner text="kind: info" kind="info" layout="floating" />
+        <Banner text="kind: success" kind="success" layout="floating" />
+        <Banner text="kind: warning" kind="warning" layout="floating" />
+        <Banner text="kind: critical" kind="critical" layout="floating" />
     </View>
 );
 
@@ -381,18 +379,23 @@ const styles = StyleSheet.create({
     },
     container: {
         width: "100%",
-        flexDirection: "row",
+        flexDirection: "column",
     },
-    variantColumn: {
+    column: {
         width: "100%",
         flexDirection: "column",
         textAlign: "center",
     },
-    spacing: {
-        margin: Spacing.xSmall_8,
+    variantRow: {
+        width: "100%",
+        flexDirection: "row",
+        textAlign: "center",
     },
     narrowBanner: {
         maxWidth: 400,
+    },
+    border: {
+        border: `2px solid ${Color.pink}`,
     },
     rightToLeft: {
         width: "100%",
