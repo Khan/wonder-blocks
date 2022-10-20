@@ -146,4 +146,61 @@ describe("Banner", () => {
         // Assert
         expect(link).toHaveAttribute("href", "/foo");
     });
+
+    // Test kind
+
+    test("default kind displays info icon", () => {
+        // Arrange
+
+        // Act
+        render(<Banner text="" />);
+
+        // Assert
+        const icon = screen.getByTestId("banner-kind-icon");
+        expect(icon).toHaveAttribute("aria-label", "info");
+    });
+
+    test("info kind displays info icon", () => {
+        // Arrange
+
+        // Act
+        render(<Banner text="" kind="info" />);
+
+        // Assert
+        const icon = screen.getByTestId("banner-kind-icon");
+        expect(icon).toHaveAttribute("aria-label", "info");
+    });
+
+    test("success kind displays success icon", () => {
+        // Arrange
+
+        // Act
+        render(<Banner text="" kind="success" />);
+
+        // Assert
+        const icon = screen.getByTestId("banner-kind-icon");
+        expect(icon).toHaveAttribute("aria-label", "success");
+    });
+
+    test("warning kind displays warning icon", () => {
+        // Arrange
+
+        // Act
+        render(<Banner text="" kind="warning" />);
+
+        // Assert
+        const icon = screen.getByTestId("banner-kind-icon");
+        expect(icon).toHaveAttribute("aria-label", "warning");
+    });
+
+    test("critical kind displays critical icon", () => {
+        // Arrange
+
+        // Act
+        render(<Banner text="" kind="critical" />);
+
+        // Assert
+        const icon = screen.getByTestId("banner-kind-icon");
+        expect(icon).toHaveAttribute("aria-label", "critical");
+    });
 });

@@ -70,12 +70,12 @@ type Props = {|
     /**
      * Determines the color and icon of the banner.
      */
-    kind?: BannerKind,
+    kind: BannerKind,
 
     /**
      * Determines the edge style of the Banner.
      */
-    layout?: BannerLayout,
+    layout: BannerLayout,
 
     /**
      * Text on the banner (LabelSmall) or a node if you want something different
@@ -151,7 +151,7 @@ const iconForKind = (kind: BannerKind) => {
  * ```
  */
 const Banner = (props: Props): React.Node => {
-    const {actions, onDismiss, kind, layout = "full-width", text} = props;
+    const {actions, onDismiss, kind, layout, text} = props;
     const [windowSize, setWindowSize] = React.useState(window.innerWidth);
 
     // Keep track of the window size so we can update the button sizes
@@ -205,7 +205,7 @@ const Banner = (props: Props): React.Node => {
         borderRadius: layout && layout === "full-width" ? 0 : 4,
     };
 
-    return (
+    const bannerBody = (
         <View
             style={[
                 styles.containerOuter,
@@ -225,6 +225,8 @@ const Banner = (props: Props): React.Node => {
                     icon={iconForKind(kind ?? "info")}
                     size="medium"
                     style={styles.icon}
+                    aria-label={kind}
+                    testId="banner-kind-icon"
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>
@@ -249,7 +251,21 @@ const Banner = (props: Props): React.Node => {
             </View>
         </View>
     );
+
+    return layout === "full-width" ? (
+        bannerBody
+    ) : (
+        <View style={styles.containerFloating}>{bannerBody}</View>
+    );
 };
+
+type DefaultProps = {|
+    layout: Props["layout"],
+    kind: Props["kind"],
+|};
+
+const defaultProps: DefaultProps = {layout: "full-width", kind: "info"};
+Banner.defaultProps = defaultProps;
 
 const SMALL_SCREEN_QUERY = "@media (max-width: 768px)";
 const styles = StyleSheet.create({
@@ -274,6 +290,10 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         padding: Spacing.xSmall_8,
     },
+    containerFloating: {
+        padding: Spacing.xSmall_8,
+        width: "100%",
+    },
     icon: {
         marginTop: Spacing.xSmall_8,
         marginBottom: Spacing.xSmall_8,
@@ -296,6 +316,7 @@ const styles = StyleSheet.create({
     labelContainer: {
         flexShrink: 1,
         margin: Spacing.xSmall_8,
+        textAlign: "start",
     },
     actionsContainer: {
         flexDirection: "row",
