@@ -66,22 +66,21 @@ export const Kinds: StoryComponentType = () => (
         <Banner
             text="kind: info - This is a message about something informative like an announcement."
             kind="info"
-            layout="floating"
         />
+        <Strut size={Spacing.medium_16} />
         <Banner
             text="kind: success - This is a message about something positive or successful!"
             kind="success"
-            layout="floating"
         />
+        <Strut size={Spacing.medium_16} />
         <Banner
             text="kind: warning - This is a message warning the user about a potential issue."
             kind="warning"
-            layout="floating"
         />
+        <Strut size={Spacing.medium_16} />
         <Banner
             text="kind: critical - This is a message about something critical or an error."
             kind="critical"
-            layout="floating"
         />
     </View>
 );
@@ -96,37 +95,42 @@ Kinds.parameters = {
     },
 };
 
-export const Layouts: StoryComponentType = () => (
-    <View style={styles.container}>
-        <Banner
-            text="This banner has full-width layout. This is the default."
-            layout="full-width"
-            kind="success"
-        />
-        <Strut size={Spacing.medium_16} />
-        <Banner
-            text="This banner has floating layout."
-            layout="floating"
-            kind="success"
-        />
-        <Strut size={Spacing.medium_16} />
-        <View style={styles.border}>
+export const Layouts: StoryComponentType = () => {
+    const borderStyle = {border: `2px solid ${Color.pink}`};
+    const floatingContainerStyle = {padding: Spacing.xSmall_8};
+
+    return (
+        <View style={styles.container}>
             <Banner
-                text="This banner has full-width layout. There is no space around it."
+                text="This banner has full-width layout. This is the default."
                 layout="full-width"
                 kind="success"
             />
-        </View>
-        <Strut size={Spacing.medium_16} />
-        <View style={styles.border}>
+            <Strut size={Spacing.medium_16} />
             <Banner
-                text="This banner has floating layout. There is space around it."
+                text="This banner has floating layout."
                 layout="floating"
                 kind="success"
             />
+            <Strut size={Spacing.medium_16} />
+            <View style={borderStyle}>
+                <Banner
+                    text="This banner has full-width layout. There is no space around it."
+                    layout="full-width"
+                    kind="success"
+                />
+            </View>
+            <Strut size={Spacing.medium_16} />
+            <View style={[borderStyle, floatingContainerStyle]}>
+                <Banner
+                    text="This banner has floating layout. Space has been added around it."
+                    layout="floating"
+                    kind="success"
+                />
+            </View>
         </View>
-    </View>
-);
+    );
+};
 
 Layouts.parameters = {
     backgrounds: {
@@ -136,20 +140,23 @@ Layouts.parameters = {
         storyDescription: `Banners come with two layouts: full-width (default)
         and floating. Full-width layout gives the banner squared edges,
         and floating layout gives the banner rounded edges. Floating
-        banners also have 8 pixels of space on each side - to demonstrate
-        this, the container for each banner has also been given an outline.
-        Observe that there is no space between the banner and the outline
-        for the full-width banner, and there is noticable space between
-        the banner and the outline for the floating banner.`,
+        banners should have space around them and should not be touching
+        other components. To demonstrate this, there are also examples with
+        outlines around them - the full-width banner is touching its outline,
+        but padding has been added around the floating banner
+        so that it will not touch its outline.`,
     },
 };
 
 export const DarkBackground: StoryComponentType = () => (
     <View style={styles.container}>
-        <Banner text="kind: info" kind="info" layout="floating" />
-        <Banner text="kind: success" kind="success" layout="floating" />
-        <Banner text="kind: warning" kind="warning" layout="floating" />
-        <Banner text="kind: critical" kind="critical" layout="floating" />
+        <Banner text="kind: info" kind="info" />
+        <Strut size={Spacing.medium_16} />
+        <Banner text="kind: success" kind="success" />
+        <Strut size={Spacing.medium_16} />
+        <Banner text="kind: warning" kind="warning" />
+        <Strut size={Spacing.medium_16} />
+        <Banner text="kind: critical" kind="critical" />
     </View>
 );
 
@@ -382,9 +389,6 @@ const styles = StyleSheet.create({
     },
     narrowBanner: {
         maxWidth: 400,
-    },
-    border: {
-        border: `2px solid ${Color.pink}`,
     },
     rightToLeft: {
         width: "100%",
