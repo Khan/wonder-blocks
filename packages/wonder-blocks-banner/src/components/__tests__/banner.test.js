@@ -203,4 +203,30 @@ describe("Banner", () => {
         const icon = screen.getByTestId("banner-kind-icon");
         expect(icon).toHaveAttribute("aria-label", "critical");
     });
+
+    // Test accessibility
+
+    test.todo("dismiss button has aria label by default");
+
+    test.todo("dismiss button has the aria label that was passed in");
+
+    test.todo("buttons have their title as the aria label by default");
+
+    test.todo("links have their title as the aria label by default");
+
+    test.todo("buttons use the passed in aria label");
+
+    test.todo("links use the passed in aria label");
+
+    test.todo("info banners have role status");
+
+    test.todo("success banners have role status");
+
+    test.todo("warning banners have role alert");
+
+    test.todo("critical banners have role alert");
+
+    test.todo("warning banners have aria-live polite");
+
+    test.todo("critical banners have aria-live assertive");
 });

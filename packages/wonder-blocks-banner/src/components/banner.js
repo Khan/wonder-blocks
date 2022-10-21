@@ -10,6 +10,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 import {
     infoIcon,
@@ -17,6 +18,24 @@ import {
     warningIcon,
     criticalIcon,
 } from "./banner-icons.js";
+
+type ActionTriggerBase = {|
+    title: string,
+    ariaLabel?: string,
+|};
+
+type ActionTriggerWithButton = {|
+    ...ActionTriggerBase,
+    onClick: () => void,
+|};
+
+type ActionTriggerWithLink = {|
+    ...ActionTriggerBase,
+    href: string,
+    onClick?: () => void,
+|};
+
+type ActionTrigger = ActionTriggerWithButton | ActionTriggerWithLink;
 
 type BannerKind =
     /**
@@ -48,23 +67,12 @@ type BannerLayout =
      */
     | "full-width";
 
-type ActionTriggerBase = {|
-    title: string,
-    ariaLabel?: string,
+type BannerValues = {|
+    color: string,
+    icon: IconAsset,
+    role: "status" | "alert",
+    ariaLive?: "assertive" | "polite",
 |};
-
-type ActionTriggerWithButton = {|
-    ...ActionTriggerBase,
-    onClick: () => void,
-|};
-
-type ActionTriggerWithLink = {|
-    ...ActionTriggerBase,
-    href: string,
-    onClick?: () => void,
-|};
-
-type ActionTrigger = ActionTriggerWithButton | ActionTriggerWithLink;
 
 type Props = {|
     /**
@@ -93,37 +101,44 @@ type Props = {|
      * If present, dismiss button is on right side. If not, no button appears
      */
     onDismiss?: ?() => void,
-|};
 
-const colorForKind = (kind: BannerKind) => {
-    switch (kind) {
-        case "info":
-            return Color.blue;
-        case "success":
-            return Color.green;
-        case "warning":
-            return Color.gold;
-        case "critical":
-            return Color.red;
-        default:
-            return Color.blue;
-    }
-};
+    /**
+     * The accessible label for the dismiss button.
+     * Please pass in a translated string.
+     */
+    dismissAriaLabel: string,
+|};
 
 // TODO(WB-1409): Use Phosphor icons instead of custom svgs. Also, use
 // Wonder Blocks Icon instead of img in the render fucntion.
-const iconForKind = (kind: BannerKind) => {
+const valuesForKind = (kind: BannerKind): BannerValues => {
     switch (kind) {
-        case "info":
-            return infoIcon;
         case "success":
-            return successIcon;
+            return {
+                color: Color.green,
+                icon: successIcon,
+                role: "status",
+            };
         case "warning":
-            return warningIcon;
+            return {
+                color: Color.gold,
+                icon: warningIcon,
+                role: "alert",
+                ariaLive: "polite",
+            };
         case "critical":
-            return criticalIcon;
+            return {
+                color: Color.red,
+                icon: criticalIcon,
+                role: "alert",
+                ariaLive: "assertive",
+            };
         default:
-            return infoIcon;
+            return {
+                color: Color.blue,
+                icon: infoIcon,
+                role: "status",
+            };
     }
 };
 
@@ -149,7 +164,7 @@ const iconForKind = (kind: BannerKind) => {
  * ```
  */
 const Banner = (props: Props): React.Node => {
-    const {actions, onDismiss, kind, layout, text} = props;
+    const {actions, dismissAriaLabel, onDismiss, kind, layout, text} = props;
     const layoutStyle = {
         borderRadius: layout && layout === "full-width" ? 0 : 4,
     };
@@ -193,19 +208,21 @@ const Banner = (props: Props): React.Node => {
             style={[
                 styles.containerOuter,
                 layoutStyle,
-                {borderInlineStartColor: colorForKind(kind ?? "info")},
+                {borderInlineStartColor: valuesForKind(kind).color},
             ]}
+            role={valuesForKind(kind).role}
+            aria-live={valuesForKind(kind).ariaLive}
         >
             <View
                 style={[
                     styles.backgroundColor,
                     layoutStyle,
-                    {backgroundColor: colorForKind(kind ?? "info")},
+                    {backgroundColor: valuesForKind(kind).color},
                 ]}
             />
             <View style={styles.containerInner}>
                 <Icon
-                    icon={iconForKind(kind ?? "info")}
+                    icon={valuesForKind(kind).icon}
                     size="medium"
                     style={styles.icon}
                     aria-label={kind}
@@ -228,6 +245,7 @@ const Banner = (props: Props): React.Node => {
                             kind={"tertiary"}
                             onClick={onDismiss}
                             style={styles.dismiss}
+                            aria-label={dismissAriaLabel}
                         />
                     </View>
                 ) : null}
@@ -245,9 +263,14 @@ const Banner = (props: Props): React.Node => {
 type DefaultProps = {|
     layout: Props["layout"],
     kind: Props["kind"],
+    dismissAriaLabel: Props["dismissAriaLabel"],
 |};
 
-const defaultProps: DefaultProps = {layout: "full-width", kind: "info"};
+const defaultProps: DefaultProps = {
+    layout: "full-width",
+    kind: "info",
+    dismissAriaLabel: "Dismiss banner.",
+};
 Banner.defaultProps = defaultProps;
 
 const styles = StyleSheet.create({
