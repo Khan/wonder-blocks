@@ -528,6 +528,27 @@ CustomStyle.parameters = {
     },
 };
 
+export const WithMarkup: StoryComponentType = (args) => {
+    return (
+        <LabeledTextField
+            {...args}
+            label="Name"
+            description={
+                <span>
+                    Please enter your <strong>name</strong>
+                </span>
+            }
+        />
+    );
+};
+
+WithMarkup.parameters = {
+    docs: {
+        storyDescription: `\`LabeledTextField\`'s \`label\` and \`description\` props
+        can accept \`React.Node\`s.`,
+    },
+};
+
 export const Ref: StoryComponentType = () => {
     const [value, setValue] = React.useState("Khan");
     const inputRef = React.createRef();
