@@ -6,11 +6,7 @@ import {View, addStyle, type StyleType} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {
-    type Typography,
-    LabelMedium,
-    LabelSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 type Props = {|
     /**
@@ -21,12 +17,12 @@ type Props = {|
     /**
      * The title for the label element.
      */
-    label: string | React.Element<Typography>,
+    label: React.Node,
 
     /**
      * The text for the description element.
      */
-    description?: string | React.Element<Typography>,
+    description?: React.Node,
 
     /**
      * Whether this field is required to continue.
@@ -36,7 +32,7 @@ type Props = {|
     /**
      * The message for the error element.
      */
-    error?: string | React.Element<Typography>,
+    error?: React.Node,
 
     /**
      * Custom styles for the field heading container.

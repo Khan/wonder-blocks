@@ -34,7 +34,7 @@ export default {
         type: {required: true},
         table: {
             type: {
-                summary: "string | React.Element<Typography>",
+                summary: "React.Node",
             },
         },
         control: {
@@ -45,7 +45,7 @@ export default {
         description: "Provide a description for the TextField.",
         table: {
             type: {
-                summary: "string | React.Element<Typography>",
+                summary: "React.Node",
             },
         },
         control: {
