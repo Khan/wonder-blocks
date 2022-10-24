@@ -40,13 +40,11 @@ export default {
     },
     layout: {
         control: {type: "select"},
-        defaultValue: "full-width",
         options: ["floating", "full-width"],
         table: {
             type: {summary: `"floating" | "full-width"`},
-            defaultValue: {summary: "full-width"},
         },
-        type: {required: false},
+        type: {required: true},
     },
     text: {
         control: {type: "text"},
