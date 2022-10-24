@@ -11,12 +11,7 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
-import {
-    infoIcon,
-    successIcon,
-    warningIcon,
-    criticalIcon,
-} from "./banner-icons.js";
+import * as bannerIcons from "./banner-icons.js";
 
 type BannerKind =
     /**
@@ -110,23 +105,6 @@ const colorForKind = (kind: BannerKind) => {
     }
 };
 
-// TODO(WB-1409): Use Phosphor icons instead of custom svgs. Also, use
-// Wonder Blocks Icon instead of img in the render fucntion.
-const iconForKind = (kind: BannerKind) => {
-    switch (kind) {
-        case "info":
-            return infoIcon;
-        case "success":
-            return successIcon;
-        case "warning":
-            return warningIcon;
-        case "critical":
-            return criticalIcon;
-        default:
-            return infoIcon;
-    }
-};
-
 /**
  * Banner. A banner displays a prominent message and related optional actions.
  * It can be used as a way of informing the user of important changes.
@@ -204,7 +182,7 @@ const Banner = (props: Props): React.Node => {
             />
             <View style={styles.containerInner}>
                 <Icon
-                    icon={iconForKind(kind ?? "info")}
+                    icon={bannerIcons[kind]}
                     size="medium"
                     style={styles.icon}
                     aria-label={kind}
