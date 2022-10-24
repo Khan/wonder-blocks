@@ -231,12 +231,12 @@ const Banner = (props: Props): React.Node => {
     );
 };
 
-// type DefaultProps = {|
-//     kind: Props["kind"],
-// |};
+type DefaultProps = {|
+    kind: Props["kind"],
+|};
 
-// const defaultProps: DefaultProps = {kind: "info"};
-// Banner.defaultProps = defaultProps;
+const defaultProps: DefaultProps = {kind: "info"};
+Banner.defaultProps = defaultProps;
 
 const styles = StyleSheet.create({
     backgroundColor: {
