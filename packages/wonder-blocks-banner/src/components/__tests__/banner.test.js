@@ -159,7 +159,7 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(<Banner text="" />);
+        render(<Banner text="" layout="floating" />);
 
         // Assert
         const icon = screen.getByTestId("banner-kind-icon");
@@ -172,7 +172,7 @@ describe("Banner", () => {
             // Arrange
 
             // Act
-            render(<Banner text="" kind={kind} />);
+            render(<Banner text="" kind={kind} layout="floating" />);
 
             // Assert
             const icon = screen.getByTestId("banner-kind-icon");
