@@ -51,13 +51,17 @@ Default.args = {
 };
 
 export const Simple: StoryComponentType = () => (
-    <Banner text="This is some example text." />
+    <View style={styles.container}>
+        <Banner text="This is some example text." layout="floating" />
+        <Strut size={Spacing.medium_16} />
+        <Banner text="This is some example text." layout="full-width" />
+    </View>
 );
 
 Simple.parameters = {
     docs: {
-        storyDescription: `This is an example of a banner with just
-            the \`text\` prop.`,
+        storyDescription: `These are examples of banners with just
+            the \`text\` prop and the \`layout\` prop. `,
     },
 };
 
@@ -66,21 +70,25 @@ export const Kinds: StoryComponentType = () => (
         <Banner
             text="kind: info - This is a message about something informative like an announcement."
             kind="info"
+            layout="floating"
         />
         <Strut size={Spacing.medium_16} />
         <Banner
             text="kind: success - This is a message about something positive or successful!"
             kind="success"
+            layout="floating"
         />
         <Strut size={Spacing.medium_16} />
         <Banner
             text="kind: warning - This is a message warning the user about a potential issue."
             kind="warning"
+            layout="floating"
         />
         <Strut size={Spacing.medium_16} />
         <Banner
             text="kind: critical - This is a message about something critical or an error."
             kind="critical"
+            layout="floating"
         />
     </View>
 );
@@ -102,7 +110,7 @@ export const Layouts: StoryComponentType = () => {
     return (
         <View style={styles.container}>
             <Banner
-                text="This banner has full-width layout. This is the default."
+                text="This banner has full-width layout."
                 layout="full-width"
                 kind="success"
             />
@@ -137,7 +145,7 @@ Layouts.parameters = {
         default: "darkBlue",
     },
     docs: {
-        storyDescription: `Banners come with two layouts: full-width (default)
+        storyDescription: `Banners come with two layouts: full-width
         and floating. Full-width layout gives the banner squared edges,
         and floating layout gives the banner rounded edges. Floating
         banners should have space around them and should not be touching
@@ -150,13 +158,13 @@ Layouts.parameters = {
 
 export const DarkBackground: StoryComponentType = () => (
     <View style={styles.container}>
-        <Banner text="kind: info" kind="info" />
+        <Banner text="kind: info" kind="info" layout="full-width" />
         <Strut size={Spacing.medium_16} />
-        <Banner text="kind: success" kind="success" />
+        <Banner text="kind: success" kind="success" layout="full-width" />
         <Strut size={Spacing.medium_16} />
-        <Banner text="kind: warning" kind="warning" />
+        <Banner text="kind: warning" kind="warning" layout="full-width" />
         <Strut size={Spacing.medium_16} />
-        <Banner text="kind: critical" kind="critical" />
+        <Banner text="kind: critical" kind="critical" layout="full-width" />
     </View>
 );
 
@@ -172,6 +180,7 @@ DarkBackground.parameters = {
 export const WithButtons: StoryComponentType = () => (
     <Banner
         text="This is a banner with buttons."
+        layout="full-width"
         actions={[
             {title: "Button 1", onClick: () => {}},
             {title: "Button 2", onClick: () => {}},
@@ -190,6 +199,7 @@ WithButtons.parameters = {
 export const WithLinks: StoryComponentType = () => (
     <Banner
         text="This is a banner with links."
+        layout="floating"
         actions={[
             {title: "Link 1", href: "/"},
             {title: "Link 2", href: "/", onClick: () => {}},
@@ -211,6 +221,7 @@ export const WithInlineLinks: StoryComponentType = () => (
         <Banner
             text="Oh no! The button and link on the right look different! Don't mix button and link actions."
             kind="critical"
+            layout="floating"
             actions={[
                 {title: "Link", href: "/"},
                 {title: "Button", onClick: () => {}},
@@ -225,6 +236,7 @@ export const WithInlineLinks: StoryComponentType = () => (
                 </LabelSmall>
             }
             kind="success"
+            layout="floating"
             actions={[{title: "Button", onClick: () => {}}]}
         />
     </>
@@ -249,6 +261,7 @@ export const Multiline: StoryComponentType = () => (
             text={
                 "This is a multi-line banner. These have wrapping text and actions would be below."
             }
+            layout="full-width"
         />
     </View>
 );
@@ -270,6 +283,7 @@ export const MultilineWithButtons: StoryComponentType = () => (
                 {title: "Button 1", onClick: () => {}},
                 {title: "Button 2", onClick: () => {}},
             ]}
+            layout="floating"
         />
     </View>
 );
@@ -303,6 +317,7 @@ export const WithDismissal: StoryComponentType = () => {
             text="This banner can be dismissed"
             onDismiss={handleDismiss}
             actions={[{title: "Also dismiss", onClick: handleDismiss}]}
+            layout="floating"
         />
     );
 };
