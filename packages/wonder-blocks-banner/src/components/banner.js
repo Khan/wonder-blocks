@@ -10,14 +10,8 @@ import Link from "@khanacademy/wonder-blocks-link";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
-import {
-    infoIcon,
-    successIcon,
-    warningIcon,
-    criticalIcon,
-} from "./banner-icons.js";
+import * as bannerIcons from "./banner-icons.js";
 
 type ActionTriggerBase = {|
     title: string,
@@ -69,7 +63,6 @@ type BannerLayout =
 
 type BannerValues = {|
     color: string,
-    icon: IconAsset,
     role: "status" | "alert",
     ariaLive?: "assertive" | "polite",
 |};
@@ -109,34 +102,28 @@ type Props = {|
     dismissAriaLabel: string,
 |};
 
-// TODO(WB-1409): Use Phosphor icons instead of custom svgs. Also, use
-// Wonder Blocks Icon instead of img in the render fucntion.
 const valuesForKind = (kind: BannerKind): BannerValues => {
     switch (kind) {
         case "success":
             return {
                 color: Color.green,
-                icon: successIcon,
                 role: "status",
             };
         case "warning":
             return {
                 color: Color.gold,
-                icon: warningIcon,
                 role: "alert",
                 ariaLive: "polite",
             };
         case "critical":
             return {
                 color: Color.red,
-                icon: criticalIcon,
                 role: "alert",
                 ariaLive: "assertive",
             };
         default:
             return {
                 color: Color.blue,
-                icon: infoIcon,
                 role: "status",
             };
     }
@@ -203,7 +190,7 @@ const Banner = (props: Props): React.Node => {
         });
     };
 
-    const bannerBody = (
+    return (
         <View
             style={[
                 styles.containerOuter,
@@ -222,7 +209,7 @@ const Banner = (props: Props): React.Node => {
             />
             <View style={styles.containerInner}>
                 <Icon
-                    icon={valuesForKind(kind).icon}
+                    icon={bannerIcons[kind]}
                     size="medium"
                     style={styles.icon}
                     aria-label={kind}
@@ -251,12 +238,6 @@ const Banner = (props: Props): React.Node => {
                 ) : null}
             </View>
         </View>
-    );
-
-    return layout === "full-width" ? (
-        bannerBody
-    ) : (
-        <View style={styles.containerFloating}>{bannerBody}</View>
     );
 };
 
@@ -294,10 +275,6 @@ const styles = StyleSheet.create({
     containerInner: {
         flexDirection: "row",
         padding: Spacing.xSmall_8,
-    },
-    containerFloating: {
-        padding: Spacing.xSmall_8,
-        width: "100%",
     },
     icon: {
         marginTop: Spacing.xSmall_8,
