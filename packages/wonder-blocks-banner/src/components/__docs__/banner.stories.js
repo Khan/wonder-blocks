@@ -306,6 +306,7 @@ export const MultilineWithLinks: StoryComponentType = () => (
                 {title: "Link 1", href: "/"},
                 {title: "Link 2", href: "/"},
             ]}
+            layout="full-width"
         />
     </View>
 );
