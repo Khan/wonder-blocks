@@ -9,6 +9,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
+import Link from "@khanacademy/wonder-blocks-link";
 
 import type {StoryComponentType} from "@storybook/react";
 
@@ -535,7 +536,8 @@ export const WithMarkup: StoryComponentType = (args) => {
             label="Name"
             description={
                 <span>
-                    Please enter your <strong>name</strong>
+                    Description with <strong>strong</strong> text and a{" "}
+                    <Link href="/path/to/resource">link</Link>
                 </span>
             }
         />
@@ -545,7 +547,9 @@ export const WithMarkup: StoryComponentType = (args) => {
 WithMarkup.parameters = {
     docs: {
         storyDescription: `\`LabeledTextField\`'s \`label\` and \`description\` props
-        can accept \`React.Node\`s.`,
+        can accept \`React.Node\`s.  This is helpful when you need to decorate or use
+        specific elements in your form field (e.g. including Popovers, Tooltips or
+        emphasized text)`,
     },
 };
 
