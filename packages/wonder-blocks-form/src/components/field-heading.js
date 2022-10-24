@@ -72,19 +72,15 @@ export default class FieldHeading extends React.Component<Props> {
 
         return (
             <React.Fragment>
-                {typeof label === "string" ? (
-                    <LabelMedium
-                        style={styles.label}
-                        tag="label"
-                        htmlFor={id && `${id}-field`}
-                        testId={testId && `${testId}-label`}
-                    >
-                        {label}
-                        {required && requiredIcon}
-                    </LabelMedium>
-                ) : (
-                    label
-                )}
+                <LabelMedium
+                    style={styles.label}
+                    tag="label"
+                    htmlFor={id && `${id}-field`}
+                    testId={testId && `${testId}-label`}
+                >
+                    {label}
+                    {required && requiredIcon}
+                </LabelMedium>
                 <Strut size={Spacing.xxxSmall_4} />
             </React.Fragment>
         );
@@ -99,16 +95,12 @@ export default class FieldHeading extends React.Component<Props> {
 
         return (
             <React.Fragment>
-                {typeof description === "string" ? (
-                    <LabelSmall
-                        style={styles.description}
-                        testId={testId && `${testId}-description`}
-                    >
-                        {description}
-                    </LabelSmall>
-                ) : (
-                    description
-                )}
+                <LabelSmall
+                    style={styles.description}
+                    testId={testId && `${testId}-description`}
+                >
+                    {description}
+                </LabelSmall>
                 <Strut size={Spacing.xxxSmall_4} />
             </React.Fragment>
         );
@@ -124,18 +116,14 @@ export default class FieldHeading extends React.Component<Props> {
         return (
             <React.Fragment>
                 <Strut size={Spacing.small_12} />
-                {typeof error === "string" ? (
-                    <LabelSmall
-                        style={styles.error}
-                        role="alert"
-                        id={id && `${id}-error`}
-                        testId={testId && `${testId}-error`}
-                    >
-                        {error}
-                    </LabelSmall>
-                ) : (
-                    error
-                )}
+                <LabelSmall
+                    style={styles.error}
+                    role="alert"
+                    id={id && `${id}-error`}
+                    testId={testId && `${testId}-error`}
+                >
+                    {error}
+                </LabelSmall>
             </React.Fragment>
         );
     }

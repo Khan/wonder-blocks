@@ -1,85 +1,138 @@
 //@flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import CheckboxGroup from "../checkbox-group.js";
 import Choice from "../choice.js";
 
 describe("CheckboxGroup", () => {
-    let group;
-    const onChange = jest.fn();
+    describe("behavior", () => {
+        const TestComponent = ({errorMessage}: {|errorMessage?: string|}) => {
+            const [selectedValues, setSelectedValue] = React.useState([
+                "a",
+                "b",
+            ]);
+            const handleChange = (selectedValues) => {
+                setSelectedValue(selectedValues);
+            };
+            return (
+                <CheckboxGroup
+                    label="Test"
+                    description="test description"
+                    groupName="test"
+                    onChange={handleChange}
+                    selectedValues={selectedValues}
+                    errorMessage={errorMessage}
+                >
+                    <Choice label="a" value="a" aria-labelledby="test-a" />
+                    <Choice label="b" value="b" aria-labelledby="test-b" />
+                    <Choice label="c" value="c" aria-labelledby="test-c" />
+                </CheckboxGroup>
+            );
+        };
 
-    beforeEach(() => {
-        group = mount(
-            <CheckboxGroup
-                label="Test"
-                description="test description"
-                groupName="test"
-                onChange={onChange}
-                selectedValues={["a", "b"]}
-            >
-                <Choice label="a" value="a" aria-labelledby="test-a" />
-                <Choice label="b" value="b" aria-labelledby="test-b" />
-                <Choice label="c" value="c" aria-labelledby="test-c" />
-            </CheckboxGroup>,
-        );
+        it("has the correct items checked", () => {
+            // Arrange, Act
+            render(<TestComponent />);
+
+            const checkboxes = screen.getAllByRole("checkbox");
+
+            // Assert
+            // a starts off checked
+            expect(checkboxes[0]).toBeChecked();
+            expect(checkboxes[1]).toBeChecked();
+            expect(checkboxes[2]).not.toBeChecked();
+        });
+
+        it("clicking a selected choice deselects it", () => {
+            // Arrange
+            render(<TestComponent />);
+
+            const checkboxes = screen.getAllByRole("checkbox");
+
+            // Act
+            userEvent.click(checkboxes[0]);
+
+            // Assert
+            expect(checkboxes[0]).not.toBeChecked();
+            expect(checkboxes[1]).toBeChecked();
+            expect(checkboxes[2]).not.toBeChecked();
+        });
+
+        it("should set aria-invalid on choices when there's an error message", () => {
+            // Arrange, Act
+            render(<TestComponent errorMessage="there's an error" />);
+
+            const checkboxes = screen.getAllByRole("checkbox");
+
+            // Assert
+            expect(checkboxes[0]).toHaveAttribute("aria-invalid", "true");
+            expect(checkboxes[1]).toHaveAttribute("aria-invalid", "true");
+            expect(checkboxes[2]).toHaveAttribute("aria-invalid", "true");
+        });
+
+        it("checks that aria attributes have been added correctly", () => {
+            // Arrange, Act
+            render(<TestComponent />);
+
+            const checkboxes = screen.getAllByRole("checkbox");
+
+            // Assert
+            expect(checkboxes[0]).toHaveAttribute("aria-labelledby", "test-a");
+            expect(checkboxes[1]).toHaveAttribute("aria-labelledby", "test-b");
+            expect(checkboxes[2]).toHaveAttribute("aria-labelledby", "test-c");
+        });
     });
 
-    it("has the correct items checked", () => {
-        const a = group.find(Choice).at(0);
-        const b = group.find(Choice).at(1);
-        const c = group.find(Choice).at(2);
+    describe("flexible props", () => {
+        it("should render with a React.Node label", () => {
+            // Arrange, Act
+            const action = () =>
+                render(
+                    <CheckboxGroup
+                        label={
+                            <span>
+                                label with <strong>strong</strong> text
+                            </span>
+                        }
+                        groupName="test"
+                        onChange={() => {}}
+                        selectedValues={[]}
+                    >
+                        <Choice label="a" value="a" aria-labelledby="test-a" />
+                        <Choice label="b" value="b" aria-labelledby="test-b" />
+                        <Choice label="c" value="c" aria-labelledby="test-c" />
+                    </CheckboxGroup>,
+                );
 
-        // a starts off checked
-        expect(a.prop("checked")).toEqual(true);
-        expect(b.prop("checked")).toEqual(true);
-        expect(c.prop("checked")).toEqual(false);
-    });
+            // Assert
+            expect(action).not.toThrow();
+        });
 
-    it("changes selection when selectedValue changes", () => {
-        group.setProps({selectedValues: ["b"]});
-        const a = group.find(Choice).at(0);
-        const b = group.find(Choice).at(1);
-        const c = group.find(Choice).at(2);
+        it("should render with a React.Node description", () => {
+            // Arrange, Act
+            const action = () =>
+                render(
+                    <CheckboxGroup
+                        label="label"
+                        description={
+                            <span>
+                                description with <strong>strong</strong> text
+                            </span>
+                        }
+                        groupName="test"
+                        onChange={() => {}}
+                        selectedValues={[]}
+                    >
+                        <Choice label="a" value="a" aria-labelledby="test-a" />
+                        <Choice label="b" value="b" aria-labelledby="test-b" />
+                        <Choice label="c" value="c" aria-labelledby="test-c" />
+                    </CheckboxGroup>,
+                );
 
-        // now only b is checked
-        expect(a.prop("checked")).toEqual(false);
-        expect(b.prop("checked")).toEqual(true);
-        expect(c.prop("checked")).toEqual(false);
-    });
-
-    it("displays error state for all Choice children", () => {
-        group.setProps({errorMessage: "there's an error"});
-        const a = group.find(Choice).at(0);
-        const b = group.find(Choice).at(1);
-        const c = group.find(Choice).at(2);
-
-        expect(a.prop("error")).toEqual(true);
-        expect(b.prop("error")).toEqual(true);
-        expect(c.prop("error")).toEqual(true);
-    });
-
-    it("calls onChange for each new selection", () => {
-        // a is clicked
-        const a = group.find(Choice).at(0);
-        const aTarget = a.find("ClickableBehavior");
-        aTarget.simulate("click");
-        expect(onChange).toHaveBeenCalledTimes(1);
-
-        // now b is clicked, onChange should also be called
-        const b = group.find(Choice).at(1);
-        const bTarget = b.find("ClickableBehavior");
-        bTarget.simulate("click");
-        expect(onChange).toHaveBeenCalledTimes(2);
-    });
-
-    it("checks that aria attributes have been added correctly", () => {
-        const a = group.find(Choice).at(0);
-        const b = group.find(Choice).at(1);
-        const c = group.find(Choice).at(2);
-        expect(a.find("input").prop("aria-labelledby")).toEqual("test-a");
-        expect(b.find("input").prop("aria-labelledby")).toEqual("test-b");
-        expect(c.find("input").prop("aria-labelledby")).toEqual("test-c");
+            // Assert
+            expect(action).not.toThrow();
+        });
     });
 });

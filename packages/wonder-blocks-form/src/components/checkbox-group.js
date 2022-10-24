@@ -132,19 +132,15 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
             <StyledFieldset data-test-id={testId} style={styles.fieldset}>
                 {/* We have a View here because fieldset cannot be used with flexbox*/}
                 <View style={style}>
-                    {typeof label === "string" ? (
+                    {label && (
                         <StyledLegend style={styles.legend}>
                             <LabelMedium>{label}</LabelMedium>
                         </StyledLegend>
-                    ) : (
-                        label && label
                     )}
-                    {typeof description === "string" ? (
+                    {description && (
                         <LabelSmall style={styles.description}>
                             {description}
                         </LabelSmall>
-                    ) : (
-                        description && description
                     )}
                     {errorMessage && (
                         <LabelSmall style={styles.error}>
