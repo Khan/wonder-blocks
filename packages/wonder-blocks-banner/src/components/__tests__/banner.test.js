@@ -9,7 +9,7 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(<Banner text="" />);
+        render(<Banner text="" layout="floating" />);
 
         // Assert
         const button = screen.queryByRole("button");
@@ -20,7 +20,7 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(<Banner text="" onDismiss={() => {}} />);
+        render(<Banner text="" onDismiss={() => {}} layout="floating" />);
 
         // Assert
         const button = screen.queryByRole("button");
@@ -30,7 +30,7 @@ describe("Banner", () => {
     test("clicking the dismiss button triggers `onDismiss`", () => {
         // Arrange
         const onDismissSpy = jest.fn();
-        render(<Banner text="" onDismiss={onDismissSpy} />);
+        render(<Banner text="" onDismiss={onDismissSpy} layout="floating" />);
 
         // Act
         const button = screen.getByRole("button");
@@ -47,6 +47,7 @@ describe("Banner", () => {
         render(
             <Banner
                 text=""
+                layout="floating"
                 actions={[{title: "some link", href: "/", onClick: () => {}}]}
             />,
         );
@@ -63,6 +64,7 @@ describe("Banner", () => {
         render(
             <Banner
                 text=""
+                layout="floating"
                 actions={[{title: "some button", onClick: () => {}}]}
             />,
         );
@@ -79,6 +81,7 @@ describe("Banner", () => {
         render(
             <Banner
                 text=""
+                layout="floating"
                 actions={[
                     {title: "button 1", onClick: () => {}},
                     {title: "button 2", onClick: () => {}},
@@ -99,6 +102,7 @@ describe("Banner", () => {
         render(
             <Banner
                 text=""
+                layout="floating"
                 actions={[{title: "a button", onClick: actionSpy}]}
             />,
         );
@@ -118,6 +122,7 @@ describe("Banner", () => {
         render(
             <Banner
                 text=""
+                layout="floating"
                 actions={[{title: "a link", onClick: actionSpy, href: "/"}]}
             />,
         );
@@ -136,6 +141,7 @@ describe("Banner", () => {
         render(
             <Banner
                 text=""
+                layout="floating"
                 actions={[{title: "a button", onClick: () => {}, href: "/foo"}]}
             />,
         );
@@ -153,7 +159,7 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(<Banner text="" />);
+        render(<Banner text="" layout="floating" />);
 
         // Assert
         const icon = screen.getByTestId("banner-kind-icon");
@@ -166,7 +172,7 @@ describe("Banner", () => {
             // Arrange
 
             // Act
-            render(<Banner text="" kind={kind} />);
+            render(<Banner text="" kind={kind} layout="floating" />);
 
             // Assert
             const icon = screen.getByTestId("banner-kind-icon");

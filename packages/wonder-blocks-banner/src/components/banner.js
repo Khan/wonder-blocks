@@ -134,6 +134,11 @@ const valuesForKind = (kind: BannerKind): BannerValues => {
  * It can be used as a way of informing the user of important changes.
  * Typically, it is displayed toward the top of the screen.
  *
+ * There are two possible layouts for banners - floating and full-width.
+ * The `floating` layout is intended to be used when there is whitespace
+ * around the banner. The `full-width` layout is intended to be used when
+ * the banner needs to be flush with surrounding elements.
+ *
  * ### Usage
  * ```jsx
  * import Banner from "@khanacademy/wonder-blocks-banner";
@@ -242,13 +247,11 @@ const Banner = (props: Props): React.Node => {
 };
 
 type DefaultProps = {|
-    layout: Props["layout"],
     kind: Props["kind"],
     dismissAriaLabel: Props["dismissAriaLabel"],
 |};
 
 const defaultProps: DefaultProps = {
-    layout: "full-width",
     kind: "info",
     dismissAriaLabel: "Dismiss banner.",
 };
