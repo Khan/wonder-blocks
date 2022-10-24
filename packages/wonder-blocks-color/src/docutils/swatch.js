@@ -3,10 +3,13 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
     HeadingLarge,
     LabelLarge,
     Body,
+    Caption,
 } from "@khanacademy/wonder-blocks-typography";
 import Color from "../index.js";
 
@@ -108,7 +111,7 @@ export default class Swatch extends React.Component<Props> {
         );
     }
     render(): React.Node {
-        const {name, desc, use, segments, width} = this.props;
+        const {color, name, desc, use, segments, width} = this.props;
         return (
             <View style={[styles.container, {width}]}>
                 {segments === 3 && this.renderThreeSegments()}
@@ -121,7 +124,9 @@ export default class Swatch extends React.Component<Props> {
                     )}
                     {use === "icons" && <LabelLarge>Icons</LabelLarge>}
                 </View>
-                <View style={styles.row}>
+                <View>
+                    <Caption style={styles.tag}>{color}</Caption>
+                    <Strut size={Spacing.xxxSmall_4} />
                     <Body>{desc}</Body>
                 </View>
             </View>
@@ -157,5 +162,12 @@ const styles = StyleSheet.create({
     container: {
         color: Color.offBlack,
         paddingBottom: 16,
+    },
+    tag: {
+        background: Color.offBlack8,
+        border: `solid 1px ${Color.offBlack16}`,
+        borderRadius: 2,
+        marginRight: "auto",
+        padding: `0 ${Spacing.xxxSmall_4}px`,
     },
 });

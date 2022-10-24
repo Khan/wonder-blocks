@@ -1,0 +1,398 @@
+import {Meta, Subtitle, ColorPalette, ColorItem} from "@storybook/addon-docs";
+
+import Color from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {
+    Caption,
+    HeadingMedium,
+    HeadingXSmall,
+    LabelXSmall,
+    LabelLarge,
+    LabelMedium,
+    LabelSmall,
+} from "@khanacademy/wonder-blocks-typography";
+
+import ComponentInfo from "../../../../.storybook/components/component-info.js";
+import {name, version} from "../../package.json";
+
+<Meta
+    title="Color / Color v2"
+    parameters={{
+        previewTabs: {
+            canvas: {hidden: true},
+        },
+        viewMode: "docs",
+    }}
+/>
+
+export const ProductColors = {
+    blue: Color.blue,
+    purple: Color.purple,
+    gold: Color.gold,
+    green: Color.green,
+    red: Color.red,
+};
+
+export const NeutralColors = {
+    offBlack: Color.offBlack,
+    offBlack64: Color.offBlack64,
+    offBlack50: Color.offBlack50,
+    offBlack32: Color.offBlack32,
+    offBlack16: Color.offBlack16,
+};
+
+export const WhiteShades = {
+    offBlack8: Color.offBlack8,
+    offWhite: Color.offWhite,
+    offWhite64: Color.offWhite64,
+    offWhite50: Color.offWhite50,
+    white: Color.white,
+};
+
+export const BrandColors = {
+    darkBlue: Color.darkBlue,
+    lightBlue: Color.lightBlue,
+    teal: Color.teal,
+    pink: Color.pink,
+};
+
+# Color v2
+
+<Subtitle>
+    <ComponentInfo name={name} version={version} />
+</Subtitle>
+
+```js
+import Color from "@khanacademy/wonder-blocks-color";
+const styles = {background: Color.darkBlue};
+```
+
+<ColorPalette>
+    <ColorItem
+        title="Product colors"
+        subtitle="Use only accessible colors against appropriate backgrounds for links, buttons, and other navigational elements."
+        colors={ProductColors}
+    />
+    <ColorItem
+        title="Neutral colors"
+        subtitle="Used for text and chrome components."
+        colors={NeutralColors}
+    />
+    <ColorItem colors={WhiteShades} />
+    <ColorItem
+        title="Brand colors"
+        subtitle="Use for designing anything centered around Khan Academy as a brand. Secondary brand colors should only be used for decoration. Expanded brand palette used for illustrations."
+        colors={BrandColors}
+    />
+</ColorPalette>
+
+## Usage
+
+export const SwatchItem = ({children, foreground, background, inverted}) => (
+    <View
+        style={{
+            color: !inverted ? foreground : background,
+            backgroundColor: !inverted ? background : foreground,
+            gap: Spacing.medium_16,
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+            padding: Spacing.medium_16,
+        }}
+    >
+        <LabelLarge>{children}</LabelLarge>
+    </View>
+);
+
+export const Swatch = ({name, value, use, description, children}) => (
+    <View
+        style={{
+            flexDirection: "row",
+            gap: Spacing.xSmall_8,
+            marginBottom: Spacing.xLarge_32,
+        }}
+    >
+        <View
+            style={{
+                flexBasis: "30%",
+            }}
+        >
+            <View
+                style={{flexDirection: "row", justifyContent: "space-between"}}
+            >
+                <LabelLarge>{name}</LabelLarge>
+                <LabelXSmall
+                    style={{
+                        background: Color.offBlack8,
+                        border: `solid 1px ${Color.offBlack16}`,
+                        borderRadius: Spacing.xxxxSmall_2,
+                        marginLeft: Spacing.xxxSmall_4,
+                        marginRight: "auto",
+                        padding: `0 ${Spacing.xxxSmall_4}px`,
+                    }}
+                >
+                    {value}
+                </LabelXSmall>
+                {use ? <LabelSmall style={{fontWeight: "bold"}}>{use}</LabelSmall> : null}
+            </View>
+            <Caption>{description}</Caption>
+        </View>
+        <View
+            style={{
+                flexDirection: "row",
+                flexBasis: "70%",
+                borderRadius: 4,
+                background: Color.white,
+                boxShadow: `0 1px 3px 0 ${Color.offBlack8}`,
+                border: `1px solid ${Color.offBlack16}`,
+                overflow: "hidden",
+                height: Spacing.xxLarge_48,
+            }}
+        >
+            {children}
+        </View>
+    </View>
+);
+
+
+
+### Product
+
+Use only accessible colors against appropriate backgrounds for links, buttons,
+and other navigational elements.
+
+<Swatch
+    name="blue"
+    value={Color.blue}
+    value={Color.blue}
+    use="Text & icons"
+    description="Actionable. Used to indicate actionable items like links and
+            buttons."
+>
+    <SwatchItem foreground={Color.white} background={Color.blue}>
+        Aa
+    </SwatchItem>
+    <SwatchItem foreground={Color.blue} background={Color.offBlack8}>
+        Aa
+    </SwatchItem>
+    <SwatchItem
+        foreground={Color.white}
+        background={Color.blue}
+        inverted={true}
+    >
+        Aa
+    </SwatchItem>
+</Swatch>
+
+<Swatch
+    name="purple"
+    value={Color.purple}
+    value={Color.purple}
+    use="Icons"
+    description="Used to indicate Mastery."
+>
+    <SwatchItem foreground={Color.white} background={Color.purple}>
+        <Icon icon={icons.hint} />
+    </SwatchItem>
+    <SwatchItem foreground={Color.purple} background={Color.offBlack8}>
+        <Icon icon={icons.hint} />
+    </SwatchItem>
+    <SwatchItem
+        foreground={Color.white}
+        background={Color.purple}
+        inverted={true}
+    >
+        <Icon icon={icons.hint} />
+    </SwatchItem>
+</Swatch>
+
+<Swatch
+    name="gold"
+    value={Color.gold}
+    description="Used as an accent for celebratory moments. If using for icons, accompany with descriptive text."
+>
+    <SwatchItem foreground={Color.white} background={Color.gold}>
+        <Icon icon={icons.hint} />
+    </SwatchItem>
+</Swatch>
+
+<Swatch
+    name="green"
+    value={Color.green}
+    use="Icons"
+    description="Affirmative. Used to indicate success states and correctness. Do not use for text."
+>
+    <SwatchItem foreground={Color.white} background={Color.green}>
+        <Icon icon={icons.hint} />
+    </SwatchItem>
+    <SwatchItem foreground={Color.green} background={Color.offBlack8}>
+        <Icon icon={icons.hint} />
+    </SwatchItem>
+    <SwatchItem
+        foreground={Color.white}
+        background={Color.green}
+        inverted={true}
+    >
+        <Icon icon={icons.hint} />
+    </SwatchItem>
+</Swatch>
+
+<Swatch
+    name="red"
+    value={Color.red}
+    use="Text & icons"
+    description="Negative. Used for errors and destructive actions."
+>
+    <SwatchItem foreground={Color.white} background={Color.red}>
+        Aa
+    </SwatchItem>
+    <SwatchItem foreground={Color.red} background={Color.offBlack8}>
+        Aa
+    </SwatchItem>
+    <SwatchItem foreground={Color.white} background={Color.red} inverted={true}>
+        Aa
+    </SwatchItem>
+</Swatch>
+
+---
+
+### Neutral
+
+Used for text and chrome components.
+
+<Swatch
+    name="offBlack"
+    value={Color.offBlack}
+    use="Text & icons"
+    description="Primary text color. Can also used for links in lists."
+>
+    <SwatchItem foreground={Color.white} background={Color.offBlack}>
+        Aa
+    </SwatchItem>
+    <SwatchItem foreground={Color.offBlack} background={Color.offBlack8}>
+        Aa
+    </SwatchItem>
+    <SwatchItem
+        foreground={Color.white}
+        background={Color.offBlack}
+        inverted={true}
+    >
+        Aa
+    </SwatchItem>
+</Swatch>
+
+<Swatch
+    name="offBlack64"
+    value={Color.offBlack64}
+    use="Text & icons"
+    description="Secondary text color and modal backdrop color."
+>
+    <SwatchItem foreground={Color.white} background={Color.offBlack64}>
+        Aa
+    </SwatchItem>
+    <SwatchItem foreground={Color.offBlack64} background={Color.offBlack8}>
+        Aa
+    </SwatchItem>
+    <SwatchItem
+        foreground={Color.white}
+        background={Color.offBlack64}
+        inverted={true}
+    >
+        Aa
+    </SwatchItem>
+</Swatch>
+
+<Swatch
+    name="offBlack50"
+    value={Color.offBlack50}
+    description="Fieldset borders"
+>
+    <SwatchItem foreground={Color.white} background={Color.offBlack50} />
+</Swatch>
+
+<Swatch
+    name="offBlack32"
+    value={Color.offBlack32}
+    description="Disabled states"
+>
+    <SwatchItem foreground={Color.white} background={Color.offBlack32} />
+</Swatch>
+
+<Swatch name="offBlack16" value={Color.offBlack16} description="Hairline color">
+    <SwatchItem foreground={Color.white} background={Color.offBlack16} />
+</Swatch>
+
+<Swatch name="offBlack8" value={Color.offBlack8} description="Shadow color">
+    <SwatchItem foreground={Color.white} background={Color.offBlack8} />
+</Swatch>
+
+<Swatch
+    name="offWhite"
+    value={Color.offWhite}
+    description="Only used as a secondary background color"
+>
+    <SwatchItem foreground={Color.white} background={Color.offWhite} />
+</Swatch>
+
+<Swatch
+    name="white"
+    value={Color.white}
+    use="Text & icons"
+    description="Primary background color and primary text color on colored backgrounds."
+>
+    <SwatchItem foreground={Color.white} background={Color.white} />
+    <SwatchItem
+        foreground={Color.darkBlue}
+        background={Color.white}
+        inverted={true}
+    >
+        Aa
+    </SwatchItem>
+</Swatch>
+
+<Swatch
+    name="white64"
+    value={Color.white64}
+    use="Text & icons"
+    description="Secondary text color on colored backgrounds, and hairline color on colored backgrounds"
+>
+    <SwatchItem foreground={Color.white64} background={Color.darkBlue}>
+        Aa
+    </SwatchItem>
+</Swatch>
+
+---
+
+### Brand
+
+Use for designing anything centered around Khan Academy as a brand. Secondary brand colors should only be used for decoration. Expanded brand palette used for illustrations.
+
+<Swatch
+    name="darkBlue"
+    value={Color.darkBlue}
+    description="Primary brand color. Can be used as a background color in headers and illustrative areas."
+>
+    <SwatchItem foreground={Color.white} background={Color.darkBlue} />
+</Swatch>
+
+<Swatch
+    name="lightBlue"
+    value={Color.lightBlue}
+    description="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
+>
+    <SwatchItem foreground={Color.white} background={Color.lightBlue} />
+</Swatch>
+
+<Swatch
+    name="teal"
+    value={Color.teal}
+    description="Secondary brand color. This is only accessible on Dark Blue, so use lightly."
+>
+    <SwatchItem foreground={Color.white} background={Color.teal} />
+</Swatch>
+
+<Swatch name="pink" value={Color.pink} description="Secondary brand color.">
+    <SwatchItem foreground={Color.white} background={Color.pink} />
+</Swatch>
