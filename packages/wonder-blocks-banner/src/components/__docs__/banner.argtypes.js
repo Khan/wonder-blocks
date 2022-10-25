@@ -34,7 +34,7 @@ export default {
         options: ["info", "success", "warning", "critical"],
         table: {
             type: {summary: `"info" | "success" | "warning" | "critical"`},
-            defaultValue: {summary: "info"},
+            defaultValue: {summary: `"info"`},
         },
         type: {required: false},
     },
@@ -65,5 +65,14 @@ export default {
         control: {type: "select"},
         options: dismissMappings,
         table: {required: false},
+    },
+    dismissAriaLabel: {
+        control: {type: "text"},
+        defaultValue: "Dismiss banner.",
+        table: {
+            type: {summary: "string"},
+            defaultValue: {summary: `"Dismiss banner."`},
+        },
+        type: {required: false},
     },
 };

@@ -119,7 +119,6 @@ const valuesForKind = (kind: BannerKind): BannerValues => {
             return {
                 color: Color.red,
                 role: "alert",
-                ariaLive: "assertive",
             };
         default:
             return {
