@@ -131,7 +131,9 @@ export const Layouts: StoryComponentType = () => {
             <Strut size={Spacing.medium_16} />
             <View style={[borderStyle, floatingContainerStyle]}>
                 <Banner
-                    text="This banner has floating layout. Space has been added around it."
+                    text={`This banner has floating layout. Padding has been
+                        added to its container manually in order for the
+                        banner to not touch any other elements.`}
                     layout="floating"
                     kind="success"
                 />
@@ -149,7 +151,9 @@ Layouts.parameters = {
         and floating. Full-width layout gives the banner squared edges,
         and floating layout gives the banner rounded edges. Floating
         banners should have space around them and should not be touching
-        other components. To demonstrate this, there are also examples with
+        other components. The space around floating banners is not
+        automatically added to the container, it must be manually managed
+        by the developer. To demonstrate this, there are also examples with
         outlines around them - the full-width banner is touching its outline,
         but padding has been added around the floating banner
         so that it will not touch its outline.`,
