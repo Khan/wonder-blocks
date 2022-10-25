@@ -9,6 +9,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Button from "@khanacademy/wonder-blocks-button";
+import Link from "@khanacademy/wonder-blocks-link";
 
 import type {StoryComponentType} from "@storybook/react";
 
@@ -525,6 +526,30 @@ CustomStyle.parameters = {
         storyDescription: `\`LabeledTextField\` can take in custom styles that
         override the default styles. In this example, each field has the
         style property \`flexGrow: 1\``,
+    },
+};
+
+export const WithMarkup: StoryComponentType = (args) => {
+    return (
+        <LabeledTextField
+            {...args}
+            label="Name"
+            description={
+                <span>
+                    Description with <strong>strong</strong> text and a{" "}
+                    <Link href="/path/to/resource">link</Link>
+                </span>
+            }
+        />
+    );
+};
+
+WithMarkup.parameters = {
+    docs: {
+        storyDescription: `\`LabeledTextField\`'s \`label\` and \`description\` props
+        can accept \`React.Node\`s.  This is helpful when you need to decorate or use
+        specific elements in your form field (e.g. including Popovers, Tooltips or
+        emphasized text)`,
     },
 };
 

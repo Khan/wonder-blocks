@@ -52,10 +52,10 @@ type Props = {|
     /**
      * Label for the field.
      */
-    label?: string,
+    label?: React.Node,
 
     /** Optional description for the field. */
-    description?: string,
+    description?: React.Node,
 
     /** Auto-populated by parent's groupName prop if in a group. */
     groupName?: string,
@@ -142,7 +142,9 @@ type DefaultProps = {|
         return (
             <UniqueIDProvider mockOnFirstRender={true} scope="choice">
                 {(ids) => {
-                    const descriptionId = description && ids.get("description");
+                    const descriptionId = description
+                        ? ids.get("description")
+                        : undefined;
 
                     return (
                         <View style={style} className={className}>

@@ -257,7 +257,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
     },
     description: {
-        marginTop: 5,
         color: Color.offBlack64,
     },
     last: {

@@ -49,6 +49,9 @@ export const RenderStateRoot = ({
     );
 };
 
+// Flow doesn't know about defaultProps on functional components like this,
+// and it doesn't seem worth the effort to teach it.
+// $FlowIgnore[prop-missing]
 RenderStateRoot.defaultProps = {
     throwIfNested: true,
 };
