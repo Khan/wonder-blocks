@@ -326,15 +326,4 @@ describe("Banner", () => {
         const banner = screen.getByTestId("wonder-blocks-banner-test-id");
         expect(banner).toHaveAttribute("aria-live", "polite");
     });
-
-    test("critical banners have aria-live assertive", () => {
-        // Arrange
-
-        // Act
-        render(<Banner text="" kind={"critical"} layout="floating" />);
-
-        // Assert
-        const banner = screen.getByTestId("wonder-blocks-banner-test-id");
-        expect(banner).toHaveAttribute("aria-live", "assertive");
-    });
 });
