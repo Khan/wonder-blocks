@@ -179,4 +179,151 @@ describe("Banner", () => {
             expect(icon).toHaveAttribute("aria-label", kind);
         },
     );
+
+    // Test accessibility
+
+    test("dismiss button has aria label by default", () => {
+        // Arrange
+
+        // Act
+        render(<Banner text="" layout="floating" onDismiss={() => {}} />);
+
+        // Assert
+        const dismissButton = screen.getByRole("button");
+        expect(dismissButton).toHaveAttribute("aria-label", "Dismiss banner.");
+    });
+
+    test("dismiss button has the aria label that was passed in", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Banner
+                text=""
+                layout="floating"
+                onDismiss={() => {}}
+                dismissAriaLabel="Test dismiss aria label"
+            />,
+        );
+
+        // Assert
+        const dismissButton = screen.getByRole("button");
+        expect(dismissButton).toHaveAttribute(
+            "aria-label",
+            "Test dismiss aria label",
+        );
+    });
+
+    test("buttons have their title as the aria label by default", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Banner
+                text=""
+                layout="floating"
+                actions={[{title: "Test button title", onClick: () => {}}]}
+            />,
+        );
+
+        // Assert
+        const actionButton = screen.getByRole("button");
+        expect(actionButton).toHaveAttribute("aria-label", "Test button title");
+    });
+
+    test("links have their title as the aria label by default", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Banner
+                text=""
+                layout="floating"
+                actions={[{title: "Test link title", href: "/"}]}
+            />,
+        );
+
+        // Assert
+        const actionLink = screen.getByRole("link");
+        expect(actionLink).toHaveAttribute("aria-label", "Test link title");
+    });
+
+    test("buttons use the passed in aria label", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Banner
+                text=""
+                layout="floating"
+                actions={[
+                    {
+                        title: "Test button title",
+                        onClick: () => {},
+                        ariaLabel: "Button aria label passed in",
+                    },
+                ]}
+            />,
+        );
+
+        // Assert
+        const actionButton = screen.getByRole("button");
+        expect(actionButton).toHaveAttribute(
+            "aria-label",
+            "Button aria label passed in",
+        );
+    });
+
+    test("links use the passed in aria label", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Banner
+                text=""
+                layout="floating"
+                actions={[
+                    {
+                        title: "Test link title",
+                        href: "/",
+                        ariaLabel: "Link aria label passed in",
+                    },
+                ]}
+            />,
+        );
+
+        // Assert
+        const actionLink = screen.getByRole("link");
+        expect(actionLink).toHaveAttribute(
+            "aria-label",
+            "Link aria label passed in",
+        );
+    });
+
+    it.each([
+        ["info", "status"],
+        ["success", "status"],
+        ["warning", "alert"],
+        ["critical", "alert"],
+    ])("%s banners have role: %s", (kind, role) => {
+        // Arrange
+
+        // Act
+        render(<Banner text="" kind={kind} layout="floating" />);
+
+        // Assert
+        const banner = screen.getByTestId("wonder-blocks-banner-test-id");
+        expect(banner).toHaveAttribute("role", role);
+    });
+
+    test("warning banners have aria-live polite", () => {
+        // Arrange
+
+        // Act
+        render(<Banner text="" kind={"warning"} layout="floating" />);
+
+        // Assert
+        const banner = screen.getByTestId("wonder-blocks-banner-test-id");
+        expect(banner).toHaveAttribute("aria-live", "polite");
+    });
 });

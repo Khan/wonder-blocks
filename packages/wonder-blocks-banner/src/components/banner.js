@@ -13,6 +13,24 @@ import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import * as bannerIcons from "./banner-icons.js";
 
+type ActionTriggerBase = {|
+    title: string,
+    ariaLabel?: string,
+|};
+
+type ActionTriggerWithButton = {|
+    ...ActionTriggerBase,
+    onClick: () => void,
+|};
+
+type ActionTriggerWithLink = {|
+    ...ActionTriggerBase,
+    href: string,
+    onClick?: () => void,
+|};
+
+type ActionTrigger = ActionTriggerWithButton | ActionTriggerWithLink;
+
 type BannerKind =
     /**
      * Color blue, circle 'i' icon. This is the default.
@@ -43,23 +61,11 @@ type BannerLayout =
      */
     | "full-width";
 
-type ActionTriggerBase = {|
-    title: string,
-    ariaLabel?: string,
+type BannerValues = {|
+    color: string,
+    role: "status" | "alert",
+    ariaLive?: "assertive" | "polite",
 |};
-
-type ActionTriggerWithButton = {|
-    ...ActionTriggerBase,
-    onClick: () => void,
-|};
-
-type ActionTriggerWithLink = {|
-    ...ActionTriggerBase,
-    href: string,
-    onClick?: () => void,
-|};
-
-type ActionTrigger = ActionTriggerWithButton | ActionTriggerWithLink;
 
 type Props = {|
     /**
@@ -88,20 +94,37 @@ type Props = {|
      * If present, dismiss button is on right side. If not, no button appears
      */
     onDismiss?: ?() => void,
+
+    /**
+     * The accessible label for the dismiss button.
+     * Please pass in a translated string.
+     */
+    dismissAriaLabel: string,
 |};
 
-const colorForKind = (kind: BannerKind) => {
+const valuesForKind = (kind: BannerKind): BannerValues => {
     switch (kind) {
-        case "info":
-            return Color.blue;
         case "success":
-            return Color.green;
+            return {
+                color: Color.green,
+                role: "status",
+            };
         case "warning":
-            return Color.gold;
+            return {
+                color: Color.gold,
+                role: "alert",
+                ariaLive: "polite",
+            };
         case "critical":
-            return Color.red;
+            return {
+                color: Color.red,
+                role: "alert",
+            };
         default:
-            return Color.blue;
+            return {
+                color: Color.blue,
+                role: "status",
+            };
     }
 };
 
@@ -132,7 +155,7 @@ const colorForKind = (kind: BannerKind) => {
  * ```
  */
 const Banner = (props: Props): React.Node => {
-    const {actions, onDismiss, kind, layout, text} = props;
+    const {actions, dismissAriaLabel, onDismiss, kind, layout, text} = props;
     const layoutStyle = {
         borderRadius: layout && layout === "full-width" ? 0 : 4,
     };
@@ -176,14 +199,17 @@ const Banner = (props: Props): React.Node => {
             style={[
                 styles.containerOuter,
                 layoutStyle,
-                {borderInlineStartColor: colorForKind(kind ?? "info")},
+                {borderInlineStartColor: valuesForKind(kind).color},
             ]}
+            role={valuesForKind(kind).role}
+            aria-live={valuesForKind(kind).ariaLive}
+            testId="wonder-blocks-banner-test-id"
         >
             <View
                 style={[
                     styles.backgroundColor,
                     layoutStyle,
-                    {backgroundColor: colorForKind(kind ?? "info")},
+                    {backgroundColor: valuesForKind(kind).color},
                 ]}
             />
             <View style={styles.containerInner}>
@@ -211,6 +237,7 @@ const Banner = (props: Props): React.Node => {
                             kind={"tertiary"}
                             onClick={onDismiss}
                             style={styles.dismiss}
+                            aria-label={dismissAriaLabel}
                         />
                     </View>
                 ) : null}
@@ -221,9 +248,13 @@ const Banner = (props: Props): React.Node => {
 
 type DefaultProps = {|
     kind: Props["kind"],
+    dismissAriaLabel: Props["dismissAriaLabel"],
 |};
 
-const defaultProps: DefaultProps = {kind: "info"};
+const defaultProps: DefaultProps = {
+    kind: "info",
+    dismissAriaLabel: "Dismiss banner.",
+};
 Banner.defaultProps = defaultProps;
 
 const styles = StyleSheet.create({

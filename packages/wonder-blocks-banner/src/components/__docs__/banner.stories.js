@@ -343,6 +343,7 @@ export const WithDismissal: StoryComponentType = () => {
     ) : (
         <Banner
             text="This banner can be dismissed"
+            kind="critical"
             onDismiss={handleDismiss}
             actions={[{title: "Also dismiss", onClick: handleDismiss}]}
             layout="floating"
