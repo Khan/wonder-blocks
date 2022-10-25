@@ -204,6 +204,7 @@ const Banner = (props: Props): React.Node => {
             ]}
             role={valuesForKind(kind).role}
             aria-live={valuesForKind(kind).ariaLive}
+            testId="wonder-blocks-banner-test-id"
         >
             <View
                 style={[

@@ -182,27 +182,159 @@ describe("Banner", () => {
 
     // Test accessibility
 
-    test.todo("dismiss button has aria label by default");
+    test("dismiss button has aria label by default", () => {
+        // Arrange
 
-    test.todo("dismiss button has the aria label that was passed in");
+        // Act
+        render(<Banner text="" layout="floating" onDismiss={() => {}} />);
 
-    test.todo("buttons have their title as the aria label by default");
+        // Assert
+        const dismissButton = screen.getByRole("button");
+        expect(dismissButton).toHaveAttribute("aria-label", "Dismiss banner.");
+    });
 
-    test.todo("links have their title as the aria label by default");
+    test("dismiss button has the aria label that was passed in", () => {
+        // Arrange
 
-    test.todo("buttons use the passed in aria label");
+        // Act
+        render(
+            <Banner
+                text=""
+                layout="floating"
+                onDismiss={() => {}}
+                dismissAriaLabel="Test dismiss aria label"
+            />,
+        );
 
-    test.todo("links use the passed in aria label");
+        // Assert
+        const dismissButton = screen.getByRole("button");
+        expect(dismissButton).toHaveAttribute(
+            "aria-label",
+            "Test dismiss aria label",
+        );
+    });
 
-    test.todo("info banners have role status");
+    test("buttons have their title as the aria label by default", () => {
+        // Arrange
 
-    test.todo("success banners have role status");
+        // Act
+        render(
+            <Banner
+                text=""
+                layout="floating"
+                actions={[{title: "Test button title", onClick: () => {}}]}
+            />,
+        );
 
-    test.todo("warning banners have role alert");
+        // Assert
+        const actionButton = screen.getByRole("button");
+        expect(actionButton).toHaveAttribute("aria-label", "Test button title");
+    });
 
-    test.todo("critical banners have role alert");
+    test("links have their title as the aria label by default", () => {
+        // Arrange
 
-    test.todo("warning banners have aria-live polite");
+        // Act
+        render(
+            <Banner
+                text=""
+                layout="floating"
+                actions={[{title: "Test link title", href: "/"}]}
+            />,
+        );
 
-    test.todo("critical banners have aria-live assertive");
+        // Assert
+        const actionLink = screen.getByRole("link");
+        expect(actionLink).toHaveAttribute("aria-label", "Test link title");
+    });
+
+    test("buttons use the passed in aria label", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Banner
+                text=""
+                layout="floating"
+                actions={[
+                    {
+                        title: "Test button title",
+                        onClick: () => {},
+                        ariaLabel: "Button aria label passed in",
+                    },
+                ]}
+            />,
+        );
+
+        // Assert
+        const actionButton = screen.getByRole("button");
+        expect(actionButton).toHaveAttribute(
+            "aria-label",
+            "Button aria label passed in",
+        );
+    });
+
+    test("links use the passed in aria label", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Banner
+                text=""
+                layout="floating"
+                actions={[
+                    {
+                        title: "Test link title",
+                        href: "/",
+                        ariaLabel: "Link aria label passed in",
+                    },
+                ]}
+            />,
+        );
+
+        // Assert
+        const actionLink = screen.getByRole("link");
+        expect(actionLink).toHaveAttribute(
+            "aria-label",
+            "Link aria label passed in",
+        );
+    });
+
+    it.each([
+        ["info", "status"],
+        ["success", "status"],
+        ["warning", "alert"],
+        ["critical", "alert"],
+    ])("%s banners have role: %s", (kind, role) => {
+        // Arrange
+
+        // Act
+        render(<Banner text="" kind={kind} layout="floating" />);
+
+        // Assert
+        const banner = screen.getByTestId("wonder-blocks-banner-test-id");
+        expect(banner).toHaveAttribute("role", role);
+    });
+
+    test("warning banners have aria-live polite", () => {
+        // Arrange
+
+        // Act
+        render(<Banner text="" kind={"warning"} layout="floating" />);
+
+        // Assert
+        const banner = screen.getByTestId("wonder-blocks-banner-test-id");
+        expect(banner).toHaveAttribute("aria-live", "polite");
+    });
+
+    test("critical banners have aria-live assertive", () => {
+        // Arrange
+
+        // Act
+        render(<Banner text="" kind={"critical"} layout="floating" />);
+
+        // Assert
+        const banner = screen.getByTestId("wonder-blocks-banner-test-id");
+        expect(banner).toHaveAttribute("aria-live", "assertive");
+    });
 });
