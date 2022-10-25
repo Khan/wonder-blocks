@@ -148,6 +148,7 @@ const Banner = (props: Props): React.Node => {
                             href={action.href}
                             onClick={handleClick}
                             aria-label={action.ariaLabel ?? action.title}
+                            style={styles.link}
                         >
                             {action.title}
                         </Link>
@@ -158,7 +159,7 @@ const Banner = (props: Props): React.Node => {
                     <View style={styles.action} key={action.title}>
                         <Button
                             kind="tertiary"
-                            size="medium"
+                            size="small"
                             aria-label={action.ariaLabel ?? action.title}
                             onClick={handleClick}
                         >
@@ -283,6 +284,9 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         // Set the height to remove the padding from buttons
         height: 18,
+    },
+    link: {
+        fontSize: 14,
     },
     dismiss: {
         flexShrink: 1,
