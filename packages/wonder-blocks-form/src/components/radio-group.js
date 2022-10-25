@@ -28,12 +28,12 @@ type RadioGroupProps = {|
      * Optional label for the group. This label is optional to allow for
      * greater flexibility in implementing checkbox and radio groups.
      */
-    label?: string,
+    label?: React.Node,
 
     /**
      * Optional description for the group.
      */
-    description?: string,
+    description?: React.Node,
 
     /**
      * Optional error message. If supplied, the group will be displayed in an
