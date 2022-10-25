@@ -1,15 +1,17 @@
 // @flow
 import * as React from "react";
-import {StyleSheet, css} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Link from "@khanacademy/wonder-blocks-link";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
+
+import * as bannerIcons from "./banner-icons.js";
 
 type BannerKind =
     /**
@@ -103,23 +105,6 @@ const colorForKind = (kind: BannerKind) => {
     }
 };
 
-// TODO(WB-1409): Use Phosphor icons instead of custom svgs. Also, use
-// Wonder Blocks Icon instead of img in the render fucntion.
-const iconForKind = (kind: BannerKind) => {
-    switch (kind) {
-        case "info":
-            return "/info.svg";
-        case "success":
-            return "/success.svg";
-        case "warning":
-            return "/warning.svg";
-        case "critical":
-            return "/critical.svg";
-        default:
-            return "/info.svg";
-    }
-};
-
 /**
  * Banner. A banner displays a prominent message and related optional actions.
  * It can be used as a way of informing the user of important changes.
@@ -201,10 +186,12 @@ const Banner = (props: Props): React.Node => {
                 ]}
             />
             <View style={styles.containerInner}>
-                <img
-                    src={iconForKind(kind ?? "info")}
-                    alt={kind}
-                    className={css(styles.icon)}
+                <Icon
+                    icon={bannerIcons[kind]}
+                    size="medium"
+                    style={styles.icon}
+                    aria-label={kind}
+                    testId="banner-kind-icon"
                 />
                 <View style={styles.labelAndButtonsContainer}>
                     <View style={styles.labelContainer}>

@@ -152,4 +152,31 @@ describe("Banner", () => {
         // Assert
         expect(link).toHaveAttribute("href", "/foo");
     });
+
+    // Test kind
+
+    test("default kind displays info icon", () => {
+        // Arrange
+
+        // Act
+        render(<Banner text="" layout="floating" />);
+
+        // Assert
+        const icon = screen.getByTestId("banner-kind-icon");
+        expect(icon).toHaveAttribute("aria-label", "info");
+    });
+
+    it.each(["info", "success", "warning", "critical"])(
+        "%s kind displays %s icon",
+        (kind) => {
+            // Arrange
+
+            // Act
+            render(<Banner text="" kind={kind} layout="floating" />);
+
+            // Assert
+            const icon = screen.getByTestId("banner-kind-icon");
+            expect(icon).toHaveAttribute("aria-label", kind);
+        },
+    );
 });
