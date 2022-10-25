@@ -4,11 +4,12 @@ import {StyleSheet} from "aphrodite";
 
 import Banner from "@khanacademy/wonder-blocks-banner";
 import Button from "@khanacademy/wonder-blocks-button";
+import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
@@ -50,107 +51,124 @@ Default.args = {
 };
 
 export const Simple: StoryComponentType = () => (
-    <Banner text="This is some example text." />
+    <View style={styles.container}>
+        <Banner text="This is some example text." layout="floating" />
+        <Strut size={Spacing.medium_16} />
+        <Banner text="This is some example text." layout="full-width" />
+    </View>
 );
 
 Simple.parameters = {
     docs: {
-        storyDescription: `This is an example of a banner with just
-            the \`text\` prop.`,
+        storyDescription: `These are examples of banners with just
+            the \`text\` prop and the \`layout\` prop. `,
     },
 };
 
-export const Variants: StoryComponentType = () => (
+export const Kinds: StoryComponentType = () => (
     <View style={styles.container}>
-        <View style={styles.variantColumn}>
-            <LabelMedium>Full-width layout</LabelMedium>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: info - This is a message about something informative like an announcement."
-                    kind="info"
-                    layout="full-width"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: success - This is a message about something positive or successful!"
-                    kind="success"
-                    layout="full-width"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: warning - This is a message warning the user about a potential issue."
-                    kind="warning"
-                    layout="full-width"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: critical - This is a message about something critical or an error."
-                    kind="critical"
-                    layout="full-width"
-                />
-            </View>
-        </View>
-        <View style={styles.variantColumn}>
-            <LabelMedium>Floating layout</LabelMedium>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: info - This is a message about something informative like an announcement."
-                    kind="info"
-                    layout="floating"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: success - This is a message about something positive or successful!"
-                    kind="success"
-                    layout="floating"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: warning - This is a message warning the user about a potential issue."
-                    kind="warning"
-                    layout="floating"
-                />
-            </View>
-            <View style={styles.spacing}>
-                <Banner
-                    text="kind: critical - This is a message about something critical or an error."
-                    kind="critical"
-                    layout="floating"
-                />
-            </View>
-        </View>
+        <Banner
+            text="kind: info - This is a message about something informative like an announcement."
+            kind="info"
+            layout="floating"
+        />
+        <Strut size={Spacing.medium_16} />
+        <Banner
+            text="kind: success - This is a message about something positive or successful!"
+            kind="success"
+            layout="floating"
+        />
+        <Strut size={Spacing.medium_16} />
+        <Banner
+            text="kind: warning - This is a message warning the user about a potential issue."
+            kind="warning"
+            layout="floating"
+        />
+        <Strut size={Spacing.medium_16} />
+        <Banner
+            text="kind: critical - This is a message about something critical or an error."
+            kind="critical"
+            layout="floating"
+        />
     </View>
 );
 
-Variants.parameters = {
+Kinds.parameters = {
     docs: {
-        storyDescription: `Banners come with two layouts: full-width (default)
-            and floating. Full-width layout gives the banner square edges,
-            and floating layout gives the banner rounded edges. Banners
-            also come in four different kinds: info (default), success,
-            warning, and critical.`,
+        storyDescription: `Banners have four possible kinds (\`kind\` prop) -
+            info (default), success, warning, and critical. Info is blue
+            with an info "i" icon, success is green with a smiling icon,
+            warning is yellow with a triangular "!" icon, and critical is
+            red with a round "!" icon.`,
+    },
+};
+
+export const Layouts: StoryComponentType = () => {
+    const borderStyle = {border: `2px solid ${Color.pink}`};
+    const floatingContainerStyle = {padding: Spacing.xSmall_8};
+
+    return (
+        <View style={styles.container}>
+            <Banner
+                text="This banner has full-width layout."
+                layout="full-width"
+                kind="success"
+            />
+            <Strut size={Spacing.medium_16} />
+            <Banner
+                text="This banner has floating layout."
+                layout="floating"
+                kind="success"
+            />
+            <Strut size={Spacing.medium_16} />
+            <View style={borderStyle}>
+                <Banner
+                    text="This banner has full-width layout. There is no space around it."
+                    layout="full-width"
+                    kind="success"
+                />
+            </View>
+            <Strut size={Spacing.medium_16} />
+            <View style={[borderStyle, floatingContainerStyle]}>
+                <Banner
+                    text={`This banner has floating layout. Padding has been
+                        added to its container manually in order for the
+                        banner to not touch any other elements.`}
+                    layout="floating"
+                    kind="success"
+                />
+            </View>
+        </View>
+    );
+};
+
+Layouts.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
+    docs: {
+        storyDescription: `Banners come with two layouts: full-width
+        and floating. Full-width layout gives the banner squared edges,
+        and floating layout gives the banner rounded edges. Floating
+        banners should have space around them and should not be touching
+        other components. The space around floating banners is not
+        automatically added to the container, it must be manually managed
+        by the developer. To demonstrate this, there are also examples with
+        outlines around them - the full-width banner is touching its outline,
+        but padding has been added around the floating banner
+        so that it will not touch its outline.`,
     },
 };
 
 export const DarkBackground: StoryComponentType = () => (
-    <View style={styles.variantColumn}>
-        <View style={styles.spacing}>
-            <Banner text="kind: info" kind="info" layout="floating" />
-        </View>
-        <View style={styles.spacing}>
-            <Banner text="kind: success" kind="success" layout="floating" />
-        </View>
-        <View style={styles.spacing}>
-            <Banner text="kind: warning" kind="warning" layout="floating" />
-        </View>
-        <View style={styles.spacing}>
-            <Banner text="kind: critical" kind="critical" layout="floating" />
-        </View>
+    <View style={styles.container}>
+        <Banner text="kind: info" kind="info" layout="full-width" />
+        <Strut size={Spacing.medium_16} />
+        <Banner text="kind: success" kind="success" layout="full-width" />
+        <Strut size={Spacing.medium_16} />
+        <Banner text="kind: warning" kind="warning" layout="full-width" />
+        <Strut size={Spacing.medium_16} />
+        <Banner text="kind: critical" kind="critical" layout="full-width" />
     </View>
 );
 
@@ -166,6 +184,7 @@ DarkBackground.parameters = {
 export const WithButtons: StoryComponentType = () => (
     <Banner
         text="This is a banner with buttons."
+        layout="full-width"
         actions={[
             {title: "Button 1", onClick: () => {}},
             {title: "Button 2", onClick: () => {}},
@@ -184,6 +203,7 @@ WithButtons.parameters = {
 export const WithLinks: StoryComponentType = () => (
     <Banner
         text="This is a banner with links."
+        layout="floating"
         actions={[
             {title: "Link 1", href: "/"},
             {title: "Link 2", href: "/", onClick: () => {}},
@@ -205,6 +225,7 @@ export const WithInlineLinks: StoryComponentType = () => (
         <Banner
             text="Oh no! The button and link on the right look different! Don't mix button and link actions."
             kind="critical"
+            layout="floating"
             actions={[
                 {title: "Link", href: "/"},
                 {title: "Button", onClick: () => {}},
@@ -219,6 +240,7 @@ export const WithInlineLinks: StoryComponentType = () => (
                 </LabelSmall>
             }
             kind="success"
+            layout="floating"
             actions={[{title: "Button", onClick: () => {}}]}
         />
     </>
@@ -243,6 +265,7 @@ export const Multiline: StoryComponentType = () => (
             text={
                 "This is a multi-line banner. These have wrapping text and actions would be below."
             }
+            layout="full-width"
         />
     </View>
 );
@@ -264,6 +287,7 @@ export const MultilineWithButtons: StoryComponentType = () => (
                 {title: "Button 1", onClick: () => {}},
                 {title: "Button 2", onClick: () => {}},
             ]}
+            layout="floating"
         />
     </View>
 );
@@ -297,6 +321,7 @@ export const WithDismissal: StoryComponentType = () => {
             text="This banner can be dismissed"
             onDismiss={handleDismiss}
             actions={[{title: "Also dismiss", onClick: handleDismiss}]}
+            layout="floating"
         />
     );
 };
@@ -380,15 +405,6 @@ const styles = StyleSheet.create({
     },
     container: {
         width: "100%",
-        flexDirection: "row",
-    },
-    variantColumn: {
-        width: "100%",
-        flexDirection: "column",
-        textAlign: "center",
-    },
-    spacing: {
-        margin: Spacing.xSmall_8,
     },
     narrowBanner: {
         maxWidth: 400,
