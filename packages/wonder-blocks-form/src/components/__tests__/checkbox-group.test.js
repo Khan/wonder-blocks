@@ -88,51 +88,49 @@ describe("CheckboxGroup", () => {
     describe("flexible props", () => {
         it("should render with a React.Node label", () => {
             // Arrange, Act
-            const action = () =>
-                render(
-                    <CheckboxGroup
-                        label={
-                            <span>
-                                label with <strong>strong</strong> text
-                            </span>
-                        }
-                        groupName="test"
-                        onChange={() => {}}
-                        selectedValues={[]}
-                    >
-                        <Choice label="a" value="a" aria-labelledby="test-a" />
-                        <Choice label="b" value="b" aria-labelledby="test-b" />
-                        <Choice label="c" value="c" aria-labelledby="test-c" />
-                    </CheckboxGroup>,
-                );
+            render(
+                <CheckboxGroup
+                    label={
+                        <span>
+                            label with <strong>strong</strong> text
+                        </span>
+                    }
+                    groupName="test"
+                    onChange={() => {}}
+                    selectedValues={[]}
+                >
+                    <Choice label="a" value="a" aria-labelledby="test-a" />
+                    <Choice label="b" value="b" aria-labelledby="test-b" />
+                    <Choice label="c" value="c" aria-labelledby="test-c" />
+                </CheckboxGroup>,
+            );
 
             // Assert
-            expect(action).not.toThrow();
+            expect(screen.getByText("strong")).toBeInTheDocument();
         });
 
         it("should render with a React.Node description", () => {
             // Arrange, Act
-            const action = () =>
-                render(
-                    <CheckboxGroup
-                        label="label"
-                        description={
-                            <span>
-                                description with <strong>strong</strong> text
-                            </span>
-                        }
-                        groupName="test"
-                        onChange={() => {}}
-                        selectedValues={[]}
-                    >
-                        <Choice label="a" value="a" aria-labelledby="test-a" />
-                        <Choice label="b" value="b" aria-labelledby="test-b" />
-                        <Choice label="c" value="c" aria-labelledby="test-c" />
-                    </CheckboxGroup>,
-                );
+            render(
+                <CheckboxGroup
+                    label="label"
+                    description={
+                        <span>
+                            description with <strong>strong</strong> text
+                        </span>
+                    }
+                    groupName="test"
+                    onChange={() => {}}
+                    selectedValues={[]}
+                >
+                    <Choice label="a" value="a" aria-labelledby="test-a" />
+                    <Choice label="b" value="b" aria-labelledby="test-b" />
+                    <Choice label="c" value="c" aria-labelledby="test-c" />
+                </CheckboxGroup>,
+            );
 
             // Assert
-            expect(action).not.toThrow();
+            expect(screen.getByText("strong")).toBeInTheDocument();
         });
     });
 });
