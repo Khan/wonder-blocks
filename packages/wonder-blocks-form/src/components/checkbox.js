@@ -33,12 +33,12 @@ type ChoiceComponentProps = {|
     /**
      * Optional label for the field.
      */
-    label?: string,
+    label?: React.Node,
 
     /**
      * Optional description for the field.
      */
-    description?: string,
+    description?: React.Node,
 
     /**
      * Unique identifier attached to the HTML input element. If used, need to

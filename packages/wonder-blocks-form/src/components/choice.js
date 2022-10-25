@@ -10,10 +10,10 @@ type Props = {|
     ...AriaProps,
 
     /** User-defined. Label for the field. */
-    label: string,
+    label: React.Node,
 
     /** User-defined. Optional description for the field. */
-    description?: string,
+    description?: React.Node,
 
     /** User-defined. Should be distinct for each item in the group. */
     value: string,

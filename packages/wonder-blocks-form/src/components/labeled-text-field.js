@@ -2,7 +2,6 @@
 import * as React from "react";
 
 import {IDProvider, type StyleType} from "@khanacademy/wonder-blocks-core";
-import {type Typography} from "@khanacademy/wonder-blocks-typography";
 
 import FieldHeading from "./field-heading.js";
 import TextField, {type TextFieldType} from "./text-field.js";
@@ -24,12 +23,12 @@ type Props = {|
     /**
      * Provide a label for the TextField.
      */
-    label: string | React.Element<Typography>,
+    label: React.Node,
 
     /**
      * Provide a description for the TextField.
      */
-    description?: string | React.Element<Typography>,
+    description?: React.Node,
 
     /**
      * The input value.

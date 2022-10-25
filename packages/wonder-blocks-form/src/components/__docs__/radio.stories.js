@@ -3,15 +3,16 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Radio} from "@khanacademy/wonder-blocks-form";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import type {StoryComponentType} from "@storybook/react";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info.js";
 import {name, version} from "../../../package.json";
 
+import Radio from "../radio.js";
+
 export default {
-    title: "Form / Radio",
+    title: "Form / Radio (internal)",
     component: Radio,
     parameters: {
         componentSubtitle: ((

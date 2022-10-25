@@ -1,13 +1,14 @@
+/* eslint-disable testing-library/prefer-user-event */
 /* eslint-disable max-lines */
 // @flow
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {render, screen, fireEvent} from "@testing-library/react";
 import {MemoryRouter, Switch, Route} from "react-router-dom";
-import {mount, shallow} from "enzyme";
-import "jest-enzyme";
+import userEvent from "@testing-library/user-event";
 
 import getClickableBehavior from "../../util/get-clickable-behavior.js";
 import ClickableBehavior from "../clickable-behavior.js";
+import type {ClickableState} from "../clickable-behavior";
 
 const keyCodes = {
     tab: 9,
@@ -20,6 +21,20 @@ const wait = (delay: number = 0) =>
         // eslint-disable-next-line no-restricted-syntax
         return setTimeout(resolve, delay);
     });
+
+const labelForState = (state: ClickableState): string => {
+    const labels = [];
+    if (state.hovered) {
+        labels.push("hovered");
+    }
+    if (state.focused) {
+        labels.push("focused");
+    }
+    if (state.pressed) {
+        labels.push("pressed");
+    }
+    return labels.join(" ");
+};
 
 describe("ClickableBehavior", () => {
     beforeEach(() => {
@@ -37,7 +52,7 @@ describe("ClickableBehavior", () => {
 
     it("renders a label", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
                     return <button {...childrenProps}>Label</button>;
@@ -45,176 +60,165 @@ describe("ClickableBehavior", () => {
             </ClickableBehavior>,
         );
         expect(onClick).not.toHaveBeenCalled();
-        button.simulate("click", {preventDefault: jest.fn()});
+        userEvent.click(screen.getByRole("button"));
         expect(onClick).toHaveBeenCalled();
     });
 
     it("changes only hovered state on mouse enter/leave", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
-                    return <button {...childrenProps}>Label</button>;
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
                 }}
             </ClickableBehavior>,
         );
-        expect(button.state("hovered")).toEqual(false);
-        button.simulate("mouseenter", {
-            buttons: 0,
-        });
-        expect(button.state("hovered")).toEqual(true);
-        button.simulate("mouseleave");
-        expect(button.state("hovered")).toEqual(false);
+        const button = screen.getByRole("button");
+        expect(button).not.toHaveTextContent("hovered");
+        userEvent.hover(button);
+        expect(button).toHaveTextContent("hovered");
+        userEvent.unhover(button);
+        expect(button).not.toHaveTextContent("hovered");
     });
 
     it("changes only pressed state on mouse enter/leave while dragging", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
-                    return <button {...childrenProps}>Label</button>;
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
                 }}
             </ClickableBehavior>,
         );
-        expect(button.state("pressed")).toEqual(false);
+        const button = screen.getByRole("button");
+        expect(button).not.toHaveTextContent("pressed");
 
-        button.simulate("mousedown");
-        button.simulate("dragstart", {preventDefault: jest.fn()});
-        expect(button.state("pressed")).toEqual(true);
+        fireEvent.mouseDown(button);
+        fireEvent.dragStart(button);
+        fireEvent.mouseMove(button);
+        expect(button).toHaveTextContent("pressed");
 
-        button.simulate("mouseleave");
-        expect(button.state("pressed")).toEqual(false);
+        fireEvent.mouseLeave(button);
+        expect(button).not.toHaveTextContent("pressed");
 
-        button.simulate("mouseenter", {
-            buttons: 1,
-        });
-        expect(button.state("pressed")).toEqual(true);
+        fireEvent.mouseEnter(button, {buttons: 1});
+        expect(button).toHaveTextContent("pressed");
     });
 
     it("changes pressed state on mouse down/up", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
-                    return <button {...childrenProps}>Label</button>;
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
                 }}
             </ClickableBehavior>,
         );
-        expect(button.state("pressed")).toEqual(false);
-        button.simulate("mousedown");
-        expect(button.state("pressed")).toEqual(true);
-        button.simulate("mouseup");
-        expect(button.state("pressed")).toEqual(false);
+        const button = screen.getByRole("button");
+        expect(button).not.toHaveTextContent("pressed");
+        fireEvent.mouseDown(button);
+        expect(button).toHaveTextContent("pressed");
+        fireEvent.mouseUp(button);
+        expect(button).not.toHaveTextContent("pressed");
     });
 
     it("changes pressed state on touch start/end/cancel", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
-                    return <button {...childrenProps}>Label</button>;
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
                 }}
             </ClickableBehavior>,
         );
-        expect(button.state("pressed")).toEqual(false);
-        button.simulate("touchstart");
-        expect(button.state("pressed")).toEqual(true);
-        button.simulate("touchend");
-        expect(button.state("pressed")).toEqual(false);
+        const button = screen.getByRole("button");
+        expect(button).not.toHaveTextContent("pressed");
+        fireEvent.touchStart(button);
+        expect(button).toHaveTextContent("pressed");
+        fireEvent.touchEnd(button);
+        expect(button).not.toHaveTextContent("pressed");
 
-        expect(button.state("pressed")).toEqual(false);
-        button.simulate("touchstart");
-        expect(button.state("pressed")).toEqual(true);
-        button.simulate("touchcancel");
-        expect(button.state("pressed")).toEqual(false);
+        expect(button).not.toHaveTextContent("pressed");
+        fireEvent.touchStart(button);
+        expect(button).toHaveTextContent("pressed");
+        fireEvent.touchCancel(button);
+        expect(button).not.toHaveTextContent("pressed");
     });
 
     it("enters focused state on key press after click", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
-                    return <button {...childrenProps}>Label</button>;
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
                 }}
             </ClickableBehavior>,
         );
-        expect(button.state("focused")).toEqual(false);
-        button.simulate("keydown", {
-            keyCode: keyCodes.space,
-            preventDefault: jest.fn(),
-        });
-        button.simulate("keyup", {
-            keyCode: keyCodes.space,
-            preventDefault: jest.fn(),
-        });
-        button.simulate("click", {preventDefault: jest.fn()});
-        expect(button.state("focused")).toEqual(true);
+        const button = screen.getByRole("button");
+        expect(button).not.toHaveTextContent("focused");
+        fireEvent.keyDown(button, {keyCode: keyCodes.space});
+        fireEvent.keyUp(button, {keyCode: keyCodes.space});
+        // NOTE(kevinb): userEvent.click() fires other events that we don't want
+        // affecting this test case.
+        fireEvent.click(button);
+        expect(button).toHaveTextContent("focused");
     });
 
     it("exits focused state on click after key press", () => {
         const onClick = jest.fn();
 
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
-                    return <button {...childrenProps}>Label</button>;
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
                 }}
             </ClickableBehavior>,
         );
-        expect(button.state("focused")).toEqual(false);
-        button.simulate("keydown", {
-            keyCode: keyCodes.space,
-            preventDefault: jest.fn(),
-        });
-        button.simulate("keyup", {
-            keyCode: keyCodes.space,
-            preventDefault: jest.fn(),
-        });
-        button.simulate("click", {preventDefault: jest.fn()});
-        expect(button.state("focused")).toEqual(true);
-        button.simulate("mousedown");
-        button.simulate("mouseup");
-        button.simulate("click", {preventDefault: jest.fn()});
-        expect(button.state("focused")).toEqual(false);
+        const button = screen.getByRole("button");
+        expect(button).not.toHaveTextContent("focused");
+        fireEvent.keyDown(button, {keyCode: keyCodes.space});
+        fireEvent.keyUp(button, {keyCode: keyCodes.space});
+        // NOTE(kevinb): userEvent.click() fires other events that we don't want
+        // affecting this test case.
+        fireEvent.click(button);
+        expect(button).toHaveTextContent("focused");
+        userEvent.click(button);
+        expect(button).not.toHaveTextContent("focused");
     });
 
     it("changes pressed state on space/enter key down/up if <button>", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
-                    return <button {...childrenProps}>Label</button>;
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
                 }}
             </ClickableBehavior>,
         );
-        expect(button.state("pressed")).toEqual(false);
-        button.simulate("keydown", {
-            keyCode: keyCodes.space,
-            preventDefault: jest.fn(),
-        });
-        expect(button.state("pressed")).toEqual(true);
-        button.simulate("keyup", {
-            keyCode: keyCodes.space,
-            preventDefault: jest.fn(),
-        });
-        expect(button.state("pressed")).toEqual(false);
+        const button = screen.getByRole("button");
+        expect(button).not.toHaveTextContent("pressed");
+        fireEvent.keyDown(button, {keyCode: keyCodes.space});
+        expect(button).toHaveTextContent("pressed");
+        fireEvent.keyUp(button, {keyCode: keyCodes.space});
+        expect(button).not.toHaveTextContent("pressed");
 
-        button.simulate("keydown", {
-            keyCode: keyCodes.enter,
-            preventDefault: jest.fn(),
-        });
-        expect(button.state("pressed")).toEqual(true);
-        button.simulate("keyup", {
-            preventDefault: jest.fn(),
-            keyCode: keyCodes.enter,
-        });
-        expect(button.state("pressed")).toEqual(false);
+        fireEvent.keyDown(button, {keyCode: keyCodes.enter});
+        expect(button).toHaveTextContent("pressed");
+        fireEvent.keyUp(button, {keyCode: keyCodes.enter});
+        expect(button).not.toHaveTextContent("pressed");
     });
 
     it("changes pressed state on only enter key down/up for a link", () => {
         const onClick = jest.fn();
         // Use mount instead of a shallow render to trigger event defaults
-        const link = mount(
+        render(
             <ClickableBehavior
                 disabled={false}
                 onClick={(e) => onClick(e)}
@@ -222,59 +226,60 @@ describe("ClickableBehavior", () => {
                 role="link"
             >
                 {(state, childrenProps) => {
+                    const label = labelForState(state);
                     return (
                         <a
                             href="https://www.khanacademy.org"
                             {...childrenProps}
                         >
-                            Label
+                            {label}
                         </a>
                     );
                 }}
             </ClickableBehavior>,
         );
-        expect(link.state("pressed")).toEqual(false);
-        link.simulate("keydown", {keyCode: keyCodes.enter});
-        expect(link.state("pressed")).toEqual(true);
-        link.simulate("keyup", {
-            preventDefault: jest.fn(),
-            keyCode: keyCodes.enter,
-        });
-        expect(link.state("pressed")).toEqual(false);
+        const link = screen.getByRole("link");
+        expect(link).not.toHaveTextContent("pressed");
+        fireEvent.keyDown(link, {keyCode: keyCodes.enter});
+        expect(link).toHaveTextContent("pressed");
+        fireEvent.keyUp(link, {keyCode: keyCodes.enter});
+        expect(link).not.toHaveTextContent("pressed");
 
-        link.simulate("keydown", {keyCode: keyCodes.space});
-        expect(link.state("pressed")).toEqual(false);
-        link.simulate("keyup", {
-            preventDefault: jest.fn(),
-            keyCode: keyCodes.space,
-        });
-        expect(link.state("pressed")).toEqual(false);
+        fireEvent.keyDown(link, {keyCode: keyCodes.space});
+        expect(link).not.toHaveTextContent("pressed");
+        fireEvent.keyUp(link, {keyCode: keyCodes.space});
+        expect(link).not.toHaveTextContent("pressed");
     });
 
     it("gains focused state on focus event", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
-                    return <button {...childrenProps}>Label</button>;
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
                 }}
             </ClickableBehavior>,
         );
-        button.simulate("focus");
-        expect(button.state("focused")).toEqual(true);
+        const button = screen.getByRole("button");
+        fireEvent.focus(button);
+        expect(button).toHaveTextContent("focused");
     });
 
     it("changes focused state on blur", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
-                    return <button {...childrenProps}>Label</button>;
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
                 }}
             </ClickableBehavior>,
         );
-        button.simulate("blur");
-        expect(button.state("focused")).toEqual(false);
+        const button = screen.getByRole("button");
+        fireEvent.focus(button);
+        fireEvent.blur(button);
+        expect(button).not.toHaveTextContent("focused");
     });
 
     test("tabIndex should be 0", () => {
@@ -319,68 +324,64 @@ describe("ClickableBehavior", () => {
 
     it("does not change state if disabled", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={true} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
-                    return <button {...childrenProps}>Label</button>;
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
                 }}
             </ClickableBehavior>,
         );
 
+        const button = screen.getByRole("button");
         expect(onClick).not.toHaveBeenCalled();
-        button.simulate("click", {preventDefault: jest.fn()});
+        fireEvent.click(button);
         expect(onClick).not.toHaveBeenCalled();
 
-        expect(button.state("hovered")).toEqual(false);
-        button.simulate("mouseenter", {
-            buttons: 0,
-        });
-        expect(button.state("hovered")).toEqual(false);
-        button.simulate("mouseleave");
-        expect(button.state("hovered")).toEqual(false);
+        expect(button).not.toHaveTextContent("hovered");
+        fireEvent.mouseEnter(button);
+        expect(button).not.toHaveTextContent("hovered");
+        fireEvent.mouseLeave(button);
+        expect(button).not.toHaveTextContent("hovered");
 
-        expect(button.state("pressed")).toEqual(false);
-        button.simulate("mousedown");
-        expect(button.state("pressed")).toEqual(false);
-        button.simulate("mouseup");
-        expect(button.state("pressed")).toEqual(false);
+        expect(button).not.toHaveTextContent("pressed");
+        fireEvent.mouseDown(button);
+        expect(button).not.toHaveTextContent("pressed");
+        fireEvent.mouseUp(button);
+        expect(button).not.toHaveTextContent("pressed");
 
-        expect(button.state("pressed")).toEqual(false);
-        button.simulate("touchstart");
-        expect(button.state("pressed")).toEqual(false);
-        button.simulate("touchend");
-        expect(button.state("pressed")).toEqual(false);
+        expect(button).not.toHaveTextContent("pressed");
+        fireEvent.touchStart(button);
+        expect(button).not.toHaveTextContent("pressed");
+        fireEvent.touchEnd(button);
+        expect(button).not.toHaveTextContent("pressed");
 
-        button.simulate("touchstart");
-        button.simulate("touchcancel");
-        expect(button.state("pressed")).toEqual(false);
+        fireEvent.touchStart(button);
+        fireEvent.touchCancel(button);
+        expect(button).not.toHaveTextContent("pressed");
 
-        expect(button.state("focused")).toEqual(false);
-        button.simulate("keyup", {
-            preventDefault: jest.fn(),
+        expect(button).not.toHaveTextContent("focused");
+        fireEvent.keyUp(button, {
             keyCode: keyCodes.tab,
         });
-        expect(button.state("focused")).toEqual(false);
-        button.simulate("keydown", {keyCode: keyCodes.tab});
-        expect(button.state("focused")).toEqual(false);
+        expect(button).not.toHaveTextContent("focused");
+        fireEvent.keyDown(button, {keyCode: keyCodes.tab});
+        expect(button).not.toHaveTextContent("focused");
 
-        expect(button.state("pressed")).toEqual(false);
-        button.simulate("keydown", {keyCode: keyCodes.space});
-        expect(button.state("pressed")).toEqual(false);
-        button.simulate("keyup", {
-            preventDefault: jest.fn(),
-            keyCode: keyCodes.space,
-        });
-        expect(button.state("pressed")).toEqual(false);
+        expect(button).not.toHaveTextContent("pressed");
+        fireEvent.keyDown(button, {keyCode: keyCodes.space});
+        expect(button).not.toHaveTextContent("pressed");
+        fireEvent.keyUp(button, {keyCode: keyCodes.space});
+        expect(button).not.toHaveTextContent("pressed");
 
-        button.simulate("keydown", {keyCode: keyCodes.space});
-        button.simulate("blur");
-        expect(button.state("pressed")).toEqual(false);
+        fireEvent.keyDown(button, {keyCode: keyCodes.space});
+        fireEvent.blur(button);
+        expect(button).not.toHaveTextContent("pressed");
 
-        button.simulate("focus");
-        expect(button.state("focused")).toEqual(true);
+        fireEvent.focus(button);
+        expect(button).toHaveTextContent("focused");
 
-        const anchor = shallow(
+        render(
             <ClickableBehavior
                 disabled={true}
                 href="https://www.khanacademy.org"
@@ -398,80 +399,78 @@ describe("ClickableBehavior", () => {
             </ClickableBehavior>,
         );
 
-        expect(anchor.state("pressed")).toEqual(false);
-        anchor.simulate("keydown", {keyCode: keyCodes.enter});
-        expect(anchor.state("pressed")).toEqual(false);
-        anchor.simulate("keyup", {
-            preventDefault: jest.fn(),
-            keyCode: keyCodes.enter,
-        });
-        expect(anchor.state("pressed")).toEqual(false);
+        const anchor = screen.getByRole("link");
+        expect(anchor).not.toHaveTextContent("pressed");
+        fireEvent.keyDown(anchor, {keyCode: keyCodes.enter});
+        expect(anchor).not.toHaveTextContent("pressed");
+        fireEvent.keyUp(anchor, {keyCode: keyCodes.enter});
+        expect(anchor).not.toHaveTextContent("pressed");
     });
 
     it("has onClick triggered just once per click by various means", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
                     return <button {...childrenProps}>Label</button>;
                 }}
             </ClickableBehavior>,
         );
+        const button = screen.getByRole("button");
         expect(onClick).not.toHaveBeenCalled();
 
-        button.simulate("mousedown");
-        button.simulate("mouseup");
-        button.simulate("click", {preventDefault: jest.fn()});
+        userEvent.click(button);
         expect(onClick).toHaveBeenCalledTimes(1);
 
-        button.simulate("keydown", {
-            keyCode: keyCodes.space,
-            preventDefault: jest.fn(),
-        });
-        button.simulate("keyup", {
-            keyCode: keyCodes.space,
-            preventDefault: jest.fn(),
-        });
+        fireEvent.keyDown(button, {keyCode: keyCodes.space});
+        fireEvent.keyUp(button, {keyCode: keyCodes.space});
         expect(onClick).toHaveBeenCalledTimes(2);
 
-        button.simulate("keydown", {
-            keyCode: keyCodes.enter,
-            preventDefault: jest.fn(),
-        });
-        button.simulate("keyup", {
-            preventDefault: jest.fn(),
-            keyCode: keyCodes.enter,
-        });
+        fireEvent.keyDown(button, {keyCode: keyCodes.enter});
+        fireEvent.keyUp(button, {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(3);
 
-        button.simulate("touchstart", {keyCode: keyCodes.space});
-        button.simulate("touchend", {keyCode: keyCodes.space});
-        button.simulate("click", {preventDefault: jest.fn()});
+        fireEvent.touchStart(button, {keyCode: keyCodes.space});
+        fireEvent.touchEnd(button, {keyCode: keyCodes.space});
+        fireEvent.click(button);
         expect(onClick).toHaveBeenCalledTimes(4);
     });
 
     it("resets state when set to disabled", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        const {rerender} = render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
-                    return <button {...childrenProps}>Label</button>;
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
                 }}
             </ClickableBehavior>,
         );
-        button.setState({hovered: true, pressed: true, focused: true});
-        button.setProps({disabled: true});
+        const button = screen.getByRole("button");
+        userEvent.tab(); // focus
+        userEvent.hover(button);
 
-        expect(button.state("hovered")).toEqual(false);
-        expect(button.state("pressed")).toEqual(false);
-        expect(button.state("focused")).toEqual(true);
+        rerender(
+            <ClickableBehavior disabled={true} onClick={(e) => onClick(e)}>
+                {(state, childrenProps) => {
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
+                }}
+            </ClickableBehavior>,
+        );
+
+        expect(button).not.toHaveTextContent("pressed");
+        expect(button).not.toHaveTextContent("hovered");
+
+        // The button remains focused even after it's been disabled
+        expect(button).toHaveTextContent("focused");
     });
 
     describe("full page load navigation", () => {
         it("both navigates and calls onClick for an anchor link", () => {
             const onClick = jest.fn();
             // Use mount instead of a shallow render to trigger event defaults
-            const link = mount(
+            render(
                 <ClickableBehavior
                     href="https://khanacademy.org/"
                     onClick={(e) => onClick(e)}
@@ -492,29 +491,24 @@ describe("ClickableBehavior", () => {
                     }}
                 </ClickableBehavior>,
             );
+            const link = screen.getByRole("link");
 
             // Space press should not trigger the onClick
-            link.simulate("keydown", {keyCode: keyCodes.space});
-            link.simulate("keyup", {
-                preventDefault: jest.fn(),
-                keyCode: keyCodes.space,
-            });
+            fireEvent.keyDown(link, {keyCode: keyCodes.space});
+            fireEvent.keyUp(link, {keyCode: keyCodes.space});
             expect(onClick).toHaveBeenCalledTimes(0);
 
             // Navigation didn't happen with space
             expect(window.location.assign).toHaveBeenCalledTimes(0);
 
             // Enter press should trigger the onClick after keyup
-            link.simulate("keydown", {keyCode: keyCodes.enter});
+            fireEvent.keyDown(link, {keyCode: keyCodes.enter});
             expect(onClick).toHaveBeenCalledTimes(0);
 
             // Navigation doesn't happen until after enter is released
             expect(window.location.assign).toHaveBeenCalledTimes(0);
 
-            link.simulate("keyup", {
-                preventDefault: jest.fn(),
-                keyCode: keyCodes.enter,
-            });
+            fireEvent.keyUp(link, {keyCode: keyCodes.enter});
             expect(onClick).toHaveBeenCalledTimes(1);
 
             // Navigation happened after enter click
@@ -523,7 +517,7 @@ describe("ClickableBehavior", () => {
 
         it("waits for safeWithNav to resolve before navigation", async () => {
             // Arrange
-            const link = mount(
+            render(
                 <ClickableBehavior
                     href="https://khanacademy.org/"
                     safeWithNav={() => Promise.resolve()}
@@ -546,7 +540,8 @@ describe("ClickableBehavior", () => {
             );
 
             // Act
-            link.simulate("click", {preventDefault: jest.fn()});
+            const link = screen.getByRole("link");
+            userEvent.click(link);
             await wait(0);
 
             // Assert
@@ -555,7 +550,7 @@ describe("ClickableBehavior", () => {
 
         it("should show waiting UI before safeWithNav resolves", async () => {
             // Arrange
-            const link = mount(
+            render(
                 <ClickableBehavior
                     href="https://khanacademy.org/"
                     safeWithNav={() => Promise.resolve()}
@@ -578,15 +573,16 @@ describe("ClickableBehavior", () => {
             );
 
             // Act
-            link.simulate("click", {preventDefault: jest.fn()});
+            const link = screen.getByRole("link");
+            userEvent.click(link);
 
             // Assert
-            expect(link).toIncludeText("waiting");
+            expect(link).toHaveTextContent("waiting");
         });
 
         it("If onClick calls e.preventDefault() then we won't navigate", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <ClickableBehavior
                     href="/foo"
                     onClick={(e) => e.preventDefault()}
@@ -596,23 +592,14 @@ describe("ClickableBehavior", () => {
                         // The base element here doesn't matter in this testing
                         // environment, but the simulated events in the test are in
                         // line with what browsers do for this element.
-                        return (
-                            <button id="test-button" {...childrenProps}>
-                                label
-                            </button>
-                        );
+                        return <button {...childrenProps}>label</button>;
                     }}
                 </ClickableBehavior>,
             );
 
             // Act
-            const button = wrapper.find("#test-button").first();
-            button.simulate("click", {
-                preventDefault() {
-                    // $FlowIgnore[object-this-reference]
-                    this.defaultPrevented = true;
-                },
-            });
+            const button = screen.getByRole("button");
+            userEvent.click(button);
 
             // Assert
             expect(window.location.assign).not.toHaveBeenCalled();
@@ -622,7 +609,7 @@ describe("ClickableBehavior", () => {
     it("calls onClick correctly for a component that doesn't respond to enter", () => {
         const onClick = jest.fn();
         // Use mount instead of a shallow render to trigger event defaults
-        const checkbox = mount(
+        render(
             // triggerOnEnter may be false for some elements e.g. checkboxes
             <ClickableBehavior onClick={(e) => onClick(e)} role="checkbox">
                 {(state, childrenProps) => {
@@ -635,27 +622,22 @@ describe("ClickableBehavior", () => {
         );
 
         // Enter press should not do anything
-        checkbox.simulate("keydown", {keyCode: keyCodes.enter});
+        const checkbox = screen.getByRole("checkbox");
+        fireEvent.keyDown(checkbox, {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(0);
-        checkbox.simulate("keyup", {
-            preventDefault: jest.fn(),
-            keyCode: keyCodes.enter,
-        });
+        fireEvent.keyUp(checkbox, {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(0);
 
         // Space press should trigger the onClick
-        checkbox.simulate("keydown", {keyCode: keyCodes.space});
-        checkbox.simulate("keyup", {
-            preventDefault: jest.fn(),
-            keyCode: keyCodes.space,
-        });
+        fireEvent.keyDown(checkbox, {keyCode: keyCodes.space});
+        fireEvent.keyUp(checkbox, {keyCode: keyCodes.space});
         expect(onClick).toHaveBeenCalledTimes(1);
     });
 
     it("calls onClick for a button component on both enter/space", () => {
         const onClick = jest.fn();
         // Use mount instead of a shallow render to trigger event defaults
-        const button = mount(
+        render(
             <ClickableBehavior onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
                     // The base element here doesn't matter in this testing
@@ -667,21 +649,16 @@ describe("ClickableBehavior", () => {
         );
 
         // Enter press
-        button.simulate("keydown", {keyCode: keyCodes.enter});
+        const button = screen.getByRole("button");
+        fireEvent.keyDown(button, {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(0);
-        button.simulate("keyup", {
-            preventDefault: jest.fn(),
-            keyCode: keyCodes.enter,
-        });
+        fireEvent.keyUp(button, {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(1);
 
         // Space press
-        button.simulate("keydown", {keyCode: keyCodes.space});
+        fireEvent.keyDown(button, {keyCode: keyCodes.space});
         expect(onClick).toHaveBeenCalledTimes(1);
-        button.simulate("keyup", {
-            preventDefault: jest.fn(),
-            keyCode: keyCodes.space,
-        });
+        fireEvent.keyUp(button, {keyCode: keyCodes.space});
         expect(onClick).toHaveBeenCalledTimes(2);
     });
 
@@ -691,7 +668,7 @@ describe("ClickableBehavior", () => {
     it("calls onClick listener on space/enter with a non-usually clickable element", () => {
         const onClick = jest.fn();
         // Use mount instead of a shallow render to trigger event defaults
-        const div = mount(
+        const {container} = render(
             <ClickableBehavior onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
                     // The base element here doesn't matter in this testing
@@ -703,50 +680,42 @@ describe("ClickableBehavior", () => {
         );
 
         let expectedNumberTimesCalled = 0;
-        const clickableDiv = div.find("div");
+        // eslint-disable-next-line testing-library/no-node-access, testing-library/no-container
+        const clickableDiv = container.querySelector("div");
+        if (!clickableDiv) {
+            throw new Error("couldn't find clickable div");
+        }
 
         // Enter press on a div
-        clickableDiv.simulate("keydown", {keyCode: keyCodes.enter});
+        fireEvent.keyDown(clickableDiv, {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
-        clickableDiv.simulate("keyup", {
-            preventDefault: jest.fn(),
+        fireEvent.keyUp(clickableDiv, {
             keyCode: keyCodes.enter,
         });
         expectedNumberTimesCalled += 1;
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
 
         // Simulate a mouse click.
-        clickableDiv.simulate("mousedown");
-        expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
-        clickableDiv.simulate("mouseup");
-        expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
-        clickableDiv.simulate("click", {preventDefault: jest.fn()});
+        userEvent.click(clickableDiv);
         expectedNumberTimesCalled += 1;
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
 
         // Space press on a div
-        clickableDiv.simulate("keydown", {keyCode: keyCodes.space});
+        fireEvent.keyDown(clickableDiv, {keyCode: keyCodes.space});
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
-        clickableDiv.simulate("keyup", {
-            preventDefault: jest.fn(),
-            keyCode: keyCodes.space,
-        });
+        fireEvent.keyUp(clickableDiv, {keyCode: keyCodes.space});
         expectedNumberTimesCalled += 1;
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
 
         // Simulate another mouse click.
-        clickableDiv.simulate("mousedown");
-        expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
-        clickableDiv.simulate("mouseup");
-        expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
-        clickableDiv.simulate("click", {preventDefault: jest.fn()});
+        userEvent.click(clickableDiv);
         expectedNumberTimesCalled += 1;
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
     });
 
     it("calls onClick on mouseup when the mouse was dragging", () => {
         const onClick = jest.fn();
-        const button = shallow(
+        render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
                 {(state, childrenProps) => {
                     return <button {...childrenProps}>Label</button>;
@@ -754,28 +723,27 @@ describe("ClickableBehavior", () => {
             </ClickableBehavior>,
         );
 
-        button.simulate("mousedown");
-        button.simulate("dragstart", {preventDefault: jest.fn()});
-        button.simulate("mouseleave");
-        button.simulate("mouseup");
+        const button = screen.getByRole("button");
+        fireEvent.mouseDown(button);
+        fireEvent.dragStart(button);
+        fireEvent.mouseLeave(button);
+        fireEvent.mouseUp(button);
         expect(onClick).toHaveBeenCalledTimes(0);
 
-        button.simulate("mousedown");
-        button.simulate("dragstart", {preventDefault: jest.fn()});
-        button.simulate("mouseup", {preventDefault: jest.fn()});
+        fireEvent.mouseDown(button);
+        fireEvent.dragStart(button);
+        fireEvent.mouseUp(button);
         expect(onClick).toHaveBeenCalledTimes(1);
 
-        button.simulate("mouseenter", {
-            buttons: 1,
-        });
-        button.simulate("mouseup", {preventDefault: jest.fn()});
+        fireEvent.mouseEnter(button, {buttons: 1});
+        fireEvent.mouseUp(button);
         expect(onClick).toHaveBeenCalledTimes(2);
     });
 
     it("doesn't trigger enter key when browser doesn't stop the click", () => {
         const onClick = jest.fn();
         // Use mount instead of a shallow render to trigger event defaults
-        const checkbox = mount(
+        render(
             <ClickableBehavior onClick={(e) => onClick(e)} role="checkbox">
                 {(state, childrenProps) => {
                     // The base element here doesn't matter in this testing
@@ -786,14 +754,12 @@ describe("ClickableBehavior", () => {
             </ClickableBehavior>,
         );
 
+        const checkbox = screen.getByRole("checkbox");
         // Enter press should not do anything
-        checkbox.simulate("keydown", {keyCode: keyCodes.enter});
+        fireEvent.keyDown(checkbox, {keyCode: keyCodes.enter});
         // This element still wants to have a click on enter press
-        checkbox.simulate("click", {preventDefault: jest.fn()});
-        checkbox.simulate("keyup", {
-            preventDefault: jest.fn(),
-            keyCode: keyCodes.enter,
-        });
+        fireEvent.click(checkbox);
+        fireEvent.keyUp(checkbox, {keyCode: keyCodes.enter});
         expect(onClick).toHaveBeenCalledTimes(0);
     });
 
@@ -806,7 +772,7 @@ describe("ClickableBehavior", () => {
 
         it("handles client-side navigation when there's a router context", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <ClickableBehaviorWithRouter
@@ -819,9 +785,7 @@ describe("ClickableBehavior", () => {
                                 // environment, but the simulated events in the test are in
                                 // line with what browsers do for this element.
                                 return (
-                                    <button id="test-button" {...childrenProps}>
-                                        label
-                                    </button>
+                                    <button {...childrenProps}>label</button>
                                 );
                             }}
                         </ClickableBehaviorWithRouter>
@@ -835,17 +799,16 @@ describe("ClickableBehavior", () => {
             );
 
             // Act
-            const button = wrapper.find("#test-button").first();
-            button.simulate("click", {preventDefault: jest.fn()});
+            userEvent.click(screen.getByRole("button"));
 
             // Assert
-            expect(wrapper).toIncludeText("Hello, world!");
+            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
         });
 
         describe("beforeNav", () => {
             it("waits for beforeNav to resolve before client-side navigating", async () => {
                 // Arrange
-                const wrapper = mount(
+                render(
                     <MemoryRouter>
                         <div>
                             <ClickableBehaviorWithRouter
@@ -859,10 +822,7 @@ describe("ClickableBehavior", () => {
                                     // environment, but the simulated events in the test are in
                                     // line with what browsers do for this element.
                                     return (
-                                        <button
-                                            id="test-button"
-                                            {...childrenProps}
-                                        >
+                                        <button {...childrenProps}>
                                             {state.waiting
                                                 ? "waiting"
                                                 : "label"}
@@ -880,17 +840,16 @@ describe("ClickableBehavior", () => {
                 );
 
                 // Act
-                const button = wrapper.find("#test-button").first();
-                button.simulate("click", {preventDefault: jest.fn()});
+                userEvent.click(screen.getByRole("button"));
                 await wait(0);
 
                 // Assert
-                expect(wrapper).toIncludeText("Hello, world!");
+                expect(screen.getByText("Hello, world!")).toBeInTheDocument();
             });
 
             it("shows waiting state before navigating", async () => {
                 // Arrange
-                const wrapper = mount(
+                render(
                     <MemoryRouter>
                         <div>
                             <ClickableBehaviorWithRouter
@@ -904,10 +863,7 @@ describe("ClickableBehavior", () => {
                                     // environment, but the simulated events in the test are in
                                     // line with what browsers do for this element.
                                     return (
-                                        <button
-                                            id="test-button"
-                                            {...childrenProps}
-                                        >
+                                        <button {...childrenProps}>
                                             {state.waiting
                                                 ? "waiting"
                                                 : "label"}
@@ -925,16 +881,15 @@ describe("ClickableBehavior", () => {
                 );
 
                 // Act
-                const button = wrapper.find("#test-button").first();
-                button.simulate("click", {preventDefault: jest.fn()});
+                userEvent.click(screen.getByRole("button"));
 
                 // Assert
-                expect(wrapper).toIncludeText("waiting");
+                expect(screen.getByText("waiting")).toBeInTheDocument();
             });
 
             it("does not navigate if beforeNav rejects", async () => {
                 // Arrange
-                const wrapper = mount(
+                render(
                     <MemoryRouter>
                         <div>
                             <ClickableBehaviorWithRouter
@@ -948,10 +903,7 @@ describe("ClickableBehavior", () => {
                                     // environment, but the simulated events in the test are in
                                     // line with what browsers do for this element.
                                     return (
-                                        <button
-                                            id="test-button"
-                                            {...childrenProps}
-                                        >
+                                        <button {...childrenProps}>
                                             label
                                         </button>
                                     );
@@ -967,18 +919,19 @@ describe("ClickableBehavior", () => {
                 );
 
                 // Act
-                const button = wrapper.find("#test-button").first();
-                button.simulate("click", {preventDefault: jest.fn()});
+                userEvent.click(screen.getByRole("button"));
                 await wait(0);
 
                 // Assert
-                expect(wrapper).not.toIncludeText("Hello, world!");
+                expect(
+                    screen.queryByText("Hello, world!"),
+                ).not.toBeInTheDocument();
             });
 
             it("calls safeWithNav if provided if beforeNav resolves", async () => {
                 // Arrange
                 const safeWithNavMock = jest.fn();
-                const wrapper = mount(
+                render(
                     <MemoryRouter>
                         <div>
                             <ClickableBehaviorWithRouter
@@ -993,10 +946,7 @@ describe("ClickableBehavior", () => {
                                     // environment, but the simulated events in the test are in
                                     // line with what browsers do for this element.
                                     return (
-                                        <button
-                                            id="test-button"
-                                            {...childrenProps}
-                                        >
+                                        <button {...childrenProps}>
                                             {state.waiting
                                                 ? "waiting"
                                                 : "label"}
@@ -1014,8 +964,7 @@ describe("ClickableBehavior", () => {
                 );
 
                 // Act
-                const button = wrapper.find("#test-button").first();
-                button.simulate("click", {preventDefault: jest.fn()});
+                userEvent.click(screen.getByRole("button"));
                 await wait(0);
 
                 // Assert
@@ -1025,7 +974,7 @@ describe("ClickableBehavior", () => {
 
         it("doesn't wait for safeWithNav to resolve before client-side navigating", async () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <ClickableBehaviorWithRouter
@@ -1039,9 +988,7 @@ describe("ClickableBehavior", () => {
                                 // environment, but the simulated events in the test are in
                                 // line with what browsers do for this element.
                                 return (
-                                    <button id="test-button" {...childrenProps}>
-                                        label
-                                    </button>
+                                    <button {...childrenProps}>label</button>
                                 );
                             }}
                         </ClickableBehaviorWithRouter>
@@ -1055,16 +1002,15 @@ describe("ClickableBehavior", () => {
             );
 
             // Act
-            const button = wrapper.find("#test-button").first();
-            button.simulate("click", {preventDefault: jest.fn()});
+            userEvent.click(screen.getByRole("button"));
 
             // Assert
-            expect(wrapper).toIncludeText("Hello, world!");
+            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
         });
 
         it("If onClick calls e.preventDefault() then we won't navigate", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <ClickableBehaviorWithRouter
@@ -1077,9 +1023,7 @@ describe("ClickableBehavior", () => {
                                 // environment, but the simulated events in the test are in
                                 // line with what browsers do for this element.
                                 return (
-                                    <button id="test-button" {...childrenProps}>
-                                        label
-                                    </button>
+                                    <button {...childrenProps}>label</button>
                                 );
                             }}
                         </ClickableBehaviorWithRouter>
@@ -1093,23 +1037,17 @@ describe("ClickableBehavior", () => {
             );
 
             // Act
-            const button = wrapper.find("#test-button").first();
-            button.simulate("click", {
-                preventDefault() {
-                    // $FlowIgnore[object-this-reference]
-                    this.defaultPrevented = true;
-                },
-            });
+            userEvent.click(screen.getByRole("button"));
 
             // Assert
-            expect(wrapper).not.toIncludeText("Hello, world!");
+            expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
         });
     });
 
     describe("target='_blank'", () => {
         it("opens a new tab", () => {
             // Arrange
-            const link = mount(
+            render(
                 <ClickableBehavior
                     disabled={false}
                     href="https://www.khanacademy.org"
@@ -1130,7 +1068,7 @@ describe("ClickableBehavior", () => {
             );
 
             // Act
-            link.simulate("click");
+            userEvent.click(screen.getByRole("link"));
 
             // Assert
             expect(window.open).toHaveBeenCalledWith(
@@ -1142,7 +1080,7 @@ describe("ClickableBehavior", () => {
         it("opens a new tab when using 'safeWithNav'", () => {
             // Arrange
             const safeWithNavMock = jest.fn().mockResolvedValue();
-            const link = mount(
+            render(
                 <ClickableBehavior
                     disabled={false}
                     href="https://www.khanacademy.org"
@@ -1164,7 +1102,7 @@ describe("ClickableBehavior", () => {
             );
 
             // Act
-            link.simulate("click");
+            userEvent.click(screen.getByRole("link"));
 
             // Assert
             expect(window.open).toHaveBeenCalledWith(
@@ -1176,7 +1114,7 @@ describe("ClickableBehavior", () => {
         it("calls 'safeWithNav'", () => {
             // Arrange
             const safeWithNavMock = jest.fn().mockResolvedValue();
-            const link = mount(
+            render(
                 <ClickableBehavior
                     disabled={false}
                     href="https://www.khanacademy.org"
@@ -1198,7 +1136,7 @@ describe("ClickableBehavior", () => {
             );
 
             // Act
-            link.simulate("click");
+            userEvent.click(screen.getByRole("link"));
 
             // Assert
             expect(safeWithNavMock).toHaveBeenCalled();
@@ -1206,7 +1144,7 @@ describe("ClickableBehavior", () => {
 
         it("opens a new tab when inside a router", () => {
             // Arrange
-            const link = mount(
+            render(
                 <MemoryRouter initialEntries={["/"]}>
                     <ClickableBehavior
                         disabled={false}
@@ -1229,7 +1167,7 @@ describe("ClickableBehavior", () => {
             );
 
             // Act
-            link.simulate("click");
+            userEvent.click(screen.getByRole("link"));
 
             // Assert
             expect(window.open).toHaveBeenCalledWith(
@@ -1241,7 +1179,7 @@ describe("ClickableBehavior", () => {
         it("opens a new tab when using 'safeWithNav' inside a router", () => {
             // Arrange
             const safeWithNavMock = jest.fn().mockResolvedValue();
-            const link = mount(
+            render(
                 <MemoryRouter initialEntries={["/"]}>
                     <ClickableBehavior
                         disabled={false}
@@ -1265,7 +1203,7 @@ describe("ClickableBehavior", () => {
             );
 
             // Act
-            link.simulate("click");
+            userEvent.click(screen.getByRole("link"));
 
             // Assert
             expect(window.open).toHaveBeenCalledWith(
@@ -1277,7 +1215,7 @@ describe("ClickableBehavior", () => {
         it("calls 'safeWithNav' inside a router", () => {
             // Arrange
             const safeWithNavMock = jest.fn().mockResolvedValue();
-            const link = mount(
+            render(
                 <MemoryRouter initialEntries={["/"]}>
                     <ClickableBehavior
                         disabled={false}
@@ -1301,7 +1239,7 @@ describe("ClickableBehavior", () => {
             );
 
             // Act
-            link.simulate("click");
+            userEvent.click(screen.getByRole("link"));
 
             // Assert
             expect(safeWithNavMock).toHaveBeenCalled();
@@ -1312,7 +1250,7 @@ describe("ClickableBehavior", () => {
         it("should use the 'rel' that was passed in", () => {
             // Arrange
             const childrenMock = jest.fn().mockImplementation(() => null);
-            mount(
+            render(
                 <ClickableBehavior
                     href="https://www.khanacademy.org"
                     rel="something_else"
@@ -1329,7 +1267,7 @@ describe("ClickableBehavior", () => {
         it("should use 'noopener noreferrer' as a default when target='_blank'", () => {
             // Arrange
             const childrenMock = jest.fn().mockImplementation(() => null);
-            mount(
+            render(
                 <ClickableBehavior
                     href="https://www.khanacademy.org"
                     target="_blank"
@@ -1345,7 +1283,7 @@ describe("ClickableBehavior", () => {
         it("should not use the default if target != '_blank'", () => {
             // Arrange
             const childrenMock = jest.fn().mockImplementation(() => null);
-            mount(
+            render(
                 <ClickableBehavior href="https://www.khanacademy.org">
                     {childrenMock}
                 </ClickableBehavior>,
