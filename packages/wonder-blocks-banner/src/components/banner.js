@@ -79,7 +79,7 @@ type Props = {|
     layout: BannerLayout,
 
     /**
-     * Text on the banner (LabelSmall) or a node if you want something different
+     * Text on the banner (LabelSmall) or a node if you want something different.
      */
     text: string | React.Node,
 
@@ -91,7 +91,7 @@ type Props = {|
     actions?: Array<ActionTrigger>,
 
     /**
-     * If present, dismiss button is on right side. If not, no button appears
+     * If present, dismiss button is on right side. If not, no button appears.
      */
     onDismiss?: ?() => void,
 
