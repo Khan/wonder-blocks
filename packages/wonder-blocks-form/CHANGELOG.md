@@ -1,16 +1,5 @@
 # @khanacademy/wonder-blocks-form
 
-## 3.0.0
-
-### Major Changes
-
--   26d943ba: Remove Radio from wonder-blocks-form's exports so that RadioGroup is used
-
-### Patch Changes
-
--   Updated dependencies [6a9cc81f]
-    -   @khanacademy/wonder-blocks-icon@1.2.31
-
 ## 2.4.8
 
 ### Patch Changes
