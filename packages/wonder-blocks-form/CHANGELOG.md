@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-form
 
+## 3.0.0
+
+### Major Changes
+
+-   3bae2aba: Remove Radio from wonder-blocks-form's exports so that RadioGroup is used
+
+### Patch Changes
+
+-   e91fb6c0: Update label, description, and error props in form components to accept React.Node
+-   Updated dependencies [3bae2aba]
+    -   @khanacademy/wonder-blocks-icon@1.2.31
+
 ## 2.4.8
 
 ### Patch Changes
