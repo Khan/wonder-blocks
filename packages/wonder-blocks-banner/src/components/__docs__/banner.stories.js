@@ -17,6 +17,33 @@ import BannerArgTypes from "./banner.argtypes.js";
 import ComponentInfo from "../../../../../.storybook/components/component-info.js";
 import {name, version} from "../../../package.json";
 
+const bannerDescription = `
+Banner. A banner displays a prominent message and
+related optional actions. It can be used as a way of
+informing the user of important changes. Typically, it is
+displayed toward the top of the screen.\n\nThere are two
+possible layouts for banners - floating and full-width.
+The \`floating\` layout is intended to be used when
+there is whitespace around the banner. The \`full-width\`
+layout is intended to be used when the banner needs to be
+flush with surrounding elements.\n\n\n### Usage
+
+\`\`\`jsx
+import Banner from "@khanacademy/wonder-blocks-banner";
+
+<Banner
+    text="Here is some example text."
+    kind="success"
+    layout="floating"
+    actions={[
+        {title: "Button 1", onClick: () => {}},
+        {title: "Button 2", onClick: () => {}},
+    ]}
+    onDismiss={() => {console.log("Has been dismissed.")}}
+/>
+\`\`\`
+`;
+
 export default {
     title: "Banner",
     component: Banner,
@@ -33,20 +60,7 @@ export default {
         ): any),
         docs: {
             description: {
-                component: `Banner. A banner displays a prominent message and
-                    related optional actions. It can be used as a way of
-                    informing the user of important changes. Typically, it is
-                    displayed toward the top of the screen.\n\nThere are two
-                    possible layouts for banners - floating and full-width.
-                    The \`floating\` layout is intended to be used when
-                    there is whitespace around the banner. The \`full-width\`
-                    layout is intended to be used when the banner needs to be
-                    flush with surrounding elements.\n\n\n### Usage\n\`\`\`jsx
-
-                    import Banner from "@khanacademy/wonder-blocks-banner";
-                    \n<Banner\n\ttext="Here is some example text."\n\tkind="success"\n\tlayout="floating"\n\tactions={[\n\t\t{title: "Button 1", onClick: () => {}},\n\t\t{title: "Button 2", onClick: () => {}},\n\t]}\n\tonDismiss={() => {console.log("Has been dismissed.")}}\n/>
-                    \`\`\`
-                 `,
+                component: bannerDescription,
             },
             source: {
                 // See https://github.com/storybookjs/storybook/issues/12596
