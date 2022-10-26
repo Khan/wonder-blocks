@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.9.0
+
+### Minor Changes
+
+-   e7d2e8d0: Added `labels` prop to be able to translate some internal texts (already supported by MultiSelect)
+
+### Patch Changes
+
+-   Updated dependencies [6a9cc81f]
+    -   @khanacademy/wonder-blocks-icon@1.2.31
+    -   @khanacademy/wonder-blocks-modal@2.3.8
+    -   @khanacademy/wonder-blocks-search-field@1.0.10
+
 ## 2.8.3
 
 ### Patch Changes

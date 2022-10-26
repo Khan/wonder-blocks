@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon
 
+## 1.2.31
+
+### Patch Changes
+
+-   6a9cc81f: Improves the flow types for the 'icons' dict so that flow will detected misspelled keys
+
 ## 1.2.30
 
 ### Patch Changes
