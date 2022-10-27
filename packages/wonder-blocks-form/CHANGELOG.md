@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 3.1.0
+
+### Minor Changes
+
+-   d3f459bf: Allow CheckboxGroup and RadioGroup to accept falsy children
+
 ## 3.0.0
 
 ### Major Changes
