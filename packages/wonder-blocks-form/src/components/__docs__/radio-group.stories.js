@@ -195,6 +195,10 @@ FiltersOutFalsyChildren.parameters = {
         case, one of the children is \`{false && <Choice .../>}\` which results in
         that choice being filtered out.`,
     },
+    chromatic: {
+        // The unit tests already verify that false-y children aren't rendered.
+        disableSnapshot: true,
+    },
 };
 
 const styles = StyleSheet.create({
