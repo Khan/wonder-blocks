@@ -309,7 +309,14 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(<Banner text="" kind={kind} layout="floating" />);
+        render(
+            <Banner
+                text=""
+                kind={kind}
+                layout="floating"
+                testId="wonder-blocks-banner-test-id"
+            />,
+        );
 
         // Assert
         const banner = screen.getByTestId("wonder-blocks-banner-test-id");
@@ -320,7 +327,14 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(<Banner text="" kind={"warning"} layout="floating" />);
+        render(
+            <Banner
+                text=""
+                kind={"warning"}
+                layout="floating"
+                testId="wonder-blocks-banner-test-id"
+            />,
+        );
 
         // Assert
         const banner = screen.getByTestId("wonder-blocks-banner-test-id");
