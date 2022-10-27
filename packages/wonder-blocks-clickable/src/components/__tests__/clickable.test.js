@@ -444,6 +444,44 @@ describe("Clickable", () => {
         expect(button).toHaveAttribute("aria-disabled", "true");
     });
 
+    test("should add aria-label if one is passed in", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Clickable
+                testId="clickable-button"
+                aria-label="clickable-button-aria-label"
+            >
+                {(eventState) => <h1>Click Me!</h1>}
+            </Clickable>,
+        );
+
+        const button = screen.getByTestId("clickable-button");
+
+        // Assert
+        expect(button).toHaveAttribute(
+            "aria-label",
+            "clickable-button-aria-label",
+        );
+    });
+
+    test("should not have an aria-label if one is not passed in", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Clickable testId="clickable-button">
+                {(eventState) => <h1>Click Me!</h1>}
+            </Clickable>,
+        );
+
+        const button = screen.getByTestId("clickable-button");
+
+        // Assert
+        expect(button).not.toHaveAttribute("aria-label");
+    });
+
     test("allow keyboard navigation when disabled is set", () => {
         // Arrange
         render(
