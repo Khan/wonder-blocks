@@ -232,6 +232,37 @@ MultipleChoiceStyling.parameters = {
     },
 };
 
+export const FiltersOutFalsyChildren: StoryComponentType = () => {
+    return (
+        <CheckboxGroup
+            groupName="pokemon"
+            selectedValues={["pepperoni", "sausage"]}
+            onChange={() => {}}
+            label="Pokemon"
+            description="Your first Pokemon."
+        >
+            <Choice label="Pepperoni" value="pepperoni" />
+            <Choice
+                label="Sausage"
+                value="sausage"
+                description="Imported from Italy"
+            />
+            <Choice label="Extra cheese" value="cheese" />
+            <Choice label="Green pepper" value="pepper" />
+            {false && <Choice label="Mushroom" value="mushroom" />}
+        </CheckboxGroup>
+    );
+};
+
+FiltersOutFalsyChildren.parameters = {
+    docs: {
+        storyDescription: `This example shows that children can be falsy values and
+        that those falsy values are filtered out when rendering children.  In this
+        case, one of the children is \`{false && <Choice .../>}\` which results in
+        that choice being filtered out.`,
+    },
+};
+
 const styles = StyleSheet.create({
     // Row styling
     wrapper: {

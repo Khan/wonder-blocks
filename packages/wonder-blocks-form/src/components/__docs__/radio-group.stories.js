@@ -166,6 +166,37 @@ MultipleChoiceStyling.parameters = {
     },
 };
 
+export const FiltersOutFalsyChildren: StoryComponentType = () => {
+    return (
+        <RadioGroup
+            groupName="pokemon"
+            selectedValue="bulbasaur"
+            onChange={() => {}}
+            label="Pokemon"
+            description="Your first Pokemon."
+        >
+            <Choice label="Bulbasaur" value="bulbasaur" />
+            <Choice
+                label="Charmander"
+                value="charmander"
+                description="Oops, we ran out of Charmanders"
+                disabled
+            />
+            <Choice label="Squirtle" value="squirtle" />
+            {false && <Choice label="Pikachu" value="pikachu" />}
+        </RadioGroup>
+    );
+};
+
+FiltersOutFalsyChildren.parameters = {
+    docs: {
+        storyDescription: `This example shows that children can be falsy values and
+        that those falsy values are filtered out when rendering children.  In this
+        case, one of the children is \`{false && <Choice .../>}\` which results in
+        that choice being filtered out.`,
+    },
+};
+
 const styles = StyleSheet.create({
     choice: {
         margin: 0,
