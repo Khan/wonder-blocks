@@ -156,24 +156,16 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
                     {allChildren.map((child, index) => {
                         const {style, value} = child.props;
                         const checked = selectedValues.includes(value);
-                        return (
-                            <React.Fragment>
-                                {React.cloneElement(child, {
-                                    checked: checked,
-                                    error: !!errorMessage,
-                                    groupName: groupName,
-                                    id: `${groupName}-${value}`,
-                                    key: value,
-                                    onChange: () =>
-                                        this.handleChange(value, checked),
-                                    style: [
-                                        index > 0 && styles.defaultLineGap,
-                                        style,
-                                    ],
-                                    variant: "checkbox",
-                                })}
-                            </React.Fragment>
-                        );
+                        return React.cloneElement(child, {
+                            checked: checked,
+                            error: !!errorMessage,
+                            groupName: groupName,
+                            id: `${groupName}-${value}`,
+                            key: value,
+                            onChange: () => this.handleChange(value, checked),
+                            style: [index > 0 && styles.defaultLineGap, style],
+                            variant: "checkbox",
+                        });
                     })}
                 </View>
             </StyledFieldset>

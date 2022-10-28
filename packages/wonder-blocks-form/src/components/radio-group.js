@@ -146,23 +146,16 @@ export default class RadioGroup extends React.Component<RadioGroupProps> {
                     {allChildren.map((child, index) => {
                         const {style, value} = child.props;
                         const checked = selectedValue === value;
-                        return (
-                            <React.Fragment>
-                                {React.cloneElement(child, {
-                                    checked: checked,
-                                    error: !!errorMessage,
-                                    groupName: groupName,
-                                    id: `${groupName}-${value}`,
-                                    key: value,
-                                    onChange: () => this.handleChange(value),
-                                    style: [
-                                        index > 0 && styles.defaultLineGap,
-                                        style,
-                                    ],
-                                    variant: "radio",
-                                })}
-                            </React.Fragment>
-                        );
+                        return React.cloneElement(child, {
+                            checked: checked,
+                            error: !!errorMessage,
+                            groupName: groupName,
+                            id: `${groupName}-${value}`,
+                            key: value,
+                            onChange: () => this.handleChange(value),
+                            style: [index > 0 && styles.defaultLineGap, style],
+                            variant: "radio",
+                        });
                     })}
                 </View>
             </StyledFieldset>
