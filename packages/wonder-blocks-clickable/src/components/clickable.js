@@ -176,7 +176,6 @@ type Props =
 type DefaultProps = {|
     light: $PropertyType<Props, "light">,
     disabled: $PropertyType<Props, "disabled">,
-    "aria-label": $PropertyType<Props, "aria-label">,
 |};
 
 const StyledAnchor = addStyle<"a">("a");
@@ -220,7 +219,6 @@ export default class Clickable extends React.Component<Props> {
     static defaultProps: DefaultProps = {
         light: false,
         disabled: false,
-        "aria-label": "",
     };
 
     getCorrectTag: (
