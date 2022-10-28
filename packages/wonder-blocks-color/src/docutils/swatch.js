@@ -3,159 +3,166 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
-    HeadingLarge,
+    Caption,
     LabelLarge,
-    Body,
+    LabelSmall,
+    LabelXSmall,
 } from "@khanacademy/wonder-blocks-typography";
 import Color from "../index.js";
+
+type Segments = 1 | 2 | 3;
+
+const UseType = {
+    text: {
+        content: "Aa",
+        label: "Text & Icons",
+    },
+    icons: {
+        content: <Icon icon={icons.hint} />,
+        label: "Icons",
+    },
+};
+
+/**
+ * Get the color swatch information for a given color and segment count.
+ */
+const getColorSegments = (segments: Segments, color: string, dark: boolean) => {
+    switch (segments) {
+        case 1:
+            return [
+                {
+                    foreground: dark ? color : Color.white64,
+                    background: dark ? Color.darkBlue : color,
+                },
+            ];
+        case 2:
+            return [
+                {
+                    foreground: color,
+                    background: color,
+                },
+                {
+                    foreground: color,
+                    background: Color.darkBlue,
+                },
+            ];
+        case 3:
+        default:
+            return [
+                {
+                    foreground: Color.white,
+                    background: color,
+                },
+                {
+                    foreground: color,
+                    background: Color.offWhite,
+                },
+                {
+                    foreground: color,
+                    background: Color.white,
+                },
+            ];
+    }
+};
 
 type Props = {|
     color: string,
     name: string,
-    desc: string,
-    use: "text" | "icons" | null,
-    width: 256,
-    segments: 1 | 2 | 3,
+    description: string,
+    use?: "text" | "icons" | null,
+    segments: Segments,
+    dark: boolean,
+    displayColor: boolean,
 |};
 
-type DefaultProps = {|
-    width: $PropertyType<Props, "width">,
-    segments: $PropertyType<Props, "segments">,
-    use: $PropertyType<Props, "use">,
-|};
-
-const constants = {
-    segmentHeight: 64,
-};
-
-export default class Swatch extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        width: 256,
-        segments: 3,
-        use: null,
-    };
-
-    getContent(): ?string {
-        const {use} = this.props;
-        if (use === "text") {
-            return "Aa";
-        } else if (use === "icons") {
-            return "💡";
-        } else {
+export const Swatch = ({
+    name,
+    color,
+    use,
+    description,
+    segments = 3,
+    dark = false,
+    displayColor = false,
+}: Props): React.Element<typeof View> => {
+    const maybeRenderUseLabel = () => {
+        if (!use) {
             return null;
         }
-    }
-    renderThreeSegments(): React.Node {
-        const {color} = this.props;
-        const content = this.getContent();
         return (
-            <View style={[styles.row, styles.border]}>
-                <View
-                    style={[
-                        styles.box,
-                        {background: color, color: Color.white},
-                    ]}
-                >
-                    {content && <HeadingLarge>{content}</HeadingLarge>}
-                </View>
-                <View style={[styles.offWhite, styles.box, {color: color}]}>
-                    {content && <HeadingLarge>{content}</HeadingLarge>}
-                </View>
-                <View style={[styles.white, styles.box, {color: color}]}>
-                    {content && <HeadingLarge>{content}</HeadingLarge>}
-                </View>
-            </View>
+            <LabelSmall style={styles.usage}>
+                Use in: <strong>{UseType[use].label}</strong>
+            </LabelSmall>
         );
-    }
-    renderTwoSegments(): React.Node {
-        const {color} = this.props;
-        const content = this.getContent();
-        return (
-            <View style={[styles.row, styles.border]}>
-                <View style={[styles.white, styles.box]} />
-                <View
-                    style={[
-                        styles.box,
-                        {background: color, color: Color.white},
-                    ]}
-                >
-                    {content && <HeadingLarge>{content}</HeadingLarge>}
-                </View>
-            </View>
-        );
-    }
-    renderOneSegment(): React.Node {
-        const {color, use} = this.props;
-        const content = this.getContent();
-        return (
+    };
+
+    const renderSegments = () => {
+        return getColorSegments(segments, color, dark).map((color, index) => (
             <View
+                key={index}
                 style={[
-                    styles.row,
-                    styles.border,
-                    styles.box,
+                    styles.swatchItem,
                     {
-                        background: color,
-                        height: constants.segmentHeight,
-                        color: Color.white64,
+                        color: color.foreground,
+                        backgroundColor: color.background,
                     },
                 ]}
             >
-                {use === "text" && content && (
-                    <HeadingLarge>{content}</HeadingLarge>
-                )}
+                {use ? <LabelLarge>{UseType[use]?.content}</LabelLarge> : null}
             </View>
-        );
-    }
-    render(): React.Node {
-        const {name, desc, use, segments, width} = this.props;
-        return (
-            <View style={[styles.container, {width}]}>
-                {segments === 3 && this.renderThreeSegments()}
-                {segments === 2 && this.renderTwoSegments()}
-                {segments === 1 && this.renderOneSegment()}
-                <View style={[styles.row, styles.split]}>
-                    <LabelLarge>{name}</LabelLarge>
-                    {use === "text" && (
-                        <LabelLarge>Text &amp; icons</LabelLarge>
-                    )}
-                    {use === "icons" && <LabelLarge>Icons</LabelLarge>}
-                </View>
-                <View style={styles.row}>
-                    <Body>{desc}</Body>
-                </View>
+        ));
+    };
+
+    return (
+        <View style={styles.container}>
+            <View style={styles.info}>
+                <LabelLarge>{name}</LabelLarge>
+                <LabelXSmall style={styles.tag}>{color}</LabelXSmall>
+                <Caption>{description}</Caption>
+                {maybeRenderUseLabel()}
             </View>
-        );
-    }
-}
+            <View style={styles.swatch}>{renderSegments()}</View>
+        </View>
+    );
+};
+
 const styles = StyleSheet.create({
-    offWhite: {
-        background: Color.offWhite,
-    },
-    white: {
-        background: Color.white,
-    },
-    border: {
-        border: `solid 1px ${Color.offBlack32}`,
-        borderRadius: 4,
-        overflow: "hidden",
-    },
-    box: {
-        width: 256,
-        height: constants.segmentHeight,
-        alignItems: "center",
-        justifyContent: "center",
-    },
-    row: {
-        flexDirection: "row",
-    },
-    split: {
-        justifyContent: "space-between",
-        marginTop: 16,
-        marginBottom: 8,
-    },
     container: {
         color: Color.offBlack,
-        paddingBottom: 16,
+        flexDirection: "row",
+        marginBottom: Spacing.xLarge_32,
+    },
+    info: {
+        alignItems: "flex-start",
+        flexBasis: "30%",
+    },
+    tag: {
+        background: Color.offWhite,
+        border: `solid 1px ${Color.offBlack8}`,
+        borderRadius: Spacing.xxxxSmall_2,
+        margin: `${Spacing.xxxSmall_4}px 0`,
+        padding: `0 ${Spacing.xxxSmall_4}px`,
+    },
+    usage: {
+        color: Color.offBlack64,
+    },
+    swatch: {
+        flexDirection: "row",
+        flexBasis: "70%",
+        borderRadius: Spacing.xxxSmall_4,
+        background: Color.white,
+        boxShadow: `0 1px ${Spacing.xxxSmall_4}px 0 ${Color.offBlack8}`,
+        border: `1px solid ${Color.offBlack16}`,
+        overflow: "hidden",
+        height: Spacing.xxxLarge_64,
+    },
+    swatchItem: {
+        gap: Spacing.medium_16,
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        padding: Spacing.medium_16,
     },
 });
