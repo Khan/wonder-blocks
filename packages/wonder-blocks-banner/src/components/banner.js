@@ -100,6 +100,11 @@ type Props = {|
      * Please pass in a translated string.
      */
     dismissAriaLabel: string,
+
+    /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string,
 |};
 
 const valuesForKind = (kind: BannerKind): BannerValues => {
@@ -155,7 +160,8 @@ const valuesForKind = (kind: BannerKind): BannerValues => {
  * ```
  */
 const Banner = (props: Props): React.Node => {
-    const {actions, dismissAriaLabel, onDismiss, kind, layout, text} = props;
+    const {actions, dismissAriaLabel, onDismiss, kind, layout, text, testId} =
+        props;
     const layoutStyle = {
         borderRadius: layout && layout === "full-width" ? 0 : 4,
     };
@@ -203,7 +209,7 @@ const Banner = (props: Props): React.Node => {
             ]}
             role={valuesForKind(kind).role}
             aria-live={valuesForKind(kind).ariaLive}
-            testId="wonder-blocks-banner-test-id"
+            testId={testId}
         >
             <View
                 style={[
