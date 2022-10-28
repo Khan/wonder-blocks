@@ -108,51 +108,75 @@ describe("RadioGroup", () => {
     describe("flexible props", () => {
         it("should render with a React.Node label", () => {
             // Arrange, Act
-            const action = () =>
-                render(
-                    <RadioGroup
-                        label={
-                            <span>
-                                label with <strong>strong</strong> text
-                            </span>
-                        }
-                        groupName="test"
-                        onChange={() => {}}
-                        selectedValue={"a"}
-                    >
-                        <Choice label="a" value="a" aria-labelledby="test-a" />
-                        <Choice label="b" value="b" aria-labelledby="test-b" />
-                        <Choice label="c" value="c" aria-labelledby="test-c" />
-                    </RadioGroup>,
-                );
+            render(
+                <RadioGroup
+                    label={
+                        <span>
+                            label with <strong>strong</strong> text
+                        </span>
+                    }
+                    groupName="test"
+                    onChange={() => {}}
+                    selectedValue={"a"}
+                >
+                    <Choice label="a" value="a" aria-labelledby="test-a" />
+                    <Choice label="b" value="b" aria-labelledby="test-b" />
+                    <Choice label="c" value="c" aria-labelledby="test-c" />
+                </RadioGroup>,
+            );
 
             // Assert
-            expect(action).not.toThrow();
+            expect(screen.getByText("strong")).toBeInTheDocument();
         });
 
         it("should render with a React.Node description", () => {
             // Arrange, Act
-            const action = () =>
-                render(
-                    <RadioGroup
-                        label="label"
-                        description={
-                            <span>
-                                description with <strong>strong</strong> text
-                            </span>
-                        }
-                        groupName="test"
-                        onChange={() => {}}
-                        selectedValue={"a"}
-                    >
-                        <Choice label="a" value="a" aria-labelledby="test-a" />
-                        <Choice label="b" value="b" aria-labelledby="test-b" />
-                        <Choice label="c" value="c" aria-labelledby="test-c" />
-                    </RadioGroup>,
-                );
+            render(
+                <RadioGroup
+                    label="label"
+                    description={
+                        <span>
+                            description with <strong>strong</strong> text
+                        </span>
+                    }
+                    groupName="test"
+                    onChange={() => {}}
+                    selectedValue={"a"}
+                >
+                    <Choice label="a" value="a" aria-labelledby="test-a" />
+                    <Choice label="b" value="b" aria-labelledby="test-b" />
+                    <Choice label="c" value="c" aria-labelledby="test-c" />
+                </RadioGroup>,
+            );
 
             // Assert
-            expect(action).not.toThrow();
+            expect(screen.getByText("strong")).toBeInTheDocument();
+        });
+
+        it("should filter out false-y children when rendering", () => {
+            // Arrange, Act
+            render(
+                <RadioGroup
+                    label="label"
+                    description="description"
+                    groupName="test"
+                    onChange={() => {}}
+                    selectedValue={"a"}
+                >
+                    <Choice label="a" value="a" aria-labelledby="test-a" />
+                    {false && (
+                        <Choice label="b" value="b" aria-labelledby="test-b" />
+                    )}
+                    <Choice label="c" value="c" aria-labelledby="test-c" />
+                    {undefined}
+                    {null}
+                </RadioGroup>,
+            );
+
+            // Assert
+            const radios = screen.getAllByRole("radio");
+
+            expect(radios).toHaveLength(2);
         });
     });
 });

@@ -1,5 +1,29 @@
 # @khanacademy/wonder-blocks-form
 
+## 3.1.1
+
+### Patch Changes
+
+-   c13dc28e: Don't wrap Choices in a Fragment to so that each child has a 'key' prop
+
+## 3.1.0
+
+### Minor Changes
+
+-   d3f459bf: Allow CheckboxGroup and RadioGroup to accept falsy children
+
+## 3.0.0
+
+### Major Changes
+
+-   3bae2aba: Remove Radio from wonder-blocks-form's exports so that RadioGroup is used
+
+### Patch Changes
+
+-   e91fb6c0: Update label, description, and error props in form components to accept React.Node
+-   Updated dependencies [3bae2aba]
+    -   @khanacademy/wonder-blocks-icon@1.2.31
+
 ## 2.4.8
 
 ### Patch Changes
