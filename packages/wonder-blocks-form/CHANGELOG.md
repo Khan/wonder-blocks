@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 3.1.1
+
+### Patch Changes
+
+-   c13dc28e: Don't wrap Choices in a Fragment to so that each child has a 'key' prop
+
 ## 3.1.0
 
 ### Minor Changes
