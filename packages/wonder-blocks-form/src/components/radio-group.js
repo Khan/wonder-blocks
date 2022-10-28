@@ -16,7 +16,7 @@ type RadioGroupProps = {|
     /**
      * Children should be Choice components.
      */
-    children: Array<React.Element<Choice>>,
+    children: Array<?(React.Element<Choice> | false)>,
 
     /**
      * Group name for this checkbox or radio group. Should be unique for all
@@ -118,6 +118,8 @@ export default class RadioGroup extends React.Component<RadioGroupProps> {
             testId,
         } = this.props;
 
+        const allChildren = React.Children.toArray(children).filter(Boolean);
+
         return (
             <StyledFieldset data-test-id={testId} style={styles.fieldset}>
                 {/* We have a View here because fieldset cannot be used with flexbox*/}
@@ -141,26 +143,19 @@ export default class RadioGroup extends React.Component<RadioGroupProps> {
                         <Strut size={Spacing.small_12} />
                     )}
 
-                    {React.Children.map(children, (child, index) => {
+                    {allChildren.map((child, index) => {
                         const {style, value} = child.props;
                         const checked = selectedValue === value;
-                        return (
-                            <React.Fragment>
-                                {React.cloneElement(child, {
-                                    checked: checked,
-                                    error: !!errorMessage,
-                                    groupName: groupName,
-                                    id: `${groupName}-${value}`,
-                                    key: value,
-                                    onChange: () => this.handleChange(value),
-                                    style: [
-                                        index > 0 && styles.defaultLineGap,
-                                        style,
-                                    ],
-                                    variant: "radio",
-                                })}
-                            </React.Fragment>
-                        );
+                        return React.cloneElement(child, {
+                            checked: checked,
+                            error: !!errorMessage,
+                            groupName: groupName,
+                            id: `${groupName}-${value}`,
+                            key: value,
+                            onChange: () => this.handleChange(value),
+                            style: [index > 0 && styles.defaultLineGap, style],
+                            variant: "radio",
+                        });
                     })}
                 </View>
             </StyledFieldset>

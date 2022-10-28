@@ -132,5 +132,31 @@ describe("CheckboxGroup", () => {
             // Assert
             expect(screen.getByText("strong")).toBeInTheDocument();
         });
+
+        it("should filter out false-y children when rendering", () => {
+            // Arrange, Act
+            render(
+                <CheckboxGroup
+                    label="label"
+                    description="description"
+                    groupName="test"
+                    onChange={() => {}}
+                    selectedValues={[]}
+                >
+                    <Choice label="a" value="a" aria-labelledby="test-a" />
+                    {false && (
+                        <Choice label="b" value="b" aria-labelledby="test-b" />
+                    )}
+                    <Choice label="c" value="c" aria-labelledby="test-c" />
+                    {undefined}
+                    {null}
+                </CheckboxGroup>,
+            );
+
+            // Assert
+            const checkboxes = screen.getAllByRole("checkbox");
+
+            expect(checkboxes).toHaveLength(2);
+        });
     });
 });
