@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 2.3.9
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-icon-button@3.4.13
+
 ## 2.3.8
 
 ### Patch Changes
