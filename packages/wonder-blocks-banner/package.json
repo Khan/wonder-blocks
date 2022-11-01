@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-banner",
-  "version": "0.1.2",
+  "version": "1.0.0",
   "design": "v1",
   "description": "Banner components for Wonder Blocks.",
   "main": "dist/index.js",
