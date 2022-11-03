@@ -21,7 +21,7 @@
     "@khanacademy/wonder-blocks-core": "^4.4.0",
     "@khanacademy/wonder-blocks-icon": "^1.2.31",
     "@khanacademy/wonder-blocks-icon-button": "^3.4.12",
-    "@khanacademy/wonder-blocks-link": "^3.8.10",
+    "@khanacademy/wonder-blocks-link": "^3.8.12",
     "@khanacademy/wonder-blocks-spacing": "^3.0.5",
     "@khanacademy/wonder-blocks-typography": "^1.1.33"
   },
