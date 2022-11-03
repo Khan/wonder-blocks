@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 4.5.0
+
+### Minor Changes
+
+-   175a2dd2: Add 'useRenderState' hook
+
 ## 4.4.0
 
 ### Minor Changes

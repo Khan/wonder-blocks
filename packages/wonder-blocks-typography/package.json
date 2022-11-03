@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-typography",
-  "version": "1.1.33",
+  "version": "1.1.34",
   "design": "v2",
   "publishConfig": {
     "access": "public"
@@ -16,7 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.18.6",
-    "@khanacademy/wonder-blocks-core": "^4.4.0"
+    "@khanacademy/wonder-blocks-core": "^4.5.0"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
