@@ -6,8 +6,8 @@ import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
-import Link from "@khanacademy/wonder-blocks-link";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
