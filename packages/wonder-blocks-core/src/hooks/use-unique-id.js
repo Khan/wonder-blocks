@@ -1,6 +1,7 @@
 // @flow
-import {useContext, useRef} from "react";
+import {useRef} from "react";
 
+import {useRenderState} from "./use-render-state.js";
 import SsrIDFactory from "../util/ssr-id-factory.js";
 import UniqueIDFactory from "../util/unique-id-factory.js";
 
@@ -10,7 +11,6 @@ import {
     // https://github.com/import-js/eslint-plugin-import/issues/2073
     // eslint-disable-next-line import/named
     RenderState,
-    RenderStateContext,
 } from "../components/render-state-context.js";
 
 import type {IIdentifierFactory} from "../util/types.js";
@@ -24,7 +24,7 @@ import type {IIdentifierFactory} from "../util/types.js";
  * @returns {IIdentifierFactory}
  */
 export const useUniqueIdWithMock = (scope?: string): IIdentifierFactory => {
-    const renderState = useContext(RenderStateContext);
+    const renderState = useRenderState();
     const idFactory = useRef<?IIdentifierFactory>(null);
 
     if (renderState === RenderState.Root) {
@@ -52,7 +52,7 @@ export const useUniqueIdWithMock = (scope?: string): IIdentifierFactory => {
  * @returns {?IIdentifierFactory}
  */
 export const useUniqueIdWithoutMock = (scope?: string): ?IIdentifierFactory => {
-    const renderState = useContext(RenderStateContext);
+    const renderState = useRenderState();
     const idFactory = useRef<?IIdentifierFactory>(null);
 
     if (renderState === RenderState.Root) {
