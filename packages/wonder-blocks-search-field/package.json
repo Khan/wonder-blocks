@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-search-field",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "design": "v1",
   "description": "Search Field components for Wonder Blocks.",
   "main": "dist/index.js",
@@ -17,11 +17,11 @@
   "dependencies": {
     "@babel/runtime": "^7.18.6",
     "@khanacademy/wonder-blocks-color": "^1.2.0",
-    "@khanacademy/wonder-blocks-core": "^4.4.0",
-    "@khanacademy/wonder-blocks-icon": "^1.2.31",
-    "@khanacademy/wonder-blocks-icon-button": "^3.4.12",
+    "@khanacademy/wonder-blocks-core": "^4.5.0",
+    "@khanacademy/wonder-blocks-icon": "^1.2.32",
+    "@khanacademy/wonder-blocks-icon-button": "^3.4.14",
     "@khanacademy/wonder-blocks-spacing": "^3.0.5",
-    "@khanacademy/wonder-blocks-typography": "^1.1.33"
+    "@khanacademy/wonder-blocks-typography": "^1.1.34"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
