@@ -162,9 +162,6 @@ const valuesForKind = (kind: BannerKind): BannerValues => {
 const Banner = (props: Props): React.Node => {
     const {actions, dismissAriaLabel, onDismiss, kind, layout, text, testId} =
         props;
-    const layoutStyle = {
-        borderRadius: layout && layout === "full-width" ? 0 : 4,
-    };
 
     const renderActions = () => {
         return actions?.filter(Boolean).map((action) => {
@@ -204,7 +201,7 @@ const Banner = (props: Props): React.Node => {
         <View
             style={[
                 styles.containerOuter,
-                layoutStyle,
+                layout === "floating" && styles.outerFloatingBorder,
                 {borderInlineStartColor: valuesForKind(kind).color},
             ]}
             role={valuesForKind(kind).role}
@@ -214,7 +211,7 @@ const Banner = (props: Props): React.Node => {
             <View
                 style={[
                     styles.backgroundColor,
-                    layoutStyle,
+                    layout === "floating" && styles.innerFloatingBorder,
                     {backgroundColor: valuesForKind(kind).color},
                 ]}
             />
@@ -335,6 +332,13 @@ const styles = StyleSheet.create({
         alignItems: "center",
         marginLeft: Spacing.xSmall_8,
         marginRight: Spacing.xSmall_8,
+    },
+    innerFloatingBorder: {
+        borderStartEndRadius: 4,
+        borderEndEndRadius: 4,
+    },
+    outerFloatingBorder: {
+        borderRadius: 4,
     },
 });
 
