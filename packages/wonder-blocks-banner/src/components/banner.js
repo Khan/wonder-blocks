@@ -201,7 +201,7 @@ const Banner = (props: Props): React.Node => {
         <View
             style={[
                 styles.containerOuter,
-                layout === "floating" && styles.outerFloatingBorder,
+                layout === "floating" && styles.floatingBorder,
                 {borderInlineStartColor: valuesForKind(kind).color},
             ]}
             role={valuesForKind(kind).role}
@@ -211,7 +211,6 @@ const Banner = (props: Props): React.Node => {
             <View
                 style={[
                     styles.backgroundColor,
-                    layout === "floating" && styles.innerFloatingBorder,
                     {backgroundColor: valuesForKind(kind).color},
                 ]}
             />
@@ -333,12 +332,9 @@ const styles = StyleSheet.create({
         marginLeft: Spacing.xSmall_8,
         marginRight: Spacing.xSmall_8,
     },
-    innerFloatingBorder: {
-        borderStartEndRadius: 4,
-        borderEndEndRadius: 4,
-    },
-    outerFloatingBorder: {
+    floatingBorder: {
         borderRadius: 4,
+        overflow: "hidden",
     },
 });
 
