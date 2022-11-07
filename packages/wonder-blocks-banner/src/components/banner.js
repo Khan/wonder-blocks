@@ -68,7 +68,12 @@ type BannerValues = {|
 |};
 
 type Props = {|
+    /**
+     * Accessible label for the banner.
+     * This is read out before the other contents of the banner.
+     */
     ariaLabel?: string,
+
     /**
      * Determines the color and icon of the banner.
      */
