@@ -65,6 +65,23 @@ type DefaultProps = {|
     size: $PropertyType<Props, "size">,
 |};
 
+/**
+ * The `Toolbar` component is a generic toolbar wrapper that exposes
+ * customization options. An optional `title` and `subtitle` property can be
+ * used along with left and right content passed as props.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import Toolbar from "@khanacademy/wonder-blocks-toolbar";
+ *
+ * <Toolbar
+ *   size="small"
+ *   leftContent={<IconButton icon={icons.dismiss} kind="tertiary" />}
+ *   rightContent={<Button>Next Video</Button>}
+ * />
+ * ```
+ */
 export default class Toolbar extends React.Component<Props> {
     static defaultProps: DefaultProps = {
         color: "light",
