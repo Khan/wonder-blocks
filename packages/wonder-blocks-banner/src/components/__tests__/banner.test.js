@@ -330,7 +330,7 @@ describe("Banner", () => {
         render(
             <Banner
                 text=""
-                kind={"warning"}
+                kind="warning"
                 layout="floating"
                 testId="wonder-blocks-banner-test-id"
             />,
@@ -339,5 +339,26 @@ describe("Banner", () => {
         // Assert
         const banner = screen.getByTestId("wonder-blocks-banner-test-id");
         expect(banner).toHaveAttribute("aria-live", "polite");
+    });
+
+    test("ariaLabel prop becomes aria-label on the banner", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Banner
+                text=""
+                layout="full-width"
+                testId="wonder-blocks-banner-test-id"
+                ariaLabel="This is a banner aria label."
+            />,
+        );
+
+        // Assert
+        const banner = screen.getByTestId("wonder-blocks-banner-test-id");
+        expect(banner).toHaveAttribute(
+            "aria-label",
+            "This is a banner aria label.",
+        );
     });
 });

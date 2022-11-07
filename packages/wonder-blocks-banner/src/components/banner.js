@@ -68,6 +68,7 @@ type BannerValues = {|
 |};
 
 type Props = {|
+    ariaLabel?: string,
     /**
      * Determines the color and icon of the banner.
      */
@@ -160,8 +161,16 @@ const valuesForKind = (kind: BannerKind): BannerValues => {
  * ```
  */
 const Banner = (props: Props): React.Node => {
-    const {actions, dismissAriaLabel, onDismiss, kind, layout, text, testId} =
-        props;
+    const {
+        actions,
+        ariaLabel,
+        dismissAriaLabel,
+        onDismiss,
+        kind,
+        layout,
+        text,
+        testId,
+    } = props;
 
     const renderActions = () => {
         return actions?.filter(Boolean).map((action) => {
@@ -205,6 +214,7 @@ const Banner = (props: Props): React.Node => {
                 {borderInlineStartColor: valuesForKind(kind).color},
             ]}
             role={valuesForKind(kind).role}
+            aria-label={ariaLabel}
             aria-live={valuesForKind(kind).ariaLive}
             testId={testId}
         >
