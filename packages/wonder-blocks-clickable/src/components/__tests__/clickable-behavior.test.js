@@ -326,7 +326,7 @@ describe("ClickableBehavior", () => {
         expect(button).toHaveAttribute("tabIndex", "0");
     });
 
-    test("should have the tabInde that is passed in even if disabled", () => {
+    test("should have the tabIndex that is passed in even if disabled", () => {
         // Arrange
         // Act
         render(

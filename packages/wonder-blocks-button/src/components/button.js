@@ -296,6 +296,7 @@ export default class Button extends React.Component<Props> {
                     skipClientNav={skipClientNav}
                     href={href}
                     target={target}
+                    type={type}
                     tabIndex={tabIndex}
                 >
                     {children}
