@@ -1,1 +1,5 @@
-The Toolbar component is a generic toolbar wrapper that exposes customization options. An optional title and subtitle property can be used along with left and right content passed as props.
+Documentation for `@khanacademy/wonder-blocks-toolbar` is now in Storybook.
+
+Visit the [Storybook
+Toolbar](https://khan.github.io/wonder-blocks/?path=/docs/toolbar) docs on GitHub
+Pages.
