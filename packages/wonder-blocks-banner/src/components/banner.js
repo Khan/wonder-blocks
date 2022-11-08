@@ -72,7 +72,7 @@ type Props = {|
      * Accessible label for the banner.
      * This is read out before the other contents of the banner.
      */
-    ariaLabel?: string,
+    "aria-label"?: string,
 
     /**
      * Determines the color and icon of the banner.
@@ -168,7 +168,8 @@ const valuesForKind = (kind: BannerKind): BannerValues => {
 const Banner = (props: Props): React.Node => {
     const {
         actions,
-        ariaLabel,
+        // eslint-disable-next-line react/prop-types
+        "aria-label": ariaLabel,
         dismissAriaLabel,
         onDismiss,
         kind,

@@ -86,7 +86,7 @@ export default {
         },
         type: {required: false},
     },
-    ariaLabel: {
+    "aria-label": {
         control: {type: "text"},
         description:
             "Accessible label for the banner. This is read out before the other contents of the banner.",

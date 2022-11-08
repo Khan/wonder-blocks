@@ -341,7 +341,7 @@ describe("Banner", () => {
         expect(banner).toHaveAttribute("aria-live", "polite");
     });
 
-    test("ariaLabel prop becomes aria-label on the banner", () => {
+    test("aria-label prop becomes aria-label attribute on the banner", () => {
         // Arrange
 
         // Act
@@ -350,7 +350,7 @@ describe("Banner", () => {
                 text=""
                 layout="full-width"
                 testId="wonder-blocks-banner-test-id"
-                ariaLabel="This is a banner aria label."
+                aria-label="This is a banner aria label."
             />,
         );
 
