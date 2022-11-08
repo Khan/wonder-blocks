@@ -282,7 +282,7 @@ describe("ClickableBehavior", () => {
         expect(button).not.toHaveTextContent("focused");
     });
 
-    test("tabIndex should be 0", () => {
+    test("should not have a tabIndex if one is not passed in", () => {
         // Arrange
         // Act
         render(
@@ -299,14 +299,38 @@ describe("ClickableBehavior", () => {
 
         // Assert
         const button = screen.getByTestId("test-button-1");
-        expect(button).toHaveAttribute("tabIndex", "0");
+        expect(button).not.toHaveAttribute("tabIndex");
     });
 
-    test("tabIndex should be 0 even for disabled components", () => {
+    test("should have the tabIndex that is passed in", () => {
         // Arrange
         // Act
         render(
-            <ClickableBehavior disabled={true} onClick={(e) => {}}>
+            <ClickableBehavior
+                disabled={false}
+                onClick={(e) => {}}
+                tabIndex={0}
+            >
+                {(state, childrenProps) => {
+                    return (
+                        <button data-test-id="test-button-1" {...childrenProps}>
+                            Label
+                        </button>
+                    );
+                }}
+            </ClickableBehavior>,
+        );
+
+        // Assert
+        const button = screen.getByTestId("test-button-1");
+        expect(button).toHaveAttribute("tabIndex", "0");
+    });
+
+    test("should have the tabInde that is passed in even if disabled", () => {
+        // Arrange
+        // Act
+        render(
+            <ClickableBehavior disabled={true} onClick={(e) => {}} tabIndex={0}>
                 {(state, childrenProps) => {
                     return (
                         <button data-test-id="test-button-2" {...childrenProps}>

@@ -88,6 +88,8 @@ type CommonProps = {|
 
     skipClientNav?: boolean,
 
+    tabIndex?: number,
+
     /**
      * A function to be executed `onclick`.
      */
@@ -206,7 +208,7 @@ export type ChildrenProps = {|
     onKeyUp: (e: SyntheticKeyboardEvent<>) => mixed,
     onFocus: (e: SyntheticFocusEvent<>) => mixed,
     onBlur: (e: SyntheticFocusEvent<>) => mixed,
-    tabIndex: number,
+    tabIndex?: number,
     rel?: string,
 |};
 
@@ -222,9 +224,6 @@ const disabledHandlers = {
     onTouchCancel: () => void 0,
     onKeyDown: () => void 0,
     onKeyUp: () => void 0,
-    // Clickable components should still be tabbable so they can
-    // be used as anchors.
-    tabIndex: 0,
 };
 
 const keyCodes = {
@@ -286,7 +285,11 @@ const startState: ClickableState = {
  *   const ClickableBehavior = getClickableBehavior();
  *
  *   return (
- *       <ClickableBehavior disabled={props.disabled} onClick={props.onClick}>
+ *       <ClickableBehavior
+ *           disabled={props.disabled}
+ *           onClick={props.onClick}
+ *           tabIndex={0}
+ *        >
  *           {({hovered}, childrenProps) => (
  *               <RoundRect
  *                   textcolor="white"
@@ -614,6 +617,7 @@ export default class ClickableBehavior extends React.Component<
                   // Keep these handlers for keyboard accessibility.
                   onFocus: this.handleFocus,
                   onBlur: this.handleBlur,
+                  tabIndex: this.props.tabIndex,
               }
             : {
                   onClick: this.handleClick,
@@ -629,9 +633,7 @@ export default class ClickableBehavior extends React.Component<
                   onKeyUp: this.handleKeyUp,
                   onFocus: this.handleFocus,
                   onBlur: this.handleBlur,
-                  // We set tabIndex to 0 so that users can tab to clickable
-                  // things that aren't buttons or anchors.
-                  tabIndex: 0,
+                  tabIndex: this.props.tabIndex,
               };
 
         // When the link is set to open in a new window, we want to set some

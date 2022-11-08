@@ -285,10 +285,7 @@ export default class Button extends React.Component<Props> {
             router,
         );
 
-        const renderProp = (
-            state,
-            {tabIndex: clickableTabIndex, ...restChildProps},
-        ) => {
+        const renderProp = (state, {...restChildProps}) => {
             return (
                 <ButtonCore
                     {...sharedButtonCoreProps}
@@ -299,11 +296,7 @@ export default class Button extends React.Component<Props> {
                     skipClientNav={skipClientNav}
                     href={href}
                     target={target}
-                    type={type}
-                    // If tabIndex is provide to the component we allow
-                    // it to override the tabIndex provide to use by
-                    // ClickableBehavior.
-                    tabIndex={tabIndex || clickableTabIndex}
+                    tabIndex={tabIndex}
                 >
                     {children}
                 </ButtonCore>

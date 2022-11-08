@@ -56,7 +56,6 @@ exports[`Link <Link tabIndex={0}> 1`] = `
       "textDecoration": "none",
     }
   }
-  tabIndex={0}
 >
   Click me
 </a>

@@ -144,6 +144,7 @@ export default class OptionItem extends React.Component<OptionProps> {
                 disabled={disabled}
                 onClick={this.handleClick}
                 role={role}
+                tabIndex={0}
             >
                 {(state, childrenProps) => {
                     const {pressed, hovered, focused} = state;

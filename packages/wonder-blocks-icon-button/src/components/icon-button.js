@@ -197,7 +197,7 @@ export default class IconButton extends React.Component<SharedProps> {
                 role="button"
                 target={target}
             >
-                {(state, {tabIndex: clickableTabIndex, ...childrenProps}) => {
+                {(state, {...childrenProps}) => {
                     return (
                         <IconButtonCore
                             {...sharedProps}
@@ -206,10 +206,7 @@ export default class IconButton extends React.Component<SharedProps> {
                             skipClientNav={skipClientNav}
                             href={href}
                             target={target}
-                            // If tabIndex is provide to the component we allow
-                            // it to override the tabIndex provide to use by
-                            // ClickableBehavior.
-                            tabIndex={tabIndex || clickableTabIndex}
+                            tabIndex={tabIndex}
                         />
                     );
                 }}

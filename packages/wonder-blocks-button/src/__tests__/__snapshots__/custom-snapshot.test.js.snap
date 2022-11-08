@@ -123,7 +123,6 @@ exports[`Button <Link tabIndex={0}> 1`] = `
       "userSelect": "none",
     }
   }
-  tabIndex={0}
   type="button"
 >
   <span

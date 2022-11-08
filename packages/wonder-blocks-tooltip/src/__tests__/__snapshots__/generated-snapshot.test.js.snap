@@ -188,7 +188,6 @@ exports[`wonder-blocks-tooltip example 4 1`] = `
       "userSelect": "none",
     }
   }
-  tabIndex={0}
   type="button"
 >
   <span
@@ -446,7 +445,6 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
         "userSelect": "none",
       }
     }
-    tabIndex={0}
     type="button"
   >
     <span
@@ -541,7 +539,6 @@ exports[`wonder-blocks-tooltip example 6 1`] = `
         "width": 40,
       }
     }
-    tabIndex={0}
     type="button"
   >
     <svg
