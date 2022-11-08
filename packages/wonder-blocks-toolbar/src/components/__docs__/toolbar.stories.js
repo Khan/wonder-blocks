@@ -2,7 +2,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
@@ -45,13 +44,6 @@ const styles = StyleSheet.create({
         padding: Spacing.large_24,
         alignItems: "center",
         justifyContent: "center",
-    },
-    darkContainer: {
-        backgroundColor: "#0a2a66",
-        boxShadow: "0 1px 0 0 rgba(255, 255, 255, 0.64)",
-        color: Color.white,
-        height: 200,
-        width: "100%",
     },
 });
 
@@ -178,9 +170,14 @@ export const Dark: StoryComponentType = Template.bind({});
 Dark.args = {
     color: "dark",
     title: "Title",
+    leftContent: leftContentMappings.lightButton,
+    rightContent: rightContentMappings.lightButton,
 };
 
 Dark.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
     docs: {
         description: {
             story:
@@ -189,11 +186,3 @@ Dark.parameters = {
         },
     },
 };
-
-Dark.decorators = [
-    (Story) => (
-        <View style={styles.darkContainer}>
-            <Story />
-        </View>
-    ),
-];

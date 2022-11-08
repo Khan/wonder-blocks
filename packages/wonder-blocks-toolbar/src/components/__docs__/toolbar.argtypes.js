@@ -14,6 +14,7 @@ type Mappings = {[key: string]: React.Node};
 export const leftContentMappings: Mappings = {
     none: null,
     dismissButton: <IconButton icon={icons.dismiss} kind="tertiary" />,
+    lightButton: <IconButton icon={icons.dismiss} light={true} />,
     hintButton: <IconButton icon={icons.hint} kind="primary" />,
     multipleContent: (
         <>
@@ -31,6 +32,11 @@ export const rightContentMappings: Mappings = {
     primaryButton: <Button>Submit</Button>,
     tertiaryButton: <Button kind="tertiary">Import...</Button>,
     nextVideoButton: <Button>Next Video</Button>,
+    lightButton: (
+        <Button kind="secondary" light={true}>
+            Go to Article
+        </Button>
+    ),
     link: (
         <Link href="#">
             <LabelLarge>Go to exercise</LabelLarge>
