@@ -1,6 +1,30 @@
 import React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme.js";
 
+const wbViewports = {
+    small: {
+        name: "small",
+        styles: {
+            width: "320px",
+            height: "568px",
+        },
+    },
+    medium: {
+        name: "medium",
+        styles: {
+            width: "768px",
+            height: "1024px",
+        },
+    },
+    large: {
+        name: "large",
+        styles: {
+            width: "1024px",
+            height: "935px",
+        },
+    },
+};
+
 export const parameters = {
     backgrounds: {
         default: "light",
@@ -27,5 +51,8 @@ export const parameters = {
     },
     docs: {
         theme: wonderBlocksTheme,
+    },
+    viewport: {
+        viewports: wbViewports,
     },
 };

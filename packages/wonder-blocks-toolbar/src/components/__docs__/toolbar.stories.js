@@ -163,6 +163,28 @@ HeaderOverflowText.parameters = {
 };
 
 /**
+ * Flexible toolbars.
+ */
+export const Responsive: StoryComponentType = Template.bind({});
+
+Responsive.args = {
+    leftContent: leftContentMappings.hintButton,
+    rightContent: rightContentMappings.responsive,
+};
+
+Responsive.parameters = {
+    docs: {
+        description: {
+            story: "Sometimes there will be cases where we want to fill the content of one of the sides of the toolbar. This example demonstrates how toolbars can be used flexibly without breaking your layouts.",
+        },
+    },
+    chromatic: {
+        // Test responsiveness of the toolbar.
+        viewports: [320, 768, 1024],
+    },
+};
+
+/**
  * Inverted dark-color scheme
  */
 export const Dark: StoryComponentType = Template.bind({});
