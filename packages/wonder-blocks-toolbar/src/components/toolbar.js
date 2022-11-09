@@ -185,6 +185,7 @@ const sharedStyles = StyleSheet.create({
     leftColumn: {
         alignItems: "center",
         flexDirection: "row",
+        flexShrink: 0,
         justifyContent: "flex-start",
     },
     rightColumn: {

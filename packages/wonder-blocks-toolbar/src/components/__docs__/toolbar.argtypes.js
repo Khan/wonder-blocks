@@ -14,7 +14,7 @@ const mobile = "@media (max-width: 1023px)";
 
 const styles = StyleSheet.create({
     fillContent: {
-        marginLeft: Spacing.large_24,
+        marginLeft: Spacing.small_12,
         [mobile]: {
             width: "100vw",
         },
