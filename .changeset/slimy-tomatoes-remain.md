@@ -1,5 +1,5 @@
 ---
-"@khanacademy/wonder-blocks-banner": patch
+"@khanacademy/wonder-blocks-banner": minor
 ---
 
 Add ariaLabel prop

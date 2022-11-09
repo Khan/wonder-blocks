@@ -9,7 +9,7 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(<Banner text="" layout="floating" />);
+        render(<Banner text="test text" layout="floating" />);
 
         // Assert
         const button = screen.queryByRole("button");
@@ -20,7 +20,9 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(<Banner text="" onDismiss={() => {}} layout="floating" />);
+        render(
+            <Banner text="test text" onDismiss={() => {}} layout="floating" />,
+        );
 
         // Assert
         const button = screen.queryByRole("button");
@@ -30,7 +32,13 @@ describe("Banner", () => {
     test("clicking the dismiss button triggers `onDismiss`", () => {
         // Arrange
         const onDismissSpy = jest.fn();
-        render(<Banner text="" onDismiss={onDismissSpy} layout="floating" />);
+        render(
+            <Banner
+                text="test text"
+                onDismiss={onDismissSpy}
+                layout="floating"
+            />,
+        );
 
         // Act
         const button = screen.getByRole("button");
@@ -46,7 +54,7 @@ describe("Banner", () => {
         // Act
         render(
             <Banner
-                text=""
+                text="test text"
                 layout="floating"
                 actions={[{title: "some link", href: "/", onClick: () => {}}]}
             />,
@@ -63,7 +71,7 @@ describe("Banner", () => {
         // Act
         render(
             <Banner
-                text=""
+                text="test text"
                 layout="floating"
                 actions={[{title: "some button", onClick: () => {}}]}
             />,
@@ -80,7 +88,7 @@ describe("Banner", () => {
         // Act
         render(
             <Banner
-                text=""
+                text="test text"
                 layout="floating"
                 actions={[
                     {title: "button 1", onClick: () => {}},
@@ -101,7 +109,7 @@ describe("Banner", () => {
 
         render(
             <Banner
-                text=""
+                text="test text"
                 layout="floating"
                 actions={[{title: "a button", onClick: actionSpy}]}
             />,
@@ -121,7 +129,7 @@ describe("Banner", () => {
 
         render(
             <Banner
-                text=""
+                text="test text"
                 layout="floating"
                 actions={[{title: "a link", onClick: actionSpy, href: "/"}]}
             />,
@@ -140,7 +148,7 @@ describe("Banner", () => {
 
         render(
             <Banner
-                text=""
+                text="test text"
                 layout="floating"
                 actions={[{title: "a button", onClick: () => {}, href: "/foo"}]}
             />,
@@ -159,7 +167,7 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(<Banner text="" layout="floating" />);
+        render(<Banner text="test text" layout="floating" />);
 
         // Assert
         const icon = screen.getByTestId("banner-kind-icon");
@@ -172,7 +180,7 @@ describe("Banner", () => {
             // Arrange
 
             // Act
-            render(<Banner text="" kind={kind} layout="floating" />);
+            render(<Banner text="test text" kind={kind} layout="floating" />);
 
             // Assert
             const icon = screen.getByTestId("banner-kind-icon");
@@ -186,7 +194,9 @@ describe("Banner", () => {
         // Arrange
 
         // Act
-        render(<Banner text="" layout="floating" onDismiss={() => {}} />);
+        render(
+            <Banner text="test text" layout="floating" onDismiss={() => {}} />,
+        );
 
         // Assert
         const dismissButton = screen.getByRole("button");
@@ -199,7 +209,7 @@ describe("Banner", () => {
         // Act
         render(
             <Banner
-                text=""
+                text="test text"
                 layout="floating"
                 onDismiss={() => {}}
                 dismissAriaLabel="Test dismiss aria label"
@@ -220,7 +230,7 @@ describe("Banner", () => {
         // Act
         render(
             <Banner
-                text=""
+                text="test text"
                 layout="floating"
                 actions={[{title: "Test button title", onClick: () => {}}]}
             />,
@@ -237,7 +247,7 @@ describe("Banner", () => {
         // Act
         render(
             <Banner
-                text=""
+                text="test text"
                 layout="floating"
                 actions={[{title: "Test link title", href: "/"}]}
             />,
@@ -254,7 +264,7 @@ describe("Banner", () => {
         // Act
         render(
             <Banner
-                text=""
+                text="test text"
                 layout="floating"
                 actions={[
                     {
@@ -280,7 +290,7 @@ describe("Banner", () => {
         // Act
         render(
             <Banner
-                text=""
+                text="test text"
                 layout="floating"
                 actions={[
                     {
@@ -311,7 +321,7 @@ describe("Banner", () => {
         // Act
         render(
             <Banner
-                text=""
+                text="test text"
                 kind={kind}
                 layout="floating"
                 testId="wonder-blocks-banner-test-id"
@@ -329,7 +339,7 @@ describe("Banner", () => {
         // Act
         render(
             <Banner
-                text=""
+                text="test text"
                 kind="warning"
                 layout="floating"
                 testId="wonder-blocks-banner-test-id"
@@ -347,7 +357,7 @@ describe("Banner", () => {
         // Act
         render(
             <Banner
-                text=""
+                text="test text"
                 layout="full-width"
                 testId="wonder-blocks-banner-test-id"
                 aria-label="This is a banner aria label."

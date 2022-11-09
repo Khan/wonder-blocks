@@ -168,6 +168,8 @@ const valuesForKind = (kind: BannerKind): BannerValues => {
 const Banner = (props: Props): React.Node => {
     const {
         actions,
+        // Suppressing lint on the next line because it's saying `aria-label`
+        // is missing in props validation when it's not.
         // eslint-disable-next-line react/prop-types
         "aria-label": ariaLabel,
         dismissAriaLabel,
