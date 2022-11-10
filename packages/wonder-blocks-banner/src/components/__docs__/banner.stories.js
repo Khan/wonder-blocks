@@ -374,6 +374,7 @@ export const WithDismissal: StoryComponentType = () => {
             onDismiss={handleDismiss}
             actions={[{title: "Also dismiss", onClick: handleDismiss}]}
             layout="floating"
+            aria-label="Notification banner."
         />
     );
 };

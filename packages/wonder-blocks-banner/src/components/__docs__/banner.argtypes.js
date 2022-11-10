@@ -86,4 +86,13 @@ export default {
         },
         type: {required: false},
     },
+    "aria-label": {
+        control: {type: "text"},
+        description:
+            "Accessible label for the banner. This is read out before the other contents of the banner.",
+        table: {
+            type: {summary: "string"},
+        },
+        type: {required: false},
+    },
 };

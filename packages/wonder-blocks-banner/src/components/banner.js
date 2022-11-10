@@ -69,6 +69,12 @@ type BannerValues = {|
 
 type Props = {|
     /**
+     * Accessible label for the banner.
+     * This is read out before the other contents of the banner.
+     */
+    "aria-label"?: string,
+
+    /**
      * Determines the color and icon of the banner.
      */
     kind: BannerKind,
@@ -160,8 +166,19 @@ const valuesForKind = (kind: BannerKind): BannerValues => {
  * ```
  */
 const Banner = (props: Props): React.Node => {
-    const {actions, dismissAriaLabel, onDismiss, kind, layout, text, testId} =
-        props;
+    const {
+        actions,
+        // Suppressing lint on the next line because it's saying `aria-label`
+        // is missing in props validation when it's not.
+        // eslint-disable-next-line react/prop-types
+        "aria-label": ariaLabel,
+        dismissAriaLabel,
+        onDismiss,
+        kind,
+        layout,
+        text,
+        testId,
+    } = props;
 
     const renderActions = () => {
         return actions?.filter(Boolean).map((action) => {
@@ -205,6 +222,7 @@ const Banner = (props: Props): React.Node => {
                 {borderInlineStartColor: valuesForKind(kind).color},
             ]}
             role={valuesForKind(kind).role}
+            aria-label={ariaLabel}
             aria-live={valuesForKind(kind).ariaLive}
             testId={testId}
         >
