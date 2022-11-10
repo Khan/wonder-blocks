@@ -185,14 +185,14 @@ const sharedStyles = StyleSheet.create({
     leftColumn: {
         alignItems: "center",
         flexDirection: "row",
+        // TODO(WB-1445): Find a way to replicate this behavior with
+        // rightContent.
+        flexShrink: 0,
         justifyContent: "flex-start",
     },
     rightColumn: {
         alignItems: "center",
         flexDirection: "row",
-        // TODO(WB-1445): Find a way to replicate this behavior with
-        // rightContent.
-        flexShrink: 0,
         justifyContent: "flex-end",
     },
     center: {
