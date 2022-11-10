@@ -3,24 +3,31 @@ import wonderBlocksTheme from "./wonder-blocks-theme.js";
 
 const wbViewports = {
     small: {
-        name: "small",
+        name: "Small",
         styles: {
             width: "320px",
             height: "568px",
         },
     },
     medium: {
-        name: "medium",
+        name: "Medium",
         styles: {
             width: "768px",
             height: "1024px",
         },
     },
     large: {
-        name: "large",
+        name: "Large",
         styles: {
             width: "1024px",
-            height: "935px",
+            height: "768px",
+        },
+    },
+    chromebook: {
+        name: "Chromebook",
+        styles: {
+            width: "1366px",
+            height: "768px",
         },
     },
 };
