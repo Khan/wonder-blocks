@@ -83,10 +83,12 @@ export const rightContentMappings: Mappings = {
 export default {
     leftContent: {
         control: {type: "select"},
-        options: leftContentMappings,
+        options: (Object.keys(leftContentMappings): Array<string>),
+        mapping: leftContentMappings,
     },
     rightContent: {
         control: {type: "select"},
-        options: rightContentMappings,
+        options: (Object.keys(rightContentMappings): Array<string>),
+        mapping: rightContentMappings,
     },
 };

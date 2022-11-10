@@ -1,6 +1,10 @@
 import React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme.js";
 
+/**
+ * WB Official breakpoints
+ * @see https://khanacademy.atlassian.net/wiki/spaces/WB/pages/2099970518/Layout+Breakpoints
+ */
 const wbViewports = {
     small: {
         name: "Small",
