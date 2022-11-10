@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-modal
 
+## 2.3.11
+
+### Patch Changes
+
+-   f3bcc1a9: Remove wonder-blocks-toolbar dependency as it is not used anymore
+
 ## 2.3.10
 
 ### Patch Changes

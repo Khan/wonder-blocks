@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-toolbar",
-  "version": "2.1.35",
+  "version": "2.1.36",
   "design": "v1",
   "publishConfig": {
     "access": "public"
