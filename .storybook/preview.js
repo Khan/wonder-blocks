@@ -1,6 +1,41 @@
 import React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme.js";
 
+/**
+ * WB Official breakpoints
+ * @see https://khanacademy.atlassian.net/wiki/spaces/WB/pages/2099970518/Layout+Breakpoints
+ */
+const wbViewports = {
+    small: {
+        name: "Small",
+        styles: {
+            width: "320px",
+            height: "568px",
+        },
+    },
+    medium: {
+        name: "Medium",
+        styles: {
+            width: "768px",
+            height: "1024px",
+        },
+    },
+    large: {
+        name: "Large",
+        styles: {
+            width: "1024px",
+            height: "768px",
+        },
+    },
+    chromebook: {
+        name: "Chromebook",
+        styles: {
+            width: "1366px",
+            height: "768px",
+        },
+    },
+};
+
 export const parameters = {
     backgrounds: {
         default: "light",
@@ -27,5 +62,8 @@ export const parameters = {
     },
     docs: {
         theme: wonderBlocksTheme,
+    },
+    viewport: {
+        viewports: wbViewports,
     },
 };
