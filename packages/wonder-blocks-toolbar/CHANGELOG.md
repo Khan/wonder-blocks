@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-toolbar
 
+## 2.1.36
+
+### Patch Changes
+
+-   f3bcc1a9: Modify layout to be more flexible
+
 ## 2.1.35
 
 ### Patch Changes
