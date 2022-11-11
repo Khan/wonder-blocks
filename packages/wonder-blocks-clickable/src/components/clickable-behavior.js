@@ -88,6 +88,11 @@ type CommonProps = {|
 
     skipClientNav?: boolean,
 
+    /**
+     * Used to indicate the tab order of an element.
+     * Use 0 to make an element focusable, and use -1 to make an
+     * element non-focusable via keyboard navigation.
+     */
     tabIndex?: number,
 
     /**

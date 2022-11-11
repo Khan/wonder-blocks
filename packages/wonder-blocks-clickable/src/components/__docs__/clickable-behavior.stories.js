@@ -77,7 +77,7 @@ export const WrappingButton: StoryComponentType = (args) => {
     const StyledButton = addStyle("button");
 
     return (
-        <ClickableBehavior role="button" {...args}>
+        <ClickableBehavior {...args}>
             {(state, childrenProps) => {
                 const {pressed, hovered, focused} = state;
                 return (

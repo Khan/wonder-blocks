@@ -309,28 +309,8 @@ describe("ClickableBehavior", () => {
             <ClickableBehavior
                 disabled={false}
                 onClick={(e) => {}}
-                tabIndex={0}
+                tabIndex={1}
             >
-                {(state, childrenProps) => {
-                    return (
-                        <button data-test-id="test-button-1" {...childrenProps}>
-                            Label
-                        </button>
-                    );
-                }}
-            </ClickableBehavior>,
-        );
-
-        // Assert
-        const button = screen.getByTestId("test-button-1");
-        expect(button).toHaveAttribute("tabIndex", "0");
-    });
-
-    test("should have the tabIndex that is passed in even if disabled", () => {
-        // Arrange
-        // Act
-        render(
-            <ClickableBehavior disabled={true} onClick={(e) => {}} tabIndex={0}>
                 {(state, childrenProps) => {
                     return (
                         <button data-test-id="test-button-2" {...childrenProps}>
@@ -343,7 +323,53 @@ describe("ClickableBehavior", () => {
 
         // Assert
         const button = screen.getByTestId("test-button-2");
-        expect(button).toHaveAttribute("tabIndex", "0");
+        expect(button).toHaveAttribute("tabIndex", "1");
+    });
+
+    test("should have the tabIndex that is passed in even if disabled", () => {
+        // Arrange
+        // Act
+        render(
+            <ClickableBehavior disabled={true} onClick={(e) => {}} tabIndex={1}>
+                {(state, childrenProps) => {
+                    return (
+                        <button data-test-id="test-button-3" {...childrenProps}>
+                            Label
+                        </button>
+                    );
+                }}
+            </ClickableBehavior>,
+        );
+
+        // Assert
+        const button = screen.getByTestId("test-button-3");
+        expect(button).toHaveAttribute("tabIndex", "1");
+    });
+
+    test("should make non-interactive children keyboard focusable if tabIndex 0 is passed", () => {
+        // Arrange
+        render(
+            <ClickableBehavior
+                disabled={false}
+                onClick={(e) => {}}
+                tabIndex={1}
+            >
+                {(state, childrenProps) => {
+                    return (
+                        <div data-test-id="test-div-1" {...childrenProps}>
+                            Label
+                        </div>
+                    );
+                }}
+            </ClickableBehavior>,
+        );
+
+        // Act
+        const button = screen.getByTestId("test-div-1");
+        userEvent.tab();
+
+        // Assert
+        expect(button).toHaveFocus();
     });
 
     it("does not change state if disabled", () => {
