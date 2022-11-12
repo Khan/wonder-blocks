@@ -79,7 +79,7 @@ const StyledLegend = addStyle<"legend">("legend");
  * ```jsx
  * import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
  *
- * const [selectedValue, setSelectedValue] = React.useState([]);
+ * const [selectedValue, setSelectedValue] = React.useState("");
  *
  * <RadioGroup
  *     label="some-label"
@@ -87,7 +87,7 @@ const StyledLegend = addStyle<"legend">("legend");
  *     groupName="some-group-name"
  *     onChange={setSelectedValue}
  *     selectedValue={selectedValue}
- * />
+ * >
  *     // Add as many choices as necessary
  *     <Choice
  *        label="Choice 1"

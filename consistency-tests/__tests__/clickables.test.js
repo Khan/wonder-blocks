@@ -9,10 +9,17 @@ import * as React from "react";
 import {mount} from "enzyme";
 import "jest-enzyme";
 import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
+import {render, screen} from "@testing-library/react";
 
-import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {ActionItem, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Button from "@khanacademy/wonder-blocks-button";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
+import {
+    Checkbox,
+    CheckboxGroup,
+    Choice,
+    RadioGroup,
+} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -154,5 +161,135 @@ describe.each`
         wrapper.simulate("click");
 
         expect(clickHandler).toHaveBeenCalled();
+    });
+});
+
+/* ******* tabIndex tests ******* */
+
+// These components should all wrap buttons or links, so they should
+// inherently be clickable and keyboard navigable. They should not have
+// a default tabIndex 0 as that would be redundant.
+describe.each`
+    Component            | name
+    ${ActionItem}        | ${"ActionItem"}
+    ${Button}            | ${"Button"}
+    ${ClickableWrapper}  | ${"Clickable"}
+    ${CompactCell}       | ${"CompactCell"}
+    ${DetailCell}        | ${"DetailCell"}
+    ${IconButtonWrapper} | ${"IconButton"}
+    ${Link}              | ${"Link"}
+`("$name", ({Component, name}) => {
+    test("doesn't have a redundant tabIndex of 0", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Component onClick={jest.fn()} testId="clickable-component-test-id">
+                Click me
+            </Component>,
+        );
+
+        // Assert
+        const component = screen.getByTestId("clickable-component-test-id");
+        expect(component).not.toHaveAttribute("tabIndex");
+    });
+});
+
+// These components do not wrap an inherently clickable component, so
+// it is expected that they have a tabIndex of 0 so they can be keybaord
+// navigable.
+describe.each`
+    Component     | name
+    ${OptionItem} | ${"OptionItem"}
+`("$name", ({Component, name}) => {
+    test("has a tabIndex of 0", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Component onClick={jest.fn()} testId="clickable-component-test-id">
+                Click me
+            </Component>,
+        );
+
+        // Assert
+        const component = screen.getByTestId("clickable-component-test-id");
+        expect(component).toHaveAttribute("tabIndex", "0");
+    });
+});
+
+// Form elements are inherently keyboard navigable. They should not have
+// a default tabIndex.
+
+describe("Choice", () => {
+    test("doesn't have a redunant tabIndex of 0 (checkbox)", () => {
+        // Arrange
+
+        // Act
+        render(
+            <CheckboxGroup
+                label="some-label"
+                groupName="some-group-name"
+                onChange={jest.fn()}
+                selectedValues={[]}
+            >
+                <Choice
+                    label="Choice 1"
+                    value="some-choice-value"
+                    testId="checkbox-choice-clickable-test-id"
+                />
+                <Choice label="Choice 2" value="some-choice-value-2" />
+            </CheckboxGroup>,
+        );
+
+        // Assert
+        const checkbox = screen.getByTestId(
+            "checkbox-choice-clickable-test-id",
+        );
+        expect(checkbox).not.toHaveAttribute("tabIndex");
+    });
+
+    test("doesn't have a redunant tabIndex of 0 (radio)", () => {
+        // Arrange
+
+        // Act
+        render(
+            <RadioGroup
+                label="some-label"
+                groupName="some-group-name"
+                onChange={jest.fn()}
+                selectedValue={""}
+            >
+                <Choice
+                    label="Choice 1"
+                    value="some-choice-value"
+                    testId="radio-choice-clickable-test-id"
+                />
+                <Choice label="Choice 2" value="some-choice-value-2" />
+            </RadioGroup>,
+        );
+
+        // Assert
+        const checkbox = screen.getByTestId("radio-choice-clickable-test-id");
+        expect(checkbox).not.toHaveAttribute("tabIndex");
+    });
+});
+
+describe("Checkbox", () => {
+    test("doesn't have a redundant tabIndex of 0", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Checkbox
+                checked={false}
+                onChange={jest.fn()}
+                testId="checkbox-clickable-test-id"
+            />,
+        );
+
+        // Assert
+        const checkbox = screen.getByTestId("checkbox-clickable-test-id");
+        expect(checkbox).not.toHaveAttribute("tabIndex");
     });
 });
