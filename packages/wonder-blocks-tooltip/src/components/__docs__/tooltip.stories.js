@@ -12,7 +12,7 @@ import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 import type {StoryComponentType} from "@storybook/react";
 
 export default {
-    title: "Floating/Tooltip",
+    title: "Tooltip / Tooltip",
     parameters: {
         // TODO(WB-1170): Reassess this after investigating more about Chromatic
         // flakyness.
