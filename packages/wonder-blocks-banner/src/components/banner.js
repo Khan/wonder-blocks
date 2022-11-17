@@ -352,6 +352,8 @@ const styles = StyleSheet.create({
     },
     floatingBorder: {
         borderRadius: 4,
+        // Stop the square corners of the inner container from
+        // flowing out of the rounded corners of the outer container.
         overflow: "hidden",
     },
 });
