@@ -159,12 +159,14 @@ const sharedStyles = StyleSheet.create({
         flex: 1,
         flexDirection: "row",
         justifyContent: "space-between",
+        maxHeight: 66,
         minHeight: 66,
         paddingLeft: Spacing.medium_16,
         paddingRight: Spacing.medium_16,
         width: "100%",
     },
     small: {
+        maxHeight: 66,
         minHeight: 50,
     },
     dark: {
