@@ -28,6 +28,16 @@ type Props = {|
 /**
  * This component is used to provide the content that is to be rendered in the
  * tooltip bubble.
+ *
+ * ### Usage
+ *
+ * ```jsx
+ * import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
+ *
+ * <TooltipContent title="Title text!">
+ *  Some content in my tooltip.
+ * </TooltipContent>
+ * ```
  */
 export default class TooltipContent extends React.Component<Props> {
     _renderTitle(): React.Node {
