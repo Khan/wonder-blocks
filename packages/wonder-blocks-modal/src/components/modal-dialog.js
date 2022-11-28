@@ -70,16 +70,8 @@ export default class ModalDialog extends React.Component<Props> {
     };
 
     render(): React.Node {
-        const {
-            above,
-            below,
-            role,
-            style,
-            children,
-            testId,
-            "aria-labelledby": ariaLabelledBy,
-            "aria-label": ariaLabel,
-        } = this.props;
+        const {above, below, role, style, children, testId, ...ariaProps} =
+            this.props;
 
         const contextValue: MediaLayoutContextValue = {
             ssrSize: "large",
@@ -94,9 +86,8 @@ export default class ModalDialog extends React.Component<Props> {
                             {below && <View style={styles.below}>{below}</View>}
                             <View
                                 role={role}
+                                {...ariaProps}
                                 aria-modal="true"
-                                aria-labelledby={ariaLabelledBy}
-                                aria-label={ariaLabel}
                                 style={styles.dialog}
                                 testId={testId}
                             >

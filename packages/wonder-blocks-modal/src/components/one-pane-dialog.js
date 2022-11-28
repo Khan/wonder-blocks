@@ -195,6 +195,10 @@ export default class OnePaneDialog extends React.Component<Props> {
             testId,
             titleId,
             role,
+            breadcrumbs: _,
+            subtitle: __,
+            title: ___,
+            ...ariaProps
         } = this.props;
 
         return (
@@ -207,6 +211,7 @@ export default class OnePaneDialog extends React.Component<Props> {
                                 above={above}
                                 below={below}
                                 testId={testId}
+                                {...ariaProps}
                                 aria-labelledby={uniqueId}
                                 role={role}
                             >
