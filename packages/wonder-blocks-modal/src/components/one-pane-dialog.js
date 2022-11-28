@@ -3,7 +3,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {typeof Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
 import {IDProvider} from "@khanacademy/wonder-blocks-core";
 import ModalDialog from "./modal-dialog.js";
@@ -11,8 +11,6 @@ import ModalPanel from "./modal-panel.js";
 import ModalHeader from "./modal-header.js";
 
 type Common = {|
-    ...AriaProps,
-
     /**
      * The content of the modal, appearing between the titlebar and footer.
      */
@@ -84,6 +82,11 @@ type Common = {|
      * not provided, a unique id will be generated.
      */
     titleId?: string,
+
+    /**
+     * The ID of the content describing this dialog, if applicable.
+     */
+    "aria-describedby"?: string,
 |};
 
 type WithSubtitle = {|
@@ -195,10 +198,7 @@ export default class OnePaneDialog extends React.Component<Props> {
             testId,
             titleId,
             role,
-            breadcrumbs: _,
-            subtitle: __,
-            title: ___,
-            ...ariaProps
+            "aria-describedby": ariaDescribedBy,
         } = this.props;
 
         return (
@@ -211,8 +211,8 @@ export default class OnePaneDialog extends React.Component<Props> {
                                 above={above}
                                 below={below}
                                 testId={testId}
-                                {...ariaProps}
                                 aria-labelledby={uniqueId}
+                                aria-describedby={ariaDescribedBy}
                                 role={role}
                             >
                                 <ModalPanel
