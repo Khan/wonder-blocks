@@ -105,26 +105,10 @@ module.exports = {
         {
             name: "Toolbar",
             content: "packages/wonder-blocks-toolbar/docs.md",
-            components:
-                "packages/wonder-blocks-toolbar/src/components/toolbar.js",
         },
         {
             name: "Tooltip",
             content: "packages/wonder-blocks-tooltip/docs.md",
-            components: [
-                "packages/wonder-blocks-tooltip/src/components/tooltip.js",
-                "packages/wonder-blocks-tooltip/src/components/tooltip-content.js",
-            ],
-            sections: [
-                {
-                    name: "Internal Components",
-                    private: true,
-                    components: [
-                        "packages/wonder-blocks-tooltip/src/components/tooltip-tail.js",
-                        "packages/wonder-blocks-tooltip/src/components/tooltip-bubble.js",
-                    ],
-                },
-            ],
         },
         {
             name: "Typography",

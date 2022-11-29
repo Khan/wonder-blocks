@@ -7,12 +7,11 @@ import {
     MEDIA_MODAL_SPEC,
 } from "@khanacademy/wonder-blocks-layout";
 import {View} from "@khanacademy/wonder-blocks-core";
-import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {MediaLayoutContextValue} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 type Props = {|
-    ...AriaProps,
     /**
      * The dialog content
      */
@@ -48,6 +47,16 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+
+    /**
+     * The ID of the content labelling this dialog, if applicable.
+     */
+    "aria-labelledby"?: string,
+
+    /**
+     * The ID of the content describing this dialog, if applicable.
+     */
+    "aria-describedby"?: string,
 |};
 
 type DefaultProps = {|
@@ -77,8 +86,11 @@ export default class ModalDialog extends React.Component<Props> {
             style,
             children,
             testId,
+            /* eslint-disable react/prop-types */
+            // the react/prop-types plugin does not like these
             "aria-labelledby": ariaLabelledBy,
-            "aria-label": ariaLabel,
+            "aria-describedby": ariaDescribedBy,
+            /* eslint-enable react/prop-types */
         } = this.props;
 
         const contextValue: MediaLayoutContextValue = {
@@ -96,7 +108,7 @@ export default class ModalDialog extends React.Component<Props> {
                                 role={role}
                                 aria-modal="true"
                                 aria-labelledby={ariaLabelledBy}
-                                aria-label={ariaLabel}
+                                aria-describedby={ariaDescribedBy}
                                 style={styles.dialog}
                                 testId={testId}
                             >

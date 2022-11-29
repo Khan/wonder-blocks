@@ -7,6 +7,7 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
     HeadingSmall,
     LabelLarge,
@@ -104,19 +105,22 @@ export default class Toolbar extends React.Component<Props> {
                     size === "small" && sharedStyles.small,
                 ]}
             >
-                <View style={sharedStyles.column}>
-                    <View style={sharedStyles.leftColumn}>{leftContent}</View>
+                <View
+                    style={[
+                        sharedStyles.column,
+                        sharedStyles.leftColumn,
+                        title ? sharedStyles.withTitle : null,
+                    ]}
+                >
+                    {leftContent}
                 </View>
+
                 {title && (
                     <View
                         style={[sharedStyles.column, sharedStyles.wideColumn]}
                     >
                         <View
-                            style={[
-                                sharedStyles.titles,
-                                sharedStyles.verticalAlign,
-                                sharedStyles.center,
-                            ]}
+                            style={[sharedStyles.titles, sharedStyles.center]}
                         >
                             <TitleComponent id="wb-toolbar-title">
                                 {title}
@@ -134,8 +138,15 @@ export default class Toolbar extends React.Component<Props> {
                         </View>
                     </View>
                 )}
-                <View style={sharedStyles.column}>
-                    <View style={sharedStyles.rightColumn}>{rightContent}</View>
+
+                <View
+                    style={[
+                        sharedStyles.column,
+                        sharedStyles.rightColumn,
+                        title ? sharedStyles.withTitle : null,
+                    ]}
+                >
+                    {rightContent}
                 </View>
             </View>
         );
@@ -144,13 +155,13 @@ export default class Toolbar extends React.Component<Props> {
 
 const sharedStyles = StyleSheet.create({
     container: {
-        border: "1px solid rgba(33, 36, 44, 0.16)",
-        display: "flex",
+        border: `1px solid ${Color.offBlack16}`,
+        flex: 1,
         flexDirection: "row",
+        justifyContent: "space-between",
         minHeight: 66,
-        paddingLeft: 16,
-        paddingRight: 16,
-        position: "relative",
+        paddingLeft: Spacing.medium_16,
+        paddingRight: Spacing.medium_16,
         width: "100%",
     },
     small: {
@@ -158,22 +169,25 @@ const sharedStyles = StyleSheet.create({
     },
     dark: {
         backgroundColor: Color.darkBlue,
-        boxShadow: "0 1px 0 0 rgba(255, 255, 255, 0.64)",
+        boxShadow: `0 1px 0 0 ${Color.white64}`,
         color: "white",
     },
-    verticalAlign: {
+    column: {
         justifyContent: "center",
     },
-    column: {
+    withTitle: {
         flex: 1,
-        justifyContent: "center",
     },
     wideColumn: {
+        flex: 1,
         flexBasis: "50%",
     },
     leftColumn: {
         alignItems: "center",
         flexDirection: "row",
+        // TODO(WB-1445): Find a way to replicate this behavior with
+        // rightContent.
+        flexShrink: 0,
         justifyContent: "flex-start",
     },
     rightColumn: {
@@ -185,9 +199,9 @@ const sharedStyles = StyleSheet.create({
         textAlign: "center",
     },
     subtitle: {
-        color: "rgba(33, 36, 44, 0.64)",
+        color: Color.offBlack64,
     },
     titles: {
-        padding: 12,
+        padding: Spacing.small_12,
     },
 });

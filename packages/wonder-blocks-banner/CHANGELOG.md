@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-banner
 
+## 1.1.0
+
+### Minor Changes
+
+-   87572f0a: Add ariaLabel prop
+
+### Patch Changes
+
+-   150021e2: Fix border
+-   d3da219c: Add dependency to WB link
+
 ## 1.0.1
 
 ### Patch Changes

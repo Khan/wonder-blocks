@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import {StyleSheet} from "aphrodite";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {icons} from "@khanacademy/wonder-blocks-icon";
@@ -8,6 +9,22 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
+
+const mobile = "@media (max-width: 1023px)";
+
+const styles = StyleSheet.create({
+    fillContent: {
+        marginLeft: Spacing.small_12,
+        [mobile]: {
+            width: "100vw",
+        },
+    },
+    onlyDesktop: {
+        [mobile]: {
+            display: "none",
+        },
+    },
+});
 
 type Mappings = {[key: string]: React.Node};
 
@@ -53,15 +70,25 @@ export const rightContentMappings: Mappings = {
             <Button style={buttonStyle}>Next exercise</Button>
         </>
     ),
+    responsive: (
+        <>
+            <Button style={styles.onlyDesktop} kind="secondary">
+                Continue
+            </Button>
+            <Button style={styles.fillContent}>Up next: video</Button>
+        </>
+    ),
 };
 
 export default {
     leftContent: {
         control: {type: "select"},
-        options: leftContentMappings,
+        options: (Object.keys(leftContentMappings): Array<string>),
+        mapping: leftContentMappings,
     },
     rightContent: {
         control: {type: "select"},
-        options: rightContentMappings,
+        options: (Object.keys(rightContentMappings): Array<string>),
+        mapping: rightContentMappings,
     },
 };

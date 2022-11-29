@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-modal
 
+## 3.0.0
+
+### Major Changes
+
+-   13cdc7fe: Handle `aria-describedby` in `OnePaneDialog`, and remove unused aria props from Flow types
+
+## 2.3.11
+
+### Patch Changes
+
+-   f3bcc1a9: Remove wonder-blocks-toolbar dependency as it is not used anymore
+
 ## 2.3.10
 
 ### Patch Changes
