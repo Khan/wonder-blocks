@@ -5,6 +5,8 @@ import {StyleSheet} from "aphrodite";
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {TextField} from "@khanacademy/wonder-blocks-form";
+import Icon from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -19,16 +21,23 @@ import {
 } from "@khanacademy/wonder-blocks-dropdown";
 
 import type {SingleSelectLabels} from "@khanacademy/wonder-blocks-dropdown";
+import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info.js";
 import {name, version} from "../../../package.json";
 import singleSelectArgtypes from "./base-select.argtypes.js";
+import {defaultLabels} from "../../util/constants.js";
 
 export default {
     title: "Dropdown / SingleSelect",
     component: SingleSelect,
     subcomponents: {OptionItem, SeparatorItem},
-    argTypes: singleSelectArgtypes,
+    argTypes: {
+        ...singleSelectArgtypes,
+        labels: {
+            defaultValue: defaultLabels,
+        },
+    },
     args: {
         isFilterable: true,
         opened: false,
@@ -38,10 +47,8 @@ export default {
         selectedValue: "",
     },
     decorators: [
-        (Story: StoryComponentType): React.Element<typeof View> => (
-            <View style={styles.example}>
-                <Story />
-            </View>
+        (Story: any): React.Element<typeof View> => (
+            <View style={styles.example}>{Story()}</View>
         ),
     ],
     parameters: {
@@ -126,18 +133,23 @@ const styles = StyleSheet.create({
         paddingRight: Spacing.medium_16,
         paddingTop: Spacing.medium_16,
     },
+    // AutoFocus
+    icon: {
+        position: "absolute",
+        right: Spacing.medium_16,
+    },
 });
 
 const items = [
-    <OptionItem label="Banana" value="banana" />,
-    <OptionItem label="Strawberry" value="strawberry" disabled />,
-    <OptionItem label="Pear" value="pear" />,
-    <OptionItem label="Orange" value="orange" />,
-    <OptionItem label="Watermelon" value="watermelon" />,
-    <OptionItem label="Apple" value="apple" />,
-    <OptionItem label="Grape" value="grape" />,
-    <OptionItem label="Lemon" value="lemon" />,
-    <OptionItem label="Mango" value="mango" />,
+    <OptionItem label="Banana" value="banana" key={0} />,
+    <OptionItem label="Strawberry" value="strawberry" disabled key={1} />,
+    <OptionItem label="Pear" value="pear" key={2} />,
+    <OptionItem label="Orange" value="orange" key={3} />,
+    <OptionItem label="Watermelon" value="watermelon" key={4} />,
+    <OptionItem label="Apple" value="apple" key={5} />,
+    <OptionItem label="Grape" value="grape" key={6} />,
+    <OptionItem label="Lemon" value="lemon" key={7} />,
+    <OptionItem label="Mango" value="mango" key={8} />,
 ];
 
 const Template = (args) => {
@@ -513,6 +525,88 @@ CustomLabels.parameters = {
     docs: {
         description: {
             story: "This example illustrates how you can pass custom labels to the `SingleSelect` component.",
+        },
+    },
+};
+
+/**
+ * Auto focus disabled
+ */
+const timeSlots = [
+    "12:00 AM",
+    "2:00 AM",
+    "4:00 AM",
+    "6:00 AM",
+    "8:00 AM",
+    "10:00 AM",
+    "12:00 PM",
+    "2:00 PM",
+    "4:00 PM",
+    "6:00 PM",
+    "8:00 PM",
+    "10:00 PM",
+    "11:59 PM",
+];
+
+const timeSlotOptions = timeSlots.map((timeSlot) => (
+    <OptionItem label={timeSlot} value={timeSlot} />
+));
+
+const clockIcon: IconAsset = {
+    small: `M0 8C0 3.58 3.58 0 7.99 0C12.42 0 16 3.58 16 8C16 12.42 12.42 16 7.99 16C3.58 16 0 12.42 0 8ZM1.6 8C1.6 11.54 4.46 14.4 8 14.4C11.54 14.4 14.4 11.54 14.4 8C14.4 4.46 11.54 1.6 8 1.6C4.46 1.6 1.6 4.46 1.6 8ZM7.2 4H8.4V8.2L12 10.34L11.4 11.32L7.2 8.8V4Z`,
+};
+
+export const AutoFocusDisabled: StoryComponentType = () => {
+    const textFieldRef = React.useRef(null);
+    const [value, setValue] = React.useState(null);
+    const [opened, setOpened] = React.useState(false);
+
+    return (
+        <View style={styles.wrapper}>
+            <SingleSelect
+                autoFocus={false}
+                enableTypeAhead={false}
+                onChange={setValue}
+                selectedValue={value}
+                opened={opened}
+                onToggle={setOpened}
+                placeholder="Choose a time"
+                opener={({focused, hovered, pressed, text}) => (
+                    <View style={styles.row}>
+                        <TextField
+                            placeholder="Choose a time"
+                            id="single-select-opener"
+                            onChange={setValue}
+                            value={value ?? ""}
+                            ref={textFieldRef}
+                            autoComplete="off"
+                            style={styles.fullBleed}
+                        />
+                        <Icon
+                            color={Color.blue}
+                            icon={clockIcon}
+                            size="small"
+                            style={styles.icon}
+                        />
+                    </View>
+                )}
+            >
+                {timeSlotOptions}
+            </SingleSelect>
+        </View>
+    );
+};
+
+AutoFocusDisabled.parameters = {
+    docs: {
+        description: {
+            story:
+                `This example illustrates how you can disable the auto focus
+                of the \`SingleSelect\` component. Note that for this example,
+                we are using a \`TextField\` component as a custom opener to
+                ilustrate how the focus remains on the opener.\n\n` +
+                `**Note:** We also disabled the \`enableTypeAhead\` prop to be
+                able to use the textbox properly.`,
         },
     },
 };
