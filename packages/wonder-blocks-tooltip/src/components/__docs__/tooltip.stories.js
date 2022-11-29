@@ -1,6 +1,10 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+
+import {within, userEvent} from "@storybook/testing-library";
+import {expect} from "@storybook/jest";
+
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -27,11 +31,6 @@ export default {
         placement: "top",
     },
     parameters: {
-        // TODO(WB-1170): Reassess this after investigating more about Chromatic
-        // flakyness.
-        chromatic: {
-            disableSnapshot: true,
-        },
         componentSubtitle: ((
             <ComponentInfo name={name} version={version} />
         ): any),
@@ -50,6 +49,20 @@ Default.args = {
     children: "some text",
 };
 
+Default.play = async ({canvasElement}) => {
+    // Arrange
+    // NOTE: Using `body` here to work with React Portals.
+    const canvas = within(canvasElement.ownerDocument.body);
+
+    // Act
+    await userEvent.hover(canvas.getByText("some text"));
+
+    // Assert
+    await expect(
+        await canvas.findByText("This is a text tooltip on the top"),
+    ).toBeInTheDocument();
+};
+
 /**
  * Complex anchor & title tooltip
  */
@@ -57,9 +70,10 @@ export const ComplexAnchorAndTitle: StoryComponentType = Template.bind({});
 
 ComplexAnchorAndTitle.args = {
     forceAnchorFocusivity: false,
+    placement: "bottom",
     id: "my-a11y-tooltip",
     title: "This tooltip has a title",
-    content: "I'm at the top!",
+    content: "I'm at the bottom!",
     children: (
         <View>
             Some text
@@ -71,6 +85,20 @@ ComplexAnchorAndTitle.args = {
             />
         </View>
     ),
+};
+
+ComplexAnchorAndTitle.play = async ({canvasElement}) => {
+    // Arrange
+    // NOTE: Using `body` here to work with React Portals.
+    const canvas = within(canvasElement.ownerDocument.body);
+
+    // Act
+    await userEvent.hover(canvas.getByText("Some text"));
+
+    // Assert
+    await expect(
+        await canvas.findByText("This tooltip has a title"),
+    ).toBeInTheDocument();
 };
 
 ComplexAnchorAndTitle.parameters = {
@@ -102,6 +130,10 @@ export const AnchorInScrollableParent: StoryComponentType = () => (
 );
 
 AnchorInScrollableParent.parameters = {
+    // Disable Chromatic because it only shows the trigger element.
+    chromatic: {
+        disableSnapshot: true,
+    },
     docs: {
         description: {
             story: "In this example, we have the anchor in a scrollable parent. Notice how, when the anchor is focused but scrolled out of bounds, the tooltip disappears.",
@@ -139,6 +171,10 @@ export const TooltipInModal: StoryComponentType = () => {
 };
 
 TooltipInModal.parameters = {
+    // Disable Chromatic because it initially renders the modal offscreen.
+    chromatic: {
+        disableSnapshot: true,
+    },
     docs: {
         description: {
             story: "This checks that the tooltip works how we want inside a modal. Click the button to take a look.",
@@ -169,6 +205,10 @@ export const SideBySide: StoryComponentType = () => (
 SideBySide.storyName = "Side-by-side";
 
 SideBySide.parameters = {
+    // Disable Chromatic because it only shows the trigger element.
+    chromatic: {
+        disableSnapshot: true,
+    },
     docs: {
         description: {
             story: "Here, we can see that the first tooltip shown has an initial delay before it appears, as does the last tooltip shown, yet when moving between tooltipped items, the transition from one to another is instantaneous.",
@@ -214,6 +254,9 @@ TooltipOnButtons.parameters = {
 };
 
 const styles = StyleSheet.create({
+    example: {
+        padding: Spacing.medium_16,
+    },
     row: {
         flexDirection: "row",
     },
