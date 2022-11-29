@@ -262,22 +262,3 @@ describe("Choice", () => {
         expect(checkbox).not.toHaveAttribute("tabIndex");
     });
 });
-
-describe("Checkbox", () => {
-    test("doesn't have a redundant tabIndex of 0", () => {
-        // Arrange
-
-        // Act
-        render(
-            <Checkbox
-                checked={false}
-                onChange={jest.fn()}
-                testId="checkbox-clickable-test-id"
-            />,
-        );
-
-        // Assert
-        const checkbox = screen.getByTestId("checkbox-clickable-test-id");
-        expect(checkbox).not.toHaveAttribute("tabIndex");
-    });
-});
