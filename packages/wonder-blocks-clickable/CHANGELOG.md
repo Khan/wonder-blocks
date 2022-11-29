@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 2.4.0
+
+### Minor Changes
+
+-   ceb111df: ClickableBehavior no longer has tabIndex 0 by default. It must be passed in.
+
 ## 2.3.3
 
 ### Patch Changes

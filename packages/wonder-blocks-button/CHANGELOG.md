@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-button
 
+## 3.0.7
+
+### Patch Changes
+
+-   ceb111df: ClickableBehavior no longer has tabIndex 0 by default. It must be passed in.
+-   Updated dependencies [ceb111df]
+    -   @khanacademy/wonder-blocks-clickable@2.4.0
+
 ## 3.0.6
 
 ### Patch Changes
