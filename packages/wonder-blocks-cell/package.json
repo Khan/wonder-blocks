@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-cell",
-  "version": "2.2.9",
+  "version": "2.2.10",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.6",
-    "@khanacademy/wonder-blocks-clickable": "^2.3.3",
+    "@khanacademy/wonder-blocks-clickable": "^2.4.0",
     "@khanacademy/wonder-blocks-color": "^1.2.0",
     "@khanacademy/wonder-blocks-core": "^4.5.0",
     "@khanacademy/wonder-blocks-layout": "^1.4.12",

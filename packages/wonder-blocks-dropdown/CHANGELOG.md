@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.9.5
+
+### Patch Changes
+
+-   ceb111df: ClickableBehavior no longer has tabIndex 0 by default. It must be passed in.
+-   Updated dependencies [ceb111df]
+    -   @khanacademy/wonder-blocks-clickable@2.4.0
+    -   @khanacademy/wonder-blocks-modal@3.0.1
+    -   @khanacademy/wonder-blocks-search-field@1.0.13
+
 ## 2.9.4
 
 ### Patch Changes
