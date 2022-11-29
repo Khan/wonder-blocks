@@ -91,9 +91,12 @@ export default class ModalDialog extends React.Component<Props> {
             style,
             children,
             testId,
+            /* eslint-disable react/prop-types */
+            // the react/prop-types plugin does not like these
             "aria-labelledby": ariaLabelledBy,
             "aria-label": ariaLabel,
             "aria-describedby": ariaDescribedBy,
+            /* eslint-enable react/prop-types */
         } = this.props;
 
         const contextValue: MediaLayoutContextValue = {
