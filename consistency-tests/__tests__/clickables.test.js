@@ -15,7 +15,6 @@ import {ActionItem, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Button from "@khanacademy/wonder-blocks-button";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {
-    Checkbox,
     CheckboxGroup,
     Choice,
     RadioGroup,
