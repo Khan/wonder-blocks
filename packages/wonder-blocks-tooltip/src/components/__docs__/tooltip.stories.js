@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {within, userEvent} from "@storybook/testing-library";
+import {waitFor, within, userEvent} from "@storybook/testing-library";
 import {expect} from "@storybook/jest";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -55,7 +55,10 @@ Default.play = async ({canvasElement}) => {
     const canvas = within(canvasElement.ownerDocument.body);
 
     // Act
-    await userEvent.hover(canvas.getByText("some text"));
+    // Triggers the hover state
+    await waitFor(async () => {
+        await userEvent.hover(canvas.getByText("some text"));
+    });
 
     // Assert
     await expect(
@@ -93,7 +96,10 @@ ComplexAnchorAndTitle.play = async ({canvasElement}) => {
     const canvas = within(canvasElement.ownerDocument.body);
 
     // Act
-    await userEvent.hover(canvas.getByText("Some text"));
+    // Triggers the hover state
+    await waitFor(async () => {
+        await userEvent.hover(canvas.getByText("Some text"));
+    });
 
     // Assert
     await expect(
