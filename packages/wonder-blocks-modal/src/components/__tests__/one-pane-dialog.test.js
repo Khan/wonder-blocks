@@ -68,4 +68,21 @@ describe("OnePaneDialog", () => {
         // Assert
         expect(screen.getByLabelText("Breadcrumbs")).toBeInTheDocument();
     });
+
+    it("applies aria-describedby to the modal", () => {
+        // Arrange
+        render(
+            <OnePaneDialog
+                title="unused"
+                content={<p id="description">cool dialog</p>}
+                aria-describedby="description"
+            />,
+        );
+
+        // Act
+        const modal = screen.getByRole("dialog");
+
+        // Assert
+        expect(modal).toHaveDescription(/cool dialog/i);
+    });
 });

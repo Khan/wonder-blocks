@@ -433,7 +433,7 @@ export const FocusTrap: StoryComponentType = () => {
             closeButtonVisible={false}
             content={
                 <>
-                    <Body>
+                    <Body id="focus-trap-story-body-text">
                         This modal demonstrates how the focus trap works with
                         form elements (or focusable elements). Also demonstrates
                         how the focus trap is moved to the next modal when it is
@@ -467,6 +467,7 @@ export const FocusTrap: StoryComponentType = () => {
                     </Button>
                 </>
             }
+            aria-describedby="focus-trap-story-body-text"
         />
     );
 
