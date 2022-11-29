@@ -99,4 +99,10 @@ export default {
             not provided, a unique id will be generated.`,
         table: {type: {summary: "string"}},
     },
+    "aria-describedby": {
+        control: {type: "text"},
+        description:
+            "The ID of the content describing this dialog, if applicable",
+        table: {type: {summary: "string"}},
+    },
 };
