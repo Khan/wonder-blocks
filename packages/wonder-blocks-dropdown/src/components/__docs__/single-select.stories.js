@@ -609,4 +609,9 @@ AutoFocusDisabled.parameters = {
                 able to use the textbox properly.`,
         },
     },
+    chromatic: {
+        // we don't need screenshots because this story only tests focus +
+        // keyboard behavior.
+        disableSnapshot: true,
+    },
 };
