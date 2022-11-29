@@ -171,14 +171,14 @@ describe.each`
 // have an added tabIndex of 0.
 describe.each`
     Component            | name             | hasTabIndex
-    ${ActionItem}        | ${"ActionItem"}  | ${true}
-    ${Button}            | ${"Button"}      | ${true}
-    ${ClickableWrapper}  | ${"Clickable"}   | ${true}
-    ${CompactCell}       | ${"CompactCell"} | ${true}
-    ${DetailCell}        | ${"DetailCell"}  | ${true}
-    ${IconButtonWrapper} | ${"IconButton"}  | ${true}
-    ${Link}              | ${"Link"}        | ${true}
-    ${OptionItem}        | ${"OptionItem"}  | ${false}
+    ${ActionItem}        | ${"ActionItem"}  | ${false}
+    ${Button}            | ${"Button"}      | ${false}
+    ${ClickableWrapper}  | ${"Clickable"}   | ${false}
+    ${CompactCell}       | ${"CompactCell"} | ${false}
+    ${DetailCell}        | ${"DetailCell"}  | ${false}
+    ${IconButtonWrapper} | ${"IconButton"}  | ${false}
+    ${Link}              | ${"Link"}        | ${false}
+    ${OptionItem}        | ${"OptionItem"}  | ${true}
 `("$name", ({Component, name, hasTabIndex}) => {
     test("has expected existence of tabIndex", () => {
         // Arrange
@@ -196,12 +196,12 @@ describe.each`
             // These components should all wrap buttons or links, so they
             // should inherently be clickable and keyboard navigable. They
             // should not have a default tabIndex 0 as that would be redundant.
-            expect(component).not.toHaveAttribute("tabIndex");
+            expect(component).toHaveAttribute("tabIndex", "0");
         } else {
             // These components do not wrap an inherently clickable component,
             // so it is expected that they have a tabIndex of 0 so they can
             // be keyboard navigable.
-            expect(component).toHaveAttribute("tabIndex", "0");
+            expect(component).not.toHaveAttribute("tabIndex");
         }
     });
 });
