@@ -166,20 +166,21 @@ describe.each`
 
 /* ******* tabIndex tests ******* */
 
-// These components should all wrap buttons or links, so they should
-// inherently be clickable and keyboard navigable. They should not have
-// a default tabIndex 0 as that would be redundant.
+// Components that wrap buttons or links should not have a tabIndex.
+// Components that don't wrap an alreaady clickable component should
+// have an added tabIndex of 0.
 describe.each`
-    Component            | name
-    ${ActionItem}        | ${"ActionItem"}
-    ${Button}            | ${"Button"}
-    ${ClickableWrapper}  | ${"Clickable"}
-    ${CompactCell}       | ${"CompactCell"}
-    ${DetailCell}        | ${"DetailCell"}
-    ${IconButtonWrapper} | ${"IconButton"}
-    ${Link}              | ${"Link"}
-`("$name", ({Component, name}) => {
-    test("doesn't have a redundant tabIndex of 0", () => {
+    Component            | name             | hasTabIndex
+    ${ActionItem}        | ${"ActionItem"}  | ${true}
+    ${Button}            | ${"Button"}      | ${true}
+    ${ClickableWrapper}  | ${"Clickable"}   | ${true}
+    ${CompactCell}       | ${"CompactCell"} | ${true}
+    ${DetailCell}        | ${"DetailCell"}  | ${true}
+    ${IconButtonWrapper} | ${"IconButton"}  | ${true}
+    ${Link}              | ${"Link"}        | ${true}
+    ${OptionItem}        | ${"OptionItem"}  | ${false}
+`("$name", ({Component, name, hasTabIndex}) => {
+    test("has expected existence of tabIndex", () => {
         // Arrange
 
         // Act
@@ -191,30 +192,17 @@ describe.each`
 
         // Assert
         const component = screen.getByTestId("clickable-component-test-id");
-        expect(component).not.toHaveAttribute("tabIndex");
-    });
-});
-
-// These components do not wrap an inherently clickable component, so
-// it is expected that they have a tabIndex of 0 so they can be keybaord
-// navigable.
-describe.each`
-    Component     | name
-    ${OptionItem} | ${"OptionItem"}
-`("$name", ({Component, name}) => {
-    test("has a tabIndex of 0", () => {
-        // Arrange
-
-        // Act
-        render(
-            <Component onClick={jest.fn()} testId="clickable-component-test-id">
-                Click me
-            </Component>,
-        );
-
-        // Assert
-        const component = screen.getByTestId("clickable-component-test-id");
-        expect(component).toHaveAttribute("tabIndex", "0");
+        if (hasTabIndex) {
+            // These components should all wrap buttons or links, so they
+            // should inherently be clickable and keyboard navigable. They
+            // should not have a default tabIndex 0 as that would be redundant.
+            expect(component).not.toHaveAttribute("tabIndex");
+        } else {
+            // These components do not wrap an inherently clickable component,
+            // so it is expected that they have a tabIndex of 0 so they can
+            // be keyboard navigable.
+            expect(component).toHaveAttribute("tabIndex", "0");
+        }
     });
 });
 
