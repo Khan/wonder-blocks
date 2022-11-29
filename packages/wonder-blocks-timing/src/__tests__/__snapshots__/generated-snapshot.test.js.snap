@@ -86,7 +86,6 @@ exports[`wonder-blocks-timing example 1 1`] = `
           "userSelect": "none",
         }
       }
-      tabIndex={0}
       type="button"
     >
       <span
@@ -262,7 +261,6 @@ exports[`wonder-blocks-timing example 2 1`] = `
           "userSelect": "none",
         }
       }
-      tabIndex={0}
       type="button"
     >
       <span

@@ -86,7 +86,7 @@ const StyledLegend = addStyle<"legend">("legend");
  *     groupName="some-group-name"
  *     onChange={setSelectedValues}
  *     selectedValues={selectedValues}
- * />
+ * >
  *     // Add as many choices as necessary
  *     <Choice
  *        label="Choice 1"

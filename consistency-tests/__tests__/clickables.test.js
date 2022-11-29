@@ -9,10 +9,16 @@ import * as React from "react";
 import {mount} from "enzyme";
 import "jest-enzyme";
 import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
+import {render, screen} from "@testing-library/react";
 
-import {ActionItem} from "@khanacademy/wonder-blocks-dropdown";
+import {ActionItem, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Button from "@khanacademy/wonder-blocks-button";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
+import {
+    CheckboxGroup,
+    Choice,
+    RadioGroup,
+} from "@khanacademy/wonder-blocks-form";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -154,5 +160,104 @@ describe.each`
         wrapper.simulate("click");
 
         expect(clickHandler).toHaveBeenCalled();
+    });
+});
+
+/* ******* tabIndex tests ******* */
+
+// Components that wrap buttons or links should not have a tabIndex.
+// Components that don't wrap an alreaady clickable component should
+// have an added tabIndex of 0.
+describe.each`
+    Component            | name             | hasTabIndex
+    ${ActionItem}        | ${"ActionItem"}  | ${false}
+    ${Button}            | ${"Button"}      | ${false}
+    ${ClickableWrapper}  | ${"Clickable"}   | ${false}
+    ${CompactCell}       | ${"CompactCell"} | ${false}
+    ${DetailCell}        | ${"DetailCell"}  | ${false}
+    ${IconButtonWrapper} | ${"IconButton"}  | ${false}
+    ${Link}              | ${"Link"}        | ${false}
+    ${OptionItem}        | ${"OptionItem"}  | ${true}
+`("$name", ({Component, name, hasTabIndex}) => {
+    test("has expected existence of tabIndex", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Component onClick={jest.fn()} testId="clickable-component-test-id">
+                Click me
+            </Component>,
+        );
+
+        // Assert
+        const component = screen.getByTestId("clickable-component-test-id");
+        if (hasTabIndex) {
+            // These components should all wrap buttons or links, so they
+            // should inherently be clickable and keyboard navigable. They
+            // should not have a default tabIndex 0 as that would be redundant.
+            expect(component).toHaveAttribute("tabIndex", "0");
+        } else {
+            // These components do not wrap an inherently clickable component,
+            // so it is expected that they have a tabIndex of 0 so they can
+            // be keyboard navigable.
+            expect(component).not.toHaveAttribute("tabIndex");
+        }
+    });
+});
+
+// Form elements are inherently keyboard navigable. They should not have
+// a default tabIndex.
+
+describe("Choice", () => {
+    test("doesn't have a redunant tabIndex of 0 (checkbox)", () => {
+        // Arrange
+
+        // Act
+        render(
+            <CheckboxGroup
+                label="some-label"
+                groupName="some-group-name"
+                onChange={jest.fn()}
+                selectedValues={[]}
+            >
+                <Choice
+                    label="Choice 1"
+                    value="some-choice-value"
+                    testId="checkbox-choice-clickable-test-id"
+                />
+                <Choice label="Choice 2" value="some-choice-value-2" />
+            </CheckboxGroup>,
+        );
+
+        // Assert
+        const checkbox = screen.getByTestId(
+            "checkbox-choice-clickable-test-id",
+        );
+        expect(checkbox).not.toHaveAttribute("tabIndex");
+    });
+
+    test("doesn't have a redunant tabIndex of 0 (radio)", () => {
+        // Arrange
+
+        // Act
+        render(
+            <RadioGroup
+                label="some-label"
+                groupName="some-group-name"
+                onChange={jest.fn()}
+                selectedValue={""}
+            >
+                <Choice
+                    label="Choice 1"
+                    value="some-choice-value"
+                    testId="radio-choice-clickable-test-id"
+                />
+                <Choice label="Choice 2" value="some-choice-value-2" />
+            </RadioGroup>,
+        );
+
+        // Assert
+        const checkbox = screen.getByTestId("radio-choice-clickable-test-id");
+        expect(checkbox).not.toHaveAttribute("tabIndex");
     });
 });

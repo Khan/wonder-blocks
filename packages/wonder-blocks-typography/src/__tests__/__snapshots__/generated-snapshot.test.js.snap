@@ -1106,7 +1106,6 @@ exports[`wonder-blocks-typography example 6 1`] = `
           "whiteSpace": "nowrap",
         }
       }
-      tabIndex={0}
       type="button"
     >
       <span
