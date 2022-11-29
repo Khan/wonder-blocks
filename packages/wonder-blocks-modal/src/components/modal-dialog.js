@@ -49,11 +49,6 @@ type Props = {|
     testId?: string,
 
     /**
-     * The label for this dialog, if applicable.
-     */
-    "aria-label"?: string,
-
-    /**
      * The ID of the content labelling this dialog, if applicable.
      */
     "aria-labelledby"?: string,
@@ -94,7 +89,6 @@ export default class ModalDialog extends React.Component<Props> {
             /* eslint-disable react/prop-types */
             // the react/prop-types plugin does not like these
             "aria-labelledby": ariaLabelledBy,
-            "aria-label": ariaLabel,
             "aria-describedby": ariaDescribedBy,
             /* eslint-enable react/prop-types */
         } = this.props;
@@ -114,7 +108,6 @@ export default class ModalDialog extends React.Component<Props> {
                                 role={role}
                                 aria-modal="true"
                                 aria-labelledby={ariaLabelledBy}
-                                aria-label={ariaLabel}
                                 aria-describedby={ariaDescribedBy}
                                 style={styles.dialog}
                                 testId={testId}
