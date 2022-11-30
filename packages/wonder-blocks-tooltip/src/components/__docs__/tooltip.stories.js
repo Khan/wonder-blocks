@@ -102,9 +102,11 @@ ComplexAnchorAndTitle.play = async ({canvasElement}) => {
     });
 
     // Assert
-    await expect(
-        await canvas.findByText("This tooltip has a title"),
-    ).toBeInTheDocument();
+    await waitFor(async () => {
+        await expect(
+            await canvas.findByText("This tooltip has a title"),
+        ).toBeInTheDocument();
+    });
 };
 
 ComplexAnchorAndTitle.parameters = {
