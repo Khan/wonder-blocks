@@ -107,11 +107,9 @@ ComplexAnchorAndTitle.play = async ({canvasElement}) => {
     });
 
     // Assert
-    await waitFor(async () => {
-        await expect(
-            await canvas.findByText("This tooltip has a title"),
-        ).toBeInTheDocument();
-    });
+    await expect(
+        await canvas.findByText("This tooltip has a title"),
+    ).toBeInTheDocument();
 };
 
 ComplexAnchorAndTitle.parameters = {
@@ -268,7 +266,9 @@ TooltipOnButtons.parameters = {
 
 const styles = StyleSheet.create({
     storyCanvas: {
-        padding: Spacing.xxLarge_48,
+        // NOTE: This is needed for Chromatic to include the tooltip bubble.
+        minHeight: 240,
+        padding: Spacing.xxxLarge_64,
         justifyContent: "center",
         textAlign: "center",
     },
