@@ -35,6 +35,11 @@ export default {
             <ComponentInfo name={name} version={version} />
         ): any),
     },
+    decorators: [
+        (Story: any): React.Node => (
+            <View style={styles.storyCanvas}>{Story()}</View>
+        ),
+    ],
 };
 
 const Template = (args) => <Tooltip {...args} />;
@@ -262,8 +267,10 @@ TooltipOnButtons.parameters = {
 };
 
 const styles = StyleSheet.create({
-    example: {
-        padding: Spacing.medium_16,
+    storyCanvas: {
+        padding: Spacing.xxLarge_48,
+        justifyContent: "center",
+        textAlign: "center",
     },
     row: {
         flexDirection: "row",
