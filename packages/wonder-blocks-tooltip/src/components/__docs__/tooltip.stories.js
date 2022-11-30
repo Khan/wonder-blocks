@@ -267,7 +267,7 @@ TooltipOnButtons.parameters = {
 const styles = StyleSheet.create({
     storyCanvas: {
         // NOTE: This is needed for Chromatic to include the tooltip bubble.
-        minHeight: 240,
+        minHeight: 280,
         padding: Spacing.xxxLarge_64,
         justifyContent: "center",
         textAlign: "center",
