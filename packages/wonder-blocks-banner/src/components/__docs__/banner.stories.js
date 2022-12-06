@@ -393,6 +393,85 @@ WithDismissal.parameters = {
     },
 };
 
+export const WithCustomAction: StoryComponentType = () => (
+    <Banner
+        text="some text"
+        layout="floating"
+        actions={[
+            {
+                type: "custom",
+                node: (
+                    <Button
+                        kind="tertiary"
+                        size="small"
+                        onClick={() => {}}
+                        spinner={true}
+                    >
+                        Spinner Button
+                    </Button>
+                ),
+            },
+        ]}
+    />
+);
+
+WithCustomAction.parameters = {
+    docs: {
+        storyDescription: `**NOTE: Custom actions are discouraged**
+            **and should only be used as a last resort!**\n\nThere are a
+            number of other props that Buttons and Links may have that are
+            not currently supported by the \`actions\` prop in Banner.
+            These would require the use of custom actions. If it absolutely
+            necessary to have a custom action, it can be done by passing
+            in an object into the \`actions\` prop array that has
+            \`type:"custom"\`, and your desired element in the \`node\`
+            field. Here is an example of a case where the built in actions
+            may not be enough - a button with a \`spinner\` prop would need
+            a custom implementation here.`,
+    },
+};
+
+export const WithMixedActions: StoryComponentType = () => (
+    <Banner
+        text="some text"
+        layout="floating"
+        actions={[
+            {
+                title: "Normal button",
+                onClick: () => {},
+            },
+            {
+                type: "custom",
+                node: (
+                    <Button kind="tertiary" size="small" onClick={() => {}}>
+                        Custom button
+                    </Button>
+                ),
+            },
+            {
+                type: "custom",
+                node: (
+                    <Button
+                        kind="tertiary"
+                        size="small"
+                        onClick={() => {}}
+                        spinner={true}
+                    >
+                        Spinner Button
+                    </Button>
+                ),
+            },
+        ]}
+    />
+);
+
+WithMixedActions.parameters = {
+    docs: {
+        storyDescription: `Here is an example that includes both a
+            normal action and a custom action.`,
+    },
+};
+
 export const RightToLeft: StoryComponentType = () => (
     <View style={styles.rightToLeft}>
         <Banner
