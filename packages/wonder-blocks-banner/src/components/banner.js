@@ -29,7 +29,15 @@ type ActionTriggerWithLink = {|
     onClick?: () => void,
 |};
 
-type ActionTrigger = ActionTriggerWithButton | ActionTriggerWithLink;
+type ActionTriggerCustom = {|
+    type: "custom",
+    node: React.Node,
+|};
+
+type ActionTrigger =
+    | ActionTriggerWithButton
+    | ActionTriggerWithLink
+    | ActionTriggerCustom;
 
 type BannerKind =
     /**
@@ -181,8 +189,17 @@ const Banner = (props: Props): React.Node => {
     } = props;
 
     const renderActions = () => {
-        return actions?.filter(Boolean).map((action) => {
+        return actions?.filter(Boolean).map((action, i) => {
+            if (action.type === "custom") {
+                return (
+                    <View style={styles.action} key={`custom-action-${i}`}>
+                        {action.node}
+                    </View>
+                );
+            }
+
             const handleClick = action.onClick;
+
             if (action.href) {
                 return (
                     <View style={styles.action} key={action.title}>

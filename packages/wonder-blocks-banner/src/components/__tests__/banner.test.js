@@ -2,6 +2,8 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
+import Button from "@khanacademy/wonder-blocks-button";
+
 import Banner from "../banner.js";
 
 describe("Banner", () => {
@@ -82,6 +84,38 @@ describe("Banner", () => {
         expect(link).toBeInTheDocument();
     });
 
+    test("passing a custom action causes the action to appear", async () => {
+        // Arrange
+
+        // Act
+        render(
+            <Banner
+                text="some text"
+                layout="floating"
+                actions={[
+                    {
+                        type: "custom",
+                        node: (
+                            <Button
+                                kind="tertiary"
+                                size="small"
+                                onClick={() => {}}
+                                spinner={true}
+                                testId="custom-button-in-banner"
+                            >
+                                Spinner Button
+                            </Button>
+                        ),
+                    },
+                ]}
+            />,
+        );
+
+        // Assert
+        const button = await screen.findByTestId("custom-button-in-banner");
+        expect(button).toBeInTheDocument();
+    });
+
     test("passing multiple actions causes multiple actions to appear", async () => {
         // Arrange
 
@@ -93,7 +127,19 @@ describe("Banner", () => {
                 actions={[
                     {title: "button 1", onClick: () => {}},
                     {title: "button 2", onClick: () => {}},
-                    {title: "button 3", onClick: () => {}},
+                    {
+                        type: "custom",
+                        node: (
+                            <Button
+                                kind="tertiary"
+                                size="small"
+                                onClick={() => {}}
+                                spinner={true}
+                            >
+                                Spinner Button
+                            </Button>
+                        ),
+                    },
                 ]}
             />,
         );
