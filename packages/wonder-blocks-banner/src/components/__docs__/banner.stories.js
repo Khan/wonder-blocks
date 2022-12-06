@@ -417,15 +417,17 @@ export const WithCustomAction: StoryComponentType = () => (
 
 WithCustomAction.parameters = {
     docs: {
-        storyDescription: `There are a number of other props that
-            Buttons and Links may have that are not currently supported by
-            the \`actions\` prop in Banner. These would require the use of
-            custom actions. If it absolutely necessary to have a custom
-            action, it can be done by passing in an object into the \`actions\`
-            prop array that has \`type: "custom"\`, and your desired element
-            in the \`node\` field. Here is an example of a case where
-            the built in actions may not be enough - a button with a
-            \`spinner\` prop would need a custom implementation here.`,
+        storyDescription: `**NOTE: Custom actions are discouraged**
+            **and should only be used as a last resort!**\n\nThere are a
+            number of other props that Buttons and Links may have that are
+            not currently supported by the \`actions\` prop in Banner.
+            These would require the use of custom actions. If it absolutely
+            necessary to have a custom action, it can be done by passing
+            in an object into the \`actions\` prop array that has
+            \`type:"custom"\`, and your desired element in the \`node\`
+            field. Here is an example of a case where the built in actions
+            may not be enough - a button with a \`spinner\` prop would need
+            a custom implementation here.`,
     },
 };
 
