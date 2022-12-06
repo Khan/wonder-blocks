@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-banner
 
+## 1.2.0
+
+### Minor Changes
+
+-   b9b24953: Allow for custom actions in Banner
+
 ## 1.1.1
 
 ### Patch Changes
