@@ -258,7 +258,9 @@ export const WithInitialFocusId: StoryComponentType = Template.bind({});
 
 WithInitialFocusId.args = {
     children: (
-        <Button>Open with initial focus on the &quot;Next&quot; button</Button>
+        <Button>
+            Open with initial focus on the &quot;It is focused!&quot; button
+        </Button>
     ),
     content: (
         <PopoverContent
