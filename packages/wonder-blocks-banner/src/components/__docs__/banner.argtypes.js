@@ -1,4 +1,6 @@
 // @flow
+import * as React from "react";
+
 const actionsMappings = {
     none: null,
     buttons: [
