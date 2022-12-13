@@ -60,7 +60,8 @@ export default {
         description: `Links or tertiary Buttons that appear to the right of the
             text.\n\nThe ActionTrigger must have either an onClick or an href
             field, or both.`,
-        options: actionsMappings,
+        options: (Object.keys(actionsMappings): Array<React.Node>),
+        mapping: actionsMappings,
         table: {
             type: {
                 summary: "Array<ActionTrigger>",
@@ -72,7 +73,8 @@ export default {
         control: {type: "select"},
         description:
             "If present, dismiss button is on right side. If not, no button appears.",
-        options: dismissMappings,
+        options: (Object.keys(dismissMappings): Array<React.Node>),
+        mapping: dismissMappings,
         table: {required: false},
     },
     dismissAriaLabel: {
