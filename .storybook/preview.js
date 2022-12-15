@@ -1,5 +1,10 @@
 import React from "react";
 import wonderBlocksTheme from "./wonder-blocks-theme.js";
+import {configure} from "@storybook/testing-library";
+
+configure({
+    testIdAttribute: "data-test-id",
+});
 
 /**
  * WB Official breakpoints
