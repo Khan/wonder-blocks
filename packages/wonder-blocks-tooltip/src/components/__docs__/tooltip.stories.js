@@ -61,9 +61,8 @@ Default.play = async ({canvasElement}) => {
 
     // Act
     // Triggers the hover state
-    await waitFor(async () => {
-        await userEvent.hover(canvas.getByText("some text"));
-    });
+    const text = await canvas.findByText("some text");
+    await userEvent.hover(text);
 
     // Assert
     await expect(
@@ -102,9 +101,8 @@ ComplexAnchorAndTitle.play = async ({canvasElement}) => {
 
     // Act
     // Triggers the hover state
-    await waitFor(async () => {
-        await userEvent.hover(canvas.getByText("Some text"));
-    });
+    const text = await canvas.findByText("some text");
+    await userEvent.hover(text);
 
     // Assert
     await expect(
