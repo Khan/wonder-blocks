@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {waitFor, within, userEvent} from "@storybook/testing-library";
+import {within, userEvent} from "@storybook/testing-library";
 import {expect} from "@storybook/jest";
 
 import Button from "@khanacademy/wonder-blocks-button";
