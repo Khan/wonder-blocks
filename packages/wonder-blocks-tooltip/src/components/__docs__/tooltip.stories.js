@@ -101,7 +101,7 @@ ComplexAnchorAndTitle.play = async ({canvasElement}) => {
 
     // Act
     // Triggers the hover state
-    const text = await canvas.findByText("some text");
+    const text = await canvas.findByText("Some text");
     await userEvent.hover(text);
 
     // Assert
