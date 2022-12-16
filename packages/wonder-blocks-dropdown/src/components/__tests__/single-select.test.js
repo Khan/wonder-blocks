@@ -97,6 +97,31 @@ describe("SingleSelect", () => {
                 // Assert
                 expect(onChange).toHaveBeenCalledWith("1"); // value
             });
+
+            it("should not focus in the first item if autoFocus is disabled", async () => {
+                // Arrange
+                render(
+                    <SingleSelect
+                        autoFocus={false}
+                        onChange={onChange}
+                        placeholder="Choose"
+                        opener={() => <input type="text" />}
+                    >
+                        <OptionItem label="item 1" value="1" />
+                        <OptionItem label="item 2" value="2" />
+                        <OptionItem label="item 3" value="3" />
+                    </SingleSelect>,
+                );
+
+                // Act
+                userEvent.click(screen.getByRole("textbox"));
+
+                // wait for the dropdown to open
+                await screen.findByRole("listbox");
+
+                // Assert
+                expect(screen.getByRole("textbox")).toHaveFocus();
+            });
         });
 
         describe("keyboard", () => {
@@ -181,6 +206,32 @@ describe("SingleSelect", () => {
                 // Assert
                 expect(onChange).toHaveBeenCalledWith("orange");
                 expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
+            });
+
+            it("should NOT find/select an item using the keyboard if enableTypeAhead is set false", () => {
+                // Arrange
+                render(
+                    <SingleSelect
+                        onChange={onChange}
+                        placeholder="Choose"
+                        enableTypeAhead={false}
+                    >
+                        <OptionItem label="apple" value="apple" />
+                        <OptionItem label="orange" value="orange" />
+                        <OptionItem label="pear" value="pear" />
+                    </SingleSelect>,
+                );
+                userEvent.tab();
+
+                // Act
+
+                // Try to find first occurrence but it should not be found
+                // as we have disabled type ahead.
+                userEvent.keyboard("or");
+                jest.advanceTimersByTime(501);
+
+                // Assert
+                expect(onChange).not.toHaveBeenCalled();
             });
 
             it("should dismiss the dropdown when pressing {escape}", () => {

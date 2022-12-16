@@ -39,8 +39,54 @@ export type SingleSelectLabels = {|
     someResults: (numOptions: number) => string,
 |};
 
+type DefaultProps = {|
+    /**
+     * Whether this dropdown should be left-aligned or right-aligned with the
+     * opener component. Defaults to left-aligned.
+     */
+    alignment: "left" | "right",
+
+    /**
+     * Whether to auto focus an option. Defaults to true.
+     */
+    autoFocus: boolean,
+
+    /**
+     * Whether to enable the type-ahead suggestions feature. Defaults to true.
+     *
+     * This feature allows to navigate the listbox using the keyboard.
+     * - Type a character: focus moves to the next item with a name that starts
+     *   with the typed character.
+     * - Type multiple characters in rapid succession: focus moves to the next
+     *   item with a name that starts with the string of characters typed.
+     *
+     * **NOTE:** Type-ahead is recommended for all listboxes, but there might be
+     * some cases where it's not desirable (for example when using a `TextField`
+     * as the opener element).
+     */
+    enableTypeAhead: boolean,
+
+    /**
+     * Whether this component is disabled. A disabled dropdown may not be opened
+     * and does not support interaction. Defaults to false.
+     */
+    disabled: boolean,
+
+    /**
+     * Whether to display the "light" version of this component instead, for
+     * use when the component is used on a dark background.
+     */
+    light: boolean,
+
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels: SingleSelectLabels,
+|};
+
 type Props = {|
     ...AriaProps,
+    ...DefaultProps,
 
     /**
      * The items in this select.
@@ -82,24 +128,6 @@ type Props = {|
     selectedValue?: ?string,
 
     /**
-     * Whether this dropdown should be left-aligned or right-aligned with the
-     * opener component. Defaults to left-aligned.
-     */
-    alignment: "left" | "right",
-
-    /**
-     * Whether this component is disabled. A disabled dropdown may not be opened
-     * and does not support interaction. Defaults to false.
-     */
-    disabled: boolean,
-
-    /**
-     * Whether to display the "light" version of this component instead, for
-     * use when the component is used on a dark background.
-     */
-    light: boolean,
-
-    /**
      * Optional styling to add to the opener component wrapper.
      */
     style?: StyleType,
@@ -131,11 +159,6 @@ type Props = {|
      * top. The items will be filtered by the input.
      */
     isFilterable?: boolean,
-
-    /**
-     * The object containing the custom labels used inside this component.
-     */
-    labels: SingleSelectLabels,
 |};
 
 type State = {|
@@ -155,13 +178,6 @@ type State = {|
      * to this element, and also to pass the reference to Popper.js.
      */
     openerElement: ?HTMLElement,
-|};
-
-type DefaultProps = {|
-    alignment: Props["alignment"],
-    disabled: Props["disabled"],
-    light: Props["light"],
-    labels: Props["labels"],
 |};
 
 /**
@@ -194,7 +210,9 @@ export default class SingleSelect extends React.Component<Props, State> {
 
     static defaultProps: DefaultProps = {
         alignment: "left",
+        autoFocus: true,
         disabled: false,
+        enableTypeAhead: true,
         light: false,
         labels: {
             clearSearch: defaultLabels.clearSearch,
@@ -351,7 +369,9 @@ export default class SingleSelect extends React.Component<Props, State> {
             // passing them down to the opener as part of sharedProps
             /* eslint-disable no-unused-vars */
             alignment,
+            autoFocus,
             dropdownStyle,
+            enableTypeAhead,
             isFilterable,
             labels,
             onChange,
@@ -400,9 +420,11 @@ export default class SingleSelect extends React.Component<Props, State> {
     render(): React.Node {
         const {
             alignment,
+            autoFocus,
             children,
             className,
             dropdownStyle,
+            enableTypeAhead,
             isFilterable,
             labels,
             light,
@@ -418,6 +440,8 @@ export default class SingleSelect extends React.Component<Props, State> {
                 role="listbox"
                 selectionType="single"
                 alignment={alignment}
+                autoFocus={autoFocus}
+                enableTypeAhead={enableTypeAhead}
                 dropdownStyle={[
                     isFilterable && filterableDropdownStyle,
                     selectDropdownStyle,

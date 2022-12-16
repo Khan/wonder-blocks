@@ -73,16 +73,36 @@ type Labels = {|
 // @see https://flow.org/en/docs/react/hoc/#toc-exporting-wrapped-components
 type DefaultProps = {|
     /**
-     * An index that represents the index of the focused element when the menu
-     * is opened.
-     */
-    initialFocusedIndex?: number,
-
-    /**
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
      */
     alignment: "left" | "right",
+
+    /**
+     * Whether to auto focus an option. Defaults to true.
+     */
+    autoFocus: boolean,
+
+    /**
+     * Whether to enable the type-ahead suggestions feature. Defaults to true.
+     *
+     * This feature allows to navigate the listbox using the keyboard.
+     * - Type a character: focus moves to the next item with a name that starts
+     *   with the typed character.
+     * - Type multiple characters in rapid succession: focus moves to the next
+     *   item with a name that starts with the string of characters typed.
+     *
+     * **NOTE:** Type-ahead is recommended for all listboxes, but there might be
+     * some cases where it's not desirable (for example when using a `TextField`
+     * as the opener element).
+     */
+    enableTypeAhead: boolean,
+
+    /**
+     * An index that represents the index of the focused element when the menu
+     * is opened.
+     */
+    initialFocusedIndex?: number,
 
     /**
      * The object containing the custom labels used inside this component.
@@ -106,24 +126,13 @@ type ItemAriaRole = "option" | "menuitem";
 
 type Props = {|
     ...DefaultProps,
+
+    // Required props
+
     /**
      * Items for the menu.
      */
     items: Array<DropdownItem>,
-
-    /**
-     * An optional handler to set the searchText of the parent. When this and
-     * the searchText exist, SearchField will be displayed at the top of the
-     * dropdown body.
-     */
-    onSearchTextChanged?: ?(searchText: string) => mixed,
-
-    /**
-     * An optional string that the user entered to search the items. When this
-     * and the onSearchTextChanged exist, SearchField will be displayed at the
-     * top of the dropdown body.
-     */
-    searchText?: ?string,
 
     /**
      * Callback for when the menu is opened or closed. Parameter is whether
@@ -147,6 +156,27 @@ type Props = {|
     openerElement: ?HTMLElement,
 
     /**
+     * The aria "role" applied to the dropdown container.
+     */
+    role: DropdownAriaRole,
+
+    // Optional props
+
+    /**
+     * An optional handler to set the searchText of the parent. When this and
+     * the searchText exist, SearchField will be displayed at the top of the
+     * dropdown body.
+     */
+    onSearchTextChanged?: ?(searchText: string) => mixed,
+
+    /**
+     * An optional string that the user entered to search the items. When this
+     * and the onSearchTextChanged exist, SearchField will be displayed at the
+     * top of the dropdown body.
+     */
+    searchText?: ?string,
+
+    /**
      * Styling specific to the dropdown component that isn't part of the opener,
      * passed by the specific implementation of the dropdown menu,
      */
@@ -161,11 +191,6 @@ type Props = {|
      * Optional CSS classes for the entire dropdown component.
      */
     className?: string,
-
-    /**
-     * The aria "role" applied to the dropdown container.
-     */
-    role: DropdownAriaRole,
 
     /**
      * When this is true, the dropdown body shows a search text input at the
@@ -247,6 +272,8 @@ class DropdownCore extends React.Component<Props, State> {
 
     static defaultProps: DefaultProps = {
         alignment: "left",
+        autoFocus: true,
+        enableTypeAhead: true,
         labels: {
             clearSearch: defaultLabels.clearSearch,
             filter: defaultLabels.filter,
@@ -320,7 +347,7 @@ class DropdownCore extends React.Component<Props, State> {
 
     componentDidMount() {
         this.updateEventListeners();
-        this.initialFocusItem();
+        this.maybeFocusInitialItem();
     }
 
     componentDidUpdate(prevProps: Props) {
@@ -328,7 +355,7 @@ class DropdownCore extends React.Component<Props, State> {
 
         if (prevProps.open !== open) {
             this.updateEventListeners();
-            this.initialFocusItem();
+            this.maybeFocusInitialItem();
         }
         // If the menu changed, but from open to open, figure out if we need
         // to recalculate the focus somehow.
@@ -396,8 +423,12 @@ class DropdownCore extends React.Component<Props, State> {
 
     // Figure out focus states for the dropdown after it has changed from open
     // to closed or vice versa
-    initialFocusItem() {
-        const {open} = this.props;
+    maybeFocusInitialItem() {
+        const {autoFocus, open} = this.props;
+
+        if (!autoFocus) {
+            return;
+        }
 
         if (open) {
             this.resetFocusedIndex();
@@ -544,11 +575,11 @@ class DropdownCore extends React.Component<Props, State> {
     }
 
     handleKeyDown: (event: SyntheticKeyboardEvent<>) => void = (event) => {
-        const {onOpenChanged, open, searchText} = this.props;
+        const {enableTypeAhead, onOpenChanged, open, searchText} = this.props;
         const keyCode = event.which || event.keyCode;
 
         // Listen for the keydown events if we are using ASCII characters.
-        if (getStringForKey(event.key)) {
+        if (enableTypeAhead && getStringForKey(event.key)) {
             event.stopPropagation();
             this.textSuggestion += event.key;
             // Trigger the filter logic only after the debounce is resolved.
