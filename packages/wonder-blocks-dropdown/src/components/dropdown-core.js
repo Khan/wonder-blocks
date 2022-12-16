@@ -79,12 +79,12 @@ type DefaultProps = {|
     alignment: "left" | "right",
 
     /**
-     * Whether to auto focus an option.
+     * Whether to auto focus an option. Defaults to true.
      */
     autoFocus: boolean,
 
     /**
-     * Whether to enable the type-ahead suggestions feature.
+     * Whether to enable the type-ahead suggestions feature. Defaults to true.
      *
      * This feature allows to navigate the listbox using the keyboard.
      * - Type a character: focus moves to the next item with a name that starts
@@ -347,7 +347,7 @@ class DropdownCore extends React.Component<Props, State> {
 
     componentDidMount() {
         this.updateEventListeners();
-        this.initialFocusItem();
+        this.maybeFocusInitialItem();
     }
 
     componentDidUpdate(prevProps: Props) {
@@ -355,7 +355,7 @@ class DropdownCore extends React.Component<Props, State> {
 
         if (prevProps.open !== open) {
             this.updateEventListeners();
-            this.initialFocusItem();
+            this.maybeFocusInitialItem();
         }
         // If the menu changed, but from open to open, figure out if we need
         // to recalculate the focus somehow.
@@ -423,7 +423,7 @@ class DropdownCore extends React.Component<Props, State> {
 
     // Figure out focus states for the dropdown after it has changed from open
     // to closed or vice versa
-    initialFocusItem() {
+    maybeFocusInitialItem() {
         const {autoFocus, open} = this.props;
 
         if (!autoFocus) {

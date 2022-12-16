@@ -47,12 +47,12 @@ type DefaultProps = {|
     alignment: "left" | "right",
 
     /**
-     * Whether to auto focus an option.
+     * Whether to auto focus an option. Defaults to true.
      */
     autoFocus: boolean,
 
     /**
-     * Whether to enable the type-ahead suggestions feature.
+     * Whether to enable the type-ahead suggestions feature. Defaults to true.
      *
      * This feature allows to navigate the listbox using the keyboard.
      * - Type a character: focus moves to the next item with a name that starts
@@ -77,6 +77,7 @@ type DefaultProps = {|
      * use when the component is used on a dark background.
      */
     light: boolean,
+
     /**
      * The object containing the custom labels used inside this component.
      */
