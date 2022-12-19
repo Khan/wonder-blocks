@@ -267,6 +267,8 @@ TooltipOnButtons.parameters = {
  */
 export const Controlled: StoryComponentType = () => {
     const [opened, setOpened] = React.useState(false);
+    const buttonText = `Click to ${opened ? "close" : "open"} tooltip`;
+
     return (
         <View style={[styles.centered, styles.row]}>
             <Tooltip
@@ -275,9 +277,7 @@ export const Controlled: StoryComponentType = () => {
             >
                 tooltip
             </Tooltip>
-            <Button onClick={() => setOpened(!opened)}>
-                Click to {opened ? "close" : "open"} tooltip
-            </Button>
+            <Button onClick={() => setOpened(!opened)}>{buttonText}</Button>
         </View>
     );
 };
