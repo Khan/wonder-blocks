@@ -448,54 +448,5 @@ describe("Tooltip", () => {
             // Assert
             expect(result).toBeUndefined();
         });
-
-        // test("can be closed programmatically", async () => {
-        //     // Arrange
-        //     function StatefulTooltipWrapper({children}) {
-        //         const [opened, setOpened] = React.useState(false);
-        //         console.log(opened);
-
-        //         return children(opened, setOpened);
-        //     }
-
-        //     const buttonRef = await new Promise((resolve) => {
-        //         const nodes = (
-        //             <StatefulTooltipWrapper>
-        //                 {(opened, setOpened) => (
-        //                     <View>
-        //                         <Tooltip
-        //                             id="tooltip"
-        //                             content="Content"
-        //                             opened={opened}
-        //                         >
-        //                             Anchor
-        //                         </Tooltip>
-        //                         <button
-        //                             ref={resolve}
-        //                             onClick={() => setOpened(!opened)}
-        //                         >
-        //                             Toggle
-        //                         </button>
-        //                     </View>
-        //                 )}
-        //             </StatefulTooltipWrapper>
-        //         );
-        //         mount(nodes);
-        //     });
-
-        //     const node = (ReactDOM.findDOMNode(buttonRef): any);
-        //     node && node.click();
-        //     jest.runOnlyPendingTimers();
-
-        //     // Act
-        //     // Flow doesn't like jest mocks
-        //     // $FlowFixMe[prop-missing]
-        //     const result = TooltipBubble.mock.instances[0].props["children"];
-
-        //     // Assert
-        //     expect(result).toMatchSnapshot(
-        //         `Similar to <TooltipContent>Content</TooltipContent>`,
-        //     );
-        // });
     });
 });
