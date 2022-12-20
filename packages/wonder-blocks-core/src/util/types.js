@@ -11,79 +11,165 @@ export type StyleType =
     | NestedArray<CSSProperties | Falsy>;
 
 // Source: https://www.w3.org/WAI/PF/aria-1.1/roles#role_definitions
+/*
+    Scrape roles by using terminal
+
+    const getAriaRoles = () => {
+        const nodes = document.querySelectorAll("#index_role .role-reference");
+
+        let roles = [];
+        for (let i = 0; i <= nodes.length - 1; i ++) {
+            roles.push(nodes[i].innerHTML);
+        }
+
+        roles = roles.map((value) => value.substring(6, value.indexOf("</code>")));
+        return '\'' + roles.join('\'|\'') + '\'';
+    }
+*/
 type roles =
     | "alert"
     | "alertdialog"
+    | "status"
+    | "alertdialog"
+    | "alert"
+    | "dialog"
     | "application"
+    | "structure"
+    | "widget"
     | "article"
     | "banner"
     | "button"
+    | "link"
+    | "cell"
+    | "gridcell"
     | "checkbox"
     | "columnheader"
     | "combobox"
-    | "command" // abstract role
+    | "widget"
+    | "textbox"
+    | "listbox"
+    | "grid"
+    | "textbox"
+    | "command"
     | "complementary"
-    | "composite" // abstract role
+    | "composite"
     | "contentinfo"
+    | "definition"
+    | "term"
     | "dialog"
     | "directory"
     | "document"
+    | "feed"
+    | "list"
+    | "articles"
+    | "articles"
+    | "figure"
+    | "section"
     | "form"
+    | "landmark"
+    | "search"
     | "grid"
+    | "widget"
     | "gridcell"
+    | "cell"
+    | "grid"
+    | "treegrid"
     | "group"
     | "heading"
     | "img"
-    | "input" // abstract role
-    | "landmark" // abstract role
+    | "input"
+    | "landmark"
+    | "section"
     | "link"
+    | "button"
     | "list"
+    | "section"
+    | "listitem"
     | "listbox"
+    | "listbox"
+    | "combobox"
+    | "list"
     | "listitem"
     | "log"
+    | "marquee"
     | "main"
     | "marquee"
+    | "log"
     | "math"
     | "menu"
     | "menubar"
+    | "menu"
     | "menuitem"
+    | "menu"
+    | "menubar"
     | "menuitemcheckbox"
+    | "menuitem"
     | "menuitemradio"
+    | "menuitem"
     | "navigation"
+    | "none"
+    | "presentation"
     | "note"
     | "option"
+    | "select"
     | "presentation"
+    | "none"
     | "progressbar"
     | "radio"
     | "radiogroup"
-    | "range" // abstract role
+    | "radio"
+    | "range"
     | "region"
-    | "reletype" // abstract role
+    | "section"
+    | "roletype"
     | "row"
     | "rowgroup"
     | "rowheader"
     | "scrollbar"
     | "search"
-    | "section" // abstract role
-    | "sectionhead" // abstract role
-    | "select" // abstract role
+    | "landmark"
+    | "form"
+    | "searchbox"
+    | "searchbox"
+    | "textbox"
+    | "search"
+    | "section"
+    | "sectionhead"
+    | "select"
     | "separator"
     | "slider"
     | "spinbutton"
+    | "range"
     | "status"
-    | "structure" // abstract role
+    | "alert"
+    | "structure"
+    | "switch"
+    | "checkbox"
+    | "tab"
+    | "table"
+    | "section"
+    | "grid"
+    | "tablist"
+    | "tab"
+    | "tabpanel"
+    | "tabpanel"
+    | "tab"
     | "tab"
     | "tablist"
-    | "tabpanel"
+    | "term"
+    | "definition"
     | "textbox"
     | "timer"
     | "toolbar"
     | "tooltip"
     | "tree"
+    | "list"
     | "treegrid"
+    | "grid"
+    | "tree"
     | "treeitem"
-    | "widget" // abstract role
-    // abstract role
+    | "tree"
+    | "widget"
     | "window";
 
 type IdRef = string;
