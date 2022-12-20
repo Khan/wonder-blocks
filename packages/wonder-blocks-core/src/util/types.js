@@ -25,6 +25,8 @@ export type StyleType =
         roles = [...new Set(roles)].sort().map((value) => value.substring(6, value.indexOf("</code>")));
         return '\'' + roles.join('\'|\'') + '\'';
     }
+
+    copy(getAriaRoles())
 */
 type roles =
     | "alert"
