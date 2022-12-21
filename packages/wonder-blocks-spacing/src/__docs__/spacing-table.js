@@ -24,10 +24,10 @@ export default function SpacingTable(): React.Node {
                         Space
                     </StyledTableHeader>
                     <StyledTableHeader style={styles.cell}>
-                        Example vertical
+                        Example horizontal
                     </StyledTableHeader>
                     <StyledTableHeader style={styles.cell}>
-                        Example horizontal
+                        Example vertical
                     </StyledTableHeader>
                 </StyledTableRow>
             </thead>
