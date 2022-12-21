@@ -150,6 +150,7 @@ const items = [
     <OptionItem label="Grape" value="grape" key={6} />,
     <OptionItem label="Lemon" value="lemon" key={7} />,
     <OptionItem label="Mango" value="mango" key={8} />,
+    <OptionItem label="" value="" key={9} />,
 ];
 
 const Template = (args) => {
@@ -241,6 +242,58 @@ Disabled.parameters = {
     docs: {
         description: {
             story: "This select is disabled and cannot be interacted with.",
+        },
+    },
+};
+
+/**
+ * TwoWithText
+ */
+export const TwoWithText: StoryComponentType = (args) => {
+    const [selectedValue, setSelectedValue] = React.useState(
+        args.selectedValue,
+    );
+    const [secondSelectedValue, setSecondSelectedValue] = React.useState(
+        args.selectedValue,
+    );
+    const [opened, setOpened] = React.useState(args.opened);
+    const [secondOpened, setSecondOpened] = React.useState(args.opened);
+    React.useEffect(() => {
+        // Only update opened if the args.opened prop changes (using the
+        // controls panel).
+        setOpened(args.opened);
+    }, [args.opened]);
+
+    return (
+        <div>
+            Here is some text to nest the dropdown
+            <SingleSelect
+                {...args}
+                onChange={setSelectedValue}
+                selectedValue={selectedValue}
+                opened={opened}
+                onToggle={setOpened}
+            >
+                {items}
+            </SingleSelect>
+            . And here is more text to compare!
+            <SingleSelect
+                {...args}
+                onChange={setSecondSelectedValue}
+                selectedValue={secondSelectedValue}
+                opened={secondOpened}
+                onToggle={setSecondOpened}
+            >
+                {items}
+            </SingleSelect>
+        </div>
+    );
+};
+
+TwoWithText.parameters = {
+    docs: {
+        description: {
+            story: "This story has two selects nested inline within text.",
         },
     },
 };
