@@ -50,7 +50,7 @@ describe("Tooltip", () => {
             expect(tooltip).not.toBeInTheDocument();
         });
 
-        it("should show the tooltip on focusin", async () => {
+        it("should show the tooltip on hover", async () => {
             // Arrange
             render(
                 <View>
@@ -71,7 +71,7 @@ describe("Tooltip", () => {
             expect(tooltip).toBeInTheDocument();
         });
 
-        it("should show the tooltip on focusin", async () => {
+        it("should hide the tooltip on unhover", async () => {
             // Arrange
             render(
                 <View>
