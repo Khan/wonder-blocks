@@ -83,7 +83,7 @@
     "eslint-plugin-jest": "27.0.1",
     "eslint-plugin-jsx-a11y": "^6.5.1",
     "eslint-plugin-monorepo": "^0.3.2",
-    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
