@@ -22,7 +22,8 @@ export type StyleType =
             roles.push(nodes[i].innerHTML);
         }
 
-        roles = [...new Set(roles)].sort().map((value) => value.substring(6, value.indexOf("</code>")));
+        roles = roles.map((value) => value.substring(6, value.indexOf("</code>")));
+        roles = [...new Set(roles)].sort();
         return '\'' + roles.join('\'|\'') + '\'';
     }
 
@@ -58,7 +59,6 @@ type roles =
     | "img"
     | "input"
     | "landmark"
-    | "landmark"
     | "link"
     | "list"
     | "listbox"
@@ -81,7 +81,6 @@ type roles =
     | "radio"
     | "radiogroup"
     | "range"
-    | "range"
     | "region"
     | "roletype"
     | "row"
@@ -91,15 +90,12 @@ type roles =
     | "search"
     | "searchbox"
     | "section"
-    | "section"
     | "sectionhead"
-    | "select"
     | "select"
     | "separator"
     | "slider"
     | "spinbutton"
     | "status"
-    | "structure"
     | "structure"
     | "switch"
     | "tab"
@@ -114,7 +110,6 @@ type roles =
     | "tree"
     | "treegrid"
     | "treeitem"
-    | "widget"
     | "widget"
     | "window";
 
