@@ -81,7 +81,7 @@
     "eslint-plugin-ft-flow": "^2.0.1",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "27.0.1",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-jsx-a11y": "^6.6.1",
     "eslint-plugin-monorepo": "^0.3.2",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.0.0",
