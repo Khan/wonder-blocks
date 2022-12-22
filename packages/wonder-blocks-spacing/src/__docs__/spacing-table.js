@@ -18,10 +18,10 @@ export default function SpacingTable(): React.Node {
             <thead>
                 <StyledTableRow style={styles.header}>
                     <StyledTableHeader style={styles.cell}>
-                        Size
+                        Name
                     </StyledTableHeader>
                     <StyledTableHeader style={styles.cell}>
-                        Space
+                        Size
                     </StyledTableHeader>
                     <StyledTableHeader style={styles.cell}>
                         Example horizontal
@@ -35,7 +35,9 @@ export default function SpacingTable(): React.Node {
                 {Object.keys(Spacing).map((spaceName, idx) => (
                     <StyledTableRow key={idx} style={styles.row}>
                         <StyledTableCell style={styles.cell}>
-                            <LabelMedium>{spaceName}</LabelMedium>
+                            <LabelMedium style={styles.tag}>
+                                {spaceName}
+                            </LabelMedium>
                         </StyledTableCell>
                         <StyledTableCell style={styles.cell}>
                             <LabelMedium>{Spacing[spaceName]}px</LabelMedium>
@@ -82,5 +84,13 @@ const styles = StyleSheet.create({
     cell: {
         padding: Spacing.xSmall_8,
         verticalAlign: "middle",
+    },
+    tag: {
+        background: Color.offWhite,
+        border: `solid 1px ${Color.offBlack8}`,
+        borderRadius: Spacing.xxxxSmall_2,
+        display: "inline-block",
+        margin: `${Spacing.xxxSmall_4}px 0`,
+        padding: `0 ${Spacing.xxxSmall_4}px`,
     },
 });
