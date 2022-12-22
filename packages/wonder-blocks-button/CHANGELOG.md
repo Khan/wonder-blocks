@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-button
 
+## 3.0.8
+
+### Patch Changes
+
+-   8e3d9439: Fix tertiary button styles (pressed and disabled+focused)
+
 ## 3.0.7
 
 ### Patch Changes

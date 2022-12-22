@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 3.1.5
+
+### Patch Changes
+
+-   be4e4cd2: Allow maybe values for `errorMessage` prop on `CheckboxGroup`
+
 ## 3.1.4
 
 ### Patch Changes
