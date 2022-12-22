@@ -3,7 +3,7 @@ import * as React from "react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
-import Tooltip from "@khanacademy/wonder-blocks-tooltip";
+import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import * as i18n from "../../functions/i18n.js";
 
@@ -92,9 +92,11 @@ export const HandlingTranslationErrors = (): React.Node => {
             onError={(error) => (
                 <Tooltip
                     content={
-                        <LabelMedium style={{color: Color.red, padding: 8}}>
-                            {error.message}{" "}
-                        </LabelMedium>
+                        <TooltipContent>
+                            <LabelMedium style={{color: Color.red}}>
+                                {error.message}
+                            </LabelMedium>
+                        </TooltipContent>
                     }
                 >
                     <Icon

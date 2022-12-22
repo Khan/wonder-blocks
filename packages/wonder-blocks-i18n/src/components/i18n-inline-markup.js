@@ -114,13 +114,14 @@ export class I18nInlineMarkup extends React.PureComponent<Props> {
      * If an error occurs, we either call the onError prop, or throw the
      * error.
      */
-    handleError(error: Error) {
+    handleError(error: Error): React.Node {
         const {onError} = this.props;
+
         if (onError) {
             return onError(error);
-        } else {
-            throw error;
         }
+
+        throw error;
     }
 
     render(): React.Node {
