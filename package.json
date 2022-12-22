@@ -58,7 +58,7 @@
     "@storybook/jest": "^0.0.10",
     "@storybook/react": "^6.5.13",
     "@storybook/testing-library": "^0.0.13",
-    "@testing-library/dom": "^8.11.1",
+    "@testing-library/dom": "^8.19.0",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.5",
     "@testing-library/react-hooks": "^7.0.2",
