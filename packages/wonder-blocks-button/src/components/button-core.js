@@ -395,6 +395,12 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
                         height: 2,
                         width: `calc(100% - ${iconWidth}px)`,
                         right: 0,
+                        /**
+                         * For tertiary buttons, underline is applied to the
+                         * internal `span` element, So we need to calculate the
+                         * offset to center the line in the button (right after
+                         * the span).
+                         */
                         bottom: `calc(50% - 11px)`,
                         background: light ? white : offBlack32,
                         borderRadius: 2,
