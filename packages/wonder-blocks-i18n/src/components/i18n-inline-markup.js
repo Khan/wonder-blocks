@@ -110,17 +110,26 @@ type Props = {|
 |};
 
 export class I18nInlineMarkup extends React.PureComponent<Props> {
+    /**
+     * If an error occurs, we either call the onError prop, or throw the
+     * error.
+     */
+    handleError(error: Error) {
+        const {onError} = this.props;
+        if (onError) {
+            return onError(error);
+        } else {
+            throw error;
+        }
+    }
+
     render(): React.Node {
-        const {children, elementWrapper, onError, ...renderers} = this.props;
+        const {children, elementWrapper, ...renderers} = this.props;
         let tree: $ReadOnlyArray<SimpleHtmlNode>;
         try {
             tree = parseSimpleHTML(children);
         } catch (e) {
-            if (onError) {
-                return onError(e);
-            } else {
-                throw e;
-            }
+            return this.handleError(e);
         }
         const nodes: Array<React.Node> = tree.map((node, i) => {
             if (node.type === "text") {
@@ -136,8 +145,10 @@ export class I18nInlineMarkup extends React.PureComponent<Props> {
             if (node.type === "tag") {
                 const renderer = renderers[node.tag];
                 if (!renderer) {
-                    throw new Error(
-                        `I18nInlineMarkup: missing render prop for ${node.tag}`,
+                    return this.handleError(
+                        new Error(
+                            `I18nInlineMarkup: missing render prop for ${node.tag}`,
+                        ),
                     );
                 }
                 if (elementWrapper) {
@@ -173,7 +184,7 @@ export class I18nInlineMarkup extends React.PureComponent<Props> {
             }
 
             // istanbul ignore
-            throw new Error("Unknown child type.");
+            return this.handleError(new Error("Unknown child type."));
         });
         return nodes;
     }

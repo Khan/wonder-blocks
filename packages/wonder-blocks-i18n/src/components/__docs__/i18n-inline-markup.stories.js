@@ -1,6 +1,10 @@
 // @flow
 import * as React from "react";
 
+import Color from "@khanacademy/wonder-blocks-color";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
+import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import * as i18n from "../../functions/i18n.js";
 
 import {I18nInlineMarkup} from "../i18n-inline-markup.js";
@@ -72,6 +76,37 @@ export const ElementWrapper = (): React.Node => {
         >
             {i18n._(
                 "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
+            )}
+        </I18nInlineMarkup>
+    );
+};
+
+export const HandlingTranslationErrors = (): React.Node => {
+    return (
+        <I18nInlineMarkup
+            settings={(label) => (
+                <LabelMedium href="/settings#child-accounts">
+                    {label}
+                </LabelMedium>
+            )}
+            onError={(error) => (
+                <Tooltip
+                    content={
+                        <LabelMedium style={{color: Color.red, padding: 8}}>
+                            {error.message}{" "}
+                        </LabelMedium>
+                    }
+                >
+                    <Icon
+                        size="small"
+                        icon={icons.incorrect}
+                        color={Color.red}
+                    />
+                </Tooltip>
+            )}
+        >
+            {i18n._(
+                "This HTML is broken \u003cinvalid\u003einvalid\u003e innner \u003c/invalid\u003e, but here is fine.",
             )}
         </I18nInlineMarkup>
     );
