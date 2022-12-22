@@ -273,6 +273,7 @@ export const TwoWithText: StoryComponentType = (args) => {
                 selectedValue={selectedValue}
                 opened={opened}
                 onToggle={setOpened}
+                style={{display: "inline-block"}}
             >
                 {items}
             </SingleSelect>
@@ -283,6 +284,7 @@ export const TwoWithText: StoryComponentType = (args) => {
                 selectedValue={secondSelectedValue}
                 opened={secondOpened}
                 onToggle={setSecondOpened}
+                style={{display: "inline-block"}}
             >
                 {items}
             </SingleSelect>
