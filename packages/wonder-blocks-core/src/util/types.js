@@ -11,24 +11,6 @@ export type StyleType =
     | NestedArray<CSSProperties | Falsy>;
 
 // Source: https://www.w3.org/WAI/PF/aria-1.1/roles#role_definitions
-/*
-    Scrape roles by using terminal
-
-    const getAriaRoles = () => {
-        const nodes = document.querySelectorAll("#index_role .role-reference");
-
-        let roles = [];
-        for (let i = 0; i <= nodes.length - 1; i ++) {
-            roles.push(nodes[i].innerHTML);
-        }
-
-        roles = roles.map((value) => value.substring(6, value.indexOf("</code>")));
-        roles = [...new Set(roles)].sort();
-        return '\'' + roles.join('\'|\'') + '\'';
-    }
-
-    copy(getAriaRoles())
-*/
 type roles =
     | "alert"
     | "alertdialog"
