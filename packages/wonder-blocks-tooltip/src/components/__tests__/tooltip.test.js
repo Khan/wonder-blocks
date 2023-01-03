@@ -399,4 +399,54 @@ describe("Tooltip", () => {
             });
         });
     });
+
+    describe("Controlled", () => {
+        test("can be opened programmatically", async () => {
+            // Arrange
+            await new Promise((resolve) => {
+                const nodes = (
+                    <View>
+                        <Tooltip id="tooltip" content="Content" opened={true}>
+                            <View ref={resolve}>Anchor</View>
+                        </Tooltip>
+                    </View>
+                );
+                mount(nodes);
+            });
+            jest.runOnlyPendingTimers();
+
+            // Act
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
+            const result = TooltipBubble.mock.instances[0].props["children"];
+
+            // Assert
+            expect(result).toMatchSnapshot(
+                `Similar to <TooltipContent>Content</TooltipContent>`,
+            );
+        });
+
+        test("can be closed programmatically", async () => {
+            // Arrange
+            await new Promise((resolve) => {
+                const nodes = (
+                    <View>
+                        <Tooltip id="tooltip" content="Content" opened={false}>
+                            <View ref={resolve}>Anchor</View>
+                        </Tooltip>
+                    </View>
+                );
+                mount(nodes);
+            });
+            jest.runOnlyPendingTimers();
+
+            // Act
+            // Flow doesn't like jest mocks
+            // $FlowFixMe[prop-missing]
+            const result = TooltipBubble.mock.instances[0];
+
+            // Assert
+            expect(result).toBeUndefined();
+        });
+    });
 });

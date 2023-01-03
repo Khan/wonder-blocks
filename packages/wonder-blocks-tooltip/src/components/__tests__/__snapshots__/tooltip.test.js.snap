@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`Tooltip Controlled can be opened programmatically: Similar to <TooltipContent>Content</TooltipContent> 1`] = `
+<TooltipContent>
+  Content
+</TooltipContent>
+`;
+
 exports[`Tooltip content is TooltipContent with title, overrides title of TooltipContent: Similar to <Body>Some custom content</Body> 1`] = `
 <Body
   tag="span"
