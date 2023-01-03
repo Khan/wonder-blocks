@@ -40,7 +40,7 @@ type CheckboxGroupProps = {|
      * error state, along with this error message. If no error state is desired,
      * simply do not supply this prop, or pass along null.
      */
-    errorMessage?: string,
+    errorMessage?: ?string,
 
     /**
      * Custom styling for this group of checkboxes.

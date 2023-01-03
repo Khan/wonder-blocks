@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.10.0
+
+### Minor Changes
+
+-   0e773ce6: Add `autoFocus` and `enableTypeAhead` props to improve keyboard navigation with the `SingleSelect` component
+
 ## 2.9.5
 
 ### Patch Changes
