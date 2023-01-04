@@ -107,9 +107,6 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
 
         const ClickableBehavior = getClickableBehavior(router);
 
-        // Note(TB): Prevents unwanted vertical shift for empty selection
-        const space = "\u00A0";
-
         return (
             <ClickableBehavior disabled={disabled} onClick={this.handleClick}>
                 {(state, childrenProps) => {
@@ -149,7 +146,9 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                             {...childrenProps}
                         >
                             <LabelMedium style={styles.text}>
-                                {children || space}
+                                {/* // Note(tamarab): Prevents unwanted vertical
+                                shift for empty selection */}
+                                {children || "\u00A0"}
                             </LabelMedium>
                             <Icon
                                 icon={icons.caretDown}
