@@ -150,7 +150,6 @@ const items = [
     <OptionItem label="Grape" value="grape" key={6} />,
     <OptionItem label="Lemon" value="lemon" key={7} />,
     <OptionItem label="Mango" value="mango" key={8} />,
-    <OptionItem label="" value="" key={9} />,
 ];
 
 const Template = (args) => {
@@ -275,7 +274,7 @@ export const TwoWithText: StoryComponentType = (args) => {
                 onToggle={setOpened}
                 style={{display: "inline-block"}}
             >
-                {items}
+                {[...items, <OptionItem label="" value="" key={9} />]}
             </SingleSelect>
             . And here is more text to compare!
             <SingleSelect
@@ -286,7 +285,7 @@ export const TwoWithText: StoryComponentType = (args) => {
                 onToggle={setSecondOpened}
                 style={{display: "inline-block"}}
             >
-                {items}
+                {[...items, <OptionItem label="" value="" key={9} />]}
             </SingleSelect>
         </div>
     );
