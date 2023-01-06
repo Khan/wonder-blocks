@@ -82,7 +82,7 @@ describe("ClickableBehavior", () => {
         expect(button).not.toHaveTextContent("hovered");
     });
 
-    it("changes only pressed state on mouse enter/leave while dragging", () => {
+    it("changes only hovered state on mouse enter while dragging", () => {
         const onClick = jest.fn();
         render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
@@ -93,18 +93,33 @@ describe("ClickableBehavior", () => {
             </ClickableBehavior>,
         );
         const button = screen.getByRole("button");
-        expect(button).not.toHaveTextContent("pressed");
-
-        fireEvent.mouseDown(button);
-        fireEvent.dragStart(button);
-        fireEvent.mouseMove(button);
-        expect(button).toHaveTextContent("pressed");
-
-        fireEvent.mouseLeave(button);
+        expect(button).not.toHaveTextContent("hovered");
         expect(button).not.toHaveTextContent("pressed");
 
         fireEvent.mouseEnter(button, {buttons: 1});
+        expect(button).toHaveTextContent("hovered");
+    });
+
+    it("changes only pressed state on mouse leave while dragging", () => {
+        const onClick = jest.fn();
+        render(
+            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+                {(state, childrenProps) => {
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
+                }}
+            </ClickableBehavior>,
+        );
+        const button = screen.getByRole("button");
+        expect(button).not.toHaveTextContent("hovered");
+        expect(button).not.toHaveTextContent("pressed");
+
+        fireEvent.mouseDown(button);
         expect(button).toHaveTextContent("pressed");
+
+        fireEvent.mouseLeave(button);
+        expect(button).not.toHaveTextContent("hovered");
+        expect(button).not.toHaveTextContent("pressed");
     });
 
     it("changes pressed state on mouse down/up", () => {
@@ -763,7 +778,7 @@ describe("ClickableBehavior", () => {
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
     });
 
-    it("calls onClick on mouseup when the mouse was dragging", () => {
+    it("does not call onClick on mouseup when the mouse was dragging", () => {
         const onClick = jest.fn();
         render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
@@ -783,11 +798,11 @@ describe("ClickableBehavior", () => {
         fireEvent.mouseDown(button);
         fireEvent.dragStart(button);
         fireEvent.mouseUp(button);
-        expect(onClick).toHaveBeenCalledTimes(1);
+        expect(onClick).toHaveBeenCalledTimes(0);
 
         fireEvent.mouseEnter(button, {buttons: 1});
         fireEvent.mouseUp(button);
-        expect(onClick).toHaveBeenCalledTimes(2);
+        expect(onClick).toHaveBeenCalledTimes(0);
     });
 
     it("doesn't trigger enter key when browser doesn't stop the click", () => {
