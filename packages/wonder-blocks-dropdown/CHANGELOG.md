@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.10.1
+
+### Patch Changes
+
+-   29d57cdc: Fixes bug where going from empty to filled shifts the dropdown box’s position when inline with text
+
 ## 2.10.0
 
 ### Minor Changes

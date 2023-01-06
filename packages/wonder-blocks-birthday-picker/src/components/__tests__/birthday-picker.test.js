@@ -504,6 +504,7 @@ describe("BirthdayPicker", () => {
         it("should find and select an item using the keyboard", () => {
             // Arrange
             const onChange = jest.fn();
+            const lastYear = String(new Date().getFullYear() - 1);
 
             render(<BirthdayPicker onChange={onChange} />);
 
@@ -520,12 +521,11 @@ describe("BirthdayPicker", () => {
 
             // Focus on the year selector
             userEvent.tab();
-            // It should focus on the first occurrence (2022)
-            userEvent.keyboard("20");
+            userEvent.keyboard(lastYear);
             jest.advanceTimersByTime(501);
 
             // Assert
-            expect(onChange).toHaveBeenCalledWith("2022-07-05");
+            expect(onChange).toHaveBeenCalledWith(`${lastYear}-07-05`);
         });
     });
 });

@@ -262,6 +262,40 @@ TooltipOnButtons.parameters = {
     },
 };
 
+/**
+ * Opening a tooltip programatically (Controlled)
+ */
+export const Controlled: StoryComponentType = () => {
+    const [opened, setOpened] = React.useState(true);
+    const buttonText = `Click to ${opened ? "close" : "open"} tooltip`;
+
+    return (
+        <View style={[styles.centered, styles.row]}>
+            <Tooltip
+                content="You opened the tooltip with a button"
+                opened={opened}
+            >
+                tooltip
+            </Tooltip>
+            <Button onClick={() => setOpened(!opened)}>{buttonText}</Button>
+        </View>
+    );
+};
+
+Controlled.parameters = {
+    docs: {
+        description: {
+            story: `Sometimes you'll want to trigger a tooltip programmatically.
+               This can be done by setting the \`opened\` prop to \`true\`. In
+               this situation the \`Tooltip\` is a controlled component. The
+               parent is responsible for managing the opening/closing of the
+               tooltip when using this prop. This means that you'll also have
+               to update \`opened\` to \`false\` in response to the
+               \`onClose\` callback being triggered.`,
+        },
+    },
+};
+
 const styles = StyleSheet.create({
     storyCanvas: {
         // NOTE: This is needed for Chromatic to include the tooltip bubble.

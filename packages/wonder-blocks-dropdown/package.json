@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
-  "version": "2.10.0",
+  "version": "2.10.1",
   "design": "v1",
   "description": "Dropdown variants for Wonder Blocks.",
   "main": "dist/index.js",
@@ -38,7 +38,7 @@
     "react-window": "^1.8.5"
   },
   "devDependencies": {
-    "@khanacademy/wonder-blocks-button": "^3.0.7",
+    "@khanacademy/wonder-blocks-button": "^3.0.8",
     "wb-dev-build-settings": "^0.4.0"
   }
 }
