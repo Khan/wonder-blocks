@@ -11,7 +11,6 @@ const defaultHandlers = {
     onMouseLeave: () => void 0,
     onMouseDown: () => void 0,
     onMouseUp: () => void 0,
-    onDragStart: () => void 0,
     onTouchStart: () => void 0,
     onTouchEnd: () => void 0,
     onTouchCancel: () => void 0,
