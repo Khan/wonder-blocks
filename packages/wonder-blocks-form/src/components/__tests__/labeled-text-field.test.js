@@ -1,54 +1,39 @@
 //@flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
-import {render, screen} from "@testing-library/react";
+import {render, screen, fireEvent} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import {StyleSheet} from "aphrodite";
 import LabeledTextField from "../labeled-text-field.js";
-
-const wait = (delay: number = 0) =>
-    new Promise((resolve, reject) => {
-        // eslint-disable-next-line no-restricted-syntax
-        return setTimeout(resolve, delay);
-    });
+import text from "../../../../wonder-blocks-core/src/components/text";
 
 describe("LabeledTextField", () => {
     it("labeledtextfield becomes focused", () => {
         // Arrange
-        const wrapper = mount(
-            <LabeledTextField label="Label" value="" onChange={() => {}} />,
-        );
-        const field = wrapper.find("TextFieldInternal");
+        render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
+        const field = screen.getByRole("textbox");
 
         // Act
-        field.simulate("focus");
+        userEvent.tab();
 
         // Assert
-        expect(wrapper.find("LabeledTextFieldInternal")).toHaveState(
-            "focused",
-            true,
-        );
+        expect(field).toHaveFocus();
     });
 
     it("labeledtextfield becomes blurred", async () => {
         // Arrange
-        const wrapper = mount(
-            <LabeledTextField label="Label" value="" onChange={() => {}} />,
-        );
-        const field = wrapper.find("TextFieldInternal");
+        render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
+        const field = screen.getByRole("textbox");
+
+        // focus
+        userEvent.tab();
 
         // Act
-        field.simulate("focus");
-        await wait(0);
-        field.simulate("blur");
+        // blur
+        userEvent.tab();
 
         // Assert
-        expect(wrapper.find("LabeledTextFieldInternal")).toHaveState(
-            "focused",
-            false,
-        );
+        expect(screen.getByRole("textbox")).not.toHaveFocus();
     });
 
     it("id prop is passed to input", () => {
@@ -56,7 +41,7 @@ describe("LabeledTextField", () => {
         const id = "exampleid";
 
         // Act
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 id={id}
                 label="Label"
@@ -67,23 +52,21 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toContainMatchingElement(`[id="${id}-field"]`);
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("id", `${id}-field`);
     });
 
     it("auto-generated id is passed to input when id prop is not set", () => {
         // Arrange
 
         // Act
-        const wrapper = mount(
-            <LabeledTextField label="Label" value="" onChange={() => {}} />,
-        );
+        render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
 
         // Assert
         // Since the generated id is unique, we cannot know what it will be.
         // We only test if the id attribute starts with "uid-" and ends with "-field".
-        const input = wrapper.find("input");
-        expect(input.props()["id"]).toMatch(/uid-.*-field/);
+        const input = screen.getByRole("textbox");
+        expect(input.getAttribute("id")).toMatch(/uid-.*-field/);
     });
 
     it("type prop is passed to input", () => {
@@ -91,7 +74,7 @@ describe("LabeledTextField", () => {
         const type = "email";
 
         // Act
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 type={type}
                 label="Label"
@@ -101,8 +84,8 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toContainMatchingElement(`[type="${type}"]`);
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("type", type);
     });
 
     it("label prop is rendered", () => {
@@ -110,12 +93,10 @@ describe("LabeledTextField", () => {
         const label = "Label";
 
         // Act
-        const wrapper = mount(
-            <LabeledTextField label={label} value="" onChange={() => {}} />,
-        );
+        render(<LabeledTextField label={label} value="" onChange={() => {}} />);
 
         // Assert
-        expect(wrapper).toIncludeText(label);
+        expect(screen.getByText(label)).toBeInTheDocument();
     });
 
     it("description prop is rendered", () => {
@@ -123,7 +104,7 @@ describe("LabeledTextField", () => {
         const description = "Description";
 
         // Act
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 description={description}
@@ -133,7 +114,7 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        expect(wrapper).toIncludeText(description);
+        expect(screen.getByText(description)).toBeInTheDocument();
     });
 
     it("value prop is set on mount", () => {
@@ -141,7 +122,7 @@ describe("LabeledTextField", () => {
         const value = "Value";
 
         // Act
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 value={value}
@@ -150,32 +131,38 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toHaveValue(value);
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("value", value);
     });
 
     it("value prop change from parent reflects on input value", async () => {
         // Arrange
         const handleChange = jest.fn((newValue: string) => {});
 
-        const wrapper = mount(
+        const {rerender} = render(
             <LabeledTextField label="Label" value="" onChange={handleChange} />,
         );
 
         // Act
         const newValue = "new value";
-        wrapper.setProps({value: newValue});
+        rerender(
+            <LabeledTextField
+                label="Label"
+                value={newValue}
+                onChange={handleChange}
+            />,
+        );
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toHaveValue(newValue);
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("value", newValue);
     });
 
     it("disabled prop disables the input", () => {
         // Arrange
 
         // Act
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 value=""
@@ -185,7 +172,7 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = wrapper.find("input");
+        const input = screen.getByRole("textbox");
         expect(input).toBeDisabled();
     });
 
@@ -235,7 +222,7 @@ describe("LabeledTextField", () => {
     it("validate prop is called when input changes", () => {
         // Arrange
         const validate = jest.fn((value: string): ?string => {});
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 value=""
@@ -246,8 +233,8 @@ describe("LabeledTextField", () => {
 
         // Act
         const newValue = "New Value";
-        const input = wrapper.find("input");
-        input.simulate("change", {target: {value: newValue}});
+        const input = screen.getByRole("textbox");
+        fireEvent.change(input, {target: {value: newValue}});
 
         // Assert
         expect(validate).toHaveBeenCalledWith(newValue);
@@ -264,7 +251,7 @@ describe("LabeledTextField", () => {
             }
         };
 
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 value="LongerThan8Chars"
@@ -275,8 +262,9 @@ describe("LabeledTextField", () => {
         );
 
         // Act
-        const input = wrapper.find("input");
-        input.simulate("change", {target: {value: "Short"}});
+        const input = screen.getByRole("textbox");
+        // Select all text and replace it with the new value.
+        userEvent.type(screen.getByRole("textbox"), `{selectall}Short`);
 
         // Assert
         expect(handleValidate).toHaveBeenCalledWith(errorMessage);
@@ -286,14 +274,14 @@ describe("LabeledTextField", () => {
         // Arrange
         const handleChange = jest.fn((newValue: string) => {});
 
-        const wrapper = mount(
+        render(
             <LabeledTextField label="Label" value="" onChange={handleChange} />,
         );
 
         // Act
         const newValue = "new value";
-        const input = wrapper.find("input");
-        input.simulate("change", {target: {value: newValue}});
+        const input = screen.getByRole("textbox");
+        fireEvent.change(input, {target: {value: newValue}});
 
         // Assert
         expect(handleChange).toHaveBeenCalledWith(newValue);
@@ -307,7 +295,7 @@ describe("LabeledTextField", () => {
             },
         );
 
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 value=""
@@ -317,18 +305,16 @@ describe("LabeledTextField", () => {
         );
 
         // Act
-        const key = "Enter";
-        const input = wrapper.find("input");
-        input.simulate("keyDown", {key: key});
+        userEvent.type(screen.getByRole("textbox"), "{enter}");
 
         // Assert
-        expect(handleKeyDown).toHaveReturnedWith(key);
+        expect(handleKeyDown).toHaveReturnedWith("Enter");
     });
 
     it("onFocus prop is called when field is focused", () => {
         // Arrange
         const handleFocus = jest.fn(() => {});
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 value=""
@@ -338,8 +324,8 @@ describe("LabeledTextField", () => {
         );
 
         // Act
-        const field = wrapper.find("TextFieldInternal");
-        field.simulate("focus");
+        const field = screen.getByRole("textbox");
+        field.focus();
 
         // Assert
         expect(handleFocus).toHaveBeenCalled();
@@ -348,7 +334,7 @@ describe("LabeledTextField", () => {
     it("onBlur prop is called when field is blurred", async () => {
         // Arrange
         const handleBlur = jest.fn(() => {});
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 value=""
@@ -357,11 +343,12 @@ describe("LabeledTextField", () => {
             />,
         );
 
+        // focus
+        userEvent.tab();
+
         // Act
-        const field = wrapper.find("TextFieldInternal");
-        field.simulate("focus");
-        await wait(0);
-        field.simulate("blur");
+        // blur
+        userEvent.tab();
 
         // Assert
         expect(handleBlur).toHaveBeenCalled();
@@ -372,7 +359,7 @@ describe("LabeledTextField", () => {
         const placeholder = "Placeholder";
 
         // Act
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 value=""
@@ -382,17 +369,15 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toContainMatchingElement(
-            `[placeholder="${placeholder}"]`,
-        );
+        const input = screen.getByPlaceholderText(placeholder);
+        expect(input).toBeInTheDocument();
     });
 
     it("light prop is passed to textfield", async () => {
         // Arrange
 
         // Act
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 value=""
@@ -401,9 +386,11 @@ describe("LabeledTextField", () => {
             />,
         );
 
+        const textField = screen.getByRole("textbox");
+        textField.focus();
+
         // Assert
-        const textField = wrapper.find("TextFieldInternal");
-        expect(textField).toHaveProp("light", true);
+        expect(textField.getAttribute("class")).toMatch(/light/i);
     });
 
     it("style prop is passed to fieldheading", async () => {
@@ -416,7 +403,7 @@ describe("LabeledTextField", () => {
         });
 
         // Act
-        const wrapper = mount(
+        const {container} = render(
             <LabeledTextField
                 label="Label"
                 value=""
@@ -426,8 +413,8 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const fieldHeading = wrapper.find("FieldHeading");
-        expect(fieldHeading).toHaveStyle(styles.style1);
+        const fieldHeading = container.childNodes[0];
+        expect(fieldHeading).toHaveStyle("min-width: 250px");
     });
 
     it("testId prop is passed to textfield", async () => {
@@ -435,7 +422,7 @@ describe("LabeledTextField", () => {
         const testId = "example-testid";
 
         // Act
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 value=""
@@ -445,15 +432,15 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const textField = wrapper.find(`[data-test-id="${testId}-field"]`);
-        expect(textField).toExist();
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("data-test-id", `${testId}-field`);
     });
 
     it("readOnly prop is passed to textfield", async () => {
         // Arrange
 
         // Act
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 value=""
@@ -463,8 +450,8 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const textField = wrapper.find("TextFieldInternal");
-        expect(textField).toHaveProp("readOnly", true);
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("readOnly");
     });
 
     it("autoComplete prop is passed to textfield", async () => {
@@ -472,7 +459,7 @@ describe("LabeledTextField", () => {
         const autoComplete = "name";
 
         // Act
-        const wrapper = mount(
+        render(
             <LabeledTextField
                 label="Label"
                 value=""
@@ -482,8 +469,8 @@ describe("LabeledTextField", () => {
         );
 
         // Assert
-        const textField = wrapper.find("TextFieldInternal");
-        expect(textField).toHaveProp("autoComplete", autoComplete);
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("autoComplete", autoComplete);
     });
 });
 
