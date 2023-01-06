@@ -144,6 +144,9 @@ describe("TextField", () => {
         // Act
         const newValue = "Test2";
         const input = screen.getByRole("textbox");
+        // @see https://testing-library.com/docs/react-testing-library/faq
+        // How do I test input onChange handlers?
+        // eslint-disable-next-line testing-library/prefer-user-event
         fireEvent.change(input, {target: {value: newValue}});
 
         // Assert

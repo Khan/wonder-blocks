@@ -1,15 +1,10 @@
 // @flow
 import * as React from "react";
-import {render, screen, fireEvent} from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import {render, screen} from "@testing-library/react";
 import {StyleSheet} from "aphrodite";
 
 import {I18nInlineMarkup} from "@khanacademy/wonder-blocks-i18n";
-import {
-    Body,
-    LabelMedium,
-    LabelSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import FieldHeading from "../field-heading.js";
 import TextField from "../text-field.js";
@@ -147,7 +142,7 @@ describe("FieldHeading", () => {
         const testId = "testid";
 
         // Act
-        const {container} = render(
+        render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"

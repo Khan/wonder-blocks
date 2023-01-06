@@ -5,7 +5,6 @@ import userEvent from "@testing-library/user-event";
 
 import {StyleSheet} from "aphrodite";
 import LabeledTextField from "../labeled-text-field.js";
-import text from "../../../../wonder-blocks-core/src/components/text";
 
 describe("LabeledTextField", () => {
     it("labeledtextfield becomes focused", () => {
@@ -23,7 +22,6 @@ describe("LabeledTextField", () => {
     it("labeledtextfield becomes blurred", async () => {
         // Arrange
         render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
-        const field = screen.getByRole("textbox");
 
         // focus
         userEvent.tab();
@@ -234,6 +232,9 @@ describe("LabeledTextField", () => {
         // Act
         const newValue = "New Value";
         const input = screen.getByRole("textbox");
+        // @see https://testing-library.com/docs/react-testing-library/faq
+        // How do I test input onChange handlers?
+        // eslint-disable-next-line testing-library/prefer-user-event
         fireEvent.change(input, {target: {value: newValue}});
 
         // Assert
@@ -262,7 +263,6 @@ describe("LabeledTextField", () => {
         );
 
         // Act
-        const input = screen.getByRole("textbox");
         // Select all text and replace it with the new value.
         userEvent.type(screen.getByRole("textbox"), `{selectall}Short`);
 
@@ -281,6 +281,9 @@ describe("LabeledTextField", () => {
         // Act
         const newValue = "new value";
         const input = screen.getByRole("textbox");
+        // @see https://testing-library.com/docs/react-testing-library/faq
+        // How do I test input onChange handlers?
+        // eslint-disable-next-line testing-library/prefer-user-event
         fireEvent.change(input, {target: {value: newValue}});
 
         // Assert
