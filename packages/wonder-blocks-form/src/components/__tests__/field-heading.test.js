@@ -1,15 +1,10 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
 import {StyleSheet} from "aphrodite";
 
 import {I18nInlineMarkup} from "@khanacademy/wonder-blocks-i18n";
-import {
-    Body,
-    LabelMedium,
-    LabelSmall,
-} from "@khanacademy/wonder-blocks-typography";
+import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import FieldHeading from "../field-heading.js";
 import TextField from "../text-field.js";
@@ -20,7 +15,7 @@ describe("FieldHeading", () => {
         const label = "Label";
 
         // Act
-        const wrapper = mount(
+        render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label={label}
@@ -28,7 +23,7 @@ describe("FieldHeading", () => {
         );
 
         // Assert
-        expect(wrapper).toIncludeText(label);
+        expect(screen.getByText(label)).toBeInTheDocument();
     });
 
     it("fieldheading renders the description text", () => {
@@ -36,7 +31,7 @@ describe("FieldHeading", () => {
         const description = "Description";
 
         // Act
-        const wrapper = mount(
+        render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
@@ -45,7 +40,7 @@ describe("FieldHeading", () => {
         );
 
         // Assert
-        expect(wrapper).toIncludeText(description);
+        expect(screen.getByText(description)).toBeInTheDocument();
     });
 
     it("fieldheading renders the error text", () => {
@@ -53,7 +48,7 @@ describe("FieldHeading", () => {
         const error = "Error";
 
         // Act
-        const wrapper = mount(
+        render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
@@ -62,7 +57,7 @@ describe("FieldHeading", () => {
         );
 
         // Assert
-        expect(wrapper).toIncludeText(error);
+        expect(screen.getByRole("alert")).toBeInTheDocument();
     });
 
     it("fieldheading adds testId to label", () => {
@@ -70,7 +65,7 @@ describe("FieldHeading", () => {
         const testId = "testid";
 
         // Act
-        const wrapper = mount(
+        render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
@@ -79,8 +74,8 @@ describe("FieldHeading", () => {
         );
 
         // Assert
-        const label = wrapper.find(`[data-test-id="${testId}-label"]`);
-        expect(label).toExist();
+        const label = screen.getByTestId(`${testId}-label`);
+        expect(label).toBeInTheDocument();
     });
 
     it("fieldheading adds testId to description", () => {
@@ -88,7 +83,7 @@ describe("FieldHeading", () => {
         const testId = "testid";
 
         // Act
-        const wrapper = mount(
+        render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
@@ -98,10 +93,8 @@ describe("FieldHeading", () => {
         );
 
         // Assert
-        const description = wrapper.find(
-            `[data-test-id="${testId}-description"]`,
-        );
-        expect(description).toExist();
+        const description = screen.getByTestId(`${testId}-description`);
+        expect(description).toBeInTheDocument();
     });
 
     it("fieldheading adds testId to error", () => {
@@ -109,7 +102,7 @@ describe("FieldHeading", () => {
         const testId = "testid";
 
         // Act
-        const wrapper = mount(
+        render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
@@ -119,8 +112,8 @@ describe("FieldHeading", () => {
         );
 
         // Assert
-        const error = wrapper.find(`[data-test-id="${testId}-error"]`);
-        expect(error).toExist();
+        const error = screen.getByTestId(`${testId}-error`);
+        expect(error).toBeInTheDocument();
     });
 
     it("fieldheading adds the correctly formatted id to label's htmlFor", () => {
@@ -129,7 +122,7 @@ describe("FieldHeading", () => {
         const testId = "testid";
 
         // Act
-        const wrapper = mount(
+        render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
@@ -139,8 +132,8 @@ describe("FieldHeading", () => {
         );
 
         // Assert
-        const label = wrapper.find(`[data-test-id="${testId}-label"]`);
-        expect(label).toContainMatchingElement(`[htmlFor="${id}-field"]`);
+        const label = screen.getByTestId(`${testId}-label`);
+        expect(label).toHaveAttribute("for", `${id}-field`);
     });
 
     it("fieldheading adds the correctly formatted id to error's id", () => {
@@ -149,7 +142,7 @@ describe("FieldHeading", () => {
         const testId = "testid";
 
         // Act
-        const wrapper = mount(
+        render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
@@ -160,8 +153,8 @@ describe("FieldHeading", () => {
         );
 
         // Assert
-        const error = wrapper.find(`[data-test-id="${testId}-error"]`);
-        expect(error).toContainMatchingElement(`[id="${id}-error"]`);
+        const error = screen.getByRole("alert");
+        expect(error).toHaveAttribute("id", `${id}-error`);
     });
 
     it("stype prop applies to the fieldheading container", () => {
@@ -174,7 +167,7 @@ describe("FieldHeading", () => {
         });
 
         // Act
-        const wrapper = mount(
+        const {container} = render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label="Label"
@@ -184,15 +177,15 @@ describe("FieldHeading", () => {
         );
 
         // Assert
-        const container = wrapper.find("View").at(0);
-        expect(container).toHaveStyle(styles.style1);
+        const fieldHeading = container.childNodes[0];
+        expect(fieldHeading).toHaveStyle("background: blue");
     });
 
-    it("should render a LabelSmall when the 'label' prop is a I18nInlineMarkup", () => {
+    it("should render a LabelMedium when the 'label' prop is a I18nInlineMarkup", () => {
         // Arrange
 
         // Act
-        const wrapper = mount(
+        render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label={<I18nInlineMarkup>Hello, world!</I18nInlineMarkup>}
@@ -200,15 +193,16 @@ describe("FieldHeading", () => {
         );
 
         // Assert
-        const label = wrapper.find(LabelMedium);
-        expect(label).toExist();
+        const label = screen.getByText("Hello, world!");
+        // LabelMedium has a font-size of 16px
+        expect(label).toHaveStyle("font-size: 16px");
     });
 
     it("should render a LabelSmall when the 'description' prop is a I18nInlineMarkup", () => {
         // Arrange
 
         // Act
-        const wrapper = mount(
+        render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label={<Body>Hello, world</Body>}
@@ -217,7 +211,8 @@ describe("FieldHeading", () => {
         );
 
         // Assert
-        const label = wrapper.find(LabelSmall);
-        expect(label).toExist();
+        const description = screen.getByText("description");
+        // LabelSmall has a font-size of 16px
+        expect(description).toHaveStyle("font-size: 14px");
     });
 });
