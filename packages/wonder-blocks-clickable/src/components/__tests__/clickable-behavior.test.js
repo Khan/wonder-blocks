@@ -779,6 +779,39 @@ describe("ClickableBehavior", () => {
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
     });
 
+    it("does not call onClick on mouseup when the mouse presses inside and drags away", () => {
+        const onClick = jest.fn();
+        render(
+            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
+                }}
+            </ClickableBehavior>,
+        );
+
+        const button = screen.getByRole("button");
+        fireEvent.mouseDown(button);
+        fireEvent.mouseLeave(button);
+        fireEvent.mouseUp(button);
+        expect(onClick).toHaveBeenCalledTimes(0);
+    });
+
+    it("does not call onClick on mouseup when the mouse presse outside and drags in", () => {
+        const onClick = jest.fn();
+        render(
+            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
+                }}
+            </ClickableBehavior>,
+        );
+
+        const button = screen.getByRole("button");
+        fireEvent.mouseEnter(button, {buttons: 1});
+        fireEvent.mouseUp(button);
+        expect(onClick).toHaveBeenCalledTimes(0);
+    });
+
     it("doesn't trigger enter key when browser doesn't stop the click", () => {
         const onClick = jest.fn();
         // Use mount instead of a shallow render to trigger event defaults
