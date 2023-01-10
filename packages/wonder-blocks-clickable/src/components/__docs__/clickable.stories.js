@@ -66,6 +66,12 @@ export const Default: StoryComponentType = (args) => (
     </Clickable>
 );
 
+Default.args = {
+    onClick: () => {
+        alert("Click!");
+    },
+};
+
 export const Basic: StoryComponentType = () => (
     <View style={styles.centerText}>
         <Clickable
