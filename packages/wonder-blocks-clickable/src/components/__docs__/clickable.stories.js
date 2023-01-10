@@ -68,6 +68,7 @@ export const Default: StoryComponentType = (args) => (
 
 Default.args = {
     onClick: () => {
+        // eslint-disable-next-line no-alert
         alert("Click!");
     },
 };
