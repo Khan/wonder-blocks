@@ -64,7 +64,7 @@ describe("ClickableBehavior", () => {
         expect(onClick).toHaveBeenCalled();
     });
 
-    it("changes only hovered state on mouse enter/leave", () => {
+    it("changes hovered state on mouse enter/leave", () => {
         const onClick = jest.fn();
         render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
@@ -82,7 +82,7 @@ describe("ClickableBehavior", () => {
         expect(button).not.toHaveTextContent("hovered");
     });
 
-    it("changes only hovered state on mouse enter while dragging", () => {
+    it("changes hovered state on mouse enter while dragging", () => {
         const onClick = jest.fn();
         render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
@@ -779,6 +779,16 @@ describe("ClickableBehavior", () => {
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
     });
 
+    // The following two tests involve click behavior when dragging.
+    // Here are some notable related actions that cannot be tested using
+    // existing jest/RTL events since these click types are handled
+    // by browsers but aren't registered as clicks by RTL/jest:
+    // 1. Mousedown in the button, drag within the button, and mouseup
+    //    in the button (mouse doesn't leave the button at any point).
+    //    This should result in a successful click.
+    // 2. Mouse down in the button, drag out of the button (don't let go),
+    //    drag back into the button, and mouseup inside the button.
+    //    This should result in a successful click.
     it("does not call onClick on mouseup when the mouse presses inside and drags away", () => {
         const onClick = jest.fn();
         render(
@@ -796,7 +806,7 @@ describe("ClickableBehavior", () => {
         expect(onClick).toHaveBeenCalledTimes(0);
     });
 
-    it("does not call onClick on mouseup when the mouse presse outside and drags in", () => {
+    it("does not call onClick on mouseup when the mouse presses outside and drags in", () => {
         const onClick = jest.fn();
         render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
