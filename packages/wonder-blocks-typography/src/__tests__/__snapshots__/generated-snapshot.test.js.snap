@@ -1069,7 +1069,6 @@ exports[`wonder-blocks-typography example 6 1`] = `
       id="unique-language-selector"
       onBlur={[Function]}
       onClick={[Function]}
-      onDragStart={[Function]}
       onFocus={[Function]}
       onKeyDown={[Function]}
       onKeyUp={[Function]}
