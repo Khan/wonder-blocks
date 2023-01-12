@@ -146,7 +146,9 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                             {...childrenProps}
                         >
                             <LabelMedium style={styles.text}>
-                                {children}
+                                {/* Note(tamarab): Prevents unwanted vertical
+                                shift for empty selection */}
+                                {children || "\u00A0"}
                             </LabelMedium>
                             <Icon
                                 icon={icons.caretDown}

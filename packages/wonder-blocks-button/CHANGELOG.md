@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-button
 
+## 3.0.9
+
+### Patch Changes
+
+-   Updated dependencies [4c682709]
+    -   @khanacademy/wonder-blocks-clickable@2.4.1
+
+## 3.0.8
+
+### Patch Changes
+
+-   8e3d9439: Fix tertiary button styles (pressed and disabled+focused)
+
 ## 3.0.7
 
 ### Patch Changes

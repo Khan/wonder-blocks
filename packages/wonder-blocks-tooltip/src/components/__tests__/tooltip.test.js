@@ -296,4 +296,40 @@ describe("Tooltip", () => {
             });
         });
     });
+
+    describe("Controlled", () => {
+        test("can be opened programmatically", async () => {
+            // Arrange
+            render(
+                <View>
+                    <Tooltip id="tooltip" content="Content" opened={true}>
+                        <View>Anchor</View>
+                    </Tooltip>
+                </View>,
+            );
+
+            // Act
+            jest.runOnlyPendingTimers();
+
+            // Assert
+            expect(screen.getByText("Content")).toBeInTheDocument();
+        });
+
+        test("can be closed programmatically", async () => {
+            // Arrange
+            render(
+                <View>
+                    <Tooltip id="tooltip" content="Content" opened={false}>
+                        <View>Anchor</View>
+                    </Tooltip>
+                </View>,
+            );
+
+            // Act
+            jest.runOnlyPendingTimers();
+
+            // Assert
+            expect(screen.queryByText("Content")).not.toBeInTheDocument();
+        });
+    });
 });

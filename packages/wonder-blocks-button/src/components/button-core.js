@@ -353,7 +353,6 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
             },
         };
     } else if (kind === "tertiary") {
-        // TODO(FEI-4229): Make tertiary buttons focusable
         newStyles = {
             default: {
                 background: "none",
@@ -381,7 +380,7 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
                     height: 2,
                     width: `calc(100% - ${iconWidth}px)`,
                     right: 0,
-                    bottom: "calc(50% - 11px)",
+                    bottom: -1,
                     background: light ? fadedColor : activeColor,
                     borderRadius: 2,
                 },
@@ -389,6 +388,24 @@ const _generateStyles = (color, kind, light, iconWidth, size) => {
             disabled: {
                 color: light ? fadedColor : offBlack32,
                 cursor: "default",
+                ":focus": {
+                    ":after": {
+                        content: "''",
+                        position: "absolute",
+                        height: 2,
+                        width: `calc(100% - ${iconWidth}px)`,
+                        right: 0,
+                        /**
+                         * For tertiary buttons, underline is applied to the
+                         * internal `span` element, So we need to calculate the
+                         * offset to center the line in the button (right after
+                         * the span).
+                         */
+                        bottom: `calc(50% - 11px)`,
+                        background: light ? white : offBlack32,
+                        borderRadius: 2,
+                    },
+                },
             },
         };
     } else {

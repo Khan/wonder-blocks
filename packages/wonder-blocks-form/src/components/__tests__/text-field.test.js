@@ -1,35 +1,27 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {fireEvent, render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import TextField from "../text-field.js";
-
-const wait = (delay: number = 0) =>
-    new Promise((resolve, reject) => {
-        // eslint-disable-next-line no-restricted-syntax
-        return setTimeout(resolve, delay);
-    });
 
 describe("TextField", () => {
     it("textfield is focused", () => {
         // Arrange
-        const wrapper = mount(
-            <TextField id="tf-1" value="" onChange={() => {}} />,
-        );
+        render(<TextField id="tf-1" value="" onChange={() => {}} />);
 
         // Act
-        wrapper.simulate("focus");
+        userEvent.tab();
 
         // Assert
-        expect(wrapper.find("TextFieldInternal")).toHaveState("focused", true);
+        expect(screen.getByRole("textbox")).toHaveFocus();
     });
 
     it("onFocus is called after textfield is focused", () => {
         // Arrange
         const handleOnFocus = jest.fn(() => {});
 
-        const wrapper = mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value="TextIsLongerThan8"
@@ -39,7 +31,7 @@ describe("TextField", () => {
         );
 
         // Act
-        wrapper.simulate("focus");
+        userEvent.tab();
 
         // Assert
         expect(handleOnFocus).toHaveBeenCalled();
@@ -47,24 +39,24 @@ describe("TextField", () => {
 
     it("textfield is blurred", async () => {
         // Arrange
-        const wrapper = mount(
-            <TextField id="tf-1" value="" onChange={() => {}} />,
-        );
+        render(<TextField id="tf-1" value="" onChange={() => {}} />);
+
+        // focus
+        userEvent.tab();
 
         // Act
-        wrapper.simulate("focus");
-        await wait(0);
-        wrapper.simulate("blur");
+        // blur
+        userEvent.tab();
 
         // Assert
-        expect(wrapper.find("TextFieldInternal")).toHaveState("focused", false);
+        expect(screen.getByRole("textbox")).not.toHaveFocus();
     });
 
     it("onBlur is called after textfield is blurred", async () => {
         // Arrange
         const handleOnBlur = jest.fn(() => {});
 
-        const wrapper = mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value="TextIsLongerThan8"
@@ -73,10 +65,12 @@ describe("TextField", () => {
             />,
         );
 
+        // focus
+        userEvent.tab();
+
         // Act
-        wrapper.simulate("focus");
-        await wait(0);
-        wrapper.simulate("blur");
+        // blur
+        userEvent.tab();
 
         // Assert
         expect(handleOnBlur).toHaveBeenCalled();
@@ -87,13 +81,11 @@ describe("TextField", () => {
         const id: string = "tf-1";
 
         // Act
-        const wrapper = mount(
-            <TextField id={id} value="" onChange={() => {}} />,
-        );
+        render(<TextField id={id} value="" onChange={() => {}} />);
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toContainMatchingElement(`[id="${id}"]`);
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("id", id);
     });
 
     it("type prop is passed to the input element", () => {
@@ -101,13 +93,14 @@ describe("TextField", () => {
         const type = "number";
 
         // Act
-        const wrapper = mount(
+        render(
             <TextField id={"tf-1"} type={type} value="" onChange={() => {}} />,
         );
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toContainMatchingElement(`[type="${type}"]`);
+        // NOTE: The implicit role for input[type=number] is "spinbutton".
+        const input = screen.getByRole("spinbutton");
+        expect(input).toHaveAttribute("type", type);
     });
 
     it("value prop is passed to the input element", () => {
@@ -115,18 +108,16 @@ describe("TextField", () => {
         const value = "Text";
 
         // Act
-        const wrapper = mount(
-            <TextField id={"tf-1"} value={value} onChange={() => {}} />,
-        );
+        render(<TextField id={"tf-1"} value={value} onChange={() => {}} />);
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toContainMatchingElement(`[value="${value}"]`);
+        const input = screen.getByDisplayValue(value);
+        expect(input).toBeInTheDocument();
     });
 
     it("disabled prop disables the input element", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <TextField
                 id="tf-1"
                 value=""
@@ -134,7 +125,7 @@ describe("TextField", () => {
                 disabled={true}
             />,
         );
-        const input = wrapper.find("input");
+        const input = screen.getByRole("textbox");
 
         // Act
 
@@ -146,13 +137,17 @@ describe("TextField", () => {
         // Arrange
         const handleOnChange = jest.fn();
 
-        const wrapper = mount(
+        render(
             <TextField id={"tf-1"} value="Text" onChange={handleOnChange} />,
         );
 
         // Act
         const newValue = "Test2";
-        wrapper.simulate("change", {target: {value: newValue}});
+        const input = screen.getByRole("textbox");
+        // @see https://testing-library.com/docs/react-testing-library/faq
+        // How do I test input onChange handlers?
+        // eslint-disable-next-line testing-library/prefer-user-event
+        fireEvent.change(input, {target: {value: newValue}});
 
         // Assert
         expect(handleOnChange).toHaveBeenCalledWith(newValue);
@@ -162,7 +157,7 @@ describe("TextField", () => {
         // Arrange
         const handleValidate = jest.fn((value: string): ?string => {});
 
-        const wrapper = mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value="Text"
@@ -173,7 +168,8 @@ describe("TextField", () => {
 
         // Act
         const newValue = "Text2";
-        wrapper.simulate("change", {target: {value: newValue}});
+        // Select all text and replace it with the new value.
+        userEvent.type(screen.getByRole("textbox"), `{selectall}${newValue}`);
 
         // Assert
         expect(handleValidate).toHaveBeenCalledWith(newValue);
@@ -187,7 +183,7 @@ describe("TextField", () => {
             }
         });
 
-        const wrapper = mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value="TextIsLong"
@@ -198,7 +194,8 @@ describe("TextField", () => {
 
         // Act
         const newValue = "TextIsLongerThan8";
-        wrapper.simulate("change", {target: {value: newValue}});
+        // Select all text and replace it with the new value.
+        userEvent.type(screen.getByRole("textbox"), `{selectall}${newValue}`);
 
         // Assert
         expect(handleValidate).toHaveReturnedWith(undefined);
@@ -213,7 +210,7 @@ describe("TextField", () => {
             }
         });
 
-        const wrapper = mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value="TextIsLongerThan8"
@@ -224,7 +221,8 @@ describe("TextField", () => {
 
         // Act
         const newValue = "Text";
-        wrapper.simulate("change", {target: {value: newValue}});
+        // Select all text and replace it with the new value.
+        userEvent.type(screen.getByRole("textbox"), `{selectall}${newValue}`);
 
         // Assert
         expect(handleValidate).toHaveReturnedWith(errorMessage);
@@ -240,7 +238,7 @@ describe("TextField", () => {
             }
         });
 
-        const wrapper = mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value="TextIsLongerThan8"
@@ -252,7 +250,8 @@ describe("TextField", () => {
 
         // Act
         const newValue = "Text";
-        wrapper.simulate("change", {target: {value: newValue}});
+        // Select all text and replace it with the new value.
+        userEvent.type(screen.getByRole("textbox"), `{selectall}${newValue}`);
 
         // Assert
         expect(handleValidate).toHaveBeenCalledWith(errorMessage);
@@ -269,7 +268,7 @@ describe("TextField", () => {
         });
 
         // Act
-        mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value="Short"
@@ -291,7 +290,7 @@ describe("TextField", () => {
             },
         );
 
-        const wrapper = mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value="TextIsLongerThan8"
@@ -301,12 +300,10 @@ describe("TextField", () => {
         );
 
         // Act
-        const key = "Enter";
-        const input = wrapper.find("input");
-        input.simulate("keyDown", {key: key});
+        userEvent.type(screen.getByRole("textbox"), "{enter}");
 
         // Assert
-        expect(handleOnKeyDown).toHaveReturnedWith(key);
+        expect(handleOnKeyDown).toHaveReturnedWith("Enter");
     });
 
     it("placeholder prop is passed to the input element", () => {
@@ -314,7 +311,7 @@ describe("TextField", () => {
         const placeholder = "Placeholder";
 
         // Act
-        const wrapper = mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value="Text"
@@ -324,16 +321,14 @@ describe("TextField", () => {
         );
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toContainMatchingElement(
-            `[placeholder="${placeholder}"]`,
-        );
+        const input = screen.getByPlaceholderText(placeholder);
+        expect(input).toBeInTheDocument();
     });
 
     it("testId is passed to the input element", () => {
         // Arrange
         const testId = "some-test-id";
-        const wrapper = mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value="Text"
@@ -345,14 +340,14 @@ describe("TextField", () => {
         // Act
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toContainMatchingElement(`[data-test-id="${testId}"]`);
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("data-test-id", testId);
     });
 
     it("aria props are passed to the input element", () => {
         // Arrange
         const ariaLabel = "example-text-field";
-        const wrapper = mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value="Text"
@@ -364,15 +359,15 @@ describe("TextField", () => {
         // Act
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toContainMatchingElement(`[aria-label="${ariaLabel}"]`);
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("aria-label", ariaLabel);
     });
 
     it("readOnly prop is passed to the input element", async () => {
         // Arrange
 
         // Act
-        const wrapper = mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value={"Text"}
@@ -382,8 +377,8 @@ describe("TextField", () => {
         );
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toHaveProp("readOnly");
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("readOnly");
     });
 
     it("autoComplete prop is passed to the input element", async () => {
@@ -391,7 +386,7 @@ describe("TextField", () => {
         const autoComplete = "name";
 
         // Act
-        const wrapper = mount(
+        render(
             <TextField
                 id={"tf-1"}
                 value={"Text"}
@@ -401,7 +396,7 @@ describe("TextField", () => {
         );
 
         // Assert
-        const input = wrapper.find("input");
-        expect(input).toHaveProp("autoComplete", autoComplete);
+        const input = screen.getByRole("textbox");
+        expect(input).toHaveAttribute("autoComplete", autoComplete);
     });
 });

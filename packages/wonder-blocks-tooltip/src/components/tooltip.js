@@ -97,6 +97,15 @@ type Props = {|
     placement: Placement,
 
     /**
+     * Renders the tooltip when true, renders nothing when false.
+     *
+     * Using this prop makes the component behave as a controlled component. The
+     * parent is responsible for managing the opening/closing of the tooltip
+     * when using this prop.
+     */
+    opened?: boolean,
+
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string,
@@ -151,6 +160,20 @@ export default class Tooltip extends React.Component<Props, State> {
         forceAnchorFocusivity: true,
         placement: "top",
     };
+
+    /**
+     * Used to sync the `opened` state when Tooltip acts as a controlled
+     * component
+     */
+    static getDerivedStateFromProps(
+        props: Props,
+        state: State,
+    ): ?Partial<State> {
+        return {
+            active:
+                typeof props.opened === "boolean" ? props.opened : state.active,
+        };
+    }
 
     state: State = {
         active: false,

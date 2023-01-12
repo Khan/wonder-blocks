@@ -1,0 +1,17 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Timing / Overview"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# Timing
+
+`wonder-blocks-timing` provides abstractions for common timing APIs like
+`setTimeout`, `setInterval` and `requestAnimationFrame` that are aware of React
+component lifecycles, ensuring that scheduled timer actions are not unexpectedly
+dangling after a component unmounts.
