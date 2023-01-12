@@ -28,6 +28,7 @@ module.exports = {
         "packages/**/*.js",
         "!packages/**/__docs__/**/*.js",
         "!packages/**/*.stories.js",
+        "!packages/**/*.argtypes.js",
         "!packages/**/src/index.js",
         "!packages/**/*.flowtest.js",
         "!packages/**/*.argtypes.js",
