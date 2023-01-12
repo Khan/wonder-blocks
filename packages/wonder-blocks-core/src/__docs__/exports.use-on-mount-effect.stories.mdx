@@ -1,0 +1,23 @@
+import {Meta} from "@storybook/addon-docs";
+
+<Meta
+    title="Core / Exports / useOnMountEffect()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# useOnMountEffect()
+
+```ts
+function useOnMountEffect(callback: (void | () => void)) void;
+```
+
+The `useOnMountEffect` can be used to run an effect once on mount. This avoids
+having to pass `useEffect` an empty deps array and disable the
+`react-hooks/exhaustive-deps` lint.
+
+If `callback` returns a cleanup function, it will be called when the component
+is unmounted.
