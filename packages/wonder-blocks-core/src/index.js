@@ -13,6 +13,7 @@ export {
     useUniqueIdWithoutMock,
 } from "./hooks/use-unique-id.js";
 export {useForceUpdate} from "./hooks/use-force-update.js";
+export {useIsMounted} from "./hooks/use-is-mounted.js";
 export {useOnline} from "./hooks/use-online.js";
 export {useRenderState} from "./hooks/use-render-state.js";
 export {RenderStateRoot} from "./components/render-state-root.js";
