@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-core": minor
 ---
 
-useIsMounted() hook
+Add useIsMounted() hook
