@@ -1,24 +1,24 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 
 import Tooltip from "../tooltip.js";
-import TooltipBubble from "../tooltip-bubble.js";
-import TooltipContent from "../tooltip-content.js";
 
 const mockIDENTIFIER = "mock-identifier";
-jest.mock("../tooltip-bubble.js");
 jest.mock("@khanacademy/wonder-blocks-core", () => {
     const Core = jest.requireActual("@khanacademy/wonder-blocks-core");
     // We want all of Core to be the regular thing except for UniqueIDProvider
     return {
         ...Core,
         UniqueIDProvider: (props) =>
+            // NOTE(kevinb): We aren't actually access the DOM here.  The logic
+            // used by this lint rule to determine DOM access could be more
+            // precise.
+            // eslint-disable-next-line testing-library/no-node-access
             props.children({
                 get: () => mockIDENTIFIER,
             }),
@@ -32,234 +32,144 @@ describe("Tooltip", () => {
         jest.useFakeTimers();
     });
 
-    describe("content is a string, wraps in TooltipContent", () => {
-        test("with title", async () => {
+    describe("basic operations", () => {
+        it("should not show the tooltip to being with", () => {
             // Arrange
-            const ref = await new Promise((resolve) => {
-                const nodes = (
-                    <View>
-                        <Tooltip id="tooltip" title="Title" content="Content">
-                            <View ref={resolve}>Anchor</View>
-                        </Tooltip>
-                    </View>
-                );
-                mount(nodes);
-            });
-            const node = (ReactDOM.findDOMNode(ref): any);
-            node && node.dispatchEvent(new FocusEvent("focusin"));
-            jest.runOnlyPendingTimers();
+            render(
+                <View>
+                    <Tooltip title="Title" content="Content">
+                        <View>Anchor</View>
+                    </Tooltip>
+                </View>,
+            );
 
             // Act
-            // Flow doesn't like jest mocks
-            // $FlowFixMe[prop-missing]
-            const result = TooltipBubble.mock.instances[0].props["children"];
+            const tooltip = screen.queryByRole("tooltip");
 
             // Assert
-            expect(result).toMatchSnapshot(
-                `Similar to <TooltipContent title="Title">Content</TooltipContent>`,
-            );
+            expect(tooltip).not.toBeInTheDocument();
         });
 
-        test("without title", async () => {
+        it("should show the tooltip on hover", async () => {
             // Arrange
-            const ref = await new Promise((resolve) => {
-                const nodes = (
-                    <View>
-                        <Tooltip id="tooltip" content="Content">
-                            <View ref={resolve}>Anchor</View>
-                        </Tooltip>
-                    </View>
-                );
-                mount(nodes);
-            });
-            const node = (ReactDOM.findDOMNode(ref): any);
-            node && node.dispatchEvent(new FocusEvent("focusin"));
+            render(
+                <View>
+                    <Tooltip title="Title" content="Content">
+                        <View>Anchor</View>
+                    </Tooltip>
+                </View>,
+            );
+
+            const node = screen.getByText("Anchor");
+            userEvent.hover(node);
             jest.runOnlyPendingTimers();
 
             // Act
-            // Flow doesn't like jest mocks
-            // $FlowFixMe[prop-missing]
-            const result = TooltipBubble.mock.instances[0].props["children"];
+            const tooltip = screen.getByRole("tooltip");
 
             // Assert
-            expect(result).toMatchSnapshot(
-                `Similar to <TooltipContent>Content</TooltipContent>`,
-            );
-        });
-    });
-
-    describe("content is TooltipContent", () => {
-        test("with title, sets title of TooltipContent", async () => {
-            // Arrange
-            const ref = await new Promise((resolve) => {
-                const content = (
-                    <TooltipContent>
-                        <HeadingSmall>Some custom content</HeadingSmall>
-                    </TooltipContent>
-                );
-                const title = <HeadingSmall>Title</HeadingSmall>;
-                const nodes = (
-                    <View>
-                        <Tooltip id="tooltip" title={title} content={content}>
-                            <View ref={resolve}>Anchor</View>
-                        </Tooltip>
-                    </View>
-                );
-                mount(nodes);
-            });
-            const node = (ReactDOM.findDOMNode(ref): any);
-            node && node.dispatchEvent(new KeyboardEvent("focusin"));
-            jest.runOnlyPendingTimers();
-
-            // Act
-            // Flow doesn't like jest mocks
-            // $FlowFixMe[prop-missing]
-            const result = TooltipBubble.mock.instances[0].props["children"];
-
-            // Assert
-            expect(result.props["title"]).toMatchSnapshot(
-                `Similar to <HeadingSmall>Title</HeadingSmall>`,
-            );
-            expect(result.props["children"]).toMatchSnapshot(
-                `Similar to <HeadingSmall>Some custom content</HeadingSmall>`,
-            );
+            expect(tooltip).toBeInTheDocument();
         });
 
-        test("with title, overrides title of TooltipContent", async () => {
+        it("should hide the tooltip on unhover", async () => {
             // Arrange
-            const ref = await new Promise((resolve) => {
-                const content = (
-                    <TooltipContent title="Content title">
-                        <Body>Some custom content</Body>
-                    </TooltipContent>
-                );
-                const nodes = (
-                    <View>
-                        <Tooltip id="tooltip" title="Title" content={content}>
-                            <View ref={resolve}>Anchor</View>
-                        </Tooltip>
-                    </View>
-                );
-                mount(nodes);
-            });
-            const node = (ReactDOM.findDOMNode(ref): any);
-            node && node.dispatchEvent(new KeyboardEvent("focusin"));
+            render(
+                <View>
+                    <Tooltip title="Title" content="Content">
+                        <View>Anchor</View>
+                    </Tooltip>
+                </View>,
+            );
+
+            const node = screen.getByText("Anchor");
+            userEvent.hover(node);
+            jest.runOnlyPendingTimers();
+            userEvent.unhover(node);
             jest.runOnlyPendingTimers();
 
             // Act
-            // Flow doesn't like jest mocks
-            // $FlowFixMe[prop-missing]
-            const result = TooltipBubble.mock.instances[0].props["children"];
+            const tooltip = screen.queryByRole("tooltip");
 
             // Assert
-            expect(result.props["title"]).toBe("Title");
-            expect(result.props["children"]).toMatchSnapshot(
-                `Similar to <Body>Some custom content</Body>`,
-            );
+            expect(tooltip).not.toBeInTheDocument();
         });
 
-        test("without title, renders content as-is", async () => {
+        it("should work when the anchor is text", async () => {
             // Arrange
-            const ref = await new Promise((resolve) => {
-                const content = (
-                    <TooltipContent title="Content title">
-                        <Body>Some custom content</Body>
-                    </TooltipContent>
-                );
-                const nodes = (
-                    <View>
-                        <Tooltip id="tooltip" content={content}>
-                            <View ref={resolve}>Anchor</View>
-                        </Tooltip>
-                    </View>
-                );
-                mount(nodes);
-            });
-            const node = (ReactDOM.findDOMNode(ref): any);
-            node && node.dispatchEvent(new KeyboardEvent("focusin"));
+            render(
+                <View>
+                    <Tooltip title="Title" content="Content">
+                        Anchor
+                    </Tooltip>
+                </View>,
+            );
+
+            const node = screen.getByText("Anchor");
+            userEvent.hover(node);
             jest.runOnlyPendingTimers();
 
             // Act
-            // Flow doesn't like jest mocks
-            // $FlowFixMe[prop-missing]
-            const result = TooltipBubble.mock.instances[0].props["children"];
+            const tooltip = screen.getByRole("tooltip");
 
             // Assert
-            expect(result.props["title"]).toBe("Content title");
-            expect(result.props["children"]).toMatchSnapshot(
-                `<Body>Some custom content</Body>`,
-            );
+            expect(tooltip).toBeInTheDocument();
         });
     });
 
     describe("accessibility", () => {
         test("no id, sets identifier of TooltipBubble with UniqueIDProvider", async () => {
             // Arrange
-            const ref = await new Promise((resolve) => {
-                const nodes = (
-                    <View>
-                        <Tooltip content="Content">
-                            <View ref={resolve}>Anchor</View>
-                        </Tooltip>
-                    </View>
-                );
-                mount(nodes);
-            });
-            const node = (ReactDOM.findDOMNode(ref): any);
-            node && node.dispatchEvent(new KeyboardEvent("focusin"));
+            render(
+                <View>
+                    <Tooltip title="Title" content="Content">
+                        <View>Anchor</View>
+                    </Tooltip>
+                </View>,
+            );
+            const node = screen.getByText("Anchor");
+            userEvent.hover(node);
             jest.runOnlyPendingTimers();
 
             // Act
-            // Flow doesn't like jest mocks
-            // $FlowFixMe[prop-missing]
-            const result = TooltipBubble.mock.instances[0].props["id"];
+            // eslint-disable-next-line testing-library/no-node-access
+            const result = document.querySelector("#" + mockIDENTIFIER);
 
             // Assert
-            expect(result).toBe(mockIDENTIFIER);
+            expect(result).toBeInTheDocument();
         });
 
         test("custom id, sets identifier of TooltipBubble", async () => {
             // Arrange
-            const tooltipID = "tooltip-1";
-            const ref = await new Promise((resolve) => {
-                const nodes = (
-                    <View>
-                        <Tooltip id={tooltipID} title="Title" content="Content">
-                            <View ref={resolve}>Anchor</View>
-                        </Tooltip>
-                    </View>
-                );
-                mount(nodes);
-            });
-            const node = (ReactDOM.findDOMNode(ref): any);
-            node && node.dispatchEvent(new KeyboardEvent("focusin"));
+            render(
+                <View>
+                    <Tooltip id="tooltip-1" title="Title" content="Content">
+                        <View>Anchor</View>
+                    </Tooltip>
+                </View>,
+            );
+            const node = screen.getByText("Anchor");
+            userEvent.hover(node);
             jest.runOnlyPendingTimers();
 
             // Act
-            // Flow doesn't like jest mocks
-            // $FlowFixMe[prop-missing]
-            const result = TooltipBubble.mock.instances[0].props["id"];
+            // eslint-disable-next-line testing-library/no-node-access
+            const result = document.querySelector("#tooltip-1");
 
             // Assert
-            expect(result).toBe(tooltipID);
+            expect(result).toBeInTheDocument();
         });
 
         describe("text-only anchor", () => {
             test("wraps with element", async () => {
                 // Arrange
-                const ref = await new Promise((resolve) => {
-                    const nodes = (
-                        <View>
-                            <Tooltip ref={resolve} content="Content">
-                                Anchor
-                            </Tooltip>
-                        </View>
-                    );
-                    mount(nodes);
-                });
+                render(
+                    <View>
+                        <Tooltip content="Content">Anchor</Tooltip>
+                    </View>,
+                );
 
                 // Act
-                const result = (ReactDOM.findDOMNode(ref): any);
+                const result = screen.getByText("Anchor");
 
                 // Assert
                 expect(result).toBeInstanceOf(HTMLSpanElement);
@@ -268,22 +178,14 @@ describe("Tooltip", () => {
 
             test("id provided, does not attach aria-describedby", async () => {
                 // Arrange
-                const tooltipID = "tooltip-2";
-                const ref = await new Promise((resolve) => {
-                    const nodes = (
-                        <View>
-                            <Tooltip
-                                ref={resolve}
-                                id={tooltipID}
-                                content="Content"
-                            >
-                                Anchor
-                            </Tooltip>
-                        </View>
-                    );
-                    mount(nodes);
-                });
-                const node = (ReactDOM.findDOMNode(ref): any);
+                render(
+                    <View>
+                        <Tooltip id="tooltip-2" content="Content">
+                            Anchor
+                        </Tooltip>
+                    </View>,
+                );
+                const node = screen.getByText("Anchor");
 
                 // Act
                 const result = node.getAttribute("aria-describedby");
@@ -294,23 +196,20 @@ describe("Tooltip", () => {
 
             test("no id provided, attaches aria-describedby", async () => {
                 // Arrange
-                const ref = await new Promise((resolve) => {
-                    const nodes = (
-                        <View>
-                            <Tooltip ref={resolve} content="Content">
-                                Anchor
-                            </Tooltip>
-                        </View>
-                    );
-                    mount(nodes);
-                });
-                const node = (ReactDOM.findDOMNode(ref): any);
+                render(
+                    <View>
+                        <Tooltip content="Content">Anchor</Tooltip>
+                    </View>,
+                );
+                const node = screen.getByText("Anchor");
 
                 // Act
-                const result = node.getAttribute("aria-describedby");
 
                 // Assert
-                expect(result).toBe(mockIDENTIFIER);
+                expect(node).toHaveAttribute(
+                    "aria-describedby",
+                    mockIDENTIFIER,
+                );
             });
         });
 
@@ -323,14 +222,13 @@ describe("Tooltip", () => {
                     </View>
                 );
                 const ref = await new Promise((resolve) => {
-                    const nodes = (
+                    render(
                         <View>
                             <Tooltip ref={resolve} content="Content">
                                 {anchor}
                             </Tooltip>
-                        </View>
+                        </View>,
                     );
-                    mount(nodes);
                 });
 
                 // Act
@@ -339,6 +237,7 @@ describe("Tooltip", () => {
                 // Assert
                 expect(result).toBeInstanceOf(HTMLDivElement);
                 expect(result.innerHTML).not.toBe("Anchor");
+                // eslint-disable-next-line testing-library/no-node-access
                 expect(result.children[0].innerHTML).toBe("Anchor");
             });
 
@@ -350,7 +249,7 @@ describe("Tooltip", () => {
                     </View>
                 );
                 const ref = await new Promise((resolve) => {
-                    const nodes = (
+                    render(
                         <View>
                             <Tooltip
                                 id="tooltip-3"
@@ -359,9 +258,8 @@ describe("Tooltip", () => {
                             >
                                 {anchor}
                             </Tooltip>
-                        </View>
+                        </View>,
                     );
-                    mount(nodes);
                 });
                 const node = (ReactDOM.findDOMNode(ref): any);
 
@@ -380,14 +278,13 @@ describe("Tooltip", () => {
                     </View>
                 );
                 const ref = await new Promise((resolve) => {
-                    const nodes = (
+                    render(
                         <View>
                             <Tooltip ref={resolve} content="Content">
                                 {anchor}
                             </Tooltip>
-                        </View>
+                        </View>,
                     );
-                    mount(nodes);
                 });
                 const node = (ReactDOM.findDOMNode(ref): any);
 
@@ -397,6 +294,42 @@ describe("Tooltip", () => {
                 // Assert
                 expect(result).toBe(mockIDENTIFIER);
             });
+        });
+    });
+
+    describe("Controlled", () => {
+        test("can be opened programmatically", async () => {
+            // Arrange
+            render(
+                <View>
+                    <Tooltip id="tooltip" content="Content" opened={true}>
+                        <View>Anchor</View>
+                    </Tooltip>
+                </View>,
+            );
+
+            // Act
+            jest.runOnlyPendingTimers();
+
+            // Assert
+            expect(screen.getByText("Content")).toBeInTheDocument();
+        });
+
+        test("can be closed programmatically", async () => {
+            // Arrange
+            render(
+                <View>
+                    <Tooltip id="tooltip" content="Content" opened={false}>
+                        <View>Anchor</View>
+                    </Tooltip>
+                </View>,
+            );
+
+            // Act
+            jest.runOnlyPendingTimers();
+
+            // Assert
+            expect(screen.queryByText("Content")).not.toBeInTheDocument();
         });
     });
 });

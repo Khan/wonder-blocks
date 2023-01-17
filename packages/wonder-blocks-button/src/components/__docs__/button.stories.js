@@ -46,7 +46,10 @@ Default.args = {
     light: false,
     disabled: false,
     style: {maxWidth: 200},
-    onClick: () => {},
+    onClick: () => {
+        // eslint-disable-next-line no-alert
+        alert("Click!");
+    },
 };
 
 Default.parameters = {

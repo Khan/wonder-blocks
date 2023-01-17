@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 1.4.1
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-modal@3.0.2
+
+## 1.4.0
+
+### Minor Changes
+
+-   b784d7a8: Allow Tooltip to be open/closed by its parent (controlled)
+
 ## 1.3.23
 
 ### Patch Changes

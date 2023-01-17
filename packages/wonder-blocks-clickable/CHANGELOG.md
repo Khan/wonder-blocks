@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 2.4.1
+
+### Patch Changes
+
+-   4c682709: handleClick no longer redundantly triggers on mouseup
+
 ## 2.4.0
 
 ### Minor Changes

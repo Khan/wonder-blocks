@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-form
 
+## 3.1.6
+
+### Patch Changes
+
+-   Updated dependencies [4c682709]
+    -   @khanacademy/wonder-blocks-clickable@2.4.1
+
+## 3.1.5
+
+### Patch Changes
+
+-   be4e4cd2: Allow maybe values for `errorMessage` prop on `CheckboxGroup`
+
 ## 3.1.4
 
 ### Patch Changes
