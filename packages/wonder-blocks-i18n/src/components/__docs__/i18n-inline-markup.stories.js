@@ -5,6 +5,9 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+
+import type {StoryComponentType} from "@storybook/react";
+
 import * as i18n from "../../functions/i18n.js";
 
 import {I18nInlineMarkup} from "../i18n-inline-markup.js";
@@ -81,7 +84,7 @@ export const ElementWrapper = (): React.Node => {
     );
 };
 
-export const HandlingTranslationErrors = (): React.Node => {
+export const HandlingTranslationErrors: StoryComponentType = (): React.Node => {
     return (
         <I18nInlineMarkup
             settings={(label) => (
@@ -112,4 +115,16 @@ export const HandlingTranslationErrors = (): React.Node => {
             )}
         </I18nInlineMarkup>
     );
+};
+
+HandlingTranslationErrors.parameters = {
+    docs: {
+        description: {
+            story:
+                `This story shows how to handle translation errors. The ` +
+                `\`onError\` prop is called when there is an error parsing ` +
+                `the translation. In this example, we're using a tooltip ` +
+                `to show the error message.`,
+        },
+    },
 };
