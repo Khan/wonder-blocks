@@ -4,22 +4,28 @@ import {renderHook} from "@testing-library/react-hooks";
 import {useOnMountEffect} from "../use-on-mount-effect.js";
 
 describe("#useOnMountEffect", () => {
-    it("shoul call the callback once", () => {
+    it("should call the callback once", () => {
+        // Arrange
         const callback = jest.fn();
-        const {rerender} = renderHook(() => useOnMountEffect(callback));
 
+        // Act
+        const {rerender} = renderHook(() => useOnMountEffect(callback));
         rerender();
 
+        // Assert
         expect(callback).toHaveBeenCalledTimes(1);
     });
 
-    it("should call the cleanup function is one is returned by the callback", () => {
+    it("should call the cleanup function if one is returned by the callback", () => {
+        // Arrange
         const cleanup = jest.fn();
         const callback = jest.fn().mockReturnValue(cleanup);
-        const {unmount} = renderHook(() => useOnMountEffect(callback));
 
+        // Act
+        const {unmount} = renderHook(() => useOnMountEffect(callback));
         unmount();
 
+        // Assert
         expect(cleanup).toHaveBeenCalled();
     });
 });
