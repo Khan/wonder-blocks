@@ -107,6 +107,11 @@ export const WithTypography: StoryComponentType = () => (
     <Link href="#nonexistent-link" id="typography-link">
         <HeadingSmall>Heading inside a Link element</HeadingSmall>
     </Link>
+    //      <HeadingSmall>
+    //      <Link href="#nonexistent-link" id="typography-link">
+    //          Heading inside a Link element
+    //      </Link>
+    //  </HeadingSmall>
 );
 
 WithTypography.parameters = {

@@ -88,6 +88,7 @@ const sharedStyles = StyleSheet.create({
         cursor: "pointer",
         textDecoration: "none",
         outline: "none",
+        display: "inline-flex",
     },
 });
 
@@ -101,8 +102,7 @@ const _generateStyles = (kind, light, visitable) => {
         throw new Error("Only primary link is visitable");
     }
 
-    const {blue, darkBlue, pink, purple, white, white64, offBlack, offBlack32} =
-        Color;
+    const {blue, pink, purple, white, white64, offBlack, offBlack32} = Color;
 
     const linkPurple = mix(fade(offBlack, 0.08), purple);
     const fadedBlue = mix(fade(blue, 0.32), white);
@@ -140,21 +140,12 @@ const _generateStyles = (kind, light, visitable) => {
         hover: {
             textDecoration: "underline currentcolor dashed",
             textUnderlineOffset: 4,
-            color: focusColor,
+            color: defaultTextColor,
             ...defaultVisited,
         },
         focus: {
             color: focusColor,
-            // Using a box shadow instead of a regular border so that the
-            // text doesn't shift by the width of the border whenever
-            // it receives focus.
-            // This assumes a background of white for the regular link and
-            // a background of darkBlue for the light version. The inner
-            // box shadow/ring is also small enough for a slight variation
-            // in the background color not to matter too much.
-            boxShadow: `0 0 0 1px ${light ? darkBlue : white}, 0 0 0 2px ${
-                light ? white : blue
-            }`,
+            outline: `1px solid ${light ? white : blue}`,
             borderRadius: 3,
             ...defaultVisited,
         },
