@@ -50,7 +50,9 @@ export default class LinkCore extends React.Component<Props> {
             !(hovered || focused || pressed) && linkStyles.default,
             pressed
                 ? linkStyles.active
-                : (hovered || focused) && linkStyles.focus,
+                : hovered
+                ? linkStyles.hover
+                : focused && linkStyles.focus,
         ];
 
         const commonProps = {
@@ -95,36 +97,37 @@ const _generateStyles = (kind, light, visitable) => {
         return styles[buttonType];
     }
 
-    if (kind === "secondary" && light) {
-        throw new Error("Secondary Light links are not supported");
+    if (visitable && kind !== "primary") {
+        throw new Error("Only primary link is visitable");
     }
 
-    if (visitable && (kind !== "primary" || (kind === "primary" && light))) {
-        throw new Error("Only primary (not light) link is visitable");
-    }
+    const {blue, darkBlue, pink, purple, white, white64, offBlack, offBlack32} =
+        Color;
 
-    const {blue, purple, white, offBlack, offBlack32} = Color;
     const linkPurple = mix(fade(offBlack, 0.08), purple);
+    const fadedBlue = mix(fade(blue, 0.32), white);
 
+    const defaultPrimaryColor = light ? white : blue;
+    const defaultSecondaryColor = light ? white64 : offBlack;
     const defaultTextColor =
-        kind === "primary" ? (light ? white : blue) : offBlack;
+        kind === "primary" ? defaultPrimaryColor : defaultSecondaryColor;
 
-    const focusColor: string = light ? white : blue;
-    const activeColor: string = light
-        ? mix(fade(blue, 0.32), white)
-        : mix(offBlack32, blue);
+    const focusColor: string = light ? fadedBlue : blue;
+    const activeColor: string = light ? fadedBlue : mix(offBlack32, blue);
 
     const defaultVisited = visitable
         ? {
               ":visited": {
-                  color: linkPurple,
+                  color: light ? pink : linkPurple,
               },
           }
         : Object.freeze({});
     const activeVisited = visitable
         ? {
               ":visited": {
-                  color: mix(offBlack32, linkPurple),
+                  color: light
+                      ? mix(offBlack32, pink)
+                      : mix(offBlack32, linkPurple),
               },
           }
         : Object.freeze({});
@@ -134,14 +137,31 @@ const _generateStyles = (kind, light, visitable) => {
             color: defaultTextColor,
             ...defaultVisited,
         },
-        focus: {
-            textDecoration: "underline currentcolor solid",
+        hover: {
+            textDecoration: "underline currentcolor dashed",
+            textUnderlineOffset: 4,
             color: focusColor,
+            ...defaultVisited,
+        },
+        focus: {
+            color: focusColor,
+            // Using a box shadow instead of a regular border so that the
+            // text doesn't shift by the width of the border whenever
+            // it receives focus.
+            // This assumes a background of white for the regular link and
+            // a background of darkBlue for the light version. The inner
+            // box shadow/ring is also small enough for a slight variation
+            // in the background color not to matter too much.
+            boxShadow: `0 0 0 1px ${light ? darkBlue : white}, 0 0 0 2px ${
+                light ? white : blue
+            }`,
+            borderRadius: 3,
             ...defaultVisited,
         },
         active: {
             color: activeColor,
             textDecoration: "underline currentcolor solid",
+            textUnderlineOffset: 4,
             ...activeVisited,
         },
     };

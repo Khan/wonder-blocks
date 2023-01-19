@@ -39,7 +39,7 @@ Default.args = {
 };
 
 export const Basic: StoryComponentType = () => (
-    <Link href="#">Hello, world!</Link>
+    <Link href="#">Hello, world! abcdefghijklmnopqrstuvwxyz</Link>
 );
 
 Basic.parameters = {
@@ -80,8 +80,15 @@ export const LightVariants: StoryComponentType = () => (
         <Link href="#dark-link" light={true}>
             Primary Link
         </Link>{" "}
-        used on a dark background. My friend the Secondary Link is not supported
-        on this dark background.
+        used on a dark background, and I am a{" "}
+        <Link href="#dark-link" light={true} visitable={true}>
+            Visitable Link
+        </Link>
+        . Here is my friend the{" "}
+        <Link href="#dark-link" kind="secondary" light={true}>
+            Secondary Link
+        </Link>
+        .
     </Body>
 );
 
@@ -176,7 +183,7 @@ Navigation.parameters = {
 const styles = StyleSheet.create({
     darkBackground: {
         backgroundColor: Color.darkBlue,
-        color: Color.white64,
+        color: Color.white,
         padding: 10,
     },
     heading: {
