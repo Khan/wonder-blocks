@@ -117,7 +117,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         return null;
     }
 
-    _maybeRender(renderState: RenderState): React.Node {
+    _maybeRender(renderState: $Values<typeof RenderState>): React.Node {
         const {children, placeholder} = this.props;
 
         switch (renderState) {

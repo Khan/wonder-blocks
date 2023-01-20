@@ -5,17 +5,13 @@ import {useServerEffect} from "./use-server-effect";
 import {useSharedCache} from "./use-shared-cache";
 import {useCachedEffect} from "./use-cached-effect";
 
-// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-// have fixed:
-// https://github.com/import-js/eslint-plugin-import/issues/2073
-// eslint-disable-next-line import/named
 import {FetchPolicy} from "../util/types";
 import type {Result, ValidCacheData} from "../util/types";
 
 /**
  * Policies to define how a hydratable effect should behave client-side.
  */
-export enum WhenClientSide {
+export const WhenClientSide = {
     /**
      * The result from executing the effect server-side will not be hydrated.
      * The effect will always be executed client-side.
@@ -24,7 +20,7 @@ export enum WhenClientSide {
      * for properly hydrating this component (for example, the action invokes
      * Apollo which manages its own cache to ensure things render properly).
      */
-    DoNotHydrate,
+    DoNotHydrate: 0,
 
     /**
      * The result from executing the effect server-side will be hydrated.
@@ -32,7 +28,7 @@ export enum WhenClientSide {
      * be hydrated (i.e. both error and success hydration results prevent the
      * effect running client-side).
      */
-    ExecuteWhenNoResult,
+    ExecuteWhenNoResult: 1,
 
     /**
      * The result from executing the effect server-side will be hydrated.
@@ -41,15 +37,15 @@ export enum WhenClientSide {
      * If the hydrated result was not a success result, or there was no
      * hydrated result, the effect will not be executed.
      */
-    ExecuteWhenNoSuccessResult,
+    ExecuteWhenNoSuccessResult: 2,
 
     /**
      * The result from executing the effect server-side will be hydrated.
      * The effect will always be executed client-side, regardless of the
      * hydrated result status.
      */
-    AlwaysExecute,
-}
+    AlwaysExecute: 3,
+};
 
 type HydratableEffectOptions<TData: ValidCacheData> = {|
     /**
@@ -62,7 +58,7 @@ type HydratableEffectOptions<TData: ValidCacheData> = {|
      * Changing this value after the first call is irrelevant as it only
      * affects the initial render behavior.
      */
-    clientBehavior?: WhenClientSide,
+    clientBehavior?: $Values<typeof WhenClientSide>,
 
     /**
      * When `true`, the effect will not be executed; otherwise, the effect will
