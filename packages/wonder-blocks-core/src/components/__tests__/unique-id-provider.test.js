@@ -1,16 +1,16 @@
 // @flow
 import * as React from "react";
-import * as ReactDOMServer from "react-dom/server.js";
+import * as ReactDOMServer from "react-dom/server";
 import {mount} from "enzyme";
 import "jest-enzyme";
 
-import View from "../view.js";
+import View from "../view";
 
-import SsrIDFactory from "../../util/ssr-id-factory.js";
-import UniqueIDFactory from "../../util/unique-id-factory.js";
-import UniqueIDProvider from "../unique-id-provider.js";
-import WithSSRPlaceholder from "../with-ssr-placeholder.js";
-import {RenderStateRoot} from "../render-state-root.js";
+import SsrIDFactory from "../../util/ssr-id-factory";
+import UniqueIDFactory from "../../util/unique-id-factory";
+import UniqueIDProvider from "../unique-id-provider";
+import WithSSRPlaceholder from "../with-ssr-placeholder";
+import {RenderStateRoot} from "../render-state-root";
 
 describe("UniqueIDProvider", () => {
     describe("mockOnFirstRender is default (false)", () => {

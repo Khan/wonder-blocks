@@ -1,5 +1,5 @@
 // @flow
-import type {MediaQuery, MediaSize} from "./types.js";
+import type {MediaQuery, MediaSize} from "./types";
 
 /**
  * Return where a media size matches a media query.

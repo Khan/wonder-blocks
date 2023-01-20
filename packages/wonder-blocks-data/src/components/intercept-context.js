@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import type {ValidCacheData} from "../util/types.js";
+import type {ValidCacheData} from "../util/types";
 
 type InterceptContextData = $ReadOnlyArray<
     (requestId: string) => ?Promise<?ValidCacheData>,

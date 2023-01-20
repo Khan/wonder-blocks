@@ -21,16 +21,16 @@ import type {
     WithActionSchedulerProps,
     WithoutActionScheduler,
 } from "@khanacademy/wonder-blocks-timing";
-import DropdownCoreVirtualized from "./dropdown-core-virtualized.js";
-import SeparatorItem from "./separator-item.js";
-import {defaultLabels, keyCodes} from "../util/constants.js";
-import type {DropdownItem} from "../util/types.js";
-import DropdownPopper from "./dropdown-popper.js";
-import {debounce, getStringForKey} from "../util/helpers.js";
+import DropdownCoreVirtualized from "./dropdown-core-virtualized";
+import SeparatorItem from "./separator-item";
+import {defaultLabels, keyCodes} from "../util/constants";
+import type {DropdownItem} from "../util/types";
+import DropdownPopper from "./dropdown-popper";
+import {debounce, getStringForKey} from "../util/helpers";
 import {
     generateDropdownMenuStyles,
     getDropdownMenuHeight,
-} from "../util/dropdown-menu-styles.js";
+} from "../util/dropdown-menu-styles";
 
 /**
  * The number of options to apply the virtualized list to.

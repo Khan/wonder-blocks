@@ -4,8 +4,8 @@ import {mount} from "enzyme";
 import "jest-enzyme";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import PopoverEventListener from "../popover-event-listener.js";
-import PopoverContent from "../popover-content.js";
+import PopoverEventListener from "../popover-event-listener";
+import PopoverContent from "../popover-content";
 
 describe("PopoverKeypressListener", () => {
     it("should call onClose if Escape is pressed", () => {

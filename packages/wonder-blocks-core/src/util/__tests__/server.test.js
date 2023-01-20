@@ -1,7 +1,7 @@
 // @flow
-import Server from "../server.js";
+import Server from "../server";
 
-describe("./server.js", () => {
+describe("./server", () => {
     it("#isServerSide should return false", () => {
         // Arrange
 

@@ -5,11 +5,11 @@ import {View} from "@khanacademy/wonder-blocks-core";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 
-import ArgTypes from "./birthday-picker.argtypes.js";
-import BirthdayPicker from "../birthday-picker.js";
+import ArgTypes from "./birthday-picker.argtypes";
+import BirthdayPicker from "../birthday-picker";
 
 export default {
     title: "BirthdayPicker",

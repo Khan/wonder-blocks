@@ -5,8 +5,8 @@ import "jest-enzyme";
 
 import {TooltipTail} from "@khanacademy/wonder-blocks-tooltip";
 
-import PopoverDialog from "../popover-dialog.js";
-import PopoverContentCore from "../popover-content-core.js";
+import PopoverDialog from "../popover-dialog";
+import PopoverContentCore from "../popover-content-core";
 
 jest.mock("@khanacademy/wonder-blocks-tooltip");
 

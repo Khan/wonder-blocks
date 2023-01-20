@@ -2,7 +2,7 @@
 /* eslint-disable ft-flow/no-unused-expressions */
 import * as React from "react";
 
-import Link from "../link.js";
+import Link from "../link";
 
 // $FlowExpectedError[incompatible-type]: href must be used with beforeNav
 <Link beforeNav={() => Promise.resolve()}>Hello, world!</Link>;

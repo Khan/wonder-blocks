@@ -2,7 +2,7 @@
 import * as React from "react";
 import {mount} from "enzyme"; // eslint-disable-line no-restricted-imports
 import "jest-enzyme";
-import * as Data from "../data.js";
+import * as Data from "../data";
 
 describe("WonderBlocksData.adapter", () => {
     it("should render children when configuration arrays are empty", () => {

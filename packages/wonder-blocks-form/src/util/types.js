@@ -5,7 +5,7 @@
 // guide.
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
-import typeof Choice from "../components/choice.js";
+import typeof Choice from "../components/choice";
 
 // Shared props for radio-core and checkbox-core
 export type ChoiceCoreProps = {|

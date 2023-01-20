@@ -2,9 +2,9 @@
 import * as React from "react";
 import {VariableSizeList as List} from "react-window";
 
-import DropdownVirtualizedItem from "../dropdown-core-virtualized-item.js";
+import DropdownVirtualizedItem from "../dropdown-core-virtualized-item";
 
-import type {DropdownItem} from "../../util/types.js";
+import type {DropdownItem} from "../../util/types";
 
 type Props = {|
     data: Array<DropdownItem>,

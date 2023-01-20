@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 import {MemoryRouter} from "react-router-dom";
-import ClickableBehavior from "../../components/clickable-behavior.js";
-import getClickableBehavior from "../get-clickable-behavior.js";
+import ClickableBehavior from "../../components/clickable-behavior";
+import getClickableBehavior from "../get-clickable-behavior";
 
 describe("getClickableBehavior", () => {
     test("Without href, returns ClickableBehavior", () => {

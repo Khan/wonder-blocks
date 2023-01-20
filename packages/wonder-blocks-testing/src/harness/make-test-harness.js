@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
 
-import {renderAdapters} from "./render-adapters.js";
+import {renderAdapters} from "./render-adapters";
 
-import type {TestHarnessAdapters, TestHarnessConfigs} from "./types.js";
+import type {TestHarnessAdapters, TestHarnessConfigs} from "./types";
 
 /**
  * Create a test harness method for use with React components.

@@ -6,8 +6,8 @@ import "jest-enzyme";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 
-import expectRenderError from "../../../../../utils/testing/expect-render-error.js";
-import IconButton from "../icon-button.js";
+import expectRenderError from "../../../../../utils/testing/expect-render-error";
+import IconButton from "../icon-button";
 
 describe("IconButton", () => {
     const {location} = window;

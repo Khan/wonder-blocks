@@ -1,6 +1,6 @@
 // @flow
-import {RespondWith} from "../respond-with.js";
-import {mockRequester} from "../mock-requester.js";
+import {RespondWith} from "../respond-with";
+import {mockRequester} from "../mock-requester";
 
 describe("#mockRequester", () => {
     it("should return a function", () => {

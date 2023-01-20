@@ -2,7 +2,7 @@
 import {StyleSheet, css} from "aphrodite";
 import type {CSSProperties} from "aphrodite";
 
-import type {StyleType} from "./types.js";
+import type {StyleType} from "./types";
 
 type StyledExport = {|
     style: CSSProperties | Empty,

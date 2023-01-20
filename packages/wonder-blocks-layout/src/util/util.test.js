@@ -1,5 +1,5 @@
 // @flow
-import {queryMatchesSize} from "./util.js";
+import {queryMatchesSize} from "./util";
 
 describe("queryMatchesSize", () => {
     describe("all", () => {

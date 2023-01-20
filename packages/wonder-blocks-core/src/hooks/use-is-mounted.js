@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import {useOnMountEffect} from "./use-on-mount-effect.js";
+import {useOnMountEffect} from "./use-on-mount-effect";
 
 /**
  * Hook to provide a function for determining component mounted state.

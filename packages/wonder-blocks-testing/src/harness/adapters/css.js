@@ -3,7 +3,7 @@ import * as React from "react";
 
 import type {CSSProperties} from "aphrodite";
 
-import type {TestHarnessAdapter} from "../types.js";
+import type {TestHarnessAdapter} from "../types";
 
 type Config =
     | string

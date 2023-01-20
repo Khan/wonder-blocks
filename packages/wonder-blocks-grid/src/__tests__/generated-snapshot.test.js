@@ -15,7 +15,7 @@ import {LabelMedium, Body} from "@khanacademy/wonder-blocks-typography";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import {StyleSheet} from "aphrodite";
 
-import Gutter from "./../components/gutter.js";
+import Gutter from "./../components/gutter";
 
 describe("wonder-blocks-grid", () => {
     it("example 1", () => {

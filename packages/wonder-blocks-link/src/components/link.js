@@ -5,7 +5,7 @@ import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
-import LinkCore from "./link-core.js";
+import LinkCore from "./link-core";
 
 type CommonProps = {|
     ...AriaProps,

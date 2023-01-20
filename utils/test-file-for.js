@@ -12,7 +12,7 @@ const getTestPath = (pathToFile) => {
     const testFolder = path.join(codeFolder, "__tests__");
 
     const codeFileName = path.basename(pathToFile);
-    const testFileName = `${codeFileName.replace(/\.js$/, ".test.js")}`;
+    const testFileName = `${codeFileName.replace(/\.js$/, ".test")}`;
 
     return path.join(testFolder, testFileName);
 };

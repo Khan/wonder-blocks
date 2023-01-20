@@ -3,7 +3,7 @@ import * as React from "react";
 import {mount, shallow} from "enzyme";
 import "jest-enzyme";
 
-import IDProvider from "../id-provider.js";
+import IDProvider from "../id-provider";
 
 const mockIDENTIFIER = `uid-component-0-${IDProvider.defaultId}`;
 

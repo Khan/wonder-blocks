@@ -1,5 +1,5 @@
 // @flow
-import type {IProvideTranslation} from "./types.js";
+import type {IProvideTranslation} from "./types";
 
 // c.f. http://www.alanflavell.org.uk/unicode/unidata25.html
 // hollow (white) square; also try \u25a0 or \u25aa+b

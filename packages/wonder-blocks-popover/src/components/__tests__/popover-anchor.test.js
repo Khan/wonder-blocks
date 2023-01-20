@@ -3,7 +3,7 @@ import * as React from "react";
 import {mount} from "enzyme";
 import "jest-enzyme";
 
-import PopoverAnchor from "../popover-anchor.js";
+import PopoverAnchor from "../popover-anchor";
 
 describe("PopoverAnchor", () => {
     it("should set child node as ref", () => {

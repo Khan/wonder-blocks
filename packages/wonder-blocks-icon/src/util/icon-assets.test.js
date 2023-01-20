@@ -5,7 +5,7 @@ describe("icons", () => {
 
         // Act
         // $FlowIgnore[prop-missing]: Flow doesn't know about __esModule
-        const {__esModule: _, ...icons} = await import("./icon-assets.js");
+        const {__esModule: _, ...icons} = await import("./icon-assets");
 
         // Assert
         expect(Object.keys(icons).sort()).toEqual(

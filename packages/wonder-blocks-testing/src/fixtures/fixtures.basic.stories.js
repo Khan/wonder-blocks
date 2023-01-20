@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import {fixtures} from "../index.js";
+import {fixtures} from "../index";
 
 type Props = {|
     propA: string,

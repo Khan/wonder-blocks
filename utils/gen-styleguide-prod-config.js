@@ -28,11 +28,9 @@ const fs = require("fs");
 const path = require("path");
 const process = require("process");
 
-const {
-    getComponentFilesFromSection,
-} = require("./styleguidist-config-utils.js");
+const {getComponentFilesFromSection} = require("./styleguidist-config-utils");
 
-const styleguideConfig = require("../styleguide.config.js");
+const styleguideConfig = require("../styleguide.config");
 
 /**
  * Writes a styleguide configuration to a file with the given path.
@@ -45,7 +43,7 @@ function writeStyleguideConfig(filepath, config) {
         `const babel = require("@webpack-blocks/babel");`,
         `const postcss = require("@webpack-blocks/postcss");`,
         ``,
-        `const babelConfig = require("./build-settings/babel.config.js")({env: () => true});`,
+        `const babelConfig = require("./build-settings/babel.config")({env: () => true});`,
         ``,
         `module.exports = {`,
     ];
@@ -246,4 +244,4 @@ if (process.env.PULL_REQUEST !== "true") {
 
 // Finally, we output the results.
 // We assume we're being run from the root.
-writeStyleguideConfig("./styleguide.prod.config.js", styleguideConfig);
+writeStyleguideConfig("./styleguide.prod.config", styleguideConfig);

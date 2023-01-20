@@ -1,7 +1,7 @@
 // @flow
-import {fetchRequestMatchesMock} from "./fetch-request-matches-mock.js";
-import {mockRequester} from "../mock-requester.js";
-import type {FetchMockFn, FetchMockOperation} from "./types.js";
+import {fetchRequestMatchesMock} from "./fetch-request-matches-mock";
+import {mockRequester} from "../mock-requester";
+import type {FetchMockFn, FetchMockOperation} from "./types";
 
 /**
  * A mock for the fetch function passed to GqlRouter.

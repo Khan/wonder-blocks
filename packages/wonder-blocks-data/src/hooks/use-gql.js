@@ -1,15 +1,15 @@
 // @flow
 import {useCallback} from "react";
 
-import {mergeGqlContext} from "../util/merge-gql-context.js";
-import {useGqlRouterContext} from "./use-gql-router-context.js";
-import {getGqlDataFromResponse} from "../util/get-gql-data-from-response.js";
+import {mergeGqlContext} from "../util/merge-gql-context";
+import {useGqlRouterContext} from "./use-gql-router-context";
+import {getGqlDataFromResponse} from "../util/get-gql-data-from-response";
 
 import type {
     GqlContext,
     GqlOperation,
     GqlFetchOptions,
-} from "../util/gql-types.js";
+} from "../util/gql-types";
 
 /**
  * Hook to obtain a gqlFetch function for performing GraphQL requests.

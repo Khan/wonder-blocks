@@ -17,7 +17,7 @@ import type {
     ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
-import type {SharedProps} from "./icon-button.js";
+import type {SharedProps} from "./icon-button";
 
 type Props = {|
     ...SharedProps,

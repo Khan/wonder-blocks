@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import {InterceptRequests} from "@khanacademy/wonder-blocks-data";
-import type {TestHarnessAdapter} from "../types.js";
+import type {TestHarnessAdapter} from "../types";
 
 type Interceptor = React.ElementConfig<typeof InterceptRequests>["interceptor"];
 

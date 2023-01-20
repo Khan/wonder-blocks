@@ -6,7 +6,7 @@ import {
     Breadcrumbs,
     BreadcrumbsItem,
 } from "@khanacademy/wonder-blocks-breadcrumbs";
-import OnePaneDialog from "../one-pane-dialog.js";
+import OnePaneDialog from "../one-pane-dialog";
 
 describe("OnePaneDialog", () => {
     test("testId should be set in the Dialog element", () => {

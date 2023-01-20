@@ -4,13 +4,13 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import DropdownOpener from "./dropdown-opener.js";
-import ActionItem from "./action-item.js";
-import OptionItem from "./option-item.js";
-import DropdownCore from "./dropdown-core.js";
+import DropdownOpener from "./dropdown-opener";
+import ActionItem from "./action-item";
+import OptionItem from "./option-item";
+import DropdownCore from "./dropdown-core";
 
-import ActionMenuOpenerCore from "./action-menu-opener-core.js";
-import type {Item, DropdownItem, OpenerProps} from "../util/types.js";
+import ActionMenuOpenerCore from "./action-menu-opener-core";
+import type {Item, DropdownItem, OpenerProps} from "../util/types";
 
 type Props = {|
     ...AriaProps,

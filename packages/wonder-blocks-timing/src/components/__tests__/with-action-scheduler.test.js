@@ -3,9 +3,9 @@ import * as React from "react";
 import {mount} from "enzyme";
 import "jest-enzyme";
 
-import withActionScheduler from "../with-action-scheduler.js";
+import withActionScheduler from "../with-action-scheduler";
 
-import type {WithActionSchedulerProps} from "../../util/types.js";
+import type {WithActionSchedulerProps} from "../../util/types";
 
 describe("withActionScheduler", () => {
     it("should provide wrapped component with IScheduleActions instance", () => {

@@ -11,9 +11,9 @@ import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
-import Check from "./check.js";
-import Checkbox from "./checkbox.js";
+import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
+import Check from "./check";
+import Checkbox from "./checkbox";
 
 type OptionProps = {|
     ...AriaProps,

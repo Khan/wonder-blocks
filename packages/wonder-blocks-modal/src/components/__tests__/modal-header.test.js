@@ -8,7 +8,7 @@ import {
     BreadcrumbsItem,
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 
-import ModalHeader from "../modal-header.js";
+import ModalHeader from "../modal-header";
 
 const exampleBreadcrumbs: React.Element<typeof Breadcrumbs> = (
     <Breadcrumbs>

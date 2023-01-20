@@ -3,7 +3,7 @@ import * as React from "react";
 import {render, act as reactAct} from "@testing-library/react";
 import {renderHook} from "@testing-library/react-hooks";
 
-import {useOnline} from "../use-online.js";
+import {useOnline} from "../use-online";
 
 describe("useOnline", () => {
     it("should return true when navigator.onLine is true", () => {

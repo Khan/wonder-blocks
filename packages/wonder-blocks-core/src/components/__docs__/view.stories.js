@@ -13,9 +13,9 @@ import {
 
 import type {StoryComponentType} from "@storybook/react";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
-import viewArgTypes from "./view.argtypes.js";
+import viewArgTypes from "./view.argtypes";
 
 export default {
     title: "Core / View",

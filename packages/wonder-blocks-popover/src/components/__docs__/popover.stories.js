@@ -11,9 +11,9 @@ import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
-import PopoverArgtypes from "./popover.argtypes.js";
+import PopoverArgtypes from "./popover.argtypes";
 
 export default {
     title: "Popover/Popover",

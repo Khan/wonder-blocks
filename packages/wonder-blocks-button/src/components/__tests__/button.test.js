@@ -4,7 +4,7 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import Button from "../button.js";
+import Button from "../button";
 
 describe("Button", () => {
     const {location} = window;

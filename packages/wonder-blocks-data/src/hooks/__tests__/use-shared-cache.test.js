@@ -1,7 +1,7 @@
 // @flow
 import {renderHook as clientRenderHook} from "@testing-library/react-hooks";
 
-import {useSharedCache, SharedCache} from "../use-shared-cache.js";
+import {useSharedCache, SharedCache} from "../use-shared-cache";
 
 describe("#useSharedCache", () => {
     beforeEach(() => {

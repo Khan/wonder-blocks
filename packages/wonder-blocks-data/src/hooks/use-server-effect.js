@@ -1,12 +1,12 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {useContext} from "react";
-import {TrackerContext} from "../util/request-tracking.js";
-import {SsrCache} from "../util/ssr-cache.js";
-import {resultFromCachedResponse} from "../util/result-from-cache-response.js";
-import {useRequestInterception} from "./use-request-interception.js";
+import {TrackerContext} from "../util/request-tracking";
+import {SsrCache} from "../util/ssr-cache";
+import {resultFromCachedResponse} from "../util/result-from-cache-response";
+import {useRequestInterception} from "./use-request-interception";
 
-import type {Result, ValidCacheData} from "../util/types.js";
+import type {Result, ValidCacheData} from "../util/types";
 
 type ServerEffectOptions = {|
     /**

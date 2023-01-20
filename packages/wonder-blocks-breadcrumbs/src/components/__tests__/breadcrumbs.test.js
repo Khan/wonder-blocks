@@ -2,8 +2,8 @@
 import * as React from "react";
 import {mount} from "enzyme";
 import "jest-enzyme";
-import Breadcrumbs from "../breadcrumbs.js";
-import BreadcrumbsItem from "../breadcrumbs-item.js";
+import Breadcrumbs from "../breadcrumbs";
+import BreadcrumbsItem from "../breadcrumbs-item";
 
 describe("Breadcrumbs", () => {
     it("should set aria-current to the last item", () => {

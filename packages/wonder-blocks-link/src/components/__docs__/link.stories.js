@@ -14,8 +14,8 @@ import {
 } from "@khanacademy/wonder-blocks-typography";
 import type {StoryComponentType} from "@storybook/react";
 
-import LinkArgTypes from "./link.argtypes.js";
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import LinkArgTypes from "./link.argtypes";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 
 export default {

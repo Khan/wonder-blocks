@@ -4,8 +4,8 @@
 /* To fix, remove an entry above, run ka-lint, and fix errors. */
 import * as React from "react";
 
-import FakeTranslate from "./i18n-faketranslate.js";
-import {allPluralForms} from "./plural-forms.js";
+import FakeTranslate from "./i18n-faketranslate";
+import {allPluralForms} from "./plural-forms";
 
 type InterpolationOptions<T> = {[string]: T, ...};
 

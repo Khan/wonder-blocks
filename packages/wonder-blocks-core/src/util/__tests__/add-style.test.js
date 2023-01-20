@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import {mount} from "enzyme";
 import "jest-enzyme";
 
-import addStyle from "../add-style.js";
+import addStyle from "../add-style";
 
 const StyledDiv = addStyle<"div">("div");
 

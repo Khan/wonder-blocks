@@ -3,9 +3,9 @@ import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import Popover from "../popover.js";
-import PopoverContent from "../popover-content.js";
-import {PopoverContentCore} from "../../index.js";
+import Popover from "../popover";
+import PopoverContent from "../popover-content";
+import {PopoverContentCore} from "../../index";
 
 describe("Popover", () => {
     it("should set the anchor as the popover ref", async () => {

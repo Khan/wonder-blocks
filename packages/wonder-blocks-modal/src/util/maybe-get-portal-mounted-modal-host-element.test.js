@@ -4,10 +4,10 @@ import * as ReactDOM from "react-dom";
 import {mount} from "enzyme";
 import "jest-enzyme";
 
-import {ModalLauncherPortalAttributeName} from "./constants.js";
-import maybeGetPortalMountedModalHostElement from "./maybe-get-portal-mounted-modal-host-element.js";
-import ModalLauncher from "../components/modal-launcher.js";
-import OnePaneDialog from "../components/one-pane-dialog.js";
+import {ModalLauncherPortalAttributeName} from "./constants";
+import maybeGetPortalMountedModalHostElement from "./maybe-get-portal-mounted-modal-host-element";
+import ModalLauncher from "../components/modal-launcher";
+import OnePaneDialog from "../components/one-pane-dialog";
 
 describe("maybeGetPortalMountedModalHostElement", () => {
     test("when candidate is null, returns null", () => {

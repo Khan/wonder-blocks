@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
-import {SsrCache} from "./ssr-cache.js";
-import {RequestFulfillment} from "./request-fulfillment.js";
+import {SsrCache} from "./ssr-cache";
+import {RequestFulfillment} from "./request-fulfillment";
 
-import type {ResponseCache, ValidCacheData} from "./types.js";
+import type {ResponseCache, ValidCacheData} from "./types";
 
 type TrackerFn = <TData: ValidCacheData>(
     id: string,

@@ -2,7 +2,7 @@
 import * as React from "react";
 import {Server} from "@khanacademy/wonder-blocks-core";
 
-import {RequestTracker, TrackerContext} from "../util/request-tracking.js";
+import {RequestTracker, TrackerContext} from "../util/request-tracking";
 
 type TrackDataProps = {|
     children: React.Node,

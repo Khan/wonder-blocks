@@ -1,11 +1,11 @@
 // @flow
 import * as React from "react";
-import * as ReactDOMServer from "react-dom/server.js";
+import * as ReactDOMServer from "react-dom/server";
 import {mount} from "enzyme";
 import "jest-enzyme";
 
-import WithSSRPlaceholder from "../with-ssr-placeholder.js";
-import {RenderStateRoot} from "../render-state-root.js";
+import WithSSRPlaceholder from "../with-ssr-placeholder";
+import {RenderStateRoot} from "../render-state-root";
 
 describe("WithSSRPlaceholder", () => {
     describe("client-side rendering", () => {

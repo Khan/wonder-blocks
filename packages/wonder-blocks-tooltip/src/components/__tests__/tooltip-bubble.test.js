@@ -6,8 +6,8 @@ import "jest-enzyme";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import TooltipBubble from "../tooltip-bubble.js";
-import typeof TooltipContent from "../tooltip-content.js";
+import TooltipBubble from "../tooltip-bubble";
+import typeof TooltipContent from "../tooltip-content";
 
 const sleep = (duration = 0) =>
     new Promise((resolve, reject) => setTimeout(resolve, duration));

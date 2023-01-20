@@ -3,8 +3,8 @@ import * as React from "react";
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {render, screen} from "@testing-library/react";
 
-import TrackData from "../track-data.js";
-import {RequestTracker, TrackerContext} from "../../util/request-tracking.js";
+import TrackData from "../track-data";
+import {RequestTracker, TrackerContext} from "../../util/request-tracking";
 
 describe("TrackData", () => {
     afterEach(() => {

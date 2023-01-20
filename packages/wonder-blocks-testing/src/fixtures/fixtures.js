@@ -2,7 +2,7 @@
 import * as React from "react";
 import {action} from "@storybook/addon-actions";
 
-import type {FixtureFn, FixtureProps} from "./types.js";
+import type {FixtureFn, FixtureProps} from "./types";
 
 /**
  * Describe a group of fixtures for a given component.

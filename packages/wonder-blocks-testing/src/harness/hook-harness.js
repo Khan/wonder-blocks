@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
 
-import {makeHookHarness} from "./make-hook-harness.js";
-import {DefaultAdapters, DefaultConfigs} from "./adapters/adapters.js";
+import {makeHookHarness} from "./make-hook-harness";
+import {DefaultAdapters, DefaultConfigs} from "./adapters/adapters";
 
-import type {TestHarnessConfigs} from "./types.js";
+import type {TestHarnessConfigs} from "./types";
 
 /**
  * Create test wrapper for hook testing with Wonder Blocks default adapters.

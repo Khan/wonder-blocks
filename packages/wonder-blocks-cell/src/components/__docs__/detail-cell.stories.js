@@ -10,11 +10,11 @@ import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
-import DetailCellArgTypes from "./detail-cell.argtypes.js";
+import DetailCellArgTypes from "./detail-cell.argtypes";
 
-import DetailCell from "../detail-cell.js";
+import DetailCell from "../detail-cell";
 
 export default {
     title: "Cell / DetailCell",

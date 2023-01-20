@@ -1,5 +1,5 @@
 // @flow
-import type {Result, ValidCacheData} from "./types.js";
+import type {Result, ValidCacheData} from "./types";
 
 const loadingStatus = Object.freeze({
     status: "loading",

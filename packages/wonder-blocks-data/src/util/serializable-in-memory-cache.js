@@ -1,8 +1,8 @@
 // @flow
 import {clone} from "@khanacademy/wonder-stuff-core";
-import {DataError, DataErrors} from "./data-error.js";
-import {ScopedInMemoryCache} from "./scoped-in-memory-cache.js";
-import type {ValidCacheData, RawScopedCache} from "./types.js";
+import {DataError, DataErrors} from "./data-error";
+import {ScopedInMemoryCache} from "./scoped-in-memory-cache";
+import type {ValidCacheData, RawScopedCache} from "./types";
 
 /**
  * Describe a serializable in-memory cache.

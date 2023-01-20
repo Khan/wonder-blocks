@@ -8,11 +8,11 @@ import userEvent from "@testing-library/user-event";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 
-import ModalLauncher from "../modal-launcher.js";
-import OnePaneDialog from "../one-pane-dialog.js";
+import ModalLauncher from "../modal-launcher";
+import OnePaneDialog from "../one-pane-dialog";
 
-import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
-import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document.js";
+import {unmountAll} from "../../../../../utils/testing/enzyme-shim";
+import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document";
 
 const wait = (duration: number = 0) =>
     new Promise((resolve, reject) => setTimeout(resolve, duration));

@@ -1,8 +1,8 @@
 // @flow
-import {toGqlOperation} from "../to-gql-operation.js";
-import * as GDNP from "../graphql-document-node-parser.js";
+import {toGqlOperation} from "../to-gql-operation";
+import * as GDNP from "../graphql-document-node-parser";
 
-jest.mock("../graphql-document-node-parser.js");
+jest.mock("../graphql-document-node-parser");
 
 describe("#toGqlOperation", () => {
     it("should parse the document node", () => {

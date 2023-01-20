@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 import {renderHook} from "@testing-library/react-hooks";
-import InterceptRequests from "../../components/intercept-requests.js";
-import {useRequestInterception} from "../use-request-interception.js";
+import InterceptRequests from "../../components/intercept-requests";
+import {useRequestInterception} from "../use-request-interception";
 
 describe("#useRequestInterception", () => {
     it("should return a function", () => {

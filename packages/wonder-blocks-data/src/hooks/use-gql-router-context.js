@@ -1,11 +1,11 @@
 // @flow
 import {useContext, useRef, useMemo} from "react";
 
-import {mergeGqlContext} from "../util/merge-gql-context.js";
-import {GqlRouterContext} from "../util/gql-router-context.js";
-import {GqlError, GqlErrors} from "../util/gql-error.js";
+import {mergeGqlContext} from "../util/merge-gql-context";
+import {GqlRouterContext} from "../util/gql-router-context";
+import {GqlError, GqlErrors} from "../util/gql-error";
 
-import type {GqlRouterConfiguration, GqlContext} from "../util/gql-types.js";
+import type {GqlRouterConfiguration, GqlContext} from "../util/gql-types";
 
 /**
  * Construct a GqlRouterContext from the current one and partial context.

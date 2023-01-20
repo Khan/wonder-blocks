@@ -1,5 +1,5 @@
 // @flow
-import {getLocale, setLocale} from "../locale.js";
+import {getLocale, setLocale} from "../locale";
 
 describe("#getLocale/#setLocale", () => {
     afterEach(() => {

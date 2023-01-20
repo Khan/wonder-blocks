@@ -3,10 +3,10 @@ import * as React from "react";
 import {render} from "@testing-library/react";
 import {renderHook} from "@testing-library/react-hooks/server";
 
-import SsrIDFactory from "../../util/ssr-id-factory.js";
-import UniqueIDFactory from "../../util/unique-id-factory.js";
-import {useUniqueIdWithMock, useUniqueIdWithoutMock} from "../use-unique-id.js";
-import {RenderStateRoot} from "../../components/render-state-root.js";
+import SsrIDFactory from "../../util/ssr-id-factory";
+import UniqueIDFactory from "../../util/unique-id-factory";
+import {useUniqueIdWithMock, useUniqueIdWithoutMock} from "../use-unique-id";
+import {RenderStateRoot} from "../../components/render-state-root";
 
 describe("useUniqueIdWithoutMock", () => {
     test("server-side render returns null", () => {

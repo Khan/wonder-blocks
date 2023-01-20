@@ -12,13 +12,11 @@ import type {StoryComponentType} from "@storybook/react";
 
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
-import CompactCellArgTypes, {
-    AccessoryMappings,
-} from "./compact-cell.argtypes.js";
+import CompactCellArgTypes, {AccessoryMappings} from "./compact-cell.argtypes";
 
-import CompactCell from "../compact-cell.js";
+import CompactCell from "../compact-cell";
 
 export default {
     title: "Cell / CompactCell",

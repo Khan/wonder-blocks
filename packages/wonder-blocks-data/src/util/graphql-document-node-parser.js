@@ -4,8 +4,8 @@ import type {
     DefinitionNode,
     VariableDefinitionNode,
     OperationDefinitionNode,
-} from "./graphql-types.js";
-import {DataError, DataErrors} from "./data-error.js";
+} from "./graphql-types";
+import {DataError, DataErrors} from "./data-error";
 
 export const DocumentTypes = Object.freeze({
     query: "query",

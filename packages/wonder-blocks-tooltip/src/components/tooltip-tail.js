@@ -7,7 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {getRefFn, Placement, Offset} from "../util/types.js";
+import type {getRefFn, Placement, Offset} from "../util/types";
 
 export type Props = {|
     /**

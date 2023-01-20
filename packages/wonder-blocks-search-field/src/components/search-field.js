@@ -11,7 +11,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
-import {defaultLabels} from "../util/constants.js";
+import {defaultLabels} from "../util/constants";
 
 type Props = {|
     ...AriaProps,

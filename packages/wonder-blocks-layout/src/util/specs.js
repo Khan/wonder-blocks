@@ -2,7 +2,7 @@
 
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-import type {MediaSize, MediaSpec} from "./types.js";
+import type {MediaSize, MediaSpec} from "./types";
 
 // All possible valid media sizes
 export const VALID_MEDIA_SIZES: Array<MediaSize> = ["small", "medium", "large"];

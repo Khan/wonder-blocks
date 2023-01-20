@@ -1,5 +1,5 @@
 // @flow
-import {allPluralForms, likeFrench} from "../plural-forms.js";
+import {allPluralForms, likeFrench} from "../plural-forms";
 
 describe("allPluralForms", () => {
     describe("likeFrench", () => {

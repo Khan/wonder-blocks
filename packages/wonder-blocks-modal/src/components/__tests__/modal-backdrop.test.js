@@ -5,11 +5,11 @@ import "jest-enzyme";
 import {render, screen, fireEvent} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import ModalBackdrop from "../modal-backdrop.js";
-import OnePaneDialog from "../one-pane-dialog.js";
+import ModalBackdrop from "../modal-backdrop";
+import OnePaneDialog from "../one-pane-dialog";
 
-import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
-import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document.js";
+import {unmountAll} from "../../../../../utils/testing/enzyme-shim";
+import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document";
 
 const wait = (duration: number = 0) =>
     new Promise((resolve, reject) => setTimeout(resolve, duration));

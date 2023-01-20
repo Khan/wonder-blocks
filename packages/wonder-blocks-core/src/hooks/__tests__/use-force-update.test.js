@@ -3,7 +3,7 @@ import * as React from "react";
 import {render, act} from "@testing-library/react";
 import {renderHook} from "@testing-library/react-hooks";
 
-import {useForceUpdate} from "../use-force-update.js";
+import {useForceUpdate} from "../use-force-update";
 
 describe("#useForceUpdate", () => {
     it("should return a function", () => {

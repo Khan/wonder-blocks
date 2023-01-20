@@ -2,7 +2,7 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import * as Portal from "../portal.js";
+import * as Portal from "../portal";
 
 describe("Portal.adapter", () => {
     it("should render a portal root element", () => {

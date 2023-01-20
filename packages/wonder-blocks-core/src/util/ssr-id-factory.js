@@ -1,5 +1,5 @@
 // @flow
-import type {IIdentifierFactory} from "./types.js";
+import type {IIdentifierFactory} from "./types";
 
 /**
  * This is NOT for direct use. Instead, see the UniqueIDProvider component.

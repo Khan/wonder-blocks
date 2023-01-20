@@ -6,7 +6,7 @@ import * as React from "react";
 // have fixed:
 // https://github.com/import-js/eslint-plugin-import/issues/2073
 // eslint-disable-next-line import/named
-import {RenderState, RenderStateContext} from "./render-state-context.js";
+import {RenderState, RenderStateContext} from "./render-state-context";
 
 /**
  * We use render functions so that we don't do any work unless we need to.

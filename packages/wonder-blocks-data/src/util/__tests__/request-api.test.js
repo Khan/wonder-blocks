@@ -1,13 +1,13 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {RequestFulfillment} from "../request-fulfillment.js";
-import {RequestTracker} from "../request-tracking.js";
+import {RequestFulfillment} from "../request-fulfillment";
+import {RequestTracker} from "../request-tracking";
 
 import {
     abortInflightRequests,
     fetchTrackedRequests,
     hasTrackedRequestsToBeFetched,
-} from "../request-api.js";
+} from "../request-api";
 
 describe("#fetchTrackedRequests", () => {
     describe("when server-side", () => {

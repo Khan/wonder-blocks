@@ -6,10 +6,10 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import ModalContent from "./modal-content.js";
-import ModalHeader from "./modal-header.js";
-import ModalFooter from "./modal-footer.js";
-import CloseButton from "./close-button.js";
+import ModalContent from "./modal-content";
+import ModalHeader from "./modal-header";
+import ModalFooter from "./modal-footer";
+import CloseButton from "./close-button";
 
 type Props = {|
     /**

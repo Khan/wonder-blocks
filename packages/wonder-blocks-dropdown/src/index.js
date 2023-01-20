@@ -1,13 +1,13 @@
 // @flow
-import ActionItem from "./components/action-item.js";
-import OptionItem from "./components/option-item.js";
-import SeparatorItem from "./components/separator-item.js";
-import ActionMenu from "./components/action-menu.js";
-import SingleSelect from "./components/single-select.js";
-import MultiSelect from "./components/multi-select.js";
+import ActionItem from "./components/action-item";
+import OptionItem from "./components/option-item";
+import SeparatorItem from "./components/separator-item";
+import ActionMenu from "./components/action-menu";
+import SingleSelect from "./components/single-select";
+import MultiSelect from "./components/multi-select";
 
-import type {Labels} from "./components/multi-select.js";
-import type {SingleSelectLabels} from "./components/single-select.js";
+import type {Labels} from "./components/multi-select";
+import type {SingleSelectLabels} from "./components/single-select";
 
 export {
     ActionItem,

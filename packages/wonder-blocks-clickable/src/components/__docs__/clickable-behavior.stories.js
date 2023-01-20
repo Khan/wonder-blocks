@@ -8,9 +8,9 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {StoryComponentType} from "@storybook/react";
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
-import argTypes from "./clickable-behavior.argtypes.js";
+import argTypes from "./clickable-behavior.argtypes";
 
 const ClickableBehavior: React.ComponentType<
     React.ElementConfig<typeof ClickableBehavior>,

@@ -9,9 +9,9 @@ import {
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {MediaQuery, MediaSize} from "@khanacademy/wonder-blocks-layout";
 
-import styles from "../util/styles.js";
-import Gutter from "./gutter.js";
-import Cell from "./cell.js";
+import styles from "../util/styles";
+import Gutter from "./gutter";
+import Cell from "./cell";
 
 type Props = {|
     /**

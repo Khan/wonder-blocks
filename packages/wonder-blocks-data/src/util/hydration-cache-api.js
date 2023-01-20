@@ -1,7 +1,7 @@
 // @flow
-import {SsrCache} from "./ssr-cache.js";
+import {SsrCache} from "./ssr-cache";
 
-import type {ValidCacheData, CachedResponse, ResponseCache} from "./types.js";
+import type {ValidCacheData, CachedResponse, ResponseCache} from "./types";
 
 /**
  * Initialize the hydration cache.

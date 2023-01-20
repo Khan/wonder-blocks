@@ -3,9 +3,9 @@ import * as React from "react";
 import {mount} from "enzyme";
 import "jest-enzyme";
 
-import expectRenderError from "../../../../../utils/testing/expect-render-error.js";
-import CloseButton from "../close-button.js";
-import ModalContext from "../modal-context.js";
+import expectRenderError from "../../../../../utils/testing/expect-render-error";
+import CloseButton from "../close-button";
+import ModalContext from "../modal-context";
 
 describe("CloseButton", () => {
     test("ModalContext.Provider and onClose should warn", () => {

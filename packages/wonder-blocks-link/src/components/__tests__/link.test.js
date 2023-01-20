@@ -4,7 +4,7 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {mount} from "enzyme";
 import "jest-enzyme";
 
-import Link from "../link.js";
+import Link from "../link";
 
 const wait = (delay: number = 0) =>
     new Promise((resolve, reject) => {

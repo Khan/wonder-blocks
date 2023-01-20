@@ -4,7 +4,7 @@ import {MemoryRouter, Link} from "react-router-dom";
 import {mount} from "enzyme";
 import {render, screen} from "@testing-library/react";
 
-import ActionItem from "../action-item.js";
+import ActionItem from "../action-item";
 
 describe("ActionItem", () => {
     it("should render with disabled styles", () => {

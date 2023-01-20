@@ -3,14 +3,14 @@ import * as React from "react";
 import type {StyleDeclaration} from "aphrodite";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import MediaLayoutContext from "./media-layout-context.js";
-import type {MediaSize, MediaSpec} from "../util/types.js";
-import type {Context} from "./media-layout-context.js";
+import MediaLayoutContext from "./media-layout-context";
+import type {MediaSize, MediaSpec} from "../util/types";
+import type {Context} from "./media-layout-context";
 import {
     MEDIA_DEFAULT_SPEC,
     MEDIA_INTERNAL_SPEC,
     MEDIA_MODAL_SPEC,
-} from "../util/specs.js";
+} from "../util/specs";
 
 const queries = [
     ...Object.values(MEDIA_DEFAULT_SPEC).map((spec: any) => spec.query),

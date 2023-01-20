@@ -1,5 +1,5 @@
 // @flow
-import {SettleSignal} from "./settle-signal.js";
+import {SettleSignal} from "./settle-signal";
 
 /**
  * A controller for the `RespondWith` API to control response settlement.

@@ -6,7 +6,7 @@ import "jest-enzyme";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import RefTracker from "../ref-tracker.js";
+import RefTracker from "../ref-tracker";
 
 type CallbackFn = (?HTMLElement) => void;
 

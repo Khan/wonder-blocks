@@ -8,9 +8,9 @@ import {
     // https://github.com/import-js/eslint-plugin-import/issues/2073
     // eslint-disable-next-line import/named
     WhenClientSide,
-} from "../hooks/use-hydratable-effect.js";
+} from "../hooks/use-hydratable-effect";
 
-import type {Result, ValidCacheData} from "../util/types.js";
+import type {Result, ValidCacheData} from "../util/types";
 
 type Props<
     /**

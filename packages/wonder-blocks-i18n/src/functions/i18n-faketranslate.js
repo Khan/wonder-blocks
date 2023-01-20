@@ -1,9 +1,9 @@
 // @flow
-import Accents from "./i18n-accents.js";
-import Boxes from "./i18n-boxes.js";
-import {getLocale} from "./locale.js";
+import Accents from "./i18n-accents";
+import Boxes from "./i18n-boxes";
+import {getLocale} from "./locale";
 
-import type {IProvideTranslation} from "./types.js";
+import type {IProvideTranslation} from "./types";
 
 type TranslatorMap = {[key: string]: IProvideTranslation, ...};
 

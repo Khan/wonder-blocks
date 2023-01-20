@@ -4,11 +4,11 @@ import * as ReactDOM from "react-dom";
 import {mount} from "enzyme";
 import "jest-enzyme";
 
-import FocusManager from "../focus-manager.js";
-import {findFocusableNodes} from "../../util/util.js";
+import FocusManager from "../focus-manager";
+import {findFocusableNodes} from "../../util/util";
 
-import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
-import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document.js";
+import {unmountAll} from "../../../../../utils/testing/enzyme-shim";
+import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document";
 
 describe("FocusManager", () => {
     afterEach(() => {

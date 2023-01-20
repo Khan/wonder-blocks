@@ -4,10 +4,10 @@ import {mount} from "enzyme";
 import "jest-enzyme";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {RequestTracker, TrackerContext} from "../request-tracking.js";
-import {SsrCache} from "../ssr-cache.js";
+import {RequestTracker, TrackerContext} from "../request-tracking";
+import {SsrCache} from "../ssr-cache";
 
-describe("../request-tracking.js", () => {
+describe("../request-tracking", () => {
     describe("TrackerContext", () => {
         it("should default to null", async () => {
             // Arrange

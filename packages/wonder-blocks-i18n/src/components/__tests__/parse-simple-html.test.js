@@ -1,5 +1,5 @@
 // @flow
-import {parseSimpleHTML} from "../parse-simple-html.js";
+import {parseSimpleHTML} from "../parse-simple-html";
 
 describe("parseSimpleHTML", () => {
     beforeEach(() => {

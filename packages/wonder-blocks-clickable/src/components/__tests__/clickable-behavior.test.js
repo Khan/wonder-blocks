@@ -6,8 +6,8 @@ import {render, screen, fireEvent} from "@testing-library/react";
 import {MemoryRouter, Switch, Route} from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
-import getClickableBehavior from "../../util/get-clickable-behavior.js";
-import ClickableBehavior from "../clickable-behavior.js";
+import getClickableBehavior from "../../util/get-clickable-behavior";
+import ClickableBehavior from "../clickable-behavior";
 import type {ClickableState} from "../clickable-behavior";
 
 const keyCodes = {

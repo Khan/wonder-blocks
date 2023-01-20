@@ -3,8 +3,8 @@ import * as React from "react";
 import {mount} from "enzyme";
 import "jest-enzyme";
 
-import PopoverContent from "../popover-content.js";
-import PopoverContext from "../popover-context.js";
+import PopoverContent from "../popover-content";
+import PopoverContext from "../popover-context";
 
 describe("PopoverContent", () => {
     it("should close the popover from the actions", () => {

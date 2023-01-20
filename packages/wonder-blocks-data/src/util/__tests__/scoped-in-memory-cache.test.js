@@ -1,5 +1,5 @@
 // @flow
-import {ScopedInMemoryCache} from "../scoped-in-memory-cache.js";
+import {ScopedInMemoryCache} from "../scoped-in-memory-cache";
 
 describe("ScopedInMemoryCache", () => {
     describe("#set", () => {

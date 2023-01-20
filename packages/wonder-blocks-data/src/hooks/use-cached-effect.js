@@ -1,21 +1,21 @@
 // @flow
 import * as React from "react";
 import {useForceUpdate} from "@khanacademy/wonder-blocks-core";
-import {DataError, DataErrors} from "../util/data-error.js";
+import {DataError, DataErrors} from "../util/data-error";
 
-import {RequestFulfillment} from "../util/request-fulfillment.js";
-import {Status} from "../util/status.js";
+import {RequestFulfillment} from "../util/request-fulfillment";
+import {Status} from "../util/status";
 
-import {useSharedCache} from "./use-shared-cache.js";
-import {useRequestInterception} from "./use-request-interception.js";
+import {useSharedCache} from "./use-shared-cache";
+import {useRequestInterception} from "./use-request-interception";
 
-import type {Result, ValidCacheData} from "../util/types.js";
+import type {Result, ValidCacheData} from "../util/types";
 
 // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
 // have fixed:
 // https://github.com/import-js/eslint-plugin-import/issues/2073
 // eslint-disable-next-line import/named
-import {FetchPolicy} from "../util/types.js";
+import {FetchPolicy} from "../util/types";
 
 type CachedEffectOptions<TData: ValidCacheData> = {|
     /**
