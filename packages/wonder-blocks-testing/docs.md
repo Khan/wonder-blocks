@@ -1,1 +1,0 @@
-`wonder-blocks-testing` provides a utilities to support testing React components
