@@ -4,10 +4,10 @@ const EnzymeAdapter = require("enzyme-adapter-react-16");
 const {configure} = require("@testing-library/dom");
 const enzymeSerializer = require("enzyme-to-json/serializer");
 
-const {unmountAll} = require("../../utils/testing/enzyme-shim.js");
+const {unmountAll} = require("../../utils/testing/enzyme-shim");
 const {
     mockRequestAnimationFrame,
-} = require("../../utils/testing/mock-request-animation-frame.js");
+} = require("../../utils/testing/mock-request-animation-frame");
 
 configure({
     testIdAttribute: "data-test-id",

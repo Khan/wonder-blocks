@@ -12,7 +12,7 @@ const path = require("path");
  * because we use the output in testing and Jest doesn't yet support es6
  * modules.
  */
-const babelOptions = require("./babel.config.js")({env: () => true});
+const babelOptions = require("./babel.config")({env: () => true});
 
 const packages = fs
     .readdirSync(path.join(process.cwd(), "packages"))

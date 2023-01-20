@@ -4,7 +4,7 @@ import path from "path";
 import autoExternal from "rollup-plugin-auto-external";
 import babel from "rollup-plugin-babel";
 
-const {presets, plugins} = require("./babel.config.js")({env: () => false});
+const {presets, plugins} = require("./babel.config")({env: () => false});
 
 const createConfig = (pkgName) => {
     const packageJsonPath = path.join("packages", pkgName, "package.json");
