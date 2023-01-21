@@ -109,7 +109,7 @@ Secondary.play = async ({canvasElement}) => {
 
     await fireEvent.mouseDown(link);
     await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${fadedBlue}}`,
+        `text-decoration: underline solid ${activeBlue}}`,
     );
 };
 
