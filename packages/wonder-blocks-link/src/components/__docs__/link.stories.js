@@ -1,5 +1,10 @@
+// We need to use fireEvent for mouseDown in these tests, none of the userEvent
+// alternatives work. Click includes mouseUp, which removes the pressed style.
+/* eslint-disable testing-library/prefer-user-event */
 // @flow
+import {expect} from "@storybook/jest";
 import * as React from "react";
+import {within, userEvent, fireEvent} from "@storybook/testing-library";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
@@ -29,6 +34,12 @@ export default {
     argTypes: LinkArgTypes,
 };
 
+const activeBlue = "#1b50b3";
+const fadedBlue = "#b5cefb";
+// const visitedPurple = "#8755ee";
+// const activeVisitedPurple = "#6645b0";
+// const activeLightVistedPink = "#fc88c8";
+
 export const Default: StoryComponentType = (args) => (
     <Link target="_blank" {...args} />
 );
@@ -47,6 +58,173 @@ Basic.parameters = {
         storyDescription: `Minimal link usage.
             This links to the top of the page.`,
     },
+};
+
+Basic.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const link = canvas.getByRole("link");
+
+    // await userEvent.tab();
+    // await expect(link).toHaveFocus();
+    // await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+
+    await userEvent.hover(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline ${Color.blue} dashed`,
+    );
+
+    await fireEvent.mouseDown(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline solid ${activeBlue}}`,
+    );
+};
+
+export const Secondary: StoryComponentType = () => (
+    <Link href="#" kind="secondary">
+        Hello, world! abcdefghijklmnopqrstuvwxyz
+    </Link>
+);
+
+Secondary.parameters = {
+    docs: {
+        storyDescription: `Minimal secondary link usage. A secondary link
+            has lighter text. This links to the top of the page.`,
+    },
+};
+
+Secondary.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const link = canvas.getByRole("link");
+
+    // await userEvent.tab();
+    // await expect(link).toHaveFocus();
+    // await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+
+    await userEvent.hover(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline ${Color.offBlack} dashed`,
+    );
+
+    await fireEvent.mouseDown(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline solid ${fadedBlue}}`,
+    );
+};
+
+export const Visitable: StoryComponentType = () => (
+    <Link href="#" visitable={true}>
+        Hello, world! abcdefghijklmnopqrstuvwxyz
+    </Link>
+);
+
+Visitable.parameters = {
+    docs: {
+        storyDescription: `This is a visitable link. It changes color after
+            it has been clicked on to indicate that it's been visited before.
+            This link's \`visitable\` prop is set to true.
+            It links to the top of the page.`,
+    },
+};
+
+Visitable.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const link = canvas.getByRole("link");
+
+    // await userEvent.tab();
+    // await expect(link).toHaveFocus();
+    // await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+
+    await userEvent.click(link);
+    // await expect(link).toHaveStyle(`color: ${visitedPurple}`);
+
+    // await userEvent.hover(link);
+    // await expect(link).toHaveStyle(
+    //     `text-decoration: underline ${visitedPurple} dashed`,
+    // );
+
+    // await fireEvent.mouseDown(link);
+    // await expect(link).toHaveStyle(
+    //     `text-decoration: underline solid ${activeVisitedPurple}}`,
+    // );
+};
+
+export const LightBasic: StoryComponentType = () => (
+    <Link href="#" light={true}>
+        Hello, world! abcdefghijklmnopqrstuvwxyz
+    </Link>
+);
+
+LightBasic.parameters = {
+    docs: {
+        storyDescription: `Minimal link usage on a dark background. This
+            link has its \`light\` prop set to true. It links to the top
+            of the page.`,
+    },
+    backgrounds: {
+        default: "darkBlue",
+    },
+};
+
+LightBasic.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const link = canvas.getByRole("link");
+
+    // await userEvent.tab();
+    // await expect(link).toHaveFocus();
+    // await expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
+
+    await userEvent.hover(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline ${Color.white} dashed`,
+    );
+
+    await fireEvent.mouseDown(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline solid ${fadedBlue}}`,
+    );
+};
+
+export const LightVisitable: StoryComponentType = () => (
+    <Link href="#" light={true} visitable={true}>
+        Hello, world! abcdefghijklmnopqrstuvwxyz
+    </Link>
+);
+
+LightVisitable.parameters = {
+    docs: {
+        storyDescription: `This is a visitable link on a dark background.
+            It changes color after it has been clicked on to indicate
+            that it's been visited before. This link's \`visitable\` prop
+            is set to true. It links to the top of the page.`,
+    },
+    backgrounds: {
+        default: "darkBlue",
+    },
+};
+
+LightVisitable.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const link = canvas.getByRole("link");
+    await userEvent.click(link);
+
+    // await userEvent.tab();
+    // await expect(link).toHaveFocus();
+    // await expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
+
+    // await userEvent.hover(link);
+    // await expect(link).toHaveStyle(
+    //     `text-decoration: underline ${Color.pink} dashed`,
+    // );
+
+    // await fireEvent.mouseDown(link);
+    // await expect(link).toHaveStyle(
+    //     `text-decoration: underline solid ${activeLightVistedPink}}`,
+    // );
 };
 
 export const Variants: StoryComponentType = () => (
@@ -84,11 +262,7 @@ export const LightVariants: StoryComponentType = () => (
         <Link href="#dark-link" light={true} visitable={true}>
             Visitable Link
         </Link>
-        . Here is my friend the{" "}
-        <Link href="#dark-link" kind="secondary" light={true}>
-            Secondary Link
-        </Link>
-        .
+        . My friend the Secondary Link is not supported on this dark background.
     </Body>
 );
 
@@ -107,11 +281,6 @@ export const WithTypography: StoryComponentType = () => (
     <Link href="#nonexistent-link" id="typography-link">
         <HeadingSmall>Heading inside a Link element</HeadingSmall>
     </Link>
-    //      <HeadingSmall>
-    //      <Link href="#nonexistent-link" id="typography-link">
-    //          Heading inside a Link element
-    //      </Link>
-    //  </HeadingSmall>
 );
 
 WithTypography.parameters = {

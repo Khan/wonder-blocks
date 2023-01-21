@@ -98,21 +98,23 @@ const _generateStyles = (kind, light, visitable) => {
         return styles[buttonType];
     }
 
+    if (kind === "secondary" && light) {
+        throw new Error("Secondary Light links are not supported");
+    }
+
     if (visitable && kind !== "primary") {
         throw new Error("Only primary link is visitable");
     }
 
-    const {blue, pink, purple, white, white64, offBlack, offBlack32} = Color;
+    const {blue, pink, purple, white, offBlack, offBlack32} = Color;
 
     const linkPurple = mix(fade(offBlack, 0.08), purple);
     const fadedBlue = mix(fade(blue, 0.32), white);
+    const activeLightVisited = mix(fade(white, 0.32), pink);
 
-    const defaultPrimaryColor = light ? white : blue;
-    const defaultSecondaryColor = light ? white64 : offBlack;
     const defaultTextColor =
-        kind === "primary" ? defaultPrimaryColor : defaultSecondaryColor;
+        kind === "primary" ? (light ? white : blue) : offBlack;
 
-    const focusColor: string = light ? fadedBlue : blue;
     const activeColor: string = light ? fadedBlue : mix(offBlack32, blue);
 
     const defaultVisited = visitable
@@ -126,7 +128,7 @@ const _generateStyles = (kind, light, visitable) => {
         ? {
               ":visited": {
                   color: light
-                      ? mix(offBlack32, pink)
+                      ? activeLightVisited
                       : mix(offBlack32, linkPurple),
               },
           }
@@ -144,7 +146,7 @@ const _generateStyles = (kind, light, visitable) => {
             ...defaultVisited,
         },
         focus: {
-            color: focusColor,
+            color: defaultTextColor,
             outline: `1px solid ${light ? white : blue}`,
             borderRadius: 3,
             ...defaultVisited,
