@@ -1,6 +1,6 @@
 # <img width="32" src="./static/logo.svg"> Wonder Blocks
 
-[![CircleCI](https://circleci.com/gh/Khan/wonder-blocks.svg?style=svg)](https://circleci.com/gh/Khan/wonder-blocks) [![codecov](https://codecov.io/gh/Khan/wonder-blocks/branch/main/graph/badge.svg)](https://codecov.io/gh/Khan/wonder-blocks)
+![Release](https://github.com/Khan/wonder-blocks/actions/workflows/release.yml/badge.svg) [![codecov](https://codecov.io/gh/Khan/wonder-blocks/branch/main/graph/badge.svg)](https://codecov.io/gh/Khan/wonder-blocks)
 
 The Khan Academy Wonder Blocks design system. This is work-in-progress and a lot
 of things are still in motion.
@@ -11,7 +11,7 @@ More information: https://wonder-blocks.netlify.com/
 
 ### Prerequisites
 
-- [Node.JS v10](https://nodejs.org/download/release/v10.18.1/)
+- [Node.JS v16.x](https://nodejs.org/download/release/v16.16.0/)
 - [Yarn](https://yarnpkg.com/lang/en/docs/install/)
 
 ### Installation
@@ -26,7 +26,7 @@ Installs project dependencies
 
 Runs the docs in dev mode
 
-Now you can open http://localhost:6060 to view the docs. This page will
+Now you can open http://localhost:6061 to view the docs. This page will
 automatically update as you make changes to components.
 
 ## Contributing
@@ -40,11 +40,7 @@ please refer to the [internal documentation](https://khanacademy.atlassian.net/w
 
 Please note – before contributing ensure that any design changes you are wanting
 to make are reflected in the [Wonder Blocks project in
-Figma](https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks) or
-[Zeplin](https://zpl.io/bl1owd1).  We previously used Zeplin, but have since
-moved to Figma.  Please check Figma first — if a design isn't there please check
-Zeplin.  Moving forward we will be transitioning away from Zeplin, but in the
-interim you may need to check both.
+Figma](https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks).
 
 ## Thanks
 

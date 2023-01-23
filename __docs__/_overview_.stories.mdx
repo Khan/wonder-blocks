@@ -1,0 +1,114 @@
+import {Meta} from "@storybook/addon-docs";
+
+import Color from "@khanacademy/wonder-blocks-color";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {icons} from "@khanacademy/wonder-blocks-icon";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {
+    Body,
+    Caption,
+    HeadingLarge,
+    LabelMedium,
+} from "@khanacademy/wonder-blocks-typography";
+
+<Meta
+    title="Overview"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+        previewTabs: {
+            canvas: {hidden: true},
+        },
+        viewMode: "docs",
+    }}
+/>
+
+export default function Layout({children}) {
+    return <main style={{marginTop: -64}}>{children}</main>;
+}
+
+<View
+    style={{
+        marginLeft: "-49vw",
+        left: "50%",
+        position: "relative",
+        width: "98vw",
+        display: "grid",
+        gridTemplateColumns: "1fr 1fr",
+        flexDirection: "row",
+        minHeight: "90vh",
+        marginBottom: Spacing.xxxLarge_64,
+    }}
+>
+    <View
+        style={{
+            alignSelf: "center",
+            gap: Spacing.medium_16,
+            padding: `0 ${Spacing.xxxLarge_64}px 0`,
+        }}
+    >
+        <HeadingLarge tag="h1">Web Wonder Blocks</HeadingLarge>
+        <Body tag="p">
+            Components and utilities you can drop right into your experiences so
+            you can focus on solving the problems that really matter.
+        </Body>
+        <Caption>
+            <strong>Note:</strong> These components are only available for use
+            on the web (including mobile web).
+        </Caption>
+        <Strut size={Spacing.large_24} />
+        <View>
+            <IconButton
+                size="medium"
+                icon={icons.caretDown}
+                href="#overview"
+                kind="secondary"
+                style={{background: Color.lightBlue, alignSelf: "center"}}
+            />
+        </View>
+    </View>
+    <img
+        height="100vh"
+        src="./wb-overview.png"
+        style={{
+            width: "auto",
+            height: "100vh",
+            objectFit: "cover",
+            objectPosition: "50% 50%",
+            aspectRation: "16 / 9",
+        }}
+    />
+</View>
+
+## Overview
+
+Since our design system is a constant work in progress, these components vary in
+degrees of completion. Follow these guidelines to ensure the smoothest process
+from design to development:
+
+-   Some components currently have limitations, so read the guidelines carefully
+    to ensure that you're not designing something that will be difficult (or
+    impossible) for your engineers to build.
+-   Some components aren't complete yet, so while you may see that component
+    being used in the wild, know that these aren't official components yet. As
+    such, they haven't been stress-tested and may not meet the quality standards
+    your team needs (eg, they may not be built with accessibility in mind). They
+    could also be difficult for your engineering team to build, so check with
+    them early on.
+-   A component you need may not be listed in here, in which case you're more
+    than welcome to propose it to the design systems team.
+
+## Feedback
+
+Have a question? Contact the team in the
+[#wonder-blocks](https://khanacademy.slack.com/archives/C8Z9DSKC7) Slack
+channel.
+
+## Resources
+
+- [Figma](https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks)
+- [GitHub](https://github.com/Khan/wonder-blocks#getting-started)
+- [Development setup](https://khanacademy.atlassian.net/wiki/spaces/WB/pages/100827261/Developing+Web+Wonder+Blocks)
