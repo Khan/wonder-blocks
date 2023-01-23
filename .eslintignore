@@ -1,7 +1,6 @@
 node_modules
 flow-typed/**/*.js
 coverage
-**/generated-snapshot.test.js
 
 # eslint can't handle the type defintion for the addStyle HOC
 packages/wonder-blocks-core/util/add-style.js

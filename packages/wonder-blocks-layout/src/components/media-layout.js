@@ -233,7 +233,6 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
     }
 }
 
-// gen-snapshot-tests.js only understands `export default class ...`
 /**
  * ***NOTE: The MediaLayout component is being deprecated. Do not use this!!***
  *
