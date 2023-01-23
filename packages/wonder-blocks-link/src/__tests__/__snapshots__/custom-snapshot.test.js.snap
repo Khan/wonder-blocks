@@ -20,6 +20,7 @@ exports[`Link <Link tabIndex={-1}> 1`] = `
     {
       "color": "#1865f2",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
     }
@@ -50,6 +51,7 @@ exports[`Link <Link tabIndex={0}> 1`] = `
     {
       "color": "#1865f2",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
     }
@@ -80,6 +82,7 @@ exports[`Link <Link tabIndex={1}> 1`] = `
     {
       "color": "#1865f2",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
     }
@@ -108,10 +111,12 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 1`] = 
   onTouchStart={[Function]}
   style={
     {
+      "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "display": "inline-flex",
+      "outline": "1px solid #1865f2",
+      "textDecoration": "none",
     }
   }
   tabIndex={0}
@@ -140,8 +145,10 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 1`] = 
     {
       "color": "#1865f2",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor dashed",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -170,8 +177,10 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 1`] = 
     {
       "color": "#1b50b3",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -201,10 +210,12 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 1`] = `
       ":visited": {
         "color": "#8755ee",
       },
+      "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "display": "inline-flex",
+      "outline": "1px solid #1865f2",
+      "textDecoration": "none",
     }
   }
   tabIndex={0}
@@ -236,8 +247,10 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 1`] = `
       },
       "color": "#1865f2",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor dashed",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -269,8 +282,10 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 1`] = `
       },
       "color": "#1b50b3",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -297,10 +312,12 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 1`] = `
   onTouchStart={[Function]}
   style={
     {
+      "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "display": "inline-flex",
+      "outline": "1px solid #ffffff",
+      "textDecoration": "none",
     }
   }
   tabIndex={0}
@@ -329,8 +346,10 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 1`] = `
     {
       "color": "#ffffff",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor dashed",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -359,8 +378,10 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 1`] = `
     {
       "color": "#b5cefb",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -387,10 +408,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   onTouchStart={[Function]}
   style={
     {
+      "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "display": "inline-flex",
+      "outline": "1px solid #1865f2",
+      "textDecoration": "none",
     }
   }
   tabIndex={0}
@@ -419,8 +442,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
     {
       "color": "#1865f2",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor dashed",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -449,8 +474,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
     {
       "color": "#1b50b3",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -480,10 +507,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       ":visited": {
         "color": "#8755ee",
       },
+      "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "display": "inline-flex",
+      "outline": "1px solid #1865f2",
+      "textDecoration": "none",
     }
   }
   tabIndex={0}
@@ -515,8 +544,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       },
       "color": "#1865f2",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor dashed",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -548,8 +579,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       },
       "color": "#1b50b3",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -576,10 +609,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   onTouchStart={[Function]}
   style={
     {
+      "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "display": "inline-flex",
+      "outline": "1px solid #ffffff",
+      "textDecoration": "none",
     }
   }
   tabIndex={0}
@@ -608,8 +643,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
     {
       "color": "#ffffff",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor dashed",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -638,8 +675,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
     {
       "color": "#b5cefb",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -666,10 +705,12 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 1`] 
   onTouchStart={[Function]}
   style={
     {
-      "color": "#1865f2",
+      "borderRadius": 3,
+      "color": "#21242c",
       "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "display": "inline-flex",
+      "outline": "1px solid #1865f2",
+      "textDecoration": "none",
     }
   }
   tabIndex={0}
@@ -696,10 +737,12 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 1`] 
   onTouchStart={[Function]}
   style={
     {
-      "color": "#1865f2",
+      "color": "#21242c",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor dashed",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -728,8 +771,10 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 1`] 
     {
       "color": "#1b50b3",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -756,10 +801,12 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
-      "color": "#1865f2",
+      "borderRadius": 3,
+      "color": "#21242c",
       "cursor": "pointer",
-      "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "display": "inline-flex",
+      "outline": "1px solid #1865f2",
+      "textDecoration": "none",
     }
   }
   tabIndex={0}
@@ -786,10 +833,12 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
-      "color": "#1865f2",
+      "color": "#21242c",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor dashed",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
@@ -818,8 +867,10 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
     {
       "color": "#1b50b3",
       "cursor": "pointer",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": 4,
     }
   }
   tabIndex={0}
