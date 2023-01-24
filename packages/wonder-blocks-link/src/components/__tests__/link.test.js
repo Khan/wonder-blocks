@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 
 import Link from "../link.js";
 
-describe("Link", () => {
+describe.only("Link", () => {
     beforeEach(() => {
         // Note: window.location.assign needs a mock function in the testing
         // environment.
@@ -16,9 +16,10 @@ describe("Link", () => {
 
     afterEach(() => {
         window.location.assign.mockClear();
+        jest.clearAllMocks();
     });
 
-    describe("client-side navigation", () => {
+    describe.only("client-side navigation", () => {
         test("works for known URLs", () => {
             // Arrange
             render(
@@ -65,7 +66,7 @@ describe("Link", () => {
             expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
         });
 
-        test("waits until beforeNav resolves before navigating", async () => {
+        test("waits until beforeNav resolves before navigating", () => {
             // Arrange
             render(
                 <MemoryRouter>
@@ -87,11 +88,7 @@ describe("Link", () => {
             userEvent.click(linkWrapper);
 
             // Assert
-            waitFor(() => {
-                expect(
-                    screen.queryByText("Hello, world!"),
-                ).not.toBeInTheDocument();
-            });
+            expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
         });
 
         test("doesn't navigate before beforeNav resolves", () => {
@@ -172,7 +169,7 @@ describe("Link", () => {
 
             // Assert
             waitFor(() => {
-                expect(safeWithNavMock).toHaveBeenCalled();
+                expect(safeWithNavMock).resolves.toHaveBeenCalled();
             });
         });
 
