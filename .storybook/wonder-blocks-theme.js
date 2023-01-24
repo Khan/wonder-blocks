@@ -19,9 +19,4 @@ export default create({
     // Text colors
     textColor: "#21242C",
     textInverseColor: "rgba(255,255,255,0.9)",
-
-    // Toolbar default and active colors
-    barTextColor: "silver",
-    barSelectedColor: "black",
-    barBg: "hotpink",
 });
