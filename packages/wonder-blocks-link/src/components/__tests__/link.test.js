@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 
 import Link from "../link.js";
 
-describe.only("Link", () => {
+describe("Link", () => {
     beforeEach(() => {
         // Note: window.location.assign needs a mock function in the testing
         // environment.
@@ -19,7 +19,7 @@ describe.only("Link", () => {
         jest.clearAllMocks();
     });
 
-    describe.only("client-side navigation", () => {
+    describe("client-side navigation", () => {
         test("works for known URLs", () => {
             // Arrange
             render(
