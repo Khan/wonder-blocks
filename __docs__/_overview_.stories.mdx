@@ -1,17 +1,13 @@
 import {Meta} from "@storybook/addon-docs";
+import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
-import {View} from "@khanacademy/wonder-blocks-core";
-import {icons} from "@khanacademy/wonder-blocks-icon";
-import IconButton from "@khanacademy/wonder-blocks-icon-button";
+import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {
-    Body,
-    Caption,
-    HeadingLarge,
-    LabelMedium,
-} from "@khanacademy/wonder-blocks-typography";
+import {Caption} from "@khanacademy/wonder-blocks-typography";
+
+import Hero from "./hero.mdx";
 
 <Meta
     title="Overview"
@@ -27,59 +23,56 @@ import {
 />
 
 export default function Layout({children}) {
-    return <main style={{marginTop: -64}}>{children}</main>;
+    return <main style={{marginTop: -64, fontSize: 18}}>{children}</main>;
 }
 
-<View
-    style={{
-        marginLeft: "-49vw",
-        left: "50%",
-        position: "relative",
-        width: "98vw",
-        display: "grid",
-        gridTemplateColumns: "1fr 1fr",
+export const StyledImage = addStyle("img");
+
+export const mobile = "@media (max-width: 1023px)";
+
+export const styles = StyleSheet.create({
+    heroWrapper: {
         flexDirection: "row",
-        minHeight: "90vh",
-        marginBottom: Spacing.xxxLarge_64,
-    }}
->
-    <View
-        style={{
-            alignSelf: "center",
-            gap: Spacing.medium_16,
-            padding: `0 ${Spacing.xxxLarge_64}px 0`,
-        }}
-    >
-        <HeadingLarge tag="h1">Web Wonder Blocks</HeadingLarge>
-        <Body tag="p">
-            Components and utilities you can drop right into your experiences so
-            you can focus on solving the problems that really matter.
-        </Body>
-        <Caption>
+        minHeight: "50vh",
+        marginBottom: Spacing.large_24,
+        [mobile]: {
+            flexDirection: "column",
+            minHeight: "auto",
+            marginTop: Spacing.large_24,
+        },
+    },
+    heroBody: {
+        alignSelf: "center",
+        gap: Spacing.medium_16,
+        padding: `0 ${Spacing.xxxLarge_64}px 0 0`,
+        [mobile]: {
+            padding: 0,
+        },
+    },
+    heroImage: {
+        width: "auto",
+        height: "70vh",
+        objectFit: "cover",
+        objectPosition: "50% 50%",
+        [mobile]: {
+            height: "200px",
+        },
+    },
+});
+
+<View style={styles.heroWrapper}>
+    <View style={styles.heroBody}>
+        <Hero />
+        <Caption style={{fontSize: 16, color: Color.offBlack64}}>
             <strong>Note:</strong> These components are only available for use
             on the web (including mobile web).
         </Caption>
         <Strut size={Spacing.large_24} />
-        <View>
-            <IconButton
-                size="medium"
-                icon={icons.caretDown}
-                href="#overview"
-                kind="secondary"
-                style={{background: Color.lightBlue, alignSelf: "center"}}
-            />
-        </View>
     </View>
-    <img
-        height="100vh"
+    <StyledImage
+        alt="A illustration that shows multiple components."
         src="./wb-overview.png"
-        style={{
-            width: "auto",
-            height: "100vh",
-            objectFit: "cover",
-            objectPosition: "50% 50%",
-            aspectRation: "16 / 9",
-        }}
+        style={styles.heroImage}
     />
 </View>
 
@@ -101,14 +94,14 @@ from design to development:
 -   A component you need may not be listed in here, in which case you're more
     than welcome to propose it to the design systems team.
 
+## Resources
+
+-   [Figma](https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks)
+-   [GitHub](https://github.com/Khan/wonder-blocks#getting-started)
+-   [Development setup](https://khanacademy.atlassian.net/wiki/spaces/WB/pages/100827261/Developing+Web+Wonder+Blocks)
+
 ## Feedback
 
 Have a question? Contact the team in the
 [#wonder-blocks](https://khanacademy.slack.com/archives/C8Z9DSKC7) Slack
 channel.
-
-## Resources
-
-- [Figma](https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks)
-- [GitHub](https://github.com/Khan/wonder-blocks#getting-started)
-- [Development setup](https://khanacademy.atlassian.net/wiki/spaces/WB/pages/100827261/Developing+Web+Wonder+Blocks)
