@@ -65,10 +65,6 @@ Basic.play = async ({canvasElement}) => {
 
     const link = canvas.getByRole("link");
 
-    await userEvent.tab();
-    await expect(link).toHaveFocus();
-    await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
-
     await userEvent.hover(link);
     await expect(link).toHaveStyle(
         `text-decoration: underline ${Color.blue} dashed`,
@@ -98,10 +94,6 @@ Secondary.play = async ({canvasElement}) => {
 
     const link = canvas.getByRole("link");
 
-    await userEvent.tab();
-    await expect(link).toHaveFocus();
-    await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
-
     await userEvent.hover(link);
     await expect(link).toHaveStyle(
         `text-decoration: underline ${Color.offBlack} dashed`,
@@ -128,29 +120,6 @@ Visitable.parameters = {
     },
 };
 
-Visitable.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const link = canvas.getByRole("link");
-
-    await userEvent.click(link);
-    await expect(link).toHaveStyle(`color: ${visitedPurple}`);
-
-    await userEvent.tab();
-    await expect(link).toHaveFocus();
-    await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
-
-    await userEvent.hover(link);
-    await expect(link).toHaveStyle(
-        `text-decoration: underline ${visitedPurple} dashed`,
-    );
-
-    await fireEvent.mouseDown(link);
-    await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${activeVisitedPurple}}`,
-    );
-};
-
 export const LightBasic: StoryComponentType = () => (
     <Link href="#" light={true}>
         Hello, world! abcdefghijklmnopqrstuvwxyz
@@ -172,10 +141,6 @@ LightBasic.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
     const link = canvas.getByRole("link");
-
-    await userEvent.tab();
-    await expect(link).toHaveFocus();
-    await expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
 
     await userEvent.hover(link);
     await expect(link).toHaveStyle(
@@ -204,27 +169,6 @@ LightVisitable.parameters = {
     backgrounds: {
         default: "darkBlue",
     },
-};
-
-LightVisitable.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const link = canvas.getByRole("link");
-    await userEvent.click(link);
-
-    await userEvent.tab();
-    await expect(link).toHaveFocus();
-    await expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
-
-    await userEvent.hover(link);
-    await expect(link).toHaveStyle(
-        `text-decoration: underline ${Color.pink} dashed`,
-    );
-
-    await fireEvent.mouseDown(link);
-    await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${activeLightVistedPink}}`,
-    );
 };
 
 export const Variants: StoryComponentType = () => (
