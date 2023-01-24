@@ -37,8 +37,8 @@ export default {
 const activeBlue = "#1b50b3";
 const fadedBlue = "#b5cefb";
 const visitedPurple = "#8755ee";
-// const activeVisitedPurple = "#6645b0";
-// const activeLightVistedPink = "#fc88c8";
+const activeVisitedPurple = "#6645b0";
+const activeLightVistedPink = "#fc88c8";
 
 export const Default: StoryComponentType = (args) => (
     <Link target="_blank" {...args} />
@@ -98,9 +98,9 @@ Secondary.play = async ({canvasElement}) => {
 
     const link = canvas.getByRole("link");
 
-    // await userEvent.tab();
-    // await expect(link).toHaveFocus();
-    // await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+    await userEvent.tab();
+    await expect(link).toHaveFocus();
+    await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
 
     await userEvent.hover(link);
     await expect(link).toHaveStyle(
@@ -136,19 +136,19 @@ Visitable.play = async ({canvasElement}) => {
     await userEvent.click(link);
     await expect(link).toHaveStyle(`color: ${visitedPurple}`);
 
-    // await userEvent.tab();
-    // await expect(link).toHaveFocus();
-    // await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+    await userEvent.tab();
+    await expect(link).toHaveFocus();
+    await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
 
-    // await userEvent.hover(link);
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline ${visitedPurple} dashed`,
-    // );
+    await userEvent.hover(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline ${visitedPurple} dashed`,
+    );
 
-    // await fireEvent.mouseDown(link);
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline solid ${activeVisitedPurple}}`,
-    // );
+    await fireEvent.mouseDown(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline solid ${activeVisitedPurple}}`,
+    );
 };
 
 export const LightBasic: StoryComponentType = () => (
@@ -212,19 +212,19 @@ LightVisitable.play = async ({canvasElement}) => {
     const link = canvas.getByRole("link");
     await userEvent.click(link);
 
-    // await userEvent.tab();
-    // await expect(link).toHaveFocus();
-    // await expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
+    await userEvent.tab();
+    await expect(link).toHaveFocus();
+    await expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
 
-    // await userEvent.hover(link);
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline ${Color.pink} dashed`,
-    // );
+    await userEvent.hover(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline ${Color.pink} dashed`,
+    );
 
-    // await fireEvent.mouseDown(link);
-    // await expect(link).toHaveStyle(
-    //     `text-decoration: underline solid ${activeLightVistedPink}}`,
-    // );
+    await fireEvent.mouseDown(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline solid ${activeLightVistedPink}}`,
+    );
 };
 
 export const Variants: StoryComponentType = () => (
