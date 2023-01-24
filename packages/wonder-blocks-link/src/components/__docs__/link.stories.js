@@ -173,9 +173,9 @@ LightBasic.play = async ({canvasElement}) => {
 
     const link = canvas.getByRole("link");
 
-    // await userEvent.tab();
-    // await expect(link).toHaveFocus();
-    // await expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
+    await userEvent.tab();
+    await expect(link).toHaveFocus();
+    await expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
 
     await userEvent.hover(link);
     await expect(link).toHaveStyle(
