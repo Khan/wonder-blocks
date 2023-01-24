@@ -36,8 +36,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = screen.getByText("Click me!");
-            userEvent.click(linkWrapper);
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             expect(screen.getByText("Hello, world!")).toBeInTheDocument();
@@ -59,8 +59,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = screen.getByText("Click me!");
-            userEvent.click(linkWrapper);
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
@@ -84,8 +84,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = screen.getByText("Click me!");
-            userEvent.click(linkWrapper);
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
@@ -109,8 +109,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = screen.getByText("Click me!");
-            userEvent.click(linkWrapper);
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
@@ -134,8 +134,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = screen.getByText("Click me!");
-            userEvent.click(linkWrapper);
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
@@ -164,8 +164,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = screen.getByText("Click me!");
-            userEvent.click(linkWrapper);
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             waitFor(() => {
@@ -196,8 +196,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = screen.getByText("Click me!");
-            userEvent.click(linkWrapper);
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             expect(safeWithNavMock).not.toHaveBeenCalled();
@@ -219,8 +219,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = screen.getByText("Click me!");
-            userEvent.click(linkWrapper);
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             expect(window.location.assign).not.toHaveBeenCalled();
@@ -240,8 +240,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = screen.getByText("Click me!");
-            userEvent.click(linkWrapper);
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             waitFor(() => {
@@ -264,8 +264,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = screen.getByText("Click me!");
-            userEvent.click(linkWrapper);
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             waitFor(() => {
@@ -287,8 +287,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = screen.getByText("Click me!");
-            userEvent.click(linkWrapper);
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             expect(window.location.assign).not.toHaveBeenCalled();
