@@ -36,7 +36,7 @@ export default {
 
 const activeBlue = "#1b50b3";
 const fadedBlue = "#b5cefb";
-// const visitedPurple = "#8755ee";
+const visitedPurple = "#8755ee";
 // const activeVisitedPurple = "#6645b0";
 // const activeLightVistedPink = "#fc88c8";
 
@@ -65,9 +65,9 @@ Basic.play = async ({canvasElement}) => {
 
     const link = canvas.getByRole("link");
 
-    // await userEvent.tab();
-    // await expect(link).toHaveFocus();
-    // await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+    await userEvent.tab();
+    await expect(link).toHaveFocus();
+    await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
 
     await userEvent.hover(link);
     await expect(link).toHaveStyle(
@@ -133,12 +133,12 @@ Visitable.play = async ({canvasElement}) => {
 
     const link = canvas.getByRole("link");
 
+    await userEvent.click(link);
+    await expect(link).toHaveStyle(`color: ${visitedPurple}`);
+
     // await userEvent.tab();
     // await expect(link).toHaveFocus();
     // await expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
-
-    await userEvent.click(link);
-    // await expect(link).toHaveStyle(`color: ${visitedPurple}`);
 
     // await userEvent.hover(link);
     // await expect(link).toHaveStyle(
