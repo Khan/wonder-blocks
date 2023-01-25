@@ -23,11 +23,11 @@ import Hero from "./hero.mdx";
 />
 
 export default function Layout({children}) {
-    return <main style={{marginTop: -64, fontSize: 18}}>{children}</main>;
+    {/* NOTE: Adding a negative margin to move the hero right above the toolbar */}
+    return <main style={{marginTop: -64}}>{children}</main>;
 }
 
 export const StyledImage = addStyle("img");
-
 export const mobile = "@media (max-width: 1023px)";
 
 export const styles = StyleSheet.create({
@@ -58,12 +58,13 @@ export const styles = StyleSheet.create({
             height: "200px",
         },
     },
+    heroCaption: {fontSize: 16, color: Color.offBlack64},
 });
 
 <View style={styles.heroWrapper}>
     <View style={styles.heroBody}>
         <Hero />
-        <Caption style={{fontSize: 16, color: Color.offBlack64}}>
+        <Caption style={styles.heroCaption}>
             <strong>Note:</strong> These components are only available for use
             on the web (including mobile web).
         </Caption>
