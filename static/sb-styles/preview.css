@@ -1,24 +1,16 @@
+/**
+ * Overrides for the Storybook preview iframe.
+ */
 @import "./vars.css";
 
-/**
- * Docs overrides
- */
-.sbdocs,
+.sbdocs-ul,
+.sbdocs-li,
+.sbdocs-p,
 .sbdocs-p *:not(a) {
     color: var(--color-text) !important;
     font-size: var(--typography-body-size-md) !important;
     line-height: var(--typography-base-line-height) !important;
 }
-
-.sbdocs a:not([role="button"]) {
-    color: var(--color-product-primary) !important;
-    text-decoration: none;
-}
-
-.sbdocs a:hover {
-    text-decoration: underline;
-}
-
 .sbdocs-h1,
 .sbdocs-title,
 .sbdocs-h2,
@@ -50,6 +42,7 @@
     line-height: var(--typography-heading-line-height-lg) !important;
 }
 
+/* only include the counter to the stories titles */
 .sbdocs-h3:not(#usage)::before {
     counter-increment: story;
     color: var(--color-text-64);

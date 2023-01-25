@@ -1,5 +1,10 @@
+/**
+ * Global tokens taken from the actual WB packages.
+ */
 :root {
-    /* Typography */
+    /**
+     * Typography
+     */
     --typography-font-family: 'Source Serif Pro', sans-serif;
     --typography-base-size: clamp(0.88rem, 3vw, 1rem);
     --typography-base-line-height: 1.6;

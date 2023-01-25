@@ -70,7 +70,7 @@ export const parameters = {
     docs: {
         theme: wonderBlocksTheme,
         components: {
-            // h3: ({children}) => <h3>{children}</h3>,
+            // Override the default link component to use the WB Link component.
             a: Link,
         },
     },
