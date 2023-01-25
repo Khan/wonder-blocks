@@ -36,9 +36,6 @@ export default {
 
 const activeBlue = "#1b50b3";
 const fadedBlue = "#b5cefb";
-const visitedPurple = "#8755ee";
-const activeVisitedPurple = "#6645b0";
-const activeLightVistedPink = "#fc88c8";
 
 export const Default: StoryComponentType = (args) => (
     <Link target="_blank" {...args} />
