@@ -4,6 +4,8 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import Color from "@khanacademy/wonder-blocks-color";
+
 import Link from "../link.js";
 
 describe("Link", () => {
@@ -330,6 +332,55 @@ describe("Link", () => {
 
             // Assert
             expect(keyCode).toEqual(32);
+        });
+    });
+
+    describe("focus style", () => {
+        test("blue outline around primary links on focus", () => {
+            // Arrange
+            render(<Link href="/">Click me!</Link>);
+
+            // Act
+            userEvent.tab();
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveFocus();
+            expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+        });
+
+        test("blue outline around secondary links on focus", () => {
+            // Arrange
+            render(
+                <Link href="/" kind="secondary">
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            userEvent.tab();
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveFocus();
+            expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+        });
+
+        test("white outline around light links on focus", () => {
+            // Arrange
+            render(
+                <Link href="/" light={true}>
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            userEvent.tab();
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveFocus();
+            expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
         });
     });
 });
