@@ -1,4 +1,5 @@
 import {create} from "@storybook/theming";
+import Color from "@khanacademy/wonder-blocks-color";
 
 /**
  * Custom theme to make Storybook look closer to the current Wonder Blocks
@@ -8,15 +9,20 @@ export default create({
     base: "light",
     brandTitle: "Wonder Blocks",
     brandUrl: "/",
-    brandImage: "./logo.svg",
-    colorPrimary: "#E31937",
-    colorSecondary: "#489FDF",
+    brandImage: "./logo-with-text.svg",
+    appBg: Color.offWhite,
+    colorSecondary: Color.blue,
 
     // Typography
     fontBase: '"Lato", sans-serif',
     fontCode: "Inconsolata",
 
+    // Form colors
+    inputBg: Color.white,
+    inputBorder: Color.offBlack16,
+    inputTextColor: Color.offBlack,
+    inputBorderRadius: 4,
+
     // Text colors
-    textColor: "#21242C",
-    textInverseColor: "rgba(255,255,255,0.9)",
+    textColor: Color.offBlack,
 });

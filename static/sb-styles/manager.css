@@ -1,0 +1,5 @@
+@import "./vars.css";
+
+.sidebar-item {
+    font-size: var(--typography-body-size-sm) !important;
+}

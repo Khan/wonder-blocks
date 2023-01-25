@@ -1,0 +1,54 @@
+:root {
+    /* Typography */
+    --typography-font-family: 'Source Serif Pro', sans-serif;
+    --typography-base-size: clamp(0.88rem, 3vw, 1rem);
+    --typography-base-line-height: 1.6;
+    --typography-heading-size-xxl: calc(var(--typography-base-size) * 3.75); /* 60px */
+    --typography-heading-line-height-xxl: calc(var(--typography-heading-size-xxl) * 1.1333333);
+    --typography-heading-size-xl: calc(var(--typography-base-size) * 3); /* 48px */
+    --typography-heading-line-height-xl: calc(var(--typography-heading-size-xl) * 1.125);
+    --typography-heading-size-lg: calc(var(--typography-base-size) * 2.375); /* 38px */
+    --typography-heading-line-height-lg: calc(var(--typography-heading-size-lg) * 1.1052632);
+    --typography-heading-size-md: calc(var(--typography-base-size) * 1.875); /* 30px */
+    --typography-heading-line-height-md: calc(var(--typography-heading-size-md) * 1.1333333);
+    --typography-heading-size-sm: calc(var(--typography-base-size) * 1.5); /* 24px */
+    --typography-heading-line-height-sm: calc(var(--typography-heading-size-sm) * 1.1666667);
+    --typography-heading-size-xs: calc(var(--typography-base-size) * 1.25); /* 20px */
+    --typography-heading-line-height-xs: calc(var(--typography-heading-size-xs) * 1.1);
+    --typography-body-size-md: calc(var(--typography-base-size) * 1.125); /* 18px */
+    --typography-body-size-sm: calc(var(--typography-base-size) * 0.9375); /* 15px */
+
+    /**
+     * Colors
+     */
+    /* Product */
+    --color-product-primary: #1865f2; /* blue */
+    --color-product-mastery: #9059ff; /* purple */
+    --color-product-success: #00a60e; /* green */
+    --color-product-accent: #ffb100; /* gold */
+    --color-product-destructive: #d92916; /* red */
+    /* Neutral */
+    --color-text: #21242C; /* offBlack */
+    --color-text-64: rgba(33, 36, 44, 0.64); /* offBlack 64% */
+    --color-text-32: rgba(33, 36, 44, 0.32); /* offBlack 32% */
+    --color-text-16: rgba(33, 36, 44, 0.16); /* offBlack 16% */
+    --color-text-8: rgba(33, 36, 44, 0.08); /* offBlack 8% */
+    /* Brand */
+    --color-brand-primary: #0b2149; /* darkBlue */
+    --color-brand-secondary: #37c5fd; /* lightBlue */
+    --color-brand-tertiary: #14bf96; /* teal */
+    --color-brand-quaternary: #fa50ae; /* pink */
+
+    /**
+     * Spacing
+     */
+    --spacing-xxxSmall: 2px;
+    --spacing-xxSmall: 4px;
+    --spacing-xSmall: 8px;
+    --spacing-small: 12px;
+    --spacing-medium: 16px;
+    --spacing-large: 24px;
+    --spacing-xLarge: 32px;
+    --spacing-xxLarge: 48px;
+    --spacing-xxxLarge: 64px;
+}
