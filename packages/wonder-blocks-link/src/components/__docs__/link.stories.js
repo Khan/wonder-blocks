@@ -47,7 +47,7 @@ Default.args = {
 };
 
 export const Basic: StoryComponentType = () => (
-    <Link href="#">Hello, world! abcdefghijklmnopqrstuvwxyz</Link>
+    <Link href="#">The quick brown fox jumps over the lazy dog.</Link>
 );
 
 Basic.parameters = {
@@ -75,7 +75,7 @@ Basic.play = async ({canvasElement}) => {
 
 export const Secondary: StoryComponentType = () => (
     <Link href="#" kind="secondary">
-        Hello, world! abcdefghijklmnopqrstuvwxyz
+        The quick brown fox jumps over the lazy dog.
     </Link>
 );
 
@@ -104,7 +104,7 @@ Secondary.play = async ({canvasElement}) => {
 
 export const Visitable: StoryComponentType = () => (
     <Link href="#" visitable={true}>
-        Hello, world! abcdefghijklmnopqrstuvwxyz
+        The quick brown fox jumps over the lazy dog.
     </Link>
 );
 
@@ -119,7 +119,7 @@ Visitable.parameters = {
 
 export const LightBasic: StoryComponentType = () => (
     <Link href="#" light={true}>
-        Hello, world! abcdefghijklmnopqrstuvwxyz
+        The quick brown fox jumps over the lazy dog.
     </Link>
 );
 
@@ -152,38 +152,33 @@ LightBasic.play = async ({canvasElement}) => {
 
 export const LightVisitable: StoryComponentType = () => (
     <Link href="#" light={true} visitable={true}>
-        Hello, world! abcdefghijklmnopqrstuvwxyz
+        The quick brown fox jumps over the lazy dog.
     </Link>
 );
 
 LightVisitable.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
     docs: {
         storyDescription: `This is a visitable link on a dark background.
             It changes color after it has been clicked on to indicate
             that it's been visited before. This link's \`visitable\` prop
             is set to true. It links to the top of the page.`,
     },
-    backgrounds: {
-        default: "darkBlue",
-    },
 };
 
 export const Variants: StoryComponentType = () => (
-    <Body>
-        I am a <Link href="#nonexistent-link">Primary Link</Link>.{" "}
-        <span style={{color: Color.offBlack64}}>
-            My friend the{" "}
-            <Link href="#secondary-nonexistent-link" kind="secondary">
-                Secondary Link
-            </Link>{" "}
-            is used here with a lighter text.
-        </span>{" "}
-        We also have a{" "}
+    <View>
+        <Link href="#nonexistent-link">Primary Link</Link>
+        <Link href="#secondary-nonexistent-link" kind="secondary">
+            Secondary Link
+        </Link>
+
         <Link href="#" visitable={true}>
-            Visitable Primary Link
-        </Link>{" "}
-        friend.
-    </Body>
+            Visitable Link (Primary only)
+        </Link>
+    </View>
 );
 
 Variants.parameters = {
@@ -194,20 +189,20 @@ Variants.parameters = {
 };
 
 export const LightVariants: StoryComponentType = () => (
-    <Body style={styles.darkBackground}>
-        I am a{" "}
-        <Link href="#dark-link" light={true}>
-            Primary Link
-        </Link>{" "}
-        used on a dark background, and I am a{" "}
-        <Link href="#dark-link" light={true} visitable={true}>
-            Visitable Link
+    <View>
+        <Link href="#nonexistent-link" light={true}>
+            Light Link (Primary only)
         </Link>
-        . My friend the Secondary Link is not supported on this dark background.
-    </Body>
+        <Link href="#" visitable={true} light={true}>
+            Light Visitable Link (Primary only)
+        </Link>
+    </View>
 );
 
 LightVariants.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
     docs: {
         storyDescription: `Links are white on a dark background when the
             \`light\` prop is true. Secondary \`light\` links are not supported.

@@ -106,16 +106,17 @@ const _generateStyles = (kind, light, visitable) => {
         throw new Error("Only primary link is visitable");
     }
 
-    const {blue, pink, purple, white, offBlack, offBlack32} = Color;
+    const {blue, pink, purple, white, offBlack, offBlack32, offBlack64} = Color;
 
     const linkPurple = mix(fade(offBlack, 0.08), purple);
     const fadedBlue = mix(fade(blue, 0.32), white);
     const activeLightVisited = mix(fade(white, 0.32), pink);
 
     const defaultTextColor =
-        kind === "primary" ? (light ? white : blue) : offBlack;
+        kind === "primary" ? (light ? white : blue) : offBlack64;
 
-    const activeColor: string = light ? fadedBlue : mix(offBlack32, blue);
+    const primaryActiveColor = light ? fadedBlue : mix(offBlack32, blue);
+    const activeColor = kind === "primary" ? primaryActiveColor : offBlack;
 
     const defaultVisited = visitable
         ? {
