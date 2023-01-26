@@ -706,7 +706,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 1`] 
   style={
     {
       "borderRadius": 3,
-      "color": "#21242c",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "1px solid #1865f2",
@@ -737,7 +737,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 1`] 
   onTouchStart={[Function]}
   style={
     {
-      "color": "#21242c",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
@@ -769,7 +769,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 1`] 
   onTouchStart={[Function]}
   style={
     {
-      "color": "#1b50b3",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
@@ -802,7 +802,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   style={
     {
       "borderRadius": 3,
-      "color": "#21242c",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "1px solid #1865f2",
@@ -833,7 +833,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
-      "color": "#21242c",
+      "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
@@ -865,7 +865,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
-      "color": "#1b50b3",
+      "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
