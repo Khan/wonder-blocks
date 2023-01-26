@@ -163,15 +163,11 @@ type State = {|
     focused: boolean,
 |};
 
-// TODO(WB-1081): Change class name back to LabeledTextField after Styleguidist is gone.
 /**
  * A LabeledTextField is an element used to accept a single line of text
  * from the user paired with a label, description, and error field elements.
  */
-class LabeledTextFieldInternal extends React.Component<
-    PropsWithForwardRef,
-    State,
-> {
+class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
     static defaultProps: DefaultProps = {
         type: "text",
         disabled: false,
@@ -288,7 +284,7 @@ class LabeledTextFieldInternal extends React.Component<
 }
 
 type ExportProps = $Diff<
-    React.ElementConfig<typeof LabeledTextFieldInternal>,
+    React.ElementConfig<typeof LabeledTextField>,
     WithForwardRef,
 >;
 
@@ -312,9 +308,7 @@ type ExportProps = $Diff<
  * />
  * ```
  */
-const LabeledTextField: React.AbstractComponent<ExportProps, HTMLInputElement> =
-    React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
-        <LabeledTextFieldInternal {...props} forwardedRef={ref} />
-    ));
 
-export default LabeledTextField;
+export default (React.forwardRef<ExportProps, HTMLInputElement>(
+    (props, ref) => <LabeledTextField {...props} forwardedRef={ref} />,
+): React.AbstractComponent<ExportProps, HTMLInputElement>);
