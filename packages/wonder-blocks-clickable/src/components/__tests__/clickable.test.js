@@ -1,17 +1,11 @@
 // @flow
 import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
-import {render, screen, fireEvent} from "@testing-library/react";
+import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Clickable from "../clickable.js";
-
-const wait = (delay: number = 0) =>
-    new Promise((resolve, reject) => {
-        // eslint-disable-next-line no-restricted-syntax
-        return setTimeout(resolve, delay);
-    });
 
 describe("Clickable", () => {
     beforeEach(() => {
@@ -170,7 +164,6 @@ describe("Clickable", () => {
 
         // Act
         userEvent.click(screen.getByTestId("button"));
-        await wait(0);
 
         // Assert
         expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
@@ -201,7 +194,6 @@ describe("Clickable", () => {
 
         // Act
         userEvent.click(screen.getByTestId("button"));
-        await wait(0);
 
         // Assert
         expect(safeWithNavMock).not.toHaveBeenCalled();
@@ -230,10 +222,11 @@ describe("Clickable", () => {
 
         // Act
         userEvent.click(screen.getByTestId("button"));
-        await wait(0);
 
         // Assert
-        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        waitFor(() => {
+            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        });
     });
 
     test("beforeNav resolution results in safeWithNav being called", async () => {
@@ -261,10 +254,11 @@ describe("Clickable", () => {
 
         // Act
         userEvent.click(screen.getByTestId("button"));
-        await wait(0);
 
         // Assert
-        expect(safeWithNavMock).toHaveBeenCalled();
+        waitFor(() => {
+            expect(safeWithNavMock).toHaveBeenCalled();
+        });
     });
 
     test("safeWithNav with skipClientNav=true waits for promise resolution", async () => {
@@ -291,10 +285,11 @@ describe("Clickable", () => {
 
         // Act
         userEvent.click(screen.getByTestId("button"));
-        await wait(0);
 
         // Assert
-        expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        waitFor(() => {
+            expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        });
     });
 
     test("beforeNav resolution and safeWithNav with skipClientNav=true waits for promise resolution", async () => {
@@ -322,10 +317,11 @@ describe("Clickable", () => {
 
         // Act
         userEvent.click(screen.getByTestId("button"));
-        await wait(0);
 
         // Assert
-        expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        waitFor(() => {
+            expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        });
     });
 
     test("safeWithNav with skipClientNav=true waits for promise rejection", async () => {
@@ -352,10 +348,11 @@ describe("Clickable", () => {
 
         // Act
         userEvent.click(screen.getByTestId("button"));
-        await wait(0);
 
         // Assert
-        expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        waitFor(() => {
+            expect(window.location.assign).toHaveBeenCalledWith("/foo");
+        });
     });
 
     test("safeWithNav with skipClientNav=false calls safeWithNav but doesn't wait to navigate", () => {
@@ -418,14 +415,19 @@ describe("Clickable", () => {
 
         // Act
         userEvent.click(screen.getByTestId("button"));
-        await wait(0);
 
         // Assert
-        expect(safeWithNavMock).toHaveBeenCalled();
-        // client side nav to /foo
-        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
-        // not a full page nav
-        expect(window.location.assign).not.toHaveBeenCalledWith("/foo");
+        waitFor(() => {
+            expect(safeWithNavMock).toHaveBeenCalled();
+        });
+        waitFor(() => {
+            // client side nav to /foo
+            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        });
+        waitFor(() => {
+            // not a full page nav
+            expect(window.location.assign).not.toHaveBeenCalledWith("/foo");
+        });
     });
 
     test("should add aria-disabled if disabled is set", () => {
