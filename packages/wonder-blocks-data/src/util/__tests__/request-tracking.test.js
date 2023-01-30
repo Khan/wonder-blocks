@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render} from "@testing-library/react";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {RequestTracker, TrackerContext} from "../request-tracking.js";
@@ -14,7 +13,7 @@ describe("../request-tracking.js", () => {
 
             // Act
             const result = await new Promise((resolve, reject) => {
-                mount(
+                render(
                     <TrackerContext.Consumer>
                         {(fn) => resolve(fn)}
                     </TrackerContext.Consumer>,
