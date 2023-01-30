@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server.js";
-import {render, waitFor} from "@testing-library/react";
+import {render} from "@testing-library/react";
 
 import View from "../view.js";
 
@@ -50,38 +50,26 @@ describe("UniqueIDProvider", () => {
             expect(children.mock.calls[0][0]).toBeInstanceOf(UniqueIDFactory);
         });
 
-        test("all renders get same unique id factory", async () => {
+        test("all renders get same unique id factory", () => {
             // Arrange
             const children = jest.fn(() => <View />);
-            const nodes = (
+            const UnderTest = () => (
                 <UniqueIDProvider mockOnFirstRender={false}>
                     {children}
                 </UniqueIDProvider>
             );
-            const {rerender} = render(nodes);
+            const {rerender} = render(<UnderTest />);
 
             // Act
-            rerender(nodes);
+            rerender(<UnderTest />);
 
             // Assert
             // Check our forced render worked and we rendered three times.
-            waitFor(() => {
-                expect(children).toHaveBeenCalledTimes(2);
-            });
-
-            waitFor(() => {
-                // Check the first render gets a UniqueIDFactory instance.
-                expect(children.mock.calls[0][0]).toBeInstanceOf(
-                    UniqueIDFactory,
-                );
-            });
-
-            waitFor(() => {
-                // Check the second render gets the same UniqueIDFactory instance.
-                expect(children.mock.calls[1][0]).toBe(
-                    children.mock.calls[1][0],
-                );
-            });
+            expect(children).toHaveBeenCalledTimes(2);
+            // Check the first render gets a UniqueIDFactory instance.
+            expect(children.mock.calls[0][0]).toBeInstanceOf(UniqueIDFactory);
+            // Check the second render gets the same UniqueIDFactory instance.
+            expect(children.mock.calls[1][0]).toBe(children.mock.calls[1][0]);
         });
     });
 
@@ -123,38 +111,26 @@ describe("UniqueIDProvider", () => {
             expect(children).toHaveBeenCalledWith(SsrIDFactory);
         });
 
-        test("children calls after first get same unique id factory", async () => {
+        test("children calls after first get same unique id factory", () => {
             // Arrange
             const children = jest.fn(() => null);
-            const nodes = (
+            const UnderTest = () => (
                 <UniqueIDProvider mockOnFirstRender={true}>
                     {children}
                 </UniqueIDProvider>
             );
-            const {rerender} = render(nodes);
+            const {rerender} = render(<UnderTest />);
 
             // Act
-            rerender(nodes);
+            rerender(<UnderTest />);
 
             // Assert
             // Check our forced render worked and we rendered three times.
-            waitFor(() => {
-                expect(children).toHaveBeenCalledTimes(3);
-            });
-
-            waitFor(() => {
-                // Check the second render gets a UniqueIDFactory instance.
-                expect(children.mock.calls[1][0]).toBeInstanceOf(
-                    UniqueIDFactory,
-                );
-            });
-
-            waitFor(() => {
-                // Check the third render gets the same UniqueIDFactory instance.
-                expect(children.mock.calls[2][0]).toBe(
-                    children.mock.calls[1][0],
-                );
-            });
+            expect(children).toHaveBeenCalledTimes(3);
+            // Check the second render gets a UniqueIDFactory instance.
+            expect(children.mock.calls[1][0]).toBeInstanceOf(UniqueIDFactory);
+            // // Check the third render gets the same UniqueIDFactory instance.
+            expect(children.mock.calls[2][0]).toBe(children.mock.calls[1][0]);
         });
     });
 
@@ -182,7 +158,7 @@ describe("UniqueIDProvider", () => {
     });
 
     describe("inside a RenderStateRoot", () => {
-        test("it should pass an id to its children", async () => {
+        test("it should pass an id to its children", () => {
             // Arrange
             const foo = jest.fn(() => null);
             const nodes = (
@@ -197,12 +173,8 @@ describe("UniqueIDProvider", () => {
             render(nodes);
 
             // Assert
-            waitFor(() => {
-                expect(foo).toHaveBeenCalled();
-            });
-            waitFor(() => {
-                expect(foo.mock.calls[0][0]).toBeTruthy();
-            });
+            expect(foo).toHaveBeenCalled();
+            expect(foo.mock.calls[0][0]).toBeTruthy();
         });
     });
 });
