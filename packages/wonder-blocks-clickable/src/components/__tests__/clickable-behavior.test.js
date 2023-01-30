@@ -604,7 +604,7 @@ describe("ClickableBehavior", () => {
             userEvent.click(link);
 
             // Assert
-            waitFor(() => {
+            await waitFor(() => {
                 expect(window.location.assign).toHaveBeenCalledTimes(1);
             });
         });
@@ -920,7 +920,7 @@ describe("ClickableBehavior", () => {
                 userEvent.click(screen.getByRole("button"));
 
                 // Assert
-                waitFor(() => {
+                await waitFor(() => {
                     expect(
                         screen.getByText("Hello, world!"),
                     ).toBeInTheDocument();

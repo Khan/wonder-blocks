@@ -224,7 +224,7 @@ describe("Clickable", () => {
         userEvent.click(screen.getByTestId("button"));
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(screen.getByText("Hello, world!")).toBeInTheDocument();
         });
     });
@@ -256,7 +256,7 @@ describe("Clickable", () => {
         userEvent.click(screen.getByTestId("button"));
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(safeWithNavMock).toHaveBeenCalled();
         });
     });
@@ -287,7 +287,7 @@ describe("Clickable", () => {
         userEvent.click(screen.getByTestId("button"));
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
         });
     });
@@ -319,7 +319,7 @@ describe("Clickable", () => {
         userEvent.click(screen.getByTestId("button"));
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
         });
     });
@@ -350,7 +350,7 @@ describe("Clickable", () => {
         userEvent.click(screen.getByTestId("button"));
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
         });
     });
@@ -417,17 +417,13 @@ describe("Clickable", () => {
         userEvent.click(screen.getByTestId("button"));
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(safeWithNavMock).toHaveBeenCalled();
         });
-        waitFor(() => {
-            // client side nav to /foo
-            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
-        });
-        waitFor(() => {
-            // not a full page nav
-            expect(window.location.assign).not.toHaveBeenCalledWith("/foo");
-        });
+        // client side nav to /foo
+        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+        // not a full page nav
+        expect(window.location.assign).not.toHaveBeenCalledWith("/foo");
     });
 
     test("should add aria-disabled if disabled is set", () => {
