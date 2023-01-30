@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
 import * as ReactDOMServer from "react-dom/server.js";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render} from "@testing-library/react";
 
 import View from "../view.js";
 
@@ -40,7 +39,7 @@ describe("UniqueIDProvider", () => {
             );
 
             // Act
-            mount(nodes);
+            render(nodes);
 
             // Assert
             // Called once; for real render.
@@ -54,15 +53,15 @@ describe("UniqueIDProvider", () => {
         test("all renders get same unique id factory", () => {
             // Arrange
             const children = jest.fn(() => <View />);
-            const nodes = (
+            const UnderTest = () => (
                 <UniqueIDProvider mockOnFirstRender={false}>
                     {children}
                 </UniqueIDProvider>
             );
-            const wrapper = mount(nodes);
+            const {rerender} = render(<UnderTest />);
 
             // Act
-            wrapper.instance().forceUpdate();
+            rerender(<UnderTest />);
 
             // Assert
             // Check our forced render worked and we rendered three times.
@@ -103,7 +102,7 @@ describe("UniqueIDProvider", () => {
             );
 
             // Act
-            mount(nodes);
+            render(nodes);
 
             // Assert
             // Called twice; once for initial mock render, and again for real
@@ -115,22 +114,22 @@ describe("UniqueIDProvider", () => {
         test("children calls after first get same unique id factory", () => {
             // Arrange
             const children = jest.fn(() => null);
-            const nodes = (
+            const UnderTest = () => (
                 <UniqueIDProvider mockOnFirstRender={true}>
                     {children}
                 </UniqueIDProvider>
             );
-            const wrapper = mount(nodes);
+            const {rerender} = render(<UnderTest />);
 
             // Act
-            wrapper.instance().forceUpdate();
+            rerender(<UnderTest />);
 
             // Assert
             // Check our forced render worked and we rendered three times.
             expect(children).toHaveBeenCalledTimes(3);
             // Check the second render gets a UniqueIDFactory instance.
             expect(children.mock.calls[1][0]).toBeInstanceOf(UniqueIDFactory);
-            // Check the third render gets the same UniqueIDFactory instance.
+            // // Check the third render gets the same UniqueIDFactory instance.
             expect(children.mock.calls[2][0]).toBe(children.mock.calls[1][0]);
         });
     });
@@ -150,7 +149,7 @@ describe("UniqueIDProvider", () => {
             );
 
             // Act
-            mount(nodes);
+            render(nodes);
 
             // Assert
             expect(foo).toHaveBeenCalled();
@@ -171,7 +170,7 @@ describe("UniqueIDProvider", () => {
             );
 
             // Act
-            mount(nodes);
+            render(nodes);
 
             // Assert
             expect(foo).toHaveBeenCalled();
