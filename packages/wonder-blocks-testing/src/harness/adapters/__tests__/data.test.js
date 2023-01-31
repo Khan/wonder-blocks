@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme"; // eslint-disable-line no-restricted-imports
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
 import * as Data from "../data.js";
 
 describe("WonderBlocksData.adapter", () => {
@@ -10,30 +9,10 @@ describe("WonderBlocksData.adapter", () => {
         const children = <div>CONTENT</div>;
 
         // Act
-        const wrapper = mount(Data.adapter(children, []), {
-            includeDefaultTestHarness: false,
-        });
+        render(Data.adapter(children, []));
 
         // Assert
-        expect(wrapper).toHaveHTML("<div>CONTENT</div>");
-    });
-
-    it("should render children within InterceptRequests when dataIntercepts configured", () => {
-        // Arrange
-        const children = <div>CONTENT</div>;
-
-        // Act
-        const wrapper = mount(
-            Data.adapter(children, () =>
-                Promise.resolve(("INTERCEPTED!": any)),
-            ),
-            {
-                includeDefaultTestHarness: false,
-            },
-        );
-
-        // Assert
-        expect(wrapper).toContainMatchingElement("InterceptRequests");
+        expect(screen.getByText("CONTENT")).toBeInTheDocument();
     });
 
     it("should render like we expect", () => {
@@ -43,24 +22,19 @@ describe("WonderBlocksData.adapter", () => {
         const children = <div>CONTENT</div>;
 
         // Act
-        const wrapper = mount(
+        const {container} = render(
             Data.adapter(children, () =>
                 Promise.resolve(("INTERCEPTED!": any)),
             ),
-            {
-                includeDefaultTestHarness: false,
-            },
         );
 
         // Assert
-        expect(wrapper).toMatchInlineSnapshot(`
-            <InterceptRequests
-              interceptor={[Function]}
-            >
+        expect(container).toMatchInlineSnapshot(`
+            <div>
               <div>
                 CONTENT
               </div>
-            </InterceptRequests>
+            </div>
         `);
     });
 });
