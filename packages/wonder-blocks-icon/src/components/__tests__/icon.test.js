@@ -227,6 +227,7 @@ describe("Icon", () => {
 
         // Assert
         expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
+        // eslint-disable-next-line testing-library/no-node-access
         expect(mockStyledSVGComponent.mock.calls[0][0].children)
             .toMatchInlineSnapshot(`
 <path
