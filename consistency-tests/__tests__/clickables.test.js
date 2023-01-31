@@ -35,15 +35,15 @@ const IconButtonWrapper = (props: any) => (
 );
 
 describe.each`
-    Component            | name
-    ${ActionItem}        | ${"ActionItem"}
-    ${Button}            | ${"Button"}
-    ${ClickableWrapper}  | ${"Clickable"}
-    ${CompactCell}       | ${"CompactCell"}
-    ${DetailCell}        | ${"DetailCell"}
-    ${IconButtonWrapper} | ${"IconButton"}
-    ${Link}              | ${"Link"}
-`("$name with an href", ({Component, name}) => {
+    Component            | name             | role
+    ${ActionItem}        | ${"ActionItem"}  | ${"menuitem"}
+    ${Button}            | ${"Button"}      | ${"button"}
+    ${ClickableWrapper}  | ${"Clickable"}   | ${"link"}
+    ${CompactCell}       | ${"CompactCell"} | ${"link"}
+    ${DetailCell}        | ${"DetailCell"}  | ${"link"}
+    ${IconButtonWrapper} | ${"IconButton"}  | ${"link"}
+    ${Link}              | ${"Link"}        | ${"link"}
+`("$name with an href", ({Component, name, role}) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
         // the testing environment
@@ -59,17 +59,13 @@ describe.each`
     it("opens a new tab when target='_blank'", () => {
         // Arrange
         render(
-            <Component
-                href="https://www.khanacademy.org"
-                target="_blank"
-                testId="clickable-component"
-            >
+            <Component href="https://www.khanacademy.org" target="_blank">
                 Click me
             </Component>,
         );
 
         // Act
-        userEvent.click(screen.getByTestId("clickable-component"));
+        userEvent.click(screen.getByRole(role));
 
         // Assert
         expect(window.open).toHaveBeenCalledWith(
@@ -80,23 +76,15 @@ describe.each`
 
     it("sets the 'target' prop on the underlying element", () => {
         // Arrange
-        const {container} = render(
-            <Component
-                href="https://www.khanacademy.org"
-                target="_blank"
-                testId="clickable-component"
-            >
+        render(
+            <Component href="https://www.khanacademy.org" target="_blank">
                 Click me
             </Component>,
         );
 
         // Act
-        userEvent.click(screen.getByTestId("clickable-component"));
-
-        // NOTE: We need to disable the eslint rules here because we're testing
-        // that the underlying DOM element has the correct attributes.
-        // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-        const link = container.querySelector("a");
+        const link = screen.getByRole(role);
+        userEvent.click(link);
 
         // Assert
         expect(link).toHaveAttribute("target", "_blank");
@@ -104,33 +92,30 @@ describe.each`
 
     it("renders an <a> if the href is '#'", () => {
         // Arrange
-        const {container} = render(
+        render(
             <MemoryRouter>
                 <Component href="#">Click me</Component>
             </MemoryRouter>,
         );
 
         // Act
-        // NOTE: We need to disable the eslint rules here because we're testing
-        // that the underlying DOM element has the correct attributes.
-        // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-        const link = container.querySelector("a");
+        const link = screen.getByRole(role);
 
         // Assert
-        expect(link).toBeInTheDocument();
+        expect(link.tagName).toBe("A");
     });
 });
 
 // NOTE: Link doesn't work without an href so it isn't included in this suite
 describe.each`
-    Component            | name
-    ${ActionItem}        | ${"ActionItem"}
-    ${Button}            | ${"Button"}
-    ${ClickableWrapper}  | ${"Clickable"}
-    ${CompactCell}       | ${"CompactCell"}
-    ${DetailCell}        | ${"DetailCell"}
-    ${IconButtonWrapper} | ${"IconButton"}
-`("$name without an href", ({Component, name}) => {
+    Component            | name             | role
+    ${ActionItem}        | ${"ActionItem"}  | ${"menuitem"}
+    ${Button}            | ${"Button"}      | ${"button"}
+    ${ClickableWrapper}  | ${"Clickable"}   | ${"button"}
+    ${CompactCell}       | ${"CompactCell"} | ${"button"}
+    ${DetailCell}        | ${"DetailCell"}  | ${"button"}
+    ${IconButtonWrapper} | ${"IconButton"}  | ${"button"}
+`("$name without an href", ({Component, name, role}) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
         // the testing environment, but JSDOM protects assign from being changed
@@ -145,17 +130,14 @@ describe.each`
 
     it("renders a button", () => {
         // Arrange
-        const {container} = render(
+        render(
             <MemoryRouter>
                 <Component onClick={() => {}}>Click me</Component>
             </MemoryRouter>,
         );
 
         // Act
-        // NOTE: We need to disable the eslint rules here because we're testing
-        // that the underlying DOM element has the correct attributes.
-        // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
-        const button = container.querySelector("button");
+        const button = screen.getByRole(role);
 
         // Assert
         expect(button).toBeInTheDocument();
@@ -166,14 +148,12 @@ describe.each`
         const clickHandler = jest.fn();
         render(
             <MemoryRouter>
-                <Component onClick={clickHandler} testId="clickable-component">
-                    Click me
-                </Component>
+                <Component onClick={clickHandler}>Click me</Component>
             </MemoryRouter>,
         );
 
         // Act
-        userEvent.click(screen.getByTestId("clickable-component"));
+        userEvent.click(screen.getByRole(role));
 
         // Assert
         expect(clickHandler).toHaveBeenCalled();
