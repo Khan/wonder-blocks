@@ -114,11 +114,10 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        userEvent.click(screen.getByRole("button"));
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(screen.getByText("Hello, world!")).toBeInTheDocument();
         });
     });
@@ -146,11 +145,10 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        userEvent.click(screen.getByRole("button"));
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(safeWithNavMock).toHaveBeenCalled();
         });
     });
@@ -204,16 +202,15 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        userEvent.click(screen.getByRole("button"));
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
         });
     });
 
-    test("safeWithNav with skipClientNav=true shows spinner", async () => {
+    test("safeWithNav with skipClientNav=true shows spinner", () => {
         // Arrange
         jest.spyOn(window.location, "assign");
         render(
@@ -271,12 +268,12 @@ describe("Button", () => {
         userEvent.click(button);
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
         });
     });
 
-    test("safeWithNav with skipClientNav=true waits for promise rejection", async () => {
+    test("safeWithNav with skipClientNav=true waits for promise rejection", () => {
         // Arrange
         jest.spyOn(window.location, "assign");
         render(
@@ -306,7 +303,7 @@ describe("Button", () => {
         expect(window.location.assign).toHaveBeenCalledWith("/foo");
     });
 
-    test("safeWithNav with skipClientNav=false calls safeWithNav but doesn't wait to navigate", async () => {
+    test("safeWithNav with skipClientNav=false calls safeWithNav but doesn't wait to navigate", () => {
         // Arrange
         jest.spyOn(window.location, "assign");
         const safeWithNavMock = jest.fn();
@@ -363,14 +360,13 @@ describe("Button", () => {
         );
 
         // Act
-        const button = screen.getByRole("button");
-        userEvent.click(button);
+        userEvent.click(screen.getByRole("button"));
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(safeWithNavMock).toHaveBeenCalled();
         });
-        waitFor(() => {
+        await waitFor(() => {
             expect(window.location.assign).toHaveBeenCalledWith("/foo");
         });
     });
@@ -583,7 +579,7 @@ describe("Button", () => {
             expect(screen.getByText("Hello, world!")).toBeInTheDocument();
         });
 
-        test("beforeNav rejection blocks client-side navigation ", async () => {
+        test("beforeNav rejection blocks client-side navigation ", () => {
             // Arrange
             render(
                 <MemoryRouter>
@@ -633,12 +629,12 @@ describe("Button", () => {
             userEvent.type(button, "{enter}");
 
             // Assert
-            waitFor(() => {
+            await waitFor(() => {
                 expect(screen.getByText("Hello, world!")).toBeInTheDocument();
             });
         });
 
-        test("safeWithNav with skipClientNav=true waits for promise resolution", async () => {
+        test("safeWithNav with skipClientNav=true waits for promise resolution", () => {
             // Arrange
             jest.spyOn(window.location, "assign");
             render(
@@ -695,7 +691,7 @@ describe("Button", () => {
             userEvent.type(button, "{enter}");
 
             // Assert
-            waitFor(() => {
+            await waitFor(() => {
                 expect(window.location.assign).toHaveBeenCalledWith("/foo");
             });
         });
@@ -728,17 +724,17 @@ describe("Button", () => {
             userEvent.type(button, "{enter}");
 
             // Assert
-            waitFor(() => {
+            await waitFor(() => {
                 expect(safeWithNavMock).toHaveBeenCalled();
             });
-            waitFor(() => {
+            await waitFor(() => {
                 expect(window.location.assign).toHaveBeenCalledWith("/foo");
             });
         });
     });
 
     describe("button focus", () => {
-        test("primary button can have focus", async () => {
+        test("primary button can have focus", () => {
             // Arrange
             render(<Button testId={"button-focus-test"}>Label</Button>);
 
@@ -750,7 +746,7 @@ describe("Button", () => {
             expect(button).toHaveFocus();
         });
 
-        test("primary button can have focus when disabled", async () => {
+        test("primary button can have focus when disabled", () => {
             // Arrange
             render(
                 <Button disabled={true} testId={"button-focus-test"}>
@@ -766,7 +762,7 @@ describe("Button", () => {
             expect(button).toHaveFocus();
         });
 
-        test("tertiary button can have focus when disabled", async () => {
+        test("tertiary button can have focus when disabled", () => {
             // Arrange
             render(
                 <Button
