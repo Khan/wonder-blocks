@@ -1,16 +1,11 @@
 // @flow
 import * as React from "react";
-import * as ReactDOM from "react-dom";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import TooltipBubble from "../tooltip-bubble.js";
 import typeof TooltipContent from "../tooltip-content.js";
-
-const sleep = (duration = 0) =>
-    new Promise((resolve, reject) => setTimeout(resolve, duration));
 
 describe("TooltipBubble", () => {
     // A little helper method to make the actual test more readable.
@@ -27,55 +22,43 @@ describe("TooltipBubble", () => {
 
     test("updates reference to bubble container", async () => {
         // Arrange
-        const bubbleNode = await new Promise((resolve) => {
-            // Get some props and set the ref to our assert, that way we assert
-            // when the bubble component is mounted.
-            const props = makePopperProps();
+        // Get some props and set the ref to our assert, that way we assert
+        // when the bubble component is mounted.
+        const props = makePopperProps();
 
-            // Do some casting to pretend this is `TooltipContent`. That way
-            // we are isolating behaviors a bit more.
-            const fakeContent = (((
-                <View id="content">Some content</View>
-            ): any): React.Element<TooltipContent>);
-            const nodes = (
-                <View>
-                    <TooltipBubble
-                        id="bubble"
-                        placement={props.placement}
-                        tailOffset={props.tailOffset}
-                        updateBubbleRef={resolve}
-                        onActiveChanged={() => {}}
-                    >
-                        {fakeContent}
-                    </TooltipBubble>
-                </View>
-            );
+        // Do some casting to pretend this is `TooltipContent`. That way we are
+        // isolating behaviors a bit more.
+        const fakeContent = (((
+            <View id="content">Some content</View>
+        ): any): React.Element<TooltipContent>);
 
-            // Act
-            mount(nodes);
-        });
-
-        /**
-         * All we're doing is making sure we got called and verifying that
-         * we got called with an element we expect.
-         */
-        // Assert
-        // Did we get a node?
-        expect(bubbleNode).toBeDefined();
+        // Act
+        render(
+            <View>
+                <TooltipBubble
+                    id="bubble"
+                    placement={props.placement}
+                    tailOffset={props.tailOffset}
+                    updateBubbleRef={jest.fn()}
+                    onActiveChanged={() => {}}
+                >
+                    {fakeContent}
+                </TooltipBubble>
+            </View>,
+        );
 
         // Is the node a mounted element?
-        const realElement = ReactDOM.findDOMNode(bubbleNode);
-        expect(realElement instanceof Element).toBeTruthy();
+        const tooltip = await screen.findByRole("tooltip");
 
-        // Keep flow happy...
-        if (realElement instanceof Element) {
-            // Did we apply our data attribute?
-            expect(realElement.getAttribute("data-placement")).toBe("top");
+        /**
+         * All we're doing is making sure we got called and verifying that we
+         * got called with an element we expect.
+         */
+        // Assert
+        // Did we apply our data attribute?
+        expect(tooltip.getAttribute("data-placement")).toBe("top");
 
-            // Did we render our content?
-            await sleep();
-            const contentElement = document.getElementById("content");
-            expect(contentElement).toBeDefined();
-        }
+        // Did we render our content?
+        expect(screen.getByText("Some content")).toBeInTheDocument();
     });
 });
