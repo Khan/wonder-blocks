@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
-import {render, screen} from "@testing-library/react";
+import {render, screen, waitFor} from "@testing-library/react";
+import {useCachedEffect} from "@khanacademy/wonder-blocks-data";
 import * as Data from "../data.js";
 
 describe("WonderBlocksData.adapter", () => {
@@ -15,15 +16,39 @@ describe("WonderBlocksData.adapter", () => {
         expect(screen.getByText("CONTENT")).toBeInTheDocument();
     });
 
+    it("should render children within InterceptRequests when dataIntercepts configured", async () => {
+        // Arrange
+
+        const TestFixture = () => {
+            const [result] = useCachedEffect("ID", jest.fn());
+
+            return <div>CONTENT: {result?.data}</div>;
+        };
+
+        // Act
+        const {container} = render(
+            Data.adapter(<TestFixture />, () =>
+                Promise.resolve(("INTERCEPTED!": any)),
+            ),
+        );
+
+        // Assert
+        await waitFor(() => expect(container).toContainHTML("INTERCEPTED!"));
+    });
+
     it("should render like we expect", () => {
         // Snapshot test is handy to visualize what's going on and help debug
         // test failures of the other cases. The other cases assert specifics.
         // Arrange
-        const children = <div>CONTENT</div>;
+        const TestFixture = () => {
+            const [result] = useCachedEffect("ID", jest.fn());
+
+            return <div>CONTENT: {result?.data}</div>;
+        };
 
         // Act
         const {container} = render(
-            Data.adapter(children, () =>
+            Data.adapter(<TestFixture />, () =>
                 Promise.resolve(("INTERCEPTED!": any)),
             ),
         );
@@ -32,7 +57,8 @@ describe("WonderBlocksData.adapter", () => {
         expect(container).toMatchInlineSnapshot(`
             <div>
               <div>
-                CONTENT
+                CONTENT: 
+                INTERCEPTED!
               </div>
             </div>
         `);
