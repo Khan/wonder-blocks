@@ -10,7 +10,7 @@
   "scripts": {
     "alex": "alex packages/",
     "build": "rollup -c ./build-settings/rollup.config.js",
-    "build:prodsizecheck": "rollup -c build-settings/rollup.config.js --configFormats='esm' --configEnvironment='production'",
+    "build:es6": "yarn run build",
     "build-storybook": "build-storybook",
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules",
     "coverage": "yarn run test:coverage && open coverage/lcov-report/index.html",
