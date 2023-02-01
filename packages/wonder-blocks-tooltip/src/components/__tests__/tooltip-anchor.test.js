@@ -41,11 +41,6 @@ describe("TooltipAnchor", () => {
 
     test("on mount, subscribes to focus and hover events", () => {
         // Arrange
-        const nodes = (
-            <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
-                Anchor text
-            </TooltipAnchor>
-        );
         const addEventListenerSpy = jest.spyOn(
             HTMLElement.prototype,
             "addEventListener",
@@ -53,7 +48,11 @@ describe("TooltipAnchor", () => {
         addEventListenerSpy.mockClear();
 
         // Act
-        render(nodes);
+        render(
+            <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
+                Anchor text
+            </TooltipAnchor>,
+        );
 
         // Assert
         expect(addEventListenerSpy).toHaveBeenCalledWith(
@@ -76,17 +75,16 @@ describe("TooltipAnchor", () => {
 
     test("on unmount, unsubscribes from focus and hover events", () => {
         // Arrange
-        const nodes = (
-            <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
-                Anchor text
-            </TooltipAnchor>
-        );
         const removeEventListenerSpy = jest.spyOn(
             HTMLElement.prototype,
             "removeEventListener",
         );
         removeEventListenerSpy.mockClear();
-        const wrapper = render(nodes);
+        const wrapper = render(
+            <TooltipAnchor anchorRef={() => {}} onActiveChanged={() => {}}>
+                Anchor text
+            </TooltipAnchor>,
+        );
 
         // Act
         wrapper.unmount();
@@ -110,19 +108,39 @@ describe("TooltipAnchor", () => {
         );
     });
 
+    test("ref is properly set", () => {
+        // Arrange
+        const anchorRef = jest.fn();
+
+        render(
+            <TooltipAnchor
+                forceAnchorFocusivity={true}
+                anchorRef={anchorRef}
+                onActiveChanged={() => {}}
+            >
+                <View id="portal">This is the anchor</View>
+            </TooltipAnchor>,
+        );
+
+        // Act
+        const result = screen.getByText("This is the anchor");
+
+        // Assert
+        expect(anchorRef).toHaveBeenCalledWith(result);
+    });
+
     describe("forceAnchorFocusivity is true", () => {
         test("if not set, sets tabindex on anchor target", () => {
             // Arrange
-            const nodes = (
+            render(
                 <TooltipAnchor
                     forceAnchorFocusivity={true}
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
                 >
                     <View id="portal">This is the anchor</View>
-                </TooltipAnchor>
+                </TooltipAnchor>,
             );
-            render(nodes);
 
             // Act
             const result = screen.getByText("This is the anchor");
@@ -133,16 +151,15 @@ describe("TooltipAnchor", () => {
 
         test("if tabindex already set, leaves it as-is", () => {
             // Arrange
-            const nodes = (
+            render(
                 <TooltipAnchor
                     forceAnchorFocusivity={true}
                     anchorRef={jest.fn()}
                     onActiveChanged={() => {}}
                 >
                     <View tabIndex={-1}>This is the anchor</View>
-                </TooltipAnchor>
+                </TooltipAnchor>,
             );
-            render(nodes);
 
             // Act
             const result = screen.getByText("This is the anchor");
@@ -459,7 +476,7 @@ describe("TooltipAnchor", () => {
             // Arrange
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             let activeState = false;
-            const nodes = (
+            render(
                 <TooltipAnchor
                     anchorRef={jest.fn()}
                     onActiveChanged={(active) => {
@@ -467,9 +484,8 @@ describe("TooltipAnchor", () => {
                     }}
                 >
                     Anchor Text
-                </TooltipAnchor>
+                </TooltipAnchor>,
             );
-            render(nodes);
 
             // Focus the anchor
             userEvent.tab();
