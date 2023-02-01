@@ -28,7 +28,7 @@ describe("Popover", () => {
         // Act
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(ref.current).toBeInstanceOf(HTMLButtonElement);
         });
     });
@@ -178,7 +178,7 @@ describe("Popover", () => {
         );
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(screen.queryByText("Title")).not.toBeInTheDocument();
         });
     });

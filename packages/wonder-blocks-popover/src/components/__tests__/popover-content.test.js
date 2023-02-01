@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import PopoverContent from "../popover-content.js";
 import PopoverContext from "../popover-context.js";
@@ -11,7 +11,7 @@ describe("PopoverContent", () => {
         // Arrange
         const onCloseMock = jest.fn();
 
-        const wrapper = mount(
+        render(
             <PopoverContext.Provider
                 value={{close: onCloseMock, placement: "left"}}
             >
@@ -19,16 +19,14 @@ describe("PopoverContent", () => {
                     title="Title"
                     content="content"
                     actions={({close}) => (
-                        <button data-close-button onClick={close}>
-                            close popover
-                        </button>
+                        <button onClick={close}>close popover</button>
                     )}
                 />
             </PopoverContext.Provider>,
         );
 
         // Act
-        wrapper.find("[data-close-button]").simulate("click");
+        userEvent.click(screen.getByRole("button"));
 
         // Assert
         expect(onCloseMock).toBeCalled();
@@ -46,7 +44,7 @@ describe("PopoverContent", () => {
         );
 
         // Act
-        const underTest = () => mount(nodes);
+        const underTest = () => render(nodes);
 
         // Assert
         expect(underTest).toThrowErrorMatchingInlineSnapshot(
@@ -69,7 +67,7 @@ describe("PopoverContent", () => {
         );
 
         // Act
-        const underTest = () => mount(nodes);
+        const underTest = () => render(nodes);
 
         // Assert
         expect(underTest).toThrowErrorMatchingInlineSnapshot(
