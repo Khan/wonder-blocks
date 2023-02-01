@@ -9,9 +9,7 @@
   },
   "scripts": {
     "alex": "alex packages/",
-    "build:all": "yarn run build:cjs && yarn run build:es6",
-    "build:cjs": "webpack --config ./build-settings/webpack.config.js --display-modules && node ./utils/package-flow-types.js",
-    "build:es6": "rollup -c ./build-settings/rollup.config.js",
+    "build": "rollup -c ./build-settings/rollup.config.js",
     "build-storybook": "build-storybook",
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules",
     "coverage": "yarn run test:coverage && open coverage/lcov-report/index.html",
@@ -23,12 +21,11 @@
     "lint:watch": "esw --watch --config ./eslint/eslintrc packages",
     "lint": "eslint --config .eslintrc.js packages",
     "lint:ci": "eslint --config .eslintrc.js",
-    "publish:ci": "node utils/publish/pre-publish-check-ci.js && git diff --stat --exit-code HEAD && yarn build:all && changeset publish",
+    "publish:ci": "node utils/publish/pre-publish-check-ci.js && git diff --stat --exit-code HEAD && yarn build && changeset publish",
     "start": "start-storybook -p 6061",
-    "test:common": "yarn run build:all && yarn run lint && yarn run alex && yarn run flow",
+    "test:common": "yarn run build && yarn run lint && yarn run alex && yarn run flow",
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
-    "test": "yarn run test:common && yarn run jest",
-    "watch:cjs": "webpack --config build-settings/webpack.config.js -w"
+    "test": "yarn run test:common && yarn run jest"
   },
   "author": "",
   "license": "MIT",
@@ -95,9 +92,7 @@
     "rollup": "^2.74.1",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-babel": "^4.0.0-beta.2",
-    "storybook-addon-designs": "^6.3.1",
-    "webpack": "^4.6.0",
-    "webpack-cli": "^3.3.9"
+    "storybook-addon-designs": "^6.3.1"
   },
   "dependencies": {
     "@babel/runtime": "^7.18.6",
