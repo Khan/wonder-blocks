@@ -44,7 +44,7 @@
     "@changesets/cli": "^2.18.0",
     "@khanacademy/eslint-config": "^0.2.0",
     "@khanacademy/wonder-stuff-testing": "^0.0.2",
-    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
+    "@pmmmwh/react-refresh-webpack-plugin": "^0.5.10",
     "@storybook/addon-a11y": "^6.5.15",
     "@storybook/addon-essentials": "^6.5.13",
     "@storybook/addon-interactions": "^6.5.13",
