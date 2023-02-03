@@ -6683,11 +6683,6 @@ eslint-plugin-react-hooks@^4.3.0:
   resolved "https://registry.yarnpkg.com/eslint-plugin-react-hooks/-/eslint-plugin-react-hooks-4.3.0.tgz#318dbf312e06fab1c835a4abef00121751ac1172"
   integrity sha512-XslZy0LnMn+84NEG9jSGR6eGqaZB3133L8xewQo3fQagbQuGt7a63gf+P1NGKZavEYEC3UXaWEAA/AqDkuN6xA==
 
-eslint-plugin-react-native-animation-linter@^0.1.2:
-  version "0.1.2"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-react-native-animation-linter/-/eslint-plugin-react-native-animation-linter-0.1.2.tgz#07edd97544f5db7e04c640480d3683e99d264ff1"
-  integrity sha512-BYIzn3/CP95Wm7pMS6+hJjFZpWwFR4qzOwCdGZaAAQqdbGhQWX2GnsaWQwWKq/FKOhZHdQ4cpmEaFcwzoEamqA==
-
 eslint-plugin-react@^7.27.1:
   version "7.27.1"
   resolved "https://registry.yarnpkg.com/eslint-plugin-react/-/eslint-plugin-react-7.27.1.tgz#469202442506616f77a854d91babaae1ec174b45"

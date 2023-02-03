@@ -73,7 +73,6 @@
     "eslint-plugin-promise": "^6.0.0",
     "eslint-plugin-react": "^7.27.1",
     "eslint-plugin-react-hooks": "^4.3.0",
-    "eslint-plugin-react-native-animation-linter": "^0.1.2",
     "eslint-plugin-storybook": "^0.5.12",
     "eslint-plugin-testing-library": "^5.0.0",
     "eslint-watch": "^8.0.0",
