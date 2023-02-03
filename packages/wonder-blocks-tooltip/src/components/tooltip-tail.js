@@ -247,24 +247,6 @@ export default class TooltipTail extends React.Component<Props> {
         ];
     }
 
-    _minDistanceFromCorners(placement: Placement): number {
-        const minDistanceFromCornersForTopBottom = Spacing.medium_16;
-        const minDistanceFromCornersForLeftRight = 7;
-
-        switch (placement) {
-            case "top":
-            case "bottom":
-                return minDistanceFromCornersForTopBottom;
-
-            case "left":
-            case "right":
-                return minDistanceFromCornersForLeftRight;
-
-            default:
-                throw new Error(`Unknown placement: ${placement}`);
-        }
-    }
-
     _getFullTailWidth(): number {
         return ARROW_WIDTH + 2 * MIN_DISTANCE_FROM_CORNERS;
     }

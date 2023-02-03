@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
 import * as Core from "@khanacademy/wonder-blocks-core";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render} from "@testing-library/react";
 
 import * as icons from "../../util/icon-assets.js";
 import {getPathForIcon, viewportPixelsForSize} from "../../util/icon-util.js";
@@ -52,7 +51,7 @@ describe("Icon", () => {
     test("applies aria-label to svg", async () => {
         // Arrange
         const {default: Icon} = await import("../icon.js");
-        const render = new Promise((resolve) => {
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon
@@ -63,11 +62,11 @@ describe("Icon", () => {
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
@@ -79,7 +78,7 @@ describe("Icon", () => {
     test("calls getPathForIcon", async () => {
         // Arrange
         const {default: Icon} = await import("../icon.js");
-        const render = new Promise((resolve) => {
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon
@@ -90,11 +89,11 @@ describe("Icon", () => {
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockGetPathForIcon).toHaveBeenCalledTimes(1);
@@ -108,18 +107,18 @@ describe("Icon", () => {
             assetSize: "large",
             path: "TESTPATH",
         }));
-        const render = new Promise((resolve) => {
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon ref={() => resolve()} icon={icons.add} size="small" />
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockViewportPixelsForSize).toHaveBeenCalledTimes(2);
@@ -142,18 +141,18 @@ describe("Icon", () => {
             assetSize: "small",
             path: "TESTPATH",
         }));
-        const render = new Promise((resolve) => {
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon ref={() => resolve()} icon={icons.add} />
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
@@ -179,18 +178,18 @@ describe("Icon", () => {
             assetSize: "small",
             path: "TESTPATH",
         }));
-        const render = new Promise((resolve) => {
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon ref={() => resolve()} icon={icons.add} />
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
@@ -209,7 +208,7 @@ describe("Icon", () => {
             assetSize: "small",
             path: "TESTPATH",
         }));
-        const render = new Promise((resolve) => {
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon
@@ -220,14 +219,15 @@ describe("Icon", () => {
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
+        // eslint-disable-next-line testing-library/no-node-access
         expect(mockStyledSVGComponent.mock.calls[0][0].children)
             .toMatchInlineSnapshot(`
 <path
@@ -247,7 +247,7 @@ describe("Icon", () => {
         const expectedStyle = {
             display: "none",
         };
-        const render = new Promise((resolve) => {
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon
@@ -258,11 +258,11 @@ describe("Icon", () => {
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);

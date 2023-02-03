@@ -52,7 +52,7 @@ jobs:
         id: changed
 
       - name: Build so that inter-package references are resolved
-        run: yarn build:all
+        run: yarn build
 
       - id: js-files
         name: Find .js changed files

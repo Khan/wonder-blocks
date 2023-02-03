@@ -2,4 +2,3 @@
 # this file.
 
 docs/
-styleguide.prod.config.js

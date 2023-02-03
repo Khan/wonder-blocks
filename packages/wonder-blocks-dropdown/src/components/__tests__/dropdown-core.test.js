@@ -613,11 +613,11 @@ describe("DropdownCore", () => {
         );
 
         // Act
-        userEvent.keyboard("{tab}");
+        userEvent.tab();
 
         // Assert
         expect(handleOpen).toHaveBeenCalledTimes(0);
-        waitFor(() => {
+        await waitFor(() => {
             expect(
                 screen.getByRole("button", {name: "Clear search"}),
             ).toHaveFocus();
@@ -699,7 +699,7 @@ describe("DropdownCore", () => {
             const searchField = await screen.findByPlaceholderText("Filter");
 
             // Assert
-            waitFor(() => {
+            await waitFor(() => {
                 expect(searchField).toHaveFocus();
             });
         });
@@ -730,7 +730,7 @@ describe("DropdownCore", () => {
             userEvent.click(item);
 
             // Assert
-            waitFor(() => {
+            await waitFor(() => {
                 expect(item).toHaveFocus();
             });
         });

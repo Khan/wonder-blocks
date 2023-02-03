@@ -66,6 +66,13 @@ export const Default: StoryComponentType = (args) => (
     </Clickable>
 );
 
+Default.args = {
+    onClick: () => {
+        // eslint-disable-next-line no-alert
+        alert("Click!");
+    },
+};
+
 export const Basic: StoryComponentType = () => (
     <View style={styles.centerText}>
         <Clickable

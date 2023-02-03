@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
 
 import expectRenderError from "../../../../../utils/testing/expect-render-error.js";
 import CloseButton from "../close-button.js";
@@ -19,7 +18,7 @@ describe("CloseButton", () => {
 
     test("testId should be set in the Icon element", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <div>
                 <ModalContext.Provider value={{closeModal: () => {}}}>
                     <CloseButton testId="modal-example-close" />,
@@ -28,9 +27,12 @@ describe("CloseButton", () => {
         );
 
         // Act
-        const closeButton = wrapper.find(CloseButton);
+        const closeButton = screen.getByRole("button");
 
         // Assert
-        expect(closeButton.prop("testId")).toBe("modal-example-close");
+        expect(closeButton).toHaveAttribute(
+            "data-test-id",
+            "modal-example-close",
+        );
     });
 });

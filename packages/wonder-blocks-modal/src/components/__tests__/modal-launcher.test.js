@@ -1,7 +1,5 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
 import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -11,12 +9,6 @@ import Button from "@khanacademy/wonder-blocks-button";
 import ModalLauncher from "../modal-launcher.js";
 import OnePaneDialog from "../one-pane-dialog.js";
 
-import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
-import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document.js";
-
-const wait = (duration: number = 0) =>
-    new Promise((resolve, reject) => setTimeout(resolve, duration));
-
 const exampleModal = (
     <OnePaneDialog
         title="Modal launcher test"
@@ -25,169 +17,150 @@ const exampleModal = (
 );
 
 describe("ModalLauncher", () => {
-    afterEach(() => {
-        unmountAll();
-        if (document.body) {
-            document.body.innerHTML = "";
-        }
-    });
-
     window.scrollTo = jest.fn();
 
     test("Children can launch the modal", async () => {
         // Arrange
-        // We need the elements in the DOM document, it seems, for this test
-        // to work. Changing to testing-library will likely fix this.
-        const containerDiv = getElementAttachedToDocument("container");
-        const wrapper = mount(
-            <ModalLauncher modal={exampleModal}>
+        render(
+            <ModalLauncher modal={exampleModal} testId="modal-launcher-portal">
                 {({openModal}) => <button onClick={openModal} />}
             </ModalLauncher>,
-            {attachTo: containerDiv},
         );
 
         // Act
-        wrapper.find("button").simulate("click");
-        await wait();
+        userEvent.click(screen.getByRole("button"));
 
-        // eslint-disable-next-line testing-library/no-node-access
-        const portal = global.document.querySelector(
-            "[data-modal-launcher-portal]",
-        );
+        const portal = screen.getByTestId("modal-launcher-portal");
 
         // Assert
-        expect(portal).toBeInstanceOf(HTMLDivElement);
+        expect(portal).toBeInTheDocument();
     });
 
     test("Modal can be manually opened and closed", () => {
-        const wrapper = mount(
+        // Arrange
+        const UnderTest = ({opened}: {|opened: boolean|}) => (
             <ModalLauncher
                 modal={exampleModal}
-                opened={false}
+                opened={opened}
                 onClose={() => {}}
-            />,
+                testId="modal-launcher-portal"
+            />
         );
-        expect(wrapper.find("[data-modal-launcher-portal]")).not.toExist();
-        wrapper.setProps({opened: true});
-        expect(wrapper.find("[data-modal-launcher-portal]")).toExist();
-        wrapper.setProps({opened: false});
-        expect(wrapper.find("[data-modal-launcher-portal]")).not.toExist();
+        const {rerender} = render(<UnderTest opened={false} />);
+
+        // Act
+        expect(
+            screen.queryByTestId("modal-launcher-portal"),
+        ).not.toBeInTheDocument();
+        rerender(<UnderTest opened={true} />);
+        expect(screen.getByTestId("modal-launcher-portal")).toBeInTheDocument();
+        rerender(<UnderTest opened={false} />);
+        expect(
+            screen.queryByTestId("modal-launcher-portal"),
+        ).not.toBeInTheDocument();
     });
 
-    test("Modal can close itself after launching", (done) => {
-        let opened = false;
+    test("Modal can close itself after launching", async () => {
+        // Arrange
+        const modalFn = ({closeModal}: {|closeModal: () => void|}) => (
+            <OnePaneDialog
+                title="Modal launcher test"
+                content={
+                    <View>
+                        <Button onClick={closeModal}>Close it!</Button>
+                    </View>
+                }
+            />
+        );
 
-        // Once the modal mounts, we'll immediately self-close it on the next
-        // tick, to test the children's ability to self-close. (We wait a tick
-        // because the API for the `children` prop says not to call `closeModal`
-        // while rendering.)
-        //
-        // NOTE(mdr): It would be nice to have this be, like, a close button
-        //     that closes when you click it. But that requires the button to
-        //     actually _mount_, which means we'd need to do a full DOM render
-        //     including `ModalLauncherPortal`, and that seems to be going
-        //     beyond the scope of this test. Really we just want to check that
-        //     this function receives a `closeModal` argument that works.
-        const modalFn = ({closeModal}: {|closeModal: () => void|}) => {
-            expect(opened).toBe(true);
-            setTimeout(closeModal, 0);
-            return exampleModal;
-        };
-
-        // Once the modal closes, we'll check that it _really_ closed, and
-        // finish the test.
-        const onClose = () => {
-            wrapper.update();
-            expect(wrapper.find("ModalBackdrop")).toHaveLength(0);
-            done();
-        };
+        const onCloseMock = jest.fn();
 
         // Mount the modal launcher. This shouldn't trigger any closing yet,
         // because we shouldn't be calling the `modal` function yet.
-        const wrapper = mount(
-            <ModalLauncher modal={modalFn} onClose={onClose}>
-                {({openModal}) => <button onClick={openModal} />}
-            </ModalLauncher>,
-        );
-        expect(
-            // eslint-disable-next-line testing-library/no-node-access
-            global.document.querySelector("[data-modal-launcher-portal]"),
-        ).toBeNull();
-
-        // Launch the modal. This should trigger closing, because we'll call
-        // the modal function.
-        opened = true;
-        wrapper.find("button").simulate("click");
-        // eslint-disable-next-line testing-library/no-node-access
-        const portal = global.document.querySelector(
-            "[data-modal-launcher-portal]",
-        );
-        expect(portal instanceof HTMLDivElement).toBe(true);
-    });
-
-    test("Pressing Escape closes the modal", async () => {
-        // We mount into a real DOM, in order to simulate and capture real key
-        // presses anywhere in the document.
-        const wrapper = mount(
-            <ModalLauncher modal={exampleModal}>
-                {({openModal}) => <button onClick={openModal} />}
-            </ModalLauncher>,
-        );
-
-        // Launch the modal.
-        wrapper.find("button").simulate("click");
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(document.querySelector("[data-modal-child]")).toBeTruthy();
-
-        // Simulate an Escape keypress.
-        const event: KeyboardEvent = (document.createEvent("Event"): any);
-        // $FlowIgnore[cannot-write]
-        event.key = "Escape";
-        event.initEvent("keyup", true, true);
-        document.dispatchEvent(event);
-
-        // Confirm that the modal is no longer mounted.
-        //
-        // NOTE(mdr): This might be fragile once React's async rendering lands.
-        //     I wonder if we'll be able to force synchronous rendering in unit
-        //     tests?
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(document.querySelector("[data-modal-child]")).toBeFalsy();
-    });
-
-    test("Disable scrolling when the modal is open", () => {
-        let savedCloseModal: () => void = () => {
-            throw new Error(`closeModal wasn't saved`);
-        };
-
-        // Rather than test this rigorously, we'll just check that a
-        // ScrollDisabler is present, and trust ScrollDisabler to do its job.
-        const wrapper = mount(
+        render(
             <ModalLauncher
-                modal={({closeModal}) => {
-                    savedCloseModal = closeModal;
-                    return exampleModal;
-                }}
+                modal={modalFn}
+                onClose={onCloseMock}
+                testId="modal-launcher-portal"
             >
                 {({openModal}) => <button onClick={openModal} />}
             </ModalLauncher>,
         );
 
-        // When the modal isn't open yet, there should be no ScrollDisabler.
-        expect(wrapper.find("ScrollDisabler")).toHaveLength(0);
+        userEvent.click(screen.getByRole("button"));
+
+        // wait until the modal is open
+        await screen.findByRole("dialog");
+
+        // Act
+        userEvent.click(screen.getByRole("button", {name: "Close it!"}));
+
+        // Assert
+        expect(onCloseMock).toHaveBeenCalled();
+    });
+
+    test("Pressing Escape closes the modal", async () => {
+        // Arrange
+        render(
+            <ModalLauncher modal={exampleModal}>
+                {({openModal}) => <button onClick={openModal} />}
+            </ModalLauncher>,
+        );
 
         // Launch the modal.
-        wrapper.find("button").simulate("click");
+        userEvent.click(screen.getByRole("button"));
 
+        // wait until the modal is open
+        await screen.findByRole("dialog");
+
+        // Act
+        // Simulate an Escape keypress.
+        userEvent.keyboard("{esc}");
+
+        // Assert
+        // Confirm that the modal is no longer mounted.
+        await waitFor(() => expect(screen.queryByRole("dialog")).toBeNull());
+    });
+
+    test("Disable scrolling when the modal is open", async () => {
+        // Arrange
+        render(
+            <ModalLauncher modal={exampleModal}>
+                {({openModal}) => <button onClick={openModal} />}
+            </ModalLauncher>,
+        );
+
+        // Act
+        // Launch the modal.
+        userEvent.click(screen.getByRole("button"));
+
+        // wait until the modal is open
+        await screen.findByRole("dialog");
+
+        // Assert
         // Now that the modal is open, there should be a ScrollDisabler.
-        expect(wrapper.find("ScrollDisabler")).toHaveLength(1);
+        expect(document.body).toHaveStyle("overflow: hidden");
+    });
+
+    test("re-enable scrolling after the modal is closed", async () => {
+        // Arrange
+        render(
+            <ModalLauncher modal={exampleModal}>
+                {({openModal}) => <button onClick={openModal} />}
+            </ModalLauncher>,
+        );
+
+        // Launch the modal.
+        userEvent.click(screen.getByRole("button"));
+
+        await screen.findByRole("dialog");
 
         // Close the modal.
-        savedCloseModal();
-        wrapper.update();
+        userEvent.click(screen.getByRole("button", {name: "Close modal"}));
 
+        // Assert
         // Now that the modal is closed, there should be no ScrollDisabler.
-        expect(wrapper.find("ScrollDisabler")).toHaveLength(0);
+        expect(document.body).not.toHaveStyle("overflow: hidden");
     });
 
     test("using `opened` and `children` should warn", () => {
@@ -247,20 +220,19 @@ describe("ModalLauncher", () => {
         // Arrange
         const onClose = jest.fn();
 
-        // We use `mount` instead of `shallow` here, because the component's
-        // click handler expects actual DOM events.
-        const wrapper = mount(
+        render(
             <ModalLauncher
                 onClose={onClose}
                 modal={exampleModal}
                 opened={true}
                 backdropDismissEnabled={false}
+                testId="modal-launcher-backdrop"
             />,
         );
 
         // Act
-        const backdrop = wrapper.find("[data-modal-launcher-portal]").first();
-        backdrop.simulate("click");
+        const backdrop = screen.getByTestId("modal-launcher-backdrop");
+        userEvent.click(backdrop);
 
         // Assert
         expect(onClose).not.toHaveBeenCalled();
@@ -268,30 +240,42 @@ describe("ModalLauncher", () => {
 
     test("if modal is launched, move focus inside the modal", async () => {
         // Arrange
-        const wrapper = mount(
-            <ModalLauncher modal={exampleModal}>
+        render(
+            <ModalLauncher
+                modal={
+                    <OnePaneDialog
+                        title="Modal launcher test"
+                        content={
+                            <View>
+                                <Button>Button in modal</Button>
+                            </View>
+                        }
+                    />
+                }
+            >
                 {({openModal}) => (
-                    <button onClick={openModal} data-last-focused-button />
+                    <button onClick={openModal}>Open modal</button>
                 )}
             </ModalLauncher>,
         );
 
-        const lastButton = wrapper
-            .find("[data-last-focused-button]")
-            .getDOMNode();
+        const modalOpener = screen.getByRole("button", {name: "Open modal"});
         // force focus
-        lastButton.focus();
+        modalOpener.focus();
 
         // Act
         // Launch the modal.
-        wrapper.find("button").simulate("click");
+        userEvent.type(modalOpener, "{enter}");
 
-        // wait for styles to be applied
-        await wait();
+        // wait until the modal is open
+        await screen.findByRole("dialog");
 
         // Assert
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(document.activeElement).not.toBe(lastButton);
+        await waitFor(() =>
+            expect(
+                screen.getByRole("button", {name: "Button in modal"}),
+            ).toHaveFocus(),
+        );
     });
 
     test("if modal is closed, return focus to the last element focused outside the modal", async () => {
@@ -428,7 +412,7 @@ describe("ModalLauncher", () => {
 
     test("testId should be added to the Backdrop", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <ModalLauncher
                 opened={true}
                 onClose={jest.fn()}
@@ -438,9 +422,9 @@ describe("ModalLauncher", () => {
         );
 
         // Act
-        const backdrop = wrapper.find("[data-modal-launcher-portal]").first();
+        const backdrop = screen.getByTestId("test-id-example");
 
         // Assert
-        expect(backdrop.prop("testId")).toBe("test-id-example");
+        expect(backdrop).toBeInTheDocument();
     });
 });

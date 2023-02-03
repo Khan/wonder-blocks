@@ -2,7 +2,7 @@
 /* eslint-disable max-lines */
 // @flow
 import * as React from "react";
-import {render, screen, fireEvent} from "@testing-library/react";
+import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {MemoryRouter, Switch, Route} from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
@@ -15,12 +15,6 @@ const keyCodes = {
     enter: 13,
     space: 32,
 };
-
-const wait = (delay: number = 0) =>
-    new Promise((resolve, reject) => {
-        // eslint-disable-next-line no-restricted-syntax
-        return setTimeout(resolve, delay);
-    });
 
 const labelForState = (state: ClickableState): string => {
     const labels = [];
@@ -64,7 +58,7 @@ describe("ClickableBehavior", () => {
         expect(onClick).toHaveBeenCalled();
     });
 
-    it("changes only hovered state on mouse enter/leave", () => {
+    it("changes hovered state on mouse enter/leave", () => {
         const onClick = jest.fn();
         render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
@@ -82,7 +76,7 @@ describe("ClickableBehavior", () => {
         expect(button).not.toHaveTextContent("hovered");
     });
 
-    it("changes only pressed state on mouse enter/leave while dragging", () => {
+    it("changes hovered state on mouse enter while dragging", () => {
         const onClick = jest.fn();
         render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
@@ -93,18 +87,34 @@ describe("ClickableBehavior", () => {
             </ClickableBehavior>,
         );
         const button = screen.getByRole("button");
-        expect(button).not.toHaveTextContent("pressed");
-
-        fireEvent.mouseDown(button);
-        fireEvent.dragStart(button);
-        fireEvent.mouseMove(button);
-        expect(button).toHaveTextContent("pressed");
-
-        fireEvent.mouseLeave(button);
+        expect(button).not.toHaveTextContent("hovered");
         expect(button).not.toHaveTextContent("pressed");
 
         fireEvent.mouseEnter(button, {buttons: 1});
+        expect(button).not.toHaveTextContent("pressed");
+        expect(button).toHaveTextContent("hovered");
+    });
+
+    it("changes pressed and hover states on mouse leave while dragging", () => {
+        const onClick = jest.fn();
+        render(
+            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+                {(state, childrenProps) => {
+                    const label = labelForState(state);
+                    return <button {...childrenProps}>{label}</button>;
+                }}
+            </ClickableBehavior>,
+        );
+        const button = screen.getByRole("button");
+        expect(button).not.toHaveTextContent("hovered");
+        expect(button).not.toHaveTextContent("pressed");
+
+        fireEvent.mouseDown(button);
         expect(button).toHaveTextContent("pressed");
+
+        fireEvent.mouseLeave(button);
+        expect(button).not.toHaveTextContent("hovered");
+        expect(button).not.toHaveTextContent("pressed");
     });
 
     it("changes pressed state on mouse down/up", () => {
@@ -592,10 +602,11 @@ describe("ClickableBehavior", () => {
             // Act
             const link = screen.getByRole("link");
             userEvent.click(link);
-            await wait(0);
 
             // Assert
-            expect(window.location.assign).toHaveBeenCalledTimes(1);
+            await waitFor(() => {
+                expect(window.location.assign).toHaveBeenCalledTimes(1);
+            });
         });
 
         it("should show waiting UI before safeWithNav resolves", async () => {
@@ -763,7 +774,17 @@ describe("ClickableBehavior", () => {
         expect(onClick).toHaveBeenCalledTimes(expectedNumberTimesCalled);
     });
 
-    it("calls onClick on mouseup when the mouse was dragging", () => {
+    // The following two tests involve click behavior when dragging.
+    // Here are some notable related actions that cannot be tested using
+    // existing jest/RTL events since these click types are handled
+    // by browsers but aren't registered as clicks by RTL/jest:
+    // 1. Mousedown in the button, drag within the button, and mouseup
+    //    in the button (mouse doesn't leave the button at any point).
+    //    This should result in a successful click.
+    // 2. Mouse down in the button, drag out of the button (don't let go),
+    //    drag back into the button, and mouseup inside the button.
+    //    This should result in a successful click.
+    it("does not call onClick on mouseup when the mouse presses inside and drags away", () => {
         const onClick = jest.fn();
         render(
             <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
@@ -775,19 +796,25 @@ describe("ClickableBehavior", () => {
 
         const button = screen.getByRole("button");
         fireEvent.mouseDown(button);
-        fireEvent.dragStart(button);
         fireEvent.mouseLeave(button);
         fireEvent.mouseUp(button);
         expect(onClick).toHaveBeenCalledTimes(0);
+    });
 
-        fireEvent.mouseDown(button);
-        fireEvent.dragStart(button);
-        fireEvent.mouseUp(button);
-        expect(onClick).toHaveBeenCalledTimes(1);
+    it("does not call onClick on mouseup when the mouse presses outside and drags in", () => {
+        const onClick = jest.fn();
+        render(
+            <ClickableBehavior disabled={false} onClick={(e) => onClick(e)}>
+                {(state, childrenProps) => {
+                    return <button {...childrenProps}>Label</button>;
+                }}
+            </ClickableBehavior>,
+        );
 
+        const button = screen.getByRole("button");
         fireEvent.mouseEnter(button, {buttons: 1});
         fireEvent.mouseUp(button);
-        expect(onClick).toHaveBeenCalledTimes(2);
+        expect(onClick).toHaveBeenCalledTimes(0);
     });
 
     it("doesn't trigger enter key when browser doesn't stop the click", () => {
@@ -891,10 +918,13 @@ describe("ClickableBehavior", () => {
 
                 // Act
                 userEvent.click(screen.getByRole("button"));
-                await wait(0);
 
                 // Assert
-                expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+                await waitFor(() => {
+                    expect(
+                        screen.getByText("Hello, world!"),
+                    ).toBeInTheDocument();
+                });
             });
 
             it("shows waiting state before navigating", async () => {
@@ -970,7 +1000,6 @@ describe("ClickableBehavior", () => {
 
                 // Act
                 userEvent.click(screen.getByRole("button"));
-                await wait(0);
 
                 // Assert
                 expect(
@@ -1015,10 +1044,11 @@ describe("ClickableBehavior", () => {
 
                 // Act
                 userEvent.click(screen.getByRole("button"));
-                await wait(0);
 
                 // Assert
-                expect(safeWithNavMock).toHaveBeenCalled();
+                await waitFor(() => {
+                    expect(safeWithNavMock).toHaveBeenCalled();
+                });
             });
         });
 

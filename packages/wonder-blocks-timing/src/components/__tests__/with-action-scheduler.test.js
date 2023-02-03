@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
 
 import withActionScheduler from "../with-action-scheduler.js";
 
@@ -15,10 +14,10 @@ describe("withActionScheduler", () => {
 
         // Act
         const WithScheduler = withActionScheduler(Component);
-        const wrapper = mount(<WithScheduler />);
+        render(<WithScheduler />);
 
         // Assert
-        expect(wrapper.text()).toBe("true");
+        expect(screen.getByText("true")).toBeInTheDocument();
     });
 
     it("should forward a ref", () => {
@@ -32,7 +31,7 @@ describe("withActionScheduler", () => {
         let ref: mixed = null;
 
         // Act
-        mount(<TestComponent ref={(node) => (ref = node)} />);
+        render(<TestComponent ref={(node) => (ref = node)} />);
 
         // Assert
         expect(ref).toBeInstanceOf(Component);

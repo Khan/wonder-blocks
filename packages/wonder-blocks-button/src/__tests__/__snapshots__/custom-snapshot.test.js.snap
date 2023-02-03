@@ -6,7 +6,6 @@ exports[`Button <Link tabIndex={-1}> 1`] = `
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -81,7 +80,6 @@ exports[`Button <Link tabIndex={0}> 1`] = `
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -156,7 +154,6 @@ exports[`Button <Link tabIndex={1}> 1`] = `
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -232,7 +229,6 @@ exports[`ButtonCore kind:primary color:default size:large light:false disabled 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -308,7 +304,6 @@ exports[`ButtonCore kind:primary color:default size:large light:false focused 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -385,7 +380,6 @@ exports[`ButtonCore kind:primary color:default size:large light:false hovered 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -462,7 +456,6 @@ exports[`ButtonCore kind:primary color:default size:large light:false pressed 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -539,7 +532,6 @@ exports[`ButtonCore kind:primary color:default size:large light:true disabled 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -615,7 +607,6 @@ exports[`ButtonCore kind:primary color:default size:large light:true focused 1`]
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -692,7 +683,6 @@ exports[`ButtonCore kind:primary color:default size:large light:true hovered 1`]
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -769,7 +759,6 @@ exports[`ButtonCore kind:primary color:default size:large light:true pressed 1`]
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -846,7 +835,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -922,7 +910,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -999,7 +986,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1076,7 +1062,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1153,7 +1138,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1229,7 +1213,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1306,7 +1289,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1383,7 +1365,6 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1460,7 +1441,6 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1536,7 +1516,6 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1613,7 +1592,6 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1690,7 +1668,6 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1767,7 +1744,6 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1843,7 +1819,6 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1920,7 +1895,6 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -1997,7 +1971,6 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2074,7 +2047,6 @@ exports[`ButtonCore kind:primary color:destructive size:large light:false disabl
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2150,7 +2122,6 @@ exports[`ButtonCore kind:primary color:destructive size:large light:false focuse
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2227,7 +2198,6 @@ exports[`ButtonCore kind:primary color:destructive size:large light:false hovere
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2304,7 +2274,6 @@ exports[`ButtonCore kind:primary color:destructive size:large light:false presse
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2381,7 +2350,6 @@ exports[`ButtonCore kind:primary color:destructive size:large light:true disable
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2457,7 +2425,6 @@ exports[`ButtonCore kind:primary color:destructive size:large light:true focused
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2534,7 +2501,6 @@ exports[`ButtonCore kind:primary color:destructive size:large light:true hovered
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2611,7 +2577,6 @@ exports[`ButtonCore kind:primary color:destructive size:large light:true pressed
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2688,7 +2653,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2764,7 +2728,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2841,7 +2804,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2918,7 +2880,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -2995,7 +2956,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3071,7 +3031,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3148,7 +3107,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3225,7 +3183,6 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3302,7 +3259,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3378,7 +3334,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3455,7 +3410,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3532,7 +3486,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3609,7 +3562,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3685,7 +3637,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3762,7 +3713,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3839,7 +3789,6 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -3916,7 +3865,6 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4047,7 +3995,6 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4178,7 +4125,6 @@ exports[`ButtonCore kind:secondary color:default size:large light:false disabled
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4260,7 +4206,6 @@ exports[`ButtonCore kind:secondary color:default size:large light:false focused 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4339,7 +4284,6 @@ exports[`ButtonCore kind:secondary color:default size:large light:false hovered 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4418,7 +4362,6 @@ exports[`ButtonCore kind:secondary color:default size:large light:false pressed 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4497,7 +4440,6 @@ exports[`ButtonCore kind:secondary color:default size:large light:true disabled 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4579,7 +4521,6 @@ exports[`ButtonCore kind:secondary color:default size:large light:true focused 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4658,7 +4599,6 @@ exports[`ButtonCore kind:secondary color:default size:large light:true hovered 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4737,7 +4677,6 @@ exports[`ButtonCore kind:secondary color:default size:large light:true pressed 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4816,7 +4755,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4898,7 +4836,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -4977,7 +4914,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5056,7 +4992,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5135,7 +5070,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5217,7 +5151,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5296,7 +5229,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5375,7 +5307,6 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5454,7 +5385,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5536,7 +5466,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5615,7 +5544,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5694,7 +5622,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5773,7 +5700,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5855,7 +5781,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -5934,7 +5859,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6013,7 +5937,6 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6092,7 +6015,6 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:false disa
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6174,7 +6096,6 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:false focu
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6253,7 +6174,6 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:false hove
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6332,7 +6252,6 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:false pres
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6411,7 +6330,6 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:true disab
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6493,7 +6411,6 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:true focus
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6572,7 +6489,6 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:true hover
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6651,7 +6567,6 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:true press
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6730,7 +6645,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6812,7 +6726,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6891,7 +6804,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -6970,7 +6882,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7049,7 +6960,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7131,7 +7041,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7210,7 +7119,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7289,7 +7197,6 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7368,7 +7275,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7450,7 +7356,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7529,7 +7434,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7608,7 +7512,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7687,7 +7590,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7769,7 +7671,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7848,7 +7749,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -7927,7 +7827,6 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8006,7 +7905,6 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8143,7 +8041,6 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8280,7 +8177,6 @@ exports[`ButtonCore kind:tertiary color:default size:large light:false disabled 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8366,7 +8262,6 @@ exports[`ButtonCore kind:tertiary color:default size:large light:false focused 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8453,7 +8348,6 @@ exports[`ButtonCore kind:tertiary color:default size:large light:false hovered 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8540,7 +8434,6 @@ exports[`ButtonCore kind:tertiary color:default size:large light:false pressed 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8628,7 +8521,6 @@ exports[`ButtonCore kind:tertiary color:default size:large light:true disabled 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8714,7 +8606,6 @@ exports[`ButtonCore kind:tertiary color:default size:large light:true focused 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8801,7 +8692,6 @@ exports[`ButtonCore kind:tertiary color:default size:large light:true hovered 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8888,7 +8778,6 @@ exports[`ButtonCore kind:tertiary color:default size:large light:true pressed 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -8976,7 +8865,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9062,7 +8950,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9149,7 +9036,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9236,7 +9122,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9324,7 +9209,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9410,7 +9294,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9497,7 +9380,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9584,7 +9466,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9672,7 +9553,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9758,7 +9638,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9845,7 +9724,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -9932,7 +9810,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -10020,7 +9897,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -10106,7 +9982,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -10193,7 +10068,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -10280,7 +10154,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -10368,7 +10241,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:false disab
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -10454,7 +10326,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:false focus
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -10541,7 +10412,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:false hover
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -10628,7 +10498,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:false press
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -10716,7 +10585,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:true disabl
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -10802,7 +10670,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:true focuse
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -10889,7 +10756,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:true hovere
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -10976,7 +10842,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:true presse
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -11064,7 +10929,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -11150,7 +11014,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -11237,7 +11100,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -11324,7 +11186,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -11412,7 +11273,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -11498,7 +11358,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -11585,7 +11444,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -11672,7 +11530,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -11760,7 +11617,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -11846,7 +11702,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -11933,7 +11788,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -12020,7 +11874,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -12108,7 +11961,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -12194,7 +12046,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -12281,7 +12132,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -12368,7 +12218,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -12456,7 +12305,6 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}
@@ -12597,7 +12445,6 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
   className=""
   onBlur={[Function]}
   onClick={[Function]}
-  onDragStart={[Function]}
   onFocus={[Function]}
   onKeyDown={[Function]}
   onKeyUp={[Function]}

@@ -290,7 +290,7 @@ describe("SearchField", () => {
         );
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(ref.current).toBeInstanceOf(HTMLInputElement);
         });
     });
@@ -310,7 +310,7 @@ describe("SearchField", () => {
         );
 
         // Assert
-        waitFor(() => {
+        await waitFor(() => {
             expect(ref.current?.value).toBe("some-value");
         });
     });

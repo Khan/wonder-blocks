@@ -1,6 +1,4 @@
 // @flow
-import "jest-enzyme";
-
 describe("jest config", () => {
     it("should load jsdom 19.x", () => {
         // Arrange
