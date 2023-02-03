@@ -3,7 +3,6 @@
 
 [lints]
 deprecated-type=error
-deprecated-utility=error
 implicit-inexact-object=error
 
 [options]
