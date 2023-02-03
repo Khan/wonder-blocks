@@ -16,7 +16,7 @@ describe("WonderBlocksData.adapter", () => {
         expect(screen.getByText("CONTENT")).toBeInTheDocument();
     });
 
-    it("should render children within InterceptRequests when dataIntercepts configured", async () => {
+    it("should support request interception via configured dataIntercepts", async () => {
         // Arrange
 
         const TestFixture = () => {
@@ -43,7 +43,7 @@ describe("WonderBlocksData.adapter", () => {
         const TestFixture = () => {
             const [result] = useCachedEffect("ID", jest.fn());
 
-            return <div>CONTENT: {result?.data}</div>;
+            return <div>CONTENT:{result?.data}</div>;
         };
 
         // Act
@@ -57,7 +57,7 @@ describe("WonderBlocksData.adapter", () => {
         expect(container).toMatchInlineSnapshot(`
             <div>
               <div>
-                CONTENT: 
+                CONTENT:
                 INTERCEPTED!
               </div>
             </div>
