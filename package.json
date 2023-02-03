@@ -52,7 +52,7 @@
     "@testing-library/dom": "^8.19.0",
     "@testing-library/jest-dom": "^5.15.1",
     "@testing-library/react": "^12.1.5",
-    "@testing-library/react-hooks": "^7.0.2",
+    "@testing-library/react-hooks": "^8.0.1",
     "@testing-library/user-event": "^13.5.0",
     "alex": "^10.0.0",
     "babel-jest": "29.3.1",
