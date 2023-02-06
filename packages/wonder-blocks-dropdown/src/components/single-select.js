@@ -159,6 +159,8 @@ type Props = {|
      * top. The items will be filtered by the input.
      */
     isFilterable?: boolean,
+
+    isInvalid?: boolean,
 |};
 
 type State = {|
@@ -379,6 +381,9 @@ export default class SingleSelect extends React.Component<Props, State> {
             opened,
             style,
             className,
+            // TODO(juan): Testing required fields.
+            "aria-invalid": ariaInvalid,
+            "aria-required": ariaRequired,
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
@@ -429,6 +434,9 @@ export default class SingleSelect extends React.Component<Props, State> {
             labels,
             light,
             style,
+            // TODO(juan): Testing required fields.
+            "aria-invalid": ariaInvalid,
+            "aria-required": ariaRequired,
         } = this.props;
         const {searchText} = this.state;
         const allChildren = React.Children.toArray(children).filter(Boolean);
@@ -462,6 +470,8 @@ export default class SingleSelect extends React.Component<Props, State> {
                 }
                 searchText={isFilterable ? searchText : ""}
                 labels={labels}
+                ariaInvalid={ariaInvalid}
+                ariaRequired={ariaRequired}
             />
         );
     }

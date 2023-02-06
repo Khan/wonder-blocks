@@ -68,6 +68,8 @@ type SelectOpenerProps = {|
      * Whether the dropdown is open.
      */
     open: boolean,
+
+    isInvalid?: boolean,
 |};
 
 type DefaultProps = {|
@@ -101,6 +103,8 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
             open,
             testId,
             // eslint-disable-next-line no-unused-vars
+            isInvalid,
+            // eslint-disable-next-line no-unused-vars
             onOpenChanged,
             ...sharedProps
         } = this.props;
@@ -127,6 +131,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                         styles.shared,
                         stateStyles.default,
                         disabled && stateStyles.disabled,
+                        this.props.isInvalid && stateStyles.invalid,
                         !disabled &&
                             (pressed
                                 ? stateStyles.active
@@ -266,6 +271,11 @@ const _generateStyles = (light, placeholder) => {
                 background: white,
                 borderColor: offBlack16,
                 borderWidth: 1,
+                color: placeholder ? offBlack64 : offBlack,
+            },
+            invalid: {
+                background: `${mix(fade(Color.red, 0.06), Color.white)}`,
+                border: `1px solid ${Color.red}`,
                 color: placeholder ? offBlack64 : offBlack,
             },
             focus: {

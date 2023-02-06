@@ -198,6 +198,8 @@ type Props = {|
      */
     isFilterable?: boolean,
 
+    ariaInvalid?: "grammar" | "false" | "spelling" | "true",
+    ariaRequired?: "true" | "false",
     ...WithActionSchedulerProps,
 |};
 
@@ -905,6 +907,14 @@ class DropdownCore extends React.Component<Props, State> {
 
         const maxDropdownHeight = getDropdownMenuHeight(this.props.items);
 
+        const accessibleListboxAttributes =
+            this.props.role === "listbox"
+                ? {
+                      "aria-invalid": this.props.ariaInvalid,
+                      "aria-required": this.props.ariaRequired,
+                  }
+                : {};
+
         return (
             <View
                 // Stop propagation to prevent the mouseup listener on the
@@ -917,6 +927,7 @@ class DropdownCore extends React.Component<Props, State> {
                     dropdownStyle,
                 ]}
                 testId="dropdown-core-container"
+                {...accessibleListboxAttributes}
             >
                 {this.props.isFilterable && this.renderSearchField()}
                 <View

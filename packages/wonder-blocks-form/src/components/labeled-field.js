@@ -1,14 +1,17 @@
 // @flow
 import * as React from "react";
-import {StyleSheet} from "aphrodite";
 
-import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {
+    useOnMountEffect,
     useUniqueIdWithMock,
     type StyleType,
 } from "@khanacademy/wonder-blocks-core";
 
 import FieldHeading from "./field-heading.js";
+
+const DEFAULT_ERROR_MESSAGE = "This field is required.";
+
+type MaybeAsyncString = ?string | Promise<?string>;
 
 type Props = {|
     /**
@@ -37,11 +40,6 @@ type Props = {|
      * Provide a description for the form field.
      */
     description?: React.Node,
-
-    /**
-     * Include an error message with the field.
-     */
-    error?: React.Node,
 
     /**
      * Whether this field is required to to continue, or the error message to
@@ -74,15 +72,6 @@ type Props = {|
 
     /**
      * Custom styles for the container.
-     *
-     * Note: This style is passed to the field heading container
-     * due to scenarios where we would like to set a specific
-     * width for the text field. If we apply the style directly
-     * to the text field, the container would not be affected.
-     * For example, setting text field to "width: 50%" would not
-     * affect the container since text field is a child of the container.
-     * In this case, the container would maintain its width ocuppying
-     * unnecessary space when the text field is smaller.
      */
     style?: StyleType,
 
@@ -90,11 +79,31 @@ type Props = {|
      * Optional test ID for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Whether to validate the field value on change.
+     */
+    instantValidation?: boolean,
+
+    /**
+     * Provide a validation for the field element.
+     * Returns a string error message, a promise with a string error message or
+     * null | void for a valid result.
+     */
+    validate?:
+        | ((value: string) => MaybeAsyncString)
+        | ((Array<string>) => MaybeAsyncString),
+
+    /**
+     * Called right after the field is validated. Note that validation is called
+     * on change.
+     */
+    onValidate?: (errorMessage: ?string) => mixed,
 |};
 
 /**
- * A LabeledField is an element used to accept a single line of text
- * from the user paired with a label, description, and error field elements.
+ * A LabeledField is an element used to accept a single line of text from the
+ * user paired with a label, description, and error field elements.
  *
  * ### Usage
  *
@@ -107,7 +116,12 @@ type Props = {|
  *     label="Label"
  *     description="Hello, this is the description for this field"
  *     field={<SingleSelect onChange={setValue} value={value} />}
- *     error="Please select an option"
+ *     required={true}
+ *     validate={(value => {
+ *         if (!value) {
+ *              return "Please select an option";
+ *         }
+ *      })}
  * />
  * ```
  */
@@ -117,57 +131,157 @@ const LabeledField: React.AbstractComponent<Props, HTMLElement> =
         ref,
     ) {
         const {
-            id,
-            field,
-            label,
+            ariaDescribedby,
             description,
-            error,
+            field,
+            id,
+            label,
+            instantValidation = true,
             required,
             style,
             testId,
-            ariaDescribedby,
+            onValidate,
+            validate,
         } = props;
 
         const ids = useUniqueIdWithMock("labeled-field");
         const uniqueId = id ?? ids.get("labeled-field-id");
 
+        const [error, setError] = React.useState(null);
+        const [active, setActive] = React.useState(false);
+
+        useOnMountEffect(() => {
+            const textFieldValue = field.props.value;
+            if (textFieldValue) {
+                maybeValidate(textFieldValue);
+            }
+
+            const singleSelectValue = field.props.selectedValue;
+            if (singleSelectValue) {
+                maybeValidate(singleSelectValue);
+            }
+
+            const multiSelectValue = field.props.selectedValues;
+            if (multiSelectValue && multiSelectValue.length > 0) {
+                maybeValidate(multiSelectValue);
+            }
+        });
+
+        function maybeValidate(newValue) {
+            const maybeRenderError = (maybeError: ?string) => {
+                setError(maybeError);
+                if (onValidate) {
+                    onValidate(maybeError);
+                }
+            };
+
+            if (validate) {
+                const validateResult = validate(newValue);
+                if (validateResult instanceof Promise) {
+                    // Async validation
+                    validateResult
+                        ?.then((result) => {
+                            maybeRenderError(result || null);
+                            return;
+                        })
+                        .catch(() => {});
+                } else {
+                    // Regular validation
+                    maybeRenderError(validateResult || null);
+                    return;
+                }
+            } else if (required) {
+                const requiredMessage =
+                    typeof required === "string"
+                        ? required
+                        : DEFAULT_ERROR_MESSAGE;
+                const maybeError = newValue ? null : requiredMessage;
+                maybeRenderError(maybeError);
+            }
+        }
+
+        function shouldDisplayError() {
+            return instantValidation || (!instantValidation && !active);
+        }
+
+        function maybeDisplayValidationResultOnLeave() {
+            if (instantValidation) {
+                return {};
+            }
+
+            return {
+                // Dropdowns don't have an onBlur event, so we need to use
+                // onToggle instead.
+                onToggle: (open) => {
+                    setActive(open);
+                    // We need to call the original onToggle event if it exists.
+                    if (field.props.onToggle) {
+                        field.props.onToggle(open);
+                    }
+                },
+                // For inputs, we need to use onFocus and onBlur to determine
+                // when to show the error message.
+                onFocus: (event) => {
+                    setActive(true);
+                    // We need to call the original onFocus event if it exists.
+                    if (field.props.onFocus) {
+                        field.props.onFocus(event);
+                    }
+                },
+                onBlur: (event) => {
+                    setActive(false);
+                    // We need to call the original onBlur event if it exists.
+                    if (field.props.onBlur) {
+                        field.props.onBlur(event);
+                    }
+                },
+            };
+        }
+
+        function maybeIncludeValidationProps() {
+            // If the field won't be validated, we don't need to add any props.
+            if (!validate && !required) {
+                return {};
+            }
+
+            return {
+                onChange: (value) => {
+                    field.props.onChange(value);
+                    // NOTE: value can be a string or an array of strings.
+                    maybeValidate(value);
+                },
+                isInvalid: shouldDisplayError() && !!error,
+                ...maybeDisplayValidationResultOnLeave(),
+            };
+        }
+
         const Field = React.cloneElement(field, {
             ...field.props,
+            // Override the following props if they are already set.
             id: `${uniqueId}-field`,
             "aria-describedby": ariaDescribedby
                 ? ariaDescribedby
                 : `${uniqueId}-error`,
             "aria-invalid": error ? "true" : "false",
             "aria-required": required ? "true" : "false",
+            required: required,
             testId: testId && `${testId}-field`,
-            ref: ref,
+            ref,
+            ...maybeIncludeValidationProps(),
         });
 
         return (
             <FieldHeading
                 id={uniqueId}
-                testId={testId}
-                style={style}
-                field={Field}
                 label={label}
                 description={description}
+                field={Field}
+                error={shouldDisplayError() && error}
                 required={!!required}
-                error={error || ""}
+                style={style}
+                testId={testId}
             />
         );
     });
-
-const styles = StyleSheet.create({
-    error: {
-        // ":focus-within": {
-        background: "pink",
-        // boxShadow: `0 0 0 2px ${Color.red}`,
-        border: `2px solid ${Color.red}`,
-        boxSizing: "border-box",
-        borderRadius: 4,
-        color: Color.offBlack,
-        // },
-    },
-});
 
 export default LabeledField;

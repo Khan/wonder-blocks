@@ -170,6 +170,8 @@ type Props = {|
      * Test ID used for e2e testing.
      */
     testId?: string,
+
+    isInvalid?: boolean,
 |};
 
 type State = {|
@@ -493,6 +495,9 @@ export default class MultiSelect extends React.Component<Props, State> {
             shortcuts,
             style,
             className,
+            // TODO(juan): Testing required fields.
+            "aria-invalid": ariaInvalid,
+            "aria-required": ariaRequired,
             /* eslint-enable no-unused-vars */
             ...sharedProps
         } = this.props;
@@ -538,6 +543,9 @@ export default class MultiSelect extends React.Component<Props, State> {
             dropdownStyle,
             children,
             isFilterable,
+            // TODO(juan): Testing required fields.
+            "aria-invalid": ariaInvalid,
+            "aria-required": ariaRequired,
         } = this.props;
         const {open, searchText} = this.state;
         const {clearSearch, filter, noResults, someSelected} =
@@ -577,6 +585,8 @@ export default class MultiSelect extends React.Component<Props, State> {
                     noResults,
                     someResults: someSelected,
                 }}
+                ariaInvalid={ariaInvalid}
+                ariaRequired={ariaRequired}
             />
         );
     }

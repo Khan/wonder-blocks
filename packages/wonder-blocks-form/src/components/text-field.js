@@ -121,6 +121,12 @@ type Props = {|
      * Specifies if the input field allows autocomplete.
      */
     autoComplete?: string,
+
+    /**
+     * Whether the input is invalid. If this is set, then the input will be
+     * styled as if it has an error, even if there is no error message.
+     */
+    isInvalid?: boolean,
 |};
 
 type PropsWithForwardRef = {|
@@ -242,6 +248,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             readOnly,
             autoComplete,
             forwardedRef,
+            isInvalid,
             // The following props are being included here to avoid
             // passing them down to the otherProps spread
             /* eslint-disable no-unused-vars */
@@ -261,6 +268,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                     styles.input,
                     typographyStyles.LabelMedium,
                     styles.default,
+                    isInvalid && styles.error,
                     // Prioritizes disabled, then focused, then error (if any)
                     disabled
                         ? styles.disabled

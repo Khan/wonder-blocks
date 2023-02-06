@@ -3,7 +3,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
-import {View} from "@khanacademy/wonder-blocks-core";
+import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -26,6 +26,11 @@ export default {
         ): any),
     },
     argTypes: LabeledTextFieldArgTypes,
+    decorators: [
+        (Story: any): React.Node => (
+            <RenderStateRoot>{Story()}</RenderStateRoot>
+        ),
+    ],
 };
 
 export const Default: StoryComponentType = (args) => {
@@ -533,6 +538,7 @@ export const WithMarkup: StoryComponentType = (args) => {
     return (
         <LabeledTextField
             {...args}
+            onChange={() => {}}
             label="Name"
             description={
                 <span>

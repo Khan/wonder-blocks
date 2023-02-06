@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
 
-import {IDProvider, type StyleType} from "@khanacademy/wonder-blocks-core";
+import {type StyleType} from "@khanacademy/wonder-blocks-core";
 
-import FieldHeading from "./field-heading.js";
 import TextField, {type TextFieldType} from "./text-field.js";
+import LabeledField from "./labeled-field.js";
 
 type WithForwardRef = {|forwardedRef: React.Ref<"input">|};
 
@@ -151,66 +151,15 @@ type DefaultProps = {|
     light: $PropertyType<PropsWithForwardRef, "light">,
 |};
 
-type State = {|
-    /**
-     * Displayed when the validation fails.
-     */
-    error: ?string,
-
-    /**
-     * The user focuses on the textfield.
-     */
-    focused: boolean,
-|};
-
 /**
  * A LabeledTextField is an element used to accept a single line of text
  * from the user paired with a label, description, and error field elements.
  */
-class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
+class LabeledTextField extends React.Component<PropsWithForwardRef> {
     static defaultProps: DefaultProps = {
         type: "text",
         disabled: false,
         light: false,
-    };
-
-    constructor(props: PropsWithForwardRef) {
-        super(props);
-        this.state = {
-            error: null,
-            focused: false,
-        };
-    }
-
-    handleValidate: (errorMessage: ?string) => mixed = (errorMessage) => {
-        const {onValidate} = this.props;
-        this.setState({error: errorMessage}, () => {
-            if (onValidate) {
-                onValidate(errorMessage);
-            }
-        });
-    };
-
-    handleFocus: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
-        event,
-    ) => {
-        const {onFocus} = this.props;
-        this.setState({focused: true}, () => {
-            if (onFocus) {
-                onFocus(event);
-            }
-        });
-    };
-
-    handleBlur: (event: SyntheticFocusEvent<HTMLInputElement>) => mixed = (
-        event,
-    ) => {
-        const {onBlur} = this.props;
-        this.setState({focused: false}, () => {
-            if (onBlur) {
-                onBlur(event);
-            }
-        });
     };
 
     render(): React.Node {
@@ -236,49 +185,35 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
         } = this.props;
 
         return (
-            <IDProvider id={id} scope="labeled-text-field">
-                {(uniqueId) => (
-                    <FieldHeading
-                        id={uniqueId}
-                        testId={testId}
-                        style={style}
-                        field={
-                            <TextField
-                                id={`${uniqueId}-field`}
-                                aria-describedby={
-                                    ariaDescribedby
-                                        ? ariaDescribedby
-                                        : `${uniqueId}-error`
-                                }
-                                aria-invalid={
-                                    this.state.error ? "true" : "false"
-                                }
-                                aria-required={required ? "true" : "false"}
-                                required={required}
-                                testId={testId && `${testId}-field`}
-                                type={type}
-                                value={value}
-                                placeholder={placeholder}
-                                disabled={disabled}
-                                validate={validate}
-                                onValidate={this.handleValidate}
-                                onChange={onChange}
-                                onKeyDown={onKeyDown}
-                                onFocus={this.handleFocus}
-                                onBlur={this.handleBlur}
-                                light={light}
-                                readOnly={readOnly}
-                                autoComplete={autoComplete}
-                                ref={forwardedRef}
-                            />
-                        }
-                        label={label}
-                        description={description}
-                        required={!!required}
-                        error={(!this.state.focused && this.state.error) || ""}
+            <LabeledField
+                id={id}
+                label={label}
+                description={description}
+                required={required}
+                ariaDescribedby={ariaDescribedby}
+                validate={validate}
+                onValidate={this.props.onValidate}
+                instantValidation={false}
+                testId={testId}
+                field={
+                    <TextField
+                        id={(id ?? "") + "-field"}
+                        type={type}
+                        value={value}
+                        placeholder={placeholder}
+                        disabled={disabled}
+                        onChange={onChange}
+                        onFocus={this.props.onFocus}
+                        onBlur={this.props.onBlur}
+                        onKeyDown={onKeyDown}
+                        light={light}
+                        readOnly={readOnly}
+                        autoComplete={autoComplete}
+                        ref={forwardedRef}
                     />
-                )}
-            </IDProvider>
+                }
+                style={style}
+            />
         );
     }
 }

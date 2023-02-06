@@ -4,12 +4,17 @@ import {render, screen, fireEvent} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import {StyleSheet} from "aphrodite";
+import {RenderStateRoot} from "@khanacademy/wonder-blocks-core";
 import LabeledTextField from "../labeled-text-field.js";
 
 describe("LabeledTextField", () => {
     it("labeledtextfield becomes focused", () => {
         // Arrange
-        render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
+        render(
+            <RenderStateRoot>
+                <LabeledTextField label="Label" value="" onChange={() => {}} />
+            </RenderStateRoot>,
+        );
         const field = screen.getByRole("textbox");
 
         // Act
@@ -21,7 +26,11 @@ describe("LabeledTextField", () => {
 
     it("labeledtextfield becomes blurred", async () => {
         // Arrange
-        render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
+        render(
+            <RenderStateRoot>
+                <LabeledTextField label="Label" value="" onChange={() => {}} />
+            </RenderStateRoot>,
+        );
 
         // focus
         userEvent.tab();
@@ -40,13 +49,15 @@ describe("LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                id={id}
-                label="Label"
-                value=""
-                onChange={() => {}}
-                disabled={true}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    id={id}
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    disabled={true}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -58,7 +69,11 @@ describe("LabeledTextField", () => {
         // Arrange
 
         // Act
-        render(<LabeledTextField label="Label" value="" onChange={() => {}} />);
+        render(
+            <RenderStateRoot>
+                <LabeledTextField label="Label" value="" onChange={() => {}} />
+            </RenderStateRoot>,
+        );
 
         // Assert
         // Since the generated id is unique, we cannot know what it will be.
@@ -73,12 +88,14 @@ describe("LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                type={type}
-                label="Label"
-                value=""
-                onChange={() => {}}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    type={type}
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -91,7 +108,11 @@ describe("LabeledTextField", () => {
         const label = "Label";
 
         // Act
-        render(<LabeledTextField label={label} value="" onChange={() => {}} />);
+        render(
+            <RenderStateRoot>
+                <LabeledTextField label={label} value="" onChange={() => {}} />
+            </RenderStateRoot>,
+        );
 
         // Assert
         expect(screen.getByText(label)).toBeInTheDocument();
@@ -103,12 +124,14 @@ describe("LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                description={description}
-                value=""
-                onChange={() => {}}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    description={description}
+                    value=""
+                    onChange={() => {}}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -121,11 +144,13 @@ describe("LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value={value}
-                onChange={() => {}}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value={value}
+                    onChange={() => {}}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -138,17 +163,25 @@ describe("LabeledTextField", () => {
         const handleChange = jest.fn((newValue: string) => {});
 
         const {rerender} = render(
-            <LabeledTextField label="Label" value="" onChange={handleChange} />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={handleChange}
+                />
+            </RenderStateRoot>,
         );
 
         // Act
         const newValue = "new value";
         rerender(
-            <LabeledTextField
-                label="Label"
-                value={newValue}
-                onChange={handleChange}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value={newValue}
+                    onChange={handleChange}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -161,12 +194,14 @@ describe("LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                disabled={true}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    disabled={true}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -180,12 +215,14 @@ describe("LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                ariaDescribedby={ariaDescription}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    ariaDescribedby={ariaDescription}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -198,12 +235,14 @@ describe("LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                // ariaDescribedby is not passed in
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    // ariaDescribedby is not passed in
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -221,12 +260,14 @@ describe("LabeledTextField", () => {
         // Arrange
         const validate = jest.fn((value: string): ?string => {});
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                validate={validate}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    validate={validate}
+                />
+            </RenderStateRoot>,
         );
 
         // Act
@@ -253,13 +294,16 @@ describe("LabeledTextField", () => {
         };
 
         render(
-            <LabeledTextField
-                label="Label"
-                value="LongerThan8Chars"
-                onChange={() => {}}
-                validate={validate}
-                onValidate={handleValidate}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value="LongerThan8Chars"
+                    onChange={() => {}}
+                    validate={validate}
+                    onValidate={handleValidate}
+                />
+                ,
+            </RenderStateRoot>,
         );
 
         // Act
@@ -275,7 +319,13 @@ describe("LabeledTextField", () => {
         const handleChange = jest.fn((newValue: string) => {});
 
         render(
-            <LabeledTextField label="Label" value="" onChange={handleChange} />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={handleChange}
+                />
+            </RenderStateRoot>,
         );
 
         // Act
@@ -299,12 +349,14 @@ describe("LabeledTextField", () => {
         );
 
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                onKeyDown={handleKeyDown}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    onKeyDown={handleKeyDown}
+                />
+            </RenderStateRoot>,
         );
 
         // Act
@@ -318,12 +370,14 @@ describe("LabeledTextField", () => {
         // Arrange
         const handleFocus = jest.fn(() => {});
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                onFocus={handleFocus}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    onFocus={handleFocus}
+                />
+            </RenderStateRoot>,
         );
 
         // Act
@@ -338,12 +392,14 @@ describe("LabeledTextField", () => {
         // Arrange
         const handleBlur = jest.fn(() => {});
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                onBlur={handleBlur}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    onBlur={handleBlur}
+                />
+            </RenderStateRoot>,
         );
 
         // focus
@@ -363,12 +419,14 @@ describe("LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                placeholder={placeholder}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    placeholder={placeholder}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -381,12 +439,14 @@ describe("LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                light={true}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    light={true}
+                />
+            </RenderStateRoot>,
         );
 
         const textField = screen.getByRole("textbox");
@@ -407,12 +467,14 @@ describe("LabeledTextField", () => {
 
         // Act
         const {container} = render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                style={styles.style1}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    style={styles.style1}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -426,12 +488,14 @@ describe("LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                testId={testId}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    testId={testId}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -444,12 +508,14 @@ describe("LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                readOnly={true}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    readOnly={true}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -463,12 +529,14 @@ describe("LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                autoComplete={autoComplete}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    autoComplete={autoComplete}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -483,12 +551,14 @@ describe("Required LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                required={true}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    required={true}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -500,12 +570,14 @@ describe("Required LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                required={false}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    required={false}
+                />
+            </RenderStateRoot>,
         );
 
         // Assert
@@ -517,13 +589,15 @@ describe("Required LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                testId="foo-labeled-text-field"
-                required={true}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    testId="foo-labeled-text-field"
+                    required={true}
+                />
+            </RenderStateRoot>,
         );
 
         const textField = screen.getByTestId("foo-labeled-text-field-field");
@@ -537,13 +611,15 @@ describe("Required LabeledTextField", () => {
 
         // Act
         render(
-            <LabeledTextField
-                label="Label"
-                value=""
-                onChange={() => {}}
-                testId="foo-labeled-text-field"
-                required={false}
-            />,
+            <RenderStateRoot>
+                <LabeledTextField
+                    label="Label"
+                    value=""
+                    onChange={() => {}}
+                    testId="foo-labeled-text-field"
+                    required={false}
+                />
+            </RenderStateRoot>,
         );
 
         const textField = screen.getByTestId("foo-labeled-text-field-field");
@@ -567,7 +643,11 @@ describe("Required LabeledTextField", () => {
             );
         };
 
-        render(<TextFieldWrapper />);
+        render(
+            <RenderStateRoot>
+                <TextFieldWrapper />
+            </RenderStateRoot>,
+        );
 
         const textField = screen.getByTestId("test-labeled-text-field-field");
         textField.focus();
@@ -600,7 +680,11 @@ describe("Required LabeledTextField", () => {
             );
         };
 
-        render(<TextFieldWrapper />);
+        render(
+            <RenderStateRoot>
+                <TextFieldWrapper />
+            </RenderStateRoot>,
+        );
 
         const textField = screen.getByTestId("test-labeled-text-field-field");
         textField.focus();
