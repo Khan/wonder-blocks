@@ -125,6 +125,38 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 1`] = 
 </a>
 `;
 
+exports[`LinkCore kind:primary href:# light:false visitable:false focused 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "borderRadius": 3,
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "1px solid #1865f2",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
 exports[`LinkCore kind:primary href:# light:false visitable:false hovered 1`] = `
 <a
   className=""
@@ -147,7 +179,39 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 1`] = 
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed",
+      "textDecoration": "underline currentcolor dashed 2px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:false visitable:false hovered 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor dashed 2px",
       "textUnderlineOffset": 4,
     }
   }
@@ -179,7 +243,39 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 1`] = 
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor solid 1px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:false visitable:false pressed 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid 1px",
       "textUnderlineOffset": 4,
     }
   }
@@ -190,6 +286,41 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 1`] = 
 `;
 
 exports[`LinkCore kind:primary href:# light:false visitable:true focused 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#8755ee",
+      },
+      "borderRadius": 3,
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "1px solid #1865f2",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:false visitable:true focused 2`] = `
 <a
   className=""
   href="#"
@@ -249,7 +380,42 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 1`] = `
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed",
+      "textDecoration": "underline currentcolor dashed 2px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:false visitable:true hovered 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#8755ee",
+      },
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor dashed 2px",
       "textUnderlineOffset": 4,
     }
   }
@@ -284,7 +450,42 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 1`] = `
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor solid 1px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:false visitable:true pressed 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#6645b0",
+      },
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid 1px",
       "textUnderlineOffset": 4,
     }
   }
@@ -295,6 +496,38 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 1`] = `
 `;
 
 exports[`LinkCore kind:primary href:# light:true visitable:false focused 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "borderRadius": 3,
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "1px solid #ffffff",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:true visitable:false focused 2`] = `
 <a
   className=""
   href="#"
@@ -348,7 +581,39 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 1`] = `
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed",
+      "textDecoration": "underline currentcolor dashed 2px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:true visitable:false hovered 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor dashed 2px",
       "textUnderlineOffset": 4,
     }
   }
@@ -380,7 +645,249 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 1`] = `
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor solid 1px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:true visitable:false pressed 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "color": "#b5cefb",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid 1px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:true visitable:true focused 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#fa50ae",
+      },
+      "borderRadius": 3,
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "1px solid #ffffff",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:true visitable:true focused 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#fa50ae",
+      },
+      "borderRadius": 3,
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "1px solid #ffffff",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:true visitable:true hovered 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#fa50ae",
+      },
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor dashed 2px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:true visitable:true hovered 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#fa50ae",
+      },
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor dashed 2px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:true visitable:true pressed 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#fc88c8",
+      },
+      "color": "#b5cefb",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid 1px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:# light:true visitable:true pressed 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#fc88c8",
+      },
+      "color": "#b5cefb",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid 1px",
       "textUnderlineOffset": 4,
     }
   }
@@ -391,6 +898,38 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 1`] = `
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:false focused 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "borderRadius": 3,
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "1px solid #1865f2",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:false focused 2`] = `
 <a
   className=""
   href="#"
@@ -444,7 +983,39 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed",
+      "textDecoration": "underline currentcolor dashed 2px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:false hovered 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor dashed 2px",
       "textUnderlineOffset": 4,
     }
   }
@@ -476,7 +1047,39 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor solid 1px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:false pressed 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid 1px",
       "textUnderlineOffset": 4,
     }
   }
@@ -487,6 +1090,41 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:true focused 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#8755ee",
+      },
+      "borderRadius": 3,
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "1px solid #1865f2",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:true focused 2`] = `
 <a
   className=""
   href="#"
@@ -546,7 +1184,42 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed",
+      "textDecoration": "underline currentcolor dashed 2px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:true hovered 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#8755ee",
+      },
+      "color": "#1865f2",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor dashed 2px",
       "textUnderlineOffset": 4,
     }
   }
@@ -581,7 +1254,42 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor solid 1px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:true pressed 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#6645b0",
+      },
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid 1px",
       "textUnderlineOffset": 4,
     }
   }
@@ -592,6 +1300,38 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
 `;
 
 exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:false focused 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "borderRadius": 3,
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "1px solid #ffffff",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:false focused 2`] = `
 <a
   className=""
   href="#"
@@ -645,7 +1385,39 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed",
+      "textDecoration": "underline currentcolor dashed 2px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:false hovered 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor dashed 2px",
       "textUnderlineOffset": 4,
     }
   }
@@ -677,7 +1449,249 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor solid 1px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:false pressed 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "color": "#b5cefb",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid 1px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true focused 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#fa50ae",
+      },
+      "borderRadius": 3,
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "1px solid #ffffff",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true focused 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#fa50ae",
+      },
+      "borderRadius": 3,
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "1px solid #ffffff",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true hovered 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#fa50ae",
+      },
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor dashed 2px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true hovered 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#fa50ae",
+      },
+      "color": "#ffffff",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor dashed 2px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true pressed 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#fc88c8",
+      },
+      "color": "#b5cefb",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid 1px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true pressed 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      ":visited": {
+        "color": "#fc88c8",
+      },
+      "color": "#b5cefb",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid 1px",
       "textUnderlineOffset": 4,
     }
   }
@@ -688,6 +1702,38 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
 `;
 
 exports[`LinkCore kind:secondary href:# light:false visitable:false focused 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "borderRadius": 3,
+      "color": "#21242c",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "1px solid #1865f2",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:secondary href:# light:false visitable:false focused 2`] = `
 <a
   className=""
   href="#"
@@ -737,11 +1783,43 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 1`] 
   onTouchStart={[Function]}
   style={
     {
+      "color": "#21242c",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor dashed 2px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed",
+      "textDecoration": "underline currentcolor dashed 2px",
       "textUnderlineOffset": 4,
     }
   }
@@ -769,11 +1847,43 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 1`] 
   onTouchStart={[Function]}
   style={
     {
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid 1px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
       "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor solid 1px",
       "textUnderlineOffset": 4,
     }
   }
@@ -784,6 +1894,38 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 1`] 
 `;
 
 exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:false focused 1`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
+      "borderRadius": 3,
+      "color": "#21242c",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "1px solid #1865f2",
+      "textDecoration": "none",
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:false focused 2`] = `
 <a
   className=""
   href="#"
@@ -833,11 +1975,43 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
+      "color": "#21242c",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor dashed 2px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:false hovered 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed",
+      "textDecoration": "underline currentcolor dashed 2px",
       "textUnderlineOffset": 4,
     }
   }
@@ -865,11 +2039,43 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
+      "color": "#1b50b3",
+      "cursor": "pointer",
+      "display": "inline-flex",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid 1px",
+      "textUnderlineOffset": 4,
+    }
+  }
+  tabIndex={0}
+>
+  Click me
+</a>
+`;
+
+exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:false pressed 2`] = `
+<a
+  className=""
+  href="#"
+  onBlur={[Function]}
+  onClick={[Function]}
+  onFocus={[Function]}
+  onKeyDown={[Function]}
+  onKeyUp={[Function]}
+  onMouseDown={[Function]}
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
+  onMouseUp={[Function]}
+  onTouchCancel={[Function]}
+  onTouchEnd={[Function]}
+  onTouchStart={[Function]}
+  style={
+    {
       "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid",
+      "textDecoration": "underline currentcolor solid 1px",
       "textUnderlineOffset": 4,
     }
   }

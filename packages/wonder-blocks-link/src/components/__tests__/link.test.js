@@ -366,10 +366,61 @@ describe("Link", () => {
             expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
         });
 
+        test("blue outline around primary inline links on focus", () => {
+            // Arrange
+            render(
+                <Link href="/" kind="primary" inline={true}>
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            userEvent.tab();
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveFocus();
+            expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+        });
+
+        test("blue outline around secondary inline links on focus", () => {
+            // Arrange
+            render(
+                <Link href="/" kind="secondary" inline={true}>
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            userEvent.tab();
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveFocus();
+            expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+        });
+
         test("white outline around light links on focus", () => {
             // Arrange
             render(
                 <Link href="/" light={true}>
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            userEvent.tab();
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveFocus();
+            expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
+        });
+
+        test("white outline around inline light links on focus", () => {
+            // Arrange
+            render(
+                <Link href="/" light={true} inline={true}>
                     Click me!
                 </Link>,
             );

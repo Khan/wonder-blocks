@@ -43,35 +43,38 @@ describe("LinkCore", () => {
     for (const kind of ["primary", "secondary"]) {
         for (const href of ["#", "#non-existent-link"]) {
             for (const light of kind === "primary" ? [true, false] : [false]) {
-                for (const visitable of kind === "primary" && !light
+                for (const visitable of kind === "primary"
                     ? [true, false]
                     : [false]) {
-                    for (const state of ["focused", "hovered", "pressed"]) {
-                        const stateProps = {
-                            focused: state === "focused",
-                            hovered: state === "hovered",
-                            pressed: state === "pressed",
-                            waiting: false,
-                        };
-                        test(`kind:${kind} href:${href} light:${String(
-                            light,
-                        )} visitable:${String(visitable)} ${state}`, () => {
-                            const tree = renderer
-                                .create(
-                                    <LinkCore
-                                        href="#"
-                                        kind={kind}
-                                        light={light}
-                                        visitable={visitable}
-                                        {...stateProps}
-                                        {...defaultHandlers}
-                                    >
-                                        Click me
-                                    </LinkCore>,
-                                )
-                                .toJSON();
-                            expect(tree).toMatchSnapshot();
-                        });
+                    for (const inline of [true, false]) {
+                        for (const state of ["focused", "hovered", "pressed"]) {
+                            const stateProps = {
+                                focused: state === "focused",
+                                hovered: state === "hovered",
+                                pressed: state === "pressed",
+                                waiting: false,
+                            };
+                            test(`kind:${kind} href:${href} light:${String(
+                                light,
+                            )} visitable:${String(visitable)} ${state}`, () => {
+                                const tree = renderer
+                                    .create(
+                                        <LinkCore
+                                            href="#"
+                                            inline={inline}
+                                            kind={kind}
+                                            light={light}
+                                            visitable={visitable}
+                                            {...stateProps}
+                                            {...defaultHandlers}
+                                        >
+                                            Click me
+                                        </LinkCore>,
+                                    )
+                                    .toJSON();
+                                expect(tree).toMatchSnapshot();
+                            });
+                        }
                     }
                 }
             }

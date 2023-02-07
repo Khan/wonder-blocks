@@ -20,6 +20,14 @@ export default {
         table: {type: {summary: "string"}},
         type: {required: false},
     },
+    inline: {
+        control: {type: "boolean"},
+        description: `Indicates that this link is used within a body of text.
+            This styles the link with an underline to distinguish it
+            from surrounding text.`,
+        table: {type: {summary: "boolean"}},
+        type: {required: false},
+    },
     kind: {
         control: {type: "select"},
         description:

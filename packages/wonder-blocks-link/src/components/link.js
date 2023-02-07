@@ -26,6 +26,13 @@ type CommonProps = {|
     id?: string,
 
     /**
+     * Indicates that this link is used within a body of text.
+     * This styles the link with an underline to distinguish it
+     * from surrounding text.
+     */
+    inline: boolean,
+
+    /**
      * Kind of Link. Note: Secondary light Links are not supported.
      */
     kind: "primary" | "secondary",
@@ -159,6 +166,7 @@ export type SharedProps =
       |};
 
 type DefaultProps = {|
+    inline: $PropertyType<SharedProps, "inline">,
     kind: $PropertyType<SharedProps, "kind">,
     light: $PropertyType<SharedProps, "light">,
     visitable: $PropertyType<SharedProps, "visitable">,
@@ -184,6 +192,7 @@ type DefaultProps = {|
  */
 export default class Link extends React.Component<SharedProps> {
     static defaultProps: DefaultProps = {
+        inline: false,
         kind: "primary",
         light: false,
         visitable: false,

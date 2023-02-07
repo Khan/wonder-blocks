@@ -10,9 +10,14 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
+import {
+    Body,
+    HeadingSmall,
+    LabelLarge,
+} from "@khanacademy/wonder-blocks-typography";
 import type {StoryComponentType} from "@storybook/react";
 
 import LinkArgTypes from "./link.argtypes.js";
@@ -42,30 +47,32 @@ Default.args = {
     children: "Hello, world!",
 };
 
-export const Basic: StoryComponentType = () => (
+export const Primary: StoryComponentType = () => (
     <Link href="#">The quick brown fox jumps over the lazy dog.</Link>
 );
 
-Basic.parameters = {
+Primary.parameters = {
     docs: {
         storyDescription: `Minimal link usage.
             This links to the top of the page.`,
     },
 };
 
-Basic.play = async ({canvasElement}) => {
+Primary.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
     const link = canvas.getByRole("link");
 
+    await expect(link).toHaveStyle(`color: ${Color.blue}`);
+
     await userEvent.hover(link);
     await expect(link).toHaveStyle(
-        `text-decoration: underline ${Color.blue} dashed`,
+        `text-decoration: underline ${Color.blue} dashed 2px`,
     );
 
     await fireEvent.mouseDown(link);
     await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${activeBlue}}`,
+        `text-decoration: underline solid ${activeBlue} 1px`,
     );
 };
 
@@ -87,14 +94,16 @@ Secondary.play = async ({canvasElement}) => {
 
     const link = canvas.getByRole("link");
 
+    await expect(link).toHaveStyle(`color: ${Color.offBlack64}`);
+
     await userEvent.hover(link);
     await expect(link).toHaveStyle(
-        `text-decoration: underline ${Color.offBlack64} dashed`,
+        `text-decoration: underline ${Color.offBlack64} dashed 2px`,
     );
 
     await fireEvent.mouseDown(link);
     await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${Color.offBlack}}`,
+        `text-decoration: underline solid ${Color.offBlack} 1px`,
     );
 };
 
@@ -113,13 +122,13 @@ Visitable.parameters = {
     },
 };
 
-export const LightBasic: StoryComponentType = () => (
+export const LightPrimary: StoryComponentType = () => (
     <Link href="#" light={true}>
         The quick brown fox jumps over the lazy dog.
     </Link>
 );
 
-LightBasic.parameters = {
+LightPrimary.parameters = {
     docs: {
         storyDescription: `Minimal link usage on a dark background. This
             link has its \`light\` prop set to true. It links to the top
@@ -130,19 +139,19 @@ LightBasic.parameters = {
     },
 };
 
-LightBasic.play = async ({canvasElement}) => {
+LightPrimary.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
     const link = canvas.getByRole("link");
 
     await userEvent.hover(link);
     await expect(link).toHaveStyle(
-        `text-decoration: underline ${Color.white} dashed`,
+        `text-decoration: underline ${Color.white} dashed 2px`,
     );
 
     await fireEvent.mouseDown(link);
     await expect(link).toHaveStyle(
-        `text-decoration: underline solid ${fadedBlue}}`,
+        `text-decoration: underline solid ${fadedBlue} 1px`,
     );
 };
 
@@ -164,48 +173,188 @@ LightVisitable.parameters = {
     },
 };
 
+export const Inline: StoryComponentType = () => (
+    <Body>
+        This is an inline{" "}
+        <Link href="#" inline={true}>
+            Primary link
+        </Link>
+        , whereas this is an inline{" "}
+        <Link href="#" kind="secondary" inline={true}>
+            Secondary link
+        </Link>
+        , and this is an inline{" "}
+        <Link href="#" visitable={true} inline={true}>
+            Visitable link (Primary only)
+        </Link>
+        .
+    </Body>
+);
+
+Inline.parameters = {
+    docs: {
+        storyDescription: `Inline links include an underline to distinguish
+            them from the surrounding text. Make a link inline by setting the
+            \`inline\` prop to \`true\`.`,
+    },
+};
+
+Inline.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const primaryLink = canvas.getByText("Primary link");
+    const secondaryLink = canvas.getByText("Secondary link");
+
+    // Primary link styles
+    await expect(primaryLink).toHaveStyle(`color: ${Color.blue}`);
+
+    await userEvent.hover(primaryLink);
+    await expect(primaryLink).toHaveStyle(
+        `text-decoration: underline ${Color.blue} dashed 2px`,
+    );
+
+    await fireEvent.mouseDown(primaryLink);
+    await expect(primaryLink).toHaveStyle(
+        `text-decoration: underline solid ${activeBlue} 1px`,
+    );
+
+    // Secondary link styles
+    await expect(secondaryLink).toHaveStyle(`color: ${Color.offBlack}`);
+
+    await userEvent.hover(secondaryLink);
+    await expect(secondaryLink).toHaveStyle(
+        `text-decoration: underline ${Color.offBlack} dashed 2px`,
+    );
+
+    await fireEvent.mouseDown(secondaryLink);
+    await expect(secondaryLink).toHaveStyle(
+        `text-decoration: underline solid ${activeBlue} 1px`,
+    );
+};
+
+export const InlineLight: StoryComponentType = () => (
+    <Body style={{color: Color.white}}>
+        This is an inline{" "}
+        <Link href="#" inline={true} light={true}>
+            Primary link
+        </Link>
+        , whereas this is an inline{" "}
+        <Link href="#" visitable={true} inline={true} light={true}>
+            Visitable link (Primary only)
+        </Link>
+        . Secondary light links are not supported.
+    </Body>
+);
+
+InlineLight.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
+    docs: {
+        storyDescription: `Inline links include an underline to distinguish
+            them from the surrounding text. If the link is on a
+            dark background, set the \`light\` prop to true for it to
+            be appropriately visible. Secondary light links are not
+            supported.`,
+    },
+};
+
+InlineLight.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const primaryLink = canvas.getByText("Primary link");
+
+    await expect(primaryLink).toHaveStyle(`color: ${Color.white}`);
+
+    await userEvent.hover(primaryLink);
+    await expect(primaryLink).toHaveStyle(
+        `text-decoration: underline ${Color.white} dashed 2px`,
+    );
+
+    await fireEvent.mouseDown(primaryLink);
+    await expect(primaryLink).toHaveStyle(
+        `text-decoration: underline solid ${fadedBlue} 1px`,
+    );
+};
+
 export const Variants: StoryComponentType = () => (
     <View>
-        <Link href="#nonexistent-link">Primary Link</Link>
-        <Link href="#secondary-nonexistent-link" kind="secondary">
-            Secondary Link
-        </Link>
-
-        <Link href="#" visitable={true}>
-            Visitable Link (Primary only)
-        </Link>
+        {/* Default (dark) */}
+        <View style={{padding: Spacing.large_24}}>
+            {/* Standalone */}
+            <View>
+                <Link href="#nonexistent-link">Standalone Primary Link</Link>
+                <Strut size={Spacing.xSmall_8} />
+                <Link href="#secondary-nonexistent-link" kind="secondary">
+                    Standalone Secondary Link
+                </Link>
+                <Strut size={Spacing.xSmall_8} />
+                <Link href="#" visitable={true}>
+                    Standalone Visitable Link (Primary only)
+                </Link>
+            </View>
+            <Strut size={Spacing.medium_16} />
+            {/* Inline */}
+            <Body>
+                This is an{" "}
+                <Link href="#" inline={true}>
+                    Inline Primary link
+                </Link>
+                , whereas this is an{" "}
+                <Link href="#" kind="secondary" inline={true}>
+                    Inline Secondary link
+                </Link>
+                , and this is an{" "}
+                <Link href="#" visitable={true} inline={true}>
+                    Inline Visitable link (Primary only)
+                </Link>
+                .
+            </Body>
+        </View>
+        {/* Light */}
+        <View
+            style={{
+                backgroundColor: Color.darkBlue,
+                padding: Spacing.large_24,
+            }}
+        >
+            {/* Standalone */}
+            <View>
+                <Link href="#nonexistent-link" light={true}>
+                    Standalone Light Link (Primary only)
+                </Link>
+                <Strut size={Spacing.xSmall_8} />
+                <Link href="#" visitable={true} light={true}>
+                    Standalone Light Visitable Link (Primary only)
+                </Link>
+            </View>
+            <Strut size={Spacing.medium_16} />
+            {/* Inline */}
+            <Body style={{color: Color.white}}>
+                This is an{" "}
+                <Link href="#" inline={true} light={true}>
+                    Inline Primary link
+                </Link>
+                , whereas this is an{" "}
+                <Link href="#" visitable={true} inline={true} light={true}>
+                    Inline Visitable link (Primary only)
+                </Link>
+                . Secondary light links are not supported.
+            </Body>
+        </View>
     </View>
 );
 
 Variants.parameters = {
     docs: {
-        storyDescription: `Primary links are blue, secondary links are black,
-            and visitable links turn purple after they've been clicked on.`,
-    },
-};
-
-export const LightVariants: StoryComponentType = () => (
-    <View>
-        <Link href="#nonexistent-link" light={true}>
-            Light Link (Primary only)
-        </Link>
-        <Link href="#" visitable={true} light={true}>
-            Light Visitable Link (Primary only)
-        </Link>
-    </View>
-);
-
-LightVariants.parameters = {
-    backgrounds: {
-        default: "darkBlue",
-    },
-    docs: {
-        storyDescription: `Links are white on a dark background when the
-            \`light\` prop is true. Secondary \`light\` links are not supported.
-            Links also cannot be \`visitable\` if they're \`light\`. If
-            a link has \`light\` set to \`true\` and you try to set \`kind\`
-            to \`"secondary"\` or \`visitable\` to \`true\`, it will throw
-            an error.`,
+        storyDescription: `By default, primary links are blue, secondary
+            links are gray, and visitable links turn purple after they've
+            been clicked on. Default inline links are underlined, and the
+            secondary kind is black to match surrounding text color.
+            Light standalone and inline links have the same colors - white
+            with visited visitable links being pink. Light inline links are
+            also underlined like default inline links. Light secondary links
+            are not supported and will result in an error.`,
     },
 };
 
