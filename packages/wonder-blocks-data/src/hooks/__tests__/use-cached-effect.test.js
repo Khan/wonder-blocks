@@ -744,5 +744,25 @@ describe("#useCachedEffect", () => {
                 expect(onResultChanged).toHaveBeenCalledTimes(1);
             },
         );
+
+        it("should resolve the promise returned by refetch with the result of the request", async () => {
+            // Arrange
+            const response = Promise.resolve("DATA");
+            const fakeHandler = jest.fn().mockReturnValue(response);
+
+            // Act
+            const {
+                result: {
+                    current: [, refetch],
+                },
+            } = clientRenderHook(() => useCachedEffect("ID", fakeHandler));
+            let result;
+            await act(async () => {
+                result = await refetch();
+            });
+
+            // Assert
+            expect(result).toStrictEqual(Status.success("DATA"));
+        });
     });
 });

@@ -96,7 +96,7 @@ export const useCachedEffect = <TData: ValidCacheData>(
     options: CachedEffectOptions<TData> = ({}: $Shape<
         CachedEffectOptions<TData>,
     >),
-): [Result<TData>, () => void] => {
+): [Result<TData>, () => Promise<Result<TData>>] => {
     const {
         fetchPolicy = FetchPolicy.CacheBeforeNetwork,
         skip: hardSkip = false,
@@ -163,7 +163,7 @@ export const useCachedEffect = <TData: ValidCacheData>(
                 // The request inflight is the same, so do nothing.
                 // NOTE: Perhaps if invoked via a refetch, we will want to
                 // override this behavior and force a new request?
-                return;
+                return request;
             }
 
             // Clear the last network result.
@@ -213,6 +213,8 @@ export const useCachedEffect = <TData: ValidCacheData>(
                     RequestFulfillment.Default.abort(requestId);
                 },
             };
+
+            return request;
         };
 
         // Now we can return the new fetch function.
