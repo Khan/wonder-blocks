@@ -55,6 +55,9 @@ export default class LinkCore extends React.Component<Props> {
             pressed && linkStyles.active,
             // A11y: The focus ring should always be present when the
             // the link has focus, even the link is being hovered over.
+            // TODO(WB-1498): Udpate ClickableBehavior so that focus doesn't
+            // stop on mouseleave. We want the focus ring to remain on a
+            // focused link even after hovering and un-hovering on it.
             !pressed && hovered && linkStyles.hover,
             !pressed && focused && linkStyles.focus,
         ];
