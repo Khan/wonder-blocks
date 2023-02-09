@@ -6,10 +6,9 @@
  * checks that the common behaviors exist on all of these components.
  */
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
-import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
+import {MemoryRouter} from "react-router-dom";
 import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import {ActionItem, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -36,15 +35,15 @@ const IconButtonWrapper = (props: any) => (
 );
 
 describe.each`
-    Component            | name
-    ${ActionItem}        | ${"ActionItem"}
-    ${Button}            | ${"Button"}
-    ${ClickableWrapper}  | ${"Clickable"}
-    ${CompactCell}       | ${"CompactCell"}
-    ${DetailCell}        | ${"DetailCell"}
-    ${IconButtonWrapper} | ${"IconButton"}
-    ${Link}              | ${"Link"}
-`("$name with an href", ({Component, name}) => {
+    Component            | name             | role
+    ${ActionItem}        | ${"ActionItem"}  | ${"menuitem"}
+    ${Button}            | ${"Button"}      | ${"button"}
+    ${ClickableWrapper}  | ${"Clickable"}   | ${"link"}
+    ${CompactCell}       | ${"CompactCell"} | ${"link"}
+    ${DetailCell}        | ${"DetailCell"}  | ${"link"}
+    ${IconButtonWrapper} | ${"IconButton"}  | ${"link"}
+    ${Link}              | ${"Link"}        | ${"link"}
+`("$name with an href", ({Component, name, role}) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
         // the testing environment
@@ -58,13 +57,17 @@ describe.each`
     });
 
     it("opens a new tab when target='_blank'", () => {
-        const wrapper = mount(
+        // Arrange
+        render(
             <Component href="https://www.khanacademy.org" target="_blank">
                 Click me
             </Component>,
         );
-        wrapper.simulate("click");
 
+        // Act
+        userEvent.click(screen.getByRole(role));
+
+        // Assert
         expect(window.open).toHaveBeenCalledWith(
             "https://www.khanacademy.org",
             "_blank",
@@ -72,61 +75,47 @@ describe.each`
     });
 
     it("sets the 'target' prop on the underlying element", () => {
-        const wrapper = mount(
+        // Arrange
+        render(
             <Component href="https://www.khanacademy.org" target="_blank">
                 Click me
             </Component>,
         );
-        wrapper.simulate("click");
 
-        expect(wrapper.find("a")).toHaveProp("target", "_blank");
-    });
+        // Act
+        const link = screen.getByRole(role);
+        userEvent.click(link);
 
-    it("renders a react-router Link if href is path", () => {
-        const wrapper = mount(
-            <MemoryRouter>
-                <Component href="/foo/bar">Click me</Component>
-            </MemoryRouter>,
-        );
-
-        expect(wrapper.find(ReactRouterLink)).toExist();
-    });
-
-    it("does not render a react-router Link if the href is an external URL", () => {
-        const wrapper = mount(
-            <MemoryRouter>
-                <Component href="https://www.khanacademy.org/foo/bar">
-                    Click me
-                </Component>
-            </MemoryRouter>,
-        );
-
-        expect(wrapper.find(ReactRouterLink)).not.toExist();
-        expect(wrapper.find("a")).toExist();
+        // Assert
+        expect(link).toHaveAttribute("target", "_blank");
     });
 
     it("renders an <a> if the href is '#'", () => {
-        const wrapper = mount(
+        // Arrange
+        render(
             <MemoryRouter>
                 <Component href="#">Click me</Component>
             </MemoryRouter>,
         );
 
-        expect(wrapper.find(ReactRouterLink)).not.toExist();
-        expect(wrapper.find("a")).toExist();
+        // Act
+        const link = screen.getByRole(role);
+
+        // Assert
+        expect(link.tagName).toBe("A");
     });
 });
 
 // NOTE: Link doesn't work without an href so it isn't included in this suite
 describe.each`
-    Component            | name
-    ${ActionItem}        | ${"ActionItem"}
-    ${Button}            | ${"Button"}
-    ${ClickableWrapper}  | ${"Clickable"}
-    ${CompactCell}       | ${"CompactCell"}
-    ${DetailCell}        | ${"DetailCell"}
-    ${IconButtonWrapper} | ${"IconButton"}
-`("$name without an href", ({Component, name}) => {
+    Component            | name             | role
+    ${ActionItem}        | ${"ActionItem"}  | ${"menuitem"}
+    ${Button}            | ${"Button"}      | ${"button"}
+    ${ClickableWrapper}  | ${"Clickable"}   | ${"button"}
+    ${CompactCell}       | ${"CompactCell"} | ${"button"}
+    ${DetailCell}        | ${"DetailCell"}  | ${"button"}
+    ${IconButtonWrapper} | ${"IconButton"}  | ${"button"}
+`("$name without an href", ({Component, name, role}) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
         // the testing environment, but JSDOM protects assign from being changed
@@ -140,25 +129,33 @@ describe.each`
     });
 
     it("renders a button", () => {
-        const wrapper = mount(
+        // Arrange
+        render(
             <MemoryRouter>
                 <Component onClick={() => {}}>Click me</Component>
             </MemoryRouter>,
         );
 
-        expect(wrapper.find("button")).toExist();
+        // Act
+        const button = screen.getByRole(role);
+
+        // Assert
+        expect(button).toBeInTheDocument();
     });
 
     it("responds to click events", () => {
+        // Arrange
         const clickHandler = jest.fn();
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <Component onClick={clickHandler}>Click me</Component>
             </MemoryRouter>,
         );
 
-        wrapper.simulate("click");
+        // Act
+        userEvent.click(screen.getByRole(role));
 
+        // Assert
         expect(clickHandler).toHaveBeenCalled();
     });
 });

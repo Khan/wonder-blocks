@@ -2,7 +2,10 @@ const path = require("path");
 const webpack = require("webpack");
 
 module.exports = {
-    stories: ["../packages/**/*.stories.@(js|mdx)"],
+    stories: [
+        "../__docs__/**/*.stories.@(js|mdx)",
+        "../packages/**/*.stories.@(js|mdx)",
+    ],
     addons: [
         // Includes core addons (controls, docs, actions, viewport, backgrounds)
         "@storybook/addon-essentials",

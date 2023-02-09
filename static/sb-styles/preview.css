@@ -1,0 +1,65 @@
+/**
+ * Overrides for the Storybook preview iframe.
+ */
+@import "./vars.css";
+
+.sbdocs-ul,
+.sbdocs-li,
+.sbdocs-p,
+.sbdocs-p *:not(a) {
+    color: var(--color-text) !important;
+    font-size: var(--typography-body-size-md) !important;
+    line-height: var(--typography-base-line-height) !important;
+}
+.sbdocs-h1,
+.sbdocs-title,
+.sbdocs-h2,
+.sbdocs-h3,
+.sbdocs-h4,
+.sbdocs-h5,
+.sbdocs-h6 {
+    color: var(--color-text) !important;
+    font-family: 'Source Serif Pro', sans-serif !important;
+    font-weight: 400 !important;
+    margin-top: 1.5rem !important;
+}
+
+.sbdocs-h1,
+.sbdocs-title {
+    font-size: var(--typography-heading-size-xxl) !important;
+    line-height: var(--typography-heading-line-height-xxl) !important;
+    margin-top: 0 !important;
+}
+
+.sbdocs-h2 {
+    counter-reset: story;
+    font-size: var(--typography-heading-size-xl) !important;
+    line-height: var(--typography-heading-line-height-xl) !important;
+}
+
+.sbdocs-h3 {
+    font-size: var(--typography-heading-size-lg) !important;
+    line-height: var(--typography-heading-line-height-lg) !important;
+}
+
+/* only include the counter to the stories titles */
+.sbdocs-h3:not(#usage)::before {
+    counter-increment: story;
+    color: var(--color-text-64);
+    content: counter(story) ".";
+}
+
+.sbdocs-h4 {
+    font-size: var(--typography-heading-size-md) !important;
+    line-height: var(--typography-heading-line-height-md) !important;
+}
+
+.sbdocs-h5 {
+    font-size: var(--typography-heading-size-sm) !important;
+    line-height: var(--typography-heading-line-height-sm) !important;
+}
+
+.sbdocs-h6 {
+    font-size: var(--typography-heading-size-xs) !important;
+    line-height: var(--typography-heading-line-height-xs) !important;
+}

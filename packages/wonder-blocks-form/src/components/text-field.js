@@ -146,11 +146,10 @@ type State = {|
     focused: boolean,
 |};
 
-// TODO(WB-1081): Change class name back to TextField after Styleguidist is gone.
 /**
  * A TextField is an element used to accept a single line of text from the user.
  */
-class TextFieldInternal extends React.Component<PropsWithForwardRef, State> {
+class TextField extends React.Component<PropsWithForwardRef, State> {
     static defaultProps: DefaultProps = {
         type: "text",
         disabled: false,
@@ -343,10 +342,7 @@ const styles = StyleSheet.create({
     },
 });
 
-type ExportProps = $Diff<
-    React.ElementConfig<typeof TextFieldInternal>,
-    WithForwardRef,
->;
+type ExportProps = $Diff<React.ElementConfig<typeof TextField>, WithForwardRef>;
 
 /**
  * A TextField is an element used to accept a single line of text from the user.
@@ -365,9 +361,6 @@ type ExportProps = $Diff<
  * />
  * ```
  */
-const TextField: React.AbstractComponent<ExportProps, HTMLInputElement> =
-    React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
-        <TextFieldInternal {...props} forwardedRef={ref} />
-    ));
-
-export default TextField;
+export default (React.forwardRef<ExportProps, HTMLInputElement>(
+    (props, ref) => <TextField {...props} forwardedRef={ref} />,
+): React.AbstractComponent<ExportProps, HTMLInputElement>);
