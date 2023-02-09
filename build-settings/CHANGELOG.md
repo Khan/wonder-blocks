@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 0.5.0
+
+### Minor Changes
+
+-   d13183f6: Remove webpack from the build process
+
 ## 0.4.0
 
 ### Minor Changes
