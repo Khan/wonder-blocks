@@ -90,6 +90,8 @@ const sharedStyles = StyleSheet.create({
         textDecoration: "none",
         outline: "none",
         display: "inline-flex",
+        fontSize: 16,
+        lineHeight: "22px",
     },
 });
 

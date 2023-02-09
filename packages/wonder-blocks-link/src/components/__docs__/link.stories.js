@@ -373,6 +373,17 @@ WithTypography.parameters = {
     },
 };
 
+WithTypography.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const heading = canvas.getByText("Heading inside a Link element");
+
+    // Confirm that the default font size (16px) and line height (22px)
+    // are successfully overridden by typography.
+    await expect(heading).toHaveStyle("font-size: 20px");
+    await expect(heading).toHaveStyle("lineHeight: 24px");
+};
+
 export const WithStyle: StoryComponentType = () => (
     <Link href="#" style={styles.pinkLink}>
         This link has a style.
