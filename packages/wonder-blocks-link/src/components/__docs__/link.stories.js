@@ -284,17 +284,23 @@ export const Variants: StoryComponentType = () => (
         <View style={{padding: Spacing.large_24}}>
             {/* Standalone */}
             <View>
-                <Link href="#nonexistent-link">Standalone Primary Link</Link>
-                <Strut size={Spacing.xSmall_8} />
-                <Link href="#secondary-nonexistent-link" kind="secondary">
-                    Standalone Secondary Link
-                </Link>
-                <Strut size={Spacing.xSmall_8} />
-                <Link href="#" visitable={true}>
-                    Standalone Visitable Link (Primary only)
-                </Link>
+                <View style={styles.standaloneLinkWrapper}>
+                    <Link href="#nonexistent-link">
+                        Standalone Primary Link
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
+                    <Link href="#secondary-nonexistent-link" kind="secondary">
+                        Standalone Secondary Link
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
+                    <Link href="#" visitable={true}>
+                        Standalone Visitable Link (Primary only)
+                    </Link>
+                </View>
             </View>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={Spacing.xSmall_8} />
             {/* Inline */}
             <Body>
                 This is an{" "}
@@ -321,15 +327,18 @@ export const Variants: StoryComponentType = () => (
         >
             {/* Standalone */}
             <View>
-                <Link href="#nonexistent-link" light={true}>
-                    Standalone Light Link (Primary only)
-                </Link>
-                <Strut size={Spacing.xSmall_8} />
-                <Link href="#" visitable={true} light={true}>
-                    Standalone Light Visitable Link (Primary only)
-                </Link>
+                <View style={styles.standaloneLinkWrapper}>
+                    <Link href="#nonexistent-link" light={true}>
+                        Standalone Light Link (Primary only)
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
+                    <Link href="#" visitable={true} light={true}>
+                        Standalone Light Visitable Link (Primary only)
+                    </Link>
+                </View>
             </View>
-            <Strut size={Spacing.medium_16} />
+            <Strut size={Spacing.xSmall_8} />
             {/* Inline */}
             <Body style={{color: Color.white}}>
                 This is an{" "}
@@ -467,5 +476,9 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
         alignItems: "center",
+    },
+    standaloneLinkWrapper: {
+        display: "inline-block",
+        marginBottom: Spacing.xSmall_8,
     },
 });
