@@ -478,6 +478,9 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     standaloneLinkWrapper: {
+        // Use inline-block so the outline wraps only the text
+        // instead of taking the full width of the parent
+        // container.
         display: "inline-block",
         marginBottom: Spacing.xSmall_8,
     },
