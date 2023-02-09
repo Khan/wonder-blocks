@@ -1,24 +1,16 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
-import {render, screen, fireEvent} from "@testing-library/react";
+import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import ModalBackdrop from "../modal-backdrop.js";
 import OnePaneDialog from "../one-pane-dialog.js";
 
-import {unmountAll} from "../../../../../utils/testing/enzyme-shim.js";
-import {getElementAttachedToDocument} from "../../../../../utils/testing/get-element-attached-to-document.js";
-
-const wait = (duration: number = 0) =>
-    new Promise((resolve, reject) => setTimeout(resolve, duration));
-
 const exampleModal = (
     <OnePaneDialog
-        content={<div data-modal-content />}
+        content={<div data-test-id="example-modal-content" />}
         title="Title"
-        footer={<div data-modal-footer />}
+        footer={<div data-test-id="example-modal-footer" />}
         testId="example-modal-test-id"
     />
 );
@@ -27,9 +19,9 @@ const exampleModalWithButtons = (
     <OnePaneDialog
         content={
             <div>
-                <button data-button-id="1" data-first-button />
-                <button data-button-id="2" />
-                <button data-button-id="3" />
+                <button>first focusable button</button>
+                <button />
+                <button />
             </div>
         }
         title="Title"
@@ -38,13 +30,6 @@ const exampleModalWithButtons = (
 );
 
 describe("ModalBackdrop", () => {
-    afterEach(() => {
-        unmountAll();
-        if (document.body) {
-            document.body.innerHTML = "";
-        }
-    });
-
     test("Clicking the backdrop triggers `onCloseModal`", () => {
         // Arrange
         const onCloseModal = jest.fn();
@@ -68,17 +53,19 @@ describe("ModalBackdrop", () => {
     });
 
     test("Clicking the modal content does not trigger `onCloseModal`", () => {
+        // Arrange
         const onCloseModal = jest.fn();
 
-        // We use `mount` instead of `shallow` here, because the component's
-        // click handler expects actual DOM events.
-        const wrapper = mount(
+        render(
             <ModalBackdrop onCloseModal={onCloseModal}>
                 {exampleModal}
             </ModalBackdrop>,
         );
 
-        wrapper.find("[data-modal-content]").simulate("click");
+        // Act
+        userEvent.click(screen.getByTestId("example-modal-content"));
+
+        // Assert
         expect(onCloseModal).not.toHaveBeenCalled();
     });
 
@@ -139,29 +126,27 @@ describe("ModalBackdrop", () => {
     });
 
     test("Clicking the modal footer does not trigger `onCloseModal`", () => {
+        // Arrange
         const onCloseModal = jest.fn();
 
-        // We use `mount` instead of `shallow` here, because the component's
-        // click handler expects actual DOM events.
-        const wrapper = mount(
+        render(
             <ModalBackdrop onCloseModal={onCloseModal}>
                 {exampleModal}
             </ModalBackdrop>,
         );
 
-        wrapper.find("[data-modal-footer]").simulate("click");
+        // Act
+        userEvent.click(screen.getByTestId("example-modal-footer"));
+
+        // Assert
         expect(onCloseModal).not.toHaveBeenCalled();
     });
 
     test("If initialFocusId is set and element is found, we focus that element inside the modal", async () => {
         // Arrange
-        // We need the elements in the DOM document, it seems, for this test
-        // to work. Changing to testing-library will likely fix this.
-        // Then we can remove the lint suppression.
-        const attachElement = getElementAttachedToDocument("container");
         const initialFocusId = "initial-focus";
 
-        const wrapper = mount(
+        render(
             <ModalBackdrop
                 initialFocusId={initialFocusId}
                 onCloseModal={() => {}}
@@ -170,107 +155,84 @@ describe("ModalBackdrop", () => {
                     content={
                         <div data-modal-content>
                             <input type="text" />
-                            <button id="initial-focus" />
+                            <button id="initial-focus">Initial focus</button>
                         </div>
                     }
                     title="Title"
                     footer={<div data-modal-footer />}
                 />
             </ModalBackdrop>,
-            {attachTo: attachElement},
         );
 
         // Act
-        await wait(); // wait for styles to be applied
-        const initialFocusElement = wrapper.find(`#${initialFocusId}`);
+        const initialFocusElement = screen.getByRole("button", {
+            name: "Initial focus",
+        });
 
         // Assert
-        // first we verify the element exists in the DOM
-        expect(initialFocusElement).toHaveLength(1);
-
-        // verify the focus is set on the correct element
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(document.activeElement).toBe(initialFocusElement.getDOMNode());
+        await waitFor(() => expect(initialFocusElement).toHaveFocus());
     });
 
     test("If initialFocusId is set but element is NOT found, we focus on the first focusable element instead", async () => {
         // Arrange
-        // We need the elements in the DOM document, it seems, for this test
-        // to work. Changing to testing-library will likely fix this.
-        // Then we can remove the lint suppression.
-        const attachElement = getElementAttachedToDocument("container");
-        const initialFocusId = "initial-focus";
-        const firstFocusableElement = "[data-first-button]";
+        // This element does not exist in the DOM
+        const initialFocusId = "unknown-node";
 
-        const wrapper = mount(
+        const {container} = render(
             <ModalBackdrop
                 initialFocusId={initialFocusId}
                 onCloseModal={() => {}}
             >
                 {exampleModalWithButtons}
             </ModalBackdrop>,
-            {attachTo: attachElement},
         );
 
         // Act
-        await wait(); // wait for styles to be applied
-        const initialFocusElement = wrapper.find(`#${initialFocusId}`);
+        // eslint-disable-next-line testing-library/no-container, testing-library/no-node-access
+        const initialFocusElement = container.querySelector(
+            `#${initialFocusId}`,
+        );
+
+        const firstFocusableElement = screen.getByRole("button", {
+            name: "first focusable button",
+        });
 
         // Assert
         // first we verify the element doesn't exist in the DOM
-        expect(initialFocusElement).toHaveLength(0);
+        expect(initialFocusElement).not.toBeInTheDocument();
         // verify the focus is set on the first focusable element instead
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(document.activeElement).toBe(
-            wrapper.find(firstFocusableElement).getDOMNode(),
-        );
+        await waitFor(() => expect(firstFocusableElement).toHaveFocus());
     });
 
     test("If no initialFocusId is set, we focus the first button in the modal", async () => {
         // Arrange
-        // We need the elements in the DOM document, it seems, for this test
-        // to work. Changing to testing-library will likely fix this.
-        // Then we can remove the lint suppression.
-        const attachElement = getElementAttachedToDocument("container");
-        const wrapper = mount(
+        render(
             <ModalBackdrop onCloseModal={() => {}}>
                 {exampleModalWithButtons}
             </ModalBackdrop>,
-            {attachTo: attachElement},
         );
 
         // Act
-        await wait(); // wait for styles to be applied
-        const focusableElement = wrapper
-            .find("[data-first-button]")
-            .getDOMNode();
+        const firstFocusableElement = screen.getByRole("button", {
+            name: "first focusable button",
+        });
 
         // Assert
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(document.activeElement).toBe(focusableElement);
+        await waitFor(() => expect(firstFocusableElement).toHaveFocus());
     });
 
     test("If there are no focusable elements, we focus the Dialog instead", async () => {
         // Arrange
-        // We need the elements in the DOM document, it seems, for this test
-        // to work. Changing to testing-library will likely fix this.
-        // Then we can remove the lint suppression.
-        const attachElement = getElementAttachedToDocument("container");
-        const wrapper = mount(
+        render(
             <ModalBackdrop onCloseModal={() => {}}>
                 {exampleModal}
             </ModalBackdrop>,
-            {attachTo: attachElement},
         );
 
         // Act
-        await wait(); // wait for styles to be applied
-        const focusableElement = wrapper
-            .find('div[role="dialog"]')
-            .getDOMNode();
+        const firstFocusableElement = screen.getByRole("dialog");
 
         // Assert
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(document.activeElement).toBe(focusableElement);
+        await waitFor(() => expect(firstFocusableElement).toHaveFocus());
     });
 });

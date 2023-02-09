@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
-import {mount, shallow} from "enzyme";
-import "jest-enzyme";
+import {render} from "@testing-library/react";
 
 import IDProvider from "../id-provider.js";
 
@@ -13,6 +12,7 @@ jest.mock("@khanacademy/wonder-blocks-core", () => {
     return {
         ...Core,
         UniqueIDProvider: (props) =>
+            // eslint-disable-next-line testing-library/no-node-access
             props.children({
                 get: () => mockIDENTIFIER,
             }),
@@ -26,7 +26,7 @@ describe("UniqueDialog", () => {
         const titleId = "custom-title";
 
         // Act
-        shallow(
+        render(
             <IDProvider id={titleId} scope="component">
                 {renderDialogFn}
             </IDProvider>,
@@ -41,7 +41,7 @@ describe("UniqueDialog", () => {
         const renderDialogFn = jest.fn(() => <div />);
 
         // Act
-        mount(<IDProvider scope="component">{renderDialogFn}</IDProvider>);
+        render(<IDProvider scope="component">{renderDialogFn}</IDProvider>);
 
         // Assert
         expect(renderDialogFn).toHaveBeenCalledWith(mockIDENTIFIER);

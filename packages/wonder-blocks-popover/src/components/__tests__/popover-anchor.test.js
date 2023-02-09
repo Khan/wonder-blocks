@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import PopoverAnchor from "../popover-anchor.js";
 
@@ -10,14 +10,14 @@ describe("PopoverAnchor", () => {
         // Arrange
         const updateRef = jest.fn();
 
-        const wrapper = mount(
+        render(
             <PopoverAnchor anchorRef={updateRef} onClick={jest.fn()}>
-                <button data-anchor>test</button>
+                <button>test</button>
             </PopoverAnchor>,
         );
 
         // Act
-        const triggerElement = wrapper.find("[data-anchor]").getDOMNode();
+        const triggerElement = screen.getByRole("button");
 
         // Assert
         expect(updateRef).toBeCalledWith(triggerElement);
@@ -27,18 +27,14 @@ describe("PopoverAnchor", () => {
         // Arrange
         const onClickMock = jest.fn();
 
-        const wrapper = mount(
+        render(
             <PopoverAnchor anchorRef={jest.fn()} onClick={onClickMock}>
-                {({open}) => (
-                    <button onClick={open} data-anchor>
-                        open
-                    </button>
-                )}
+                {({open}) => <button onClick={open}>open</button>}
             </PopoverAnchor>,
         );
 
         // Act
-        wrapper.find("[data-anchor]").simulate("click");
+        userEvent.click(screen.getByRole("button"));
 
         // Assert
         expect(onClickMock).toBeCalled();
@@ -49,16 +45,14 @@ describe("PopoverAnchor", () => {
         const onClickMock = jest.fn();
         const onClickInnerMock = jest.fn();
 
-        const wrapper = mount(
+        render(
             <PopoverAnchor anchorRef={jest.fn()} onClick={onClickMock}>
-                <button onClick={onClickInnerMock} data-anchor>
-                    test
-                </button>
+                <button onClick={onClickInnerMock}>test</button>
             </PopoverAnchor>,
         );
 
         // Act
-        wrapper.find("[data-anchor]").simulate("click");
+        userEvent.click(screen.getByRole("button"));
 
         // Assert
         // both custom and internal click should be called

@@ -1,8 +1,7 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render} from "@testing-library/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
@@ -58,7 +57,7 @@ describe("TooltipPopper", () => {
                     <TestHarness placement="bottom" resultRef={resolve} />
                 </View>
             );
-            mount(nodes);
+            render(nodes);
         });
 
         if (!ref) {

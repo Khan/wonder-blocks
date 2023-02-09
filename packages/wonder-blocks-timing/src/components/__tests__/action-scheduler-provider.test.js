@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render} from "@testing-library/react";
 
 import ActionSchedulerProvider from "../action-scheduler-provider.js";
 import ActionScheduler from "../../util/action-scheduler.js";
@@ -14,7 +13,7 @@ describe("ActionSchedulerProvider", () => {
         const childrenMock = jest.fn().mockReturnValueOnce(null);
 
         // Act
-        mount(
+        render(
             <ActionSchedulerProvider>{childrenMock}</ActionSchedulerProvider>,
         );
 
@@ -25,12 +24,12 @@ describe("ActionSchedulerProvider", () => {
     it("should call disable on the action scheduler at unmount", () => {
         // Arrange
         const childrenMock = jest.fn().mockReturnValueOnce(null);
-        const wrapper = mount(
+        const {unmount} = render(
             <ActionSchedulerProvider>{childrenMock}</ActionSchedulerProvider>,
         );
 
         // Act
-        wrapper.unmount();
+        unmount();
 
         // Assert
         // $FlowIgnore[prop-missing]

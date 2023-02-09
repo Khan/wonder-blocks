@@ -219,45 +219,6 @@ type JestStyledComponentsMatchersType = {
   ...
 };
 
-/**
- *  Plugin: jest-enzyme
- */
-type EnzymeMatchersType = {
-  // 5.x
-  toBeEmpty(): void,
-  toBePresent(): void,
-  // 6.x
-  toBeChecked(): void,
-  toBeDisabled(): void,
-  toBeEmptyRender(): void,
-  toContainMatchingElement(selector: string): void,
-  toContainMatchingElements(n: number, selector: string): void,
-  toContainExactlyOneMatchingElement(selector: string): void,
-  toContainReact(element: React$Element<any>): void,
-  toExist(): void,
-  toHaveClassName(className: string): void,
-  toHaveHTML(html: string): void,
-  toHaveProp: ((propKey: string, propValue?: any) => void) &
-    ((props: { ... }) => void),
-  toHaveRef(refName: string): void,
-  toHaveState: ((stateKey: string, stateValue?: any) => void) &
-    ((state: { ... }) => void),
-  toHaveStyle: ((styleKey: string, styleValue?: any) => void) &
-    ((style: { ... }) => void),
-  toHaveTagName(tagName: string): void,
-  toHaveText(text: string): void,
-  toHaveValue(value: any): void,
-  toIncludeText(text: string): void,
-  toMatchElement(
-    element: React$Element<any>,
-    options?: {| ignoreProps?: boolean, verbose?: boolean |}
-  ): void,
-  toMatchSelector(selector: string): void,
-  // 7.x
-  toHaveDisplayName(name: string): void,
-  ...
-};
-
 // DOM testing library extensions (jest-dom)
 // https://github.com/testing-library/jest-dom
 type DomTestingLibraryType = {
@@ -604,7 +565,6 @@ type SnapshotDiffType = {
 
 interface JestExpectType {
   not: JestExpectType &
-    EnzymeMatchersType &
     DomTestingLibraryType &
     JestJQueryMatchersType &
     JestStyledComponentsMatchersType &
@@ -1210,7 +1170,6 @@ declare var expect: {
     value: any
   ): JestExpectType &
     JestPromiseType &
-    EnzymeMatchersType &
     DomTestingLibraryType &
     JestJQueryMatchersType &
     JestStyledComponentsMatchersType &

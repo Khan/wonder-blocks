@@ -1,10 +1,15 @@
 // @flow
 import * as React from "react";
-import {MemoryRouter, Link} from "react-router-dom";
-import {mount} from "enzyme";
 import {render, screen} from "@testing-library/react";
+import * as ReactRouterDOM from "react-router-dom";
 
 import ActionItem from "../action-item.js";
+
+jest.mock("react-router-dom", () => ({
+    __esModule: true,
+    ...jest.requireActual("react-router-dom"),
+    Link: jest.fn().mockReturnValue(<a href="/link">some link</a>),
+}));
 
 describe("ActionItem", () => {
     it("should render with disabled styles", () => {
@@ -30,16 +35,17 @@ describe("ActionItem", () => {
 
     it("should render a Link if there's a router", () => {
         // Arrange
+        const linkSpy = jest.spyOn(ReactRouterDOM, "Link");
 
         // Act
-        const wrapper = mount(
-            <MemoryRouter>
+        render(
+            <ReactRouterDOM.MemoryRouter>
                 <ActionItem href="/foo" label="Example" />
-            </MemoryRouter>,
+            </ReactRouterDOM.MemoryRouter>,
         );
 
         // Assert
-        expect(wrapper.find(Link)).toHaveLength(1);
+        expect(linkSpy).toHaveBeenCalled();
     });
 
     it("should set the lang attribute if it's passed down", () => {

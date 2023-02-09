@@ -11,30 +11,15 @@
         {
             "label": "build",
             "type": "npm",
-            "script": "build:all",
+            "script": "build",
             "group": {
                 "kind": "build",
                 "isDefault": true
             }
         },
-        // This is the "yarn watch:all" task
-        {
-            "identifier": "watch",
-            "type": "npm",
-            "script": "watch:all",
-            "problemMatcher": [],
-            "group": "build",
-            "isBackground": true,
-            "presentation": {
-                "echo": true,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "dedicated"
-            }
-        },
         // This is the "yarn start" task
         {
-            "identifier": "start",
+            "label": "start",
             "type": "npm",
             "script": "start",
             "isBackground": true,
@@ -46,18 +31,6 @@
             },
             "problemMatcher": [],
             "group": "test"
-        },
-        // This combines the "watch" and "start" tasks.
-        // By running both, the dev server will properly update docs for a
-        // package when a dependency of that package is changed and rebuilt.
-        {
-            "label": "start dev server with watch",
-            "group": "test",
-            "dependsOn": [
-                "watch",
-                "start"
-            ],
-            "problemMatcher": []
         },
 
         // This is the default test task.
@@ -75,20 +48,6 @@
             "group": {
                 "kind": "test",
                 "isDefault": true
-            }
-        },
-        // This task runs "yarn build:coverage" for updating coverage data.
-        {
-            "label": "refresh coverage",
-            "type": "npm",
-            "script": "build:coverage",
-            "problemMatcher": [],
-            "group": "test",
-            "presentation": {
-                "echo": true,
-                "reveal": "silent",
-                "focus": false,
-                "panel": "shared"
             }
         }
     ]

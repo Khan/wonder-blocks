@@ -170,8 +170,8 @@ describe("Link", () => {
             userEvent.click(link);
 
             // Assert
-            waitFor(() => {
-                expect(safeWithNavMock).resolves.toHaveBeenCalled();
+            await waitFor(() => {
+                expect(safeWithNavMock).toHaveBeenCalled();
             });
         });
 
@@ -246,7 +246,7 @@ describe("Link", () => {
             userEvent.click(link);
 
             // Assert
-            waitFor(() => {
+            await waitFor(() => {
                 expect(window.location.assign).toHaveBeenCalledWith("/foo");
             });
         });
@@ -270,7 +270,7 @@ describe("Link", () => {
             userEvent.click(link);
 
             // Assert
-            waitFor(() => {
+            await waitFor(() => {
                 expect(window.location.assign).toHaveBeenCalledWith("/foo");
             });
         });
