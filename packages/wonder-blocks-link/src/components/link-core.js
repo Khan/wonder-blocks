@@ -52,11 +52,8 @@ export default class LinkCore extends React.Component<Props> {
         const defaultStyles = [
             sharedStyles.shared,
             !(hovered || focused || pressed) && restingStyles,
-            pressed
-                ? linkStyles.active
-                : hovered
-                ? linkStyles.hover
-                : focused && linkStyles.focus,
+            focused && linkStyles.focus,
+            pressed ? linkStyles.active : hovered && linkStyles.hover,
         ];
 
         const commonProps = {
@@ -97,13 +94,7 @@ const sharedStyles = StyleSheet.create({
 });
 
 const _generateStyles = (inline, kind, light, visitable) => {
-    // Even though `inline` is defined and set the same as all the other
-    // boolean props, it is coming up as `undefined` in tests, which means
-    // the toString() function can't be used. Setting it explicitly to avoid
-    // a TypeError.
-    const inlineStr = inline ? "true" : "false";
-    const buttonType =
-        inlineStr + kind + light.toString() + visitable.toString();
+    const buttonType = `${kind}-${inline.toString()}-${light.toString()}-${visitable.toString()}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }

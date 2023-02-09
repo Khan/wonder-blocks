@@ -516,7 +516,7 @@ export default class ClickableBehavior extends React.Component<
 
     handleMouseLeave: () => void = () => {
         if (!this.waitingForClick) {
-            this.setState({hovered: false, pressed: false, focused: false});
+            this.setState({hovered: false, pressed: false});
         }
     };
 

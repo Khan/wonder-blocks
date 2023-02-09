@@ -195,7 +195,8 @@ Inline.parameters = {
     docs: {
         storyDescription: `Inline links include an underline to distinguish
             them from the surrounding text. Make a link inline by setting the
-            \`inline\` prop to \`true\`.`,
+            \`inline\` prop to \`true\`. It is recommended to use inline
+            links within paragraphs and sentences.`,
     },
 };
 
@@ -254,8 +255,8 @@ InlineLight.parameters = {
         storyDescription: `Inline links include an underline to distinguish
             them from the surrounding text. If the link is on a
             dark background, set the \`light\` prop to true for it to
-            be appropriately visible. Secondary light links are not
-            supported.`,
+            be appropriately visible.\n\n**NOTE:** Secondary light links are
+            not supported.`,
     },
 };
 
