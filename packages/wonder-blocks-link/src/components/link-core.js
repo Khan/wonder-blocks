@@ -52,8 +52,11 @@ export default class LinkCore extends React.Component<Props> {
         const defaultStyles = [
             sharedStyles.shared,
             !(hovered || focused || pressed) && restingStyles,
-            focused && linkStyles.focus,
-            pressed ? linkStyles.active : hovered && linkStyles.hover,
+            pressed && linkStyles.active,
+            // A11y: The focus ring should always be present when the
+            // the link has focus, even the link is being hovered over.
+            !pressed && hovered && linkStyles.hover,
+            !pressed && focused && linkStyles.focus,
         ];
 
         const commonProps = {
