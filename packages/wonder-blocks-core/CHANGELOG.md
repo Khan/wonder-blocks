@@ -1,5 +1,7 @@
 # @khanacademy/wonder-blocks-core
 
+## 4.6.1
+
 ## 4.6.0
 
 ### Minor Changes

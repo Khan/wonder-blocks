@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-progress-spinner
 
+## 1.1.38
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-core@4.6.1
+
 ## 1.1.37
 
 ### Patch Changes

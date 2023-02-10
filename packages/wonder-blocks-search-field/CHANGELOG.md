@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 1.0.16
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-core@4.6.1
+-   @khanacademy/wonder-blocks-icon@1.2.34
+-   @khanacademy/wonder-blocks-icon-button@3.4.18
+-   @khanacademy/wonder-blocks-typography@1.1.36
+
 ## 1.0.15
 
 ### Patch Changes

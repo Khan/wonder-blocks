@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-breadcrumbs
 
+## 1.0.36
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-core@4.6.1
+-   @khanacademy/wonder-blocks-typography@1.1.36
+
 ## 1.0.35
 
 ### Patch Changes

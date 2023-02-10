@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon
 
+## 1.2.34
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-core@4.6.1
+
 ## 1.2.33
 
 ### Patch Changes
