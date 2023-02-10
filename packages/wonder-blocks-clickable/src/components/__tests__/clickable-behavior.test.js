@@ -179,7 +179,7 @@ describe("ClickableBehavior", () => {
         expect(button).toHaveTextContent("focused");
     });
 
-    it("exits focused state on click after key press", () => {
+    it("retains focused state on click after key press", () => {
         const onClick = jest.fn();
 
         render(
@@ -199,7 +199,7 @@ describe("ClickableBehavior", () => {
         fireEvent.click(button);
         expect(button).toHaveTextContent("focused");
         userEvent.click(button);
-        expect(button).not.toHaveTextContent("focused");
+        expect(button).toHaveTextContent("focused");
     });
 
     it("changes pressed state on space/enter key down/up if <button>", () => {
