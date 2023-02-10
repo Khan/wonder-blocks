@@ -291,7 +291,7 @@ describe("SingleSelect", () => {
             render(<ControlledComponent onToggle={onToggleMock} />);
 
             // Act
-            userEvent.click(screen.getByRole("button", {name: "Choose"}));
+            userEvent.click(screen.getByRole("button"));
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(true);
@@ -302,7 +302,7 @@ describe("SingleSelect", () => {
             const onToggleMock = jest.fn();
             render(<ControlledComponent onToggle={onToggleMock} />);
             // open the menu from the outside
-            userEvent.click(screen.getByRole("button", {name: "Choose"}));
+            userEvent.click(screen.getByRole("button"));
 
             // Act
             // click on first item
@@ -318,7 +318,7 @@ describe("SingleSelect", () => {
             render(<ControlledComponent onToggle={onToggleMock} />);
 
             // Act
-            userEvent.click(screen.getByText("Choose"));
+            userEvent.click(screen.getByRole("combobox"));
 
             // Assert
             expect(onToggleMock).toHaveBeenCalledWith(true);
@@ -330,7 +330,7 @@ describe("SingleSelect", () => {
 
             // Act
             // click on the anchor
-            userEvent.click(screen.getByText("Choose"));
+            userEvent.click(screen.getByRole("combobox"));
 
             // Assert
             expect(screen.getByRole("listbox")).toBeInTheDocument();
@@ -341,11 +341,11 @@ describe("SingleSelect", () => {
             render(<ControlledComponent />);
 
             // Act
-            const opener = screen.getByRole("button", {name: "Choose"});
+            const opener = screen.getByRole("button");
             // open the menu from the outside
             userEvent.click(opener);
             // click on the dropdown anchor to hide the menu
-            userEvent.click(opener);
+            userEvent.click(screen.getByRole("combobox"));
 
             // Assert
             expect(screen.queryByRole("listbox")).not.toBeInTheDocument();
@@ -498,8 +498,8 @@ describe("SingleSelect", () => {
             userEvent.click(screen.getByText("Toggle B"));
 
             // Assert
-            // NOTE: the opener text is only updated in response to changes to the
-            // `selectedValue` prop.
+            // NOTE: the opener text is only updated in response to changes to
+            // the `selectedValue` prop.
             expect(opener).toHaveTextContent("Toggle B");
         });
     });
@@ -646,7 +646,7 @@ describe("SingleSelect", () => {
                 </SingleSelect>,
             );
             // open the dropdown menu
-            userEvent.click(screen.getByRole("button"));
+            userEvent.click(screen.getByRole("combobox"));
 
             const searchInput = screen.getByPlaceholderText("Filter");
             userEvent.paste(searchInput, "some text");

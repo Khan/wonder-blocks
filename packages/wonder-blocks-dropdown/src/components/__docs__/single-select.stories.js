@@ -1,6 +1,8 @@
+import {expect} from "@storybook/jest";
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import {within, userEvent, fireEvent} from "@storybook/testing-library";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -177,6 +179,30 @@ const Template = (args) => {
 };
 
 export const Default: StoryComponentType = Template.bind({});
+
+export const SelectedSingleSelect: StoryComponentType = Template.bind({});
+SelectedSingleSelect.play = async ({canvasElement}) => {
+    // Arrange
+    // NOTE: Using `body` here to work with React Portals.
+    const canvas = within(canvasElement.ownerDocument.body);
+
+    // Open the dropdown
+    const singleSelect = await canvas.findByRole("combobox");
+    await singleSelect.click();
+    // Wait for the dropdown to open
+    await canvas.findByRole("listbox");
+
+    // Act
+    // Select the first option
+    const option = await canvas.findByText("Banana");
+    await option.click();
+
+    // Assert
+    // The selected value should be "banana"
+    await expect(await canvas.findByRole("combobox")).toHaveTextContent(
+        "Banana",
+    );
+};
 
 /**
  * Controlled SingleSelect

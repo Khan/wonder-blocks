@@ -52,7 +52,7 @@ describe("MultiSelect", () => {
             render(uncontrolledSingleSelect);
 
             // Act
-            userEvent.click(screen.getByRole("button"));
+            userEvent.click(screen.getByRole("combobox"));
 
             // Assert
             expect(screen.getByRole("listbox")).toBeInTheDocument();
@@ -78,7 +78,7 @@ describe("MultiSelect", () => {
             render(uncontrolledSingleSelect);
 
             // Act
-            const opener = screen.getByRole("button");
+            const opener = screen.getByRole("combobox");
 
             // Assert
             // No items are selected, display placeholder because there is one
@@ -102,7 +102,7 @@ describe("MultiSelect", () => {
             );
 
             // Assert
-            expect(screen.getByRole("button")).toHaveTextContent("item 1");
+            expect(screen.getByRole("combobox")).toHaveTextContent("item 1");
         });
 
         it("displays correct text for opener when there's more than one item selected", () => {
@@ -123,7 +123,9 @@ describe("MultiSelect", () => {
 
             // Assert
             // More than one item is selected, display n itemTypes
-            expect(screen.getByRole("button")).toHaveTextContent("2 students");
+            expect(screen.getByRole("combobox")).toHaveTextContent(
+                "2 students",
+            );
         });
 
         it("displays correct text for opener when all items are selected", () => {
@@ -144,7 +146,7 @@ describe("MultiSelect", () => {
 
             // Assert
             // All items are selected
-            expect(screen.getByRole("button")).toHaveTextContent(
+            expect(screen.getByRole("combobox")).toHaveTextContent(
                 "All students",
             );
         });
@@ -167,7 +169,7 @@ describe("MultiSelect", () => {
             );
 
             // Assert
-            expect(screen.getByRole("button")).toHaveTextContent(
+            expect(screen.getByRole("combobox")).toHaveTextContent(
                 "All students",
             );
         });
@@ -186,7 +188,7 @@ describe("MultiSelect", () => {
             );
 
             // Act
-            const opener = screen.getByRole("button");
+            const opener = screen.getByRole("combobox");
 
             // Assert
             expect(opener).toHaveAttribute("data-test-id", "some-test-id");
@@ -471,7 +473,7 @@ describe("MultiSelect", () => {
             // Arrange
             render(filterableSingleSelect);
             // open the dropdown menu
-            userEvent.click(screen.getByRole("button"));
+            userEvent.click(screen.getByRole("combobox"));
 
             // Act
             const searchInput = screen.getByPlaceholderText("Filter");
@@ -484,7 +486,7 @@ describe("MultiSelect", () => {
             // Arrange
             render(filterableSingleSelect);
             // open the dropdown menu
-            userEvent.click(screen.getByRole("button"));
+            userEvent.click(screen.getByRole("combobox"));
 
             const searchInput = screen.getByPlaceholderText("Filter");
 
@@ -499,7 +501,7 @@ describe("MultiSelect", () => {
             // Arrange
             render(filterableSingleSelect);
             // open the dropdown menu
-            userEvent.click(screen.getByRole("button"));
+            userEvent.click(screen.getByRole("combobox"));
 
             const searchInput = screen.getByPlaceholderText("Filter");
 
@@ -525,7 +527,7 @@ describe("MultiSelect", () => {
                 </MultiSelect>,
             );
             // open the dropdown menu
-            userEvent.click(screen.getByRole("button"));
+            userEvent.click(screen.getByRole("combobox"));
 
             const searchInput = screen.getByPlaceholderText("Filter");
 
@@ -540,7 +542,7 @@ describe("MultiSelect", () => {
             // Arrange
             render(filterableSingleSelect);
             // open the dropdown menu
-            userEvent.click(screen.getByRole("button"));
+            userEvent.click(screen.getByRole("combobox"));
 
             // Act
             const searchInput = screen.getByPlaceholderText("Filter");
@@ -567,7 +569,7 @@ describe("MultiSelect", () => {
 
             // Act
             // open the dropdown menu
-            userEvent.click(screen.getByRole("button"));
+            userEvent.click(screen.getByRole("combobox"));
 
             // Assert
             expect(screen.getByRole("listbox")).toHaveTextContent(
@@ -591,7 +593,7 @@ describe("MultiSelect", () => {
                 </MultiSelect>,
             );
 
-            userEvent.click(screen.getByRole("button"));
+            userEvent.click(screen.getByRole("combobox"));
 
             const searchInput = screen.getByPlaceholderText("Filter");
             userEvent.paste(searchInput, "Item 2");
@@ -621,7 +623,7 @@ describe("MultiSelect", () => {
                 </MultiSelect>,
             );
             // open the dropdown menu
-            userEvent.click(screen.getByRole("button"));
+            userEvent.click(screen.getByRole("combobox"));
 
             const searchInput = screen.getByPlaceholderText("Filter");
             userEvent.paste(searchInput, "some text");
@@ -638,7 +640,7 @@ describe("MultiSelect", () => {
             // Arrange
             render(filterableSingleSelect);
             // open the dropdown menu
-            userEvent.click(screen.getByRole("button"));
+            userEvent.click(screen.getByRole("combobox"));
 
             const searchInput = screen.getByPlaceholderText("Filter");
             userEvent.paste(searchInput, "Should be cleared");
@@ -656,7 +658,7 @@ describe("MultiSelect", () => {
             // Arrange
             render(filterableSingleSelect);
             // open the dropdown menu
-            const opener = screen.getByRole("button");
+            const opener = screen.getByRole("combobox");
             userEvent.click(opener);
 
             const searchInput = screen.getByPlaceholderText("Filter");
@@ -1190,7 +1192,7 @@ describe("MultiSelect", () => {
             rerender(<TranslatedComponent labels={updatedLabels} />);
 
             // Act
-            const opener = screen.getByRole("button");
+            const opener = screen.getByRole("combobox");
             // open dropdown
             userEvent.click(opener);
 

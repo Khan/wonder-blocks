@@ -142,7 +142,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
                             disabled={disabled}
                             id={id}
                             style={style}
-                            type="button"
+                            role="combobox"
                             {...childrenProps}
                         >
                             <LabelMedium style={styles.text}>
