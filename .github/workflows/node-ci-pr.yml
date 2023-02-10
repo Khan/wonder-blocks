@@ -147,7 +147,7 @@ jobs:
         uses: preactjs/compressed-size-action@v2
         with:
           # Specify our custom build script
-          build-script: "build:es6"
+          build-script: "build"
           # Clean up state between builds
           clean-script: "clean"
           # Any JS files anywhere within a dist directory:
