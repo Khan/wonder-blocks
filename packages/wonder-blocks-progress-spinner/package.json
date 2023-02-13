@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-progress-spinner",
-  "version": "1.1.36",
+  "version": "1.1.38",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -17,7 +17,7 @@
   "dependencies": {
     "@babel/runtime": "^7.18.6",
     "@khanacademy/wonder-blocks-color": "^1.2.0",
-    "@khanacademy/wonder-blocks-core": "^4.5.0",
+    "@khanacademy/wonder-blocks-core": "^4.6.1",
     "@khanacademy/wonder-blocks-spacing": "^3.0.5"
   },
   "peerDependencies": {
@@ -25,6 +25,6 @@
     "react": "16.14.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.4.0"
+    "wb-dev-build-settings": "^0.6.0"
   }
 }
