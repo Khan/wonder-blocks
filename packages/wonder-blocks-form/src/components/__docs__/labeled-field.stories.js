@@ -4,10 +4,10 @@ import {StyleSheet} from "aphrodite";
 
 import {LabeledField} from "@khanacademy/wonder-blocks-form";
 import {RenderStateRoot, View} from "@khanacademy/wonder-blocks-core";
-// import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-// import {Strut} from "@khanacademy/wonder-blocks-layout";
+
 import {
     MultiSelect,
     SingleSelect,
@@ -255,10 +255,76 @@ export const AsyncTextField: StoryComponentType = (args) => {
     );
 };
 
+export const SentenceForms: StoryComponentType = (args) => {
+    const [selectedValue, setSelectedValue] = React.useState("invalid");
+
+    return (
+        <View>
+            <HeadingMedium>
+                How should we handle dropdowns with labels?
+            </HeadingMedium>
+            <p>
+                One way to handle sentence forms is to{" "}
+                <LabeledField
+                    id="some-ltf-id"
+                    label="include the label next to the dropdown, "
+                    style={styles.inlineLabel}
+                    layout="inline"
+                    field={
+                        <SingleSelect
+                            onChange={setSelectedValue}
+                            selectedValue={selectedValue}
+                            placeholder="choose"
+                        >
+                            <OptionItem
+                                label="Yes, include the label next to the dropdown."
+                                value="with-label"
+                            />
+                            <OptionItem
+                                label="No, use the hidden label."
+                                value="hidden-label"
+                            />
+                        </SingleSelect>
+                    }
+                />
+                Another way is to use the hidden label. Taking the approach of
+                using the{" "}
+                <LabeledField
+                    id="some-ltf-id"
+                    label="hidden label, "
+                    isLabelHidden={true}
+                    style={styles.inlineLabel}
+                    layout="inline"
+                    field={
+                        <SingleSelect
+                            onChange={setSelectedValue}
+                            selectedValue={selectedValue}
+                            placeholder="choose"
+                        >
+                            <OptionItem
+                                label="inline label"
+                                value="with-label"
+                            />
+                            <OptionItem
+                                label="hidden label"
+                                value="hidden-label"
+                            />
+                        </SingleSelect>
+                    }
+                />{" "}
+                would be the best approach for a11y reasons.
+            </p>
+        </View>
+    );
+};
+
 const styles = StyleSheet.create({
     example: {
         border: `1px dashed ${Color.offBlack16}`,
         padding: Spacing.large_24,
-        width: 320 + Spacing.xxLarge_48,
+        minWidth: 320 + Spacing.xxLarge_48,
+    },
+    inlineLabel: {
+        display: "inline",
     },
 });

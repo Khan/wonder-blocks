@@ -99,6 +99,8 @@ type Props = {|
      * on change.
      */
     onValidate?: (errorMessage: ?string) => mixed,
+
+    layout?: "stacked" | "horizontal" | "inline",
 |};
 
 /**
@@ -267,6 +269,9 @@ const LabeledField: React.AbstractComponent<Props, HTMLElement> =
             required: required,
             testId: testId && `${testId}-field`,
             ref,
+            style: [
+                props.layout === "inline" ? {display: "inline-flex"} : null,
+            ],
             ...maybeIncludeValidationProps(),
         });
 
@@ -274,12 +279,14 @@ const LabeledField: React.AbstractComponent<Props, HTMLElement> =
             <FieldHeading
                 id={uniqueId}
                 label={label}
+                isLabelHidden={props.isLabelHidden}
                 description={description}
                 field={Field}
                 error={shouldDisplayError() && error}
                 required={!!required}
                 style={style}
                 testId={testId}
+                layout={props.layout}
             />
         );
     });

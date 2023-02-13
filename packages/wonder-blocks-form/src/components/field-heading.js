@@ -51,6 +51,22 @@ type Props = {|
      * Optional test ID for e2e testing.
      */
     testId?: string,
+
+    /**
+     * Whether the label should be visually hidden.
+     */
+    isLabelHidden?: boolean,
+
+    /**
+     * The layout of the field heading.
+     * - "stacked": The label, description, and error are stacked vertically.
+     * - "horizontal": The label and description are stacked vertically, but the
+     *  error is displayed horizontally.
+     * - "inline": The label, description, and error are displayed horizontally.
+     *
+     * The default is "stacked".
+     */
+    layout?: "stacked" | "horizontal" | "inline",
 |};
 
 const StyledSpan = addStyle("span");
@@ -73,7 +89,11 @@ export default class FieldHeading extends React.Component<Props> {
         return (
             <React.Fragment>
                 <LabelMedium
-                    style={styles.label}
+                    style={[
+                        styles.label,
+                        this.props.layout === "inline" && styles.inline,
+                        this.props.isLabelHidden && styles.srOnly,
+                    ]}
                     tag="label"
                     htmlFor={id && `${id}-field`}
                     testId={testId && `${testId}-label`}
@@ -81,7 +101,9 @@ export default class FieldHeading extends React.Component<Props> {
                     {label}
                     {required && requiredIcon}
                 </LabelMedium>
-                <Strut size={Spacing.xxxSmall_4} />
+                {this.props.layout !== "inline" && (
+                    <Strut size={Spacing.xxxSmall_4} />
+                )}
             </React.Fragment>
         );
     }
@@ -96,12 +118,17 @@ export default class FieldHeading extends React.Component<Props> {
         return (
             <React.Fragment>
                 <LabelSmall
-                    style={styles.description}
+                    style={[
+                        styles.description,
+                        this.props.layout === "inline" && styles.inline,
+                    ]}
                     testId={testId && `${testId}-description`}
                 >
                     {description}
                 </LabelSmall>
-                <Strut size={Spacing.xxxSmall_4} />
+                {this.props.layout !== "inline" && (
+                    <Strut size={Spacing.xxxSmall_4} />
+                )}
             </React.Fragment>
         );
     }
@@ -115,9 +142,14 @@ export default class FieldHeading extends React.Component<Props> {
 
         return (
             <React.Fragment>
-                <Strut size={Spacing.small_12} />
+                {this.props.layout !== "inline" && (
+                    <Strut size={Spacing.small_12} />
+                )}
                 <LabelSmall
-                    style={styles.error}
+                    style={[
+                        styles.error,
+                        this.props.layout === "inline" && styles.inline,
+                    ]}
                     role="alert"
                     id={id && `${id}-error`}
                     testId={testId && `${testId}-error`}
@@ -129,13 +161,15 @@ export default class FieldHeading extends React.Component<Props> {
     }
 
     render(): React.Node {
-        const {field, style} = this.props;
+        const {field, layout, style} = this.props;
 
         return (
-            <View style={style}>
+            <View style={[style, layout === "inline" && {display: "inline"}]}>
                 {this.renderLabel()}
                 {this.maybeRenderDescription()}
-                <Strut size={Spacing.xSmall_8} />
+                {this.props.layout !== "inline" && (
+                    <Strut size={Spacing.xSmall_8} />
+                )}
                 {field}
                 {this.maybeRenderError()}
             </View>
@@ -144,6 +178,9 @@ export default class FieldHeading extends React.Component<Props> {
 }
 
 const styles = StyleSheet.create({
+    inline: {
+        display: "inline-flex",
+    },
     label: {
         color: Color.offBlack,
     },
@@ -155,5 +192,15 @@ const styles = StyleSheet.create({
     },
     required: {
         color: Color.red,
+    },
+    srOnly: {
+        border: 0,
+        clip: "rect(0,0,0,0)",
+        height: 1,
+        margin: -1,
+        overflow: "hidden",
+        padding: 0,
+        position: "absolute",
+        width: 1,
     },
 });
