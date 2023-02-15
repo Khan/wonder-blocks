@@ -6,6 +6,7 @@ import type {StoryComponentType} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
     Title,
     HeadingLarge,
@@ -290,5 +291,60 @@ CodeFont.parameters = {
         storyDescription: `One example of using the \`BodyMonospace\`
             typography component is to create a \`Code\` component for
             rendering pre-formatted code blocks.`,
+    },
+};
+
+export const Paragraph: StoryComponentType = () => {
+    const longParagraph = `This is an example of a long paragraph.
+        Khan Academy offers practice exercises, instructional videos,
+        and a personalized learning dashboard that empower learners
+        to study at their own pace in and outside of the classroom.
+        We tackle math, science, computing, history, art history, economics,
+        and more, including K-14 and test preparation (SAT, Praxis, LSAT)
+        content. We focus on skill mastery to help learners establish
+        strong foundations, so there's no limit to what they can learn next!`;
+
+    return <Body>{longParagraph}</Body>;
+};
+
+Paragraph.parameters = {
+    docs: {
+        storyDescription: `The \`Body\` typography component is usually used
+            for paragraphs and other body text.`,
+    },
+};
+
+export const LineHeight: StoryComponentType = () => {
+    const style = {
+        outline: `1px solid ${Color.offBlack}`,
+        marginBottom: Spacing.small_12,
+    };
+
+    return (
+        <View>
+            <Title style={style}>Title</Title>
+            <HeadingLarge style={style}>HeadingLarge</HeadingLarge>
+            <HeadingMedium style={style}>HeadingMedium</HeadingMedium>
+            <HeadingSmall style={style}>HeadingSmall</HeadingSmall>
+            <HeadingXSmall style={style}>HeadingXSmall</HeadingXSmall>
+            <BodySerifBlock style={style}>BodySerifBlock</BodySerifBlock>
+            <BodySerif style={style}>BodySerif</BodySerif>
+            <BodyMonospace style={style}>BodyMonospace</BodyMonospace>
+            <Body style={style}>Body</Body>
+            <LabelLarge style={style}>LabelLarge</LabelLarge>
+            <LabelMedium style={style}>LabelMedium</LabelMedium>
+            <LabelSmall style={style}>LabelSmall</LabelSmall>
+            <LabelXSmall style={style}>LabelXSmall</LabelXSmall>
+            <Tagline style={style}>Tagline</Tagline>
+            <Caption style={style}>Caption</Caption>
+            <Footnote style={style}>Footnote</Footnote>
+        </View>
+    );
+};
+
+LineHeight.parameters = {
+    docs: {
+        storyDescription: `This is a visualization of the line height
+            for each typography element.`,
     },
 };
