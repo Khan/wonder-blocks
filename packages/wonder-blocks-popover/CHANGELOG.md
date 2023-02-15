@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-popover
 
+## 1.1.28
+
+### Patch Changes
+
+-   496119f2: Cleanup WB interdependencies
+-   Updated dependencies [496119f2]
+    -   @khanacademy/wonder-blocks-core@4.6.2
+    -   @khanacademy/wonder-blocks-modal@3.0.5
+    -   @khanacademy/wonder-blocks-icon@1.2.35
+    -   @khanacademy/wonder-blocks-icon-button@3.4.19
+    -   @khanacademy/wonder-blocks-tooltip@1.4.4
+    -   @khanacademy/wonder-blocks-typography@1.1.37
+
 ## 1.1.27
 
 ### Patch Changes

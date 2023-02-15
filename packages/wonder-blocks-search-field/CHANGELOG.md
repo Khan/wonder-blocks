@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 1.0.17
+
+### Patch Changes
+
+-   496119f2: Cleanup WB interdependencies
+-   Updated dependencies [496119f2]
+    -   @khanacademy/wonder-blocks-core@4.6.2
+    -   @khanacademy/wonder-blocks-form@3.1.9
+    -   @khanacademy/wonder-blocks-icon@1.2.35
+    -   @khanacademy/wonder-blocks-icon-button@3.4.19
+    -   @khanacademy/wonder-blocks-typography@1.1.37
+
 ## 1.0.16
 
 ### Patch Changes
