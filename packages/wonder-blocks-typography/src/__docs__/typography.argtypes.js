@@ -17,11 +17,6 @@ export default {
         table: {type: {summary: "string"}},
         type: {required: false},
     },
-    tabIndex: {
-        control: {type: "number"},
-        table: {type: {summary: "number"}},
-        type: {required: false},
-    },
     id: {
         control: {type: "text"},
         description: "Unique identifier.",
