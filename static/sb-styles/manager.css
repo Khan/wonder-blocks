@@ -1,0 +1,8 @@
+/**
+ * Overrides for the Storybok manager UI.
+ */
+@import "./vars.css";
+
+.sidebar-item {
+    font-size: var(--typography-body-size-sm) !important;
+}

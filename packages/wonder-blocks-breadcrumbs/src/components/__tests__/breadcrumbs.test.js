@@ -1,14 +1,13 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
 import Breadcrumbs from "../breadcrumbs.js";
 import BreadcrumbsItem from "../breadcrumbs-item.js";
 
 describe("Breadcrumbs", () => {
     it("should set aria-current to the last item", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <Breadcrumbs>
                 <BreadcrumbsItem>First</BreadcrumbsItem>
                 <BreadcrumbsItem>Last</BreadcrumbsItem>
@@ -16,15 +15,15 @@ describe("Breadcrumbs", () => {
         );
 
         // Act
-        const lastItem = wrapper.find(BreadcrumbsItem).last();
+        const lastItem = screen.getAllByRole("listitem")[1];
 
         // Assert
-        expect(lastItem.prop("aria-current")).toBe("page");
+        expect(lastItem).toHaveAttribute("aria-current", "page");
     });
 
     it("should add data-test-id if testId is set", () => {
         // Arrange, Act
-        const wrapper = mount(
+        render(
             <Breadcrumbs testId="test">
                 <BreadcrumbsItem>First</BreadcrumbsItem>
                 <BreadcrumbsItem>Last</BreadcrumbsItem>
@@ -32,6 +31,9 @@ describe("Breadcrumbs", () => {
         );
 
         // Assert
-        expect(wrapper.find(`[data-test-id="test"]`)).toExist();
+        expect(screen.getByRole("navigation")).toHaveAttribute(
+            "data-test-id",
+            "test",
+        );
     });
 });

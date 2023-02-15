@@ -91,7 +91,7 @@ export default class PopoverContentCore extends React.Component<Props> {
 
         return (
             <View
-                data-test-id={testId}
+                testId={testId}
                 style={[
                     styles.content,
                     color !== "white" && styles[color],
