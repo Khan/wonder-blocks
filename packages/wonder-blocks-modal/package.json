@@ -23,6 +23,7 @@
     "@khanacademy/wonder-blocks-icon-button": "^3.4.18",
     "@khanacademy/wonder-blocks-layout": "^1.4.14",
     "@khanacademy/wonder-blocks-spacing": "^3.0.5",
+    "@khanacademy/wonder-blocks-timing": "^2.1.0",
     "@khanacademy/wonder-blocks-typography": "^1.1.36"
   },
   "peerDependencies": {
@@ -31,6 +32,7 @@
     "react-dom": "16.14.0"
   },
   "devDependencies": {
+    "@khanacademy/wonder-blocks-breadcrumbs": "^1.0.36",
     "wb-dev-build-settings": "^0.6.0"
   }
 }
