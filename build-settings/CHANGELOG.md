@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 0.7.0
+
+### Minor Changes
+
+-   b4568941: Re-introducing CJS bundles (using Rollup)
+
 ## 0.6.0
 
 ### Minor Changes
