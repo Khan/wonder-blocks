@@ -288,7 +288,7 @@ export const CodeFont: StoryComponentType = () => {
 CodeFont.parameters = {
     docs: {
         storyDescription: `One example of using the \`BodyMonospace\`
-            typography component is to create a Code component for
+            typography component is to create a \`Code\` component for
             rendering pre-formatted code blocks.`,
     },
 };
