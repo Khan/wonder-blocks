@@ -63,7 +63,7 @@ export const ControlProps: StoryComponentType = (args) => <Title {...args} />;
 
 ControlProps.args = {
     children: "This is a Title typography element",
-    id: "example-Title",
+    id: "example-title",
 };
 
 export const TypographyElements: StoryComponentType = () => (
