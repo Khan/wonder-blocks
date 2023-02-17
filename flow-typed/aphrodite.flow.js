@@ -273,6 +273,7 @@ type _CSSProperties = {|
     textScript?: any,
     textShadow?: any,
     textTransform?: any,
+    textUnderlineOffset?: any,
     textUnderlinePosition?: any,
     textUnderlineStyle?: any,
     top?: any,

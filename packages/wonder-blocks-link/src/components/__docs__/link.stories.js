@@ -1,5 +1,10 @@
+// We need to use fireEvent for mouseDown in these tests, none of the userEvent
+// alternatives work. Click includes mouseUp, which removes the pressed style.
+/* eslint-disable testing-library/prefer-user-event */
 // @flow
+import {expect} from "@storybook/jest";
 import * as React from "react";
+import {within, userEvent, fireEvent} from "@storybook/testing-library";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
@@ -7,11 +12,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {
-    Body,
-    HeadingSmall,
-    LabelLarge,
-} from "@khanacademy/wonder-blocks-typography";
+import {HeadingSmall, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {StoryComponentType} from "@storybook/react";
 
 import LinkArgTypes from "./link.argtypes.js";
@@ -29,6 +30,9 @@ export default {
     argTypes: LinkArgTypes,
 };
 
+const activeBlue = "#1b50b3";
+const fadedBlue = "#b5cefb";
+
 export const Default: StoryComponentType = (args) => (
     <Link target="_blank" {...args} />
 );
@@ -39,7 +43,7 @@ Default.args = {
 };
 
 export const Basic: StoryComponentType = () => (
-    <Link href="#">Hello, world!</Link>
+    <Link href="#">The quick brown fox jumps over the lazy dog.</Link>
 );
 
 Basic.parameters = {
@@ -49,22 +53,128 @@ Basic.parameters = {
     },
 };
 
+Basic.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const link = canvas.getByRole("link");
+
+    await userEvent.hover(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline ${Color.blue} dashed`,
+    );
+
+    await fireEvent.mouseDown(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline solid ${activeBlue}}`,
+    );
+};
+
+export const Secondary: StoryComponentType = () => (
+    <Link href="#" kind="secondary">
+        The quick brown fox jumps over the lazy dog.
+    </Link>
+);
+
+Secondary.parameters = {
+    docs: {
+        storyDescription: `Minimal secondary link usage. A secondary link
+            has lighter text. This links to the top of the page.`,
+    },
+};
+
+Secondary.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const link = canvas.getByRole("link");
+
+    await userEvent.hover(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline ${Color.offBlack64} dashed`,
+    );
+
+    await fireEvent.mouseDown(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline solid ${Color.offBlack}}`,
+    );
+};
+
+export const Visitable: StoryComponentType = () => (
+    <Link href="#" visitable={true}>
+        The quick brown fox jumps over the lazy dog.
+    </Link>
+);
+
+Visitable.parameters = {
+    docs: {
+        storyDescription: `This is a visitable link. It changes color after
+            it has been clicked on to indicate that it's been visited before.
+            This link's \`visitable\` prop is set to true.
+            It links to the top of the page.`,
+    },
+};
+
+export const LightBasic: StoryComponentType = () => (
+    <Link href="#" light={true}>
+        The quick brown fox jumps over the lazy dog.
+    </Link>
+);
+
+LightBasic.parameters = {
+    docs: {
+        storyDescription: `Minimal link usage on a dark background. This
+            link has its \`light\` prop set to true. It links to the top
+            of the page.`,
+    },
+    backgrounds: {
+        default: "darkBlue",
+    },
+};
+
+LightBasic.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const link = canvas.getByRole("link");
+
+    await userEvent.hover(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline ${Color.white} dashed`,
+    );
+
+    await fireEvent.mouseDown(link);
+    await expect(link).toHaveStyle(
+        `text-decoration: underline solid ${fadedBlue}}`,
+    );
+};
+
+export const LightVisitable: StoryComponentType = () => (
+    <Link href="#" light={true} visitable={true}>
+        The quick brown fox jumps over the lazy dog.
+    </Link>
+);
+
+LightVisitable.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
+    docs: {
+        storyDescription: `This is a visitable link on a dark background.
+            It changes color after it has been clicked on to indicate
+            that it's been visited before. This link's \`visitable\` prop
+            is set to true. It links to the top of the page.`,
+    },
+};
+
 export const Variants: StoryComponentType = () => (
-    <Body>
-        I am a <Link href="#nonexistent-link">Primary Link</Link>.{" "}
-        <span style={{color: Color.offBlack64}}>
-            My friend the{" "}
-            <Link href="#secondary-nonexistent-link" kind="secondary">
-                Secondary Link
-            </Link>{" "}
-            is used here with a lighter text.
-        </span>{" "}
-        We also have a{" "}
+    <View>
+        <Link href="#nonexistent-link">Primary Link</Link>
+        <Link href="#secondary-nonexistent-link" kind="secondary">
+            Secondary Link
+        </Link>
+
         <Link href="#" visitable={true}>
-            Visitable Primary Link
-        </Link>{" "}
-        friend.
-    </Body>
+            Visitable Link (Primary only)
+        </Link>
+    </View>
 );
 
 Variants.parameters = {
@@ -75,17 +185,20 @@ Variants.parameters = {
 };
 
 export const LightVariants: StoryComponentType = () => (
-    <Body style={styles.darkBackground}>
-        I am a{" "}
-        <Link href="#dark-link" light={true}>
-            Primary Link
-        </Link>{" "}
-        used on a dark background. My friend the Secondary Link is not supported
-        on this dark background.
-    </Body>
+    <View>
+        <Link href="#nonexistent-link" light={true}>
+            Light Link (Primary only)
+        </Link>
+        <Link href="#" visitable={true} light={true}>
+            Light Visitable Link (Primary only)
+        </Link>
+    </View>
 );
 
 LightVariants.parameters = {
+    backgrounds: {
+        default: "darkBlue",
+    },
     docs: {
         storyDescription: `Links are white on a dark background when the
             \`light\` prop is true. Secondary \`light\` links are not supported.
@@ -176,7 +289,7 @@ Navigation.parameters = {
 const styles = StyleSheet.create({
     darkBackground: {
         backgroundColor: Color.darkBlue,
-        color: Color.white64,
+        color: Color.white,
         padding: 10,
     },
     heading: {
