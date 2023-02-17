@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-progress-spinner
 
+## 1.1.39
+
+### Patch Changes
+
+-   496119f2: Cleanup WB interdependencies
+-   Updated dependencies [496119f2]
+    -   @khanacademy/wonder-blocks-core@4.6.2
+
+## 1.1.38
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-core@4.6.1
+
 ## 1.1.37
 
 ### Patch Changes

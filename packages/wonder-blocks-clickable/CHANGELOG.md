@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 2.4.4
+
+### Patch Changes
+
+-   496119f2: Cleanup WB interdependencies
+-   Updated dependencies [496119f2]
+    -   @khanacademy/wonder-blocks-core@4.6.2
+
+## 2.4.3
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-core@4.6.1
+
 ## 2.4.2
 
 ### Patch Changes
