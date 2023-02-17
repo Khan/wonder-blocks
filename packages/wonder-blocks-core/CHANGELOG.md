@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-core
 
+## 4.6.2
+
+### Patch Changes
+
+-   496119f2: Cleanup WB interdependencies
+
+## 4.6.1
+
 ## 4.6.0
 
 ### Minor Changes

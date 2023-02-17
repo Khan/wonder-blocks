@@ -1,5 +1,17 @@
 # wb-dev-build-settings
 
+## 0.7.0
+
+### Minor Changes
+
+-   b4568941: Re-introducing CJS bundles (using Rollup)
+
+## 0.6.0
+
+### Minor Changes
+
+-   382d7e1a: Put back flow types with build files.
+
 ## 0.5.0
 
 ### Minor Changes

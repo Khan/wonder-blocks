@@ -1,5 +1,29 @@
 # @khanacademy/wonder-blocks-modal
 
+## 3.0.5
+
+### Patch Changes
+
+-   496119f2: Cleanup WB interdependencies
+-   Updated dependencies [496119f2]
+    -   @khanacademy/wonder-blocks-breadcrumbs@1.0.37
+    -   @khanacademy/wonder-blocks-core@4.6.2
+    -   @khanacademy/wonder-blocks-icon@1.2.35
+    -   @khanacademy/wonder-blocks-icon-button@3.4.19
+    -   @khanacademy/wonder-blocks-layout@1.4.15
+    -   @khanacademy/wonder-blocks-typography@1.1.37
+
+## 3.0.4
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-breadcrumbs@1.0.36
+-   @khanacademy/wonder-blocks-core@4.6.1
+-   @khanacademy/wonder-blocks-icon@1.2.34
+-   @khanacademy/wonder-blocks-icon-button@3.4.18
+-   @khanacademy/wonder-blocks-layout@1.4.14
+-   @khanacademy/wonder-blocks-typography@1.1.36
+
 ## 3.0.3
 
 ### Patch Changes
