@@ -33,6 +33,7 @@ export default class LinkCore extends React.Component<Props> {
             focused,
             hovered,
             href,
+            inline,
             kind,
             light,
             visitable,
@@ -43,16 +44,22 @@ export default class LinkCore extends React.Component<Props> {
             ...restProps
         } = this.props;
 
-        const linkStyles = _generateStyles(kind, light, visitable);
+        const linkStyles = _generateStyles(inline, kind, light, visitable);
+        const restingStyles = inline
+            ? linkStyles.restingInline
+            : linkStyles.resting;
 
         const defaultStyles = [
             sharedStyles.shared,
-            !(hovered || focused || pressed) && linkStyles.default,
-            pressed
-                ? linkStyles.active
-                : hovered
-                ? linkStyles.hover
-                : focused && linkStyles.focus,
+            !(hovered || focused || pressed) && restingStyles,
+            pressed && linkStyles.active,
+            // A11y: The focus ring should always be present when the
+            // the link has focus, even the link is being hovered over.
+            // TODO(WB-1498): Udpate ClickableBehavior so that focus doesn't
+            // stop on mouseleave. We want the focus ring to remain on a
+            // focused link even after hovering and un-hovering on it.
+            !pressed && hovered && linkStyles.hover,
+            !pressed && focused && linkStyles.focus,
         ];
 
         const commonProps = {
@@ -89,11 +96,13 @@ const sharedStyles = StyleSheet.create({
         textDecoration: "none",
         outline: "none",
         display: "inline-flex",
+        fontSize: 16,
+        lineHeight: "22px",
     },
 });
 
-const _generateStyles = (kind, light, visitable) => {
-    const buttonType = kind + light.toString() + visitable.toString();
+const _generateStyles = (inline, kind, light, visitable) => {
+    const buttonType = `${kind}-${inline.toString()}-${light.toString()}-${visitable.toString()}`;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
@@ -108,15 +117,26 @@ const _generateStyles = (kind, light, visitable) => {
 
     const {blue, pink, purple, white, offBlack, offBlack32, offBlack64} = Color;
 
+    // Standard purple
     const linkPurple = mix(fade(offBlack, 0.08), purple);
+    // Light blue
     const fadedBlue = mix(fade(blue, 0.32), white);
+    // Light pink
     const activeLightVisited = mix(fade(white, 0.32), pink);
+    // Dark blue
+    const activeDefaultPrimary = mix(offBlack32, blue);
 
+    const primaryDefaultTextColor = light ? white : blue;
+    const secondaryDefaultTextColor = inline ? offBlack : offBlack64;
     const defaultTextColor =
-        kind === "primary" ? (light ? white : blue) : offBlack64;
+        kind === "primary"
+            ? primaryDefaultTextColor
+            : secondaryDefaultTextColor;
 
-    const primaryActiveColor = light ? fadedBlue : mix(offBlack32, blue);
-    const activeColor = kind === "primary" ? primaryActiveColor : offBlack;
+    const primaryActiveColor = light ? fadedBlue : activeDefaultPrimary;
+    const secondaryActiveColor = inline ? activeDefaultPrimary : offBlack;
+    const activeColor =
+        kind === "primary" ? primaryActiveColor : secondaryActiveColor;
 
     const defaultVisited = visitable
         ? {
@@ -136,14 +156,20 @@ const _generateStyles = (kind, light, visitable) => {
         : Object.freeze({});
 
     const newStyles: StyleDeclaration = {
-        default: {
+        resting: {
             color: defaultTextColor,
             ...defaultVisited,
         },
-        hover: {
-            textDecoration: "underline currentcolor dashed",
-            textUnderlineOffset: 4,
+        restingInline: {
             color: defaultTextColor,
+            textDecoration: "underline currentcolor solid 1px",
+            textUnderlineOffset: 4,
+            ...defaultVisited,
+        },
+        hover: {
+            textDecoration: "underline currentcolor dashed 2px",
+            color: defaultTextColor,
+            textUnderlineOffset: 4,
             ...defaultVisited,
         },
         focus: {
@@ -154,7 +180,7 @@ const _generateStyles = (kind, light, visitable) => {
         },
         active: {
             color: activeColor,
-            textDecoration: "underline currentcolor solid",
+            textDecoration: "underline currentcolor solid 1px",
             textUnderlineOffset: 4,
             ...activeVisited,
         },
