@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-testing
 
+## 7.1.9
+
+### Patch Changes
+
+-   1a5624d4: Update wonder-stuff dependencies to use newly published packages after migrating wonder-stuff to TypeScript
+-   Updated dependencies [1a5624d4]
+    -   @khanacademy/wonder-blocks-data@10.0.5
+
 ## 7.1.8
 
 ### Patch Changes

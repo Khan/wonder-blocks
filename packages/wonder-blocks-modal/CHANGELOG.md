@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-modal
 
+## 3.0.6
+
+### Patch Changes
+
+-   Updated dependencies [1a5624d4]
+    -   @khanacademy/wonder-blocks-icon@1.2.36
+    -   @khanacademy/wonder-blocks-icon-button@3.4.20
+
 ## 3.0.5
 
 ### Patch Changes

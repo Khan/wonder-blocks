@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-link
 
+## 3.9.0
+
+### Minor Changes
+
+-   4fa99654: Add inline variant and update styles
+
+### Patch Changes
+
+-   48aceaad: Updated hover and outline styles.
+
 ## 3.8.17
 
 ### Patch Changes
