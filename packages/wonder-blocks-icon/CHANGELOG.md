@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-icon
 
+## 1.2.36
+
+### Patch Changes
+
+-   1a5624d4: Update wonder-stuff dependencies to use newly published packages after migrating wonder-stuff to TypeScript
+
 ## 1.2.35
 
 ### Patch Changes
