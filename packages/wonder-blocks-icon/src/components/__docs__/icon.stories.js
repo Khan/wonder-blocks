@@ -5,8 +5,9 @@ import {entries} from "@khanacademy/wonder-stuff-core";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons, type IconAsset} from "@khanacademy/wonder-blocks-icon";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info.js";
 import {name, version} from "../../../package.json";
@@ -96,18 +97,23 @@ Sizes.parameters = {
 };
 
 export const Variants: StoryComponentType = () => {
-    const iconsWithLabels = entries<IconAsset>(icons).map(([name, icon]) => {
-        return (
-            <tr>
-                <td>
-                    <Icon icon={icon} />
-                </td>
-                <td>
-                    <LabelMedium>{name}</LabelMedium>
-                </td>
-            </tr>
-        );
-    });
+    // TODO(FEI-5018): Replace with Object.entries() after TS migration and get rid of
+    // `any` in callback.  We may need to specify `IconAsset` as a type param.  This
+    // doesn't work with Flow + Storybook for some reason.
+    const iconsWithLabels = entries(icons).map(
+        ([name, icon]: [string, any]) => {
+            return (
+                <tr>
+                    <td>
+                        <Icon icon={icon} />
+                    </td>
+                    <td>
+                        <LabelMedium>{name}</LabelMedium>
+                    </td>
+                </tr>
+            );
+        },
+    );
 
     return <table>{iconsWithLabels}</table>;
 };
