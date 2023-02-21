@@ -96,7 +96,7 @@ Sizes.parameters = {
 };
 
 export const Variants: StoryComponentType = () => {
-    const iconsWithLabels = entries(icons).map(([name, icon]) => {
+    const iconsWithLabels = entries<IconAsset>(icons).map(([name, icon]) => {
         return (
             <tr>
                 <td>
