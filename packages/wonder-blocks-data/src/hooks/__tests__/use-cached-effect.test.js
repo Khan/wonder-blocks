@@ -22,8 +22,8 @@ import {useCachedEffect} from "../use-cached-effect";
 // eslint-disable-next-line import/named
 import {FetchPolicy} from "../../util/types";
 
-jest.mock("../use-request-interception.js");
-jest.mock("../use-shared-cache.js");
+jest.mock("../use-request-interception");
+jest.mock("../use-shared-cache");
 
 const allPolicies = Array.from(FetchPolicy.members());
 const allPoliciesBut = (policy: FetchPolicy) =>

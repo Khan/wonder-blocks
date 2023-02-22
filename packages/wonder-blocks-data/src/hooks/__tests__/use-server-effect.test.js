@@ -13,7 +13,7 @@ import * as UseRequestInterception from "../use-request-interception";
 
 import {useServerEffect} from "../use-server-effect";
 
-jest.mock("../use-request-interception.js");
+jest.mock("../use-request-interception");
 
 describe("#useServerEffect", () => {
     beforeEach(() => {

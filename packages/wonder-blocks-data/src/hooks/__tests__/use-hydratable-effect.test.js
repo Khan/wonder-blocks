@@ -23,9 +23,9 @@ import {
     WhenClientSide,
 } from "../use-hydratable-effect";
 
-jest.mock("../use-request-interception.js");
-jest.mock("../use-server-effect.js");
-jest.mock("../use-shared-cache.js");
+jest.mock("../use-request-interception");
+jest.mock("../use-server-effect");
+jest.mock("../use-shared-cache");
 
 describe("#useHydratableEffect", () => {
     beforeEach(() => {

@@ -39,7 +39,7 @@ describe("Icon", () => {
 
     test("creates a styled svg using addStyle", async () => {
         // Arrange
-        const importModulePromise = import("../icon.js");
+        const importModulePromise = import("../icon");
 
         // Act
         await importModulePromise;
@@ -50,7 +50,7 @@ describe("Icon", () => {
 
     test("applies aria-label to svg", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
+        const {default: Icon} = await import("../icon");
         const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
@@ -77,7 +77,7 @@ describe("Icon", () => {
 
     test("calls getPathForIcon", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
+        const {default: Icon} = await import("../icon");
         const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
@@ -102,7 +102,7 @@ describe("Icon", () => {
 
     test("calls viewportPixelsForSize with size from props and asset size from getPathForIcon", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
+        const {default: Icon} = await import("../icon");
         mockGetPathForIcon.mockImplementationOnce(() => ({
             assetSize: "large",
             path: "TESTPATH",
@@ -128,7 +128,7 @@ describe("Icon", () => {
 
     test("sets viewbox to asset dimensions", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
+        const {default: Icon} = await import("../icon");
         const expectedRenderSize = 42;
         const expectedAssetSize = 7;
         mockViewportPixelsForSize.mockImplementationOnce(
@@ -165,7 +165,7 @@ describe("Icon", () => {
 
     test("sets size to dimensions derived from size prop", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
+        const {default: Icon} = await import("../icon");
         const expectedRenderSize = 42;
         const expectedAssetSize = 7;
         mockViewportPixelsForSize.mockImplementationOnce(
@@ -203,7 +203,7 @@ describe("Icon", () => {
 
     test("sets inner path fill and d to color prop and path from getPathForIcon", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
+        const {default: Icon} = await import("../icon");
         mockGetPathForIcon.mockImplementationOnce(() => ({
             assetSize: "small",
             path: "TESTPATH",
@@ -239,7 +239,7 @@ describe("Icon", () => {
 
     test("applies style prop", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
+        const {default: Icon} = await import("../icon");
         mockGetPathForIcon.mockImplementationOnce(() => ({
             assetSize: "small",
             path: "TESTPATH",

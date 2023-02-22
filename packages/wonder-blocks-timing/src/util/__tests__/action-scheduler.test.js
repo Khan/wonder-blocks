@@ -5,9 +5,9 @@ import Interval from "../interval";
 import AnimationFrame from "../animation-frame";
 import {SchedulePolicy, ClearPolicy} from "../policies";
 
-jest.mock("../timeout.js");
-jest.mock("../interval.js");
-jest.mock("../animation-frame.js");
+jest.mock("../timeout");
+jest.mock("../interval");
+jest.mock("../animation-frame");
 
 describe("ActionScheduler", () => {
     afterEach(() => {

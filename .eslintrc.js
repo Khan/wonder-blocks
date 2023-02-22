@@ -65,6 +65,9 @@ module.exports = {
             "never",
             {
                 ignorePackages: true,
+                pattern: {
+                    json: "always",
+                },
             },
         ],
         "jest/no-focused-tests": "error",

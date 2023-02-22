@@ -10,7 +10,7 @@ import {
     TooltipDisappearanceDelay,
 } from "../../util/constants";
 
-jest.mock("../../util/active-tracker.js");
+jest.mock("../../util/active-tracker");
 
 describe("TooltipAnchor", () => {
     beforeEach(async () => {
@@ -28,7 +28,7 @@ describe("TooltipAnchor", () => {
         jest.useFakeTimers();
 
         const {default: ActiveTracker} = await import(
-            "../../util/active-tracker.js"
+            "../../util/active-tracker"
         );
         // We know there's one global instance of this import, so let's
         // reset it.
@@ -245,7 +245,7 @@ describe("TooltipAnchor", () => {
         test("active state was not stolen, delays set active", async () => {
             // Arrange
             const {default: ActiveTracker} = await import(
-                "../../util/active-tracker.js"
+                "../../util/active-tracker"
             );
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             // Let's tell the tooltip it isn't stealing and therefore it should
@@ -286,7 +286,7 @@ describe("TooltipAnchor", () => {
         test("active state was stolen, set active immediately", async () => {
             // Arrange
             const {default: ActiveTracker} = await import(
-                "../../util/active-tracker.js"
+                "../../util/active-tracker"
             );
             // Let's tell the tooltip it is stealing and therefore it should
             // not be using a delay to show the tooltip.
@@ -360,7 +360,7 @@ describe("TooltipAnchor", () => {
             // Arrange
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             const {default: ActiveTracker} = await import(
-                "../../util/active-tracker.js"
+                "../../util/active-tracker"
             );
             // Flow doesn't know this is a mock
             // $FlowFixMe[prop-missing]
@@ -438,7 +438,7 @@ describe("TooltipAnchor", () => {
             // Arrange
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             const {default: ActiveTracker} = await import(
-                "../../util/active-tracker.js"
+                "../../util/active-tracker"
             );
             // Flow doesn't know this is a mock
             // $FlowFixMe[prop-missing]
@@ -513,7 +513,7 @@ describe("TooltipAnchor", () => {
             // Arrange
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             const {default: ActiveTracker} = await import(
-                "../../util/active-tracker.js"
+                "../../util/active-tracker"
             );
             // Let's tell the tooltip it isn't stealing and therefore it should
             // be using a delay to show the tooltip.
@@ -552,7 +552,7 @@ describe("TooltipAnchor", () => {
         test("active state was stolen, set active immediately", async () => {
             // Arrange
             const {default: ActiveTracker} = await import(
-                "../../util/active-tracker.js"
+                "../../util/active-tracker"
             );
             // Let's tell the tooltip it is stealing and therefore it should
             // not be using a delay to show the tooltip.
@@ -624,7 +624,7 @@ describe("TooltipAnchor", () => {
             // Arrange
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             const {default: ActiveTracker} = await import(
-                "../../util/active-tracker.js"
+                "../../util/active-tracker"
             );
             // Flow doesn't know this is a mock
             // $FlowFixMe[prop-missing]
@@ -699,7 +699,7 @@ describe("TooltipAnchor", () => {
             // Arrange
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             const {default: ActiveTracker} = await import(
-                "../../util/active-tracker.js"
+                "../../util/active-tracker"
             );
             // Flow doesn't know this is a mock
             // $FlowFixMe[prop-missing]
