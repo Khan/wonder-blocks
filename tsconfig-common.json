@@ -4,6 +4,7 @@
     "compilerOptions": {
         /* Language and Environment */
         "target": "ES2016",
+        "jsx": "preserve",
         /* Modules */
         // Required for dynamic imports even though we aren't using
         // tsc to output any modules.
