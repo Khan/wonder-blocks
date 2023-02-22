@@ -3,4 +3,9 @@
 docs
 *.css
 *.yml
+flow-typed
 flow-typed/npm
+coverage
+storybook-static
+.storybook
+__docs__

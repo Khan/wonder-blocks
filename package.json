@@ -17,6 +17,7 @@
     "coverage:ci": "yarn run jest --coverage",
     "flow-ci": "flow check --max-workers 0",
     "flow": "flow",
+    "format": "prettier --write .",
     "jest": "jest --config config/jest/test.config.js",
     "lint:watch": "esw --watch --config ./eslint/eslintrc packages",
     "lint": "eslint --config .eslintrc.js .",
