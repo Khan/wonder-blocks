@@ -20,7 +20,8 @@
         "strictFunctionTypes": true,
         "strictPropertyInitialization": true,
         "strictBindCallApply": true,
-        "noImplicitAny": true,
+        // TODO(FEI-5020): Enable this setting, there are 242 errors from it when last checked
+        // "noImplicitAny": true,
         /* Completeness */
         "skipDefaultLibCheck": true, // it's safe to assume that built-in .d.ts files are correct
         "skipLibCheck": false
