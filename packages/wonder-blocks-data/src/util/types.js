@@ -4,29 +4,30 @@ import type {Metadata} from "@khanacademy/wonder-stuff-core";
 /**
  * Defines the various fetch policies that can be applied to requests.
  */
-export enum FetchPolicy {
+// TODO(FEI-5000): Convert to TS enum after all codebases have been migrated
+export const FetchPolicy = {
     /**
      * If the data is in the cache, return that; otherwise, fetch from the
      * server.
      */
-    CacheBeforeNetwork,
+    CacheBeforeNetwork: ("CacheBeforeNetwork": "CacheBeforeNetwork"),
 
     /**
      * If the data is in the cache, return that; always fetch from the server
      * regardless of cache.
      */
-    CacheAndNetwork,
+    CacheAndNetwork: ("CacheAndNetwork": "CacheAndNetwork"),
 
     /**
      * If the data is in the cache, return that; otherwise, do nothing.
      */
-    CacheOnly,
+    CacheOnly: ("CacheOnly": "CacheOnly"),
 
     /**
      * Ignore any existing cached result; always fetch from the server.
      */
-    NetworkOnly,
-}
+    NetworkOnly: ("NetworkOnly": "NetworkOnly"),
+};
 
 /**
  * Define what can be cached.

@@ -3,10 +3,6 @@ import * as React from "react";
 import {render} from "@testing-library/react";
 
 import {RenderStateRoot} from "../render-state-root";
-// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-// have fixed:
-// https://github.com/import-js/eslint-plugin-import/issues/2073
-// eslint-disable-next-line import/named
 import {RenderState, RenderStateContext} from "../render-state-context";
 
 const {useContext} = React;

@@ -1,8 +1,10 @@
 // @flow
 import {useContext} from "react";
 
-import {RenderStateContext} from "../components/render-state-context";
+import {
+    RenderState,
+    RenderStateContext,
+} from "../components/render-state-context";
 
-import type {RenderState} from "../components/render-state-context";
-
-export const useRenderState = (): RenderState => useContext(RenderStateContext);
+export const useRenderState = (): $Values<typeof RenderState> =>
+    useContext(RenderStateContext);

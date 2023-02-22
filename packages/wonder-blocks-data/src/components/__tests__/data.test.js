@@ -14,13 +14,7 @@ import {SsrCache} from "../../util/ssr-cache";
 import {RequestTracker} from "../../util/request-tracking";
 import InterceptRequests from "../intercept-requests";
 import Data from "../data";
-import {
-    // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-    // have fixed:
-    // https://github.com/import-js/eslint-plugin-import/issues/2073
-    // eslint-disable-next-line import/named
-    WhenClientSide,
-} from "../../hooks/use-hydratable-effect";
+import {WhenClientSide} from "../../hooks/use-hydratable-effect";
 
 describe("Data", () => {
     beforeEach(() => {

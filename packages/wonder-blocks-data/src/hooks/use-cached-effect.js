@@ -11,10 +11,6 @@ import {useRequestInterception} from "./use-request-interception";
 
 import type {Result, ValidCacheData} from "../util/types";
 
-// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-// have fixed:
-// https://github.com/import-js/eslint-plugin-import/issues/2073
-// eslint-disable-next-line import/named
 import {FetchPolicy} from "../util/types";
 
 type CachedEffectOptions<TData: ValidCacheData> = {|
@@ -24,7 +20,7 @@ type CachedEffectOptions<TData: ValidCacheData> = {|
      *
      * Defaults to `FetchPolicy.CacheBeforeNetwork`.
      */
-    fetchPolicy?: FetchPolicy,
+    fetchPolicy?: $Values<typeof FetchPolicy>,
 
     /**
      * When `true`, the effect will not be executed; otherwise, the effect will
