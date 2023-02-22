@@ -1,6 +1,6 @@
 // @flow
 import {KindError} from "@khanacademy/wonder-stuff-core";
-import type {ErrorOptions} from "./types.js";
+import type {ErrorOptions} from "./types";
 
 /**
  * Error kinds for DataError.

@@ -4,7 +4,7 @@ import {render, screen, fireEvent} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import {StyleSheet} from "aphrodite";
-import LabeledTextField from "../labeled-text-field.js";
+import LabeledTextField from "../labeled-text-field";
 
 describe("LabeledTextField", () => {
     it("labeledtextfield becomes focused", () => {

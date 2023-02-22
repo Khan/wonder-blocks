@@ -2,7 +2,7 @@
 /* eslint-disable ft-flow/no-unused-expressions */
 import * as React from "react";
 
-import Button from "../button.js";
+import Button from "../button";
 
 // $FlowExpectedError[incompatible-type]: href must be used with beforeNav
 <Button beforeNav={() => Promise.resolve()}>Hello, world!</Button>;

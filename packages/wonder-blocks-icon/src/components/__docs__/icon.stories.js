@@ -9,7 +9,7 @@ import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 
 export default {

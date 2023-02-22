@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
-import * as ReactDOMServer from "react-dom/server.js";
+import * as ReactDOMServer from "react-dom/server";
 import {render} from "@testing-library/react";
 
-import WithSSRPlaceholder from "../with-ssr-placeholder.js";
-import {RenderStateRoot} from "../render-state-root.js";
+import WithSSRPlaceholder from "../with-ssr-placeholder";
+import {RenderStateRoot} from "../render-state-root";
 
 describe("WithSSRPlaceholder", () => {
     describe("client-side rendering", () => {

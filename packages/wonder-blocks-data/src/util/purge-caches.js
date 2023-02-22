@@ -1,6 +1,6 @@
 // @flow
-import {SharedCache} from "../hooks/use-shared-cache.js";
-import {purgeHydrationCache} from "./hydration-cache-api.js";
+import {SharedCache} from "../hooks/use-shared-cache";
+import {purgeHydrationCache} from "./hydration-cache-api";
 
 /**
  * Purge all caches managed by Wonder Blocks Data.

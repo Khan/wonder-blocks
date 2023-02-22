@@ -1,7 +1,7 @@
 // @flow
 import {renderHook} from "@testing-library/react-hooks";
 
-import {useIsMounted} from "../use-is-mounted.js";
+import {useIsMounted} from "../use-is-mounted";
 
 describe("useIsMounted", () => {
     it("should return false on first call", () => {

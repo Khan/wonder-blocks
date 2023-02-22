@@ -4,7 +4,7 @@ import {render, screen} from "@testing-library/react";
 
 import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
 
-import DetailCell from "../detail-cell.js";
+import DetailCell from "../detail-cell";
 
 describe("DetailCell", () => {
     it("should render the default DetailCell component", () => {

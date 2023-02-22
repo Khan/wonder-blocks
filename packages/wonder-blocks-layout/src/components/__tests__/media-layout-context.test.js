@@ -3,15 +3,15 @@ import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {render} from "@testing-library/react";
 
-import MediaLayout from "../media-layout.js";
-import MediaLayoutContext from "../media-layout-context.js";
-import {resizeWindow, matchMedia} from "../../util/test-util.js";
+import MediaLayout from "../media-layout";
+import MediaLayoutContext from "../media-layout-context";
+import {resizeWindow, matchMedia} from "../../util/test-util";
 
 import {
     MEDIA_DEFAULT_SPEC,
     MEDIA_INTERNAL_SPEC,
     MEDIA_MODAL_SPEC,
-} from "../../util/specs.js";
+} from "../../util/specs";
 
 describe("MediaLayoutContext", () => {
     beforeEach(() => {

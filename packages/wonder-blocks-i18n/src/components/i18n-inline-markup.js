@@ -79,8 +79,8 @@
 
 import * as React from "react";
 
-import {parseSimpleHTML} from "./parse-simple-html.js";
-import type {SimpleHtmlNode} from "./parse-simple-html.js";
+import {parseSimpleHTML} from "./parse-simple-html";
+import type {SimpleHtmlNode} from "./parse-simple-html";
 
 type Props = {|
     /**

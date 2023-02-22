@@ -2,9 +2,9 @@
 import * as React from "react";
 import {renderHook} from "@testing-library/react-hooks";
 
-import * as GetGqlDataFromResponse from "../../util/get-gql-data-from-response.js";
-import {GqlRouterContext} from "../../util/gql-router-context.js";
-import {useGql} from "../use-gql.js";
+import * as GetGqlDataFromResponse from "../../util/get-gql-data-from-response";
+import {GqlRouterContext} from "../../util/gql-router-context";
+import {useGql} from "../use-gql";
 
 describe("#useGql", () => {
     beforeEach(() => {

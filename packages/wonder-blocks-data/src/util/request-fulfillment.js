@@ -1,7 +1,7 @@
 // @flow
-import type {Result, ValidCacheData} from "./types.js";
+import type {Result, ValidCacheData} from "./types";
 
-import {DataError, DataErrors} from "./data-error.js";
+import {DataError, DataErrors} from "./data-error";
 
 type RequestCache = {
     [id: string]: Promise<Result<any>>,

@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import type {TestHarnessAdapter} from "../types.js";
+import type {TestHarnessAdapter} from "../types";
 
 type Config = string;
 

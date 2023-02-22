@@ -11,9 +11,9 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
-import argTypes from "./clickable.argtypes.js";
+import argTypes from "./clickable.argtypes";
 
 export default {
     title: "Clickable / Clickable",

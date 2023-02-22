@@ -4,8 +4,8 @@ import {render} from "@testing-library/react";
 import * as Tooltip from "@khanacademy/wonder-blocks-tooltip";
 
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
-import PopoverDialog from "../popover-dialog.js";
-import PopoverContentCore from "../popover-content-core.js";
+import PopoverDialog from "../popover-dialog";
+import PopoverContentCore from "../popover-content-core";
 
 jest.mock("@khanacademy/wonder-blocks-tooltip");
 

@@ -5,7 +5,7 @@ import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import Clickable from "../clickable.js";
+import Clickable from "../clickable";
 
 describe("Clickable", () => {
     beforeEach(() => {

@@ -8,8 +8,8 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import styles from "./group-styles.js";
-import typeof Choice from "./choice.js";
+import styles from "./group-styles";
+import typeof Choice from "./choice";
 
 // Keep synced with CheckboxGroupProps in ../util/types.js
 type CheckboxGroupProps = {|

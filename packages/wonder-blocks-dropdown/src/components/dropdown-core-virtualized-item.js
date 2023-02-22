@@ -3,9 +3,9 @@ import * as React from "react";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import SeparatorItem from "./separator-item.js";
+import SeparatorItem from "./separator-item";
 
-import type {DropdownItem} from "../util/types.js";
+import type {DropdownItem} from "../util/types";
 
 // copied from https://github.com/bvaughn/react-window/blob/master/src/createListComponent.js#L17
 type Props = {|

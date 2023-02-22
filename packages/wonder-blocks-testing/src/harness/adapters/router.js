@@ -4,7 +4,7 @@ import * as React from "react";
 import {StaticRouter, MemoryRouter, Route, Switch} from "react-router-dom";
 
 import type {LocationShape, Location} from "react-router-dom";
-import type {TestHarnessAdapter} from "../types.js";
+import type {TestHarnessAdapter} from "../types";
 
 type MemoryRouterProps = React.ElementConfig<typeof MemoryRouter>;
 

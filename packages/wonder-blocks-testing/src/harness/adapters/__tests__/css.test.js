@@ -2,7 +2,7 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import * as Css from "../css.js";
+import * as Css from "../css";
 
 describe("Css.adapter", () => {
     it("should throw if the config is invalid", () => {

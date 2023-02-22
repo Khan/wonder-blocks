@@ -4,9 +4,9 @@
  * This file ensures that our flow types are working right.
  */
 import * as React from "react";
-import withActionScheduler from "../components/with-action-scheduler.js";
+import withActionScheduler from "../components/with-action-scheduler";
 
-import type {WithActionSchedulerProps} from "./types.js";
+import type {WithActionSchedulerProps} from "./types";
 
 /**
  * Test WithActionScheduler and withActionScheduler usage.

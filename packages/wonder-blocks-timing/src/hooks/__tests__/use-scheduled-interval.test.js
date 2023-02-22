@@ -1,8 +1,8 @@
 // @flow
 import {renderHook, act} from "@testing-library/react-hooks";
-import {SchedulePolicy, ClearPolicy} from "../../util/policies.js";
+import {SchedulePolicy, ClearPolicy} from "../../util/policies";
 
-import {useScheduledInterval} from "../use-scheduled-interval.js";
+import {useScheduledInterval} from "../use-scheduled-interval";
 
 describe("useScheduledInterval", () => {
     beforeEach(() => {

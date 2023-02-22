@@ -1,6 +1,6 @@
 // @flow
 import {entries} from "@khanacademy/wonder-stuff-core";
-import type {GqlOperation, GqlContext} from "./gql-types.js";
+import type {GqlOperation, GqlContext} from "./gql-types";
 
 const toString = (value: mixed): string => {
     if (typeof value === "string") {

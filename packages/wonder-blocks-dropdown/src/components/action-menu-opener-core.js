@@ -11,7 +11,7 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
 
-import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
+import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
 type Props = {|
     ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,

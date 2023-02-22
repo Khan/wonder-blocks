@@ -1,5 +1,5 @@
 // @flow
-import {mergeGqlContext} from "../merge-gql-context.js";
+import {mergeGqlContext} from "../merge-gql-context";
 
 describe("#mergeGqlContext", () => {
     it("should combine the default context with the given overrides", () => {

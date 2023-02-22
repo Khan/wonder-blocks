@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 
-import {MEDIA_DEFAULT_SPEC} from "../util/specs.js";
-import type {MediaSize, MediaSpec} from "../util/types.js";
+import {MEDIA_DEFAULT_SPEC} from "../util/specs";
+import type {MediaSize, MediaSpec} from "../util/types";
 
 export type Context = {|
     /**

@@ -3,8 +3,8 @@ import * as React from "react";
 
 import {IDProvider, type StyleType} from "@khanacademy/wonder-blocks-core";
 
-import FieldHeading from "./field-heading.js";
-import TextField, {type TextFieldType} from "./text-field.js";
+import FieldHeading from "./field-heading";
+import TextField, {type TextFieldType} from "./text-field";
 
 type WithForwardRef = {|forwardedRef: React.Ref<"input">|};
 

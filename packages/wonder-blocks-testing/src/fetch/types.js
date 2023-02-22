@@ -1,5 +1,5 @@
 //@flow
-import type {MockResponse} from "../respond-with.js";
+import type {MockResponse} from "../respond-with";
 
 export type FetchMockOperation = RegExp | string;
 

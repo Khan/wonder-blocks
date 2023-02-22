@@ -24,7 +24,7 @@ describe("ResponseImpl", () => {
         // Act
         const {ResponseImpl: result, NodeFetchResponse} =
             wst.jest.isolateModules(() => ({
-                ResponseImpl: require("../response-impl.js").ResponseImpl,
+                ResponseImpl: require("../response-impl").ResponseImpl,
                 NodeFetchResponse: require("node-fetch").Response,
             }));
 
@@ -38,7 +38,7 @@ describe("ResponseImpl", () => {
 
         // Act
         const result = wst.jest.isolateModules(
-            () => require("../response-impl.js").ResponseImpl,
+            () => require("../response-impl").ResponseImpl,
         );
 
         // Assert

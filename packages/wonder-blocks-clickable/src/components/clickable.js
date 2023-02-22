@@ -8,9 +8,9 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 
-import getClickableBehavior from "../util/get-clickable-behavior.js";
-import type {ClickableRole, ClickableState} from "./clickable-behavior.js";
-import {isClientSideUrl} from "../util/is-client-side-url.js";
+import getClickableBehavior from "../util/get-clickable-behavior";
+import type {ClickableRole, ClickableState} from "./clickable-behavior";
+import {isClientSideUrl} from "../util/is-client-side-url";
 
 type CommonProps = {|
     /**

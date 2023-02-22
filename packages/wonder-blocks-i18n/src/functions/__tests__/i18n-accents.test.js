@@ -1,5 +1,5 @@
 // @flow
-import Accents from "../i18n-accents.js";
+import Accents from "../i18n-accents";
 
 describe("i18n-accents.js: Accents", () => {
     describe("#constructor", () => {

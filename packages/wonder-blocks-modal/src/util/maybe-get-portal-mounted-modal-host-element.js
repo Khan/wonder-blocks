@@ -1,5 +1,5 @@
 // @flow
-import {ModalLauncherPortalAttributeName} from "./constants.js";
+import {ModalLauncherPortalAttributeName} from "./constants";
 
 /**
  * From a given element, finds its next ancestor that is a modal launcher portal

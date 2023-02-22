@@ -1,7 +1,7 @@
 // @flow
-import {graphQLDocumentNodeParser} from "./graphql-document-node-parser.js";
-import type {GqlOperation} from "./gql-types.js";
-import type {DocumentNode} from "./graphql-types.js";
+import {graphQLDocumentNodeParser} from "./graphql-document-node-parser";
+import type {GqlOperation} from "./gql-types";
+import type {DocumentNode} from "./graphql-types";
 
 /**
  * Convert a GraphQL DocumentNode to a base Wonder Blocks Data GqlOperation.

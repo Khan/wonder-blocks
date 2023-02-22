@@ -4,11 +4,11 @@ import * as React from "react";
 import Link from "@khanacademy/wonder-blocks-link";
 import type {StoryComponentType} from "@storybook/react";
 
-import Breadcrumbs from "../breadcrumbs.js";
-import BreadcrumbsItem from "../breadcrumbs-item.js";
+import Breadcrumbs from "../breadcrumbs";
+import BreadcrumbsItem from "../breadcrumbs-item";
 
-import BreadcrumbsArgTypes from "./breadcrumbs.argtypes.js";
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import BreadcrumbsArgTypes from "./breadcrumbs.argtypes";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 
 export default {

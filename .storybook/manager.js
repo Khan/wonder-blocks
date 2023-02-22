@@ -2,7 +2,7 @@
  * Configuration of storybook addons.
  */
 import {addons} from "@storybook/addons";
-import wonderBlocksTheme from "./wonder-blocks-theme.js";
+import wonderBlocksTheme from "./wonder-blocks-theme";
 
 /**
  * Configures a custom theme to add some minor WB branding to our Storybook

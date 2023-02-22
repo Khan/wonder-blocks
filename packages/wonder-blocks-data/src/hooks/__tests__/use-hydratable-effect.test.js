@@ -7,12 +7,12 @@ import {
 import {renderHook as serverRenderHook} from "@testing-library/react-hooks/server";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {Status} from "../../util/status.js";
+import {Status} from "../../util/status";
 
-import {RequestFulfillment} from "../../util/request-fulfillment.js";
-import * as UseRequestInterception from "../use-request-interception.js";
-import * as UseServerEffect from "../use-server-effect.js";
-import * as UseSharedCache from "../use-shared-cache.js";
+import {RequestFulfillment} from "../../util/request-fulfillment";
+import * as UseRequestInterception from "../use-request-interception";
+import * as UseServerEffect from "../use-server-effect";
+import * as UseSharedCache from "../use-shared-cache";
 
 import {
     useHydratableEffect,
@@ -21,11 +21,11 @@ import {
     // https://github.com/import-js/eslint-plugin-import/issues/2073
     // eslint-disable-next-line import/named
     WhenClientSide,
-} from "../use-hydratable-effect.js";
+} from "../use-hydratable-effect";
 
-jest.mock("../use-request-interception.js");
-jest.mock("../use-server-effect.js");
-jest.mock("../use-shared-cache.js");
+jest.mock("../use-request-interception");
+jest.mock("../use-server-effect");
+jest.mock("../use-shared-cache");
 
 describe("#useHydratableEffect", () => {
     beforeEach(() => {

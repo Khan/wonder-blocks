@@ -13,7 +13,7 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import type {StyleDeclaration} from "aphrodite";
-import type {SharedProps} from "./link.js";
+import type {SharedProps} from "./link";
 
 type Props = {|
     ...SharedProps,

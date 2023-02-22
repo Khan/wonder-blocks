@@ -3,7 +3,7 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import * as ReactRouterDOM from "react-router-dom";
 
-import ActionItem from "../action-item.js";
+import ActionItem from "../action-item";
 
 jest.mock("react-router-dom", () => ({
     __esModule: true,

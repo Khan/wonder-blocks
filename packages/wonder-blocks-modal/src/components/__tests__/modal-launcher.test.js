@@ -6,8 +6,8 @@ import userEvent from "@testing-library/user-event";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 
-import ModalLauncher from "../modal-launcher.js";
-import OnePaneDialog from "../one-pane-dialog.js";
+import ModalLauncher from "../modal-launcher";
+import OnePaneDialog from "../one-pane-dialog";
 
 const exampleModal = (
     <OnePaneDialog

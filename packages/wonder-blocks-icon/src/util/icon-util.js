@@ -1,5 +1,5 @@
 // @flow
-import type {IconAsset, IconSize} from "./icon-assets.js";
+import type {IconAsset, IconSize} from "./icon-assets";
 
 /**
  * A simple function that tells us how many viewport pixels each icon size

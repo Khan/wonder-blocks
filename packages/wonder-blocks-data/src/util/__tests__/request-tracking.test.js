@@ -3,8 +3,8 @@ import * as React from "react";
 import {render} from "@testing-library/react";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {RequestTracker, TrackerContext} from "../request-tracking.js";
-import {SsrCache} from "../ssr-cache.js";
+import {RequestTracker, TrackerContext} from "../request-tracking";
+import {SsrCache} from "../ssr-cache";
 
 describe("../request-tracking.js", () => {
     describe("TrackerContext", () => {

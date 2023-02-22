@@ -1,6 +1,6 @@
 // @flow
-import {DataError, DataErrors} from "./data-error.js";
-import {GqlError, GqlErrors} from "./gql-error.js";
+import {DataError, DataErrors} from "./data-error";
+import {GqlError, GqlErrors} from "./gql-error";
 
 /**
  * Validate a GQL operation response and extract the data.

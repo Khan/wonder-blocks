@@ -2,8 +2,8 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
 
-import {GqlRouterContext} from "../../util/gql-router-context.js";
-import {GqlRouter} from "../gql-router.js";
+import {GqlRouterContext} from "../../util/gql-router-context";
+import {GqlRouter} from "../gql-router";
 
 describe("GqlRouter", () => {
     it("should provide the GqlRouterContext as configured", async () => {

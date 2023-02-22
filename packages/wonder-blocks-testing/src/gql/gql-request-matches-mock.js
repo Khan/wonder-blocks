@@ -1,6 +1,6 @@
 // @flow
 import type {GqlOperation, GqlContext} from "@khanacademy/wonder-blocks-data";
-import type {GqlMockOperation} from "./types.js";
+import type {GqlMockOperation} from "./types";
 
 const safeHasOwnProperty = (obj: any, prop: string): boolean =>
     // Flow really shouldn't be raising this error here.

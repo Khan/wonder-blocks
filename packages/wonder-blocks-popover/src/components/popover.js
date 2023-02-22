@@ -12,13 +12,13 @@ import type {
     PopperElementProps,
 } from "@khanacademy/wonder-blocks-tooltip";
 
-import typeof PopoverContent from "./popover-content.js";
-import typeof PopoverContentCore from "./popover-content-core.js";
-import PopoverContext from "./popover-context.js";
-import PopoverAnchor from "./popover-anchor.js";
-import PopoverDialog from "./popover-dialog.js";
-import FocusManager from "./focus-manager.js";
-import PopoverEventListener from "./popover-event-listener.js";
+import typeof PopoverContent from "./popover-content";
+import typeof PopoverContentCore from "./popover-content-core";
+import PopoverContext from "./popover-context";
+import PopoverAnchor from "./popover-anchor";
+import PopoverDialog from "./popover-dialog";
+import FocusManager from "./focus-manager";
+import PopoverEventListener from "./popover-event-listener";
 
 type PopoverContents =
     | React.Element<PopoverContent>

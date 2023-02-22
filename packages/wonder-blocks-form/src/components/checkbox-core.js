@@ -9,7 +9,7 @@ import Icon from "@khanacademy/wonder-blocks-icon";
 
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
-import type {ChoiceCoreProps} from "../util/types.js";
+import type {ChoiceCoreProps} from "../util/types";
 
 type Props = {|
     ...ChoiceCoreProps,

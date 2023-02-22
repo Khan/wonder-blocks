@@ -3,9 +3,9 @@ import * as React from "react";
 import {Route} from "react-router-dom";
 import {render} from "@testing-library/react";
 
-import * as RA from "../render-adapters.js";
-import {makeTestHarness} from "../make-test-harness.js";
-import {DefaultConfigs, DefaultAdapters} from "../adapters/adapters.js";
+import * as RA from "../render-adapters";
+import {makeTestHarness} from "../make-test-harness";
+import {DefaultConfigs, DefaultAdapters} from "../adapters/adapters";
 
 describe("#makeTestHarness", () => {
     it("should return a function", () => {

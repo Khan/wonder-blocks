@@ -1,8 +1,8 @@
 // @flow
-import * as Locale from "../locale.js";
-import FakeTranslate, {Translators} from "../i18n-faketranslate.js";
+import * as Locale from "../locale";
+import FakeTranslate, {Translators} from "../i18n-faketranslate";
 
-import type {IProvideTranslation} from "../types.js";
+import type {IProvideTranslation} from "../types";
 
 describe("i18n-faketranslate", () => {
     describe("Translators", () => {

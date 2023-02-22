@@ -1,5 +1,5 @@
 // @flow
-import {mix, fade} from "./util/utils.js";
+import {mix, fade} from "./util/utils";
 
 const offBlack = "#21242c";
 const white = "#ffffff";

@@ -17,9 +17,9 @@ import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
-import TooltipArgtypes from "./tooltip.argtypes.js";
+import TooltipArgtypes from "./tooltip.argtypes";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 
 export default {

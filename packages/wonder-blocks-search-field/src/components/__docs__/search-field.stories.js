@@ -9,7 +9,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import SearchField from "../search-field.js";
+import SearchField from "../search-field";
 
 export default {
     component: SearchField,

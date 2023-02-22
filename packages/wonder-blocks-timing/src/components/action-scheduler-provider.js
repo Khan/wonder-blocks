@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
-import ActionScheduler from "../util/action-scheduler.js";
+import ActionScheduler from "../util/action-scheduler";
 
-import type {IScheduleActions} from "../util/types.js";
+import type {IScheduleActions} from "../util/types";
 
 type Props = {|
     /**

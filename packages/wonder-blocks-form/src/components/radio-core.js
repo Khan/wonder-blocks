@@ -6,7 +6,7 @@ import {StyleSheet} from "aphrodite";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
-import type {ChoiceCoreProps} from "../util/types.js";
+import type {ChoiceCoreProps} from "../util/types";
 
 type Props = {|
     ...ChoiceCoreProps,

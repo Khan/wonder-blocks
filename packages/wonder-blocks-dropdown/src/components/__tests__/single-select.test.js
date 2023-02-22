@@ -3,9 +3,9 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import OptionItem from "../option-item.js";
-import SingleSelect from "../single-select.js";
-import type {SingleSelectLabels} from "../single-select.js";
+import OptionItem from "../option-item";
+import SingleSelect from "../single-select";
+import type {SingleSelectLabels} from "../single-select";
 
 describe("SingleSelect", () => {
     const onChange = jest.fn();

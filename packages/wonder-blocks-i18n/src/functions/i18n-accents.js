@@ -1,5 +1,5 @@
 // @flow
-import type {IProvideTranslation} from "./types.js";
+import type {IProvideTranslation} from "./types";
 
 // This map provides a way to get an "accented" character for any of the
 // 26 english alphabet characters in either upper or lower case.

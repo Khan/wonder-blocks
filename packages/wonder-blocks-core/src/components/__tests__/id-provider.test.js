@@ -2,7 +2,7 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
 
-import IDProvider from "../id-provider.js";
+import IDProvider from "../id-provider";
 
 const mockIDENTIFIER = `uid-component-0-${IDProvider.defaultId}`;
 

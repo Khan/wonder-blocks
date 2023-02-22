@@ -1,10 +1,10 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {RequestTracker} from "./request-tracking.js";
-import {RequestFulfillment} from "./request-fulfillment.js";
-import {DataError, DataErrors} from "./data-error.js";
+import {RequestTracker} from "./request-tracking";
+import {RequestFulfillment} from "./request-fulfillment";
+import {DataError, DataErrors} from "./data-error";
 
-import type {ResponseCache} from "./types.js";
+import type {ResponseCache} from "./types";
 
 const SSRCheck = () => {
     if (Server.isServerSide()) {

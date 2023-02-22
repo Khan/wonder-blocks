@@ -5,7 +5,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {HorizontalRuleVariant} from "../../util/types.js";
+import type {HorizontalRuleVariant} from "../../util/types";
 
 export const CellMeasurements = {
     cellMinHeight: Spacing.xxLarge_48,

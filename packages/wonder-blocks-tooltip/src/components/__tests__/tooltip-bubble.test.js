@@ -4,8 +4,8 @@ import {render, screen} from "@testing-library/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import TooltipBubble from "../tooltip-bubble.js";
-import typeof TooltipContent from "../tooltip-content.js";
+import TooltipBubble from "../tooltip-bubble";
+import typeof TooltipContent from "../tooltip-content";
 
 describe("TooltipBubble", () => {
     // A little helper method to make the actual test more readable.

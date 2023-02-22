@@ -1,5 +1,5 @@
 // @flow
-import {resultFromCachedResponse} from "../result-from-cache-response.js";
+import {resultFromCachedResponse} from "../result-from-cache-response";
 
 describe("#resultFromCachedResponse", () => {
     it("should return null cache entry is null", () => {

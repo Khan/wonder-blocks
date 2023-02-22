@@ -1,13 +1,13 @@
 // @flow
-import ActionScheduler from "../action-scheduler.js";
-import Timeout from "../timeout.js";
-import Interval from "../interval.js";
-import AnimationFrame from "../animation-frame.js";
-import {SchedulePolicy, ClearPolicy} from "../policies.js";
+import ActionScheduler from "../action-scheduler";
+import Timeout from "../timeout";
+import Interval from "../interval";
+import AnimationFrame from "../animation-frame";
+import {SchedulePolicy, ClearPolicy} from "../policies";
 
-jest.mock("../timeout.js");
-jest.mock("../interval.js");
-jest.mock("../animation-frame.js");
+jest.mock("../timeout");
+jest.mock("../interval");
+jest.mock("../animation-frame");
 
 describe("ActionScheduler", () => {
     afterEach(() => {

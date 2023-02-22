@@ -1,6 +1,6 @@
 // @flow
-import AnimationFrame from "../animation-frame.js";
-import {SchedulePolicy, ClearPolicy} from "../policies.js";
+import AnimationFrame from "../animation-frame";
+import {SchedulePolicy, ClearPolicy} from "../policies";
 
 describe("AnimationFrame", () => {
     beforeEach(() => {

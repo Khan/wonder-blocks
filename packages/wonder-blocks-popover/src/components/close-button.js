@@ -5,7 +5,7 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
-import PopoverContext from "./popover-context.js";
+import PopoverContext from "./popover-context";
 
 type Props = {|
     ...AriaProps,

@@ -2,9 +2,9 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import withActionScheduler from "../with-action-scheduler.js";
+import withActionScheduler from "../with-action-scheduler";
 
-import type {WithActionSchedulerProps} from "../../util/types.js";
+import type {WithActionSchedulerProps} from "../../util/types";
 
 describe("withActionScheduler", () => {
     it("should provide wrapped component with IScheduleActions instance", () => {

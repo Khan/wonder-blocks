@@ -17,11 +17,11 @@ import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
-import actionMenuArgtypes from "./action-menu.argtypes.js";
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import actionMenuArgtypes from "./action-menu.argtypes";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 
-import type {Item} from "../../util/types.js";
+import type {Item} from "../../util/types";
 
 type ActionMenuProps = React.ElementProps<typeof ActionMenu>;
 

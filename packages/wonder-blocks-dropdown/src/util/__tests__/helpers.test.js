@@ -1,5 +1,5 @@
 // @flow
-import {debounce, getStringForKey} from "../helpers.js";
+import {debounce, getStringForKey} from "../helpers";
 
 describe("getStringForKey", () => {
     it("should get a valid string", () => {

@@ -17,10 +17,10 @@ import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import type {ModalElement} from "../../util/types.js";
-import ModalLauncherArgTypes from "./modal-launcher.argtypes.js";
+import type {ModalElement} from "../../util/types";
+import ModalLauncherArgTypes from "./modal-launcher.argtypes";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 
 const customViewports = {

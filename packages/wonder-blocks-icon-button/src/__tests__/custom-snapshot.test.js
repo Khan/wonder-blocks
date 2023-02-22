@@ -4,7 +4,7 @@ import renderer from "react-test-renderer";
 
 import {icons} from "@khanacademy/wonder-blocks-icon";
 
-import IconButtonCore from "../components/icon-button-core.js";
+import IconButtonCore from "../components/icon-button-core";
 
 const defaultHandlers = {
     onClick: () => void 0,

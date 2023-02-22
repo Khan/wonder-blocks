@@ -3,8 +3,8 @@ import * as React from "react";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import OptionItem from "../option-item.js";
-import DropdownCore from "../dropdown-core.js";
+import OptionItem from "../option-item";
+import DropdownCore from "../dropdown-core";
 
 const items = [
     {

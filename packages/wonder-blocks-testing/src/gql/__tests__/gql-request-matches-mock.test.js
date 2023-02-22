@@ -1,5 +1,5 @@
 // @flow
-import {gqlRequestMatchesMock} from "../gql-request-matches-mock.js";
+import {gqlRequestMatchesMock} from "../gql-request-matches-mock";
 
 describe("#gqlRequestMatchesMock", () => {
     it("should return false if operation types don't match", () => {

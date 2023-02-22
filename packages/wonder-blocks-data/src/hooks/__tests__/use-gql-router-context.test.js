@@ -2,8 +2,8 @@
 import * as React from "react";
 import {renderHook} from "@testing-library/react-hooks";
 
-import {GqlRouterContext} from "../../util/gql-router-context.js";
-import {useGqlRouterContext} from "../use-gql-router-context.js";
+import {GqlRouterContext} from "../../util/gql-router-context";
+import {useGqlRouterContext} from "../use-gql-router-context";
 
 describe("#useGqlRouterContext", () => {
     it("should throw if there is no GqlRouterContext", () => {

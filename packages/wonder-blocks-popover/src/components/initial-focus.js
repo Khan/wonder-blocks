@@ -2,7 +2,7 @@
 import * as React from "react";
 import * as ReactDOM from "react-dom";
 
-import {findFocusableNodes} from "../util/util.js";
+import {findFocusableNodes} from "../util/util";
 
 type Props = {|
     /**

@@ -9,9 +9,9 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {StoryComponentType} from "@storybook/react";
 import {PopoverContent} from "@khanacademy/wonder-blocks-popover";
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
-import PopoverContentArgtypes from "./popover-content.argtypes.js";
+import PopoverContentArgtypes from "./popover-content.argtypes";
 
 export default {
     title: "Popover/PopoverContent",

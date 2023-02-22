@@ -7,8 +7,8 @@ import {
     MEDIA_DEFAULT_SPEC,
     MediaLayoutContext,
 } from "@khanacademy/wonder-blocks-layout";
-import Row from "../row.js";
-import Cell from "../cell.js";
+import Row from "../row";
+import Cell from "../cell";
 
 describe("Row", () => {
     describe("large", () => {

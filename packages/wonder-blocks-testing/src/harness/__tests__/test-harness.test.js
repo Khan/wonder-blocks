@@ -1,9 +1,9 @@
 // @flow
 import {jest as ws} from "@khanacademy/wonder-stuff-testing";
-import * as MTH from "../make-test-harness.js";
-import {DefaultAdapters, DefaultConfigs} from "../adapters/adapters.js";
+import * as MTH from "../make-test-harness";
+import {DefaultAdapters, DefaultConfigs} from "../adapters/adapters";
 
-jest.mock("../make-test-harness.js", () => {
+jest.mock("../make-test-harness", () => {
     const returnValueFake = {
         thisisa: "PRETEND REACT COMPONENT",
     };
@@ -21,7 +21,7 @@ describe("#testHarness", () => {
         const makeTestHarnessSpy = jest.spyOn(MTH, "makeTestHarness");
 
         // Act
-        await ws.isolateModules(() => import("../hook-harness.js"));
+        await ws.isolateModules(() => import("../hook-harness"));
 
         // Assert
         expect(makeTestHarnessSpy).toHaveBeenCalledWith(
@@ -39,8 +39,8 @@ describe("#testHarness", () => {
         // $FlowIgnore[prop-missing]  - we add this into our mock at the top.
         const [{harnessFake}, {testHarness}] = await ws.isolateModules(() =>
             Promise.all([
-                import("../make-test-harness.js"),
-                import("../test-harness.js"),
+                import("../make-test-harness"),
+                import("../test-harness"),
             ]),
         );
 
@@ -60,8 +60,8 @@ describe("#testHarness", () => {
         // $FlowIgnore[prop-missing]  - we add this into our mock at the top.
         const [{returnValueFake}, {testHarness}] = await ws.isolateModules(() =>
             Promise.all([
-                import("../make-test-harness.js"),
-                import("../test-harness.js"),
+                import("../make-test-harness"),
+                import("../test-harness"),
             ]),
         );
 

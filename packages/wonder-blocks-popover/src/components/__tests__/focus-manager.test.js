@@ -4,8 +4,8 @@ import * as ReactDOM from "react-dom";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import FocusManager from "../focus-manager.js";
-import {findFocusableNodes} from "../../util/util.js";
+import FocusManager from "../focus-manager";
+import {findFocusableNodes} from "../../util/util";
 
 describe("FocusManager", () => {
     it("should focus on the first focusable element inside the popover", async () => {

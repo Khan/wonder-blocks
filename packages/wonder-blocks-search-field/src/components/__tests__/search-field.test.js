@@ -3,7 +3,7 @@ import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import SearchField from "../search-field.js";
+import SearchField from "../search-field";
 
 describe("SearchField", () => {
     test("value is updated when text is entered into the field", () => {

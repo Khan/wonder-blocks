@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
 
-import * as Locale from "../locale.js";
-import * as FakeTranslate from "../i18n-faketranslate.js";
-import {_, $_, ngettext, doNotTranslate, doNotTranslateYet} from "../i18n.js";
+import * as Locale from "../locale";
+import * as FakeTranslate from "../i18n-faketranslate";
+import {_, $_, ngettext, doNotTranslate, doNotTranslateYet} from "../i18n";
 
 jest.mock("react", () => {
     return {
