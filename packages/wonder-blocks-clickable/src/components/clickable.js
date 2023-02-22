@@ -12,7 +12,8 @@ import getClickableBehavior from "../util/get-clickable-behavior";
 import type {ClickableRole, ClickableState} from "./clickable-behavior";
 import {isClientSideUrl} from "../util/is-client-side-url";
 
-type CommonProps = {|
+// TODO(FEI-5000): Convert back to conditional props after TS migration is complete.
+type Props = {|
     /**
      * aria-label should be used when `spinner={true}` to let people using screen
      * readers that the action taken by clicking the button will take some
@@ -103,75 +104,34 @@ type CommonProps = {|
      * a custom focus ring within your own component that uses Clickable.
      */
     hideDefaultFocusRing?: boolean,
+
+    /**
+     * A target destination window for a link to open in.
+     *
+     * TODO(WB-1262): only allow this prop when `href` is also set.t
+     */
+    target?: "_blank",
+
+    /**
+     * Run async code before navigating. If the promise returned rejects then
+     * navigation will not occur.
+     *
+     * If both safeWithNav and beforeNav are provided, beforeNav will be run
+     * first and safeWithNav will only be run if beforeNav does not reject.
+     *
+     * WARNING: This prop must be used with `href` and should not be used with
+     * `target="blank"`.
+     */
+    beforeNav?: () => Promise<mixed>,
+
+    /**
+     * Run async code in the background while client-side navigating. If the
+     * browser does a full page load navigation, the callback promise must be
+     * settled before the navigation will occur. Errors are ignored so that
+     * navigation is guaranteed to succeed.
+     */
+    safeWithNav?: () => Promise<mixed>,
 |};
-
-type Props =
-    | {|
-          ...CommonProps,
-
-          /**
-           * A target destination window for a link to open in.
-           *
-           * TODO(WB-1262): only allow this prop when `href` is also set.t
-           */
-          target?: "_blank",
-      |}
-    | {|
-          ...CommonProps,
-
-          href: string,
-
-          /**
-           * Run async code before navigating. If the promise returned rejects then
-           * navigation will not occur.
-           *
-           * If both safeWithNav and beforeNav are provided, beforeNav will be run
-           * first and safeWithNav will only be run if beforeNav does not reject.
-           */
-          beforeNav: () => Promise<mixed>,
-      |}
-    | {|
-          ...CommonProps,
-
-          href: string,
-
-          /**
-           * Run async code in the background while client-side navigating. If the
-           * browser does a full page load navigation, the callback promise must be
-           * settled before the navigation will occur. Errors are ignored so that
-           * navigation is guaranteed to succeed.
-           */
-          safeWithNav: () => Promise<mixed>,
-
-          /**
-           * A target destination window for a link to open in.
-           *
-           * TODO(WB-1262): only allow this prop when `href` is also set.t
-           */
-          target?: "_blank",
-      |}
-    | {|
-          ...CommonProps,
-
-          href: string,
-
-          /**
-           * Run async code before navigating. If the promise returned rejects then
-           * navigation will not occur.
-           *
-           * If both safeWithNav and beforeNav are provided, beforeNav will be run
-           * first and safeWithNav will only be run if beforeNav does not reject.
-           */
-          beforeNav: () => Promise<mixed>,
-
-          /**
-           * Run async code in the background while client-side navigating. If the
-           * browser does a full page load navigation, the callback promise must be
-           * settled before the navigation will occur. Errors are ignored so that
-           * navigation is guaranteed to succeed.
-           */
-          safeWithNav: () => Promise<mixed>,
-      |};
 
 type DefaultProps = {|
     light: $PropertyType<Props, "light">,
