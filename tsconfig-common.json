@@ -10,6 +10,7 @@
         // tsc to output any modules.
         "module": "ESNext",
         "moduleResolution": "node",
+        "resolveJsonModule": true,
         /* Interop Constraints */
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
