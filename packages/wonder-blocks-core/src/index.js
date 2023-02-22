@@ -18,10 +18,6 @@ export {useOnMountEffect} from "./hooks/use-on-mount-effect";
 export {useOnline} from "./hooks/use-online";
 export {useRenderState} from "./hooks/use-render-state";
 export {RenderStateRoot} from "./components/render-state-root";
-// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-// have fixed:
-// https://github.com/import-js/eslint-plugin-import/issues/2073
-// eslint-disable-next-line import/named
 export {RenderState} from "./components/render-state-context";
 
 export type {AriaProps, IIdentifierFactory, StyleType};

@@ -1,8 +1,4 @@
 // @flow
-// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-// have fixed:
-// https://github.com/import-js/eslint-plugin-import/issues/2073
-// eslint-disable-next-line import/named
 export {FetchPolicy} from "./util/types";
 export type {
     ErrorOptions,
@@ -26,10 +22,6 @@ export {useCachedEffect} from "./hooks/use-cached-effect";
 export {useSharedCache, SharedCache} from "./hooks/use-shared-cache";
 export {
     useHydratableEffect,
-    // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-    // have fixed:
-    // https://github.com/import-js/eslint-plugin-import/issues/2073
-    // eslint-disable-next-line import/named
     WhenClientSide,
 } from "./hooks/use-hydratable-effect";
 export {ScopedInMemoryCache} from "./util/scoped-in-memory-cache";

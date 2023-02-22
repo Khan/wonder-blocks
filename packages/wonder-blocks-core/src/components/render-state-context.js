@@ -1,11 +1,12 @@
 // @flow
 import * as React from "react";
 
-export enum RenderState {
-    Root = "root",
-    Initial = "initial",
-    Standard = "standard",
-}
+// TODO(FEI-5000): Convert to TS enum after all codebases have been migrated
+export const RenderState = {
+    Root: ("root": "root"),
+    Initial: ("initial": "initial"),
+    Standard: ("standard": "standard"),
+};
 
 /**
  * This is the context that tracks who is doing what in our SSR component tree.
@@ -22,5 +23,5 @@ export enum RenderState {
  * standard:
  *   means that we're all now doing non-SSR rendering
  */
-export const RenderStateContext: React.Context<RenderState> =
+export const RenderStateContext: React.Context<$Values<typeof RenderState>> =
     React.createContext(RenderState.Root);

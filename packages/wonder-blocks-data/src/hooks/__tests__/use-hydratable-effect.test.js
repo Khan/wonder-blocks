@@ -14,14 +14,7 @@ import * as UseRequestInterception from "../use-request-interception";
 import * as UseServerEffect from "../use-server-effect";
 import * as UseSharedCache from "../use-shared-cache";
 
-import {
-    useHydratableEffect,
-    // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-    // have fixed:
-    // https://github.com/import-js/eslint-plugin-import/issues/2073
-    // eslint-disable-next-line import/named
-    WhenClientSide,
-} from "../use-hydratable-effect";
+import {useHydratableEffect, WhenClientSide} from "../use-hydratable-effect";
 
 jest.mock("../use-request-interception");
 jest.mock("../use-server-effect");

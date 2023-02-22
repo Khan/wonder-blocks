@@ -6,6 +6,7 @@ import {
 } from "@testing-library/react-hooks";
 import {renderHook as serverRenderHook} from "@testing-library/react-hooks/server";
 import {render, act as reactAct} from "@testing-library/react";
+import {values} from "@khanacademy/wonder-stuff-core";
 
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {Status} from "../../util/status";
@@ -16,17 +17,13 @@ import * as UseSharedCache from "../use-shared-cache";
 
 import {useCachedEffect} from "../use-cached-effect";
 
-// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-// have fixed:
-// https://github.com/import-js/eslint-plugin-import/issues/2073
-// eslint-disable-next-line import/named
 import {FetchPolicy} from "../../util/types";
 
 jest.mock("../use-request-interception");
 jest.mock("../use-shared-cache");
 
-const allPolicies = Array.from(FetchPolicy.members());
-const allPoliciesBut = (policy: FetchPolicy) =>
+const allPolicies = Array.from(values(FetchPolicy));
+const allPoliciesBut = (policy: $Values<typeof FetchPolicy>) =>
     allPolicies.filter((p) => p !== policy);
 
 describe("#useCachedEffect", () => {
