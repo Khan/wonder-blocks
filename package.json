@@ -112,5 +112,9 @@
   "workspaces": [
     "packages/*",
     "build-settings"
-  ]
+  ],
+  "resolutions": {
+    "@types/react": "16",
+    "@types/react-dom": "16"
+  }
 }
