@@ -1,0 +1,36 @@
+// This file is used by the `build:types` command in package.json
+/* Visit https://aka.ms/tsconfig to read more about this file */
+{
+    // Intentionally empty, all files are covered by tsconfig.json files
+    // in each package directory.
+    "files": [],
+    "references": [
+        {"path": "./packages/wonder-blocks-banner"},
+        {"path": "./packages/wonder-blocks-birthday-picker"},
+        {"path": "./packages/wonder-blocks-breadcrumbs"},
+        {"path": "./packages/wonder-blocks-button"},
+        {"path": "./packages/wonder-blocks-cell"},
+        {"path": "./packages/wonder-blocks-clickable"},
+        {"path": "./packages/wonder-blocks-color"},
+        {"path": "./packages/wonder-blocks-core"},
+        {"path": "./packages/wonder-blocks-data"},
+        {"path": "./packages/wonder-blocks-dropdown"},
+        {"path": "./packages/wonder-blocks-form"},
+        {"path": "./packages/wonder-blocks-grid"},
+        {"path": "./packages/wonder-blocks-i18n"},
+        {"path": "./packages/wonder-blocks-icon"},
+        {"path": "./packages/wonder-blocks-icon-button"},
+        {"path": "./packages/wonder-blocks-layout"},
+        {"path": "./packages/wonder-blocks-link"},
+        {"path": "./packages/wonder-blocks-modal"},
+        {"path": "./packages/wonder-blocks-popover"},
+        {"path": "./packages/wonder-blocks-progress-spinner"},
+        {"path": "./packages/wonder-blocks-search-field"},
+        {"path": "./packages/wonder-blocks-spacing"},
+        {"path": "./packages/wonder-blocks-testing"},
+        {"path": "./packages/wonder-blocks-timing"},
+        {"path": "./packages/wonder-blocks-toolbar"},
+        {"path": "./packages/wonder-blocks-tooltip"},
+        {"path": "./packages/wonder-blocks-typography"}
+    ]
+}
