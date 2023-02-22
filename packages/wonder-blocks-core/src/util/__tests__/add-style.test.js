@@ -3,7 +3,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {screen, render} from "@testing-library/react";
 
-import addStyle from "../add-style.js";
+import addStyle from "../add-style";
 
 const StyledDiv = addStyle<"div">("div");
 

@@ -4,8 +4,8 @@ import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {render, screen} from "@testing-library/react";
 
-import MediaLayout from "../media-layout.js";
-import {resizeWindow, matchMedia} from "../../util/test-util.js";
+import MediaLayout from "../media-layout";
+import {resizeWindow, matchMedia} from "../../util/test-util";
 
 describe("MediaLayout", () => {
     beforeEach(() => {

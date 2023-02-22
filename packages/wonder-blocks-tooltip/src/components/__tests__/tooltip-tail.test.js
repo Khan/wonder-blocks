@@ -2,9 +2,9 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
 
-import TooltipTail from "../tooltip-tail.js";
+import TooltipTail from "../tooltip-tail";
 
-import type {Placement} from "../../util/types.js";
+import type {Placement} from "../../util/types";
 
 describe("TooltipTail", () => {
     describe("#render", () => {

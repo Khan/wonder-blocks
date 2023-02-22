@@ -26,9 +26,9 @@ import {
     Footnote,
 } from "@khanacademy/wonder-blocks-typography";
 
-import ComponentInfo from "../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../.storybook/components/component-info";
 import {name, version} from "../../package.json";
-import TypographyArgTypes from "./typography.argtypes.js";
+import TypographyArgTypes from "./typography.argtypes";
 
 const typographyDescription = `Typography. \`wonder-blocks-typography\`
 provides a set of standardized components for displaying text in a consistent

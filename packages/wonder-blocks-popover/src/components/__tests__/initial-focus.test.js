@@ -2,7 +2,7 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import InitialFocus from "../initial-focus.js";
+import InitialFocus from "../initial-focus";
 
 describe("InitialFocus", () => {
     beforeEach(() => {

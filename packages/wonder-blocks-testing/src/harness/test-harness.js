@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
 
-import {makeTestHarness} from "./make-test-harness.js";
-import {DefaultAdapters, DefaultConfigs} from "./adapters/adapters.js";
+import {makeTestHarness} from "./make-test-harness";
+import {DefaultAdapters, DefaultConfigs} from "./adapters/adapters";
 
-import type {TestHarnessConfigs} from "./types.js";
+import type {TestHarnessConfigs} from "./types";
 
 /**
  * Wrap a component with a test harness using Wonder Blocks default adapters.

@@ -9,11 +9,11 @@ import type {
     WithoutActionScheduler,
 } from "@khanacademy/wonder-blocks-timing";
 
-import FocusTrap from "./focus-trap.js";
-import ModalBackdrop from "./modal-backdrop.js";
-import ScrollDisabler from "./scroll-disabler.js";
-import type {ModalElement} from "../util/types.js";
-import ModalContext from "./modal-context.js";
+import FocusTrap from "./focus-trap";
+import ModalBackdrop from "./modal-backdrop";
+import ScrollDisabler from "./scroll-disabler";
+import type {ModalElement} from "../util/types";
+import ModalContext from "./modal-context";
 
 type CommonProps = {|
     /**

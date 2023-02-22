@@ -6,8 +6,8 @@ import {StyleSheet} from "aphrodite";
 import {I18nInlineMarkup} from "@khanacademy/wonder-blocks-i18n";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
-import FieldHeading from "../field-heading.js";
-import TextField from "../text-field.js";
+import FieldHeading from "../field-heading";
+import TextField from "../text-field";
 
 describe("FieldHeading", () => {
     it("fieldheading renders the label text", () => {

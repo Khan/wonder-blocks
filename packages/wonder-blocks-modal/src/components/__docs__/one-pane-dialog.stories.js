@@ -18,9 +18,9 @@ import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import OnePaneDialogArgTypes from "./one-pane-dialog.argtypes.js";
+import OnePaneDialogArgTypes from "./one-pane-dialog.argtypes";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 
 const customViewports = {

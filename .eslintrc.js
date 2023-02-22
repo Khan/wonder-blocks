@@ -62,7 +62,7 @@ module.exports = {
         "import/no-named-default": "error",
         "import/extensions": [
             "error",
-            "always",
+            "never",
             {
                 ignorePackages: true,
             },

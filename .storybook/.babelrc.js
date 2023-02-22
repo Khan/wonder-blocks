@@ -6,7 +6,7 @@
  * We should remove this when jest is fixed.
  * See FEI-4139 in Jira.
  */
-const babelConfig = require("../build-settings/babel.config.js");
+const babelConfig = require("../build-settings/babel.config");
 module.exports = babelConfig({
     env: () => false,
 });

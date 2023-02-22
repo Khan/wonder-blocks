@@ -2,8 +2,8 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
 
-import InterceptContext from "../intercept-context.js";
-import InterceptRequests from "../intercept-requests.js";
+import InterceptContext from "../intercept-context";
+import InterceptRequests from "../intercept-requests";
 
 describe("InterceptRequests", () => {
     afterEach(() => {

@@ -1,7 +1,7 @@
 import * as React from "react";
 import renderer from "react-test-renderer";
 
-import View from "../view.js";
+import View from "../view";
 
 describe("View", () => {
     it("Should set the tag to be section", () => {

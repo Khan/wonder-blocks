@@ -2,7 +2,7 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import * as AddonActionsModule from "@storybook/addon-actions";
-import {fixtures} from "../fixtures.js";
+import {fixtures} from "../fixtures";
 
 jest.mock("@storybook/addon-actions");
 

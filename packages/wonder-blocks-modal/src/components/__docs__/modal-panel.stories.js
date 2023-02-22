@@ -17,7 +17,7 @@ import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 
 const customViewports = {

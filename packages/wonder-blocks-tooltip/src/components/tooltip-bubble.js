@@ -6,10 +6,10 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import typeof TooltipContent from "./tooltip-content.js";
-import TooltipTail from "./tooltip-tail.js";
+import typeof TooltipContent from "./tooltip-content";
+import TooltipTail from "./tooltip-tail";
 
-import type {getRefFn, Offset, Placement} from "../util/types.js";
+import type {getRefFn, Offset, Placement} from "../util/types";
 
 export type PopperElementProps = {|
     /** The placement of the bubble with respect to the anchor. */

@@ -23,7 +23,7 @@ try {
             "dist",
             "index.js.flow",
         );
-        const contents = ["// @flow", 'export * from "../src/index.js";'].join(
+        const contents = ["// @flow", 'export * from "../src/index";'].join(
             "\n",
         );
         fs.writeFileSync(filename, contents, "utf8");

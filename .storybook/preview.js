@@ -1,5 +1,5 @@
 import React from "react";
-import wonderBlocksTheme from "./wonder-blocks-theme.js";
+import wonderBlocksTheme from "./wonder-blocks-theme";
 import {configure} from "@storybook/testing-library";
 
 import Link from "@khanacademy/wonder-blocks-link";

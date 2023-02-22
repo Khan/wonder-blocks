@@ -1,6 +1,6 @@
 // @flow
-import Timeout from "../timeout.js";
-import {SchedulePolicy, ClearPolicy} from "../policies.js";
+import Timeout from "../timeout";
+import {SchedulePolicy, ClearPolicy} from "../policies";
 
 describe("Timeout", () => {
     beforeEach(() => {

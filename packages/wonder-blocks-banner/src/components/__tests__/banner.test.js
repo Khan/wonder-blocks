@@ -4,7 +4,7 @@ import {render, screen} from "@testing-library/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 
-import Banner from "../banner.js";
+import Banner from "../banner";
 
 describe("Banner", () => {
     test("having no `onDismiss` prop causes the 'X' button NOT to appear", () => {

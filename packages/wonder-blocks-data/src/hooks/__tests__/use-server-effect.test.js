@@ -4,14 +4,14 @@ import {renderHook as serverRenderHook} from "@testing-library/react-hooks/serve
 
 import {Server} from "@khanacademy/wonder-blocks-core";
 
-import TrackData from "../../components/track-data.js";
-import {RequestFulfillment} from "../../util/request-fulfillment.js";
-import {SsrCache} from "../../util/ssr-cache.js";
-import {RequestTracker} from "../../util/request-tracking.js";
-import {DataError} from "../../util/data-error.js";
-import * as UseRequestInterception from "../use-request-interception.js";
+import TrackData from "../../components/track-data";
+import {RequestFulfillment} from "../../util/request-fulfillment";
+import {SsrCache} from "../../util/ssr-cache";
+import {RequestTracker} from "../../util/request-tracking";
+import {DataError} from "../../util/data-error";
+import * as UseRequestInterception from "../use-request-interception";
 
-import {useServerEffect} from "../use-server-effect.js";
+import {useServerEffect} from "../use-server-effect";
 
 jest.mock("../use-request-interception.js");
 

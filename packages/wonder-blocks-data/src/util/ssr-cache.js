@@ -1,8 +1,8 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {SerializableInMemoryCache} from "./serializable-in-memory-cache.js";
+import {SerializableInMemoryCache} from "./serializable-in-memory-cache";
 
-import type {ValidCacheData, CachedResponse, ResponseCache} from "./types.js";
+import type {ValidCacheData, CachedResponse, ResponseCache} from "./types";
 
 const DefaultScope = "default";
 

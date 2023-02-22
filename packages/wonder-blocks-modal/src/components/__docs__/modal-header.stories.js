@@ -17,9 +17,9 @@ import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
-import ModalHeaderArgtypes from "./modal-header.argtypes.js";
+import ModalHeaderArgtypes from "./modal-header.argtypes";
 
 const customViewports = {
     phone: {

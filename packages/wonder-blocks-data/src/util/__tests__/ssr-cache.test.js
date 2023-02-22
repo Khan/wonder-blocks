@@ -1,7 +1,7 @@
 // @flow
 import {Server} from "@khanacademy/wonder-blocks-core";
-import {SsrCache} from "../ssr-cache.js";
-import {SerializableInMemoryCache} from "../serializable-in-memory-cache.js";
+import {SsrCache} from "../ssr-cache";
+import {SerializableInMemoryCache} from "../serializable-in-memory-cache";
 
 describe("../ssr-cache.js", () => {
     afterEach(() => {

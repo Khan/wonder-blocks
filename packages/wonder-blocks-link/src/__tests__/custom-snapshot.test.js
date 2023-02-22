@@ -2,8 +2,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import LinkCore from "../components/link-core.js";
-import Link from "../components/link.js";
+import LinkCore from "../components/link-core";
+import Link from "../components/link";
 
 const defaultHandlers = {
     onClick: () => void 0,

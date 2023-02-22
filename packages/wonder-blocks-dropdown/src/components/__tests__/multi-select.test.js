@@ -6,10 +6,10 @@ import userEvent from "@testing-library/user-event";
 
 import {ngettext} from "@khanacademy/wonder-blocks-i18n";
 
-import OptionItem from "../option-item.js";
-import MultiSelect from "../multi-select.js";
+import OptionItem from "../option-item";
+import MultiSelect from "../multi-select";
 
-import type {Labels} from "../multi-select.js";
+import type {Labels} from "../multi-select";
 
 const labels: $Shape<Labels> = {
     selectAllLabel: (numOptions) => `Sellect all (${numOptions})`,

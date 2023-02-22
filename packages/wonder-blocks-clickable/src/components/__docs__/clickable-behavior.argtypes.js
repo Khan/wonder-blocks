@@ -1,4 +1,4 @@
-import clickableArgtypes from "./clickable.argtypes.js";
+import clickableArgtypes from "./clickable.argtypes";
 
 export default {
     children: {

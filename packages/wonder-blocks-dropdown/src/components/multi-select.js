@@ -5,19 +5,19 @@ import ReactDOM from "react-dom";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
-import ActionItem from "./action-item.js";
-import DropdownCore from "./dropdown-core.js";
-import DropdownOpener from "./dropdown-opener.js";
-import SelectOpener from "./select-opener.js";
-import SeparatorItem from "./separator-item.js";
+import ActionItem from "./action-item";
+import DropdownCore from "./dropdown-core";
+import DropdownOpener from "./dropdown-opener";
+import SelectOpener from "./select-opener";
+import SeparatorItem from "./separator-item";
 import {
     defaultLabels,
     selectDropdownStyle,
     filterableDropdownStyle,
-} from "../util/constants.js";
+} from "../util/constants";
 
-import typeof OptionItem from "./option-item.js";
-import type {DropdownItem, OpenerProps} from "../util/types.js";
+import typeof OptionItem from "./option-item";
+import type {DropdownItem, OpenerProps} from "../util/types";
 
 export type Labels = {|
     /**

@@ -3,10 +3,10 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import ActionItem from "../action-item.js";
-import OptionItem from "../option-item.js";
-import SeparatorItem from "../separator-item.js";
-import ActionMenu from "../action-menu.js";
+import ActionItem from "../action-item";
+import OptionItem from "../option-item";
+import SeparatorItem from "../separator-item";
+import ActionMenu from "../action-menu";
 
 describe("ActionMenu", () => {
     const onClick = jest.fn();

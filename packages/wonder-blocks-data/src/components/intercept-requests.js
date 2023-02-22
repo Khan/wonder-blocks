@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
 
-import InterceptContext from "./intercept-context.js";
+import InterceptContext from "./intercept-context";
 
-import type {ValidCacheData} from "../util/types.js";
+import type {ValidCacheData} from "../util/types";
 
 type Props<TData: ValidCacheData> = {|
     /**

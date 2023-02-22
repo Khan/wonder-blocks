@@ -1,9 +1,9 @@
 // @flow
 import {useRef} from "react";
 
-import {useRenderState} from "./use-render-state.js";
-import SsrIDFactory from "../util/ssr-id-factory.js";
-import UniqueIDFactory from "../util/unique-id-factory.js";
+import {useRenderState} from "./use-render-state";
+import SsrIDFactory from "../util/ssr-id-factory";
+import UniqueIDFactory from "../util/unique-id-factory";
 
 import {
     // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
@@ -11,9 +11,9 @@ import {
     // https://github.com/import-js/eslint-plugin-import/issues/2073
     // eslint-disable-next-line import/named
     RenderState,
-} from "../components/render-state-context.js";
+} from "../components/render-state-context";
 
-import type {IIdentifierFactory} from "../util/types.js";
+import type {IIdentifierFactory} from "../util/types";
 
 /**
  * Returns a unique identifier factory.  If the parent component hasn't

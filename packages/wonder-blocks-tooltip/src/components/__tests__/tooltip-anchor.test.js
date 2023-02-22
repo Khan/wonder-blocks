@@ -4,11 +4,11 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import TooltipAnchor from "../tooltip-anchor.js";
+import TooltipAnchor from "../tooltip-anchor";
 import {
     TooltipAppearanceDelay,
     TooltipDisappearanceDelay,
-} from "../../util/constants.js";
+} from "../../util/constants";
 
 jest.mock("../../util/active-tracker.js");
 

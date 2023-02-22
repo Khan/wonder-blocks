@@ -1,7 +1,7 @@
 // @flow
-import {getPathForIcon, viewportPixelsForSize} from "./icon-util.js";
+import {getPathForIcon, viewportPixelsForSize} from "./icon-util";
 
-import type {IconSize, IconAsset} from "./icon-assets.js";
+import type {IconSize, IconAsset} from "./icon-assets";
 
 const SIZES = ["small", "medium", "large", "xlarge"];
 

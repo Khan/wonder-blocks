@@ -4,11 +4,11 @@ import {useEffect, useState, useCallback} from "react";
 import {
     SchedulePolicy as SchedulePolicies,
     ClearPolicy as ClearPolicies,
-} from "../util/policies.js";
-import type {ITimeout, ClearPolicy, Options} from "../util/types.js";
+} from "../util/policies";
+import type {ITimeout, ClearPolicy, Options} from "../util/types";
 
-import {useUpdatingRef} from "./internal/use-updating-ref.js";
-import {useTimeout} from "./use-timeout.js";
+import {useUpdatingRef} from "./internal/use-updating-ref";
+import {useTimeout} from "./use-timeout";
 
 export function useScheduledTimeout(
     action: () => mixed,

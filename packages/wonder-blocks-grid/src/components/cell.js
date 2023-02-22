@@ -6,8 +6,8 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import type {MediaSize} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import styles from "../util/styles.js";
-import {flexBasis} from "../util/utils.js";
+import styles from "../util/styles";
+import {flexBasis} from "../util/utils";
 
 type Props = {|
     /** The number of columns this cell should span on a Small Grid. */

@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
-import typeof BreadcrumbsItem from "./breadcrumbs-item.js";
+import typeof BreadcrumbsItem from "./breadcrumbs-item";
 
 type Props = {|
     ...AriaProps,

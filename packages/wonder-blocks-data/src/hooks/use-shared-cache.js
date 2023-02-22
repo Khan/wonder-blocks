@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
-import {DataError, DataErrors} from "../util/data-error.js";
-import {ScopedInMemoryCache} from "../util/scoped-in-memory-cache.js";
-import type {ValidCacheData, ScopedCache} from "../util/types.js";
+import {DataError, DataErrors} from "../util/data-error";
+import {ScopedInMemoryCache} from "../util/scoped-in-memory-cache";
+import type {ValidCacheData, ScopedCache} from "../util/types";
 
 /**
  * A function for inserting a value into the cache or clearing it.

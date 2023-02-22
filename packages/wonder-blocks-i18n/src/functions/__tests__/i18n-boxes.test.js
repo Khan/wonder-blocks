@@ -1,5 +1,5 @@
 // @flow
-import Boxes, {BoxChar} from "../i18n-boxes.js";
+import Boxes, {BoxChar} from "../i18n-boxes";
 
 describe("i18n-boxes.js: Boxes", () => {
     describe("#translate", () => {

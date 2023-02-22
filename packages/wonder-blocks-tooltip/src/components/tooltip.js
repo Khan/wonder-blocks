@@ -29,11 +29,11 @@ import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
 
-import TooltipAnchor from "./tooltip-anchor.js";
-import TooltipBubble from "./tooltip-bubble.js";
-import TooltipContent from "./tooltip-content.js";
-import TooltipPopper from "./tooltip-popper.js";
-import type {Placement} from "../util/types.js";
+import TooltipAnchor from "./tooltip-anchor";
+import TooltipBubble from "./tooltip-bubble";
+import TooltipContent from "./tooltip-content";
+import TooltipPopper from "./tooltip-popper";
+import type {Placement} from "../util/types";
 
 type Props = {|
     ...AriaProps,

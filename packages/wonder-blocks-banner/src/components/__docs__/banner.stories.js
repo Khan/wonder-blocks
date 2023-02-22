@@ -13,8 +13,8 @@ import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import BannerArgTypes from "./banner.argtypes.js";
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import BannerArgTypes from "./banner.argtypes";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 
 const bannerDescription = `

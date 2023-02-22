@@ -2,7 +2,7 @@
 import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 import {useCachedEffect} from "@khanacademy/wonder-blocks-data";
-import * as Data from "../data.js";
+import * as Data from "../data";
 
 describe("WonderBlocksData.adapter", () => {
     it("should render children when configuration arrays are empty", () => {

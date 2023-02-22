@@ -1,8 +1,8 @@
 // @flow
-import {SharedCache} from "../../hooks/use-shared-cache.js";
-import * as HydrationCacheApi from "../hydration-cache-api.js";
+import {SharedCache} from "../../hooks/use-shared-cache";
+import * as HydrationCacheApi from "../hydration-cache-api";
 
-import {purgeCaches} from "../purge-caches.js";
+import {purgeCaches} from "../purge-caches";
 
 describe("#purgeCaches", () => {
     it("should purge the shared cache", () => {

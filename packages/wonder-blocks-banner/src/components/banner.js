@@ -11,7 +11,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
-import * as bannerIcons from "./banner-icons.js";
+import * as bannerIcons from "./banner-icons";
 
 type ActionTriggerBase = {|
     title: string,

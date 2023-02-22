@@ -3,8 +3,8 @@ import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 
 import {GqlRouter, useGql} from "@khanacademy/wonder-blocks-data";
-import {RespondWith} from "../../respond-with.js";
-import {mockGqlFetch} from "../mock-gql-fetch.js";
+import {RespondWith} from "../../respond-with";
+import {mockGqlFetch} from "../mock-gql-fetch";
 
 describe("integrating mockGqlFetch, RespondWith, GqlRouter and useGql", () => {
     it("should reject with error indicating there are no mocks", async () => {

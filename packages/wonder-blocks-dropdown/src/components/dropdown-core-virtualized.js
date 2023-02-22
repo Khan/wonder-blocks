@@ -8,17 +8,17 @@ import type {
     WithActionSchedulerProps,
     WithoutActionScheduler,
 } from "@khanacademy/wonder-blocks-timing";
-import DropdownVirtualizedItem from "./dropdown-core-virtualized-item.js";
-import SeparatorItem from "./separator-item.js";
+import DropdownVirtualizedItem from "./dropdown-core-virtualized-item";
+import SeparatorItem from "./separator-item";
 
-import type {DropdownItem} from "../util/types.js";
+import type {DropdownItem} from "../util/types";
 
 import {
     DROPDOWN_ITEM_HEIGHT,
     MAX_VISIBLE_ITEMS,
     SEPARATOR_ITEM_HEIGHT,
-} from "../util/constants.js";
-import {getDropdownMenuHeight} from "../util/dropdown-menu-styles.js";
+} from "../util/constants";
+import {getDropdownMenuHeight} from "../util/dropdown-menu-styles";
 
 type Props = {|
     /**

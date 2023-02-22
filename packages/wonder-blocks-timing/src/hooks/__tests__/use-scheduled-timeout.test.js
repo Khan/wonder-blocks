@@ -1,8 +1,8 @@
 // @flow
 import {renderHook, act} from "@testing-library/react-hooks";
-import {SchedulePolicy, ClearPolicy} from "../../util/policies.js";
+import {SchedulePolicy, ClearPolicy} from "../../util/policies";
 
-import {useScheduledTimeout} from "../use-scheduled-timeout.js";
+import {useScheduledTimeout} from "../use-scheduled-timeout";
 
 describe("useScheduledTimeout", () => {
     beforeEach(() => {

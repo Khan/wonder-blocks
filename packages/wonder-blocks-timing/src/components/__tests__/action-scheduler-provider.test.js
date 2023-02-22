@@ -2,8 +2,8 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
 
-import ActionSchedulerProvider from "../action-scheduler-provider.js";
-import ActionScheduler from "../../util/action-scheduler.js";
+import ActionSchedulerProvider from "../action-scheduler-provider";
+import ActionScheduler from "../../util/action-scheduler";
 
 jest.mock("../../util/action-scheduler.js");
 

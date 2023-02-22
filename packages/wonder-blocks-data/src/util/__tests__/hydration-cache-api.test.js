@@ -1,10 +1,10 @@
 // @flow
-import {SsrCache} from "../ssr-cache.js";
+import {SsrCache} from "../ssr-cache";
 
 import {
     initializeHydrationCache,
     purgeHydrationCache,
-} from "../hydration-cache-api.js";
+} from "../hydration-cache-api";
 
 describe("#initializeHydrationCache", () => {
     it("should call SsrCache.Default.initialize", () => {

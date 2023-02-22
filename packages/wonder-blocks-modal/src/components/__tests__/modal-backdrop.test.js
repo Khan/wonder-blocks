@@ -3,8 +3,8 @@ import * as React from "react";
 import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import ModalBackdrop from "../modal-backdrop.js";
-import OnePaneDialog from "../one-pane-dialog.js";
+import ModalBackdrop from "../modal-backdrop";
+import OnePaneDialog from "../one-pane-dialog";
 
 const exampleModal = (
     <OnePaneDialog

@@ -1,5 +1,5 @@
 // @flow
-import {getGqlDataFromResponse} from "../get-gql-data-from-response.js";
+import {getGqlDataFromResponse} from "../get-gql-data-from-response";
 
 describe("#getGqlDataFromReponse", () => {
     it("should throw if the response cannot be parsed", async () => {

@@ -1,6 +1,6 @@
 // @flow
-import {SettleController} from "../settle-controller.js";
-import {SettleSignal} from "../settle-signal.js";
+import {SettleController} from "../settle-controller";
+import {SettleSignal} from "../settle-signal";
 
 describe("SettleController", () => {
     it("should have a signal", () => {

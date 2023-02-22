@@ -3,9 +3,9 @@
 import * as React from "react";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
 
-import typeof ActionItem from "../components/action-item.js";
-import typeof OptionItem from "../components/option-item.js";
-import typeof SeparatorItem from "../components/separator-item.js";
+import typeof ActionItem from "../components/action-item";
+import typeof OptionItem from "../components/option-item";
+import typeof SeparatorItem from "../components/separator-item";
 
 //TODO: rename into something more descriptive
 export type Item =

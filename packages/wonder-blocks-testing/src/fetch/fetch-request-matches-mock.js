@@ -1,5 +1,5 @@
 // @flow
-import type {FetchMockOperation} from "./types.js";
+import type {FetchMockOperation} from "./types";
 
 /**
  * Get the URL from the given RequestInfo.

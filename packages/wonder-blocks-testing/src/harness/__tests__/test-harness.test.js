@@ -1,7 +1,7 @@
 // @flow
 import {jest as ws} from "@khanacademy/wonder-stuff-testing";
-import * as MTH from "../make-test-harness.js";
-import {DefaultAdapters, DefaultConfigs} from "../adapters/adapters.js";
+import * as MTH from "../make-test-harness";
+import {DefaultAdapters, DefaultConfigs} from "../adapters/adapters";
 
 jest.mock("../make-test-harness.js", () => {
     const returnValueFake = {

@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 
 import Color from "@khanacademy/wonder-blocks-color";
 
-import Link from "../link.js";
+import Link from "../link";
 
 describe("Link", () => {
     beforeEach(() => {

@@ -2,9 +2,9 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import OptionItem from "../option-item.js";
-import SeparatorItem from "../separator-item.js";
-import DropdownCoreVirtualized from "../dropdown-core-virtualized.js";
+import OptionItem from "../option-item";
+import SeparatorItem from "../separator-item";
+import DropdownCoreVirtualized from "../dropdown-core-virtualized";
 
 describe("DropdownCoreVirtualized", () => {
     it("should sort the items on first load", () => {

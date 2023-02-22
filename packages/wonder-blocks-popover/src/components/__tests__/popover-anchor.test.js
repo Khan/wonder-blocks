@@ -3,7 +3,7 @@ import * as React from "react";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import PopoverAnchor from "../popover-anchor.js";
+import PopoverAnchor from "../popover-anchor";
 
 describe("PopoverAnchor", () => {
     it("should set child node as ref", () => {

@@ -3,8 +3,8 @@
 import * as React from "react";
 import ReactDOM from "react-dom";
 
-import typeof PopoverContent from "./popover-content.js";
-import typeof PopoverContentCore from "./popover-content-core.js";
+import typeof PopoverContent from "./popover-content";
+import typeof PopoverContentCore from "./popover-content-core";
 
 type Props = {|
     /**

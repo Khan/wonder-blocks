@@ -2,7 +2,7 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import CellCore from "../cell-core.js";
+import CellCore from "../cell-core";
 
 describe("CellCore", () => {
     it("should render the CellCore component", () => {

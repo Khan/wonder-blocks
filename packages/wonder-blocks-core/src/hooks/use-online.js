@@ -1,6 +1,6 @@
 // @flow
 import {useEffect} from "react";
-import {useForceUpdate} from "./use-force-update.js";
+import {useForceUpdate} from "./use-force-update";
 
 /**
  * Track the online status of the browser.

@@ -4,10 +4,10 @@ import * as ReactDOM from "react-dom";
 import {render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import {ModalLauncherPortalAttributeName} from "./constants.js";
-import maybeGetPortalMountedModalHostElement from "./maybe-get-portal-mounted-modal-host-element.js";
-import ModalLauncher from "../components/modal-launcher.js";
-import OnePaneDialog from "../components/one-pane-dialog.js";
+import {ModalLauncherPortalAttributeName} from "./constants";
+import maybeGetPortalMountedModalHostElement from "./maybe-get-portal-mounted-modal-host-element";
+import ModalLauncher from "../components/modal-launcher";
+import OnePaneDialog from "../components/one-pane-dialog";
 
 describe("maybeGetPortalMountedModalHostElement", () => {
     test("when candidate is null, returns null", () => {

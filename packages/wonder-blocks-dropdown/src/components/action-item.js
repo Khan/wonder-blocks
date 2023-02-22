@@ -16,7 +16,7 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
+import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
 const {blue, white, offBlack, offBlack32} = Color;
 

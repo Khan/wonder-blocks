@@ -1,5 +1,5 @@
 // @flow
-import {graphQLDocumentNodeParser} from "../graphql-document-node-parser.js";
+import {graphQLDocumentNodeParser} from "../graphql-document-node-parser";
 
 describe("#graphQLDocumentNodeParser", () => {
     describe("in production - shorter error messages", () => {

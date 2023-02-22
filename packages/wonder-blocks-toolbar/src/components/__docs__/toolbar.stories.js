@@ -7,12 +7,12 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 
 import type {StoryComponentType} from "@storybook/react";
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 import ToolbarArgtypes, {
     leftContentMappings,
     rightContentMappings,
-} from "./toolbar.argtypes.js";
+} from "./toolbar.argtypes";
 
 export default {
     title: "Toolbar / Toolbar",

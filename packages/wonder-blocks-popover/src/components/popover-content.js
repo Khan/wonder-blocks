@@ -7,10 +7,10 @@ import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 
-import type {PopoverContextType} from "./popover-context.js";
+import type {PopoverContextType} from "./popover-context";
 
-import PopoverContentCore from "./popover-content-core.js";
-import PopoverContext from "./popover-context.js";
+import PopoverContentCore from "./popover-content-core";
+import PopoverContext from "./popover-context";
 
 type CommonProps = {|
     ...AriaProps,

@@ -15,10 +15,10 @@ import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import type {StoryComponentType} from "@storybook/react";
 import type {StyleDeclaration} from "aphrodite";
 
-import Button from "../button.js";
+import Button from "../button";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
-import ButtonArgTypes from "./button.argtypes.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
+import ButtonArgTypes from "./button.argtypes";
 import {name, version} from "../../../package.json";
 
 export default {

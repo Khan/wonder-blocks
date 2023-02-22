@@ -1,7 +1,7 @@
 // @flow
-import {Status} from "./status.js";
-import {DataError, DataErrors} from "./data-error.js";
-import type {ValidCacheData, CachedResponse, Result} from "./types.js";
+import {Status} from "./status";
+import {DataError, DataErrors} from "./data-error";
+import type {ValidCacheData, CachedResponse, Result} from "./types";
 
 /**
  * Turns a cache entry into a stateful result.

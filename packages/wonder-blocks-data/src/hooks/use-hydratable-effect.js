@@ -1,16 +1,16 @@
 // @flow
 import * as React from "react";
 
-import {useServerEffect} from "./use-server-effect.js";
-import {useSharedCache} from "./use-shared-cache.js";
-import {useCachedEffect} from "./use-cached-effect.js";
+import {useServerEffect} from "./use-server-effect";
+import {useSharedCache} from "./use-shared-cache";
+import {useCachedEffect} from "./use-cached-effect";
 
 // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
 // have fixed:
 // https://github.com/import-js/eslint-plugin-import/issues/2073
 // eslint-disable-next-line import/named
-import {FetchPolicy} from "../util/types.js";
-import type {Result, ValidCacheData} from "../util/types.js";
+import {FetchPolicy} from "../util/types";
+import type {Result, ValidCacheData} from "../util/types";
 
 /**
  * Policies to define how a hydratable effect should behave client-side.

@@ -1,6 +1,6 @@
 // @flow
-import type {MockResponse} from "./respond-with.js";
-import type {OperationMock, OperationMatcher, MockFn} from "./types.js";
+import type {MockResponse} from "./respond-with";
+import type {OperationMock, OperationMatcher, MockFn} from "./types";
 
 /**
  * A generic mock request function for using when mocking fetch or gqlFetch.

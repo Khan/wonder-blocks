@@ -1,5 +1,5 @@
 // @flow
-import {isClientSideUrl} from "../is-client-side-url.js";
+import {isClientSideUrl} from "../is-client-side-url";
 
 describe("isClientSideUrl", () => {
     test("returns boolean based on the url", () => {

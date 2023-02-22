@@ -3,7 +3,7 @@ import * as React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import TextField from "../text-field.js";
+import TextField from "../text-field";
 
 describe("TextField", () => {
     it("textfield is focused", () => {

@@ -1,7 +1,7 @@
 // @flow
 import {renderHook} from "@testing-library/react-hooks";
 
-import {useOnMountEffect} from "../use-on-mount-effect.js";
+import {useOnMountEffect} from "../use-on-mount-effect";
 
 describe("#useOnMountEffect", () => {
     it("should call the callback once", () => {

@@ -2,9 +2,9 @@
 import {
     SchedulePolicy as SchedulePolicies,
     ClearPolicy as ClearPolicies,
-} from "./policies.js";
+} from "./policies";
 
-import type {IInterval, SchedulePolicy, ClearPolicy} from "./types.js";
+import type {IInterval, SchedulePolicy, ClearPolicy} from "./types";
 
 /**
  * Encapsulates everything associated with calling setInterval/clearInterval,

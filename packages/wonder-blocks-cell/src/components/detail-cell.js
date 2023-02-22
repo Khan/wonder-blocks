@@ -7,10 +7,10 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
-import CellCore from "./internal/cell-core.js";
-import {CellMeasurements} from "./internal/common.js";
+import CellCore from "./internal/cell-core";
+import {CellMeasurements} from "./internal/common";
 
-import type {CellProps, TypographyText} from "../util/types.js";
+import type {CellProps, TypographyText} from "../util/types";
 
 type SubtitleProps = {|
     subtitle?: TypographyText,

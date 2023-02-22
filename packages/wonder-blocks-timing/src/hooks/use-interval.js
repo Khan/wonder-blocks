@@ -1,7 +1,7 @@
 // @flow
 import {useEffect} from "react";
 
-import {useUpdatingRef} from "./internal/use-updating-ref.js";
+import {useUpdatingRef} from "./internal/use-updating-ref";
 
 /**
  * A simple hook for using `setInterval`.

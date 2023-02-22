@@ -3,9 +3,9 @@ import * as React from "react";
 
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
-import CellCore from "./internal/cell-core.js";
+import CellCore from "./internal/cell-core";
 
-import type {CellProps} from "../util/types.js";
+import type {CellProps} from "../util/types";
 
 /**
  * `CompactCell` is the simplest form of the Cell. It is a compacted-height Cell

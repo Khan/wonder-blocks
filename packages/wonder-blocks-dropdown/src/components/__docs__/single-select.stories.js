@@ -23,10 +23,10 @@ import {
 import type {SingleSelectLabels} from "@khanacademy/wonder-blocks-dropdown";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
-import singleSelectArgtypes from "./base-select.argtypes.js";
-import {defaultLabels} from "../../util/constants.js";
+import singleSelectArgtypes from "./base-select.argtypes";
+import {defaultLabels} from "../../util/constants";
 
 export default {
     title: "Dropdown / SingleSelect",

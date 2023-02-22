@@ -12,8 +12,8 @@
 import * as React from "react";
 import {withRouter} from "react-router-dom";
 
-import ClickableBehavior from "../components/clickable-behavior.js";
-import {isClientSideUrl} from "./is-client-side-url.js";
+import ClickableBehavior from "../components/clickable-behavior";
+import {isClientSideUrl} from "./is-client-side-url";
 
 const ClickableBehaviorWithRouter = withRouter(ClickableBehavior);
 

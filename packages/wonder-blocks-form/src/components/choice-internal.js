@@ -10,8 +10,8 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import CheckboxCore from "./checkbox-core.js";
-import RadioCore from "./radio-core.js";
+import CheckboxCore from "./checkbox-core";
+import RadioCore from "./radio-core";
 
 type Props = {|
     ...AriaProps,

@@ -5,8 +5,8 @@ import {render} from "@testing-library/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import typeof TooltipBubble from "../tooltip-bubble.js";
-import TooltipPopper from "../tooltip-popper.js";
+import typeof TooltipBubble from "../tooltip-bubble";
+import TooltipPopper from "../tooltip-popper";
 
 type State = {|ref: ?HTMLElement|};
 /**

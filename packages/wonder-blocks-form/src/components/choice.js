@@ -3,8 +3,8 @@
 import * as React from "react";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import Checkbox from "./checkbox.js";
-import Radio from "./radio.js";
+import Checkbox from "./checkbox";
+import Radio from "./radio";
 
 type Props = {|
     ...AriaProps,

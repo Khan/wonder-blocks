@@ -7,7 +7,7 @@ import type {
     WithActionScheduler,
     WithActionSchedulerProps,
     WithoutActionScheduler,
-} from "./util/types.js";
+} from "./util/types";
 
 export type {
     IAnimationFrame,
@@ -19,9 +19,9 @@ export type {
     WithoutActionScheduler,
 };
 
-export {SchedulePolicy, ClearPolicy} from "./util/policies.js";
-export {default as withActionScheduler} from "./components/with-action-scheduler.js";
-export {useInterval} from "./hooks/use-interval.js";
-export {useTimeout} from "./hooks/use-timeout.js";
-export {useScheduledInterval} from "./hooks/use-scheduled-interval.js";
-export {useScheduledTimeout} from "./hooks/use-scheduled-timeout.js";
+export {SchedulePolicy, ClearPolicy} from "./util/policies";
+export {default as withActionScheduler} from "./components/with-action-scheduler";
+export {useInterval} from "./hooks/use-interval";
+export {useTimeout} from "./hooks/use-timeout";
+export {useScheduledInterval} from "./hooks/use-scheduled-interval";
+export {useScheduledTimeout} from "./hooks/use-scheduled-timeout";

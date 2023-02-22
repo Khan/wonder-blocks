@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {findFocusableNodes} from "../util/util.js";
-import InitialFocus from "./initial-focus.js";
+import {findFocusableNodes} from "../util/util";
+import InitialFocus from "./initial-focus";
 
 type Props = {|
     /**
