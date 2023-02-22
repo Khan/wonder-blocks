@@ -42,7 +42,8 @@ const getAppropriateTriggersForRole = (role: ?ClickableRole) => {
     }
 };
 
-type CommonProps = {|
+// TODO(FEI-5000): Convert back to conditional props after TS migration is complete.
+type Props = {|
     /**
      * A function that returns the a React `Element`.
      *
@@ -131,6 +132,28 @@ type CommonProps = {|
      * Respond to raw "keyup" event.
      */
     onKeyUp?: (e: SyntheticKeyboardEvent<>) => mixed,
+
+    /**
+     * A target destination window for a link to open in. Should only be used
+     * when `href` is specified.
+     */
+    // TODO(WB-1262): only allow this prop when `href` is also set.
+    target?: "_blank",
+
+    /**
+     * Run async code before navigating to the URL passed to `href`. If the
+     * promise returned rejects then navigation will not occur.
+     *
+     * If both safeWithNav and beforeNav are provided, beforeNav will be run
+     * first and safeWithNav will only be run if beforeNav does not reject.
+     *
+     * WARNING: Using this with `target="_blank"` will trigger built-in popup
+     * blockers in Firefox and Safari.  This is because we do navigation
+     * programmatically and `beforeNav` causes a delay which means that the
+     * browser can't make a directly link between a user action and the
+     * navigation.
+     */
+    beforeNav?: () => Promise<mixed>,
 |};
 
 export type ClickableState = {|
@@ -164,36 +187,6 @@ export type ClickableState = {|
      */
     waiting: boolean,
 |};
-
-type Props =
-    | {|
-          ...CommonProps,
-
-          /**
-           * A target destination window for a link to open in. Should only be used
-           * when `href` is specified.
-           */
-          // TODO(WB-1262): only allow this prop when `href` is also set.
-          target?: "_blank",
-      |}
-    | {|
-          ...CommonProps,
-
-          /**
-           * Run async code before navigating to the URL passed to `href`. If the
-           * promise returned rejects then navigation will not occur.
-           *
-           * If both safeWithNav and beforeNav are provided, beforeNav will be run
-           * first and safeWithNav will only be run if beforeNav does not reject.
-           *
-           * WARNING: Using this with `target="_blank"` will trigger built-in popup
-           * blockers in Firefox and Safari.  This is because we do navigation
-           * programmatically and `beforeNav` causes a delay which means that the
-           * browser can't make a directly link between a user action and the
-           * navigation.
-           */
-          beforeNav?: () => Promise<mixed>,
-      |};
 
 type DefaultProps = {|
     disabled: $PropertyType<Props, "disabled">,
