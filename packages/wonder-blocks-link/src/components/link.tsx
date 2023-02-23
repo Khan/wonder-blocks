@@ -206,7 +206,6 @@ export default class Link extends React.Component<SharedProps> {
                 >
                     {(state, {...childrenProps}) => {
                         return (
-                            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                             <LinkCore
                                 {...sharedProps}
                                 {...state}
@@ -236,7 +235,6 @@ export default class Link extends React.Component<SharedProps> {
                 >
                     {(state, {...childrenProps}) => {
                         return (
-                            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                             <LinkCore
                                 {...sharedProps}
                                 {...state}

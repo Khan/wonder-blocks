@@ -1,5 +1,3 @@
-// @ts-expect-error [FEI-5019] - TS2307 - Cannot find module 'flow-to-typescript-codemod' or its corresponding type declarations.
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -14,14 +12,7 @@ import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
 
 import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
-type Props = Partial<
-    Flow.Diff<
-        AriaProps,
-        {
-            ["aria-disabled"]: "true" | "false" | undefined;
-        }
-    >
-> &
+type Props = Partial<Omit<AriaProps, "aria-disabled">> &
     ClickableState & {
         /**
          * Display text for the opener.

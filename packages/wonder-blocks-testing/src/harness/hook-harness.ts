@@ -1,5 +1,3 @@
-// @ts-expect-error [FEI-5019] - TS2307 - Cannot find module 'flow-to-typescript-codemod' or its corresponding type declarations.
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 
 import {makeHookHarness} from "./make-hook-harness";
@@ -18,7 +16,7 @@ import type {TestHarnessConfigs} from "./types";
  */
 export const hookHarness: (
     configs?: Partial<TestHarnessConfigs<typeof DefaultAdapters>>,
-) => Flow.AbstractComponent<any, any> = makeHookHarness(
+) => React.ForwardRefExoticComponent<any> = makeHookHarness(
     DefaultAdapters,
     DefaultConfigs,
 );

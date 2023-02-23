@@ -152,7 +152,6 @@ export class I18nInlineMarkup extends React.PureComponent<Props> {
                                  * node.children can be null but renderer does
                                  * not accept null.
                                  */
-                                // $FlowFixMe[incompatible-call]
                                 // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'string | null' is not assignable to parameter of type 'string'.
                                 renderer(node.children),
                                 node.tag,
@@ -169,7 +168,6 @@ export class I18nInlineMarkup extends React.PureComponent<Props> {
                              * node.children can be null but renderer does
                              * not accept null.
                              */
-                            // $FlowFixMe[incompatible-call]
                             // @ts-expect-error [FEI-5019] - TS2345 - Argument of type 'string | null' is not assignable to parameter of type 'string'.
                             renderer(node.children)
                         }

@@ -217,9 +217,6 @@ class ModalLauncher extends React.Component<Props, State> {
         }
 
         return (
-            // This flow check is valid, it's the babel plugin which is broken,
-            // see modal-context.js for details.
-            // $FlowFixMe
             <ModalContext.Provider value={{closeModal: this.handleCloseModal}}>
                 {renderedChildren}
                 {this.state.opened &&

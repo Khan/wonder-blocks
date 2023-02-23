@@ -440,7 +440,7 @@ export default class SingleSelect extends React.Component<Props, State> {
                 className={className}
                 isFilterable={isFilterable}
                 onSearchTextChanged={
-                    isFilterable ? this.handleSearchTextChanged : null
+                    isFilterable ? this.handleSearchTextChanged : undefined
                 }
                 searchText={isFilterable ? searchText : ""}
                 labels={labels}

@@ -35,11 +35,7 @@ export const getGqlDataFromResponse = async <TData>(
 
     // Check that we have a valid result payload.
     if (
-        // Flow shouldn't be warning about this.
-        // $FlowIgnore[method-unbinding]
         !Object.prototype.hasOwnProperty.call(result, "data") &&
-        // Flow shouldn't be warning about this.
-        // $FlowIgnore[method-unbinding]
         !Object.prototype.hasOwnProperty.call(result, "errors")
     ) {
         throw new GqlError("Server response missing", GqlErrors.BadResponse, {

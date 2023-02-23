@@ -19,8 +19,6 @@ class DropdownCoreVirtualizedMock extends React.Component<Props> {
     render(): React.ReactElement {
         const {data, listRef} = this.props;
         return (
-            // react-window has some issues for typing lists when passing refs
-            // $FlowIgnore
             <List
                 height={400}
                 itemCount={data.length}
@@ -29,6 +27,7 @@ class DropdownCoreVirtualizedMock extends React.Component<Props> {
                 width={300}
                 overscanCount={5}
                 // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
+                // react-window has some issues for typing lists when passing refs
                 ref={listRef}
             >
                 {DropdownVirtualizedItem}

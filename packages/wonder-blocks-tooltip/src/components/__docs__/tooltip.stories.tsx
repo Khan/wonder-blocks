@@ -176,7 +176,6 @@ export const TooltipInModal: StoryComponentType = () => {
 
     return (
         <ModalLauncher modal={modal}>
-            {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'openModal' implicitly has an 'any' type. */}
             {({openModal}) => <Button onClick={openModal}>Click here!</Button>}
         </ModalLauncher>
     );

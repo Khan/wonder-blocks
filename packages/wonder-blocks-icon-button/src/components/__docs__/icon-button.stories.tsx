@@ -39,8 +39,8 @@ Default.args = {
     icon: icons.search,
     color: "default",
     kind: "primary",
-    // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
-    onClick: (e) => {
+
+    onClick: (e: React.SyntheticEvent) => {
         console.log("Click!");
         action("clicked")(e);
     },
@@ -65,7 +65,6 @@ export const Variants: StoryComponentType = () => {
             <IconButton
                 icon={icons.search}
                 aria-label="search"
-                // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
                 onClick={(e) => console.log("Click!")}
             />
             <Strut size={Spacing.medium_16} />
@@ -73,7 +72,6 @@ export const Variants: StoryComponentType = () => {
                 icon={icons.search}
                 aria-label="search"
                 kind="secondary"
-                // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
                 onClick={(e) => console.log("Click!")}
             />
             <Strut size={Spacing.medium_16} />
@@ -81,7 +79,6 @@ export const Variants: StoryComponentType = () => {
                 icon={icons.search}
                 aria-label="search"
                 kind="tertiary"
-                // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
                 onClick={(e) => console.log("Click!")}
             />
             <Strut size={Spacing.medium_16} />
@@ -89,7 +86,6 @@ export const Variants: StoryComponentType = () => {
                 disabled={true}
                 icon={icons.search}
                 aria-label="search"
-                // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
                 onClick={(e) => console.log("Click!")}
             />
         </View>
@@ -110,7 +106,6 @@ export const Light: StoryComponentType = () => {
                 icon={icons.search}
                 aria-label="search"
                 light={true}
-                // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
                 onClick={(e) => console.log("Click!")}
             />
         </View>
@@ -133,7 +128,6 @@ export const DisabledLight: StoryComponentType = () => {
                 icon={icons.search}
                 aria-label="search"
                 light={true}
-                // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
                 onClick={(e) => console.log("Click!")}
             />
         </View>
@@ -154,7 +148,6 @@ export const UsingHref: StoryComponentType = () => {
             aria-label="More information"
             href="/"
             target="_blank"
-            // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
             onClick={(e) => console.log("Click!")}
         />
     );
@@ -176,13 +169,11 @@ export const WithAriaLabel: StoryComponentType = () => {
         <View style={styles.arrowsWrapper}>
             <IconButton
                 icon={icons.caretLeft}
-                // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
                 onClick={(e) => console.log("Click!")}
                 aria-label="Previous page"
             />
             <IconButton
                 icon={icons.caretRight}
-                // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
                 onClick={(e) => console.log("Click!")}
                 aria-label="Next page"
             />

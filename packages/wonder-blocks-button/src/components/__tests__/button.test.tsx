@@ -49,7 +49,7 @@ describe("Button", () => {
                 <div>
                     <Button
                         href="/foo"
-                        beforeNav={(e: any) => Promise.reject()}
+                        beforeNav={() => Promise.reject()}
                     >
                         Click me!
                     </Button>
@@ -78,7 +78,7 @@ describe("Button", () => {
                 <div>
                     <Button
                         href="/foo"
-                        beforeNav={(e: any) => Promise.reject()}
+                        beforeNav={() => Promise.reject()}
                         safeWithNav={safeWithNavMock}
                     >
                         Click me!
@@ -107,7 +107,7 @@ describe("Button", () => {
                 <div>
                     <Button
                         href="/foo"
-                        beforeNav={(e: any) => Promise.resolve()}
+                        beforeNav={() => Promise.resolve()}
                     >
                         Click me!
                     </Button>
@@ -137,7 +137,7 @@ describe("Button", () => {
                 <div>
                     <Button
                         href="/foo"
-                        beforeNav={(e: any) => Promise.resolve()}
+                        beforeNav={() => Promise.resolve()}
                         safeWithNav={safeWithNavMock}
                     >
                         Click me!
@@ -167,7 +167,7 @@ describe("Button", () => {
                 <div>
                     <Button
                         href="/foo"
-                        beforeNav={(e: any) => Promise.resolve()}
+                        beforeNav={() => Promise.resolve()}
                     >
                         Click me!
                     </Button>
@@ -197,7 +197,7 @@ describe("Button", () => {
                 <div>
                     <Button
                         href="/foo"
-                        safeWithNav={(e: any) => Promise.resolve()}
+                        safeWithNav={() => Promise.resolve()}
                         skipClientNav={true}
                     >
                         Click me!
@@ -228,7 +228,7 @@ describe("Button", () => {
                 <div>
                     <Button
                         href="/foo"
-                        safeWithNav={(e: any) => Promise.resolve()}
+                        safeWithNav={() => Promise.resolve()}
                         skipClientNav={true}
                     >
                         Click me!
@@ -258,8 +258,8 @@ describe("Button", () => {
                 <div>
                     <Button
                         href="/foo"
-                        beforeNav={(e: any) => Promise.resolve()}
-                        safeWithNav={(e: any) => Promise.resolve()}
+                        beforeNav={() => Promise.resolve()}
+                        safeWithNav={() => Promise.resolve()}
                         skipClientNav={true}
                     >
                         Click me!
@@ -291,7 +291,7 @@ describe("Button", () => {
                 <div>
                     <Button
                         href="/foo"
-                        safeWithNav={(e: any) => Promise.reject()}
+                        safeWithNav={() => Promise.reject()}
                         skipClientNav={true}
                     >
                         Click me!
@@ -596,7 +596,7 @@ describe("Button", () => {
                     <div>
                         <Button
                             href="/foo"
-                            beforeNav={(e: any) => Promise.reject()}
+                            beforeNav={() => Promise.reject()}
                         >
                             Click me!
                         </Button>
@@ -624,7 +624,7 @@ describe("Button", () => {
                     <div>
                         <Button
                             href="/foo"
-                            beforeNav={(e: any) => Promise.resolve()}
+                            beforeNav={() => Promise.resolve()}
                         >
                             Click me!
                         </Button>
@@ -655,7 +655,7 @@ describe("Button", () => {
                     <div>
                         <Button
                             href="/foo"
-                            safeWithNav={(e: any) => Promise.resolve()}
+                            safeWithNav={() => Promise.resolve()}
                             skipClientNav={true}
                         >
                             Click me!
@@ -685,7 +685,7 @@ describe("Button", () => {
                     <div>
                         <Button
                             href="/foo"
-                            safeWithNav={(e: any) => Promise.reject()}
+                            safeWithNav={() => Promise.reject()}
                             skipClientNav={true}
                         >
                             Click me!

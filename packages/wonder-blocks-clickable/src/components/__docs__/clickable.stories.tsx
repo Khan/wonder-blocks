@@ -54,7 +54,6 @@ export default {
 // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const Default: StoryComponentType = (args) => (
     <Clickable {...args}>
-        {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'hovered' implicitly has an 'any' type. | TS7031 - Binding element 'focused' implicitly has an 'any' type. | TS7031 - Binding element 'pressed' implicitly has an 'any' type. */}
         {({hovered, focused, pressed}) => {
             return (
                 <View
@@ -84,7 +83,6 @@ export const Basic: StoryComponentType = () => (
             href="https://www.khanacademy.org/about/tos"
             skipClientNav={true}
         >
-            {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'hovered' implicitly has an 'any' type. | TS7031 - Binding element 'focused' implicitly has an 'any' type. | TS7031 - Binding element 'pressed' implicitly has an 'any' type. */}
             {({hovered, focused, pressed}) => (
                 <View
                     style={[
@@ -123,7 +121,6 @@ export const Light: StoryComponentType = () => (
             skipClientNav={true}
             light={true}
         >
-            {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'hovered' implicitly has an 'any' type. | TS7031 - Binding element 'focused' implicitly has an 'any' type. | TS7031 - Binding element 'pressed' implicitly has an 'any' type. */}
             {({hovered, focused, pressed}) => (
                 <View
                     style={[
@@ -162,7 +159,6 @@ Light.parameters = {
 export const Disabled: StoryComponentType = (args) => (
     <>
         <Clickable onClick={() => {}} {...args}>
-            {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'hovered' implicitly has an 'any' type. | TS7031 - Binding element 'focused' implicitly has an 'any' type. | TS7031 - Binding element 'pressed' implicitly has an 'any' type. */}
             {({hovered, focused, pressed}) => (
                 <View
                     style={[
@@ -178,7 +174,6 @@ export const Disabled: StoryComponentType = (args) => (
             )}
         </Clickable>
         <Clickable onClick={() => {}} {...args}>
-            {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'hovered' implicitly has an 'any' type. | TS7031 - Binding element 'focused' implicitly has an 'any' type. | TS7031 - Binding element 'pressed' implicitly has an 'any' type. */}
             {({hovered, focused, pressed}) => (
                 <View
                     style={[
@@ -221,7 +216,6 @@ export const ClientSideNavigation: StoryComponentType = () => (
                         console.log("I'm still on the same page!");
                     }}
                 >
-                    {/* @ts-expect-error [FEI-5019] - TS7006 - Parameter 'eventState' implicitly has an 'any' type. */}
                     {(eventState) => (
                         <LabelLarge>Uses Client-side Nav</LabelLarge>
                     )}
@@ -231,7 +225,6 @@ export const ClientSideNavigation: StoryComponentType = () => (
                     style={styles.heading}
                     skipClientNav
                 >
-                    {/* @ts-expect-error [FEI-5019] - TS7006 - Parameter 'eventState' implicitly has an 'any' type. */}
                     {(eventState) => (
                         <LabelLarge>Avoids Client-side Nav</LabelLarge>
                     )}

@@ -1,5 +1,3 @@
-// @ts-expect-error [FEI-5019] - TS2307 - Cannot find module 'flow-to-typescript-codemod' or its corresponding type declarations.
-import {Flow} from "flow-to-typescript-codemod";
 export type SchedulePolicy = "schedule-immediately" | "schedule-on-demand";
 
 export type ClearPolicy = "resolve-on-clear" | "cancel-on-clear";
@@ -238,7 +236,7 @@ export type WithActionSchedulerProps = {
 };
 
 export type WithoutActionScheduler<TProps extends Record<any, any>> = Partial<
-    Flow.Diff<TProps, WithActionSchedulerProps>
+    Omit<TProps, "schedule">
 >;
 
 /**

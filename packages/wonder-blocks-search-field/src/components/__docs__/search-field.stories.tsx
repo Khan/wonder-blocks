@@ -35,7 +35,6 @@ export const Default: StoryComponentType = (args) => {
         <SearchField
             value={value}
             onChange={handleChange}
-            // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
             onKeyDown={(e) => {
                 action("onKeyDown")(e);
                 handleKeyDown(e);

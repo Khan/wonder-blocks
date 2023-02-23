@@ -117,7 +117,6 @@ describe("AnimationFrame", () => {
                 action(time),
             );
             animationFrame.set();
-            // Flow doesn't know we added jest mocks to this
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'mock' does not exist on type '(callback: FrameRequestCallback) => number'.
             const scheduledAction = requestAnimationFrame.mock.calls[0][0];
 
