@@ -51,9 +51,9 @@ jobs:
         uses: Khan/actions@get-changed-files-v1
         id: changed
 
-      - name: Build so that inter-package references are resolved
-        if: never() # skip for now until we update the build config
-        run: yarn build
+      # skip for now until we update the build config
+      # - name: Build so that inter-package references are resolved
+      #   run: yarn build
 
       - id: js-ts-files
         name: Find .js, .ts changed files
