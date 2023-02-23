@@ -241,7 +241,7 @@ Dark.parameters = {
     },
 };
 
-const kinds = ["primary", "secondary", "tertiary"];
+const kinds = ["primary", "secondary", "tertiary"] as const;
 
 export const Icon: StoryComponentType = () => (
     <View>
@@ -449,7 +449,6 @@ export const PreventNavigation: StoryComponentType = () => (
             <Button
                 href="/foo"
                 style={styles.button}
-                // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'e' implicitly has an 'any' type.
                 onClick={(e) => {
                     action("clicked")(e);
                     e.preventDefault();

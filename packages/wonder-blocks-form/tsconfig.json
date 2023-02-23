@@ -11,6 +11,7 @@
         {"path": "../wonder-blocks-core"},
         {"path": "../wonder-blocks-icon"},
         {"path": "../wonder-blocks-layout"},
+        {"path": "../wonder-blocks-link"},
         {"path": "../wonder-blocks-spacing"},
         {"path": "../wonder-blocks-typography"},
     ]

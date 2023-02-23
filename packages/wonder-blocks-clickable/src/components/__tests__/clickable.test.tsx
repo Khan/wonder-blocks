@@ -150,7 +150,7 @@ describe("Clickable", () => {
                     <Clickable
                         testId="button"
                         href="/foo"
-                        beforeNav={(e: any) => Promise.reject()}
+                        beforeNav={() => Promise.reject()}
                     >
                         {() => <span>Click me!</span>}
                     </Clickable>
@@ -179,7 +179,7 @@ describe("Clickable", () => {
                     <Clickable
                         testId="button"
                         href="/foo"
-                        beforeNav={(e: any) => Promise.reject()}
+                        beforeNav={() => Promise.reject()}
                         safeWithNav={safeWithNavMock}
                     >
                         {() => <span>Click me!</span>}
@@ -208,7 +208,7 @@ describe("Clickable", () => {
                     <Clickable
                         testId="button"
                         href="/foo"
-                        beforeNav={(e: any) => Promise.resolve()}
+                        beforeNav={() => Promise.resolve()}
                     >
                         {() => <span>Click me!</span>}
                     </Clickable>
@@ -239,7 +239,7 @@ describe("Clickable", () => {
                     <Clickable
                         testId="button"
                         href="/foo"
-                        beforeNav={(e: any) => Promise.resolve()}
+                        beforeNav={() => Promise.resolve()}
                         safeWithNav={safeWithNavMock}
                     >
                         {() => <span>Click me!</span>}
@@ -270,7 +270,7 @@ describe("Clickable", () => {
                     <Clickable
                         testId="button"
                         href="/foo"
-                        safeWithNav={(e: any) => Promise.resolve()}
+                        safeWithNav={() => Promise.resolve()}
                         skipClientNav={true}
                     >
                         {() => <h1>Click me!</h1>}
@@ -301,8 +301,8 @@ describe("Clickable", () => {
                     <Clickable
                         testId="button"
                         href="/foo"
-                        beforeNav={(e: any) => Promise.resolve()}
-                        safeWithNav={(e: any) => Promise.resolve()}
+                        beforeNav={() => Promise.resolve()}
+                        safeWithNav={() => Promise.resolve()}
                         skipClientNav={true}
                     >
                         {() => <h1>Click me!</h1>}
@@ -333,7 +333,7 @@ describe("Clickable", () => {
                     <Clickable
                         testId="button"
                         href="/foo"
-                        safeWithNav={(e: any) => Promise.reject()}
+                        safeWithNav={() => Promise.reject()}
                         skipClientNav={true}
                     >
                         {() => <h1>Click me!</h1>}
@@ -526,7 +526,7 @@ describe("Clickable", () => {
             // Arrange
             let keyCode: any;
             render(
-                <ClickableWrapper onKeyDown={(e: any) => (keyCode = e.keyCode)}>
+                <ClickableWrapper onKeyDown={(e) => (keyCode = e.keyCode)}>
                     Click me!
                 </ClickableWrapper>,
             );
@@ -543,7 +543,7 @@ describe("Clickable", () => {
             // Arrange
             let keyCode: any;
             render(
-                <ClickableWrapper onKeyUp={(e: any) => (keyCode = e.keyCode)}>
+                <ClickableWrapper onKeyUp={(e) => (keyCode = e.keyCode)}>
                     Click me!
                 </ClickableWrapper>,
             );

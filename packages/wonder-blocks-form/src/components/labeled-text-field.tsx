@@ -1,5 +1,3 @@
-// @ts-expect-error [FEI-5019] - TS2307 - Cannot find module 'flow-to-typescript-codemod' or its corresponding type declarations.
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 
 import {IDProvider, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -63,7 +61,7 @@ type Props = {
     /**
      * Identifies the element or elements that describes this text field.
      */
-    ariaDescribedby?: string | Array<string>;
+    ariaDescribedby?: string | undefined;
     /**
      * Provide a validation for the input value.
      * Return a string error message or null | void for a valid input.
@@ -296,4 +294,4 @@ type ExportProps = Omit<
 
 export default React.forwardRef<HTMLInputElement, ExportProps>((props, ref) => (
     <LabeledTextField {...props} forwardedRef={ref} />
-)) as Flow.AbstractComponent<ExportProps, HTMLInputElement>;
+)) as React.ForwardRefExoticComponent<ExportProps & React.RefAttributes<HTMLInputElement>>;

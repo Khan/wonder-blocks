@@ -35,9 +35,9 @@ describe("Button", () => {
 });
 
 describe("ButtonCore", () => {
-    for (const kind of ["primary", "secondary", "tertiary"]) {
-        for (const color of ["default", "destructive"]) {
-            for (const size of ["medium", "small", "large"]) {
+    for (const kind of ["primary", "secondary", "tertiary"] as const) {
+        for (const color of ["default", "destructive"] as const) {
+            for (const size of ["medium", "small", "large"] as const) {
                 for (const light of [true, false]) {
                     for (const state of [
                         "disabled",
@@ -80,8 +80,8 @@ describe("ButtonCore", () => {
             }
         }
     }
-    for (const kind of ["primary", "secondary", "tertiary"]) {
-        for (const size of ["medium", "small"]) {
+    for (const kind of ["primary", "secondary", "tertiary"] as const) {
+        for (const size of ["medium", "small"] as const) {
             test(`kind:${kind} size:${size} spinner:true`, () => {
                 const spinner = true;
                 const disabled = spinner;

@@ -1,5 +1,3 @@
-// @ts-expect-error [FEI-5019] - TS2307 - Cannot find module 'flow-to-typescript-codemod' or its corresponding type declarations.
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
@@ -20,14 +18,7 @@ type Props =
      * readers that the action taken by clicking the button will take some
      * time to complete.
      */
-    Partial<
-        Flow.Diff<
-            AriaProps,
-            {
-                ["aria-disabled"]: "true" | "false" | undefined;
-            }
-        >
-    > & {
+    Partial<Omit<AriaProps, "aria-disabled">> & {
         /**
          * The child of Clickable must be a function which returns the component
          * which should be made Clickable.  The function is passed an object with
@@ -195,7 +186,6 @@ export default class Clickable extends React.Component<Props> {
                     target={this.props.target || undefined}
                     aria-disabled={this.props.disabled ? "true" : undefined}
                 >
-                    {/* @ts-expect-error [FEI-5019] - TS2723 - Cannot invoke an object which is possibly 'null' or 'undefined'. | TS2349 - This expression is not callable. */}
                     {this.props.children(clickableState)}
                 </StyledLink>
             );
@@ -208,7 +198,6 @@ export default class Clickable extends React.Component<Props> {
                     target={this.props.target || undefined}
                     aria-disabled={this.props.disabled ? "true" : undefined}
                 >
-                    {/* @ts-expect-error [FEI-5019] - TS2723 - Cannot invoke an object which is possibly 'null' or 'undefined'. | TS2349 - This expression is not callable. */}
                     {this.props.children(clickableState)}
                 </StyledAnchor>
             );
@@ -219,7 +208,6 @@ export default class Clickable extends React.Component<Props> {
                     type="button"
                     aria-disabled={this.props.disabled}
                 >
-                    {/* @ts-expect-error [FEI-5019] - TS2723 - Cannot invoke an object which is possibly 'null' or 'undefined'. | TS2349 - This expression is not callable. */}
                     {this.props.children(clickableState)}
                 </StyledButton>
             );

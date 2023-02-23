@@ -25,7 +25,8 @@
     "start": "start-storybook -p 6061",
     "test:common": "yarn run build && yarn run lint && yarn run alex && yarn run flow",
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
-    "test": "yarn run test:common && yarn run jest"
+    "test": "yarn run test:common && yarn run jest",
+    "typecheck": "tsc --project tsconfig-check.json"
   },
   "author": "",
   "license": "MIT",

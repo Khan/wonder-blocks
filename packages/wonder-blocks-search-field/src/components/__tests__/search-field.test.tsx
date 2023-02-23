@@ -276,7 +276,7 @@ describe("SearchField", () => {
 
     test("forwards the ref to the input element", async () => {
         // Arrange
-        const ref = React.createRef();
+        const ref: React.RefObject<HTMLInputElement> = React.createRef();
 
         // Act
         render(
@@ -296,7 +296,7 @@ describe("SearchField", () => {
 
     test("forwards the ref to the input element with the expected value", async () => {
         // Arrange
-        const ref = React.createRef();
+        const ref: React.RefObject<HTMLInputElement> = React.createRef();
 
         // Act
         render(
@@ -310,7 +310,6 @@ describe("SearchField", () => {
 
         // Assert
         await waitFor(() => {
-            // @ts-expect-error [FEI-5019] - TS2571 - Object is of type 'unknown'.
             expect(ref.current?.value).toBe("some-value");
         });
     });

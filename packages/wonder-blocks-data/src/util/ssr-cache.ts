@@ -69,7 +69,6 @@ export class SsrCache {
             );
         }
         this._hydrationCache = new SerializableInMemoryCache({
-            // $FlowIgnore[incompatible-call]
             [DefaultScope]: source,
         });
     };
@@ -162,7 +161,6 @@ export class SsrCache {
         const realPredicate = predicate
             ? // We know what we're putting into the cache so let's assume it
               // conforms.
-              // $FlowIgnore[incompatible-call]
               // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'cachedEntry' implicitly has an 'any' type.
               (_: string, key: string, cachedEntry) =>
                   predicate(key, cachedEntry)

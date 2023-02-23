@@ -54,7 +54,6 @@ export default class FakeTranslate implements IProvideTranslation {
         const safeTranslate = (str: string) =>
             // We know that we have a translator at this point, so just ignore
             // flow.
-            // $FlowIgnore[incompatible-use]
             // @ts-expect-error [FEI-5019] - TS2533 - Object is possibly 'null' or 'undefined'.
             this._translator.translate(str);
 

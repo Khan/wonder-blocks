@@ -162,6 +162,7 @@ describe("TextField", () => {
             <TextField
                 id={"tf-1"}
                 value="Text"
+                // @ts-expect-error: handleValidate is not the correc type
                 validate={handleValidate}
                 onChange={() => {}}
             />,

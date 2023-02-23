@@ -177,12 +177,10 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
 
         return (
             // react-window has some issues for typing lists when passing refs
-            // $FlowIgnore
             // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             <List
                 // react-window doesn't accept maybe numbers. It wants numbers
                 // or strings.
-                // $FlowFixMe
                 height={height}
                 itemCount={data.length}
                 itemSize={this.getItemSize}
@@ -190,7 +188,6 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
                 style={{overflowX: "hidden"}}
                 // react-window doesn't accept maybe numbers. It wants numbers
                 // or strings.
-                // $FlowFixMe
                 width={width}
                 overscanCount={5}
                 ref={listRef}

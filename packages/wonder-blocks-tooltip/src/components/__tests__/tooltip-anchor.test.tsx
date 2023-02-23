@@ -31,7 +31,6 @@ describe("TooltipAnchor", () => {
         );
         // We know there's one global instance of this import, so let's
         // reset it.
-        // Flow doesn't know this is a mock
         // @ts-expect-error [FEI-5019] - TS2339 - Property 'mock' does not exist on type 'typeof ActiveTracker'.
         const mockTracker = ActiveTracker.mock.instances[0];
         mockTracker.steal.mockClear();
@@ -249,7 +248,6 @@ describe("TooltipAnchor", () => {
             const timeoutSpy = jest.spyOn(global, "setTimeout");
             // Let's tell the tooltip it isn't stealing and therefore it should
             // be using a delay to show the tooltip.
-            // Flow doesn't know this is a mock
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'mock' does not exist on type 'typeof ActiveTracker'.
             const mockTracker = ActiveTracker.mock.instances[0];
             mockTracker.steal.mockImplementationOnce(() => false);
@@ -289,7 +287,6 @@ describe("TooltipAnchor", () => {
             );
             // Let's tell the tooltip it is stealing and therefore it should
             // not be using a delay to show the tooltip.
-            // Flow doesn't know this is a mock
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'mock' does not exist on type 'typeof ActiveTracker'.
             const mockTracker = ActiveTracker.mock.instances[0];
             mockTracker.steal.mockImplementationOnce(() => true);
@@ -361,7 +358,6 @@ describe("TooltipAnchor", () => {
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker"
             );
-            // Flow doesn't know this is a mock
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'mock' does not exist on type 'typeof ActiveTracker'.
             const mockTracker = ActiveTracker.mock.instances[0];
 
@@ -439,7 +435,6 @@ describe("TooltipAnchor", () => {
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker"
             );
-            // Flow doesn't know this is a mock
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'mock' does not exist on type 'typeof ActiveTracker'.
             const mockTracker = ActiveTracker.mock.instances[0];
             // Arrange
@@ -516,7 +511,6 @@ describe("TooltipAnchor", () => {
             );
             // Let's tell the tooltip it isn't stealing and therefore it should
             // be using a delay to show the tooltip.
-            // Flow doesn't know this is a mock
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'mock' does not exist on type 'typeof ActiveTracker'.
             const mockTracker = ActiveTracker.mock.instances[0];
             mockTracker.steal.mockImplementationOnce(() => false);
@@ -555,7 +549,6 @@ describe("TooltipAnchor", () => {
             );
             // Let's tell the tooltip it is stealing and therefore it should
             // not be using a delay to show the tooltip.
-            // Flow doesn't know this is a mock
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'mock' does not exist on type 'typeof ActiveTracker'.
             const mockTracker = ActiveTracker.mock.instances[0];
             mockTracker.steal.mockImplementationOnce(() => true);
@@ -625,7 +618,6 @@ describe("TooltipAnchor", () => {
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker"
             );
-            // Flow doesn't know this is a mock
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'mock' does not exist on type 'typeof ActiveTracker'.
             const mockTracker = ActiveTracker.mock.instances[0];
             let activeState = false;
@@ -700,7 +692,6 @@ describe("TooltipAnchor", () => {
             const {default: ActiveTracker} = await import(
                 "../../util/active-tracker"
             );
-            // Flow doesn't know this is a mock
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'mock' does not exist on type 'typeof ActiveTracker'.
             const mockTracker = ActiveTracker.mock.instances[0];
             // Arrange

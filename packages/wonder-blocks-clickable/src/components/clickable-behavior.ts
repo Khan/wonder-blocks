@@ -175,7 +175,7 @@ type DefaultProps = {
 };
 
 export type ChildrenProps = {
-    onClick: (e: React.MouseEvent) => unknown;
+    onClick: (e: React.SyntheticEvent) => unknown;
     onMouseEnter: (e: React.MouseEvent) => unknown;
     onMouseLeave: () => unknown;
     onMouseDown: () => unknown;
@@ -468,7 +468,7 @@ export default class ClickableBehavior extends React.Component<
         }
     }
 
-    handleClick: (e: React.MouseEvent) => void = (e) => {
+    handleClick: (e: React.SyntheticEvent) => void = (e) => {
         const {
             onClick = undefined,
             beforeNav = undefined,
