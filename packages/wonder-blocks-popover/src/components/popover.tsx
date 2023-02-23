@@ -19,10 +19,9 @@ import PopoverDialog from "./popover-dialog";
 import FocusManager from "./focus-manager";
 import PopoverEventListener from "./popover-event-listener";
 
-// @ts-expect-error [FEI-5019] - TS2344 - Type 'PopoverContent' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'. | TS2344 - Type 'PopoverContentCore' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
 type PopoverContents =
-    | React.ReactElement<React.ComponentProps<PopoverContent>>
-    | React.ReactElement<React.ComponentProps<PopoverContentCore>>;
+    | React.ReactElement<React.ComponentProps<typeof PopoverContent>>
+    | React.ReactElement<React.ComponentProps<typeof PopoverContentCore>>;
 
 type Props = AriaProps & {
     /**
@@ -165,7 +164,7 @@ export default class Popover extends React.Component<Props, State> {
     /**
      * Popover content ref
      */
-    contentRef: RefObject<PopoverContent | PopoverContentCore> =
+    contentRef: React.RefObject<PopoverContent | PopoverContentCore> =
         React.createRef();
 
     /**
@@ -200,15 +199,15 @@ export default class Popover extends React.Component<Props, State> {
     renderContent(): PopoverContents {
         const {content} = this.props;
 
-        return React.cloneElement(
+        const popoverContents: PopoverContents =
             typeof content === "function"
                 ? content({
                       close: this.handleClose,
                   })
-                : content,
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-            {ref: this.contentRef},
-        );
+                : content;
+
+        // @ts-expect-error: TS2769 - No overload matches this call.
+        return React.cloneElement(popoverContents, {ref: this.contentRef});
     }
 
     renderPopper(uniqueId: string): React.ReactNode {

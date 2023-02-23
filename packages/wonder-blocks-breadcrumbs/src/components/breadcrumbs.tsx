@@ -9,10 +9,9 @@ type Props = AriaProps & {
     /**
      * This is the content for the collection of Breadcrumbs
      */
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'BreadcrumbsItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'. | TS2344 - Type 'BreadcrumbsItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     children:
-        | Array<React.ReactElement<React.ComponentProps<BreadcrumbsItem>>>
-        | React.ReactElement<React.ComponentProps<BreadcrumbsItem>>;
+        | Array<React.ReactElement<React.ComponentProps<typeof BreadcrumbsItem>>>
+        | React.ReactElement<React.ComponentProps<typeof BreadcrumbsItem>>;
     /**
      * Test ID used for e2e testing.
      */
@@ -76,7 +75,6 @@ export default class Breadcrumbs extends React.Component<Props> {
         const lastChildIndex = React.Children.count(children) - 1;
 
         return (
-            // @ts-expect-error [FEI-5019] - TS2322 - Type '{ children: Element; "data-test-id": string | undefined; role?: roles | undefined; "aria-activedescendant"?: string | undefined; "aria-atomic"?: "false" | "true" | undefined; ... 35 more ...; "aria-modal"?: "false" | ... 1 more ... | undefined; }' is not assignable to type 'DetailedHTMLProps<HTMLAttributes<HTMLElement>, HTMLElement>'.
             <nav {...otherProps} data-test-id={testId}>
                 <StyledList style={styles.container}>
                     {React.Children.map(children, (item, index) => {

@@ -15,7 +15,7 @@ export type GqlOperation<
     // to ensure that calls using this operation will properly consume the
     // correct variables type.
     // eslint-disable-next-line no-unused-vars
-    TVariables extends Record<any, any> = Empty,
+    TVariables extends Record<any, any> = {},
 > = {
     type: GqlOperationType;
     id: string;

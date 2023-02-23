@@ -44,8 +44,7 @@ describe("MultiSelect", () => {
                 <OptionItem label="item 1" value="1" />
                 <OptionItem label="item 2" value="2" />
                 <OptionItem label="item 3" value="3" />
-                {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'boolean' is not assignable to type '((false | ReactElement<{}, string | JSXElementConstructor<any>>) & (boolean | ReactChild | ReactFragment | ReactPortal)) | null | undefined'. */}
-                {false && <OptionItem label="item 4" value="4" />}
+                {false ? <OptionItem label="item 4" value="4" /> : null}
             </MultiSelect>
         );
 
@@ -474,8 +473,7 @@ describe("MultiSelect", () => {
                 <OptionItem label="item 1" value="1" />
                 <OptionItem label="item 2" value="2" />
                 <OptionItem label="item 3" value="3" />
-                {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'boolean' is not assignable to type '((false | ReactElement<{}, string | JSXElementConstructor<any>>) & (boolean | ReactChild | ReactFragment | ReactPortal)) | null | undefined'. */}
-                {false && <OptionItem label="item 4" value="4" />}
+                {false ? <OptionItem label="item 4" value="4" /> : null}
             </MultiSelect>
         );
 

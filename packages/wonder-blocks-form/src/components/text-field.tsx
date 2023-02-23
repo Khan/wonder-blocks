@@ -12,7 +12,7 @@ import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
 type WithForwardRef = {
-    forwardedRef: React.Ref<"input">;
+    forwardedRef: React.ForwardedRef<HTMLInputElement>;
 };
 
 const defaultErrorMessage = "This field is required.";
@@ -265,7 +265,6 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                 data-test-id={testId}
                 readOnly={readOnly}
                 autoComplete={autoComplete}
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'Ref<"input">' is not assignable to type 'LegacyRef<HTMLInputElement> | undefined'.
                 ref={forwardedRef}
                 {...otherProps}
             />
@@ -349,7 +348,6 @@ type ExportProps = Flow.Diff<
  * />
  * ```
  */
-// @ts-expect-error [FEI-5019] - TS2741 - Property 'onChange' is missing in type '{ forwardedRef: ForwardedRef<Flow.Diff<Pick<AriaProps & { id: string; type: TextFieldType; value: string; disabled: boolean; validate?: ((value: string) => string | null | undefined) | undefined; ... 11 more ...; autoComplete?: string | undefined; } & WithForwardRef, "style" | ... 14 more ... | "forwardedRef"> & Ine...' but required in type 'Pick<Readonly<PropsWithForwardRef> & Readonly<{ children?: ReactNode; }>, "style" | "children" | "autoComplete" | "id" | ... 12 more ... | "forwardedRef">'.
-export default React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
+export default React.forwardRef<HTMLInputElement, ExportProps>((props, ref) => (
     <TextField {...props} forwardedRef={ref} />
 )) as Flow.AbstractComponent<ExportProps, HTMLInputElement>;

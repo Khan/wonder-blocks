@@ -4,8 +4,8 @@ import {fixtures} from "../index";
 
 type Props = Record<any, any>;
 
-// @ts-expect-error [FEI-5019] - TS2322 - Type 'string' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
 const MyComponent: React.FC<Props> = (props): React.ReactElement =>
+    // @ts-expect-error [FEI-5019] - TS2322 - Type 'string' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
     `My props: ${JSON.stringify(props, null, 2)}`;
 
 const Wrapper = (props: any) => (

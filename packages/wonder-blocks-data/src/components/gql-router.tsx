@@ -29,16 +29,14 @@ type Props<TContext extends GqlContext> = {
  * These can be nested. Components and hooks relying on the GraphQL routing
  * will use the configuration from their closest ancestral GqlRouter.
  */
-export const GqlRouter: React.FC<Props<TContext>> = <
+// TODO(FEI-5000): Update this support generic props correctly
+export const GqlRouter: React.FC<Props<any>> = <
     TContext extends GqlContext,
 >({
-    // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'thisDefaultContext' implicitly has an 'any' type.
     defaultContext: thisDefaultContext,
-    // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'thisFetch' implicitly has an 'any' type.
     fetch: thisFetch,
-    // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'children' implicitly has an 'any' type.
     children,
-}): React.ReactElement => {
+}: Props<TContext>): React.ReactElement => {
     // We don't care if we're nested. We always force our callers to define
     // everything. It makes for a clearer API and requires less error checking
     // code (assuming our flow types are correct). We also don't default fetch

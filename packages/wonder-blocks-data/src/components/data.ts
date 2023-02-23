@@ -56,16 +56,14 @@ type Props<
  * requirements can be placed in a React application in a manner that will
  * support server-side rendering and efficient caching.
  */
-const Data: React.FC<Props<TData>> = <TData extends ValidCacheData>({
-    // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'requestId' implicitly has an 'any' type.
+// TODO(FEI-5000): Update this support generic props correctly
+const Data: React.FC<Props<any>> = <TData extends ValidCacheData>({
     requestId,
-    // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'handler' implicitly has an 'any' type.
     handler,
-    // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'children' implicitly has an 'any' type.
     children,
     retainResultOnChange = false,
     clientBehavior = WhenClientSide.ExecuteWhenNoSuccessResult,
-}): React.ReactElement => {
+}: Props<TData>): React.ReactElement => {
     const result = useHydratableEffect(requestId, handler, {
         retainResultOnChange,
         clientBehavior,

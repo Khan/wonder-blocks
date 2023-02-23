@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS1003 - Identifier expected. | TS2305 - Module '"@khanacademy/wonder-blocks-breadcrumbs"' has no exported member 'typeof'. | TS1005 - ',' expected.
-import {typeof Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
+import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 

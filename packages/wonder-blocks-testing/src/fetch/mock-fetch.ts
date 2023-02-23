@@ -5,9 +5,8 @@ import type {FetchMockFn, FetchMockOperation} from "./types";
 /**
  * A mock for the fetch function passed to GqlRouter.
  */
-// @ts-expect-error [FEI-5019] - TS2709 - Cannot use namespace '_' as a type.
 export const mockFetch = (): FetchMockFn =>
-    mockRequester<FetchMockOperation, _>(
+    mockRequester<FetchMockOperation, any>(
         fetchRequestMatchesMock,
         (input, init) =>
             `Input: ${

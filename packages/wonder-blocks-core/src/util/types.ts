@@ -86,7 +86,7 @@ type roles =
     | "window";
 
 type IdRef = string;
-type IdRefList = IdRef | Array<IdRef>;
+type IdRefList = string | undefined;
 
 // Source: https://www.w3.org/WAI/PF/aria-1.1/states_and_properties
 // TODO(kevinb): convert to disjoint union of exact object types keyed on role
@@ -97,7 +97,7 @@ export type AriaProps = {
     ["aria-atomic"]?: "false" | "true";
     ["aria-autocomplete"]?: "both" | "inline" | "list" | "none";
     ["aria-busy"]?: "true" | "false";
-    ["aria-checked"]?: "false" | "mixed" | "true" | "undefined";
+    ["aria-checked"]?: boolean | "false" | "true" | "mixed" | undefined;
     ["aria-controls"]?: IdRefList;
     // https://www.w3.org/TR/wai-aria-1.1/#aria-current
     ["aria-current"]?:
@@ -118,9 +118,9 @@ export type AriaProps = {
         | "move"
         | "none"
         | "popup";
-    ["aria-expanded"]?: "false" | "true" | "undefined";
+    ["aria-expanded"]?: boolean | "false" | "true" | undefined;
     ["aria-flowto"]?: IdRefList;
-    ["aria-grabbed"]?: "false" | "true" | "undefined";
+    ["aria-grabbed"]?: boolean | "false" | "true" | undefined;
     ["aria-haspopup"]?: "false" | "true";
     ["aria-hidden"]?: "false" | "true";
     ["aria-invalid"]?: "grammar" | "false" | "spelling" | "true";
@@ -133,11 +133,11 @@ export type AriaProps = {
     ["aria-orientation"]?: "horizontal" | "vertical";
     ["aria-owns"]?: IdRefList;
     ["aria-posinset"]?: number; // integer,
-    ["aria-pressed"]?: "false" | "mixed" | "true" | "undefined";
+    ["aria-pressed"]?: boolean | "false" | "true" | "mixed" | undefined;
     ["aria-readonly"]?: "false" | "true";
     ["aria-relevant"]?: undefined; // Not using aria-relevant is a best practice,
     ["aria-required"]?: "false" | "true";
-    ["aria-selected"]?: "false" | "true" | "undefined";
+    ["aria-selected"]?: boolean | "false" | "true" | undefined;
     ["aria-setsize"]?: number; // integer,
     ["aria-sort"]?: "ascending" | "descending" | "none" | "other";
     ["aria-valuemax"]?: number;

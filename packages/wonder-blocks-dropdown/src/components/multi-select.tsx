@@ -84,9 +84,8 @@ type Props = AriaProps &
         /**
          * The items in this select.
          */
-        // @ts-expect-error [FEI-5019] - TS2344 - Type 'OptionItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
         children?: Array<
-            | React.ReactElement<React.ComponentProps<OptionItem>>
+            | React.ReactElement<React.ComponentProps<typeof OptionItem>>
             | false
             | null
             | undefined
@@ -286,9 +285,8 @@ export default class MultiSelect extends React.Component<Props, State> {
         onChange([]);
     };
 
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'OptionItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     getMenuText(
-        children: Array<React.ReactElement<React.ComponentProps<OptionItem>>>,
+        children: Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>>,
     ): string {
         const {implicitAllEnabled, selectedValues} = this.props;
         const {noneSelected, someSelected, allSelected} = this.state.labels;
@@ -305,12 +303,10 @@ export default class MultiSelect extends React.Component<Props, State> {
                 // some reason we can't find the selected item, we use the
                 // display text for the case where nothing is selected.
                 const selectedItem = children.find(
-                    // @ts-expect-error [FEI-5019] - TS2339 - Property 'value' does not exist on type '{}'.
                     (option) => option.props.value === selectedValues[0],
                 );
                 return selectedItem
-                    ? // @ts-expect-error [FEI-5019] - TS2339 - Property 'label' does not exist on type '{}'.
-                      selectedItem.props.label
+                    ? selectedItem.props.label
                     : noSelectionText;
             case children.length:
                 return allSelected;
@@ -365,9 +361,8 @@ export default class MultiSelect extends React.Component<Props, State> {
         }
     }
 
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'OptionItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     getMenuItems(
-        children: Array<React.ReactElement<React.ComponentProps<OptionItem>>>,
+        children: Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>>,
     ): Array<DropdownItem> {
         const {isFilterable} = this.props;
         // If it's not filterable, no need to do any extra besides mapping the
@@ -384,7 +379,6 @@ export default class MultiSelect extends React.Component<Props, State> {
         const filteredChildren = children.filter(
             ({props}) =>
                 !searchText ||
-                // @ts-expect-error [FEI-5019] - TS2339 - Property 'label' does not exist on type '{}'.
                 props.label.toLowerCase().indexOf(lowercasedSearchText) > -1,
         );
 
@@ -393,7 +387,6 @@ export default class MultiSelect extends React.Component<Props, State> {
         // @ts-expect-error [FEI-5019] - TS2315 - Type 'Element' is not generic.
         const restOfTheChildren: Array<Element<typeof OptionItem>> = [];
         for (const child of filteredChildren) {
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'value' does not exist on type '{}'.
             if (lastSelectedValues.includes(child.props.value)) {
                 lastSelectedChildren.push(child);
             } else {
@@ -421,14 +414,12 @@ export default class MultiSelect extends React.Component<Props, State> {
         ];
     }
 
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'OptionItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'. | TS2344 - Type 'OptionItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     mapOptionItemToDropdownItem: (
-        option: React.ReactElement<React.ComponentProps<OptionItem>>,
+        option: React.ReactElement<React.ComponentProps<typeof OptionItem>>,
     ) => DropdownItem = (
-        option: React.ReactElement<React.ComponentProps<OptionItem>>,
+        option: React.ReactElement<React.ComponentProps<typeof OptionItem>>,
     ): DropdownItem => {
         const {selectedValues} = this.props;
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'disabled' does not exist on type '{}'. | TS2339 - Property 'value' does not exist on type '{}'.
         const {disabled, value} = option.props;
         return {
             component: option,
@@ -458,10 +449,9 @@ export default class MultiSelect extends React.Component<Props, State> {
         this.handleOpenChanged(!this.state.open);
     };
 
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'OptionItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     renderOpener(
         allChildren: Array<
-            React.ReactElement<React.ComponentProps<OptionItem>>
+            React.ReactElement<React.ComponentProps<typeof OptionItem>>
         >,
     ):
         | React.ReactElement<React.ComponentProps<typeof DropdownOpener>>

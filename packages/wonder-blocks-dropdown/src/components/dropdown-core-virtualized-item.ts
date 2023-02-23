@@ -39,7 +39,6 @@ class DropdownVirtualizedItem extends React.Component<Props> {
         if (SeparatorItem.isClassOf(item.component)) {
             // add react-window style to the separator to preserve the correct
             // position
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             return React.cloneElement(item.component, {style});
         } else {
             const {component, populatedProps, onClick, role, ref} = item;

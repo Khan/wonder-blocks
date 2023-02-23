@@ -13,13 +13,7 @@ import {name, version} from "../../../package.json";
 // @ts-expect-error [FEI-5019] - TS7016 - Could not find a declaration file for module './clickable-behavior.argtypes'. '/Users/kevinbarabash/khan/wonder-blocks/packages/wonder-blocks-clickable/src/components/__docs__/clickable-behavior.argtypes.js' implicitly has an 'any' type.
 import argTypes from "./clickable-behavior.argtypes";
 
-// @ts-expect-error [FEI-5019] - TS2502 - 'ClickableBehavior' is referenced directly or indirectly in its own type annotation. | TS2448 - Block-scoped variable 'ClickableBehavior' used before its declaration. | TS2448 - Block-scoped variable 'ClickableBehavior' used before its declaration.
-const ClickableBehavior: React.ComponentType<
-    JSX.LibraryManagedAttributes<
-        typeof ClickableBehavior,
-        React.ComponentProps<typeof ClickableBehavior>
-    >
-> = getClickableBehavior();
+const ClickableBehavior = getClickableBehavior();
 
 export default {
     title: "Clickable / ClickableBehavior",

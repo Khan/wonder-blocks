@@ -9,7 +9,7 @@ import {PopoverContentCore} from "../../index";
 describe("Popover", () => {
     it("should set the anchor as the popover ref", async () => {
         // Arrange
-        const ref = React.createRef();
+        const ref: React.RefObject<HTMLButtonElement> = React.createRef();
 
         render(
             <Popover
@@ -17,7 +17,6 @@ describe("Popover", () => {
                 content={<PopoverContent title="Title" content="content" />}
             >
                 {({open}: any) => (
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'RefObject<unknown>' is not assignable to type 'LegacyRef<HTMLButtonElement> | undefined'.
                     <button data-anchor onClick={open} ref={ref}>
                         Open default popover
                     </button>
