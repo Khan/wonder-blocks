@@ -8,7 +8,7 @@ type Props = {
 };
 
 const MyComponent: React.FC<Props> = (props): React.ReactElement =>
-    <>`I am a component. Here are my props: ${JSON.stringify(props, null, 2)}`</>;
+    <>{`I am a component. Here are my props: ${JSON.stringify(props, null, 2)}`}</>;
 
 const Wrapper = (props: any) => (
     <>
