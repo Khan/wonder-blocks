@@ -218,9 +218,8 @@ describe("LabeledTextField", () => {
 
     it("validate prop is called when input changes", () => {
         // Arrange
-        // @ts-expect-error [FEI-5019] - TS2355 - A function whose declared type is neither 'void' nor 'any' must return a value.
         const validate = jest.fn(
-            (value: string): string | null | undefined => {},
+            (value: string): void => {},
         );
         render(
             <LabeledTextField

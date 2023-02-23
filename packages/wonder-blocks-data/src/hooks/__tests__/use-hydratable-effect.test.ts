@@ -450,8 +450,8 @@ describe("#useHydratableEffect", () => {
                 },
             );
             rerender({requestId: "ID2"});
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             await act(
+                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 (): Promise<unknown> => Promise.all([response1, response2]),
             );
 
@@ -480,8 +480,8 @@ describe("#useHydratableEffect", () => {
                 },
             );
             rerender({requestId: "ID2"});
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             await act(
+                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 (): Promise<unknown> => Promise.all([response1, response2]),
             );
 
@@ -546,8 +546,8 @@ describe("#useHydratableEffect", () => {
                 },
             );
             rerender({handler: fakeHandler2});
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             await act(
+                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 (): Promise<unknown> => Promise.all([response1, response2]),
             );
 

@@ -4,7 +4,7 @@ import type {CSSProperties} from "aphrodite";
 import type {StyleType} from "./types";
 
 type StyledExport = {
-    style: CSSProperties | Empty;
+    style: CSSProperties;
     className: string;
 };
 

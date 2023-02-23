@@ -154,9 +154,8 @@ describe("TextField", () => {
 
     it("validate is called when value changes", () => {
         // Arrange
-        // @ts-expect-error [FEI-5019] - TS2355 - A function whose declared type is neither 'void' nor 'any' must return a value.
         const handleValidate = jest.fn(
-            (value: string): string | null | undefined => {},
+            (value: string) => {},
         );
 
         render(

@@ -14,9 +14,8 @@ type RadioGroupProps = {
     /**
      * Children should be Choice components.
      */
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'Choice' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     children: Array<
-        | React.ReactElement<React.ComponentProps<Choice>>
+        | React.ReactElement<React.ComponentProps<typeof Choice>>
         | false
         | null
         | undefined

@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS1003 - Identifier expected. | TS2305 - Module '"@khanacademy/wonder-blocks-breadcrumbs"' has no exported member 'typeof'. | TS1005 - ',' expected.
-import {typeof Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
+import {Breadcrumbs} from "@khanacademy/wonder-blocks-breadcrumbs";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {MediaLayout} from "@khanacademy/wonder-blocks-layout";
@@ -47,8 +46,7 @@ type WithBreadcrumbs = (Common) & {
     /**
      * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
      */
-// @ts-expect-error [FEI-5019] - TS2344 - Type 'Breadcrumbs' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
-    breadcrumbs: React.ReactElement<React.ComponentProps<Breadcrumbs>>
+    breadcrumbs: React.ReactElement<React.ComponentProps<typeof Breadcrumbs>>
 };
 
 type Props = Common | WithSubtitle | WithBreadcrumbs;

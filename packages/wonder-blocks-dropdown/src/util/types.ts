@@ -6,17 +6,19 @@ import OptionItem from "../components/option-item";
 import SeparatorItem from "../components/separator-item";
 
 //TODO: rename into something more descriptive
-// @ts-expect-error [FEI-5019] - TS2344 - Type 'ActionItem | OptionItem | SeparatorItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
 export type Item =
     | false
     | React.ReactElement<
-          React.ComponentProps<ActionItem | OptionItem | SeparatorItem>
+          React.ComponentProps<
+              typeof ActionItem | typeof OptionItem | typeof SeparatorItem
+          >
       >;
 
 export type DropdownItem = {
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'ActionItem | OptionItem | SeparatorItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     component: React.ReactElement<
-        React.ComponentProps<ActionItem | OptionItem | SeparatorItem>
+        React.ComponentProps<
+            typeof ActionItem | typeof OptionItem | typeof SeparatorItem
+        >
     >;
     focusable: boolean;
     populatedProps: any;

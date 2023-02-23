@@ -6,7 +6,7 @@ import type {OperationMock, OperationMatcher, MockFn} from "./types";
  */
 export const mockRequester = <
     TOperationType,
-    TOperationMock extends OperationMock<TOperationType>,
+    TOperationMock extends OperationMock<TOperationType> = OperationMock<TOperationType>,
 >(
     operationMatcher: OperationMatcher<any>,
     operationToString: (
@@ -38,10 +38,11 @@ export const mockRequester = <
 
         // Default is to reject with some helpful info on what request
         // we rejected.
+        // @ts-expect-error [FEI-5019] - TS2556 - A spread argument must either have a tuple type or be passed to a rest parameter.
+        const operation = operationToString(...args);
         return Promise.reject(
             new Error(`No matching mock response found for request:
-// @ts-expect-error [FEI-5019] - TS2556 - A spread argument must either have a tuple type or be passed to a rest parameter.
-    ${operationToString(...args)}`),
+    ${operation}`),
         );
     };
 

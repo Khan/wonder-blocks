@@ -99,10 +99,9 @@ const sharedStyles = StyleSheet.create({
     },
 });
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'kind' implicitly has an 'any' type.
 const _generateStyles = (
     inline: boolean,
-    kind,
+    kind: "primary" | "secondary",
     light: boolean,
     visitable: boolean,
 ) => {

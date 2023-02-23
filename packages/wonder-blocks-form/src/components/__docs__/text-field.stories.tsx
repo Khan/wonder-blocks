@@ -610,7 +610,7 @@ CustomStyle.parameters = {
 
 export const Ref: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
-    const inputRef: RefObject<typeof HTMLInputElement> = React.createRef();
+    const inputRef: React.RefObject<HTMLInputElement> = React.createRef();
 
     const handleChange = (newValue: string) => {
         setValue(newValue);

@@ -23,12 +23,11 @@ describe("PopoverKeypressListener", () => {
     it("should call onClose if clicked outside content ref", () => {
         // Arrange
         const onCloseMock = jest.fn();
-        const contentRef = React.createRef();
+        const contentRef: React.RefObject<PopoverContent> = React.createRef();
 
         render(
             <View>
                 <PopoverContent
-                    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                     ref={contentRef}
                     title="Title"
                     content="Content"
@@ -60,12 +59,11 @@ describe("PopoverKeypressListener", () => {
     it("should not call onClose if clicked inside content ref", () => {
         // Arrange
         const onCloseMock = jest.fn();
-        const contentRef = React.createRef();
+        const contentRef: React.RefObject<PopoverContent> = React.createRef();
 
         render(
             <View>
                 <PopoverContent
-                    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                     ref={contentRef}
                     title="Title"
                     content="Content"

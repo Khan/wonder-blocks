@@ -254,8 +254,7 @@ export const FiltersOutFalsyChildren: StoryComponentType = () => {
             />
             <Choice label="Extra cheese" value="cheese" />
             <Choice label="Green pepper" value="pepper" />
-            {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
-            {false && <Choice label="Mushroom" value="mushroom" />}
+            {false ? <Choice label="Mushroom" value="mushroom" /> : null}
         </CheckboxGroup>
     );
 };
