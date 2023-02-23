@@ -52,6 +52,7 @@ jobs:
         id: changed
 
       - name: Build so that inter-package references are resolved
+        if: never() # skip for now until we update the build config
         run: yarn build
 
       - id: js-ts-files
@@ -85,7 +86,8 @@ jobs:
           limited: yarn lint:ci {}
 
       - name: Typecheck
-        if: steps.js-ts-files.outputs.filtered != '[]' || steps.typecheck-reset.outputs.filtered != '[]'
+        if: always() # always run this check until we update the eslint config
+        # if: steps.js-ts-files.outputs.filtered != '[]' || steps.typecheck-reset.outputs.filtered != '[]'
         run: yarn typecheck
 
       - uses: Khan/actions@check-for-changeset-v0
