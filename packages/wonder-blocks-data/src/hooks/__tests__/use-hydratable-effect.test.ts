@@ -450,10 +450,7 @@ describe("#useHydratableEffect", () => {
                 },
             );
             rerender({requestId: "ID2"});
-            await act(
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-                (): Promise<unknown> => Promise.all([response1, response2]),
-            );
+            await act((): Promise<any> => Promise.all([response1, response2]));
 
             // Assert
             expect(result.all).not.toContainEqual(Status.success("DATA1"));
@@ -480,10 +477,7 @@ describe("#useHydratableEffect", () => {
                 },
             );
             rerender({requestId: "ID2"});
-            await act(
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-                (): Promise<unknown> => Promise.all([response1, response2]),
-            );
+            await act((): Promise<any> => Promise.all([response1, response2]));
 
             // Assert
             expect(result.current).toStrictEqual(Status.success("DATA2"));
@@ -521,8 +515,8 @@ describe("#useHydratableEffect", () => {
                 },
             );
             rerender({skip: true});
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-            await act((): Promise<unknown> => response1);
+
+            await act((): Promise<any> => response1);
 
             // Assert
             expect(result.all).not.toContainEqual(Status.success("DATA1"));
@@ -546,10 +540,7 @@ describe("#useHydratableEffect", () => {
                 },
             );
             rerender({handler: fakeHandler2});
-            await act(
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-                (): Promise<unknown> => Promise.all([response1, response2]),
-            );
+            await act((): Promise<any> => Promise.all([response1, response2]));
 
             // Assert
             expect(result.current).toStrictEqual(Status.success("DATA1"));
@@ -576,8 +567,8 @@ describe("#useHydratableEffect", () => {
                     scope: "BLAH!",
                 },
             });
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-            await act((): Promise<unknown> => response1);
+
+            await act((): Promise<any> => response1);
 
             // Assert
             expect(result.current).toStrictEqual(Status.success("DATA1"));
@@ -609,8 +600,8 @@ describe("#useHydratableEffect", () => {
                     initialProps: {requestId: "ID"},
                 },
             );
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-            await act((): Promise<unknown> => response1);
+
+            await act((): Promise<any> => response1);
             rerender({requestId: "ID2"});
             const result = hookResult.current;
             await waitForNextUpdate();
@@ -643,8 +634,8 @@ describe("#useHydratableEffect", () => {
                     initialProps: {requestId: "ID"},
                 },
             );
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-            await act((): Promise<unknown> => response1);
+
+            await act((): Promise<any> => response1);
             rerender({requestId: "ID2"});
 
             // Assert
@@ -663,8 +654,8 @@ describe("#useHydratableEffect", () => {
             const {result} = clientRenderHook(() =>
                 useHydratableEffect("ID", fakeHandler),
             );
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-            await act((): Promise<unknown> => response);
+
+            await act((): Promise<any> => response);
 
             // Assert
             expect(result.current).toStrictEqual(Status.success("DATA"));
@@ -684,8 +675,8 @@ describe("#useHydratableEffect", () => {
                     onResultChanged: () => {},
                 }),
             );
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-            await act((): Promise<unknown> => response);
+
+            await act((): Promise<any> => response);
 
             // Assert
             expect(result.current).toStrictEqual(Status.loading());
@@ -706,8 +697,8 @@ describe("#useHydratableEffect", () => {
                     onResultChanged,
                 }),
             );
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-            await act((): Promise<unknown> => response);
+
+            await act((): Promise<any> => response);
 
             // Assert
             expect(onResultChanged).toHaveBeenCalledWith(
