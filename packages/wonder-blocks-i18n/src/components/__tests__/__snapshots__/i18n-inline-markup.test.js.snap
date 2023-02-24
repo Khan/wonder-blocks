@@ -113,3 +113,11 @@ exports[`I18nInlineMarkup errors should call \`onError\` callback if set when an
   Hello world!
 </div>
 `;
+
+exports[`I18nInlineMarkup errors should call \`onError\` callback if set when there's invalid markup 1`] = `
+<div>
+  This HTML is broken 
+  An error occurred!
+  , but here is fine.
+</div>
+`;
