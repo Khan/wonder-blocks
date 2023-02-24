@@ -1,16 +1,12 @@
 // @flow
 import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {fireEvent, render, screen, waitFor} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
-import Link from "../link.js";
+import Color from "@khanacademy/wonder-blocks-color";
 
-const wait = (delay: number = 0) =>
-    new Promise((resolve, reject) => {
-        // eslint-disable-next-line no-restricted-syntax
-        return setTimeout(resolve, delay);
-    });
+import Link from "../link";
 
 describe("Link", () => {
     beforeEach(() => {
@@ -22,12 +18,13 @@ describe("Link", () => {
 
     afterEach(() => {
         window.location.assign.mockClear();
+        jest.clearAllMocks();
     });
 
     describe("client-side navigation", () => {
         test("works for known URLs", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Link href="/foo">Click me!</Link>
@@ -41,16 +38,16 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = wrapper.find("Link").first();
-            linkWrapper.simulate("click", {button: 0});
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
-            expect(wrapper.find("#foo").exists()).toBe(true);
+            expect(screen.getByText("Hello, world!")).toBeInTheDocument();
         });
 
         test("navigation to without route does not render", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Link href="/unknown">Click me!</Link>
@@ -64,16 +61,16 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = wrapper.find("Link").first();
-            linkWrapper.simulate("click", {button: 0});
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
-            expect(wrapper.find("#foo").exists()).toBe(false);
+            expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
         });
 
-        test("waits until beforeNav resolves before navigating", async () => {
+        test("waits until beforeNav resolves before navigating", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Link href="/foo" beforeNav={() => Promise.resolve()}>
@@ -89,20 +86,16 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = wrapper.find("Link").first();
-            linkWrapper.simulate("click", {
-                button: 0,
-            });
-            await wait(0);
-            wrapper.update();
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
-            expect(wrapper.find("#foo")).toExist();
+            expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
         });
 
-        test("doesn't navigate before beforeNav resolves", async () => {
+        test("doesn't navigate before beforeNav resolves", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Link href="/foo" beforeNav={() => Promise.resolve()}>
@@ -118,18 +111,16 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = wrapper.find("Link").first();
-            linkWrapper.simulate("click", {
-                button: 0,
-            });
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
-            expect(wrapper.find("#foo")).not.toExist();
+            expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
         });
 
-        test("does not navigate if beforeNav rejects", async () => {
+        test("does not navigate if beforeNav rejects", () => {
             // Arrange
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Link href="/foo" beforeNav={() => Promise.reject()}>
@@ -145,21 +136,17 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = wrapper.find("Link").first();
-            linkWrapper.simulate("click", {
-                button: 0,
-            });
-            await wait(0);
-            wrapper.update();
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
-            expect(wrapper.find("#foo")).not.toExist();
+            expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
         });
 
         test("runs safeWithNav if set", async () => {
             // Arrange
             const safeWithNavMock = jest.fn();
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Link
@@ -179,21 +166,19 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = wrapper.find("Link").first();
-            linkWrapper.simulate("click", {
-                button: 0,
-            });
-            await wait(0);
-            wrapper.update();
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
-            expect(safeWithNavMock).toHaveBeenCalled();
+            await waitFor(() => {
+                expect(safeWithNavMock).toHaveBeenCalled();
+            });
         });
 
         test("doesn't run safeWithNav until beforeNav resolves", () => {
             // Arrange
             const safeWithNavMock = jest.fn();
-            const wrapper = mount(
+            render(
                 <MemoryRouter>
                     <div>
                         <Link
@@ -213,10 +198,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = wrapper.find("Link").first();
-            linkWrapper.simulate("click", {
-                button: 0,
-            });
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             expect(safeWithNavMock).not.toHaveBeenCalled();
@@ -227,7 +210,7 @@ describe("Link", () => {
         test("doesn't redirect if safeWithNav hasn't resolved yet when skipClientNav=true", () => {
             // Arrange
             jest.spyOn(window.location, "assign").mockImplementation(() => {});
-            const wrapper = mount(
+            render(
                 <Link
                     href="/foo"
                     safeWithNav={() => Promise.resolve()}
@@ -238,10 +221,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = wrapper.find("Link").first();
-            linkWrapper.simulate("click", {
-                button: 0,
-            });
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             expect(window.location.assign).not.toHaveBeenCalled();
@@ -250,7 +231,7 @@ describe("Link", () => {
         test("redirects after safeWithNav resolves when skipClientNav=true", async () => {
             // Arrange
             jest.spyOn(window.location, "assign").mockImplementation(() => {});
-            const wrapper = mount(
+            render(
                 <Link
                     href="/foo"
                     safeWithNav={() => Promise.resolve()}
@@ -261,21 +242,19 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = wrapper.find("Link").first();
-            linkWrapper.simulate("click", {
-                button: 0,
-            });
-            await wait(0);
-            wrapper.update();
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
-            expect(window.location.assign).toHaveBeenCalledWith("/foo");
+            await waitFor(() => {
+                expect(window.location.assign).toHaveBeenCalledWith("/foo");
+            });
         });
 
         test("redirects after beforeNav and safeWithNav resolve when skipClientNav=true", async () => {
             // Arrange
             jest.spyOn(window.location, "assign").mockImplementation(() => {});
-            const wrapper = mount(
+            render(
                 <Link
                     href="/foo"
                     beforeNav={() => Promise.resolve()}
@@ -287,21 +266,19 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = wrapper.find("Link").first();
-            linkWrapper.simulate("click", {
-                button: 0,
-            });
-            await wait(0);
-            wrapper.update();
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
-            expect(window.location.assign).toHaveBeenCalledWith("/foo");
+            await waitFor(() => {
+                expect(window.location.assign).toHaveBeenCalledWith("/foo");
+            });
         });
 
         test("doesn't redirect before beforeNav resolves when skipClientNav=true", () => {
             // Arrange
             jest.spyOn(window.location, "assign").mockImplementation(() => {});
-            const wrapper = mount(
+            render(
                 <Link
                     href="/foo"
                     beforeNav={() => Promise.resolve()}
@@ -312,10 +289,8 @@ describe("Link", () => {
             );
 
             // Act
-            const linkWrapper = wrapper.find("Link").first();
-            linkWrapper.simulate("click", {
-                button: 0,
-            });
+            const link = screen.getByText("Click me!");
+            userEvent.click(link);
 
             // Assert
             expect(window.location.assign).not.toHaveBeenCalled();
@@ -325,38 +300,138 @@ describe("Link", () => {
     describe("raw events", () => {
         test("onKeyDown", () => {
             // Arrange
-            const keyMock = jest.fn();
-            const wrapper = mount(
-                <Link href="/" onKeyDown={keyMock}>
+            let keyCode;
+            render(
+                <Link href="/" onKeyDown={(e) => (keyCode = e.keyCode)}>
                     Click me!
                 </Link>,
             );
 
             // Act
-            wrapper.find(Link).simulate("keydown", {keyCode: 32});
+            const link = screen.getByText("Click me!");
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyDown(link, {keyCode: 32});
 
             // Assert
-            expect(keyMock).toHaveBeenCalledWith(
-                expect.objectContaining({keyCode: 32}),
-            );
+            expect(keyCode).toEqual(32);
         });
 
         test("onKeyUp", () => {
             // Arrange
-            const keyMock = jest.fn();
-            const wrapper = mount(
-                <Link href="/" onKeyDown={keyMock}>
+            let keyCode;
+            render(
+                <Link href="/" onKeyUp={(e) => (keyCode = e.keyCode)}>
                     Click me!
                 </Link>,
             );
 
             // Act
-            wrapper.find(Link).simulate("keydown", {keyCode: 32});
+            const link = screen.getByText("Click me!");
+            // eslint-disable-next-line testing-library/prefer-user-event
+            fireEvent.keyUp(link, {keyCode: 32});
 
             // Assert
-            expect(keyMock).toHaveBeenCalledWith(
-                expect.objectContaining({keyCode: 32}),
+            expect(keyCode).toEqual(32);
+        });
+    });
+
+    describe("focus style", () => {
+        test("blue outline around primary links on focus", () => {
+            // Arrange
+            render(<Link href="/">Click me!</Link>);
+
+            // Act
+            userEvent.tab();
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveFocus();
+            expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+        });
+
+        test("blue outline around secondary links on focus", () => {
+            // Arrange
+            render(
+                <Link href="/" kind="secondary">
+                    Click me!
+                </Link>,
             );
+
+            // Act
+            userEvent.tab();
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveFocus();
+            expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+        });
+
+        test("blue outline around primary inline links on focus", () => {
+            // Arrange
+            render(
+                <Link href="/" kind="primary" inline={true}>
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            userEvent.tab();
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveFocus();
+            expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+        });
+
+        test("blue outline around secondary inline links on focus", () => {
+            // Arrange
+            render(
+                <Link href="/" kind="secondary" inline={true}>
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            userEvent.tab();
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveFocus();
+            expect(link).toHaveStyle(`outline: 1px solid ${Color.blue}`);
+        });
+
+        test("white outline around light links on focus", () => {
+            // Arrange
+            render(
+                <Link href="/" light={true}>
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            userEvent.tab();
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveFocus();
+            expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
+        });
+
+        test("white outline around inline light links on focus", () => {
+            // Arrange
+            render(
+                <Link href="/" light={true} inline={true}>
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            userEvent.tab();
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveFocus();
+            expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
         });
     });
 });

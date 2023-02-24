@@ -2,8 +2,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import CheckboxCore from "../components/checkbox-core.js";
-import RadioCore from "../components/radio-core.js";
+import CheckboxCore from "../components/checkbox-core";
+import RadioCore from "../components/radio-core";
 
 const states = ["default", "error", "disabled"];
 const clickableStates = ["default", "hovered", "pressed"];

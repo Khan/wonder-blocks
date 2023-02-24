@@ -11,7 +11,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
-import * as bannerIcons from "./banner-icons.js";
+import * as bannerIcons from "./banner-icons";
 
 type ActionTriggerBase = {|
     title: string,
@@ -85,7 +85,7 @@ type Props = {|
     /**
      * Determines the color and icon of the banner.
      */
-    kind: BannerKind,
+    kind?: BannerKind,
 
     /**
      * Determines the edge style of the Banner.
@@ -113,7 +113,7 @@ type Props = {|
      * The accessible label for the dismiss button.
      * Please pass in a translated string.
      */
-    dismissAriaLabel: string,
+    dismissAriaLabel?: string,
 
     /**
      * Test ID used for e2e testing.
@@ -180,9 +180,9 @@ const Banner = (props: Props): React.Node => {
         // is missing in props validation when it's not.
         // eslint-disable-next-line react/prop-types
         "aria-label": ariaLabel,
-        dismissAriaLabel,
+        dismissAriaLabel = "Dismiss banner.", // default prop
         onDismiss,
-        kind,
+        kind = "info", // default prop
         layout,
         text,
         testId,
@@ -282,17 +282,6 @@ const Banner = (props: Props): React.Node => {
         </View>
     );
 };
-
-type DefaultProps = {|
-    kind: Props["kind"],
-    dismissAriaLabel: Props["dismissAriaLabel"],
-|};
-
-const defaultProps: DefaultProps = {
-    kind: "info",
-    dismissAriaLabel: "Dismiss banner.",
-};
-Banner.defaultProps = defaultProps;
 
 const styles = StyleSheet.create({
     backgroundColor: {

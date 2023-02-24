@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 
-import InterceptContext from "../components/intercept-context.js";
-import type {ValidCacheData} from "../util/types.js";
+import InterceptContext from "../components/intercept-context";
+import type {ValidCacheData} from "../util/types";
 
 /**
  * Allow request handling to be intercepted.

@@ -1,6 +1,6 @@
 // @flow
 import {Request} from "node-fetch";
-import {fetchRequestMatchesMock} from "../fetch-request-matches-mock.js";
+import {fetchRequestMatchesMock} from "../fetch-request-matches-mock";
 
 const TEST_URL = "http://example.com/foo?querya=1&queryb=elephants#fragment";
 

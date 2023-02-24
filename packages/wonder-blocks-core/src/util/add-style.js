@@ -2,9 +2,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {processStyleList} from "./util.js";
+import {processStyleList} from "./util";
 
-import type {StyleType} from "./types.js";
+import type {StyleType} from "./types";
 
 // TODO(kevinb): have an a version which uses exact object types
 export default function addStyle<T: React.AbstractComponent<any> | string>(

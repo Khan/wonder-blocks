@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
-import {renderAdapters} from "../render-adapters.js";
+import {renderAdapters} from "../render-adapters";
 
-import type {TestHarnessAdapter, TestHarnessConfigs} from "../types.js";
+import type {TestHarnessAdapter, TestHarnessConfigs} from "../types";
 
 describe("#renderAdapters", () => {
     it("should return children if no adapters", () => {

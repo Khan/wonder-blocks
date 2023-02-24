@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 
-import type {TestHarnessConfigs, TestHarnessAdapters} from "./types.js";
+import type {TestHarnessConfigs, TestHarnessAdapters} from "./types";
 
 /**
  * Render test adapters around a child component.

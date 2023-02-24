@@ -1,5 +1,40 @@
 # @khanacademy/wonder-blocks-link
 
+## 3.9.0
+
+### Minor Changes
+
+-   4fa99654: Add inline variant and update styles
+
+### Patch Changes
+
+-   48aceaad: Updated hover and outline styles.
+
+## 3.8.17
+
+### Patch Changes
+
+-   Updated dependencies [496119f2]
+    -   @khanacademy/wonder-blocks-clickable@2.4.4
+    -   @khanacademy/wonder-blocks-core@4.6.2
+
+## 3.8.16
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-clickable@2.4.3
+-   @khanacademy/wonder-blocks-core@4.6.1
+
+## 3.8.15
+
+### Patch Changes
+
+-   Updated dependencies [b561425a]
+-   Updated dependencies [a566e232]
+-   Updated dependencies [d2b21a6e]
+    -   @khanacademy/wonder-blocks-core@4.6.0
+    -   @khanacademy/wonder-blocks-clickable@2.4.2
+
 ## 3.8.14
 
 ### Patch Changes

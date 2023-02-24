@@ -8,9 +8,9 @@ import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import * as i18n from "../../functions/i18n.js";
+import * as i18n from "../../functions/i18n";
 
-import {I18nInlineMarkup} from "../i18n-inline-markup.js";
+import {I18nInlineMarkup} from "../i18n-inline-markup";
 
 export default {
     title: "Translations/I18nInlineMarkup",

@@ -1,7 +1,7 @@
 // @flow
-import * as Locale from "../locale.js";
-import * as FakeTranslate from "../i18n-faketranslate.js";
-import {localeToFixed, getDecimalSeparator} from "../l10n.js";
+import * as Locale from "../locale";
+import * as FakeTranslate from "../i18n-faketranslate";
+import {localeToFixed, getDecimalSeparator} from "../l10n";
 
 describe("l10n", () => {
     beforeEach(() => {

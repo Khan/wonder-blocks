@@ -1,12 +1,8 @@
 // @flow
 import * as React from "react";
 
-// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-// have fixed:
-// https://github.com/import-js/eslint-plugin-import/issues/2073
-// eslint-disable-next-line import/named
-import {RenderState, RenderStateContext} from "./render-state-context.js";
-import {useRenderState} from "../hooks/use-render-state.js";
+import {RenderState, RenderStateContext} from "./render-state-context";
+import {useRenderState} from "../hooks/use-render-state";
 
 const {useEffect, useState} = React;
 

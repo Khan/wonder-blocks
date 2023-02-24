@@ -9,7 +9,7 @@ import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 
 export default {

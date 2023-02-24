@@ -1,5 +1,33 @@
 # @khanacademy/wonder-blocks-data
 
+## 10.0.5
+
+### Patch Changes
+
+-   1a5624d4: Update wonder-stuff dependencies to use newly published packages after migrating wonder-stuff to TypeScript
+
+## 10.0.4
+
+### Patch Changes
+
+-   Updated dependencies [496119f2]
+    -   @khanacademy/wonder-blocks-core@4.6.2
+
+## 10.0.3
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-core@4.6.1
+
+## 10.0.2
+
+### Patch Changes
+
+-   Updated dependencies [b561425a]
+-   Updated dependencies [a566e232]
+-   Updated dependencies [d2b21a6e]
+    -   @khanacademy/wonder-blocks-core@4.6.0
+
 ## 10.0.1
 
 ### Patch Changes

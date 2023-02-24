@@ -1,10 +1,9 @@
 // @flow
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {screen, render} from "@testing-library/react";
 
-import addStyle from "../add-style.js";
+import addStyle from "../add-style";
 
 const StyledDiv = addStyle<"div">("div");
 
@@ -27,40 +26,62 @@ describe("addStyle", () => {
     });
 
     it("should set the className if no style is provided", () => {
-        const wrapper = mount(<StyledDiv className="foo" />);
+        // Arrange
+        render(<StyledDiv className="foo" data-test-id="styled-div" />);
 
-        const div = wrapper.find("div");
+        // Act
+        const div = screen.getByTestId("styled-div");
 
-        expect(div).toHaveProp("className", "foo");
+        // Assert
+        expect(div).toHaveAttribute("class", "foo");
     });
 
     it("should set the className to include foo and inlineStyles", () => {
-        const wrapper = mount(
-            <StyledDiv className="foo" style={{width: "100%"}} />,
+        // Arrange
+        render(
+            <StyledDiv
+                className="foo"
+                style={{width: "100%"}}
+                data-test-id="styled-div"
+            />,
         );
 
-        const div = wrapper.find("div");
+        // Act
+        const div = screen.getByTestId("styled-div");
 
-        const classNames = div.props().className.split(" ");
+        // Assert
+        const classNames = div.className.split(" ");
         expect(classNames).toHaveLength(2);
         expect(classNames[0].startsWith("inlineStyles")).toBeTruthy();
         expect(classNames[1]).toEqual("foo");
     });
 
-    it("should set the className if an stylesheet style is provided", () => {
-        const wrapper = mount(<StyledDiv style={styles.foo} />);
+    it("should set the class if an stylesheet style is provided", () => {
+        // Arrange
+        render(<StyledDiv style={styles.foo} data-test-id="styled-div" />);
 
-        const div = wrapper.find("div");
+        // Act
+        const div = screen.getByTestId("styled-div");
 
-        expect(div).toHaveProp("className", expect.any(String));
+        // Assert
+        expect(div).toHaveAttribute("class", expect.any(String));
     });
 
     it("should set the className if an stylesheet style is provided", () => {
-        const wrapper = mount(<StyledDiv className="foo" style={styles.foo} />);
+        // Arrange
+        render(
+            <StyledDiv
+                className="foo"
+                style={styles.foo}
+                data-test-id="styled-div"
+            />,
+        );
 
-        const div = wrapper.find("div");
+        // Act
+        const div = screen.getByTestId("styled-div");
 
-        const classNames = div.props().className.split(" ");
+        // Assert
+        const classNames = div.className.split(" ");
         expect(classNames).toHaveLength(2);
         expect(classNames[0]).toEqual(expect.any(String));
         expect(classNames[1]).toEqual("foo");

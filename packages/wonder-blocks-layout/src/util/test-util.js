@@ -1,5 +1,5 @@
 // @flow
-import type {MediaSize} from "./types.js";
+import type {MediaSize} from "./types";
 
 /**
  * Helper function for setting the window size, for use in tests.

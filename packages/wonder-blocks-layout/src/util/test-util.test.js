@@ -1,5 +1,5 @@
 // @flow
-import {resizeWindow, checkQuery, matchMedia} from "./test-util.js";
+import {resizeWindow, checkQuery, matchMedia} from "./test-util";
 
 describe("Test utils", () => {
     describe("resizeWindow", () => {

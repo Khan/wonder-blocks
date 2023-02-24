@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme"; // eslint-disable-line no-restricted-imports
-import "jest-enzyme";
-import * as Data from "../data.js";
+import {render, screen, waitFor} from "@testing-library/react";
+import {useCachedEffect} from "@khanacademy/wonder-blocks-data";
+import * as Data from "../data";
 
 describe("WonderBlocksData.adapter", () => {
     it("should render children when configuration arrays are empty", () => {
@@ -10,57 +10,57 @@ describe("WonderBlocksData.adapter", () => {
         const children = <div>CONTENT</div>;
 
         // Act
-        const wrapper = mount(Data.adapter(children, []), {
-            includeDefaultTestHarness: false,
-        });
+        render(Data.adapter(children, []));
 
         // Assert
-        expect(wrapper).toHaveHTML("<div>CONTENT</div>");
+        expect(screen.getByText("CONTENT")).toBeInTheDocument();
     });
 
-    it("should render children within InterceptRequests when dataIntercepts configured", () => {
+    it("should support request interception via configured dataIntercepts", async () => {
         // Arrange
-        const children = <div>CONTENT</div>;
+
+        const TestFixture = () => {
+            const [result] = useCachedEffect("ID", jest.fn());
+
+            return <div>CONTENT: {result?.data}</div>;
+        };
 
         // Act
-        const wrapper = mount(
-            Data.adapter(children, () =>
+        const {container} = render(
+            Data.adapter(<TestFixture />, () =>
                 Promise.resolve(("INTERCEPTED!": any)),
             ),
-            {
-                includeDefaultTestHarness: false,
-            },
         );
 
         // Assert
-        expect(wrapper).toContainMatchingElement("InterceptRequests");
+        await waitFor(() => expect(container).toContainHTML("INTERCEPTED!"));
     });
 
     it("should render like we expect", () => {
         // Snapshot test is handy to visualize what's going on and help debug
         // test failures of the other cases. The other cases assert specifics.
         // Arrange
-        const children = <div>CONTENT</div>;
+        const TestFixture = () => {
+            const [result] = useCachedEffect("ID", jest.fn());
+
+            return <div>CONTENT:{result?.data}</div>;
+        };
 
         // Act
-        const wrapper = mount(
-            Data.adapter(children, () =>
+        const {container} = render(
+            Data.adapter(<TestFixture />, () =>
                 Promise.resolve(("INTERCEPTED!": any)),
             ),
-            {
-                includeDefaultTestHarness: false,
-            },
         );
 
         // Assert
-        expect(wrapper).toMatchInlineSnapshot(`
-            <InterceptRequests
-              interceptor={[Function]}
-            >
+        expect(container).toMatchInlineSnapshot(`
+            <div>
               <div>
-                CONTENT
+                CONTENT:
+                INTERCEPTED!
               </div>
-            </InterceptRequests>
+            </div>
         `);
     });
 });

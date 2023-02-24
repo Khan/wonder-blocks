@@ -1,15 +1,14 @@
 // @flow
 
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render} from "@testing-library/react";
 
 import {
     MEDIA_DEFAULT_SPEC,
     MediaLayoutContext,
 } from "@khanacademy/wonder-blocks-layout";
-import Row from "../row.js";
-import Cell from "../cell.js";
+import Row from "../row";
+import Cell from "../cell";
 
 describe("Row", () => {
     describe("large", () => {
@@ -17,7 +16,7 @@ describe("Row", () => {
             // Arrange
 
             // Act
-            const wrapper = mount(
+            const {container} = render(
                 <div>
                     <MediaLayoutContext.Provider
                         value={{
@@ -35,16 +34,15 @@ describe("Row", () => {
                     </MediaLayoutContext.Provider>
                 </div>,
             );
-            const text = wrapper.text();
 
             // Assert
-            expect(text).toEqual("colslargeCols");
+            expect(container).toHaveTextContent("colslargeCols");
         });
 
         it("should throw if there are too many columns", async () => {
             // Arrange
-            const render = () => {
-                mount(
+            const underTest = () => {
+                render(
                     <div>
                         <MediaLayoutContext.Provider
                             value={{
@@ -62,7 +60,7 @@ describe("Row", () => {
             };
 
             // Act, Assert
-            expect(render).toThrow();
+            expect(underTest).toThrow();
         });
     });
 
@@ -71,7 +69,7 @@ describe("Row", () => {
             // Arrange
 
             // Act
-            const wrapper = mount(
+            const {container} = render(
                 <div>
                     <MediaLayoutContext.Provider
                         value={{
@@ -89,16 +87,15 @@ describe("Row", () => {
                     </MediaLayoutContext.Provider>
                 </div>,
             );
-            const text = wrapper.text();
 
             // Assert
-            expect(text).toEqual("colsmediumCols");
+            expect(container).toHaveTextContent("colsmediumCols");
         });
 
         it("should throw if there are too many columns", () => {
             // Arrange
-            const render = () => {
-                mount(
+            const underTest = () => {
+                render(
                     <div>
                         <MediaLayoutContext.Provider
                             value={{
@@ -116,7 +113,7 @@ describe("Row", () => {
             };
 
             // Act, Assert
-            expect(render).toThrow();
+            expect(underTest).toThrow();
         });
     });
 
@@ -125,7 +122,7 @@ describe("Row", () => {
             // Arrange
 
             // Act
-            const wrapper = mount(
+            const {container} = render(
                 <div>
                     <MediaLayoutContext.Provider
                         value={{
@@ -143,16 +140,15 @@ describe("Row", () => {
                     </MediaLayoutContext.Provider>
                 </div>,
             );
-            const text = wrapper.text();
 
             // Assert
-            expect(text).toEqual("colssmallCols");
+            expect(container).toHaveTextContent("colssmallCols");
         });
 
         it("should throw if there are too many columns", () => {
             // Arrange
-            const render = () => {
-                mount(
+            const underTest = () => {
+                render(
                     <div>
                         <MediaLayoutContext.Provider
                             value={{
@@ -170,7 +166,7 @@ describe("Row", () => {
             };
 
             // Act, Assert
-            expect(render).toThrow();
+            expect(underTest).toThrow();
         });
     });
 });

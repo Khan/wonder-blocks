@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-birthday-picker",
-  "version": "1.2.26",
+  "version": "1.2.30",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -15,12 +15,12 @@
   "dependencies": {
     "@babel/runtime": "^7.18.6",
     "@khanacademy/wonder-blocks-color": "^1.2.0",
-    "@khanacademy/wonder-blocks-core": "^4.5.0",
-    "@khanacademy/wonder-blocks-dropdown": "^2.10.2",
-    "@khanacademy/wonder-blocks-icon": "^1.2.32",
-    "@khanacademy/wonder-blocks-layout": "^1.4.12",
+    "@khanacademy/wonder-blocks-core": "^4.6.2",
+    "@khanacademy/wonder-blocks-dropdown": "^2.10.6",
+    "@khanacademy/wonder-blocks-icon": "^1.2.36",
+    "@khanacademy/wonder-blocks-layout": "^1.4.15",
     "@khanacademy/wonder-blocks-spacing": "^3.0.5",
-    "@khanacademy/wonder-blocks-typography": "^1.1.34"
+    "@khanacademy/wonder-blocks-typography": "^1.1.37"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
@@ -28,7 +28,7 @@
     "react": "16.14.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.4.0"
+    "wb-dev-build-settings": "^0.7.0"
   },
   "author": "",
   "license": "MIT"

@@ -7,12 +7,13 @@ import {addStyle, View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 
-import type {PopoverContextType} from "./popover-context.js";
+import type {PopoverContextType} from "./popover-context";
 
-import PopoverContentCore from "./popover-content-core.js";
-import PopoverContext from "./popover-context.js";
+import PopoverContentCore from "./popover-content-core";
+import PopoverContext from "./popover-context";
 
-type CommonProps = {|
+// TODO(FEI-5000): Convert back to conditional props after TS migration is complete.
+type Props = {|
     ...AriaProps,
 
     /**
@@ -66,20 +67,14 @@ type CommonProps = {|
      * the same time with icon.
      */
     image?: React.Element<"img"> | React.Element<"svg">,
-|};
-
-type WithEmphasized = {|
-    ...CommonProps,
 
     /**
      * When true, changes the popover dialog background to blue; otherwise, the
      * popover dialog background is not modified. It can be used only with
      * Text-only popovers. It cannot be used with icon or image.
      */
-    emphasized: boolean,
+    emphasized?: boolean,
 |};
-
-type Props = CommonProps | WithEmphasized;
 
 type DefaultProps = {|
     closeButtonVisible: $PropertyType<Props, "closeButtonVisible">,

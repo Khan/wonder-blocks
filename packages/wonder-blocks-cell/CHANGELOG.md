@@ -1,5 +1,36 @@
 # @khanacademy/wonder-blocks-cell
 
+## 2.2.14
+
+### Patch Changes
+
+-   Updated dependencies [496119f2]
+    -   @khanacademy/wonder-blocks-clickable@2.4.4
+    -   @khanacademy/wonder-blocks-core@4.6.2
+    -   @khanacademy/wonder-blocks-layout@1.4.15
+    -   @khanacademy/wonder-blocks-typography@1.1.37
+
+## 2.2.13
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-clickable@2.4.3
+-   @khanacademy/wonder-blocks-core@4.6.1
+-   @khanacademy/wonder-blocks-layout@1.4.14
+-   @khanacademy/wonder-blocks-typography@1.1.36
+
+## 2.2.12
+
+### Patch Changes
+
+-   Updated dependencies [b561425a]
+-   Updated dependencies [a566e232]
+-   Updated dependencies [d2b21a6e]
+    -   @khanacademy/wonder-blocks-core@4.6.0
+    -   @khanacademy/wonder-blocks-clickable@2.4.2
+    -   @khanacademy/wonder-blocks-layout@1.4.13
+    -   @khanacademy/wonder-blocks-typography@1.1.35
+
 ## 2.2.11
 
 ### Patch Changes

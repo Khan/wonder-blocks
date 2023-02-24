@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
 
-import UniqueIDProvider from "./unique-id-provider.js";
+import UniqueIDProvider from "./unique-id-provider";
 
-import type {IIdentifierFactory} from "../util/types.js";
+import type {IIdentifierFactory} from "../util/types";
 
 type Props = {|
     /**

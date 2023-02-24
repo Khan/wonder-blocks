@@ -1,6 +1,6 @@
 // @flow
 
-import {getGqlRequestId} from "../get-gql-request-id.js";
+import {getGqlRequestId} from "../get-gql-request-id";
 
 describe("#getGqlRequestId", () => {
     it("should include the id of the query", () => {

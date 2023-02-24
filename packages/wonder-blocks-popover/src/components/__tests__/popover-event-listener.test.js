@@ -1,22 +1,21 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import PopoverEventListener from "../popover-event-listener.js";
-import PopoverContent from "../popover-content.js";
+import PopoverEventListener from "../popover-event-listener";
+import PopoverContent from "../popover-content";
 
 describe("PopoverKeypressListener", () => {
     it("should call onClose if Escape is pressed", () => {
         // Arrange
         const onCloseMock = jest.fn();
 
-        mount(<PopoverEventListener onClose={onCloseMock} />);
+        render(<PopoverEventListener onClose={onCloseMock} />);
 
         // Act
-        const event = new KeyboardEvent("keyup", {key: "Escape"});
-        window.dispatchEvent(event);
+        userEvent.keyboard("{esc}");
 
         // Assert
         expect(onCloseMock).toHaveBeenCalled();
@@ -27,7 +26,7 @@ describe("PopoverKeypressListener", () => {
         const onCloseMock = jest.fn();
         const contentRef = React.createRef();
 
-        mount(
+        render(
             <View>
                 <PopoverContent
                     ref={contentRef}
@@ -63,12 +62,13 @@ describe("PopoverKeypressListener", () => {
         const onCloseMock = jest.fn();
         const contentRef = React.createRef();
 
-        const wrapper = mount(
+        render(
             <View>
                 <PopoverContent
                     ref={contentRef}
                     title="Title"
                     content="Content"
+                    testId="popover-content"
                 />
                 <PopoverEventListener
                     onClose={onCloseMock}
@@ -79,7 +79,8 @@ describe("PopoverKeypressListener", () => {
 
         // Act
         const event = new MouseEvent("click", {view: window, bubbles: true});
-        const node = wrapper.find("PopoverContent").getDOMNode();
+        const node = screen.getByTestId("popover-content");
+
         if (node) {
             // First click is ignored by PopoverEventListener
             // because it is triggered when opening the popover.

@@ -1,5 +1,5 @@
 // @flow
-import {defaultLabels} from "../birthday-picker.js";
+import {defaultLabels} from "../birthday-picker";
 
 export default {
     labels: {

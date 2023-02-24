@@ -5,9 +5,10 @@ import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
-import LinkCore from "./link-core.js";
+import LinkCore from "./link-core";
 
-type CommonProps = {|
+// TODO(FEI-5000): Convert back to conditional props after TS migration is complete.
+export type SharedProps = {|
     ...AriaProps,
 
     /**
@@ -24,6 +25,13 @@ type CommonProps = {|
      * An optional id attribute.
      */
     id?: string,
+
+    /**
+     * Indicates that this link is used within a body of text.
+     * This styles the link with an underline to distinguish it
+     * from surrounding text.
+     */
+    inline: boolean,
 
     /**
      * Kind of Link. Note: Secondary light Links are not supported.
@@ -125,40 +133,33 @@ type CommonProps = {|
      * Respond to raw "keyup" event.
      */
     onKeyUp?: (e: SyntheticKeyboardEvent<>) => mixed,
+
+    /**
+     * A target destination window for a link to open in.  We only support
+     * "_blank" which opens the URL in a new tab.
+     *
+     * TODO(WB-1262): only allow this prop when `href` is also set.t
+     */
+    target?: "_blank",
+
+    /**
+     * Run async code before navigating to the URL passed to `href`. If the
+     * promise returned rejects then navigation will not occur.
+     *
+     * If both safeWithNav and beforeNav are provided, beforeNav will be run
+     * first and safeWithNav will only be run if beforeNav does not reject.
+     *
+     * WARNING: Using this with `target="_blank"` will trigger built-in popup
+     * blockers in Firefox and Safari.  This is because we do navigation
+     * programmatically and `beforeNav` causes a delay which means that the
+     * browser can't make a directly link between a user action and the
+     * navigation.
+     */
+    beforeNav?: () => Promise<mixed>,
 |};
 
-export type SharedProps =
-    | {|
-          ...CommonProps,
-
-          /**
-           * A target destination window for a link to open in.  We only support
-           * "_blank" which opens the URL in a new tab.
-           *
-           * TODO(WB-1262): only allow this prop when `href` is also set.t
-           */
-          target?: "_blank",
-      |}
-    | {|
-          ...CommonProps,
-
-          /**
-           * Run async code before navigating to the URL passed to `href`. If the
-           * promise returned rejects then navigation will not occur.
-           *
-           * If both safeWithNav and beforeNav are provided, beforeNav will be run
-           * first and safeWithNav will only be run if beforeNav does not reject.
-           *
-           * WARNING: Using this with `target="_blank"` will trigger built-in popup
-           * blockers in Firefox and Safari.  This is because we do navigation
-           * programmatically and `beforeNav` causes a delay which means that the
-           * browser can't make a directly link between a user action and the
-           * navigation.
-           */
-          beforeNav?: () => Promise<mixed>,
-      |};
-
 type DefaultProps = {|
+    inline: $PropertyType<SharedProps, "inline">,
     kind: $PropertyType<SharedProps, "kind">,
     light: $PropertyType<SharedProps, "light">,
     visitable: $PropertyType<SharedProps, "visitable">,
@@ -184,6 +185,7 @@ type DefaultProps = {|
  */
 export default class Link extends React.Component<SharedProps> {
     static defaultProps: DefaultProps = {
+        inline: false,
         kind: "primary",
         light: false,
         visitable: false,

@@ -2,7 +2,7 @@
 import * as React from "react";
 import {withRouter, Prompt} from "react-router-dom";
 import {render} from "@testing-library/react";
-import * as Router from "../router.js";
+import * as Router from "../router";
 
 describe("Router.adapter", () => {
     it("should throw if the config does not match any expecations", () => {

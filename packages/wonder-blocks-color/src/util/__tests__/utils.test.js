@@ -1,5 +1,5 @@
 // @flow
-import {fade, mix} from "../utils.js";
+import {fade, mix} from "../utils";
 
 const INVALID_COLORS = ["#NOTVALID", "#12345", "#12", "#ABCDEFG", ""];
 

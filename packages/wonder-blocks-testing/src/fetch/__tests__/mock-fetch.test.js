@@ -1,7 +1,7 @@
 // @flow
 import {Request} from "node-fetch";
-import {RespondWith} from "../../respond-with.js";
-import {mockFetch} from "../mock-fetch.js";
+import {RespondWith} from "../../respond-with";
+import {mockFetch} from "../mock-fetch";
 
 describe("#mockFetch", () => {
     it.each`

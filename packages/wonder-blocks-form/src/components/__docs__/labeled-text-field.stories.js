@@ -13,9 +13,9 @@ import Link from "@khanacademy/wonder-blocks-link";
 
 import type {StoryComponentType} from "@storybook/react";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
-import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes.js";
+import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes";
 
 export default {
     title: "Form / LabeledTextField",

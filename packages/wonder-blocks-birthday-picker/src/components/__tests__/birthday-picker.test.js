@@ -5,9 +5,9 @@ import {render, screen} from "@testing-library/react";
 import * as DateMock from "jest-date-mock";
 import userEvent from "@testing-library/user-event";
 
-import BirthdayPicker, {defaultLabels} from "../birthday-picker.js";
+import BirthdayPicker, {defaultLabels} from "../birthday-picker";
 
-import type {Labels} from "../birthday-picker.js";
+import type {Labels} from "../birthday-picker";
 
 describe("BirthdayPicker", () => {
     const today = new Date("2021-07-19T09:30:00Z");

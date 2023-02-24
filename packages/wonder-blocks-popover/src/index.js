@@ -1,6 +1,6 @@
 // @flow
-import Popover from "./components/popover.js";
-import PopoverContent from "./components/popover-content.js";
-import PopoverContentCore from "./components/popover-content-core.js";
+import Popover from "./components/popover";
+import PopoverContent from "./components/popover-content";
+import PopoverContentCore from "./components/popover-content-core";
 
 export {Popover, PopoverContent, PopoverContentCore};

@@ -2,8 +2,8 @@
 import React from "react";
 import renderer from "react-test-renderer";
 
-import ButtonCore from "../components/button-core.js";
-import Button from "../components/button.js";
+import ButtonCore from "../components/button-core";
+import Button from "../components/button";
 
 const defaultHandlers = {
     onClick: () => void 0,

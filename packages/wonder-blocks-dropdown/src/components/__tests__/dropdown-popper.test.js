@@ -2,7 +2,7 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import DropdownPopper from "../dropdown-popper.js";
+import DropdownPopper from "../dropdown-popper";
 
 describe("DropdownPopper", () => {
     it("renders the children if valid props are passed in", () => {

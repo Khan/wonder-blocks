@@ -2,11 +2,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
 
-import MediaLayout from "../media-layout.js";
-import {resizeWindow, matchMedia} from "../../util/test-util.js";
+import MediaLayout from "../media-layout";
+import {resizeWindow, matchMedia} from "../../util/test-util";
 
 describe("MediaLayout", () => {
     beforeEach(() => {
@@ -20,7 +19,7 @@ describe("MediaLayout", () => {
 
             // Act
             const args = await new Promise((resolve, reject) => {
-                mount(
+                render(
                     <MediaLayout>
                         {({mediaSize, mediaSpec, styles}) => {
                             resolve({mediaSize, mediaSpec, styles});
@@ -42,7 +41,7 @@ describe("MediaLayout", () => {
 
             // Act
             const args = await new Promise((resolve, reject) => {
-                mount(
+                render(
                     <MediaLayout>
                         {({mediaSize, mediaSpec, styles}) => {
                             resolve({mediaSize, mediaSpec, styles});
@@ -64,7 +63,7 @@ describe("MediaLayout", () => {
 
             // Act
             const args = await new Promise((resolve, reject) => {
-                mount(
+                render(
                     <MediaLayout>
                         {({mediaSize, mediaSpec, styles}) => {
                             resolve({mediaSize, mediaSpec, styles});
@@ -101,16 +100,18 @@ describe("MediaLayout", () => {
                 resizeWindow(size);
 
                 // Act
-                const wrapper = mount(
+                render(
                     <MediaLayout styleSheets={styleSheets}>
                         {({mediaSize, mediaSpec, styles}) => {
                             return (
-                                <View style={styles.test}>Hello, world!</View>
+                                <View testId="styled-view" style={styles.test}>
+                                    Hello, world!
+                                </View>
                             );
                         }}
                     </MediaLayout>,
                 );
-                const style = wrapper.find("div").prop("style");
+                const style = screen.getByTestId("styled-view").style;
 
                 // Assert
                 expect(style.color).toBe("blue");
@@ -140,16 +141,18 @@ describe("MediaLayout", () => {
                 }[size];
 
                 // Act
-                const wrapper = mount(
+                render(
                     <MediaLayout styleSheets={styleSheets}>
                         {({mediaSize, mediaSpec, styles}) => {
                             return (
-                                <View style={styles.test}>Hello, world!</View>
+                                <View testId="styled-view" style={styles.test}>
+                                    Hello, world!
+                                </View>
                             );
                         }}
                     </MediaLayout>,
                 );
-                const style = wrapper.find("div").prop("style");
+                const style = screen.getByTestId("styled-view").style;
 
                 // Assert
                 expect(style.color).toBe(expectedColor);
@@ -179,16 +182,18 @@ describe("MediaLayout", () => {
                 }[size];
 
                 // Act
-                const wrapper = mount(
+                render(
                     <MediaLayout styleSheets={styleSheets}>
                         {({mediaSize, mediaSpec, styles}) => {
                             return (
-                                <View style={styles.test}>Hello, world!</View>
+                                <View testId="styled-view" style={styles.test}>
+                                    Hello, world!
+                                </View>
                             );
                         }}
                     </MediaLayout>,
                 );
-                const style = wrapper.find("div").prop("style");
+                const style = screen.getByTestId("styled-view").style;
 
                 // Assert
                 expect(style.color).toBe(expectedColor);
@@ -226,16 +231,18 @@ describe("MediaLayout", () => {
                 }[size];
 
                 // Act
-                const wrapper = mount(
+                render(
                     <MediaLayout styleSheets={styleSheets}>
                         {({mediaSize, mediaSpec, styles}) => {
                             return (
-                                <View style={styles.test}>Hello, world!</View>
+                                <View testId="styled-view" style={styles.test}>
+                                    Hello, world!
+                                </View>
                             );
                         }}
                     </MediaLayout>,
                 );
-                const style = wrapper.find("div").prop("style");
+                const style = screen.getByTestId("styled-view").style;
 
                 // Assert
                 expect(style.color).toEqual(expectedColor);
@@ -269,16 +276,18 @@ describe("MediaLayout", () => {
                 }[size];
 
                 // Act
-                const wrapper = mount(
+                render(
                     <MediaLayout styleSheets={styleSheets}>
                         {({mediaSize, mediaSpec, styles}) => {
                             return (
-                                <View style={styles.test}>Hello, world!</View>
+                                <View testId="styled-view" style={styles.test}>
+                                    Hello, world!
+                                </View>
                             );
                         }}
                     </MediaLayout>,
                 );
-                const style = wrapper.find("div").prop("style");
+                const style = screen.getByTestId("styled-view").style;
 
                 // Assert
                 expect(style.color).toEqual(expectedColor);
@@ -312,16 +321,18 @@ describe("MediaLayout", () => {
                 }[size];
 
                 // Act
-                const wrapper = mount(
+                render(
                     <MediaLayout styleSheets={styleSheets}>
                         {({mediaSize, mediaSpec, styles}) => {
                             return (
-                                <View style={styles.test}>Hello, world!</View>
+                                <View testId="styled-view" style={styles.test}>
+                                    Hello, world!
+                                </View>
                             );
                         }}
                     </MediaLayout>,
                 );
-                const style = wrapper.find("div").prop("style");
+                const style = screen.getByTestId("styled-view").style;
 
                 // Assert
                 expect(style.color).toEqual(expectedColor);
@@ -345,20 +356,26 @@ describe("MediaLayout", () => {
                 }),
             };
 
-            resizeWindow("large");
-
-            const wrapper = mount(
+            const UnderTest = () => (
                 <MediaLayout styleSheets={styleSheets}>
                     {({mediaSize, mediaSpec, styles}) => {
-                        return <View style={styles.test}>Hello, world!</View>;
+                        return (
+                            <View testId="styled-view" style={styles.test}>
+                                Hello, world!
+                            </View>
+                        );
                     }}
-                </MediaLayout>,
+                </MediaLayout>
             );
+
+            resizeWindow("large");
+
+            const wrapper = render(<UnderTest />);
 
             // Act
             resizeWindow("small");
-            wrapper.update();
-            const style = wrapper.find("div").prop("style");
+            wrapper.rerender(<UnderTest />);
+            const style = screen.getByTestId("styled-view").style;
 
             // Assert
             expect(style.color).toBe("orange");
@@ -379,20 +396,26 @@ describe("MediaLayout", () => {
                 }),
             };
 
-            resizeWindow("small");
-
-            const wrapper = mount(
+            const UnderTest = () => (
                 <MediaLayout styleSheets={styleSheets}>
                     {({mediaSize, mediaSpec, styles}) => {
-                        return <View style={styles.test}>Hello, world!</View>;
+                        return (
+                            <View testId="styled-view" style={styles.test}>
+                                Hello, world!
+                            </View>
+                        );
                     }}
-                </MediaLayout>,
+                </MediaLayout>
             );
+
+            resizeWindow("small");
+
+            const wrapper = render(<UnderTest />);
 
             // Act
             resizeWindow("large");
-            wrapper.update();
-            const style = wrapper.find("div").prop("style");
+            wrapper.rerender(<UnderTest />);
+            const style = screen.getByTestId("styled-view").style;
 
             // Assert
             expect(style.color).toBe("blue");

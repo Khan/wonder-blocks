@@ -58,13 +58,16 @@ module.exports = {
             },
         ],
         "import/newline-after-import": "error",
-        "import/no-unassigned-import": ["error", {allow: ["jest-enzyme"]}],
+        "import/no-unassigned-import": "error",
         "import/no-named-default": "error",
         "import/extensions": [
             "error",
-            "always",
+            "never",
             {
                 ignorePackages: true,
+                pattern: {
+                    json: "always",
+                },
             },
         ],
         "jest/no-focused-tests": "error",

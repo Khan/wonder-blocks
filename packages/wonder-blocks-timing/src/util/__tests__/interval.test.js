@@ -1,6 +1,6 @@
 // @flow
-import Interval from "../interval.js";
-import {SchedulePolicy, ClearPolicy} from "../policies.js";
+import Interval from "../interval";
+import {SchedulePolicy, ClearPolicy} from "../policies";
 
 describe("Interval", () => {
     beforeEach(() => {

@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
 
-import FocusTrap from "../focus-trap.js";
+import FocusTrap from "../focus-trap";
 
 describe("FocusTrap", () => {
     it("Focus should move to the first focusable element", () => {

@@ -1,5 +1,5 @@
 // @flow
-import CompactCellArgTypes from "./compact-cell.argtypes.js";
+import CompactCellArgTypes from "./compact-cell.argtypes";
 
 export default {
     ...CompactCellArgTypes,

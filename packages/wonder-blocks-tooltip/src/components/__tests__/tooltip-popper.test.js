@@ -1,13 +1,12 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render} from "@testing-library/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import typeof TooltipBubble from "../tooltip-bubble.js";
-import TooltipPopper from "../tooltip-popper.js";
+import typeof TooltipBubble from "../tooltip-bubble";
+import TooltipPopper from "../tooltip-popper";
 
 type State = {|ref: ?HTMLElement|};
 /**
@@ -58,7 +57,7 @@ describe("TooltipPopper", () => {
                     <TestHarness placement="bottom" resultRef={resolve} />
                 </View>
             );
-            mount(nodes);
+            render(nodes);
         });
 
         if (!ref) {

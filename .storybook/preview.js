@@ -1,6 +1,8 @@
 import React from "react";
-import wonderBlocksTheme from "./wonder-blocks-theme.js";
+import wonderBlocksTheme from "./wonder-blocks-theme";
 import {configure} from "@storybook/testing-library";
+
+import Link from "@khanacademy/wonder-blocks-link";
 
 configure({
     testIdAttribute: "data-test-id",
@@ -67,6 +69,10 @@ export const parameters = {
     },
     docs: {
         theme: wonderBlocksTheme,
+        components: {
+            // Override the default link component to use the WB Link component.
+            a: Link,
+        },
     },
     viewport: {
         viewports: wbViewports,

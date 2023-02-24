@@ -3,14 +3,10 @@ import * as React from "react";
 
 import {
     useHydratableEffect,
-    // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-    // have fixed:
-    // https://github.com/import-js/eslint-plugin-import/issues/2073
-    // eslint-disable-next-line import/named
     WhenClientSide,
-} from "../hooks/use-hydratable-effect.js";
+} from "../hooks/use-hydratable-effect";
 
-import type {Result, ValidCacheData} from "../util/types.js";
+import type {Result, ValidCacheData} from "../util/types";
 
 type Props<
     /**
@@ -41,7 +37,7 @@ type Props<
      *
      * Default is `OnClientRender.ExecuteWhenNoSuccessResult`.
      */
-    clientBehavior?: WhenClientSide,
+    clientBehavior?: $Values<typeof WhenClientSide>,
 
     /**
      * When true, the children will be rendered with the existing result

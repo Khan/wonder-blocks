@@ -1,11 +1,10 @@
 // @flow
 import * as React from "react";
 import * as Core from "@khanacademy/wonder-blocks-core";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render} from "@testing-library/react";
 
-import * as icons from "../../util/icon-assets.js";
-import {getPathForIcon, viewportPixelsForSize} from "../../util/icon-util.js";
+import * as icons from "../../util/icon-assets";
+import {getPathForIcon, viewportPixelsForSize} from "../../util/icon-util";
 
 // We mock things out so that we're in control of what really gets rendered.
 // Means we can test that we're using addStyle to generate the component
@@ -40,7 +39,7 @@ describe("Icon", () => {
 
     test("creates a styled svg using addStyle", async () => {
         // Arrange
-        const importModulePromise = import("../icon.js");
+        const importModulePromise = import("../icon");
 
         // Act
         await importModulePromise;
@@ -51,8 +50,8 @@ describe("Icon", () => {
 
     test("applies aria-label to svg", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
-        const render = new Promise((resolve) => {
+        const {default: Icon} = await import("../icon");
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon
@@ -63,11 +62,11 @@ describe("Icon", () => {
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
@@ -78,8 +77,8 @@ describe("Icon", () => {
 
     test("calls getPathForIcon", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
-        const render = new Promise((resolve) => {
+        const {default: Icon} = await import("../icon");
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon
@@ -90,11 +89,11 @@ describe("Icon", () => {
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockGetPathForIcon).toHaveBeenCalledTimes(1);
@@ -103,23 +102,23 @@ describe("Icon", () => {
 
     test("calls viewportPixelsForSize with size from props and asset size from getPathForIcon", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
+        const {default: Icon} = await import("../icon");
         mockGetPathForIcon.mockImplementationOnce(() => ({
             assetSize: "large",
             path: "TESTPATH",
         }));
-        const render = new Promise((resolve) => {
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon ref={() => resolve()} icon={icons.add} size="small" />
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockViewportPixelsForSize).toHaveBeenCalledTimes(2);
@@ -129,7 +128,7 @@ describe("Icon", () => {
 
     test("sets viewbox to asset dimensions", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
+        const {default: Icon} = await import("../icon");
         const expectedRenderSize = 42;
         const expectedAssetSize = 7;
         mockViewportPixelsForSize.mockImplementationOnce(
@@ -142,18 +141,18 @@ describe("Icon", () => {
             assetSize: "small",
             path: "TESTPATH",
         }));
-        const render = new Promise((resolve) => {
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon ref={() => resolve()} icon={icons.add} />
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
@@ -166,7 +165,7 @@ describe("Icon", () => {
 
     test("sets size to dimensions derived from size prop", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
+        const {default: Icon} = await import("../icon");
         const expectedRenderSize = 42;
         const expectedAssetSize = 7;
         mockViewportPixelsForSize.mockImplementationOnce(
@@ -179,18 +178,18 @@ describe("Icon", () => {
             assetSize: "small",
             path: "TESTPATH",
         }));
-        const render = new Promise((resolve) => {
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon ref={() => resolve()} icon={icons.add} />
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
@@ -204,12 +203,12 @@ describe("Icon", () => {
 
     test("sets inner path fill and d to color prop and path from getPathForIcon", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
+        const {default: Icon} = await import("../icon");
         mockGetPathForIcon.mockImplementationOnce(() => ({
             assetSize: "small",
             path: "TESTPATH",
         }));
-        const render = new Promise((resolve) => {
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon
@@ -220,14 +219,15 @@ describe("Icon", () => {
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
+        // eslint-disable-next-line testing-library/no-node-access
         expect(mockStyledSVGComponent.mock.calls[0][0].children)
             .toMatchInlineSnapshot(`
 <path
@@ -239,7 +239,7 @@ describe("Icon", () => {
 
     test("applies style prop", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon.js");
+        const {default: Icon} = await import("../icon");
         mockGetPathForIcon.mockImplementationOnce(() => ({
             assetSize: "small",
             path: "TESTPATH",
@@ -247,7 +247,7 @@ describe("Icon", () => {
         const expectedStyle = {
             display: "none",
         };
-        const render = new Promise((resolve) => {
+        const underTest = new Promise((resolve) => {
             const nodes = (
                 <div>
                     <Icon
@@ -258,11 +258,11 @@ describe("Icon", () => {
                 </div>
             );
 
-            mount(nodes);
+            render(nodes);
         });
 
         // Act
-        await render;
+        await underTest;
 
         // Assert
         expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);

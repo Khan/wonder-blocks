@@ -7,20 +7,14 @@ import {render, act} from "@testing-library/react";
 import * as ReactDOMServer from "react-dom/server";
 import {Server, View} from "@khanacademy/wonder-blocks-core";
 
-import {SharedCache} from "../../hooks/use-shared-cache.js";
-import TrackData from "../track-data.js";
-import {RequestFulfillment} from "../../util/request-fulfillment.js";
-import {SsrCache} from "../../util/ssr-cache.js";
-import {RequestTracker} from "../../util/request-tracking.js";
-import InterceptRequests from "../intercept-requests.js";
-import Data from "../data.js";
-import {
-    // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-    // have fixed:
-    // https://github.com/import-js/eslint-plugin-import/issues/2073
-    // eslint-disable-next-line import/named
-    WhenClientSide,
-} from "../../hooks/use-hydratable-effect.js";
+import {SharedCache} from "../../hooks/use-shared-cache";
+import TrackData from "../track-data";
+import {RequestFulfillment} from "../../util/request-fulfillment";
+import {SsrCache} from "../../util/ssr-cache";
+import {RequestTracker} from "../../util/request-tracking";
+import InterceptRequests from "../intercept-requests";
+import Data from "../data";
+import {WhenClientSide} from "../../hooks/use-hydratable-effect";
 
 describe("Data", () => {
     beforeEach(() => {

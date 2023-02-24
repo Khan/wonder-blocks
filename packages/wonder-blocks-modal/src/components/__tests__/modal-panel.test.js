@@ -2,9 +2,9 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
-import expectRenderError from "../../../../../utils/testing/expect-render-error.js";
-import ModalPanel from "../modal-panel.js";
-import ModalContext from "../modal-context.js";
+import expectRenderError from "../../../../../utils/testing/expect-render-error";
+import ModalPanel from "../modal-panel";
+import ModalContext from "../modal-context";
 
 describe("ModalPanel", () => {
     test("ModalContext.Provider and onClose should warn", () => {

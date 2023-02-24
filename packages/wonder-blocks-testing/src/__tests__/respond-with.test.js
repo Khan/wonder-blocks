@@ -1,6 +1,6 @@
 // @flow
-import {SettleController} from "../settle-controller.js";
-import {RespondWith} from "../respond-with.js";
+import {SettleController} from "../settle-controller";
+import {RespondWith} from "../respond-with";
 
 describe("RespondWith", () => {
     describe("#text.toPromise", () => {

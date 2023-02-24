@@ -1,12 +1,10 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount} from "enzyme";
-import "jest-enzyme";
-
+import {render} from "@testing-library/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import RefTracker from "../ref-tracker.js";
+import RefTracker from "../ref-tracker";
 
 type CallbackFn = (?HTMLElement) => void;
 
@@ -57,7 +55,7 @@ describe("RefTracker", () => {
                             <View ref={resolve} />
                         </View>
                     );
-                    mount(nodes);
+                    render(nodes);
                 });
                 const domNode = ReactDOM.findDOMNode(ref);
                 tracker.updateRef(ref);
@@ -93,7 +91,7 @@ describe("RefTracker", () => {
                             <View ref={resolve} />
                         </View>
                     );
-                    mount(nodes);
+                    render(nodes);
                 });
 
                 // Act
@@ -115,7 +113,7 @@ describe("RefTracker", () => {
                             <View ref={resolve} />
                         </View>
                     );
-                    mount(nodes);
+                    render(nodes);
                 });
                 const domNode = ReactDOM.findDOMNode(ref);
 
@@ -138,7 +136,7 @@ describe("RefTracker", () => {
                             <View ref={resolve} />
                         </View>
                     );
-                    mount(nodes);
+                    render(nodes);
                 });
                 tracker.updateRef(ref);
                 targetFn.mockClear();

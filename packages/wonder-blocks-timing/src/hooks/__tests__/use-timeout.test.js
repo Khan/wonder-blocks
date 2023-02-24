@@ -1,7 +1,7 @@
 // @flow
 import {renderHook} from "@testing-library/react-hooks";
 
-import {useTimeout} from "../use-timeout.js";
+import {useTimeout} from "../use-timeout";
 
 describe("useTimeout", () => {
     beforeEach(() => {

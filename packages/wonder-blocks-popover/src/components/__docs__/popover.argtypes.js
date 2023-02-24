@@ -7,12 +7,12 @@ import {
     Emphasized,
     WithIcon,
     WithIllustration,
-} from "./popover-content.stories.js";
+} from "./popover-content.stories";
 import {
     WithIcon as CoreWithIcon,
     WithDetailCell as CoreWithDetailCell,
     Dark as CoreDark,
-} from "./popover-content-core.stories.js";
+} from "./popover-content-core.stories";
 
 export const ContentMappings: {|[key: string]: React.Node|} = {
     withTextOnly: <Default {...Default.args} />,

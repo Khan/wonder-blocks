@@ -4,7 +4,7 @@ import {icons} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 
-import ModalContext from "./modal-context.js";
+import ModalContext from "./modal-context";
 
 type Props = {|
     /**

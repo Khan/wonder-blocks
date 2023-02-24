@@ -6,7 +6,7 @@ import userEvent from "@testing-library/user-event";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import Tooltip from "../tooltip.js";
+import Tooltip from "../tooltip";
 
 const mockIDENTIFIER = "mock-identifier";
 jest.mock("@khanacademy/wonder-blocks-core", () => {

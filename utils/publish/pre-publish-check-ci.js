@@ -13,7 +13,7 @@ const {
     checkPackageMain,
     checkPackageModule,
     checkPackageSource,
-} = require("./pre-publish-utils.js");
+} = require("./pre-publish-utils");
 
 glob(
     path.join(__dirname, "..", "..", "packages", "**", "package.json"),

@@ -7,7 +7,7 @@ import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-import CloseButton from "./close-button.js";
+import CloseButton from "./close-button";
 
 type Props = {|
     ...AriaProps,
@@ -91,7 +91,7 @@ export default class PopoverContentCore extends React.Component<Props> {
 
         return (
             <View
-                data-test-id={testId}
+                testId={testId}
                 style={[
                     styles.content,
                     color !== "white" && styles[color],

@@ -1,6 +1,6 @@
 // @flow
 
-import {getHorizontalRuleStyles} from "../common.js";
+import {getHorizontalRuleStyles} from "../common";
 
 describe("getHorizontalRuleStyles", () => {
     it("should get 'inset' styles as an array", () => {

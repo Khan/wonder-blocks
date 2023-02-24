@@ -4,7 +4,7 @@ import * as React from "react";
 import {render, screen, fireEvent} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import Tooltip from "../tooltip.js";
+import Tooltip from "../tooltip";
 
 describe("tooltip integration tests", () => {
     beforeEach(() => {

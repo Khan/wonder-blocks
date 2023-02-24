@@ -1,7 +1,7 @@
 // @flow
-import {SettleSignal} from "./settle-signal.js";
-import {ResponseImpl} from "./response-impl.js";
-import type {GraphQLJson} from "./types.js";
+import {SettleSignal} from "./settle-signal";
+import {ResponseImpl} from "./response-impl";
+import type {GraphQLJson} from "./types";
 
 // We want the parameterization here so that folks can assert a response is
 // of a specific type if passing between various functions. For example,

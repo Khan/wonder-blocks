@@ -1,10 +1,10 @@
 // @flow
-import * as css from "./css.js";
-import * as data from "./data.js";
-import * as portal from "./portal.js";
-import * as router from "./router.js";
+import * as css from "./css";
+import * as data from "./data";
+import * as portal from "./portal";
+import * as router from "./router";
 
-import type {TestHarnessConfigs} from "../types.js";
+import type {TestHarnessConfigs} from "../types";
 
 /**
  * NOTE: We do not type `DefaultAdapters` with `Adapters` here because we want

@@ -2,12 +2,12 @@
 /* eslint-disable max-lines */
 // @flow
 import * as React from "react";
-import {render, screen, fireEvent} from "@testing-library/react";
+import {render, screen, fireEvent, waitFor} from "@testing-library/react";
 import {MemoryRouter, Switch, Route} from "react-router-dom";
 import userEvent from "@testing-library/user-event";
 
-import getClickableBehavior from "../../util/get-clickable-behavior.js";
-import ClickableBehavior from "../clickable-behavior.js";
+import getClickableBehavior from "../../util/get-clickable-behavior";
+import ClickableBehavior from "../clickable-behavior";
 import type {ClickableState} from "../clickable-behavior";
 
 const keyCodes = {
@@ -15,12 +15,6 @@ const keyCodes = {
     enter: 13,
     space: 32,
 };
-
-const wait = (delay: number = 0) =>
-    new Promise((resolve, reject) => {
-        // eslint-disable-next-line no-restricted-syntax
-        return setTimeout(resolve, delay);
-    });
 
 const labelForState = (state: ClickableState): string => {
     const labels = [];
@@ -608,10 +602,11 @@ describe("ClickableBehavior", () => {
             // Act
             const link = screen.getByRole("link");
             userEvent.click(link);
-            await wait(0);
 
             // Assert
-            expect(window.location.assign).toHaveBeenCalledTimes(1);
+            await waitFor(() => {
+                expect(window.location.assign).toHaveBeenCalledTimes(1);
+            });
         });
 
         it("should show waiting UI before safeWithNav resolves", async () => {
@@ -923,10 +918,13 @@ describe("ClickableBehavior", () => {
 
                 // Act
                 userEvent.click(screen.getByRole("button"));
-                await wait(0);
 
                 // Assert
-                expect(screen.getByText("Hello, world!")).toBeInTheDocument();
+                await waitFor(() => {
+                    expect(
+                        screen.getByText("Hello, world!"),
+                    ).toBeInTheDocument();
+                });
             });
 
             it("shows waiting state before navigating", async () => {
@@ -1002,7 +1000,6 @@ describe("ClickableBehavior", () => {
 
                 // Act
                 userEvent.click(screen.getByRole("button"));
-                await wait(0);
 
                 // Assert
                 expect(
@@ -1047,10 +1044,11 @@ describe("ClickableBehavior", () => {
 
                 // Act
                 userEvent.click(screen.getByRole("button"));
-                await wait(0);
 
                 // Assert
-                expect(safeWithNavMock).toHaveBeenCalled();
+                await waitFor(() => {
+                    expect(safeWithNavMock).toHaveBeenCalled();
+                });
             });
         });
 

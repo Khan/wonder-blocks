@@ -1,12 +1,12 @@
 // @flow
 import * as React from "react";
 
-import WithSSRPlaceholder from "./with-ssr-placeholder.js";
+import WithSSRPlaceholder from "./with-ssr-placeholder";
 
-import UniqueIDFactory from "../util/unique-id-factory.js";
-import SsrIDFactory from "../util/ssr-id-factory.js";
+import UniqueIDFactory from "../util/unique-id-factory";
+import SsrIDFactory from "../util/ssr-id-factory";
 
-import type {IIdentifierFactory} from "../util/types.js";
+import type {IIdentifierFactory} from "../util/types";
 
 // TODO(FEI-4202): update to use `useUniqueId`
 type Props = {|

@@ -3,8 +3,8 @@ import * as React from "react";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import OptionItem from "../option-item.js";
-import DropdownCore from "../dropdown-core.js";
+import OptionItem from "../option-item";
+import DropdownCore from "../dropdown-core";
 
 const items = [
     {
@@ -613,11 +613,11 @@ describe("DropdownCore", () => {
         );
 
         // Act
-        userEvent.keyboard("{tab}");
+        userEvent.tab();
 
         // Assert
         expect(handleOpen).toHaveBeenCalledTimes(0);
-        waitFor(() => {
+        await waitFor(() => {
             expect(
                 screen.getByRole("button", {name: "Clear search"}),
             ).toHaveFocus();
@@ -699,7 +699,7 @@ describe("DropdownCore", () => {
             const searchField = await screen.findByPlaceholderText("Filter");
 
             // Assert
-            waitFor(() => {
+            await waitFor(() => {
                 expect(searchField).toHaveFocus();
             });
         });
@@ -730,7 +730,7 @@ describe("DropdownCore", () => {
             userEvent.click(item);
 
             // Assert
-            waitFor(() => {
+            await waitFor(() => {
                 expect(item).toHaveFocus();
             });
         });

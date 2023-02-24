@@ -4,11 +4,11 @@ import {useEffect, useState, useCallback} from "react";
 import {
     SchedulePolicy as SchedulePolicies,
     ClearPolicy as ClearPolicies,
-} from "../util/policies.js";
-import type {IInterval, ClearPolicy, Options} from "../util/types.js";
+} from "../util/policies";
+import type {IInterval, ClearPolicy, Options} from "../util/types";
 
-import {useUpdatingRef} from "./internal/use-updating-ref.js";
-import {useInterval} from "./use-interval.js";
+import {useUpdatingRef} from "./internal/use-updating-ref";
+import {useInterval} from "./use-interval";
 
 export function useScheduledInterval(
     action: () => mixed,

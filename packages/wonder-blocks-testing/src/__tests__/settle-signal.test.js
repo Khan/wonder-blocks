@@ -1,5 +1,5 @@
 // @flow
-import {SettleSignal} from "../settle-signal.js";
+import {SettleSignal} from "../settle-signal";
 
 describe("SettleSignal", () => {
     it("should extend EventTarget", () => {

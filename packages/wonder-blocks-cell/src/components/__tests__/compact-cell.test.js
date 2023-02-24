@@ -5,7 +5,7 @@ import {render, screen} from "@testing-library/react";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import {HeadingMedium} from "@khanacademy/wonder-blocks-typography";
 
-import CompactCell from "../compact-cell.js";
+import CompactCell from "../compact-cell";
 
 describe("CompactCell", () => {
     it("should render the default CompactCell component", () => {

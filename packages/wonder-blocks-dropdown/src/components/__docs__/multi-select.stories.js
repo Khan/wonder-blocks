@@ -15,10 +15,10 @@ import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
-import multiSelectArgtypes from "./base-select.argtypes.js";
-import {defaultLabels} from "../../util/constants.js";
+import multiSelectArgtypes from "./base-select.argtypes";
+import {defaultLabels} from "../../util/constants";
 
 export default {
     title: "Dropdown / MultiSelect",

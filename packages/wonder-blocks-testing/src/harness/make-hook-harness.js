@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
 
-import {makeTestHarness} from "./make-test-harness.js";
+import {makeTestHarness} from "./make-test-harness";
 
-import type {TestHarnessAdapters, TestHarnessConfigs} from "./types.js";
+import type {TestHarnessAdapters, TestHarnessConfigs} from "./types";
 
 const HookHarness = ({children}) => children;
 

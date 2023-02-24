@@ -7,11 +7,11 @@ import {
     DROPDOWN_ITEM_HEIGHT,
     MAX_VISIBLE_ITEMS,
     SEPARATOR_ITEM_HEIGHT,
-} from "./constants.js";
+} from "./constants";
 
-import SeparatorItem from "../components/separator-item.js";
+import SeparatorItem from "../components/separator-item";
 
-import type {DropdownItem} from "./types.js";
+import type {DropdownItem} from "./types";
 
 /**
  * The list height that is automatically calculated depending on the

@@ -9,7 +9,7 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 
-import type {OpenerProps} from "../util/types.js";
+import type {OpenerProps} from "../util/types";
 
 type Props = {|
     ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,

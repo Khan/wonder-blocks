@@ -12,7 +12,7 @@ import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import {DROPDOWN_ITEM_HEIGHT} from "../util/constants.js";
+import {DROPDOWN_ITEM_HEIGHT} from "../util/constants";
 
 const StyledButton = addStyle("button");
 

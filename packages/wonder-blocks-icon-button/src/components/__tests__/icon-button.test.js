@@ -1,13 +1,13 @@
 // @flow
 import * as React from "react";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 
-import expectRenderError from "../../../../../utils/testing/expect-render-error.js";
-import IconButton from "../icon-button.js";
+import expectRenderError from "../../../../../utils/testing/expect-render-error";
+import IconButton from "../icon-button";
 
 describe("IconButton", () => {
     const {location} = window;
@@ -21,15 +21,23 @@ describe("IconButton", () => {
         window.location = location;
     });
 
-    test("render an icon", (done) => {
-        const wrapper = mount(
+    test("render an icon", () => {
+        // Arrange
+
+        // Act
+        render(
             <IconButton
                 icon={icons.search}
                 aria-label="search"
-                onClick={() => done()}
+                onClick={() => {}}
+                testId="icon-button"
             />,
         );
-        wrapper.simulate("click");
+
+        const icon = screen.getByLabelText("search");
+
+        // Assert
+        expect(icon.innerHTML).toEqual(expect.stringContaining("<svg"));
     });
 
     test("throw an error for if light and not primary", () => {
@@ -47,7 +55,7 @@ describe("IconButton", () => {
 
     test("client-side navigation", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <IconButton
@@ -66,18 +74,15 @@ describe("IconButton", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper
-            .find(`[data-test-id="icon-button"]`)
-            .first();
-        buttonWrapper.simulate("click", {button: 0});
+        userEvent.click(screen.getByRole("link"));
 
         // Assert
-        expect(wrapper.find("#foo").exists()).toBe(true);
+        expect(screen.getByText("Hello, world!")).toBeInTheDocument();
     });
 
     test("client-side navigation with unknown URL fails", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <IconButton
@@ -96,18 +101,15 @@ describe("IconButton", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper
-            .find(`[data-test-id="icon-button"]`)
-            .first();
-        buttonWrapper.simulate("click", {button: 0});
+        userEvent.click(screen.getByRole("link"));
 
         // Assert
-        expect(wrapper.find("#foo").exists()).toBe(false);
+        expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
     test("client-side navigation with `skipClientNav` set to `true` fails", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <IconButton
@@ -127,17 +129,14 @@ describe("IconButton", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper
-            .find(`[data-test-id="icon-button"]`)
-            .first();
-        buttonWrapper.simulate("click", {button: 0});
+        userEvent.click(screen.getByRole("link"));
 
         // Assert
-        expect(wrapper.find("#foo").exists()).toBe(false);
+        expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 
     test("disallow navigation when href and disabled are both set", () => {
-        const wrapper = mount(
+        render(
             <MemoryRouter>
                 <div>
                     <IconButton
@@ -157,12 +156,9 @@ describe("IconButton", () => {
         );
 
         // Act
-        const buttonWrapper = wrapper
-            .find(`[data-test-id="icon-button"]`)
-            .first();
-        buttonWrapper.simulate("click", {button: 0});
+        userEvent.click(screen.getByRole("button"));
 
         // Assert
-        expect(wrapper.find("#foo").exists()).toBe(false);
+        expect(screen.queryByText("Hello, world!")).not.toBeInTheDocument();
     });
 });

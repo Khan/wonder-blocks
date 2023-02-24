@@ -5,7 +5,7 @@ import {__RouterContext} from "react-router";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import IconButtonCore from "./icon-button-core.js";
+import IconButtonCore from "./icon-button-core";
 
 export type SharedProps = {|
     ...$Rest<AriaProps, {|"aria-disabled": "true" | "false" | void|}>,

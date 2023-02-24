@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
-import OptionItem from "../../components/option-item.js";
-import SeparatorItem from "../../components/separator-item.js";
+import OptionItem from "../../components/option-item";
+import SeparatorItem from "../../components/separator-item";
 
-import {getDropdownMenuHeight} from "../dropdown-menu-styles.js";
+import {getDropdownMenuHeight} from "../dropdown-menu-styles";
 
 const optionItems = [
     {

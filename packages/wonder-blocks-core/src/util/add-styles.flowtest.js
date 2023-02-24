@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import addStyle from "./add-style.js";
+import addStyle from "./add-style";
 
 const styles = StyleSheet.create({
     list: {

@@ -9,7 +9,7 @@ module.exports = (api) => {
             {
                 targets: api.env("test")
                     ? {
-                          node: 12,
+                          node: 16,
                       }
                     : {
                           esmodules: true,

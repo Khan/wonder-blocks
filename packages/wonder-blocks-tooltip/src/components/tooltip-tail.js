@@ -7,7 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {getRefFn, Placement, Offset} from "../util/types.js";
+import type {getRefFn, Placement, Offset} from "../util/types";
 
 export type Props = {|
     /**
@@ -245,24 +245,6 @@ export default class TooltipTail extends React.Component<Props> {
                 />
             </g>,
         ];
-    }
-
-    _minDistanceFromCorners(placement: Placement): number {
-        const minDistanceFromCornersForTopBottom = Spacing.medium_16;
-        const minDistanceFromCornersForLeftRight = 7;
-
-        switch (placement) {
-            case "top":
-            case "bottom":
-                return minDistanceFromCornersForTopBottom;
-
-            case "left":
-            case "right":
-                return minDistanceFromCornersForLeftRight;
-
-            default:
-                throw new Error(`Unknown placement: ${placement}`);
-        }
     }
 
     _getFullTailWidth(): number {

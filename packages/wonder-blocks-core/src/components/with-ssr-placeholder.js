@@ -1,12 +1,7 @@
 // @flow
 import * as React from "react";
 
-// TODO(FEI-4202): update to use `useContext(RenderStateContext)`
-// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-// have fixed:
-// https://github.com/import-js/eslint-plugin-import/issues/2073
-// eslint-disable-next-line import/named
-import {RenderState, RenderStateContext} from "./render-state-context.js";
+import {RenderState, RenderStateContext} from "./render-state-context";
 
 /**
  * We use render functions so that we don't do any work unless we need to.
@@ -117,7 +112,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         return null;
     }
 
-    _maybeRender(renderState: RenderState): React.Node {
+    _maybeRender(renderState: $Values<typeof RenderState>): React.Node {
         const {children, placeholder} = this.props;
 
         switch (renderState) {

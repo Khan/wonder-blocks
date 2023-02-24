@@ -1,13 +1,13 @@
 // @flow
 import * as React from "react";
 import * as ReactDOM from "react-dom";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
-import {ModalLauncherPortalAttributeName} from "./constants.js";
-import maybeGetPortalMountedModalHostElement from "./maybe-get-portal-mounted-modal-host-element.js";
-import ModalLauncher from "../components/modal-launcher.js";
-import OnePaneDialog from "../components/one-pane-dialog.js";
+import {ModalLauncherPortalAttributeName} from "./constants";
+import maybeGetPortalMountedModalHostElement from "./maybe-get-portal-mounted-modal-host-element";
+import ModalLauncher from "../components/modal-launcher";
+import OnePaneDialog from "../components/one-pane-dialog";
 
 describe("maybeGetPortalMountedModalHostElement", () => {
     test("when candidate is null, returns null", () => {
@@ -30,13 +30,11 @@ describe("maybeGetPortalMountedModalHostElement", () => {
                 </div>
             </div>
         );
-        const wrapper = mount(nodes);
-        const candidateElement = wrapper.find("button").at(0);
+        render(nodes);
+        const candidateElement = screen.getByRole("button");
 
         // Act
-        const result = maybeGetPortalMountedModalHostElement(
-            candidateElement.getDOMNode(),
-        );
+        const result = maybeGetPortalMountedModalHostElement(candidateElement);
 
         // Assert
         expect(result).toBeFalsy();
@@ -63,13 +61,14 @@ describe("maybeGetPortalMountedModalHostElement", () => {
                 />
             );
 
-            const wrapper = mount(modal);
-            const candidateElement = wrapper.find("button").at(0);
+            render(modal);
+            const candidateElement = screen.getByRole("button", {
+                name: "Candidate",
+            });
 
             // Act
-            const result = maybeGetPortalMountedModalHostElement(
-                candidateElement.getDOMNode(),
-            );
+            const result =
+                maybeGetPortalMountedModalHostElement(candidateElement);
 
             // Assert
             expect(result).toBeFalsy();
@@ -101,8 +100,8 @@ describe("maybeGetPortalMountedModalHostElement", () => {
                         )}
                     </ModalLauncher>
                 );
-                const wrapper = mount(launcher);
-                wrapper.find("button").simulate("click");
+                render(launcher);
+                userEvent.click(screen.getByRole("button"));
             };
 
             const actAndAssert = (node) => {

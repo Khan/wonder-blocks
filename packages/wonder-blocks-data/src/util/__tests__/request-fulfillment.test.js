@@ -1,6 +1,6 @@
 // @flow
-import {RequestFulfillment} from "../request-fulfillment.js";
-import {DataError} from "../data-error.js";
+import {RequestFulfillment} from "../request-fulfillment";
+import {DataError} from "../data-error";
 
 describe("RequestFulfillment", () => {
     it("should provide static default instance", () => {

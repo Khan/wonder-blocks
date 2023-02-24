@@ -1,9 +1,5 @@
 // @flow
-// TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-// have fixed:
-// https://github.com/import-js/eslint-plugin-import/issues/2073
-// eslint-disable-next-line import/named
-export {FetchPolicy} from "./util/types.js";
+export {FetchPolicy} from "./util/types";
 export type {
     ErrorOptions,
     ResponseCache,
@@ -12,44 +8,40 @@ export type {
     RawScopedCache,
     ValidCacheData,
     ScopedCache,
-} from "./util/types.js";
+} from "./util/types";
 
-export * from "./util/hydration-cache-api.js";
-export * from "./util/request-api.js";
-export {purgeCaches} from "./util/purge-caches.js";
-export {default as TrackData} from "./components/track-data.js";
-export {default as Data} from "./components/data.js";
-export {default as InterceptRequests} from "./components/intercept-requests.js";
-export {DataError, DataErrors} from "./util/data-error.js";
-export {useServerEffect} from "./hooks/use-server-effect.js";
-export {useCachedEffect} from "./hooks/use-cached-effect.js";
-export {useSharedCache, SharedCache} from "./hooks/use-shared-cache.js";
+export * from "./util/hydration-cache-api";
+export * from "./util/request-api";
+export {purgeCaches} from "./util/purge-caches";
+export {default as TrackData} from "./components/track-data";
+export {default as Data} from "./components/data";
+export {default as InterceptRequests} from "./components/intercept-requests";
+export {DataError, DataErrors} from "./util/data-error";
+export {useServerEffect} from "./hooks/use-server-effect";
+export {useCachedEffect} from "./hooks/use-cached-effect";
+export {useSharedCache, SharedCache} from "./hooks/use-shared-cache";
 export {
     useHydratableEffect,
-    // TODO(somewhatabstract, FEI-4174): Update eslint-plugin-import when they
-    // have fixed:
-    // https://github.com/import-js/eslint-plugin-import/issues/2073
-    // eslint-disable-next-line import/named
     WhenClientSide,
-} from "./hooks/use-hydratable-effect.js";
-export {ScopedInMemoryCache} from "./util/scoped-in-memory-cache.js";
-export {SerializableInMemoryCache} from "./util/serializable-in-memory-cache.js";
-export {Status} from "./util/status.js";
+} from "./hooks/use-hydratable-effect";
+export {ScopedInMemoryCache} from "./util/scoped-in-memory-cache";
+export {SerializableInMemoryCache} from "./util/serializable-in-memory-cache";
+export {Status} from "./util/status";
 
 ////////////////////////////////////////////////////////////////////////////////
 // GraphQL
 ////////////////////////////////////////////////////////////////////////////////
-export {getGqlRequestId} from "./util/get-gql-request-id.js";
-export {getGqlDataFromResponse} from "./util/get-gql-data-from-response.js";
-export {graphQLDocumentNodeParser} from "./util/graphql-document-node-parser.js";
-export {toGqlOperation} from "./util/to-gql-operation.js";
-export {GqlRouter} from "./components/gql-router.js";
-export {useGql} from "./hooks/use-gql.js";
-export {GqlError, GqlErrors} from "./util/gql-error.js";
+export {getGqlRequestId} from "./util/get-gql-request-id";
+export {getGqlDataFromResponse} from "./util/get-gql-data-from-response";
+export {graphQLDocumentNodeParser} from "./util/graphql-document-node-parser";
+export {toGqlOperation} from "./util/to-gql-operation";
+export {GqlRouter} from "./components/gql-router";
+export {useGql} from "./hooks/use-gql";
+export {GqlError, GqlErrors} from "./util/gql-error";
 export type {
     GqlContext,
     GqlOperation,
     GqlOperationType,
     GqlFetchOptions,
     GqlFetchFn,
-} from "./util/gql-types.js";
+} from "./util/gql-types";

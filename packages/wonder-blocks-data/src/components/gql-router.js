@@ -1,13 +1,13 @@
 // @flow
 import * as React from "react";
 
-import {GqlRouterContext} from "../util/gql-router-context.js";
+import {GqlRouterContext} from "../util/gql-router-context";
 
 import type {
     GqlContext,
     GqlFetchFn,
     GqlRouterConfiguration,
-} from "../util/gql-types.js";
+} from "../util/gql-types";
 
 type Props<TContext: GqlContext> = {|
     /**

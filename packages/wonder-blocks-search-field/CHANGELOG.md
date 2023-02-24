@@ -1,5 +1,47 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 1.0.18
+
+### Patch Changes
+
+-   Updated dependencies [1a5624d4]
+    -   @khanacademy/wonder-blocks-icon@1.2.36
+    -   @khanacademy/wonder-blocks-form@3.1.10
+    -   @khanacademy/wonder-blocks-icon-button@3.4.20
+
+## 1.0.17
+
+### Patch Changes
+
+-   496119f2: Cleanup WB interdependencies
+-   Updated dependencies [496119f2]
+    -   @khanacademy/wonder-blocks-core@4.6.2
+    -   @khanacademy/wonder-blocks-form@3.1.9
+    -   @khanacademy/wonder-blocks-icon@1.2.35
+    -   @khanacademy/wonder-blocks-icon-button@3.4.19
+    -   @khanacademy/wonder-blocks-typography@1.1.37
+
+## 1.0.16
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-core@4.6.1
+-   @khanacademy/wonder-blocks-icon@1.2.34
+-   @khanacademy/wonder-blocks-icon-button@3.4.18
+-   @khanacademy/wonder-blocks-typography@1.1.36
+
+## 1.0.15
+
+### Patch Changes
+
+-   Updated dependencies [b561425a]
+-   Updated dependencies [a566e232]
+-   Updated dependencies [d2b21a6e]
+    -   @khanacademy/wonder-blocks-core@4.6.0
+    -   @khanacademy/wonder-blocks-icon@1.2.33
+    -   @khanacademy/wonder-blocks-icon-button@3.4.17
+    -   @khanacademy/wonder-blocks-typography@1.1.35
+
 ## 1.0.14
 
 ### Patch Changes

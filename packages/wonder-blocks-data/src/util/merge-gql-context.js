@@ -1,5 +1,5 @@
 // @flow
-import type {GqlContext} from "./gql-types.js";
+import type {GqlContext} from "./gql-types";
 
 /**
  * Construct a complete GqlContext from current defaults and a partial context.

@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 import {render} from "@testing-library/react";
-import {makeHookHarness} from "../make-hook-harness.js";
-import * as MTH from "../make-test-harness.js";
+import {makeHookHarness} from "../make-hook-harness";
+import * as MTH from "../make-test-harness";
 
 describe("#makeHookHarness", () => {
     it("should call makeTestHarness", () => {

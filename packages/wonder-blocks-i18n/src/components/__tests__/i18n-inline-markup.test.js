@@ -2,13 +2,13 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
 
-import * as ParseSimpleHTML from "../parse-simple-html.js";
-import {I18nInlineMarkup} from "../i18n-inline-markup.js";
+import * as ParseSimpleHTML from "../parse-simple-html";
+import {I18nInlineMarkup} from "../i18n-inline-markup";
 import {
     SingleShallowSubstitution,
     MultipleShallowSubstitution,
     ElementWrapper,
-} from "../__docs__/i18n-inline-markup.stories.js";
+} from "../__docs__/i18n-inline-markup.stories";
 
 describe("I18nInlineMarkup", () => {
     test("SingleShallowSubstitution", () => {

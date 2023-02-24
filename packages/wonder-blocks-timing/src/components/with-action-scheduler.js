@@ -1,13 +1,13 @@
 // @flow
 import * as React from "react";
 
-import ActionSchedulerProvider from "./action-scheduler-provider.js";
+import ActionSchedulerProvider from "./action-scheduler-provider";
 
 import type {
     IScheduleActions,
     WithActionSchedulerProps,
     WithActionScheduler,
-} from "../util/types.js";
+} from "../util/types";
 
 type WithoutActionScheduler<T> = $Exact<$Diff<T, WithActionSchedulerProps>>;
 

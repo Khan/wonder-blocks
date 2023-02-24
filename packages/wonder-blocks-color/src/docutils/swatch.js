@@ -11,7 +11,7 @@ import {
     LabelSmall,
     LabelXSmall,
 } from "@khanacademy/wonder-blocks-typography";
-import Color from "../index.js";
+import Color from "../index";
 
 type Segments = 1 | 2 | 3;
 

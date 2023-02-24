@@ -15,14 +15,14 @@ import {
 
 import type {StoryComponentType} from "@storybook/react";
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
-import ComponentInfo from "../../../../../.storybook/components/component-info.js";
+import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 
 // NOTE: We are reusing an existing Cell SB Story to test how Popovers can be
 // composed by Cells.
 // eslint-disable-next-line monorepo/no-relative-import
-import {ClickableDetailCell} from "../../../../wonder-blocks-cell/src/components/__docs__/detail-cell.stories.js";
-import popoverContentCoreArgtypes from "./popover-content-core.argtypes.js";
+import {ClickableDetailCell} from "../../../../wonder-blocks-cell/src/components/__docs__/detail-cell.stories";
+import popoverContentCoreArgtypes from "./popover-content-core.argtypes";
 
 export default {
     title: "Popover/PopoverContentCore",

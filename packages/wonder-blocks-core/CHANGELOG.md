@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-core
 
+## 4.6.2
+
+### Patch Changes
+
+-   496119f2: Cleanup WB interdependencies
+
+## 4.6.1
+
+## 4.6.0
+
+### Minor Changes
+
+-   b561425a: Add useIsMounted() hook
+-   a566e232: Add useOnMountEffect hook
+-   d2b21a6e: Export useOnMountEffect hook
+
 ## 4.5.0
 
 ### Minor Changes

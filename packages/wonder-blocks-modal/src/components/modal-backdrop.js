@@ -5,11 +5,11 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {ModalLauncherPortalAttributeName} from "../util/constants.js";
+import {ModalLauncherPortalAttributeName} from "../util/constants";
 
-import {findFocusableNodes} from "../util/find-focusable-nodes.js";
+import {findFocusableNodes} from "../util/find-focusable-nodes";
 
-import type {ModalElement} from "../util/types.js";
+import type {ModalElement} from "../util/types";
 
 type Props = {|
     children: ModalElement,

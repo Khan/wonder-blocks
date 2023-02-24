@@ -1,35 +1,32 @@
 // @flow
 import * as React from "react";
-import {mount, shallow} from "enzyme";
-import "jest-enzyme";
+import {render, screen} from "@testing-library/react";
 
 import {
     Breadcrumbs,
     BreadcrumbsItem,
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 
-import ModalHeader from "../modal-header.js";
+import ModalHeader from "../modal-header";
 
 const exampleBreadcrumbs: React.Element<typeof Breadcrumbs> = (
     <Breadcrumbs>
-        <BreadcrumbsItem>test</BreadcrumbsItem>
+        <BreadcrumbsItem>breadcrumb item</BreadcrumbsItem>
     </Breadcrumbs>
 );
 
 describe("ModalHeader", () => {
     test("renders the title by default", () => {
         // Arrange, Act
-        const wrapper = shallow(
-            <ModalHeader title="Title" titleId="modal-title" />,
-        );
+        render(<ModalHeader title="Title" titleId="modal-title" />);
 
         // Assert
-        expect(wrapper.exists()).toBe(true);
+        expect(screen.getByText("Title")).toBeInTheDocument();
     });
 
     test("using only `breadcrumbs` should render the header", () => {
         // Arrange, Act
-        const wrapper = shallow(
+        render(
             <ModalHeader
                 title="Title"
                 breadcrumbs={exampleBreadcrumbs}
@@ -38,12 +35,12 @@ describe("ModalHeader", () => {
         );
 
         // Assert
-        expect(wrapper.exists()).toBe(true);
+        expect(screen.getByText("breadcrumb item")).toBeInTheDocument();
     });
 
     test("using only `subtitle` should render the header", () => {
         // Arrange, Act
-        const wrapper = shallow(
+        render(
             <ModalHeader
                 title="Title"
                 subtitle="Subtitle"
@@ -52,12 +49,12 @@ describe("ModalHeader", () => {
         );
 
         // Assert
-        expect(wrapper.exists()).toBe(true);
+        expect(screen.getByText("Subtitle")).toBeInTheDocument();
     });
 
     test("testId should be added to the title", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <ModalHeader
                 title="Title"
                 subtitle="Subtitle"
@@ -67,17 +64,18 @@ describe("ModalHeader", () => {
         );
 
         // Act
-        const title = wrapper.find(
-            `[data-test-id="test-example-header-title"]`,
-        );
+        const title = screen.getByText("Title");
 
         // Assert
-        expect(title).toHaveLength(1);
+        expect(title).toHaveAttribute(
+            "data-test-id",
+            "test-example-header-title",
+        );
     });
 
     test("testId should be added to the subtitle", () => {
         // Arrange
-        const wrapper = mount(
+        render(
             <ModalHeader
                 title="Title"
                 subtitle="Subtitle"
@@ -87,11 +85,12 @@ describe("ModalHeader", () => {
         );
 
         // Act
-        const subtitle = wrapper.find(
-            `[data-test-id="test-example-header-subtitle"]`,
-        );
+        const subtitle = screen.getByText("Subtitle");
 
         // Assert
-        expect(subtitle).toHaveLength(1);
+        expect(subtitle).toHaveAttribute(
+            "data-test-id",
+            "test-example-header-subtitle",
+        );
     });
 });

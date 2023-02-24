@@ -9,13 +9,14 @@ import type {
     WithoutActionScheduler,
 } from "@khanacademy/wonder-blocks-timing";
 
-import FocusTrap from "./focus-trap.js";
-import ModalBackdrop from "./modal-backdrop.js";
-import ScrollDisabler from "./scroll-disabler.js";
-import type {ModalElement} from "../util/types.js";
-import ModalContext from "./modal-context.js";
+import FocusTrap from "./focus-trap";
+import ModalBackdrop from "./modal-backdrop";
+import ScrollDisabler from "./scroll-disabler";
+import type {ModalElement} from "../util/types";
+import ModalContext from "./modal-context";
 
-type CommonProps = {|
+// TODO(FEI-5000): Convert back to conditional props after TS migration is complete.
+type Props = {|
     /**
      * The modal to render.
      *
@@ -30,13 +31,6 @@ type CommonProps = {|
      * respond to user intearction, like `onClick`.
      */
     modal: ModalElement | (({|closeModal: () => void|}) => ModalElement),
-
-    /**
-     * If the parent needs to be notified when the modal is closed, use this
-     * prop. You probably want to use this instead of `onClose` on the modals
-     * themselves, since this will capture a more complete set of close events.
-     */
-    onClose?: () => mixed,
 
     /**
      * Enables the backdrop to dismiss the modal on click/tap
@@ -61,11 +55,6 @@ type CommonProps = {|
      */
     testId?: string,
 
-    ...WithActionSchedulerProps,
-|};
-
-type ControlledProps = {|
-    ...CommonProps,
     /**
      * Renders the modal when true, renders nothing when false.
      *
@@ -75,28 +64,33 @@ type ControlledProps = {|
      * should never be used with this prop.  Not doing so will result in an
      * error being thrown.
      */
-    opened: boolean,
+    opened?: boolean,
 
     /**
+     * If the parent needs to be notified when the modal is closed, use this
+     * prop. You probably want to use this instead of `onClose` on the modals
+     * themselves, since this will capture a more complete set of close events.
+     *
      * Called when the modal needs to notify the parent component that it should
      * be closed.
      *
      * This prop must be used when the component is being used as a controlled
      * component.
      */
-    onClose: () => mixed,
+    onClose?: () => mixed,
+
+    /**
+     * WARNING: This props should only be used when using the component as a
+     * controlled component.
+     */
+    children?: ({|openModal: () => mixed|}) => React.Node,
+
+    ...WithActionSchedulerProps,
 |};
 
 type DefaultProps = {|
     backdropDismissEnabled: $PropertyType<Props, "backdropDismissEnabled">,
 |};
-
-type UncontrolledProps = {|
-    ...CommonProps,
-    children: ({|openModal: () => mixed|}) => React.Node,
-|};
-
-type Props = ControlledProps | UncontrolledProps;
 
 type State = {|
     /** Whether the modal should currently be open. */

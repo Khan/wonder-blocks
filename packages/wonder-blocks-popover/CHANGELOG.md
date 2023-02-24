@@ -1,5 +1,57 @@
 # @khanacademy/wonder-blocks-popover
 
+## 1.1.29
+
+### Patch Changes
+
+-   Updated dependencies [1a5624d4]
+    -   @khanacademy/wonder-blocks-icon@1.2.36
+    -   @khanacademy/wonder-blocks-icon-button@3.4.20
+    -   @khanacademy/wonder-blocks-modal@3.0.6
+    -   @khanacademy/wonder-blocks-tooltip@1.4.5
+
+## 1.1.28
+
+### Patch Changes
+
+-   496119f2: Cleanup WB interdependencies
+-   Updated dependencies [496119f2]
+    -   @khanacademy/wonder-blocks-core@4.6.2
+    -   @khanacademy/wonder-blocks-modal@3.0.5
+    -   @khanacademy/wonder-blocks-icon@1.2.35
+    -   @khanacademy/wonder-blocks-icon-button@3.4.19
+    -   @khanacademy/wonder-blocks-tooltip@1.4.4
+    -   @khanacademy/wonder-blocks-typography@1.1.37
+
+## 1.1.27
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-core@4.6.1
+-   @khanacademy/wonder-blocks-icon@1.2.34
+-   @khanacademy/wonder-blocks-icon-button@3.4.18
+-   @khanacademy/wonder-blocks-layout@1.4.14
+-   @khanacademy/wonder-blocks-modal@3.0.4
+-   @khanacademy/wonder-blocks-tooltip@1.4.3
+-   @khanacademy/wonder-blocks-typography@1.1.36
+
+## 1.1.26
+
+### Patch Changes
+
+-   1a59cc13: Fix testId in PopoverContentCore
+-   Updated dependencies [b561425a]
+-   Updated dependencies [a566e232]
+-   Updated dependencies [5712eb36]
+-   Updated dependencies [d2b21a6e]
+    -   @khanacademy/wonder-blocks-core@4.6.0
+    -   @khanacademy/wonder-blocks-tooltip@1.4.2
+    -   @khanacademy/wonder-blocks-icon@1.2.33
+    -   @khanacademy/wonder-blocks-icon-button@3.4.17
+    -   @khanacademy/wonder-blocks-layout@1.4.13
+    -   @khanacademy/wonder-blocks-modal@3.0.3
+    -   @khanacademy/wonder-blocks-typography@1.1.35
+
 ## 1.1.25
 
 ### Patch Changes

@@ -2,9 +2,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import addStyle from "../util/add-style.js";
+import addStyle from "../util/add-style";
 
-import type {TextViewSharedProps} from "../util/types.js";
+import type {TextViewSharedProps} from "../util/types";
 
 const styles = StyleSheet.create({
     // https://github.com/facebook/css-layout#default-values

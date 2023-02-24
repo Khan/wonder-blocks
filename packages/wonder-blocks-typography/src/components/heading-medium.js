@@ -2,9 +2,9 @@
 import * as React from "react";
 import {Text} from "@khanacademy/wonder-blocks-core";
 
-import styles from "../util/styles.js";
+import styles from "../util/styles";
 
-import type {Props} from "../util/types.js";
+import type {Props} from "../util/types";
 
 type DefaultProps = {|
     tag: $PropertyType<Props, "tag">,

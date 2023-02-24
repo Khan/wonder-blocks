@@ -1,6 +1,6 @@
 // @flow
 import * as WSCore from "@khanacademy/wonder-stuff-core";
-import {SerializableInMemoryCache} from "../serializable-in-memory-cache.js";
+import {SerializableInMemoryCache} from "../serializable-in-memory-cache";
 
 describe("SerializableInMemoryCache", () => {
     describe("#constructor", () => {

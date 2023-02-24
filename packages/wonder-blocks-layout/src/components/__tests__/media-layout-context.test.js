@@ -1,18 +1,17 @@
 // @flow
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {mount} from "enzyme";
-import "jest-enzyme";
+import {render} from "@testing-library/react";
 
-import MediaLayout from "../media-layout.js";
-import MediaLayoutContext from "../media-layout-context.js";
-import {resizeWindow, matchMedia} from "../../util/test-util.js";
+import MediaLayout from "../media-layout";
+import MediaLayoutContext from "../media-layout-context";
+import {resizeWindow, matchMedia} from "../../util/test-util";
 
 import {
     MEDIA_DEFAULT_SPEC,
     MEDIA_INTERNAL_SPEC,
     MEDIA_MODAL_SPEC,
-} from "../../util/specs.js";
+} from "../../util/specs";
 
 describe("MediaLayoutContext", () => {
     beforeEach(() => {
@@ -26,7 +25,7 @@ describe("MediaLayoutContext", () => {
 
             // Act
             const args = await new Promise((resolve, reject) => {
-                mount(
+                render(
                     <MediaLayoutContext.Provider
                         value={{
                             overrideSize: "small",
@@ -54,7 +53,7 @@ describe("MediaLayoutContext", () => {
             // Arrange
             delete window.matchMedia;
             const promise = new Promise((resolve, reject) => {
-                mount(
+                render(
                     <MediaLayout styleSheets={{}}>
                         {({mediaSize, mediaSpec, styles}) => {
                             resolve({mediaSize, mediaSpec, styles});
@@ -77,7 +76,7 @@ describe("MediaLayoutContext", () => {
 
             // Act
             const args = await new Promise((resolve, reject) => {
-                mount(
+                render(
                     <MediaLayoutContext.Provider
                         value={{
                             overrideSize: undefined,
@@ -107,7 +106,7 @@ describe("MediaLayoutContext", () => {
 
             // Act
             const args = await new Promise((resolve, reject) => {
-                mount(
+                render(
                     <MediaLayoutContext.Provider
                         value={{
                             overrideSize: undefined,
@@ -135,7 +134,7 @@ describe("MediaLayoutContext", () => {
 
             // Act
             const args = await new Promise((resolve, reject) => {
-                mount(
+                render(
                     <MediaLayoutContext.Provider
                         value={{
                             overrideSize: undefined,

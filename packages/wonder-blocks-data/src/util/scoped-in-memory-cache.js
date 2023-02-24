@@ -1,6 +1,6 @@
 // @flow
-import {DataError, DataErrors} from "./data-error.js";
-import type {ScopedCache, RawScopedCache, ValidCacheData} from "./types.js";
+import {DataError, DataErrors} from "./data-error";
+import type {ScopedCache, RawScopedCache, ValidCacheData} from "./types";
 
 /**
  * Describe an in-memory cache.
