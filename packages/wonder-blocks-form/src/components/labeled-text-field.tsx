@@ -294,4 +294,6 @@ type ExportProps = Omit<
 
 export default React.forwardRef<HTMLInputElement, ExportProps>((props, ref) => (
     <LabeledTextField {...props} forwardedRef={ref} />
-)) as React.ForwardRefExoticComponent<ExportProps & React.RefAttributes<HTMLInputElement>>;
+)) as React.ForwardRefExoticComponent<
+    ExportProps & React.RefAttributes<HTMLInputElement>
+>;

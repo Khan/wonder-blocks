@@ -1,6 +1,5 @@
-import React from "react";
-// @ts-expect-error [FEI-5019] - TS7016 - Could not find a declaration file for module 'react-test-renderer'. '/Users/kevinbarabash/khan/wonder-blocks/node_modules/react-test-renderer/index.js' implicitly has an 'any' type.
-import renderer from "react-test-renderer";
+import * as React from "react";
+import * as renderer from "react-test-renderer";
 
 import CheckboxCore from "../components/checkbox-core";
 import RadioCore from "../components/radio-core";

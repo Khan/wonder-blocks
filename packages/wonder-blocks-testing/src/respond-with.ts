@@ -7,7 +7,7 @@ import type {GraphQLJson} from "./types";
 // the graphql mocking framework might want to assert a response is returning
 // the expected data structure. We could use `opaque` but that would then
 // hide the `toPromise` call we want to provide.
-/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * Describes a mock response to a fetch request.
  */
@@ -20,7 +20,7 @@ export type MockResponse<TData> = {
      */
     readonly toPromise: () => Promise<Response>;
 };
-/* eslint-enable no-unused-vars */
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 type InternalMockResponse =
     | {
@@ -77,7 +77,7 @@ export const RespondWith = Object.freeze({
      */
     text: <TData = string>(
         text: string,
-        statusCode: number = 200,
+        statusCode = 200,
         signal: SettleSignal | null = null,
     ): MockResponse<TData> => textResponse<TData>(text, statusCode, signal),
 

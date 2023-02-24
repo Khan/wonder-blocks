@@ -17,7 +17,7 @@ import type {
  * `IScheduleActions` instance.
  */
 export default class ActionScheduler implements IScheduleActions {
-    _disabled: boolean = false;
+    _disabled = false;
     _registeredActions: Array<() => void> = [];
     static readonly NoopAction: ITimeout & IAnimationFrame & IInterval = {
         set: () => {},

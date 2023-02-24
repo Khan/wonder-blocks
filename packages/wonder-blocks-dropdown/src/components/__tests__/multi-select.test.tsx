@@ -1,3 +1,4 @@
+/* eslint-disable no-constant-condition */
 /* eslint-disable max-lines */
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
@@ -220,7 +221,7 @@ describe("MultiSelect", () => {
 
             const handleToggleMenu = (opened: any) => {
                 setOpened(opened);
-                props.onToggle && props.onToggle(opened);
+                props.onToggle?.(opened);
             };
 
             const handleChange = (newValues: any) => {

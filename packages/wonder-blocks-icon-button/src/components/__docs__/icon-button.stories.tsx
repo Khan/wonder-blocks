@@ -8,9 +8,9 @@ import type {StoryComponentType} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {icons} from "@khanacademy/wonder-blocks-icon";
-import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";

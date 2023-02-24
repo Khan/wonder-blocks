@@ -47,10 +47,7 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <div>
-                    <Button
-                        href="/foo"
-                        beforeNav={() => Promise.reject()}
-                    >
+                    <Button href="/foo" beforeNav={() => Promise.reject()}>
                         Click me!
                     </Button>
                     <Switch>
@@ -105,10 +102,7 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <div>
-                    <Button
-                        href="/foo"
-                        beforeNav={() => Promise.resolve()}
-                    >
+                    <Button href="/foo" beforeNav={() => Promise.resolve()}>
                         Click me!
                     </Button>
                     <Switch>
@@ -165,10 +159,7 @@ describe("Button", () => {
         render(
             <MemoryRouter>
                 <div>
-                    <Button
-                        href="/foo"
-                        beforeNav={() => Promise.resolve()}
-                    >
+                    <Button href="/foo" beforeNav={() => Promise.resolve()}>
                         Click me!
                     </Button>
                     <Switch>
@@ -594,10 +585,7 @@ describe("Button", () => {
             render(
                 <MemoryRouter>
                     <div>
-                        <Button
-                            href="/foo"
-                            beforeNav={() => Promise.reject()}
-                        >
+                        <Button href="/foo" beforeNav={() => Promise.reject()}>
                             Click me!
                         </Button>
                         <Switch>
@@ -622,10 +610,7 @@ describe("Button", () => {
             render(
                 <MemoryRouter>
                     <div>
-                        <Button
-                            href="/foo"
-                            beforeNav={() => Promise.resolve()}
-                        >
+                        <Button href="/foo" beforeNav={() => Promise.resolve()}>
                             Click me!
                         </Button>
                         <Switch>

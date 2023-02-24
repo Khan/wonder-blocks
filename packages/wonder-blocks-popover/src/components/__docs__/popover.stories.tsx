@@ -5,12 +5,12 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
+import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
 import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 import PopoverArgtypes from "./popover.argtypes";

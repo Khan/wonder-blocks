@@ -3,12 +3,12 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
-import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
+import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
@@ -254,6 +254,7 @@ export const FiltersOutFalsyChildren: StoryComponentType = () => {
             />
             <Choice label="Extra cheese" value="cheese" />
             <Choice label="Green pepper" value="pepper" />
+            {/* eslint-disable-next-line no-constant-condition */}
             {false ? <Choice label="Mushroom" value="mushroom" /> : null}
         </CheckboxGroup>
     );

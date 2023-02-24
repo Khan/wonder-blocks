@@ -30,7 +30,7 @@ export default class ModalContent extends React.Component<Props> {
         scrollOverflow: true,
     };
 
-    static __IS_MODAL_CONTENT__: boolean = true;
+    static __IS_MODAL_CONTENT__ = true;
 
     render(): React.ReactElement {
         const {scrollOverflow, style, children} = this.props;

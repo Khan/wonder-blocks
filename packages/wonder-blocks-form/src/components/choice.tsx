@@ -141,7 +141,7 @@ export default class Choice extends React.Component<Props> {
     }
     render(): React.ReactElement {
         // we don't need this going into the ChoiceComponent
-        // eslint-disable-next-line no-unused-vars
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const {value, variant, ...remainingProps} = this.props;
         const ChoiceComponent = this.getChoiceComponent(variant);
         return <ChoiceComponent {...remainingProps} />;

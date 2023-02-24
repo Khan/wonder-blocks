@@ -8,7 +8,7 @@ import type {IIdentifierFactory} from "./types";
 export default class UniqueIDFactory implements IIdentifierFactory {
     _uniqueFactoryName: string;
 
-    static _factoryUniquenessCounter: number = 0;
+    static _factoryUniquenessCounter = 0;
 
     /**
      * Creates a UniqueIDFactory instance.

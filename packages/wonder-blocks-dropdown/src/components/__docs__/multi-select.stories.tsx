@@ -3,17 +3,17 @@ import {StyleSheet} from "aphrodite";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
-import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {HeadingLarge} from "@khanacademy/wonder-blocks-typography";
+import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
+import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";

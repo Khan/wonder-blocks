@@ -4,8 +4,9 @@ import {fixtures} from "../index";
 
 type Props = Record<any, any>;
 
-const MyComponent: React.FC<Props> = (props): React.ReactElement =>
-    <>{`My props: ${JSON.stringify(props, null, 2)}`}</>;
+const MyComponent: React.FC<Props> = (props): React.ReactElement => (
+    <>{`My props: ${JSON.stringify(props, null, 2)}`}</>
+);
 
 const Wrapper = (props: any) => (
     <>

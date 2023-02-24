@@ -3,7 +3,6 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
-import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -11,6 +10,7 @@ import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
+import Clickable from "@khanacademy/wonder-blocks-clickable";
 import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
 // @ts-expect-error [FEI-5019] - TS7016 - Could not find a declaration file for module './clickable.argtypes'. '/Users/kevinbarabash/khan/wonder-blocks/packages/wonder-blocks-clickable/src/components/__docs__/clickable.argtypes.js' implicitly has an 'any' type.

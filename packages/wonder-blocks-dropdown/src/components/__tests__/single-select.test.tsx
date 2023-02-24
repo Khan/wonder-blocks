@@ -264,7 +264,7 @@ describe("SingleSelect", () => {
             const handleToggleMenu = (opened: any) => {
                 setOpened(opened);
 
-                props.onToggle && props.onToggle(opened);
+                props.onToggle?.(opened);
             };
 
             return (

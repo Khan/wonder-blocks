@@ -4,16 +4,16 @@ import {StyleSheet} from "aphrodite";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {
-    ModalDialog,
-    ModalPanel,
-    ModalFooter,
-} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, LabelLarge, Title} from "@khanacademy/wonder-blocks-typography";
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
+import {
+    ModalDialog,
+    ModalPanel,
+    ModalFooter,
+} from "@khanacademy/wonder-blocks-modal";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";

@@ -12,11 +12,11 @@ import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
+import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import TooltipArgtypes from "./tooltip.argtypes";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";

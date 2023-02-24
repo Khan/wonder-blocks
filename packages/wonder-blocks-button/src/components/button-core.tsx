@@ -21,9 +21,7 @@ import type {
 } from "@khanacademy/wonder-blocks-clickable";
 import type {SharedProps} from "./button";
 
-type Props = SharedProps &
-    ChildrenProps &
-    ClickableState;
+type Props = SharedProps & ChildrenProps & ClickableState;
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");

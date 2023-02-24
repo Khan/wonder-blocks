@@ -5,7 +5,7 @@
  * complex test scenarios.
  */
 export class SettleSignal extends EventTarget {
-    #settled: boolean = false;
+    #settled = false;
 
     constructor(
         setSettleFn: ((settleFn: () => void) => unknown) | null = null,

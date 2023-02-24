@@ -35,5 +35,5 @@ export const makeHookHarness = <TAdapters extends TestHarnessAdapters>(
      * configuration that you want to override from the DefaultConfigs values.
      */
     return (configs?: Partial<TestHarnessConfigs<TAdapters>>) =>
-        testHarness<any, any>(HookHarness, configs);
+        testHarness<any>(HookHarness, configs);
 };

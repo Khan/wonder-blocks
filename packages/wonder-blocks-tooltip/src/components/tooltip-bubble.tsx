@@ -32,8 +32,7 @@ export type Props = {
     // @ts-expect-error [FEI-5019] - TS2344 - Type 'TooltipContent' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     children: React.ReactElement<React.ComponentProps<TooltipContent>>;
     onActiveChanged: (active: boolean) => unknown;
-} & // (v3 beta introduces this) // TODO(somewhatabstract): Update react-docgen to support spread operators
-PopperElementProps;
+} & PopperElementProps; // (v3 beta introduces this) // TODO(somewhatabstract): Update react-docgen to support spread operators
 
 type State = {
     active: boolean;

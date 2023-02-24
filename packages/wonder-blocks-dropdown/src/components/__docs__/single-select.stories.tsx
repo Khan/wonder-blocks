@@ -14,6 +14,7 @@ import {Body, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
 
+import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import {
     SingleSelect,
     OptionItem,
@@ -21,7 +22,6 @@ import {
 } from "@khanacademy/wonder-blocks-dropdown";
 
 import type {SingleSelectLabels} from "@khanacademy/wonder-blocks-dropdown";
-import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";

@@ -1,4 +1,4 @@
-// flow
+/* eslint-disable @typescript-eslint/no-var-requires */
 import * as wst from "@khanacademy/wonder-stuff-testing";
 
 describe("ResponseImpl", () => {

@@ -108,7 +108,7 @@ export default class Cell extends React.Component<Props> {
         cols: 0,
     };
 
-    static __IS_CELL__: boolean = true;
+    static __IS_CELL__ = true;
 
     render(): React.ReactElement | null {
         const {children, style} = this.props;

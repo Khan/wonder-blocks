@@ -8,8 +8,9 @@ import type {WithActionSchedulerProps} from "../../util/types";
 describe("withActionScheduler", () => {
     it("should provide wrapped component with IScheduleActions instance", () => {
         // Arrange
-        const Component = (props: any) =>
-            <>{props.schedule != null ? "true" : "false"}</>;
+        const Component = (props: any) => (
+            <>{props.schedule != null ? "true" : "false"}</>
+        );
 
         // Act
         const WithScheduler = withActionScheduler(Component);

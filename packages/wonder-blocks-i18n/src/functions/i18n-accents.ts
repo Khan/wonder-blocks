@@ -70,7 +70,7 @@ const SubstitutionRegex = new RegExp(
 export default class Accents implements IProvideTranslation {
     _scaleFactor: number;
 
-    constructor(scaleFactor: number = 1) {
+    constructor(scaleFactor = 1) {
         if (scaleFactor < 1) {
             throw new Error("Scaling factor must be 1 or greater.");
         }

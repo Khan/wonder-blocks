@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -12,6 +11,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
+import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";

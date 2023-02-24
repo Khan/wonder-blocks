@@ -23,7 +23,7 @@ import type {DropdownItem} from "./types";
  */
 export function getDropdownMenuHeight(
     items: Array<DropdownItem>,
-    initialHeight: number = 0,
+    initialHeight = 0,
 ): number {
     // calculate using the first 10 items on the array as we want to display
     // this number of elements in the visible area

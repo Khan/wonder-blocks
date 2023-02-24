@@ -29,7 +29,7 @@ export default class ModalFooter extends React.Component<Props> {
     static isClassOf(instance: any): boolean {
         return instance && instance.type && instance.type.__IS_MODAL_FOOTER__;
     }
-    static __IS_MODAL_FOOTER__: boolean = true;
+    static __IS_MODAL_FOOTER__ = true;
 
     render(): React.ReactElement {
         const {children} = this.props;

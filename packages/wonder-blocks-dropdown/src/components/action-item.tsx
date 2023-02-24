@@ -118,7 +118,7 @@ export default class ActionItem extends React.Component<ActionProps> {
         indent: false,
         role: "menuitem",
     };
-    static __IS_ACTION_ITEM__: boolean = true;
+    static __IS_ACTION_ITEM__ = true;
 
     renderClickableBehavior(router: any): React.ReactNode {
         const {

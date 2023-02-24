@@ -56,7 +56,7 @@ type Props = {
  *
  */
 export default class IDProvider extends React.Component<Props> {
-    static defaultId: string = "wb-id";
+    static defaultId = "wb-id";
 
     renderChildren(ids?: IIdentifierFactory): React.ReactNode {
         const {id, children} = this.props;

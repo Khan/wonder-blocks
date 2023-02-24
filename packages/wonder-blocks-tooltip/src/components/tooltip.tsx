@@ -172,7 +172,7 @@ export default class Tooltip extends React.Component<Props, State> {
         activeBubble: false,
         anchorElement: null,
     };
-    static ariaContentId: string = "aria-content";
+    static ariaContentId = "aria-content";
 
     _updateAnchorElement(ref?: Element | null) {
         if (ref && ref !== this.state.anchorElement) {

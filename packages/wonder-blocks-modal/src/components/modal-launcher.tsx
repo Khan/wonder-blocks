@@ -3,10 +3,7 @@ import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
-import type {
-    WithActionSchedulerProps,
-    WithoutActionScheduler,
-} from "@khanacademy/wonder-blocks-timing";
+import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 
 import FocusTrap from "./focus-trap";
 import ModalBackdrop from "./modal-backdrop";
@@ -189,7 +186,7 @@ class ModalLauncher extends React.Component<Props, State> {
         this.setState({opened: false}, () => {
             const {onClose} = this.props;
 
-            onClose && onClose();
+            onClose?.();
             this._returnFocus();
         });
     };

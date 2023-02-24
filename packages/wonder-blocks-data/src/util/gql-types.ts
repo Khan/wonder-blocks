@@ -10,12 +10,12 @@ export type GqlOperation<
     // TData is not used to define a field on this type, but it is used
     // to ensure that calls using this operation will properly return the
     // correct data type.
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     TData, // TVariables is not used to define a field on this type, but it is used
     // to ensure that calls using this operation will properly consume the
     // correct variables type.
-    // eslint-disable-next-line no-unused-vars
-    TVariables extends Record<any, any> = {},
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    TVariables extends Record<any, any> = Empty,
 > = {
     type: GqlOperationType;
     id: string;

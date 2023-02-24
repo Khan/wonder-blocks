@@ -3,14 +3,6 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {
-    MediaLayout,
-    MediaLayoutContext,
-} from "@khanacademy/wonder-blocks-layout";
-import type {
-    MediaSpec,
-    MediaLayoutContextValue,
-} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
     Body,
@@ -20,6 +12,14 @@ import {
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
+import type {
+    MediaSpec,
+    MediaLayoutContextValue,
+} from "@khanacademy/wonder-blocks-layout";
+import {
+    MediaLayout,
+    MediaLayoutContext,
+} from "@khanacademy/wonder-blocks-layout";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
