@@ -193,15 +193,35 @@ type State = {|
  * hundreds of items without performance problems.
  *
  * ## Usage
+ * General usage
  *
  * ```jsx
  * import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
  *
- * const [selectedValue, setSelectedValue] = useState("");
+ * const [selectedValue, setSelectedValue] = React.useState("");
  *
  * <SingleSelect placeholder="Choose a fruit" onChange={setSelectedValue} selectedValue={selectedValue}>
- *  <OptionItem value="pear">Pear</OptionItem>
- *  <OptionItem value="mango">Mango</OptionItem>
+ *     <OptionItem label="Pear" value="pear" />
+ *     <OptionItem label="Mango" value="mango" />
+ * </SingleSelect>
+ * ```
+ *
+ * Mapping a list
+ *
+ * ```jsx
+ * import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
+ *
+ * const [selectedValue, setSelectedValue] = React.useState("");
+ * const fruitArray = ["Apple", "Banana", "Orange", "Mango", "Pear"];
+ *
+ * <SingleSelect
+ *     placeholder="Choose a fruit"
+ *     onChange={setSelectedValue}
+ *     selectedValue={selectedValue}
+ * >
+ *     {fruitArray.map((value, index) => (
+ *         <OptionItem key={index} value={value} label={value} />
+ *     ))}
  * </SingleSelect>
  * ```
  */
