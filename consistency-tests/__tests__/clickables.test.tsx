@@ -26,7 +26,11 @@ import {CompactCell, DetailCell} from "@khanacademy/wonder-blocks-cell";
 // is children while all of the other components do not.
 const ClickableWrapper = (props: any) => {
     const {children, ...restProps} = props;
-    return <Clickable {...restProps}>{(clickableState: any) => children}</Clickable>;
+    return (
+        <Clickable {...restProps}>
+            {(clickableState: any) => children}
+        </Clickable>
+    );
 };
 
 const IconButtonWrapper = (props: any) => (
@@ -42,23 +46,19 @@ describe.each`
     ${DetailCell}        | ${"DetailCell"}  | ${"link"}
     ${IconButtonWrapper} | ${"IconButton"}  | ${"link"}
     ${Link}              | ${"Link"}        | ${"link"}
-`("$name with an href", ({
-    Component,
-    name,
-    role,
-}: any) => {
+`("$name with an href", ({Component, name, role}: any) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
         // the testing environment
-// @ts-expect-error [FEI-5019] - TS2790 - The operand of a 'delete' operator must be optional.
+        // @ts-expect-error [FEI-5019] - TS2790 - The operand of a 'delete' operator must be optional.
         delete window.location;
-// @ts-expect-error [FEI-5019] - TS2740 - Type '{ assign: Mock<any, any, any>; }' is missing the following properties from type 'Location': ancestorOrigins, hash, host, hostname, and 8 more.
+        // @ts-expect-error [FEI-5019] - TS2740 - Type '{ assign: Mock<any, any, any>; }' is missing the following properties from type 'Location': ancestorOrigins, hash, host, hostname, and 8 more.
         window.location = {assign: jest.fn()};
         window.open = jest.fn();
     });
 
     afterEach(() => {
-// @ts-expect-error [FEI-5019] - TS2339 - Property 'mockClear' does not exist on type '((url?: string | URL | undefined, target?: string | undefined, features?: string | undefined) => Window | null) & ((url?: string | URL | undefined, target?: string | undefined, features?: string | undefined) => Window | null)'.
+        // @ts-expect-error [FEI-5019] - TS2339 - Property 'mockClear' does not exist on type '((url?: string | URL | undefined, target?: string | undefined, features?: string | undefined) => Window | null) & ((url?: string | URL | undefined, target?: string | undefined, features?: string | undefined) => Window | null)'.
         window.open.mockClear();
     });
 
@@ -121,11 +121,7 @@ describe.each`
     ${CompactCell}       | ${"CompactCell"} | ${"button"}
     ${DetailCell}        | ${"DetailCell"}  | ${"button"}
     ${IconButtonWrapper} | ${"IconButton"}  | ${"button"}
-`("$name without an href", ({
-    Component,
-    name,
-    role,
-}: any) => {
+`("$name without an href", ({Component, name, role}: any) => {
     beforeEach(() => {
         // Note: window.location.assign and window.open need mock functions in
         // the testing environment, but JSDOM protects assign from being changed
@@ -135,7 +131,7 @@ describe.each`
     });
 
     afterEach(() => {
-// @ts-expect-error [FEI-5019] - TS2339 - Property 'mockClear' does not exist on type '((url?: string | URL | undefined, target?: string | undefined, features?: string | undefined) => Window | null) & ((url?: string | URL | undefined, target?: string | undefined, features?: string | undefined) => Window | null)'.
+        // @ts-expect-error [FEI-5019] - TS2339 - Property 'mockClear' does not exist on type '((url?: string | URL | undefined, target?: string | undefined, features?: string | undefined) => Window | null) & ((url?: string | URL | undefined, target?: string | undefined, features?: string | undefined) => Window | null)'.
         window.open.mockClear();
     });
 
@@ -186,11 +182,7 @@ describe.each`
     ${IconButtonWrapper} | ${"IconButton"}  | ${false}
     ${Link}              | ${"Link"}        | ${false}
     ${OptionItem}        | ${"OptionItem"}  | ${true}
-`("$name", ({
-    Component,
-    name,
-    hasTabIndex,
-}: any) => {
+`("$name", ({Component, name, hasTabIndex}: any) => {
     test("has expected existence of tabIndex", () => {
         // Arrange
 

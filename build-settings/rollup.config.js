@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-commonjs */
 import fs from "fs";
 import path from "path";
