@@ -39,14 +39,29 @@ module.exports = {
                 "import/no-commonjs": "off",
             },
         },
+        {
+            files: ["**/*.test.ts", "**/*.test.tsx"],
+            rules: {
+                "no-undef": "off",
+            },
+        },
     ],
     globals: {
         // `no-undef` doesn't support `globalThis`, for details see
         // https://github.com/eslint/eslint/issues/15199.
         globalThis: false, // means it isn't writeable
+        // from node_modules/@types/react/index.d.ts
+        JSX: false,
+        // from node_modules/typescript/lib/lib.dom.d.ts
+        DOMHighResTimeStamp: false,
+        RequestInfo: false,
+        RequestInit: false,
+        // from types/utility.d.ts
+        Empty: false,
+        ObjMap: false,
+        SpreadType: false,
     },
     rules: {
-        "no-undef": "off",
         "import/named": "off", // NOTE(kevinb): This rule is confused by third-party TypeScript lib defs
 
         "import/no-unresolved": "error",
@@ -97,6 +112,9 @@ module.exports = {
         "react/react-in-jsx-scope": "error",
         "react/require-render-return": "error",
         "monorepo/no-internal-import": "error",
+        // NOTE: This rule reports false positives for cross-module imports using
+        // `@khanacademy/wonder-stuff-*`.  This is likely due to a bad interaction
+        // with the settings we're using for `import/resolver`.
         // "monorepo/no-relative-import": "error",
         "import/no-restricted-paths": [
             "error",
