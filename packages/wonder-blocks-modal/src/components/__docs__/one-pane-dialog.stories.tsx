@@ -462,7 +462,6 @@ export const FlexibleModal: StoryComponentType = () => {
                     />
                 }
             >
-                {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'openModal' implicitly has an 'any' type. */}
                 {({openModal}) => (
                     <Button onClick={openModal}>Open flexible modal</Button>
                 )}
@@ -526,7 +525,6 @@ export const WithLauncher: StoryComponentType = () => {
 
     return (
         <ModalLauncher modal={MyModal}>
-            {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'openModal' implicitly has an 'any' type. */}
             {({openModal}) => (
                 <Button onClick={openModal}>Click me to open the modal</Button>
             )}

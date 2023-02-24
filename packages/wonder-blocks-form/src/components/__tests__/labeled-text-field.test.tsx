@@ -219,7 +219,7 @@ describe("LabeledTextField", () => {
     it("validate prop is called when input changes", () => {
         // Arrange
         const validate = jest.fn(
-            (value: string): void => {},
+            (value: string): any => {},
         );
         render(
             <LabeledTextField

@@ -26,6 +26,7 @@ class DropdownCoreVirtualizedMock extends React.Component<Props> {
                 overscanCount={5}
                 ref={listRef}
             >
+                {/* @ts-expect-error: No overload matches this call. */}
                 {DropdownVirtualizedItem}
             </List>
         );

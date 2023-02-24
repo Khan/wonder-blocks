@@ -23,31 +23,35 @@ import type {TestHarnessAdapters, TestHarnessConfigs} from "./types";
 export const makeTestHarness = <TAdapters extends TestHarnessAdapters>(
     adapters: TAdapters,
     defaultConfigs: TestHarnessConfigs<TAdapters>,
-): (<TProps, Instance = unknown>(
-    Component: Flow.AbstractComponent<TProps, Instance>,
+): (<TProps extends {}, Instance = unknown>(
+    Component: React.ComponentType<TProps>,
     configs?: Partial<TestHarnessConfigs<TAdapters>>,
-) => Flow.AbstractComponent<TProps, Instance>) => {
+) => React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<TProps> & React.RefAttributes<unknown>
+>) => {
     /**
      * Create a harnessed version of the given component.
      *
-     * @param {React.AbstractComponent<TProps, Instance>} component The
+     * @param {React.ComponentType<TProps>} component The
      * component to be wrapped.
-     * @param {$Shape<Configs<TAdapters>>} [configs] Any adapter
+     * @param {Partial<TestHarnessConfigs<TAdapters>>} [configs] Any adapter
      * configuration that you want to override from the `defaultConfigs` values.
      */
-    return <TProps extends unknown, Instance extends unknown = unknown>(
-        Component: Flow.AbstractComponent<TProps, Instance>,
+    return <TProps extends {}>(
+        Component: React.ComponentType<TProps>,
         configs?: Partial<TestHarnessConfigs<TAdapters>>,
-    ): Flow.AbstractComponent<TProps, Instance> => {
+    ): React.ForwardRefExoticComponent<
+        React.PropsWithoutRef<TProps> & React.RefAttributes<unknown>
+    > => {
         const fullConfig: TestHarnessConfigs<TAdapters> = {
             ...defaultConfigs,
             ...configs,
         };
-        const harnessedComponent = React.forwardRef((props, ref) =>
+        const harnessedComponent = React.forwardRef((props: TProps, ref) =>
             renderAdapters<TAdapters>(
                 adapters,
                 fullConfig,
-                <Component {...props} ref={ref} />,
+                <Component {...(props as TProps)} ref={ref} />,
             ),
         );
 

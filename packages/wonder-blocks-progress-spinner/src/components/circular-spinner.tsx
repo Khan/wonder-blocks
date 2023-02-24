@@ -49,6 +49,8 @@ type DefaultProps = {
     size: Props["size"];
 };
 
+declare let customStyle: StyleType;
+
 /**
  * A circular progress spinner. Used for indicating loading progress. Should
  * be used by default in most places where a loading indicator is needed.
@@ -74,6 +76,8 @@ export default class CircularSpinner extends React.Component<Props> {
         const path = paths[size];
         const color = light ? colors.light : colors.dark;
 
+        // let customStyle: StyleType = [styles.loadingSpinner, {fill: color}];
+
         const svg = (
             <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +87,7 @@ export default class CircularSpinner extends React.Component<Props> {
                 data-test-id={testId}
             >
                 <StyledPath
-                    style={[styles.loadingSpinner, {fill: color}]}
+                    style={customStyle}
                     fillRule="nonzero"
                     d={path}
                 />
@@ -118,3 +122,5 @@ const styles = StyleSheet.create({
         animationTimingFunction: "linear",
     },
 });
+
+const style: StyleType = [styles.loadingSpinner, {fill: "red"}];

@@ -235,13 +235,14 @@ export type WithActionSchedulerProps = {
     schedule: IScheduleActions;
 };
 
-export type WithoutActionScheduler<TProps extends Record<any, any>> = Partial<
-    Omit<TProps, "schedule">
+export type WithoutActionScheduler<TProps extends {}> = Omit<
+    TProps,
+    "schedule"
 >;
 
 /**
  * Extends the given props with props that the `withActionScheduler` higher
  * order component will inject.
  */
-export type WithActionScheduler<TOwnProps extends Record<any, any>> =
-    TOwnProps & WithActionSchedulerProps;
+export type WithActionScheduler<TOwnProps extends {}> = TOwnProps &
+    WithActionSchedulerProps;

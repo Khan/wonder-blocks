@@ -3,10 +3,7 @@ import ReactDOM from "react-dom";
 import {VariableSizeList as List} from "react-window";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
-import type {
-    WithActionSchedulerProps,
-    WithoutActionScheduler,
-} from "@khanacademy/wonder-blocks-timing";
+import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 import DropdownVirtualizedItem from "./dropdown-core-virtualized-item";
 import SeparatorItem from "./separator-item";
 
@@ -174,19 +171,16 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
 
         return (
             <List
-                // react-window doesn't accept maybe numbers. It wants numbers
-                // or strings.
                 height={height}
                 itemCount={data.length}
                 itemSize={this.getItemSize}
                 itemData={data}
                 style={{overflowX: "hidden"}}
-                // react-window doesn't accept maybe numbers. It wants numbers
-                // or strings.
                 width={width}
                 overscanCount={5}
                 ref={listRef}
             >
+                {/* @ts-expect-error: No overload matches this call. */}
                 {DropdownVirtualizedItem}
             </List>
         );
@@ -206,13 +200,4 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
     }
 }
 
-type ExportProps = WithoutActionScheduler<
-    JSX.LibraryManagedAttributes<
-        typeof DropdownCoreVirtualized,
-        React.ComponentProps<typeof DropdownCoreVirtualized>
-    >
->;
-
-export default withActionScheduler(
-    DropdownCoreVirtualized,
-) as React.ComponentType<ExportProps>;
+export default withActionScheduler(DropdownCoreVirtualized);
