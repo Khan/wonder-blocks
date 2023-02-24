@@ -1,4 +1,3 @@
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 
 /**
@@ -38,6 +37,7 @@ type ExtractMaybeConfig = <TConfig>(
  *
  * This is the `TestHarnessAdapter` equivalent of `React.ElementConfig`.
  */
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 export type TestHarnessConfig<TAdapter> = ReturnType<ExtractConfig>;
 
 /**
@@ -53,5 +53,7 @@ export type TestHarnessConfig<TAdapter> = ReturnType<ExtractConfig>;
  * functions too. Even worse, if the type doesn't match, it just allows `any`
  * in the `Configs` object, rather than indicating any kind of problem.
  */
-export type TestHarnessConfigs<TAdapters extends TestHarnessAdapters> =
-    Flow.ObjMap<TAdapters, ExtractMaybeConfig>;
+export type TestHarnessConfigs<TAdapters extends TestHarnessAdapters> = ObjMap<
+    TAdapters,
+    ExtractMaybeConfig
+>;

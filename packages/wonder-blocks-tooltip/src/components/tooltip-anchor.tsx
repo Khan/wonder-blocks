@@ -162,7 +162,7 @@ export default class TooltipAnchor
         }
     }
 
-    static ariaContentId: string = "aria-content";
+    static ariaContentId = "aria-content";
 
     activeStateStolen: () => void = () => {
         // Something wants the active state.

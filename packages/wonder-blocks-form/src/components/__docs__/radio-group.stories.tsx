@@ -1,11 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
+import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";
@@ -185,6 +185,7 @@ export const FiltersOutFalsyChildren: StoryComponentType = () => {
                 disabled
             />
             <Choice label="Squirtle" value="squirtle" />
+            {/* eslint-disable-next-line no-constant-condition */}
             {false ? <Choice label="Pikachu" value="pikachu" /> : null}
         </RadioGroup>
     );

@@ -10,7 +10,6 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
     Body,
@@ -19,6 +18,7 @@ import {
 } from "@khanacademy/wonder-blocks-typography";
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
+import Link from "@khanacademy/wonder-blocks-link";
 
 import LinkArgTypes from "./link.argtypes";
 import ComponentInfo from "../../../../../.storybook/components/component-info";

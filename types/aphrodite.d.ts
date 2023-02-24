@@ -20,7 +20,7 @@ declare module "aphrodite" {
         rehydrate(renderedClassNames: Array<string>): void;
     }
 
-    export var StyleSheet: StyleSheetStatic;
+    export const StyleSheet: StyleSheetStatic;
 
     /**
      * Get class names from passed styles

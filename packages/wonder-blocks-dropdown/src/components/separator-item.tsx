@@ -26,7 +26,7 @@ export default class SeparatorItem extends React.Component<{
         return instance && instance.type && instance.type.__IS_SEPARATOR_ITEM__;
     }
 
-    static __IS_SEPARATOR_ITEM__: boolean = true;
+    static __IS_SEPARATOR_ITEM__ = true;
 
     render(): React.ReactElement {
         return (

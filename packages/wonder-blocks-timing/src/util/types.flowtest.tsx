@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * This file ensures that our flow types are working right.
  */
@@ -34,8 +34,9 @@ type Props2 = {
     test: string;
 } & WithActionSchedulerProps;
 
-const InnerComponent2: React.FC<Props2> = (props): React.ReactElement =>
-    <>{props.test}</>;
+const InnerComponent2: React.FC<Props2> = (props): React.ReactElement => (
+    <>{props.test}</>
+);
 
 /**
  * Cannot assign `withActionScheduler(...)` to `HOCComponent2` because property
@@ -55,8 +56,9 @@ type Props3 = {
     test: string;
 } & WithActionSchedulerProps;
 
-const InnerComponent3: React.FC<Props3> = (props): React.ReactElement =>
-    <>{props.test}</>;
+const InnerComponent3: React.FC<Props3> = (props): React.ReactElement => (
+    <>{props.test}</>
+);
 
 const HOCComponent3 = withActionScheduler(
     /**

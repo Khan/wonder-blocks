@@ -4,4 +4,5 @@
 // implementation, so this uses node-fetch as a peer dependency and uses that
 // to provide the implementation if we don't already have one.
 export const ResponseImpl: typeof Response =
+    // eslint-disable-next-line @typescript-eslint/no-var-requires
     typeof Response === "undefined" ? require("node-fetch").Response : Response;

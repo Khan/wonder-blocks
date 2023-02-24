@@ -38,9 +38,8 @@ describe("#renderAdapters", () => {
     it("should render each adapter and the children", () => {
         // Arrange
         const children = "Adapt me!";
-        // @ts-expect-error [FEI-5019] - TS2322 - Type '(c: any, conf: any) => string' is not assignable to type 'TestHarnessAdapter<string>'.
         const adapter: TestHarnessAdapter<string> = (c: any, conf: any) => {
-            return `${conf}:${c}`;
+            return <>{`${conf}:${c}`}</>;
         };
         const adapters = {
             adapterA: adapter,
@@ -63,9 +62,8 @@ describe("#renderAdapters", () => {
     it("should skip adapters where the corresponding config is null", () => {
         // Arrange
         const children = "Adapt me!";
-        // @ts-expect-error [FEI-5019] - TS2322 - Type '(c: any, conf: any) => string' is not assignable to type 'TestHarnessAdapter<string>'.
         const adapter: TestHarnessAdapter<string> = (c: any, conf: any) => {
-            return `${conf}:${c}`;
+            return <>{`${conf}:${c}`}</>;
         };
         const adapters = {
             adapterA: adapter,

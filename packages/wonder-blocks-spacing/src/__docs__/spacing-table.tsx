@@ -3,8 +3,8 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {addStyle, View} from "@khanacademy/wonder-blocks-core";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 const StyledTable = addStyle("table");
 const StyledTableRow = addStyle("tr");

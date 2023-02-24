@@ -12,7 +12,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
 import {CellMeasurements, getHorizontalRuleStyles} from "./common";
 
-import type {CellProps, TypographyText} from "../../util/types";
+import type {CellProps} from "../../util/types";
 
 type LeftAccessoryProps = {
     leftAccessory?: CellProps["leftAccessory"];

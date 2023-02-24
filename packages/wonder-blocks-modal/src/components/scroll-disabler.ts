@@ -85,7 +85,7 @@ class ScrollDisabler extends React.Component<Props> {
         }
     }
 
-    static numModalsOpened: number = 0;
+    static numModalsOpened = 0;
 
     render(): React.ReactElement | null {
         return null;

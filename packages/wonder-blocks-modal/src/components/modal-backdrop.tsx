@@ -55,7 +55,7 @@ export default class ModalBackdrop extends React.Component<Props> {
         }, 0);
     }
 
-    _mousePressedOutside: boolean = false;
+    _mousePressedOutside = false;
 
     /**
      * Returns an element specified by the user

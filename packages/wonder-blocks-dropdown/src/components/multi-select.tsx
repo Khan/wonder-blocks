@@ -1,5 +1,5 @@
 import * as React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -286,7 +286,9 @@ export default class MultiSelect extends React.Component<Props, State> {
     };
 
     getMenuText(
-        children: Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>>,
+        children: Array<
+            React.ReactElement<React.ComponentProps<typeof OptionItem>>
+        >,
     ): string {
         const {implicitAllEnabled, selectedValues} = this.props;
         const {noneSelected, someSelected, allSelected} = this.state.labels;
@@ -362,7 +364,9 @@ export default class MultiSelect extends React.Component<Props, State> {
     }
 
     getMenuItems(
-        children: Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>>,
+        children: Array<
+            React.ReactElement<React.ComponentProps<typeof OptionItem>>
+        >,
     ): Array<DropdownItem> {
         const {isFilterable} = this.props;
         // If it's not filterable, no need to do any extra besides mapping the
@@ -464,7 +468,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             testId,
             // the following props are being included here to avoid
             // passing them down to the opener as part of sharedProps
-            /* eslint-disable no-unused-vars */
+            /* eslint-disable @typescript-eslint/no-unused-vars */
             alignment,
             dropdownStyle,
             implicitAllEnabled,
@@ -477,7 +481,7 @@ export default class MultiSelect extends React.Component<Props, State> {
             shortcuts,
             style,
             className,
-            /* eslint-enable no-unused-vars */
+            /* eslint-enable @typescript-eslint/no-unused-vars */
             ...sharedProps
         } = this.props;
         const {noneSelected} = this.state.labels;

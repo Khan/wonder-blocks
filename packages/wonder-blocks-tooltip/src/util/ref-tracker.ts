@@ -28,7 +28,7 @@ export default class RefTracker {
             const domNode = ReactDOM.findDOMNode(ref);
             if (domNode instanceof HTMLElement && domNode !== this._lastRef) {
                 this._lastRef = domNode;
-                this._targetFn && this._targetFn(domNode);
+                this._targetFn?.(domNode);
             }
         }
     };

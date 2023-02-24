@@ -1,5 +1,5 @@
 import * as React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom";
 import {Popper} from "react-popper";
 
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";

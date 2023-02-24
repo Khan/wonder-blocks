@@ -1,12 +1,8 @@
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 
 import ActionSchedulerProvider from "./action-scheduler-provider";
 
-import type {
-    IScheduleActions,
-    WithActionSchedulerProps,
-} from "../util/types";
+import type {IScheduleActions, WithActionSchedulerProps} from "../util/types";
 
 type WithoutActionScheduler<T> = Omit<T, "schedule">;
 
@@ -21,13 +17,15 @@ type WithoutActionScheduler<T> = Omit<T, "schedule">;
  */
 export default function withActionScheduler<
     Props extends WithActionSchedulerProps,
->(
-    WrappedComponent: React.ComponentType<Props>,
-) {
+>(WrappedComponent: React.ComponentType<Props>) {
     return React.forwardRef((props: WithoutActionScheduler<Props>, ref) => (
         <ActionSchedulerProvider>
             {(schedule: IScheduleActions) => (
-                <WrappedComponent {...(props as Props)} ref={ref} schedule={schedule} />
+                <WrappedComponent
+                    {...(props as Props)}
+                    ref={ref}
+                    schedule={schedule}
+                />
             )}
         </ActionSchedulerProvider>
     ));

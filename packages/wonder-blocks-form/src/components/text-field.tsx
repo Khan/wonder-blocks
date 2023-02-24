@@ -222,14 +222,14 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             forwardedRef,
             // The following props are being included here to avoid
             // passing them down to the otherProps spread
-            /* eslint-disable no-unused-vars */
+            /* eslint-disable @typescript-eslint/no-unused-vars */
             onFocus,
             onBlur,
             onValidate,
             validate,
             onChange,
             required,
-            /* eslint-enable no-unused-vars */
+            /* eslint-enable @typescript-eslint/no-unused-vars */
             // Should only include Aria related props
             ...otherProps
         } = this.props;
@@ -347,4 +347,6 @@ type ExportProps = Omit<
  */
 export default React.forwardRef<HTMLInputElement, ExportProps>((props, ref) => (
     <TextField {...props} forwardedRef={ref} />
-)) as React.ForwardRefExoticComponent<ExportProps & React.RefAttributes<HTMLInputElement>>;
+)) as React.ForwardRefExoticComponent<
+    ExportProps & React.RefAttributes<HTMLInputElement>
+>;

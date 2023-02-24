@@ -14,18 +14,19 @@ import type {
 import PopoverContent from "./popover-content";
 import PopoverContentCore from "./popover-content-core";
 
-type Props = AriaProps
-/**
- * Required to correctly position the elements inside the dialog
- * @ignore
- */ &
-    PopperElementProps & {
+type Props = AriaProps &
+    /**
+     * Required to correctly position the elements inside the dialog
+     * @ignore
+     */ PopperElementProps & {
         /**
          * The content to render inside the dialog.
          */
         children:
             | React.ReactElement<React.ComponentProps<typeof PopoverContent>>
-            | React.ReactElement<React.ComponentProps<typeof PopoverContentCore>>;
+            | React.ReactElement<
+                  React.ComponentProps<typeof PopoverContentCore>
+              >;
         /**
          * The unique identifier to give to the popover content.
          */

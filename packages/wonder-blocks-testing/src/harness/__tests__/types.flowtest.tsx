@@ -13,16 +13,18 @@ import type {
 
 //>  should assert type of config.
 // @ts-expect-error [FEI-5019] - TS2352 - Conversion of type '(children: React.ReactNode, config: number) => React.ReactElement<any>' to type 'TestHarnessAdapter<string>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
-(((
+((
     children: React.ReactNode,
     // TConfig is string, but we typed this arg as a number
     // $FlowExpectedError[incompatible-cast]
     config: number,
-): React.ReactElement<any> => <div />) as TestHarnessAdapter<string>);
+): React.ReactElement<any> => <div />) as TestHarnessAdapter<string>;
 //<
 
 //>  should work for correct definition
-(((children: React.ReactNode, config: string): React.ReactElement<any> => <div />) as TestHarnessAdapter<string>);
+((children: React.ReactNode, config: string): React.ReactElement<any> => (
+    <div />
+)) as TestHarnessAdapter<string>;
 //<
 
 /**
@@ -52,7 +54,7 @@ import type {
  * TestHarnessConfig<TAdapter>
  */
 //> should give the config type of an adapter
-("string" as TestHarnessConfig<TestHarnessAdapter<string>>);
+"string" as TestHarnessConfig<TestHarnessAdapter<string>>;
 //<
 
 //> should error if the config type is wrong
@@ -74,8 +76,14 @@ import type {
  * in the configs object, rather than indicating any kind of problem.
  */
 const notadapters = "this is wrong";
-const adapterA: TestHarnessAdapter<string> = (children: React.ReactNode, config?: string | null): React.ReactElement<any> => <div />;
-const adapterB: TestHarnessAdapter<number> = (children: React.ReactNode, config?: number | null): React.ReactElement<any> => <div />;
+const adapterA: TestHarnessAdapter<string> = (
+    children: React.ReactNode,
+    config?: string | null,
+): React.ReactElement<any> => <div />;
+const adapterB: TestHarnessAdapter<number> = (
+    children: React.ReactNode,
+    config?: number | null,
+): React.ReactElement<any> => <div />;
 const adapters = {
     adapterA,
     adapterB,

@@ -2,7 +2,7 @@
 // A menu that consists of action items
 
 import * as React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom";
 
 import {StyleSheet} from "aphrodite";
 import {VariableSizeList as List} from "react-window";
@@ -16,10 +16,7 @@ import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
-import type {
-    WithActionSchedulerProps,
-    WithoutActionScheduler,
-} from "@khanacademy/wonder-blocks-timing";
+import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 import DropdownCoreVirtualized from "./dropdown-core-virtualized";
 import SeparatorItem from "./separator-item";
 import {defaultLabels, keyCodes} from "../util/constants";
@@ -115,7 +112,7 @@ type DefaultProps = {
 type DropdownAriaRole = "listbox" | "menu";
 type ItemAriaRole = "option" | "menuitem";
 
-type Props = DefaultProps & {
+type ExportProps = {
     // Required props
 
     /**
@@ -175,7 +172,52 @@ type Props = DefaultProps & {
      * top. The items will be filtered by the input.
      */
     isFilterable?: boolean;
-} & WithActionSchedulerProps;
+
+    // Optional props with defaults
+    /**
+     * Whether this menu should be left-aligned or right-aligned with the
+     * opener component. Defaults to left-aligned.
+     */
+    alignment?: "left" | "right";
+    /**
+     * Whether to auto focus an option. Defaults to true.
+     */
+    autoFocus?: boolean;
+    /**
+     * Whether to enable the type-ahead suggestions feature. Defaults to true.
+     *
+     * This feature allows to navigate the listbox using the keyboard.
+     * - Type a character: focus moves to the next item with a name that starts
+     *   with the typed character.
+     * - Type multiple characters in rapid succession: focus moves to the next
+     *   item with a name that starts with the string of characters typed.
+     *
+     * **NOTE:** Type-ahead is recommended for all listboxes, but there might be
+     * some cases where it's not desirable (for example when using a `TextField`
+     * as the opener element).
+     */
+    enableTypeAhead?: boolean;
+    /**
+     * An index that represents the index of the focused element when the menu
+     * is opened.
+     */
+    initialFocusedIndex?: number;
+    /**
+     * The object containing the custom labels used inside this component.
+     */
+    labels?: Labels;
+    /**
+     * Whether to display the "light" version of this component instead, for
+     * use when the item is used on a dark background.
+     */
+    light?: boolean;
+    /**
+     * Used to determine if we can automatically select an item using the keyboard.
+     */
+    selectionType?: "single" | "multi";
+};
+
+type Props = DefaultProps & ExportProps & WithActionSchedulerProps;
 
 type State = {
     /**
@@ -1049,13 +1091,9 @@ const styles = StyleSheet.create({
     },
 });
 
-type ExportProps = WithoutActionScheduler<
-    JSX.LibraryManagedAttributes<
-        typeof DropdownCore,
-        React.ComponentProps<typeof DropdownCore>
-    >
->;
-
 export default withActionScheduler(
     DropdownCore,
-) as React.ComponentType<ExportProps>;
+    // NOTE(kevinb): We convert to unknown first before converting to the property type.
+    // This is because TypeScript doesn't like how we're changing props that have default
+    // props.
+) as unknown as React.ComponentType<ExportProps>;

@@ -89,7 +89,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
             light,
             open,
             testId,
-            // eslint-disable-next-line no-unused-vars
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             onOpenChanged,
             ...sharedProps
         } = this.props;

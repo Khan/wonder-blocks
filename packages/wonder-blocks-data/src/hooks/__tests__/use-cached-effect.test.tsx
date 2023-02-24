@@ -441,9 +441,7 @@ describe("#useCachedEffect", () => {
                 },
             );
             rerender({requestId: "ID2"});
-            await act(
-                (): Promise<any> => Promise.all([response1, response2]),
-            );
+            await act((): Promise<any> => Promise.all([response1, response2]));
 
             // Assert
             expect(result.all).not.toContainEqual(Status.success("DATA1"));
@@ -466,9 +464,7 @@ describe("#useCachedEffect", () => {
                 },
             );
             rerender({requestId: "ID2"});
-            await act(
-                (): Promise<any> => Promise.all([response1, response2]),
-            );
+            await act((): Promise<any> => Promise.all([response1, response2]));
 
             // Assert
             expect(result.current[0]).toStrictEqual(Status.success("DATA2"));
@@ -522,9 +518,7 @@ describe("#useCachedEffect", () => {
                 },
             );
             rerender({handler: fakeHandler2});
-            await act(
-                (): Promise<any> => Promise.all([response1, response2]),
-            );
+            await act((): Promise<any> => Promise.all([response1, response2]));
 
             // Assert
             expect(result.current[0]).toStrictEqual(Status.success("DATA1"));

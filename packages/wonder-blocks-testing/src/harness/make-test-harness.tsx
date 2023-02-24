@@ -1,4 +1,3 @@
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 
 import {renderAdapters} from "./render-adapters";
@@ -23,7 +22,7 @@ import type {TestHarnessAdapters, TestHarnessConfigs} from "./types";
 export const makeTestHarness = <TAdapters extends TestHarnessAdapters>(
     adapters: TAdapters,
     defaultConfigs: TestHarnessConfigs<TAdapters>,
-): (<TProps extends {}, Instance = unknown>(
+): (<TProps extends object>(
     Component: React.ComponentType<TProps>,
     configs?: Partial<TestHarnessConfigs<TAdapters>>,
 ) => React.ForwardRefExoticComponent<
@@ -37,7 +36,7 @@ export const makeTestHarness = <TAdapters extends TestHarnessAdapters>(
      * @param {Partial<TestHarnessConfigs<TAdapters>>} [configs] Any adapter
      * configuration that you want to override from the `defaultConfigs` values.
      */
-    return <TProps extends {}>(
+    return <TProps extends object>(
         Component: React.ComponentType<TProps>,
         configs?: Partial<TestHarnessConfigs<TAdapters>>,
     ): React.ForwardRefExoticComponent<
