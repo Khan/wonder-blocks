@@ -6,7 +6,6 @@ import ActionSchedulerProvider from "./action-scheduler-provider";
 import type {
     IScheduleActions,
     WithActionSchedulerProps,
-    WithActionScheduler,
 } from "../util/types";
 
 type WithoutActionScheduler<T> = Omit<T, "schedule">;
@@ -21,25 +20,14 @@ type WithoutActionScheduler<T> = Omit<T, "schedule">;
  * these props use the `WithActionScheduler` type.
  */
 export default function withActionScheduler<
-    Config extends WithActionSchedulerProps,
-    Instance,
-    Component extends Flow.AbstractComponent<
-        WithActionScheduler<Config>,
-        Instance
-    >,
+    Props extends WithActionSchedulerProps,
 >(
-    WrappedComponent: Component,
-): Flow.AbstractComponent<
-    WithoutActionScheduler<
-        JSX.LibraryManagedAttributes<Component, React.ComponentProps<Component>>
-    >,
-    Instance
-> {
-    // @ts-expect-error [FEI-5019] - TS2709 - Cannot use namespace '_' as a type.
-    return React.forwardRef<_, Instance>((props, ref) => (
+    WrappedComponent: React.ComponentType<Props>,
+) {
+    return React.forwardRef((props: WithoutActionScheduler<Props>, ref) => (
         <ActionSchedulerProvider>
             {(schedule: IScheduleActions) => (
-                <WrappedComponent {...props} ref={ref} schedule={schedule} />
+                <WrappedComponent {...(props as Props)} ref={ref} schedule={schedule} />
             )}
         </ActionSchedulerProvider>
     ));

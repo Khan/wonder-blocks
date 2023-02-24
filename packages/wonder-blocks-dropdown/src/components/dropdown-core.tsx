@@ -271,7 +271,7 @@ class DropdownCore extends React.Component<Props, State> {
     static getDerivedStateFromProps(
         props: Props,
         state: State,
-    ): Partial<State> | null | undefined {
+    ): Partial<State> {
         if (
             (state.itemRefs.length === 0 && props.open) ||
             !DropdownCore.sameItemsFocusable(state.prevItems, props.items)

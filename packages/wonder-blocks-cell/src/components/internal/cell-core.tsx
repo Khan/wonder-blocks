@@ -203,7 +203,6 @@ const CellCore: React.FC<CellCoreProps> = (props): React.ReactElement => {
                 aria-label={ariaLabel ? ariaLabel : undefined}
                 target={target}
             >
-                {/* @ts-expect-error [FEI-5019] - TS7006 - Parameter 'eventState' implicitly has an 'any' type. */}
                 {(eventState) => renderCell(eventState)}
             </Clickable>
         );

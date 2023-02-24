@@ -29,7 +29,7 @@ type Props = {
      * Note: Don't call `closeModal` while rendering! It should be used to
      * respond to user intearction, like `onClick`.
      */
-    modal: ModalElement | ((arg1: {closeModal: () => void}) => ModalElement);
+    modal: ModalElement | React.FC<{closeModal: () => void}>;
     /**
      * Enables the backdrop to dismiss the modal on click/tap
      */
@@ -75,7 +75,7 @@ type Props = {
      * WARNING: This props should only be used when using the component as a
      * controlled component.
      */
-    children?: (arg1: {openModal: () => unknown}) => React.ReactElement;
+    children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
 } & WithActionSchedulerProps;
 
 type DefaultProps = {
@@ -117,7 +117,7 @@ class ModalLauncher extends React.Component<Props, State> {
     static getDerivedStateFromProps(
         props: Props,
         state: State,
-    ): Partial<State> | null | undefined {
+    ): Partial<State> {
         if (typeof props.opened === "boolean" && props.children) {
             // eslint-disable-next-line no-console
             console.warn("'children' and 'opened' can't be used together");
@@ -294,13 +294,4 @@ const styles = StyleSheet.create({
     },
 });
 
-type ExportProps = WithoutActionScheduler<
-    JSX.LibraryManagedAttributes<
-        typeof ModalLauncher,
-        React.ComponentProps<typeof ModalLauncher>
-    >
->;
-
-export default withActionScheduler(
-    ModalLauncher,
-) as React.ComponentType<ExportProps>;
+export default withActionScheduler(ModalLauncher);

@@ -1,12 +1,8 @@
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
-import type {
-    WithActionSchedulerProps,
-    WithoutActionScheduler,
-} from "@khanacademy/wonder-blocks-timing";
+import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 
 export const Unmounter: React.FC<{
     children: React.ReactNode;
@@ -77,12 +73,5 @@ export class MyGoodComponent extends React.Component<Props> {
     }
 }
 
-export const MyGoodComponentWithScheduler: Flow.AbstractComponent<
-    WithoutActionScheduler<
-        JSX.LibraryManagedAttributes<
-            typeof MyGoodComponent,
-            React.ComponentProps<typeof MyGoodComponent>
-        >
-    >,
-    MyGoodComponent
-> = withActionScheduler(MyGoodComponent);
+export const MyGoodComponentWithScheduler =
+    withActionScheduler(MyGoodComponent);

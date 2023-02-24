@@ -557,7 +557,7 @@ WithMarkup.parameters = {
 
 export const Ref: StoryComponentType = () => {
     const [value, setValue] = React.useState("Khan");
-    const inputRef = React.createRef();
+    const inputRef: React.RefObject<HTMLInputElement> = React.createRef();
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
         if (event.key === "Enter") {
@@ -567,7 +567,6 @@ export const Ref: StoryComponentType = () => {
 
     const handleSubmit = () => {
         if (inputRef.current) {
-            // @ts-expect-error [FEI-5019] - TS2571 - Object is of type 'unknown'.
             inputRef.current.focus();
         }
     };

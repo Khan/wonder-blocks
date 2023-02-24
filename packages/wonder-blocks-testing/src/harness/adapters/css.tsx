@@ -32,13 +32,13 @@ const normalizeConfig = (
 
     if (typeof config === "object") {
         if (config.classes != null && config.style != null) {
-            // This is a heuristic check and by nature isn't perfect.
-            // So we have to tell flow to just accept it.
+            // @ts-expect-error: This is a heuristic check and by nature isn't perfect.
+            // So we have to tell TypeScript to just accept it.
             return config;
         }
 
         // Again, since the previous check is heuristic, so is this outcome
-        // and so we still have to assure flow everything is OK.
+        // and so we still have to assure TypeScript everything is OK.
         return {classes: [], style: config};
     }
 

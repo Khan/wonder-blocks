@@ -22,9 +22,9 @@ const defaultHandlers = {
 } as const;
 
 describe("IconButtonCore", () => {
-    for (const kind of ["primary", "secondary", "tertiary"]) {
-        for (const color of ["default", "destructive"]) {
-            for (const size of ["default", "small"]) {
+    for (const kind of ["primary", "secondary", "tertiary"] as const) {
+        for (const color of ["default", "destructive"] as const) {
+            for (const size of ["default", "small"] as const) {
                 for (const light of kind === "primary"
                     ? [true, false]
                     : [false]) {
@@ -33,7 +33,7 @@ describe("IconButtonCore", () => {
                         "focused",
                         "hovered",
                         "pressed",
-                    ]) {
+                    ] as const) {
                         const disabled = state === "disabled";
                         const stateProps = {
                             disabled,

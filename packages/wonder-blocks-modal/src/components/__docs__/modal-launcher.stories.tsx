@@ -108,7 +108,6 @@ export default {
 // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const Default: StoryComponentType = (args) => (
     <ModalLauncher modal={DefaultModal} {...args}>
-        {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'openModal' implicitly has an 'any' type. */}
         {({openModal}) => (
             <Button onClick={openModal}>Click me to open the modal</Button>
         )}
@@ -124,7 +123,6 @@ Default.parameters = {
 
 export const Simple: StoryComponentType = () => (
     <ModalLauncher modal={DefaultModal}>
-        {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'openModal' implicitly has an 'any' type. */}
         {({openModal}) => (
             <Button onClick={openModal}>Click me to open the modal</Button>
         )}
@@ -179,7 +177,6 @@ export const WithCustomCloseButton: StoryComponentType = () => {
 
     return (
         <ModalLauncher modal={ModalWithCloseButton}>
-            {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'openModal' implicitly has an 'any' type. */}
             {({openModal}) => (
                 <Button onClick={openModal}>Click me to open the modal</Button>
             )}
@@ -209,7 +206,6 @@ WithCustomCloseButton.parameters = {
 
 export const WithBackdropDismissDisabled: StoryComponentType = () => (
     <ModalLauncher modal={DefaultModal} backdropDismissEnabled={false}>
-        {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'openModal' implicitly has an 'any' type. */}
         {({openModal}) => (
             <Button onClick={openModal}>Click me to open the modal</Button>
         )}
@@ -249,7 +245,6 @@ export const TriggeringProgrammatically: StoryComponentType = () => {
             <ModalLauncher
                 onClose={handleClose}
                 opened={opened}
-                // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'closeModal' implicitly has an 'any' type.
                 modal={({closeModal}) => (
                     <OnePaneDialog
                         title="Triggered from action menu"
@@ -385,7 +380,6 @@ export const WithInitialFocusId: StoryComponentType = () => {
             modal={modalInitialFocus}
             initialFocusId="text-field-to-be-focused-field"
         >
-            {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'openModal' implicitly has an 'any' type. */}
             {({openModal}) => (
                 <Button onClick={openModal}>
                     Open modal with initial focus
@@ -468,7 +462,6 @@ export const FocusTrap: StoryComponentType = () => {
             footer={
                 <>
                     <ModalLauncher modal={SubModal}>
-                        {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'openModal' implicitly has an 'any' type. */}
                         {({openModal}) => (
                             <Button kind="secondary" onClick={openModal}>
                                 Open another modal
@@ -487,7 +480,6 @@ export const FocusTrap: StoryComponentType = () => {
 
     return (
         <ModalLauncher modal={modalInitialFocus}>
-            {/* @ts-expect-error [FEI-5019] - TS7031 - Binding element 'openModal' implicitly has an 'any' type. */}
             {({openModal}) => (
                 <Button onClick={openModal}>Open modal with RadioGroup</Button>
             )}

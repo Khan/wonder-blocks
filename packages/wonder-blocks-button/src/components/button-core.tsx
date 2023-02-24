@@ -25,9 +25,9 @@ type Props = SharedProps &
     ChildrenProps &
     ClickableState;
 
-const StyledAnchor = addStyle<"a">("a");
-const StyledButton = addStyle<"button">("button");
-const StyledLink = addStyle<typeof Link>(Link);
+const StyledAnchor = addStyle("a");
+const StyledButton = addStyle("button");
+const StyledLink = addStyle(Link);
 
 export default class ButtonCore extends React.Component<Props> {
     renderInner(router: any): React.ReactNode {
