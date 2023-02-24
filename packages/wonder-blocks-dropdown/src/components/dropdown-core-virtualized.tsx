@@ -28,9 +28,7 @@ type Props = {
      * The VariableSizeList ref that needs to be passed to access to
      * react-window's instance methods
      */
-    listRef?: {
-        current: null | React.ElementRef<typeof List>;
-    };
+    listRef?: React.RefObject<List>;
     /**
      * An optional fixed width that will be passed to the react-window instance
      */
@@ -47,7 +45,7 @@ type State = {
      * The list height that needs to be passed in order to let react-window
      * calculate the container size
      */
-    height: number | null | undefined;
+    height: number;
 };
 
 /**
@@ -171,13 +169,10 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
         );
     }
 
-    renderVirtualizedList(): React.ReactNode {
+    renderVirtualizedList(width: number, height: number): React.ReactElement {
         const {data, listRef} = this.props;
-        const {height, width} = this.state;
 
         return (
-            // react-window has some issues for typing lists when passing refs
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             <List
                 // react-window doesn't accept maybe numbers. It wants numbers
                 // or strings.
@@ -197,16 +192,16 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
         );
     }
 
-    render(): React.ReactElement {
-        if (this.state.width === undefined) {
+    render(): React.ReactNode {
+        const {width, height} = this.state;
+
+        if (width == undefined) {
             // if we don't pass a fixed value, then we need to render
             // non-virtualized items to calculate width
-            // @ts-expect-error [FEI-5019] - TS2739 - Type 'ReactNode[]' is missing the following properties from type 'ReactElement<any, string | JSXElementConstructor<any>>': type, props, key
             return this.renderInitialItems();
         } else {
             // width has been provided, then render the virtualized list
-            // @ts-expect-error [FEI-5019] - TS2322 - Type 'ReactNode' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-            return this.renderVirtualizedList();
+            return this.renderVirtualizedList(width, height);
         }
     }
 }
