@@ -105,6 +105,7 @@ export const VariantsControlled: StoryComponentType = () => {
     const [defaultChecked, defaultSetChecked] = React.useState(false);
     const [errorChecked, errorSetChecked] = React.useState(false);
     const [disabledChecked, disabledSetChecked] = React.useState(false);
+
     return (
         <View style={styles.row}>
             <Checkbox
@@ -135,7 +136,9 @@ VariantsControlled.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription: "",
+        storyDescription: `A demo of the different kinds of checkboxes
+            when they have their \`checked\` and \`onChange\` props set
+            to make them toggle on click.`,
     },
 };
 
