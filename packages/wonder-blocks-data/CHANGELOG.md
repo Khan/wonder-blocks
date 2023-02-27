@@ -1,19 +1,5 @@
 # @khanacademy/wonder-blocks-data
 
-## 10.1.0
-
-### Minor Changes
-
--   173b96aa: Convert enums to POJOs
-
-### Patch Changes
-
--   e7d9f44b: Update wonder-stuff dependencies
--   64f08528: Remove file extensions from imports
--   Updated dependencies [64f08528]
--   Updated dependencies [173b96aa]
-    -   @khanacademy/wonder-blocks-core@4.7.0
-
 ## 10.0.5
 
 ### Patch Changes

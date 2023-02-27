@@ -1,16 +1,5 @@
 # @khanacademy/wonder-blocks-toolbar
 
-## 2.1.40
-
-### Patch Changes
-
--   64f08528: Remove file extensions from imports
--   Updated dependencies [64f08528]
--   Updated dependencies [173b96aa]
-    -   @khanacademy/wonder-blocks-color@1.2.1
-    -   @khanacademy/wonder-blocks-core@4.7.0
-    -   @khanacademy/wonder-blocks-typography@1.1.38
-
 ## 2.1.39
 
 ### Patch Changes

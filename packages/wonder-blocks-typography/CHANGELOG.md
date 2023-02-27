@@ -1,14 +1,5 @@
 # @khanacademy/wonder-blocks-typography
 
-## 1.1.38
-
-### Patch Changes
-
--   64f08528: Remove file extensions from imports
--   Updated dependencies [64f08528]
--   Updated dependencies [173b96aa]
-    -   @khanacademy/wonder-blocks-core@4.7.0
-
 ## 1.1.37
 
 ### Patch Changes

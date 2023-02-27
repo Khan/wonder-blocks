@@ -1,12 +1,5 @@
 # @khanacademy/wonder-blocks-i18n
 
-## 1.2.4
-
-### Patch Changes
-
--   64f08528: Remove file extensions from imports
--   006d5009: Include onError for all kinds of errors thrown in `I18nInlineMarkup`
-
 ## 1.2.3
 
 ### Patch Changes
