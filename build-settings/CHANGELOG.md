@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 0.7.1
+
+### Patch Changes
+
+-   64f08528: Remove file extensions from imports
+
 ## 0.7.0
 
 ### Minor Changes

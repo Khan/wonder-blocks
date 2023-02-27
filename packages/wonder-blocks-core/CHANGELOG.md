@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-core
 
+## 4.7.0
+
+### Minor Changes
+
+-   173b96aa: Convert enums to POJOs
+
+### Patch Changes
+
+-   64f08528: Remove file extensions from imports
+
 ## 4.6.2
 
 ### Patch Changes

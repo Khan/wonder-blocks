@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-banner
 
+## 1.2.7
+
+### Patch Changes
+
+-   64f08528: Remove file extensions from imports
+-   d62be521: Replace .defaultProps on functional component with corresponding defaults when destructuring props
+-   Updated dependencies [e7d9f44b]
+-   Updated dependencies [64f08528]
+-   Updated dependencies [5ed40ac3]
+-   Updated dependencies [173b96aa]
+    -   @khanacademy/wonder-blocks-icon@1.2.37
+    -   @khanacademy/wonder-blocks-button@3.0.14
+    -   @khanacademy/wonder-blocks-color@1.2.1
+    -   @khanacademy/wonder-blocks-core@4.7.0
+    -   @khanacademy/wonder-blocks-icon-button@3.4.21
+    -   @khanacademy/wonder-blocks-link@3.9.1
+    -   @khanacademy/wonder-blocks-typography@1.1.38
+
 ## 1.2.6
 
 ### Patch Changes

@@ -1,11 +1,18 @@
 # @khanacademy/wonder-blocks-timing
 
+## 2.1.1
+
+### Patch Changes
+
+-   64f08528: Remove file extensions from imports
+
 ## 2.1.0
+
 ### Minor Changes
 
-- 029b4810: Adds `useInterval()` hook that mimics the behavior of `ActionScheduler`'s
-  `interval()` method.
-- c57cd770: Rename `useInterval` and `useTimeout` to `useScheduledInterval`
-  and `useScheduledTimeout` respectively.
-- 29766c8e: Add `useInterval` and `useTimeout` hooks to provide an API for
-  using intervals and timeouts.
+-   029b4810: Adds `useInterval()` hook that mimics the behavior of `ActionScheduler`'s
+    `interval()` method.
+-   c57cd770: Rename `useInterval` and `useTimeout` to `useScheduledInterval`
+    and `useScheduledTimeout` respectively.
+-   29766c8e: Add `useInterval` and `useTimeout` hooks to provide an API for
+    using intervals and timeouts.
