@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-popover
 
+## 1.1.30
+
+### Patch Changes
+
+-   64f08528: Remove file extensions from imports
+-   5ed40ac3: Merge disjoint prop types since the codemod doesn't handle these properly.
+-   Updated dependencies [e7d9f44b]
+-   Updated dependencies [64f08528]
+-   Updated dependencies [5ed40ac3]
+-   Updated dependencies [173b96aa]
+    -   @khanacademy/wonder-blocks-icon@1.2.37
+    -   @khanacademy/wonder-blocks-color@1.2.1
+    -   @khanacademy/wonder-blocks-core@4.7.0
+    -   @khanacademy/wonder-blocks-icon-button@3.4.21
+    -   @khanacademy/wonder-blocks-modal@3.0.7
+    -   @khanacademy/wonder-blocks-tooltip@1.4.6
+    -   @khanacademy/wonder-blocks-typography@1.1.38
+
 ## 1.1.29
 
 ### Patch Changes

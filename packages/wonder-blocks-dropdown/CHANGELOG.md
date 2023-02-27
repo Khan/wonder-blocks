@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 2.10.7
+
+### Patch Changes
+
+-   64f08528: Remove file extensions from imports
+-   Updated dependencies [e7d9f44b]
+-   Updated dependencies [64f08528]
+-   Updated dependencies [5ed40ac3]
+-   Updated dependencies [173b96aa]
+    -   @khanacademy/wonder-blocks-icon@1.2.37
+    -   @khanacademy/wonder-blocks-clickable@2.4.5
+    -   @khanacademy/wonder-blocks-color@1.2.1
+    -   @khanacademy/wonder-blocks-core@4.7.0
+    -   @khanacademy/wonder-blocks-layout@1.4.16
+    -   @khanacademy/wonder-blocks-modal@3.0.7
+    -   @khanacademy/wonder-blocks-search-field@1.0.19
+    -   @khanacademy/wonder-blocks-timing@2.1.1
+    -   @khanacademy/wonder-blocks-typography@1.1.38
+
 ## 2.10.6
 
 ### Patch Changes
