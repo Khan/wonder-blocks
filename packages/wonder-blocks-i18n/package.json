@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-i18n",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -21,6 +21,6 @@
     "react": "16.14.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.7.0"
+    "wb-dev-build-settings": "^0.7.1"
   }
 }

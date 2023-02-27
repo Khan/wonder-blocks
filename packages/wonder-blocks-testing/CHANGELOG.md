@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-testing
 
+## 7.1.10
+
+### Patch Changes
+
+-   91cb727c: Update wonder-stuff dependencies
+-   91cb727c: Remove file extensions from imports
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+    -   @khanacademy/wonder-blocks-data@10.1.0
+
 ## 7.1.9
 
 ### Patch Changes

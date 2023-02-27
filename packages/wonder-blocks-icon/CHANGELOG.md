@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-icon
 
+## 1.2.37
+
+### Patch Changes
+
+-   91cb727c: Update wonder-stuff dependencies
+-   91cb727c: Remove file extensions from imports
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+    -   @khanacademy/wonder-blocks-core@4.7.0
+
 ## 1.2.36
 
 ### Patch Changes

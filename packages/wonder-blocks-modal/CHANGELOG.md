@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-modal
 
+## 3.0.7
+
+### Patch Changes
+
+-   91cb727c: Remove file extensions from imports
+-   91cb727c: Merge disjoint prop types since the codemod doesn't handle these properly.
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+    -   @khanacademy/wonder-blocks-icon@1.2.37
+    -   @khanacademy/wonder-blocks-breadcrumbs@1.0.38
+    -   @khanacademy/wonder-blocks-color@1.2.1
+    -   @khanacademy/wonder-blocks-core@4.7.0
+    -   @khanacademy/wonder-blocks-icon-button@3.4.21
+    -   @khanacademy/wonder-blocks-layout@1.4.16
+    -   @khanacademy/wonder-blocks-timing@2.1.1
+    -   @khanacademy/wonder-blocks-typography@1.1.38
+
 ## 3.0.6
 
 ### Patch Changes

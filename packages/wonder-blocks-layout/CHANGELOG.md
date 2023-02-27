@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-layout
 
+## 1.4.16
+
+### Patch Changes
+
+-   91cb727c: Remove file extensions from imports
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+    -   @khanacademy/wonder-blocks-core@4.7.0
+
 ## 1.4.15
 
 ### Patch Changes

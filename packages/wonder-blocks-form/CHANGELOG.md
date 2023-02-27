@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-form
 
+## 3.1.11
+
+### Patch Changes
+
+-   91cb727c: Remove file extensions from imports
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+    -   @khanacademy/wonder-blocks-icon@1.2.37
+    -   @khanacademy/wonder-blocks-clickable@2.4.5
+    -   @khanacademy/wonder-blocks-color@1.2.1
+    -   @khanacademy/wonder-blocks-core@4.7.0
+    -   @khanacademy/wonder-blocks-layout@1.4.16
+    -   @khanacademy/wonder-blocks-typography@1.1.38
+
 ## 3.1.10
 
 ### Patch Changes
