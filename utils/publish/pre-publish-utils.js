@@ -36,13 +36,13 @@ const checkPackageField = (pkgJson, field, value) => {
 };
 
 const checkPackageMain = (pkgJson) =>
-    checkPackageField(pkgJson, "main", "dist/index");
+    checkPackageField(pkgJson, "main", "dist/index.js");
 
 const checkPackageModule = (pkgJson) =>
-    checkPackageField(pkgJson, "module", "dist/es/index");
+    checkPackageField(pkgJson, "module", "dist/es/index.js");
 
 const checkPackageSource = (pkgJson) =>
-    checkPackageField(pkgJson, "source", "src/index");
+    checkPackageField(pkgJson, "source", "src/index.js");
 
 const checkPackagePrivate = (pkgJson) => {
     if (pkgJson.private) {
