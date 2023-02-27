@@ -17,8 +17,8 @@
         "@khanacademy/wonder-blocks-data": "^10.0.5"
     },
     "peerDependencies": {
-        "@khanacademy/wonder-stuff-core": "^1.2.0",
-        "@khanacademy/wonder-stuff-testing": "^2.3.1",
+        "@khanacademy/wonder-stuff-core": "^1.2.1",
+        "@khanacademy/wonder-stuff-testing": "^2.3.2",
         "@storybook/addon-actions": "^6.4.8",
         "node-fetch": "^2.6.7",
         "aphrodite": "^1.2.5",
