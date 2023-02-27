@@ -4,6 +4,7 @@ import fs from "fs";
 import path from "path";
 import autoExternal from "rollup-plugin-auto-external";
 import babel from "rollup-plugin-babel";
+import resolve from "@rollup/plugin-node-resolve";
 
 const {presets, plugins} = require("./babel.config")({env: () => false});
 
@@ -12,6 +13,8 @@ const createConfig = (pkgName) => {
     if (!fs.existsSync(packageJsonPath)) {
         return null;
     }
+
+    const extensions = [".js", ".jsx", ".ts", ".tsx"];
 
     return {
         output: [
@@ -29,7 +32,7 @@ const createConfig = (pkgName) => {
                 format: "cjs",
             },
         ],
-        input: `packages/${pkgName}/src/index.js`,
+        input: `packages/${pkgName}/src/index.ts`,
         plugins: [
             babel({
                 presets,
@@ -37,6 +40,11 @@ const createConfig = (pkgName) => {
                 exclude: "node_modules/**",
                 runtimeHelpers: true,
                 comments: false,
+                extensions,
+            }),
+            resolve({
+                browser: true,
+                extensions,
             }),
             autoExternal({
                 packagePath: `packages/${pkgName}/package.json`,
