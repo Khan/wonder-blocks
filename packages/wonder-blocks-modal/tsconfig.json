@@ -9,6 +9,7 @@
         {"path": "../wonder-blocks-breadcrumbs"},
         {"path": "../wonder-blocks-color"},
         {"path": "../wonder-blocks-core"},
+        {"path": "../wonder-blocks-dropdown"},
         {"path": "../wonder-blocks-icon"},
         {"path": "../wonder-blocks-icon-button"},
         {"path": "../wonder-blocks-layout"},
