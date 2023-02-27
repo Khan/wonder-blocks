@@ -9,5 +9,6 @@
         {"path": "../wonder-blocks-clickable"},
         {"path": "../wonder-blocks-color"},
         {"path": "../wonder-blocks-core"},
+        {"path": "../wonder-blocks-typography"},
     ]
 }

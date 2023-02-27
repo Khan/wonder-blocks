@@ -366,7 +366,6 @@ describe("MediaLayout", () => {
             } as const;
 
             const UnderTest = () => (
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 <MediaLayout styleSheets={styleSheets}>
                     {({mediaSize, mediaSpec, styles}: any) => {
                         return (
@@ -407,7 +406,6 @@ describe("MediaLayout", () => {
             } as const;
 
             const UnderTest = () => (
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 <MediaLayout styleSheets={styleSheets}>
                     {({mediaSize, mediaSpec, styles}: any) => {
                         return (
