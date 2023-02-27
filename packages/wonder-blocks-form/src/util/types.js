@@ -24,6 +24,8 @@ export type ChoiceCoreProps = {|
     id?: string,
     /** Optional test ID for e2e testing */
     testId?: string,
+    /** Function that executes when the choice is clicked. */
+    onClick: () => void,
 |};
 
 // Props for checkbox and radio button

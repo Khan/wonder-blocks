@@ -6,32 +6,24 @@ import CheckboxCore from "../components/checkbox-core";
 import RadioCore from "../components/radio-core";
 
 const states = ["default", "error", "disabled"];
-const clickableStates = ["default", "hovered", "pressed"];
 const checkedStates = [false, true];
 
 describe("CheckboxCore", () => {
     states.forEach((state) => {
-        clickableStates.forEach((clickableState) => {
-            checkedStates.forEach((checked) => {
-                test(`type:${state} state:${clickableState} checked:${String(
-                    checked,
-                )}`, () => {
-                    const disabled = state === "disabled";
-                    const tree = renderer
-                        .create(
-                            <CheckboxCore
-                                checked={checked}
-                                disabled={disabled}
-                                error={state === "error"}
-                                hovered={clickableState === "hovered"}
-                                pressed={clickableState === "pressed"}
-                                focused={clickableState === "focused"}
-                                waiting={false}
-                            />,
-                        )
-                        .toJSON();
-                    expect(tree).toMatchSnapshot();
-                });
+        checkedStates.forEach((checked) => {
+            test(`type:${state} checked:${String(checked)}`, () => {
+                const disabled = state === "disabled";
+                const tree = renderer
+                    .create(
+                        <CheckboxCore
+                            checked={checked}
+                            disabled={disabled}
+                            error={state === "error"}
+                            onClick={() => {}}
+                        />,
+                    )
+                    .toJSON();
+                expect(tree).toMatchSnapshot();
             });
         });
     });
@@ -39,27 +31,20 @@ describe("CheckboxCore", () => {
 
 describe("RadioCore", () => {
     states.forEach((state) => {
-        clickableStates.forEach((clickableState) => {
-            checkedStates.forEach((checked) => {
-                test(`type:${state} state:${clickableState} checked:${String(
-                    checked,
-                )}`, () => {
-                    const disabled = state === "disabled";
-                    const tree = renderer
-                        .create(
-                            <RadioCore
-                                checked={checked}
-                                disabled={disabled}
-                                error={state === "error"}
-                                hovered={clickableState === "hovered"}
-                                pressed={clickableState === "pressed"}
-                                focused={clickableState === "focused"}
-                                waiting={false}
-                            />,
-                        )
-                        .toJSON();
-                    expect(tree).toMatchSnapshot();
-                });
+        checkedStates.forEach((checked) => {
+            test(`type:${state} checked:${String(checked)}`, () => {
+                const disabled = state === "disabled";
+                const tree = renderer
+                    .create(
+                        <RadioCore
+                            checked={checked}
+                            disabled={disabled}
+                            error={state === "error"}
+                            onClick={() => {}}
+                        />,
+                    )
+                    .toJSON();
+                expect(tree).toMatchSnapshot();
             });
         });
     });

@@ -8,21 +8,13 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 import type {ChoiceCoreProps} from "../util/types";
 
-type Props = {|
-    ...ChoiceCoreProps,
-    hovered: boolean,
-    focused: boolean,
-    pressed: boolean,
-    waiting: boolean,
-|};
-
 const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 
 const StyledInput = addStyle("input");
 
 /**
  * The internal stateless 🔘 Radio button
- */ export default class RadioCore extends React.Component<Props> {
+ */ export default class RadioCore extends React.Component<ChoiceCoreProps> {
     handleChange: () => void = () => {
         // Empty because change is handled by ClickableBehavior
         return;
@@ -36,21 +28,13 @@ const StyledInput = addStyle("input");
             groupName,
             id,
             testId,
-            hovered,
-            focused,
-            pressed,
-            waiting: _,
             ...sharedProps
         } = this.props;
         const stateStyles = _generateStyles(checked, error);
         const defaultStyle = [
             sharedStyles.inputReset,
             sharedStyles.default,
-            stateStyles.default,
-            !disabled &&
-                (pressed
-                    ? stateStyles.active
-                    : (hovered || focused) && stateStyles.focus),
+            !disabled && stateStyles.default,
             disabled && sharedStyles.disabled,
         ];
         const props = {
@@ -144,13 +128,21 @@ const _generateStyles = (checked, error) => {
                 backgroundColor: white,
                 borderColor: palette.base,
                 borderWidth: size / 4,
-            },
-            focus: {
-                boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.base}`,
-            },
-            active: {
-                boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.active}`,
-                borderColor: palette.active,
+
+                // Focus and hover have the same style. Focus style only shows
+                // up with keyboard navigation.
+                ":focus-visible": {
+                    boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.base}`,
+                },
+
+                ":hover": {
+                    boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.base}`,
+                },
+
+                ":active": {
+                    boxShadow: `0 0 0 1px ${white}, 0 0 0 3px ${palette.active}`,
+                    borderColor: palette.active,
+                },
             },
         };
     } else {
@@ -158,16 +150,26 @@ const _generateStyles = (checked, error) => {
             default: {
                 backgroundColor: error ? fadedRed : white,
                 borderColor: error ? red : offBlack50,
-            },
-            focus: {
-                backgroundColor: error ? fadedRed : white,
-                borderColor: palette.base,
-                borderWidth: 2,
-            },
-            active: {
-                backgroundColor: palette.faded,
-                borderColor: error ? activeRed : blue,
-                borderWidth: 2,
+
+                // Focus and hover have the same style. Focus style only shows
+                // up with keyboard navigation.
+                ":focus-visible": {
+                    backgroundColor: error ? fadedRed : white,
+                    borderColor: palette.base,
+                    borderWidth: 2,
+                },
+
+                ":hover": {
+                    backgroundColor: error ? fadedRed : white,
+                    borderColor: palette.base,
+                    borderWidth: 2,
+                },
+
+                ":active": {
+                    backgroundColor: palette.faded,
+                    borderColor: error ? activeRed : blue,
+                    borderWidth: 2,
+                },
             },
         };
     }

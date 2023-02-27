@@ -5,7 +5,6 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View, UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
@@ -134,11 +133,12 @@ type DefaultProps = {|
             onChange,
             style,
             className,
+            // eslint-disable-next-line no-unused-vars
             variant,
             ...coreProps
         } = this.props;
         const ChoiceCore = this.getChoiceCoreComponent();
-        const ClickableBehavior = getClickableBehavior();
+
         return (
             <UniqueIDProvider mockOnFirstRender={true} scope="choice">
                 {(ids) => {
@@ -148,32 +148,21 @@ type DefaultProps = {|
 
                     return (
                         <View style={style} className={className}>
-                            <ClickableBehavior
-                                disabled={coreProps.disabled}
-                                onClick={this.handleClick}
-                                role={variant}
+                            <View
+                                style={styles.wrapper}
+                                // We are resetting the tabIndex=0 from handlers
+                                // because the ChoiceCore component will receive
+                                // focus on basis of it being an input element.
+                                tabIndex={-1}
                             >
-                                {(state, childrenProps) => {
-                                    return (
-                                        <View
-                                            style={styles.wrapper}
-                                            {...childrenProps}
-                                            // We are resetting the tabIndex=0 from handlers
-                                            // because the ChoiceCore component will receive
-                                            // focus on basis of it being an input element.
-                                            tabIndex={-1}
-                                        >
-                                            <ChoiceCore
-                                                {...coreProps}
-                                                {...state}
-                                                aria-describedby={descriptionId}
-                                            />
-                                            <Strut size={Spacing.xSmall_8} />
-                                            {label && this.getLabel()}
-                                        </View>
-                                    );
-                                }}
-                            </ClickableBehavior>
+                                <ChoiceCore
+                                    {...coreProps}
+                                    aria-describedby={descriptionId}
+                                    onClick={this.handleClick}
+                                />
+                                <Strut size={Spacing.xSmall_8} />
+                                {label && this.getLabel()}
+                            </View>
                             {description && this.getDescription(descriptionId)}
                         </View>
                     );
