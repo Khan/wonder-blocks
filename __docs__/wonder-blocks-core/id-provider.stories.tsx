@@ -3,7 +3,7 @@ import * as React from "react";
 import type {StoryComponentType} from "@storybook/react";
 
 import {IDProvider, View} from "@khanacademy/wonder-blocks-core";
-import {name, version} from "@khanacademy/wonder-blocks-core/package.json";
+import {name, version} from "../../packages/wonder-blocks-core/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 

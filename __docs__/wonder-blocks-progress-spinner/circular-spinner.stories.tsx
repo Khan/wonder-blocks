@@ -10,7 +10,10 @@ import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {name, version} from "../../packages/wonder-blocks-progress-spinner/package.json";
+import {
+    name,
+    version,
+} from "../../packages/wonder-blocks-progress-spinner/package.json";
 
 export default {
     title: "ProgressSpinner/CircularSpinner",

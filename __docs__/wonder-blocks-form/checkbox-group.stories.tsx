@@ -9,7 +9,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
-import {name, version} from "@khanacademy/wonder-blocks-form/package.json";
+import {name, version} from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 

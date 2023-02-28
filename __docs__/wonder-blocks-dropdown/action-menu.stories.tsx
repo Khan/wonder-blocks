@@ -19,7 +19,10 @@ import {
 
 import actionMenuArgtypes from "./action-menu.argtypes";
 import ComponentInfo from "../../.storybook/components/component-info";
-import {name, version} from "@khanacademy/wonder-blocks-dropdown/package.json";
+import {
+    name,
+    version,
+} from "../../packages/wonder-blocks-dropdown/package.json";
 
 import type {Item} from "../../packages/wonder-blocks-dropdown/src/util/types";
 

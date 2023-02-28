@@ -10,7 +10,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Button from "@khanacademy/wonder-blocks-button";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
-import {name, version} from "@khanacademy/wonder-blocks-form/package.json";
+import {name, version} from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import TextFieldArgTypes from "./text-field.argtypes";

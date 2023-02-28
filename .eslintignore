@@ -1,6 +1,7 @@
 node_modules
 flow-typed/**/*.js
 coverage
+storybook-static
 
 # eslint can't handle the type defintion for the addStyle HOC
 packages/wonder-blocks-core/util/add-style.js

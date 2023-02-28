@@ -12,7 +12,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
 
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
-import {name, version} from "@khanacademy/wonder-blocks-form/package.json";
+import {name, version} from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes";

@@ -6,7 +6,7 @@ import type {StoryComponentType} from "@storybook/react";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
-import {name, version} from "@khanacademy/wonder-blocks-form/package.json";
+import {name, version} from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 

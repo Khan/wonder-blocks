@@ -11,7 +11,7 @@ import {
 } from "@khanacademy/wonder-blocks-typography";
 
 import {View} from "@khanacademy/wonder-blocks-core";
-import {name, version} from "@khanacademy/wonder-blocks-core/package.json";
+import {name, version} from "../../packages/wonder-blocks-core/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import viewArgTypes from "./view.argtypes";

@@ -1,13 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
+// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
+import type {StoryComponentType} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
 
 import SearchField from "../../packages/wonder-blocks-search-field/src/components/search-field";
 

@@ -11,7 +11,7 @@ import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
-import {name, version} from "@khanacademy/wonder-blocks-popover/package.json";
+import {name, version} from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import PopoverArgtypes from "./popover.argtypes";

@@ -4,7 +4,10 @@ import type {StoryComponentType} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
-import {name, version} from "@khanacademy/wonder-blocks-birthday-picker/package.json";
+import {
+    name,
+    version,
+} from "../../packages/wonder-blocks-birthday-picker/package.json";
 import BirthdayPicker from "@khanacademy/wonder-blocks-birthday-picker";
 
 import ComponentInfo from "../../.storybook/components/component-info";

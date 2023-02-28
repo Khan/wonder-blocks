@@ -13,7 +13,10 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {name, version} from "../../packages/wonder-blocks-icon-button/package.json";
+import {
+    name,
+    version,
+} from "../../packages/wonder-blocks-icon-button/package.json";
 
 export default {
     title: "IconButton / IconButton",

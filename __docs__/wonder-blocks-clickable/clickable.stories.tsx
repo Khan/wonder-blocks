@@ -10,7 +10,10 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import {name, version} from "@khanacademy/wonder-blocks-clickable/package.json";
+import {
+    name,
+    version,
+} from "../../packages/wonder-blocks-clickable/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import argTypes from "./clickable.argtypes";

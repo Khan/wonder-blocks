@@ -1,6 +1,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
+import type {StoryComponentType} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -10,8 +12,6 @@ import {
     HeadingLarge,
 } from "@khanacademy/wonder-blocks-typography";
 
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
 import type {
     MediaSpec,
     MediaLayoutContextValue,

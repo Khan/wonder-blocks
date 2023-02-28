@@ -7,7 +7,7 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 
 import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
-import {name, version} from "@khanacademy/wonder-blocks-core/package.json";
+import {name, version} from "../../packages/wonder-blocks-core/package.json";
 
 import type {IIdentifierFactory} from "../../packages/wonder-blocks-core/src/util/types";
 

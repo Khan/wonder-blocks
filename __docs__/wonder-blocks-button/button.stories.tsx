@@ -7,16 +7,16 @@ import type {StoryComponentType} from "@storybook/react";
 
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
+import type {StyleDeclaration} from "aphrodite";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {icons} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
-import type {StyleDeclaration} from "aphrodite";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {name, version} from "@khanacademy/wonder-blocks-button/package.json";
+import {name, version} from "../../packages/wonder-blocks-button/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import ButtonArgTypes from "./button.argtypes";

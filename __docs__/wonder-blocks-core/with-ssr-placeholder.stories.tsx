@@ -1,10 +1,10 @@
 import * as React from "react";
+import type {StoryComponentType} from "@storybook/react";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
 
 import {View, WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";
-import {name, version} from "@khanacademy/wonder-blocks-core/package.json";
+import {name, version} from "../../packages/wonder-blocks-core/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 

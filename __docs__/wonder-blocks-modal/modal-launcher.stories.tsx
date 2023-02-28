@@ -16,7 +16,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
-import {name, version} from "@khanacademy/wonder-blocks-modal/package.json";
+import {name, version} from "../../packages/wonder-blocks-modal/package.json";
 
 import type {ModalElement} from "../../packages/wonder-blocks-modal/src/util/types";
 import ModalLauncherArgTypes from "./modal-launcher.argtypes";

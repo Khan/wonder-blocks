@@ -34,6 +34,12 @@ module.exports = {
     },
     overrides: [
         {
+            files: ["build-scripts/*.ts"],
+            rules: {
+                "no-console": "off",
+            },
+        },
+        {
             files: ["utils/*.js"],
             rules: {
                 "import/no-commonjs": "off",

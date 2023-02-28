@@ -8,7 +8,10 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
-import {name, version} from "@khanacademy/wonder-blocks-clickable/package.json";
+import {
+    name,
+    version,
+} from "../../packages/wonder-blocks-clickable/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import argTypes from "./clickable-behavior.argtypes";

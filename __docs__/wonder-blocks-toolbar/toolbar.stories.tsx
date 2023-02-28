@@ -1,13 +1,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import type {StoryComponentType} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
 
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
-import {name, version} from "@khanacademy/wonder-blocks-toolbar/package.json";
+import {name, version} from "../../packages/wonder-blocks-toolbar/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import ToolbarArgtypes, {

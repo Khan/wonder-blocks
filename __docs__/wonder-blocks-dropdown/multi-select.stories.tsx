@@ -1,10 +1,10 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import type {StoryComponentType} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -16,7 +16,10 @@ import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {name, version} from "@khanacademy/wonder-blocks-dropdown/package.json";
+import {
+    name,
+    version,
+} from "../../packages/wonder-blocks-dropdown/package.json";
 import multiSelectArgtypes from "./base-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 

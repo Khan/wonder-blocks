@@ -7,7 +7,7 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
-import {name, version} from "@khanacademy/wonder-blocks-form/package.json";
+import {name, version} from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 

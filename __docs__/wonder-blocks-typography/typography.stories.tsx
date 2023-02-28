@@ -25,7 +25,10 @@ import {
     Caption,
     Footnote,
 } from "@khanacademy/wonder-blocks-typography";
-import {name, version} from "@khanacademy/wonder-blocks-typography/package.json";
+import {
+    name,
+    version,
+} from "../../packages/wonder-blocks-typography/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import TypographyArgTypes from "./typography.argtypes";

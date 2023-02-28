@@ -4,8 +4,14 @@ import type {StoryComponentType} from "@storybook/react";
 
 import Link from "@khanacademy/wonder-blocks-link";
 
-import {Breadcrumbs, BreadcrumbsItem} from "@khanacademy/wonder-blocks-breadcrumbs";
-import {name, version} from "@khanacademy/wonder-blocks-breadcrumbs/package.json";
+import {
+    Breadcrumbs,
+    BreadcrumbsItem,
+} from "@khanacademy/wonder-blocks-breadcrumbs";
+import {
+    name,
+    version,
+} from "../../packages/wonder-blocks-breadcrumbs/package.json";
 
 import BreadcrumbsArgTypes from "./breadcrumbs.argtypes";
 import ComponentInfo from "../../.storybook/components/component-info";

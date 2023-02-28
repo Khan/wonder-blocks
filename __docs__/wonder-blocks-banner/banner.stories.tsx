@@ -14,7 +14,7 @@ import Banner from "@khanacademy/wonder-blocks-banner";
 
 import BannerArgTypes from "./banner.argtypes";
 import ComponentInfo from "../../.storybook/components/component-info";
-import {name, version} from "@khanacademy/wonder-blocks-banner/package.json";
+import {name, version} from "../../packages/wonder-blocks-banner/package.json";
 
 const bannerDescription = `
 Banner. A banner displays a prominent message and

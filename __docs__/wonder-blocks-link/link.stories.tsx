@@ -19,7 +19,7 @@ import {
     LabelLarge,
 } from "@khanacademy/wonder-blocks-typography";
 import Link from "@khanacademy/wonder-blocks-link";
-import {name, version} from "@khanacademy/wonder-blocks-link/package.json";
+import {name, version} from "../../packages/wonder-blocks-link/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import LinkArgTypes from "./link.argtypes";

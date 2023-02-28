@@ -1,6 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
+import type {StoryComponentType} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -13,9 +14,8 @@ import {
 } from "@khanacademy/wonder-blocks-typography";
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
-import {name, version} from "@khanacademy/wonder-blocks-popover/package.json";
+import {name, version} from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 

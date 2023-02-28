@@ -10,7 +10,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import {name, version} from "@khanacademy/wonder-blocks-cell/package.json";
+import {name, version} from "../../packages/wonder-blocks-cell/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import DetailCellArgTypes from "./detail-cell.argtypes";

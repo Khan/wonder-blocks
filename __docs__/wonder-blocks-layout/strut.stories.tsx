@@ -9,7 +9,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {name, version} from "@khanacademy/wonder-blocks-layout/package.json";
+import {name, version} from "../../packages/wonder-blocks-layout/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 

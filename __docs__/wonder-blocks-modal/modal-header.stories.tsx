@@ -16,7 +16,7 @@ import {
     ModalPanel,
     ModalHeader,
 } from "@khanacademy/wonder-blocks-modal";
-import {name, version} from "@khanacademy/wonder-blocks-modal/package.json";
+import {name, version} from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import ModalHeaderArgtypes from "./modal-header.argtypes";
