@@ -3,8 +3,7 @@ const webpack = require("webpack");
 
 module.exports = {
     stories: [
-        "../__docs__/**/*.stories.@(js|mdx)",
-        "../packages/**/*.stories.@(js|mdx)",
+        "../__docs__/**/*.stories.@(ts|tsx|mdx)",
     ],
     addons: [
         // Includes core addons (controls, docs, actions, viewport, backgrounds)
@@ -28,6 +27,7 @@ module.exports = {
     // monorepo.
     // See https://storybook.js.org/docs/react/configure/webpack
     webpackFinal: async (config, {configType}) => {
+        const wbPkgJsonRegex = /^@khanacademy\/wonder-blocks(-.*)\/package.json$/;
         const wbRegex = /^@khanacademy\/wonder-blocks(-.*)$/;
         // Aliases for internal wonder-blocks packages
         config.plugins.push(
@@ -37,10 +37,15 @@ module.exports = {
                 // Replace the module with a direct reference to the
                 // internal folder.
                 // $1 is the unique package name, e.g. cell, birthday-picker
-                resource.request = resource.request.replace(
-                    wbRegex,
-                    path.resolve(__dirname, "../packages/wonder-blocks$1/src"),
-                );
+                resource.request = resource.request
+                    .replace(
+                        wbPkgJsonRegex,
+                        path.resolve(__dirname, "../packages/wonder-blocks$1/package.json"),
+                    )
+                    .replace(
+                        wbRegex,
+                        path.resolve(__dirname, "../packages/wonder-blocks$1/src"),
+                    );
             }),
         );
 

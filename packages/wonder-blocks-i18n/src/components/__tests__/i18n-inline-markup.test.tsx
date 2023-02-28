@@ -7,7 +7,7 @@ import {
     SingleShallowSubstitution,
     MultipleShallowSubstitution,
     ElementWrapper,
-} from "../__docs__/i18n-inline-markup.stories";
+} from "../../../../../__docs__/wonder-blocks-i18n/i18n-inline-markup.stories";
 
 describe("I18nInlineMarkup", () => {
     test("SingleShallowSubstitution", () => {
