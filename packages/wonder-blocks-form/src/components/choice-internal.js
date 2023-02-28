@@ -83,12 +83,6 @@ type DefaultProps = {|
         error: false,
     };
 
-    handleLabelClick: (event: SyntheticEvent<>) => void = (event) => {
-        // Browsers automatically use the for attribute to select the input,
-        // but we use ClickableBehavior to handle this.
-        event.preventDefault();
-    };
-
     handleClick: () => void = () => {
         const {checked, onChange, variant} = this.props;
         // Radio buttons cannot be unchecked
@@ -105,15 +99,13 @@ type DefaultProps = {|
             return CheckboxCore;
         }
     }
-    getLabel(): React.Node {
-        const {disabled, id, label} = this.props;
+    getLabel(id: string): React.Node {
+        const {disabled, label} = this.props;
         return (
             <LabelMedium
                 style={[styles.label, disabled && styles.disabledLabel]}
             >
-                <label htmlFor={id} onClick={this.handleLabelClick}>
-                    {label}
-                </label>
+                <label htmlFor={id}>{label}</label>
             </LabelMedium>
         );
     }
@@ -129,6 +121,7 @@ type DefaultProps = {|
         const {
             label,
             description,
+            id,
             // eslint-disable-next-line no-unused-vars
             onChange,
             style,
@@ -142,6 +135,16 @@ type DefaultProps = {|
         return (
             <UniqueIDProvider mockOnFirstRender={true} scope="choice">
                 {(ids) => {
+                    // A choice element should always have a unique ID set
+                    // so that the label can always refer to this element.
+                    // This guarantees that clicking on the label will
+                    // always click on the choice as well. If an ID is
+                    // passed in as a prop, use that one. Otherwise,
+                    // create a unique ID using the provider.
+                    const uniqueId = id || ids.get("main");
+
+                    // Create a unique ID for the description section to be
+                    // used by this element's `aria-describedby`.
                     const descriptionId = description
                         ? ids.get("description")
                         : undefined;
@@ -157,11 +160,12 @@ type DefaultProps = {|
                             >
                                 <ChoiceCore
                                     {...coreProps}
+                                    id={uniqueId}
                                     aria-describedby={descriptionId}
                                     onClick={this.handleClick}
                                 />
                                 <Strut size={Spacing.xSmall_8} />
-                                {label && this.getLabel()}
+                                {label && this.getLabel(uniqueId)}
                             </View>
                             {description && this.getDescription(descriptionId)}
                         </View>
