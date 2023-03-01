@@ -38,8 +38,9 @@ describe("#renderAdapters", () => {
     it("should render each adapter and the children", () => {
         // Arrange
         const children = "Adapt me!";
+        // @ts-expect-error: `string` is not a valid `ReactElement`.
         const adapter: TestHarnessAdapter<string> = (c: any, conf: any) => {
-            return <>{`${conf}:${c}`}</>;
+            return `${conf}:${c}`;
         };
         const adapters = {
             adapterA: adapter,
@@ -62,8 +63,9 @@ describe("#renderAdapters", () => {
     it("should skip adapters where the corresponding config is null", () => {
         // Arrange
         const children = "Adapt me!";
+        // @ts-expect-error: `string` is not a valid `ReactElement`.
         const adapter: TestHarnessAdapter<string> = (c: any, conf: any) => {
-            return <>{`${conf}:${c}`}</>;
+            return `${conf}:${c}`;
         };
         const adapters = {
             adapterA: adapter,
