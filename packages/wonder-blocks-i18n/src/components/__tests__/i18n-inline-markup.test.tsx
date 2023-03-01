@@ -3,11 +3,71 @@ import {render} from "@testing-library/react";
 
 import * as ParseSimpleHTML from "../parse-simple-html";
 import {I18nInlineMarkup} from "../i18n-inline-markup";
-import {
-    SingleShallowSubstitution,
-    MultipleShallowSubstitution,
-    ElementWrapper,
-} from "../../../../../__docs__/wonder-blocks-i18n/i18n-inline-markup.stories";
+import * as i18n from "../../functions/i18n";
+
+const SingleShallowSubstitution = (): React.ReactElement => {
+    return (
+        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
+        <I18nInlineMarkup
+            u={(t) => (
+                <React.Fragment>
+                    [Underline:<u>{t}</u>]
+                </React.Fragment>
+            )}
+        >
+            {i18n._(
+                "-6\u00b0C, Sunny, Fells like: <u>-12</u>, Wind: VR 5 km/h",
+            )}
+        </I18nInlineMarkup>
+    );
+};
+
+const MultipleShallowSubstitution = (): React.ReactElement => {
+    return (
+        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
+        <I18nInlineMarkup
+            u={(t) => (
+                <React.Fragment>
+                    __<u>{t}</u>__
+                </React.Fragment>
+            )}
+            i={(t) => (
+                <span style={{background: "lightblue"}}>
+                    *<i style={{fontStyle: "italic"}}>{t}</i>*
+                </span>
+            )}
+        >
+            {i18n._(
+                "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
+            )}
+        </I18nInlineMarkup>
+    );
+};
+
+const ElementWrapper = (): React.ReactElement => {
+    return (
+        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
+        <I18nInlineMarkup
+            elementWrapper={(t) => (
+                <span style={{background: "yellow"}}>{t}</span>
+            )}
+            u={(t) => (
+                <span style={{background: "red"}}>
+                    __<u>{t}</u>__
+                </span>
+            )}
+            i={(t) => (
+                <span style={{background: "lightblue"}}>
+                    *<i style={{fontStyle: "italic"}}>{t}</i>*
+                </span>
+            )}
+        >
+            {i18n._(
+                "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
+            )}
+        </I18nInlineMarkup>
+    );
+};
 
 describe("I18nInlineMarkup", () => {
     test("SingleShallowSubstitution", () => {

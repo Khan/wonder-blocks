@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
@@ -19,9 +19,11 @@ export default {
             disableSnapshot: true,
         },
     },
-};
+} as ComponentMeta<typeof I18nInlineMarkup>;
 
-export const SingleShallowSubstitution = (): React.ReactElement => {
+type StoryComponentType = ComponentStory<typeof I18nInlineMarkup>;
+
+export const SingleShallowSubstitution: StoryComponentType = () => {
     return (
         // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
         <I18nInlineMarkup
@@ -38,7 +40,7 @@ export const SingleShallowSubstitution = (): React.ReactElement => {
     );
 };
 
-export const MultipleShallowSubstitution = (): React.ReactElement => {
+export const MultipleShallowSubstitution: StoryComponentType = () => {
     return (
         // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
         <I18nInlineMarkup
@@ -60,7 +62,7 @@ export const MultipleShallowSubstitution = (): React.ReactElement => {
     );
 };
 
-export const ElementWrapper = (): React.ReactElement => {
+export const ElementWrapper: StoryComponentType = () => {
     return (
         // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
         <I18nInlineMarkup
@@ -85,10 +87,12 @@ export const ElementWrapper = (): React.ReactElement => {
     );
 };
 
-export const HandlingTranslationErrors: StoryComponentType = (): React.Node => {
+export const HandlingTranslationErrors: StoryComponentType = () => {
     return (
+        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
         <I18nInlineMarkup
             settings={(label) => (
+                // @ts-expect-error(FEI-5000): No overload matches this call.
                 <LabelMedium href="/settings#child-accounts">
                     {label}
                 </LabelMedium>
