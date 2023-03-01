@@ -9,4 +9,17 @@
 const babelConfig = require("../build-settings/babel.config");
 module.exports = babelConfig({
     env: () => false,
+    plugins: (incomingPlugins) => {
+        return [
+            ...incomingPlugins,
+            // NOTE(kevinb): `plugin-proposal-class-properties` must come before
+            // `plugin-transform-classes`.
+            ["@babel/plugin-proposal-class-properties", {loose: true}],
+            ["@babel/plugin-transform-classes", {loose: true}],
+            // NOTE(kevinb): these are here just to quiet warnings about these
+            // plugins not using `loose: true`.
+            ["@babel/plugin-proposal-private-property-in-object", {loose: true}],
+            ["@babel/plugin-proposal-private-methods", {loose: true}],
+        ];
+    },
 });
