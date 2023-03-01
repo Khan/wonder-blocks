@@ -7,9 +7,8 @@ type Props = {
     propB?: string;
 };
 
-// @ts-expect-error [FEI-5019] - TS2322 - Type 'string' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
 const MyComponent: React.FC<Props> = (props): React.ReactElement =>
-    `I am a component. Here are my props: ${JSON.stringify(props, null, 2)}`;
+    <>{`I am a component. Here are my props: ${JSON.stringify(props, null, 2)}`}</>;
 
 const Wrapper = (props: any) => (
     <>

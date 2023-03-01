@@ -23,10 +23,9 @@ type Props = AriaProps
         /**
          * The content to render inside the dialog.
          */
-        // @ts-expect-error [FEI-5019] - TS2344 - Type 'PopoverContent' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'. | TS2344 - Type 'PopoverContentCore' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
         children:
-            | React.ReactElement<React.ComponentProps<PopoverContent>>
-            | React.ReactElement<React.ComponentProps<PopoverContentCore>>;
+            | React.ReactElement<React.ComponentProps<typeof PopoverContent>>
+            | React.ReactElement<React.ComponentProps<typeof PopoverContentCore>>;
         /**
          * The unique identifier to give to the popover content.
          */

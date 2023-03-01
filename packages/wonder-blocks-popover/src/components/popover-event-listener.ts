@@ -13,7 +13,7 @@ type Props = {
      * Popover Content ref.
      * Will close the popover when clicking outside this element.
      */
-    contentRef?: RefObject<PopoverContentCore | PopoverContent>;
+    contentRef?: React.RefObject<PopoverContentCore | PopoverContent>;
 };
 
 type State = {

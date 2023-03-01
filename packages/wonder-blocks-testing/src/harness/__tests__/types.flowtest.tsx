@@ -83,14 +83,14 @@ const adapters = {
 
 //>  should assert if parameterized type is not valid Adapters
 // string is not a valid Adapter
-{} as TestHarnessConfigs<typeof notadapters>;
+({} as TestHarnessConfigs<typeof notadapters>);
 //<
 
 //>  should expect one config per adapter
 // both adapter configs missing
-{} as TestHarnessConfigs<typeof adapters>;
+({} as TestHarnessConfigs<typeof adapters>);
 // adapterB config missing
-{adapterA: "test"} as TestHarnessConfigs<typeof adapters>;
+({adapterA: "test"} as TestHarnessConfigs<typeof adapters>);
 //<
 
 //>  should assert if config does not match adapter config

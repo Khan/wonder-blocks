@@ -8,19 +8,19 @@ import {processStyleList} from "./util";
 import type {StyleType} from "./types";
 
 // TODO(kevinb): have an a version which uses exact object types
-// @ts-expect-error [FEI-5019] - TS2344 - Type 'T' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
 export default function addStyle<
     T extends Flow.AbstractComponent<any> | string,
 >(
     Component: T,
     defaultStyle?: StyleType,
 ): Flow.AbstractComponent<
+    // @ts-expect-error [FEI-5019] - TS2344 - Type 'T' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     JSX.LibraryManagedAttributes<T, React.ComponentProps<T>> & {
         style?: StyleType;
     }
 > {
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'T' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     function StyleComponent(
+        // @ts-expect-error [FEI-5019] - TS2344 - Type 'T' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
         props: JSX.LibraryManagedAttributes<T, React.ComponentProps<T>> & {
             style: StyleType;
         },
@@ -29,9 +29,9 @@ export default function addStyle<
         const {className, style, ...tmpOtherProps} = props;
         // NOTE(jeresig): We need to cast the remaining props to be the right
         // value to ensure that they're typed properly.
-        // @ts-expect-error [FEI-5019] - TS2344 - Type 'T' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
         const otherProps: JSX.LibraryManagedAttributes<
             T,
+            // @ts-expect-error [FEI-5019] - TS2344 - Type 'T' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
             React.ComponentProps<T>
         > = tmpOtherProps as any;
         const reset =

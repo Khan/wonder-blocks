@@ -143,10 +143,9 @@ describe("CheckboxGroup", () => {
                     selectedValues={[]}
                 >
                     <Choice label="a" value="a" aria-labelledby="test-a" />
-                    {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
-                    {false && (
+                    {false ? (
                         <Choice label="b" value="b" aria-labelledby="test-b" />
-                    )}
+                    ) : null}
                     <Choice label="c" value="c" aria-labelledby="test-c" />
                     {undefined}
                     {null}

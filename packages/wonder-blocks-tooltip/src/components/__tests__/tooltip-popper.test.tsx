@@ -27,12 +27,11 @@ class TestHarness extends React.Component<any, State> {
     }
 
     render(): React.ReactElement {
-        // @ts-expect-error [FEI-5019] - TS2344 - Type 'TooltipBubble' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
         const fakeBubble = (
             <View ref={(ref: any) => this.props.resultRef(ref)}>
                 Fake bubble
             </View>
-        ) as React.ReactElement<React.ComponentProps<TooltipBubble>>;
+        ) as React.ReactElement<React.ComponentProps<typeof TooltipBubble>>;
         return (
             <View>
                 <View ref={(ref: any) => this.updateRef(ref)}>Anchor</View>

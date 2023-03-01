@@ -185,8 +185,7 @@ export const FiltersOutFalsyChildren: StoryComponentType = () => {
                 disabled
             />
             <Choice label="Squirtle" value="squirtle" />
-            {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
-            {false && <Choice label="Pikachu" value="pikachu" />}
+            {false ? <Choice label="Pikachu" value="pikachu" /> : null}
         </RadioGroup>
     );
 };

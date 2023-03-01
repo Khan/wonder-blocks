@@ -79,9 +79,8 @@ type Props = AriaProps &
         /**
          * The items in this select.
          */
-        // @ts-expect-error [FEI-5019] - TS2344 - Type 'OptionItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
         children?: Array<
-            | React.ReactElement<React.ComponentProps<OptionItem>>
+            | React.ReactElement<React.ComponentProps<typeof OptionItem>>
             | false
             | null
             | undefined
@@ -278,9 +277,8 @@ export default class SingleSelect extends React.Component<Props, State> {
         }
     };
 
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'OptionItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     mapOptionItemsToDropdownItems: (
-        children: Array<React.ReactElement<React.ComponentProps<OptionItem>>>,
+        children: Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>>,
     ) => Array<DropdownItem> = (children) => {
         // Figure out which index should receive focus when this select opens
         // Needs to exclude counting items that are disabled
@@ -289,7 +287,6 @@ export default class SingleSelect extends React.Component<Props, State> {
 
         return children.map((option) => {
             const {selectedValue} = this.props;
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'disabled' does not exist on type '{}'. | TS2339 - Property 'value' does not exist on type '{}'.
             const {disabled, value} = option.props;
             const selected = selectedValue === value;
 
@@ -313,10 +310,9 @@ export default class SingleSelect extends React.Component<Props, State> {
         });
     };
 
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'OptionItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'. | TS2344 - Type 'OptionItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     filterChildren(
-        children: Array<React.ReactElement<React.ComponentProps<OptionItem>>>,
-    ): Array<React.ReactElement<React.ComponentProps<OptionItem>>> {
+        children: Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>>,
+    ): Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>> {
         const {searchText} = this.state;
 
         const lowercasedSearchText = searchText.toLowerCase();
@@ -325,14 +321,12 @@ export default class SingleSelect extends React.Component<Props, State> {
         return children.filter(
             ({props}) =>
                 !searchText ||
-                // @ts-expect-error [FEI-5019] - TS2339 - Property 'label' does not exist on type '{}'.
                 props.label.toLowerCase().indexOf(lowercasedSearchText) > -1,
         );
     }
 
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'OptionItem' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
     getMenuItems(
-        children: Array<React.ReactElement<React.ComponentProps<OptionItem>>>,
+        children: Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>>,
     ): Array<DropdownItem> {
         const {isFilterable} = this.props;
 

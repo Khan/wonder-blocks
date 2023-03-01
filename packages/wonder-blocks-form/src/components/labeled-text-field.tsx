@@ -8,7 +8,7 @@ import FieldHeading from "./field-heading";
 import TextField, {TextFieldType} from "./text-field";
 
 type WithForwardRef = {
-    forwardedRef: React.Ref<"input">;
+    forwardedRef: React.ForwardedRef<HTMLInputElement>;
 };
 
 type Props = {
@@ -265,12 +265,12 @@ class LabeledTextField extends React.Component<PropsWithForwardRef, State> {
     }
 }
 
-type ExportProps = Flow.Diff<
+type ExportProps = Omit<
     JSX.LibraryManagedAttributes<
         typeof LabeledTextField,
         React.ComponentProps<typeof LabeledTextField>
     >,
-    WithForwardRef
+    "forwardedRef"
 >;
 
 /**
@@ -294,7 +294,6 @@ type ExportProps = Flow.Diff<
  * ```
  */
 
-// @ts-expect-error [FEI-5019] - TS2739 - Type '{ forwardedRef: ForwardedRef<Flow.Diff<Pick<Props & WithForwardRef, "description" | "style" | "label" | "autoComplete" | "id" | "placeholder" | "readOnly" | "required" | ... 9 more ... | "ariaDescribedby"> & InexactPartial<...> & InexactPartial<...>, WithForwardRef>>; ... 339 more ...; focus(options?: FocusOptions |...' is missing the following properties from type 'Pick<Readonly<PropsWithForwardRef> & Readonly<{ children?: ReactNode; }>, "description" | "style" | "label" | "children" | ... 14 more ... | "ariaDescribedby">': label, onChange
-export default React.forwardRef<ExportProps, HTMLInputElement>((props, ref) => (
+export default React.forwardRef<HTMLInputElement, ExportProps>((props, ref) => (
     <LabeledTextField {...props} forwardedRef={ref} />
 )) as Flow.AbstractComponent<ExportProps, HTMLInputElement>;

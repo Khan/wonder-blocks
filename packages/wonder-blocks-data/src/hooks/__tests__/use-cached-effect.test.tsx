@@ -441,9 +441,8 @@ describe("#useCachedEffect", () => {
                 },
             );
             rerender({requestId: "ID2"});
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             await act(
-                (): Promise<unknown> => Promise.all([response1, response2]),
+                (): Promise<any> => Promise.all([response1, response2]),
             );
 
             // Assert
@@ -467,9 +466,8 @@ describe("#useCachedEffect", () => {
                 },
             );
             rerender({requestId: "ID2"});
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             await act(
-                (): Promise<unknown> => Promise.all([response1, response2]),
+                (): Promise<any> => Promise.all([response1, response2]),
             );
 
             // Assert
@@ -524,9 +522,8 @@ describe("#useCachedEffect", () => {
                 },
             );
             rerender({handler: fakeHandler2});
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             await act(
-                (): Promise<unknown> => Promise.all([response1, response2]),
+                (): Promise<any> => Promise.all([response1, response2]),
             );
 
             // Assert

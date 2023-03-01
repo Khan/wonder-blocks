@@ -27,10 +27,9 @@ describe("TooltipBubble", () => {
 
         // Do some casting to pretend this is `TooltipContent`. That way we are
         // isolating behaviors a bit more.
-        // @ts-expect-error [FEI-5019] - TS2344 - Type 'TooltipContent' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
         const fakeContent = (
             <View id="content">Some content</View>
-        ) as React.ReactElement<React.ComponentProps<TooltipContent>>;
+        ) as React.ReactElement<React.ComponentProps<typeof TooltipContent>>;
 
         // Act
         render(

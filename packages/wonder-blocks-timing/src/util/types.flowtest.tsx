@@ -19,9 +19,9 @@ type Props1 = {
     test: string;
 } & WithActionSchedulerProps;
 
-// @ts-expect-error [FEI-5019] - TS2322 - Type 'string' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
-const InnerComponent1: React.FC<Props1> = (props): React.ReactElement =>
-    props.test;
+const InnerComponent1: React.FC<Props1> = (props): React.ReactElement => (
+    <>{props.test}</>
+);
 
 const HOCComponent1 = withActionScheduler(InnerComponent1);
 
@@ -34,9 +34,8 @@ type Props2 = {
     test: string;
 } & WithActionSchedulerProps;
 
-// @ts-expect-error [FEI-5019] - TS2322 - Type 'string' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
 const InnerComponent2: React.FC<Props2> = (props): React.ReactElement =>
-    props.test;
+    <>{props.test}</>;
 
 /**
  * Cannot assign `withActionScheduler(...)` to `HOCComponent2` because property
@@ -56,9 +55,8 @@ type Props3 = {
     test: string;
 } & WithActionSchedulerProps;
 
-// @ts-expect-error [FEI-5019] - TS2322 - Type 'string' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
 const InnerComponent3: React.FC<Props3> = (props): React.ReactElement =>
-    props.test;
+    <>{props.test}</>;
 
 const HOCComponent3 = withActionScheduler(
     /**

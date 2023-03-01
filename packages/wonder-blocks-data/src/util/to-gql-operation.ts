@@ -37,7 +37,6 @@ export const toGqlOperation = <TData, TVariables extends Record<any, any>>(
     const definition = graphQLDocumentNodeParser(documentNode);
     const wbDataOperation: GqlOperation<TData, TVariables> = {
         id: definition.name,
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'string' is not assignable to type 'GqlOperationType'.
         type: definition.type,
     };
     return wbDataOperation;
