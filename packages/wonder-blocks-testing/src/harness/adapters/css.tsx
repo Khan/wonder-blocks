@@ -31,14 +31,17 @@ const normalizeConfig = (
     }
 
     if (typeof config === "object") {
-        if (config.classes != null && config.style != null) {
-            // @ts-expect-error: This is a heuristic check and by nature isn't perfect.
-            // So we have to tell TypeScript to just accept it.
+        if (
+            "classes" in config &&
+            config.classes != null &&
+            "style" in config &&
+            config.style != null
+        ) {
             return config;
         }
 
-        // Again, since the previous check is heuristic, so is this outcome
-        // and so we still have to assure TypeScript everything is OK.
+        // @ts-expect-error: at this point, `CSSProperties` is the only thing
+        // that `config` can be.
         return {classes: [], style: config};
     }
 

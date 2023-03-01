@@ -18,6 +18,8 @@ function flatten(list?: StyleType): Array<CSSProperties> {
             result.push(...flatten(item));
         }
     } else {
+        // @ts-expect-error: TypeScript thinks that `list` is still an array here
+        // even though we handled that case in the preceding block.
         result.push(list);
     }
 

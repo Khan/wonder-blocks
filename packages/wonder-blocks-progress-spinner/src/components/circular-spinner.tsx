@@ -112,6 +112,7 @@ const styles = StyleSheet.create({
     },
     loadingSpinner: {
         transformOrigin: "50% 50%",
+        // @ts-expect-error [FEI-5019]: `animationName` expects a string not an object.
         animationName: rotateKeyFrames,
         animationDuration: "1.1s",
         animationIterationCount: "infinite",
