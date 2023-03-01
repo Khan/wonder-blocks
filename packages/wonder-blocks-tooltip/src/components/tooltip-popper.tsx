@@ -75,7 +75,6 @@ export default class TooltipPopper extends React.Component<Props> {
             updateTailRef: this._tailRefTracker.updateRef,
             isReferenceHidden: popperProps.isReferenceHidden,
         } as const;
-        // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '{ readonly placement: Placement; readonly style: { readonly top: Property.Top<string | number> | undefined; readonly left: Property.Left<string | number> | undefined; readonly bottom: Property.Bottom<...> | undefined; readonly right: Property.Right<...> | undefined; readonly position: Property.Position | undefined; ...' is not assignable to parameter of type 'PopperElementProps'.
         return children(bubbleProps);
     }
 

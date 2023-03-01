@@ -79,7 +79,6 @@ export default class TooltipBubble extends React.Component<Props, State> {
                 style={[
                     isReferenceHidden && styles.hide,
                     styles.bubble,
-                    // @ts-expect-error [FEI-5019] - TS2551 - Property 'content-auto' does not exist on type '{ bubble: { position: string; }; hide: { pointerEvents: string; opacity: number; backgroundColor: string; color: string; }; "content-top": { flexDirection: string; }; "content-right": { flexDirection: string; }; "content-bottom": { ...; }; "content-left": { ...; }; content: { ...; }; }'. Did you mean 'content-top'?
                     styles[`content-${placement}`],
                     style,
                 ]}

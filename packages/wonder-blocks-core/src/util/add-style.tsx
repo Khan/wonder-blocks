@@ -16,7 +16,6 @@ export default function addStyle<
     const StyleComponent: React.FC<Props> = (props) => {
         const {className, style, ...otherProps} = props;
         const reset =
-            // @ts-expect-error [FEI-5019] - TS2536 - Type 'T & string' cannot be used to index type '{ button: { margin: number; "::-moz-focus-inner": { border: number; }; }; }'.
             typeof Component === "string" ? overrides[Component] : null;
 
         const {className: aphroditeClassName, style: inlineStyles} =
