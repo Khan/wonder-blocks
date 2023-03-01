@@ -49,8 +49,9 @@ type Props = {
         all?: StyleDeclaration;
         mdOrLarger?: StyleDeclaration;
         mdOrSmaller?: StyleDeclaration;
-        // @ts-expect-error [FEI-5019] - TS1337 - An index signature parameter type cannot be a literal type or generic type. Consider using a mapped object type instead.
-        [mediaSize: MediaSize]: StyleDeclaration;
+        small?: StyleDeclaration;
+        medium?: StyleDeclaration;
+        large?: StyleDeclaration;
     };
 };
 
@@ -190,19 +191,16 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
                     mediaSize === "small" && [
                         styleSheets.mdOrSmaller &&
                             styleSheets.mdOrSmaller[name],
-                        // @ts-expect-error [FEI-5019] - TS2339 - Property 'small' does not exist on type '{ all?: StyleDeclaration | undefined; mdOrLarger?: StyleDeclaration | undefined; mdOrSmaller?: StyleDeclaration | undefined; }'. | TS2339 - Property 'small' does not exist on type '{ all?: StyleDeclaration | undefined; mdOrLarger?: StyleDeclaration | undefined; mdOrSmaller?: StyleDeclaration | undefined; }'.
                         styleSheets.small && styleSheets.small[name],
                     ],
                     mediaSize === "medium" && [
                         styleSheets.mdOrSmaller &&
                             styleSheets.mdOrSmaller[name],
                         styleSheets.mdOrLarger && styleSheets.mdOrLarger[name],
-                        // @ts-expect-error [FEI-5019] - TS2339 - Property 'medium' does not exist on type '{ all?: StyleDeclaration | undefined; mdOrLarger?: StyleDeclaration | undefined; mdOrSmaller?: StyleDeclaration | undefined; }'. | TS2339 - Property 'medium' does not exist on type '{ all?: StyleDeclaration | undefined; mdOrLarger?: StyleDeclaration | undefined; mdOrSmaller?: StyleDeclaration | undefined; }'.
                         styleSheets.medium && styleSheets.medium[name],
                     ],
                     mediaSize === "large" && [
                         styleSheets.mdOrLarger && styleSheets.mdOrLarger[name],
-                        // @ts-expect-error [FEI-5019] - TS2339 - Property 'large' does not exist on type '{ all?: StyleDeclaration | undefined; mdOrLarger?: StyleDeclaration | undefined; mdOrSmaller?: StyleDeclaration | undefined; }'. | TS2339 - Property 'large' does not exist on type '{ all?: StyleDeclaration | undefined; mdOrLarger?: StyleDeclaration | undefined; mdOrSmaller?: StyleDeclaration | undefined; }'.
                         styleSheets.large && styleSheets.large[name],
                     ],
                 ];

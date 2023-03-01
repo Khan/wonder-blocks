@@ -118,7 +118,7 @@ export default class ActionMenu extends React.Component<Props, State> {
     static getDerivedStateFromProps(
         props: Props,
         state: State,
-    ): Partial<State> | null | undefined {
+    ): Partial<State> | null {
         return {
             opened:
                 typeof props.opened === "boolean" ? props.opened : state.opened,

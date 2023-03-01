@@ -228,7 +228,7 @@ export default class MultiSelect extends React.Component<Props, State> {
     static getDerivedStateFromProps(
         props: Props,
         state: State,
-    ): Partial<State> | null | undefined {
+    ): Partial<State> | null {
         return {
             open: typeof props.opened === "boolean" ? props.opened : state.open,
         };
