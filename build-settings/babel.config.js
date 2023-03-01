@@ -1,6 +1,8 @@
 /* eslint-disable import/no-commonjs */
 module.exports = (api) => {
     const presets = [
+        "@babel/preset-typescript",
+
         [
             /**
              * We compile for browsers that support ES Modules
@@ -27,14 +29,6 @@ module.exports = (api) => {
     ];
 
     const plugins = [
-        "babel-plugin-transform-flow-enums",
-
-        /**
-         * Strip flow types
-         * https://babeljs.io/docs/en/babel-plugin-transform-flow-strip-types
-         */
-        "@babel/plugin-transform-flow-strip-types",
-
         [
             /**
              * Fixes "Invalid attempt to spread non-iterable instance" errors

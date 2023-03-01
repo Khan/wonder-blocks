@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-progress-spinner
 
+## 1.1.40
+
+### Patch Changes
+
+-   91cb727c: Remove file extensions from imports
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+    -   @khanacademy/wonder-blocks-color@1.2.1
+    -   @khanacademy/wonder-blocks-core@4.7.0
+
 ## 1.1.39
 
 ### Patch Changes

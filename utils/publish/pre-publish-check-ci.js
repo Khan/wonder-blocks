@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable import/no-commonjs */
 /**
  * Pre-publish checks to verify that our CI publish will go smoothly.

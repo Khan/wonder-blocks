@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 3.4.21
+
+### Patch Changes
+
+-   91cb727c: Remove file extensions from imports
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+    -   @khanacademy/wonder-blocks-icon@1.2.37
+    -   @khanacademy/wonder-blocks-clickable@2.4.5
+    -   @khanacademy/wonder-blocks-color@1.2.1
+    -   @khanacademy/wonder-blocks-core@4.7.0
+
 ## 3.4.20
 
 ### Patch Changes

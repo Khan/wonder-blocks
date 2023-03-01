@@ -3,4 +3,7 @@
 docs
 *.css
 *.yml
-flow-typed/npm
+.storybook
+coverage
+dist
+storybook-static

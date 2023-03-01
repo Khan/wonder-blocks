@@ -1,0 +1,20 @@
+{
+    "exclude": ["dist"],
+    "extends": "../tsconfig-shared.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "src",
+    },
+    "references": [
+        {"path": "../wonder-blocks-breadcrumbs"},
+        {"path": "../wonder-blocks-color"},
+        {"path": "../wonder-blocks-core"},
+        {"path": "../wonder-blocks-dropdown"},
+        {"path": "../wonder-blocks-icon"},
+        {"path": "../wonder-blocks-icon-button"},
+        {"path": "../wonder-blocks-layout"},
+        {"path": "../wonder-blocks-spacing"},
+        {"path": "../wonder-blocks-timing"},
+        {"path": "../wonder-blocks-typography"},
+    ]
+}

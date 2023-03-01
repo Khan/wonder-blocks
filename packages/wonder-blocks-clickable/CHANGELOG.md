@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 2.4.5
+
+### Patch Changes
+
+-   91cb727c: Remove file extensions from imports
+-   91cb727c: Merge disjoint prop types since the codemod doesn't handle these properly.
+-   Updated dependencies [91cb727c]
+-   Updated dependencies [91cb727c]
+    -   @khanacademy/wonder-blocks-color@1.2.1
+    -   @khanacademy/wonder-blocks-core@4.7.0
+
 ## 2.4.4
 
 ### Patch Changes

@@ -51,15 +51,16 @@ jobs:
         uses: Khan/actions@get-changed-files-v1
         id: changed
 
-      - name: Build so that inter-package references are resolved
-        run: yarn build
+      # skip for now until we update the build config
+      # - name: Build so that inter-package references are resolved
+      #   run: yarn build
 
-      - id: js-files
-        name: Find .js changed files
+      - id: js-ts-files
+        name: Find .js, .ts changed files
         uses: Khan/actions@filter-files-v0
         with:
           changed-files: ${{ steps.changed.outputs.files }}
-          extensions: '.js,.jsx'
+          extensions: '.js,.jsx,.ts,.tsx'
 
       - id: eslint-reset
         uses: Khan/actions@filter-files-v0
@@ -68,12 +69,12 @@ jobs:
           changed-files: ${{ steps.changed.outputs.files }}
           files: '.eslintrc.js,yarn.lock,.eslintignore'
 
-      - id: flow-reset
+      - id: typecheck-reset
         uses: Khan/actions@filter-files-v0
-        name: Files that would trigger a flow run
+        name: Files that would trigger a typecheck run
         with:
           changed-files: ${{ steps.changed.outputs.files }}
-          files: '.flowconfig,yarn.lock'
+          files: '.yarn.lock'
 
       # Linting / type checking
       - name: Eslint
@@ -81,12 +82,13 @@ jobs:
         with:
           full-trigger: ${{ steps.eslint-reset.outputs.filtered }}
           full: yarn lint:ci .
-          limited-trigger: ${{ steps.js-files.outputs.filtered }}
+          limited-trigger: ${{ steps.js-ts-files.outputs.filtered }}
           limited: yarn lint:ci {}
 
-      - name: Run Flow
-        if: steps.js-files.outputs.filtered != '[]' || steps.flow-reset.outputs.filtered != '[]'
-        run: yarn flow
+      - name: Typecheck
+        if: always() # always run this check until we update the eslint config
+        # if: steps.js-ts-files.outputs.filtered != '[]' || steps.typecheck-reset.outputs.filtered != '[]'
+        run: yarn typecheck
 
       - uses: Khan/actions@check-for-changeset-v0
         if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'

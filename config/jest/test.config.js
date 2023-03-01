@@ -7,13 +7,17 @@ const path = require("path");
 module.exports = {
     rootDir: path.join(__dirname, "../../"),
     transform: {
-        "^.+\\.jsx?$": "<rootDir>/config/jest/test.transform.js",
+        "^.+\\.(j|t)sx?$": "<rootDir>/config/jest/test.transform.js",
     },
     testEnvironment: "jest-environment-jsdom",
     globals: {
         SNAPSHOT_INLINE_APHRODITE: true,
     },
-    testMatch: ["<rootDir>/**/*.test.js"],
+    testMatch: [
+        "<rootDir>/**/*.test.ts",
+        "<rootDir>/**/*.test.ts",
+        "<rootDir>/**/*.test.tsx",
+    ],
     setupFilesAfterEnv: [
         "@testing-library/jest-dom/extend-expect",
         "<rootDir>/config/jest/test-setup.js",
@@ -21,7 +25,7 @@ module.exports = {
     ],
     moduleNameMapper: {
         "^@khanacademy/wonder-blocks-(.*)$":
-            "<rootDir>/packages/wonder-blocks-$1/src/index.js",
+            "<rootDir>/packages/wonder-blocks-$1/src/index.ts",
     },
     collectCoverageFrom: [
         "packages/**/*.js",
