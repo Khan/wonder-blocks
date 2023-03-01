@@ -130,11 +130,11 @@ const interpolateStringToFragment = function (
     }
 
     // We have to cast the result to any here before then back to React.Node
-    // because Object.values is typed as returning Array<mixed> and flow is
-    // not happy about `mixed` being turned into React$Element and a couple
-    // of other subtypes of React.Node. However, we know this is an array of
+    // because Object.values is typed as returning Array<unknown> and TypeScript
+    // is not happy about `unknown` being turned into React.ReactElement and a couple
+    // of other subtypes of React.ReactNode. However, we know this is an array of
     // React.Node so rather than lose all typing and ignoring the error, we
-    // do a little casting to any and then to React.Node.
+    // do a little casting to any and then to React.ReactNode.
     const children: Array<React.ReactNode> = Object.values(
         result,
     ) as Array<any>;

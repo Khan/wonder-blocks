@@ -99,7 +99,7 @@ export default class Row extends React.Component<Props> {
                         // Go through all of the contents and pre-emptively remove anything
                         // that shouldn't be rendered.
                         .filter(
-                            // Flow doesn't let us check .type on a non-null React.Node so
+                            // TypeScript doesn't let us check .type on a non-null React.Node so
                             // we have to cast it to any.
                             (item: any) =>
                                 Cell.isClassOf(item)

@@ -1,6 +1,5 @@
 import * as React from "react";
 import type {ComponentStory, ComponentMeta} from "@storybook/react";
-import {entries} from "@khanacademy/wonder-stuff-core";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -96,10 +95,7 @@ Sizes.parameters = {
 };
 
 export const Variants: StoryComponentType = () => {
-    // TODO(FEI-5018): Replace with Object.entries() after TS migration and get rid of
-    // `any` in callback.  We may need to specify `IconAsset` as a type param.  This
-    // doesn't work with Flow + Storybook for some reason.
-    const iconsWithLabels = entries(icons).map(([name, icon]: [any, any]) => {
+    const iconsWithLabels = Object.entries(icons).map(([name, icon]) => {
         return (
             <tr>
                 <td>

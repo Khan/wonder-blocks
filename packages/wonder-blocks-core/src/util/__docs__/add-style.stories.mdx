@@ -45,10 +45,10 @@ addStyle(
 
 ## API
 
-| Argument | Flow&nbsp;Type | Default | Description |
-| --- | --- | --- | --- |
-| `Component` | `React.Element`, `string` | _Required_ | The component that will be decorated. |
-| `defaultStyle` | `StyleType` | null | The initial styles to be applied. |
+| Argument       | TypeScript&nbsp;Type           | Default    | Description                           |
+| -------------- | ------------------------------ | ---------- | ------------------------------------- |
+| `Component`    | `React.ReactElement`, `string` | _Required_ | The component that will be decorated. |
+| `defaultStyle` | `StyleType`                    | null       | The initial styles to be applied.     |
 
 ## Types
 
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
         background: fade(Color.red, 0.16),
         borderColor: Color.red,
     },
-})
+});
 ```
 
 ### 1. Adding default styles
@@ -149,8 +149,7 @@ export const DynamicStyledInput = () => {
             />
         </View>
     );
-}
-
+};
 
 <Canvas withSource="open">
     <Story name="Adding styles dynamically">
