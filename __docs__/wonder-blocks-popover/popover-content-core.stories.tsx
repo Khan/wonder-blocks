@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -13,7 +13,6 @@ import {
     LabelLarge,
 } from "@khanacademy/wonder-blocks-typography";
 
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
 import {name, version} from "../../packages/wonder-blocks-popover/package.json";
 
@@ -29,9 +28,7 @@ export default {
     component: PopoverContentCore,
     argTypes: popoverContentCoreArgtypes,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -47,7 +44,7 @@ export default {
             <View style={styles.example}>{Story()}</View>
         ),
     ],
-};
+} as ComponentMeta<typeof PopoverContentCore>;
 
 const styles = StyleSheet.create({
     example: {
@@ -86,7 +83,7 @@ const styles = StyleSheet.create({
 
 const Template = (args: any) => <PopoverContentCore {...args} />;
 
-export const WithIcon: StoryComponentType = Template.bind({});
+export const WithIcon: ComponentStory<any> = Template.bind({});
 
 WithIcon.args = {
     children: (
@@ -105,7 +102,7 @@ WithIcon.args = {
 /**
  * Using DetailCell as the content
  */
-export const WithDetailCell: StoryComponentType = Template.bind({});
+export const WithDetailCell: ComponentStory<any> = Template.bind({});
 
 WithDetailCell.args = {
     children: <ClickableDetailCell {...ClickableDetailCell.args} />,
@@ -171,7 +168,7 @@ const CustomPopoverContent = (
     </>
 );
 
-export const Dark: StoryComponentType = Template.bind({});
+export const Dark: ComponentStory<any> = Template.bind({});
 
 Dark.args = {
     children: CustomPopoverContent,

@@ -1,20 +1,19 @@
 import * as React from "react";
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 import {Body} from "@khanacademy/wonder-blocks-typography";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 
 import {View, WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";
 import {name, version} from "../../packages/wonder-blocks-core/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 
+type StoryComponentType = ComponentStory<typeof WithSSRPlaceholder>;
+
 export default {
     title: "Core / WithSSRPlaceholder",
     component: WithSSRPlaceholder,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -42,14 +41,12 @@ export default {
             </View>
         ),
     },
-};
+} as ComponentMeta<typeof WithSSRPlaceholder>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const Default: StoryComponentType = (args) => (
     <WithSSRPlaceholder {...args} />
 );
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const WithoutPlaceholder: StoryComponentType = (args) => (
     // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
     <WithSSRPlaceholder placeholder={null}>

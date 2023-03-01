@@ -1,3 +1,5 @@
+import type {InputType} from "@storybook/csf";
+
 export default {
     id: {
         description: `An optional unique identifier for the TextField.
@@ -31,7 +33,7 @@ export default {
 
     label: {
         description: "Provide a label for the TextField.",
-        type: {required: true},
+        type: {name: "string", required: true},
         table: {
             type: {
                 summary: "React.Node",
@@ -56,7 +58,7 @@ export default {
 
     value: {
         description: "The input value.",
-        type: {required: true},
+        type: {name: "string", required: true},
         table: {
             type: {
                 summary: "string",
@@ -216,7 +218,11 @@ export default {
     onChange: {
         description:
             "Called when the value has changed. Use this in conjunction with the `value` prop to update the string rendered in the input field.",
-        type: {required: true},
+        type: {
+            name: "other",
+            value: "(newValue: string) => mixed",
+            required: true,
+        },
         table: {
             category: "Events",
             type: {
@@ -260,4 +266,4 @@ export default {
             },
         },
     },
-};
+} satisfies Record<string, InputType>;

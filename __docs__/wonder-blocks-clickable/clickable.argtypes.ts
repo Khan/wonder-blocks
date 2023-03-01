@@ -1,3 +1,5 @@
+import type {InputType} from "@storybook/csf";
+
 export default {
     children: {
         description:
@@ -6,6 +8,7 @@ export default {
             type: "text",
         },
         type: {
+            name: "string",
             required: true,
         },
         table: {
@@ -33,6 +36,7 @@ export default {
             "Whether the Clickable is on a dark colored background. Sets the default focus ring color to white, instead of blue. Defaults to false.",
         defaultValue: false,
         type: {
+            name: "boolean",
             required: true,
         },
         table: {
@@ -46,6 +50,7 @@ export default {
         description: "Disables or enables the child; defaults to false",
         defaultValue: false,
         type: {
+            name: "boolean",
             required: true,
         },
         table: {
@@ -77,7 +82,7 @@ export default {
             category: "Styling",
         },
         type: {
-            summary: "string",
+            name: "string",
         },
     },
     style: {
@@ -234,4 +239,4 @@ export default {
             },
         },
     },
-};
+} satisfies Record<string, InputType>;

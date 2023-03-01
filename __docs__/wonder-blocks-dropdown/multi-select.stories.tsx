@@ -1,10 +1,8 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
-
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -23,9 +21,11 @@ import {
 import multiSelectArgtypes from "./base-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 
+type StoryComponentType = ComponentStory<typeof MultiSelect>;
+
 export default {
     title: "Dropdown / MultiSelect",
-    component: MultiSelect,
+    component: MultiSelect as unknown as React.ComponentType<any>,
     argTypes: {
         ...multiSelectArgtypes,
         labels: {
@@ -43,9 +43,7 @@ export default {
         testId: "",
     },
     decorators: [
-        (
-            Story: StoryComponentType,
-        ): React.ReactElement<React.ComponentProps<typeof View>> => (
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.example}>
                 <Story />
             </View>
@@ -65,7 +63,7 @@ export default {
             },
         },
     },
-};
+} satisfies ComponentMeta<typeof MultiSelect>;
 
 const styles = StyleSheet.create({
     example: {
@@ -160,14 +158,15 @@ const Template = (args: any) => {
 
 export const Default: StoryComponentType = Template.bind({});
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const ControlledOpened: StoryComponentType = (args) => {
-    const [selectedValues, setSelectedValues] = React.useState([]);
-    const [opened, setOpened] = React.useState(args.opened);
+    const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
+        [],
+    );
+    const [opened, setOpened] = React.useState(Boolean(args.opened));
     React.useEffect(() => {
         // Only update opened if the args.opened prop changes (using the
         // controls panel).
-        setOpened(args.opened);
+        setOpened(Boolean(args.opened));
     }, [args.opened]);
 
     return (
@@ -176,7 +175,7 @@ export const ControlledOpened: StoryComponentType = (args) => {
             <MultiSelect
                 {...args}
                 onChange={setSelectedValues}
-                selectedValue={selectedValues}
+                selectedValues={selectedValues}
                 opened={opened}
                 onToggle={setOpened}
             >
@@ -205,7 +204,8 @@ ControlledOpened.parameters = {
 };
 
 // Custom MultiSelect labels
-const dropdownLabels: Partial<Labels> = {
+const dropdownLabels: Labels = {
+    ...defaultLabels,
     noneSelected: "Solar system",
     someSelected: (numSelectedValues) => `${numSelectedValues} planets`,
 };
@@ -270,9 +270,10 @@ Shortcuts.parameters = {
 /**
  * In a Modal
  */
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const DropdownInModal: StoryComponentType = (args) => {
-    const [selectedValues, setSelectedValues] = React.useState([]);
+    const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
+        [],
+    );
     const [opened, setOpened] = React.useState(true);
 
     const modalContent = (
@@ -349,7 +350,7 @@ export const ImplicitAllEnabled: StoryComponentType = Template.bind({});
 ImplicitAllEnabled.args = {
     implicitAllEnabled: true,
     labels: {
-        // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'numSelectedValues' implicitly has an 'any' type.
+        ...defaultLabels,
         someSelected: (numSelectedValues) => `${numSelectedValues} fruits`,
         allSelected: "All planets selected",
     },
@@ -432,8 +433,7 @@ VirtualizedFilterable.parameters = {
 export const CustomOpener: StoryComponentType = Template.bind({});
 
 CustomOpener.args = {
-    selectedValue: "",
-    // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'focused' implicitly has an 'any' type. | TS7031 - Binding element 'hovered' implicitly has an 'any' type. | TS7031 - Binding element 'pressed' implicitly has an 'any' type. | TS7031 - Binding element 'text' implicitly has an 'any' type.
+    selectedValues: [],
     opener: ({focused, hovered, pressed, text}) => (
         <HeadingLarge
             onClick={() => {

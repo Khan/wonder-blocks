@@ -1,22 +1,21 @@
 import * as React from "react";
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 import {Body, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {name, version} from "../../packages/wonder-blocks-tooltip/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 
+type StoryComponentType = ComponentStory<typeof TooltipContent>;
+
 export default {
     title: "Tooltip / TooltipContent",
     component: TooltipContent,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
     },
-};
+} as ComponentMeta<typeof TooltipContent>;
 
 const Template = (args: any) => <TooltipContent {...args} />;
 

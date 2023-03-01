@@ -1,3 +1,5 @@
+import type {InputType} from "@storybook/csf";
+
 export default {
     modal: {
         control: {type: null},
@@ -16,7 +18,11 @@ export default {
                     "ModalElement | (({|closeModal: () => void|}) => ModalElement)",
             },
         },
-        type: {required: true},
+        type: {
+            name: "other",
+            value: "ModalElement | (({|closeModal: () => void|}) => ModalElement)",
+            required: true,
+        },
     },
 
     backdropDismissEnabled: {
@@ -79,4 +85,4 @@ export default {
             type: {summary: "() => mixed"},
         },
     },
-};
+} satisfies Record<string, InputType>;

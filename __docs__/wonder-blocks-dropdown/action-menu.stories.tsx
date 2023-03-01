@@ -1,9 +1,7 @@
 /* eslint-disable no-console */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -42,23 +40,20 @@ const defaultArgs: ActionMenuProps = {
 
 export default {
     title: "Dropdown / ActionMenu",
-    component: ActionMenu,
+    // TODO(FEI-5000): Fix this type.
+    component: ActionMenu as unknown as React.ComponentType<any>,
     subcomponents: {ActionItem},
     argTypes: actionMenuArgtypes,
     args: defaultArgs,
     decorators: [
-        (
-            Story: StoryComponentType,
-        ): React.ReactElement<React.ComponentProps<typeof View>> => (
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.example}>
                 <Story />
             </View>
         ),
     ],
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -69,7 +64,7 @@ export default {
             },
         },
     },
-};
+} as ComponentMeta<typeof ActionMenu>;
 
 const styles = StyleSheet.create({
     example: {
@@ -154,6 +149,8 @@ const Template = (args: any) => (
     </ActionMenu>
 );
 
+type StoryComponentType = ComponentStory<typeof ActionMenu>;
+
 export const Default: StoryComponentType = Template.bind({});
 
 Default.parameters = {
@@ -167,7 +164,6 @@ Default.parameters = {
 /**
  * Right-aligned action menu.
  */
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const RightAligned: StoryComponentType = (args) => (
     <ActionMenu {...args} alignment="right">
         {actionItems.map((actionItem, index) => actionItem)}
@@ -369,7 +365,6 @@ Controlled.parameters = {
 export const CustomOpener: StoryComponentType = Template.bind({});
 
 CustomOpener.args = {
-    // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'focused' implicitly has an 'any' type. | TS7031 - Binding element 'hovered' implicitly has an 'any' type. | TS7031 - Binding element 'pressed' implicitly has an 'any' type. | TS7031 - Binding element 'text' implicitly has an 'any' type.
     opener: ({focused, hovered, pressed, text}) => (
         <LabelLarge
             onClick={() => {

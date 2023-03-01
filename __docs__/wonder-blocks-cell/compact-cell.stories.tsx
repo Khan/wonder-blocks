@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -16,14 +15,14 @@ import {CompactCell} from "@khanacademy/wonder-blocks-cell";
 import ComponentInfo from "../../.storybook/components/component-info";
 import CompactCellArgTypes, {AccessoryMappings} from "./compact-cell.argtypes";
 
+type StoryComponentType = ComponentStory<typeof CompactCell>;
+
 export default {
     title: "Cell / CompactCell",
     component: CompactCell,
     argTypes: CompactCellArgTypes,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -35,11 +34,11 @@ export default {
         },
     },
     decorators: [
-        (Story: any): React.ReactElement => (
+        (Story): React.ReactElement => (
             <View style={styles.example}>{Story()}</View>
         ),
     ],
-};
+} as ComponentMeta<typeof CompactCell>;
 
 /**
  * Default CompactCell example. It will be rendered as the first/default story and
@@ -81,7 +80,6 @@ CompactCellLeft.parameters = {
 /**
  * Only including an accessory on the right.
  */
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const CompactCellRight: StoryComponentType = (args) => (
     <CompactCell
         title="Intro to rational & irrational numbers"
@@ -99,7 +97,6 @@ CompactCellRight.parameters = {
 /**
  * Adding multiline title to verify that the cell's height is correct.
  */
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const CompactCellWithDifferentHeights: StoryComponentType = (args) => (
     <>
         <CompactCell

@@ -1,10 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
-import type {StoryComponentType} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
 import {name, version} from "../../packages/wonder-blocks-toolbar/package.json";
@@ -15,14 +14,14 @@ import ToolbarArgtypes, {
     rightContentMappings,
 } from "./toolbar.argtypes";
 
+type StoryComponentType = ComponentStory<typeof Toolbar>;
+
 export default {
     title: "Toolbar / Toolbar",
     component: Toolbar,
     argTypes: ToolbarArgtypes,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -38,7 +37,7 @@ export default {
             <View style={styles.example}>{Story()}</View>
         ),
     ],
-};
+} as ComponentMeta<typeof Toolbar>;
 
 const styles = StyleSheet.create({
     example: {

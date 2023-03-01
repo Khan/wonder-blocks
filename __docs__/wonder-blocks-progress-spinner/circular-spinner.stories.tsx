@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet, css} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -39,9 +38,10 @@ export default {
             </View>
         ),
     ],
-};
+} as ComponentMeta<typeof CircularSpinner>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof CircularSpinner>;
+
 export const Default: StoryComponentType = (args) => (
     <CircularSpinner {...args} />
 );

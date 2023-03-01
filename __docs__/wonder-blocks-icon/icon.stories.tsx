@@ -1,6 +1,5 @@
 import * as React from "react";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 import {entries} from "@khanacademy/wonder-stuff-core";
 
 import Color from "@khanacademy/wonder-blocks-color";
@@ -16,9 +15,7 @@ export default {
     title: "Icon / Icon",
     component: Icon,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
     },
     argTypes: {
         icon: {
@@ -28,9 +25,10 @@ export default {
             options: ["small", "medium", "large", "xlarge"],
         },
     },
-};
+} as ComponentMeta<typeof Icon>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof Icon>;
+
 export const Default: StoryComponentType = (args) => {
     return <Icon {...args} />;
 };

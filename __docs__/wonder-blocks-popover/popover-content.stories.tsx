@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -16,12 +15,10 @@ import PopoverContentArgtypes from "./popover-content.argtypes";
 
 export default {
     title: "Popover/PopoverContent",
-    component: PopoverContent,
+    component: PopoverContent as unknown as React.ComponentType<any>,
     argTypes: PopoverContentArgtypes,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -33,11 +30,11 @@ export default {
         },
     },
     decorators: [
-        (Story: any): React.ReactElement<React.ComponentProps<typeof View>> => (
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.example}>{Story()}</View>
         ),
     ],
-};
+} as ComponentMeta<typeof PopoverContent>;
 
 const styles = StyleSheet.create({
     example: {
@@ -51,7 +48,7 @@ const styles = StyleSheet.create({
 
 const Template = (args: any) => <PopoverContent {...args} />;
 
-export const Default: StoryComponentType = Template.bind({});
+export const Default: ComponentStory<any> = Template.bind({});
 
 Default.args = {
     title: "A simple popover",
@@ -67,7 +64,7 @@ Default.parameters = {
     },
 };
 
-export const Emphasized: StoryComponentType = Template.bind({});
+export const Emphasized: ComponentStory<any> = Template.bind({});
 
 Emphasized.args = {
     title: "Popover with emphasis",
@@ -96,7 +93,7 @@ Emphasized.parameters = {
     },
 };
 
-export const WithIcon: StoryComponentType = Template.bind({});
+export const WithIcon: ComponentStory<any> = Template.bind({});
 
 WithIcon.args = {
     title: "Popover with Icon",
@@ -111,7 +108,7 @@ WithIcon.parameters = {
     },
 };
 
-export const WithIllustration: StoryComponentType = Template.bind({});
+export const WithIllustration: ComponentStory<any> = Template.bind({});
 
 WithIllustration.args = {
     title: "Popover with Illustration",

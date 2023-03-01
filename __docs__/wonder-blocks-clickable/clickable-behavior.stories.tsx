@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -26,9 +25,7 @@ export default {
         disabled: false,
     },
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -39,9 +36,10 @@ export default {
             },
         },
     },
-};
+} as ComponentMeta<typeof ClickableBehavior>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof ClickableBehavior>;
+
 export const Default: StoryComponentType = (args) => {
     const ClickableBehavior = getClickableBehavior();
 
@@ -75,7 +73,6 @@ Default.parameters = {
     },
 };
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const WrappingButton: StoryComponentType = (args) => {
     const ClickableBehavior = getClickableBehavior();
     const StyledButton = addStyle("button");

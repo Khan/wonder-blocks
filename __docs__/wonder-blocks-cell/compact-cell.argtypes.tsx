@@ -1,4 +1,5 @@
 import * as React from "react";
+import type {InputType} from "@storybook/csf";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import {LabelSmall, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
@@ -34,7 +35,14 @@ export default {
     title: {
         description:
             "The title / main content of the cell. You can either provide a string or a Typography component. If a string is provided, typography defaults to `LabelLarge`.",
-        type: {required: true},
+        type: {
+            name: "union",
+            value: [
+                {name: "string"},
+                {name: "other", value: "React.ReactElement<Typography>"},
+            ],
+            required: true,
+        },
         table: {
             type: {
                 summary: "TypographyText",
@@ -185,4 +193,4 @@ export default {
             },
         },
     },
-};
+} satisfies Record<string, InputType>;

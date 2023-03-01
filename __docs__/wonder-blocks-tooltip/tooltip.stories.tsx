@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {within, userEvent} from "@storybook/testing-library";
 import {expect} from "@storybook/jest";
@@ -20,27 +19,38 @@ import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import {name, version} from "../../packages/wonder-blocks-tooltip/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import TooltipArgtypes from "./tooltip.argtypes";
+
+type StoryComponentType = ComponentStory<typeof Tooltip>;
 
 export default {
     title: "Tooltip / Tooltip",
-    component: Tooltip,
-    argTypes: TooltipArgtypes,
+    component: Tooltip as unknown as React.ComponentType<any>,
+    argTypes: {
+        placement: {
+            control: {
+                type: "select",
+                options: ["top", "bottom", "right", "left"],
+            },
+        },
+        title: {
+            control: {
+                type: "text",
+            },
+        },
+    },
     args: {
         forceAnchorFocusivity: true,
         placement: "top",
     },
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
     },
     decorators: [
-        (Story: any): React.ReactElement => (
+        (Story): React.ReactElement => (
             <View style={styles.storyCanvas}>{Story()}</View>
         ),
     ],
-};
+} as ComponentMeta<typeof Tooltip>;
 
 const Template = (args: any) => <Tooltip {...args} />;
 
@@ -54,7 +64,6 @@ Default.args = {
     children: "some text",
 };
 
-// @ts-expect-error [FEI-5019] - TS7031 - Binding element 'canvasElement' implicitly has an 'any' type.
 Default.play = async ({canvasElement}) => {
     // Arrange
     // NOTE: Using `body` here to work with React Portals.
@@ -95,7 +104,6 @@ ComplexAnchorAndTitle.args = {
     ),
 };
 
-// @ts-expect-error [FEI-5019] - TS7031 - Binding element 'canvasElement' implicitly has an 'any' type.
 ComplexAnchorAndTitle.play = async ({canvasElement}) => {
     // Arrange
     // NOTE: Using `body` here to work with React Portals.

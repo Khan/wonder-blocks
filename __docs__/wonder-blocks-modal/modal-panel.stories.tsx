@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -96,9 +95,7 @@ export default {
     title: "Modal/Building Blocks/ModalPanel",
     component: ModalPanel,
     decorators: [
-        (
-            Story: StoryComponentType,
-        ): React.ReactElement<React.ComponentProps<typeof View>> => (
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
                     <Story />
@@ -107,9 +104,7 @@ export default {
         ),
     ],
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -143,12 +138,14 @@ export default {
             control: {type: null},
         },
     },
-};
+} as ComponentMeta<typeof ModalPanel>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof ModalPanel>;
+
 export const Default: StoryComponentType = (args) => (
     <ModalDialog aria-labelledby="modal-title-0" style={styles.dialog}>
         <ModalPanel
+            // @ts-expect-error: args.content may override this prop when specified
             content={
                 <>
                     <Title id="modal-title-0">Modal Title</Title>

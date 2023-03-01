@@ -1,3 +1,5 @@
+import type {InputType} from "@storybook/csf";
+
 export default {
     alignment: {
         table: {
@@ -47,4 +49,4 @@ export default {
             category: "Styling",
         },
     },
-};
+} satisfies Record<string, InputType>;

@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -15,6 +14,8 @@ import Banner from "@khanacademy/wonder-blocks-banner";
 import BannerArgTypes from "./banner.argtypes";
 import ComponentInfo from "../../.storybook/components/component-info";
 import {name, version} from "../../packages/wonder-blocks-banner/package.json";
+
+type StoryComponentType = ComponentStory<typeof Banner>;
 
 const bannerDescription = `
 Banner. A banner displays a prominent message and
@@ -47,18 +48,14 @@ export default {
     title: "Banner",
     component: Banner,
     decorators: [
-        (
-            Story: StoryComponentType,
-        ): React.ReactElement<React.ComponentProps<typeof View>> => (
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.example}>
                 <Story />
             </View>
         ),
     ],
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: bannerDescription,
@@ -70,9 +67,8 @@ export default {
         },
     },
     argTypes: BannerArgTypes,
-};
+} as ComponentMeta<typeof Banner>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const Default: StoryComponentType = (args) => <Banner {...args} />;
 
 Default.args = {

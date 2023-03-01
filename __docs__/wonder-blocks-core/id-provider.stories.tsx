@@ -1,6 +1,5 @@
 import * as React from "react";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {IDProvider, View} from "@khanacademy/wonder-blocks-core";
 import {name, version} from "../../packages/wonder-blocks-core/package.json";
@@ -16,9 +15,7 @@ export default {
         testId: "",
     },
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -29,10 +26,11 @@ export default {
             },
         },
     },
-    decorators: [(Story: any): React.ReactElement => <View>{Story()}</View>],
-};
+    decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
+} as ComponentMeta<typeof IDProvider>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof IDProvider>;
+
 export const Default: StoryComponentType = (args) => (
     <IDProvider {...args}>
         {(uniqueId) => (

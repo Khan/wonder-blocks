@@ -6,8 +6,7 @@ import * as React from "react";
 import {within, userEvent, fireEvent} from "@storybook/testing-library";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -28,17 +27,16 @@ export default {
     title: "Link",
     component: Link,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
     },
     argTypes: LinkArgTypes,
-};
+} as ComponentMeta<typeof Link>;
 
 const activeBlue = "#1b50b3";
 const fadedBlue = "#b5cefb";
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof Link>;
+
 export const Default: StoryComponentType = (args) => (
     <Link target="_blank" {...args} />
 );
@@ -59,7 +57,6 @@ Primary.parameters = {
     },
 };
 
-// @ts-expect-error [FEI-5019] - TS7031 - Binding element 'canvasElement' implicitly has an 'any' type.
 Primary.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
@@ -91,7 +88,6 @@ Secondary.parameters = {
     },
 };
 
-// @ts-expect-error [FEI-5019] - TS7031 - Binding element 'canvasElement' implicitly has an 'any' type.
 Secondary.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
@@ -142,7 +138,6 @@ LightPrimary.parameters = {
     },
 };
 
-// @ts-expect-error [FEI-5019] - TS7031 - Binding element 'canvasElement' implicitly has an 'any' type.
 LightPrimary.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
@@ -204,7 +199,6 @@ Inline.parameters = {
     },
 };
 
-// @ts-expect-error [FEI-5019] - TS7031 - Binding element 'canvasElement' implicitly has an 'any' type.
 Inline.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
@@ -265,7 +259,6 @@ InlineLight.parameters = {
     },
 };
 
-// @ts-expect-error [FEI-5019] - TS7031 - Binding element 'canvasElement' implicitly has an 'any' type.
 InlineLight.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
@@ -388,7 +381,6 @@ WithTypography.parameters = {
     },
 };
 
-// @ts-expect-error [FEI-5019] - TS7031 - Binding element 'canvasElement' implicitly has an 'any' type.
 WithTypography.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 

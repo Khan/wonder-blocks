@@ -1,8 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -18,11 +17,10 @@ import DetailCellArgTypes from "./detail-cell.argtypes";
 export default {
     title: "Cell / DetailCell",
     component: DetailCell,
-    argTypes: DetailCellArgTypes,
+    // TODO(FEI-5000):
+    argTypes: DetailCellArgTypes as any,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -34,17 +32,19 @@ export default {
         },
     },
     decorators: [
-        (Story: any): React.ReactElement => (
+        (Story): React.ReactElement => (
             <View style={styles.example}>{Story()}</View>
         ),
     ],
-};
+} as ComponentMeta<typeof DetailCell>;
 
 /**
  * Default DetailCell example. It will be rendered as the first/default story and
  * it can be interacted with the controls panel in the Browser.
  */
 const Template = (args: any) => <DetailCell {...args} />;
+
+type StoryComponentType = ComponentStory<typeof DetailCell>;
 
 export const DefaultDetailCell: StoryComponentType = Template.bind({});
 
@@ -127,7 +127,7 @@ DetailCellWithCustomStyles.parameters = {
     },
 };
 
-export const ClickableDetailCell: StoryComponentType = () => (
+export const ClickableDetailCell: ComponentStory<any> = () => (
     <DetailCell
         title="Title for article item"
         subtitle1="Subtitle for article item"

@@ -1,8 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -28,13 +27,12 @@ export default {
     title: "Layout / MediaLayout (Deprecated)",
     component: MediaLayout,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
     },
-};
+} as ComponentMeta<typeof MediaLayout>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof MediaLayout>;
+
 export const Default: StoryComponentType = (args) => (
     <MediaLayout {...args}>
         {({mediaSize, mediaSpec, styles}) => {
@@ -96,7 +94,6 @@ export const ScreenSizeStyles: StoryComponentType = () => {
     } as const;
 
     return (
-        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
         <MediaLayout styleSheets={styleSheets}>
             {({mediaSize, mediaSpec, styles}) => {
                 return <View style={styles.test}>Hello, world!</View>;
@@ -216,7 +213,6 @@ export const CustomSpec: StoryComponentType = () => {
 
     return (
         <MediaLayoutContext.Provider value={contextValue}>
-            {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
             <MediaLayout styleSheets={styleSheets}>
                 {({mediaSize, styles}) => {
                     const HeadingComponent =

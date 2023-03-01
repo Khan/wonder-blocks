@@ -1,6 +1,5 @@
 import * as React from "react";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -21,9 +20,7 @@ export default {
         mockOnFirstRender: false,
     },
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -34,8 +31,8 @@ export default {
             },
         },
     },
-    decorators: [(Story: any): React.ReactElement => <View>{Story()}</View>],
-};
+    decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
+} as ComponentMeta<typeof UniqueIDProvider>;
 
 const Template = (args: any) => {
     const [count, setCount] = React.useState(0);
@@ -68,6 +65,8 @@ const Template = (args: any) => {
         </View>
     );
 };
+
+type StoryComponentType = ComponentStory<typeof UniqueIDProvider>;
 
 export const Default: StoryComponentType = Template.bind({});
 

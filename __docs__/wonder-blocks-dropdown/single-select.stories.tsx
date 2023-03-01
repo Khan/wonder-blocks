@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -11,8 +11,6 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {OnePaneDialog, ModalLauncher} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, HeadingLarge} from "@khanacademy/wonder-blocks-typography";
-
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import {
@@ -31,9 +29,11 @@ import ComponentInfo from "../../.storybook/components/component-info";
 import singleSelectArgtypes from "./base-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 
+type StoryComponentType = ComponentStory<typeof SingleSelect>;
+
 export default {
     title: "Dropdown / SingleSelect",
-    component: SingleSelect,
+    component: SingleSelect as unknown as React.ComponentType<any>,
     subcomponents: {OptionItem, SeparatorItem},
     argTypes: {
         ...singleSelectArgtypes,
@@ -50,14 +50,12 @@ export default {
         selectedValue: "",
     },
     decorators: [
-        (Story: any): React.ReactElement<React.ComponentProps<typeof View>> => (
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.example}>{Story()}</View>
         ),
     ],
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -68,7 +66,7 @@ export default {
             },
         },
     },
-};
+} as ComponentMeta<typeof SingleSelect>;
 
 const styles = StyleSheet.create({
     example: {
@@ -184,7 +182,6 @@ export const Default: StoryComponentType = Template.bind({});
 /**
  * Controlled SingleSelect
  */
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const ControlledOpened: StoryComponentType = (args) => {
     const [selectedValue, setSelectedValue] = React.useState("pear");
     const [opened, setOpened] = React.useState(args.opened);
@@ -230,7 +227,6 @@ ControlledOpened.parameters = {
 /**
  * Disabled
  */
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const Disabled: StoryComponentType = (args) => (
     <SingleSelect
         {...args}
@@ -253,7 +249,6 @@ Disabled.parameters = {
 /**
  * TwoWithText
  */
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const TwoWithText: StoryComponentType = (args) => {
     const [selectedValue, setSelectedValue] = React.useState(
         args.selectedValue,
@@ -308,7 +303,6 @@ TwoWithText.parameters = {
 /**
  * On dark background, right-aligned
  */
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const Light: StoryComponentType = (args) => {
     const [selectedValue, setSelectedValue] = React.useState("pear");
 
@@ -509,7 +503,6 @@ export const CustomOpener: StoryComponentType = Template.bind({});
 
 CustomOpener.args = {
     selectedValue: "",
-    // @ts-expect-error [FEI-5019] - TS7031 - Binding element 'focused' implicitly has an 'any' type. | TS7031 - Binding element 'hovered' implicitly has an 'any' type. | TS7031 - Binding element 'pressed' implicitly has an 'any' type. | TS7031 - Binding element 'text' implicitly has an 'any' type.
     opener: ({focused, hovered, pressed, text}) => (
         <HeadingLarge
             onClick={() => {

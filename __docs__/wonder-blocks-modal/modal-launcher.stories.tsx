@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -73,18 +72,14 @@ export default {
     title: "Modal/ModalLauncher",
     component: ModalLauncher,
     decorators: [
-        (
-            Story: StoryComponentType,
-        ): React.ReactElement<React.ComponentProps<typeof View>> => (
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.example}>
                 <Story />
             </View>
         ),
     ],
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -103,11 +98,16 @@ export default {
         },
     },
     argTypes: ModalLauncherArgTypes,
-};
+} satisfies ComponentMeta<typeof ModalLauncher>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof ModalLauncher>;
+
 export const Default: StoryComponentType = (args) => (
-    <ModalLauncher modal={DefaultModal} {...args}>
+    <ModalLauncher
+        // @ts-expect-error: args.modal may override this prop when specified
+        modal={DefaultModal}
+        {...args}
+    >
         {({openModal}) => (
             <Button onClick={openModal}>Click me to open the modal</Button>
         )}

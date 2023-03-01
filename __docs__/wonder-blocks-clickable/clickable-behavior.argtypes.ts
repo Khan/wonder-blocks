@@ -1,3 +1,5 @@
+import type {InputType} from "@storybook/csf";
+
 import clickableArgtypes from "./clickable.argtypes";
 
 export default {
@@ -5,6 +7,8 @@ export default {
         description:
             "A function that returns the a React `Element`. The function is passed an object with three boolean properties: hovered, focused, and pressed, and a `childrenProps` argument that contains all the event handlers that should be passed to the React `Element` itself.",
         type: {
+            name: "other",
+            value: "(state: ClickableState, childrenProps: ChildrenProps) => React.Node",
             required: true,
         },
         table: {
@@ -61,4 +65,4 @@ export default {
      * Accessibility
      */
     role: clickableArgtypes.role,
-};
+} satisfies Record<string, InputType>;

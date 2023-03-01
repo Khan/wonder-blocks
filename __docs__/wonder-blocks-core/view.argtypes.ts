@@ -1,7 +1,9 @@
+import type {InputType} from "@storybook/csf";
+
 export default {
     children: {
         description: "The content of the `View` element.",
-        type: {required: true},
+        type: {name: "other", value: "React.ReactNode", required: true},
     },
 
     tag: {
@@ -54,4 +56,4 @@ export default {
             },
         },
     },
-};
+} satisfies Record<string, InputType>;

@@ -1,3 +1,5 @@
+import type {InputType} from "@storybook/csf";
+
 import * as React from "react";
 
 const actionsMappings = {
@@ -38,7 +40,11 @@ export default {
             type: {summary: `"info" | "success" | "warning" | "critical"`},
             defaultValue: {summary: `"info"`},
         },
-        type: {required: false},
+        type: {
+            name: "enum",
+            value: ["info", "success", "warning", "critical"],
+            required: false,
+        },
     },
     layout: {
         control: {type: "select"},
@@ -47,14 +53,21 @@ export default {
         table: {
             type: {summary: `"floating" | "full-width"`},
         },
-        type: {required: true},
+        type: {name: "enum", value: ["floating", "full-width"], required: true},
     },
     text: {
         control: {type: "text"},
         description:
             "Text on the banner (LabelSmall) or a node if you want something different.",
         table: {type: {summary: "string | React.Node"}},
-        type: {required: true},
+        type: {
+            name: "union",
+            value: [
+                {name: "string"},
+                {name: "other", value: "React.ReactNode"},
+            ],
+            required: true,
+        },
     },
     actions: {
         control: {type: "select"},
@@ -87,7 +100,7 @@ export default {
             type: {summary: "string"},
             defaultValue: {summary: `"Dismiss banner."`},
         },
-        type: {required: false},
+        type: {name: "string", required: false},
     },
     "aria-label": {
         control: {type: "text"},
@@ -96,6 +109,6 @@ export default {
         table: {
             type: {summary: "string"},
         },
-        type: {required: false},
+        type: {name: "string", required: false},
     },
-};
+} satisfies Record<string, InputType>;

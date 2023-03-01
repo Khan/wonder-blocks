@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -28,9 +27,10 @@ export default {
             },
         },
     },
-};
+} as ComponentMeta<typeof Strut>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof Strut>;
+
 export const Default: StoryComponentType = (args) => (
     <View style={styles.row}>
         <Button>Hello, world!</Button>
@@ -44,7 +44,6 @@ Default.args = {size: Spacing.xxxLarge_64, style: {}};
 const smallSize = Spacing.medium_16;
 const largeSize = Spacing.xxxLarge_64;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const Simple: StoryComponentType = (args) => (
     <View style={styles.column}>
         <View style={styles.row}>

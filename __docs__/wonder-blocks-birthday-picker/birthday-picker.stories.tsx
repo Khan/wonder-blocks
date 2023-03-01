@@ -1,6 +1,5 @@
 import * as React from "react";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 
@@ -14,14 +13,14 @@ import ComponentInfo from "../../.storybook/components/component-info";
 
 import ArgTypes from "./birthday-picker.argtypes";
 
+type StoryComponentType = ComponentStory<typeof BirthdayPicker>;
+
 export default {
     title: "BirthdayPicker",
     component: BirthdayPicker,
     argTypes: ArgTypes,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -32,8 +31,8 @@ export default {
             },
         },
     },
-    decorators: [(Story: any): React.ReactElement => <View>{Story()}</View>],
-};
+    decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
+} as ComponentMeta<typeof BirthdayPicker>;
 
 /**
  * Default BirthdayPicker example. It will be rendered as the first/default

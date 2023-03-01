@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -94,9 +93,7 @@ export default {
     title: "Modal/Building Blocks/ModalFooter",
     component: ModalFooter,
     decorators: [
-        (
-            Story: StoryComponentType,
-        ): React.ReactElement<React.ComponentProps<typeof View>> => (
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.previewSizer}>
                 <View style={styles.modalPositioner}>
                     <Story />
@@ -105,9 +102,7 @@ export default {
         ),
     ],
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -130,9 +125,10 @@ export default {
             control: {type: null},
         },
     },
-};
+} as ComponentMeta<typeof ModalFooter>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof ModalFooter>;
+
 export const Default: StoryComponentType = (args) => (
     <ModalDialog aria-labelledby={"modal-id-0"} style={styles.dialog}>
         <ModalPanel

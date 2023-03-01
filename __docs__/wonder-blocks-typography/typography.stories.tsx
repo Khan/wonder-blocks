@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -49,9 +48,7 @@ import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 export default {
     title: "Typography",
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {component: typographyDescription},
             source: {
@@ -60,18 +57,20 @@ export default {
             },
         },
     },
-    argTypes: TypographyArgTypes,
-};
+    // TODO(FEI-5000): Inline this
+    argTypes: TypographyArgTypes as any,
+} as ComponentMeta<typeof ComponentInfo>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
-export const ControlProps: StoryComponentType = (args) => <Title {...args} />;
+export const ControlProps: ComponentStory<typeof Title> = (args) => (
+    <Title {...args} />
+);
 
 ControlProps.args = {
     children: "This is a Title typography element",
     id: "example-title",
 };
 
-export const TypographyElements: StoryComponentType = () => (
+export const TypographyElements: ComponentStory<any> = () => (
     <View>
         <Title>Title</Title>
         <HeadingLarge>HeadingLarge</HeadingLarge>
@@ -99,7 +98,7 @@ TypographyElements.parameters = {
     },
 };
 
-export const WithStyle: StoryComponentType = () => {
+export const WithStyle: ComponentStory<typeof Title> = () => {
     const styles = StyleSheet.create({
         blueText: {
             color: Color.blue,
@@ -116,7 +115,7 @@ WithStyle.parameters = {
     },
 };
 
-export const LatoForLatin: StoryComponentType = () => (
+export const LatoForLatin: ComponentStory<any> = () => (
     <View>
         <Title>
             Для каждого ученика, независимо от возраста. Реальные результаты!
@@ -176,7 +175,7 @@ LatoForLatin.parameters = {
     },
 };
 
-export const LatoForLatinExtended: StoryComponentType = () => (
+export const LatoForLatinExtended: ComponentStory<any> = () => (
     <View>
         <Title>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</Title>
         <HeadingLarge>
@@ -230,7 +229,7 @@ LatoForLatinExtended.parameters = {
     },
 };
 
-export const NotoForNonLatin: StoryComponentType = () => {
+export const NotoForNonLatin: ComponentStory<any> = () => {
     const languages = {
         Arabic: {text: "مرحبا", dir: "rtl"},
         Armenian: {text: "Բարեւ"},
@@ -299,7 +298,7 @@ NotoForNonLatin.parameters = {
     },
 };
 
-export const CodeFont: StoryComponentType = () => {
+export const CodeFont: ComponentStory<typeof BodyMonospace> = () => {
     const Code = ({children}: {children: React.ReactNode}) => (
         <BodyMonospace>{children}</BodyMonospace>
     );
@@ -315,7 +314,7 @@ CodeFont.parameters = {
     },
 };
 
-export const Paragraph: StoryComponentType = () => {
+export const Paragraph: ComponentStory<typeof Body> = () => {
     const longParagraph = `This is an example of a long paragraph.
         Khan Academy offers practice exercises, instructional videos,
         and a personalized learning dashboard that empower learners
@@ -335,7 +334,7 @@ Paragraph.parameters = {
     },
 };
 
-export const LineHeight: StoryComponentType = () => {
+export const LineHeight: ComponentStory<any> = () => {
     const style = {
         outline: `1px solid ${Color.offBlack}`,
         marginBottom: Spacing.small_12,

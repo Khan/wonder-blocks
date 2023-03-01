@@ -2,8 +2,7 @@ import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {withDesign} from "storybook-addon-designs";
 import {action} from "@storybook/addon-actions";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
@@ -17,24 +16,24 @@ import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {name, version} from "../../packages/wonder-blocks-button/package.json";
-
 import ComponentInfo from "../../.storybook/components/component-info";
+
 import ButtonArgTypes from "./button.argtypes";
 
 export default {
     title: "Button",
     component: Button,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
     },
     decorators: [withDesign],
     argTypes: ButtonArgTypes,
     excludeStories: ["styles"],
-};
+} as ComponentMeta<typeof Button>;
 
 const Template = (args: any) => <Button {...args} />;
+
+type StoryComponentType = ComponentStory<typeof Button>;
 
 export const Default: StoryComponentType = Template.bind({});
 

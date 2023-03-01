@@ -1,8 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -14,9 +13,10 @@ export default {
     component: SearchField,
     title: "Search Field/SearchField",
     args: {disabled: false, placeholder: "Placeholder"},
-};
+} as ComponentMeta<typeof SearchField>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof SearchField>;
+
 export const Default: StoryComponentType = (args) => {
     const [value, setValue] = React.useState("");
 
@@ -32,7 +32,9 @@ export const Default: StoryComponentType = (args) => {
 
     return (
         <SearchField
+            // @ts-expect-error: args.value may override this prop when specified
             value={value}
+            // @ts-expect-error: args.onChange may override this prop when specified
             onChange={handleChange}
             onKeyDown={(e) => {
                 action("onKeyDown")(e);

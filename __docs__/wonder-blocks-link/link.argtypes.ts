@@ -1,24 +1,26 @@
+import type {InputType} from "@storybook/csf";
+
 export default {
     children: {
         control: {type: "text"},
         description:
             "Text to appear on the link. It can be a plain text or Typography element.",
         table: {type: {summary: "string | React.Element<Typography>"}},
-        type: {required: true},
+        type: {name: "string", required: true},
     },
 
     href: {
         control: {type: "text"},
         description: "URL to navigate to.",
         table: {type: {summary: "string"}},
-        type: {required: true},
+        type: {name: "string", required: true},
     },
 
     id: {
         control: {type: "text"},
         description: "An optional id attribute.",
         table: {type: {summary: "string"}},
-        type: {required: false},
+        type: {name: "string", required: false},
     },
 
     inline: {
@@ -27,7 +29,7 @@ export default {
             This styles the link with an underline to distinguish it
             from surrounding text.`,
         table: {type: {summary: "boolean"}},
-        type: {required: false},
+        type: {name: "boolean", required: false},
     },
 
     kind: {
@@ -38,7 +40,7 @@ export default {
         table: {
             type: {summary: `"primary" | "secondary"`},
         },
-        type: {required: false},
+        type: {name: "enum", value: ["primary", "secondary"], required: false},
     },
 
     light: {
@@ -162,4 +164,4 @@ export default {
             type: {summary: "(e: SyntheticKeyboardEvent<>) => mixed"},
         },
     },
-};
+} satisfies Record<string, InputType>;

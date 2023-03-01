@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {View, Text as _Text} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -19,14 +18,13 @@ export default {
     title: "Form / TextField",
     component: TextField,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
     },
     argTypes: TextFieldArgTypes,
-};
+} as ComponentMeta<typeof TextField>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof TextField>;
+
 export const Default: StoryComponentType = (args) => {
     return <TextField {...args} />;
 };
@@ -42,7 +40,7 @@ Default.args = {
     testId: "",
     readOnly: false,
     autoComplete: "off",
-    validate: () => {},
+    validate: () => undefined,
     onValidate: () => {},
     onChange: () => {},
     onKeyDown: () => {},

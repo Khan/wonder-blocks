@@ -1,8 +1,7 @@
 /* eslint-disable no-alert */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {
     Breadcrumbs,
@@ -50,16 +49,14 @@ export default {
     title: "Modal/OnePaneDialog",
     component: OnePaneDialog,
     decorators: [
-        (Story: any): React.ReactElement<React.ComponentProps<typeof View>> => (
+        (Story): React.ReactElement<React.ComponentProps<typeof View>> => (
             <View style={styles.example}>
                 <Story />
             </View>
         ),
     ],
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
         docs: {
             description: {
                 component: null,
@@ -78,9 +75,10 @@ export default {
         },
     },
     argTypes: OnePaneDialogArgTypes,
-};
+} as ComponentMeta<typeof OnePaneDialog>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof OnePaneDialog>;
+
 export const Default: StoryComponentType = (args) => (
     <View style={styles.previewSizer}>
         <View style={styles.modalPositioner}>

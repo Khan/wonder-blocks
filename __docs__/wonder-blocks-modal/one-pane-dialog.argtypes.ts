@@ -1,17 +1,19 @@
+import type {InputType} from "@storybook/csf";
+
 export default {
     content: {
         control: {type: null},
         description: `The content of the modal, appearing between the
             titlebar and footer.`,
         table: {type: {summary: "React.Node"}},
-        type: {required: true},
+        type: {name: "other", value: "React.Node", required: true},
     },
 
     title: {
         control: {type: "text"},
         description: "The title of the modal, appearing in the titlebar.",
         table: {type: {summary: "string"}},
-        type: {required: true},
+        type: {name: "string", required: true},
     },
 
     footer: {
@@ -116,4 +118,4 @@ export default {
             "The ID of the content describing this dialog, if applicable",
         table: {type: {summary: "string"}},
     },
-};
+} satisfies Record<string, InputType>;

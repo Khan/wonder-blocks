@@ -1,3 +1,5 @@
+import type {InputType} from "@storybook/csf";
+
 export default {
     children: {
         table: {
@@ -6,7 +8,11 @@ export default {
                 detail: "This is the content for the collection of Breadcrumbs.",
             },
         },
-        type: {required: true},
+        type: {
+            name: "other",
+            value: "React.ChildrenArray<React.Element<BreadcrumbsItem>>",
+            required: true,
+        },
     },
 
     "aria-label": {
@@ -32,4 +38,4 @@ export default {
             },
         },
     },
-};
+} satisfies Record<string, InputType>;

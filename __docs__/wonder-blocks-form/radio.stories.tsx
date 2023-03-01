@@ -1,27 +1,25 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import {name, version} from "../../packages/wonder-blocks-form/package.json";
 
 import Radio from "../../packages/wonder-blocks-form/src/components/radio";
 
+type StoryComponentType = ComponentStory<typeof Radio>;
+
 export default {
     title: "Form / Radio (internal)",
     component: Radio,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
     },
-};
+} as ComponentMeta<typeof Radio>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const Default: StoryComponentType = (args) => <Radio {...args} />;
 
 Default.args = {

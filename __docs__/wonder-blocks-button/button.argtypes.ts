@@ -1,13 +1,15 @@
+import type {InputType} from "@storybook/csf";
+
 import {icons} from "@khanacademy/wonder-blocks-icon";
 
 export default {
     children: {
         description: "Text to appear on the button.",
-        type: {required: true},
+        type: {name: "string", required: true},
     },
     icon: {
         description: "An icon, displayed to the left of the title.",
-        type: {required: false},
+        type: {name: "other", value: "IconAsset", required: false},
         control: {type: "select"},
         options: Object.keys(icons) as Array<string>,
         mapping: icons,
@@ -227,4 +229,4 @@ export default {
             },
         },
     },
-};
+} satisfies Record<string, InputType>;

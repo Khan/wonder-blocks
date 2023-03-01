@@ -1,7 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
+import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
@@ -21,14 +20,13 @@ export default {
     title: "Form / LabeledTextField",
     component: LabeledTextField,
     parameters: {
-        componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
-        ) as any,
+        componentSubtitle: <ComponentInfo name={name} version={version} />,
     },
     argTypes: LabeledTextFieldArgTypes,
-};
+} satisfies ComponentMeta<typeof LabeledTextField>;
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
+type StoryComponentType = ComponentStory<typeof LabeledTextField>;
+
 export const Default: StoryComponentType = (args) => {
     return <LabeledTextField {...args} />;
 };
@@ -45,7 +43,7 @@ Default.args = {
     placeholder: "Placeholder",
     readOnly: false,
     autoComplete: "off",
-    validate: () => {},
+    validate: () => undefined,
     onValidate: () => {},
     onChange: () => {},
     onKeyDown: () => {},
@@ -530,7 +528,6 @@ CustomStyle.parameters = {
     },
 };
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
 export const WithMarkup: StoryComponentType = (args) => {
     return (
         <LabeledTextField
