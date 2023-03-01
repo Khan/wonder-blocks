@@ -16,7 +16,6 @@ module.exports = {
         "@storybook/addon-interactions",
     ],
     babel: async (options) => {
-        console.log("babel options =", options);
         return {
             ...options,
             plugins: [
