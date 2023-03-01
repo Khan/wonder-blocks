@@ -1,5 +1,3 @@
-// @ts-expect-error [FEI-5019] - TS2307 - Cannot find module 'flow-to-typescript-codemod' or its corresponding type declarations.
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -92,14 +90,7 @@ const RightAccessory: React.FC<RightAccessoryProps> = ({
     );
 };
 
-type CellCoreProps = Partial<
-    Flow.Diff<
-        CellProps,
-        {
-            title: TypographyText;
-        }
-    >
-> & {
+type CellCoreProps = Partial<Omit<CellProps, "title">> & {
     /**
      * The content of the cell.
      */

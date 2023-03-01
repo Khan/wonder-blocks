@@ -9,7 +9,7 @@ describe("withActionScheduler", () => {
     it("should provide wrapped component with IScheduleActions instance", () => {
         // Arrange
         const Component = (props: any) =>
-            props.schedule != null ? "true" : "false";
+            <>{props.schedule != null ? "true" : "false"}</>;
 
         // Act
         const WithScheduler = withActionScheduler(Component);

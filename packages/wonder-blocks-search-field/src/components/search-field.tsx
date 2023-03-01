@@ -1,5 +1,3 @@
-// @ts-expect-error [FEI-5019] - TS2307 - Cannot find module 'flow-to-typescript-codemod' or its corresponding type declarations.
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -94,9 +92,8 @@ type Props = AriaProps & {
  * />
  * ```
  */
-const SearchField: Flow.AbstractComponent<Props, HTMLInputElement> =
-    // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '(props: Props, ref: ForwardedRef<Props>) => Element' is not assignable to parameter of type 'ForwardRefRenderFunction<Props, HTMLInputElement>'.
-    React.forwardRef<Props, HTMLInputElement>(function SearchField(
+const SearchField: React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLInputElement>> =
+    React.forwardRef<HTMLInputElement, Props>(function SearchField(
         props: Props,
         ref,
     ) {
@@ -172,7 +169,6 @@ const SearchField: Flow.AbstractComponent<Props, HTMLInputElement> =
                             onFocus={onFocus}
                             onBlur={onBlur}
                             placeholder={placeholder}
-                            // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'node' implicitly has an 'any' type.
                             ref={(node) => {
                                 // We have to set the value of both refs to
                                 // the HTMLInputElement from TextField.

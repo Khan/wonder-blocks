@@ -67,7 +67,6 @@ export const Text: StoryComponentType = () => {
             label="Name"
             description="Please enter your name"
             value={value}
-            // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'newValue' implicitly has an 'any' type.
             onChange={(newValue) => setValue(newValue)}
             placeholder="Name"
             onKeyDown={handleKeyDown}

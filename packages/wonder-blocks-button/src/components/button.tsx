@@ -1,10 +1,8 @@
-// @ts-expect-error [FEI-5019] - TS2307 - Cannot find module 'flow-to-typescript-codemod' or its corresponding type declarations.
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 import {__RouterContext} from "react-router";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
-import type {ClickableState} from "@khanacademy/wonder-blocks-clickable";
+import type {ClickableState, ChildrenProps} from "@khanacademy/wonder-blocks-clickable";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import ButtonCore from "./button-core";
@@ -15,14 +13,7 @@ export type SharedProps =
      * readers that the action taken by clicking the button will take some
      * time to complete.
      */
-    Partial<
-        Flow.Diff<
-            AriaProps,
-            {
-                ["aria-disabled"]: "true" | "false" | undefined;
-            }
-        >
-    > & {
+    Partial<Omit<AriaProps, "aria-disabled">> & {
         /**
          * Text to appear on the button.
          */
@@ -121,6 +112,15 @@ export type SharedProps =
         ...FlexItemStyles,
     }>>,
     */
+        /**
+         * URL to navigate to.
+         */
+        href?: string;
+
+        /**
+         * Used for buttons within <form>s.
+         */
+        type?: "submit";
 
         /**
          * Adds CSS classes to the Button.
@@ -143,64 +143,30 @@ export type SharedProps =
          * href is not
          */
         onClick?: (e: React.SyntheticEvent) => unknown;
+
+        /**
+         * Run async code before navigating. If the promise returned rejects then
+         * navigation will not occur.
+         *
+         * If both safeWithNav and beforeNav are provided, beforeNav will be run
+         * first and safeWithNav will only be run if beforeNav does not reject.
+         *
+         * WARNING: Do not use with `type="submit"`.
+         */
+        beforeNav?: () => Promise<unknown>;
+
+        /**
+         * Run async code in the background while client-side navigating. If the
+         * browser does a full page load navigation, the callback promise must be
+         * settled before the navigation will occur. Errors are ignored so that
+         * navigation is guaranteed to succeed.
+         *
+         * WARNING: Do not use with `type="submit"`.
+         */
+        safeWithNav?: () => Promise<unknown>;
     };
 
-// We structure the props in this way to ensure that whenever we're using
-// beforeNav or safeWithNav that we're also using href.  We also need to specify
-// a number of different variations to avoid ambigious situations where flow
-// finds more than one valid object type in the disjoint union.
-type Props =
-    | (SharedProps & {
-          /**
-           * URL to navigate to.
-           */
-          href?: string;
-      })
-    | (SharedProps & {
-          /**
-           * Used for buttons within <form>s.
-           */
-          type: "submit";
-      })
-    | (SharedProps & {
-          href: string;
-          /**
-           * Run async code before navigating. If the promise returned rejects then
-           * navigation will not occur.
-           *
-           * If both safeWithNav and beforeNav are provided, beforeNav will be run
-           * first and safeWithNav will only be run if beforeNav does not reject.
-           */
-          beforeNav: () => Promise<unknown>;
-      })
-    | (SharedProps & {
-          href: string;
-          /**
-           * Run async code in the background while client-side navigating. If the
-           * browser does a full page load navigation, the callback promise must be
-           * settled before the navigation will occur. Errors are ignored so that
-           * navigation is guaranteed to succeed.
-           */
-          safeWithNav: () => Promise<unknown>;
-      })
-    | (SharedProps & {
-          href: string;
-          /**
-           * Run async code before navigating. If the promise returned rejects then
-           * navigation will not occur.
-           *
-           * If both safeWithNav and beforeNav are provided, beforeNav will be run
-           * first and safeWithNav will only be run if beforeNav does not reject.
-           */
-          beforeNav: () => Promise<unknown>;
-          /**
-           * Run async code in the background while client-side navigating. If the
-           * browser does a full page load navigation, the callback promise must be
-           * settled before the navigation will occur. Errors are ignored so that
-           * navigation is guaranteed to succeed.
-           */
-          safeWithNav: () => Promise<unknown>;
-      });
+type Props = SharedProps;
 
 type DefaultProps = {
     color: Props["color"];
@@ -264,7 +230,7 @@ export default class Button extends React.Component<Props> {
             router,
         );
 
-        const renderProp = (state: ClickableState, {...restChildProps}) => {
+        const renderProp = (state: ClickableState, restChildProps: ChildrenProps) => {
             return (
                 <ButtonCore
                     {...sharedButtonCoreProps}

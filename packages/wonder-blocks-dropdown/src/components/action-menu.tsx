@@ -242,8 +242,7 @@ export default class ActionMenu extends React.Component<Props, State> {
             >
                 {opener
                     ? opener
-                    : // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'openerProps' implicitly has an 'any' type.
-                      (openerProps) => {
+                    : (openerProps) => {
                           const {
                               // eslint-disable-next-line no-unused-vars
                               text,

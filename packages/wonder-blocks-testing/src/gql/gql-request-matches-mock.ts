@@ -1,11 +1,7 @@
 import type {GqlOperation, GqlContext} from "@khanacademy/wonder-blocks-data";
 import type {GqlMockOperation} from "./types";
 
-const safeHasOwnProperty = (
-    obj: any,
-    prop: string,
-): boolean => // Flow really shouldn't be raising this error here.
-    // $FlowFixMe[method-unbinding]
+const safeHasOwnProperty = (obj: any, prop: string): boolean =>
     Object.prototype.hasOwnProperty.call(obj, prop);
 
 // TODO(somewhatabstract, FEI-4268): use a third-party library to do this and

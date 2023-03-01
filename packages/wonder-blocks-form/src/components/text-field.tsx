@@ -1,6 +1,3 @@
-// @ts-expect-error [FEI-5019] - TS2307 - Cannot find module 'flow-to-typescript-codemod' or its corresponding type declarations.
-import {Flow} from "flow-to-typescript-codemod";
-
 import * as React from "react";
 import {StyleSheet, css} from "aphrodite";
 
@@ -323,12 +320,12 @@ const styles = StyleSheet.create({
     },
 });
 
-type ExportProps = Flow.Diff<
+type ExportProps = Omit<
     JSX.LibraryManagedAttributes<
         typeof TextField,
         React.ComponentProps<typeof TextField>
     >,
-    WithForwardRef
+    "forwardedRef"
 >;
 
 /**
@@ -350,4 +347,4 @@ type ExportProps = Flow.Diff<
  */
 export default React.forwardRef<HTMLInputElement, ExportProps>((props, ref) => (
     <TextField {...props} forwardedRef={ref} />
-)) as Flow.AbstractComponent<ExportProps, HTMLInputElement>;
+)) as React.ForwardRefExoticComponent<ExportProps & React.RefAttributes<HTMLInputElement>>;

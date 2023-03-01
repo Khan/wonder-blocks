@@ -1,4 +1,3 @@
-// @ts-expect-error [FEI-5019] - TS2307 - Cannot find module 'flow-to-typescript-codemod' or its corresponding type declarations.
 import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 
@@ -10,7 +9,7 @@ import type {
     WithActionScheduler,
 } from "../util/types";
 
-type WithoutActionScheduler<T> = Flow.Diff<T, WithActionSchedulerProps>;
+type WithoutActionScheduler<T> = Omit<T, "schedule">;
 
 /**
  * A higher order component that attaches the given component to an

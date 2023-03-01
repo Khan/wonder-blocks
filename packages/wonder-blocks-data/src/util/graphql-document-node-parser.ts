@@ -59,21 +59,18 @@ export function graphQLDocumentNodeParser(
 
     const queries = document.definitions.filter(
         (x: DefinitionNode) =>
-            // $FlowIgnore[prop-missing]
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'operation' does not exist on type 'DefinitionNode'.
             x.kind === "OperationDefinition" && x.operation === "query",
     );
 
     const mutations = document.definitions.filter(
         (x: DefinitionNode) =>
-            // $FlowIgnore[prop-missing]
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'operation' does not exist on type 'DefinitionNode'.
             x.kind === "OperationDefinition" && x.operation === "mutation",
     );
 
     const subscriptions = document.definitions.filter(
         (x: DefinitionNode) =>
-            // $FlowIgnore[prop-missing]
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'operation' does not exist on type 'DefinitionNode'.
             x.kind === "OperationDefinition" && x.operation === "subscription",
     );

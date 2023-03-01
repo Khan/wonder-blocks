@@ -1,5 +1,3 @@
-// @ts-expect-error [FEI-5019] - TS2307 - Cannot find module 'flow-to-typescript-codemod' or its corresponding type declarations.
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 
 import {ClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
@@ -12,14 +10,7 @@ import type {
 
 import type {OpenerProps} from "../util/types";
 
-type Props = Partial<
-    Flow.Diff<
-        AriaProps,
-        {
-            ["aria-disabled"]: "true" | "false" | undefined;
-        }
-    >
-> & {
+type Props = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
      * The child function that returns the anchor the Dropdown will be activated
      * by. This function takes two arguments:
@@ -64,7 +55,6 @@ class DropdownOpener extends React.Component<Props> {
         clickableChildrenProps: ChildrenProps,
     ): React.ReactNode {
         const {disabled, testId, text} = this.props;
-        // @ts-expect-error [FEI-5019] - TS2533 - Object is possibly 'null' or 'undefined'. | TS2723 - Cannot invoke an object which is possibly 'null' or 'undefined'. | TS2349 - This expression is not callable.
         const renderedChildren = this.props.children({...eventState, text});
         const childrenProps = renderedChildren.props;
         const childrenTestId = this.getTestIdFromProps(childrenProps);

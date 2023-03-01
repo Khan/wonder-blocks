@@ -23,10 +23,7 @@ import type {SharedProps} from "./button";
 
 type Props = SharedProps &
     ChildrenProps &
-    ClickableState & {
-        href?: string;
-        type?: "submit";
-    };
+    ClickableState;
 
 const StyledAnchor = addStyle<"a">("a");
 const StyledButton = addStyle<"button">("button");
@@ -130,20 +127,19 @@ export default class ButtonCore extends React.Component<Props> {
             </Label>
         );
 
+        const sizeMapping = {
+            medium: "small",
+            small: "xsmall",
+            large: "medium",
+        } as const;
+
         const contents = (
             <React.Fragment>
                 {label}
                 {spinner && (
                     <CircularSpinner
                         style={sharedStyles.spinner}
-                        size={
-                            // @ts-expect-error [FEI-5019] - TS7053 - Element implicitly has an 'any' type because expression of type 'any' can't be used to index type '{ medium: string; small: string; large: string; }'.
-                            {
-                                medium: "small",
-                                small: "xsmall",
-                                large: "medium",
-                            }[size]
-                        }
+                        size={sizeMapping[size]}
                         light={kind === "primary"}
                         testId={`${testId || "button"}-spinner`}
                     />

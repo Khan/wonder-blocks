@@ -1,5 +1,3 @@
-// @ts-expect-error [FEI-5019] - TS2307 - Cannot find module 'flow-to-typescript-codemod' or its corresponding type declarations.
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 import {__RouterContext} from "react-router";
 
@@ -8,14 +6,7 @@ import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import IconButtonCore from "./icon-button-core";
 
-export type SharedProps = Partial<
-    Flow.Diff<
-        AriaProps,
-        {
-            ["aria-disabled"]: "true" | "false" | undefined;
-        }
-    >
-> & {
+export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
      * A Wonder Blocks icon asset, an object specifing paths for one or more of
      * the following sizes: small, medium, large, xlarge.

@@ -24,7 +24,6 @@ describe("i18n-faketranslate", () => {
             // Act
             const result = entries.every(
                 ([key, translator]: [any, any]) =>
-                    // $FlowIgnore[method-unbinding]
                     typeof translator.translate === "function",
             );
 

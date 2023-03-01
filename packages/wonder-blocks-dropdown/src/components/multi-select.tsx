@@ -554,7 +554,7 @@ export default class MultiSelect extends React.Component<Props, State> {
                 style={style}
                 className={className}
                 onSearchTextChanged={
-                    isFilterable ? this.handleSearchTextChanged : null
+                    isFilterable ? this.handleSearchTextChanged : undefined
                 }
                 searchText={isFilterable ? searchText : ""}
                 labels={{

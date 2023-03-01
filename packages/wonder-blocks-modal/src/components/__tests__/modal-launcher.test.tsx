@@ -168,7 +168,6 @@ describe("ModalLauncher", () => {
 
         // Act
         render(
-            // $FlowIgnore
             <ModalLauncher
                 modal={exampleModal}
                 opened={false}
