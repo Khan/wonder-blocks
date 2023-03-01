@@ -15,8 +15,9 @@ import {Meta} from "@storybook/addon-docs";
 
 Migrating from the standard API can be done by:
 
-1. Wrapping your component with the `withActionScheduler` HOC (and, if using Flow, using the `WithActionSchedulerProps` type to extend your components props by spreading the type into
- your component's `Props` type)
+1. Wrapping your component with the `withActionScheduler` HOC (and, if using TypeScript, using the
+   `WithActionSchedulerProps` type to extend your components props by spreading the type into
+   your component's `Props` type)
 2. Using the new `schedule` prop in your component instead of `setTimeout`, `setInterval` and `requestAnimationFrame`
 
 ### Migration Example

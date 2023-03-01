@@ -54,8 +54,8 @@ export default class TooltipPopper extends React.Component<Props> {
             placement,
             style: {
                 // NOTE(jeresig): We can't just use `popperProps.style` here
-                // as the Flow type doesn't match Aphrodite's CSS flow props
-                // (as it doesn't camelCase props). So we just copy over the
+                // as the TypeScript type doesn't match Aphrodite's CSS TypeScript
+                // props (as it doesn't camelCase props). So we just copy over the
                 // props that we need, instead.
                 top: popperProps.style.top,
                 left: popperProps.style.left,

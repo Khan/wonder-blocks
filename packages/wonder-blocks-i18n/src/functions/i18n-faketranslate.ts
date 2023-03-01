@@ -31,7 +31,7 @@ export const Translators: TranslatorMap = {
  * @implements {IProvideTranslation}
  */
 export default class FakeTranslate implements IProvideTranslation {
-    get _translator(): IProvideTranslation | null | undefined {
+    get _translator(): IProvideTranslation | undefined {
         // We look up our fake translator on the fly in case the kaLocale
         // was changed.
         return Translators[getLocale()];
@@ -53,7 +53,7 @@ export default class FakeTranslate implements IProvideTranslation {
 
         const safeTranslate = (str: string) =>
             // We know that we have a translator at this point, so just ignore
-            // flow.
+            // TypeScript.
             // @ts-expect-error [FEI-5019] - TS2533 - Object is possibly 'null' or 'undefined'.
             this._translator.translate(str);
 

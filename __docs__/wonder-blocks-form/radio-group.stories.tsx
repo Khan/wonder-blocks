@@ -85,7 +85,7 @@ export const Error: StoryComponentType = () => {
 
     // This returns an error message if no option is selected,
     // and it returns undefined otherwise. We use undefined instead of
-    // null here because null would result in a flow error, whereas
+    // null here because null would result in a type error, whereas
     // undefined would be the same as not passing in anything to the
     // radio group's `errorMessage` prop.
     const checkForError = (input: string) => {

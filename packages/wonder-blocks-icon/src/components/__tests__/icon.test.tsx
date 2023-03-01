@@ -21,8 +21,8 @@ jest.mock("@khanacademy/wonder-blocks-core", () => {
 const mockStyledSVGComponent: jest.MockedFunction<any> = (Core as any)
     ._mockStyledSVGComponent;
 
-// Also, let's type up a couple of other mocks to shut flow up.
-const mockGetPathForIcon: jest.MockedFunction<any> = getPathForIcon as any;
+// Also, let's type up a couple of other mocks so that TypeScript doesn't complain.
+const mockGetPathForIcon: jest.MockedFunction<any> = getPathForIcon;
 const mockViewportPixelsForSize: jest.MockedFunction<any> =
     viewportPixelsForSize as any;
 

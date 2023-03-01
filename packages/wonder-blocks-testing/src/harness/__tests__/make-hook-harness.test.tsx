@@ -36,7 +36,6 @@ describe("#makeHookHarness", () => {
         const result = makeHookHarness(adapters, defaultConfigs);
 
         // Assert
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'toBeFunction' does not exist on type 'JestMatchers<(configs?: any) => Flow.AbstractComponent<any, any>>'.
         expect(result).toBeFunction();
     });
 

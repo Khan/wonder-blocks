@@ -175,7 +175,7 @@ export default class Clickable extends React.Component<Props> {
             !this.props.skipClientNav &&
             isClientSideUrl(this.props.href || "");
 
-        // NOTE: checking this.props.href here is redundant, but flow
+        // NOTE: checking this.props.href here is redundant, but TypeScript
         // needs it to refine this.props.href to a string.
         if (activeHref && useClient && this.props.href) {
             return (

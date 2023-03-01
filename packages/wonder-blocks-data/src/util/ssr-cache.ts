@@ -139,7 +139,7 @@ export class SsrCache {
             this._hydrationCache.purge(DefaultScope, id);
         }
         // Getting the typing right between the in-memory cache and this
-        // is hard. Just telling flow it's OK.
+        // is hard. Just telling TypeScript it's OK.
         // @ts-expect-error [FEI-5019] - TS2322 - Type 'string | number | boolean | Record<any, any> | null | undefined' is not assignable to type 'Readonly<CachedResponse<TData>> | null | undefined'.
         return internalEntry;
     };
