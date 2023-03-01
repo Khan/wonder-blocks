@@ -8,16 +8,25 @@ module.exports = {
         // practices
         "plugin:storybook/recommended",
     ],
-    parser: "@babel/eslint-parser",
-    parserOptions: {
-        babelOptions: {
-            configFile: "./build-settings/babel.config.js",
-        },
-    },
     plugins: ["import", "jest", "promise", "monorepo", "react-hooks", "@babel"],
     settings: {
-        "ft-flow": {
-            onlyFilesWithFlowAnnotation: true,
+        "import/resolver": {
+            typescript: {
+                project: [
+                    "packages/*/tsconfig.json",
+                    "packages/tsconfig-shared.json",
+                ],
+                extensions: [".js", ".jsx", ".ts", ".tsx"],
+                moduleDirectory: ["node_modules"],
+            },
+            node: {
+                project: [
+                    "packages/*/tsconfig.json",
+                    "packages/tsconfig-shared.json",
+                ],
+                extensions: [".js", ".jsx", ".ts", ".tsx"],
+                moduleDirectory: ["node_modules"],
+            },
         },
         react: {
             version: "detect",
@@ -30,17 +39,32 @@ module.exports = {
                 "import/no-commonjs": "off",
             },
         },
+        {
+            files: ["**/*.test.ts", "**/*.test.tsx"],
+            rules: {
+                "no-undef": "off",
+            },
+        },
     ],
     globals: {
         // `no-undef` doesn't support `globalThis`, for details see
         // https://github.com/eslint/eslint/issues/15199.
         globalThis: false, // means it isn't writeable
+        // from node_modules/@types/react/index.d.ts
+        JSX: false,
+        // from node_modules/typescript/lib/lib.dom.d.ts
+        DOMHighResTimeStamp: false,
+        RequestInfo: false,
+        RequestInit: false,
+        // from types/utility.d.ts
+        Empty: false,
+        ObjMap: false,
+        SpreadType: false,
     },
     rules: {
-        "ft-flow/require-exact-type": ["error", "always"],
-        "ft-flow/no-types-missing-file-annotation": "error",
+        "import/named": "off", // NOTE(kevinb): This rule is confused by third-party TypeScript lib defs
+
         "import/no-unresolved": "error",
-        "import/named": "error",
         "import/default": "error",
         "import/no-absolute-path": "error",
         "import/no-self-import": "error",
@@ -88,7 +112,10 @@ module.exports = {
         "react/react-in-jsx-scope": "error",
         "react/require-render-return": "error",
         "monorepo/no-internal-import": "error",
-        "monorepo/no-relative-import": "error",
+        // NOTE: This rule reports false positives for cross-module imports using
+        // `@khanacademy/wonder-stuff-*`.  This is likely due to a bad interaction
+        // with the settings we're using for `import/resolver`.
+        // "monorepo/no-relative-import": "error",
         "import/no-restricted-paths": [
             "error",
             {
@@ -113,5 +140,10 @@ module.exports = {
         "testing-library/render-result-naming-convention": "off",
         "testing-library/await-async-utils": "off",
         "testing-library/await-async-query": "off",
+
+        /**
+         * TypeScript rules
+         */
+        "@typescript-eslint/no-empty-function": "off",
     },
 };

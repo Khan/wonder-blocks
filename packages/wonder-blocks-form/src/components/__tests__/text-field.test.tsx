@@ -77,7 +77,7 @@ describe("TextField", () => {
 
     it("id prop is passed to the input element", () => {
         // Arrange
-        const id: string = "tf-1";
+        const id = "tf-1";
 
         // Act
         render(<TextField id={id} value="" onChange={() => {}} />);
@@ -154,9 +154,7 @@ describe("TextField", () => {
 
     it("validate is called when value changes", () => {
         // Arrange
-        const handleValidate = jest.fn(
-            (value: string) => {},
-        );
+        const handleValidate = jest.fn((value: string) => {});
 
         render(
             <TextField

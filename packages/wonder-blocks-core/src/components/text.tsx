@@ -5,9 +5,6 @@ import {processStyleList} from "../util/util";
 
 import type {TextViewSharedProps} from "../util/types";
 
-// NOTE(jeresig): We want to leave the props for these open so that we can
-// handle uncommon props for elements (e.g. htmlFor for labels).
-// eslint-disable-next-line ft-flow/require-exact-type
 type Props = TextViewSharedProps & {
     tag: string;
 };

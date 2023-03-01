@@ -1,9 +1,9 @@
 import * as React from "react";
-import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 import {Body, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
+import {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";

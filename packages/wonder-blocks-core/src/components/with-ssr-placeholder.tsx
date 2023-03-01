@@ -73,7 +73,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         }
     }
 
-    _isTheRootComponent: boolean = false;
+    _isTheRootComponent = false;
 
     _renderAsRootComponent(): React.ReactNode {
         const {mounted} = this.state;

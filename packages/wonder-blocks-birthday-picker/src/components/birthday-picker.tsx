@@ -1,4 +1,4 @@
-import moment from "moment";
+import moment, {monthsShort} from "moment";
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -277,7 +277,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 style={{minWidth}}
                 testId="birthday-picker-month"
             >
-                {moment.monthsShort().map((month, i) => (
+                {monthsShort().map((month, i) => (
                     <OptionItem key={month} label={month} value={String(i)} />
                 ))}
             </SingleSelect>

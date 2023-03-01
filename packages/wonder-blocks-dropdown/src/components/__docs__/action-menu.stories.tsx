@@ -7,15 +7,15 @@ import type {StoryComponentType} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
+import {Checkbox} from "@khanacademy/wonder-blocks-form";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {
     ActionItem,
     ActionMenu,
     OptionItem,
     SeparatorItem,
 } from "@khanacademy/wonder-blocks-dropdown";
-import {Checkbox} from "@khanacademy/wonder-blocks-form";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import actionMenuArgtypes from "./action-menu.argtypes";
 import ComponentInfo from "../../../../../.storybook/components/component-info";

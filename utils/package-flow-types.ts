@@ -1,4 +1,6 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable no-console */
+/* eslint-disable import/no-commonjs */
 /**
  * Packages flow types with build files.
  *

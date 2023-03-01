@@ -10,12 +10,12 @@ import {
     Choice,
 } from "@khanacademy/wonder-blocks-form";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
+import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
 
 import type {ModalElement} from "../../util/types";
 import ModalLauncherArgTypes from "./modal-launcher.argtypes";

@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
 
 const StyledList = addStyle("ul", styles.list);
 
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const list1 = <StyledList />;
 
-// eslint-disable-next-line no-unused-vars
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 const list2 = <StyledList style={styles.customList} />;

@@ -13,18 +13,18 @@ type Common = {
     /**
      * The content of the modal, appearing between the titlebar and footer.
      */
-    content: React.ReactNode,
+    content: React.ReactNode;
     /**
      * The title of the modal, appearing in the titlebar.
      */
-    title: string,
+    title: string;
     /**
      * The content of the modal's footer. A great place for buttons!
      *
      * Content is right-aligned by default. To control alignment yourself,
      * provide a container element with 100% width.
      */
-    footer?: React.ReactNode,
+    footer?: React.ReactNode;
     /**
      * Called when the close button is clicked.
      *
@@ -32,17 +32,17 @@ type Common = {
      * Instead, to listen for when the modal closes, add an `onClose` handler
      * to the `ModalLauncher`.  Doing so will result in a console.warn().
      */
-    onClose?: () => unknown,
+    onClose?: () => unknown;
     /**
      * When true, the close button is shown; otherwise, the close button is not shown.
      */
-    closeButtonVisible?: boolean,
+    closeButtonVisible?: boolean;
     /**
      * When set, provides a component that can render content above the top of the modal;
      * when not set, no additional content is shown above the modal.
      * This prop is passed down to the ModalDialog.
      */
-    above?: React.ReactNode,
+    above?: React.ReactNode;
     /**
      * When set, provides a component that will render content below the bottom of the modal;
      * when not set, no additional content is shown below the modal.
@@ -51,51 +51,51 @@ type Common = {
      * NOTE: Devs can customize this content by rendering the component assigned to this prop with custom styles,
      * such as by wrapping it in a View.
      */
-    below?: React.ReactNode,
+    below?: React.ReactNode;
     /**
      * When set, overrides the default role value. Default role is "dialog"
      * Roles other than dialog and alertdialog aren't appropriate for this
      * component
      */
-    role?: 'dialog' | 'alertdialog',
+    role?: "dialog" | "alertdialog";
     /**
      * Optional custom styles.
      */
-    style?: StyleType,
+    style?: StyleType;
     /**
      * Test ID used for e2e testing. This ID will be passed down to the Dialog.
      */
-    testId?: string,
+    testId?: string;
     /**
      * An optional id parameter for the title. If one is
      * not provided, a unique id will be generated.
      */
-    titleId?: string,
+    titleId?: string;
     /**
      * The ID of the content describing this dialog, if applicable.
      */
-    ["aria-describedby"]?: string
+    ["aria-describedby"]?: string;
 };
 
-type WithSubtitle = (Common) & {
+type WithSubtitle = Common & {
     /**
      * The subtitle of the modal, appearing in the titlebar, below the title.
      */
-    subtitle: string
+    subtitle: string;
 };
 
-type WithBreadcrumbs = (Common) & {
+type WithBreadcrumbs = Common & {
     /**
      * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
      */
-// @ts-expect-error [FEI-5019] - TS2344 - Type 'Breadcrumbs' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
-    breadcrumbs: React.ReactElement<React.ComponentProps<Breadcrumbs>>
+    // @ts-expect-error [FEI-5019] - TS2344 - Type 'Breadcrumbs' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
+    breadcrumbs: React.ReactElement<React.ComponentProps<Breadcrumbs>>;
 };
 
 type Props = Common | WithSubtitle | WithBreadcrumbs;
 
 type DefaultProps = {
-    closeButtonVisible: Props['closeButtonVisible']
+    closeButtonVisible: Props["closeButtonVisible"];
 };
 
 /**
@@ -134,12 +134,14 @@ export default class OnePaneDialog extends React.Component<Props> {
         closeButtonVisible: true,
     };
 
-    renderHeader(uniqueId: string): React.ReactElement<React.ComponentProps<typeof ModalHeader>> {
+    renderHeader(
+        uniqueId: string,
+    ): React.ReactElement<React.ComponentProps<typeof ModalHeader>> {
         const {
             title,
-// @ts-expect-error [FEI-5019] - TS2339 - Property 'breadcrumbs' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
+            // @ts-expect-error [FEI-5019] - TS2339 - Property 'breadcrumbs' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
             breadcrumbs = undefined,
-// @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
+            // @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
             subtitle = undefined,
             testId,
         } = this.props;
@@ -148,8 +150,11 @@ export default class OnePaneDialog extends React.Component<Props> {
             return (
                 <ModalHeader
                     title={title}
-// @ts-expect-error [FEI-5019] - TS2344 - Type 'Breadcrumbs' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
-                    breadcrumbs={(breadcrumbs as React.ReactElement<React.ComponentProps<Breadcrumbs>>)}
+                    breadcrumbs={
+                        breadcrumbs as React.ReactElement<
+                            React.ComponentProps<typeof Breadcrumbs>
+                        >
+                    }
                     titleId={uniqueId}
                     testId={testId && `${testId}-header`}
                 />
@@ -158,7 +163,7 @@ export default class OnePaneDialog extends React.Component<Props> {
             return (
                 <ModalHeader
                     title={title}
-                    subtitle={(subtitle as string)}
+                    subtitle={subtitle as string}
                     titleId={uniqueId}
                     testId={testId && `${testId}-header`}
                 />

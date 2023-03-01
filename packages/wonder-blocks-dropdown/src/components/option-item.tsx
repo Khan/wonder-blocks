@@ -88,7 +88,7 @@ export default class OptionItem extends React.Component<OptionProps> {
         role: "option",
         selected: false,
     };
-    static __IS_OPTION_ITEM__: boolean = true;
+    static __IS_OPTION_ITEM__ = true;
 
     getCheckComponent(): typeof Check | typeof Checkbox {
         if (this.props.variant === "check") {
@@ -114,13 +114,13 @@ export default class OptionItem extends React.Component<OptionProps> {
             selected,
             testId,
             style,
-            // eslint-disable-next-line no-unused-vars
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             value,
-            /* eslint-disable no-unused-vars */
+            /* eslint-disable @typescript-eslint/no-unused-vars */
             onClick,
             onToggle,
             variant,
-            /* eslint-enable no-unused-vars */
+            /* eslint-enable @typescript-eslint/no-unused-vars */
             ...sharedProps
         } = this.props;
 

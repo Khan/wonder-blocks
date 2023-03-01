@@ -1,12 +1,12 @@
 import * as React from "react";
 
-import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 
 // @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
 import type {StoryComponentType} from "@storybook/react";
+import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
 import type {IIdentifierFactory} from "../../util/types";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";

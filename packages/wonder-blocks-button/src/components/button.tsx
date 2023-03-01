@@ -2,7 +2,10 @@ import * as React from "react";
 import {__RouterContext} from "react-router";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
-import type {ClickableState, ChildrenProps} from "@khanacademy/wonder-blocks-clickable";
+import type {
+    ClickableState,
+    ChildrenProps,
+} from "@khanacademy/wonder-blocks-clickable";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import ButtonCore from "./button-core";
@@ -230,7 +233,10 @@ export default class Button extends React.Component<Props> {
             router,
         );
 
-        const renderProp = (state: ClickableState, restChildProps: ChildrenProps) => {
+        const renderProp = (
+            state: ClickableState,
+            restChildProps: ChildrenProps,
+        ) => {
             return (
                 <ButtonCore
                     {...sharedButtonCoreProps}

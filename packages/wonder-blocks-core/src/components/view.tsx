@@ -25,7 +25,6 @@ const styles = StyleSheet.create({
 });
 
 type ValidViewTags = "div" | "article" | "aside" | "nav" | "section";
-// eslint-disable-next-line ft-flow/require-exact-type
 type Props = TextViewSharedProps & {
     /**
      * The HTML tag to render.

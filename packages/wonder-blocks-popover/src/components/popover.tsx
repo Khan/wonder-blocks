@@ -1,5 +1,5 @@
 import * as React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom";
 
 import {IDProvider} from "@khanacademy/wonder-blocks-core";
 import {TooltipPopper} from "@khanacademy/wonder-blocks-tooltip";
@@ -172,7 +172,7 @@ export default class Popover extends React.Component<Props, State> {
      */
     handleClose: () => void = () => {
         this.setState({opened: false}, () => {
-            this.props.onClose && this.props.onClose();
+            this.props.onClose?.();
         });
     };
 

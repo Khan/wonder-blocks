@@ -1,5 +1,5 @@
 import * as React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom";
 import {StyleSheet} from "aphrodite";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import DropdownOpener from "./dropdown-opener";
@@ -244,7 +244,7 @@ export default class ActionMenu extends React.Component<Props, State> {
                     ? opener
                     : (openerProps) => {
                           const {
-                              // eslint-disable-next-line no-unused-vars
+                              // eslint-disable-next-line @typescript-eslint/no-unused-vars
                               text,
                               ...eventState
                           } = openerProps;

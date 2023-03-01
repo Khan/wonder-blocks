@@ -92,106 +92,102 @@ type Props = AriaProps & {
  * />
  * ```
  */
-const SearchField: React.ForwardRefExoticComponent<Props & React.RefAttributes<HTMLInputElement>> =
-    React.forwardRef<HTMLInputElement, Props>(function SearchField(
-        props: Props,
-        ref,
-    ) {
-        const {
-            clearAriaLabel = defaultLabels.clearSearch,
-            disabled = false,
-            light = false,
-            id,
-            value,
-            placeholder,
-            style,
-            testId,
-            onClick,
-            onChange,
-            onFocus,
-            onBlur,
-            ...otherProps
-        } = props;
+const SearchField: React.ForwardRefExoticComponent<
+    Props & React.RefAttributes<HTMLInputElement>
+> = React.forwardRef<HTMLInputElement, Props>(function SearchField(
+    props: Props,
+    ref,
+) {
+    const {
+        clearAriaLabel = defaultLabels.clearSearch,
+        disabled = false,
+        light = false,
+        id,
+        value,
+        placeholder,
+        style,
+        testId,
+        onClick,
+        onChange,
+        onFocus,
+        onBlur,
+        ...otherProps
+    } = props;
 
-        // We can't just use ref.current to clear the input because ref isn't
-        // always being passed in, so we use an innerRef to allow the
-        // handleClear() function to focus on the input element ref.
-        const innerRef = React.useRef<HTMLInputElement | null | undefined>(
-            null,
-        );
+    // We can't just use ref.current to clear the input because ref isn't
+    // always being passed in, so we use an innerRef to allow the
+    // handleClear() function to focus on the input element ref.
+    const innerRef = React.useRef<HTMLInputElement | null | undefined>(null);
 
-        const handleClear: () => void = () => {
-            // Empty the search text.
-            onChange("");
+    const handleClear: () => void = () => {
+        // Empty the search text.
+        onChange("");
 
-            // Focus back on the text field since the clear button disappears after
-            // the field is cleared.
-            innerRef?.current?.focus();
-        };
+        // Focus back on the text field since the clear button disappears after
+        // the field is cleared.
+        innerRef?.current?.focus();
+    };
 
-        // @ts-expect-error [FEI-5019] - TS2322 - Type '() => JSX.Element | null' is not assignable to type '() => ReactElement<any, string | JSXElementConstructor<any>>'.
-        const maybeRenderClearIconButton: () => React.ReactElement = () => {
-            if (!value.length) {
-                return null;
-            }
-
-            return (
-                <IconButton
-                    icon={icons.dismiss}
-                    kind="tertiary"
-                    onClick={handleClear}
-                    style={styles.dismissIcon}
-                    aria-label={clearAriaLabel}
-                />
-            );
-        };
+    // @ts-expect-error [FEI-5019] - TS2322 - Type '() => JSX.Element | null' is not assignable to type '() => ReactElement<any, string | JSXElementConstructor<any>>'.
+    const maybeRenderClearIconButton: () => React.ReactElement = () => {
+        if (!value.length) {
+            return null;
+        }
 
         return (
-            <IDProvider id={id} scope="search-field">
-                {(uniqueId) => (
-                    <View
-                        onClick={onClick}
-                        style={[styles.inputContainer, style]}
-                    >
-                        <Icon
-                            icon={icons.search}
-                            size="medium"
-                            color={Color.offBlack64}
-                            style={styles.searchIcon}
-                            aria-hidden="true"
-                        />
-                        <TextField
-                            id={`${uniqueId}-field`}
-                            type="text"
-                            disabled={disabled}
-                            light={light}
-                            onChange={onChange}
-                            onFocus={onFocus}
-                            onBlur={onBlur}
-                            placeholder={placeholder}
-                            ref={(node) => {
-                                // We have to set the value of both refs to
-                                // the HTMLInputElement from TextField.
-                                if (ref) {
-                                    // @ts-expect-error [FEI-5019] - TS2339 - Property 'current' does not exist on type 'MutableRefObject<Props | null> | ((instance: Props | null) => void)'.
-                                    ref.current = node;
-                                }
-                                innerRef.current = node;
-                            }}
-                            value={value}
-                            style={[
-                                styles.inputStyleReset,
-                                typographyStyles.LabelMedium,
-                            ]}
-                            testId={testId}
-                            {...otherProps}
-                        />
-                        {maybeRenderClearIconButton()}
-                    </View>
-                )}
-            </IDProvider>
+            <IconButton
+                icon={icons.dismiss}
+                kind="tertiary"
+                onClick={handleClear}
+                style={styles.dismissIcon}
+                aria-label={clearAriaLabel}
+            />
         );
-    });
+    };
+
+    return (
+        <IDProvider id={id} scope="search-field">
+            {(uniqueId) => (
+                <View onClick={onClick} style={[styles.inputContainer, style]}>
+                    <Icon
+                        icon={icons.search}
+                        size="medium"
+                        color={Color.offBlack64}
+                        style={styles.searchIcon}
+                        aria-hidden="true"
+                    />
+                    <TextField
+                        id={`${uniqueId}-field`}
+                        type="text"
+                        disabled={disabled}
+                        light={light}
+                        onChange={onChange}
+                        onFocus={onFocus}
+                        onBlur={onBlur}
+                        placeholder={placeholder}
+                        ref={(node) => {
+                            // We have to set the value of both refs to
+                            // the HTMLInputElement from TextField.
+                            if (ref) {
+                                // @ts-expect-error [FEI-5019] - TS2339 - Property 'current' does not exist on type 'MutableRefObject<Props | null> | ((instance: Props | null) => void)'.
+                                ref.current = node;
+                            }
+                            innerRef.current = node;
+                        }}
+                        value={value}
+                        style={[
+                            styles.inputStyleReset,
+                            typographyStyles.LabelMedium,
+                        ]}
+                        testId={testId}
+                        {...otherProps}
+                    />
+                    {maybeRenderClearIconButton()}
+                </View>
+            )}
+        </IDProvider>
+    );
+});
 
 const styles = StyleSheet.create({
     inputContainer: {

@@ -10,7 +10,9 @@ type Props = AriaProps & {
      * This is the content for the collection of Breadcrumbs
      */
     children:
-        | Array<React.ReactElement<React.ComponentProps<typeof BreadcrumbsItem>>>
+        | Array<
+              React.ReactElement<React.ComponentProps<typeof BreadcrumbsItem>>
+          >
         | React.ReactElement<React.ComponentProps<typeof BreadcrumbsItem>>;
     /**
      * Test ID used for e2e testing.

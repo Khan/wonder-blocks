@@ -7,15 +7,15 @@ import {
 } from "@khanacademy/wonder-blocks-breadcrumbs";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
+import {Body} from "@khanacademy/wonder-blocks-typography";
+
+// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
+import type {StoryComponentType} from "@storybook/react";
 import {
     ModalDialog,
     ModalPanel,
     ModalHeader,
 } from "@khanacademy/wonder-blocks-modal";
-import {Body} from "@khanacademy/wonder-blocks-typography";
-
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"@storybook/react"' has no exported member 'StoryComponentType'.
-import type {StoryComponentType} from "@storybook/react";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";
 import {name, version} from "../../../package.json";

@@ -1,5 +1,5 @@
 import * as React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
@@ -278,7 +278,9 @@ export default class SingleSelect extends React.Component<Props, State> {
     };
 
     mapOptionItemsToDropdownItems: (
-        children: Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>>,
+        children: Array<
+            React.ReactElement<React.ComponentProps<typeof OptionItem>>
+        >,
     ) => Array<DropdownItem> = (children) => {
         // Figure out which index should receive focus when this select opens
         // Needs to exclude counting items that are disabled
@@ -311,7 +313,9 @@ export default class SingleSelect extends React.Component<Props, State> {
     };
 
     filterChildren(
-        children: Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>>,
+        children: Array<
+            React.ReactElement<React.ComponentProps<typeof OptionItem>>
+        >,
     ): Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>> {
         const {searchText} = this.state;
 
@@ -326,7 +330,9 @@ export default class SingleSelect extends React.Component<Props, State> {
     }
 
     getMenuItems(
-        children: Array<React.ReactElement<React.ComponentProps<typeof OptionItem>>>,
+        children: Array<
+            React.ReactElement<React.ComponentProps<typeof OptionItem>>
+        >,
     ): Array<DropdownItem> {
         const {isFilterable} = this.props;
 
@@ -366,7 +372,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             testId,
             // the following props are being included here to avoid
             // passing them down to the opener as part of sharedProps
-            /* eslint-disable no-unused-vars */
+            /* eslint-disable @typescript-eslint/no-unused-vars */
             alignment,
             autoFocus,
             dropdownStyle,
@@ -378,7 +384,7 @@ export default class SingleSelect extends React.Component<Props, State> {
             opened,
             style,
             className,
-            /* eslint-enable no-unused-vars */
+            /* eslint-enable @typescript-eslint/no-unused-vars */
             ...sharedProps
         } = this.props;
 

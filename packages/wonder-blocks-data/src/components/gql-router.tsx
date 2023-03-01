@@ -30,9 +30,7 @@ type Props<TContext extends GqlContext> = {
  * will use the configuration from their closest ancestral GqlRouter.
  */
 // TODO(FEI-5000): Update this support generic props correctly
-export const GqlRouter: React.FC<Props<any>> = <
-    TContext extends GqlContext,
->({
+export const GqlRouter: React.FC<Props<any>> = <TContext extends GqlContext>({
     defaultContext: thisDefaultContext,
     fetch: thisFetch,
     children,

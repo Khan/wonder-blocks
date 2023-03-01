@@ -5,8 +5,8 @@ import {entries} from "@khanacademy/wonder-stuff-core";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 import ComponentInfo from "../../../../../.storybook/components/component-info";

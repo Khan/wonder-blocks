@@ -1,4 +1,3 @@
-import {Flow} from "flow-to-typescript-codemod";
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -8,10 +7,7 @@ import type {StyleType} from "./types";
 
 export default function addStyle<
     T extends React.ComponentType<any> | keyof JSX.IntrinsicElements,
->(
-    Component: T,
-    defaultStyle?: StyleType,
-) {
+>(Component: T, defaultStyle?: StyleType) {
     type Props = SpreadType<
         JSX.LibraryManagedAttributes<T, React.ComponentProps<T>>,
         {style?: StyleType}
@@ -36,7 +32,7 @@ export default function addStyle<
                 style={inlineStyles}
             />
         );
-    }
+    };
 
     return StyleComponent;
 }

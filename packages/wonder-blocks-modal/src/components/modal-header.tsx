@@ -11,16 +11,16 @@ type Common = {
     /**
      * The main title rendered in larger bold text.
      */
-    title: string,
+    title: string;
     /**
      * Whether to display the "light" version of this component instead, for
      * use when the item is used on a dark background.
      */
-    light: boolean,
+    light: boolean;
     /**
      * An id to provide a selector for the title element.
      */
-    titleId: string,
+    titleId: string;
     /**
      * Test ID used for e2e testing.
      *
@@ -32,27 +32,27 @@ type Common = {
      * For testId="some-random-id"
      * The result will be: `some-random-id-modal-header`
      */
-    testId?: string
+    testId?: string;
 };
 
-type WithSubtitle = (Common) & {
+type WithSubtitle = Common & {
     /**
      * The dialog subtitle.
      */
-    subtitle: string
+    subtitle: string;
 };
 
-type WithBreadcrumbs = (Common) & {
+type WithBreadcrumbs = Common & {
     /**
      * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
      */
-    breadcrumbs: React.ReactElement<React.ComponentProps<typeof Breadcrumbs>>
+    breadcrumbs: React.ReactElement<React.ComponentProps<typeof Breadcrumbs>>;
 };
 
 type Props = Common | WithSubtitle | WithBreadcrumbs;
 
 type DefaultProps = {
-    light: Props['light']
+    light: Props["light"];
 };
 
 /**
@@ -105,10 +105,10 @@ export default class ModalHeader extends React.Component<Props> {
 
     render(): React.ReactElement {
         const {
-// @ts-expect-error [FEI-5019] - TS2339 - Property 'breadcrumbs' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
+            // @ts-expect-error [FEI-5019] - TS2339 - Property 'breadcrumbs' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
             breadcrumbs = undefined,
             light,
-// @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
+            // @ts-expect-error [FEI-5019] - TS2339 - Property 'subtitle' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
             subtitle = undefined,
             testId,
             title,

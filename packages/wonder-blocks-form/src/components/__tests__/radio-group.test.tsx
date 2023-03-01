@@ -163,6 +163,7 @@ describe("RadioGroup", () => {
                     selectedValue={"a"}
                 >
                     <Choice label="a" value="a" aria-labelledby="test-a" />
+                    {/* eslint-disable-next-line no-constant-condition */}
                     {false ? (
                         <Choice label="b" value="b" aria-labelledby="test-b" />
                     ) : null}

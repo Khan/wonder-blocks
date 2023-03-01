@@ -1,5 +1,5 @@
 import * as React from "react";
-import ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom";
 import {VariableSizeList as List} from "react-window";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 
@@ -189,7 +189,7 @@ class DropdownCoreVirtualized extends React.Component<Props, State> {
     render(): React.ReactNode {
         const {width, height} = this.state;
 
-        if (width == undefined) {
+        if (width == null) {
             // if we don't pass a fixed value, then we need to render
             // non-virtualized items to calculate width
             return this.renderInitialItems();
