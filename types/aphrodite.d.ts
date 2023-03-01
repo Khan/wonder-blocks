@@ -2,7 +2,7 @@ declare module "aphrodite" {
     /**
      * A CSS property definition.
      */
-    export type CSSProperties = any;
+    export type CSSProperties = Record<string, any>;
 
     /**
      * Aphrodite style declaration

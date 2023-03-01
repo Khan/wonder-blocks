@@ -6,33 +6,19 @@ import {processStyleList} from "./util";
 
 import type {StyleType} from "./types";
 
-// TODO(kevinb): have an a version which uses exact object types
 export default function addStyle<
-    T extends Flow.AbstractComponent<any> | string,
+    T extends React.ComponentType<any> | keyof JSX.IntrinsicElements,
 >(
     Component: T,
     defaultStyle?: StyleType,
-): Flow.AbstractComponent<
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'T' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
-    JSX.LibraryManagedAttributes<T, React.ComponentProps<T>> & {
-        style?: StyleType;
-    }
-> {
-    function StyleComponent(
-        // @ts-expect-error [FEI-5019] - TS2344 - Type 'T' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
-        props: JSX.LibraryManagedAttributes<T, React.ComponentProps<T>> & {
-            style: StyleType;
-        },
-    ) {
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'className' does not exist on type '{ style: any; }'.
-        const {className, style, ...tmpOtherProps} = props;
-        // NOTE(jeresig): We need to cast the remaining props to be the right
-        // value to ensure that they're typed properly.
-        const otherProps: JSX.LibraryManagedAttributes<
-            T,
-            // @ts-expect-error [FEI-5019] - TS2344 - Type 'T' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
-            React.ComponentProps<T>
-        > = tmpOtherProps as any;
+) {
+    type Props = SpreadType<
+        JSX.LibraryManagedAttributes<T, React.ComponentProps<T>>,
+        {style?: StyleType}
+    >;
+
+    const StyleComponent: React.FC<Props> = (props) => {
+        const {className, style, ...otherProps} = props;
         const reset =
             // @ts-expect-error [FEI-5019] - TS2536 - Type 'T & string' cannot be used to index type '{ button: { margin: number; "::-moz-focus-inner": { border: number; }; }; }'.
             typeof Component === "string" ? overrides[Component] : null;
@@ -52,7 +38,6 @@ export default function addStyle<
         );
     }
 
-    // @ts-expect-error: this will be fixed in a future PR when HOCs are converted
     return StyleComponent;
 }
 

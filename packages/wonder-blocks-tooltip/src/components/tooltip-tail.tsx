@@ -304,7 +304,7 @@ export default class TooltipTail extends React.Component<Props> {
         }
     }
 
-    _getArrowStyle(): StyleType {
+    _getArrowStyle(): React.CSSProperties {
         const {placement} = this.props;
         switch (placement) {
             case "top":

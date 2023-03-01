@@ -83,6 +83,7 @@ const adapters = {
 
 //>  should assert if parameterized type is not valid Adapters
 // string is not a valid Adapter
+// @ts-expect-error: Type 'string' does not satisfy the constraint 'TestHarnessAdapters'
 ({} as TestHarnessConfigs<typeof notadapters>);
 //<
 
