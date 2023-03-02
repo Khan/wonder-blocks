@@ -7,6 +7,9 @@
     },
     "references": [
         {"path": "../wonder-blocks-core"},
+        {"path": "../wonder-blocks-clickable"},
+        {"path": "../wonder-blocks-link"},
         {"path": "../wonder-blocks-spacing"},
+        {"path": "../wonder-blocks-typography"},
     ]
 }

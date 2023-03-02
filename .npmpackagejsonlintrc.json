@@ -1,0 +1,10 @@
+{
+    "rules": {
+        "require-main": "error",
+        "require-module": "error",
+        "require-name": "error",
+        "require-types": "error",
+        "require-version": "error",
+        "valid-values-publishConfig": ["error", [{"access": "public"}]]
+    }
+}
