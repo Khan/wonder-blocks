@@ -29,8 +29,7 @@ export type Props = {
     /** The unique identifier for this component. */
     id: string;
     /** The `TooltipContent` element that will be rendered in the bubble. */
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'TooltipContent' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
-    children: React.ReactElement<React.ComponentProps<TooltipContent>>;
+    children: React.ReactElement<React.ComponentProps<typeof TooltipContent>>;
     onActiveChanged: (active: boolean) => unknown;
 } & PopperElementProps; // (v3 beta introduces this) // TODO(somewhatabstract): Update react-docgen to support spread operators
 
@@ -79,7 +78,6 @@ export default class TooltipBubble extends React.Component<Props, State> {
                 style={[
                     isReferenceHidden && styles.hide,
                     styles.bubble,
-                    // @ts-expect-error [FEI-5019] - TS2551 - Property 'content-auto' does not exist on type '{ bubble: { position: string; }; hide: { pointerEvents: string; opacity: number; backgroundColor: string; color: string; }; "content-top": { flexDirection: string; }; "content-right": { flexDirection: string; }; "content-bottom": { ...; }; "content-left": { ...; }; content: { ...; }; }'. Did you mean 'content-top'?
                     styles[`content-${placement}`],
                     style,
                 ]}

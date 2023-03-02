@@ -51,10 +51,6 @@ jobs:
         uses: Khan/actions@get-changed-files-v1
         id: changed
 
-      # skip for now until we update the build config
-      # - name: Build so that inter-package references are resolved
-      #   run: yarn build
-
       - id: js-ts-files
         name: Find .js, .ts changed files
         uses: Khan/actions@filter-files-v0
@@ -89,6 +85,15 @@ jobs:
         if: always() # always run this check until we update the eslint config
         # if: steps.js-ts-files.outputs.filtered != '[]' || steps.typecheck-reset.outputs.filtered != '[]'
         run: yarn typecheck
+
+      - name: Build .js bundles
+        run: yarn build
+
+      - name: Build .d.ts types
+        run: yarn build:types
+
+      - name: Build .js.flow types
+        run: yarn build:flowtypes
 
       - uses: Khan/actions@check-for-changeset-v0
         if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'

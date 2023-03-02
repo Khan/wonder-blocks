@@ -18,15 +18,11 @@ const createConfig = (pkgName) => {
 
     return {
         output: [
-            // Used by production code.
             {
                 file: `packages/${pkgName}/dist/es/index.js`,
                 format: "esm",
             },
-            // Used by Flow enums (and possibly things like Jest, Storybook).
-            // TODO(FEI-5000): We will be able to only use the esm version once
-            // we fully migrate to TypeScript (as we don't have to depend on the
-            // flow-enums-runtime package).
+            // TODO(FEI-5030): Stop building CJS modules
             {
                 file: `packages/${pkgName}/dist/index.js`,
                 format: "cjs",
@@ -36,7 +32,13 @@ const createConfig = (pkgName) => {
         plugins: [
             babel({
                 presets,
-                plugins,
+                plugins: [
+                    ...plugins,
+                    // NOTE(kevinb): `plugin-proposal-class-properties` must come before
+                    // `plugin-transform-classes`.
+                    ["@babel/plugin-proposal-class-properties", {loose: true}],
+                    ["@babel/plugin-transform-classes", {loose: true}],
+                ],
                 exclude: "node_modules/**",
                 runtimeHelpers: true,
                 comments: false,

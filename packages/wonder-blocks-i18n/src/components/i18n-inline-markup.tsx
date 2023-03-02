@@ -81,13 +81,17 @@ import {parseSimpleHTML} from "./parse-simple-html";
 import type {SimpleHtmlNode} from "./parse-simple-html";
 
 type Props = {
+    // TODO(FEI-5019): This should be `[tag: string]: (content: string) => React.ReactElement`
+    // but TypeScript requires that the type of string indexers be compatible with all other
+    // properties in the type/interface.
+    [tag: string]: any;
+
     /**
      * A translated string.
      *
      * TODO(joshuan): if we ever add a type for translated strings, replace
      * "string" with that type.
      */
-    // @ts-expect-error [FEI-5019] - TS2411 - Property 'children' of type 'string' is not assignable to 'string' index type '(content: string) => ReactElement<any, string | JSXElementConstructor<any>>'.
     children: string;
     /**
      * A function which takes each top-level text or rendered tag,
@@ -101,15 +105,12 @@ type Props = {
      *
      * i is the index of the text or tag.
      */
-    // @ts-expect-error [FEI-5019] - TS2411 - Property 'elementWrapper' of type '((s: ReactNode, type: string, i: number) => ReactElement<any, string | JSXElementConstructor<any>>) | undefined' is not assignable to 'string' index type '(content: string) => ReactElement<any, string | JSXElementConstructor<any>>'.
     elementWrapper?: (
-        s: React.ReactNode,
+        elem: React.ReactNode,
         type: string,
         i: number,
     ) => React.ReactElement;
-    // @ts-expect-error [FEI-5019] - TS2411 - Property 'onError' of type '((e: Error) => ReactElement<any, string | JSXElementConstructor<any>>) | undefined' is not assignable to 'string' index type '(content: string) => ReactElement<any, string | JSXElementConstructor<any>>'.
     onError?: (e: Error) => React.ReactElement;
-    [tag: string]: (content: string) => React.ReactElement;
 };
 
 export class I18nInlineMarkup extends React.PureComponent<Props> {
@@ -128,7 +129,11 @@ export class I18nInlineMarkup extends React.PureComponent<Props> {
     }
 
     render(): React.ReactElement {
-        const {children, elementWrapper, ...renderers} = this.props;
+        const {children, elementWrapper, ...restProps} = this.props;
+        const renderers: Record<
+            string,
+            (content: string) => React.ReactElement
+        > = restProps;
         let tree: ReadonlyArray<SimpleHtmlNode>;
         try {
             tree = parseSimpleHTML(children);

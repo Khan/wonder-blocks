@@ -1,5 +1,28 @@
 # @khanacademy/wonder-blocks-typography
 
+## 1.1.39
+
+### Patch Changes
+
+-   d816af08: Update build and test configs use TypeScript
+-   3891f544: Update babel config to include plugins that Storybook needed
+-   0d28bb1c: Configured TypeScript
+-   3d05f764: Fix HOCs and other type errors
+-   c2ec4902: Update eslint configuration, fix lint
+-   2983c05b: Include 'types' field in package.json
+-   77ff6a66: Generate Flow types from TypeScript types
+-   ec8d4b7f: Fix miscellaneous TypeScript errors
+-   Updated dependencies [d816af08]
+-   Updated dependencies [3891f544]
+-   Updated dependencies [0d28bb1c]
+-   Updated dependencies [873f4a14]
+-   Updated dependencies [3d05f764]
+-   Updated dependencies [c2ec4902]
+-   Updated dependencies [2983c05b]
+-   Updated dependencies [77ff6a66]
+-   Updated dependencies [ec8d4b7f]
+    -   @khanacademy/wonder-blocks-core@4.8.0
+
 ## 1.1.38
 
 ### Patch Changes

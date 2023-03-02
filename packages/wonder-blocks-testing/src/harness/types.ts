@@ -47,7 +47,7 @@ export type TestHarnessConfig<TAdapter> = ReturnType<ExtractConfig>;
  * are explicitly typed as `TestHarnessAdapter<TConfig>` so if passing in a
  * non-Adapters type (which we should be, to get strong `TConfig` types instead
  * of `any`), then that object should make sure that each adapter is strongly
- * marked as `TestHarnessAdapter<TConfig>` - flow does not appear to pattern
+ * marked as `TestHarnessAdapter<TConfig>` - TypeScript does not appear to pattern
  * match against the type definition when invoking the `ExtractConfig` type and I
  * haven't worked out how to get it to multi-dispatch so that it matches
  * functions too. Even worse, if the type doesn't match, it just allows `any`

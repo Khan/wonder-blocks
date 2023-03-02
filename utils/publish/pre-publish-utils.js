@@ -41,8 +41,8 @@ const checkPackageMain = (pkgJson) =>
 const checkPackageModule = (pkgJson) =>
     checkPackageField(pkgJson, "module", "dist/es/index.js");
 
-const checkPackageSource = (pkgJson) =>
-    checkPackageField(pkgJson, "source", "src/index.js");
+const checkPackageTypes = (pkgJson) =>
+    checkPackageField(pkgJson, "types", "dist/index.d.ts");
 
 const checkPackagePrivate = (pkgJson) => {
     if (pkgJson.private) {
@@ -58,6 +58,6 @@ module.exports = {
     checkPublishConfig,
     checkPackageMain,
     checkPackageModule,
-    checkPackageSource,
+    checkPackageTypes,
     checkPackagePrivate,
 };

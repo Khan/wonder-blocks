@@ -10,5 +10,6 @@
         {"path": "../wonder-blocks-color"},
         {"path": "../wonder-blocks-core"},
         {"path": "../wonder-blocks-icon"},
+        {"path": "../../utils"},
     ]
 }

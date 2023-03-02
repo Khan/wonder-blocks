@@ -88,8 +88,7 @@ type WithBreadcrumbs = Common & {
     /**
      * Adds a breadcrumb-trail, appearing in the ModalHeader, above the title.
      */
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'Breadcrumbs' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
-    breadcrumbs: React.ReactElement<React.ComponentProps<Breadcrumbs>>;
+    breadcrumbs: React.ReactElement<React.ComponentProps<typeof Breadcrumbs>>;
 };
 
 type Props = Common | WithSubtitle | WithBreadcrumbs;

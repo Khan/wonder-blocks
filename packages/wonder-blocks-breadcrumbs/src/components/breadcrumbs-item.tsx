@@ -10,8 +10,7 @@ type Props = AriaProps & {
     /**
      * This is the content for the collection of Breadcrumbs
      */
-    // @ts-expect-error [FEI-5019] - TS2344 - Type 'Link' does not satisfy the constraint 'keyof IntrinsicElements | JSXElementConstructor<any>'.
-    children: string | React.ReactElement<React.ComponentProps<Link>>;
+    children: string | React.ReactElement<React.ComponentProps<typeof Link>>;
     /**
      * When true, the separator is shown; otherwise, the separator is not shown.
      * Note: This is only for use by the Breadcrumbs component!!

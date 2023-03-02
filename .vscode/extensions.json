@@ -13,9 +13,6 @@
         // GitLens because it is awesome
         "eamodio.gitlens",
 
-        // FlowType for flow support
-        "flowtype.flow-for-vscode",
-
         // Jest
         "orta.vscode-jest"
     ]

@@ -17,7 +17,6 @@ describe("fixtures", () => {
         const result = fixtures(() => <div />);
 
         // Assert
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'toBeFunction' does not exist on type 'JestMatchers<FixtureFn<unknown>>'.
         expect(result).toBeFunction();
     });
 
@@ -30,7 +29,6 @@ describe("fixtures", () => {
             const result = fixture("My fixture", {});
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'toBeFunction' does not exist on type 'JestMatchers<unknown>'.
             expect(result).toBeFunction();
         });
 

@@ -13,11 +13,11 @@ const {
     checkPublishConfig,
     checkPackageMain,
     checkPackageModule,
-    checkPackageSource,
+    checkPackageTypes,
 } = require("./pre-publish-utils");
 
 glob(
-    path.join(__dirname, "..", "..", "packages", "**", "package.json"),
+    path.join(__dirname, "..", "..", "packages", "*", "package.json"),
     (err, pkgPaths) => {
         for (const pkgPath of pkgPaths) {
             const pkgJson = require(path.relative(__dirname, pkgPath));
@@ -25,7 +25,7 @@ glob(
             checkPublishConfig(pkgJson);
             checkPackageMain(pkgJson);
             checkPackageModule(pkgJson);
-            checkPackageSource(pkgJson);
+            checkPackageTypes(pkgJson);
         }
     },
 );

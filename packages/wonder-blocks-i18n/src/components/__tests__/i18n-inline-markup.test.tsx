@@ -7,9 +7,8 @@ import * as i18n from "../../functions/i18n";
 
 const SingleShallowSubstitution = (): React.ReactElement => {
     return (
-        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
         <I18nInlineMarkup
-            u={(t) => (
+            u={(t: string) => (
                 <React.Fragment>
                     [Underline:<u>{t}</u>]
                 </React.Fragment>
@@ -24,14 +23,13 @@ const SingleShallowSubstitution = (): React.ReactElement => {
 
 const MultipleShallowSubstitution = (): React.ReactElement => {
     return (
-        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
         <I18nInlineMarkup
-            u={(t) => (
+            u={(t: string) => (
                 <React.Fragment>
                     __<u>{t}</u>__
                 </React.Fragment>
             )}
-            i={(t) => (
+            i={(t: string) => (
                 <span style={{background: "lightblue"}}>
                     *<i style={{fontStyle: "italic"}}>{t}</i>*
                 </span>
@@ -46,17 +44,16 @@ const MultipleShallowSubstitution = (): React.ReactElement => {
 
 const ElementWrapper = (): React.ReactElement => {
     return (
-        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
         <I18nInlineMarkup
             elementWrapper={(t) => (
                 <span style={{background: "yellow"}}>{t}</span>
             )}
-            u={(t) => (
+            u={(t: string) => (
                 <span style={{background: "red"}}>
                     __<u>{t}</u>__
                 </span>
             )}
-            i={(t) => (
+            i={(t: string) => (
                 <span style={{background: "lightblue"}}>
                     *<i style={{fontStyle: "italic"}}>{t}</i>*
                 </span>
@@ -103,7 +100,6 @@ describe("I18nInlineMarkup", () => {
         it("should throw an error if a render prop is missing", () => {
             const action = () =>
                 render(
-                    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                     <I18nInlineMarkup>
                         {"Hello <b>world</b>!"}
                     </I18nInlineMarkup>,
@@ -145,7 +141,6 @@ describe("I18nInlineMarkup", () => {
 
             // Act
             const {container} = render(
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 <I18nInlineMarkup onError={onErrorSpy}>
                     {"Hello <b>world</b>!"}
                 </I18nInlineMarkup>,
@@ -180,7 +175,6 @@ describe("I18nInlineMarkup", () => {
 
             // Act
             const {container} = render(
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 <I18nInlineMarkup onError={onErrorSpy}>
                     {
                         "This HTML is broken \u003cinvalid\u003einvalid\u003e innner \u003c/invalid\u003e, but here is fine."

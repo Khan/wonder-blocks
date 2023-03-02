@@ -15,9 +15,9 @@ import {Meta} from "@storybook/addon-docs";
 initializeHydrationCache(sourceCache: ResponseCache): void;
 ```
 
-| Argument | Flow&nbsp;Type | Default | Description |
-| --- | --- | --- | --- |
-| `sourceData` | `ResponseCache` | _Required_ | The source cache that will be used to initialize the response cache. |
+| Argument     | TypeScript&nbsp;Type | Default    | Description                                                          |
+| ------------ | -------------------- | ---------- | -------------------------------------------------------------------- |
+| `sourceData` | `ResponseCache`      | _Required_ | The source cache that will be used to initialize the response cache. |
 
 Wonder Blocks Data caches data in its response cache for hydration. This cache can be initialized with data using the `initializeHydrationCache` method.
 The `initializeHydrationCache` method can only be called when the hydration cache is empty.

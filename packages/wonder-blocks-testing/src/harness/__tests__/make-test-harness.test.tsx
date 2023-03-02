@@ -14,7 +14,6 @@ describe("#makeTestHarness", () => {
         const result = makeTestHarness(DefaultAdapters, DefaultConfigs);
 
         // Assert
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'toBeFunction' does not exist on type 'JestMatchers<(<TProps, Instance = unknown>(Component: Flow.AbstractComponent<TProps, Instance>, configs?: any) => Flow.AbstractComponent<TProps, Instance>)>'.
         expect(result).toBeFunction();
     });
 

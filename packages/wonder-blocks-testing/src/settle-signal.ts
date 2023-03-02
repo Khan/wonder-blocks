@@ -5,7 +5,9 @@
  * complex test scenarios.
  */
 export class SettleSignal extends EventTarget {
-    #settled = false;
+    // `flowgen` can't handle `#` so we're using `_` and TypeScript `private` access modifier.
+    // TODO(FEI-5000): Replace `_` with `#` after all code is on TypeScript.
+    private _settled = false;
 
     constructor(
         setSettleFn: ((settleFn: () => void) => unknown) | null = null,
@@ -16,10 +18,10 @@ export class SettleSignal extends EventTarget {
         // settle ourselves. This allows the appropriate SettleController
         // to be in charge of settling this instance.
         setSettleFn?.(() => {
-            if (this.#settled) {
+            if (this._settled) {
                 throw new Error("SettleSignal already settled");
             }
-            this.#settled = true;
+            this._settled = true;
             this.dispatchEvent(new Event("settled"));
         });
     }
@@ -29,7 +31,7 @@ export class SettleSignal extends EventTarget {
      */
     static settle(): SettleSignal {
         const signal = new SettleSignal();
-        signal.#settled = true;
+        signal._settled = true;
         return signal;
     }
 
@@ -37,6 +39,6 @@ export class SettleSignal extends EventTarget {
      * Has this signal been settled yet?
      */
     get settled(): boolean {
-        return this.#settled;
+        return this._settled;
     }
 }

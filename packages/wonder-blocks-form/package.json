@@ -1,11 +1,11 @@
 {
   "name": "@khanacademy/wonder-blocks-form",
-  "version": "3.1.11",
+  "version": "3.1.12",
   "design": "v1",
   "description": "Form components for Wonder Blocks.",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
-  "source": "src/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,19 +16,19 @@
   },
   "dependencies": {
     "@babel/runtime": "^7.18.6",
-    "@khanacademy/wonder-blocks-clickable": "^2.4.5",
-    "@khanacademy/wonder-blocks-color": "^1.2.1",
-    "@khanacademy/wonder-blocks-core": "^4.7.0",
-    "@khanacademy/wonder-blocks-icon": "^1.2.37",
-    "@khanacademy/wonder-blocks-layout": "^1.4.16",
-    "@khanacademy/wonder-blocks-spacing": "^3.0.5",
-    "@khanacademy/wonder-blocks-typography": "^1.1.38"
+    "@khanacademy/wonder-blocks-clickable": "^2.4.6",
+    "@khanacademy/wonder-blocks-color": "^1.2.2",
+    "@khanacademy/wonder-blocks-core": "^4.8.0",
+    "@khanacademy/wonder-blocks-icon": "^1.2.38",
+    "@khanacademy/wonder-blocks-layout": "^1.4.17",
+    "@khanacademy/wonder-blocks-spacing": "^3.0.6",
+    "@khanacademy/wonder-blocks-typography": "^1.1.39"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
     "react": "16.14.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.7.1"
+    "wb-dev-build-settings": "^0.7.2"
   }
 }

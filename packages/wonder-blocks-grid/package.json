@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-grid",
-  "version": "1.0.38",
+  "version": "1.0.39",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -8,7 +8,7 @@
   "description": "Grid components for Wonder Blocks design system.",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
-  "source": "src/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -16,16 +16,16 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "^7.18.6",
-    "@khanacademy/wonder-blocks-color": "^1.2.1",
-    "@khanacademy/wonder-blocks-core": "^4.7.0",
-    "@khanacademy/wonder-blocks-layout": "^1.4.16",
-    "@khanacademy/wonder-blocks-spacing": "^3.0.5"
+    "@khanacademy/wonder-blocks-color": "^1.2.2",
+    "@khanacademy/wonder-blocks-core": "^4.8.0",
+    "@khanacademy/wonder-blocks-layout": "^1.4.17",
+    "@khanacademy/wonder-blocks-spacing": "^3.0.6"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
     "react": "16.14.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.7.1"
+    "wb-dev-build-settings": "^0.7.2"
   }
 }
