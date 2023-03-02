@@ -3,7 +3,7 @@ import * as path from "path";
 import * as fglob from "fast-glob";
 
 const rootDir = path.join(__dirname, "..");
-const files = fglob.sync("packages/wonder-stuff-*/dist/**/*.d.ts", {
+const files = fglob.sync("packages/wonder-blocks-*/dist/**/*.d.ts", {
     cwd: rootDir,
 });
 
