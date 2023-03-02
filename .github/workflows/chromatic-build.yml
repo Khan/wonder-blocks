@@ -52,6 +52,7 @@ jobs:
         # Generate snapshots for only changed stories
         # See: https://www.chromatic.com/docs/turbosnap
         onlyChanged: true
+        debug: true
 
     # (if) Run this step on dependabot PRs.
     - name: Skip Chromatic builds (dependabot PRs only)
