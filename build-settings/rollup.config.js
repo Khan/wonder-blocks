@@ -32,7 +32,13 @@ const createConfig = (pkgName) => {
         plugins: [
             babel({
                 presets,
-                plugins,
+                plugins: [
+                    ...plugins,
+                    // NOTE(kevinb): `plugin-proposal-class-properties` must come before
+                    // `plugin-transform-classes`.
+                    ["@babel/plugin-proposal-class-properties", {loose: true}],
+                    ["@babel/plugin-transform-classes", {loose: true}],
+                ],
                 exclude: "node_modules/**",
                 runtimeHelpers: true,
                 comments: false,
