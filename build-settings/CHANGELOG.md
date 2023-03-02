@@ -1,5 +1,13 @@
 # wb-dev-build-settings
 
+## 0.7.2
+
+### Patch Changes
+
+-   d816af08: Update build and test configs use TypeScript
+-   3891f544: Update babel config to include plugins that Storybook needed
+-   2983c05b: Include 'types' field in package.json
+
 ## 0.7.1
 
 ### Patch Changes
