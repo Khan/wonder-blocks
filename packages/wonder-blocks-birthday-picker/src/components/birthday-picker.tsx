@@ -77,7 +77,6 @@ type State = {
     error: string | null;
 };
 
-// Flow doesn't know about the getYear property on Date for some reason!
 // @ts-expect-error [FEI-5019] - TS2339 - Property 'getYear' does not exist on type 'Date'.
 const CUR_YEAR = new Date().getYear() + 1900;
 

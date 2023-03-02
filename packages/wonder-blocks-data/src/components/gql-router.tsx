@@ -37,10 +37,10 @@ export const GqlRouter: React.FC<Props<any>> = <TContext extends GqlContext>({
 }: Props<TContext>): React.ReactElement => {
     // We don't care if we're nested. We always force our callers to define
     // everything. It makes for a clearer API and requires less error checking
-    // code (assuming our flow types are correct). We also don't default fetch
-    // to anything - our callers can tell us what function to use quite easily.
-    // If code that consumes this wants more nuanced nesting, it can implement
-    // it within its own GqlRouter than then defers to this one.
+    // code (assuming our TypeScript types are correct). We also don't default
+    // fetch to anything - our callers can tell us what function to use quite
+    // easily. If code that consumes this wants more nuanced nesting, it can
+    // implement it within its own GqlRouter than then defers to this one.
 
     // We want to always use the same object if things haven't changed to avoid
     // over-rendering consumers of our context, let's memoize the configuration.

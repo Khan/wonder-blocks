@@ -9,7 +9,7 @@ type DefaultProps = {
     tag: Props["tag"];
 };
 
-// TODO(alex): Once style prop validation works, if all of the style prop flow
+// TODO(alex): Once style prop validation works, if all of the style prop TypeScript
 //             types are the same then switch to using functional components.
 export default class Title extends React.Component<Props> {
     static defaultProps: DefaultProps = {

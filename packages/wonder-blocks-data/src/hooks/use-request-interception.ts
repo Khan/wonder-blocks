@@ -42,7 +42,7 @@ export const useRequestInterception = <TData extends ValidCacheData>(
         );
         // If nothing intercepted this request, invoke the original handler.
         // NOTE: We can't guarantee all interceptors return the same type
-        // as our handler, so how can flow know? Let's just suppress that.
+        // as our handler, so how can TypeScript know? Let's just suppress that.
         // @ts-expect-error [FEI-5019] - TS2739 - Type '(requestId: string) => Promise<ValidCacheData | null | undefined> | null | undefined' is missing the following properties from type 'Promise<TData>': then, catch, finally, [Symbol.toStringTag]
         return interceptResponse ?? handler();
     }, [handler, interceptors, requestId]);

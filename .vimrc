@@ -16,7 +16,7 @@
 
 let g:ale_linters = {
 \   'javascript': [
-\       'flow',
+\       'typescript',
 \       'eslint',
 \   ],
 \}

@@ -104,7 +104,6 @@ describe("#useSharedCache", () => {
             } = clientRenderHook(() => useSharedCache("id", "scope"));
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'toBeFunction' does not exist on type 'JestMatchers<CacheValueFn<ValidCacheData>>'.
             expect(result[1]).toBeFunction();
         });
 

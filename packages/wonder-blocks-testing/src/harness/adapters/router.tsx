@@ -177,7 +177,7 @@ export const adapter: TestHarnessAdapter<Config> = (
 
     /**
      * If it's not the easy one, it should be the complex one.
-     * Let's make sure we have good data (also keeps flow happy).
+     * Let's make sure we have good data (also keeps TypeScript happy).
      */
     // @ts-expect-error [FEI-5019] - TS2339 - Property 'initialEntries' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
     if (typeof config.initialEntries === "undefined") {
@@ -198,7 +198,7 @@ export const adapter: TestHarnessAdapter<Config> = (
             : // @ts-expect-error [FEI-5019] - TS2339 - Property 'initialEntries' does not exist on type 'Readonly<{ initialEntries: LocationDescriptor<unknown>[] | undefined; initialIndex?: number | undefined; getUserConfirmation?: ((message: string, callback: (ok: boolean) => void) => void) | undefined; path?: string | undefined; } | { ...; } | { ...; }>'.
               config.initialEntries;
 
-    // Memory router doesn't allow us to pass maybe types in its flow types.
+    // Memory router doesn't allow us to pass maybe types in its TypeScript types.
     // So let's build props then spread them.
     const routerProps: MemoryRouterProps = {
         initialEntries: entries,

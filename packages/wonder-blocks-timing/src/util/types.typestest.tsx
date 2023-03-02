@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 /**
- * This file ensures that our flow types are working right.
+ * This file ensures that our TypeScript types are working right.
  */
 import * as React from "react";
 import withActionScheduler from "../components/with-action-scheduler";

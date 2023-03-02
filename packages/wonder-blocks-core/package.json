@@ -17,7 +17,6 @@
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
-    "flow-enums-runtime": "^0.0.6",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-router": "5.2.1",

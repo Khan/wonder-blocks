@@ -145,8 +145,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         // us catch code changes that affect the control flow unexpectedly,
         // but it's not something we need to write a test case for.
         //
-        // Flow will assert exhaustiveness of the switch because Flow enums
-        // rock.
+        // TypeScript will assert exhaustiveness of the switch.
         //
         /* istanbul ignore next */
         {

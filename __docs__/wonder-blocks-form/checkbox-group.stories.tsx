@@ -92,7 +92,7 @@ export const Error: StoryComponentType = () => {
 
     // Returns an error message if more than 3 items are selected,
     // and it returns undefined otherwise. We use undefined instead of
-    // null here because null would result in a flow error, whereas
+    // null here because null would result in a type error, whereas
     // undefined would be the same as not passing in anything to the
     // checkbox group's `errorMessage` prop.
     const checkForError = (input: Array<string>) => {

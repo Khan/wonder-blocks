@@ -101,7 +101,7 @@ export default class TooltipAnchor
     componentDidMount() {
         const anchorNode = ReactDOM.findDOMNode(this);
 
-        // This should never happen, but we have this check here to make flow
+        // This should never happen, but we have this check here to make TypeScript
         // happy and ensure that if this does happen, we'll know about it.
         if (anchorNode instanceof Text) {
             throw new Error(

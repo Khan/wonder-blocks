@@ -1,6 +1,5 @@
 node_modules
 coverage
-flow-coverage
 dist
 storybook-static
 !.vscode

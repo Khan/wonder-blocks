@@ -697,7 +697,7 @@ class DropdownCore extends React.Component<Props, State> {
                     return false;
                 }
 
-                // Flow doesn't know that the component is an OptionItem
+                // TypeScript doesn't know that the component is an OptionItem
                 // @ts-expect-error [FEI-5019] - TS2339 - Property 'label' does not exist on type '{}'.
                 const label = component.props?.label.toLowerCase();
 
