@@ -25,9 +25,8 @@ type StoryComponentType = ComponentStory<typeof I18nInlineMarkup>;
 
 export const SingleShallowSubstitution: StoryComponentType = () => {
     return (
-        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
         <I18nInlineMarkup
-            u={(t) => (
+            u={(t: string) => (
                 <React.Fragment>
                     [Underline:<u>{t}</u>]
                 </React.Fragment>
@@ -42,14 +41,13 @@ export const SingleShallowSubstitution: StoryComponentType = () => {
 
 export const MultipleShallowSubstitution: StoryComponentType = () => {
     return (
-        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
         <I18nInlineMarkup
-            u={(t) => (
+            u={(t: string) => (
                 <React.Fragment>
                     __<u>{t}</u>__
                 </React.Fragment>
             )}
-            i={(t) => (
+            i={(t: string) => (
                 <span style={{background: "lightblue"}}>
                     *<i style={{fontStyle: "italic"}}>{t}</i>*
                 </span>
@@ -64,17 +62,16 @@ export const MultipleShallowSubstitution: StoryComponentType = () => {
 
 export const ElementWrapper: StoryComponentType = () => {
     return (
-        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
         <I18nInlineMarkup
-            elementWrapper={(t) => (
-                <span style={{background: "yellow"}}>{t}</span>
+            elementWrapper={(elem) => (
+                <span style={{background: "yellow"}}>{elem}</span>
             )}
-            u={(t) => (
+            u={(t: string) => (
                 <span style={{background: "red"}}>
                     __<u>{t}</u>__
                 </span>
             )}
-            i={(t) => (
+            i={(t: string) => (
                 <span style={{background: "lightblue"}}>
                     *<i style={{fontStyle: "italic"}}>{t}</i>*
                 </span>
@@ -89,9 +86,8 @@ export const ElementWrapper: StoryComponentType = () => {
 
 export const HandlingTranslationErrors: StoryComponentType = () => {
     return (
-        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
         <I18nInlineMarkup
-            settings={(label) => (
+            settings={(label: string) => (
                 // @ts-expect-error(FEI-5000): No overload matches this call.
                 <LabelMedium href="/settings#child-accounts">
                     {label}

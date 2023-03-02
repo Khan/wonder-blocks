@@ -187,7 +187,6 @@ describe("FieldHeading", () => {
         render(
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 label={<I18nInlineMarkup>Hello, world!</I18nInlineMarkup>}
             />,
         );
@@ -206,7 +205,6 @@ describe("FieldHeading", () => {
             <FieldHeading
                 field={<TextField id="tf-1" value="" onChange={() => {}} />}
                 label={<Body>Hello, world</Body>}
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 description={<I18nInlineMarkup>description</I18nInlineMarkup>}
             />,
         );
