@@ -3,11 +3,22 @@ import * as path from "path";
 import * as fglob from "fast-glob";
 
 const rootDir = path.join(__dirname, "..");
-const files = fglob.sync("packages/wonder-blocks-*/dist/**/*.test.d.ts", {
+const testFiles = fglob.sync("packages/wonder-blocks-*/dist/**/*.test.d.ts", {
     cwd: rootDir,
 });
 
-for (const file of files) {
+for (const file of testFiles) {
+    fs.unlinkSync(path.join(rootDir, file));
+}
+
+const filesInTestDirs = fglob.sync(
+    "packages/wonder-blocks-*/dist/**/__tests__/*.d.ts",
+    {
+        cwd: rootDir,
+    },
+);
+
+for (const file of filesInTestDirs) {
     fs.unlinkSync(path.join(rootDir, file));
 }
 
