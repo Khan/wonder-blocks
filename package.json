@@ -98,7 +98,7 @@
     "npm-package-json-lint": "^6.4.0",
     "prettier": "^2.8.1",
     "react-refresh": "^0.14.0",
-    "react-test-renderer": "^17.0.2",
+    "react-test-renderer": "^18.2.0",
     "rollup": "^2.79.1",
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-babel": "^4.0.0-beta.2",
