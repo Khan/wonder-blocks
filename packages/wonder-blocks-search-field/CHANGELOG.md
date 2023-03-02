@@ -1,5 +1,35 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 1.0.20
+
+### Patch Changes
+
+-   d816af08: Update build and test configs use TypeScript
+-   3891f544: Update babel config to include plugins that Storybook needed
+-   0d28bb1c: Configured TypeScript
+-   3d05f764: Fix HOCs and other type errors
+-   c2ec4902: Update eslint configuration, fix lint
+-   2983c05b: Include 'types' field in package.json
+-   77ff6a66: Generate Flow types from TypeScript types
+-   ec8d4b7f: Fix miscellaneous TypeScript errors
+-   Updated dependencies [d816af08]
+-   Updated dependencies [3891f544]
+-   Updated dependencies [3813715d]
+-   Updated dependencies [0d28bb1c]
+-   Updated dependencies [873f4a14]
+-   Updated dependencies [3d05f764]
+-   Updated dependencies [c2ec4902]
+-   Updated dependencies [2983c05b]
+-   Updated dependencies [77ff6a66]
+-   Updated dependencies [ec8d4b7f]
+    -   @khanacademy/wonder-blocks-color@1.2.2
+    -   @khanacademy/wonder-blocks-core@4.8.0
+    -   @khanacademy/wonder-blocks-form@3.1.12
+    -   @khanacademy/wonder-blocks-icon@1.2.38
+    -   @khanacademy/wonder-blocks-icon-button@3.4.22
+    -   @khanacademy/wonder-blocks-spacing@3.0.6
+    -   @khanacademy/wonder-blocks-typography@1.1.39
+
 ## 1.0.19
 
 ### Patch Changes
