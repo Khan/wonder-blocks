@@ -23,7 +23,7 @@
     "lint:watch": "esw --watch --config ./eslint/eslintrc packages",
     "lint": "eslint --config .eslintrc.js --ext .ts --ext .js --ext .tsx --ext .jsx packages",
     "lint:ci": "eslint --config .eslintrc.js --ext .ts --ext .js --ext .tsx --ext .jsx",
-    "publish:ci": "yarn run lint:pkg-json && node utils/publish/pre-publish-check-ci.js && git diff --stat --exit-code HEAD && yarn build && changeset publish",
+    "publish:ci": "yarn run lint:pkg-json && node utils/publish/pre-publish-check-ci.js && git diff --stat --exit-code HEAD && yarn build && yarn build:types && yarn build:flowtypes && changeset publish",
     "start": "start-storybook -p 6061",
     "test:common": "yarn run build && yarn run lint && yarn run alex && yarn run typecheck",
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
