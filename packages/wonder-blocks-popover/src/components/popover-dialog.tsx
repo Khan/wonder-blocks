@@ -91,7 +91,6 @@ export default class PopoverDialog extends React.Component<Props> {
                     data-placement={placement}
                     style={[
                         isReferenceHidden && styles.hide,
-                        // @ts-expect-error [FEI-5019] - TS2551 - Property 'content-auto' does not exist on type '{ hide: { pointerEvents: string; opacity: number; backgroundColor: string; color: string; }; "content-top": { flexDirection: string; }; "content-right": { flexDirection: string; }; "content-bottom": { flexDirection: string; }; "content-left": { ...; }; }'. Did you mean 'content-top'?
                         styles[`content-${placement}`],
                         style,
                     ]}

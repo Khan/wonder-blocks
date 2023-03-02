@@ -235,6 +235,9 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
         } = this.props;
         return (
             <input
+                // @ts-expect-error: we shouldn't be passing `style` to `css()`
+                // here b/c `style` allows nested arrays of styles, but `css()`
+                // only allows a flat array.
                 className={css([
                     styles.input,
                     typographyStyles.LabelMedium,
