@@ -197,14 +197,13 @@ export const _: _Overloads = (strOrPluralConfig, options) =>
  *       {node: <blink>Ahh my eyes!</blink>}
  *   )
  */
-// @ts-expect-error [FEI-5019] - TS2322 - Type '(str: string, options: InterpolationOptions<ReactNode> | null | undefined) => ReactNode' is not assignable to type '(str: string, options?: InterpolationOptions<ReactNode> | null | undefined) => ReactElement<any, string | JSXElementConstructor<any>>'.
 export const $_: (
     str: string,
     options?:
         | InterpolationOptions<React.ReactNode | null | undefined>
         | null
         | undefined,
-) => React.ReactElement = function (str, options) {
+) => React.ReactNode = function (str, options) {
     return interpolateStringToFragment(str, options);
 };
 
@@ -233,8 +232,12 @@ export const $_: (
  * In Russian, any number ending in 1 (e.g. 21, 61) uses singular form.
  * You should instead still parameterize the number.
  */
-// @ts-expect-error [FEI-5019] - TS2322 - Type '(singular: string, plural: string, num: number | null | undefined, options: NGetOptions | undefined) => string' is not assignable to type 'ngettextOverloads'.
-export const ngettext: ngettextOverloads = (singular, plural, num, options) => {
+export const ngettext: ngettextOverloads = (
+    singular: string | PluralConfigurationObject,
+    plural?: string | number | null | undefined,
+    num?: number | null | undefined | NGetOptions,
+    options?: NGetOptions,
+) => {
     const {messages, lang}: PluralConfigurationObject =
         typeof singular === "object"
             ? singular

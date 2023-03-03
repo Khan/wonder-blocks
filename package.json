@@ -10,8 +10,8 @@
   "scripts": {
     "alex": "alex packages/",
     "build": "rollup -c ./build-settings/rollup.config.js",
-    "build:types": "yarn tsc --build tsconfig-build.json && node -r @swc-node/register build-scripts/remove-test-types-from-dist.ts",
-    "build:flowtypes": "node -r @swc-node/register build-scripts/gen-flow-types.ts",
+    "build:types": "yarn tsc --build tsconfig-build.json && node -r @swc-node/register build-settings/remove-test-types-from-dist.ts",
+    "build:flowtypes": "node -r @swc-node/register build-settings/gen-flow-types.ts",
     "build:storybook": "build-storybook",
     "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules && rm -f packages/*/tsconfig.tsbuildinfo",
     "coverage": "yarn run test:coverage && open coverage/lcov-report/index.html",
