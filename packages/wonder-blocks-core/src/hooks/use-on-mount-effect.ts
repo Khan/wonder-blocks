@@ -10,15 +10,23 @@ import * as React from "react";
  * The following code snippets are equivalent
  * ```
  * useOnMountEffect(() => {
- *    doTheThing();
+ *    doSomethingOnMount();
+ *    return () => {
+ *        doSomethingOnUnmount();
+ *    };
  * });
  * ```
  *
  * ```
  * useEffect(() => {
- *    doTheThing();
+ *    doSomethingOnMount();
+ *    return () => {
+ *        doSomethingOnUnmount();
+ *    };
  * // eslint-disable-next-line react-hooks/exhaustive-deps
  * }, []);
+ *
+ * If you only need to do something on mount, don't return a cleanup function from `callback`.
  */
 export const useOnMountEffect = (
     callback: () => undefined | (() => void),
