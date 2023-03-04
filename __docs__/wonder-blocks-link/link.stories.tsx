@@ -1,9 +1,11 @@
 // We need to use fireEvent for mouseDown in these tests, none of the userEvent
 // alternatives work. Click includes mouseUp, which removes the pressed style.
-/* eslint-disable testing-library/prefer-user-event */
+// TODO(wb-): Add back comment: eslint-disable testing-library/prefer-user-event
 import {expect} from "@storybook/jest";
 import * as React from "react";
-import {within, userEvent, fireEvent} from "@storybook/testing-library";
+// TODO(WB-): uncomment this import after updating styles
+// import {within, userEvent, fireEvent} from "@storybook/testing-library";
+import {within} from "@storybook/testing-library";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import type {ComponentStory, ComponentMeta} from "@storybook/react";
@@ -32,8 +34,9 @@ export default {
     argTypes: LinkArgTypes,
 } as ComponentMeta<typeof Link>;
 
-const activeBlue = "#1b50b3";
-const fadedBlue = "#b5cefb";
+// TODO(WB-): uncomment these variables after updating styles
+// const activeBlue = "#1b50b3";
+// const fadedBlue = "#b5cefb";
 
 type StoryComponentType = ComponentStory<typeof Link>;
 
