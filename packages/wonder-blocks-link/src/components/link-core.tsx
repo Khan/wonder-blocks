@@ -94,8 +94,6 @@ const sharedStyles = StyleSheet.create({
         textDecoration: "none",
         outline: "none",
         display: "inline-flex",
-        fontSize: 16,
-        lineHeight: "22px",
     },
 });
 
@@ -165,14 +163,24 @@ const _generateStyles = (
         },
         restingInline: {
             color: defaultTextColor,
+            // TODO(WB-): Update text decoration to the dashed underline
+            // after the Link audit.
+            // textDecoration: "underline currentcolor solid 1px",
             textDecoration: "underline currentcolor solid 1px",
-            textUnderlineOffset: 4,
+            // TODO(WB-): Update the underline offset to be 4px after
+            // the Link audit.
+            // textUnderlineOffset: 4,
             ...defaultVisited,
         },
         hover: {
-            textDecoration: "underline currentcolor dashed 2px",
+            // TODO(WB-): Update text decoration to the dashed underline
+            // after the Link audit.
+            // textDecoration: "underline currentcolor dashed 2px",
+            textDecoration: "underline currentcolor solid 1px",
             color: defaultTextColor,
-            textUnderlineOffset: 4,
+            // TODO(WB-): Update the underline offset to be 4px after
+            // the Link audit.
+            // textUnderlineOffset: 4,
             ...defaultVisited,
         },
         focus: {
@@ -184,7 +192,7 @@ const _generateStyles = (
         active: {
             color: activeColor,
             textDecoration: "underline currentcolor solid 1px",
-            textUnderlineOffset: 4,
+            // textUnderlineOffset: 4,
             ...activeVisited,
         },
     };
