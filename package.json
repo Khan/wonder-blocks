@@ -13,7 +13,7 @@
     "build:types": "yarn tsc --build tsconfig-build.json && node -r @swc-node/register build-settings/remove-test-types-from-dist.ts",
     "build:flowtypes": "node -r @swc-node/register build-settings/gen-flow-types.ts",
     "build:storybook": "build-storybook",
-    "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules && rm -f packages/*/tsconfig.tsbuildinfo",
+    "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules && rm -f **/tsconfig.tsbuildinfo",
     "coverage": "yarn run test:coverage && open coverage/lcov-report/index.html",
     "coveragefor": "bash -c 'yarn --silent jest --coverage --collectCoverageFrom=**/$0 $(node ./utils/test-file-for.js \"$0\")'",
     "coverage:ci": "yarn run jest --coverage",
