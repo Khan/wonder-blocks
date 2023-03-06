@@ -163,22 +163,22 @@ const _generateStyles = (
         },
         restingInline: {
             color: defaultTextColor,
-            // TODO(WB-): Update text decoration to the dashed underline
+            // TODO(WB-1521): Update text decoration to the dashed underline
             // after the Link audit.
             // textDecoration: "underline currentcolor solid 1px",
             textDecoration: "underline currentcolor solid 1px",
-            // TODO(WB-): Update the underline offset to be 4px after
+            // TODO(WB-1521): Update the underline offset to be 4px after
             // the Link audit.
             // textUnderlineOffset: 4,
             ...defaultVisited,
         },
         hover: {
-            // TODO(WB-): Update text decoration to the dashed underline
+            // TODO(WB-1521): Update text decoration to the dashed underline
             // after the Link audit.
             // textDecoration: "underline currentcolor dashed 2px",
             textDecoration: "underline currentcolor solid 1px",
             color: defaultTextColor,
-            // TODO(WB-): Update the underline offset to be 4px after
+            // TODO(WB-1521): Update the underline offset to be 4px after
             // the Link audit.
             // textUnderlineOffset: 4,
             ...defaultVisited,
@@ -192,6 +192,8 @@ const _generateStyles = (
         active: {
             color: activeColor,
             textDecoration: "underline currentcolor solid 1px",
+            // TODO(WB-1521): Update the underline offset to be 4px after
+            // the Link audit.
             // textUnderlineOffset: 4,
             ...activeVisited,
         },
