@@ -21,8 +21,6 @@ exports[`Link <Link tabIndex={-1}> 1`] = `
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
       "textDecoration": "none",
     }
@@ -54,8 +52,6 @@ exports[`Link <Link tabIndex={0}> 1`] = `
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
       "textDecoration": "none",
     }
@@ -87,8 +83,6 @@ exports[`Link <Link tabIndex={1}> 1`] = `
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
       "textDecoration": "none",
     }
@@ -121,8 +115,6 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 1`] = 
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
     }
@@ -155,8 +147,6 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 2`] = 
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
     }
@@ -188,11 +178,8 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 1`] = 
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -222,11 +209,8 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 2`] = 
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -256,11 +240,8 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 1`] = 
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -290,11 +271,8 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 2`] = 
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -328,8 +306,6 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 1`] = `
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
     }
@@ -365,8 +341,6 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 2`] = `
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
     }
@@ -401,11 +375,8 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 1`] = `
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -438,11 +409,8 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 2`] = `
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -475,11 +443,8 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 1`] = `
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -512,11 +477,8 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 2`] = `
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -547,8 +509,6 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 1`] = `
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
     }
@@ -581,8 +541,6 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 2`] = `
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
     }
@@ -614,11 +572,8 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 1`] = `
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -648,11 +603,8 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 2`] = `
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -682,11 +634,8 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 1`] = `
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -716,11 +665,8 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 2`] = `
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -754,8 +700,6 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 1`] = `
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
     }
@@ -791,8 +735,6 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 2`] = `
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
     }
@@ -827,11 +769,8 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 1`] = `
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -864,11 +803,8 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 2`] = `
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -901,11 +837,8 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 1`] = `
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -938,11 +871,8 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 2`] = `
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -973,8 +903,6 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
     }
@@ -1007,8 +935,6 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
     }
@@ -1040,11 +966,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1074,11 +997,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1108,11 +1028,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1142,11 +1059,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1180,8 +1094,6 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
     }
@@ -1217,8 +1129,6 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
     }
@@ -1253,11 +1163,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1290,11 +1197,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1327,11 +1231,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1364,11 +1265,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1399,8 +1297,6 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
     }
@@ -1433,8 +1329,6 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
     }
@@ -1466,11 +1360,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1500,11 +1391,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1534,11 +1422,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1568,11 +1453,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1606,8 +1488,6 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
     }
@@ -1643,8 +1523,6 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
     }
@@ -1679,11 +1557,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1716,11 +1591,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1753,11 +1625,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1790,11 +1659,8 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "color": "#b5cefb",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1825,8 +1691,6 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 1`] 
       "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
     }
@@ -1859,8 +1723,6 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 2`] 
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
     }
@@ -1892,11 +1754,8 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 1`] 
       "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1926,11 +1785,8 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 2`] 
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1960,11 +1816,8 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 1`] 
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1994,11 +1847,8 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 2`] 
       "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -2029,8 +1879,6 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
     }
@@ -2063,8 +1911,6 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
     }
@@ -2096,11 +1942,8 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -2130,11 +1973,8 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor dashed 2px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -2164,11 +2004,8 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "color": "#1b50b3",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -2198,11 +2035,8 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
-      "fontSize": 16,
-      "lineHeight": "22px",
       "outline": "none",
-      "textDecoration": "underline currentcolor solid 1px",
-      "textUnderlineOffset": 4,
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
