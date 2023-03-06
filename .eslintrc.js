@@ -34,7 +34,7 @@ module.exports = {
     },
     overrides: [
         {
-            files: ["build-scripts/*.ts"],
+            files: ["build-settings/*.ts"],
             rules: {
                 "no-console": "off",
             },

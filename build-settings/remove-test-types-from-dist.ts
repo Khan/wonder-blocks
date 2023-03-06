@@ -30,3 +30,11 @@ const dirs = fglob.sync("packages/wonder-blocks-*/dist/**/__tests__", {
 for (const dir of dirs) {
     fs.rmdirSync(path.join(rootDir, dir));
 }
+
+const filesInUtils = fglob.sync("utils/**/*.d.ts", {
+    cwd: rootDir,
+});
+
+for (const file of filesInUtils) {
+    fs.unlinkSync(path.join(rootDir, file));
+}

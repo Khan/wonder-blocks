@@ -261,7 +261,12 @@ export const WithInlineLinks: StoryComponentType = () => (
             text={
                 <LabelSmall>
                     Use inline links in the body of the text instead. Click{" "}
-                    {<Link href="">here</Link>} to go to some other page.
+                    {
+                        <Link href="" inline={true}>
+                            here
+                        </Link>
+                    }{" "}
+                    to go to some other page.
                 </LabelSmall>
             }
             kind="success"

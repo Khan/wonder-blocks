@@ -536,7 +536,9 @@ export const WithMarkup: StoryComponentType = (args) => {
             description={
                 <span>
                     Description with <strong>strong</strong> text and a{" "}
-                    <Link href="/path/to/resource">link</Link>
+                    <Link href="/path/to/resource" inline={true}>
+                        link
+                    </Link>
                 </span>
             }
         />

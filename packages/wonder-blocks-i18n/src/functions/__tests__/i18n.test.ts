@@ -215,7 +215,8 @@ describe("i18n", () => {
             const result = $_("Test %(num)s %(str)s", {str: "string", num: 2});
 
             // Assert
-            expect(result.props.children).toEqual([
+            // @ts-expect-error: `props` isn't available on all ReactNodes variants.
+            expect(result?.props.children).toEqual([
                 "Test ",
                 2,
                 " ",
