@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 0.7.3
+
+### Patch Changes
+
+-   92afa7d2: Merge build-scripts directory into build-settings
+
 ## 0.7.2
 
 ### Patch Changes

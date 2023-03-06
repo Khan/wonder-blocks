@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-button
 
+## 3.0.16
+
+### Patch Changes
+
+-   Updated dependencies [779b031d]
+    -   @khanacademy/wonder-blocks-core@4.9.0
+    -   @khanacademy/wonder-blocks-clickable@2.4.7
+    -   @khanacademy/wonder-blocks-icon@1.2.39
+    -   @khanacademy/wonder-blocks-progress-spinner@1.1.42
+    -   @khanacademy/wonder-blocks-typography@1.1.40
+
 ## 3.0.15
 
 ### Patch Changes
