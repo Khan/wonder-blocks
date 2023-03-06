@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-progress-spinner
 
+## 1.1.42
+
+### Patch Changes
+
+-   Updated dependencies [779b031d]
+    -   @khanacademy/wonder-blocks-core@4.9.0
+
 ## 1.1.41
 
 ### Patch Changes

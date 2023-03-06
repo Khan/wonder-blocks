@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 1.2.6
+
+### Patch Changes
+
+-   92afa7d2: Fix export types for ngettext and \$\_
+
 ## 1.2.5
 
 ### Patch Changes

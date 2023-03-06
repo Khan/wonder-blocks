@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 4.9.0
+
+### Minor Changes
+
+-   779b031d: Update AriaProps to use React's AriaAttributes and AriaRole types
+
 ## 4.8.0
 
 ### Minor Changes

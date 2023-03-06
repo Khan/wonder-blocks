@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-link
 
+## 3.9.3
+
+### Patch Changes
+
+-   2c0ad5ca: Going back to old link styles temporarily
+-   Updated dependencies [779b031d]
+    -   @khanacademy/wonder-blocks-core@4.9.0
+    -   @khanacademy/wonder-blocks-clickable@2.4.7
+
 ## 3.9.2
 
 ### Patch Changes
