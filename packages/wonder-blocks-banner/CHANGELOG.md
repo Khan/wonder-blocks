@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-banner
 
+## 1.2.10
+
+### Patch Changes
+
+-   b5ba5568: Ensure that flow lib defs use React.ElementConfig<> isntead of JSX.LibraryManagedAttributes<>
+-   Updated dependencies [b5ba5568]
+    -   @khanacademy/wonder-blocks-button@3.0.17
+    -   @khanacademy/wonder-blocks-color@1.2.3
+    -   @khanacademy/wonder-blocks-core@4.9.1
+    -   @khanacademy/wonder-blocks-icon@1.2.40
+    -   @khanacademy/wonder-blocks-icon-button@3.4.24
+    -   @khanacademy/wonder-blocks-link@3.9.4
+    -   @khanacademy/wonder-blocks-spacing@3.0.7
+    -   @khanacademy/wonder-blocks-typography@1.1.41
+
 ## 1.2.9
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-typography
 
+## 1.1.41
+
+### Patch Changes
+
+-   b5ba5568: Ensure that flow lib defs use React.ElementConfig<> isntead of JSX.LibraryManagedAttributes<>
+-   Updated dependencies [b5ba5568]
+    -   @khanacademy/wonder-blocks-core@4.9.1
+
 ## 1.1.40
 
 ### Patch Changes

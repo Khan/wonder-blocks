@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-color",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "design": "v2",
   "publishConfig": {
     "access": "public"
@@ -13,7 +13,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.7.3"
+    "wb-dev-build-settings": "^0.7.4"
   },
   "author": "",
   "license": "MIT"

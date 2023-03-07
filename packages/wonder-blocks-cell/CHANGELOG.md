@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-cell
 
+## 2.2.18
+
+### Patch Changes
+
+-   b5ba5568: Ensure that flow lib defs use React.ElementConfig<> isntead of JSX.LibraryManagedAttributes<>
+-   Updated dependencies [b5ba5568]
+    -   @khanacademy/wonder-blocks-clickable@2.4.8
+    -   @khanacademy/wonder-blocks-color@1.2.3
+    -   @khanacademy/wonder-blocks-core@4.9.1
+    -   @khanacademy/wonder-blocks-layout@1.4.19
+    -   @khanacademy/wonder-blocks-spacing@3.0.7
+    -   @khanacademy/wonder-blocks-typography@1.1.41
+
 ## 2.2.17
 
 ### Patch Changes

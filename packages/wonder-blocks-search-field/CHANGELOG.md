@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 1.0.22
+
+### Patch Changes
+
+-   b5ba5568: Ensure that flow lib defs use React.ElementConfig<> isntead of JSX.LibraryManagedAttributes<>
+-   Updated dependencies [b5ba5568]
+    -   @khanacademy/wonder-blocks-color@1.2.3
+    -   @khanacademy/wonder-blocks-core@4.9.1
+    -   @khanacademy/wonder-blocks-form@3.1.14
+    -   @khanacademy/wonder-blocks-icon@1.2.40
+    -   @khanacademy/wonder-blocks-icon-button@3.4.24
+    -   @khanacademy/wonder-blocks-spacing@3.0.7
+    -   @khanacademy/wonder-blocks-typography@1.1.41
+
 ## 1.0.21
 
 ### Patch Changes
