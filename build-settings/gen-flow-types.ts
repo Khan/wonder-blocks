@@ -18,15 +18,22 @@ for (const inFile of files) {
 
         // `flowgen` sometimes outputs code that uses `mixins` instead of `extends`
         // so we do some post-processing on the files to clean that up.
-        const contents = fs.readFileSync(path.join(rootDir, outFile), "utf-8");
+        let contents = fs.readFileSync(path.join(rootDir, outFile), "utf-8");
         if (contents.includes(" mixins ")) {
+            contents = contents.replace(/ mixins /g, " extends ");
             console.log("replacing 'mixins' with 'extends'");
-            fs.writeFileSync(
-                path.join(rootDir, outFile),
-                contents.replace(/ mixins /g, " extends "),
-                "utf-8",
+        }
+        if (contents.includes("JSX.LibraryManagedAttributes")) {
+            contents = contents.replace(
+                /JSX\.LibraryManagedAttributes<\s+([^,]+),\s+React\.ComponentProps<[^>]+>\s+>/gm,
+                (substr, group) => {
+                    const replacement = `React.ElementConfig<${group}>`;
+                    console.log(`replacing '${substr}' with '${replacement}'`);
+                    return replacement;
+                },
             );
         }
+        fs.writeFileSync(path.join(rootDir, outFile), contents, "utf-8");
     } catch (e) {
         console.log(`❌ error processing: ${inFile}: ${e}`);
     }
