@@ -136,6 +136,10 @@ export type SharedProps = AriaProps & {
      * navigation.
      */
     beforeNav?: () => Promise<unknown>;
+    /**
+     * An optional title attribute.
+     */
+    title?: string;
 };
 
 type DefaultProps = {
