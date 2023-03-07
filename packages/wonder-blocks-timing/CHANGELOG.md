@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 2.1.3
+
+### Patch Changes
+
+-   b5ba5568: Ensure that flow lib defs use React.ElementConfig<> isntead of JSX.LibraryManagedAttributes<>
+
 ## 2.1.2
 
 ### Patch Changes

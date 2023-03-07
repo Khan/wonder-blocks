@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-progress-spinner
 
+## 1.1.43
+
+### Patch Changes
+
+-   b5ba5568: Ensure that flow lib defs use React.ElementConfig<> isntead of JSX.LibraryManagedAttributes<>
+-   Updated dependencies [b5ba5568]
+    -   @khanacademy/wonder-blocks-color@1.2.3
+    -   @khanacademy/wonder-blocks-core@4.9.1
+
 ## 1.1.42
 
 ### Patch Changes

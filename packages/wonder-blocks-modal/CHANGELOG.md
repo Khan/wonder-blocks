@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-modal
 
+## 3.0.10
+
+### Patch Changes
+
+-   b5ba5568: Ensure that flow lib defs use React.ElementConfig<> isntead of JSX.LibraryManagedAttributes<>
+-   Updated dependencies [b5ba5568]
+    -   @khanacademy/wonder-blocks-breadcrumbs@1.0.41
+    -   @khanacademy/wonder-blocks-color@1.2.3
+    -   @khanacademy/wonder-blocks-core@4.9.1
+    -   @khanacademy/wonder-blocks-icon@1.2.40
+    -   @khanacademy/wonder-blocks-icon-button@3.4.24
+    -   @khanacademy/wonder-blocks-layout@1.4.19
+    -   @khanacademy/wonder-blocks-spacing@3.0.7
+    -   @khanacademy/wonder-blocks-timing@2.1.3
+    -   @khanacademy/wonder-blocks-typography@1.1.41
+
 ## 3.0.9
 
 ### Patch Changes

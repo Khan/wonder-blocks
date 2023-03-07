@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 0.7.4
+
+### Patch Changes
+
+-   b5ba5568: Ensure that flow lib defs use React.ElementConfig<> isntead of JSX.LibraryManagedAttributes<>
+
 ## 0.7.3
 
 ### Patch Changes

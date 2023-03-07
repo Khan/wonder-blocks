@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-layout
 
+## 1.4.19
+
+### Patch Changes
+
+-   b5ba5568: Ensure that flow lib defs use React.ElementConfig<> isntead of JSX.LibraryManagedAttributes<>
+-   Updated dependencies [b5ba5568]
+    -   @khanacademy/wonder-blocks-core@4.9.1
+    -   @khanacademy/wonder-blocks-spacing@3.0.7
+
 ## 1.4.18
 
 ### Patch Changes
