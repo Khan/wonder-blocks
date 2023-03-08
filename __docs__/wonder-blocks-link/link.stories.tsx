@@ -479,6 +479,30 @@ Navigation.parameters = {
     },
 };
 
+export const WithTitle: StoryComponentType = () => (
+    <Body>
+        <Link href="#" title={"I am a title 😎"}>
+            This link has a title.
+        </Link>
+    </Body>
+);
+
+WithTitle.parameters = {
+    docs: {
+        storyDescription: `Link can take a title prop. Give a link a title by
+        setting the \`title\` prop to a string. Hover over the link to see its title.`,
+    },
+};
+
+WithTitle.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const heading = canvas.getByText("Hover over me! I have a title!");
+
+    // Confirm that the link has a title attribute
+    await expect(heading).toHaveAttribute("title");
+};
+
 const styles = StyleSheet.create({
     darkBackground: {
         backgroundColor: Color.darkBlue,
