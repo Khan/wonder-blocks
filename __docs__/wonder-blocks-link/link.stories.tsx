@@ -497,7 +497,7 @@ WithTitle.parameters = {
 WithTitle.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
-    const heading = canvas.getByText("Hover over me! I have a title!");
+    const heading = canvas.getByText("This Link has a title.");
 
     // Confirm that the link has a title attribute
     await expect(heading).toHaveAttribute("title");
