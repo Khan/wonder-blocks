@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 0.8.0
+
+### Minor Changes
+
+-   1ca4d7e3: Update gen-flow-types.ts to ensure React.Element<> always has a type param
+
 ## 0.7.4
 
 ### Patch Changes
