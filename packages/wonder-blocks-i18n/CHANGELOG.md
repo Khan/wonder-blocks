@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 2.0.0
+
+### Major Changes
+
+-   1ca4d7e3: Fix minor issue with generate Flow types (this is a major bump b/c I forgot to do one after doing the TS conversion)
+
 ## 1.2.7
 
 ### Patch Changes

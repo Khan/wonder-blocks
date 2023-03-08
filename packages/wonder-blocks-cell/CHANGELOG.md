@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-cell
 
+## 3.0.0
+
+### Major Changes
+
+-   1ca4d7e3: Fix minor issue with generate Flow types (this is a major bump b/c I forgot to do one after doing the TS conversion)
+
+### Patch Changes
+
+-   Updated dependencies [1ca4d7e3]
+    -   @khanacademy/wonder-blocks-clickable@3.0.0
+    -   @khanacademy/wonder-blocks-color@2.0.0
+    -   @khanacademy/wonder-blocks-core@5.0.0
+    -   @khanacademy/wonder-blocks-layout@2.0.0
+    -   @khanacademy/wonder-blocks-spacing@4.0.0
+    -   @khanacademy/wonder-blocks-typography@2.0.0
+
 ## 2.2.18
 
 ### Patch Changes

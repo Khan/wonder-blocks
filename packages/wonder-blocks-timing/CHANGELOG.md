@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-timing
 
+## 3.0.0
+
+### Major Changes
+
+-   1ca4d7e3: Fix minor issue with generate Flow types (this is a major bump b/c I forgot to do one after doing the TS conversion)
+
+### Minor Changes
+
+-   ef661acf: Export ActionScheduler
+
 ## 2.1.3
 
 ### Patch Changes
