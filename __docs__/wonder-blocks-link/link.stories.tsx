@@ -481,7 +481,7 @@ Navigation.parameters = {
 
 export const WithTitle: StoryComponentType = () => (
     <Body>
-        <Link href="#" title={"I am a title 😎"}>
+        <Link href="#" title="I am a title 😎">
             This link has a title.
         </Link>
     </Body>
