@@ -497,10 +497,10 @@ WithTitle.parameters = {
 WithTitle.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
-    const heading = canvas.getByText("This Link has a title.");
+    const link = canvas.getByText("This link has a title.");
 
     // Confirm that the link has a title attribute
-    await expect(heading).toHaveAttribute("title");
+    await expect(link).toHaveAttribute("title");
 };
 
 const styles = StyleSheet.create({
