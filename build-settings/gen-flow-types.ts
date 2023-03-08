@@ -23,6 +23,15 @@ for (const inFile of files) {
             contents = contents.replace(/ mixins /g, " extends ");
             console.log("replacing 'mixins' with 'extends'");
         }
+        if (contents.includes("React.Element<>")) {
+            contents = contents.replace(
+                /React.Element<>/g,
+                "React.Element<any>",
+            );
+            console.log(
+                "replacing 'React.Element<>' with 'React.Element<any>'",
+            );
+        }
         if (contents.includes("JSX.LibraryManagedAttributes")) {
             contents = contents.replace(
                 /JSX\.LibraryManagedAttributes<\s+([^,]+),\s+React\.ComponentProps<[^>]+>\s+>/gm,
