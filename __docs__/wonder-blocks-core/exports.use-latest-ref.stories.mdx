@@ -1,0 +1,95 @@
+import {useEffect, useState} from "react";
+import {Meta} from "@storybook/addon-docs";
+import {useLatestRef, View} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
+import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import Color from "@khanacademy/wonder-blocks-color";
+
+<Meta
+    title="Core / Exports / useLatestRef()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# useLatestRef()
+
+```ts
+function useLatestRef<T>(value: T): React.RefObject<T>;
+```
+
+The `useLatestRef` hook returns a ref that always contains the `value` passed
+to the hook during the most recent render.
+
+It can be used to wrap a possibly-changing prop in a stable value that can
+be passed to `useEffect`'s dependency array without causing unnecessary
+re-renders. For example:
+
+```ts
+export function ComponentWithDelayedAlert({message}) {
+    const messageRef = useLatestRef(message)
+    useEffect(() => {
+        const timeout = setTimeout(() => alert(messageRef.current), 5000)
+        return () => clearTimeout(timeout)
+    }, [messageRef])
+    return <p>{message}</p>
+}
+```
+
+export function ComponentWithDelayedAlert({message}) {
+    const messageRef = useLatestRef(message)
+    useEffect(() => {
+        const timeout = setTimeout(() => alert(messageRef.current), 5000)
+        return () => clearTimeout(timeout)
+    }, [messageRef])
+    return <p>{message}</p>
+}
+
+The component above will `alert()` a message five seconds after it mounts. It
+always alerts the same message it's currently rendering, even if the message
+changes between the initial mount and the alert.
+
+Here it is in action, wrapped in controls that let you change the `message` prop and remount the component.
+
+<Example1 />
+
+export function Example1() {
+    const [message, setMessage] = useState("Hello, world!")
+    const [remounts, setRemounts] = useState(0)
+    const remount = () => setRemounts(remounts + 1)
+    const unmount = () => setRemounts(0)
+    return <Context>
+        <LabeledTextField
+          label="Message"
+          description="An alert will pop up with this message 5 seconds after you click 'Remount'. You can change the message while the timer is running."
+          value={message}
+          onChange={setMessage} />
+        <Strut size={Spacing.medium_16}/>
+        <View style={{flexDirection: "row", gap: Spacing.xSmall_8}}>
+            <Button onClick={remount}>Remount</Button>
+            <Button kind="secondary" onClick={unmount}>Unmount</Button>
+        </View>
+        <Strut size={Spacing.medium_16}/>
+        <Context>
+            {remounts > 0 && <ComponentWithDelayedAlert key={remounts} message={message} />}
+        </Context>
+    </Context>
+}
+
+export function Context({children}) {
+    return <View
+        style={{
+            borderRadius: 5,
+            border: "1px solid #ccc",
+            boxShadow: "inset 1px 1px 6px #0001",
+            padding: Spacing.medium_16,
+            background: Color.offWhite,
+        }}
+    >
+        {children}
+    </View>
+}
