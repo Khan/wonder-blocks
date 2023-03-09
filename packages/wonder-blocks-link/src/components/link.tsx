@@ -4,6 +4,7 @@ import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
+import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import LinkCore from "./link-core";
 
 // TODO(FEI-5000): Convert back to conditional props after TS migration is complete.
@@ -140,6 +141,12 @@ export type SharedProps = AriaProps & {
      * An optional title attribute.
      */
     title?: string;
+    /**
+     * An icon displayed to the right of the link.
+     * When `target="_blank"`, endIcon is set to external icon.
+     * If an endIcon prop is passed in, it will override the external icon.
+     */
+    endIcon?: IconAsset;
 };
 
 type DefaultProps = {
