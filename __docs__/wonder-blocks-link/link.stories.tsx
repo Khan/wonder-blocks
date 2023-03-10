@@ -270,11 +270,25 @@ export const InlineLight: StoryComponentType = () => (
         <Link href="#" inline={true} light={true}>
             Primary link
         </Link>
-        , whereas this is an inline{" "}
+        {" "}and an{" "}
+        <Link href="#" inline={true} light={true} target="_blank">
+            external Primary link,
+        </Link>
+        whereas this is an inline{" "}
         <Link href="#" visitable={true} inline={true} light={true}>
             Visitable link (Primary only)
         </Link>
-        . Secondary light links are not supported.
+        {" "}and an{" "}
+        <Link
+            href="#"
+            visitable={true}
+            inline={true}
+            light={true}
+            target="_blank"
+        >
+            external Visitable link (Primary only).
+        </Link>
+        Secondary light links are not supported.
     </Body>
 );
 
