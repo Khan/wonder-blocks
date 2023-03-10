@@ -595,6 +595,9 @@ export const OpensInANewTab: StoryComponentType = () => (
             <Link href="#" target="_blank">
                 This is a Primary link that opens in a new tab.
             </Link>
+            <Link href="#" kind="secondary" target="_blank">
+                This is a Secondary link that opens in a new tab.
+            </Link>
         </View>
     </View>
 );
