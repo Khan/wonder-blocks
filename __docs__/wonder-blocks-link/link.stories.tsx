@@ -439,16 +439,16 @@ export const Variants: StoryComponentType = () => (
                 This is an{" "}
                 <Link href="#" inline={true} light={true}>
                     Inline Primary link
-                </Link>
-                {" "}and an{" "}
+                </Link>{" "}
+                and an{" "}
                 <Link href="#" inline={true} light={true} target="_blank">
                     Inline External Primary link,
                 </Link>
                 whereas this is an{" "}
                 <Link href="#" visitable={true} inline={true} light={true}>
                     Inline Visitable link (Primary only)
-                </Link>
-                {" "}and an{" "}
+                </Link>{" "}
+                and an{" "}
                 <Link
                     href="#"
                     visitable={true}
@@ -585,15 +585,6 @@ OpensInANewTab.parameters = {
         will open in a new tab.`,
     },
 };
-// styling
-// story
-// using target auto adds icon
-// add in variants external icon
-// link.test.tsx , style based stories
-// render link with external icon
-// find link or img tag in page?
-// confirm icon showed up with img tag?
-// ask juan about story or test file?
 
 const styles = StyleSheet.create({
     darkBackground: {
