@@ -313,13 +313,32 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
+                    <Link href="#nonexistent-link" target="_blank">
+                        Standalone External Primary Link
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
                     <Link href="#secondary-nonexistent-link" kind="secondary">
                         Standalone Secondary Link
                     </Link>
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
+                    <Link
+                        href="#secondary-nonexistent-link"
+                        kind="secondary"
+                        target="_blank"
+                    >
+                        Standalone External Secondary Link
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
                     <Link href="#" visitable={true}>
                         Standalone Visitable Link (Primary only)
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
+                    <Link href="#" visitable={true} target="_blank">
+                        Standalone External Visitable Link (Primary only)
                     </Link>
                 </View>
             </View>
@@ -330,13 +349,25 @@ export const Variants: StoryComponentType = () => (
                 <Link href="#" inline={true}>
                     Inline Primary link
                 </Link>
-                , whereas this is an{" "}
+                {" "}and an{" "}
+                <Link href="#" inline={true} target="_blank">
+                    Inline External Primary link,
+                </Link>
+                whereas this is an{" "}
                 <Link href="#" kind="secondary" inline={true}>
                     Inline Secondary link
                 </Link>
-                , and this is an{" "}
+                {" "}and an{" "}
+                <Link href="#" kind="secondary" inline={true} target="_blank">
+                    Inline External Secondary link,
+                </Link>
+                and this is an{" "}
                 <Link href="#" visitable={true} inline={true}>
                     Inline Visitable link (Primary only)
+                </Link>
+                {" "}and an{" "}
+                <Link href="#" visitable={true} inline={true} target="_blank">
+                    Inline External Visitable link (Primary only)
                 </Link>
                 .
             </Body>
@@ -356,8 +387,23 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
+                    <Link href="#nonexistent-link" light={true} target="_blank">
+                        Standalone External Light Link (Primary only)
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
                     <Link href="#" visitable={true} light={true}>
                         Standalone Light Visitable Link (Primary only)
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
+                    <Link
+                        href="#"
+                        visitable={true}
+                        light={true}
+                        target="_blank"
+                    >
+                        Standalone External Light Visitable Link (Primary only)
                     </Link>
                 </View>
             </View>
@@ -368,11 +414,25 @@ export const Variants: StoryComponentType = () => (
                 <Link href="#" inline={true} light={true}>
                     Inline Primary link
                 </Link>
-                , whereas this is an{" "}
+                {" "}and an{" "}
+                <Link href="#" inline={true} light={true} target="_blank">
+                    Inline External Primary link,
+                </Link>
+                whereas this is an{" "}
                 <Link href="#" visitable={true} inline={true} light={true}>
                     Inline Visitable link (Primary only)
                 </Link>
-                . Secondary light links are not supported.
+                {" "}and an{" "}
+                <Link
+                    href="#"
+                    visitable={true}
+                    inline={true}
+                    light={true}
+                    target="_blank"
+                >
+                    Inline External Visitable link (Primary only).
+                </Link>
+                Secondary light links are not supported.
             </Body>
         </View>
     </View>
@@ -478,6 +538,33 @@ Navigation.parameters = {
             for details.`,
     },
 };
+
+export const OpensInANewTab: StoryComponentType = () => (
+    <View>
+        <View style={{padding: Spacing.large_24}}>
+            <Link href="#" target="_blank">
+                This is a Primary link that opens in a new tab.
+            </Link>
+        </View>
+    </View>
+);
+
+OpensInANewTab.parameters = {
+    docs: {
+        storyDescription: `When \`target="_blank"\`, the external icon is
+        automatically added to the end of the link. This indicates that the link
+        will open in a new tab.`,
+    },
+};
+// styling
+// story
+// using target auto adds icon
+// add in variants external icon
+// link.test.tsx , style based stories
+// render link with external icon
+// find link or img tag in page?
+// confirm icon showed up with img tag?
+// ask juan about story or test file?
 
 const styles = StyleSheet.create({
     darkBackground: {
