@@ -38,7 +38,6 @@ export default class Gutter extends React.Component<Props> {
     render(): React.ReactElement | null {
         return (
             <MediaLayout>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                 {({mediaSize, mediaSpec}) => {
                     const spec = mediaSpec[mediaSize];
                     if (!spec) {

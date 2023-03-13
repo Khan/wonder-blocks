@@ -33,7 +33,7 @@ export default class CheckboxCore extends React.Component<Props> {
         return;
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             checked,
             disabled,

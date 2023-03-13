@@ -17,7 +17,7 @@ type Props = {
      *
      * TODO(WB-624): figure out to only allow TooltipBubble and PopoverDialog
      */
-    children: (arg1: PopperElementProps) => React.ReactElement<any>;
+    children: (arg1: PopperElementProps) => React.ReactNode;
     /**
      * The element that anchors the tooltip bubble.
      * This is used to position the bubble.
@@ -78,7 +78,7 @@ export default class TooltipPopper extends React.Component<Props> {
         return children(bubbleProps);
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {anchorElement, placement} = this.props;
         return (
             <Popper

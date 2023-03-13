@@ -110,7 +110,7 @@ export default class FocusTrap extends React.Component<Props> {
         this.focusElementIn(true);
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {style} = this.props;
 
         return (

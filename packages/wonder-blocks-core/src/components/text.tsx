@@ -48,7 +48,7 @@ export default class Text extends React.Component<Props> {
         tag: "span",
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {children, style, tag: Tag, testId, ...otherProps} = this.props;
 
         const isHeader = isHeaderRegex.test(Tag);

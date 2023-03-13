@@ -80,9 +80,9 @@ export type TextViewSharedProps = {
     tabIndex?: number;
     id?: string;
     // TODO(kevinb) remove the need for this
-    ["data-modal-launcher-portal"]?: boolean;
+    "data-modal-launcher-portal"?: boolean;
     // Used by tooltip bubble
-    ["data-placement"]?: string;
+    "data-placement"?: string;
 } & AriaProps &
     EventHandlers;
 

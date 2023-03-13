@@ -13,7 +13,6 @@ describe("WithSSRPlaceholder", () => {
             await new Promise((resolve: any) => {
                 const nodes = (
                     <WithSSRPlaceholder placeholder={mockPlaceholder}>
-                        {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                         {() => {
                             resolve();
                             return null;
@@ -45,14 +44,12 @@ describe("WithSSRPlaceholder", () => {
 
                     const placeholder = () => (
                         <WithSSRPlaceholder placeholder={nestedPlaceholder}>
-                            {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                             {mockChildrenNotCalled}
                         </WithSSRPlaceholder>
                     );
 
                     const nodes = (
                         <WithSSRPlaceholder placeholder={placeholder}>
-                            {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                             {() => null}
                         </WithSSRPlaceholder>
                     );
@@ -81,7 +78,6 @@ describe("WithSSRPlaceholder", () => {
                                 <WithSSRPlaceholder
                                     placeholder={mockPlaceholderNotCalled}
                                 >
-                                    {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                                     {() => {
                                         resolve();
                                         return null;
@@ -115,7 +111,6 @@ describe("WithSSRPlaceholder", () => {
 
             const nodes = (
                 <WithSSRPlaceholder placeholder={mockPlaceholder}>
-                    {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                     {mockChildren}
                 </WithSSRPlaceholder>
             );
@@ -160,7 +155,6 @@ describe("WithSSRPlaceholder", () => {
 
                 const nodes = (
                     <WithSSRPlaceholder placeholder={() => placeholder}>
-                        {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                         {() => "This won't render"}
                     </WithSSRPlaceholder>
                 );
@@ -183,7 +177,6 @@ describe("WithSSRPlaceholder", () => {
 
                 const nodes = (
                     <WithSSRPlaceholder placeholder={() => placeholder}>
-                        {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                         {() => "This won't render"}
                     </WithSSRPlaceholder>
                 );
@@ -205,7 +198,6 @@ describe("WithSSRPlaceholder", () => {
                 const nodes = (
                     <RenderStateRoot>
                         <WithSSRPlaceholder placeholder={mockPlaceholder}>
-                            {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                             {() => {
                                 resolve();
                                 return null;
@@ -233,7 +225,6 @@ describe("WithSSRPlaceholder", () => {
             const nodes = (
                 <RenderStateRoot>
                     <WithSSRPlaceholder placeholder={mockPlaceholder}>
-                        {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                         {mockChildren}
                     </WithSSRPlaceholder>
                 </RenderStateRoot>

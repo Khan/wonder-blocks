@@ -316,13 +316,12 @@ export default class TooltipAnchor
         });
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         // We need to make sure we can anchor on our content.
         // If the content is just a string, we wrap it in a Text element
         // so as not to affect styling or layout but still have an element
         // to anchor to.
         if (this.props.ids) {
-            // @ts-expect-error [FEI-5019] - TS2322 - Type 'ReactNode' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
             return this._renderAccessibleChildren(this.props.ids);
         }
         return this._renderAnchorableChildren();

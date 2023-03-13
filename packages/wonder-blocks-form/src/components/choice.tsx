@@ -139,7 +139,7 @@ export default class Choice extends React.Component<Props> {
             return Radio;
         }
     }
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         // we don't need this going into the ChoiceComponent
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const {value, variant, ...remainingProps} = this.props;

@@ -11,7 +11,7 @@ type TrackDataProps = {
  * Component to enable data request tracking when server-side rendering.
  */
 export default class TrackData extends React.Component<TrackDataProps> {
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         if (!Server.isServerSide()) {
             throw new Error(
                 "This component is not for use during client-side rendering",
