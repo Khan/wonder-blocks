@@ -7985,9 +7985,9 @@ flatted@^3.1.0:
   resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.2.2.tgz#64bfed5cb68fe3ca78b3eb214ad97b63bedce561"
   integrity sha512-JaTY/wtrcSyvXJl4IMFHPKyFur1sE9AUqc0QnhOaJ0CxHtAoIV8pYDzeEfAaNEtGkOfq4gr3LBFmdXW5mOQFnA==
 
-"flowgen@git+https://git@github.com/Khan/flowgen.git#fbbcfed186c7f74762ef6b4d97abdd8ab7aaaaf1":
+"flowgen@git+https://git@github.com/Khan/flowgen.git#b4717a4fe9dd5ee33a7df265352ea63e18169604":
   version "1.21.0"
-  resolved "git+https://git@github.com/Khan/flowgen.git#fbbcfed186c7f74762ef6b4d97abdd8ab7aaaaf1"
+  resolved "git+https://git@github.com/Khan/flowgen.git#b4717a4fe9dd5ee33a7df265352ea63e18169604"
   dependencies:
     "@babel/code-frame" "^7.16.7"
     "@babel/highlight" "^7.16.7"
