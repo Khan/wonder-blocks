@@ -44,11 +44,11 @@ type Props = {
     /**
      * The ID of the content labelling this dialog, if applicable.
      */
-    ["aria-labelledby"]?: string;
+    "aria-labelledby"?: string;
     /**
      * The ID of the content describing this dialog, if applicable.
      */
-    ["aria-describedby"]?: string;
+    "aria-describedby"?: string;
 };
 
 type DefaultProps = {
