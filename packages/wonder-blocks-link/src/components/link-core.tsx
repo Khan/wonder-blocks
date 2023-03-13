@@ -66,6 +66,7 @@ export default class LinkCore extends React.Component<Props> {
         const commonProps = {
             "data-test-id": testId,
             style: [defaultStyles, style],
+            target,
             ...restProps,
         } as const;
 
@@ -82,15 +83,20 @@ export default class LinkCore extends React.Component<Props> {
             />
         );
 
-        return router && !skipClientNav && isClientSideUrl(href) ? (
-            <StyledLink {...commonProps} to={href}>
+        const linkContent = (
+            <>
                 {children}
                 {target === "_blank" && externalIcon}
+            </>
+        );
+
+        return router && !skipClientNav && isClientSideUrl(href) ? (
+            <StyledLink {...commonProps} to={href}>
+                {linkContent}
             </StyledLink>
         ) : (
             <StyledAnchor {...commonProps} href={href}>
-                {children}
-                {target === "_blank" && externalIcon}
+                {linkContent}
             </StyledAnchor>
         );
     }

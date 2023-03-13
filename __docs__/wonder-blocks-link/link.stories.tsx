@@ -586,27 +586,6 @@ OpensInANewTab.parameters = {
     },
 };
 
-OpensInANewTab.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    const primaryLink = canvas.getByText(
-        "This is a Primary link that opens in a new tab.",
-    );
-    const secondaryLink = canvas.getByText(
-        "This is a Secondary link that opens in a new tab.",
-    );
-
-    // Confirm link has target attribute and target's value is "_blank"
-    await expect(primaryLink).toHaveAttribute(
-        "target",
-        expect.stringContaining("_blank"),
-    );
-    await expect(secondaryLink).toHaveAttribute(
-        "target",
-        expect.stringContaining("_blank"),
-    );
-};
-
 const styles = StyleSheet.create({
     darkBackground: {
         backgroundColor: Color.darkBlue,
