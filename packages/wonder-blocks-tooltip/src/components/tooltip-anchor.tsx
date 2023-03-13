@@ -322,7 +322,6 @@ export default class TooltipAnchor
         // so as not to affect styling or layout but still have an element
         // to anchor to.
         if (this.props.ids) {
-            // @ts-expect-error [FEI-5019] - TS2322 - Type 'ReactNode' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
             return this._renderAccessibleChildren(this.props.ids);
         }
         return this._renderAnchorableChildren();

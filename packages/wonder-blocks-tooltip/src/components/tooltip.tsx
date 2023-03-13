@@ -264,12 +264,10 @@ export default class Tooltip extends React.Component<Props, State> {
         if (id) {
             // Let's bypass the extra weight of an id provider since we don't
             // need it.
-            // @ts-expect-error [FEI-5019] - TS2322 - Type 'ReactNode' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
             return this._renderTooltipAnchor();
         } else {
             return (
                 <UniqueIDProvider scope="tooltip" mockOnFirstRender={true}>
-                    {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                     {(ids) => this._renderTooltipAnchor(ids)}
                 </UniqueIDProvider>
             );

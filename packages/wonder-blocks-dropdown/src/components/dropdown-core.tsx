@@ -993,7 +993,6 @@ class DropdownCore extends React.Component<Props, State> {
                 referenceElement={openerElement}
             >
                 {(isReferenceHidden) =>
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'ReactNode' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
                     this.renderDropdownMenu(listRenderer, isReferenceHidden)
                 }
             </DropdownPopper>

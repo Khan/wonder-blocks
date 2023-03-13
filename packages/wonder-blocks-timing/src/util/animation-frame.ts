@@ -51,7 +51,6 @@ export default class AnimationFrame implements IAnimationFrame {
      * false.
      * @memberof AnimationFrame
      */
-    // @ts-expect-error [FEI-5019] - TS2416 - Property 'isSet' in type 'AnimationFrame' is not assignable to the same property in base type 'IAnimationFrame'.
     get isSet(): boolean {
         return this._animationFrameId != null;
     }

@@ -68,6 +68,5 @@ export function useScheduledInterval(
 
     useInterval(action, intervalMs, isSet);
 
-    // @ts-expect-error [FEI-5019] - TS2322 - Type 'boolean' is not assignable to type '() => boolean'.
     return {isSet, set, clear};
 }

@@ -195,7 +195,6 @@ export class I18nInlineMarkup extends React.PureComponent<Props> {
             // istanbul ignore
             return this.handleError(new Error("Unknown child type."));
         });
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'ReactNode[]' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
         return nodes;
     }
 }
