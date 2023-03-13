@@ -21,7 +21,6 @@ export default class ActionScheduler implements IScheduleActions {
     _registeredActions: Array<() => void> = [];
     static readonly NoopAction: ITimeout & IAnimationFrame & IInterval = {
         set: () => {},
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'boolean' is not assignable to type '(() => boolean) & (() => boolean) & (() => boolean)'.
         get isSet() {
             return false;
         },
@@ -38,7 +37,6 @@ export default class ActionScheduler implements IScheduleActions {
         }
         const timeout = new Timeout(action, period, options?.schedulePolicy);
         this._registeredActions.push(() => timeout.clear(options?.clearPolicy));
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'Timeout' is not assignable to type 'ITimeout'.
         return timeout;
     }
 
@@ -54,7 +52,6 @@ export default class ActionScheduler implements IScheduleActions {
         this._registeredActions.push(() =>
             interval.clear(options?.clearPolicy),
         );
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'Interval' is not assignable to type 'IInterval'.
         return interval;
     }
 
@@ -72,7 +69,6 @@ export default class ActionScheduler implements IScheduleActions {
         this._registeredActions.push(() =>
             animationFrame.clear(options?.clearPolicy),
         );
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'AnimationFrame' is not assignable to type 'IAnimationFrame'.
         return animationFrame;
     }
 

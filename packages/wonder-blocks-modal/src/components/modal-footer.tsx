@@ -31,7 +31,7 @@ export default class ModalFooter extends React.Component<Props> {
     }
     static __IS_MODAL_FOOTER__ = true;
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {children} = this.props;
         return <View style={styles.footer}>{children}</View>;
     }

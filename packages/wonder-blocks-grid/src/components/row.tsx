@@ -66,7 +66,6 @@ export default class Row extends React.Component<Props> {
 
         return (
             <MediaLayout>
-                {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                 {({mediaSize, mediaSpec}) => {
                     const spec = mediaSpec[mediaSize];
                     if (!spec) {

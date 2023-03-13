@@ -14,7 +14,7 @@ export default class HeadingMedium extends React.Component<Props> {
         tag: "h3",
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {style, children, ...otherProps} = this.props;
         return (
             <Text {...otherProps} style={[styles.HeadingMedium, style]}>

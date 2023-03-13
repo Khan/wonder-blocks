@@ -67,7 +67,7 @@ export default class CircularSpinner extends React.Component<Props> {
         light: false,
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {size, light, style, testId} = this.props;
 
         const height = heights[size];

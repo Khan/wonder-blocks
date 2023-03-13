@@ -17,7 +17,6 @@ describe("UniqueIDProvider", () => {
             const children = jest.fn(() => null);
             const nodes = (
                 <UniqueIDProvider mockOnFirstRender={false}>
-                    {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                     {children}
                 </UniqueIDProvider>
             );
@@ -34,7 +33,6 @@ describe("UniqueIDProvider", () => {
             const children = jest.fn(() => null);
             const nodes = (
                 <UniqueIDProvider mockOnFirstRender={false}>
-                    {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                     {children}
                 </UniqueIDProvider>
             );
@@ -83,7 +81,6 @@ describe("UniqueIDProvider", () => {
             const children = jest.fn(() => null);
             const nodes = (
                 <UniqueIDProvider mockOnFirstRender={true}>
-                    {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                     {children}
                 </UniqueIDProvider>
             );
@@ -102,7 +99,6 @@ describe("UniqueIDProvider", () => {
             const children = jest.fn(() => null);
             const nodes = (
                 <UniqueIDProvider mockOnFirstRender={true}>
-                    {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                     {children}
                 </UniqueIDProvider>
             );
@@ -122,7 +118,6 @@ describe("UniqueIDProvider", () => {
             const children = jest.fn(() => null);
             const UnderTest = () => (
                 <UniqueIDProvider mockOnFirstRender={true}>
-                    {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                     {children}
                 </UniqueIDProvider>
             );

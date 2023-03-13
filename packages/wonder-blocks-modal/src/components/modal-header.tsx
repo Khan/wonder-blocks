@@ -103,7 +103,7 @@ export default class ModalHeader extends React.Component<Props> {
         light: true,
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             // @ts-expect-error [FEI-5019] - TS2339 - Property 'breadcrumbs' does not exist on type 'Readonly<Props> & Readonly<{ children?: ReactNode; }>'.
             breadcrumbs = undefined,

@@ -73,7 +73,7 @@ export default class View extends React.Component<Props> {
         tag: "div",
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {testId, tag, ...restProps} = this.props;
         const props = {
             ...restProps,

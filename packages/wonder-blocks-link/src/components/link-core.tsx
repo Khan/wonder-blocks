@@ -95,7 +95,7 @@ export default class LinkCore extends React.Component<Props> {
         );
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         return (
             <__RouterContext.Consumer>
                 {(router) => this.renderInner(router)}

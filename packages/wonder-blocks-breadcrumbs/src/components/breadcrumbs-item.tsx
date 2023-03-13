@@ -48,7 +48,7 @@ export default class BreadcrumbsItem extends React.Component<Props> {
         );
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {children, showSeparator, testId, ...otherProps} = this.props;
 
         return (

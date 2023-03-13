@@ -26,7 +26,7 @@ type Props = {
      *
      * `{get(id: string): string} => React.Node`
      */
-    children: (arg1: IIdentifierFactory) => React.ReactElement;
+    children: (arg1: IIdentifierFactory) => React.ReactNode;
     /**
      * If mockOnFirstRender is false, children is only called
      * after the initial render has occurred.
@@ -98,7 +98,7 @@ export default class UniqueIDProvider extends React.Component<Props> {
         return children(this._idFactory);
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         // Here we use the WithSSRPlaceholder component to control
         // when we render and whether we provide a mock or real
         // identifier factory.

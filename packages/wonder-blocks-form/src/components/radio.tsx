@@ -73,7 +73,7 @@ type DefaultProps = {
         error: false,
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         return <ChoiceInternal variant="radio" {...this.props} />;
     }
 }

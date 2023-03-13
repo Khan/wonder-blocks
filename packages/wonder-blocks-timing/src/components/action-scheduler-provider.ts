@@ -8,7 +8,7 @@ type Props = {
      * A function that, when given an instance of `IScheduleActions` will
      * render a `React.Node`.
      */
-    children: (arg1: IScheduleActions) => React.ReactElement;
+    children: (arg1: IScheduleActions) => React.ReactNode;
 };
 
 /**
@@ -28,7 +28,7 @@ export default class ActionSchedulerProvider extends React.Component<Props> {
 
     _actionScheduler: ActionScheduler = new ActionScheduler();
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {children} = this.props;
         return children(this._actionScheduler);
     }

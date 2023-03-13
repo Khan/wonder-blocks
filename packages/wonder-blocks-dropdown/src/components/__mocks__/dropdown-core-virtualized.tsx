@@ -14,7 +14,7 @@ type Props = {
  * A minimal mocked version of the Virtualized implementation
  */
 class DropdownCoreVirtualizedMock extends React.Component<Props> {
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {data, listRef} = this.props;
         return (
             <List

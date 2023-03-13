@@ -25,7 +25,7 @@ type Props = {
     /**
      * The children that will be wrapped by PopperJS.
      */
-    children: (isReferenceHidden: boolean) => React.ReactElement;
+    children: (isReferenceHidden: boolean) => React.ReactNode;
     /**
      * The reference element used to position the popper.
      */

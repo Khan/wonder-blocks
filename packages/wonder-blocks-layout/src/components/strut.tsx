@@ -14,7 +14,7 @@ type Props = {
  * Assumes parent is a View.
  */
 export default class Strut extends React.Component<Props> {
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {size, style} = this.props;
         return <View aria-hidden="true" style={[strutStyle(size), style]} />;
     }

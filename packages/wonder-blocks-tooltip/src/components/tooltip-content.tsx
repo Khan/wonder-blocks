@@ -59,7 +59,7 @@ export default class TooltipContent extends React.Component<Props> {
         }
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const title = this._renderTitle();
         const children = this._renderChildren();
         const containerStyle = title ? styles.withTitle : styles.withoutTitle;

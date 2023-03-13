@@ -342,7 +342,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         );
     }
 
-    render(): React.ReactElement<any> {
+    render(): React.ReactNode {
         return (
             <>
                 <View testId="birthday-picker" style={{flexDirection: "row"}}>

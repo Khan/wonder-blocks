@@ -424,7 +424,7 @@ export default class SingleSelect extends React.Component<Props, State> {
         return dropdownOpener;
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             alignment,
             autoFocus,
