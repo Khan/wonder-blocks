@@ -76,8 +76,9 @@ export default class LinkCore extends React.Component<Props> {
         const externalIcon = (
             <Icon
                 icon={externalIconPath}
-                size={"medium"}
+                size="medium"
                 style={{paddingLeft: 4}}
+                testId="external-icon"
             />
         );
 

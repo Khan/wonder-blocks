@@ -189,24 +189,24 @@ export const Inline: StoryComponentType = () => (
         This is an inline{" "}
         <Link href="#" inline={true}>
             Primary link
-        </Link>
-        {" "}and an inline{" "}
+        </Link>{" "}
+        and an inline{" "}
         <Link href="#" inline={true} target="_blank">
             external Primary link,
         </Link>
         whereas this is an inline{" "}
         <Link href="#" kind="secondary" inline={true}>
             Secondary link,
-        </Link>
-        {" "}and an inline{" "}
+        </Link>{" "}
+        and an inline{" "}
         <Link href="#" kind="secondary" inline={true} target="_blank">
             external Secondary link
         </Link>
         , and this is an inline{" "}
         <Link href="#" visitable={true} inline={true}>
             Visitable link (Primary only)
-        </Link>
-        {" "}and an inline{" "}
+        </Link>{" "}
+        and an inline{" "}
         <Link href="#" visitable={true} inline={true} target="_blank">
             external Visitable link (Primary only)
         </Link>
@@ -269,16 +269,16 @@ export const InlineLight: StoryComponentType = () => (
         This is an inline{" "}
         <Link href="#" inline={true} light={true}>
             Primary link
-        </Link>
-        {" "}and an{" "}
+        </Link>{" "}
+        and an{" "}
         <Link href="#" inline={true} light={true} target="_blank">
             external Primary link,
         </Link>
         whereas this is an inline{" "}
         <Link href="#" visitable={true} inline={true} light={true}>
             Visitable link (Primary only)
-        </Link>
-        {" "}and an{" "}
+        </Link>{" "}
+        and an{" "}
         <Link
             href="#"
             visitable={true}
@@ -374,24 +374,24 @@ export const Variants: StoryComponentType = () => (
                 This is an{" "}
                 <Link href="#" inline={true}>
                     Inline Primary link
-                </Link>
-                {" "}and an{" "}
+                </Link>{" "}
+                and an{" "}
                 <Link href="#" inline={true} target="_blank">
                     Inline External Primary link,
                 </Link>
                 whereas this is an{" "}
                 <Link href="#" kind="secondary" inline={true}>
                     Inline Secondary link
-                </Link>
-                {" "}and an{" "}
+                </Link>{" "}
+                and an{" "}
                 <Link href="#" kind="secondary" inline={true} target="_blank">
                     Inline External Secondary link,
                 </Link>
                 and this is an{" "}
                 <Link href="#" visitable={true} inline={true}>
                     Inline Visitable link (Primary only)
-                </Link>
-                {" "}and an{" "}
+                </Link>{" "}
+                and an{" "}
                 <Link href="#" visitable={true} inline={true} target="_blank">
                     Inline External Visitable link (Primary only)
                 </Link>
