@@ -10,7 +10,14 @@ const files = fglob.sync("packages/wonder-blocks-*/dist/**/*.d.ts", {
 
 for (const inFile of files) {
     const outFile = inFile.replace(".d.ts", ".js.flow");
-    const args = ["flowgen", inFile, "-o", outFile, "--add-flow-header"];
+    const args = [
+        "flowgen",
+        inFile,
+        "-o",
+        outFile,
+        "--add-flow-header",
+        "--no-inexact",
+    ];
 
     try {
         execFileSync("yarn", args, {cwd: rootDir});
