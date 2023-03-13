@@ -454,16 +454,31 @@ describe("Link", () => {
             expect(link.innerHTML).toEqual(expect.stringContaining("<svg"));
             expect(icon).toBeInTheDocument();
         });
+
         test("does not render icon", () => {
             // Arrange
             render(<Link href="/">Click me!</Link>);
 
             // Act
-            // const link = screen.getByText("Click me!");
             const icon = screen.queryByTestId("external-icon");
 
             // Assert
             expect(icon).not.toBeInTheDocument();
+        });
+
+        test("target attribute passed down correctly", () => {
+            // Arrange
+            render(
+                <Link href="/" target="_blank">
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveAttribute("target", "_blank");
         });
     });
 });
