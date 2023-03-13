@@ -436,4 +436,34 @@ describe("Link", () => {
             expect(link).toHaveStyle(`outline: 1px solid ${Color.white}`);
         });
     });
+
+    describe("external link", () => {
+        test("render icon when `target=_blank`", () => {
+            // Arrange
+            render(
+                <Link href="/" target="_blank">
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            const link = screen.getByText("Click me!");
+            const icon = screen.getByTestId("external-icon");
+
+            // Assert
+            expect(link.innerHTML).toEqual(expect.stringContaining("<svg"));
+            expect(icon).toBeInTheDocument();
+        });
+        test("does not render icon", () => {
+            // Arrange
+            render(<Link href="/">Click me!</Link>);
+
+            // Act
+            // const link = screen.getByText("Click me!");
+            const icon = screen.queryByTestId("external-icon");
+
+            // Assert
+            expect(icon).not.toBeInTheDocument();
+        });
+    });
 });
