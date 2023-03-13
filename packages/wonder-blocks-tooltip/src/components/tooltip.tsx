@@ -259,7 +259,7 @@ export default class Tooltip extends React.Component<Props, State> {
         );
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {id} = this.props;
         if (id) {
             // Let's bypass the extra weight of an id provider since we don't

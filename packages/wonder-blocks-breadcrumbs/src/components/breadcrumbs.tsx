@@ -70,7 +70,7 @@ export default class Breadcrumbs extends React.Component<Props> {
         "aria-label": "Breadcrumbs",
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {children, testId, ...otherProps} = this.props;
         // using React.Children allows to deal with opaque data structures
         // e.g. children = 'string' vs children = []

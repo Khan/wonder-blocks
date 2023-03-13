@@ -128,7 +128,7 @@ export class I18nInlineMarkup extends React.PureComponent<Props> {
         throw error;
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {children, elementWrapper, ...restProps} = this.props;
         const renderers: Record<
             string,

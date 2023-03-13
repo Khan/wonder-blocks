@@ -178,7 +178,7 @@ export default class OnePaneDialog extends React.Component<Props> {
         }
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             onClose,
             footer,

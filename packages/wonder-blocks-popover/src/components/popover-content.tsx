@@ -188,7 +188,7 @@ export default class PopoverContent extends React.Component<Props> {
         );
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             closeButtonLabel,
             closeButtonVisible,

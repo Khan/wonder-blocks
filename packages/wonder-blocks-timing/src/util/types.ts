@@ -18,7 +18,7 @@ export interface ITimeout {
      * false.
      * @memberof ITimeout
      */
-    isSet(): boolean;
+    get isSet(): boolean;
     /**
      * Set the timeout.
      *
@@ -60,7 +60,7 @@ export interface IInterval {
      * @returns {boolean} true if the interval is active, otherwise false.
      * @memberof IInterval
      */
-    isSet(): boolean;
+    get isSet(): boolean;
     /**
      * Set the interval.
      *
@@ -102,7 +102,7 @@ export interface IAnimationFrame {
      * false.
      * @memberof IAnimationFrame
      */
-    isSet(): boolean;
+    get isSet(): boolean;
     /**
      * Set the request.
      *

@@ -70,7 +70,7 @@ export default class ModalDialog extends React.Component<Props> {
         role: "dialog",
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             above,
             below,

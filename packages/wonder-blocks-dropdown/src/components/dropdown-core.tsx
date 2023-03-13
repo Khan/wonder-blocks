@@ -1018,7 +1018,7 @@ class DropdownCore extends React.Component<Props, State> {
         );
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {open, opener, style, className} = this.props;
 
         return (

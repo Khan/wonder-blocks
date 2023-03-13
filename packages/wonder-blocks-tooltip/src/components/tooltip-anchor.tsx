@@ -316,7 +316,7 @@ export default class TooltipAnchor
         });
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         // We need to make sure we can anchor on our content.
         // If the content is just a string, we wrap it in a Text element
         // so as not to affect styling or layout but still have an element

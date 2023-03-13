@@ -81,7 +81,7 @@ export default class InitialFocus extends React.Component<Props> {
         return focusableElements[0];
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         return this.props.children;
     }
 }

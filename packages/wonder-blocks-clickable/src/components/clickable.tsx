@@ -292,7 +292,7 @@ export default class Clickable extends React.Component<Props> {
         }
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         return (
             <__RouterContext.Consumer>
                 {(router) => this.renderClickableBehavior(router)}
