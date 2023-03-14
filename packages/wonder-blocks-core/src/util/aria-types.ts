@@ -1,5 +1,8 @@
 // All the WAI-ARIA 1.1 attributes from https://www.w3.org/TR/wai-aria-1.1/
-export interface AriaAttributes {
+// NOTE(kevinb): This was change from an interface to a type to support
+// spreading of types in the generated Flow types.  Flow doesn't allow
+// spreading of interfaces b/c they're not sealed. 🦭
+export type AriaAttributes = {
     /** Identifies the currently active element when DOM focus is on a composite widget, textbox, group, or application. */
     "aria-activedescendant"?: string | undefined;
     /** Indicates whether assistive technologies will present all, or only parts of, the changed region based on the change notifications defined by the aria-relevant attribute. */
@@ -226,7 +229,7 @@ export interface AriaAttributes {
     "aria-valuenow"?: number | undefined;
     /** Defines the human readable text alternative of aria-valuenow for a range widget. */
     "aria-valuetext"?: string | undefined;
-}
+};
 
 // All the WAI-ARIA 1.1 role attribute values from https://www.w3.org/TR/wai-aria-1.1/#role_definitions
 export type AriaRole =

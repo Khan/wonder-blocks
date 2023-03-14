@@ -22,7 +22,7 @@ type Props = {
      * the server-side renderer and the rehydration -- or it defeats
      * the purpose of using the WithSSRPlaceholder component.
      */
-    placeholder: () => React.ReactElement | null | undefined;
+    placeholder: (() => React.ReactNode) | null;
 };
 
 type State = {
