@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 0.9.1
+
+### Patch Changes
+
+-   21ce20c7: Fix issues with generate flow types in wonder-blocks-core
+
 ## 0.9.0
 
 ### Minor Changes
