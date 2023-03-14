@@ -81,6 +81,15 @@ export default {
         },
     },
 
+    target: {
+        control: {type: "text"},
+        description: `A target destination window for a link to open in.
+            We only support "_blank" which opens the URL in a new tab.`,
+        table: {
+            type: {summary: "string"},
+        },
+    },
+
     testId: {
         control: {type: "text"},
         description: "Test ID used for e2e testing.",
