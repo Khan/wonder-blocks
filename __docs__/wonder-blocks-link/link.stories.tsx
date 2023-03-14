@@ -567,10 +567,10 @@ export const OpensInANewTab: StoryComponentType = () => (
     <View>
         <View style={{padding: Spacing.large_24}}>
             <Link href="#" target="_blank">
-                This is a Primary link that opens in a new tab.
+                This is a Primary link that opens in a new tab
             </Link>
             <Link href="#" kind="secondary" target="_blank">
-                This is a Secondary link that opens in a new tab.
+                This is a Secondary link that opens in a new tab
             </Link>
         </View>
     </View>
