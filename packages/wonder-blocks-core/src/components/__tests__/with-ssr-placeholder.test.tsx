@@ -128,7 +128,6 @@ describe("WithSSRPlaceholder", () => {
             const mockChildren = jest.fn(() => null);
 
             const nodes = (
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 <WithSSRPlaceholder placeholder={null}>
                     {mockChildren}
                 </WithSSRPlaceholder>
@@ -147,7 +146,6 @@ describe("WithSSRPlaceholder", () => {
                 // Arrange
                 const expectation = "CHILD PLACEHOLDER";
                 const placeholder = (
-                    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                     <WithSSRPlaceholder placeholder={() => expectation}>
                         {() => "This won't render"}
                     </WithSSRPlaceholder>
@@ -244,7 +242,6 @@ describe("WithSSRPlaceholder", () => {
 
             const nodes = (
                 <RenderStateRoot>
-                    {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                     <WithSSRPlaceholder placeholder={null}>
                         {mockChildren}
                     </WithSSRPlaceholder>
