@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 5.0.2
+
+### Patch Changes
+
+-   21ce20c7: Fix issues with generate flow types in wonder-blocks-core
+
 ## 5.0.1
 
 ### Patch Changes
