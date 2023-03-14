@@ -37,9 +37,7 @@ const fadedBlue = "#b5cefb";
 
 type StoryComponentType = ComponentStory<typeof Link>;
 
-export const Default: StoryComponentType = (args) => (
-    <Link target="_blank" {...args} />
-);
+export const Default: StoryComponentType = (args) => <Link {...args} />;
 
 Default.args = {
     href: "/",
@@ -192,17 +190,17 @@ export const Inline: StoryComponentType = () => (
         </Link>{" "}
         and an inline{" "}
         <Link href="#" inline={true} target="_blank">
-            external Primary link,
+            external Primary link
         </Link>
-        whereas this is an inline{" "}
+        , whereas this is an inline{" "}
         <Link href="#" kind="secondary" inline={true}>
             Secondary link
         </Link>
         , and an inline{" "}
         <Link href="#" kind="secondary" inline={true} target="_blank">
-            external Secondary link,
+            external Secondary link
         </Link>
-        and this is an inline{" "}
+        , and this is an inline{" "}
         <Link href="#" visitable={true} inline={true}>
             Visitable link (Primary only)
         </Link>{" "}
@@ -377,17 +375,17 @@ export const Variants: StoryComponentType = () => (
                 </Link>{" "}
                 and an{" "}
                 <Link href="#" inline={true} target="_blank">
-                    Inline External Primary link,
+                    Inline External Primary link
                 </Link>
-                whereas this is an{" "}
+                , whereas this is an{" "}
                 <Link href="#" kind="secondary" inline={true}>
                     Inline Secondary link
                 </Link>{" "}
                 and an{" "}
                 <Link href="#" kind="secondary" inline={true} target="_blank">
-                    Inline External Secondary link,
+                    Inline External Secondary link
                 </Link>
-                and this is an{" "}
+                , and this is an{" "}
                 <Link href="#" visitable={true} inline={true}>
                     Inline Visitable link (Primary only)
                 </Link>{" "}
@@ -442,9 +440,9 @@ export const Variants: StoryComponentType = () => (
                 </Link>{" "}
                 and an{" "}
                 <Link href="#" inline={true} light={true} target="_blank">
-                    Inline External Primary link,
+                    Inline External Primary link
                 </Link>
-                whereas this is an{" "}
+                , whereas this is an{" "}
                 <Link href="#" visitable={true} inline={true} light={true}>
                     Inline Visitable link (Primary only)
                 </Link>{" "}
@@ -456,9 +454,9 @@ export const Variants: StoryComponentType = () => (
                     light={true}
                     target="_blank"
                 >
-                    Inline External Visitable link (Primary only).
+                    Inline External Visitable link (Primary only)
                 </Link>
-                Secondary light links are not supported.
+                . Secondary light links are not supported.
             </Body>
         </View>
     </View>
