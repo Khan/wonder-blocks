@@ -26,8 +26,11 @@ The `useLatestRef` hook returns a ref that always contains the `value` passed
 to the hook during the most recent render.
 
 It can be used to wrap a possibly-changing prop in a stable value that can
-be passed to `useEffect`'s dependency array without causing unnecessary
-re-renders. For example:
+be passed to `useEffect`'s dependency array. This can be useful when you don't
+want the `useEffect` callback to be re-run when the prop changes, but do need
+to use the prop's value inside the `useEffect` callback.
+
+## Example
 
 ```ts
 export function ComponentWithDelayedAlert({message}) {
