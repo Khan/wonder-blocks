@@ -438,6 +438,21 @@ describe("Link", () => {
     });
 
     describe("external link", () => {
+        test("target attribute passed down correctly", () => {
+            // Arrange
+            render(
+                <Link href="/" target="_blank">
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            const link = screen.getByText("Click me!");
+
+            // Assert
+            expect(link).toHaveAttribute("target", "_blank");
+        });
+
         test("render icon when `target=_blank`", () => {
             // Arrange
             render(
@@ -464,21 +479,6 @@ describe("Link", () => {
 
             // Assert
             expect(icon).not.toBeInTheDocument();
-        });
-
-        test("target attribute passed down correctly", () => {
-            // Arrange
-            render(
-                <Link href="/" target="_blank">
-                    Click me!
-                </Link>,
-            );
-
-            // Act
-            const link = screen.getByText("Click me!");
-
-            // Assert
-            expect(link).toHaveAttribute("target", "_blank");
         });
     });
 });
