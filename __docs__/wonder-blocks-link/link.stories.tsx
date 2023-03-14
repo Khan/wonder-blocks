@@ -196,13 +196,13 @@ export const Inline: StoryComponentType = () => (
         </Link>
         whereas this is an inline{" "}
         <Link href="#" kind="secondary" inline={true}>
-            Secondary link,
-        </Link>{" "}
-        and an inline{" "}
-        <Link href="#" kind="secondary" inline={true} target="_blank">
-            external Secondary link
+            Secondary link
         </Link>
-        , and this is an inline{" "}
+        , and an inline{" "}
+        <Link href="#" kind="secondary" inline={true} target="_blank">
+            external Secondary link,
+        </Link>
+        and this is an inline{" "}
         <Link href="#" visitable={true} inline={true}>
             Visitable link (Primary only)
         </Link>{" "}
