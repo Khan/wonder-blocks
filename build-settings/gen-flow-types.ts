@@ -8,23 +8,14 @@ const files = fglob.sync("packages/wonder-blocks-*/dist/**/*.d.ts", {
     cwd: rootDir,
 });
 
-const overrides = fglob.sync("**/*.js.flow", {
-    cwd: path.join(rootDir, "build-settings", "overrides"),
-});
-
 for (const inFile of files) {
     const outFile = inFile.replace(".d.ts", ".js.flow");
 
-    const outFileRelPath = path.relative("packages", outFile);
-    if (overrides.includes(outFileRelPath)) {
-        const overridePath = path.join(
-            "build-settings",
-            "overrides",
-            outFileRelPath,
-        );
-        console.log(`copying\nfrom: ${overridePath}\nto:   ${outFile}`);
+    const overrideFile = outFile.replace("/dist/", "/src/");
+    if (fs.existsSync(overrideFile)) {
+        console.log(`copying\nfrom: ${overrideFile}\nto:   ${outFile}`);
         fs.cpSync(
-            path.join(rootDir, overridePath),
+            path.join(rootDir, overrideFile),
             path.join(rootDir, outFile),
         );
         continue;
