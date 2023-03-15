@@ -70,6 +70,8 @@ export default class LinkCore extends React.Component<Props> {
             "data-test-id": testId,
             style: [defaultStyles, style],
             target,
+            startIcon,
+            endIcon,
             ...restProps,
         } as const;
 
@@ -88,13 +90,23 @@ export default class LinkCore extends React.Component<Props> {
         );
 
         const startIconChild = startIcon ? (
-            <Icon icon={startIcon} size="small" style={iconStyles.startIcon} />
+            <Icon
+                icon={startIcon}
+                size="small"
+                style={iconStyles.startIcon}
+                testId="start-icon"
+            />
         ) : (
             <></>
         );
 
         const endIconChild = endIcon ? (
-            <Icon icon={endIcon} size="small" style={iconStyles.endIcon} />
+            <Icon
+                icon={endIcon}
+                size="small"
+                style={iconStyles.endIcon}
+                testId="end-icon"
+            />
         ) : (
             target === "_blank" && externalIcon
         );
