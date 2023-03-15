@@ -48,7 +48,6 @@ export const Default: StoryComponentType = (args) => (
 );
 
 export const WithoutPlaceholder: StoryComponentType = (args) => (
-    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
     <WithSSRPlaceholder placeholder={null}>
         {() => (
             <View>

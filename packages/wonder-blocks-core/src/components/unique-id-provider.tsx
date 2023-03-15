@@ -103,7 +103,6 @@ export default class UniqueIDProvider extends React.Component<Props> {
         // when we render and whether we provide a mock or real
         // identifier factory.
         return (
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             <WithSSRPlaceholder placeholder={() => this._performRender(true)}>
                 {() => this._performRender(false)}
             </WithSSRPlaceholder>
