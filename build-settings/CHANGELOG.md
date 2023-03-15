@@ -1,5 +1,12 @@
 # wb-dev-build-settings
 
+## 0.9.3
+
+### Patch Changes
+
+-   4ef6ae30: Convert JSX.LibraryManagedAttributes<> containing a React.ElementProps<> to React.ElementConfig<>
+-   c84e26ea: Standardize on fast-glob and add error output if there are no type definition files to process when building flow types
+
 ## 0.9.2
 
 ### Patch Changes

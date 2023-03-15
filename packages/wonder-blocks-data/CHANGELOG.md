@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 11.0.4
+
+### Patch Changes
+
+-   bedcbcf8: Update <Data>'s 'children' prop to allow a ReactNode to be returned
+
 ## 11.0.3
 
 ### Patch Changes
