@@ -182,6 +182,27 @@ LightVisitable.parameters = {
     },
 };
 
+export const OpensInANewTab: StoryComponentType = () => (
+    <View>
+        <View style={{padding: Spacing.large_24}}>
+            <Link href="#" target="_blank">
+                This is a Primary link that opens in a new tab
+            </Link>
+            <Link href="#" kind="secondary" target="_blank">
+                This is a Secondary link that opens in a new tab
+            </Link>
+        </View>
+    </View>
+);
+
+OpensInANewTab.parameters = {
+    docs: {
+        storyDescription: `When \`target="_blank"\`, the external icon is
+        automatically added to the end of the link. This indicates that the link
+        will open in a new tab.`,
+    },
+};
+
 export const Inline: StoryComponentType = () => (
     <Body>
         This is an inline{" "}
@@ -560,27 +581,6 @@ Navigation.parameters = {
             to the new URL. Which prop to use depends on the use case. See the
             [Button documentation](/story/button-navigation-callbacks--before-nav-callbacks&viewMode=docs)
             for details.`,
-    },
-};
-
-export const OpensInANewTab: StoryComponentType = () => (
-    <View>
-        <View style={{padding: Spacing.large_24}}>
-            <Link href="#" target="_blank">
-                This is a Primary link that opens in a new tab
-            </Link>
-            <Link href="#" kind="secondary" target="_blank">
-                This is a Secondary link that opens in a new tab
-            </Link>
-        </View>
-    </View>
-);
-
-OpensInANewTab.parameters = {
-    docs: {
-        storyDescription: `When \`target="_blank"\`, the external icon is
-        automatically added to the end of the link. This indicates that the link
-        will open in a new tab.`,
     },
 };
 
