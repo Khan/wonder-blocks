@@ -1,5 +1,4 @@
-// WARNING: If you modify this file you must update the following file:
-// build-settings/overrides/wonder-blocks-core/components/text.js.flow
+// WARNING: If you modify this file you must update text.js.flow.
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
