@@ -182,6 +182,27 @@ LightVisitable.parameters = {
     },
 };
 
+export const OpensInANewTab: StoryComponentType = () => (
+    <View>
+        <View style={{padding: Spacing.large_24}}>
+            <Link href="#" target="_blank">
+                This is a Primary link that opens in a new tab
+            </Link>
+            <Link href="#" kind="secondary" target="_blank">
+                This is a Secondary link that opens in a new tab
+            </Link>
+        </View>
+    </View>
+);
+
+OpensInANewTab.parameters = {
+    docs: {
+        storyDescription: `When \`target="_blank"\`, the external icon is
+        automatically added to the end of the link. This indicates that the link
+        will open in a new tab.`,
+    },
+};
+
 export const Inline: StoryComponentType = () => (
     <Body>
         This is an inline{" "}
@@ -585,27 +606,6 @@ WithTitle.play = async ({canvasElement}) => {
 
     // Confirm that the link has a title attribute
     await expect(link).toHaveAttribute("title");
-};
-
-export const OpensInANewTab: StoryComponentType = () => (
-    <View>
-        <View style={{padding: Spacing.large_24}}>
-            <Link href="#" target="_blank">
-                This is a Primary link that opens in a new tab
-            </Link>
-            <Link href="#" kind="secondary" target="_blank">
-                This is a Secondary link that opens in a new tab
-            </Link>
-        </View>
-    </View>
-);
-
-OpensInANewTab.parameters = {
-    docs: {
-        storyDescription: `When \`target="_blank"\`, the external icon is
-        automatically added to the end of the link. This indicates that the link
-        will open in a new tab.`,
-    },
 };
 
 const styles = StyleSheet.create({
