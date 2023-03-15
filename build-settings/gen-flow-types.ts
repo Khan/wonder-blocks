@@ -4,7 +4,7 @@ import * as path from "path";
 import * as fglob from "fast-glob";
 
 const rootDir = path.join(__dirname, "..");
-const files = fglob.sync("packages/wonder-blocks-*/dist/**/*.d.ts", {
+const files = fglob.sync("packages/wonder-blocks-typography/dist/**/*.d.ts", {
     cwd: rootDir,
 });
 
@@ -52,7 +52,7 @@ for (const inFile of files) {
         }
         if (contents.includes("JSX.LibraryManagedAttributes")) {
             contents = contents.replace(
-                /JSX\.LibraryManagedAttributes<\s+([^,]+),\s+React\.ComponentProps<[^>]+>\s+>/gm,
+                /JSX\.LibraryManagedAttributes<\s+([^,]+),\s+React\.(Element|Component)Props<[^>]+>\s+>/gm,
                 (substr, group) => {
                     const replacement = `React.ElementConfig<${group}>`;
                     console.log(`replacing '${substr}' with '${replacement}'`);
