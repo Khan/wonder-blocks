@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 3.0.4
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-clickable@3.0.4
+-   @khanacademy/wonder-blocks-icon@2.0.4
+-   @khanacademy/wonder-blocks-layout@2.0.4
+-   @khanacademy/wonder-blocks-modal@4.0.4
+-   @khanacademy/wonder-blocks-search-field@2.0.4
+-   @khanacademy/wonder-blocks-typography@2.0.4
+
 ## 3.0.3
 
 ### Patch Changes
