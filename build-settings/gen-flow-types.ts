@@ -8,6 +8,12 @@ const files = fglob.sync("packages/wonder-blocks-*/dist/**/*.d.ts", {
     cwd: rootDir,
 });
 
+if (files.length) {
+    console.log(`found ${files.length} files`);
+} else {
+    throw new Error("no typescript type definitions found");
+}
+
 for (const inFile of files) {
     const outFile = inFile.replace(".d.ts", ".js.flow");
 
