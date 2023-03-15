@@ -9,6 +9,16 @@ export default {
         type: {name: "string", required: true},
     },
 
+    endIcon: {
+        control: {type: "text"},
+        description: `Icon to appear after the link label. If
+        \`target="_blank"\` and an \`endIcon\` is passed in, \`endIcon\` will
+        override the default \`externalIcon\`.`,
+        table: {
+            type: {summary: "IconAsset"},
+        },
+    },
+
     href: {
         control: {type: "text"},
         description: "URL to navigate to.",
@@ -95,6 +105,14 @@ export default {
         description: "Test ID used for e2e testing.",
         table: {
             type: {summary: "string"},
+        },
+    },
+
+    startIcon: {
+        control: {type: "text"},
+        description: "Icon to appear before the link label.",
+        table: {
+            type: {summary: "IconAsset"},
         },
     },
 
