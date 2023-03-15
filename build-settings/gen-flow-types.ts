@@ -4,12 +4,32 @@ import * as path from "path";
 import * as fglob from "fast-glob";
 
 const rootDir = path.join(__dirname, "..");
-const files = fglob.sync("packages/wonder-blocks-*/dist/**/*.d.ts", {
+const files = fglob.sync("packages/wonder-blocks-core/dist/**/*.d.ts", {
     cwd: rootDir,
+});
+
+const overrides = fglob.sync("**/*.js.flow", {
+    cwd: path.join(rootDir, "build-settings", "overrides"),
 });
 
 for (const inFile of files) {
     const outFile = inFile.replace(".d.ts", ".js.flow");
+
+    const outFileRelPath = path.relative("packages", outFile);
+    if (overrides.includes(outFileRelPath)) {
+        const overridePath = path.join(
+            "build-settings",
+            "overrides",
+            outFileRelPath,
+        );
+        console.log(`copying\nfrom: ${overridePath}\nto:   ${outFile}`);
+        fs.cpSync(
+            path.join(rootDir, overridePath),
+            path.join(rootDir, outFile),
+        );
+        continue;
+    }
+
     const args = ["flowgen", inFile, "-o", outFile, "--add-flow-header"];
     const inexact = ["text.d.ts", "view.d.ts"].includes(path.basename(inFile));
     if (!inexact) {
