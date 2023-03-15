@@ -22,6 +22,7 @@ import {name, version} from "../../packages/wonder-blocks-link/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import LinkArgTypes from "./link.argtypes";
+import {icons} from "@khanacademy/wonder-blocks-icon";
 
 export default {
     title: "Link",
@@ -197,9 +198,83 @@ export const OpensInANewTab: StoryComponentType = () => (
 
 OpensInANewTab.parameters = {
     docs: {
-        storyDescription: `When \`target="_blank"\`, the external icon is
-        automatically added to the end of the link. This indicates that the link
-        will open in a new tab.`,
+        storyDescription: `When \`target="_blank"\`, the external icon is automatically
+        added to the end of the link. This indicates that the link will open in a new
+        tab.`,
+    },
+};
+
+export const StartAndEndIcons: StoryComponentType = () => (
+    <View>
+        {/* Default (dark) */}
+        <View style={{padding: Spacing.large_24}}>
+            <Link
+                href="#"
+                startIcon={icons.add}
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has a start icon
+            </Link>
+            <Link
+                href="#"
+                endIcon={icons.caretRight}
+                kind="secondary"
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has an end icon
+            </Link>
+            <Link
+                href="#"
+                endIcon={icons.info}
+                target="_blank"
+                style={styles.standaloneLinkWrapper}
+            >
+                This external link has an end icon that is overrides the default
+                external icon
+            </Link>
+        </View>
+        {/* Light */}
+        <View
+            style={{
+                backgroundColor: Color.darkBlue,
+                padding: Spacing.large_24,
+            }}
+        >
+            <Link
+                href="#"
+                startIcon={icons.add}
+                light={true}
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has a start icon
+            </Link>
+            <Link
+                href="#"
+                endIcon={icons.caretRight}
+                light={true}
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has an end icon
+            </Link>
+            <Link
+                href="#"
+                endIcon={icons.info}
+                target="_blank"
+                light={true}
+                style={styles.standaloneLinkWrapper}
+            >
+                This external link has an end icon that is overrides the default
+                external icon
+            </Link>
+        </View>
+    </View>
+);
+
+StartAndEndIcons.parameters = {
+    docs: {
+        storyDescription: `Link can take an optional \`startIcon\` and/or \`endIcon\`. If
+        \`target="_blank"\` and an \`endIcon\` prop is passed in, then \`endIcon\` will
+        override the default \`externalIcon\`.`,
     },
 };
 
