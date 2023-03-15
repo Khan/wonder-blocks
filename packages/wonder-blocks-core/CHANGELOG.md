@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 5.0.3
+
+### Patch Changes
+
+-   b281e2eb: Fix generate Flow types for real
+
 ## 5.0.2
 
 ### Patch Changes
