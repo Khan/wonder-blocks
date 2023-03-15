@@ -1,3 +1,4 @@
+// WARNING: If you modify this file you must update view.js.flow.
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 

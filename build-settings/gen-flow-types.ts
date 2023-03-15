@@ -10,11 +10,25 @@ const files = fglob.sync("packages/wonder-blocks-*/dist/**/*.d.ts", {
 
 for (const inFile of files) {
     const outFile = inFile.replace(".d.ts", ".js.flow");
-    const args = ["flowgen", inFile, "-o", outFile, "--add-flow-header"];
-    const inexact = ["text.d.ts", "view.d.ts"].includes(path.basename(inFile));
-    if (!inexact) {
-        args.push("--no-inexact");
+
+    const overrideFile = outFile.replace("/dist/", "/src/");
+    if (fs.existsSync(overrideFile)) {
+        console.log(`copying\nfrom: ${overrideFile}\nto:   ${outFile}`);
+        fs.cpSync(
+            path.join(rootDir, overrideFile),
+            path.join(rootDir, outFile),
+        );
+        continue;
     }
+
+    const args = [
+        "flowgen",
+        inFile,
+        "-o",
+        outFile,
+        "--add-flow-header",
+        "--no-inexact",
+    ];
 
     try {
         execFileSync("yarn", args, {cwd: rootDir});
