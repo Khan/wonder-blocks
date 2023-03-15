@@ -33,52 +33,52 @@ to use the prop's value inside the `useEffect` callback.
 ## Example
 
 ```ts
-export function ComponentWithDelayedAlert({message}) {
+export function ComponentThatAlertsOnUnmount({message}) {
     const messageRef = useLatestRef(message)
     useEffect(() => {
-        const timeout = setTimeout(() => alert(messageRef.current), 5000)
-        return () => clearTimeout(timeout)
+        return () => alert(messageRef.current)
     }, [messageRef])
-    return <p>{message}</p>
+    return <p>Message: {message}</p>
 }
 ```
 
-export function ComponentWithDelayedAlert({message}) {
+export function ComponentThatAlertsOnUnmount({message}) {
     const messageRef = useLatestRef(message)
     useEffect(() => {
-        const timeout = setTimeout(() => alert(messageRef.current), 5000)
-        return () => clearTimeout(timeout)
+        return () => alert(messageRef.current)
     }, [messageRef])
-    return <p>{message}</p>
+    return <p>Message: {message}</p>
 }
 
-The component above will `alert()` a message five seconds after it mounts. It
-always alerts the same message it's currently rendering, even if the message
-changes between the initial mount and the alert.
+The component above will `alert()` a message when it unmounts. (If you want to
+imagine a more realistic example, pretend it's sending an analytics event!)
+The component always alerts the message it was rendering just before unmount,
+even if the message changes during the component's lifespan.
 
-Here it is in action, wrapped in controls that let you change the `message` prop and remount the component.
+Here it is in action, wrapped in controls that let you change the `message`
+prop and unmount/remount the component.
 
 <Example1 />
 
 export function Example1() {
     const [message, setMessage] = useState("Hello, world!")
-    const [remounts, setRemounts] = useState(0)
-    const remount = () => setRemounts(remounts + 1)
-    const unmount = () => setRemounts(0)
+    const [isMounted, setIsMounted] = useState(true)
+    const mount = () => setIsMounted(true)
+    const unmount = () => setIsMounted(false)
     return <Context>
         <LabeledTextField
           label="Message"
-          description="An alert will pop up with this message 5 seconds after you click 'Remount'. You can change the message while the timer is running."
+          description="An alert will pop up with this message when you click 'Unmount'. You can change the message while the component is mounted."
           value={message}
           onChange={setMessage} />
         <Strut size={Spacing.medium_16}/>
         <View style={{flexDirection: "row", gap: Spacing.xSmall_8}}>
-            <Button onClick={remount}>Remount</Button>
-            <Button kind="secondary" onClick={unmount}>Unmount</Button>
+            {isMounted && <Button onClick={unmount}>Unmount</Button>}
+            {!isMounted && <Button onClick={mount}>Mount</Button>}
         </View>
         <Strut size={Spacing.medium_16}/>
         <Context>
-            {remounts > 0 && <ComponentWithDelayedAlert key={remounts} message={message} />}
+            {isMounted && <ComponentThatAlertsOnUnmount message={message} />}
         </Context>
     </Context>
 }
