@@ -4,7 +4,7 @@ import * as path from "path";
 import * as fglob from "fast-glob";
 
 const rootDir = path.join(__dirname, "..");
-const files = fglob.sync("packages/wonder-blocks-core/dist/**/*.d.ts", {
+const files = fglob.sync("packages/wonder-blocks-*/dist/**/*.d.ts", {
     cwd: rootDir,
 });
 
@@ -30,11 +30,14 @@ for (const inFile of files) {
         continue;
     }
 
-    const args = ["flowgen", inFile, "-o", outFile, "--add-flow-header"];
-    const inexact = ["text.d.ts", "view.d.ts"].includes(path.basename(inFile));
-    if (!inexact) {
-        args.push("--no-inexact");
-    }
+    const args = [
+        "flowgen",
+        inFile,
+        "-o",
+        outFile,
+        "--add-flow-header",
+        "--no-inexact",
+    ];
 
     try {
         execFileSync("yarn", args, {cwd: rootDir});
