@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 0.9.2
+
+### Patch Changes
+
+-   b281e2eb: Fix generate Flow types for real
+
 ## 0.9.1
 
 ### Patch Changes
