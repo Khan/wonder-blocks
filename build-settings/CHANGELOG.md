@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 0.9.5
+
+### Patch Changes
+
+-   c20f48f3: Don't transpile classes when building bundles
+
 ## 0.9.4
 
 ### Patch Changes

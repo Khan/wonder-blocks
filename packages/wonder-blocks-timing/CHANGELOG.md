@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 3.0.2
+
+### Patch Changes
+
+-   c20f48f3: Don't transpile classes when building bundles
+
 ## 3.0.1
 
 ### Patch Changes

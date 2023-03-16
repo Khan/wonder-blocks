@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-testing
 
+## 8.0.6
+
+### Patch Changes
+
+-   c20f48f3: Don't transpile classes when building bundles
+-   Updated dependencies [c20f48f3]
+    -   @khanacademy/wonder-blocks-data@11.0.6
+
 ## 8.0.5
 
 ### Patch Changes

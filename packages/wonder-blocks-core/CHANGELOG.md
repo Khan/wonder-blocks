@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 5.0.4
+
+### Patch Changes
+
+-   c20f48f3: Don't transpile classes when building bundles
+
 ## 5.0.3
 
 ### Patch Changes

@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 3.0.6
+
+### Patch Changes
+
+-   c20f48f3: Don't transpile classes when building bundles
+-   Updated dependencies [c20f48f3]
+    -   @khanacademy/wonder-blocks-core@5.0.4
+
 ## 3.0.5
 
 ## 3.0.4

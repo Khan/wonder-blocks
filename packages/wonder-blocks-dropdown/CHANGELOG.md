@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-dropdown
 
+## 3.0.6
+
+### Patch Changes
+
+-   c20f48f3: Don't transpile classes when building bundles
+-   Updated dependencies [c20f48f3]
+    -   @khanacademy/wonder-blocks-clickable@3.0.6
+    -   @khanacademy/wonder-blocks-core@5.0.4
+    -   @khanacademy/wonder-blocks-icon@2.0.6
+    -   @khanacademy/wonder-blocks-layout@2.0.6
+    -   @khanacademy/wonder-blocks-modal@4.0.6
+    -   @khanacademy/wonder-blocks-search-field@2.0.6
+    -   @khanacademy/wonder-blocks-timing@3.0.2
+    -   @khanacademy/wonder-blocks-typography@2.0.6
+
 ## 3.0.5
 
 ### Patch Changes
