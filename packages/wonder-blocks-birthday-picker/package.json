@@ -24,7 +24,6 @@
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
-    "core-js": "^3.29.1",
     "moment": "^2.24.0",
     "react": "16.14.0"
   },

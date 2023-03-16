@@ -21,7 +21,6 @@
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
-    "core-js": "^3.29.1",
     "react": "16.14.0",
     "react-dom": "16.14.0",
     "react-router": "5.2.1",
