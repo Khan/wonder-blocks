@@ -29,16 +29,15 @@ const createConfig = (pkgName) => {
             },
         ],
         input: `packages/${pkgName}/src/index.ts`,
+        // We're using `builtIns: "usage"` with @babel/preset-env.
+        // This results in individual modules being imported from
+        // core-js directly.  `autoExternal` doesn't know how to
+        // deal with this so we manually externalize these imports.
+        external: [/core-js/],
         plugins: [
             babel({
                 presets,
-                plugins: [
-                    ...plugins,
-                    // NOTE(kevinb): `plugin-proposal-class-properties` must come before
-                    // `plugin-transform-classes`.
-                    ["@babel/plugin-proposal-class-properties", {loose: true}],
-                    ["@babel/plugin-transform-classes", {loose: true}],
-                ],
+                plugins,
                 exclude: "node_modules/**",
                 runtimeHelpers: true,
                 comments: false,

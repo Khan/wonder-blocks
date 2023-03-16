@@ -1,8 +1,5 @@
-node 10
-last 1 Chrome version
-last 1 ChromeAndroid version
-last 1 Edge version
-last 1 Firefox version
-last 1 iOS version
-last 1 Safari version
-IE 10
+chrome >= 87
+last 1 edge versions
+safari >= 12.1
+last 1 firefox versions
+ios_saf >= 12.1

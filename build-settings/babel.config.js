@@ -9,15 +9,11 @@ module.exports = (api) => {
              */
             "@babel/env",
             {
-                targets: api.env("test")
-                    ? {
-                          node: 16,
-                      }
-                    : {
-                          esmodules: true,
-                      },
                 bugfixes: true,
-                loose: true,
+                corejs: "3.29",
+                // Imports require polyfills in those modules
+                // that actual use them.
+                useBuiltIns: "usage",
             },
         ],
 
@@ -28,17 +24,7 @@ module.exports = (api) => {
         "@babel/react",
     ];
 
-    const plugins = [
-        [
-            /**
-             * Fixes "Invalid attempt to spread non-iterable instance" errors
-             */
-            "@babel/plugin-transform-spread",
-            {
-                loose: true,
-            },
-        ],
-    ];
+    const plugins = [];
 
     if (api.env("test")) {
         // Convert dynamic imports to synchronous requires.  This isn't
