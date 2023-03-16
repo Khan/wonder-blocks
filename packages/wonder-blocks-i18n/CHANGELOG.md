@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-i18n
 
+## 2.0.2
+
+### Patch Changes
+
+-   31798cea: Update callback props to a ReactNode to be returned
+
 ## 2.0.1
 
 ### Patch Changes

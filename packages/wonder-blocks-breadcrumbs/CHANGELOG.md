@@ -1,5 +1,7 @@
 # @khanacademy/wonder-blocks-breadcrumbs
 
+## 2.0.7
+
 ## 2.0.6
 
 ### Patch Changes

@@ -1,5 +1,7 @@
 # @khanacademy/wonder-blocks-data
 
+## 11.0.7
+
 ## 11.0.6
 
 ### Patch Changes
