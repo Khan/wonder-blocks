@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-data
 
+## 11.0.5
+
+### Patch Changes
+
+-   43155769: Fix DocumentNode type definition
+
 ## 11.0.4
 
 ### Patch Changes
