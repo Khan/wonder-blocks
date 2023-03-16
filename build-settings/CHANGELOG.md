@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 0.9.6
+
+### Patch Changes
+
+-   31798cea: Post-process React.Element<React.ElementProps<T>> to React.Element<T>
+
 ## 0.9.5
 
 ### Patch Changes
