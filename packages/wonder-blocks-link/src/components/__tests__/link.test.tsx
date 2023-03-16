@@ -483,8 +483,8 @@ describe("Link", () => {
         });
     });
 
-    describe("startIcon and endIcon", () => {
-        test("startIcon passed down correctly", () => {
+    describe("start and end icons", () => {
+        test("startIcon prop passed down correctly", () => {
             // Arrange
             render(
                 <Link href="/" startIcon={icons.add}>
@@ -499,7 +499,7 @@ describe("Link", () => {
             expect(link).toHaveAttribute("startIcon", `${icons.add}`);
         });
 
-        test("render startIcon", () => {
+        test("render icon with link when startIcon prop is passed in", () => {
             // Arrange
             render(
                 <Link href="/" startIcon={icons.add}>
@@ -516,7 +516,7 @@ describe("Link", () => {
             expect(icon).toBeInTheDocument();
         });
 
-        test("does not render startIcon", () => {
+        test("does not render icon when startIcon prop is not passed in", () => {
             // Arrange
             render(<Link href="/">Click me!</Link>);
 
@@ -527,7 +527,7 @@ describe("Link", () => {
             expect(icon).not.toBeInTheDocument();
         });
 
-        test("endIcon passed down correctly", () => {
+        test("endIcon prop passed down correctly", () => {
             // Arrange
             render(
                 <Link href="/" endIcon={icons.caretRight}>
@@ -542,7 +542,7 @@ describe("Link", () => {
             expect(link).toHaveAttribute("endIcon", `${icons.caretRight}`);
         });
 
-        test("render endIcon", () => {
+        test("render icon with link when endIcon prop is passed in", () => {
             // Arrange
             render(
                 <Link href="/" endIcon={icons.caretRight}>
@@ -559,7 +559,7 @@ describe("Link", () => {
             expect(icon).toBeInTheDocument();
         });
 
-        test("does not render endIcon", () => {
+        test("does not render icon when endIcon prop is not passed in", () => {
             // Arrange
             render(<Link href="/">Click me!</Link>);
 
@@ -570,7 +570,7 @@ describe("Link", () => {
             expect(icon).not.toBeInTheDocument();
         });
 
-        test("does not render externalIcon when endIcon present and `target='_blank'`", () => {
+        test("does not render externalIcon when endIcon is passed in and `target='_blank'`", () => {
             // Arrange
             render(
                 <Link href="/" endIcon={icons.caretRight} target="_blank">
@@ -585,7 +585,7 @@ describe("Link", () => {
             expect(externalIcon).not.toBeInTheDocument();
         });
 
-        test("render endIcon when `target='_blank'`", () => {
+        test("render endIcon instead of default externalIcon when `target='_blank'`", () => {
             // Arrange
             render(
                 <Link href="/" endIcon={icons.caretRight} target="_blank">
