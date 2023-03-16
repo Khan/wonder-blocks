@@ -1,4 +1,5 @@
 import type {InputType} from "@storybook/csf";
+import {icons} from "@khanacademy/wonder-blocks-icon";
 
 export default {
     children: {
@@ -10,10 +11,11 @@ export default {
     },
 
     endIcon: {
-        control: {type: "text"},
+        control: {type: "select"},
         description: `Icon to appear after the link label. If
         \`target="_blank"\` and an \`endIcon\` is passed in, \`endIcon\` will
         override the default \`externalIcon\`.`,
+        options: icons,
         table: {
             type: {summary: "IconAsset"},
         },
@@ -109,8 +111,9 @@ export default {
     },
 
     startIcon: {
-        control: {type: "text"},
+        control: {type: "select"},
         description: "Icon to appear before the link label.",
+        options: icons,
         table: {
             type: {summary: "IconAsset"},
         },
