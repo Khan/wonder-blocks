@@ -437,7 +437,7 @@ describe("Link", () => {
         });
     });
 
-    describe("external link", () => {
+    describe("external link that opens in a new tab", () => {
         test("target attribute passed down correctly", () => {
             // Arrange
             render(
@@ -453,7 +453,7 @@ describe("Link", () => {
             expect(link).toHaveAttribute("target", "_blank");
         });
 
-        test("render icon when `target=_blank`", () => {
+        test("render external icon when `target=_blank`", () => {
             // Arrange
             render(
                 <Link href="/" target="_blank">
@@ -470,7 +470,7 @@ describe("Link", () => {
             expect(icon).toBeInTheDocument();
         });
 
-        test("does not render icon", () => {
+        test("does not render external icon when there is no target", () => {
             // Arrange
             render(<Link href="/">Click me!</Link>);
 
