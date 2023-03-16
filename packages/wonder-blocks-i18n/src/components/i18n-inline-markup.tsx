@@ -109,8 +109,8 @@ type Props = {
         elem: React.ReactNode,
         type: string,
         i: number,
-    ) => React.ReactElement;
-    onError?: (e: Error) => React.ReactElement;
+    ) => React.ReactNode;
+    onError?: (e: Error) => React.ReactNode;
 };
 
 export class I18nInlineMarkup extends React.PureComponent<Props> {
@@ -118,7 +118,7 @@ export class I18nInlineMarkup extends React.PureComponent<Props> {
      * If an error occurs, we either call the onError prop, or throw the
      * error.
      */
-    handleError(error: Error): React.ReactElement {
+    handleError(error: Error): React.ReactNode {
         const {onError} = this.props;
 
         if (onError) {

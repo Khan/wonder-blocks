@@ -71,6 +71,16 @@ for (const inFile of files) {
                 },
             );
         }
+        if (contents.includes("React.Element<React.ElementProps<")) {
+            contents = contents.replace(
+                /React\.Element<(React\.ElementProps<([^>]+)>)>/gm,
+                (substr, group1, group2) => {
+                    const replacement = `React.Element<${group2}>`;
+                    console.log(`replacing '${substr}' with '${replacement}'`);
+                    return replacement;
+                },
+            );
+        }
 
         fs.writeFileSync(
             path.join(rootDir, outFile),
