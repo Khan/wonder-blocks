@@ -71,7 +71,7 @@ for (const inFile of files) {
                 },
             );
         }
-        if (contents.includes("React.Element<React.ElementProps<")) {
+        if (/React\.Element<\s*React\.ElementProps</.test(contents)) {
             contents = contents.replace(
                 /React\.Element<\s*(React\.ElementProps<\s*([^>]+)>\s*)>/gm,
                 (substr, group1, group2) => {
