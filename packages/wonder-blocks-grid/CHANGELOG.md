@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-grid
 
+## 2.0.8
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-layout@2.0.8
+
 ## 2.0.7
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # wb-dev-build-settings
 
+## 0.9.7
+
+### Patch Changes
+
+-   bc1fd194: Generate proper Flow types for React.Element<React.ElementProps<...>> spanning multiple
+
 ## 0.9.6
 
 ### Patch Changes
