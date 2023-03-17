@@ -71,11 +71,11 @@ for (const inFile of files) {
                 },
             );
         }
-        if (contents.includes("React.Element<React.ElementProps<")) {
+        if (/React\.Element<\s*React\.ElementProps</.test(contents)) {
             contents = contents.replace(
-                /React\.Element<(React\.ElementProps<([^>]+)>)>/gm,
+                /React\.Element<\s*(React\.ElementProps<\s*([^>]+)>\s*)>/gm,
                 (substr, group1, group2) => {
-                    const replacement = `React.Element<${group2}>`;
+                    const replacement = `React.Element<${group2.trim()}>`;
                     console.log(`replacing '${substr}' with '${replacement}'`);
                     return replacement;
                 },
