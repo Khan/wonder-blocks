@@ -1,7 +1,7 @@
 import * as React from "react";
 
 /**
- * A adapter to be composed with our test harnass infrastructure.
+ * A adapter to be composed with our test harness infrastructure.
  */
 export type TestHarnessAdapter<TConfig> = (
     children: React.ReactNode,
@@ -21,24 +21,17 @@ export type TestHarnessAdapter<TConfig> = (
  * the adapters.
  */
 export type TestHarnessAdapters = {
-    [adapterID: string]: TestHarnessAdapter<any>;
+    readonly [adapterID: string]: TestHarnessAdapter<any>;
 };
 
 /**
- * Mapping functions from a adapter-like function to config type.
- */
-type ExtractConfig = <TConfig>(arg1: TestHarnessAdapter<TConfig>) => TConfig;
-type ExtractMaybeConfig = <TConfig>(
-    arg1: TestHarnessAdapter<TConfig>,
-) => TConfig | null | undefined;
-
-/**
  * Type for easily defining an adapter's config type.
- *
- * This is the `TestHarnessAdapter` equivalent of `React.ElementConfig`.
  */
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-export type TestHarnessConfig<TAdapter> = ReturnType<ExtractConfig>;
+export type TestHarnessConfig<TAdapter> = TAdapter extends TestHarnessAdapter<
+    infer TConfig
+>
+    ? TConfig
+    : never;
 
 /**
  * The `TestHarnessConfigs` type as defined by parsing a given set of adapters.
@@ -47,13 +40,8 @@ export type TestHarnessConfig<TAdapter> = ReturnType<ExtractConfig>;
  * are explicitly typed as `TestHarnessAdapter<TConfig>` so if passing in a
  * non-Adapters type (which we should be, to get strong `TConfig` types instead
  * of `any`), then that object should make sure that each adapter is strongly
- * marked as `TestHarnessAdapter<TConfig>` - TypeScript does not appear to pattern
- * match against the type definition when invoking the `ExtractConfig` type and I
- * haven't worked out how to get it to multi-dispatch so that it matches
- * functions too. Even worse, if the type doesn't match, it just allows `any`
- * in the `Configs` object, rather than indicating any kind of problem.
+ * marked as `TestHarnessAdapter<TConfig>`
  */
-export type TestHarnessConfigs<TAdapters extends TestHarnessAdapters> = ObjMap<
-    TAdapters,
-    ExtractMaybeConfig
->;
+export type TestHarnessConfigs<TAdapters extends TestHarnessAdapters> = {
+    [K in keyof TAdapters]: TestHarnessConfig<TAdapters[K]> | null | undefined;
+};

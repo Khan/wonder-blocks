@@ -59,6 +59,7 @@ import type {
 
 //> should error if the config type is wrong
 // 45 is not a string
+// @ts-expect-error: Type '45' is not assignable to type 'string'.
 45 as TestHarnessConfig<TestHarnessAdapter<string>>;
 //<
 
@@ -103,6 +104,7 @@ const adapters = {
 //<
 
 //>  should assert if config does not match adapter config
+// @ts-expect-error: Conversion of type '{ adapterA: string; adapterB: string; }' to type 'TestHarnessConfigs<{ readonly adapterA: TestHarnessAdapter<string>; readonly adapterB: TestHarnessAdapter<number>; }>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first. Types of property 'adapterB' are incompatible. Type 'string' is not comparable to type 'number'.
 ({
     adapterA: "a string, this is correct",
     // the config type here is a number, not a string
