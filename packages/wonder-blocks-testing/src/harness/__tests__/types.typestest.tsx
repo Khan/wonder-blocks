@@ -70,11 +70,7 @@ import type {
  * are explicitly typed as `TestHarnessAdapter<TConfig>` so if passing in a
  * non-Adapters type (which we should be, to get strong TConfig types instead
  * of `any`), then that object should make sure that each adapter is strongly
- * marked as `TestHarnessAdapter<TConfig>` - TypeScript does not appear to pattern
- * match against the type definition when invoking the ExtractConfig type and I
- * haven't worked out how to get it to multi-dispatch so that it matches
- * functions too. Even worse, if the type doesn't match, it just allows `any`
- * in the configs object, rather than indicating any kind of problem.
+ * marked as `TestHarnessAdapter<TConfig>`.
  */
 const notadapters = "this is wrong";
 const adapterA: TestHarnessAdapter<string> = (
