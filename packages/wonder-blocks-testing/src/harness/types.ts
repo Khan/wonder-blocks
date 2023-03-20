@@ -1,3 +1,5 @@
+// WARNING: If you modify this file you may need to update types.js.flow
+// to ensure that the Flow types are still correct.
 import * as React from "react";
 
 /**
