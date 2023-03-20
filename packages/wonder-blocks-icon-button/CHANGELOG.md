@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 4.0.8
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-clickable@3.0.8
+-   @khanacademy/wonder-blocks-icon@2.0.8
+
+## 4.0.7
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-clickable@3.0.7
+-   @khanacademy/wonder-blocks-icon@2.0.7
+
 ## 4.0.6
 
 ### Patch Changes

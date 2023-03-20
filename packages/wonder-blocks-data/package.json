@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-data",
-  "version": "11.0.6",
+  "version": "11.0.8",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -21,7 +21,7 @@
     "react": "16.14.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.9.5"
+    "wb-dev-build-settings": "^0.9.7"
   },
   "author": "",
   "license": "MIT"

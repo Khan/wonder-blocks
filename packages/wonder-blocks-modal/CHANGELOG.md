@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-modal
 
+## 4.0.8
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-breadcrumbs@2.0.8
+-   @khanacademy/wonder-blocks-icon@2.0.8
+-   @khanacademy/wonder-blocks-icon-button@4.0.8
+-   @khanacademy/wonder-blocks-layout@2.0.8
+-   @khanacademy/wonder-blocks-typography@2.0.8
+
+## 4.0.7
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-breadcrumbs@2.0.7
+-   @khanacademy/wonder-blocks-icon@2.0.7
+-   @khanacademy/wonder-blocks-icon-button@4.0.7
+-   @khanacademy/wonder-blocks-layout@2.0.7
+-   @khanacademy/wonder-blocks-typography@2.0.7
+
 ## 4.0.6
 
 ### Patch Changes

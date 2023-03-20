@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-clickable",
-  "version": "3.0.6",
+  "version": "3.0.8",
   "design": "v1",
   "description": "Clickable component for Wonder-Blocks.",
   "main": "dist/index.js",
@@ -27,6 +27,6 @@
     "react-router-dom": "5.3.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.9.5"
+    "wb-dev-build-settings": "^0.9.7"
   }
 }

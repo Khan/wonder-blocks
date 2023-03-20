@@ -1,5 +1,17 @@
 # wb-dev-build-settings
 
+## 0.9.7
+
+### Patch Changes
+
+-   bc1fd194: Generate proper Flow types for React.Element<React.ElementProps<...>> spanning multiple
+
+## 0.9.6
+
+### Patch Changes
+
+-   31798cea: Post-process React.Element<React.ElementProps<T>> to React.Element<T>
+
 ## 0.9.5
 
 ### Patch Changes
