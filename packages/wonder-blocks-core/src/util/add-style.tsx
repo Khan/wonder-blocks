@@ -13,7 +13,9 @@ export default function addStyle<
         {style?: StyleType}
     >;
 
-    const StyleComponent: React.FC<Props> = (props) => {
+    const StyleComponent: React.ForwardRefExoticComponent<
+        Props & React.RefAttributes<HTMLElement>
+    > = React.forwardRef<HTMLElement, Props extends {className?: string, style?: any}>((props: Props, ref) => {
         const {className, style, ...otherProps} = props;
         const reset =
             typeof Component === "string" ? overrides[Component] : null;
@@ -25,13 +27,14 @@ export default function addStyle<
             // @ts-expect-error [FEI-5019] - TS2604 - JSX element type 'Component' does not have any construct or call signatures.
             <Component
                 {...otherProps}
+                ref={ref}
                 className={[aphroditeClassName, className]
                     .filter(Boolean)
                     .join(" ")}
                 style={inlineStyles}
             />
         );
-    };
+    });
 
     return StyleComponent;
 }
