@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing
 
+## 8.0.9
+
+### Patch Changes
+
+-   7e79069d: Get the types working properly
+
 ## 8.0.8
 
 ### Patch Changes
