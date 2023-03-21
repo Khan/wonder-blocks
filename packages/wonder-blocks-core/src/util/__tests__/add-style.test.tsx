@@ -88,4 +88,18 @@ describe("addStyle", () => {
         expect(classNames[0]).toEqual(expect.any(String));
         expect(classNames[1]).toEqual("foo");
     });
+
+    it("should forward a ref to the component", () => {
+        // Arrange
+        const ref = React.useRef();
+
+        render(
+            <StyledDiv
+                className="foo"
+                style={styles.foo}
+                data-test-id="styled-div"
+                ref={ref}
+            />,
+        );
+    });
 });
