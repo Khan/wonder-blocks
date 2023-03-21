@@ -9,6 +9,8 @@ export const mockGqlFetch = (): GqlFetchMockFn =>
     mockRequester<GqlMockOperation<any, any, any>, any>(
         gqlRequestMatchesMock,
         // Note that the identation at the start of each line is important.
+        // TODO(somewhatabstract): Make a stringify that indents each line of
+        // the output properly too.
         (operation, variables, context) =>
             `Operation: ${operation.type} ${operation.id}
     Variables: ${
