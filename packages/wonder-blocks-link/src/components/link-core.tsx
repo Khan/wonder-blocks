@@ -3,7 +3,7 @@ import {StyleSheet} from "aphrodite";
 import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
-import {addStyle} from "@khanacademy/wonder-blocks-core";
+import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import Icon from "@khanacademy/wonder-blocks-icon";
@@ -70,8 +70,6 @@ export default class LinkCore extends React.Component<Props> {
             "data-test-id": testId,
             style: [defaultStyles, style],
             target,
-            startIcon,
-            endIcon,
             ...restProps,
         } as const;
 
@@ -112,11 +110,11 @@ export default class LinkCore extends React.Component<Props> {
         );
 
         const linkContent = (
-            <>
+            <View style={linkContentStyles.view}>
                 {startIconChild}
                 {children}
                 {endIconChild}
-            </>
+            </View>
         );
 
         return router && !skipClientNav && isClientSideUrl(href) ? (
@@ -141,6 +139,14 @@ export default class LinkCore extends React.Component<Props> {
 
 const styles: Record<string, any> = {};
 
+const linkContentStyles = StyleSheet.create({
+    view: {
+        display: "inline-flex",
+        flexDirection: "row",
+        alignItems: "center",
+    },
+});
+
 const iconStyles = StyleSheet.create({
     startIcon: {
         marginRight: Spacing.xxxSmall_4,
@@ -156,8 +162,6 @@ const sharedStyles = StyleSheet.create({
         cursor: "pointer",
         textDecoration: "none",
         outline: "none",
-        display: "inline-flex",
-        alignItems: "center",
     },
 });
 
