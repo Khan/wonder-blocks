@@ -59,6 +59,7 @@ import type {
 
 //> should error if the config type is wrong
 // 45 is not a string
+// @ts-expect-error: Type '45' is not assignable to type 'string'.
 45 as TestHarnessConfig<TestHarnessAdapter<string>>;
 //<
 
@@ -69,11 +70,7 @@ import type {
  * are explicitly typed as `TestHarnessAdapter<TConfig>` so if passing in a
  * non-Adapters type (which we should be, to get strong TConfig types instead
  * of `any`), then that object should make sure that each adapter is strongly
- * marked as `TestHarnessAdapter<TConfig>` - TypeScript does not appear to pattern
- * match against the type definition when invoking the ExtractConfig type and I
- * haven't worked out how to get it to multi-dispatch so that it matches
- * functions too. Even worse, if the type doesn't match, it just allows `any`
- * in the configs object, rather than indicating any kind of problem.
+ * marked as `TestHarnessAdapter<TConfig>`.
  */
 const notadapters = "this is wrong";
 const adapterA: TestHarnessAdapter<string> = (
@@ -103,6 +100,7 @@ const adapters = {
 //<
 
 //>  should assert if config does not match adapter config
+// @ts-expect-error: Conversion of type '{ adapterA: string; adapterB: string; }' to type 'TestHarnessConfigs<{ readonly adapterA: TestHarnessAdapter<string>; readonly adapterB: TestHarnessAdapter<number>; }>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first. Types of property 'adapterB' are incompatible. Type 'string' is not comparable to type 'number'.
 ({
     adapterA: "a string, this is correct",
     // the config type here is a number, not a string
