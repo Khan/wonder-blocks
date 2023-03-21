@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing
 
+## 8.0.10
+
+### Patch Changes
+
+-   97829726: Fix indentation change in mockGqlFetch
+
 ## 8.0.9
 
 ### Patch Changes
