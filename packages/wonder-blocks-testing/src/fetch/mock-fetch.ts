@@ -8,11 +8,13 @@ import type {FetchMockFn, FetchMockOperation} from "./types";
 export const mockFetch = (): FetchMockFn =>
     mockRequester<FetchMockOperation, any>(
         fetchRequestMatchesMock,
+        // NOTE(somewhatabstract): The indentation is expected on the lines
+        // here.
         (input, init) =>
             `Input: ${
                 typeof input === "string"
                     ? input
                     : JSON.stringify(input, null, 2)
             }
-Options: ${init == null ? "None" : JSON.stringify(init, null, 2)}`,
+    Options: ${init == null ? "None" : JSON.stringify(init, null, 2)}`,
     );
