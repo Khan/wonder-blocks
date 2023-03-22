@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing
 
+## 8.0.11
+
+### Patch Changes
+
+-   a7fd4c07: Fix regression in error message formatting for fetch mocking
+
 ## 8.0.10
 
 ### Patch Changes
