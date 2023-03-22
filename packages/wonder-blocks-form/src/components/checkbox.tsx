@@ -37,6 +37,10 @@ type ChoiceComponentProps = AriaProps & {
      */
     id?: string;
     /**
+     * Whether this component is in indeterminate state
+     */
+    indeterminate?: boolean;
+    /**
      * Optional styling for the container. Does not style the component.
      */
     style?: StyleType;
