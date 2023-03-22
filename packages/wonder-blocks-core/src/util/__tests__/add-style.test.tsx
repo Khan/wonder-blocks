@@ -29,6 +29,7 @@ describe("addStyle", () => {
 
     it("should set the className if no style is provided", () => {
         // Arrange
+        // @ts-expect-error: `data-test-id` is not supported on `div`
         render(<StyledDiv className="foo" data-test-id="styled-div" />);
 
         // Act

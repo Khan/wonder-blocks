@@ -42,7 +42,7 @@ type DefaultProps = {
     size: Props["size"];
 };
 
-const StyledSVG = addStyle<"svg">("svg");
+const StyledSVG = addStyle("svg");
 
 /**
  * An Icon displays a small informational or decorative image as an SVG.

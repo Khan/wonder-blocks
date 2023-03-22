@@ -20,8 +20,8 @@ type Props = SharedProps &
         href: string;
     };
 
-const StyledAnchor = addStyle<"a">("a");
-const StyledLink = addStyle<typeof Link>(Link);
+const StyledAnchor = addStyle("a");
+const StyledLink = addStyle(Link);
 
 export default class LinkCore extends React.Component<Props> {
     renderInner(router: any): React.ReactNode {
