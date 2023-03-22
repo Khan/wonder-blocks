@@ -81,7 +81,7 @@ export default class CheckboxCore extends React.Component<Props> {
 
         const indeterminateIcon = (
             <Icon
-                color={offBlack32}
+                color={disabled ? offBlack32 : white}
                 icon={indeterminatePath}
                 size="small"
                 style={sharedStyles.checkIcon}
