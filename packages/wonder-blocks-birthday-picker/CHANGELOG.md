@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-birthday-picker
 
+## 2.0.9
+
+### Patch Changes
+
+-   e89b05f0: Don't use named imports when importing 'moment' since it doesn't work with vite
+
 ## 2.0.8
 
 ### Patch Changes
