@@ -1,4 +1,4 @@
-import moment from "moment"; // NOTE: 'moment' does not support named imports
+import moment from "moment"; // NOTE: DO NOT use named imports; 'moment' does not support named imports
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
