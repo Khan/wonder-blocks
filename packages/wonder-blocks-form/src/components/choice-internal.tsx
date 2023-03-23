@@ -168,7 +168,6 @@ const styles = StyleSheet.create({
         outline: "none",
     },
     label: {
-        userSelect: "none",
         // NOTE: The checkbox/radio button (height 16px) should be center
         // aligned with the first line of the label. However, LabelMedium has a
         // declared line height of 20px, so we need to adjust the top to get the
