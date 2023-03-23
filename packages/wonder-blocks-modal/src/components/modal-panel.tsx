@@ -124,7 +124,7 @@ export default class ModalPanel extends React.Component<Props> {
         });
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             closeButtonVisible,
             footer,

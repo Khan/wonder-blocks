@@ -75,6 +75,5 @@ export function useScheduledTimeout(
 
     useTimeout(wrappedAction, timeoutMs, isSet);
 
-    // @ts-expect-error [FEI-5019] - TS2322 - Type 'boolean' is not assignable to type '() => boolean'.
     return {isSet, set, clear};
 }

@@ -106,7 +106,7 @@ export default class OptionItem extends React.Component<OptionProps> {
         }
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             disabled,
             label,

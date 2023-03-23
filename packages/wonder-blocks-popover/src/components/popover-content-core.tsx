@@ -69,7 +69,7 @@ export default class PopoverContentCore extends React.Component<Props> {
         closeButtonVisible: false,
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             children,
             closeButtonLight,

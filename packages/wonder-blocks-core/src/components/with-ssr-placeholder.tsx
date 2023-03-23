@@ -12,7 +12,7 @@ type Props = {
      * not server-side rendering, or (when server-side rendering) after
      * the initial rehydration has finished.
      */
-    children: () => React.ReactElement;
+    children: () => React.ReactNode;
     /**
      * What to render during server-side rendering, or null not to
      * render anything.
@@ -22,7 +22,7 @@ type Props = {
      * the server-side renderer and the rehydration -- or it defeats
      * the purpose of using the WithSSRPlaceholder component.
      */
-    placeholder: () => React.ReactElement | null | undefined;
+    placeholder: (() => React.ReactNode) | null;
 };
 
 type State = {
@@ -164,7 +164,7 @@ export default class WithSSRPlaceholder extends React.Component<Props, State> {
         }
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         return (
             <RenderStateContext.Consumer>
                 {(value) => this._maybeRender(value)}

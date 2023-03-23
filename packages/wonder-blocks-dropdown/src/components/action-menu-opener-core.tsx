@@ -41,7 +41,7 @@ const StyledButton = addStyle<"button">("button");
  * - the down caret icon is smaller that the one that would be used by ButtonCore
  */
 export default class ActionMenuOpenerCore extends React.Component<Props> {
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             children,
             disabled: disabledProp,

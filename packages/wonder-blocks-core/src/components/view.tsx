@@ -1,3 +1,4 @@
+// WARNING: If you modify this file you must update view.js.flow.
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -73,7 +74,7 @@ export default class View extends React.Component<Props> {
         tag: "div",
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {testId, tag, ...restProps} = this.props;
         const props = {
             ...restProps,

@@ -121,7 +121,7 @@ export default class FieldHeading extends React.Component<Props> {
         );
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {field, style} = this.props;
 
         return (

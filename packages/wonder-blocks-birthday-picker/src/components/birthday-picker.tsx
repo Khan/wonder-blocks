@@ -1,4 +1,4 @@
-import moment, {monthsShort} from "moment";
+import moment from "moment"; // NOTE: DO NOT use named imports; 'moment' does not support named imports
 import * as React from "react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -276,7 +276,8 @@ export default class BirthdayPicker extends React.Component<Props, State> {
                 style={{minWidth}}
                 testId="birthday-picker-month"
             >
-                {monthsShort().map((month, i) => (
+                {/* eslint-disable-next-line import/no-named-as-default-member */}
+                {moment.monthsShort().map((month, i) => (
                     <OptionItem key={month} label={month} value={String(i)} />
                 ))}
             </SingleSelect>
@@ -342,7 +343,7 @@ export default class BirthdayPicker extends React.Component<Props, State> {
         );
     }
 
-    render(): React.ReactElement<any> {
+    render(): React.ReactNode {
         return (
             <>
                 <View testId="birthday-picker" style={{flexDirection: "row"}}>

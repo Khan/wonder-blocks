@@ -59,7 +59,6 @@ export default class Interval implements IInterval {
      * @returns {boolean} true if the interval is active, otherwise false.
      * @memberof Interval
      */
-    // @ts-expect-error [FEI-5019] - TS2416 - Property 'isSet' in type 'Interval' is not assignable to the same property in base type 'IInterval'.
     get isSet(): boolean {
         return this._intervalId != null;
     }

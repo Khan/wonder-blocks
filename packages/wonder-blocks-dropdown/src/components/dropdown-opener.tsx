@@ -53,7 +53,7 @@ class DropdownOpener extends React.Component<Props> {
     renderAnchorChildren(
         eventState: ClickableState,
         clickableChildrenProps: ChildrenProps,
-    ): React.ReactNode {
+    ): React.ReactElement {
         const {disabled, testId, text} = this.props;
         const renderedChildren = this.props.children({...eventState, text});
         const childrenProps = renderedChildren.props;
@@ -77,14 +77,13 @@ class DropdownOpener extends React.Component<Props> {
         });
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         return (
             <ClickableBehavior
                 onClick={this.props.onClick}
                 disabled={this.props.disabled}
             >
                 {(eventState, handlers) =>
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'ReactNode' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
                     this.renderAnchorChildren(eventState, handlers)
                 }
             </ClickableBehavior>

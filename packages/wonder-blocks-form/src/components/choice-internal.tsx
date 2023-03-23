@@ -102,7 +102,7 @@ type DefaultProps = {
             </LabelSmall>
         );
     }
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             label,
             description,

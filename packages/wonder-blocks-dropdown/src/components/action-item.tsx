@@ -215,7 +215,7 @@ export default class ActionItem extends React.Component<ActionProps> {
         );
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         return (
             <__RouterContext.Consumer>
                 {(router) => this.renderClickableBehavior(router)}

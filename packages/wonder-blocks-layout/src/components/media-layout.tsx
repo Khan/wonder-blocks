@@ -39,7 +39,7 @@ type Props = {
         mediaSize: MediaSize;
         mediaSpec: MediaSpec;
         styles: MockStyleSheet;
-    }) => React.ReactElement;
+    }) => React.ReactNode;
     /**
      * Aphrodite stylesheets to pass through to the styles prop. The
      * stylesheets to render is based on the media size. "all" is always
@@ -210,7 +210,7 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
         return mockStyleSheet;
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {children, mediaSpec, ssrSize, overrideSize} = this.props;
 
         // We need to create the MediaQueryLists during the first render in order
@@ -267,7 +267,7 @@ class MediaLayoutInternal extends React.Component<CombinedProps, State> {
  * - `maxWidth: number`
  */
 export default class MediaLayout extends React.Component<Props> {
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         // We listen to the MediaLayoutContext to see what defaults we're
         // being given (this can be overriden by wrapping this component in
         // a MediaLayoutContext.Consumer).

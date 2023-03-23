@@ -26,7 +26,7 @@ export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
         return;
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             checked,
             disabled,
