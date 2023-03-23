@@ -88,7 +88,7 @@ export default class Checkbox extends React.Component<ChoiceComponentProps> {
         error: false,
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         return <ChoiceInternal variant="checkbox" {...this.props} />;
     }
 }

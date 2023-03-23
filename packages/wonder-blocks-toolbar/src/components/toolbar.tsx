@@ -82,7 +82,7 @@ export default class Toolbar extends React.Component<Props> {
         size: "medium",
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {color, leftContent, rightContent, size, subtitle, title} =
             this.props;
 

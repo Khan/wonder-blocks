@@ -18,7 +18,7 @@ const StyledInput = addStyle("input");
         return;
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             checked,
             disabled,

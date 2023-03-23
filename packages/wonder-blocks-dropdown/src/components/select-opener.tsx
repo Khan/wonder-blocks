@@ -153,7 +153,7 @@ export default class SelectOpener extends React.Component<SelectOpenerProps> {
         );
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         return (
             <__RouterContext.Consumer>
                 {(router) => this.renderClickableBehavior(router)}

@@ -1,3 +1,4 @@
+// WARNING: If you modify this file you must update text.js.flow.
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
@@ -48,7 +49,7 @@ export default class Text extends React.Component<Props> {
         tag: "span",
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {children, style, tag: Tag, testId, ...otherProps} = this.props;
 
         const isHeader = isHeaderRegex.test(Tag);

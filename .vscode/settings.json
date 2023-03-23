@@ -1,15 +1,15 @@
 {
     "editor.renderWhitespace": "boundary",
-    "eslint.autoFixOnSave": true,
     "eslint.enable": true,
     "files.trimTrailingWhitespace": true,
     "typescript.validate.enable": true,
-    "javascript.validate.enable": true,
-    "coverage-gutters.lcovname": "./coverage/lcov.info",
-    "jest.enableSnapshotUpdateMessages": false,
-    "jest.pathToConfig": "./config/jest/test.config.js",
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
     "typescript.tsdk": "node_modules/typescript/lib",
+    "javascript.format.enable": true,
+    "files.associations": {
+        "*.flow": "plaintext",
+    },
+    "flow.enabled": false
 }

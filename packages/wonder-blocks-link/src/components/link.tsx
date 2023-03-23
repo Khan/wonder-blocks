@@ -253,7 +253,7 @@ export default class Link extends React.Component<SharedProps> {
         }
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         return (
             <__RouterContext.Consumer>
                 {(router) => this.renderClickableBehavior(router)}

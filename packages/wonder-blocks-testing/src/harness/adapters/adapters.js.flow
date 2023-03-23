@@ -1,0 +1,28 @@
+/**
+ * @flow
+ */
+import * as css from "./css";
+import * as data from "./data";
+import * as portal from "./portal";
+import * as router from "./router";
+
+import type { TestHarnessConfigs, TestHarnessConfig } from "../types";
+
+/**
+ * NOTE: We do not type `DefaultAdapters` with `Adapters` here because we want
+ * the individual config types of each adapter to remain intact rather than
+ * getting changed to `any`.
+ */
+/**
+ * The default adapters provided by Wonder Blocks.
+ */
+declare export var DefaultAdapters: {|
+  +css: typeof css.adapter,
+  +data: typeof data.adapter,
+  +portal: typeof portal.adapter,
+  +router: typeof router.adapter,
+|};
+/**
+ * The default configurations to use with the `DefaultAdapters`.
+ */
+declare export var DefaultConfigs: TestHarnessConfigs<typeof DefaultAdapters>;

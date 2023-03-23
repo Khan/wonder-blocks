@@ -85,7 +85,7 @@ export default class Icon extends React.PureComponent<Props> {
         size: "small",
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {color, icon, size, style, testId, ...sharedProps} = this.props;
 
         const {assetSize, path} = getPathForIcon(icon, size);

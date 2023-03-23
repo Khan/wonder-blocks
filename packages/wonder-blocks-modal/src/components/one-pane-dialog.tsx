@@ -74,7 +74,7 @@ type Common = {
     /**
      * The ID of the content describing this dialog, if applicable.
      */
-    ["aria-describedby"]?: string;
+    "aria-describedby"?: string;
 };
 
 type WithSubtitle = Common & {
@@ -178,7 +178,7 @@ export default class OnePaneDialog extends React.Component<Props> {
         }
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             onClose,
             footer,

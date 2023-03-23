@@ -1,5 +1,8 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
-/* eslint-disable import/no-commonjs */
+/* eslint-disable
+    @typescript-eslint/no-var-requires,
+    import/no-commonjs,
+    no-console
+*/
 /**
  * Pre-publish checks to verify that our CI publish will go smoothly.
  *
@@ -7,7 +10,7 @@
  * a new version of the WB packages.
  */
 const path = require("path");
-const glob = require("glob");
+const fglob = require("fast-glob");
 
 const {
     checkPublishConfig,
@@ -16,9 +19,8 @@ const {
     checkPackageTypes,
 } = require("./pre-publish-utils");
 
-glob(
-    path.join(__dirname, "..", "..", "packages", "*", "package.json"),
-    (err, pkgPaths) => {
+fglob(path.join(__dirname, "..", "..", "packages", "*", "package.json"))
+    .then((pkgPaths) => {
         for (const pkgPath of pkgPaths) {
             const pkgJson = require(path.relative(__dirname, pkgPath));
 
@@ -27,5 +29,9 @@ glob(
             checkPackageModule(pkgJson);
             checkPackageTypes(pkgJson);
         }
-    },
-);
+        return;
+    })
+    .catch((err) => {
+        console.error(err);
+        process.exit(1);
+    });

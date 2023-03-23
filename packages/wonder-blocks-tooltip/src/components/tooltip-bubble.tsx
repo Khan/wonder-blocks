@@ -55,7 +55,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
         this.props.onActiveChanged(false);
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             id,
             children,

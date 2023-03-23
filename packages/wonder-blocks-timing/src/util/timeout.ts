@@ -60,7 +60,6 @@ export default class Timeout implements ITimeout {
      * false.
      * @memberof Timeout
      */
-    // @ts-expect-error [FEI-5019] - TS2416 - Property 'isSet' in type 'Timeout' is not assignable to the same property in base type 'ITimeout'.
     get isSet(): boolean {
         return this._timeoutId != null;
     }

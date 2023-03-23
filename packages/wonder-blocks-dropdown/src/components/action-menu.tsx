@@ -263,7 +263,7 @@ export default class ActionMenu extends React.Component<Props, State> {
         );
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {alignment, dropdownStyle, style, className} = this.props;
 
         const items = this.getMenuItems();

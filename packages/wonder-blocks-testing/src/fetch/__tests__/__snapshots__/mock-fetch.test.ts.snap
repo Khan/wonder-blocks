@@ -3,13 +3,13 @@
 exports[`#mockFetch should reject with a useful error when there are no matching mocks for %s 1`] = `
 "No matching mock response found for request:
     Input: http://example.com/foo
-Options: None"
+    Options: None"
 `;
 
 exports[`#mockFetch should reject with a useful error when there are no matching mocks for %s 2`] = `
 "No matching mock response found for request:
     Input: "http://example.com/foo"
-Options: {
+    Options: {
   "method": "GET"
 }"
 `;
@@ -23,7 +23,7 @@ exports[`#mockFetch should reject with a useful error when there are no matching
   "compress": true,
   "counter": 0
 }
-Options: {
+    Options: {
   "method": "POST"
 }"
 `;

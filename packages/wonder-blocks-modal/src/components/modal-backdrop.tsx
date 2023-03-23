@@ -125,7 +125,7 @@ export default class ModalBackdrop extends React.Component<Props> {
         this._mousePressedOutside = false;
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {children, testId} = this.props;
         const backdropProps = {
             [ModalLauncherPortalAttributeName]: true,

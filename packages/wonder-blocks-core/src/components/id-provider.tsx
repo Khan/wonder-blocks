@@ -10,7 +10,7 @@ type Props = {
      * use anywhere within children. This provides a way of adding a unique identifier
      * to a given component for a11y purposes.
      */
-    children: (uniqueId: string) => React.ReactElement;
+    children: (uniqueId: string) => React.ReactNode;
     /**
      * Scope for the unique identifier
      */
@@ -69,18 +69,16 @@ export default class IDProvider extends React.Component<Props> {
         return children(uniqueId);
     }
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {id, scope} = this.props;
 
         if (id) {
             // Let's bypass the extra weight of an id provider since we don't
             // need it.
-            // @ts-expect-error [FEI-5019] - TS2322 - Type 'ReactNode' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
             return this.renderChildren();
         } else {
             return (
                 <UniqueIDProvider scope={scope} mockOnFirstRender={true}>
-                    {/* @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call. */}
                     {(ids) => this.renderChildren(ids)}
                 </UniqueIDProvider>
             );

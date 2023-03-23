@@ -1,3 +1,4 @@
+// WARNING: If you modify this file you must update graphql-types.js.flow.
 // NOTE(somewhatabstract):
 // These types are bare minimum to support document parsing. They're derived
 // from graphql@14.5.8, the last version that provided TypeScript types.

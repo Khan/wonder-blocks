@@ -16,14 +16,14 @@ export type GetPropsOptions = {
     logHandler: (name: string) => (...args: Array<any>) => void;
 };
 
-export type FixtureProps<TProps extends Record<any, any>> =
+export type FixtureProps<TProps extends object> =
     | Readonly<TProps>
     | ((options: Readonly<GetPropsOptions>) => Readonly<TProps>);
 
 /**
  * A function for defining a fixture.
  */
-export type FixtureFn<TProps extends Record<any, any>> = (
+export type FixtureFn<TProps extends object> = (
     /**
      * The name of the fixture.
      */

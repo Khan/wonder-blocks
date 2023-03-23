@@ -54,7 +54,6 @@ describe("Data", () => {
                 // Act
                 render(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -74,7 +73,6 @@ describe("Data", () => {
                 // Act
                 render(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -98,11 +96,9 @@ describe("Data", () => {
                 render(
                     <View>
                         <Data handler={fakeHandler} requestId="ID">
-                            {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                             {fakeChildrenFn}
                         </Data>
                         <Data handler={fakeHandler} requestId="ID">
-                            {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                             {fakeChildrenFn}
                         </Data>
                     </View>,
@@ -124,7 +120,6 @@ describe("Data", () => {
                 // Act
                 render(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -159,7 +154,6 @@ describe("Data", () => {
                 // Act
                 render(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -191,7 +185,6 @@ describe("Data", () => {
                 // Act
                 render(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -222,7 +215,6 @@ describe("Data", () => {
                 // Act
                 render(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -252,7 +244,6 @@ describe("Data", () => {
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = render(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -265,7 +256,6 @@ describe("Data", () => {
                 // Act
                 wrapper.rerender(
                     <Data handler={fakeHandler} requestId="NEW_ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -296,13 +286,11 @@ describe("Data", () => {
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = render(
                     <Data handler={oldHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
                 wrapper.rerender(
                     <Data handler={oldHandler} requestId="NEW_ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -332,13 +320,11 @@ describe("Data", () => {
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = render(
                     <Data handler={oldHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
                 wrapper.rerender(
                     <Data handler={oldHandler} requestId="NEW_ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -372,13 +358,11 @@ describe("Data", () => {
                 const fakeChildrenFn = jest.fn(() => null);
                 const wrapper = render(
                     <Data handler={oldHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
                 wrapper.rerender(
                     <Data handler={oldHandler} requestId="NEW_ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -409,7 +393,6 @@ describe("Data", () => {
                     render(
                         <InterceptRequests interceptor={interceptHandler}>
                             <Data handler={fakeHandler} requestId="ID">
-                                {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                                 {fakeChildrenFn}
                             </Data>
                         </InterceptRequests>,
@@ -431,7 +414,6 @@ describe("Data", () => {
                     render(
                         <InterceptRequests interceptor={interceptHandler}>
                             <Data handler={fakeHandler} requestId="ID">
-                                {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                                 {fakeChildrenFn}
                             </Data>
                         </InterceptRequests>,
@@ -459,7 +441,6 @@ describe("Data", () => {
                         requestId="ID1"
                         retainResultOnChange={true}
                     >
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -472,7 +453,6 @@ describe("Data", () => {
                         requestId="ID2"
                         retainResultOnChange={true}
                     >
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -518,7 +498,6 @@ describe("Data", () => {
                 // Act
                 render(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -544,7 +523,6 @@ describe("Data", () => {
                             WhenClientSide.ExecuteWhenNoSuccessResult
                         }
                     >
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -565,7 +543,6 @@ describe("Data", () => {
                         requestId="ID"
                         clientBehavior={WhenClientSide.AlwaysExecute}
                     >
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -599,7 +576,6 @@ describe("Data", () => {
                 // Act
                 render(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -634,7 +610,6 @@ describe("Data", () => {
                 // Act
                 ReactDOMServer.renderToString(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -651,7 +626,6 @@ describe("Data", () => {
                 // Act
                 ReactDOMServer.renderToString(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -675,7 +649,6 @@ describe("Data", () => {
                 ReactDOMServer.renderToString(
                     <TrackData>
                         <Data handler={fakeHandler} requestId="ID">
-                            {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                             {fakeChildrenFn}
                         </Data>
                     </TrackData>,
@@ -702,7 +675,6 @@ describe("Data", () => {
                     ReactDOMServer.renderToString(
                         <InterceptRequests interceptor={interceptedHandler}>
                             <Data handler={fakeHandler} requestId="ID">
-                                {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                                 {fakeChildrenFn}
                             </Data>
                         </InterceptRequests>,
@@ -730,7 +702,6 @@ describe("Data", () => {
                         <TrackData>
                             <InterceptRequests interceptor={interceptedHandler}>
                                 <Data handler={fakeHandler} requestId="ID">
-                                    {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                                     {fakeChildrenFn}
                                 </Data>
                             </InterceptRequests>
@@ -766,7 +737,6 @@ describe("Data", () => {
                 // Act
                 ReactDOMServer.renderToString(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -783,7 +753,6 @@ describe("Data", () => {
                 // Act
                 ReactDOMServer.renderToString(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -806,7 +775,6 @@ describe("Data", () => {
                 // Act
                 ReactDOMServer.renderToString(
                     <Data handler={fakeHandler} requestId="ID">
-                        {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                         {fakeChildrenFn}
                     </Data>,
                 );
@@ -831,7 +799,6 @@ describe("Data", () => {
                 ReactDOMServer.renderToString(
                     <TrackData>
                         <Data handler={fakeHandler} requestId="ID">
-                            {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                             {fakeChildrenFn}
                         </Data>
                     </TrackData>,
@@ -857,7 +824,6 @@ describe("Data", () => {
                     ReactDOMServer.renderToString(
                         <InterceptRequests interceptor={interceptHandler}>
                             <Data handler={fakeHandler} requestId="ID">
-                                {/* @ts-expect-error [FEI-5019] - TS2322 - Type 'Mock<null, [], any>' is not assignable to type '((result: Result<TData>) => ReactElement<any, string | JSXElementConstructor<any>>) & ReactNode'. */}
                                 {fakeChildrenFn}
                             </Data>
                         </InterceptRequests>,

@@ -206,7 +206,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
         });
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             id,
             type,
