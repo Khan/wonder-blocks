@@ -52,7 +52,7 @@ type Props = {
     children: (
         state: ClickableState,
         childrenProps: ChildrenProps,
-    ) => React.ReactElement;
+    ) => React.ReactNode;
     /**
      * Whether the component is disabled.
      *
@@ -575,7 +575,7 @@ export default class ClickableBehavior extends React.Component<
         this.setState({focused: false, pressed: false});
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const childrenProps: ChildrenProps = this.props.disabled
             ? {
                   ...disabledHandlers,

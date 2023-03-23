@@ -14,7 +14,7 @@ type Props = {
  * Assumes parent is a View.
  */
 export default class Spring extends React.Component<Props> {
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {style} = this.props;
         return <View aria-hidden="true" style={[styles.grow, style]} />;
     }

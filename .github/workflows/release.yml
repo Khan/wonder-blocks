@@ -31,28 +31,23 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - uses: webfactory/ssh-agent@v0.4.1
+      - uses: webfactory/ssh-agent@v0.7.0
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
       - name: Clone repository
         run: git clone git@github.com:Khan/wonder-blocks.git .
 
-      - name: Setup Node.js 16.x
-        uses: actions/setup-node@master
+      - name: Install & cache node_modules
+        uses: Khan/actions@shared-node-cache-v0
         with:
-          # This is our target Node version.
-          # This should match the engine value in the root package.json
           node-version: 16.x
-
-      - name: Install Dependencies
-        run: yarn
 
       - name: Build Storybook
         # Generate a static version of storybook inside "storybook-static/"
         run: yarn build:storybook
 
       - name: Deploy to GitHub pages
-        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        uses: JamesIves/github-pages-deploy-action@v4
         with:
           # The branch the action should deploy to.
           branch: gh-pages

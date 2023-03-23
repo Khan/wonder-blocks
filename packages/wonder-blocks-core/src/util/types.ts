@@ -2,6 +2,8 @@ import * as React from "react";
 
 import type {CSSProperties} from "aphrodite";
 
+import type {AriaAttributes, AriaRole} from "./aria-types";
+
 type NestedArray<T> = ReadonlyArray<T | NestedArray<T>>;
 type Falsy = false | 0 | null | undefined;
 export type StyleType =
@@ -9,8 +11,8 @@ export type StyleType =
     | Falsy
     | NestedArray<CSSProperties | Falsy>;
 
-export type AriaProps = React.AriaAttributes & {
-    role?: React.AriaRole;
+export type AriaProps = AriaAttributes & {
+    role?: AriaRole;
 };
 
 type MouseEvents = {
@@ -80,9 +82,9 @@ export type TextViewSharedProps = {
     tabIndex?: number;
     id?: string;
     // TODO(kevinb) remove the need for this
-    ["data-modal-launcher-portal"]?: boolean;
+    "data-modal-launcher-portal"?: boolean;
     // Used by tooltip bubble
-    ["data-placement"]?: string;
+    "data-placement"?: string;
 } & AriaProps &
     EventHandlers;
 

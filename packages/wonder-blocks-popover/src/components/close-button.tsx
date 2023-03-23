@@ -38,7 +38,7 @@ export default class CloseButton extends React.Component<Props> {
         "aria-label": "Close Popover",
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {light, "aria-label": ariaLabel, style, testId} = this.props;
         return (
             <PopoverContext.Consumer>

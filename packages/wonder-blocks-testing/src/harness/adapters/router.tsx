@@ -1,9 +1,10 @@
+// WARNING: If you modify this file you may need to update router.jsx.flow
+// to ensure that the Flow types are still correct.
 import * as React from "react";
 
 import {StaticRouter, MemoryRouter, Route, Switch} from "react-router-dom";
 
-// @ts-expect-error [FEI-5019] - TS2305 - Module '"react-router-dom"' has no exported member 'LocationShape'. | TS2305 - Module '"react-router-dom"' has no exported member 'Location'.
-import type {LocationShape, Location} from "react-router-dom";
+import type {LocationDescriptor} from "history";
 import type {TestHarnessAdapter} from "../types";
 
 type MemoryRouterProps = JSX.LibraryManagedAttributes<
@@ -48,7 +49,7 @@ type Config = // The initial location to use.
                     /**
                      * The location to use.
                      */
-                    location: string | Location;
+                    location: LocationDescriptor;
                     /**
                      * Force the use of a StaticRouter, instead of MemoryRouter.
                      */
@@ -71,7 +72,7 @@ type Config = // The initial location to use.
                     /**
                      * The initial location to use.
                      */
-                    location: string | LocationShape;
+                    location: LocationDescriptor;
                     /**
                      * A path match to use.
                      *

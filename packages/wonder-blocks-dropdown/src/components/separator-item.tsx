@@ -28,7 +28,7 @@ export default class SeparatorItem extends React.Component<{
 
     static __IS_SEPARATOR_ITEM__ = true;
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         return (
             // pass optional styles from react-window (if applies)
             <View

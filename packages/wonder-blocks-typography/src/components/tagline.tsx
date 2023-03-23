@@ -14,7 +14,7 @@ export default class Tagline extends React.Component<Props> {
         tag: "span",
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {style, children, ...otherProps} = this.props;
         return (
             <Text {...otherProps} style={[styles.Tagline, style]}>

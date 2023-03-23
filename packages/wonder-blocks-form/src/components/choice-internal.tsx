@@ -3,7 +3,6 @@ import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View, UniqueIDProvider} from "@khanacademy/wonder-blocks-core";
-import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
@@ -69,12 +68,6 @@ type DefaultProps = {
         error: false,
     };
 
-    handleLabelClick: (event: React.SyntheticEvent) => void = (event) => {
-        // Browsers automatically use the for attribute to select the input,
-        // but we use ClickableBehavior to handle this.
-        event.preventDefault();
-    };
-
     handleClick: () => void = () => {
         const {checked, onChange, variant} = this.props;
         // Radio buttons cannot be unchecked
@@ -91,15 +84,13 @@ type DefaultProps = {
             return CheckboxCore;
         }
     }
-    getLabel(): React.ReactNode {
-        const {disabled, id, label} = this.props;
+    getLabel(id: string): React.ReactNode {
+        const {disabled, label} = this.props;
         return (
             <LabelMedium
                 style={[styles.label, disabled && styles.disabledLabel]}
             >
-                <label htmlFor={id} onClick={this.handleLabelClick}>
-                    {label}
-                </label>
+                <label htmlFor={id}>{label}</label>
             </LabelMedium>
         );
     }
@@ -111,22 +102,34 @@ type DefaultProps = {
             </LabelSmall>
         );
     }
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {
             label,
             description,
+            id,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             onChange,
             style,
             className,
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
             variant,
             ...coreProps
         } = this.props;
         const ChoiceCore = this.getChoiceCoreComponent();
-        const ClickableBehavior = getClickableBehavior();
+
         return (
             <UniqueIDProvider mockOnFirstRender={true} scope="choice">
                 {(ids) => {
+                    // A choice element should always have a unique ID set
+                    // so that the label can always refer to this element.
+                    // This guarantees that clicking on the label will
+                    // always click on the choice as well. If an ID is
+                    // passed in as a prop, use that one. Otherwise,
+                    // create a unique ID using the provider.
+                    const uniqueId = id || ids.get("main");
+
+                    // Create a unique ID for the description section to be
+                    // used by this element's `aria-describedby`.
                     const descriptionId = description
                         ? ids.get("description")
                         : undefined;
@@ -134,32 +137,22 @@ type DefaultProps = {
                     return (
                         // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                         <View style={style} className={className}>
-                            <ClickableBehavior
-                                disabled={coreProps.disabled}
-                                onClick={this.handleClick}
-                                role={variant}
+                            <View
+                                style={styles.wrapper}
+                                // We are resetting the tabIndex=0 from handlers
+                                // because the ChoiceCore component will receive
+                                // focus on basis of it being an input element.
+                                tabIndex={-1}
                             >
-                                {(state, childrenProps) => {
-                                    return (
-                                        <View
-                                            style={styles.wrapper}
-                                            {...childrenProps}
-                                            // We are resetting the tabIndex=0 from handlers
-                                            // because the ChoiceCore component will receive
-                                            // focus on basis of it being an input element.
-                                            tabIndex={-1}
-                                        >
-                                            <ChoiceCore
-                                                {...coreProps}
-                                                {...state}
-                                                aria-describedby={descriptionId}
-                                            />
-                                            <Strut size={Spacing.xSmall_8} />
-                                            {label && this.getLabel()}
-                                        </View>
-                                    );
-                                }}
-                            </ClickableBehavior>
+                                <ChoiceCore
+                                    {...coreProps}
+                                    id={uniqueId}
+                                    aria-describedby={descriptionId}
+                                    onClick={this.handleClick}
+                                />
+                                <Strut size={Spacing.xSmall_8} />
+                                {label && this.getLabel(uniqueId)}
+                            </View>
                             {description && this.getDescription(descriptionId)}
                         </View>
                     );
@@ -175,7 +168,6 @@ const styles = StyleSheet.create({
         outline: "none",
     },
     label: {
-        userSelect: "none",
         // NOTE: The checkbox/radio button (height 16px) should be center
         // aligned with the first line of the label. However, LabelMedium has a
         // declared line height of 20px, so we need to adjust the top to get the

@@ -14,7 +14,7 @@ export default class HeadingLarge extends React.Component<Props> {
         tag: "h2",
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {style, children, ...otherProps} = this.props;
         return (
             <Text {...otherProps} style={[styles.HeadingLarge, style]}>

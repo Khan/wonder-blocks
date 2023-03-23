@@ -212,7 +212,7 @@ export default class FocusManager extends React.Component<Props> {
         }
     };
 
-    render(): React.ReactElement {
+    render(): React.ReactNode {
         const {children} = this.props;
 
         return (

@@ -48,7 +48,7 @@ type Props<
      * loading state and data or error that gets retrieved from cache or loaded
      * via the request if no cached value is available.
      */
-    children: (result: Result<TData>) => React.ReactElement;
+    children: (result: Result<TData>) => React.ReactNode;
 };
 
 /**
@@ -57,18 +57,18 @@ type Props<
  * support server-side rendering and efficient caching.
  */
 // TODO(FEI-5000): Update this support generic props correctly
-const Data: React.FC<Props<any>> = <TData extends ValidCacheData>({
+const Data: React.FC<Props<any>> = (<TData extends ValidCacheData>({
     requestId,
     handler,
     children,
     retainResultOnChange = false,
     clientBehavior = WhenClientSide.ExecuteWhenNoSuccessResult,
-}: Props<TData>): React.ReactElement => {
+}: Props<TData>): React.ReactNode => {
     const result = useHydratableEffect(requestId, handler, {
         retainResultOnChange,
         clientBehavior,
     });
     return children(result);
-};
+}) as React.FC<Props<any>>;
 
 export default Data;
