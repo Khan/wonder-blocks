@@ -44,7 +44,6 @@ export default class CheckboxCore extends React.Component<Props> {
             error,
             groupName,
             id,
-            indeterminate,
             testId,
             hovered,
             focused,
@@ -88,14 +87,40 @@ export default class CheckboxCore extends React.Component<Props> {
             />
         );
 
-        const checkboxIconChild =
-            indeterminate && checked ? indeterminateIcon : checked && checkIcon;
+        enum State {
+            Checked,
+            Unchecked,
+            Indeterminate,
+        }
+
+        const getCheckedState = () => {
+            if (checked === true) {
+                return State.Checked;
+            } else if (checked === false) {
+                return State.Unchecked;
+            } else {
+                return State.Indeterminate;
+            }
+        };
+
+        const checkedState = getCheckedState();
+
+        const icon =
+            checkedState === State.Checked ? (
+                checkIcon
+            ) : checkedState === State.Indeterminate ? (
+                indeterminateIcon
+            ) : (
+                <></>
+            );
 
         return (
             <React.Fragment>
                 <StyledInput
                     {...sharedProps}
                     type="checkbox"
+                    role="checkbox"
+                    aria-checked={checked}
                     aria-invalid={error}
                     checked={checked}
                     disabled={disabled}
@@ -107,7 +132,7 @@ export default class CheckboxCore extends React.Component<Props> {
                     style={defaultStyle}
                     {...props}
                 />
-                {checkboxIconChild}
+                {icon}
             </React.Fragment>
         );
     }
@@ -179,7 +204,7 @@ const _generateStyles = (checked: boolean, error: boolean) => {
     const palette = error ? colors.error : colors.default;
 
     let newStyles: Record<string, any> = {};
-    if (checked) {
+    if (checked || checked === null || checked === undefined) {
         newStyles = {
             default: {
                 backgroundColor: palette.base,

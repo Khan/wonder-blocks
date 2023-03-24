@@ -20,10 +20,6 @@ export type ChoiceCoreProps = AriaProps & {
      * guarantee that the ID is unique within everything rendered on a page.
      * Used to match <label> with <input> elements for screenreaders. */
     id?: string;
-    /**
-     * Whether this component is in indeterminate state
-     */
-    indeterminate?: boolean;
     /** Optional test ID for e2e testing */
     testId?: string;
 };

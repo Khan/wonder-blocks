@@ -6,9 +6,9 @@ import ChoiceInternal from "./choice-internal";
 // Keep synced with ChoiceComponentProps in ../util/types.js
 type ChoiceComponentProps = AriaProps & {
     /**
-     * Whether this component is checked
+     * Whether this component is checked or indeterminate
      */
-    checked: boolean;
+    checked: boolean | null | undefined;
     /**
      * Whether this component is disabled
      */
@@ -36,10 +36,6 @@ type ChoiceComponentProps = AriaProps & {
      * Used to match `<label>` with `<input>` elements for screenreaders.
      */
     id?: string;
-    /**
-     * Whether this component is in indeterminate state
-     */
-    indeterminate?: boolean;
     /**
      * Optional styling for the container. Does not style the component.
      */

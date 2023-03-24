@@ -24,7 +24,6 @@ export const Default: StoryComponentType = (args) => <Checkbox {...args} />;
 
 Default.args = {
     checked: false,
-    indeterminate: false,
     onChange: () => {},
 };
 
@@ -57,23 +56,24 @@ export const Indeterminate: StoryComponentType = () => {
     return (
         <View style={styles.row}>
             <Checkbox
-                checked={true}
+                checked={null}
+                disabled={false}
+                error={false}
                 onChange={() => {}}
-                indeterminate={true}
                 style={styles.marginRight}
             />
             <Checkbox
-                checked={true}
-                onChange={() => {}}
-                indeterminate={true}
+                checked={null}
                 disabled={true}
+                error={false}
+                onChange={() => {}}
                 style={styles.marginRight}
             />
             <Checkbox
-                checked={true}
-                onChange={() => {}}
-                indeterminate={true}
+                checked={null}
+                disabled={false}
                 error={true}
+                onChange={() => {}}
                 style={styles.marginRight}
             />
         </View>
@@ -82,10 +82,7 @@ export const Indeterminate: StoryComponentType = () => {
 
 Indeterminate.parameters = {
     docs: {
-        storyDescription: `The checkbox has an indeterminate state when
-        \`indeterminate\` and \`checked\` are set to \`true\`. Indeterminate
-         is supported in default checkboxes, disabled checkboxes and checkboxes
-         in an error state.`,
+        storyDescription: ``,
     },
 };
 
