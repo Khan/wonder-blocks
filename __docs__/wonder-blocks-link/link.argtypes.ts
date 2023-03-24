@@ -101,6 +101,13 @@ export default {
         table: {type: {summary: "string"}},
     },
 
+    title: {
+        control: {type: "text"},
+        description: "An optional title attribute.",
+        table: {type: {summary: "string"}},
+        type: {name: "string", required: false},
+    },
+
     beforeNav: {
         description: `Run async code before navigating to the URL passed to
             \`href\`. If the promise returned rejects then navigation will not
