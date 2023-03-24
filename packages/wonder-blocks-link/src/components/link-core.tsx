@@ -184,10 +184,14 @@ const _generateStyles = (
             ...defaultVisited,
         },
         focus: {
-            color: defaultTextColor,
-            outline: `1px solid ${light ? white : blue}`,
-            borderRadius: 3,
-            ...defaultVisited,
+            // Focus styles only show up with keyboard navigation.
+            // Mouse users don't see focus styles.
+            ":focus-visible": {
+                color: defaultTextColor,
+                outline: `1px solid ${light ? white : blue}`,
+                borderRadius: 3,
+                ...defaultVisited,
+            },
         },
         active: {
             color: activeColor,
