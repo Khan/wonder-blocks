@@ -20,7 +20,7 @@ const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 
 const StyledInput = addStyle("input");
 
-const checkboxCheckPath: IconAsset = {
+const checkPath: IconAsset = {
     small: "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
 };
 
@@ -72,9 +72,9 @@ export default class CheckboxCore extends React.Component<Props> {
         const checkIcon = (
             <Icon
                 color={disabled ? offBlack32 : white}
-                icon={checkboxCheckPath}
+                icon={checkPath}
                 size="small"
-                style={sharedStyles.checkIcon}
+                style={sharedStyles.checkboxIcon}
             />
         );
 
@@ -83,7 +83,7 @@ export default class CheckboxCore extends React.Component<Props> {
                 color={disabled ? offBlack32 : white}
                 icon={indeterminatePath}
                 size="small"
-                style={sharedStyles.checkIcon}
+                style={sharedStyles.checkboxIcon}
             />
         );
 
@@ -105,7 +105,7 @@ export default class CheckboxCore extends React.Component<Props> {
 
         const checkedState = getCheckedState();
 
-        const icon =
+        const checkboxIcon =
             checkedState === State.Checked ? (
                 checkIcon
             ) : checkedState === State.Indeterminate ? (
@@ -132,7 +132,7 @@ export default class CheckboxCore extends React.Component<Props> {
                     style={defaultStyle}
                     {...props}
                 />
-                {icon}
+                {checkboxIcon}
             </React.Fragment>
         );
     }
@@ -168,7 +168,7 @@ const sharedStyles = StyleSheet.create({
         borderWidth: 1,
     },
 
-    checkIcon: {
+    checkboxIcon: {
         position: "absolute",
         pointerEvents: "none",
     },
@@ -194,7 +194,7 @@ const colors = {
 
 const styles: Record<string, any> = {};
 
-const _generateStyles = (checked: boolean, error: boolean) => {
+const _generateStyles = (checked: boolean | "mixed", error: boolean) => {
     // "hash" the parameters
     const styleKey = `${String(checked)}-${String(error)}`;
     if (styles[styleKey]) {
@@ -204,7 +204,7 @@ const _generateStyles = (checked: boolean, error: boolean) => {
     const palette = error ? colors.error : colors.default;
 
     let newStyles: Record<string, any> = {};
-    if (checked || checked === null || checked === undefined) {
+    if (checked) {
         newStyles = {
             default: {
                 backgroundColor: palette.base,

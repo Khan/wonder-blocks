@@ -13,7 +13,7 @@ import RadioCore from "./radio-core";
 
 type Props = AriaProps & {
     /** Whether this choice is checked. */
-    checked: boolean;
+    checked: boolean | "mixed";
     /** Whether this choice option is disabled. */
     disabled: boolean;
     /** Whether this choice is in error mode. */

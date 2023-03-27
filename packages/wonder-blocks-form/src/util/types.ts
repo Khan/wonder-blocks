@@ -9,7 +9,7 @@ import Choice from "../components/choice";
 // Shared props for radio-core and checkbox-core
 export type ChoiceCoreProps = AriaProps & {
     /** Whether this component is checked */
-    checked: boolean;
+    checked: boolean | "mixed";
     /** Whether this component is disabled */
     disabled: boolean;
     /** Whether this component should show an error state */

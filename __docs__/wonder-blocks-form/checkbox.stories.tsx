@@ -56,21 +56,21 @@ export const Indeterminate: StoryComponentType = () => {
     return (
         <View style={styles.row}>
             <Checkbox
-                checked={null}
+                checked="mixed"
                 disabled={false}
                 error={false}
                 onChange={() => {}}
                 style={styles.marginRight}
             />
             <Checkbox
-                checked={null}
+                checked="mixed"
                 disabled={true}
                 error={false}
                 onChange={() => {}}
                 style={styles.marginRight}
             />
             <Checkbox
-                checked={null}
+                checked="mixed"
                 disabled={false}
                 error={true}
                 onChange={() => {}}
