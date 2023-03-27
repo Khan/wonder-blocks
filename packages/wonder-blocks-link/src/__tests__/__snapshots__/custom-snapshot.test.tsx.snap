@@ -26,27 +26,7 @@ exports[`Link <Link tabIndex={-1}> 1`] = `
   }
   tabIndex={-1}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -76,27 +56,7 @@ exports[`Link <Link tabIndex={0}> 1`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -126,27 +86,7 @@ exports[`Link <Link tabIndex={1}> 1`] = `
   }
   tabIndex={1}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -177,27 +117,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 1`] = 
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -228,27 +148,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 2`] = 
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -278,27 +178,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 1`] = 
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -328,27 +208,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 2`] = 
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -378,27 +238,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 1`] = 
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -428,27 +268,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 2`] = 
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -482,27 +302,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 1`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -536,27 +336,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 2`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -589,27 +369,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 1`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -642,27 +402,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 2`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -695,27 +435,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 1`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -748,27 +468,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 2`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -799,27 +499,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 1`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -850,27 +530,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 2`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -900,27 +560,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 1`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -950,27 +590,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 2`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1000,27 +620,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 1`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1050,27 +650,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 2`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1104,27 +684,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 1`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1158,27 +718,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 2`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1211,27 +751,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 1`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1264,27 +784,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 2`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1317,27 +817,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 1`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1370,27 +850,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 2`] = `
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1421,27 +881,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1472,27 +912,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1522,27 +942,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1572,27 +972,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1622,27 +1002,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1672,27 +1032,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1726,27 +1066,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1780,27 +1100,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1833,27 +1133,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1886,27 +1166,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1939,27 +1199,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -1992,27 +1232,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2043,27 +1263,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2094,27 +1294,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2144,27 +1324,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2194,27 +1354,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2244,27 +1384,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2294,27 +1414,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2348,27 +1448,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2402,27 +1482,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2455,27 +1515,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2508,27 +1548,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2561,27 +1581,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2614,27 +1614,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2665,27 +1645,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 1`] 
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2716,27 +1676,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 2`] 
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2766,27 +1706,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 1`] 
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2816,27 +1736,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 2`] 
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2866,27 +1766,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 1`] 
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2916,27 +1796,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 2`] 
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -2967,27 +1827,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -3018,27 +1858,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -3068,27 +1888,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -3118,27 +1918,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -3168,27 +1948,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
 
@@ -3218,26 +1978,6 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   }
   tabIndex={0}
 >
-  <div
-    className=""
-    style={
-      {
-        "alignItems": "center",
-        "borderStyle": "solid",
-        "borderWidth": 0,
-        "boxSizing": "border-box",
-        "display": "inline-flex",
-        "flexDirection": "row",
-        "margin": 0,
-        "minHeight": 0,
-        "minWidth": 0,
-        "padding": 0,
-        "position": "relative",
-        "zIndex": 0,
-      }
-    }
-  >
-    Click me
-  </div>
+  Click me
 </a>
 `;
