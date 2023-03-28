@@ -82,7 +82,9 @@ export const Indeterminate: StoryComponentType = () => {
 
 Indeterminate.parameters = {
     docs: {
-        storyDescription: ``,
+        storyDescription: `The checkbox has a third state for when the checkbox
+        is neither \`checked\` (true) nor \`unchecked\` (false). Set the
+        \`checked\` prop to \`"mixed"\` to use the indeterminate checkbox.`,
     },
 };
 
