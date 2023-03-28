@@ -87,28 +87,10 @@ export default class CheckboxCore extends React.Component<Props> {
             />
         );
 
-        enum State {
-            Checked,
-            Unchecked,
-            Indeterminate,
-        }
-
-        const getCheckedState = () => {
-            if (checked === true) {
-                return State.Checked;
-            } else if (checked === false) {
-                return State.Unchecked;
-            } else {
-                return State.Indeterminate;
-            }
-        };
-
-        const checkedState = getCheckedState();
-
         const checkboxIcon =
-            checkedState === State.Checked ? (
+            checked === true ? (
                 checkIcon
-            ) : checkedState === State.Indeterminate ? (
+            ) : checked === "mixed" ? (
                 indeterminateIcon
             ) : (
                 <></>
