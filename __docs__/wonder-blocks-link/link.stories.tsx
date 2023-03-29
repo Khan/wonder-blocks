@@ -683,6 +683,28 @@ WithTitle.play = async ({canvasElement}) => {
     await expect(link).toHaveAttribute("title");
 };
 
+export const RightToLeftWithIcons: StoryComponentType = () => (
+    <View style={{padding: Spacing.medium_16}}>
+        <View style={styles.rightToLeft}>
+            <Link href="/" startIcon={icons.caretRight}>
+                هذا الرابط مكتوب باللغة العربية
+            </Link>
+            <Strut size={Spacing.medium_16} />
+            <Link href="/" endIcon={icons.caretLeft}>
+                هذا الرابط مكتوب باللغة العربية
+            </Link>
+        </View>
+    </View>
+);
+
+RightToLeftWithIcons.parameters = {
+    docs: {
+        storyDescription: `When in the right-to-left direction, the \`startIcon\`
+        and \`endIcon\` are flipped. This example has text in Arabic, a
+        right-to-left language.`,
+    },
+};
+
 const styles = StyleSheet.create({
     darkBackground: {
         backgroundColor: Color.darkBlue,
@@ -710,5 +732,9 @@ const styles = StyleSheet.create({
         // container.
         display: "inline-block",
         marginBottom: Spacing.xSmall_8,
+    },
+    rightToLeft: {
+        width: "100%",
+        direction: "rtl",
     },
 });
