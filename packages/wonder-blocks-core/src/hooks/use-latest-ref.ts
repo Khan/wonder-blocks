@@ -1,6 +1,8 @@
 import * as React from "react";
 
 /**
+ * Return a ref that always contains the `value` passed.
+ *
  * The useLatestRef hook returns a ref that always contains the `value` passed
  * to the hook during the most recent render.
  *
