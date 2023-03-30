@@ -13,6 +13,7 @@ export {
 } from "./hooks/use-unique-id";
 export {useForceUpdate} from "./hooks/use-force-update";
 export {useIsMounted} from "./hooks/use-is-mounted";
+export {useLatestRef} from "./hooks/use-latest-ref";
 export {useOnMountEffect} from "./hooks/use-on-mount-effect";
 export {useOnline} from "./hooks/use-online";
 export {useRenderState} from "./hooks/use-render-state";
