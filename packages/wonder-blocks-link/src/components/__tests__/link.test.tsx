@@ -493,7 +493,7 @@ describe("Link", () => {
             );
 
             // Act
-            const link = screen.getByText("Add new item");
+            const link = screen.getByRole("link");
             const icon = screen.getByTestId("start-icon");
 
             // Assert
@@ -540,7 +540,7 @@ describe("Link", () => {
             );
 
             // Act
-            const link = screen.getByText("Click to go back");
+            const link = screen.getByRole("link");
             const icon = screen.getByTestId("end-icon");
 
             // Assert
@@ -583,7 +583,7 @@ describe("Link", () => {
             );
 
             // Act
-            const link = screen.getByText("Open a new tab");
+            const link = screen.getByRole("link");
             const endIcon = screen.getByTestId("end-icon");
 
             // Assert
