@@ -4,7 +4,7 @@ import {screen, render} from "@testing-library/react";
 
 import addStyle from "../add-style";
 
-const StyledDiv = addStyle<"div">("div");
+const StyledDiv = addStyle("div");
 
 const styles = StyleSheet.create({
     foo: {
@@ -29,7 +29,6 @@ describe("addStyle", () => {
 
     it("should set the className if no style is provided", () => {
         // Arrange
-        // @ts-expect-error: `data-test-id` is not supported on `div`
         render(<StyledDiv className="foo" data-test-id="styled-div" />);
 
         // Act
@@ -92,15 +91,22 @@ describe("addStyle", () => {
 
     it("should forward a ref to the component", () => {
         // Arrange
-        const ref = React.useRef();
+        const ref = React.createRef();
 
         render(
             <StyledDiv
                 className="foo"
                 style={styles.foo}
                 data-test-id="styled-div"
+                // @ts-expect-error [WB-1530] - TS2322 - Type 'RefObject<unknown>' is not assignable to type 'Ref<"div"> | undefined'. Type 'RefObject<unknown>' is not assignable to type 'RefObject<"div">'. Type 'unknown' is not assignable to type '"div"'.
                 ref={ref}
             />,
         );
+
+        // Act
+        const div = screen.getByTestId("styled-div");
+
+        // Assert
+        expect(div).toBe(ref.current);
     });
 });
