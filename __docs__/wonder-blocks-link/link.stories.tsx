@@ -37,9 +37,7 @@ const fadedBlue = "#b5cefb";
 
 type StoryComponentType = ComponentStory<typeof Link>;
 
-export const Default: StoryComponentType = (args) => (
-    <Link target="_blank" {...args} />
-);
+export const Default: StoryComponentType = (args) => <Link {...args} />;
 
 Default.args = {
     href: "/",
@@ -184,19 +182,52 @@ LightVisitable.parameters = {
     },
 };
 
+export const OpensInANewTab: StoryComponentType = () => (
+    <View>
+        <View style={{padding: Spacing.large_24}}>
+            <Link href="#" target="_blank">
+                This is a Primary link that opens in a new tab
+            </Link>
+            <Link href="#" kind="secondary" target="_blank">
+                This is a Secondary link that opens in a new tab
+            </Link>
+        </View>
+    </View>
+);
+
+OpensInANewTab.parameters = {
+    docs: {
+        storyDescription: `When \`target="_blank"\`, the external icon is
+        automatically added to the end of the link. This indicates that the link
+        will open in a new tab.`,
+    },
+};
+
 export const Inline: StoryComponentType = () => (
     <Body>
         This is an inline{" "}
         <Link href="#" inline={true}>
             Primary link
+        </Link>{" "}
+        and an inline{" "}
+        <Link href="#" inline={true} target="_blank">
+            external Primary link
         </Link>
         , whereas this is an inline{" "}
         <Link href="#" kind="secondary" inline={true}>
             Secondary link
         </Link>
+        , and an inline{" "}
+        <Link href="#" kind="secondary" inline={true} target="_blank">
+            external Secondary link
+        </Link>
         , and this is an inline{" "}
         <Link href="#" visitable={true} inline={true}>
             Visitable link (Primary only)
+        </Link>{" "}
+        and an inline{" "}
+        <Link href="#" visitable={true} inline={true} target="_blank">
+            external Visitable link (Primary only)
         </Link>
         .
     </Body>
@@ -257,12 +288,26 @@ export const InlineLight: StoryComponentType = () => (
         This is an inline{" "}
         <Link href="#" inline={true} light={true}>
             Primary link
+        </Link>{" "}
+        and an{" "}
+        <Link href="#" inline={true} light={true} target="_blank">
+            external Primary link,
         </Link>
-        , whereas this is an inline{" "}
+        whereas this is an inline{" "}
         <Link href="#" visitable={true} inline={true} light={true}>
             Visitable link (Primary only)
+        </Link>{" "}
+        and an{" "}
+        <Link
+            href="#"
+            visitable={true}
+            inline={true}
+            light={true}
+            target="_blank"
+        >
+            external Visitable link (Primary only).
         </Link>
-        . Secondary light links are not supported.
+        Secondary light links are not supported.
     </Body>
 );
 
@@ -313,13 +358,32 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
+                    <Link href="#nonexistent-link" target="_blank">
+                        Standalone External Primary Link
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
                     <Link href="#secondary-nonexistent-link" kind="secondary">
                         Standalone Secondary Link
                     </Link>
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
+                    <Link
+                        href="#secondary-nonexistent-link"
+                        kind="secondary"
+                        target="_blank"
+                    >
+                        Standalone External Secondary Link
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
                     <Link href="#" visitable={true}>
                         Standalone Visitable Link (Primary only)
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
+                    <Link href="#" visitable={true} target="_blank">
+                        Standalone External Visitable Link (Primary only)
                     </Link>
                 </View>
             </View>
@@ -329,14 +393,26 @@ export const Variants: StoryComponentType = () => (
                 This is an{" "}
                 <Link href="#" inline={true}>
                     Inline Primary link
+                </Link>{" "}
+                and an{" "}
+                <Link href="#" inline={true} target="_blank">
+                    Inline External Primary link
                 </Link>
                 , whereas this is an{" "}
                 <Link href="#" kind="secondary" inline={true}>
                     Inline Secondary link
+                </Link>{" "}
+                and an{" "}
+                <Link href="#" kind="secondary" inline={true} target="_blank">
+                    Inline External Secondary link
                 </Link>
                 , and this is an{" "}
                 <Link href="#" visitable={true} inline={true}>
                     Inline Visitable link (Primary only)
+                </Link>{" "}
+                and an{" "}
+                <Link href="#" visitable={true} inline={true} target="_blank">
+                    Inline External Visitable link (Primary only)
                 </Link>
                 .
             </Body>
@@ -356,8 +432,23 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
+                    <Link href="#nonexistent-link" light={true} target="_blank">
+                        Standalone External Light Link (Primary only)
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
                     <Link href="#" visitable={true} light={true}>
                         Standalone Light Visitable Link (Primary only)
+                    </Link>
+                </View>
+                <View style={styles.standaloneLinkWrapper}>
+                    <Link
+                        href="#"
+                        visitable={true}
+                        light={true}
+                        target="_blank"
+                    >
+                        Standalone External Light Visitable Link (Primary only)
                     </Link>
                 </View>
             </View>
@@ -367,10 +458,24 @@ export const Variants: StoryComponentType = () => (
                 This is an{" "}
                 <Link href="#" inline={true} light={true}>
                     Inline Primary link
+                </Link>{" "}
+                and an{" "}
+                <Link href="#" inline={true} light={true} target="_blank">
+                    Inline External Primary link
                 </Link>
                 , whereas this is an{" "}
                 <Link href="#" visitable={true} inline={true} light={true}>
                     Inline Visitable link (Primary only)
+                </Link>{" "}
+                and an{" "}
+                <Link
+                    href="#"
+                    visitable={true}
+                    inline={true}
+                    light={true}
+                    target="_blank"
+                >
+                    Inline External Visitable link (Primary only)
                 </Link>
                 . Secondary light links are not supported.
             </Body>
@@ -477,6 +582,30 @@ Navigation.parameters = {
             [Button documentation](/story/button-navigation-callbacks--before-nav-callbacks&viewMode=docs)
             for details.`,
     },
+};
+
+export const WithTitle: StoryComponentType = () => (
+    <Body>
+        <Link href="#" title="I am a title 😎">
+            This link has a title.
+        </Link>
+    </Body>
+);
+
+WithTitle.parameters = {
+    docs: {
+        storyDescription: `Link can take a title prop. Give a link a title by
+        setting the \`title\` prop to a string. Hover over the link to see its title.`,
+    },
+};
+
+WithTitle.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    const link = canvas.getByText("This link has a title.");
+
+    // Confirm that the link has a title attribute
+    await expect(link).toHaveAttribute("title");
 };
 
 const styles = StyleSheet.create({
