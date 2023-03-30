@@ -266,10 +266,10 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                               styles.error,
                               light && styles.errorLight,
                           ],
-                    style && style,
                     // Cast `this.state.error` into boolean since it's being
                     // used as a conditional
                     !!this.state.error && styles.error,
+                    style && style,
                 ]}
                 {...otherProps}
             />
