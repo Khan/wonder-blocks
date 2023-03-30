@@ -217,11 +217,19 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                endIcon={icons.caretRight}
+                endIcon={icons.search}
                 kind="secondary"
                 style={styles.standaloneLinkWrapper}
             >
                 This link has an end icon
+            </Link>
+            <Link
+                href="#"
+                startIcon={icons.caretLeft}
+                endIcon={icons.caretRight}
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has a start icon and an end icon
             </Link>
             <Link
                 href="#"
@@ -250,11 +258,20 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                endIcon={icons.caretRight}
+                endIcon={icons.search}
                 light={true}
                 style={styles.standaloneLinkWrapper}
             >
                 This link has an end icon
+            </Link>
+            <Link
+                href="#"
+                startIcon={icons.caretLeft}
+                endIcon={icons.caretRight}
+                light={true}
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has a start icon and an end icon
             </Link>
             <Link
                 href="#"
@@ -691,6 +708,14 @@ export const RightToLeftWithIcons: StoryComponentType = () => (
             </Link>
             <Strut size={Spacing.medium_16} />
             <Link href="/" endIcon={icons.caretLeft}>
+                هذا الرابط مكتوب باللغة العربية
+            </Link>
+            <Strut size={Spacing.medium_16} />
+            <Link
+                href="/"
+                startIcon={icons.caretRight}
+                endIcon={icons.caretLeft}
+            >
                 هذا الرابط مكتوب باللغة العربية
             </Link>
         </View>
