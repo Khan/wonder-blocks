@@ -112,7 +112,7 @@ export default class LinkCore extends React.Component<Props> {
         const linkContent = (
             <>
                 {startIconChild}
-                {children}
+                <span style={{verticalAlign: "middle"}}>{children}</span>
                 {endIconChild}
             </>
         );
@@ -141,14 +141,12 @@ const styles: Record<string, any> = {};
 
 const iconStyles = StyleSheet.create({
     startIcon: {
-        marginRight: Spacing.xxxSmall_4,
-        marginTop: Spacing.xxxxSmall_2,
-        marginBottom: Spacing.xxxxSmall_2,
+        marginInlineEnd: Spacing.xxxSmall_4,
+        verticalAlign: "middle",
     },
     endIcon: {
-        marginLeft: Spacing.xxxSmall_4,
-        marginTop: Spacing.xxxxSmall_2,
-        marginBottom: Spacing.xxxxSmall_2,
+        marginInlineStart: Spacing.xxxSmall_4,
+        verticalAlign: "middle",
     },
 });
 
@@ -157,6 +155,9 @@ const sharedStyles = StyleSheet.create({
         cursor: "pointer",
         textDecoration: "none",
         outline: "none",
+        display: "inline-block",
+        verticalAlign: "bottom",
+        textUnderlineOffset: "3px",
     },
 });
 
