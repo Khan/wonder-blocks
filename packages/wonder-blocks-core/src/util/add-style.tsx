@@ -8,7 +8,7 @@ import type {StyleType} from "./types";
 export default function addStyle<
     // We extend `React.ComponentType<any>` to support `addStyle(Link)` with
     // react-router's `Link` component.
-    T extends keyof JSX.IntrinsicElements,
+    T extends React.ComponentType<any> | keyof JSX.IntrinsicElements,
     Props extends {
         className?: string;
         style?: StyleType;
@@ -18,9 +18,15 @@ export default function addStyle<
     Component: T,
     defaultStyle?: StyleType,
 ): React.ForwardRefExoticComponent<
-    React.PropsWithoutRef<Props> & React.RefAttributes<IntrinsicElementsMap[T]>
+    React.PropsWithoutRef<Props> &
+        React.RefAttributes<
+            T extends keyof JSX.IntrinsicElements ? IntrinsicElementsMap[T] : T
+        >
 > {
-    return React.forwardRef<IntrinsicElementsMap[T], Props>((props, ref) => {
+    return React.forwardRef<
+        T extends keyof JSX.IntrinsicElements ? IntrinsicElementsMap[T] : T,
+        Props
+    >((props, ref) => {
         // eslint-disable-next-line react/prop-types
         const {className, style, ...otherProps} = props;
         const reset =
@@ -34,7 +40,6 @@ export default function addStyle<
             // Type 'Omit<PropsWithChildren<Props>, "style" | "className"> & { ref: ForwardedRef<ElementMap[T]>; className: string; style: CSSProperties; }' is not assignable to type 'IntrinsicAttributes & LibraryManagedAttributes<T, SVGProps<SVGSymbolElement> & ClassAttributes<HTMLObjectElement> & ... 179 more ... & SVGProps<...>>'.
             //   Type 'Omit<PropsWithChildren<Props>, "style" | "className"> & { ref: ForwardedRef<ElementMap[T]>; className: string; style: CSSProperties; }' is not assignable to type 'LibraryManagedAttributes<T, SVGProps<SVGSymbolElement> & ClassAttributes<HTMLObjectElement> & ObjectHTMLAttributes<HTMLObjectElement> & ... 178 more ... & SVGProps<...>>'
             <Component
-                // @ts-expect-error: TS2590 - Expression produces a union type that is too complex to represent.
                 {...otherProps}
                 ref={ref}
                 className={[aphroditeClassName, className]
