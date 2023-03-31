@@ -11,7 +11,8 @@ import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
 
 type WithForwardRef = {
-    forwardedRef: React.ForwardedRef<HTMLInputElement>;
+    // TODO (WB-1534) Fix type so HTMLInputElement works instead of any
+    forwardedRef: React.ForwardedRef<any>;
 };
 
 const defaultErrorMessage = "This field is required.";
