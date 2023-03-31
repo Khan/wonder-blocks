@@ -55,7 +55,7 @@ Controlled.parameters = {
 
 export const Indeterminate: StoryComponentType = () => {
     return (
-        <View>
+        <View style={styles.row}>
             <Checkbox
                 checked={null}
                 disabled={false}
@@ -64,7 +64,7 @@ export const Indeterminate: StoryComponentType = () => {
             />
             <Strut size={8} />
             <Checkbox
-                checked={null}
+                checked={undefined}
                 disabled={true}
                 error={false}
                 onChange={() => {}}
@@ -78,54 +78,13 @@ export const Indeterminate: StoryComponentType = () => {
             />
         </View>
     );
-
-    // Might change story to have checkbox group with indeterminate at top
-
-    // <View>
-    //         <Checkbox
-    //             checked={checkedState}
-    //             disabled={false}
-    //             error={false}
-    //             onChange={() => {
-    //                 setChecked(!checkedState);
-    //             }}
-    //         />
-    //         <Strut size={16} />
-    //         <View>
-    //             <Checkbox
-    //                 checked={checkedState}
-    //                 disabled={false}
-    //                 error={false}
-    //                 onChange={() => {
-    //                     setChecked(!checkedState);
-    //                 }}
-    //                 style={styles.marginLeft}
-    //             />
-    //             <Strut size={8} />
-    //             <Checkbox
-    //                 checked={checkedState}
-    //                 disabled={true}
-    //                 error={false}
-    //                 onChange={() => {}}
-    //                 style={styles.marginLeft}
-    //             />
-    //             <Strut size={8} />
-    //             <Checkbox
-    //                 checked={checkedState}
-    //                 disabled={false}
-    //                 error={true}
-    //                 onChange={() => {}}
-    //                 style={styles.marginLeft}
-    //             />
-    //         </View>
-    //     </View>
 };
 
 Indeterminate.parameters = {
     docs: {
         storyDescription: `The checkbox has a third state for when the checkbox
         is neither \`checked\` (true) nor \`unchecked\` (false). Set the
-        \`checked\` prop to \`"mixed"\` to use the indeterminate checkbox.`,
+        \`checked\` prop to \`null\` or \`undefined\` to use the indeterminate checkbox.`,
     },
 };
 
