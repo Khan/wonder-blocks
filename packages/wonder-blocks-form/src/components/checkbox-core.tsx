@@ -6,7 +6,6 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Icon from "@khanacademy/wonder-blocks-icon";
 
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
-
 import type {ChoiceCoreProps} from "../util/types";
 
 type Props = ChoiceCoreProps & {
@@ -14,6 +13,21 @@ type Props = ChoiceCoreProps & {
     focused: boolean;
     pressed: boolean;
     waiting: boolean;
+};
+
+type Checked = boolean | null | undefined;
+
+type AriaChecked = "true" | "false" | "mixed";
+
+const mapCheckedToAriaChecked = (value: Checked): AriaChecked => {
+    switch (value) {
+        case true:
+            return "true";
+        case false:
+            return "false";
+        default:
+            return "mixed";
+    }
 };
 
 const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
@@ -26,6 +40,17 @@ const checkPath: IconAsset = {
 
 const indeterminatePath: IconAsset = {
     small: "M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z",
+};
+
+const getIconPath = (value: Checked): any => {
+    switch (value) {
+        case true:
+            return checkPath;
+        case false:
+            return <></>;
+        default:
+            return indeterminatePath;
+    }
 };
 
 /**
@@ -69,32 +94,16 @@ export default class CheckboxCore extends React.Component<Props> {
             "data-test-id": testId,
         } as const;
 
-        const checkIcon = (
+        const checkboxIcon = (
             <Icon
                 color={disabled ? offBlack32 : white}
-                icon={checkPath}
+                icon={getIconPath(checked)}
                 size="small"
                 style={sharedStyles.checkboxIcon}
             />
         );
 
-        const indeterminateIcon = (
-            <Icon
-                color={disabled ? offBlack32 : white}
-                icon={indeterminatePath}
-                size="small"
-                style={sharedStyles.checkboxIcon}
-            />
-        );
-
-        const checkboxIcon =
-            checked === true ? (
-                checkIcon
-            ) : checked === "mixed" ? (
-                indeterminateIcon
-            ) : (
-                <></>
-            );
+        const ariaChecked = mapCheckedToAriaChecked(checked);
 
         return (
             <React.Fragment>
@@ -102,7 +111,7 @@ export default class CheckboxCore extends React.Component<Props> {
                     {...sharedProps}
                     type="checkbox"
                     role="checkbox"
-                    aria-checked={checked}
+                    aria-checked={ariaChecked}
                     aria-invalid={error}
                     checked={checked}
                     disabled={disabled}
@@ -176,7 +185,10 @@ const colors = {
 
 const styles: Record<string, any> = {};
 
-const _generateStyles = (checked: boolean | "mixed", error: boolean) => {
+const _generateStyles = (
+    checked: boolean | null | undefined,
+    error: boolean,
+) => {
     // "hash" the parameters
     const styleKey = `${String(checked)}-${String(error)}`;
     if (styles[styleKey]) {
@@ -186,7 +198,7 @@ const _generateStyles = (checked: boolean | "mixed", error: boolean) => {
     const palette = error ? colors.error : colors.default;
 
     let newStyles: Record<string, any> = {};
-    if (checked) {
+    if (checked || checked === null || checked === undefined) {
         newStyles = {
             default: {
                 backgroundColor: palette.base,

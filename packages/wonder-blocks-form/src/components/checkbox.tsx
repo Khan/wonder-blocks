@@ -8,7 +8,7 @@ type ChoiceComponentProps = AriaProps & {
     /**
      * Whether this component is checked or indeterminate
      */
-    checked: boolean | "mixed";
+    checked: boolean | null | undefined;
     /**
      * Whether this component is disabled
      */

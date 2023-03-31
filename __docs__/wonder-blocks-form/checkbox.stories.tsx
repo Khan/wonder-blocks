@@ -9,6 +9,7 @@ import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {name, version} from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
+import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
 
 export default {
     title: "Form / Checkbox",
@@ -54,30 +55,70 @@ Controlled.parameters = {
 
 export const Indeterminate: StoryComponentType = () => {
     return (
-        <View style={styles.row}>
+        <View>
             <Checkbox
-                checked="mixed"
+                checked={null}
                 disabled={false}
                 error={false}
                 onChange={() => {}}
-                style={styles.marginRight}
             />
+            <Strut size={8} />
             <Checkbox
-                checked="mixed"
+                checked={null}
                 disabled={true}
                 error={false}
                 onChange={() => {}}
-                style={styles.marginRight}
             />
+            <Strut size={8} />
             <Checkbox
-                checked="mixed"
+                checked={null}
                 disabled={false}
                 error={true}
                 onChange={() => {}}
-                style={styles.marginRight}
             />
         </View>
     );
+
+    // Might change story to have checkbox group with indeterminate at top
+
+    // <View>
+    //         <Checkbox
+    //             checked={checkedState}
+    //             disabled={false}
+    //             error={false}
+    //             onChange={() => {
+    //                 setChecked(!checkedState);
+    //             }}
+    //         />
+    //         <Strut size={16} />
+    //         <View>
+    //             <Checkbox
+    //                 checked={checkedState}
+    //                 disabled={false}
+    //                 error={false}
+    //                 onChange={() => {
+    //                     setChecked(!checkedState);
+    //                 }}
+    //                 style={styles.marginLeft}
+    //             />
+    //             <Strut size={8} />
+    //             <Checkbox
+    //                 checked={checkedState}
+    //                 disabled={true}
+    //                 error={false}
+    //                 onChange={() => {}}
+    //                 style={styles.marginLeft}
+    //             />
+    //             <Strut size={8} />
+    //             <Checkbox
+    //                 checked={checkedState}
+    //                 disabled={false}
+    //                 error={true}
+    //                 onChange={() => {}}
+    //                 style={styles.marginLeft}
+    //             />
+    //         </View>
+    //     </View>
 };
 
 Indeterminate.parameters = {
@@ -187,6 +228,9 @@ AdditionalClickTarget.parameters = {
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
+    },
+    marginLeft: {
+        marginLeft: 16,
     },
     marginRight: {
         marginRight: 16,
