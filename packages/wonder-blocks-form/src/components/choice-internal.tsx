@@ -50,7 +50,6 @@ type Props = AriaProps & {
 };
 
 type DefaultProps = {
-    checked: Props["checked"];
     disabled: Props["disabled"];
     error: Props["error"];
 };
@@ -64,7 +63,6 @@ type DefaultProps = {
  * (because for Choice, that prop would be auto-populated by CheckboxGroup).
  */ export default class ChoiceInternal extends React.Component<Props> {
     static defaultProps: DefaultProps = {
-        checked: false,
         disabled: false,
         error: false,
     };
