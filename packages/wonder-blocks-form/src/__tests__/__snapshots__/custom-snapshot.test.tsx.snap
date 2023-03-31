@@ -1,41 +1,64 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CheckboxCore type:default state:default checked:false 1`] = `
-<input
-  aria-checked={false}
-  aria-invalid={false}
-  checked={false}
-  className=""
-  disabled={false}
-  onChange={[Function]}
-  role="checkbox"
-  style={
-    {
-      "MozAppearance": "none",
-      "WebkitAppearance": "none",
-      "appearance": "none",
-      "backgroundColor": "#ffffff",
-      "borderColor": "rgba(33,36,44,0.50)",
-      "borderRadius": 3,
-      "borderStyle": "solid",
-      "borderWidth": 1,
-      "boxSizing": "border-box",
-      "height": 16,
-      "margin": 0,
-      "minHeight": 16,
-      "minWidth": 16,
-      "outline": "none",
-      "width": 16,
+[
+  <input
+    aria-checked="false"
+    aria-invalid={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    role="checkbox"
+    style={
+      {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#ffffff",
+        "borderColor": "rgba(33,36,44,0.50)",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "minHeight": 16,
+        "minWidth": 16,
+        "outline": "none",
+        "width": 16,
+      }
     }
-  }
-  type="checkbox"
-/>
+    type="checkbox"
+  />,
+  <svg
+    className=""
+    height={16}
+    style={
+      {
+        "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
+      fill="#ffffff"
+    />
+  </svg>,
+]
 `;
 
 exports[`CheckboxCore type:default state:default checked:true 1`] = `
 [
   <input
-    aria-checked={true}
+    aria-checked="true"
     aria-invalid={false}
     checked={true}
     className=""
@@ -87,41 +110,64 @@ exports[`CheckboxCore type:default state:default checked:true 1`] = `
 `;
 
 exports[`CheckboxCore type:default state:hovered checked:false 1`] = `
-<input
-  aria-checked={false}
-  aria-invalid={false}
-  checked={false}
-  className=""
-  disabled={false}
-  onChange={[Function]}
-  role="checkbox"
-  style={
-    {
-      "MozAppearance": "none",
-      "WebkitAppearance": "none",
-      "appearance": "none",
-      "backgroundColor": "#ffffff",
-      "borderColor": "#1865f2",
-      "borderRadius": 3,
-      "borderStyle": "solid",
-      "borderWidth": 2,
-      "boxSizing": "border-box",
-      "height": 16,
-      "margin": 0,
-      "minHeight": 16,
-      "minWidth": 16,
-      "outline": "none",
-      "width": 16,
+[
+  <input
+    aria-checked="false"
+    aria-invalid={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    role="checkbox"
+    style={
+      {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1865f2",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "minHeight": 16,
+        "minWidth": 16,
+        "outline": "none",
+        "width": 16,
+      }
     }
-  }
-  type="checkbox"
-/>
+    type="checkbox"
+  />,
+  <svg
+    className=""
+    height={16}
+    style={
+      {
+        "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
+      fill="#ffffff"
+    />
+  </svg>,
+]
 `;
 
 exports[`CheckboxCore type:default state:hovered checked:true 1`] = `
 [
   <input
-    aria-checked={true}
+    aria-checked="true"
     aria-invalid={false}
     checked={true}
     className=""
@@ -174,41 +220,64 @@ exports[`CheckboxCore type:default state:hovered checked:true 1`] = `
 `;
 
 exports[`CheckboxCore type:default state:pressed checked:false 1`] = `
-<input
-  aria-checked={false}
-  aria-invalid={false}
-  checked={false}
-  className=""
-  disabled={false}
-  onChange={[Function]}
-  role="checkbox"
-  style={
-    {
-      "MozAppearance": "none",
-      "WebkitAppearance": "none",
-      "appearance": "none",
-      "backgroundColor": "#dae6fd",
-      "borderColor": "#1865f2",
-      "borderRadius": 3,
-      "borderStyle": "solid",
-      "borderWidth": 2,
-      "boxSizing": "border-box",
-      "height": 16,
-      "margin": 0,
-      "minHeight": 16,
-      "minWidth": 16,
-      "outline": "none",
-      "width": 16,
+[
+  <input
+    aria-checked="false"
+    aria-invalid={false}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    role="checkbox"
+    style={
+      {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#dae6fd",
+        "borderColor": "#1865f2",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "minHeight": 16,
+        "minWidth": 16,
+        "outline": "none",
+        "width": 16,
+      }
     }
-  }
-  type="checkbox"
-/>
+    type="checkbox"
+  />,
+  <svg
+    className=""
+    height={16}
+    style={
+      {
+        "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
+      fill="#ffffff"
+    />
+  </svg>,
+]
 `;
 
 exports[`CheckboxCore type:default state:pressed checked:true 1`] = `
 [
   <input
-    aria-checked={true}
+    aria-checked="true"
     aria-invalid={false}
     checked={true}
     className=""
@@ -262,42 +331,65 @@ exports[`CheckboxCore type:default state:pressed checked:true 1`] = `
 `;
 
 exports[`CheckboxCore type:disabled state:default checked:false 1`] = `
-<input
-  aria-checked={false}
-  aria-invalid={false}
-  checked={false}
-  className=""
-  disabled={true}
-  onChange={[Function]}
-  role="checkbox"
-  style={
-    {
-      "MozAppearance": "none",
-      "WebkitAppearance": "none",
-      "appearance": "none",
-      "backgroundColor": "#f7f8fa",
-      "borderColor": "rgba(33,36,44,0.16)",
-      "borderRadius": 3,
-      "borderStyle": "solid",
-      "borderWidth": 1,
-      "boxSizing": "border-box",
-      "cursor": "auto",
-      "height": 16,
-      "margin": 0,
-      "minHeight": 16,
-      "minWidth": 16,
-      "outline": "none",
-      "width": 16,
+[
+  <input
+    aria-checked="false"
+    aria-invalid={false}
+    checked={false}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    role="checkbox"
+    style={
+      {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "minHeight": 16,
+        "minWidth": 16,
+        "outline": "none",
+        "width": 16,
+      }
     }
-  }
-  type="checkbox"
-/>
+    type="checkbox"
+  />,
+  <svg
+    className=""
+    height={16}
+    style={
+      {
+        "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
+      fill="rgba(33,36,44,0.32)"
+    />
+  </svg>,
+]
 `;
 
 exports[`CheckboxCore type:disabled state:default checked:true 1`] = `
 [
   <input
-    aria-checked={true}
+    aria-checked="true"
     aria-invalid={false}
     checked={true}
     className=""
@@ -351,42 +443,65 @@ exports[`CheckboxCore type:disabled state:default checked:true 1`] = `
 `;
 
 exports[`CheckboxCore type:disabled state:hovered checked:false 1`] = `
-<input
-  aria-checked={false}
-  aria-invalid={false}
-  checked={false}
-  className=""
-  disabled={true}
-  onChange={[Function]}
-  role="checkbox"
-  style={
-    {
-      "MozAppearance": "none",
-      "WebkitAppearance": "none",
-      "appearance": "none",
-      "backgroundColor": "#f7f8fa",
-      "borderColor": "rgba(33,36,44,0.16)",
-      "borderRadius": 3,
-      "borderStyle": "solid",
-      "borderWidth": 1,
-      "boxSizing": "border-box",
-      "cursor": "auto",
-      "height": 16,
-      "margin": 0,
-      "minHeight": 16,
-      "minWidth": 16,
-      "outline": "none",
-      "width": 16,
+[
+  <input
+    aria-checked="false"
+    aria-invalid={false}
+    checked={false}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    role="checkbox"
+    style={
+      {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "minHeight": 16,
+        "minWidth": 16,
+        "outline": "none",
+        "width": 16,
+      }
     }
-  }
-  type="checkbox"
-/>
+    type="checkbox"
+  />,
+  <svg
+    className=""
+    height={16}
+    style={
+      {
+        "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
+      fill="rgba(33,36,44,0.32)"
+    />
+  </svg>,
+]
 `;
 
 exports[`CheckboxCore type:disabled state:hovered checked:true 1`] = `
 [
   <input
-    aria-checked={true}
+    aria-checked="true"
     aria-invalid={false}
     checked={true}
     className=""
@@ -440,42 +555,65 @@ exports[`CheckboxCore type:disabled state:hovered checked:true 1`] = `
 `;
 
 exports[`CheckboxCore type:disabled state:pressed checked:false 1`] = `
-<input
-  aria-checked={false}
-  aria-invalid={false}
-  checked={false}
-  className=""
-  disabled={true}
-  onChange={[Function]}
-  role="checkbox"
-  style={
-    {
-      "MozAppearance": "none",
-      "WebkitAppearance": "none",
-      "appearance": "none",
-      "backgroundColor": "#f7f8fa",
-      "borderColor": "rgba(33,36,44,0.16)",
-      "borderRadius": 3,
-      "borderStyle": "solid",
-      "borderWidth": 1,
-      "boxSizing": "border-box",
-      "cursor": "auto",
-      "height": 16,
-      "margin": 0,
-      "minHeight": 16,
-      "minWidth": 16,
-      "outline": "none",
-      "width": 16,
+[
+  <input
+    aria-checked="false"
+    aria-invalid={false}
+    checked={false}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    role="checkbox"
+    style={
+      {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "minHeight": 16,
+        "minWidth": 16,
+        "outline": "none",
+        "width": 16,
+      }
     }
-  }
-  type="checkbox"
-/>
+    type="checkbox"
+  />,
+  <svg
+    className=""
+    height={16}
+    style={
+      {
+        "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
+      fill="rgba(33,36,44,0.32)"
+    />
+  </svg>,
+]
 `;
 
 exports[`CheckboxCore type:disabled state:pressed checked:true 1`] = `
 [
   <input
-    aria-checked={true}
+    aria-checked="true"
     aria-invalid={false}
     checked={true}
     className=""
@@ -529,41 +667,64 @@ exports[`CheckboxCore type:disabled state:pressed checked:true 1`] = `
 `;
 
 exports[`CheckboxCore type:error state:default checked:false 1`] = `
-<input
-  aria-checked={false}
-  aria-invalid={true}
-  checked={false}
-  className=""
-  disabled={false}
-  onChange={[Function]}
-  role="checkbox"
-  style={
-    {
-      "MozAppearance": "none",
-      "WebkitAppearance": "none",
-      "appearance": "none",
-      "backgroundColor": "#fceeec",
-      "borderColor": "#d92916",
-      "borderRadius": 3,
-      "borderStyle": "solid",
-      "borderWidth": 1,
-      "boxSizing": "border-box",
-      "height": 16,
-      "margin": 0,
-      "minHeight": 16,
-      "minWidth": 16,
-      "outline": "none",
-      "width": 16,
+[
+  <input
+    aria-checked="false"
+    aria-invalid={true}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    role="checkbox"
+    style={
+      {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#fceeec",
+        "borderColor": "#d92916",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "minHeight": 16,
+        "minWidth": 16,
+        "outline": "none",
+        "width": 16,
+      }
     }
-  }
-  type="checkbox"
-/>
+    type="checkbox"
+  />,
+  <svg
+    className=""
+    height={16}
+    style={
+      {
+        "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
+      fill="#ffffff"
+    />
+  </svg>,
+]
 `;
 
 exports[`CheckboxCore type:error state:default checked:true 1`] = `
 [
   <input
-    aria-checked={true}
+    aria-checked="true"
     aria-invalid={true}
     checked={true}
     className=""
@@ -615,41 +776,64 @@ exports[`CheckboxCore type:error state:default checked:true 1`] = `
 `;
 
 exports[`CheckboxCore type:error state:hovered checked:false 1`] = `
-<input
-  aria-checked={false}
-  aria-invalid={true}
-  checked={false}
-  className=""
-  disabled={false}
-  onChange={[Function]}
-  role="checkbox"
-  style={
-    {
-      "MozAppearance": "none",
-      "WebkitAppearance": "none",
-      "appearance": "none",
-      "backgroundColor": "#fceeec",
-      "borderColor": "#d92916",
-      "borderRadius": 3,
-      "borderStyle": "solid",
-      "borderWidth": 2,
-      "boxSizing": "border-box",
-      "height": 16,
-      "margin": 0,
-      "minHeight": 16,
-      "minWidth": 16,
-      "outline": "none",
-      "width": 16,
+[
+  <input
+    aria-checked="false"
+    aria-invalid={true}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    role="checkbox"
+    style={
+      {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#fceeec",
+        "borderColor": "#d92916",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "minHeight": 16,
+        "minWidth": 16,
+        "outline": "none",
+        "width": 16,
+      }
     }
-  }
-  type="checkbox"
-/>
+    type="checkbox"
+  />,
+  <svg
+    className=""
+    height={16}
+    style={
+      {
+        "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
+      fill="#ffffff"
+    />
+  </svg>,
+]
 `;
 
 exports[`CheckboxCore type:error state:hovered checked:true 1`] = `
 [
   <input
-    aria-checked={true}
+    aria-checked="true"
     aria-invalid={true}
     checked={true}
     className=""
@@ -702,41 +886,64 @@ exports[`CheckboxCore type:error state:hovered checked:true 1`] = `
 `;
 
 exports[`CheckboxCore type:error state:pressed checked:false 1`] = `
-<input
-  aria-checked={false}
-  aria-invalid={true}
-  checked={false}
-  className=""
-  disabled={false}
-  onChange={[Function]}
-  role="checkbox"
-  style={
-    {
-      "MozAppearance": "none",
-      "WebkitAppearance": "none",
-      "appearance": "none",
-      "backgroundColor": "#fceeec",
-      "borderColor": "#9e271d",
-      "borderRadius": 3,
-      "borderStyle": "solid",
-      "borderWidth": 2,
-      "boxSizing": "border-box",
-      "height": 16,
-      "margin": 0,
-      "minHeight": 16,
-      "minWidth": 16,
-      "outline": "none",
-      "width": 16,
+[
+  <input
+    aria-checked="false"
+    aria-invalid={true}
+    checked={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    role="checkbox"
+    style={
+      {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#fceeec",
+        "borderColor": "#9e271d",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "minHeight": 16,
+        "minWidth": 16,
+        "outline": "none",
+        "width": 16,
+      }
     }
-  }
-  type="checkbox"
-/>
+    type="checkbox"
+  />,
+  <svg
+    className=""
+    height={16}
+    style={
+      {
+        "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
+      fill="#ffffff"
+    />
+  </svg>,
+]
 `;
 
 exports[`CheckboxCore type:error state:pressed checked:true 1`] = `
 [
   <input
-    aria-checked={true}
+    aria-checked="true"
     aria-invalid={true}
     checked={true}
     className=""
