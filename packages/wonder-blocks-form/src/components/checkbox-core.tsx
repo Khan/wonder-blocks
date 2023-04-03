@@ -79,6 +79,11 @@ export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
 
         const ariaChecked = mapCheckedToAriaChecked(checked);
 
+        // TODO (nicolemejia) - We're not using `.indeterminate` on
+        // `StyledInput` because `addStyle()` doesn't support ref forwarding. We
+        // should consider adding it in the future to round out the component to
+        // align with input checkbox indeterminate property. Read more here:
+        // https://www.w3schools.com/jsref/prop_checkbox_indeterminate.asp
         return (
             <React.Fragment>
                 <StyledInput
@@ -97,7 +102,6 @@ export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
                     style={defaultStyle}
                     {...props}
                 />
-                {/* // ariaChecked is truthy if it is true or "mixed"  */}
                 {checked || checked == null ? checkboxIcon : <></>}
             </React.Fragment>
         );
