@@ -91,14 +91,13 @@ describe("addStyle", () => {
 
     it("should forward a ref to the component", () => {
         // Arrange
-        const ref = React.createRef();
+        const ref = React.createRef<HTMLDivElement>();
 
         render(
             <StyledDiv
                 className="foo"
                 style={styles.foo}
                 data-test-id="styled-div"
-                // @ts-expect-error [WB-1530] - TS2322 - Type 'RefObject<unknown>' is not assignable to type 'Ref<"div"> | undefined'. Type 'RefObject<unknown>' is not assignable to type 'RefObject<"div">'. Type 'unknown' is not assignable to type '"div"'.
                 ref={ref}
             />,
         );
