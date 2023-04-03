@@ -28,7 +28,8 @@
     "test:common": "yarn run build && yarn run lint && yarn run alex && yarn run typecheck",
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
     "test": "yarn run test:common && yarn run jest",
-    "typecheck": "tsc --project tsconfig-check.json"
+    "typecheck": "tsc --project tsconfig-check.json",
+    "add:devdepbysha": "bash -c 'yarn add -W --dev \"git+https://git@github.com/Khan/$0.git#$1\"'"
   },
   "author": "",
   "license": "MIT",
@@ -91,7 +92,7 @@
     "eslint-plugin-testing-library": "^5.0.0",
     "eslint-watch": "^8.0.0",
     "fast-glob": "^3.2.12",
-    "flowgen": "git+https://git@github.com/Khan/flowgen.git#6f8276dcf4ac9d8324d66c99589e3fb9e1cc8125",
+    "flowgen": "git+https://git@github.com/Khan/flowgen.git#fa8050929948fb4313f738301285fb44625678c4",
     "jest": "^29.0.1",
     "jest-date-mock": "^1.0.8",
     "jest-environment-jsdom": "^28.1.2",

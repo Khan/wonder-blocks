@@ -1,5 +1,23 @@
 # @khanacademy/wonder-blocks-testing
 
+## 8.0.11
+
+### Patch Changes
+
+-   a7fd4c07: Fix regression in error message formatting for fetch mocking
+
+## 8.0.10
+
+### Patch Changes
+
+-   97829726: Fix indentation change in mockGqlFetch
+
+## 8.0.9
+
+### Patch Changes
+
+-   7e79069d: Get the types working properly
+
 ## 8.0.8
 
 ### Patch Changes

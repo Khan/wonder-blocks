@@ -136,6 +136,47 @@ Variants.parameters = {
     },
 };
 
+export const VariantsControlled: StoryComponentType = () => {
+    const [defaultChecked, defaultSetChecked] = React.useState(false);
+    const [errorChecked, errorSetChecked] = React.useState(false);
+    const [disabledChecked, disabledSetChecked] = React.useState(false);
+
+    return (
+        <View style={styles.row}>
+            <Checkbox
+                checked={defaultChecked}
+                onChange={defaultSetChecked}
+                style={styles.marginRight}
+            />
+            <Checkbox
+                error={true}
+                checked={errorChecked}
+                onChange={errorSetChecked}
+                style={styles.marginRight}
+            />
+            <Checkbox
+                checked={disabledChecked}
+                disabled={true}
+                onChange={disabledSetChecked}
+                style={styles.marginRight}
+            />
+        </View>
+    );
+};
+
+VariantsControlled.parameters = {
+    chromatic: {
+        // Disabling because this doesn't test visuals, its for testing
+        // that `state` works as expected.
+        disableSnapshot: true,
+    },
+    docs: {
+        storyDescription: `A demo of the different kinds of checkboxes
+            when they have their \`checked\` and \`onChange\` props set
+            to make them toggle on click.`,
+    },
+};
+
 export const WithLabel: StoryComponentType = () => {
     const [checked, setChecked] = React.useState(false);
 

@@ -6,12 +6,15 @@ import {__RouterContext} from "react-router";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
+import Icon from "@khanacademy/wonder-blocks-icon";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import type {
     ChildrenProps,
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import type {StyleDeclaration} from "aphrodite";
+import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import type {SharedProps} from "./link";
 
 type Props = SharedProps &
@@ -39,6 +42,7 @@ export default class LinkCore extends React.Component<Props> {
             style,
             testId,
             waiting: _,
+            target,
             ...restProps
         } = this.props;
 
@@ -63,16 +67,37 @@ export default class LinkCore extends React.Component<Props> {
         const commonProps = {
             "data-test-id": testId,
             style: [defaultStyles, style],
+            target,
             ...restProps,
         } as const;
 
+        const externalIconPath: IconAsset = {
+            small: "M14 6.5C14 6.63261 13.9473 6.75979 13.8536 6.85355C13.7598 6.94732 13.6326 7 13.5 7C13.3674 7 13.2402 6.94732 13.1464 6.85355C13.0527 6.75979 13 6.63261 13 6.5V3.7075L8.85437 7.85375C8.76055 7.94757 8.63331 8.00028 8.50062 8.00028C8.36794 8.00028 8.2407 7.94757 8.14688 7.85375C8.05306 7.75993 8.00035 7.63268 8.00035 7.5C8.00035 7.36732 8.05306 7.24007 8.14688 7.14625L12.2925 3H9.5C9.36739 3 9.24021 2.94732 9.14645 2.85355C9.05268 2.75979 9 2.63261 9 2.5C9 2.36739 9.05268 2.24021 9.14645 2.14645C9.24021 2.05268 9.36739 2 9.5 2H13.5C13.6326 2 13.7598 2.05268 13.8536 2.14645C13.9473 2.24021 14 2.36739 14 2.5V6.5ZM11.5 8C11.3674 8 11.2402 8.05268 11.1464 8.14645C11.0527 8.24021 11 8.36739 11 8.5V13H3V5H7.5C7.63261 5 7.75979 4.94732 7.85355 4.85355C7.94732 4.75979 8 4.63261 8 4.5C8 4.36739 7.94732 4.24021 7.85355 4.14645C7.75979 4.05268 7.63261 4 7.5 4H3C2.73478 4 2.48043 4.10536 2.29289 4.29289C2.10536 4.48043 2 4.73478 2 5V13C2 13.2652 2.10536 13.5196 2.29289 13.7071C2.48043 13.8946 2.73478 14 3 14H11C11.2652 14 11.5196 13.8946 11.7071 13.7071C11.8946 13.5196 12 13.2652 12 13V8.5C12 8.36739 11.9473 8.24021 11.8536 8.14645C11.7598 8.05268 11.6326 8 11.5 8Z",
+        };
+
+        const externalIcon = (
+            <Icon
+                icon={externalIconPath}
+                size="small"
+                style={iconStyles.icon}
+                testId="external-icon"
+            />
+        );
+
+        const linkContent = (
+            <>
+                {children}
+                {target === "_blank" && externalIcon}
+            </>
+        );
+
         return router && !skipClientNav && isClientSideUrl(href) ? (
             <StyledLink {...commonProps} to={href}>
-                {children}
+                {linkContent}
             </StyledLink>
         ) : (
             <StyledAnchor {...commonProps} href={href}>
-                {children}
+                {linkContent}
             </StyledAnchor>
         );
     }
@@ -88,12 +113,19 @@ export default class LinkCore extends React.Component<Props> {
 
 const styles: Record<string, any> = {};
 
+const iconStyles = StyleSheet.create({
+    icon: {
+        marginLeft: Spacing.xxxSmall_4,
+    },
+});
+
 const sharedStyles = StyleSheet.create({
     shared: {
         cursor: "pointer",
         textDecoration: "none",
         outline: "none",
         display: "inline-flex",
+        alignItems: "center",
     },
 });
 

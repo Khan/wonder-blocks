@@ -81,6 +81,15 @@ export default {
         },
     },
 
+    target: {
+        control: {type: "text"},
+        description: `A target destination window for a link to open in.
+            We only support "_blank" which opens the URL in a new tab.`,
+        table: {
+            type: {summary: "string"},
+        },
+    },
+
     testId: {
         control: {type: "text"},
         description: "Test ID used for e2e testing.",
@@ -99,6 +108,13 @@ export default {
         control: {type: "text"},
         description: "Adds CSS classes to the Link.",
         table: {type: {summary: "string"}},
+    },
+
+    title: {
+        control: {type: "text"},
+        description: "An optional title attribute.",
+        table: {type: {summary: "string"}},
+        type: {name: "string", required: false},
     },
 
     beforeNav: {

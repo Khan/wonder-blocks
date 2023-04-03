@@ -224,6 +224,88 @@ ControlledOpened.parameters = {
     chromatic: {delay: 400},
 };
 
+export const LongOptionLabels: StoryComponentType = () => {
+    const [selectedValue, setSelectedValue] = React.useState("");
+    const [opened, setOpened] = React.useState(false);
+
+    const smallWidthStyle = {width: 200};
+
+    return (
+        <SingleSelect
+            onChange={setSelectedValue}
+            selectedValue={selectedValue}
+            opened={opened}
+            onToggle={setOpened}
+            placeholder="Fruit placeholder is also long"
+            style={smallWidthStyle}
+        >
+            <OptionItem
+                label="Bananas are the most amazing fruit I've ever had in my entire life."
+                value="banana"
+                key={0}
+                style={smallWidthStyle}
+            />
+            <OptionItem
+                label="Strawberries are the most amazing fruit I've ever had in my entire life."
+                value="strawberry"
+                disabled
+                key={1}
+                style={smallWidthStyle}
+            />
+            <OptionItem
+                label="Pears are the most amazing fruit I've ever had in my entire life."
+                value="pear"
+                key={2}
+                style={smallWidthStyle}
+            />
+            <OptionItem
+                label="Oranges are the most amazing fruit I've ever had in my entire life."
+                value="orange"
+                key={3}
+                style={smallWidthStyle}
+            />
+            <OptionItem
+                label="Watermelons are the most amazing fruit I've ever had in my entire life."
+                value="watermelon"
+                key={4}
+                style={smallWidthStyle}
+            />
+            <OptionItem
+                label="Apples are the most amazing fruit I've ever had in my entire life."
+                value="apple"
+                key={5}
+                style={smallWidthStyle}
+            />
+            <OptionItem
+                label="Grapes are the most amazing fruit I've ever had in my entire life."
+                value="grape"
+                key={6}
+                style={smallWidthStyle}
+            />
+            <OptionItem
+                label="Lemons are the most amazing fruit I've ever had in my entire life."
+                value="lemon"
+                key={7}
+                style={smallWidthStyle}
+            />
+            <OptionItem
+                label="Mangos are the most amazing fruit I've ever had in my entire life."
+                value="mango"
+                key={8}
+                style={smallWidthStyle}
+            />
+        </SingleSelect>
+    );
+};
+
+LongOptionLabels.parameters = {
+    docs: {
+        storyDescription: `If the label for the opener or the OptionItem(s)
+            is longer than its bounding box, it will be truncated with
+            an ellipsis at the end.`,
+    },
+};
+
 /**
  * Disabled
  */

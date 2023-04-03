@@ -10,5 +10,7 @@
         {"path": "../wonder-blocks-color"},
         {"path": "../wonder-blocks-core"},
         {"path": "../wonder-blocks-typography"},
+        {"path": "../wonder-blocks-icon"},
+        {"path": "../wonder-blocks-spacing"},
     ]
 }
