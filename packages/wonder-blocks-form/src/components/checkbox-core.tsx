@@ -87,7 +87,7 @@ export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
                     role="checkbox"
                     aria-checked={ariaChecked}
                     aria-invalid={error}
-                    checked={checked}
+                    checked={checked ?? undefined}
                     disabled={disabled}
                     id={id}
                     name={groupName}
