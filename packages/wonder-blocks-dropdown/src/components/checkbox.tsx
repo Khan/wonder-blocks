@@ -36,7 +36,7 @@ type CheckProps = {
 /**
  * The checkbox component used by OptionItem.
  */
-const Checkbox: React.FC<CheckProps> = function (props): React.ReactElement {
+const Checkbox = function (props: CheckProps): React.ReactElement {
     const {disabled, selected, pressed, hovered, focused} = props;
     const activeBlue = mix(offBlack32, blue);
     const clickInteraction = pressed || hovered || focused;

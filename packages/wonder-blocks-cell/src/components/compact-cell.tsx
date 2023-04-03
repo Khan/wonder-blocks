@@ -24,7 +24,7 @@ import type {CellProps} from "../util/types";
  * />
  * ```
  */
-const CompactCell: React.FC<CellProps> = function (props): React.ReactElement {
+const CompactCell = function (props: CellProps): React.ReactElement {
     const {title, ...coreProps} = props;
 
     return (

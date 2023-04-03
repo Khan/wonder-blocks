@@ -7,7 +7,7 @@ type Props = {
     propB?: string;
 };
 
-const MyComponent: React.FC<Props> = (props): React.ReactElement =>
+const MyComponent = (props: Props): React.ReactElement =>
     // @ts-expect-error: `string` is not a valid `ReactElement`.
     `I am a component. Here are my props: ${JSON.stringify(props, null, 2)}`;
 

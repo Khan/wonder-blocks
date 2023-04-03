@@ -24,7 +24,7 @@ describe("#useForceUpdate", () => {
 
         it("should cause component to render", () => {
             // Arrange
-            const Component: React.FC<any> = (props): React.ReactElement => {
+            const Component = (): React.ReactElement => {
                 const countRef = React.useRef(0);
                 const forceUpdate = useForceUpdate();
                 React.useEffect(() => {

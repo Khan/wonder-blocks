@@ -13,7 +13,7 @@ export default function addStyle<
         {style?: StyleType}
     >;
 
-    const StyleComponent: React.FC<Props> = (props) => {
+    const StyleComponent = (props: Props) => {
         const {className, style, ...otherProps} = props;
         const reset =
             typeof Component === "string" ? overrides[Component] : null;
