@@ -13,17 +13,21 @@ export default function addStyle<
         className?: string;
         style?: StyleType;
         children?: React.ReactNode;
-    } & Omit<React.ComponentProps<T>, "style">, // removes the 'style' prop from the original component
+    } & Omit<React.ComponentProps<T>, "style">, // Removes the 'style' prop from the original component
 >(
     Component: T,
     defaultStyle?: StyleType,
 ): React.ForwardRefExoticComponent<
     React.PropsWithoutRef<Props> &
         React.RefAttributes<
+            // We need to lookup the HTML/SVG element type based on the tag name, but only
+            // for JSX intrinsics (aka HTML/SVG tags).
             T extends keyof JSX.IntrinsicElements ? IntrinsicElementsMap[T] : T
         >
 > {
     return React.forwardRef<
+        // We need to lookup the HTML/SVG element type based on the tag name, but only
+        // for JSX intrinsics (aka HTML/SVG tags).
         T extends keyof JSX.IntrinsicElements ? IntrinsicElementsMap[T] : T,
         Props
     >((props, ref) => {
@@ -65,6 +69,8 @@ const overrides = StyleSheet.create({
     },
 });
 
+// This mapping is based on `ReactHTML` and `ReactSVG` interfaces in the type definitions
+// for React.  This is used to determine the HTML/SVG element type from the tag string.
 type IntrinsicElementsMap = {
     // HTML
     a: HTMLAnchorElement;
