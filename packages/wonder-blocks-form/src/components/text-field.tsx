@@ -240,19 +240,6 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
 
         return (
             <StyledInput
-                id={id}
-                type={type}
-                placeholder={placeholder}
-                value={value}
-                disabled={disabled}
-                onChange={this.handleChange}
-                onKeyDown={onKeyDown}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
-                data-test-id={testId}
-                readOnly={readOnly}
-                autoComplete={autoComplete}
-                ref={forwardedRef}
                 style={[
                     styles.input,
                     typographyStyles.LabelMedium,
@@ -271,6 +258,19 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                     !!this.state.error && styles.error,
                     style && style,
                 ]}
+                id={id}
+                type={type}
+                placeholder={placeholder}
+                value={value}
+                disabled={disabled}
+                onChange={this.handleChange}
+                onKeyDown={onKeyDown}
+                onFocus={this.handleFocus}
+                onBlur={this.handleBlur}
+                data-test-id={testId}
+                readOnly={readOnly}
+                autoComplete={autoComplete}
+                ref={forwardedRef}
                 {...otherProps}
             />
         );
