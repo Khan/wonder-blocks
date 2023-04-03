@@ -3,8 +3,6 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import Color from "@khanacademy/wonder-blocks-color";
-
 import Link from "../link";
 
 describe("Link", () => {
