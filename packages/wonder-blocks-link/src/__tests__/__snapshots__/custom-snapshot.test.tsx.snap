@@ -114,13 +114,17 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 1`] = 
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        "borderRadius": 3,
+        "color": "#1865f2",
+        "outline": "1px solid #1865f2",
+      },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #1865f2",
-      "textDecoration": "none",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -147,12 +151,16 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 2`] = 
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        "borderRadius": 3,
+        "color": "#1865f2",
+        "outline": "1px solid #1865f2",
+      },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #1865f2",
+      "outline": "none",
       "textDecoration": "none",
     }
   }
@@ -308,16 +316,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 1`] = `
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        ":visited": {
+          "color": "#8755ee",
+        },
+        "borderRadius": 3,
+        "color": "#1865f2",
+        "outline": "1px solid #1865f2",
+      },
       ":visited": {
         "color": "#8755ee",
       },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #1865f2",
-      "textDecoration": "none",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -344,15 +359,22 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 2`] = `
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        ":visited": {
+          "color": "#8755ee",
+        },
+        "borderRadius": 3,
+        "color": "#1865f2",
+        "outline": "1px solid #1865f2",
+      },
       ":visited": {
         "color": "#8755ee",
       },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #1865f2",
+      "outline": "none",
       "textDecoration": "none",
     }
   }
@@ -520,13 +542,17 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 1`] = `
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        "borderRadius": 3,
+        "color": "#ffffff",
+        "outline": "1px solid #ffffff",
+      },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #ffffff",
-      "textDecoration": "none",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -553,12 +579,16 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 2`] = `
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        "borderRadius": 3,
+        "color": "#ffffff",
+        "outline": "1px solid #ffffff",
+      },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #ffffff",
+      "outline": "none",
       "textDecoration": "none",
     }
   }
@@ -714,16 +744,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 1`] = `
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        ":visited": {
+          "color": "#fa50ae",
+        },
+        "borderRadius": 3,
+        "color": "#ffffff",
+        "outline": "1px solid #ffffff",
+      },
       ":visited": {
         "color": "#fa50ae",
       },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #ffffff",
-      "textDecoration": "none",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -750,15 +787,22 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 2`] = `
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        ":visited": {
+          "color": "#fa50ae",
+        },
+        "borderRadius": 3,
+        "color": "#ffffff",
+        "outline": "1px solid #ffffff",
+      },
       ":visited": {
         "color": "#fa50ae",
       },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #ffffff",
+      "outline": "none",
       "textDecoration": "none",
     }
   }
@@ -926,13 +970,17 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        "borderRadius": 3,
+        "color": "#1865f2",
+        "outline": "1px solid #1865f2",
+      },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #1865f2",
-      "textDecoration": "none",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -959,12 +1007,16 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        "borderRadius": 3,
+        "color": "#1865f2",
+        "outline": "1px solid #1865f2",
+      },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #1865f2",
+      "outline": "none",
       "textDecoration": "none",
     }
   }
@@ -1120,16 +1172,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        ":visited": {
+          "color": "#8755ee",
+        },
+        "borderRadius": 3,
+        "color": "#1865f2",
+        "outline": "1px solid #1865f2",
+      },
       ":visited": {
         "color": "#8755ee",
       },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #1865f2",
-      "textDecoration": "none",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1156,15 +1215,22 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        ":visited": {
+          "color": "#8755ee",
+        },
+        "borderRadius": 3,
+        "color": "#1865f2",
+        "outline": "1px solid #1865f2",
+      },
       ":visited": {
         "color": "#8755ee",
       },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #1865f2",
+      "outline": "none",
       "textDecoration": "none",
     }
   }
@@ -1332,13 +1398,17 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        "borderRadius": 3,
+        "color": "#ffffff",
+        "outline": "1px solid #ffffff",
+      },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #ffffff",
-      "textDecoration": "none",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1365,12 +1435,16 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        "borderRadius": 3,
+        "color": "#ffffff",
+        "outline": "1px solid #ffffff",
+      },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #ffffff",
+      "outline": "none",
       "textDecoration": "none",
     }
   }
@@ -1526,16 +1600,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        ":visited": {
+          "color": "#fa50ae",
+        },
+        "borderRadius": 3,
+        "color": "#ffffff",
+        "outline": "1px solid #ffffff",
+      },
       ":visited": {
         "color": "#fa50ae",
       },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #ffffff",
-      "textDecoration": "none",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1562,15 +1643,22 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        ":visited": {
+          "color": "#fa50ae",
+        },
+        "borderRadius": 3,
+        "color": "#ffffff",
+        "outline": "1px solid #ffffff",
+      },
       ":visited": {
         "color": "#fa50ae",
       },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #ffffff",
+      "outline": "none",
       "textDecoration": "none",
     }
   }
@@ -1738,13 +1826,17 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 1`] 
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        "borderRadius": 3,
+        "color": "#21242c",
+        "outline": "1px solid #1865f2",
+      },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #1865f2",
-      "textDecoration": "none",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1771,12 +1863,16 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 2`] 
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        "borderRadius": 3,
+        "color": "rgba(33,36,44,0.64)",
+        "outline": "1px solid #1865f2",
+      },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #1865f2",
+      "outline": "none",
       "textDecoration": "none",
     }
   }
@@ -1932,13 +2028,17 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        "borderRadius": 3,
+        "color": "#21242c",
+        "outline": "1px solid #1865f2",
+      },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "#21242c",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #1865f2",
-      "textDecoration": "none",
+      "outline": "none",
+      "textDecoration": "underline currentcolor solid",
     }
   }
   tabIndex={0}
@@ -1965,12 +2065,16 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
+      ":focusVisible": {
+        "borderRadius": 3,
+        "color": "rgba(33,36,44,0.64)",
+        "outline": "1px solid #1865f2",
+      },
       "alignItems": "center",
-      "borderRadius": 3,
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
       "display": "inline-flex",
-      "outline": "1px solid #1865f2",
+      "outline": "none",
       "textDecoration": "none",
     }
   }
