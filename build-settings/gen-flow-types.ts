@@ -4,7 +4,7 @@ import * as fglob from "fast-glob";
 import {compiler, beautify} from "flowgen";
 
 const rootDir = path.join(__dirname, "..");
-const files = fglob.sync("packages/wonder-blocks-banner/dist/**/*.d.ts", {
+const files = fglob.sync("packages/wonder-blocks-*/dist/**/*.d.ts", {
     cwd: rootDir,
 });
 

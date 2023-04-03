@@ -1,5 +1,4 @@
 ---
-"wb-dev-build-settings": patch
 "@khanacademy/wonder-blocks-banner": patch
 "@khanacademy/wonder-blocks-cell": patch
 "@khanacademy/wonder-blocks-core": patch
