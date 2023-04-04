@@ -119,9 +119,9 @@ type DefaultProps = {
     disabled: Props["disabled"];
 };
 
-const StyledAnchor = addStyle<"a">("a");
-const StyledButton = addStyle<"button">("button");
-const StyledLink = addStyle<typeof Link>(Link);
+const StyledAnchor = addStyle("a");
+const StyledButton = addStyle("button");
+const StyledLink = addStyle(Link);
 
 /**
  * A component to turn any custom component into a clickable one.

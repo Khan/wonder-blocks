@@ -1,0 +1,13 @@
+import * as React from "react";
+import type {StyleType} from "./types";
+
+declare export default function addStyle<
+    T: React.AbstractComponent<any> | string,
+>(
+    Component: T,
+    defaultStyle?: StyleType,
+): React.AbstractComponent<{
+    ...React.ElementConfig<T>,
+    style?: StyleType,
+    ...
+}>;
