@@ -4,7 +4,7 @@ import {screen, render} from "@testing-library/react";
 
 import addStyle from "../add-style";
 
-const StyledDiv = addStyle<"div">("div");
+const StyledDiv = addStyle("div");
 
 const styles = StyleSheet.create({
     foo: {
@@ -87,5 +87,25 @@ describe("addStyle", () => {
         expect(classNames).toHaveLength(2);
         expect(classNames[0]).toEqual(expect.any(String));
         expect(classNames[1]).toEqual("foo");
+    });
+
+    it("should forward a ref to the component", () => {
+        // Arrange
+        const ref = React.createRef<HTMLDivElement>();
+
+        render(
+            <StyledDiv
+                className="foo"
+                style={styles.foo}
+                data-test-id="styled-div"
+                ref={ref}
+            />,
+        );
+
+        // Act
+        const div = screen.getByTestId("styled-div");
+
+        // Assert
+        expect(div).toBe(ref.current);
     });
 });

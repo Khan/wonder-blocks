@@ -3,6 +3,7 @@ import {render, screen, fireEvent} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import {StyleSheet} from "aphrodite";
+import Color from "@khanacademy/wonder-blocks-color";
 import LabeledTextField from "../labeled-text-field";
 
 describe("LabeledTextField", () => {
@@ -392,7 +393,9 @@ describe("LabeledTextField", () => {
         textField.focus();
 
         // Assert
-        expect(textField.getAttribute("class")).toMatch(/light/i);
+        expect(textField).toHaveStyle({
+            boxShadow: `0px 0px 0px 1px ${Color.blue}, 0px 0px 0px 2px ${Color.white}`,
+        });
     });
 
     it("style prop is passed to fieldheading", async () => {

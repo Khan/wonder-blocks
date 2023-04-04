@@ -13,10 +13,10 @@ type Props = {
     throwIfNested?: boolean;
 };
 
-const RenderStateRoot: React.FC<Props> = ({
+const RenderStateRoot = ({
     children,
-    throwIfNested,
-}): React.ReactElement => {
+    throwIfNested = true,
+}: Props): React.ReactElement => {
     const [firstRender, setFirstRender] = useState<boolean>(true);
     const renderState = useRenderState();
     useEffect(() => {
@@ -43,12 +43,6 @@ const RenderStateRoot: React.FC<Props> = ({
             {children}
         </RenderStateContext.Provider>
     );
-};
-
-// We can set `defaultProps` on a functional component if we move the `export` to appear
-// afterwards.
-RenderStateRoot.defaultProps = {
-    throwIfNested: true,
 };
 
 export {RenderStateRoot};

@@ -162,7 +162,7 @@ const valuesForKind = (kind: BannerKind): BannerValues => {
  * />
  * ```
  */
-const Banner: React.FC<Props> = (props): React.ReactElement => {
+const Banner = (props: Props): React.ReactElement => {
     const {
         actions,
         // Suppressing lint on the next line because it's saying `aria-label`

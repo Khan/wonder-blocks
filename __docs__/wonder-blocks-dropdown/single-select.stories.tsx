@@ -441,9 +441,7 @@ type Props = {
     opened?: boolean;
 };
 
-const VirtualizedSingleSelect: React.FC<Props> = function (
-    props,
-): React.ReactElement {
+const VirtualizedSingleSelect = function (props: Props): React.ReactElement {
     const [selectedValue, setSelectedValue] = React.useState(
         props.selectedValue,
     );

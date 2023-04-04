@@ -32,7 +32,7 @@ type Props = Partial<Omit<AriaProps, "aria-disabled">> &
         opened: boolean;
     };
 
-const StyledButton = addStyle<"button">("button");
+const StyledButton = addStyle("button");
 
 /**
  * Although this component shares a lot with ButtonCore there are a couple
