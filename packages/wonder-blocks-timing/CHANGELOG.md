@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 3.0.3
+
+### Patch Changes
+
+-   a6164ed0: Don't use React.FC<> for functional components
+
 ## 3.0.2
 
 ### Patch Changes
