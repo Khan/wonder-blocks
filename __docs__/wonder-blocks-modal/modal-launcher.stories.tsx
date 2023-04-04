@@ -148,9 +148,9 @@ export const WithCustomCloseButton: StoryComponentType = () => {
         closeModal: () => void;
     };
 
-    const ModalWithCloseButton: React.FC<MyModalProps> = ({
+    const ModalWithCloseButton = ({
         closeModal,
-    }): React.ReactElement => (
+    }: MyModalProps): React.ReactElement => (
         <OnePaneDialog
             title="Single-line title"
             content={

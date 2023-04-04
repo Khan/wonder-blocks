@@ -26,9 +26,7 @@ type Props = {
      * Note: Don't call `closeModal` while rendering! It should be used to
      * respond to user intearction, like `onClick`.
      */
-    modal:
-        | ModalElement
-        | ((props: {closeModal: () => void}) => React.ReactElement);
+    modal: ModalElement | ((props: {closeModal: () => void}) => ModalElement);
     /**
      * Enables the backdrop to dismiss the modal on click/tap
      */
