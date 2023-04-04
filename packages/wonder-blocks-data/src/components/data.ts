@@ -56,19 +56,20 @@ type Props<
  * requirements can be placed in a React application in a manner that will
  * support server-side rendering and efficient caching.
  */
-// TODO(FEI-5000): Update this support generic props correctly
-const Data: React.FC<Props<any>> = (<TData extends ValidCacheData>({
+const Data = <TData extends ValidCacheData>({
     requestId,
     handler,
     children,
     retainResultOnChange = false,
     clientBehavior = WhenClientSide.ExecuteWhenNoSuccessResult,
-}: Props<TData>): React.ReactNode => {
+}: Props<TData>): React.ReactElement => {
     const result = useHydratableEffect(requestId, handler, {
         retainResultOnChange,
         clientBehavior,
     });
+    // @ts-expect-error: React TS types don't allow functional components to return
+    // ReactNodes even though React itself does.
     return children(result);
-}) as React.FC<Props<any>>;
+};
 
 export default Data;

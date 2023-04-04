@@ -68,6 +68,15 @@ module.exports = {
         SpreadType: false,
     },
     rules: {
+        "no-restricted-syntax": [
+            "error",
+            {
+                selector: "TSQualifiedName[left.name='React'][right.name='FC']",
+                message:
+                    "Use of React.FC<Props> is disallowed, use the following alternative: https://khanacademy.atlassian.net/wiki/spaces/ENG/pages/2201682693/TypeScript+for+Flow+Developers#Functional-Components",
+            },
+        ],
+
         "import/named": "off", // NOTE(kevinb): This rule is confused by third-party TypeScript lib defs
 
         "import/no-unresolved": "error",

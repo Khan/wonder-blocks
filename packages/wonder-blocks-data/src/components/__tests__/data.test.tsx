@@ -89,7 +89,7 @@ describe("Data", () => {
                 // Arrange
                 const fakeHandler = jest.fn(
                     () => new Promise((resolve: any, reject: any) => {}),
-                );
+                ) as jest.Mock<Promise<any>>;
                 const fakeChildrenFn = jest.fn(() => null);
 
                 // Act

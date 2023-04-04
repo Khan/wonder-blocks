@@ -19,7 +19,7 @@ type Props1 = {
     test: string;
 } & WithActionSchedulerProps;
 
-const InnerComponent1: React.FC<Props1> = (props): React.ReactElement => (
+const InnerComponent1 = (props: Props1): React.ReactElement => (
     <>{props.test}</>
 );
 
@@ -34,7 +34,7 @@ type Props2 = {
     test: string;
 } & WithActionSchedulerProps;
 
-const InnerComponent2: React.FC<Props2> = (props): React.ReactElement => (
+const InnerComponent2 = (props: Props2): React.ReactElement => (
     <>{props.test}</>
 );
 
@@ -56,7 +56,7 @@ type Props3 = {
     test: string;
 } & WithActionSchedulerProps;
 
-const InnerComponent3: React.FC<Props3> = (props): React.ReactElement => (
+const InnerComponent3 = (props: Props3): React.ReactElement => (
     <>{props.test}</>
 );
 

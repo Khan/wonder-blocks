@@ -215,9 +215,7 @@ export const WithLauncher: StoryComponentType = () => {
         closeModal: () => void;
     };
 
-    const MyModal: React.FC<MyModalProps> = ({
-        closeModal,
-    }): React.ReactElement => (
+    const MyModal = ({closeModal}: MyModalProps): React.ReactElement => (
         <ModalDialog
             aria-labelledby="modal-title-3"
             style={styles.squareDialog}
