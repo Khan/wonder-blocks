@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.0.9
+
+### Patch Changes
+
+-   d0f0ce7e: Updates input to StyledInput and uses style prop
+-   1269f6e0: Allow text highlighting on choice components
+-   f71343d6: Remove ClickableBehavior from Choice to improve screenreader a11y
+-   Updated dependencies [3c400719]
+-   Updated dependencies [a6164ed0]
+    -   @khanacademy/wonder-blocks-core@5.1.0
+    -   @khanacademy/wonder-blocks-clickable@3.0.9
+    -   @khanacademy/wonder-blocks-icon@2.0.9
+    -   @khanacademy/wonder-blocks-layout@2.0.9
+    -   @khanacademy/wonder-blocks-typography@2.0.9
+
 ## 4.0.8
 
 ### Patch Changes

@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-core
 
+## 5.1.0
+
+### Minor Changes
+
+-   3c400719: Add useLatestRef hook to wonder-blocks-core
+
+### Patch Changes
+
+-   a6164ed0: Don't use React.FC<> for functional components
+
 ## 5.0.4
 
 ### Patch Changes

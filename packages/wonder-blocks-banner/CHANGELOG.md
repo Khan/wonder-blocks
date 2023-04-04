@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-banner
 
+## 2.0.9
+
+### Patch Changes
+
+-   a6164ed0: Don't use React.FC<> for functional components
+-   Updated dependencies [ba1a0362]
+-   Updated dependencies [b1ea80f0]
+-   Updated dependencies [3c400719]
+-   Updated dependencies [a6164ed0]
+    -   @khanacademy/wonder-blocks-link@4.1.0
+    -   @khanacademy/wonder-blocks-core@5.1.0
+    -   @khanacademy/wonder-blocks-button@4.0.9
+    -   @khanacademy/wonder-blocks-icon@2.0.9
+    -   @khanacademy/wonder-blocks-icon-button@4.0.9
+    -   @khanacademy/wonder-blocks-typography@2.0.9
+
 ## 2.0.8
 
 ### Patch Changes
