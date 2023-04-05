@@ -57,12 +57,11 @@ type BannerKind =
 type BannerLayout =
     /**
      * Renders a rounded rectangle, usually for when banner is used as an inset
-     * element on a screen (e.g., the SOT card) that appears to be floating
+     * element on a screen (e.g., the SOT card) that appears to be floating.
      */
     | "floating"
     /**
      * Renders a full-width banner, with no rounded corners.
-     * This is the default.
      */
     | "full-width";
 
@@ -163,7 +162,7 @@ const valuesForKind = (kind: BannerKind): BannerValues => {
  * />
  * ```
  */
-const Banner: React.FC<Props> = (props): React.ReactElement => {
+const Banner = (props: Props): React.ReactElement => {
     const {
         actions,
         // Suppressing lint on the next line because it's saying `aria-label`

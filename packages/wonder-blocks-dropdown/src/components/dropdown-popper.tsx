@@ -51,12 +51,12 @@ type Props = {
 /**
  * A wrapper for PopperJS that renders the children inside a portal.
  */
-const DropdownPopper: React.FC<Props> = function ({
+const DropdownPopper = function ({
     children,
     alignment = "left",
     onPopperElement,
     referenceElement,
-}): React.ReactElement {
+}: Props): React.ReactElement {
     // If we are in a modal, we find where we should be portalling the menu by
     // using the helper function from the modal package on the opener element.
     // If we are not in a modal, we use body as the location to portal to.

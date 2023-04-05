@@ -1,0 +1,98 @@
+import {useEffect, useState} from "react";
+import {Meta} from "@storybook/addon-docs";
+import {useLatestRef, View} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
+import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
+import Color from "@khanacademy/wonder-blocks-color";
+
+<Meta
+    title="Core / Exports / useLatestRef()"
+    parameters={{
+        chromatic: {
+            disableSnapshot: true,
+        },
+    }}
+/>
+
+# useLatestRef()
+
+```ts
+function useLatestRef<T>(value: T): React.RefObject<T>;
+```
+
+The `useLatestRef` hook returns a ref that always contains the `value` passed
+to the hook during the most recent render.
+
+It can be used to wrap a possibly-changing prop in a stable value that can
+be passed to `useEffect`'s dependency array. This can be useful when you don't
+want the `useEffect` callback to be re-run when the prop changes, but do need
+to use the prop's value inside the `useEffect` callback.
+
+## Example
+
+```ts
+export function ComponentThatAlertsOnUnmount({message}) {
+    const messageRef = useLatestRef(message)
+    useEffect(() => {
+        return () => alert(messageRef.current)
+    }, [messageRef])
+    return <p>Message: {message}</p>
+}
+```
+
+export function ComponentThatAlertsOnUnmount({message}) {
+    const messageRef = useLatestRef(message)
+    useEffect(() => {
+        return () => alert(messageRef.current)
+    }, [messageRef])
+    return <p>Message: {message}</p>
+}
+
+The component above will `alert()` a message when it unmounts. (If you want to
+imagine a more realistic example, pretend it's sending an analytics event!)
+The component always alerts the message it was rendering just before unmount,
+even if the message changes during the component's lifespan.
+
+Here it is in action, wrapped in controls that let you change the `message`
+prop and unmount/remount the component.
+
+<Example1 />
+
+export function Example1() {
+    const [message, setMessage] = useState("Hello, world!")
+    const [isMounted, setIsMounted] = useState(true)
+    const mount = () => setIsMounted(true)
+    const unmount = () => setIsMounted(false)
+    return <Context>
+        <LabeledTextField
+          label="Message"
+          description="An alert will pop up with this message when you click 'Unmount'. You can change the message while the component is mounted."
+          value={message}
+          onChange={setMessage} />
+        <Strut size={Spacing.medium_16}/>
+        <View style={{flexDirection: "row", gap: Spacing.xSmall_8}}>
+            {isMounted && <Button onClick={unmount}>Unmount</Button>}
+            {!isMounted && <Button onClick={mount}>Mount</Button>}
+        </View>
+        <Strut size={Spacing.medium_16}/>
+        <Context>
+            {isMounted && <ComponentThatAlertsOnUnmount message={message} />}
+        </Context>
+    </Context>
+}
+
+export function Context({children}) {
+    return <View
+        style={{
+            borderRadius: 5,
+            border: "1px solid #ccc",
+            boxShadow: "inset 1px 1px 6px #0001",
+            padding: Spacing.medium_16,
+            background: Color.offWhite,
+        }}
+    >
+        {children}
+    </View>
+}

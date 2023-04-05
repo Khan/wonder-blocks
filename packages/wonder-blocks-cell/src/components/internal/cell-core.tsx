@@ -24,11 +24,11 @@ type LeftAccessoryProps = {
  * Left Accessories can be defined using WB components such as Icon, IconButton,
  * or it can even be used for a custom node/component if needed.
  */
-const LeftAccessory: React.FC<LeftAccessoryProps> = ({
+const LeftAccessory = ({
     leftAccessory,
     leftAccessoryStyle,
     disabled,
-}): React.ReactElement => {
+}: LeftAccessoryProps): React.ReactElement => {
     if (!leftAccessory) {
         // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
         return null;
@@ -61,12 +61,12 @@ type RightAccessoryProps = {
  * Right Accessories can be defined using WB components such as Icon,
  * IconButton, or it can even be used for a custom node/component if needed.
  */
-const RightAccessory: React.FC<RightAccessoryProps> = ({
+const RightAccessory = ({
     rightAccessory,
     rightAccessoryStyle,
     active,
     disabled,
-}): React.ReactElement => {
+}: RightAccessoryProps): React.ReactElement => {
     if (!rightAccessory) {
         // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
         return null;
@@ -112,7 +112,7 @@ type CellCoreProps = Partial<Omit<CellProps, "title">> & {
  * responsibility of this component is to render the contents that are passed in
  * (using the `children` prop).
  */
-const CellCore: React.FC<CellCoreProps> = (props): React.ReactElement => {
+const CellCore = (props: CellCoreProps): React.ReactElement => {
     const {
         active,
         children,
@@ -131,9 +131,7 @@ const CellCore: React.FC<CellCoreProps> = (props): React.ReactElement => {
         target,
     } = props;
 
-    const renderCell: React.FC<ClickableState> = (
-        eventState?,
-    ): React.ReactElement => {
+    const renderCell = (eventState?: ClickableState): React.ReactElement => {
         const horizontalRuleStyles = getHorizontalRuleStyles(horizontalRule);
 
         return (
@@ -209,7 +207,6 @@ const CellCore: React.FC<CellCoreProps> = (props): React.ReactElement => {
     }
 
     // No click event attached, so just render the cell as-is.
-    // @ts-expect-error [FEI-5019] - TS2322 - Type 'ReactElement<any, any> | null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'. | TS2554 - Expected 1-2 arguments, but got 0.
     return renderCell();
 };
 

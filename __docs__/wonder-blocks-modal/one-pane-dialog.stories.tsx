@@ -394,8 +394,8 @@ export const FlexibleModal: StoryComponentType = () => {
         total: number;
     };
 
-    const ExerciseModal: React.FC<ExerciseModalProps> = function (
-        props,
+    const ExerciseModal = function (
+        props: ExerciseModalProps,
     ): React.ReactElement {
         const {current, handleNextButton, handlePrevButton, question, total} =
             props;
@@ -432,8 +432,8 @@ export const FlexibleModal: StoryComponentType = () => {
         questions: Array<string>;
     };
 
-    const ExerciseContainer: React.FC<ExerciseContainerProps> = function (
-        props,
+    const ExerciseContainer = function (
+        props: ExerciseContainerProps,
     ): React.ReactElement {
         const [currentQuestion, setCurrentQuestion] = React.useState(0);
 
@@ -497,9 +497,7 @@ export const WithLauncher: StoryComponentType = () => {
         closeModal: () => void;
     };
 
-    const MyModal: React.FC<MyModalProps> = ({
-        closeModal,
-    }): React.ReactElement => (
+    const MyModal = ({closeModal}: MyModalProps): React.ReactElement => (
         <OnePaneDialog
             title="Single-line title"
             content={

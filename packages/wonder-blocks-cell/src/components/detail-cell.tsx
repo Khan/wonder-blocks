@@ -20,10 +20,7 @@ type SubtitleProps = {
     disabled?: boolean;
 };
 
-const Subtitle: React.FC<SubtitleProps> = ({
-    subtitle,
-    disabled,
-}): React.ReactElement => {
+const Subtitle = ({subtitle, disabled}: SubtitleProps): React.ReactElement => {
     if (!subtitle) {
         // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'ReactElement<any, string | JSXElementConstructor<any>>'.
         return null;
@@ -76,9 +73,7 @@ type DetailCellProps = CellProps & {
  * />
  * ```
  */
-const DetailCell: React.FC<DetailCellProps> = function (
-    props,
-): React.ReactElement {
+const DetailCell = function (props: DetailCellProps): React.ReactElement {
     const {title, subtitle1, subtitle2, ...coreProps} = props;
 
     return (
