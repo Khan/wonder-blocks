@@ -155,9 +155,10 @@ const sharedStyles = StyleSheet.create({
         cursor: "pointer",
         textDecoration: "none",
         outline: "none",
-        display: "inline-block",
+        display: "inline-flex",
         verticalAlign: "bottom",
         textUnderlineOffset: "3px",
+        alignItems: "center",
     },
 });
 
