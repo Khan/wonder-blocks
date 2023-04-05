@@ -29,7 +29,6 @@ const StyledInput = addStyle("input");
             ...sharedProps
         } = this.props;
 
-        // @ts-expect-error [WB-1460] - TS2345 - Argument of type 'string | boolean' is not assignable to parameter of type 'boolean'. Type 'string' is not assignable to type 'boolean'.
         const stateStyles = _generateStyles(checked, error);
         const defaultStyle = [
             sharedStyles.inputReset,
@@ -114,7 +113,10 @@ const colors = {
     },
 } as const;
 const styles: Record<string, any> = {};
-const _generateStyles = (checked: boolean, error: boolean) => {
+const _generateStyles = (
+    checked: boolean | null | undefined,
+    error: boolean,
+) => {
     // "hash" the parameters
     const styleKey = `${String(checked)}-${String(error)}`;
     if (styles[styleKey]) {

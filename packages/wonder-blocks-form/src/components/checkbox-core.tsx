@@ -8,8 +8,12 @@ import Icon from "@khanacademy/wonder-blocks-icon";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import type {ChoiceCoreProps} from "../util/types";
 
-type Checked = boolean | null | undefined;
+// Checkbox is in indeterminate state when `checked` is `null` | `undefined`
+export type Checked = boolean | null | undefined;
 
+// `ariaChecked` and `mapCheckedToAriaChecked()` are used to convert the
+// `checked` prop value to a value that a screen reader can understand via the
+// `aria-checked` attribute
 type AriaChecked = "true" | "false" | "mixed";
 
 function mapCheckedToAriaChecked(value: Checked): AriaChecked {
@@ -39,6 +43,20 @@ const indeterminatePath: IconAsset = {
  * The internal stateless ☑️ Checkbox
  */
 export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
+    componentDidMount(): void {
+        if (this.props.checked == null && this.inputRef.current != null) {
+            this.inputRef.current.indeterminate = true;
+        }
+    }
+
+    componentDidUpdate(prevProps: Readonly<ChoiceCoreProps>): void {
+        if (this.inputRef.current != null) {
+            this.inputRef.current.indeterminate = this.props.checked == null;
+        }
+    }
+
+    inputRef: React.RefObject<HTMLInputElement> = React.createRef();
+
     handleChange: () => void = () => {
         // Empty because change is handled by ClickableBehavior
         return;
@@ -79,17 +97,12 @@ export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
 
         const ariaChecked = mapCheckedToAriaChecked(checked);
 
-        // TODO (nicolemejia) - We're not using `.indeterminate` on
-        // `StyledInput` because `addStyle()` doesn't support ref forwarding. We
-        // should consider adding it in the future to round out the component to
-        // align with input checkbox indeterminate property. Read more here:
-        // https://www.w3schools.com/jsref/prop_checkbox_indeterminate.asp
         return (
             <React.Fragment>
                 <StyledInput
                     {...sharedProps}
+                    ref={this.inputRef}
                     type="checkbox"
-                    role="checkbox"
                     aria-checked={ariaChecked}
                     aria-invalid={error}
                     checked={checked ?? undefined}
