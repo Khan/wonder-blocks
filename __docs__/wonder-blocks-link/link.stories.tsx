@@ -225,8 +225,8 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                startIcon={icons.caretLeft}
-                endIcon={icons.caretRight}
+                startIcon={icons.delete}
+                endIcon={icons.check}
                 style={styles.standaloneLinkWrapper}
             >
                 This link has a start icon and an end icon
@@ -240,6 +240,22 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 This external link has an end icon that is overrides the default
                 external icon
             </Link>
+            <Body>
+                This is an inline{" "}
+                <Link href="#" inline={true} startIcon={icons.caretLeft}>
+                    link with a start icon
+                </Link>{" "}
+                and an inline{" "}
+                <Link
+                    href="#"
+                    inline={true}
+                    target="_blank"
+                    endIcon={icons.caretRight}
+                >
+                    link with an end icon
+                </Link>
+                .
+            </Body>
         </View>
         {/* Light */}
         <View
@@ -266,8 +282,8 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                startIcon={icons.caretLeft}
-                endIcon={icons.caretRight}
+                startIcon={icons.delete}
+                endIcon={icons.check}
                 light={true}
                 style={styles.standaloneLinkWrapper}
             >
@@ -283,6 +299,28 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 This external link has an end icon that is overrides the default
                 external icon
             </Link>
+            <Body style={{color: Color.white}}>
+                This is an inline{" "}
+                <Link
+                    href="#"
+                    startIcon={icons.caretLeft}
+                    inline={true}
+                    light={true}
+                >
+                    link with a start icon
+                </Link>{" "}
+                and an inline{" "}
+                <Link
+                    href="#"
+                    endIcon={icons.caretRight}
+                    inline={true}
+                    light={true}
+                    target="_blank"
+                >
+                    link with an end icon
+                </Link>
+                .
+            </Body>
         </View>
     </View>
 );
