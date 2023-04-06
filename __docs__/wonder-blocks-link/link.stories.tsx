@@ -225,20 +225,29 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                startIcon={icons.delete}
-                endIcon={icons.check}
-                style={styles.standaloneLinkWrapper}
-            >
-                This link has a start icon and an end icon
-            </Link>
-            <Link
-                href="#"
                 endIcon={icons.info}
                 target="_blank"
                 style={styles.standaloneLinkWrapper}
             >
                 This external link has an end icon that is overrides the default
                 external icon
+            </Link>
+            <Link
+                href="#"
+                startIcon={icons.caretLeft}
+                endIcon={icons.caretRight}
+                kind="secondary"
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has a start icon and an end icon
+            </Link>
+            <Link
+                href="#"
+                startIcon={icons.caretLeft}
+                endIcon={icons.caretRight}
+                style={styles.multiLine}
+            >
+                This is a multi-line link with start and end icons
             </Link>
             <Body>
                 This is an inline{" "}
@@ -282,15 +291,6 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                startIcon={icons.delete}
-                endIcon={icons.check}
-                light={true}
-                style={styles.standaloneLinkWrapper}
-            >
-                This link has a start icon and an end icon
-            </Link>
-            <Link
-                href="#"
                 endIcon={icons.info}
                 target="_blank"
                 light={true}
@@ -298,6 +298,24 @@ export const StartAndEndIcons: StoryComponentType = () => (
             >
                 This external link has an end icon that is overrides the default
                 external icon
+            </Link>
+            <Link
+                href="#"
+                startIcon={icons.caretLeft}
+                endIcon={icons.caretRight}
+                light={true}
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has a start icon and an end icon
+            </Link>
+            <Link
+                href="#"
+                startIcon={icons.caretLeft}
+                endIcon={icons.caretRight}
+                light={true}
+                style={styles.multiLine}
+            >
+                This is a multi-line link with start and end icons
             </Link>
             <Body style={{color: Color.white}}>
                 This is an inline{" "}
@@ -799,5 +817,10 @@ const styles = StyleSheet.create({
     rightToLeft: {
         width: "100%",
         direction: "rtl",
+    },
+    multiLine: {
+        display: "inline-block",
+        marginBottom: Spacing.xSmall_8,
+        maxWidth: "15%",
     },
 });
