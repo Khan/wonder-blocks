@@ -4,8 +4,7 @@ import {StyleSheet} from "aphrodite";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
-import type {ChoiceCoreProps} from "../util/types";
-import type {Checked} from "./checkbox-core";
+import type {ChoiceCoreProps, Checked} from "../util/types";
 
 const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 

@@ -6,12 +6,9 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Icon from "@khanacademy/wonder-blocks-icon";
 
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
-import type {ChoiceCoreProps} from "../util/types";
+import type {ChoiceCoreProps, Checked} from "../util/types";
 
-// Checkbox is in indeterminate state when `checked` is `null` | `undefined`
-export type Checked = boolean | null | undefined;
-
-// `ariaChecked` and `mapCheckedToAriaChecked()` are used to convert the
+// `AriaChecked` and `mapCheckedToAriaChecked()` are used to convert the
 // `checked` prop value to a value that a screen reader can understand via the
 // `aria-checked` attribute
 type AriaChecked = "true" | "false" | "mixed";

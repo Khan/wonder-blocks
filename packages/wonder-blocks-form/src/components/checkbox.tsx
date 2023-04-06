@@ -1,7 +1,8 @@
 import * as React from "react";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
-import type {Checked} from "./checkbox-core";
+import type {Checked} from "../util/types";
+
 import ChoiceInternal from "./choice-internal";
 
 // Keep synced with ChoiceComponentProps in ../util/types.js
