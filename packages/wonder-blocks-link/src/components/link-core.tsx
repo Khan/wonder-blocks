@@ -87,15 +87,13 @@ export default class LinkCore extends React.Component<Props> {
             />
         );
 
-        const startIconChild = startIcon ? (
+        const startIconChild = startIcon && (
             <Icon
                 icon={startIcon}
                 size="small"
                 style={iconStyles.startIcon}
                 testId="start-icon"
             />
-        ) : (
-            <></>
         );
 
         const endIconChild = endIcon ? (
