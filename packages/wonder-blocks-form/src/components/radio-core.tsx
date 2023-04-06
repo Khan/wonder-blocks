@@ -5,6 +5,7 @@ import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
 import type {ChoiceCoreProps} from "../util/types";
+import type {Checked} from "./checkbox-core";
 
 const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 
@@ -113,10 +114,7 @@ const colors = {
     },
 } as const;
 const styles: Record<string, any> = {};
-const _generateStyles = (
-    checked: boolean | null | undefined,
-    error: boolean,
-) => {
+const _generateStyles = (checked: Checked, error: boolean) => {
     // "hash" the parameters
     const styleKey = `${String(checked)}-${String(error)}`;
     if (styles[styleKey]) {
