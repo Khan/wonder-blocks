@@ -18,9 +18,10 @@ exports[`Link <Link tabIndex={-1}> 1`] = `
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -59,9 +60,10 @@ exports[`Link <Link tabIndex={0}> 1`] = `
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -100,9 +102,10 @@ exports[`Link <Link tabIndex={1}> 1`] = `
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -141,10 +144,11 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 1`] = 
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -183,10 +187,11 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 2`] = 
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -225,9 +230,10 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 1`] = 
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -266,9 +272,10 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 2`] = 
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -307,9 +314,10 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 1`] = 
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -348,9 +356,10 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 2`] = 
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -392,10 +401,11 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 1`] = `
       ":visited": {
         "color": "#8755ee",
       },
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -437,10 +447,11 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 2`] = `
       ":visited": {
         "color": "#8755ee",
       },
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -482,9 +493,10 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 1`] = `
       ":visited": {
         "color": "#8755ee",
       },
+      "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -526,9 +538,10 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 2`] = `
       ":visited": {
         "color": "#8755ee",
       },
+      "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -570,9 +583,10 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 1`] = `
       ":visited": {
         "color": "#6645b0",
       },
+      "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -614,9 +628,10 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 2`] = `
       ":visited": {
         "color": "#6645b0",
       },
+      "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -655,10 +670,11 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 1`] = `
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -697,10 +713,11 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 2`] = `
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -739,9 +756,10 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 1`] = `
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -780,9 +798,10 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 2`] = `
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -821,9 +840,10 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 1`] = `
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -862,9 +882,10 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 2`] = `
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -906,10 +927,11 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 1`] = `
       ":visited": {
         "color": "#fa50ae",
       },
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -951,10 +973,11 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 2`] = `
       ":visited": {
         "color": "#fa50ae",
       },
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -996,9 +1019,10 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 1`] = `
       ":visited": {
         "color": "#fa50ae",
       },
+      "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1040,9 +1064,10 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 2`] = `
       ":visited": {
         "color": "#fa50ae",
       },
+      "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1084,9 +1109,10 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 1`] = `
       ":visited": {
         "color": "#fc88c8",
       },
+      "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1128,9 +1154,10 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 2`] = `
       ":visited": {
         "color": "#fc88c8",
       },
+      "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1169,10 +1196,11 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -1211,10 +1239,11 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -1253,9 +1282,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1294,9 +1324,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1335,9 +1366,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1376,9 +1408,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1420,10 +1453,11 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       ":visited": {
         "color": "#8755ee",
       },
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -1465,10 +1499,11 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       ":visited": {
         "color": "#8755ee",
       },
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -1510,9 +1545,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       ":visited": {
         "color": "#8755ee",
       },
+      "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1554,9 +1590,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       ":visited": {
         "color": "#8755ee",
       },
+      "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1598,9 +1635,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       ":visited": {
         "color": "#6645b0",
       },
+      "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1642,9 +1680,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       ":visited": {
         "color": "#6645b0",
       },
+      "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1683,10 +1722,11 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -1725,10 +1765,11 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -1767,9 +1808,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1808,9 +1850,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1849,9 +1892,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1890,9 +1934,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -1934,10 +1979,11 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       ":visited": {
         "color": "#fa50ae",
       },
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -1979,10 +2025,11 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       ":visited": {
         "color": "#fa50ae",
       },
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #ffffff",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -2024,9 +2071,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       ":visited": {
         "color": "#fa50ae",
       },
+      "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -2068,9 +2116,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       ":visited": {
         "color": "#fa50ae",
       },
+      "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -2112,9 +2161,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       ":visited": {
         "color": "#fc88c8",
       },
+      "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -2156,9 +2206,10 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       ":visited": {
         "color": "#fc88c8",
       },
+      "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -2197,10 +2248,11 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 1`] 
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#21242c",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -2239,10 +2291,11 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 2`] 
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -2281,9 +2334,10 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 1`] 
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#21242c",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -2322,9 +2376,10 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 2`] 
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -2363,9 +2418,10 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 1`] 
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -2404,9 +2460,10 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 2`] 
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#21242c",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -2445,10 +2502,11 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "#21242c",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -2487,10 +2545,11 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "borderRadius": 3,
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "1px solid #1865f2",
       "textDecoration": "none",
       "textUnderlineOffset": "3px",
@@ -2529,9 +2588,10 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#21242c",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -2570,9 +2630,10 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -2611,9 +2672,10 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
@@ -2652,9 +2714,10 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   onTouchStart={[Function]}
   style={
     {
+      "alignItems": "center",
       "color": "#21242c",
       "cursor": "pointer",
-      "display": "inline-block",
+      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
       "textUnderlineOffset": "3px",
