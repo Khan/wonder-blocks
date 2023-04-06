@@ -9,7 +9,6 @@ exports[`CheckboxCore type:default checked:false 1`] = `
   disabled={false}
   onChange={[Function]}
   onClick={[Function]}
-  role="checkbox"
   style={
     {
       ":active": {
@@ -48,6 +47,69 @@ exports[`CheckboxCore type:default checked:false 1`] = `
 />
 `;
 
+exports[`CheckboxCore type:default checked:null 1`] = `
+[
+  <input
+    aria-checked="mixed"
+    aria-invalid={false}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    onClick={[Function]}
+    style={
+      {
+        ":active": {
+          "background": "#1b50b3",
+          "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1b50b3",
+        },
+        ":focusVisible": {
+          "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
+        },
+        ":hover": {
+          "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #1865f2",
+        },
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#1865f2",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "minHeight": 16,
+        "minWidth": 16,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />,
+  <svg
+    className=""
+    height={16}
+    style={
+      {
+        "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
+      fill="#ffffff"
+    />
+  </svg>,
+]
+`;
+
 exports[`CheckboxCore type:default checked:true 1`] = `
 [
   <input
@@ -58,7 +120,6 @@ exports[`CheckboxCore type:default checked:true 1`] = `
     disabled={false}
     onChange={[Function]}
     onClick={[Function]}
-    role="checkbox"
     style={
       {
         ":active": {
@@ -122,7 +183,6 @@ exports[`CheckboxCore type:disabled checked:false 1`] = `
   disabled={true}
   onChange={[Function]}
   onClick={[Function]}
-  role="checkbox"
   style={
     {
       "MozAppearance": "none",
@@ -147,6 +207,61 @@ exports[`CheckboxCore type:disabled checked:false 1`] = `
 />
 `;
 
+exports[`CheckboxCore type:disabled checked:null 1`] = `
+[
+  <input
+    aria-checked="mixed"
+    aria-invalid={false}
+    className=""
+    disabled={true}
+    onChange={[Function]}
+    onClick={[Function]}
+    style={
+      {
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#f7f8fa",
+        "borderColor": "rgba(33,36,44,0.16)",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 1,
+        "boxSizing": "border-box",
+        "cursor": "auto",
+        "height": 16,
+        "margin": 0,
+        "minHeight": 16,
+        "minWidth": 16,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />,
+  <svg
+    className=""
+    height={16}
+    style={
+      {
+        "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
+      fill="rgba(33,36,44,0.32)"
+    />
+  </svg>,
+]
+`;
+
 exports[`CheckboxCore type:disabled checked:true 1`] = `
 [
   <input
@@ -157,7 +272,6 @@ exports[`CheckboxCore type:disabled checked:true 1`] = `
     disabled={true}
     onChange={[Function]}
     onClick={[Function]}
-    role="checkbox"
     style={
       {
         "MozAppearance": "none",
@@ -213,7 +327,6 @@ exports[`CheckboxCore type:error checked:false 1`] = `
   disabled={false}
   onChange={[Function]}
   onClick={[Function]}
-  role="checkbox"
   style={
     {
       ":active": {
@@ -252,6 +365,69 @@ exports[`CheckboxCore type:error checked:false 1`] = `
 />
 `;
 
+exports[`CheckboxCore type:error checked:null 1`] = `
+[
+  <input
+    aria-checked="mixed"
+    aria-invalid={true}
+    className=""
+    disabled={false}
+    onChange={[Function]}
+    onClick={[Function]}
+    style={
+      {
+        ":active": {
+          "background": "#9e271d",
+          "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #9e271d",
+        },
+        ":focusVisible": {
+          "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
+        },
+        ":hover": {
+          "boxShadow": "0 0 0 1px #ffffff, 0 0 0 3px #d92916",
+        },
+        "MozAppearance": "none",
+        "WebkitAppearance": "none",
+        "appearance": "none",
+        "backgroundColor": "#d92916",
+        "borderRadius": 3,
+        "borderStyle": "solid",
+        "borderWidth": 0,
+        "boxSizing": "border-box",
+        "height": 16,
+        "margin": 0,
+        "minHeight": 16,
+        "minWidth": 16,
+        "outline": "none",
+        "width": 16,
+      }
+    }
+    type="checkbox"
+  />,
+  <svg
+    className=""
+    height={16}
+    style={
+      {
+        "display": "inline-block",
+        "flexGrow": 0,
+        "flexShrink": 0,
+        "pointerEvents": "none",
+        "position": "absolute",
+        "verticalAlign": "text-bottom",
+      }
+    }
+    viewBox="0 0 16 16"
+    width={16}
+  >
+    <path
+      d="M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z"
+      fill="#ffffff"
+    />
+  </svg>,
+]
+`;
+
 exports[`CheckboxCore type:error checked:true 1`] = `
 [
   <input
@@ -262,7 +438,6 @@ exports[`CheckboxCore type:error checked:true 1`] = `
     disabled={false}
     onChange={[Function]}
     onClick={[Function]}
-    role="checkbox"
     style={
       {
         ":active": {
@@ -321,6 +496,51 @@ exports[`RadioCore type:default checked:false 1`] = `
 <input
   aria-invalid={false}
   checked={false}
+  className=""
+  disabled={false}
+  onChange={[Function]}
+  onClick={[Function]}
+  style={
+    {
+      ":active": {
+        "backgroundColor": "#dae6fd",
+        "borderColor": "#1865f2",
+        "borderWidth": 2,
+      },
+      ":focusVisible": {
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1865f2",
+        "borderWidth": 2,
+      },
+      ":hover": {
+        "backgroundColor": "#ffffff",
+        "borderColor": "#1865f2",
+        "borderWidth": 2,
+      },
+      "MozAppearance": "none",
+      "WebkitAppearance": "none",
+      "appearance": "none",
+      "backgroundColor": "#ffffff",
+      "borderColor": "rgba(33,36,44,0.50)",
+      "borderRadius": "50%",
+      "borderStyle": "solid",
+      "borderWidth": 1,
+      "boxSizing": "border-box",
+      "height": 16,
+      "margin": 0,
+      "minHeight": 16,
+      "minWidth": 16,
+      "outline": "none",
+      "width": 16,
+    }
+  }
+  type="radio"
+/>
+`;
+
+exports[`RadioCore type:default checked:null 1`] = `
+<input
+  aria-invalid={false}
   className=""
   disabled={false}
   onChange={[Function]}
@@ -436,6 +656,37 @@ exports[`RadioCore type:disabled checked:false 1`] = `
 />
 `;
 
+exports[`RadioCore type:disabled checked:null 1`] = `
+<input
+  aria-invalid={false}
+  className=""
+  disabled={true}
+  onChange={[Function]}
+  onClick={[Function]}
+  style={
+    {
+      "MozAppearance": "none",
+      "WebkitAppearance": "none",
+      "appearance": "none",
+      "backgroundColor": "#f7f8fa",
+      "borderColor": "rgba(33,36,44,0.16)",
+      "borderRadius": "50%",
+      "borderStyle": "solid",
+      "borderWidth": 1,
+      "boxSizing": "border-box",
+      "cursor": "auto",
+      "height": 16,
+      "margin": 0,
+      "minHeight": 16,
+      "minWidth": 16,
+      "outline": "none",
+      "width": 16,
+    }
+  }
+  type="radio"
+/>
+`;
+
 exports[`RadioCore type:disabled checked:true 1`] = `
 [
   <input
@@ -487,6 +738,51 @@ exports[`RadioCore type:error checked:false 1`] = `
 <input
   aria-invalid={true}
   checked={false}
+  className=""
+  disabled={false}
+  onChange={[Function]}
+  onClick={[Function]}
+  style={
+    {
+      ":active": {
+        "backgroundColor": "#fceeec",
+        "borderColor": "#9e271d",
+        "borderWidth": 2,
+      },
+      ":focusVisible": {
+        "backgroundColor": "#fceeec",
+        "borderColor": "#d92916",
+        "borderWidth": 2,
+      },
+      ":hover": {
+        "backgroundColor": "#fceeec",
+        "borderColor": "#d92916",
+        "borderWidth": 2,
+      },
+      "MozAppearance": "none",
+      "WebkitAppearance": "none",
+      "appearance": "none",
+      "backgroundColor": "#fceeec",
+      "borderColor": "#d92916",
+      "borderRadius": "50%",
+      "borderStyle": "solid",
+      "borderWidth": 1,
+      "boxSizing": "border-box",
+      "height": 16,
+      "margin": 0,
+      "minHeight": 16,
+      "minWidth": 16,
+      "outline": "none",
+      "width": 16,
+    }
+  }
+  type="radio"
+/>
+`;
+
+exports[`RadioCore type:error checked:null 1`] = `
+<input
+  aria-invalid={true}
   className=""
   disabled={false}
   onChange={[Function]}

@@ -5,7 +5,7 @@ import CheckboxCore from "../components/checkbox-core";
 import RadioCore from "../components/radio-core";
 
 const states = ["default", "error", "disabled"];
-const checkedStates = [false, true, null || undefined];
+const checkedStates = [false, true, null];
 
 describe("CheckboxCore", () => {
     states.forEach((state: any) => {
