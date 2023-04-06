@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-data
 
+## 11.0.9
+
+### Patch Changes
+
+-   a6164ed0: Don't use React.FC<> for functional components
+-   Updated dependencies [3c400719]
+-   Updated dependencies [a6164ed0]
+    -   @khanacademy/wonder-blocks-core@5.1.0
+
 ## 11.0.8
 
 ## 11.0.7

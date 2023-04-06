@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-breadcrumbs
 
+## 2.0.9
+
+### Patch Changes
+
+-   Updated dependencies [3c400719]
+-   Updated dependencies [a6164ed0]
+    -   @khanacademy/wonder-blocks-core@5.1.0
+
 ## 2.0.8
 
 ## 2.0.7
