@@ -93,6 +93,7 @@ export default class LinkCore extends React.Component<Props> {
                 size="small"
                 style={iconStyles.startIcon}
                 testId="start-icon"
+                aria-hidden="true"
             />
         );
 
@@ -102,6 +103,7 @@ export default class LinkCore extends React.Component<Props> {
                 size="small"
                 style={iconStyles.endIcon}
                 testId="end-icon"
+                aria-hidden="true"
             />
         ) : (
             target === "_blank" && externalIcon
