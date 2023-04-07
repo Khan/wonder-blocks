@@ -6,10 +6,13 @@ import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 
 import Choice from "../components/choice";
 
+// Checkbox is in indeterminate state when `checked` is `null` | `undefined`
+export type Checked = boolean | null | undefined;
+
 // Shared props for radio-core and checkbox-core
 export type ChoiceCoreProps = AriaProps & {
     /** Whether this component is checked */
-    checked: boolean;
+    checked: Checked;
     /** Whether this component is disabled */
     disabled: boolean;
     /** Whether this component should show an error state */

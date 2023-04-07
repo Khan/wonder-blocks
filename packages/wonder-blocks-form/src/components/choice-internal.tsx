@@ -12,7 +12,7 @@ import RadioCore from "./radio-core";
 
 type Props = AriaProps & {
     /** Whether this choice is checked. */
-    checked: boolean;
+    checked: boolean | null | undefined;
     /** Whether this choice option is disabled. */
     disabled: boolean;
     /** Whether this choice is in error mode. */
@@ -49,7 +49,6 @@ type Props = AriaProps & {
 };
 
 type DefaultProps = {
-    checked: Props["checked"];
     disabled: Props["disabled"];
     error: Props["error"];
 };
@@ -63,7 +62,6 @@ type DefaultProps = {
  * (because for Choice, that prop would be auto-populated by CheckboxGroup).
  */ export default class ChoiceInternal extends React.Component<Props> {
     static defaultProps: DefaultProps = {
-        checked: false,
         disabled: false,
         error: false,
     };
