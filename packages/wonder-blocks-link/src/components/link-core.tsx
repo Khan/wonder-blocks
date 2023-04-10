@@ -124,7 +124,6 @@ const sharedStyles = StyleSheet.create({
         cursor: "pointer",
         textDecoration: "none",
         outline: "none",
-        display: "inline-flex",
         alignItems: "center",
     },
 });
