@@ -87,33 +87,29 @@ export default class LinkCore extends React.Component<Props> {
             />
         );
 
-        const startIconChild = startIcon && (
-            <Icon
-                icon={startIcon}
-                size="small"
-                style={iconStyles.startIcon}
-                testId="start-icon"
-                aria-hidden="true"
-            />
-        );
-
-        const endIconChild = endIcon ? (
-            <Icon
-                icon={endIcon}
-                size="small"
-                style={iconStyles.endIcon}
-                testId="end-icon"
-                aria-hidden="true"
-            />
-        ) : (
-            target === "_blank" && externalIcon
-        );
-
         const linkContent = (
             <>
-                {startIconChild}
+                {startIcon && (
+                    <Icon
+                        icon={startIcon}
+                        size="small"
+                        style={iconStyles.startIcon}
+                        testId="start-icon"
+                        aria-hidden="true"
+                    />
+                )}
                 <span style={{verticalAlign: "middle"}}>{children}</span>
-                {endIconChild}
+                {endIcon ? (
+                    <Icon
+                        icon={endIcon}
+                        size="small"
+                        style={iconStyles.endIcon}
+                        testId="end-icon"
+                        aria-hidden="true"
+                    />
+                ) : (
+                    target === "_blank" && externalIcon
+                )}
             </>
         );
 
@@ -155,7 +151,7 @@ const sharedStyles = StyleSheet.create({
         cursor: "pointer",
         textDecoration: "none",
         outline: "none",
-        display: "inline-flex",
+        // display: "inline-flex",
         verticalAlign: "bottom",
         textUnderlineOffset: "3px",
         alignItems: "center",
