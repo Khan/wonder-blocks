@@ -1,4 +1,5 @@
 import type {InputType} from "@storybook/csf";
+import {icons} from "@khanacademy/wonder-blocks-icon";
 
 export default {
     children: {
@@ -7,6 +8,19 @@ export default {
             "Text to appear on the link. It can be a plain text or Typography element.",
         table: {type: {summary: "string | React.Element<Typography>"}},
         type: {name: "string", required: true},
+    },
+
+    endIcon: {
+        control: {type: "select", labels: {null: "none"}},
+        description: `Icon to appear after the link label. If
+        \`target="_blank"\` and an \`endIcon\` is passed in, \`endIcon\` will
+        override the default \`externalIcon\`.`,
+        options: [null, ...Object.keys(icons)],
+        mapping: icons,
+        table: {
+            category: "Icons",
+            type: {summary: "IconAsset"},
+        },
     },
 
     href: {
@@ -95,6 +109,17 @@ export default {
         description: "Test ID used for e2e testing.",
         table: {
             type: {summary: "string"},
+        },
+    },
+
+    startIcon: {
+        control: {type: "select", labels: {null: "none"}},
+        description: "Icon to appear before the link label.",
+        options: [null, ...Object.keys(icons)],
+        mapping: icons,
+        table: {
+            category: "Icons",
+            type: {summary: "IconAsset"},
         },
     },
 

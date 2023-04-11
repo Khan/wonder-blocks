@@ -4,6 +4,7 @@ import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import Color from "@khanacademy/wonder-blocks-color";
+import {icons} from "@khanacademy/wonder-blocks-icon";
 
 import Link from "../link";
 
@@ -344,7 +345,7 @@ describe("Link", () => {
 
             // Act
             userEvent.tab();
-            const link = screen.getByText("Click me!");
+            const link = screen.getByRole("link");
 
             // Assert
             expect(link).toHaveFocus();
@@ -361,7 +362,7 @@ describe("Link", () => {
 
             // Act
             userEvent.tab();
-            const link = screen.getByText("Click me!");
+            const link = screen.getByRole("link");
 
             // Assert
             expect(link).toHaveFocus();
@@ -378,7 +379,7 @@ describe("Link", () => {
 
             // Act
             userEvent.tab();
-            const link = screen.getByText("Click me!");
+            const link = screen.getByRole("link");
 
             // Assert
             expect(link).toHaveFocus();
@@ -395,7 +396,7 @@ describe("Link", () => {
 
             // Act
             userEvent.tab();
-            const link = screen.getByText("Click me!");
+            const link = screen.getByRole("link");
 
             // Assert
             expect(link).toHaveFocus();
@@ -412,7 +413,7 @@ describe("Link", () => {
 
             // Act
             userEvent.tab();
-            const link = screen.getByText("Click me!");
+            const link = screen.getByRole("link");
 
             // Assert
             expect(link).toHaveFocus();
@@ -429,7 +430,7 @@ describe("Link", () => {
 
             // Act
             userEvent.tab();
-            const link = screen.getByText("Click me!");
+            const link = screen.getByRole("link");
 
             // Assert
             expect(link).toHaveFocus();
@@ -447,7 +448,7 @@ describe("Link", () => {
             );
 
             // Act
-            const link = screen.getByText("Click me!");
+            const link = screen.getByRole("link");
 
             // Assert
             expect(link).toHaveAttribute("target", "_blank");
@@ -462,7 +463,7 @@ describe("Link", () => {
             );
 
             // Act
-            const link = screen.getByText("Click me!");
+            const link = screen.getByRole("link");
             const icon = screen.getByTestId("external-icon");
 
             // Assert
@@ -479,6 +480,134 @@ describe("Link", () => {
 
             // Assert
             expect(icon).not.toBeInTheDocument();
+        });
+    });
+
+    describe("start and end icons", () => {
+        test("render icon with link when startIcon prop is passed in", () => {
+            // Arrange
+            render(
+                <Link href="/" startIcon={icons.add}>
+                    Add new item
+                </Link>,
+            );
+
+            // Act
+            const link = screen.getByRole("link");
+            const icon = screen.getByTestId("start-icon");
+
+            // Assert
+            expect(link.innerHTML).toEqual(expect.stringContaining("<svg"));
+            expect(icon).toBeInTheDocument();
+        });
+
+        test("does not render icon when startIcon prop is not passed in", () => {
+            // Arrange
+            render(<Link href="/">Click me!</Link>);
+
+            // Act
+            const icon = screen.queryByTestId("start-icon");
+
+            // Assert
+            expect(icon).not.toBeInTheDocument();
+        });
+
+        test("startIcon prop passed down correctly", () => {
+            // Arrange
+            render(
+                <Link href="/" startIcon={icons.add}>
+                    Add new item
+                </Link>,
+            );
+
+            // Act
+            const icon = screen.getByTestId("start-icon");
+            const iconToExpect =
+                "M11 11V7a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4zm1 13C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z";
+
+            // Assert
+            expect(icon.innerHTML).toEqual(
+                expect.stringContaining(iconToExpect),
+            );
+        });
+
+        test("render icon with link when endIcon prop is passed in", () => {
+            // Arrange
+            render(
+                <Link href="/" endIcon={icons.caretRight}>
+                    Click to go back
+                </Link>,
+            );
+
+            // Act
+            const link = screen.getByRole("link");
+            const icon = screen.getByTestId("end-icon");
+
+            // Assert
+            expect(link.innerHTML).toEqual(expect.stringContaining("<svg"));
+            expect(icon).toBeInTheDocument();
+        });
+
+        test("does not render icon when endIcon prop is not passed in", () => {
+            // Arrange
+            render(<Link href="/">Click me!</Link>);
+
+            // Act
+            const icon = screen.queryByTestId("end-icon");
+
+            // Assert
+            expect(icon).not.toBeInTheDocument();
+        });
+
+        test("does not render externalIcon when endIcon is passed in and `target='_blank'`", () => {
+            // Arrange
+            render(
+                <Link href="/" endIcon={icons.caretRight} target="_blank">
+                    Open a new tab
+                </Link>,
+            );
+
+            // Act
+            const externalIcon = screen.queryByTestId("external-icon");
+
+            // Assert
+            expect(externalIcon).not.toBeInTheDocument();
+        });
+
+        test("render endIcon instead of default externalIcon when `target='_blank'`", () => {
+            // Arrange
+            render(
+                <Link href="/" endIcon={icons.caretRight} target="_blank">
+                    Open a new tab
+                </Link>,
+            );
+
+            // Act
+            const link = screen.getByRole("link");
+            const endIcon = screen.getByTestId("end-icon");
+
+            // Assert
+            expect(link.innerHTML).toEqual(expect.stringContaining("<svg"));
+            expect(endIcon).toBeInTheDocument();
+        });
+
+        test("endIcon prop passed down correctly", () => {
+            // Arrange
+            render(
+                <Link href="/" endIcon={icons.caretRight}>
+                    Click to go back
+                </Link>,
+            );
+
+            // Act
+            const icon = screen.getByTestId("end-icon");
+            const iconToExpect =
+                "M8.586 8L5.293 4.707a1 1 0 0 1 1.414-1.414l4 4a1 1 0 0 1 0 1.414l-4 4a1 1 0 0 1-1.414-1.414L8.586 8z";
+
+            // Assert
+            expect(icon.innerHTML).toEqual(
+                expect.stringContaining(iconToExpect),
+            );
         });
     });
 });
