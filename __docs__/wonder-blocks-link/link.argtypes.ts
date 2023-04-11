@@ -11,12 +11,14 @@ export default {
     },
 
     endIcon: {
-        control: {type: "select"},
+        control: {type: "select", labels: {null: "none"}},
         description: `Icon to appear after the link label. If
         \`target="_blank"\` and an \`endIcon\` is passed in, \`endIcon\` will
         override the default \`externalIcon\`.`,
-        options: icons,
+        options: [null, ...Object.keys(icons)],
+        mapping: icons,
         table: {
+            category: "Icons",
             type: {summary: "IconAsset"},
         },
     },
@@ -111,10 +113,12 @@ export default {
     },
 
     startIcon: {
-        control: {type: "select"},
+        control: {type: "select", labels: {null: "none"}},
         description: "Icon to appear before the link label.",
-        options: icons,
+        options: [null, ...Object.keys(icons)],
+        mapping: icons,
         table: {
+            category: "Icons",
             type: {summary: "IconAsset"},
         },
     },
