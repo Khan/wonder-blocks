@@ -22,6 +22,7 @@ import {name, version} from "../../packages/wonder-blocks-link/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import LinkArgTypes from "./link.argtypes";
+import {icons} from "@khanacademy/wonder-blocks-icon";
 
 export default {
     title: "Link",
@@ -229,9 +230,156 @@ export const OpensInANewTab: StoryComponentType = () => (
 
 OpensInANewTab.parameters = {
     docs: {
-        storyDescription: `When \`target="_blank"\`, the external icon is
-        automatically added to the end of the link. This indicates that the link
-        will open in a new tab.`,
+        storyDescription: `When \`target="_blank"\`, the external icon is automatically
+        added to the end of the link. This indicates that the link will open in a new
+        tab.`,
+    },
+};
+
+export const StartAndEndIcons: StoryComponentType = () => (
+    <View>
+        {/* Default (dark) */}
+        <View style={{padding: Spacing.large_24}}>
+            <Link
+                href="#"
+                startIcon={icons.add}
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has a start icon
+            </Link>
+            <Link
+                href="#"
+                endIcon={icons.search}
+                kind="secondary"
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has an end icon
+            </Link>
+            <Link
+                href="#"
+                endIcon={icons.info}
+                target="_blank"
+                style={styles.standaloneLinkWrapper}
+            >
+                This external link has an end icon that is overrides the default
+                external icon
+            </Link>
+            <Link
+                href="#"
+                startIcon={icons.caretLeft}
+                endIcon={icons.caretRight}
+                kind="secondary"
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has a start icon and an end icon
+            </Link>
+            <Link
+                href="#"
+                startIcon={icons.caretLeft}
+                endIcon={icons.caretRight}
+                style={styles.multiLine}
+            >
+                This is a multi-line link with start and end icons
+            </Link>
+            <Body>
+                This is an inline{" "}
+                <Link href="#" inline={true} startIcon={icons.caretLeft}>
+                    link with a start icon
+                </Link>{" "}
+                and an inline{" "}
+                <Link
+                    href="#"
+                    inline={true}
+                    target="_blank"
+                    endIcon={icons.caretRight}
+                >
+                    link with an end icon
+                </Link>
+                .
+            </Body>
+        </View>
+        {/* Light */}
+        <View
+            style={{
+                backgroundColor: Color.darkBlue,
+                padding: Spacing.large_24,
+            }}
+        >
+            <Link
+                href="#"
+                startIcon={icons.add}
+                light={true}
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has a start icon
+            </Link>
+            <Link
+                href="#"
+                endIcon={icons.search}
+                light={true}
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has an end icon
+            </Link>
+            <Link
+                href="#"
+                endIcon={icons.info}
+                target="_blank"
+                light={true}
+                style={styles.standaloneLinkWrapper}
+            >
+                This external link has an end icon that is overrides the default
+                external icon
+            </Link>
+            <Link
+                href="#"
+                startIcon={icons.caretLeft}
+                endIcon={icons.caretRight}
+                light={true}
+                style={styles.standaloneLinkWrapper}
+            >
+                This link has a start icon and an end icon
+            </Link>
+            <Link
+                href="#"
+                startIcon={icons.caretLeft}
+                endIcon={icons.caretRight}
+                light={true}
+                style={styles.multiLine}
+            >
+                This is a multi-line link with start and end icons
+            </Link>
+            <Body style={{color: Color.white}}>
+                This is an inline{" "}
+                <Link
+                    href="#"
+                    startIcon={icons.caretLeft}
+                    inline={true}
+                    light={true}
+                >
+                    link with a start icon
+                </Link>{" "}
+                and an inline{" "}
+                <Link
+                    href="#"
+                    endIcon={icons.caretRight}
+                    inline={true}
+                    light={true}
+                    target="_blank"
+                >
+                    link with an end icon
+                </Link>
+                .
+            </Body>
+        </View>
+    </View>
+);
+
+StartAndEndIcons.parameters = {
+    docs: {
+        storyDescription: `Link can take an optional \`startIcon\` and/or \`endIcon\`. If
+        \`target="_blank"\` and an \`endIcon\` prop is passed in, then \`endIcon\` will
+        override the default \`externalIcon\`.`,
     },
 };
 
@@ -356,9 +504,9 @@ export const InlineLight: StoryComponentType = () => (
         </Link>{" "}
         and an{" "}
         <Link href="#" inline={true} light={true} target="_blank">
-            external Primary link,
+            external Primary link
         </Link>
-        whereas this is an inline{" "}
+        , whereas this is an inline{" "}
         <Link href="#" visitable={true} inline={true} light={true}>
             Visitable link (Primary only)
         </Link>{" "}
@@ -370,9 +518,9 @@ export const InlineLight: StoryComponentType = () => (
             light={true}
             target="_blank"
         >
-            external Visitable link (Primary only).
+            external Visitable link (Primary only)
         </Link>
-        Secondary light links are not supported.
+        . Secondary light links are not supported.
     </Body>
 );
 
@@ -683,6 +831,36 @@ WithTitle.play = async ({canvasElement}) => {
     await expect(link).toHaveAttribute("title");
 };
 
+export const RightToLeftWithIcons: StoryComponentType = () => (
+    <View style={{padding: Spacing.medium_16}}>
+        <View style={styles.rightToLeft}>
+            <Link href="/" startIcon={icons.caretRight}>
+                هذا الرابط مكتوب باللغة العربية
+            </Link>
+            <Strut size={Spacing.medium_16} />
+            <Link href="/" endIcon={icons.caretLeft}>
+                هذا الرابط مكتوب باللغة العربية
+            </Link>
+            <Strut size={Spacing.medium_16} />
+            <Link
+                href="/"
+                startIcon={icons.caretRight}
+                endIcon={icons.caretLeft}
+            >
+                هذا الرابط مكتوب باللغة العربية
+            </Link>
+        </View>
+    </View>
+);
+
+RightToLeftWithIcons.parameters = {
+    docs: {
+        storyDescription: `When in the right-to-left direction, the \`startIcon\`
+        and \`endIcon\` are flipped. This example has text in Arabic, a
+        right-to-left language.`,
+    },
+};
+
 const styles = StyleSheet.create({
     darkBackground: {
         backgroundColor: Color.darkBlue,
@@ -710,5 +888,14 @@ const styles = StyleSheet.create({
         // container.
         display: "inline-block",
         marginBottom: Spacing.xSmall_8,
+    },
+    rightToLeft: {
+        width: "100%",
+        direction: "rtl",
+    },
+    multiLine: {
+        display: "inline-block",
+        marginBottom: Spacing.xSmall_8,
+        maxWidth: "15%",
     },
 });

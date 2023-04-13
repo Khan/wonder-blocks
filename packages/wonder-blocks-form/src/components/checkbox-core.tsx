@@ -6,21 +6,54 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Icon from "@khanacademy/wonder-blocks-icon";
 
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
+import type {ChoiceCoreProps, Checked} from "../util/types";
 
-import type {ChoiceCoreProps} from "../util/types";
+// `AriaChecked` and `mapCheckedToAriaChecked()` are used to convert the
+// `checked` prop value to a value that a screen reader can understand via the
+// `aria-checked` attribute
+type AriaChecked = "true" | "false" | "mixed";
+
+function mapCheckedToAriaChecked(value: Checked): AriaChecked {
+    switch (value) {
+        case true:
+            return "true";
+        case false:
+            return "false";
+        default:
+            return "mixed";
+    }
+}
 
 const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 
 const StyledInput = addStyle("input");
 
-const checkboxCheck: IconAsset = {
+const checkPath: IconAsset = {
     small: "M11.263 4.324a1 1 0 1 1 1.474 1.352l-5.5 6a1 1 0 0 1-1.505-.036l-2.5-3a1 1 0 1 1 1.536-1.28L6.536 9.48l4.727-5.157z",
+};
+
+const indeterminatePath: IconAsset = {
+    small: "M3 8C3 7.44772 3.44772 7 4 7H12C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9H4C3.44772 9 3 8.55228 3 8Z",
 };
 
 /**
  * The internal stateless ☑️ Checkbox
  */
 export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
+    componentDidMount(): void {
+        if (this.props.checked == null && this.inputRef.current != null) {
+            this.inputRef.current.indeterminate = true;
+        }
+    }
+
+    componentDidUpdate(prevProps: Readonly<ChoiceCoreProps>): void {
+        if (this.inputRef.current != null) {
+            this.inputRef.current.indeterminate = this.props.checked == null;
+        }
+    }
+
+    inputRef: React.RefObject<HTMLInputElement> = React.createRef();
+
     handleChange: () => void = () => {
         // Empty because change is handled by ClickableBehavior
         return;
@@ -50,13 +83,26 @@ export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
             "data-test-id": testId,
         } as const;
 
+        const checkboxIcon = (
+            <Icon
+                color={disabled ? offBlack32 : white}
+                icon={checked ? checkPath : indeterminatePath}
+                size="small"
+                style={sharedStyles.checkboxIcon}
+            />
+        );
+
+        const ariaChecked = mapCheckedToAriaChecked(checked);
+
         return (
             <React.Fragment>
                 <StyledInput
                     {...sharedProps}
+                    ref={this.inputRef}
                     type="checkbox"
+                    aria-checked={ariaChecked}
                     aria-invalid={error}
-                    checked={checked}
+                    checked={checked ?? undefined}
                     disabled={disabled}
                     id={id}
                     name={groupName}
@@ -66,14 +112,7 @@ export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
                     style={defaultStyle}
                     {...props}
                 />
-                {checked && (
-                    <Icon
-                        color={disabled ? offBlack32 : white}
-                        icon={checkboxCheck}
-                        size="small"
-                        style={sharedStyles.checkIcon}
-                    />
-                )}
+                {checked || checked == null ? checkboxIcon : <></>}
             </React.Fragment>
         );
     }
@@ -109,7 +148,7 @@ const sharedStyles = StyleSheet.create({
         borderWidth: 1,
     },
 
-    checkIcon: {
+    checkboxIcon: {
         position: "absolute",
         pointerEvents: "none",
     },
@@ -135,7 +174,7 @@ const colors = {
 
 const styles: Record<string, any> = {};
 
-const _generateStyles = (checked: boolean, error: boolean) => {
+const _generateStyles = (checked: Checked, error: boolean) => {
     // "hash" the parameters
     const styleKey = `${String(checked)}-${String(error)}`;
     if (styles[styleKey]) {
@@ -145,7 +184,7 @@ const _generateStyles = (checked: boolean, error: boolean) => {
     const palette = error ? colors.error : colors.default;
 
     let newStyles: Record<string, any> = {};
-    if (checked) {
+    if (checked || checked == null) {
         newStyles = {
             default: {
                 backgroundColor: palette.base,

@@ -26,7 +26,7 @@ type CheckProps = {
 /**
  * The check component used by OptionItem.
  */
-const Check: React.FC<CheckProps> = function (props): React.ReactElement {
+const Check = function (props: CheckProps): React.ReactElement {
     const {disabled, selected, pressed, hovered, focused} = props;
     return (
         <Icon

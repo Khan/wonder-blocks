@@ -4,7 +4,7 @@ import {StyleSheet} from "aphrodite";
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 
-import type {ChoiceCoreProps} from "../util/types";
+import type {ChoiceCoreProps, Checked} from "../util/types";
 
 const {blue, red, white, offWhite, offBlack16, offBlack32, offBlack50} = Color;
 
@@ -28,6 +28,7 @@ const StyledInput = addStyle("input");
             testId,
             ...sharedProps
         } = this.props;
+
         const stateStyles = _generateStyles(checked, error);
         const defaultStyle = [
             sharedStyles.inputReset,
@@ -44,7 +45,7 @@ const StyledInput = addStyle("input");
                     {...sharedProps}
                     type="radio"
                     aria-invalid={error}
-                    checked={checked}
+                    checked={checked ?? undefined}
                     disabled={disabled}
                     id={id}
                     name={groupName}
@@ -112,7 +113,7 @@ const colors = {
     },
 } as const;
 const styles: Record<string, any> = {};
-const _generateStyles = (checked: boolean, error: boolean) => {
+const _generateStyles = (checked: Checked, error: boolean) => {
     // "hash" the parameters
     const styleKey = `${String(checked)}-${String(error)}`;
     if (styles[styleKey]) {

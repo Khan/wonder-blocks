@@ -387,9 +387,7 @@ type Props = {
     opened?: boolean;
 };
 
-const VirtualizedMultiSelect: React.FC<Props> = function (
-    props,
-): React.ReactElement {
+const VirtualizedMultiSelect = function (props: Props): React.ReactElement {
     const [selectedValues, setSelectedValues] = React.useState([]);
     const [opened, setOpened] = React.useState(props.opened || false);
 

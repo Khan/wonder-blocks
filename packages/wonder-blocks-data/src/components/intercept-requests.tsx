@@ -43,8 +43,7 @@ type Props<TData extends ValidCacheData> = {
  * interceptor closest to the intercepted request is called first, and the
  * furthest interceptor is called last.
  */
-// TODO(FEI-5000): Update this support generic props correctly
-const InterceptRequests: React.FC<Props<any>> = <TData extends ValidCacheData>({
+const InterceptRequests = <TData extends ValidCacheData>({
     interceptor,
     children,
 }: Props<TData>): React.ReactElement => {

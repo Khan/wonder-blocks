@@ -1,9 +1,11 @@
 import * as React from "react";
-import {StyleSheet, css} from "aphrodite";
+import {StyleSheet} from "aphrodite";
 
 import Color, {mix, fade} from "@khanacademy/wonder-blocks-color";
+import {addStyle} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {styles as typographyStyles} from "@khanacademy/wonder-blocks-typography";
+
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 
 export type TextFieldType = "text" | "password" | "email" | "number" | "tel";
@@ -13,6 +15,8 @@ type WithForwardRef = {
 };
 
 const defaultErrorMessage = "This field is required.";
+
+const StyledInput = addStyle("input");
 
 type Props = AriaProps & {
     /**
@@ -233,12 +237,10 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             // Should only include Aria related props
             ...otherProps
         } = this.props;
+
         return (
-            <input
-                // @ts-expect-error: we shouldn't be passing `style` to `css()`
-                // here b/c `style` allows nested arrays of styles, but `css()`
-                // only allows a flat array.
-                className={css([
+            <StyledInput
+                style={[
                     styles.input,
                     typographyStyles.LabelMedium,
                     styles.default,
@@ -247,12 +249,15 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                         ? styles.disabled
                         : this.state.focused
                         ? [styles.focused, light && styles.defaultLight]
-                        : this.state.error && [
+                        : !!this.state.error && [
                               styles.error,
                               light && styles.errorLight,
                           ],
+                    // Cast `this.state.error` into boolean since it's being
+                    // used as a conditional
+                    !!this.state.error && styles.error,
                     style && style,
-                ])}
+                ]}
                 id={id}
                 type={type}
                 placeholder={placeholder}

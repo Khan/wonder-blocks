@@ -78,7 +78,7 @@ type Props = {
     displayColor: boolean;
 };
 
-export const Swatch: React.FC<Props> = ({
+export const Swatch = ({
     name,
     color,
     use,
@@ -86,7 +86,7 @@ export const Swatch: React.FC<Props> = ({
     segments = 3,
     dark = false,
     displayColor = false,
-}): React.ReactElement => {
+}: Props): React.ReactElement => {
     const maybeRenderUseLabel = () => {
         if (!use) {
             return null;

@@ -344,8 +344,8 @@ describe("ActionMenu", () => {
             onToggle?: (opened: boolean) => unknown;
         };
 
-        const ControlledComponent: React.FC<Props> = function (
-            props,
+        const ControlledComponent = function (
+            props: Props,
         ): React.ReactElement {
             const [opened, setOpened] = React.useState(props.opened);
 

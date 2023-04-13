@@ -9,6 +9,7 @@ import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {name, version} from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
+import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
 
 export default {
     title: "Form / Checkbox",
@@ -49,6 +50,41 @@ Controlled.parameters = {
     docs: {
         storyDescription:
             "Use state to keep track of whether the checkbox is checked or not",
+    },
+};
+
+export const Indeterminate: StoryComponentType = () => {
+    return (
+        <View style={styles.row}>
+            <Checkbox
+                checked={null}
+                disabled={false}
+                error={false}
+                onChange={() => {}}
+            />
+            <Strut size={8} />
+            <Checkbox
+                checked={undefined}
+                disabled={true}
+                error={false}
+                onChange={() => {}}
+            />
+            <Strut size={8} />
+            <Checkbox
+                checked={null}
+                disabled={false}
+                error={true}
+                onChange={() => {}}
+            />
+        </View>
+    );
+};
+
+Indeterminate.parameters = {
+    docs: {
+        storyDescription: `The checkbox has a third state for when the checkbox
+        is neither \`checked\` (true) nor \`unchecked\` (false). Set the
+        \`checked\` prop to \`null\` or \`undefined\` to use the indeterminate checkbox.`,
     },
 };
 
@@ -192,6 +228,9 @@ AdditionalClickTarget.parameters = {
 const styles = StyleSheet.create({
     row: {
         flexDirection: "row",
+    },
+    marginLeft: {
+        marginLeft: 16,
     },
     marginRight: {
         marginRight: 16,

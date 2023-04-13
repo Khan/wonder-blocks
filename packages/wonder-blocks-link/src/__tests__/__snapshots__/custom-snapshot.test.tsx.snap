@@ -21,14 +21,23 @@ exports[`Link <Link tabIndex={-1}> 1`] = `
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={-1}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -53,14 +62,23 @@ exports[`Link <Link tabIndex={0}> 1`] = `
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -85,14 +103,23 @@ exports[`Link <Link tabIndex={1}> 1`] = `
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={1}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -122,14 +149,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 1`] = 
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -159,14 +195,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 2`] = 
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -191,14 +236,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 1`] = 
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -223,14 +277,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 2`] = 
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -255,14 +318,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 1`] = 
       "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -287,14 +359,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 2`] = 
       "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -330,14 +411,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 1`] = `
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -373,14 +463,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 2`] = `
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -408,14 +507,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 1`] = `
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -443,14 +551,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 2`] = `
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -478,14 +595,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 1`] = `
       "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -513,14 +639,23 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 2`] = `
       "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -550,14 +685,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 1`] = `
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -587,14 +731,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 2`] = `
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -619,14 +772,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 1`] = `
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -651,14 +813,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 2`] = `
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -683,14 +854,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 1`] = `
       "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -715,14 +895,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 2`] = `
       "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -758,14 +947,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 1`] = `
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -801,14 +999,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 2`] = `
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -836,14 +1043,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 1`] = `
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -871,14 +1087,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 2`] = `
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -906,14 +1131,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 1`] = `
       "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -941,14 +1175,23 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 2`] = `
       "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -978,14 +1221,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1015,14 +1267,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1047,14 +1308,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1079,14 +1349,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1111,14 +1390,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1143,14 +1431,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1186,14 +1483,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1229,14 +1535,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1264,14 +1579,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1299,14 +1623,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "alignItems": "center",
       "color": "#1865f2",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1334,14 +1667,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1369,14 +1711,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1406,14 +1757,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1443,14 +1803,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1475,14 +1844,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1507,14 +1885,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1539,14 +1926,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1571,14 +1967,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1614,14 +2019,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1657,14 +2071,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1692,14 +2115,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1727,14 +2159,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "alignItems": "center",
       "color": "#ffffff",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1762,14 +2203,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1797,14 +2247,23 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "alignItems": "center",
       "color": "#b5cefb",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1834,14 +2293,23 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 1`] 
       "alignItems": "center",
       "color": "#21242c",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1871,14 +2339,23 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 2`] 
       "alignItems": "center",
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1903,14 +2380,23 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 1`] 
       "alignItems": "center",
       "color": "#21242c",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1935,14 +2421,23 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 2`] 
       "alignItems": "center",
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1967,14 +2462,23 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 1`] 
       "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -1999,14 +2503,23 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 2`] 
       "alignItems": "center",
       "color": "#21242c",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -2036,14 +2549,23 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "alignItems": "center",
       "color": "#21242c",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -2073,14 +2595,23 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "alignItems": "center",
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "none",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -2105,14 +2636,23 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "alignItems": "center",
       "color": "#21242c",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -2137,14 +2677,23 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "alignItems": "center",
       "color": "rgba(33,36,44,0.64)",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -2169,14 +2718,23 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "alignItems": "center",
       "color": "#1b50b3",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;
 
@@ -2201,13 +2759,22 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "alignItems": "center",
       "color": "#21242c",
       "cursor": "pointer",
-      "display": "inline-flex",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
+      "textUnderlineOffset": "3px",
+      "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  Click me
+  <span
+    style={
+      {
+        "verticalAlign": "middle",
+      }
+    }
+  >
+    Click me
+  </span>
 </a>
 `;

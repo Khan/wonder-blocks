@@ -37,11 +37,11 @@ type DefaultProps = {
     tag: Props["tag"];
 };
 
-const StyledDiv = addStyle<"div">("div", styles.default);
-const StyledArticle = addStyle<"article">("article", styles.default);
-const StyledAside = addStyle<"aside">("aside", styles.default);
-const StyledNav = addStyle<"nav">("nav", styles.default);
-const StyledSection = addStyle<"section">("section", styles.default);
+const StyledDiv = addStyle("div", styles.default);
+const StyledArticle = addStyle("article", styles.default);
+const StyledAside = addStyle("aside", styles.default);
+const StyledNav = addStyle("nav", styles.default);
+const StyledSection = addStyle("section", styles.default);
 
 /**
  * View is a building block for constructing other components. `View` roughly

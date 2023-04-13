@@ -4,9 +4,9 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {withActionScheduler} from "@khanacademy/wonder-blocks-timing";
 import type {WithActionSchedulerProps} from "@khanacademy/wonder-blocks-timing";
 
-export const Unmounter: React.FC<{
+export const Unmounter = function (props: {
     children: React.ReactNode;
-}> = function (props): React.ReactElement {
+}): React.ReactElement {
     const [mountKids, setMountKids] = React.useState(true);
 
     const maybeRenderKids = () => {

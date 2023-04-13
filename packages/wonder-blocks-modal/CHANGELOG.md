@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-modal
 
+## 4.0.9
+
+### Patch Changes
+
+-   a6164ed0: Don't use React.FC<> for functional components
+-   Updated dependencies [3c400719]
+-   Updated dependencies [a6164ed0]
+    -   @khanacademy/wonder-blocks-core@5.1.0
+    -   @khanacademy/wonder-blocks-timing@3.0.3
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.0.9
+    -   @khanacademy/wonder-blocks-icon@2.0.9
+    -   @khanacademy/wonder-blocks-icon-button@4.0.9
+    -   @khanacademy/wonder-blocks-layout@2.0.9
+    -   @khanacademy/wonder-blocks-typography@2.0.9
+
 ## 4.0.8
 
 ### Patch Changes

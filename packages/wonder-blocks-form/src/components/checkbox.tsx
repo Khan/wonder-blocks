@@ -1,14 +1,16 @@
 import * as React from "react";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import type {Checked} from "../util/types";
+
 import ChoiceInternal from "./choice-internal";
 
 // Keep synced with ChoiceComponentProps in ../util/types.js
 type ChoiceComponentProps = AriaProps & {
     /**
-     * Whether this component is checked
+     * Whether this component is checked or indeterminate
      */
-    checked: boolean;
+    checked: Checked;
     /**
      * Whether this component is disabled
      */

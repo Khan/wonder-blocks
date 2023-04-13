@@ -29,8 +29,7 @@ type Props<TContext extends GqlContext> = {
  * These can be nested. Components and hooks relying on the GraphQL routing
  * will use the configuration from their closest ancestral GqlRouter.
  */
-// TODO(FEI-5000): Update this support generic props correctly
-export const GqlRouter: React.FC<Props<any>> = <TContext extends GqlContext>({
+export const GqlRouter = <TContext extends GqlContext>({
     defaultContext: thisDefaultContext,
     fetch: thisFetch,
     children,
