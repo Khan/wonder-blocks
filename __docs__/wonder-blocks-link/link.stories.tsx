@@ -386,7 +386,7 @@ StartAndEndIcons.parameters = {
 export const Inline: StoryComponentType = () => (
     <Body>
         This is an inline{" "}
-        <Link href="#" inline={true}>
+        <Link href="#" inline={true} testId="primary-link-inline">
             Primary link
         </Link>{" "}
         and an inline{" "}
@@ -394,7 +394,12 @@ export const Inline: StoryComponentType = () => (
             external Primary link
         </Link>
         , whereas this is an inline{" "}
-        <Link href="#" kind="secondary" inline={true}>
+        <Link
+            href="#"
+            kind="secondary"
+            inline={true}
+            testId="secondary-link-inline"
+        >
             Secondary link
         </Link>
         , and an inline{" "}
@@ -425,8 +430,8 @@ Inline.parameters = {
 Inline.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
-    const primaryLink = canvas.getByText("Primary link");
-    const secondaryLink = canvas.getByText("Secondary link");
+    const primaryLink = canvas.getByTestId("primary-link-inline");
+    const secondaryLink = canvas.getByTestId("secondary-link-inline");
 
     /* *** Primary link styles *** */
 
@@ -499,7 +504,7 @@ Inline.play = async ({canvasElement}) => {
 export const InlineLight: StoryComponentType = () => (
     <Body style={{color: Color.white}}>
         This is an inline{" "}
-        <Link href="#" inline={true} light={true}>
+        <Link href="#" inline={true} light={true} testId="link-inline-light">
             Primary link
         </Link>{" "}
         and an{" "}
@@ -540,7 +545,7 @@ InlineLight.parameters = {
 InlineLight.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
-    const primaryLink = canvas.getByText("Primary link");
+    const primaryLink = canvas.getByTestId("link-inline-light");
 
     // Resting style
     await expect(primaryLink).toHaveStyle(`color: ${Color.white}`);
