@@ -386,7 +386,7 @@ StartAndEndIcons.parameters = {
 export const Inline: StoryComponentType = () => (
     <Body>
         This is an inline{" "}
-        <Link href="#" inline={true} testId="primary-link-inline">
+        <Link href="#" inline={true}>
             Primary link
         </Link>{" "}
         and an inline{" "}
@@ -394,12 +394,7 @@ export const Inline: StoryComponentType = () => (
             external Primary link
         </Link>
         , whereas this is an inline{" "}
-        <Link
-            href="#"
-            kind="secondary"
-            inline={true}
-            testId="secondary-link-inline"
-        >
+        <Link href="#" kind="secondary" inline={true}>
             Secondary link
         </Link>
         , and an inline{" "}
@@ -502,7 +497,7 @@ Inline.play = async ({canvasElement}) => {
 export const InlineLight: StoryComponentType = () => (
     <Body style={{color: Color.white}}>
         This is an inline{" "}
-        <Link href="#" inline={true} light={true} testId="link-inline-light">
+        <Link href="#" inline={true} light={true}>
             Primary link
         </Link>{" "}
         and an{" "}
@@ -812,7 +807,7 @@ Navigation.parameters = {
 
 export const WithTitle: StoryComponentType = () => (
     <Body>
-        <Link href="#" title="I am a title 😎" testId="link-with-title">
+        <Link href="#" title="I am a title 😎">
             This link has a title.
         </Link>
     </Body>
