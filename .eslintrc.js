@@ -8,7 +8,15 @@ module.exports = {
         // practices
         "plugin:storybook/recommended",
     ],
-    plugins: ["import", "jest", "promise", "monorepo", "react-hooks", "@babel"],
+    plugins: [
+        "import",
+        "jest",
+        "jsdoc",
+        "promise",
+        "monorepo",
+        "react-hooks",
+        "@babel",
+    ],
     settings: {
         "import/resolver": {
             typescript: {
@@ -77,6 +85,9 @@ module.exports = {
             },
         ],
 
+        /**
+         * import rules
+         */
         "import/named": "off", // NOTE(kevinb): This rule is confused by third-party TypeScript lib defs
 
         "import/no-unresolved": "error",
@@ -109,24 +120,6 @@ module.exports = {
                 },
             },
         ],
-        "jest/no-focused-tests": "error",
-        "promise/always-return": "error",
-        "promise/no-return-wrap": "error",
-        "promise/param-names": "error",
-        "promise/catch-or-return": "error",
-        "promise/no-new-statics": "error",
-        "promise/no-return-in-finally": "error",
-        "react/jsx-handler-names": "error",
-        "react/no-children-prop": "error",
-        "react/no-direct-mutation-state": "error",
-        "react/no-typos": "error",
-        "react/no-string-refs": "error",
-        "react/no-this-in-sfc": "error",
-        "react/no-unescaped-entities": "error",
-        "react/no-deprecated": "error",
-        "react/react-in-jsx-scope": "error",
-        "react/require-render-return": "error",
-        "monorepo/no-internal-import": "error",
         // NOTE: This rule reports false positives for cross-module imports using
         // `@khanacademy/wonder-stuff-*`.  This is likely due to a bad interaction
         // with the settings we're using for `import/resolver`.
@@ -146,10 +139,55 @@ module.exports = {
                 ],
             },
         ],
-        // react-hooks
+
+        /**
+         * jest rules
+         */
+        "jest/no-focused-tests": "error",
+
+        /**
+         * jsdoc rules
+         */
+        "jsdoc/valid-types": "error",
+
+        /**
+         * monorepo rules
+         */
+        "monorepo/no-internal-import": "error",
+
+        /**
+         * promise rules
+         */
+        "promise/always-return": "error",
+        "promise/no-return-wrap": "error",
+        "promise/param-names": "error",
+        "promise/catch-or-return": "error",
+        "promise/no-new-statics": "error",
+        "promise/no-return-in-finally": "error",
+
+        /**
+         * react rules
+         */
+        "react/jsx-handler-names": "error",
+        "react/no-children-prop": "error",
+        "react/no-direct-mutation-state": "error",
+        "react/no-typos": "error",
+        "react/no-string-refs": "error",
+        "react/no-this-in-sfc": "error",
+        "react/no-unescaped-entities": "error",
+        "react/no-deprecated": "error",
+        "react/react-in-jsx-scope": "error",
+        "react/require-render-return": "error",
+
+        /**
+         * react-hooks rules
+         */
         "react-hooks/rules-of-hooks": "error",
         "react-hooks/exhaustive-deps": "error",
-        // testing-library
+
+        /**
+         * testing-library rules
+         */
         "testing-library/prefer-user-event": "error",
         // These rules results in a lot of false positives
         "testing-library/render-result-naming-convention": "off",

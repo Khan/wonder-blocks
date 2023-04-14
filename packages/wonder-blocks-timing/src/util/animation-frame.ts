@@ -16,13 +16,13 @@ import type {IAnimationFrame, SchedulePolicy, ClearPolicy} from "./types";
  */
 export default class AnimationFrame implements IAnimationFrame {
     _animationFrameId: number | null | undefined;
-    _action: (arg1: DOMHighResTimeStamp) => unknown;
+    _action: (time: DOMHighResTimeStamp) => unknown;
 
     /**
      * Creates an animation frame request that will invoke the given action.
      * The request is not made until set is called.
      *
-     * @param {DOMHighResTimeStamp => mixed} action The action to be invoked.
+     * @param {(time: DOMHighResTimeStamp) => mixed} action The action to be invoked.
      * @param {SchedulePolicy} [schedulePolicy] When SchedulePolicy.Immediately,
      * the interval is set immediately on instantiation; otherwise, `set` must be
      * called to set the interval.
@@ -30,7 +30,7 @@ export default class AnimationFrame implements IAnimationFrame {
      * @memberof AnimationFrame
      */
     constructor(
-        action: (arg1: DOMHighResTimeStamp) => unknown,
+        action: (time: DOMHighResTimeStamp) => unknown,
         schedulePolicy: SchedulePolicy = SchedulePolicies.Immediately,
     ) {
         if (typeof action !== "function") {

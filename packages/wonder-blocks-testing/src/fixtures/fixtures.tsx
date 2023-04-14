@@ -9,15 +9,9 @@ import type {FixtureFn, FixtureProps} from "./types";
  * Only one `fixtures` call should be used per fixture file as it returns
  * the exports for that file.
  *
- * @param {component: React.ComponentType<any>} options Options describing the
- * fixture group.
- * @param {FixtureFn<TProps> => void} fn A function that provides a `fixture`
- * function for defining fixtures.
- * @returns {(
- *    description: string,
- *    props: FixtureProps<TProps>,
- *    wrapper?: React.ComponentType<TProps>,
- * ) => mixed} A function to create a CSF compatible story.
+ * @param {React.ComponentType<any>} Component The component we want to create
+ * stories for.
+ * @returns {FixtureFn<TProps>} A function to create a CSF compatible story.
  */
 export const fixtures = <
     TComponent extends React.ComponentType<any>,

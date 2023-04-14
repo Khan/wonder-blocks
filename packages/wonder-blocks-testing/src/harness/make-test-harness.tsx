@@ -14,10 +14,7 @@ import type {TestHarnessAdapters, TestHarnessConfigs} from "./types";
  * test harness.
  * @param {Configs<TAdapters>} defaultConfigs Default configuration values for
  * the adapters.
- * @returns {<-TProps, +Instance = mixed>(
- *     Component: React.AbstractComponent<TProps, Instance>,
- *     configs?: $Shape<Configs<TAdapters>>,
- * ) => React.AbstractComponent<TProps, Instance>} A test harness.
+ * @returns A test harness.
  */
 export const makeTestHarness = <TAdapters extends TestHarnessAdapters>(
     adapters: TAdapters,

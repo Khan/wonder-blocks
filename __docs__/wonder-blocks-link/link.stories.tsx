@@ -430,10 +430,8 @@ Inline.parameters = {
 Inline.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
-    const primaryLink = canvas.getByTestId("primary-link-inline");
-    const secondaryLink = canvas.getByTestId("secondary-link-inline");
-
-    /* *** Primary link styles *** */
+    const primaryLink = canvas.getByRole("link", {name: "Primary link"});
+    const secondaryLink = canvas.getByRole("link", {name: "Secondary link"});
 
     // Resting style
     await expect(primaryLink).toHaveStyle(`color: ${Color.blue}`);
@@ -545,7 +543,7 @@ InlineLight.parameters = {
 InlineLight.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
-    const primaryLink = canvas.getByTestId("link-inline-light");
+    const primaryLink = canvas.getByRole("link", {name: "Primary link"});
 
     // Resting style
     await expect(primaryLink).toHaveStyle(`color: ${Color.white}`);
@@ -830,7 +828,7 @@ WithTitle.parameters = {
 WithTitle.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
-    const link = canvas.getByTestId("link-with-title");
+    const link = canvas.getByRole("link");
 
     // Confirm that the link has a title attribute
     await expect(link).toHaveAttribute("title");
