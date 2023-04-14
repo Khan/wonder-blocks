@@ -12,12 +12,9 @@ import type {TestHarnessAdapters, TestHarnessConfigs} from "./types";
  *
  * @param {TAdapters} adapters All the adapters to be supported by the returned
  * test harness.
- * @param {Configs<TAdapters>} defaultConfigs Default configuration values for
+ * @param {TestHarnessConfigs<TAdapters>} defaultConfigs Default configuration values for
  * the adapters.
- * @returns {<-TProps, +Instance = mixed>(
- *     Component: React.AbstractComponent<TProps, Instance>,
- *     configs?: $Shape<Configs<TAdapters>>,
- * ) => React.AbstractComponent<TProps, Instance>} A test harness.
+ * @returns A test harness.
  */
 export const makeTestHarness = <TAdapters extends TestHarnessAdapters>(
     adapters: TAdapters,
@@ -25,9 +22,7 @@ export const makeTestHarness = <TAdapters extends TestHarnessAdapters>(
 ): (<TProps extends object>(
     Component: React.ComponentType<TProps>,
     configs?: Partial<TestHarnessConfigs<TAdapters>>,
-) => React.ForwardRefExoticComponent<
-    React.PropsWithoutRef<TProps> & React.RefAttributes<unknown>
->) => {
+) => React.ComponentType<TProps>) => {
     /**
      * Create a harnessed version of the given component.
      *
@@ -39,20 +34,17 @@ export const makeTestHarness = <TAdapters extends TestHarnessAdapters>(
     return <TProps extends object>(
         Component: React.ComponentType<TProps>,
         configs?: Partial<TestHarnessConfigs<TAdapters>>,
-    ): React.ForwardRefExoticComponent<
-        React.PropsWithoutRef<TProps> & React.RefAttributes<unknown>
-    > => {
+    ): React.ComponentType<TProps> => {
         const fullConfig: TestHarnessConfigs<TAdapters> = {
             ...defaultConfigs,
             ...configs,
         };
-        const harnessedComponent = React.forwardRef((props: TProps, ref) =>
+        const harnessedComponent = (props: TProps) =>
             renderAdapters<TAdapters>(
                 adapters,
                 fullConfig,
-                <Component {...(props as TProps)} ref={ref} />,
-            ),
-        );
+                <Component {...(props as TProps)} />,
+            );
 
         // We add a name for the component here so that we can detect that
         // later and also see it in traces and what have you.
