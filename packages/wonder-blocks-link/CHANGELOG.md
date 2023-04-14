@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-link
 
+## 4.2.0
+
+### Minor Changes
+
+-   ef08a547: Adds start and end icon props to link
+
+### Patch Changes
+
+-   3686db61: Stop showing a focus outline on the first link when revisiting a tab
+
 ## 4.1.0
 
 ### Minor Changes

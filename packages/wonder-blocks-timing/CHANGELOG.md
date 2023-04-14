@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 4.0.0
+
+### Major Changes
+
+-   0c2607e6: Remove ref-forwarding from withActionScheduler
+
 ## 3.0.3
 
 ### Patch Changes
