@@ -18,15 +18,11 @@ type WithoutActionScheduler<T> = Omit<T, "schedule">;
 export default function withActionScheduler<
     Props extends WithActionSchedulerProps,
 >(WrappedComponent: React.ComponentType<Props>) {
-    return React.forwardRef((props: WithoutActionScheduler<Props>, ref) => (
+    return (props: WithoutActionScheduler<Props>) => (
         <ActionSchedulerProvider>
             {(schedule: IScheduleActions) => (
-                <WrappedComponent
-                    {...(props as Props)}
-                    ref={ref}
-                    schedule={schedule}
-                />
+                <WrappedComponent {...(props as Props)} schedule={schedule} />
             )}
         </ActionSchedulerProvider>
-    ));
+    );
 }
