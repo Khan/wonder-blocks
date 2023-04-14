@@ -12,7 +12,7 @@ import type {TestHarnessAdapters, TestHarnessConfigs} from "./types";
  *
  * @param {TAdapters} adapters All the adapters to be supported by the returned
  * test harness.
- * @param {TestHarnessConfigs<TAdapters>} defaultConfigs Default configuration values for
+ * @param {Configs<TAdapters>} defaultConfigs Default configuration values for
  * the adapters.
  * @returns A test harness.
  */
@@ -22,7 +22,9 @@ export const makeTestHarness = <TAdapters extends TestHarnessAdapters>(
 ): (<TProps extends object>(
     Component: React.ComponentType<TProps>,
     configs?: Partial<TestHarnessConfigs<TAdapters>>,
-) => React.ComponentType<TProps>) => {
+) => React.ForwardRefExoticComponent<
+    React.PropsWithoutRef<TProps> & React.RefAttributes<unknown>
+>) => {
     /**
      * Create a harnessed version of the given component.
      *
@@ -34,17 +36,20 @@ export const makeTestHarness = <TAdapters extends TestHarnessAdapters>(
     return <TProps extends object>(
         Component: React.ComponentType<TProps>,
         configs?: Partial<TestHarnessConfigs<TAdapters>>,
-    ): React.ComponentType<TProps> => {
+    ): React.ForwardRefExoticComponent<
+        React.PropsWithoutRef<TProps> & React.RefAttributes<unknown>
+    > => {
         const fullConfig: TestHarnessConfigs<TAdapters> = {
             ...defaultConfigs,
             ...configs,
         };
-        const harnessedComponent = (props: TProps) =>
+        const harnessedComponent = React.forwardRef((props: TProps, ref) =>
             renderAdapters<TAdapters>(
                 adapters,
                 fullConfig,
-                <Component {...(props as TProps)} />,
-            );
+                <Component {...(props as TProps)} ref={ref} />,
+            ),
+        );
 
         // We add a name for the component here so that we can detect that
         // later and also see it in traces and what have you.
