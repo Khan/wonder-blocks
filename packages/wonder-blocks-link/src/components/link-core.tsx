@@ -55,7 +55,7 @@ export default class LinkCore extends React.Component<Props> {
 
         const defaultStyles = [
             sharedStyles.shared,
-            !(hovered || focused || pressed) && restingStyles,
+            restingStyles,
             pressed && linkStyles.active,
             // A11y: The focus ring should always be present when the
             // the link has focus, even the link is being hovered over.
@@ -244,10 +244,14 @@ const _generateStyles = (
             ...defaultVisited,
         },
         focus: {
-            color: defaultTextColor,
-            outline: `1px solid ${light ? white : blue}`,
-            borderRadius: 3,
-            ...defaultVisited,
+            // Focus styles only show up with keyboard navigation.
+            // Mouse users don't see focus styles.
+            ":focus-visible": {
+                color: defaultTextColor,
+                outline: `1px solid ${light ? white : blue}`,
+                borderRadius: 3,
+                ...defaultVisited,
+            },
         },
         active: {
             color: activeColor,

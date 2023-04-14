@@ -61,8 +61,10 @@ Primary.play = async ({canvasElement}) => {
 
     const link = canvas.getByRole("link");
 
+    // Resting style
     await expect(link).toHaveStyle(`color: ${Color.blue}`);
 
+    // Hover style
     await userEvent.hover(link);
     // TODO(WB-1521): Expect the dashed 2px style.
     // await expect(link).toHaveStyle(
@@ -72,6 +74,14 @@ Primary.play = async ({canvasElement}) => {
         `text-decoration: underline ${Color.blue} solid`,
     );
 
+    // Focus style with keyboard navigation
+    await userEvent.tab();
+    const computedStyle = getComputedStyle(link, ":focus-visible");
+    // rgb(24, 101, 242) is the same as Color.blue. `toBe` doesn't seem to
+    // compare different color formats, so hex was converted to RGB.
+    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 1px");
+
+    // Mousedown style
     await fireEvent.mouseDown(link);
     await expect(link).toHaveStyle(
         `text-decoration: underline solid ${activeBlue}`,
@@ -96,8 +106,10 @@ Secondary.play = async ({canvasElement}) => {
 
     const link = canvas.getByRole("link");
 
+    // Resting style
     await expect(link).toHaveStyle(`color: ${Color.offBlack64}`);
 
+    // Hover style
     await userEvent.hover(link);
     // TODO(WB-1521): Expect the dashed 2px style.
     // await expect(link).toHaveStyle(
@@ -107,6 +119,14 @@ Secondary.play = async ({canvasElement}) => {
         `text-decoration: underline ${Color.offBlack64} solid`,
     );
 
+    // Focus style with keyboard navigation
+    await userEvent.tab();
+    const computedStyle = getComputedStyle(link, ":focus-visible");
+    // rgb(24, 101, 242) is the same as Color.blue. `toBe` doesn't seem to
+    // compare different color formats, so hex was converted to RGB.
+    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 1px");
+
+    // Mousedown style
     await fireEvent.mouseDown(link);
     await expect(link).toHaveStyle(
         `text-decoration: underline solid ${Color.offBlack}`,
@@ -150,6 +170,10 @@ LightPrimary.play = async ({canvasElement}) => {
 
     const link = canvas.getByRole("link");
 
+    // Resting style
+    await expect(link).toHaveStyle(`color: ${Color.white}`);
+
+    // Hover style
     await userEvent.hover(link);
     // TODO(WB-1521): Expect the dashed 2px style.
     // await expect(link).toHaveStyle(
@@ -159,6 +183,14 @@ LightPrimary.play = async ({canvasElement}) => {
         `text-decoration: underline ${Color.white} solid`,
     );
 
+    // Focus style with keyboard navigation
+    await userEvent.tab();
+    const computedStyle = getComputedStyle(link, ":focus-visible");
+    // rgb(255, 255, 255) is the same as Color.white. `toBe` doesn't seem to
+    // compare different color formats, so hex was converted to RGB.
+    await expect(computedStyle.outline).toBe("rgb(255, 255, 255) solid 1px");
+
+    // Mousedown style
     await fireEvent.mouseDown(link);
     await expect(link).toHaveStyle(
         `text-decoration: underline solid ${fadedBlue}`,
@@ -396,9 +428,10 @@ Inline.play = async ({canvasElement}) => {
     const primaryLink = canvas.getByRole("link", {name: "Primary link"});
     const secondaryLink = canvas.getByRole("link", {name: "Secondary link"});
 
-    // Primary link styles
+    // Resting style
     await expect(primaryLink).toHaveStyle(`color: ${Color.blue}`);
 
+    // Hover style
     await userEvent.hover(primaryLink);
     // TODO(WB-1521): Expect the dashed 2px style.
     // await expect(primaryLink).toHaveStyle(
@@ -408,14 +441,30 @@ Inline.play = async ({canvasElement}) => {
         `text-decoration: underline ${Color.blue} solid`,
     );
 
+    // Focus style with keyboard navigation
+    await userEvent.tab();
+    const primaryComputedStyle = getComputedStyle(
+        primaryLink,
+        ":focus-visible",
+    );
+    // rgb(24, 101, 242) is the same as Color.blue. `toBe` doesn't seem to
+    // compare different color formats, so hex was converted to RGB.
+    await expect(primaryComputedStyle.outline).toBe(
+        "rgb(24, 101, 242) solid 1px",
+    );
+
+    // Mousedown style
     await fireEvent.mouseDown(primaryLink);
     await expect(primaryLink).toHaveStyle(
         `text-decoration: underline solid ${activeBlue}`,
     );
 
-    // Secondary link styles
+    /* *** Secondary link styles***  */
+
+    // Resting style
     await expect(secondaryLink).toHaveStyle(`color: ${Color.offBlack}`);
 
+    // Hover style
     await userEvent.hover(secondaryLink);
     // TODO(WB-1521): Expect the dashed 2px style.
     // await expect(secondaryLink).toHaveStyle(
@@ -425,6 +474,20 @@ Inline.play = async ({canvasElement}) => {
         `text-decoration: underline ${Color.offBlack} solid`,
     );
 
+    // Focus style with keyboard navigation
+    await userEvent.tab();
+    await userEvent.tab();
+    const secondaryComputedStyle = getComputedStyle(
+        secondaryLink,
+        ":focus-visible",
+    );
+    // rgb(24, 101, 242) is the same as Color.blue. `toBe` doesn't seem to
+    // compare different color formats, so hex was converted to RGB.
+    await expect(secondaryComputedStyle.outline).toBe(
+        "rgb(24, 101, 242) solid 1px",
+    );
+
+    // Mousedown style
     await fireEvent.mouseDown(secondaryLink);
     await expect(secondaryLink).toHaveStyle(
         `text-decoration: underline solid ${activeBlue}`,
@@ -477,8 +540,10 @@ InlineLight.play = async ({canvasElement}) => {
 
     const primaryLink = canvas.getByRole("link", {name: "Primary link"});
 
+    // Resting style
     await expect(primaryLink).toHaveStyle(`color: ${Color.white}`);
 
+    // Hover style
     await userEvent.hover(primaryLink);
     // TODO(WB-1521): Expect the dashed 2px style.
     // await expect(primaryLink).toHaveStyle(
@@ -488,6 +553,14 @@ InlineLight.play = async ({canvasElement}) => {
         `text-decoration: underline ${Color.white} solid`,
     );
 
+    // Focus style with keyboard navigation
+    await userEvent.tab();
+    const computedStyle = getComputedStyle(primaryLink, ":focus-visible");
+    // rgb(255, 255, 255) is the same as Color.white. `toBe` doesn't seem to
+    // compare different color formats, so hex was converted to RGB.
+    await expect(computedStyle.outline).toBe("rgb(255, 255, 255) solid 1px");
+
+    // Mousedown style
     await fireEvent.mouseDown(primaryLink);
     await expect(primaryLink).toHaveStyle(
         `text-decoration: underline solid ${fadedBlue}`,
