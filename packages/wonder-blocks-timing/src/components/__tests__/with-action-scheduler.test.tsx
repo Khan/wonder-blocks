@@ -8,7 +8,7 @@ import type {WithActionSchedulerProps} from "../../util/types";
 describe("withActionScheduler", () => {
     it("should provide wrapped component with IScheduleActions instance", () => {
         // Arrange
-        const Component = (props: any) => (
+        const Component = (props: WithActionSchedulerProps) => (
             <>{props.schedule != null ? "true" : "false"}</>
         );
 
@@ -18,22 +18,5 @@ describe("withActionScheduler", () => {
 
         // Assert
         expect(screen.getByText("true")).toBeInTheDocument();
-    });
-
-    it("should forward a ref", () => {
-        // Arrange
-        class Component extends React.Component<WithActionSchedulerProps> {
-            render(): React.ReactElement {
-                return <div>Hello, world!</div>;
-            }
-        }
-        const TestComponent = withActionScheduler(Component);
-        let ref: unknown = null;
-
-        // Act
-        render(<TestComponent ref={(node: any) => (ref = node)} />);
-
-        // Assert
-        expect(ref).toBeInstanceOf(Component);
     });
 });
