@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.1.0
+
+### Minor Changes
+
+-   ffe3758d: Add indeterminate state to checkbox
+
 ## 4.0.9
 
 ### Patch Changes

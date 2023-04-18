@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-dropdown",
-  "version": "3.0.9",
+  "version": "3.0.10",
   "design": "v1",
   "description": "Dropdown variants for Wonder Blocks.",
   "main": "dist/index.js",
@@ -21,10 +21,10 @@
     "@khanacademy/wonder-blocks-core": "^5.1.0",
     "@khanacademy/wonder-blocks-icon": "^2.0.9",
     "@khanacademy/wonder-blocks-layout": "^2.0.9",
-    "@khanacademy/wonder-blocks-modal": "^4.0.9",
-    "@khanacademy/wonder-blocks-search-field": "^2.0.9",
+    "@khanacademy/wonder-blocks-modal": "^4.0.10",
+    "@khanacademy/wonder-blocks-search-field": "^2.0.10",
     "@khanacademy/wonder-blocks-spacing": "^4.0.1",
-    "@khanacademy/wonder-blocks-timing": "^3.0.3",
+    "@khanacademy/wonder-blocks-timing": "^4.0.0",
     "@khanacademy/wonder-blocks-typography": "^2.0.9"
   },
   "peerDependencies": {
