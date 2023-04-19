@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-link
 
+## 4.2.1
+
+### Patch Changes
+
+-   6a026e35: Fix link style
+
 ## 4.2.0
 
 ### Minor Changes
