@@ -94,17 +94,25 @@ export default class LinkCore extends React.Component<Props> {
                     <Icon
                         icon={startIcon}
                         size="small"
-                        style={[linkContentStyles.startIcon, linkContentStyles.centered]}
+                        style={[
+                            linkContentStyles.startIcon,
+                            linkContentStyles.centered,
+                        ]}
                         testId="start-icon"
                         aria-hidden="true"
                     />
                 )}
-                <StyledSpan style={linkContentStyles.centered}>{children}</StyledSpan>
+                <StyledSpan style={linkContentStyles.centered}>
+                    {children}
+                </StyledSpan>
                 {endIcon ? (
                     <Icon
                         icon={endIcon}
                         size="small"
-                        style={[linkContentStyles.endIcon, linkContentStyles.centered]}
+                        style={[
+                            linkContentStyles.endIcon,
+                            linkContentStyles.centered,
+                        ]}
                         testId="end-icon"
                         aria-hidden="true"
                     />
@@ -145,7 +153,7 @@ const linkContentStyles = StyleSheet.create({
     },
     centered: {
         verticalAlign: "middle",
-    }
+    },
 });
 
 const sharedStyles = StyleSheet.create({
