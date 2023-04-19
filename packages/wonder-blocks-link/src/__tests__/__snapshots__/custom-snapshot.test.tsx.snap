@@ -30,6 +30,7 @@ exports[`Link <Link tabIndex={-1}> 1`] = `
   tabIndex={-1}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -71,6 +72,7 @@ exports[`Link <Link tabIndex={0}> 1`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -112,6 +114,7 @@ exports[`Link <Link tabIndex={1}> 1`] = `
   tabIndex={1}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -158,6 +161,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 1`] = 
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -204,6 +208,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 2`] = 
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -245,6 +250,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 1`] = 
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -286,6 +292,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 2`] = 
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -327,6 +334,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 1`] = 
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -368,6 +376,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 2`] = 
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -420,6 +429,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 1`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -472,6 +482,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 2`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -516,6 +527,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 1`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -560,6 +572,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 2`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -604,6 +617,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 1`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -648,6 +662,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 2`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -694,6 +709,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 1`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -740,6 +756,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 2`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -781,6 +798,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 1`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -822,6 +840,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 2`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -863,6 +882,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 1`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -904,6 +924,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 2`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -956,6 +977,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 1`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1008,6 +1030,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 2`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1052,6 +1075,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 1`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1096,6 +1120,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 2`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1140,6 +1165,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 1`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1184,6 +1210,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 2`] = `
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1230,6 +1257,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1276,6 +1304,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1317,6 +1346,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1358,6 +1388,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1399,6 +1430,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1440,6 +1472,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1492,6 +1525,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1544,6 +1578,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1588,6 +1623,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1632,6 +1668,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1676,6 +1713,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1720,6 +1758,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1766,6 +1805,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1812,6 +1852,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1853,6 +1894,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1894,6 +1936,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1935,6 +1978,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -1976,6 +2020,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2028,6 +2073,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2080,6 +2126,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2124,6 +2171,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2168,6 +2216,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2212,6 +2261,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2256,6 +2306,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2302,6 +2353,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 1`] 
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2348,6 +2400,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 2`] 
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2389,6 +2442,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 1`] 
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2430,6 +2484,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 2`] 
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2471,6 +2526,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 1`] 
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2512,6 +2568,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 2`] 
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2558,6 +2615,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2604,6 +2662,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2645,6 +2704,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2686,6 +2746,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2727,6 +2788,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
@@ -2768,6 +2830,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
   tabIndex={0}
 >
   <span
+    className=""
     style={
       {
         "verticalAlign": "middle",
