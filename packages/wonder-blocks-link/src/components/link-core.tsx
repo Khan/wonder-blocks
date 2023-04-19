@@ -25,6 +25,7 @@ type Props = SharedProps &
 
 const StyledAnchor = addStyle("a");
 const StyledLink = addStyle(Link);
+const StyledSpan = addStyle("span");
 
 export default class LinkCore extends React.Component<Props> {
     renderInner(router: any): React.ReactNode {
@@ -82,7 +83,7 @@ export default class LinkCore extends React.Component<Props> {
             <Icon
                 icon={externalIconPath}
                 size="small"
-                style={iconStyles.endIcon}
+                style={[linkContentStyles.endIcon, linkContentStyles.centered]}
                 testId="external-icon"
             />
         );
@@ -93,17 +94,25 @@ export default class LinkCore extends React.Component<Props> {
                     <Icon
                         icon={startIcon}
                         size="small"
-                        style={iconStyles.startIcon}
+                        style={[
+                            linkContentStyles.startIcon,
+                            linkContentStyles.centered,
+                        ]}
                         testId="start-icon"
                         aria-hidden="true"
                     />
                 )}
-                <span style={{verticalAlign: "middle"}}>{children}</span>
+                <StyledSpan style={linkContentStyles.centered}>
+                    {children}
+                </StyledSpan>
                 {endIcon ? (
                     <Icon
                         icon={endIcon}
                         size="small"
-                        style={iconStyles.endIcon}
+                        style={[
+                            linkContentStyles.endIcon,
+                            linkContentStyles.centered,
+                        ]}
                         testId="end-icon"
                         aria-hidden="true"
                     />
@@ -135,13 +144,14 @@ export default class LinkCore extends React.Component<Props> {
 
 const styles: Record<string, any> = {};
 
-const iconStyles = StyleSheet.create({
+const linkContentStyles = StyleSheet.create({
     startIcon: {
         marginInlineEnd: Spacing.xxxSmall_4,
-        verticalAlign: "middle",
     },
     endIcon: {
         marginInlineStart: Spacing.xxxSmall_4,
+    },
+    centered: {
         verticalAlign: "middle",
     },
 });
