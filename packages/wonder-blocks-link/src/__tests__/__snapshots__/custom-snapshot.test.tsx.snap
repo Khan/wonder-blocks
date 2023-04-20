@@ -23,22 +23,12 @@ exports[`Link <Link tabIndex={-1}> 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={-1}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -65,22 +55,12 @@ exports[`Link <Link tabIndex={0}> 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -107,22 +87,12 @@ exports[`Link <Link tabIndex={1}> 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={1}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -154,22 +124,13 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 1`] = 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -201,22 +162,12 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 2`] = 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -243,22 +194,13 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 1`] = 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -285,22 +227,12 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 2`] = 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -327,22 +259,13 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 1`] = 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -369,22 +292,12 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 2`] = 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -422,22 +335,13 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -475,22 +379,12 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 2`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -520,22 +414,13 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -565,22 +450,12 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 2`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -610,22 +485,13 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -655,22 +521,12 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 2`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -702,22 +558,13 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -749,22 +596,12 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 2`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -791,22 +628,13 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -833,22 +661,12 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 2`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -875,22 +693,13 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -917,22 +726,12 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 2`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -970,22 +769,13 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1023,22 +813,12 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 2`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1068,22 +848,13 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1113,22 +884,12 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 2`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1158,22 +919,13 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1203,22 +955,12 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 2`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1250,22 +992,13 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1297,22 +1030,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1339,22 +1062,13 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1381,22 +1095,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1423,22 +1127,13 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1465,22 +1160,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1518,22 +1203,13 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1571,22 +1247,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1616,22 +1282,13 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1661,22 +1318,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1706,22 +1353,13 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1751,22 +1389,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1798,22 +1426,13 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1845,22 +1464,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1887,22 +1496,13 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1929,22 +1529,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -1971,22 +1561,13 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2013,22 +1594,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2066,22 +1637,13 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2119,22 +1681,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2164,22 +1716,13 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2209,22 +1752,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2254,22 +1787,13 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2299,22 +1823,12 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2346,22 +1860,13 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 1`] 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2393,22 +1898,12 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 2`] 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2435,22 +1930,13 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 1`] 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2477,22 +1963,12 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 2`] 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2519,22 +1995,13 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 1`] 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2561,22 +2028,12 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 2`] 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2608,22 +2065,13 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2655,22 +2103,12 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "none",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2697,22 +2135,13 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2739,22 +2168,12 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2781,22 +2200,13 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;
 
@@ -2823,21 +2233,11 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": "3px",
       "verticalAlign": "bottom",
     }
   }
   tabIndex={0}
 >
-  <span
-    className=""
-    style={
-      {
-        "verticalAlign": "middle",
-      }
-    }
-  >
-    Click me
-  </span>
+  Click me
 </a>
 `;

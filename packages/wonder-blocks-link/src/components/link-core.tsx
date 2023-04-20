@@ -49,6 +49,11 @@ export default class LinkCore extends React.Component<Props> {
             ...restProps
         } = this.props;
 
+        // If icon props are present, link `children` will render inside a
+        // `StyledSpan` element to vertically align text with icons and add
+        // `textUnderlineOffset`
+        const withIcon = startIcon || endIcon || target === "_blank";
+
         const linkStyles = _generateStyles(inline, kind, light, visitable);
         const restingStyles = inline
             ? linkStyles.restingInline
@@ -65,6 +70,7 @@ export default class LinkCore extends React.Component<Props> {
             // focused link even after hovering and un-hovering on it.
             !pressed && hovered && linkStyles.hover,
             !pressed && focused && linkStyles.focus,
+            withIcon && sharedStyles.withIcon,
         ];
 
         const commonProps = {
@@ -102,9 +108,13 @@ export default class LinkCore extends React.Component<Props> {
                         aria-hidden="true"
                     />
                 )}
-                <StyledSpan style={linkContentStyles.centered}>
-                    {children}
-                </StyledSpan>
+                {withIcon ? (
+                    <StyledSpan style={linkContentStyles.centered}>
+                        {children}
+                    </StyledSpan>
+                ) : (
+                    children
+                )}
                 {endIcon ? (
                     <Icon
                         icon={endIcon}
@@ -162,8 +172,10 @@ const sharedStyles = StyleSheet.create({
         textDecoration: "none",
         outline: "none",
         verticalAlign: "bottom",
-        textUnderlineOffset: "3px",
         alignItems: "center",
+    },
+    withIcon: {
+        textUnderlineOffset: 4,
     },
 });
 
@@ -240,6 +252,7 @@ const _generateStyles = (
             // TODO(WB-1521): Update the underline offset to be 4px after
             // the Link audit.
             // textUnderlineOffset: 4,
+            textUnderlineOffset: 2,
             ...defaultVisited,
         },
         hover: {
