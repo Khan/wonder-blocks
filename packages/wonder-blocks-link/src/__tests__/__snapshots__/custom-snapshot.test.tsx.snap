@@ -124,7 +124,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false focused 1`] = 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -194,7 +194,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false hovered 1`] = 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -259,7 +259,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:false pressed 1`] = 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -335,7 +335,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true focused 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -414,7 +414,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true hovered 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -485,7 +485,7 @@ exports[`LinkCore kind:primary href:# light:false visitable:true pressed 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -558,7 +558,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false focused 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -628,7 +628,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false hovered 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -693,7 +693,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:false pressed 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -769,7 +769,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true focused 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -848,7 +848,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true hovered 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -919,7 +919,7 @@ exports[`LinkCore kind:primary href:# light:true visitable:true pressed 1`] = `
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -992,7 +992,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1062,7 +1062,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1127,7 +1127,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:fal
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1203,7 +1203,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1282,7 +1282,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1353,7 +1353,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:false visitable:tru
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1426,7 +1426,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1496,7 +1496,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1561,7 +1561,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:fals
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1637,7 +1637,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1716,7 +1716,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1787,7 +1787,7 @@ exports[`LinkCore kind:primary href:#non-existent-link light:true visitable:true
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1860,7 +1860,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false focused 1`] 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1930,7 +1930,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false hovered 1`] 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -1995,7 +1995,7 @@ exports[`LinkCore kind:secondary href:# light:false visitable:false pressed 1`] 
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -2065,7 +2065,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -2135,7 +2135,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
@@ -2200,7 +2200,7 @@ exports[`LinkCore kind:secondary href:#non-existent-link light:false visitable:f
       "cursor": "pointer",
       "outline": "none",
       "textDecoration": "underline currentcolor solid",
-      "textUnderlineOffset": 1.5,
+      "textUnderlineOffset": 2,
       "verticalAlign": "bottom",
     }
   }
