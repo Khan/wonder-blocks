@@ -175,7 +175,7 @@ const sharedStyles = StyleSheet.create({
         alignItems: "center",
     },
     withIcon: {
-        textUnderlineOffset: 3.5,
+        textUnderlineOffset: 4,
     },
 });
 
@@ -252,7 +252,7 @@ const _generateStyles = (
             // TODO(WB-1521): Update the underline offset to be 4px after
             // the Link audit.
             // textUnderlineOffset: 4,
-            textUnderlineOffset: 1.5,
+            textUnderlineOffset: 2,
             ...defaultVisited,
         },
         hover: {
