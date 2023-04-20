@@ -88,6 +88,10 @@ export default class LinkCore extends React.Component<Props> {
             />
         );
 
+        // If icon props are present, link `children` will render inside a
+        // `StyledSpan` element to vertically align text with icons.
+        const iconPropsPresent = startIcon || endIcon || target === "_blank";
+
         const linkContent = (
             <>
                 {startIcon && (
@@ -102,9 +106,13 @@ export default class LinkCore extends React.Component<Props> {
                         aria-hidden="true"
                     />
                 )}
-                <StyledSpan style={linkContentStyles.centered}>
-                    {children}
-                </StyledSpan>
+                {iconPropsPresent ? (
+                    <StyledSpan style={linkContentStyles.centered}>
+                        {children}
+                    </StyledSpan>
+                ) : (
+                    children
+                )}
                 {endIcon ? (
                     <Icon
                         icon={endIcon}
