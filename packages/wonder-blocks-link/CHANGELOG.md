@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-link
 
+## 4.2.2
+
+### Patch Changes
+
+-   cf4aca8d: Remove span element from link without icons
+
 ## 4.2.1
 
 ### Patch Changes
