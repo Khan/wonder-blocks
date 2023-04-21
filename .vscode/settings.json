@@ -1,13 +1,15 @@
 {
     "editor.renderWhitespace": "boundary",
-    "eslint.enable": true,
-    "files.trimTrailingWhitespace": true,
-    "typescript.validate.enable": true,
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
+    "eslint.enable": true,
+    "files.trimTrailingWhitespace": true,
+    "javascript.validate.enable": true,
+    "typescript.validate.enable": true,
+    "typescript.format.enable": false,
     "typescript.tsdk": "node_modules/typescript/lib",
-    "javascript.format.enable": true,
+    "typescript.tsserver.experimental.enableProjectDiagnostics": true,
     "files.associations": {
         "*.flow": "plaintext",
     },
