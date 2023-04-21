@@ -822,7 +822,6 @@ WithTitle.parameters = {
 
 WithTitle.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
-
     const link = canvas.getByRole("link");
 
     // Confirm that the link has a title attribute
@@ -858,6 +857,108 @@ RightToLeftWithIcons.parameters = {
         right-to-left language.`,
     },
 };
+
+export const LinkIssues: StoryComponentType = () => (
+    <View>
+        <View>
+            verticalAlign: bottom in div:
+            <Strut size={Spacing.small_12} />
+            <div
+                style={{
+                    border: "2px solid",
+                    width: "fit-content",
+                    padding: Spacing.medium_16,
+                }}
+            >
+                <div
+                    style={{
+                        display: "inline-block",
+                        margin: "5px",
+                    }}
+                >
+                    Text
+                </div>
+                <Link href="/">Link</Link>
+            </div>
+        </View>
+        <Strut size={Spacing.large_24} />
+        <View>
+            Remove verticalAlign: bottom for inline link with icon:
+            <Strut size={Spacing.small_12} />
+            <Body
+                style={{
+                    border: "2px solid",
+                    width: "fit-content",
+                    padding: Spacing.medium_16,
+                }}
+            >
+                This is an{" "}
+                <Link href="#" inline={true}>
+                    Inline Primary link
+                </Link>{" "}
+                and an{" "}
+                <Link
+                    href="#"
+                    inline={true}
+                    target="_blank"
+                    style={{verticalAlign: "none"}}
+                >
+                    Inline External Primary link
+                </Link>
+            </Body>
+        </View>
+        <Strut size={Spacing.large_24} />
+        <View>
+            Link with Typography & icons:
+            <Strut size={Spacing.small_12} />
+            <View
+                style={{
+                    border: "2px solid",
+                    width: "fit-content",
+                    padding: Spacing.medium_16,
+                }}
+            >
+                <Link
+                    href="#nonexistent-link"
+                    startIcon={icons.caretLeft}
+                    endIcon={icons.caretRight}
+                >
+                    <HeadingSmall>Heading inside a Link element</HeadingSmall>
+                </Link>
+            </View>
+        </View>
+        <Strut size={Spacing.large_24} />
+        Tiny links together with external icon:
+        <Strut size={Spacing.small_12} />
+        <View style={{flexDirection: "row"}} />
+        <View
+            style={{
+                border: "2px solid",
+                width: "fit-content",
+                padding: Spacing.medium_16,
+            }}
+        >
+            <View>
+                <View style={{flexDirection: "row"}}>
+                    <Link href="/" target="_blank" style={{fontSize: "10px"}}>
+                        5372
+                    </Link>
+                    <Link href="/" target="_blank" style={{fontSize: "10px"}}>
+                        AHDK
+                    </Link>
+                </View>
+                <View style={{flexDirection: "row"}}>
+                    <Link href="/" target="_blank" style={{fontSize: "10px"}}>
+                        101.01.6
+                    </Link>
+                    <Link href="/" target="_blank" style={{fontSize: "10px"}}>
+                        3.01.2
+                    </Link>
+                </View>
+            </View>
+        </View>
+    </View>
+);
 
 const styles = StyleSheet.create({
     darkBackground: {
