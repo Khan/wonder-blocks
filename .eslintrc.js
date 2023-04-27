@@ -198,5 +198,7 @@ module.exports = {
          * TypeScript rules
          */
         "@typescript-eslint/no-empty-function": "off",
+        "@typescript-eslint/prefer-enum-initializers": "error",
+        "@typescript-eslint/prefer-literal-enum-member": "error",
     },
 };
