@@ -6,7 +6,7 @@
         "rootDir": "src",
     },
     "references": [
-        {"path": "../wonder-blocks-color"},
-        {"path": "../wonder-blocks-core"},
+        {"path": "../wonder-blocks-core/tsconfig-build.json"},
+        {"path": "../wonder-blocks-spacing/tsconfig-build.json"},
     ]
 }

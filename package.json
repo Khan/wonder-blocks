@@ -13,7 +13,7 @@
     "build:types": "yarn tsc --build tsconfig-build.json && node -r @swc-node/register build-settings/remove-test-types-from-dist.ts",
     "build:flowtypes": "node -r @swc-node/register build-settings/gen-flow-types.ts",
     "build:storybook": "build-storybook",
-    "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules && rm -f packages/*/tsconfig.tsbuildinfo && rm -f utils/tsconfig.tsbuildinfo",
+    "clean": "rm -rf packages/wonder-blocks-*/dist && rm -rf packages/wonder-blocks-*/node_modules && rm -f packages/*/*.tsbuildinfo && rm -f utils/tsconfig.tsbuildinfo",
     "coverage": "yarn run test:coverage && open coverage/lcov-report/index.html",
     "coveragefor": "bash -c 'yarn --silent jest --coverage --collectCoverageFrom=**/$0 $(node ./utils/test-file-for.js \"$0\")'",
     "coverage:ci": "yarn run jest --coverage",
@@ -28,7 +28,7 @@
     "test:common": "yarn run build && yarn run lint && yarn run alex && yarn run typecheck",
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
     "test": "yarn run test:common && yarn run jest",
-    "typecheck": "tsc --project tsconfig-check.json",
+    "typecheck": "tsc",
     "add:devdepbysha": "bash -c 'yarn add -W --dev \"git+https://git@github.com/Khan/$0.git#$1\"'"
   },
   "author": "",
