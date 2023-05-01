@@ -2,7 +2,7 @@ node_modules
 coverage
 dist
 storybook-static
-tsconfig.tsbuildinfo
+*.tsbuildinfo
 !.vscode
 .DS_Store
 yarn-error.log

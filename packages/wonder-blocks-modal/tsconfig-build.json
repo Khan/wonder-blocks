@@ -1,0 +1,20 @@
+{
+    "exclude": ["dist"],
+    "extends": "../tsconfig-shared.json",
+    "compilerOptions": {
+        "outDir": "./dist",
+        "rootDir": "src",
+    },
+    "references": [
+        {"path": "../wonder-blocks-breadcrumbs/tsconfig-build.json"},
+        {"path": "../wonder-blocks-color/tsconfig-build.json"},
+        {"path": "../wonder-blocks-core/tsconfig-build.json"},
+        {"path": "../wonder-blocks-form/tsconfig-build.json"},
+        {"path": "../wonder-blocks-icon/tsconfig-build.json"},
+        {"path": "../wonder-blocks-icon-button/tsconfig-build.json"},
+        {"path": "../wonder-blocks-layout/tsconfig-build.json"},
+        {"path": "../wonder-blocks-spacing/tsconfig-build.json"},
+        {"path": "../wonder-blocks-timing/tsconfig-build.json"},
+        {"path": "../wonder-blocks-typography/tsconfig-build.json"},
+    ]
+}

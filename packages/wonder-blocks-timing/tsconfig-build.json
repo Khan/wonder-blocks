@@ -6,6 +6,6 @@
         "rootDir": "src",
     },
     "references": [
-        {"path": "../wonder-blocks-core"},
+        {"path": "../wonder-blocks-button/tsconfig-build.json"},
     ]
 }
