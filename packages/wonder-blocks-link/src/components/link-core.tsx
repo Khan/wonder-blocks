@@ -171,10 +171,10 @@ const sharedStyles = StyleSheet.create({
         cursor: "pointer",
         textDecoration: "none",
         outline: "none",
-        verticalAlign: "bottom",
         alignItems: "center",
     },
     withIcon: {
+        verticalAlign: "bottom",
         textUnderlineOffset: 4,
     },
 });
