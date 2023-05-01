@@ -17,6 +17,7 @@
     "coverage": "yarn run test:coverage && open coverage/lcov-report/index.html",
     "coveragefor": "bash -c 'yarn --silent jest --coverage --collectCoverageFrom=**/$0 $(node ./utils/test-file-for.js \"$0\")'",
     "coverage:ci": "yarn run jest --coverage",
+    "coverage:types": "typescript-coverage-report",
     "format": "prettier --write packages/**/*.ts packages/**/*.tsx",
     "jest": "jest --config config/jest/test.config.js",
     "lint:pkg-json": "yarn npmPkgJsonLint ./packages",
@@ -106,7 +107,8 @@
     "rollup-plugin-auto-external": "^2.0.0",
     "rollup-plugin-babel": "^4.0.0-beta.2",
     "storybook-addon-designs": "^6.3.1",
-    "typescript": "^4.9.5"
+    "typescript": "^4.9.5",
+    "typescript-coverage-report": "^0.7.0"
   },
   "dependencies": {
     "@babel/runtime": "^7.18.6",
