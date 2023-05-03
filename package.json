@@ -95,7 +95,7 @@
     "eslint-watch": "^8.0.0",
     "fast-glob": "^3.2.12",
     "flowgen": "git+https://git@github.com/Khan/flowgen.git#fa8050929948fb4313f738301285fb44625678c4",
-    "jest": "^29.0.1",
+    "jest": "^29.5.0",
     "jest-date-mock": "^1.0.8",
     "jest-environment-jsdom": "^28.1.2",
     "jest-extended": "^2.0.0",
