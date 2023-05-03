@@ -414,7 +414,7 @@ export const Light: StoryComponentType = (args) => {
 
 Light.args = {
     disabled: false,
-}
+};
 
 Light.parameters = {
     docs: {
@@ -468,7 +468,7 @@ export const ErrorLight: StoryComponentType = (args) => {
 
 ErrorLight.args = {
     disabled: false,
-}
+};
 
 ErrorLight.parameters = {
     docs: {
