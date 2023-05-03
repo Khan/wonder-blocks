@@ -1,6 +1,22 @@
 // This file is used by the `build:types` command in package.json
 /* Visit https://aka.ms/tsconfig to read more about this file */
 {
+    "extends": "./tsconfig-common.json",
+    "compilerOptions": {
+        "composite": true,
+        "incremental": true, // Required for composite projects
+
+        // We use rollup + babel to compile our bundles so we
+        // only need tsc to output .d.ts files
+        "declaration": true,
+        "emitDeclarationOnly": true,
+
+        "paths": {
+            "@khanacademy/*": [
+                "./packages/*/src"
+            ]
+        },
+    },
     // Intentionally empty, all files are covered by tsconfig.json files
     // in each package directory.
     "files": [],
