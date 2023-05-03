@@ -381,7 +381,7 @@ Error.parameters = {
     },
 };
 
-export const Light: StoryComponentType = () => {
+export const Light: StoryComponentType = (args) => {
     const [value, setValue] = React.useState("");
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -393,6 +393,7 @@ export const Light: StoryComponentType = () => {
     return (
         <View style={styles.darkBackground}>
             <LabeledTextField
+                {...args}
                 label={
                     <LabelMedium style={styles.whiteColor}>Name</LabelMedium>
                 }
@@ -411,6 +412,10 @@ export const Light: StoryComponentType = () => {
     );
 };
 
+Light.args = {
+    disabled: false,
+};
+
 Light.parameters = {
     docs: {
         storyDescription: `If the \`light\` prop is set to true, the
@@ -421,7 +426,7 @@ Light.parameters = {
     },
 };
 
-export const ErrorLight: StoryComponentType = () => {
+export const ErrorLight: StoryComponentType = (args) => {
     const [value, setValue] = React.useState("khan");
 
     const validate = (value: string) => {
@@ -440,6 +445,7 @@ export const ErrorLight: StoryComponentType = () => {
     return (
         <View style={styles.darkBackground}>
             <LabeledTextField
+                {...args}
                 label={
                     <LabelMedium style={styles.whiteColor}>Email</LabelMedium>
                 }
@@ -458,6 +464,10 @@ export const ErrorLight: StoryComponentType = () => {
             />
         </View>
     );
+};
+
+ErrorLight.args = {
+    disabled: false,
 };
 
 ErrorLight.parameters = {
