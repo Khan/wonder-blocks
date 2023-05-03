@@ -20,18 +20,10 @@ module.exports = {
     settings: {
         "import/resolver": {
             typescript: {
-                project: [
-                    "packages/*/tsconfig.json",
-                    "packages/tsconfig-shared.json",
-                ],
                 extensions: [".js", ".jsx", ".ts", ".tsx"],
                 moduleDirectory: ["node_modules"],
             },
             node: {
-                project: [
-                    "packages/*/tsconfig.json",
-                    "packages/tsconfig-shared.json",
-                ],
                 extensions: [".js", ".jsx", ".ts", ".tsx"],
                 moduleDirectory: ["node_modules"],
             },

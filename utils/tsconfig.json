@@ -1,6 +1,6 @@
 {
     "exclude": ["dist"],
-    "extends": "../packages/tsconfig-shared.json",
+    "extends": "../tsconfig-build.json",
     "compilerOptions": {
         "rootDir": "./"
     },
