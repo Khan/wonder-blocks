@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-link
 
+## 4.2.3
+
+### Patch Changes
+
+-   7e30a174: Update link alignment with icons and remove external icon if path is relative
+
 ## 4.2.2
 
 ### Patch Changes
