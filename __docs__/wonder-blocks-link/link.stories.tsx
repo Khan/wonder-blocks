@@ -217,22 +217,20 @@ LightVisitable.parameters = {
 
 export const OpensInANewTab: StoryComponentType = () => (
     <View>
-        <View style={{padding: Spacing.large_24}}>
-            <Link href="#" target="_blank">
-                This is a Primary link that opens in a new tab
-            </Link>
-            <Link href="#" kind="secondary" target="_blank">
-                This is a Secondary link that opens in a new tab
-            </Link>
-        </View>
+        <Link href="https://cat-bounce.com/" target="_blank">
+            This is a Primary link that opens in a new tab
+        </Link>
+        <Link href="https://cat-bounce.com/" kind="secondary" target="_blank">
+            This is a Secondary link that opens in a new tab
+        </Link>
     </View>
 );
 
 OpensInANewTab.parameters = {
     docs: {
-        storyDescription: `When \`target="_blank"\`, the external icon is automatically
-        added to the end of the link. This indicates that the link will open in a new
-        tab.`,
+        storyDescription: `When a link is external and \`target="_blank"\`, the
+        external icon is automatically added to the end of the link. This
+        indicates that the link will open in a new tab.`,
     },
 };
 
@@ -256,7 +254,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 This link has an end icon
             </Link>
             <Link
-                href="#"
+                href="https://stuffonmycat.com/"
                 endIcon={icons.info}
                 target="_blank"
                 style={styles.standaloneLinkWrapper}
@@ -322,7 +320,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 This link has an end icon
             </Link>
             <Link
-                href="#"
+                href="https://stuffonmycat.com/"
                 endIcon={icons.info}
                 target="_blank"
                 light={true}
@@ -390,7 +388,11 @@ export const Inline: StoryComponentType = () => (
             Primary link
         </Link>{" "}
         and an inline{" "}
-        <Link href="#" inline={true} target="_blank">
+        <Link
+            href="https://www.procatinator.com/"
+            inline={true}
+            target="_blank"
+        >
             external Primary link
         </Link>
         , whereas this is an inline{" "}
@@ -398,7 +400,12 @@ export const Inline: StoryComponentType = () => (
             Secondary link
         </Link>
         , and an inline{" "}
-        <Link href="#" kind="secondary" inline={true} target="_blank">
+        <Link
+            href="https://www.procatinator.com/"
+            kind="secondary"
+            inline={true}
+            target="_blank"
+        >
             external Secondary link
         </Link>
         , and this is an inline{" "}
@@ -406,7 +413,12 @@ export const Inline: StoryComponentType = () => (
             Visitable link (Primary only)
         </Link>{" "}
         and an inline{" "}
-        <Link href="#" visitable={true} inline={true} target="_blank">
+        <Link
+            href="https://www.procatinator.com/"
+            visitable={true}
+            inline={true}
+            target="_blank"
+        >
             external Visitable link (Primary only)
         </Link>
         .
@@ -501,7 +513,12 @@ export const InlineLight: StoryComponentType = () => (
             Primary link
         </Link>{" "}
         and an{" "}
-        <Link href="#" inline={true} light={true} target="_blank">
+        <Link
+            href="https://cat-bounce.com/"
+            inline={true}
+            light={true}
+            target="_blank"
+        >
             external Primary link
         </Link>
         , whereas this is an inline{" "}
@@ -510,7 +527,7 @@ export const InlineLight: StoryComponentType = () => (
         </Link>{" "}
         and an{" "}
         <Link
-            href="#"
+            href="https://cat-bounce.com/"
             visitable={true}
             inline={true}
             light={true}
@@ -579,7 +596,7 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
-                    <Link href="#nonexistent-link" target="_blank">
+                    <Link href="https://cat-bounce.com/" target="_blank">
                         Standalone External Primary Link
                     </Link>
                 </View>
@@ -590,7 +607,7 @@ export const Variants: StoryComponentType = () => (
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
                     <Link
-                        href="#secondary-nonexistent-link"
+                        href="https://cat-bounce.com/"
                         kind="secondary"
                         target="_blank"
                     >
@@ -603,7 +620,11 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
-                    <Link href="#" visitable={true} target="_blank">
+                    <Link
+                        href="https://cat-bounce.com/"
+                        visitable={true}
+                        target="_blank"
+                    >
                         Standalone External Visitable Link (Primary only)
                     </Link>
                 </View>
@@ -616,7 +637,11 @@ export const Variants: StoryComponentType = () => (
                     Inline Primary link
                 </Link>{" "}
                 and an{" "}
-                <Link href="#" inline={true} target="_blank">
+                <Link
+                    href="https://cat-bounce.com/"
+                    inline={true}
+                    target="_blank"
+                >
                     Inline External Primary link
                 </Link>
                 , whereas this is an{" "}
@@ -624,7 +649,12 @@ export const Variants: StoryComponentType = () => (
                     Inline Secondary link
                 </Link>{" "}
                 and an{" "}
-                <Link href="#" kind="secondary" inline={true} target="_blank">
+                <Link
+                    href="https://cat-bounce.com/"
+                    kind="secondary"
+                    inline={true}
+                    target="_blank"
+                >
                     Inline External Secondary link
                 </Link>
                 , and this is an{" "}
@@ -632,7 +662,12 @@ export const Variants: StoryComponentType = () => (
                     Inline Visitable link (Primary only)
                 </Link>{" "}
                 and an{" "}
-                <Link href="#" visitable={true} inline={true} target="_blank">
+                <Link
+                    href="https://cat-bounce.com/"
+                    visitable={true}
+                    inline={true}
+                    target="_blank"
+                >
                     Inline External Visitable link (Primary only)
                 </Link>
                 .
@@ -653,7 +688,11 @@ export const Variants: StoryComponentType = () => (
                     </Link>
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
-                    <Link href="#nonexistent-link" light={true} target="_blank">
+                    <Link
+                        href="https://cat-bounce.com/"
+                        light={true}
+                        target="_blank"
+                    >
                         Standalone External Light Link (Primary only)
                     </Link>
                 </View>
@@ -664,7 +703,7 @@ export const Variants: StoryComponentType = () => (
                 </View>
                 <View style={styles.standaloneLinkWrapper}>
                     <Link
-                        href="#"
+                        href="https://cat-bounce.com/"
                         visitable={true}
                         light={true}
                         target="_blank"
@@ -681,7 +720,12 @@ export const Variants: StoryComponentType = () => (
                     Inline Primary link
                 </Link>{" "}
                 and an{" "}
-                <Link href="#" inline={true} light={true} target="_blank">
+                <Link
+                    href="https://cat-bounce.com/"
+                    inline={true}
+                    light={true}
+                    target="_blank"
+                >
                     Inline External Primary link
                 </Link>
                 , whereas this is an{" "}
@@ -690,7 +734,7 @@ export const Variants: StoryComponentType = () => (
                 </Link>{" "}
                 and an{" "}
                 <Link
-                    href="#"
+                    href="https://cat-bounce.com/"
                     visitable={true}
                     inline={true}
                     light={true}

@@ -14,7 +14,7 @@ describe("Link", () => {
         // @ts-expect-error [FEI-5019] - TS2790 - The operand of a 'delete' operator must be optional.
         delete window.location;
         // @ts-expect-error [FEI-5019] - TS2740 - Type '{ assign: Mock<any, any, any>; }' is missing the following properties from type 'Location': ancestorOrigins, hash, host, hostname, and 8 more.
-        window.location = {assign: jest.fn()};
+        window.location = {assign: jest.fn(), origin: "http://localhost"};
     });
 
     afterEach(() => {
@@ -52,7 +52,7 @@ describe("Link", () => {
             render(
                 <MemoryRouter>
                     <div>
-                        <Link href="/unknown">Click me!</Link>
+                        <Link href="/">Click me!</Link>
                         <Switch>
                             <Route path="/foo">
                                 <div id="foo">Hello, world!</div>
@@ -304,7 +304,7 @@ describe("Link", () => {
             // Arrange
             let keyCode: any;
             render(
-                <Link href="/" onKeyDown={(e: any) => (keyCode = e.keyCode)}>
+                <Link href="/foo" onKeyDown={(e: any) => (keyCode = e.keyCode)}>
                     Click me!
                 </Link>,
             );
@@ -322,7 +322,7 @@ describe("Link", () => {
             // Arrange
             let keyCode: any;
             render(
-                <Link href="/" onKeyUp={(e: any) => (keyCode = e.keyCode)}>
+                <Link href="/foo" onKeyUp={(e: any) => (keyCode = e.keyCode)}>
                     Click me!
                 </Link>,
             );
@@ -341,7 +341,7 @@ describe("Link", () => {
         test("target attribute passed down correctly", () => {
             // Arrange
             render(
-                <Link href="/" target="_blank">
+                <Link href="https://www.google.com/" target="_blank">
                     Click me!
                 </Link>,
             );
@@ -353,10 +353,10 @@ describe("Link", () => {
             expect(link).toHaveAttribute("target", "_blank");
         });
 
-        test("render external icon when `target=_blank`", () => {
+        test("render external icon when `target=_blank` and link is external", () => {
             // Arrange
             render(
-                <Link href="/" target="_blank">
+                <Link href="https://www.google.com/" target="_blank">
                     Click me!
                 </Link>,
             );
@@ -370,7 +370,33 @@ describe("Link", () => {
             expect(icon).toBeInTheDocument();
         });
 
-        test("does not render external icon when there is no target", () => {
+        test("does not render external icon when `target=_blank` and link is relative", () => {
+            // Arrange
+            render(
+                <Link href="/" target="_blank">
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            const icon = screen.queryByTestId("external-icon");
+
+            // Assert
+            expect(icon).not.toBeInTheDocument();
+        });
+
+        test("does not render external icon when there is no target and link is external", () => {
+            // Arrange
+            render(<Link href="https://www.google.com/">Click me!</Link>);
+
+            // Act
+            const icon = screen.queryByTestId("external-icon");
+
+            // Assert
+            expect(icon).not.toBeInTheDocument();
+        });
+
+        test("does not render external icon when there is no target and link is relative", () => {
             // Arrange
             render(<Link href="/">Click me!</Link>);
 
@@ -386,7 +412,7 @@ describe("Link", () => {
         test("render icon with link when startIcon prop is passed in", () => {
             // Arrange
             render(
-                <Link href="/" startIcon={icons.add}>
+                <Link href="https://www.khanacademy.org/" startIcon={icons.add}>
                     Add new item
                 </Link>,
             );
@@ -402,7 +428,7 @@ describe("Link", () => {
 
         test("does not render icon when startIcon prop is not passed in", () => {
             // Arrange
-            render(<Link href="/">Click me!</Link>);
+            render(<Link href="https://www.khanacademy.org/">Click me!</Link>);
 
             // Act
             const icon = screen.queryByTestId("start-icon");
@@ -414,7 +440,7 @@ describe("Link", () => {
         test("startIcon prop passed down correctly", () => {
             // Arrange
             render(
-                <Link href="/" startIcon={icons.add}>
+                <Link href="https://www.khanacademy.org/" startIcon={icons.add}>
                     Add new item
                 </Link>,
             );
@@ -433,7 +459,10 @@ describe("Link", () => {
         test("render icon with link when endIcon prop is passed in", () => {
             // Arrange
             render(
-                <Link href="/" endIcon={icons.caretRight}>
+                <Link
+                    href="https://www.khanacademy.org/"
+                    endIcon={icons.caretRight}
+                >
                     Click to go back
                 </Link>,
             );
@@ -449,7 +478,7 @@ describe("Link", () => {
 
         test("does not render icon when endIcon prop is not passed in", () => {
             // Arrange
-            render(<Link href="/">Click me!</Link>);
+            render(<Link href="https://www.khanacademy.org/">Click me!</Link>);
 
             // Act
             const icon = screen.queryByTestId("end-icon");
@@ -461,7 +490,11 @@ describe("Link", () => {
         test("does not render externalIcon when endIcon is passed in and `target='_blank'`", () => {
             // Arrange
             render(
-                <Link href="/" endIcon={icons.caretRight} target="_blank">
+                <Link
+                    href="https://www.google.com/"
+                    endIcon={icons.caretRight}
+                    target="_blank"
+                >
                     Open a new tab
                 </Link>,
             );
@@ -473,10 +506,14 @@ describe("Link", () => {
             expect(externalIcon).not.toBeInTheDocument();
         });
 
-        test("render endIcon instead of default externalIcon when `target='_blank'`", () => {
+        test("render endIcon instead of default externalIcon when `target='_blank' and link is external`", () => {
             // Arrange
             render(
-                <Link href="/" endIcon={icons.caretRight} target="_blank">
+                <Link
+                    href="https://www.google.com/"
+                    endIcon={icons.caretRight}
+                    target="_blank"
+                >
                     Open a new tab
                 </Link>,
             );
