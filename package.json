@@ -94,7 +94,7 @@
     "eslint-plugin-testing-library": "^5.0.0",
     "eslint-watch": "^8.0.0",
     "fast-glob": "^3.2.12",
-    "flowgen": "git+https://git@github.com/Khan/flowgen.git#fa8050929948fb4313f738301285fb44625678c4",
+    "flowgen": "git+https://git@github.com/Khan/flowgen.git#20605c0e2d9cf68c5609c999369373a8414d4631",
     "jest": "^29.5.0",
     "jest-date-mock": "^1.0.8",
     "jest-environment-jsdom": "^28.1.2",
