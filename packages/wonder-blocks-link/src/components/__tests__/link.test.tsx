@@ -370,6 +370,21 @@ describe("Link", () => {
             expect(icon).toBeInTheDocument();
         });
 
+        test("does not render external icon when `target=_blank` and link is relative", () => {
+            // Arrange
+            render(
+                <Link href="/" target="_blank">
+                    Click me!
+                </Link>,
+            );
+
+            // Act
+            const icon = screen.queryByTestId("external-icon");
+
+            // Assert
+            expect(icon).not.toBeInTheDocument();
+        });
+
         test("does not render external icon when there is no target and link is external", () => {
             // Arrange
             render(<Link href="https://www.google.com/">Click me!</Link>);
@@ -381,7 +396,7 @@ describe("Link", () => {
             expect(icon).not.toBeInTheDocument();
         });
 
-        test("does not render external icon when there is no target and path is relative", () => {
+        test("does not render external icon when there is no target and link is relative", () => {
             // Arrange
             render(<Link href="/">Click me!</Link>);
 
