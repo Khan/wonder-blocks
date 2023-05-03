@@ -53,7 +53,7 @@ describe.each`
         // @ts-expect-error [FEI-5019] - TS2790 - The operand of a 'delete' operator must be optional.
         delete window.location;
         // @ts-expect-error [FEI-5019] - TS2740 - Type '{ assign: Mock<any, any, any>; }' is missing the following properties from type 'Location': ancestorOrigins, hash, host, hostname, and 8 more.
-        window.location = {assign: jest.fn()};
+        window.location = {assign: jest.fn(), origin: "http://localhost"};
         window.open = jest.fn();
     });
 
