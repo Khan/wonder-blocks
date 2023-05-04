@@ -115,7 +115,7 @@
     "@khanacademy/wonder-stuff-core": "^1.4.2",
     "@popperjs/core": "^2.11.5",
     "aphrodite": "^1.2.5",
-    "moment": "2.24.0",
+    "moment": "2.29.4",
     "node-fetch": "^2.6.7",
     "react": "16.14.0",
     "react-dom": "16.14.0",
