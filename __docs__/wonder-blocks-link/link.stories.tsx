@@ -762,23 +762,26 @@ Variants.parameters = {
 };
 
 export const WithTypography: StoryComponentType = () => (
-    <Link href="#nonexistent-link" id="typography-link">
-        <HeadingSmall>Heading inside a Link element</HeadingSmall>
-    </Link>
+    <HeadingSmall>
+        <Link href="#nonexistent-link" id="typography-link">
+            Link inside a Heading element
+        </Link>
+    </HeadingSmall>
 );
 
 WithTypography.parameters = {
     docs: {
-        storyDescription: `Wonder Blocks Typography elements can also be used
-            inside Links instead of plain text. Here, we have a \`Link\`
-            containing a \`HeadingSmall\`.`,
+        storyDescription: `Wonder Blocks Typography elements can be used
+        with Links instead of plain text. We recommend that \`Typography\` is
+        always the parent element of \`Link\` to avoid styling issues. Here, we
+        have a \`HeadingSmall\` containing a \`Link\`.`,
     },
 };
 
 WithTypography.play = async ({canvasElement}) => {
     const canvas = within(canvasElement);
 
-    const heading = canvas.getByText("Heading inside a Link element");
+    const heading = canvas.getByText("Link inside a Heading element");
 
     // Confirm that the default font size and line height
     // are successfully overridden by typography.
