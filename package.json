@@ -100,7 +100,7 @@
     "jest-environment-jsdom": "^28.1.2",
     "jest-extended": "^3.2.4",
     "npm-package-json-lint": "^6.4.0",
-    "prettier": "^2.8.1",
+    "prettier": "^2.8.8",
     "react-refresh": "^0.14.0",
     "react-test-renderer": "^17.0.2",
     "rollup": "^2.79.1",
