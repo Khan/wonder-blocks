@@ -3,15 +3,12 @@
     "editor.codeActionsOnSave": {
         "source.fixAll.eslint": true
     },
-    "eslint.enable": true,
     "files.trimTrailingWhitespace": true,
     "javascript.validate.enable": true,
     "typescript.validate.enable": true,
     "typescript.format.enable": false,
     "typescript.tsdk": "node_modules/typescript/lib",
-    // "typescript.tsserver.experimental.enableProjectDiagnostics": true,
     "files.associations": {
         "*.flow": "plaintext",
-    },
-    "flow.enabled": false
+    }
 }
