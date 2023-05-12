@@ -24,6 +24,16 @@
         // "noImplicitAny": true,
         /* Completeness */
         "skipDefaultLibCheck": true, // it's safe to assume that built-in .d.ts files are correct
-        "skipLibCheck": false
+        "skipLibCheck": false,
+
+        "plugins": [
+            {
+                "name": "typescript-eslint-language-service"
+            },
+            {
+                "name": "ts-plugin-type-coverage",
+                "ignoreCatch": true,
+            }
+        ]
     }
 }

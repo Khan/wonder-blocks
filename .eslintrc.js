@@ -8,6 +8,7 @@ module.exports = {
         // practices
         "plugin:storybook/recommended",
     ],
+    ignorePatterns: ["node_modules"],
     plugins: [
         "import",
         "jest",

@@ -12049,6 +12049,13 @@ minimalistic-crypto-utils@^1.0.1:
   dependencies:
     brace-expansion "^2.0.1"
 
+"minimatch@6 || 7 || 8 || 9", minimatch@^9.0.0:
+  version "9.0.0"
+  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-9.0.0.tgz#bfc8e88a1c40ffd40c172ddac3decb8451503b56"
+  integrity sha512-0jJj8AvgKqWN05mrwuqi8QYKx1WmYSUoKSxu5Qhs9prezTz10sxAHGNZe9J9cqIJzta8DWsleh2KaVaLl6Ru2w==
+  dependencies:
+    brace-expansion "^2.0.1"
+
 minimatch@^3.0.2, minimatch@^3.0.4, minimatch@^3.0.5, minimatch@^3.1.2:
   version "3.1.2"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-3.1.2.tgz#19cd194bfd3e428f049a70817c038d89ab4be35b"
@@ -12060,13 +12067,6 @@ minimatch@^5.0.1:
   version "5.1.6"
   resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-5.1.6.tgz#1cfcb8cf5522ea69952cd2af95ae09477f122a96"
   integrity sha512-lKwV/1brpG6mBUFHtb7NUmtABCb2WZZmm2wNiOA5hAb8VdCS4B3dtMWyvcoViccwAW/COERjXLt0zP1zXUN26g==
-  dependencies:
-    brace-expansion "^2.0.1"
-
-minimatch@^9.0.0:
-  version "9.0.0"
-  resolved "https://registry.yarnpkg.com/minimatch/-/minimatch-9.0.0.tgz#bfc8e88a1c40ffd40c172ddac3decb8451503b56"
-  integrity sha512-0jJj8AvgKqWN05mrwuqi8QYKx1WmYSUoKSxu5Qhs9prezTz10sxAHGNZe9J9cqIJzta8DWsleh2KaVaLl6Ru2w==
   dependencies:
     brace-expansion "^2.0.1"
 
@@ -15743,6 +15743,14 @@ ts-dedent@^2.0.0, ts-dedent@^2.2.0:
   resolved "https://registry.yarnpkg.com/ts-dedent/-/ts-dedent-2.2.0.tgz#39e4bd297cd036292ae2394eb3412be63f563bb5"
   integrity sha512-q5W7tVM71e2xjHZTlgfTDoPF/SmqKG5hddq9SzR49CH2hayqRKJtQ4mtRlSxKaJlR/+9rEM+mnBHf7I2/BQcpQ==
 
+ts-plugin-type-coverage@^2.25.3:
+  version "2.25.3"
+  resolved "https://registry.yarnpkg.com/ts-plugin-type-coverage/-/ts-plugin-type-coverage-2.25.3.tgz#090f51178089d6a9090de5c2f2e226712c8a635b"
+  integrity sha512-VfE3auZYKAlZvr8JaTQn7phIzOslGD8Gf0MtZIUH/H1L9V0Xfmkv8L2zCKg3Y2eOmBpBrUGOmhtWaMq8IPAIcw==
+  dependencies:
+    tslib "1 || 2"
+    type-coverage-core "^2.25.3"
+
 ts-pnp@^1.1.6:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/ts-pnp/-/ts-pnp-1.2.0.tgz#a500ad084b0798f1c3071af391e65912c86bca92"
@@ -15812,6 +15820,17 @@ type-coverage-core@^2.23.0:
   dependencies:
     fast-glob "3"
     minimatch "3 || 4 || 5 || 6 || 7"
+    normalize-path "3"
+    tslib "1 || 2"
+    tsutils "3"
+
+type-coverage-core@^2.25.3:
+  version "2.25.3"
+  resolved "https://registry.yarnpkg.com/type-coverage-core/-/type-coverage-core-2.25.3.tgz#d91fa1e9e50943e42da03863f58eec570553cc56"
+  integrity sha512-wQLM7p9GrDvybDXbfWHT/+bLyKzlh0eRVRovgr2zCQN5QGdVsnpA7HwoaivXLOxqMLC/241xMYDysdbVmbO3BQ==
+  dependencies:
+    fast-glob "3"
+    minimatch "6 || 7 || 8 || 9"
     normalize-path "3"
     tslib "1 || 2"
     tsutils "3"
@@ -15913,6 +15932,11 @@ typescript-coverage-report@^0.7.0:
     rimraf "^3.0.2"
     semantic-ui-react "^0.88.2"
     type-coverage-core "^2.23.0"
+
+typescript-eslint-language-service@^5.0.5:
+  version "5.0.5"
+  resolved "https://registry.yarnpkg.com/typescript-eslint-language-service/-/typescript-eslint-language-service-5.0.5.tgz#b0f06290df01c55771f2674d261512d17e7a39ad"
+  integrity sha512-b7gWXpwSTqMVKpPX3WttNZEyVAMKs/2jsHKF79H+qaD6mjzCyU5jboJe/lOZgLJD+QRsXCr0GjIVxvl5kI1NMw==
 
 typescript@^4.9.5:
   version "4.9.5"

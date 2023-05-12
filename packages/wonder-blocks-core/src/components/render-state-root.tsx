@@ -45,4 +45,8 @@ const RenderStateRoot = ({
     );
 };
 
+const foo: any = "hello";
+
+console.log("foo = ", foo);
+
 export {RenderStateRoot};

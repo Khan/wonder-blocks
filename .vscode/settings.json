@@ -9,7 +9,7 @@
     "typescript.validate.enable": true,
     "typescript.format.enable": false,
     "typescript.tsdk": "node_modules/typescript/lib",
-    "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+    // "typescript.tsserver.experimental.enableProjectDiagnostics": true,
     "files.associations": {
         "*.flow": "plaintext",
     },
