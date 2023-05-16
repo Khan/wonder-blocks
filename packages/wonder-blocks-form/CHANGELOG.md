@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.1.2
+
+### Patch Changes
+
+-   43f6328d: Fix flow types
+
 ## 4.1.1
 
 ### Patch Changes
