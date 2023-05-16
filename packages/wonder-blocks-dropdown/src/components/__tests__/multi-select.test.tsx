@@ -8,10 +8,12 @@ import {ngettext} from "@khanacademy/wonder-blocks-i18n";
 
 import OptionItem from "../option-item";
 import MultiSelect from "../multi-select";
+import {defaultLabels as builtinLabels} from "../../util/constants";
 
 import type {Labels} from "../multi-select";
 
-const labels: Partial<Labels> = {
+const defaultLabels: Labels = {
+    ...builtinLabels,
     selectAllLabel: (numOptions: any) => `Sellect all (${numOptions})`,
     noneSelected: "Choose",
     someSelected: (numSelectedValues: any) => `${numSelectedValues} students`,
@@ -39,8 +41,7 @@ describe("MultiSelect", () => {
             <MultiSelect
                 onChange={onChange}
                 selectedValues={[]}
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
-                labels={labels}
+                labels={defaultLabels}
             >
                 <OptionItem label="item 1" value="1" />
                 <OptionItem label="item 2" value="2" />
@@ -95,8 +96,7 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={onChange}
                     selectedValues={["1"]}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
-                    labels={labels}
+                    labels={defaultLabels}
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -116,8 +116,7 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={onChange}
                     selectedValues={["1", "2"]}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
-                    labels={labels}
+                    labels={defaultLabels}
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -138,8 +137,7 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={onChange}
                     selectedValues={["1", "2", "3"]}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
-                    labels={labels}
+                    labels={defaultLabels}
                 >
                     <OptionItem label="item 1" value="1" />
                     <OptionItem label="item 2" value="2" />
@@ -162,8 +160,7 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={onChange}
                     selectedValues={[]}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
-                    labels={labels}
+                    labels={defaultLabels}
                     implicitAllEnabled={true}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -206,7 +203,8 @@ describe("MultiSelect", () => {
             shortcuts?: boolean;
         };
 
-        const labels: Partial<Labels> = {
+        const labels: Labels = {
+            ...builtinLabels,
             selectAllLabel: (numOptions: any) => `Select all (${numOptions})`,
             allSelected: "All fruits",
             someSelected: (numSelectedValues: any) =>
@@ -231,7 +229,6 @@ describe("MultiSelect", () => {
             return (
                 <React.Fragment>
                     <MultiSelect
-                        // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                         labels={labels}
                         onChange={handleChange}
                         opened={opened}
@@ -467,8 +464,7 @@ describe("MultiSelect", () => {
             <MultiSelect
                 onChange={onChange}
                 selectedValues={[]}
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
-                labels={labels}
+                labels={defaultLabels}
                 isFilterable={true}
             >
                 <OptionItem label="item 1" value="1" />
@@ -527,8 +523,7 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={onChange}
                     selectedValues={[]}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
-                    labels={labels}
+                    labels={defaultLabels}
                     isFilterable={true}
                     shortcuts={true}
                 >
@@ -567,8 +562,7 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={onChange}
                     selectedValues={["3"]}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
-                    labels={labels}
+                    labels={defaultLabels}
                     isFilterable={true}
                     shortcuts={true}
                 >
@@ -594,8 +588,7 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={onChange}
                     selectedValues={[]}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
-                    labels={labels}
+                    labels={defaultLabels}
                     isFilterable={true}
                     shortcuts={true}
                 >
@@ -626,8 +619,7 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={onChange}
                     selectedValues={["1"]}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
-                    labels={labels}
+                    labels={defaultLabels}
                     isFilterable={true}
                 >
                     <OptionItem label="item 1" value="1" />
@@ -788,13 +780,13 @@ describe("MultiSelect", () => {
 
         it("passes the current label to the custom opener (no items selected)", () => {
             // Arrange
-            const labels: Partial<Labels> = {
+            const labels: Labels = {
+                ...builtinLabels,
                 noneSelected: "No items selected",
             };
 
             render(
                 <MultiSelect
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={labels}
                     testId="openTest"
                     onChange={jest.fn()}
@@ -948,14 +940,14 @@ describe("MultiSelect", () => {
     describe("Custom labels", () => {
         it("passes the custom label to the opener", () => {
             // Arrange
-            const labels: Partial<Labels> = {
+            const labels: Labels = {
+                ...builtinLabels,
                 noneSelected: "0 escuelas",
             };
             render(
                 <MultiSelect
                     onChange={jest.fn()}
                     testId="translated-multi-select"
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={labels}
                 >
                     <OptionItem label="school 1" value="1" />
@@ -973,7 +965,8 @@ describe("MultiSelect", () => {
 
         it("passes the custom label to the opener (2 items selected)", () => {
             // Arrange
-            const labels: Partial<Labels> = {
+            const labels: Labels = {
+                ...builtinLabels,
                 someSelected: (numSelectedValues: any) =>
                     `${numSelectedValues} escuelas`,
             };
@@ -981,7 +974,6 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={jest.fn()}
                     testId="translated-multi-select"
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={labels}
                     selectedValues={["1", "2"]}
                 >
@@ -1000,14 +992,14 @@ describe("MultiSelect", () => {
 
         it("passes the custom label to the opener (all items selected)", () => {
             // Arrange
-            const labels: Partial<Labels> = {
+            const labels: Labels = {
+                ...builtinLabels,
                 allSelected: "Todas las escuelas",
             };
             render(
                 <MultiSelect
                     onChange={jest.fn()}
                     testId="translated-multi-select"
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={labels}
                     selectedValues={["1", "2", "3"]}
                 >
@@ -1026,7 +1018,8 @@ describe("MultiSelect", () => {
 
         it("passes the custom label to the dismiss icon", () => {
             // Arrange
-            const labels: Partial<Labels> = {
+            const labels: Labels = {
+                ...builtinLabels,
                 clearSearch: "Limpiar busqueda",
             };
             render(
@@ -1034,7 +1027,6 @@ describe("MultiSelect", () => {
                     onChange={jest.fn()}
                     isFilterable={true}
                     testId="translated-multi-select"
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={labels}
                 >
                     <OptionItem label="school 1" value="1" />
@@ -1058,7 +1050,8 @@ describe("MultiSelect", () => {
 
         it("passes the custom label to the search input field", () => {
             // Arrange
-            const labels: Partial<Labels> = {
+            const labels: Labels = {
+                ...builtinLabels,
                 filter: "Filtrar",
             };
             render(
@@ -1066,7 +1059,6 @@ describe("MultiSelect", () => {
                     onChange={jest.fn()}
                     isFilterable={true}
                     testId="translated-multi-select"
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={labels}
                 >
                     <OptionItem label="school 1" value="1" />
@@ -1088,7 +1080,8 @@ describe("MultiSelect", () => {
 
         it("passes the custom label to the no results label", () => {
             // Arrange
-            const labels: Partial<Labels> = {
+            const labels: Labels = {
+                ...builtinLabels,
                 noResults: "No hay resultados",
             };
             render(
@@ -1096,7 +1089,6 @@ describe("MultiSelect", () => {
                     onChange={jest.fn()}
                     isFilterable={true}
                     testId="translated-multi-select"
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={labels}
                 >
                     <OptionItem label="school 1" value="1" />
@@ -1118,7 +1110,8 @@ describe("MultiSelect", () => {
 
         it("passes the custom label to the select all shortcut", () => {
             // Arrange
-            const labels: Partial<Labels> = {
+            const labels: Labels = {
+                ...builtinLabels,
                 selectAllLabel: (numOptions: any) =>
                     `Seleccionar todas las escuelas (${numOptions})`,
             };
@@ -1128,7 +1121,6 @@ describe("MultiSelect", () => {
                     isFilterable={true}
                     shortcuts={true}
                     testId="translated-multi-select"
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={labels}
                 >
                     <OptionItem label="school 1" value="1" />
@@ -1150,7 +1142,8 @@ describe("MultiSelect", () => {
 
         it("passes the custom label to the select none shortcut", () => {
             // Arrange
-            const labels: Partial<Labels> = {
+            const labels: Labels = {
+                ...builtinLabels,
                 selectNoneLabel: "Deseleccionar todas las escuelas",
             };
             render(
@@ -1159,7 +1152,6 @@ describe("MultiSelect", () => {
                     isFilterable={true}
                     shortcuts={true}
                     testId="translated-multi-select"
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={labels}
                 >
                     <OptionItem label="school 1" value="1" />
@@ -1181,20 +1173,16 @@ describe("MultiSelect", () => {
 
         it("verifies a custom label is updated when props change", () => {
             // Arrange
-            const initialLabels: Partial<Labels> = {
+            const initialLabels: Labels = {
+                ...defaultLabels,
                 selectNoneLabel: "Deseleccionar todas las escuelas",
             };
 
-            const TranslatedComponent = ({
-                labels,
-            }: {
-                labels: Partial<Labels>;
-            }) => (
+            const TranslatedComponent = ({labels}: {labels: Labels}) => (
                 <MultiSelect
                     onChange={jest.fn()}
                     isFilterable={true}
                     shortcuts={true}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={labels}
                 >
                     <OptionItem label="school 1" value="1" />
@@ -1208,7 +1196,8 @@ describe("MultiSelect", () => {
             );
 
             // update label value
-            const updatedLabels: Partial<Labels> = {
+            const updatedLabels: Labels = {
+                ...defaultLabels,
                 selectNoneLabel: "Ninguna seleccionada",
             };
 
@@ -1221,7 +1210,6 @@ describe("MultiSelect", () => {
 
             // Assert
             expect(
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 screen.getByText(updatedLabels.selectNoneLabel),
             ).toBeInTheDocument();
         });
@@ -1265,7 +1253,8 @@ describe("MultiSelect", () => {
     describe("a11y > Live region", () => {
         it("should announce the number of options when the listbox is open", async () => {
             // Arrange
-            const labels: Partial<Labels> = {
+            const labels: Labels = {
+                ...builtinLabels,
                 someSelected: (numOptions: number): string =>
                     ngettext("%(num)s school", "%(num)s schools", numOptions),
             };
@@ -1275,7 +1264,6 @@ describe("MultiSelect", () => {
                 <MultiSelect
                     onChange={jest.fn()}
                     isFilterable={true}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={labels}
                     opened={true}
                 >
@@ -1291,7 +1279,8 @@ describe("MultiSelect", () => {
 
         it("should change the number of options after using the search filter", async () => {
             // Arrange
-            const labels: Partial<Labels> = {
+            const labels: Labels = {
+                ...builtinLabels,
                 someSelected: (numOptions: number): string =>
                     ngettext("%(num)s planet", "%(num)s planets", numOptions),
             };
@@ -1301,7 +1290,6 @@ describe("MultiSelect", () => {
                     onChange={jest.fn()}
                     isFilterable={true}
                     shortcuts={true}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={labels}
                     opened={true}
                 >

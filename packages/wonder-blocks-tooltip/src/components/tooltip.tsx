@@ -115,7 +115,7 @@ type State = {
     /**
      * The element that activates the tooltip.
      */
-    anchorElement: HTMLElement | null | undefined;
+    anchorElement?: HTMLElement;
 };
 
 type DefaultProps = {
@@ -170,7 +170,6 @@ export default class Tooltip extends React.Component<Props, State> {
     state: State = {
         active: false,
         activeBubble: false,
-        anchorElement: null,
     };
     static ariaContentId = "aria-content";
 

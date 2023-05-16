@@ -103,11 +103,7 @@ export default {
 type StoryComponentType = ComponentStory<typeof ModalLauncher>;
 
 export const Default: StoryComponentType = (args) => (
-    <ModalLauncher
-        // @ts-expect-error: args.modal may override this prop when specified
-        modal={DefaultModal}
-        {...args}
-    >
+    <ModalLauncher {...args} modal={DefaultModal}>
         {({openModal}) => (
             <Button onClick={openModal}>Click me to open the modal</Button>
         )}

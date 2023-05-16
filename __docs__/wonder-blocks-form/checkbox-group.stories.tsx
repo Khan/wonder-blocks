@@ -49,12 +49,13 @@ Default.args = {
 };
 
 export const Basic: StoryComponentType = () => {
-    const [selectedValues, setSelectedValues] = React.useState([]);
+    const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
+        [],
+    );
 
     return (
         <CheckboxGroup
             groupName="toppings"
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             onChange={setSelectedValues}
             selectedValues={selectedValues}
         >
@@ -142,14 +143,15 @@ Error.parameters = {
 };
 
 export const RowStyling: StoryComponentType = () => {
-    const [selectedValues, setSelectedValues] = React.useState([]);
+    const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
+        [],
+    );
 
     return (
         <View style={styles.wrapper}>
             <LabelLarge style={styles.title}>Science</LabelLarge>
             <CheckboxGroup
                 groupName="science-classes"
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 onChange={setSelectedValues}
                 selectedValues={selectedValues}
                 style={styles.group}
@@ -195,7 +197,9 @@ RowStyling.parameters = {
 };
 
 export const MultipleChoiceStyling: StoryComponentType = () => {
-    const [selectedValues, setSelectedValues] = React.useState([]);
+    const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
+        [],
+    );
 
     return (
         <CheckboxGroup
@@ -206,7 +210,6 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
                 </LabelXSmall>
             }
             groupName="science-classes"
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             onChange={setSelectedValues}
             selectedValues={selectedValues}
         >

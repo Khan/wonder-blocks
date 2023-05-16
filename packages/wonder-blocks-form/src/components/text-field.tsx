@@ -39,7 +39,7 @@ type Props = AriaProps & {
      * Provide a validation for the input value.
      * Return a string error message or null | void for a valid input.
      */
-    validate?: (value: string) => string | null | undefined;
+    validate?: (value: string) => string | null | void;
     /**
      * Called right after the TextField input is validated.
      */

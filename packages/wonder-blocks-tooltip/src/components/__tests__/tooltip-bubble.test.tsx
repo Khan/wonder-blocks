@@ -8,16 +8,17 @@ import TooltipContent from "../tooltip-content";
 
 describe("TooltipBubble", () => {
     // A little helper method to make the actual test more readable.
-    const makePopperProps = () => ({
-        placement: "top",
-        tailOffset: {
-            top: "0",
-            left: "50",
-            bottom: undefined,
-            right: undefined,
-            transform: "translate3d(50, 0, 0)",
-        },
-    });
+    const makePopperProps = () =>
+        ({
+            placement: "top",
+            tailOffset: {
+                top: "0",
+                left: "50",
+                bottom: undefined,
+                right: undefined,
+                transform: "translate3d(50, 0, 0)",
+            },
+        } as const);
 
     test("updates reference to bubble container", async () => {
         // Arrange
@@ -36,7 +37,6 @@ describe("TooltipBubble", () => {
             <View>
                 <TooltipBubble
                     id="bubble"
-                    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                     placement={props.placement}
                     tailOffset={props.tailOffset}
                     updateBubbleRef={jest.fn()}

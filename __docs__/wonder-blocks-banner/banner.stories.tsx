@@ -211,8 +211,8 @@ export const WithButtons: StoryComponentType = () => (
         text="This is a banner with buttons."
         layout="full-width"
         actions={[
-            {title: "Button 1", onClick: () => {}},
-            {title: "Button 2", onClick: () => {}},
+            {type: "button", title: "Button 1", onClick: () => {}},
+            {type: "button", title: "Button 2", onClick: () => {}},
         ]}
     />
 );
@@ -230,8 +230,8 @@ export const WithLinks: StoryComponentType = () => (
         text="This is a banner with links."
         layout="floating"
         actions={[
-            {title: "Link 1", href: "/"},
-            {title: "Link 2", href: "/", onClick: () => {}},
+            {type: "link", title: "Link 1", href: "/"},
+            {type: "link", title: "Link 2", href: "/", onClick: () => {}},
         ]}
     />
 );
@@ -252,8 +252,8 @@ export const WithInlineLinks: StoryComponentType = () => (
             kind="critical"
             layout="floating"
             actions={[
-                {title: "Link", href: "/"},
-                {title: "Button", onClick: () => {}},
+                {type: "link", title: "Link", href: "/"},
+                {type: "button", title: "Button", onClick: () => {}},
             ]}
         />
         <Strut size={Spacing.medium_16} />
@@ -271,7 +271,7 @@ export const WithInlineLinks: StoryComponentType = () => (
             }
             kind="success"
             layout="floating"
-            actions={[{title: "Button", onClick: () => {}}]}
+            actions={[{type: "button", title: "Button", onClick: () => {}}]}
         />
     </>
 );
@@ -314,8 +314,8 @@ export const MultilineWithButtons: StoryComponentType = () => (
                 "This is a multi-line banner. These have wrapping text and actions are below."
             }
             actions={[
-                {title: "Button 1", onClick: () => {}},
-                {title: "Button 2", onClick: () => {}},
+                {type: "button", title: "Button 1", onClick: () => {}},
+                {type: "button", title: "Button 2", onClick: () => {}},
             ]}
             layout="floating"
         />
@@ -337,8 +337,8 @@ export const MultilineWithLinks: StoryComponentType = () => (
                 "This is a multi-line banner. These have wrapping text and actions are below."
             }
             actions={[
-                {title: "Link 1", href: "/"},
-                {title: "Link 2", href: "/"},
+                {type: "link", title: "Link 1", href: "/"},
+                {type: "link", title: "Link 2", href: "/"},
             ]}
             layout="full-width"
         />
@@ -375,7 +375,9 @@ export const WithDismissal: StoryComponentType = () => {
             text="This banner can be dismissed"
             kind="critical"
             onDismiss={handleDismiss}
-            actions={[{title: "Also dismiss", onClick: handleDismiss}]}
+            actions={[
+                {type: "button", title: "Also dismiss", onClick: handleDismiss},
+            ]}
             layout="floating"
             aria-label="Notification banner."
         />
@@ -440,6 +442,7 @@ export const WithMixedActions: StoryComponentType = () => (
         layout="floating"
         actions={[
             {
+                type: "button",
                 title: "Normal button",
                 onClick: () => {},
             },
@@ -480,8 +483,8 @@ export const RightToLeft: StoryComponentType = () => (
         <Banner
             text="یہ اردو میں لکھا ہے۔"
             actions={[
-                {title: "پہلا بٹن", onClick: () => {}},
-                {title: "دوسرا بٹن", onClick: () => {}},
+                {type: "button", title: "پہلا بٹن", onClick: () => {}},
+                {type: "button", title: "دوسرا بٹن", onClick: () => {}},
             ]}
             layout="full-width"
         />
@@ -489,8 +492,8 @@ export const RightToLeft: StoryComponentType = () => (
         <Banner
             text="یہ اردو میں لکھا ہے۔"
             actions={[
-                {title: "پہلا بٹن", onClick: () => {}},
-                {title: "دوسرا بٹن", onClick: () => {}},
+                {type: "button", title: "پہلا بٹن", onClick: () => {}},
+                {type: "button", title: "دوسرا بٹن", onClick: () => {}},
             ]}
             layout="floating"
         />
@@ -516,8 +519,8 @@ export const RightToLeftMultiline: StoryComponentType = () => (
              اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔
              اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔یہ اردو میں لکھا ہے۔`}
             actions={[
-                {title: "پہلا بٹن", onClick: () => {}},
-                {title: "دوسرا بٹن", onClick: () => {}},
+                {type: "button", title: "پہلا بٹن", onClick: () => {}},
+                {type: "button", title: "دوسرا بٹن", onClick: () => {}},
             ]}
             layout="full-width"
         />

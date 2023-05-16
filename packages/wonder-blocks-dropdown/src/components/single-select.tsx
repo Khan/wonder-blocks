@@ -156,7 +156,7 @@ type State = {
      * The DOM reference to the opener element. This is mainly used to set focus
      * to this element, and also to pass the reference to Popper.js.
      */
-    openerElement: HTMLElement | null | undefined;
+    openerElement?: HTMLElement;
 };
 
 /**
@@ -229,7 +229,6 @@ export default class SingleSelect extends React.Component<Props, State> {
         this.state = {
             open: false,
             searchText: "",
-            openerElement: null,
         };
     }
 

@@ -32,15 +32,13 @@ export const Default: StoryComponentType = (args) => {
 
     return (
         <SearchField
-            // @ts-expect-error: args.value may override this prop when specified
+            {...args}
             value={value}
-            // @ts-expect-error: args.onChange may override this prop when specified
             onChange={handleChange}
             onKeyDown={(e) => {
                 action("onKeyDown")(e);
                 handleKeyDown(e);
             }}
-            {...args}
         />
     );
 };

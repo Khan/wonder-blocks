@@ -9,7 +9,7 @@ type Props = AriaProps & {
      * This provides a reference to the anchored content, which can then be
      * used for calculating popover content positioning.
      */
-    anchorRef: (arg1?: HTMLElement | null | undefined) => unknown;
+    anchorRef: (arg1?: HTMLElement) => unknown;
     /**
      * The element that triggers the popover. This element will be used to
      * position the popover. It can be either a Node or a function using the
@@ -37,10 +37,7 @@ type Props = AriaProps & {
  */
 export default class PopoverAnchor extends React.Component<Props> {
     componentDidMount() {
-        const anchorNode = ReactDOM.findDOMNode(this) as
-            | HTMLElement
-            | null
-            | undefined;
+        const anchorNode = ReactDOM.findDOMNode(this) as HTMLElement;
 
         if (anchorNode) {
             this.props.anchorRef(anchorNode);

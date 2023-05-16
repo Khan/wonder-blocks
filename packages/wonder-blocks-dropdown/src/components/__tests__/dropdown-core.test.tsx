@@ -42,7 +42,6 @@ describe("DropdownCore", () => {
                         open={true}
                         // mock the opener elements
                         opener={<button />}
-                        openerElement={null}
                         onOpenChanged={jest.fn()}
                     />
                 </div>,
@@ -63,7 +62,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={jest.fn()}
             />,
         );
@@ -89,7 +87,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={dummyOpener}
-                openerElement={null}
                 onOpenChanged={openChanged}
             />,
         );
@@ -114,7 +111,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={jest.fn()}
                 isFilterable={false}
             />,
@@ -148,7 +144,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={jest.fn()}
             />,
         );
@@ -182,7 +177,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={handleOpenChangedMock}
             />,
         );
@@ -208,7 +202,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={handleOpenChangedMock}
             />,
         );
@@ -236,7 +229,6 @@ describe("DropdownCore", () => {
                     open={true}
                     // mock the opener elements
                     opener={<button />}
-                    openerElement={null}
                     onOpenChanged={handleOpenChangedMock}
                 />
             </div>,
@@ -263,7 +255,6 @@ describe("DropdownCore", () => {
                 open={false}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={handleOpenChangedMock}
             />,
         );
@@ -290,7 +281,6 @@ describe("DropdownCore", () => {
                 open={false}
                 // mock the opener elements
                 opener={opener}
-                openerElement={null}
                 onOpenChanged={handleOpenChangedMock}
             />,
         );
@@ -316,7 +306,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={jest.fn()}
             />,
         );
@@ -353,7 +342,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={jest.fn()}
             />,
         );
@@ -376,7 +364,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={jest.fn()}
             />,
         );
@@ -400,7 +387,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={jest.fn()}
             />,
         );
@@ -452,7 +438,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button data-test-id="opener" />}
-                openerElement={null}
                 onOpenChanged={jest.fn()}
             />,
         );
@@ -504,7 +489,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={jest.fn()}
             />,
         );
@@ -531,7 +515,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={jest.fn()}
             />,
         );
@@ -556,7 +539,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
             />,
         );
 
@@ -580,7 +562,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
             />,
         );
 
@@ -607,7 +588,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
             />,
         );
 
@@ -637,7 +617,6 @@ describe("DropdownCore", () => {
                 open={true}
                 // mock the opener elements
                 opener={<button />}
-                openerElement={null}
                 onOpenChanged={jest.fn()}
             />,
         );
@@ -687,7 +666,6 @@ describe("DropdownCore", () => {
                     open={true}
                     // mock the opener elements
                     opener={<button />}
-                    openerElement={null}
                     onOpenChanged={jest.fn()}
                 />,
             );
@@ -717,7 +695,6 @@ describe("DropdownCore", () => {
                     open={true}
                     // mock the opener elements
                     opener={<button />}
-                    openerElement={null}
                     onOpenChanged={jest.fn()}
                 />,
             );
@@ -750,7 +727,6 @@ describe("DropdownCore", () => {
                     open={true}
                     // mock the opener elements
                     opener={<button />}
-                    openerElement={null}
                     onOpenChanged={jest.fn()}
                 />,
             );

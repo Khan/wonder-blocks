@@ -29,7 +29,7 @@ type Props = {
     /**
      * The reference element used to position the popper.
      */
-    referenceElement: HTMLElement | null | undefined;
+    referenceElement?: HTMLElement;
     /**
      * Whether this menu should be left-aligned or right-aligned with the
      * reference component. Defaults to left-aligned.
@@ -76,7 +76,6 @@ const DropdownPopper = function ({
                     onPopperElement(node);
                 }
             }}
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
             referenceElement={referenceElement}
             strategy="fixed"
             placement={alignment === "left" ? "bottom-start" : "bottom-end"}

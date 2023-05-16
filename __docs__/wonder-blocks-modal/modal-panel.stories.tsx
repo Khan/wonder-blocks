@@ -145,7 +145,7 @@ type StoryComponentType = ComponentStory<typeof ModalPanel>;
 export const Default: StoryComponentType = (args) => (
     <ModalDialog aria-labelledby="modal-title-0" style={styles.dialog}>
         <ModalPanel
-            // @ts-expect-error: args.content may override this prop when specified
+            {...args}
             content={
                 <>
                     <Title id="modal-title-0">Modal Title</Title>
@@ -153,7 +153,6 @@ export const Default: StoryComponentType = (args) => (
                     {longBody}
                 </>
             }
-            {...args}
         />
     </ModalDialog>
 );

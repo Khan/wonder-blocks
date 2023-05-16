@@ -8,21 +8,19 @@ import TooltipBubble from "../tooltip-bubble";
 import TooltipPopper from "../tooltip-popper";
 
 type State = {
-    ref: HTMLElement | null | undefined;
+    ref?: HTMLElement;
 };
 /**
  * A little wrapper for the TooltipPopper so that we can provide an anchor
  * element reference and test that the children get rendered.
  */
 class TestHarness extends React.Component<any, State> {
-    state: State = {
-        ref: null,
-    };
+    state: State = {};
 
     updateRef(ref: any) {
         const actualRef = ref && ReactDOM.findDOMNode(ref);
         if (actualRef && this.state.ref !== actualRef) {
-            this.setState({ref: actualRef as HTMLElement | null | undefined});
+            this.setState({ref: actualRef as HTMLElement});
         }
     }
 

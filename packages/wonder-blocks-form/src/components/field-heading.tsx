@@ -67,7 +67,6 @@ export default class FieldHeading extends React.Component<Props> {
                 <LabelMedium
                     style={styles.label}
                     tag="label"
-                    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                     htmlFor={id && `${id}-field`}
                     testId={testId && `${testId}-label`}
                 >

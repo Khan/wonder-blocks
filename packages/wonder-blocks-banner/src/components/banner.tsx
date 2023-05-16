@@ -18,10 +18,12 @@ type ActionTriggerBase = {
 };
 
 type ActionTriggerWithButton = ActionTriggerBase & {
+    type: "button";
     onClick: () => void;
 };
 
 type ActionTriggerWithLink = ActionTriggerBase & {
+    type: "link";
     href: string;
     onClick?: () => void;
 };
@@ -178,59 +180,46 @@ const Banner = (props: Props): React.ReactElement => {
     } = props;
 
     const renderActions = () => {
-        return actions
-            ?.filter(Boolean)
-            .map((action: NonNullable<ActionTrigger>, i: number) => {
-                // @ts-expect-error [FEI-5019] - TS2339 - Property 'type' does not exist on type 'ActionTrigger'.
-                if (action.type === "custom") {
-                    return (
-                        <View style={styles.action} key={`custom-action-${i}`}>
-                            {/* @ts-expect-error [FEI-5019] - TS2339 - Property 'node' does not exist on type 'ActionTrigger'. */}
-                            {action.node}
-                        </View>
-                    );
-                }
+        return actions?.filter(Boolean).map((action, i) => {
+            if (action.type === "custom") {
+                return (
+                    <View style={styles.action} key={`custom-action-${i}`}>
+                        {action.node}
+                    </View>
+                );
+            }
 
-                // @ts-expect-error [FEI-5019] - TS2339 - Property 'onClick' does not exist on type 'ActionTrigger'.
-                const handleClick = action.onClick;
+            const handleClick = action.onClick;
 
-                // @ts-expect-error [FEI-5019] - TS2339 - Property 'href' does not exist on type 'ActionTrigger'.
-                if (action.href) {
-                    return (
-                        // @ts-expect-error [FEI-5019] - TS2339 - Property 'title' does not exist on type 'ActionTrigger'.
-                        <View style={styles.action} key={action.title}>
-                            <Link
-                                kind="primary"
-                                // @ts-expect-error [FEI-5019] - TS2339 - Property 'href' does not exist on type 'ActionTrigger'.
-                                href={action.href}
-                                onClick={handleClick}
-                                // @ts-expect-error [FEI-5019] - TS2339 - Property 'ariaLabel' does not exist on type 'ActionTrigger'. | TS2339 - Property 'title' does not exist on type 'ActionTrigger'.
-                                aria-label={action.ariaLabel ?? action.title}
-                                style={styles.link}
-                            >
-                                {/* @ts-expect-error [FEI-5019] - TS2339 - Property 'title' does not exist on type 'ActionTrigger'. */}
-                                {action.title}
-                            </Link>
-                        </View>
-                    );
-                } else {
-                    return (
-                        // @ts-expect-error [FEI-5019] - TS2339 - Property 'title' does not exist on type 'ActionTrigger'.
-                        <View style={styles.action} key={action.title}>
-                            <Button
-                                kind="tertiary"
-                                size="small"
-                                // @ts-expect-error [FEI-5019] - TS2339 - Property 'ariaLabel' does not exist on type 'ActionTrigger'. | TS2339 - Property 'title' does not exist on type 'ActionTrigger'.
-                                aria-label={action.ariaLabel ?? action.title}
-                                onClick={handleClick}
-                            >
-                                {/* @ts-expect-error [FEI-5019] - TS2339 - Property 'title' does not exist on type 'ActionTrigger'. */}
-                                {action.title}
-                            </Button>
-                        </View>
-                    );
-                }
-            });
+            if (action.type === "link") {
+                return (
+                    <View style={styles.action} key={action.title}>
+                        <Link
+                            kind="primary"
+                            href={action.href}
+                            onClick={handleClick}
+                            aria-label={action.ariaLabel ?? action.title}
+                            style={styles.link}
+                        >
+                            {action.title}
+                        </Link>
+                    </View>
+                );
+            } else {
+                return (
+                    <View style={styles.action} key={action.title}>
+                        <Button
+                            kind="tertiary"
+                            size="small"
+                            aria-label={action.ariaLabel ?? action.title}
+                            onClick={handleClick}
+                        >
+                            {action.title}
+                        </Button>
+                    </View>
+                );
+            }
+        });
     };
 
     return (

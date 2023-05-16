@@ -388,13 +388,14 @@ type Props = {
 };
 
 const VirtualizedMultiSelect = function (props: Props): React.ReactElement {
-    const [selectedValues, setSelectedValues] = React.useState([]);
+    const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
+        [],
+    );
     const [opened, setOpened] = React.useState(props.opened || false);
 
     return (
         <View style={styles.wrapper}>
             <MultiSelect
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'Dispatch<SetStateAction<never[]>>' is not assignable to type '(selectedValues: string[]) => unknown'.
                 onChange={setSelectedValues}
                 shortcuts={true}
                 isFilterable={true}
@@ -478,10 +479,12 @@ const translatedItems = new Array(10)
     ));
 
 export const CustomLabels: StoryComponentType = () => {
-    const [selectedValues, setSelectedValues] = React.useState([]);
+    const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
+        [],
+    );
     const [opened, setOpened] = React.useState(true);
 
-    const labels: Partial<Labels> = {
+    const labels: Labels = {
         clearSearch: "Limpiar busqueda",
         filter: "Filtrar",
         noResults: "Sin resultados",
@@ -498,10 +501,8 @@ export const CustomLabels: StoryComponentType = () => {
             <MultiSelect
                 shortcuts={true}
                 isFilterable={true}
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'Dispatch<SetStateAction<never[]>>' is not assignable to type '(selectedValues: string[]) => unknown'.
                 onChange={setSelectedValues}
                 selectedValues={selectedValues}
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                 labels={labels}
                 opened={opened}
                 onToggle={setOpened}

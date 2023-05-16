@@ -102,7 +102,7 @@ type State = {
     /**
      * Anchor element DOM reference
      */
-    anchorElement: HTMLElement | null | undefined;
+    anchorElement?: HTMLElement;
     /**
      * Current popper placement
      */
@@ -157,7 +157,6 @@ export default class Popover extends React.Component<Props, State> {
 
     state: State = {
         opened: !!this.props.opened,
-        anchorElement: null,
         placement: this.props.placement,
     };
 
@@ -187,11 +186,10 @@ export default class Popover extends React.Component<Props, State> {
         }
     };
 
-    updateRef: (ref?: any) => void = (ref) => {
-        const actualRef = ref && ReactDOM.findDOMNode(ref);
+    updateRef = (actualRef?: HTMLElement) => {
         if (actualRef && this.state.anchorElement !== actualRef) {
             this.setState({
-                anchorElement: actualRef as HTMLElement | null | undefined,
+                anchorElement: actualRef,
             });
         }
     };

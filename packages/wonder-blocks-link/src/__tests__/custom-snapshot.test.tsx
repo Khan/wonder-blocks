@@ -39,7 +39,7 @@ describe("Link", () => {
 });
 
 describe("LinkCore", () => {
-    for (const kind of ["primary", "secondary"]) {
+    for (const kind of ["primary", "secondary"] as const) {
         for (const href of ["#", "#non-existent-link"]) {
             for (const light of kind === "primary" ? [true, false] : [false]) {
                 for (const visitable of kind === "primary"
@@ -61,7 +61,6 @@ describe("LinkCore", () => {
                                         <LinkCore
                                             href="#"
                                             inline={inline}
-                                            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                                             kind={kind}
                                             light={light}
                                             visitable={visitable}

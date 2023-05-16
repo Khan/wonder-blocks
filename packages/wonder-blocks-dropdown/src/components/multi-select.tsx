@@ -173,7 +173,7 @@ type State = {
      * The DOM reference to the opener element. This is mainly used to set focus
      * to this element, and also to pass the reference to Popper.js.
      */
-    openerElement: HTMLElement | null | undefined;
+    openerElement?: HTMLElement;
 };
 
 /**
@@ -215,7 +215,6 @@ export default class MultiSelect extends React.Component<Props, State> {
             lastSelectedValues: [],
             // merge custom labels with the default ones
             labels: {...defaultLabels, ...props.labels},
-            openerElement: null,
         };
         // merge custom labels with the default ones
         this.labels = {...defaultLabels, ...props.labels};
