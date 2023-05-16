@@ -41,12 +41,20 @@ type DefaultProps = {
     disabled: Props["disabled"];
 };
 
+type RenderedChildrenProps = {
+    testId?: string;
+    "data-test-id"?: string;
+    onClick?: (e: React.SyntheticEvent) => void;
+};
+
 class DropdownOpener extends React.Component<Props> {
     static defaultProps: DefaultProps = {
         disabled: false,
     };
 
-    getTestIdFromProps: (childrenProps?: any) => string = (childrenProps) => {
+    getTestIdFromProps = (
+        childrenProps: RenderedChildrenProps,
+    ): string | void => {
         return childrenProps.testId || childrenProps["data-test-id"];
     };
 
@@ -56,18 +64,19 @@ class DropdownOpener extends React.Component<Props> {
     ): React.ReactElement {
         const {disabled, testId, text} = this.props;
         const renderedChildren = this.props.children({...eventState, text});
-        const childrenProps = renderedChildren.props;
-        const childrenTestId = this.getTestIdFromProps(childrenProps);
+        const rendererdChildrenProps: RenderedChildrenProps =
+            renderedChildren.props; // type-coverage:ignore-line
+        const childrenTestId = this.getTestIdFromProps(rendererdChildrenProps);
 
         return React.cloneElement(renderedChildren, {
             ...clickableChildrenProps,
             disabled,
-            onClick: childrenProps.onClick
+            onClick: rendererdChildrenProps.onClick
                 ? (e: React.MouseEvent) => {
                       // This is done to avoid overriding a
                       // custom onClick handler inside the
                       // children node
-                      childrenProps.onClick(e);
+                      rendererdChildrenProps.onClick?.(e);
                       clickableChildrenProps.onClick(e);
                   }
                 : clickableChildrenProps.onClick,
