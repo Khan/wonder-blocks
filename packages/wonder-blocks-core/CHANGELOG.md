@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-core
 
+## 5.2.0
+
+### Minor Changes
+
+-   fa70c895: Add 'lang', 'className' and 'htmlFor' properties to Text and View
+
+### Patch Changes
+
+-   19ab0408: Update flowgen to convert React.ForwardRefExoticComponent<> and React.FowardedRef<> properly
+-   fa70c895: Remove all TypeScript error suppressions on JSX attributes
+
 ## 5.1.0
 
 ### Minor Changes

@@ -1,5 +1,24 @@
 # @khanacademy/wonder-blocks-banner
 
+## 3.0.0
+
+### Major Changes
+
+-   fa70c895: Update ActionTrigger types so that all of them have a .type property
+
+### Patch Changes
+
+-   fa70c895: Remove all TypeScript error suppressions on JSX attributes
+-   Updated dependencies [fa70c895]
+-   Updated dependencies [19ab0408]
+-   Updated dependencies [fa70c895]
+    -   @khanacademy/wonder-blocks-core@5.2.0
+    -   @khanacademy/wonder-blocks-link@4.2.4
+    -   @khanacademy/wonder-blocks-button@4.0.10
+    -   @khanacademy/wonder-blocks-icon@2.0.10
+    -   @khanacademy/wonder-blocks-icon-button@4.0.10
+    -   @khanacademy/wonder-blocks-typography@2.0.10
+
 ## 2.0.13
 
 ### Patch Changes

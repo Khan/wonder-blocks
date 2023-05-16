@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-popover
 
+## 2.0.11
+
+### Patch Changes
+
+-   fa70c895: Remove all TypeScript error suppressions on JSX attributes
+-   Updated dependencies [fa70c895]
+-   Updated dependencies [19ab0408]
+-   Updated dependencies [fa70c895]
+    -   @khanacademy/wonder-blocks-core@5.2.0
+    -   @khanacademy/wonder-blocks-tooltip@2.0.11
+    -   @khanacademy/wonder-blocks-modal@4.0.11
+    -   @khanacademy/wonder-blocks-icon@2.0.10
+    -   @khanacademy/wonder-blocks-icon-button@4.0.10
+    -   @khanacademy/wonder-blocks-typography@2.0.10
+
 ## 2.0.10
 
 ### Patch Changes

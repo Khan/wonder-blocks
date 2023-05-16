@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-link
 
+## 4.2.4
+
+### Patch Changes
+
+-   fa70c895: Remove all TypeScript error suppressions on JSX attributes
+-   Updated dependencies [fa70c895]
+-   Updated dependencies [19ab0408]
+-   Updated dependencies [fa70c895]
+    -   @khanacademy/wonder-blocks-core@5.2.0
+    -   @khanacademy/wonder-blocks-clickable@3.0.10
+    -   @khanacademy/wonder-blocks-icon@2.0.10
+
 ## 4.2.3
 
 ### Patch Changes
