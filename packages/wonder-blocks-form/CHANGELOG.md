@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.1.1
+
+### Patch Changes
+
+-   19ab0408: Update flowgen to convert React.ForwardRefExoticComponent<> and React.FowardedRef<> properly
+-   fa70c895: Remove all TypeScript error suppressions on JSX attributes
+-   Updated dependencies [fa70c895]
+-   Updated dependencies [19ab0408]
+-   Updated dependencies [fa70c895]
+    -   @khanacademy/wonder-blocks-core@5.2.0
+    -   @khanacademy/wonder-blocks-clickable@3.0.10
+    -   @khanacademy/wonder-blocks-icon@2.0.10
+    -   @khanacademy/wonder-blocks-layout@2.0.10
+    -   @khanacademy/wonder-blocks-typography@2.0.10
+
 ## 4.1.0
 
 ### Minor Changes

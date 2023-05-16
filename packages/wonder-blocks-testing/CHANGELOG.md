@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-testing
 
+## 8.0.13
+
+### Patch Changes
+
+-   19ab0408: Update flowgen to convert React.ForwardRefExoticComponent<> and React.FowardedRef<> properly
+    -   @khanacademy/wonder-blocks-data@11.0.10
+
 ## 8.0.12
 
 ### Patch Changes
