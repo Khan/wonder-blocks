@@ -634,7 +634,7 @@ export const CustomLabels: StoryComponentType = () => {
     const [value, setValue] = React.useState<any>(null);
     const [opened, setOpened] = React.useState(true);
 
-    const translatedLabels: Partial<SingleSelectLabels> = {
+    const translatedLabels: SingleSelectLabels = {
         clearSearch: "Limpiar busqueda",
         filter: "Filtrar",
         noResults: "Sin resultados",
@@ -647,7 +647,6 @@ export const CustomLabels: StoryComponentType = () => {
                 isFilterable={true}
                 onChange={setValue}
                 selectedValue={value}
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<SingleSelectLabels>' is not assignable to type 'SingleSelectLabels'.
                 labels={translatedLabels}
                 opened={opened}
                 onToggle={setOpened}

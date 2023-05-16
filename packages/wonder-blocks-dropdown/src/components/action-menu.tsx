@@ -100,7 +100,7 @@ type DefaultProps = {
  * ```
  */
 export default class ActionMenu extends React.Component<Props, State> {
-    openerElement: HTMLElement | null | undefined;
+    openerElement?: HTMLElement;
 
     static defaultProps: DefaultProps = {
         alignment: "left",

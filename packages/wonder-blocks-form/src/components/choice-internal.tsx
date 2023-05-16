@@ -133,7 +133,6 @@ type DefaultProps = {
                         : undefined;
 
                     return (
-                        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                         <View style={style} className={className}>
                             <View
                                 style={styles.wrapper}

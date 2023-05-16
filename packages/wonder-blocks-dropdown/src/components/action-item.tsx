@@ -174,7 +174,6 @@ export default class ActionItem extends React.Component<ActionProps> {
                     const children = (
                         <React.Fragment>
                             <LabelMedium
-                                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                                 lang={lang}
                                 style={[indent && styles.indent, styles.label]}
                             >

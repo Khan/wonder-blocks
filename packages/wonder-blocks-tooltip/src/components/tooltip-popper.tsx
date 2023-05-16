@@ -22,7 +22,7 @@ type Props = {
      * The element that anchors the tooltip bubble.
      * This is used to position the bubble.
      */
-    anchorElement: HTMLElement | null | undefined;
+    anchorElement?: HTMLElement;
     /** Where should the bubble try to go with respect to its anchor. */
     placement: Placement;
 };
@@ -82,7 +82,6 @@ export default class TooltipPopper extends React.Component<Props> {
         const {anchorElement, placement} = this.props;
         return (
             <Popper
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 referenceElement={anchorElement}
                 strategy="fixed"
                 placement={placement}

@@ -222,8 +222,7 @@ export default class FocusManager extends React.Component<Props> {
                  * they're always in view, this prevents page scrolling when
                  * tabbing. */}
                 <div
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'string' is not assignable to type 'number | undefined'.
-                    tabIndex="0"
+                    tabIndex={0}
                     onFocus={this.handleFocusPreviousFocusableElement}
                     style={{position: "fixed"}}
                 />
@@ -234,8 +233,7 @@ export default class FocusManager extends React.Component<Props> {
                 </div>
                 {/* last sentinel */}
                 <div
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'string' is not assignable to type 'number | undefined'.
-                    tabIndex="0"
+                    tabIndex={0}
                     onFocus={this.handleFocusNextFocusableElement}
                     style={{position: "fixed"}}
                 />

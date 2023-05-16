@@ -414,7 +414,7 @@ describe("BirthdayPicker", () => {
     });
 
     describe("labels", () => {
-        const translatedLabels: Partial<Labels> = {
+        const translatedLabels: Labels = {
             month: "Mes",
             day: "Día",
             year: "Año",
@@ -451,7 +451,6 @@ describe("BirthdayPicker", () => {
                 render(
                     <BirthdayPicker
                         onChange={() => {}}
-                        // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                         labels={translatedLabels}
                     />,
                 );
@@ -492,14 +491,12 @@ describe("BirthdayPicker", () => {
                 <BirthdayPicker
                     defaultValue={defaultValue}
                     onChange={() => {}}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<Labels>' is not assignable to type 'Labels'.
                     labels={translatedLabels}
                 />,
             );
 
             // Assert
             expect(
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 screen.getByText(translatedLabels.errorMessage),
             ).toBeInTheDocument();
         });

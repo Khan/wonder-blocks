@@ -79,8 +79,20 @@ export type TextViewSharedProps = {
      * Test ID used for e2e testing.
      */
     testId?: string;
+    /**
+     * Optional attribute to indicate to the Screen Reader which language the
+     * item text is in.
+     */
+    lang?: string;
+    /**
+     * Optional CSS classes for the entire dropdown component.
+     */
+    className?: string;
+
+    htmlFor?: string;
     tabIndex?: number;
     id?: string;
+
     // TODO(kevinb) remove the need for this
     "data-modal-launcher-portal"?: boolean;
     // Used by tooltip bubble

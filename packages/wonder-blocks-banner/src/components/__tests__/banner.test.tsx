@@ -57,7 +57,14 @@ describe("Banner", () => {
             <Banner
                 text="test text"
                 layout="floating"
-                actions={[{title: "some link", href: "/", onClick: () => {}}]}
+                actions={[
+                    {
+                        type: "link",
+                        title: "some link",
+                        href: "/",
+                        onClick: () => {},
+                    },
+                ]}
             />,
         );
 
@@ -74,7 +81,9 @@ describe("Banner", () => {
             <Banner
                 text="test text"
                 layout="floating"
-                actions={[{title: "some button", onClick: () => {}}]}
+                actions={[
+                    {type: "button", title: "some button", onClick: () => {}},
+                ]}
             />,
         );
 
@@ -124,8 +133,8 @@ describe("Banner", () => {
                 text="test text"
                 layout="floating"
                 actions={[
-                    {title: "button 1", onClick: () => {}},
-                    {title: "button 2", onClick: () => {}},
+                    {type: "button", title: "button 1", onClick: () => {}},
+                    {type: "button", title: "button 2", onClick: () => {}},
                     {
                         type: "custom",
                         node: (
@@ -156,7 +165,9 @@ describe("Banner", () => {
             <Banner
                 text="test text"
                 layout="floating"
-                actions={[{title: "a button", onClick: actionSpy}]}
+                actions={[
+                    {type: "button", title: "a button", onClick: actionSpy},
+                ]}
             />,
         );
 
@@ -176,7 +187,14 @@ describe("Banner", () => {
             <Banner
                 text="test text"
                 layout="floating"
-                actions={[{title: "a link", onClick: actionSpy, href: "/"}]}
+                actions={[
+                    {
+                        type: "link",
+                        title: "a link",
+                        onClick: actionSpy,
+                        href: "/",
+                    },
+                ]}
             />,
         );
 
@@ -195,7 +213,14 @@ describe("Banner", () => {
             <Banner
                 text="test text"
                 layout="floating"
-                actions={[{title: "a button", onClick: () => {}, href: "/foo"}]}
+                actions={[
+                    {
+                        type: "link",
+                        title: "a link",
+                        onClick: () => {},
+                        href: "/foo",
+                    },
+                ]}
             />,
         );
 
@@ -277,7 +302,13 @@ describe("Banner", () => {
             <Banner
                 text="test text"
                 layout="floating"
-                actions={[{title: "Test button title", onClick: () => {}}]}
+                actions={[
+                    {
+                        type: "button",
+                        title: "Test button title",
+                        onClick: () => {},
+                    },
+                ]}
             />,
         );
 
@@ -294,7 +325,7 @@ describe("Banner", () => {
             <Banner
                 text="test text"
                 layout="floating"
-                actions={[{title: "Test link title", href: "/"}]}
+                actions={[{type: "link", title: "Test link title", href: "/"}]}
             />,
         );
 
@@ -313,6 +344,7 @@ describe("Banner", () => {
                 layout="floating"
                 actions={[
                     {
+                        type: "button",
                         title: "Test button title",
                         onClick: () => {},
                         ariaLabel: "Button aria label passed in",
@@ -339,6 +371,7 @@ describe("Banner", () => {
                 layout="floating"
                 actions={[
                     {
+                        type: "link",
                         title: "Test link title",
                         href: "/",
                         ariaLabel: "Link aria label passed in",

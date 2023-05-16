@@ -784,9 +784,17 @@ describe("SingleSelect", () => {
             <OptionItem label="Mango" value="mango" />,
         ];
 
+        const enLabels: SingleSelectLabels = {
+            clearSearch: "Clear Search",
+            filter: "Filter",
+            noResults: "No Results",
+            someResults: (numOptions: number) => "Some Results",
+        };
+
         it("passes the custom label to the search input field", () => {
             // Arrange
-            const labels: Partial<SingleSelectLabels> = {
+            const labels: SingleSelectLabels = {
+                ...enLabels,
                 filter: "Filtrar",
             };
 
@@ -797,7 +805,6 @@ describe("SingleSelect", () => {
                     placeholder="Escoge una fruta"
                     isFilterable={true}
                     opened={true}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<SingleSelectLabels>' is not assignable to type 'SingleSelectLabels'.
                     labels={labels}
                 >
                     {translatedItems}
@@ -810,7 +817,8 @@ describe("SingleSelect", () => {
 
         it("passes the custom label to the dismiss filter icon", () => {
             // Arrange
-            const labels: Partial<SingleSelectLabels> = {
+            const labels: SingleSelectLabels = {
+                ...enLabels,
                 clearSearch: "Limpiar busqueda",
                 filter: "Filtrar",
             };
@@ -821,7 +829,6 @@ describe("SingleSelect", () => {
                     placeholder="Escoge una fruta"
                     isFilterable={true}
                     opened={true}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<SingleSelectLabels>' is not assignable to type 'SingleSelectLabels'.
                     labels={labels}
                 >
                     {translatedItems}
@@ -840,7 +847,8 @@ describe("SingleSelect", () => {
 
         it("passes the custom label to the no results label", () => {
             // Arrange
-            const labels: Partial<SingleSelectLabels> = {
+            const labels: SingleSelectLabels = {
+                ...enLabels,
                 filter: "Filtrar",
                 noResults: "No hay resultados",
             };
@@ -851,7 +859,6 @@ describe("SingleSelect", () => {
                     placeholder="Escoge una fruta"
                     isFilterable={true}
                     opened={true}
-                    // @ts-expect-error [FEI-5019] - TS2322 - Type 'Partial<SingleSelectLabels>' is not assignable to type 'SingleSelectLabels'.
                     labels={labels}
                 >
                     {translatedItems}

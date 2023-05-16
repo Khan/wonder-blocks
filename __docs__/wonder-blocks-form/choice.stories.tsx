@@ -26,7 +26,9 @@ export default {
 type StoryComponentType = ComponentStory<typeof Choice>;
 
 export const Default: StoryComponentType = (args) => {
-    const [selectedValues, setSelectedValues] = React.useState([]);
+    const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
+        [],
+    );
     const [selectedValue, setSelectedValue] = React.useState("");
 
     return (
@@ -35,7 +37,6 @@ export const Default: StoryComponentType = (args) => {
                 label="Pizza order"
                 description="Choose as many toppings as you would like."
                 groupName="Toppings"
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 onChange={setSelectedValues}
                 selectedValues={selectedValues}
             >

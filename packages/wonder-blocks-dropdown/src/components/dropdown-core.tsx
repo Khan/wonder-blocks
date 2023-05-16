@@ -135,7 +135,7 @@ type ExportProps = {
     /**
      * Ref to the opener element.
      */
-    openerElement: HTMLElement | null | undefined;
+    openerElement?: HTMLElement;
     /**
      * The aria "role" applied to the dropdown container.
      */
@@ -1025,7 +1025,6 @@ class DropdownCore extends React.Component<Props, State> {
                 onKeyDown={this.handleKeyDown}
                 onKeyUp={this.handleKeyUp}
                 style={[styles.menuWrapper, style]}
-                // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                 className={className}
             >
                 {this.renderLiveRegion()}
