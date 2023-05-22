@@ -34,7 +34,7 @@ export type SingleSelectLabels = {
     someResults: (numOptions: number) => string;
 };
 
-type DefaultProps = {
+type DefaultProps = Readonly<{
     /**
      * Whether this dropdown should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
@@ -72,10 +72,11 @@ type DefaultProps = {
      * The object containing the custom labels used inside this component.
      */
     labels: SingleSelectLabels;
-};
+}>;
 
 type Props = AriaProps &
-    DefaultProps & {
+    DefaultProps &
+    Readonly<{
         /**
          * The items in this select.
          */
@@ -140,9 +141,9 @@ type Props = AriaProps &
          * top. The items will be filtered by the input.
          */
         isFilterable?: boolean;
-    };
+    }>;
 
-type State = {
+type State = Readonly<{
     /**
      * Whether or not the dropdown is open.
      */
@@ -157,7 +158,7 @@ type State = {
      * to this element, and also to pass the reference to Popper.js.
      */
     openerElement?: HTMLElement;
-};
+}>;
 
 /**
  * The single select allows the selection of one item. Clients are responsible

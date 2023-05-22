@@ -23,78 +23,81 @@ type PopoverContents =
     | React.ReactElement<React.ComponentProps<typeof PopoverContent>>
     | React.ReactElement<React.ComponentProps<typeof PopoverContentCore>>;
 
-type Props = AriaProps & {
-    /**
-     * The element that triggers the popover. This element will be used to
-     * position the popover. It can be either a Node or a function using the
-     * children-as-function pattern to pass an open function for use anywhere
-     * within children. The latter provides a lot of flexibility in terms of
-     * what actions may trigger the `Popover` to launch the popover dialog.
-     */
-    children:
-        | React.ReactElement<any>
-        | ((arg1: {open: () => void}) => React.ReactElement<any>);
-    /**
-     * The content of the popover. You can either use
-     * [PopoverContent](#PopoverContent) with one of the pre-defined variants,
-     * or include your own custom content using
-     * [PopoverContentCore](#PopoverContentCore directly.
-     *
-     * If the popover needs to close itself, the close function provided to this
-     * callback can be called to close the popover.
-     */
-    content: PopoverContents | ((arg1: {close: () => void}) => PopoverContents);
-    /**
-     * Where the popover should try to appear in relation to the trigger element.
-     */
-    placement: Placement;
-    /**
-     * When enabled, user can hide the popover content by pressing the `esc` key
-     * or clicking/tapping outside of it.
-     */
-    dismissEnabled?: boolean;
-    /**
-     * The unique identifier to give to the popover. Provide this in cases where
-     * you want to override the default accessibility solution. This identifier
-     * will be applied to the popover content.
-     *
-     * By providing this identifier, the children that this popover anchors to
-     * will not be automatically given the
-     * [aria-describedby](https://www.w3.org/TR/wai-aria-1.1/#aria-describedby)
-     * attribute. Instead, the accessibility solution is the responsibility of
-     * the caller.
-     *
-     * If this is not provided, the
-     * [aria-describedby](https://www.w3.org/TR/wai-aria-1.1/#aria-describedby)
-     * attribute will be added to the children with a unique identifier pointing
-     * to the popover dialog.
-     */
-    id?: string;
-    /**
-     * The selector for the element that will be focused when the popover
-     * content shows. When not set, the first focusable element within the
-     * popover content will be used.
-     */
-    initialFocusId?: string;
-    /**
-     * Renders the popover when true, renders nothing when false.
-     *
-     * Using this prop makes the component behave as a controlled component. The
-     * parent is responsible for managing the opening/closing of the popover
-     * when using this prop.
-     */
-    opened?: boolean;
-    /**
-     * Called when the popover closes
-     */
-    onClose?: () => unknown;
-    /**
-     * Test ID used for e2e testing.
-     */
-    testId?: string;
-};
+type Props = AriaProps &
+    Readonly<{
+        /**
+         * The element that triggers the popover. This element will be used to
+         * position the popover. It can be either a Node or a function using the
+         * children-as-function pattern to pass an open function for use anywhere
+         * within children. The latter provides a lot of flexibility in terms of
+         * what actions may trigger the `Popover` to launch the popover dialog.
+         */
+        children:
+            | React.ReactElement<any>
+            | ((arg1: {open: () => void}) => React.ReactElement<any>);
+        /**
+         * The content of the popover. You can either use
+         * [PopoverContent](#PopoverContent) with one of the pre-defined variants,
+         * or include your own custom content using
+         * [PopoverContentCore](#PopoverContentCore directly.
+         *
+         * If the popover needs to close itself, the close function provided to this
+         * callback can be called to close the popover.
+         */
+        content:
+            | PopoverContents
+            | ((arg1: {close: () => void}) => PopoverContents);
+        /**
+         * Where the popover should try to appear in relation to the trigger element.
+         */
+        placement: Placement;
+        /**
+         * When enabled, user can hide the popover content by pressing the `esc` key
+         * or clicking/tapping outside of it.
+         */
+        dismissEnabled?: boolean;
+        /**
+         * The unique identifier to give to the popover. Provide this in cases where
+         * you want to override the default accessibility solution. This identifier
+         * will be applied to the popover content.
+         *
+         * By providing this identifier, the children that this popover anchors to
+         * will not be automatically given the
+         * [aria-describedby](https://www.w3.org/TR/wai-aria-1.1/#aria-describedby)
+         * attribute. Instead, the accessibility solution is the responsibility of
+         * the caller.
+         *
+         * If this is not provided, the
+         * [aria-describedby](https://www.w3.org/TR/wai-aria-1.1/#aria-describedby)
+         * attribute will be added to the children with a unique identifier pointing
+         * to the popover dialog.
+         */
+        id?: string;
+        /**
+         * The selector for the element that will be focused when the popover
+         * content shows. When not set, the first focusable element within the
+         * popover content will be used.
+         */
+        initialFocusId?: string;
+        /**
+         * Renders the popover when true, renders nothing when false.
+         *
+         * Using this prop makes the component behave as a controlled component. The
+         * parent is responsible for managing the opening/closing of the popover
+         * when using this prop.
+         */
+        opened?: boolean;
+        /**
+         * Called when the popover closes
+         */
+        onClose?: () => unknown;
+        /**
+         * Test ID used for e2e testing.
+         */
+        testId?: string;
+    }>;
 
-type State = {
+type State = Readonly<{
     /**
      * Keeps a reference of the dialog state
      */
@@ -107,11 +110,11 @@ type State = {
      * Current popper placement
      */
     placement: Placement;
-};
+}>;
 
-type DefaultProps = {
+type DefaultProps = Readonly<{
     placement: Props["placement"];
-};
+}>;
 
 /**
  * Popovers provide additional information that is related to a particular

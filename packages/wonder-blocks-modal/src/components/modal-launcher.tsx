@@ -12,7 +12,7 @@ import type {ModalElement} from "../util/types";
 import ModalContext from "./modal-context";
 
 // TODO(FEI-5000): Convert back to conditional props after TS migration is complete.
-type Props = {
+type Props = Readonly<{
     /**
      * The modal to render.
      *
@@ -73,16 +73,17 @@ type Props = {
      * controlled component.
      */
     children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
-} & WithActionSchedulerProps;
+}> &
+    WithActionSchedulerProps;
 
-type DefaultProps = {
+type DefaultProps = Readonly<{
     backdropDismissEnabled: Props["backdropDismissEnabled"];
-};
+}>;
 
-type State = {
+type State = Readonly<{
     /** Whether the modal should currently be open. */
     opened: boolean;
-};
+}>;
 
 /**
  * This component enables you to launch a modal, covering the screen.

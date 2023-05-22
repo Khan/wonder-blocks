@@ -227,13 +227,13 @@ export interface IScheduleActions {
  * A props object type that can be spread into the a componenet wrapped with
  * the `withActionScheduler` higher order component.
  */
-export type WithActionSchedulerProps = {
+export type WithActionSchedulerProps = Readonly<{
     /**
      * An instance of the `IScheduleActions` API to use for scheduling
      * intervals, timeouts, and animation frame requests.
      */
     schedule: IScheduleActions;
-};
+}>;
 
 export type WithoutActionScheduler<TProps extends object> = Omit<
     TProps,
