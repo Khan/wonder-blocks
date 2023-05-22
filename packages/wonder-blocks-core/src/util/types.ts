@@ -11,9 +11,10 @@ export type StyleType =
     | Falsy
     | NestedArray<CSSProperties | Falsy>;
 
-export type AriaProps = AriaAttributes & {
-    role?: AriaRole;
-};
+export type AriaProps = Readonly<AriaAttributes> &
+    Readonly<{
+        role?: AriaRole;
+    }>;
 
 type MouseEvents = {
     onMouseDown?: (e: React.MouseEvent) => unknown;

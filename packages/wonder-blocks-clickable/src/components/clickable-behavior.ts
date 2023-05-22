@@ -42,7 +42,7 @@ const getAppropriateTriggersForRole = (role?: ClickableRole | null) => {
 };
 
 // TODO(FEI-5000): Convert back to conditional props after TS migration is complete.
-type Props = {
+type Props = Readonly<{
     /**
      * A function that returns the a React `Element`.
      *
@@ -139,9 +139,9 @@ type Props = {
      * navigation.
      */
     beforeNav?: () => Promise<unknown>;
-};
+}>;
 
-export type ClickableState = {
+export type ClickableState = Readonly<{
     /**
      * Whether the component is hovered.
      *
@@ -168,13 +168,13 @@ export type ClickableState = {
      * load navigation.
      */
     waiting: boolean;
-};
+}>;
 
-type DefaultProps = {
+type DefaultProps = Readonly<{
     disabled: Props["disabled"];
-};
+}>;
 
-export type ChildrenProps = {
+export type ChildrenProps = Readonly<{
     onClick: (e: React.SyntheticEvent) => unknown;
     onMouseEnter: (e: React.MouseEvent) => unknown;
     onMouseLeave: () => unknown;
@@ -189,7 +189,7 @@ export type ChildrenProps = {
     onBlur: (e: React.FocusEvent) => unknown;
     tabIndex?: number;
     rel?: string;
-};
+}>;
 
 const disabledHandlers = {
     onClick: () => void 0,
@@ -576,6 +576,17 @@ export default class ClickableBehavior extends React.Component<
     };
 
     render(): React.ReactNode {
+        // When the link is set to open in a new window, we want to set some
+        // `rel` attributes. This is to ensure that the links we're sending folks
+        // to can't hijack the existing page.  These defaults can be overriden
+        // by passing in a different value for the `rel` prop.
+        // More info: https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/
+        const rel =
+            this.props.rel ||
+            (this.props.target === "_blank"
+                ? "noopener noreferrer"
+                : undefined);
+
         const childrenProps: ChildrenProps = this.props.disabled
             ? {
                   ...disabledHandlers,
@@ -583,6 +594,7 @@ export default class ClickableBehavior extends React.Component<
                   onFocus: this.handleFocus,
                   onBlur: this.handleBlur,
                   tabIndex: this.props.tabIndex,
+                  rel,
               }
             : {
                   onClick: this.handleClick,
@@ -598,18 +610,9 @@ export default class ClickableBehavior extends React.Component<
                   onFocus: this.handleFocus,
                   onBlur: this.handleBlur,
                   tabIndex: this.props.tabIndex,
+                  rel,
               };
 
-        // When the link is set to open in a new window, we want to set some
-        // `rel` attributes. This is to ensure that the links we're sending folks
-        // to can't hijack the existing page.  These defaults can be overriden
-        // by passing in a different value for the `rel` prop.
-        // More info: https://www.jitbit.com/alexblog/256-targetblank---the-most-underestimated-vulnerability-ever/
-        childrenProps.rel =
-            this.props.rel ||
-            (this.props.target === "_blank"
-                ? "noopener noreferrer"
-                : undefined);
         const {children} = this.props;
         return children && children(this.state, childrenProps);
     }

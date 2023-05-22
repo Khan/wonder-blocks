@@ -65,7 +65,7 @@ type Labels = {
 // we need to define a DefaultProps type to allow the HOC expose the default
 // values to the parent components that are instantiating this component
 // @see https://flow.org/en/docs/react/hoc/#toc-exporting-wrapped-components
-type DefaultProps = {
+type DefaultProps = Readonly<{
     /**
      * Whether this menu should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
@@ -107,12 +107,12 @@ type DefaultProps = {
      * Used to determine if we can automatically select an item using the keyboard.
      */
     selectionType: "single" | "multi";
-};
+}>;
 
 type DropdownAriaRole = "listbox" | "menu";
 type ItemAriaRole = "option" | "menuitem";
 
-type ExportProps = {
+type ExportProps = Readonly<{
     // Required props
 
     /**
@@ -215,11 +215,11 @@ type ExportProps = {
      * Used to determine if we can automatically select an item using the keyboard.
      */
     selectionType?: "single" | "multi";
-};
+}>;
 
 type Props = DefaultProps & ExportProps & WithActionSchedulerProps;
 
-type State = {
+type State = Readonly<{
     /**
      * Refs to use for keyboard focus, contains only those for focusable items.
      * Also keeps track of the original index of the item.
@@ -246,7 +246,7 @@ type State = {
      * resetting focusedIndex and focusedOriginalIndex when an update happens.
      */
     sameItemsFocusable: boolean;
-};
+}>;
 
 /**
  * A core dropdown component that takes an opener and children to display as

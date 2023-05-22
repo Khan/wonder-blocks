@@ -34,76 +34,77 @@ import TooltipContent from "./tooltip-content";
 import TooltipPopper from "./tooltip-popper";
 import type {Placement} from "../util/types";
 
-type Props = AriaProps & {
-    /**
-     * The content for anchoring the tooltip.
-     * This component will be used to position the tooltip.
-     */
-    children: React.ReactElement<any> | string;
-    /**
-     * The title of the tooltip.
-     * Optional.
-     */
-    title?: string | React.ReactElement<React.ComponentProps<Typography>>;
-    /**
-     * The content to render in the tooltip.
-     */
-    content:
-        | string
-        | React.ReactElement<React.ComponentProps<typeof TooltipContent>>;
-    /**
-     * The unique identifier to give to the tooltip. Provide this in cases where
-     * you want to override the default accessibility solution. This identifier
-     * will be applied to the tooltip bubble content.
-     *
-     * By providing this identifier, the children that this tooltip anchors to
-     * will not be automatically given the aria-desribedby attribute. Instead,
-     * the accessibility solution is the responsibility of the caller.
-     *
-     * If this is not provided, the aria-describedby attribute will be added
-     * to the children with a unique identifier pointing to the tooltip bubble
-     * content.
-     */
-    id?: string;
-    /**
-     * When true, if a tabindex attribute is not already present on the element
-     * wrapped by the anchor, the element will be given tabindex=0 to make it
-     * keyboard focusable; otherwise, does not attempt to change the ability to
-     * focus the anchor element.
-     *
-     * Defaults to true.
-     *
-     * One might set this to false in circumstances where the wrapped component
-     * already can receive focus or contains an element that can.
-     * Use good judgement when overriding this value, the tooltip content should
-     * be accessible via keyboard in all circumstances where the tooltip would
-     * appear using the mouse, so verify those use-cases.
-     *
-     * Also, note that the aria-describedby attribute is attached to the root
-     * anchor element, so you may need to implement an additional accessibility
-     * solution when overriding anchor focusivity.
-     */
-    forceAnchorFocusivity?: boolean;
-    /**
-     * Where the tooltip should appear in relation to the anchor element.
-     * Defaults to "top".
-     */
-    placement: Placement;
-    /**
-     * Renders the tooltip when true, renders nothing when false.
-     *
-     * Using this prop makes the component behave as a controlled component. The
-     * parent is responsible for managing the opening/closing of the tooltip
-     * when using this prop.
-     */
-    opened?: boolean;
-    /**
-     * Test ID used for e2e testing.
-     */
-    testId?: string;
-};
+type Props = AriaProps &
+    Readonly<{
+        /**
+         * The content for anchoring the tooltip.
+         * This component will be used to position the tooltip.
+         */
+        children: React.ReactElement<any> | string;
+        /**
+         * The title of the tooltip.
+         * Optional.
+         */
+        title?: string | React.ReactElement<React.ComponentProps<Typography>>;
+        /**
+         * The content to render in the tooltip.
+         */
+        content:
+            | string
+            | React.ReactElement<React.ComponentProps<typeof TooltipContent>>;
+        /**
+         * The unique identifier to give to the tooltip. Provide this in cases where
+         * you want to override the default accessibility solution. This identifier
+         * will be applied to the tooltip bubble content.
+         *
+         * By providing this identifier, the children that this tooltip anchors to
+         * will not be automatically given the aria-desribedby attribute. Instead,
+         * the accessibility solution is the responsibility of the caller.
+         *
+         * If this is not provided, the aria-describedby attribute will be added
+         * to the children with a unique identifier pointing to the tooltip bubble
+         * content.
+         */
+        id?: string;
+        /**
+         * When true, if a tabindex attribute is not already present on the element
+         * wrapped by the anchor, the element will be given tabindex=0 to make it
+         * keyboard focusable; otherwise, does not attempt to change the ability to
+         * focus the anchor element.
+         *
+         * Defaults to true.
+         *
+         * One might set this to false in circumstances where the wrapped component
+         * already can receive focus or contains an element that can.
+         * Use good judgement when overriding this value, the tooltip content should
+         * be accessible via keyboard in all circumstances where the tooltip would
+         * appear using the mouse, so verify those use-cases.
+         *
+         * Also, note that the aria-describedby attribute is attached to the root
+         * anchor element, so you may need to implement an additional accessibility
+         * solution when overriding anchor focusivity.
+         */
+        forceAnchorFocusivity?: boolean;
+        /**
+         * Where the tooltip should appear in relation to the anchor element.
+         * Defaults to "top".
+         */
+        placement: Placement;
+        /**
+         * Renders the tooltip when true, renders nothing when false.
+         *
+         * Using this prop makes the component behave as a controlled component. The
+         * parent is responsible for managing the opening/closing of the tooltip
+         * when using this prop.
+         */
+        opened?: boolean;
+        /**
+         * Test ID used for e2e testing.
+         */
+        testId?: string;
+    }>;
 
-type State = {
+type State = Readonly<{
     /**
      * Whether the tooltip is open by hovering/focusing on the anchor element.
      */
@@ -116,7 +117,7 @@ type State = {
      * The element that activates the tooltip.
      */
     anchorElement?: HTMLElement;
-};
+}>;
 
 type DefaultProps = {
     forceAnchorFocusivity: Props["forceAnchorFocusivity"];

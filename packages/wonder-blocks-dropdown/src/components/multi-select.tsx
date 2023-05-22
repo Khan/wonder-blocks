@@ -53,7 +53,7 @@ export type Labels = {
     allSelected: string;
 };
 
-type DefaultProps = {
+type DefaultProps = Readonly<{
     /**
      * Whether this dropdown should be left-aligned or right-aligned with the
      * opener component. Defaults to left-aligned.
@@ -77,10 +77,11 @@ type DefaultProps = {
      * Whether to display shortcuts for Select All and Select None.
      */
     shortcuts: boolean;
-};
+}>;
 
 type Props = AriaProps &
-    DefaultProps & {
+    DefaultProps &
+    Readonly<{
         /**
          * The items in this select.
          */
@@ -147,9 +148,9 @@ type Props = AriaProps &
          * Test ID used for e2e testing.
          */
         testId?: string;
-    };
+    }>;
 
-type State = {
+type State = Readonly<{
     /**
      * Whether or not the dropdown is open.
      */
@@ -174,7 +175,7 @@ type State = {
      * to this element, and also to pass the reference to Popper.js.
      */
     openerElement?: HTMLElement;
-};
+}>;
 
 /**
  * A dropdown that consists of multiple selection items. This select allows
