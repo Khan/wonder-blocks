@@ -50,6 +50,9 @@ const defaultContext: Context = {
     mediaSpec: MEDIA_DEFAULT_SPEC,
 };
 
-export default React.createContext<Context>(
+const MediaLayoutContext = React.createContext<Context>(
     defaultContext,
 ) as React.Context<Context>;
+MediaLayoutContext.displayName = "MediaLayoutContext";
+
+export default MediaLayoutContext;
