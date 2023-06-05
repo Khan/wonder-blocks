@@ -182,9 +182,6 @@ describe("#useServerEffect", () => {
             // Arrange
             const fakeHandler = jest.fn();
             jest.spyOn(SsrCache.Default, "getEntry").mockReturnValueOnce({
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'ValidCacheData'.
-                data: null,
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'string' is not assignable to type 'undefined'.
                 error: "ERROR",
             });
 
@@ -241,9 +238,6 @@ describe("#useServerEffect", () => {
             // Arrange
             const fakeHandler = jest.fn();
             jest.spyOn(SsrCache.Default, "getEntry").mockReturnValueOnce({
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'ValidCacheData'.
-                data: null,
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'string' is not assignable to type 'undefined'.
                 error: "ERROR",
             });
 

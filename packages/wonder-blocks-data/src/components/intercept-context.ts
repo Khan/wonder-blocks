@@ -14,5 +14,6 @@ type InterceptContextData = ReadonlyArray<
  */
 const InterceptContext: React.Context<InterceptContextData> =
     React.createContext<InterceptContextData>([]);
+InterceptContext.displayName = "InterceptContext";
 
 export default InterceptContext;

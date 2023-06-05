@@ -22,7 +22,9 @@ export const RenderState = {
  * standard:
  *   means that we're all now doing non-SSR rendering
  */
-// @ts-expect-error [FEI-5019] - TS2322 - Type 'Context<"root">' is not assignable to type 'Context<"initial" | "root" | "standard">'.
-export const RenderStateContext: React.Context<
+const RenderStateContext = React.createContext<
     typeof RenderState[keyof typeof RenderState]
-> = React.createContext(RenderState.Root);
+>(RenderState.Root);
+RenderStateContext.displayName = "RenderStateContext";
+
+export {RenderStateContext};

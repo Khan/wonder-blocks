@@ -8,6 +8,9 @@ const defaultContext: ContextType = {
     closeModal: undefined,
 };
 
-export default React.createContext<ContextType>(
+const ModalContext = React.createContext<ContextType>(
     defaultContext,
 ) as React.Context<ContextType>;
+ModalContext.displayName = "ModalContext";
+
+export default ModalContext;
