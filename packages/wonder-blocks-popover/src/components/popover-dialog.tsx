@@ -35,6 +35,10 @@ type Props = AriaProps &
          * Called when popper changes its placement
          */
         onUpdate: (placement: Placement) => unknown;
+        /**
+         * Whether to show the popover tail or not.
+         */
+        showTail: boolean;
     };
 
 /**
@@ -71,6 +75,7 @@ export default class PopoverDialog extends React.Component<Props> {
             updateTailRef,
             tailOffset,
             style,
+            showTail,
             "aria-describedby": ariaDescribedby,
         } = this.props;
 
@@ -97,6 +102,7 @@ export default class PopoverDialog extends React.Component<Props> {
                 >
                     {children}
                     <TooltipTail
+                        show={showTail}
                         color={color}
                         updateRef={updateTailRef}
                         placement={placement}

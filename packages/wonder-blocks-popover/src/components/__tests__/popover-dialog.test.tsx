@@ -15,7 +15,7 @@ describe("PopoverDialog", () => {
 
         // Act
         render(
-            <PopoverDialog placement="top" onUpdate={jest.fn()}>
+            <PopoverDialog showTail={true} placement="top" onUpdate={jest.fn()}>
                 <PopoverContentCore color="darkBlue">
                     popover content
                 </PopoverContentCore>
@@ -33,7 +33,11 @@ describe("PopoverDialog", () => {
         // Arrange
         const onUpdateMock = jest.fn();
         const UnderTest = ({placement}: {placement: Placement}) => (
-            <PopoverDialog placement={placement} onUpdate={onUpdateMock}>
+            <PopoverDialog
+                showTail={true}
+                placement={placement}
+                onUpdate={onUpdateMock}
+            >
                 <PopoverContentCore>popover content</PopoverContentCore>
             </PopoverDialog>
         );
@@ -52,7 +56,11 @@ describe("PopoverDialog", () => {
         const onUpdateMock = jest.fn();
 
         const UnderTest = ({placement}: {placement: Placement}) => (
-            <PopoverDialog placement={placement} onUpdate={onUpdateMock}>
+            <PopoverDialog
+                showTail={true}
+                placement={placement}
+                onUpdate={onUpdateMock}
+            >
                 <PopoverContentCore>popover content</PopoverContentCore>
             </PopoverDialog>
         );
@@ -64,5 +72,27 @@ describe("PopoverDialog", () => {
 
         // Assert
         expect(onUpdateMock).not.toBeCalled();
+    });
+
+    it("should not render a tail if showTail is false", () => {
+        // Arrange
+        const tooltipTailSpy = jest.spyOn(Tooltip, "TooltipTail");
+
+        // Act
+        render(
+            <PopoverDialog
+                showTail={false}
+                placement="top"
+                onUpdate={jest.fn()}
+            >
+                <PopoverContentCore>popover content</PopoverContentCore>
+            </PopoverDialog>,
+        );
+
+        // Assert
+        expect(tooltipTailSpy).toHaveBeenCalledWith(
+            expect.objectContaining({show: false}),
+            {},
+        );
     });
 });

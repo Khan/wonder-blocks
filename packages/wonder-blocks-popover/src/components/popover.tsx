@@ -95,6 +95,10 @@ type Props = AriaProps &
          * Test ID used for e2e testing.
          */
         testId?: string;
+        /**
+         * Whether to show the popover tail or not. Defaults to true.
+         */
+        showTail: boolean;
     }>;
 
 type State = Readonly<{
@@ -114,6 +118,7 @@ type State = Readonly<{
 
 type DefaultProps = Readonly<{
     placement: Props["placement"];
+    showTail: Props["showTail"];
 }>;
 
 /**
@@ -142,6 +147,7 @@ type DefaultProps = Readonly<{
 export default class Popover extends React.Component<Props, State> {
     static defaultProps: DefaultProps = {
         placement: "top",
+        showTail: true,
     };
 
     /**
@@ -212,7 +218,7 @@ export default class Popover extends React.Component<Props, State> {
     }
 
     renderPopper(uniqueId: string): React.ReactNode {
-        const {initialFocusId, placement} = this.props;
+        const {initialFocusId, placement, showTail} = this.props;
         const {anchorElement} = this.state;
 
         return (
@@ -230,6 +236,7 @@ export default class Popover extends React.Component<Props, State> {
                             aria-describedby={`${uniqueId}-anchor`}
                             id={uniqueId}
                             onUpdate={(placement) => this.setState({placement})}
+                            showTail={showTail}
                         >
                             {this.renderContent()}
                         </PopoverDialog>
