@@ -4,6 +4,7 @@ import {css, StyleSheet} from "aphrodite";
 import Colors from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
+import {Strut} from "@khanacademy/wonder-blocks-layout";
 
 import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import type {getRefFn, Placement, Offset} from "../util/types";
@@ -23,10 +24,14 @@ export type Props = {
     placement: Placement;
     /** A callback to update the ref of the tail element. */
     updateRef?: getRefFn;
+    /** When true, the tail is shown; otherwise, it is not but it still takes
+     * space in the layout. */
+    show: boolean;
 };
 
 type DefaultProps = {
     color: Props["color"];
+    show: Props["show"];
 };
 
 type Dimensions = {
@@ -49,6 +54,7 @@ let tempIdCounter = 0;
 export default class TooltipTail extends React.Component<Props> {
     static defaultProps: DefaultProps = {
         color: "white",
+        show: true,
     };
 
     _calculateDimensionsFromPlacement(): Dimensions {
@@ -344,7 +350,13 @@ export default class TooltipTail extends React.Component<Props> {
         const {trimlinePoints, points, height, width} =
             this._calculateDimensionsFromPlacement();
 
-        const {color} = this.props;
+        const {color, show} = this.props;
+
+        if (!show) {
+            // If we aren't showing the tail, we still need to take up space
+            // so we render a strut instead.
+            return <Strut size={height} />;
+        }
 
         return (
             <svg

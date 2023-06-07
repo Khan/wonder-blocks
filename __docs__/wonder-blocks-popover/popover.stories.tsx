@@ -91,6 +91,31 @@ Default.args = {
 };
 
 /**
+ * No tail
+ */
+
+export const NoTail: StoryComponentType = Template.bind({});
+
+NoTail.args = {
+    children: <Button>Open popover without tail</Button>,
+    content: (
+        <PopoverContent
+            closeButtonVisible
+            title="Title"
+            content="The popover content. This popover does not have a tail."
+        />
+    ),
+
+    placement: "top",
+    dismissEnabled: true,
+    id: "",
+    initialFocusId: "",
+    testId: "",
+    onClose: () => {},
+    showTail: false,
+};
+
+/**
  * Using a trigger element
  */
 

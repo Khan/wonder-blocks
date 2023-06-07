@@ -39,9 +39,7 @@ export default class TooltipPopper extends React.Component<Props> {
         // We'll hide some complexity from the children here and ensure
         // that our placement always has a value.
         const placement: Placement =
-            // We know that popperProps.placement will only be one of our
-            // supported values, so just cast it.
-            (popperProps.placement as any) || this.props.placement;
+            popperProps.placement || this.props.placement;
 
         // Just in case the callbacks have changed, let's update our reference
         // trackers.

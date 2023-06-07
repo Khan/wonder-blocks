@@ -84,6 +84,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
             >
                 <View style={styles.content}>{children}</View>
                 <TooltipTail
+                    show={true}
                     updateRef={updateTailRef}
                     placement={placement}
                     offset={tailOffset}
