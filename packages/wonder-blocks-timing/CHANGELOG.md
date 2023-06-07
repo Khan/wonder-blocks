@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-timing
 
+## 4.0.1
+
+### Patch Changes
+
+-   df9a10aa: Update state and props to be readonly in components using getDerivedStateFromProps()
+
 ## 4.0.0
 
 ### Major Changes

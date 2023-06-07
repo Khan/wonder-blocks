@@ -1,5 +1,21 @@
 # @khanacademy/wonder-blocks-modal
 
+## 4.0.12
+
+### Patch Changes
+
+-   5a1ea891: Make sure that React contexts are named
+-   df9a10aa: Update state and props to be readonly in components using getDerivedStateFromProps()
+-   Updated dependencies [5a1ea891]
+-   Updated dependencies [df9a10aa]
+    -   @khanacademy/wonder-blocks-layout@2.0.11
+    -   @khanacademy/wonder-blocks-core@5.2.1
+    -   @khanacademy/wonder-blocks-timing@4.0.1
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.0.11
+    -   @khanacademy/wonder-blocks-icon@2.0.11
+    -   @khanacademy/wonder-blocks-icon-button@4.0.11
+    -   @khanacademy/wonder-blocks-typography@2.0.11
+
 ## 4.0.11
 
 ### Patch Changes

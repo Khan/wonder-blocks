@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-core
 
+## 5.2.1
+
+### Patch Changes
+
+-   5a1ea891: Make sure that React contexts are named
+-   df9a10aa: Update state and props to be readonly in components using getDerivedStateFromProps()
+
 ## 5.2.0
 
 ### Minor Changes
