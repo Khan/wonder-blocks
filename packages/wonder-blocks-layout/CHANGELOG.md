@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-layout
 
+## 2.0.11
+
+### Patch Changes
+
+-   5a1ea891: Make sure that React contexts are named
+-   Updated dependencies [5a1ea891]
+-   Updated dependencies [df9a10aa]
+    -   @khanacademy/wonder-blocks-core@5.2.1
+
 ## 2.0.10
 
 ### Patch Changes

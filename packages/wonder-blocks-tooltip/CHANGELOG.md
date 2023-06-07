@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 2.0.12
+
+### Patch Changes
+
+-   86f58e6b: Allow the popover tail to be optional. This is a non-breaking change as it defaults to being visible as before. The TooltipTail export of wonder-blocks-tooltip is modified to support this, but it is a minor change that does not impact the primary API and hence is a patch update. While the Popover change is similar, it has a direct impact to primary uses and so is a minor update.
+-   df9a10aa: Update state and props to be readonly in components using getDerivedStateFromProps()
+-   Updated dependencies [5a1ea891]
+-   Updated dependencies [df9a10aa]
+    -   @khanacademy/wonder-blocks-layout@2.0.11
+    -   @khanacademy/wonder-blocks-modal@4.0.12
+    -   @khanacademy/wonder-blocks-core@5.2.1
+    -   @khanacademy/wonder-blocks-typography@2.0.11
+
 ## 2.0.11
 
 ### Patch Changes

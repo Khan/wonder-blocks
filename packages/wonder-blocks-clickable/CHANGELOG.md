@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 3.0.11
+
+### Patch Changes
+
+-   df9a10aa: Update state and props to be readonly in components using getDerivedStateFromProps()
+-   Updated dependencies [5a1ea891]
+-   Updated dependencies [df9a10aa]
+    -   @khanacademy/wonder-blocks-core@5.2.1
+
 ## 3.0.10
 
 ### Patch Changes
