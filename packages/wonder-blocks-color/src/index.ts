@@ -31,7 +31,7 @@ type ColorType = {
 const Color: ColorType = {
     // Product
     blue: "#1865f2",
-    purple: "#9059ff",
+    purple: "#594094",
     green: "#00a60e",
     gold: "#ffb100",
     red: "#d92916",
