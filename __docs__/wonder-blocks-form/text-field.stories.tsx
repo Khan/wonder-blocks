@@ -7,6 +7,7 @@ import Color from "@khanacademy/wonder-blocks-color";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Button from "@khanacademy/wonder-blocks-button";
+import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
 import {name, version} from "../../packages/wonder-blocks-form/package.json";
@@ -702,6 +703,68 @@ ReadOnly.parameters = {
     },
 };
 
+export const WithAutofocus: StoryComponentType = () => {
+    const [value, setValue] = React.useState("");
+    const [showDemo, setShowDemo] = React.useState(false);
+
+    const handleChange = (newValue: string) => {
+        setValue(newValue);
+    };
+
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === "Enter") {
+            event.currentTarget.blur();
+        }
+    };
+
+    const handleShowDemo = () => {
+        setShowDemo(!showDemo);
+    };
+
+    const AutoFocusDemo = () => (
+        <View style={{flexDirection: "row"}}>
+            <Button onClick={() => {}}>Some other focusable element</Button>
+            <TextField
+                id="tf-13"
+                value={value}
+                placeholder="Placeholder"
+                autoFocus={true}
+                onChange={handleChange}
+                onKeyDown={handleKeyDown}
+                style={{flexGrow: 1, marginLeft: 12}}
+            />
+        </View>
+    );
+
+    return (
+        <View>
+            <LabelLarge style={{marginBottom: 12}}>
+                Press the button to view the text field with autofocus.
+            </LabelLarge>
+            <Button
+                onClick={handleShowDemo}
+                style={{width: 300, marginBottom: 24}}
+            >
+                Toggle autoFocus demo
+            </Button>
+            {showDemo && <AutoFocusDemo />}
+        </View>
+    );
+};
+
+WithAutofocus.parameters = {
+    docs: {
+        storyDescription: `TextField takes an \`autoFocus\` prop, which
+            makes it autofocus on page load. Try to avoid using this if
+            possible as it is bad for accessibility.\n\nPress the button
+            to view this example. Notice that the text field automatically
+            receives focus. Upon pressing the botton, try typing and
+            notice that the text appears directly in the text field. There
+            is another focusable element present to demonstrate that
+            focus skips that element and goes straight to the text field.`,
+    },
+};
+
 export const AutoComplete: StoryComponentType = () => {
     const [value, setValue] = React.useState("");
 
@@ -718,7 +781,7 @@ export const AutoComplete: StoryComponentType = () => {
     return (
         <form>
             <TextField
-                id="tf-13"
+                id="tf-14"
                 type="text"
                 value={value}
                 placeholder="Name"
