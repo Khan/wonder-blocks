@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.2.0
+
+### Minor Changes
+
+-   3f86013b: Add autocomplete prop to SearchField and TextField
+
 ## 4.1.3
 
 ### Patch Changes
