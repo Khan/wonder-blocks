@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-search-field
 
+## 2.1.0
+
+### Minor Changes
+
+-   3f86013b: Add autocomplete prop to SearchField and TextField
+
+### Patch Changes
+
+-   Updated dependencies [3f86013b]
+    -   @khanacademy/wonder-blocks-form@4.2.0
+
 ## 2.0.13
 
 ### Patch Changes
