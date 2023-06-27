@@ -2,6 +2,9 @@ import * as React from "react";
 import {fireEvent, render, screen} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import {View} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
+
 import TextField from "../text-field";
 
 describe("TextField", () => {
@@ -401,5 +404,54 @@ describe("TextField", () => {
         // Assert
         const input = screen.getByRole("textbox");
         expect(input).toHaveAttribute("autoComplete", autoComplete);
+    });
+
+    test("has focus if autoFocus is true", () => {
+        // Arrange
+        render(
+            <View>
+                <Button onClick={() => {}}>
+                    Some other focusable element.
+                </Button>
+                <TextField
+                    id="tf-auto-focus-true"
+                    autoFocus
+                    testId="search-field-test"
+                    onChange={() => {}}
+                    value=""
+                />
+                ,
+            </View>,
+        );
+
+        // Act
+        const searchField = screen.getByTestId("search-field-test");
+
+        // Assert
+        expect(searchField).toHaveFocus();
+    });
+
+    test("does not have focus if autoFocus is undefined", () => {
+        // Arrange
+        render(
+            <View>
+                <Button onClick={() => {}}>
+                    Some other focusable element.
+                </Button>
+                <TextField
+                    id="tf-auto-focus-undefined"
+                    testId="search-field-test"
+                    onChange={() => {}}
+                    value=""
+                />
+                ,
+            </View>,
+        );
+
+        // Act
+        const searchField = screen.getByTestId("search-field-test");
+
+        // Assert
+        expect(searchField).not.toHaveFocus();
     });
 });

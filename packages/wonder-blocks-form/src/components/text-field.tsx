@@ -104,6 +104,10 @@ type Props = AriaProps & {
      */
     readOnly?: boolean;
     /**
+     * Whether this field should autofocus on page load.
+     */
+    autoFocus?: boolean;
+    /**
      * Specifies if the input field allows autocomplete.
      */
     autoComplete?: string;
@@ -222,6 +226,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
             style,
             testId,
             readOnly,
+            autoFocus,
             autoComplete,
             forwardedRef,
             // The following props are being included here to avoid
@@ -269,6 +274,7 @@ class TextField extends React.Component<PropsWithForwardRef, State> {
                 onBlur={this.handleBlur}
                 data-test-id={testId}
                 readOnly={readOnly}
+                autoFocus={autoFocus}
                 autoComplete={autoComplete}
                 ref={forwardedRef}
                 {...otherProps}
