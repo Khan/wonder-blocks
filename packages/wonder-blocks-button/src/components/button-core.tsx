@@ -20,15 +20,25 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import type {SharedProps} from "./button";
+import {
+    ThemeContract,
+    useStyles,
+    useTheme,
+    withTheme,
+} from "@khanacademy/wonder-blocks-theming";
+import type {WithThemeProps} from "@khanacademy/wonder-blocks-theming";
 
-type Props = SharedProps & ChildrenProps & ClickableState;
+type Props = SharedProps & ChildrenProps & ClickableState & WithThemeProps;
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
-export default class ButtonCore extends React.Component<Props> {
-    renderInner(router: any): React.ReactNode {
+function ButtonCore(props: Props) {
+    const theme = useTheme();
+    const sharedStyles = useStyles(wbThemeStyles);
+
+    const renderInner = (router: any): React.ReactNode => {
         const {
             children,
             skipClientNav,
@@ -49,12 +59,12 @@ export default class ButtonCore extends React.Component<Props> {
             id,
             waiting: _,
             ...restProps
-        } = this.props;
+        } = props;
 
         const buttonColor =
             color === "destructive"
                 ? SemanticColor.controlDestructive
-                : SemanticColor.controlDefault;
+                : theme.color.primary;
 
         const iconWidth = icon ? (size === "small" ? 16 : 24) + 8 : 0;
         const buttonStyles = _generateStyles(
@@ -63,6 +73,7 @@ export default class ButtonCore extends React.Component<Props> {
             light,
             iconWidth,
             size,
+            theme,
         );
 
         const disabled = spinner || disabledProp;
@@ -166,18 +177,16 @@ export default class ButtonCore extends React.Component<Props> {
                 </StyledButton>
             );
         }
-    }
+    };
 
-    render(): React.ReactNode {
-        return (
-            <__RouterContext.Consumer>
-                {(router) => this.renderInner(router)}
-            </__RouterContext.Consumer>
-        );
-    }
+    return (
+        <__RouterContext.Consumer>
+            {(router) => renderInner(router)}
+        </__RouterContext.Consumer>
+    );
 }
 
-const sharedStyles = StyleSheet.create({
+const wbThemeStyles = (theme: ThemeContract) => ({
     shared: {
         position: "relative",
         display: "inline-flex",
@@ -186,8 +195,8 @@ const sharedStyles = StyleSheet.create({
         height: 40,
         paddingTop: 0,
         paddingBottom: 0,
-        paddingLeft: 16,
-        paddingRight: 16,
+        paddingLeft: theme.spacing.medium,
+        paddingRight: theme.spacing.medium,
         border: "none",
         borderRadius: 4,
         cursor: "pointer",
@@ -255,6 +264,7 @@ const _generateStyles = (
     light: boolean,
     iconWidth: number,
     size: "large" | "medium" | "small",
+    theme: ThemeContract,
 ) => {
     const buttonType =
         color + kind + light.toString() + iconWidth.toString() + size;
@@ -265,7 +275,9 @@ const _generateStyles = (
     const {white, white50, white64, offBlack32, offBlack50, darkBlue} = Color;
     const fadedColor = mix(fade(color, 0.32), white);
     const activeColor = mix(offBlack32, color);
-    const padding = size === "large" ? Spacing.xLarge_32 : Spacing.medium_16;
+    const padding = (
+        size === "large" ? theme.spacing.large : theme.spacing.medium
+    ) as number;
 
     let newStyles: Record<string, any> = {};
     if (kind === "primary") {
@@ -414,3 +426,5 @@ const _generateStyles = (
     styles[buttonType] = StyleSheet.create(newStyles);
     return styles[buttonType];
 };
+
+export default ButtonCore;

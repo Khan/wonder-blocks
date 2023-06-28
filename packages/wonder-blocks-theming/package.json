@@ -1,0 +1,19 @@
+{
+  "name": "@khanacademy/wonder-blocks-theming",
+  "version": "0.0.1",
+  "publishConfig": {
+    "access": "public"
+  },
+  "description": "",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "wb-dev-build-settings": "^0.9.7"
+  },
+  "author": "",
+  "license": "MIT"
+}
