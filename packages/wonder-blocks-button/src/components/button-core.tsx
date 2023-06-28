@@ -111,7 +111,12 @@ export default class ButtonCore extends React.Component<Props> {
                         (pressed
                             ? buttonStyles.active
                             : (hovered || focused) && buttonStyles.focus),
-                    kind === "tertiary" && disabled && focused && buttonStyles.disabledFocus,
+                    kind === "tertiary" &&
+                        disabled &&
+                        focused && [
+                            buttonStyles.focus,
+                            buttonStyles.disabledFocus,
+                        ],
                 ]}
             >
                 {icon && (
@@ -391,20 +396,7 @@ const _generateStyles = (
             },
             disabledFocus: {
                 ":after": {
-                    content: "''",
-                    position: "absolute",
-                    height: 2,
-                    width: `calc(100% - ${iconWidth}px)`,
-                    right: 0,
-                    /**
-                     * For tertiary buttons, underline is applied to the
-                     * internal `span` element, So we need to calculate the
-                     * offset to center the line in the button (right after
-                     * the span).
-                     */
-                    bottom: 0,
                     background: light ? white : offBlack32,
-                    borderRadius: 2,
                 },
             },
         };
