@@ -317,16 +317,14 @@ const _generateStyles = (
                 borderColor: light ? white50 : offBlack50,
                 borderStyle: "solid",
                 borderWidth: 1,
-                paddingLeft: iconWidth ? padding - 4 : padding,
+                paddingLeft: padding,
                 paddingRight: padding,
             },
             focus: {
                 background: light ? "transparent" : white,
                 borderColor: light ? white : color,
                 borderWidth: 2,
-                // The left padding for the button with icon should have 4px
-                // less padding
-                paddingLeft: iconWidth ? padding - 5 : padding - 1,
+                paddingLeft: padding - 1,
                 paddingRight: padding - 1,
             },
             active: {
@@ -336,9 +334,7 @@ const _generateStyles = (
                 borderWidth: 2,
                 // We need to reduce padding to offset the difference
                 // caused by the border becoming thicker on focus.
-                // The left padding for the button with icon should have 4px
-                // less padding
-                paddingLeft: iconWidth ? padding - 5 : padding - 1,
+                paddingLeft: padding - 1,
                 paddingRight: padding - 1,
             },
             disabled: {
@@ -350,9 +346,7 @@ const _generateStyles = (
                     borderWidth: 2,
                     // We need to reduce padding to offset the difference
                     // caused by the border becoming thicker on focus.
-                    // The left padding for the button with icon should have 4px
-                    // less padding
-                    paddingLeft: iconWidth ? padding - 5 : padding - 1,
+                    paddingLeft: padding - 1,
                     paddingRight: padding - 1,
                 },
             },
