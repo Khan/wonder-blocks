@@ -1,3 +1,7 @@
+import {StyleDeclaration} from "aphrodite";
+// export type ThemeContract = {
+//     [key: string]: string | number | ThemeContract;
+// };
 
 export type ThemeContract = {
     // Colors
@@ -36,3 +40,5 @@ export type ThemeContract = {
         large: string;
     };
 };
+
+export type ThemedStylesFn = (theme: ThemeContract) => StyleDeclaration;

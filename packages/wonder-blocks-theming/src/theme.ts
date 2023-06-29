@@ -1,5 +1,5 @@
 import tokens from "./tokens";
-import { ThemeContract } from "./types";
+import {ThemeContract} from "./types";
 
 export const theme: ThemeContract = {
     color: {

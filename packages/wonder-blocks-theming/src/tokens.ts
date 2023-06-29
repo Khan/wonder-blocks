@@ -5,8 +5,8 @@ const tokens = {
     colors: Color,
     spacing: Spacing,
     fonts: {
-        primary: "Roboto, sans-serif",
-        secondary: "Roboto Mono, monospace",
+        primary: "Lato, sans-serif",
+        secondary: "Source Serif sans, monospace",
     },
     fontWeights: {
         light: 300,

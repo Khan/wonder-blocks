@@ -1,8 +1,9 @@
 import * as React from "react";
 import type {ComponentStory, ComponentMeta} from "@storybook/react";
-import {css} from "aphrodite";
+import {css, StyleDeclaration} from "aphrodite";
 
 import ThemeContext, {
+    ThemedStylesFn,
     themeDefault,
     tokens,
     useStyles,
@@ -74,7 +75,7 @@ function CustomButton(props: WithThemeProps & Props) {
     );
 }
 
-const styles = (theme: ThemeContract) =>
+const styles: ThemedStylesFn = (theme) =>
     StyleSheet.create({
         button: {
             background: theme.color.primary,
@@ -83,7 +84,6 @@ const styles = (theme: ThemeContract) =>
         },
     });
 
-// TODO(juan): Check if I should curry the function or not.
 const ThemedButton = withTheme(styles)(CustomButton);
 
 export const Default = () => {
@@ -136,7 +136,7 @@ export const WithThemedButton = () => {
 
 function CustomStyledButton(props: Props) {
     const theme = useTheme();
-    const wbThemeStyles = useStyles(stylesObject);
+    const wbThemeStyles = useStyles(themedStyles);
 
     return (
         <>
@@ -153,7 +153,7 @@ function CustomStyledButton(props: Props) {
     );
 }
 
-const stylesObject = (theme: ThemeContract) => ({
+const themedStyles: ThemedStylesFn = (theme) => ({
     button: {
         background: theme.color.primary,
         fontSize: theme.fontSize.large,

@@ -23,7 +23,7 @@ const withTheme =
 
         // Apply the current theme to the style sheet.
         const wbThemeStyles = styleSheet(theme);
-        console.log(wbThemeStyles);
+
         return (
             <WrappedComponent
                 {...(props as Props)}

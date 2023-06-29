@@ -22,13 +22,12 @@ import type {
 import type {SharedProps} from "./button";
 import {
     ThemeContract,
+    ThemedStylesFn,
     useStyles,
     useTheme,
-    withTheme,
 } from "@khanacademy/wonder-blocks-theming";
-import type {WithThemeProps} from "@khanacademy/wonder-blocks-theming";
 
-type Props = SharedProps & ChildrenProps & ClickableState & WithThemeProps;
+type Props = SharedProps & ChildrenProps & ClickableState;
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
@@ -186,7 +185,7 @@ function ButtonCore(props: Props) {
     );
 }
 
-const wbThemeStyles = (theme: ThemeContract) => ({
+const wbThemeStyles: ThemedStylesFn = (theme: ThemeContract) => ({
     shared: {
         position: "relative",
         display: "inline-flex",
