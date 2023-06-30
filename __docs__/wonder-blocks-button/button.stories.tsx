@@ -1,4 +1,5 @@
 import * as React from "react";
+import {expect} from "@storybook/jest";
 import {StyleSheet} from "aphrodite";
 import {withDesign} from "storybook-addon-designs";
 import {action} from "@storybook/addon-actions";
@@ -7,6 +8,7 @@ import type {ComponentStory, ComponentMeta} from "@storybook/react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
 import type {StyleDeclaration} from "aphrodite";
+import {fireEvent, userEvent, within} from "@storybook/testing-library";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {icons} from "@khanacademy/wonder-blocks-icon";
@@ -60,6 +62,43 @@ Default.parameters = {
         // We already have screenshots of other stories that cover more of the button states
         disableSnapshot: true,
     },
+};
+
+export const Tertiary: StoryComponentType = () => (
+    <Button onClick={() => {}} kind="tertiary">
+        Hello, world!
+    </Button>
+);
+
+Tertiary.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement);
+
+    // Get HTML elements
+    const button = canvas.getByRole("button");
+    const computedStyleButton = getComputedStyle(button, ":after");
+    const innerLabel = canvas.getByTestId("button-inner-label");
+    const computedStyleLabel = getComputedStyle(innerLabel, ":after");
+
+    // Resting style
+    await expect(button).toHaveStyle(`color: ${Color.blue}`);
+    await expect(button).toHaveTextContent("Hello, world!");
+
+    // Hover style
+    await userEvent.hover(button);
+    await expect(computedStyleLabel.height).toBe("2px");
+    await expect(computedStyleLabel.color).toBe("rgb(24, 101, 242)");
+
+    // Focus style
+    await fireEvent.focus(button);
+    await expect(computedStyleButton.borderColor).toBe("rgb(24, 101, 242)");
+    await expect(computedStyleButton.borderWidth).toBe("2px");
+
+    // Active (mouse down) style
+    // eslint-disable-next-line testing-library/prefer-user-event
+    await fireEvent.mouseDown(button);
+    await expect(innerLabel).toHaveStyle("color: rgb(27, 80, 179)");
+    await expect(computedStyleLabel.height).toBe("1px");
+    await expect(computedStyleLabel.color).toBe("rgb(27, 80, 179)");
 };
 
 export const styles: StyleDeclaration = StyleSheet.create({

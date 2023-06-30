@@ -118,6 +118,7 @@ export default class ButtonCore extends React.Component<Props> {
                             ? [buttonStyles.hover, buttonStyles.active]
                             : hovered && buttonStyles.hover),
                 ]}
+                testId="button-inner-label"
             >
                 {icon && (
                     <Icon
