@@ -390,7 +390,7 @@ const _generateStyles = (
             active: {
                 color: light ? fadedColor : activeColor,
                 ":after": {
-                    bottom: -1,
+                    height: 1,
                     background: light ? fadedColor : activeColor,
                 },
             },
