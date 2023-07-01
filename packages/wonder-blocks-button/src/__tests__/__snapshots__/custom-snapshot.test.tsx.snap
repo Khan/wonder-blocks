@@ -52,6 +52,7 @@ exports[`Button <Link tabIndex={-1}> 1`] = `
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -126,6 +127,7 @@ exports[`Button <Link tabIndex={0}> 1`] = `
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -200,6 +202,7 @@ exports[`Button <Link tabIndex={1}> 1`] = `
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -275,6 +278,7 @@ exports[`ButtonCore kind:primary color:default size:large light:false disabled 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -351,6 +355,7 @@ exports[`ButtonCore kind:primary color:default size:large light:false focused 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -427,6 +432,7 @@ exports[`ButtonCore kind:primary color:default size:large light:false hovered 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -503,6 +509,7 @@ exports[`ButtonCore kind:primary color:default size:large light:false pressed 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -578,6 +585,7 @@ exports[`ButtonCore kind:primary color:default size:large light:true disabled 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -654,6 +662,7 @@ exports[`ButtonCore kind:primary color:default size:large light:true focused 1`]
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -730,6 +739,7 @@ exports[`ButtonCore kind:primary color:default size:large light:true hovered 1`]
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -806,6 +816,7 @@ exports[`ButtonCore kind:primary color:default size:large light:true pressed 1`]
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -881,6 +892,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false disabled 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -957,6 +969,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false focused 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1033,6 +1046,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false hovered 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1109,6 +1123,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:false pressed 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1184,6 +1199,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true disabled 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1260,6 +1276,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true focused 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1336,6 +1353,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true hovered 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1412,6 +1430,7 @@ exports[`ButtonCore kind:primary color:default size:medium light:true pressed 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1487,6 +1506,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false disabled 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1563,6 +1583,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false focused 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1639,6 +1660,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false hovered 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1715,6 +1737,7 @@ exports[`ButtonCore kind:primary color:default size:small light:false pressed 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1790,6 +1813,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true disabled 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1866,6 +1890,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true focused 1`]
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -1942,6 +1967,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true hovered 1`]
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2018,6 +2044,7 @@ exports[`ButtonCore kind:primary color:default size:small light:true pressed 1`]
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2093,6 +2120,7 @@ exports[`ButtonCore kind:primary color:destructive size:large light:false disabl
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2169,6 +2197,7 @@ exports[`ButtonCore kind:primary color:destructive size:large light:false focuse
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2245,6 +2274,7 @@ exports[`ButtonCore kind:primary color:destructive size:large light:false hovere
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2321,6 +2351,7 @@ exports[`ButtonCore kind:primary color:destructive size:large light:false presse
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2396,6 +2427,7 @@ exports[`ButtonCore kind:primary color:destructive size:large light:true disable
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2472,6 +2504,7 @@ exports[`ButtonCore kind:primary color:destructive size:large light:true focused
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2548,6 +2581,7 @@ exports[`ButtonCore kind:primary color:destructive size:large light:true hovered
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2624,6 +2658,7 @@ exports[`ButtonCore kind:primary color:destructive size:large light:true pressed
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2699,6 +2734,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false disab
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2775,6 +2811,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false focus
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2851,6 +2888,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false hover
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -2927,6 +2965,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:false press
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3002,6 +3041,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true disabl
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3078,6 +3118,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true focuse
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3154,6 +3195,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true hovere
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3230,6 +3272,7 @@ exports[`ButtonCore kind:primary color:destructive size:medium light:true presse
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3305,6 +3348,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false disabl
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3381,6 +3425,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false focuse
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3457,6 +3502,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false hovere
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3533,6 +3579,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:false presse
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3608,6 +3655,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true disable
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3684,6 +3732,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true focused
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3760,6 +3809,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true hovered
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3836,6 +3886,7 @@ exports[`ButtonCore kind:primary color:destructive size:small light:true pressed
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -3911,6 +3962,7 @@ exports[`ButtonCore kind:primary size:medium spinner:true 1`] = `
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -4041,6 +4093,7 @@ exports[`ButtonCore kind:primary size:small spinner:true 1`] = `
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -4177,6 +4230,7 @@ exports[`ButtonCore kind:secondary color:default size:large light:false disabled
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -4255,6 +4309,7 @@ exports[`ButtonCore kind:secondary color:default size:large light:false focused 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -4333,6 +4388,7 @@ exports[`ButtonCore kind:secondary color:default size:large light:false hovered 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -4411,6 +4467,7 @@ exports[`ButtonCore kind:secondary color:default size:large light:false pressed 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -4492,6 +4549,7 @@ exports[`ButtonCore kind:secondary color:default size:large light:true disabled 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -4570,6 +4628,7 @@ exports[`ButtonCore kind:secondary color:default size:large light:true focused 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -4648,6 +4707,7 @@ exports[`ButtonCore kind:secondary color:default size:large light:true hovered 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -4726,6 +4786,7 @@ exports[`ButtonCore kind:secondary color:default size:large light:true pressed 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -4807,6 +4868,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false disable
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -4885,6 +4947,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false focused
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -4963,6 +5026,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false hovered
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5041,6 +5105,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:false pressed
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5122,6 +5187,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true disabled
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5200,6 +5266,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true focused 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5278,6 +5345,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true hovered 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5356,6 +5424,7 @@ exports[`ButtonCore kind:secondary color:default size:medium light:true pressed 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5437,6 +5506,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false disabled
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5515,6 +5585,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false focused 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5593,6 +5664,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false hovered 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5671,6 +5743,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:false pressed 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5752,6 +5825,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true disabled 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5830,6 +5904,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true focused 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5908,6 +5983,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true hovered 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -5986,6 +6062,7 @@ exports[`ButtonCore kind:secondary color:default size:small light:true pressed 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -6067,6 +6144,7 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:false disa
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -6145,6 +6223,7 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:false focu
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -6223,6 +6302,7 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:false hove
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -6301,6 +6381,7 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:false pres
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -6382,6 +6463,7 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:true disab
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -6460,6 +6542,7 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:true focus
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -6538,6 +6621,7 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:true hover
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -6616,6 +6700,7 @@ exports[`ButtonCore kind:secondary color:destructive size:large light:true press
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -6697,6 +6782,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false dis
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -6775,6 +6861,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false foc
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -6853,6 +6940,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false hov
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -6931,6 +7019,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:false pre
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7012,6 +7101,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true disa
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7090,6 +7180,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true focu
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7168,6 +7259,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true hove
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7246,6 +7338,7 @@ exports[`ButtonCore kind:secondary color:destructive size:medium light:true pres
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7327,6 +7420,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false disa
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7405,6 +7499,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false focu
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7483,6 +7578,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false hove
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7561,6 +7657,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:false pres
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7642,6 +7739,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true disab
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7720,6 +7818,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true focus
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7798,6 +7897,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true hover
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7876,6 +7976,7 @@ exports[`ButtonCore kind:secondary color:destructive size:small light:true press
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -7957,6 +8058,7 @@ exports[`ButtonCore kind:secondary size:medium spinner:true 1`] = `
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -8093,6 +8195,7 @@ exports[`ButtonCore kind:secondary size:small spinner:true 1`] = `
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -8223,6 +8326,7 @@ exports[`ButtonCore kind:tertiary color:default size:large light:false disabled 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -8269,6 +8373,16 @@ exports[`ButtonCore kind:tertiary color:default size:large light:false focused 1
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#1865f2",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -8299,18 +8413,9 @@ exports[`ButtonCore kind:tertiary color:default size:large light:false focused 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
-        ":after": {
-          "background": "#1865f2",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -8385,6 +8490,7 @@ exports[`ButtonCore kind:tertiary color:default size:large light:false hovered 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
@@ -8471,17 +8577,12 @@ exports[`ButtonCore kind:tertiary color:default size:large light:false pressed 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
           "background": "#1b50b3",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -8558,6 +8659,7 @@ exports[`ButtonCore kind:tertiary color:default size:large light:true disabled 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -8604,6 +8706,16 @@ exports[`ButtonCore kind:tertiary color:default size:large light:true focused 1`
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#ffffff",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -8634,18 +8746,9 @@ exports[`ButtonCore kind:tertiary color:default size:large light:true focused 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
-        ":after": {
-          "background": "#ffffff",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -8720,6 +8823,7 @@ exports[`ButtonCore kind:tertiary color:default size:large light:true hovered 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
@@ -8806,17 +8910,12 @@ exports[`ButtonCore kind:tertiary color:default size:large light:true pressed 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
           "background": "#b5cefb",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -8893,6 +8992,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false disabled
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -8939,6 +9039,16 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#1865f2",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -8969,18 +9079,9 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
-        ":after": {
-          "background": "#1865f2",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -9055,6 +9156,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false hovered 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
@@ -9141,17 +9243,12 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
           "background": "#1b50b3",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -9228,6 +9325,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true disabled 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -9274,6 +9372,16 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#ffffff",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -9304,18 +9412,9 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
-        ":after": {
-          "background": "#ffffff",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -9390,6 +9489,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true hovered 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
@@ -9476,17 +9576,12 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
           "background": "#b5cefb",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -9563,6 +9658,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false disabled 
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -9609,6 +9705,16 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#1865f2",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -9639,18 +9745,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
-        ":after": {
-          "background": "#1865f2",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -9725,6 +9822,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false hovered 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
@@ -9811,17 +9909,12 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
           "background": "#1b50b3",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -9898,6 +9991,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true disabled 1
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -9944,6 +10038,16 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#ffffff",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -9974,18 +10078,9 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
-        ":after": {
-          "background": "#ffffff",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -10060,6 +10155,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true hovered 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
@@ -10146,17 +10242,12 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
           "background": "#b5cefb",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -10233,6 +10324,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:false disab
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -10279,6 +10371,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:false focus
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#d92916",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -10309,18 +10411,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:false focus
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
-        ":after": {
-          "background": "#d92916",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -10395,6 +10488,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:false hover
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
@@ -10481,17 +10575,12 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:false press
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
           "background": "#9e271d",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -10568,6 +10657,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:true disabl
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -10614,6 +10704,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:true focuse
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#ffffff",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -10644,18 +10744,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:true focuse
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
-        ":after": {
-          "background": "#ffffff",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -10730,6 +10821,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:true hovere
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
@@ -10816,17 +10908,12 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:true presse
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
           "background": "#f3bbb4",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -10903,6 +10990,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false disa
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -10949,6 +11037,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#d92916",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -10979,18 +11077,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
-        ":after": {
-          "background": "#d92916",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -11065,6 +11154,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false hove
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
@@ -11151,17 +11241,12 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
           "background": "#9e271d",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -11238,6 +11323,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true disab
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -11284,6 +11370,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#ffffff",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -11314,18 +11410,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
-        ":after": {
-          "background": "#ffffff",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -11400,6 +11487,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true hover
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
@@ -11486,17 +11574,12 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
           "background": "#f3bbb4",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -11573,6 +11656,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false disab
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -11619,6 +11703,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#d92916",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -11649,18 +11743,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
-        ":after": {
-          "background": "#d92916",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -11735,6 +11820,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false hover
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
@@ -11821,17 +11907,12 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
           "background": "#9e271d",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -11908,6 +11989,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true disabl
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -11954,6 +12036,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#ffffff",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -11984,18 +12076,9 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
-        ":after": {
-          "background": "#ffffff",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -12070,6 +12153,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true hovere
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
@@ -12156,17 +12240,12 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         ":after": {
           "background": "#f3bbb4",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -12243,6 +12322,7 @@ exports[`ButtonCore kind:tertiary size:medium spinner:true 1`] = `
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
@@ -12374,6 +12454,7 @@ exports[`ButtonCore kind:tertiary size:small spinner:true 1`] = `
 >
   <span
     className=""
+    data-test-id="button-inner-label"
     style={
       {
         "MozOsxFontSmoothing": "grayscale",
