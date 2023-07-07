@@ -506,6 +506,84 @@ describe("Clickable", () => {
         expect(button).toHaveFocus();
     });
 
+    test("should not have a tabIndex if one is not set", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Clickable testId="clickable-button">
+                {(eventState: any) => <h1>Click Me!</h1>}
+            </Clickable>,
+        );
+
+        const button = screen.getByTestId("clickable-button");
+
+        // Assert
+        expect(button).not.toHaveAttribute("tabIndex");
+    });
+
+    test("should have the tabIndex that is passed in", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Clickable testId="clickable-button" tabIndex={1}>
+                {(eventState: any) => <h1>Click Me!</h1>}
+            </Clickable>,
+        );
+
+        const button = screen.getByTestId("clickable-button");
+
+        // Assert
+        expect(button).toHaveAttribute("tabIndex", "1");
+    });
+
+    test("should have the tabIndex that is passed in", () => {
+        // Arrange
+
+        // Act
+        render(
+            <Clickable testId="clickable-button" tabIndex={1}>
+                {(eventState: any) => <h1>Click Me!</h1>}
+            </Clickable>,
+        );
+
+        const button = screen.getByTestId("clickable-button");
+
+        // Assert
+        expect(button).toHaveAttribute("tabIndex", "1");
+    });
+
+    test("forwards the ref to the clickable button element", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLButtonElement> = React.createRef();
+
+        // Act
+        render(
+            <Clickable testId="clickable-button" ref={ref}>
+                {(eventState: any) => <h1>Click Me!</h1>}
+            </Clickable>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+    });
+
+    test("forwards the ref to the clickable anchor element ", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLAnchorElement> = React.createRef();
+
+        // Act
+        render(
+            <Clickable href="/test-url" testId="clickable-anchor" ref={ref}>
+                {(eventState: any) => <h1>Click Me!</h1>}
+            </Clickable>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+    });
+
     describe("raw events", () => {
         /**
          * Clickable expect a function as children so we create a simple wrapper to

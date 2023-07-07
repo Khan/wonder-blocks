@@ -47,11 +47,11 @@ type Props =
          * Sets the default focus ring color to white, instead of blue.
          * Defaults to false.
          */
-        light: boolean;
+        light?: boolean;
         /**
          * Disables or enables the child; defaults to false
          */
-        disabled: boolean;
+        disabled?: boolean;
         /**
          * An optional id attribute.
          */
@@ -95,6 +95,10 @@ type Props =
          */
         target?: "_blank";
         /**
+         * Set the tabindex attribute on the rendered element.
+         */
+        tabIndex?: number;
+        /**
          * Run async code before navigating. If the promise returned rejects then
          * navigation will not occur.
          *
@@ -113,11 +117,6 @@ type Props =
          */
         safeWithNav?: () => Promise<unknown>;
     };
-
-type DefaultProps = {
-    light: Props["light"];
-    disabled: Props["disabled"];
-};
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
@@ -156,49 +155,50 @@ const StyledLink = addStyle(Link);
  * </Clickable>
  * ```
  */
-export default class Clickable extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        light: false,
-        disabled: false,
-    };
 
-    getCorrectTag: (
+const Clickable = React.forwardRef(function Clickable(
+    props: Props,
+    ref: React.ForwardedRef<
+        typeof Link | HTMLAnchorElement | HTMLButtonElement
+    >,
+) {
+    const getCorrectTag: (
         clickableState: ClickableState,
         router: any,
         commonProps: {
             [key: string]: any;
         },
     ) => React.ReactElement = (clickableState, router, commonProps) => {
-        const activeHref = this.props.href && !this.props.disabled;
+        const activeHref = props.href && !props.disabled;
         const useClient =
-            router &&
-            !this.props.skipClientNav &&
-            isClientSideUrl(this.props.href || "");
+            router && !props.skipClientNav && isClientSideUrl(props.href || "");
 
         // NOTE: checking this.props.href here is redundant, but TypeScript
         // needs it to refine this.props.href to a string.
-        if (activeHref && useClient && this.props.href) {
+        if (activeHref && useClient && props.href) {
             return (
                 <StyledLink
                     {...commonProps}
-                    to={this.props.href}
-                    role={this.props.role}
-                    target={this.props.target || undefined}
-                    aria-disabled={this.props.disabled ? "true" : undefined}
+                    to={props.href}
+                    role={props.role}
+                    target={props.target || undefined}
+                    aria-disabled={props.disabled ? "true" : undefined}
+                    ref={ref as React.Ref<typeof Link>}
                 >
-                    {this.props.children(clickableState)}
+                    {props.children(clickableState)}
                 </StyledLink>
             );
         } else if (activeHref && !useClient) {
             return (
                 <StyledAnchor
                     {...commonProps}
-                    href={this.props.href}
-                    role={this.props.role}
-                    target={this.props.target || undefined}
-                    aria-disabled={this.props.disabled ? "true" : undefined}
+                    href={props.href}
+                    role={props.role}
+                    target={props.target || undefined}
+                    aria-disabled={props.disabled ? "true" : undefined}
+                    ref={ref as React.Ref<HTMLAnchorElement>}
                 >
-                    {this.props.children(clickableState)}
+                    {props.children(clickableState)}
                 </StyledAnchor>
             );
         } else {
@@ -206,15 +206,18 @@ export default class Clickable extends React.Component<Props> {
                 <StyledButton
                     {...commonProps}
                     type="button"
-                    aria-disabled={this.props.disabled}
+                    aria-disabled={props.disabled}
+                    ref={ref as React.Ref<HTMLButtonElement>}
                 >
-                    {this.props.children(clickableState)}
+                    {props.children(clickableState)}
                 </StyledButton>
             );
         }
     };
 
-    renderClickableBehavior(router: any): React.ReactNode {
+    const renderClickableBehavior: (router: any) => React.ReactNode = (
+        router: any,
+    ) => {
         const {
             href,
             onClick,
@@ -229,8 +232,9 @@ export default class Clickable extends React.Component<Props> {
             hideDefaultFocusRing,
             light,
             disabled,
+            tabIndex,
             ...restProps
-        } = this.props;
+        } = props;
         const ClickableBehavior = getClickableBehavior(
             href,
             skipClientNav,
@@ -257,9 +261,10 @@ export default class Clickable extends React.Component<Props> {
                     onKeyDown={onKeyDown}
                     onKeyUp={onKeyUp}
                     disabled={disabled}
+                    tabIndex={tabIndex}
                 >
                     {(state, childrenProps) =>
-                        this.getCorrectTag(state, router, {
+                        getCorrectTag(state, router, {
                             ...restProps,
                             "data-test-id": testId,
                             style: getStyle(state),
@@ -278,9 +283,10 @@ export default class Clickable extends React.Component<Props> {
                     onKeyUp={onKeyUp}
                     target={target}
                     disabled={disabled}
+                    tabIndex={tabIndex}
                 >
                     {(state, childrenProps) =>
-                        this.getCorrectTag(state, router, {
+                        getCorrectTag(state, router, {
                             ...restProps,
                             "data-test-id": testId,
                             style: getStyle(state),
@@ -290,16 +296,21 @@ export default class Clickable extends React.Component<Props> {
                 </ClickableBehavior>
             );
         }
-    }
+    };
 
-    render(): React.ReactNode {
-        return (
-            <__RouterContext.Consumer>
-                {(router) => this.renderClickableBehavior(router)}
-            </__RouterContext.Consumer>
-        );
-    }
-}
+    return (
+        <__RouterContext.Consumer>
+            {(router) => renderClickableBehavior(router)}
+        </__RouterContext.Consumer>
+    );
+});
+
+Clickable.defaultProps = {
+    light: false,
+    disabled: false,
+};
+
+export default Clickable;
 
 // Source:  https://gist.github.com/MoOx/9137295
 const styles = StyleSheet.create({
