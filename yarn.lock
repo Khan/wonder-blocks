@@ -12129,6 +12129,11 @@ ms@2.1.2, ms@^2.1.1:
   resolved "https://registry.yarnpkg.com/ms/-/ms-2.1.2.tgz#d09d1f357b443f493382a8eb3ccd183872ae6009"
   integrity sha512-sGkPx+VjMtmA6MX27oA4FBFELFCZZ4S4XqeGOXCv68tT+jb3vk/RyaKWP0PTKyWtmLSM0b+adUTEvbs1PEaH2w==
 
+mu-lambda@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/mu-lambda/-/mu-lambda-0.0.3.tgz#3b4f1a5bc8f6cf3e6d3a3f3d35df91d4c09651ce"
+  integrity sha512-t5mnn/RizL/UCERDxqFQyIEMhjAbq+xohNW/hZzL40NRxkhmXIlDyjK59tj41ltPgXOtpE/w1wAiqvnOhF13og==
+
 nan@^2.12.1:
   version "2.14.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"

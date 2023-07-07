@@ -25,7 +25,8 @@
     "@khanacademy/wonder-blocks-search-field": "^2.1.0",
     "@khanacademy/wonder-blocks-spacing": "^4.0.1",
     "@khanacademy/wonder-blocks-timing": "^4.0.1",
-    "@khanacademy/wonder-blocks-typography": "^2.0.11"
+    "@khanacademy/wonder-blocks-typography": "^2.0.11",
+    "mu-lambda": "^0.0.3"
   },
   "peerDependencies": {
     "@popperjs/core": "^2.10.1",
