@@ -296,10 +296,10 @@ Ref.parameters = {
         button is pressed. We can do this by creating a React ref of type \`HTMLButtonElement\` and
         passing it into \`Clickable\`'s \`ref\` prop. Now we can use the ref variable in the
         \`handleSubmit\` function to shift focus to the field.`,
-        chromatic: {
-            // we don't need screenshots because this story only tests behavior.
-            disableSnapshot: true,
-        },
+    },
+    chromatic: {
+        // we don't need screenshots because this story only tests behavior.
+        disableSnapshot: true,
     },
 };
 
