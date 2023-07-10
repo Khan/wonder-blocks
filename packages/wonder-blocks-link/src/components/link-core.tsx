@@ -25,7 +25,6 @@ type Props = SharedProps &
 
 const StyledAnchor = addStyle("a");
 const StyledLink = addStyle(Link);
-const StyledSpan = addStyle("span");
 
 export default class LinkCore extends React.Component<Props> {
     renderInner(router: any): React.ReactNode {
@@ -49,11 +48,6 @@ export default class LinkCore extends React.Component<Props> {
             ...restProps
         } = this.props;
 
-        // If icon props are present, link `children` will render inside a
-        // `StyledSpan` element to vertically align text with icons and add
-        // `textUnderlineOffset`
-        const withIcon = startIcon || endIcon || target === "_blank";
-
         const linkStyles = _generateStyles(inline, kind, light, visitable);
         const restingStyles = inline
             ? linkStyles.restingInline
@@ -70,7 +64,6 @@ export default class LinkCore extends React.Component<Props> {
             // focused link even after hovering and un-hovering on it.
             !pressed && hovered && linkStyles.hover,
             !pressed && focused && linkStyles.focus,
-            withIcon && sharedStyles.withIcon,
         ];
 
         const commonProps = {
@@ -111,13 +104,7 @@ export default class LinkCore extends React.Component<Props> {
                         aria-hidden="true"
                     />
                 )}
-                {withIcon ? (
-                    <StyledSpan style={linkContentStyles.centered}>
-                        {children}
-                    </StyledSpan>
-                ) : (
-                    children
-                )}
+                {children}
                 {endIcon ? (
                     <Icon
                         icon={endIcon}
@@ -165,7 +152,8 @@ const linkContentStyles = StyleSheet.create({
         marginInlineStart: Spacing.xxxSmall_4,
     },
     centered: {
-        verticalAlign: "middle",
+        // Manually align the bottom of start/end icons with the text baseline.
+        verticalAlign: "-10%",
     },
 });
 
@@ -175,10 +163,6 @@ const sharedStyles = StyleSheet.create({
         textDecoration: "none",
         outline: "none",
         alignItems: "center",
-    },
-    withIcon: {
-        verticalAlign: "bottom",
-        textUnderlineOffset: 4,
     },
 });
 
