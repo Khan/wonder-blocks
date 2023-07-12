@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing
 
+## 8.0.16
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-data@11.0.12
+
 ## 8.0.15
 
 ### Patch Changes

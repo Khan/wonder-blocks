@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-button
 
+## 4.0.12
+
+### Patch Changes
+
+-   3446b69a: Fixed underline length on tertiary button
+-   Updated dependencies [64a188e3]
+    -   @khanacademy/wonder-blocks-core@5.2.2
+    -   @khanacademy/wonder-blocks-clickable@3.0.12
+    -   @khanacademy/wonder-blocks-icon@2.0.12
+    -   @khanacademy/wonder-blocks-progress-spinner@2.0.12
+    -   @khanacademy/wonder-blocks-typography@2.0.12
+
 ## 4.0.11
 
 ### Patch Changes
