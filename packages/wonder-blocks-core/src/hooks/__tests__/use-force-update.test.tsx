@@ -93,25 +93,29 @@ describe("#useForceUpdate", () => {
 
         it("should cause a consuming hook to update without a render", async () => {
             // Arrange
+            jest.useRealTimers();
             const useTestHook = (): [number, () => void] => {
                 const countRef = React.useRef(0);
                 const forceUpdate = useForceUpdate();
                 const updateMe = React.useCallback(() => {
-                    countRef.current++;
-                    forceUpdate();
+                    setTimeout(() => {
+                        countRef.current++;
+                        forceUpdate();
+                    }, 50);
                 }, [forceUpdate]);
                 return [countRef.current, updateMe];
             };
 
             // Act
-            const {result} = renderHook(() => useTestHook());
+            const {result, waitForNextUpdate} = renderHook(() => useTestHook());
             const [, updateMe] = result.current;
-            act(() => {
-                updateMe();
-            });
+            act(() => updateMe());
+            await waitForNextUpdate();
+            act(() => updateMe());
+            await waitForNextUpdate();
 
             // Assert
-            expect(result.current[0]).toBe(1);
+            expect(result.current[0]).toBe(2);
         });
     });
 });
