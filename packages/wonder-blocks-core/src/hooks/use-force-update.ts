@@ -13,16 +13,15 @@ import * as React from "react";
  * @returns {() => void} A function that forces the component to update.
  */
 export const useForceUpdate = (): (() => void) => {
-    const [, setUpdateState] = React.useState(0);
+    const [, setUpdateState] = React.useState({});
 
     const forceUpdate = React.useCallback(() => {
-        setUpdateState((state) => {
-            let newState = Math.random();
-            while (state === newState) {
-                newState = Math.random();
-            }
-            return newState;
-        });
+        // We leverage here that every new object instance will be seen
+        // as a state change. This is a little hacky but it works better than
+        // a boolean that would just flip-flop and could not trigger a render,
+        // or a random number that could repeat values and also then not
+        // trigger a render. This will always work.
+        setUpdateState({});
     }, []);
 
     return forceUpdate;
