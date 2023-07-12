@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 5.2.3
+
+### Patch Changes
+
+-   d4c412b5: Update useForceUpdate to ensure consuming hooks properly refresh
+
 ## 5.2.2
 
 ### Patch Changes
