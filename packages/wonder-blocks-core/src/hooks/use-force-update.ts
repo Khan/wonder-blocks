@@ -13,25 +13,17 @@ import * as React from "react";
  * @returns {() => void} A function that forces the component to update.
  */
 export const useForceUpdate = (): (() => void) => {
-    const updatePendingRef = React.useRef(false);
-    const [, setUpdateToggle] = React.useState(false);
+    const [, setUpdateState] = React.useState(0);
 
     const forceUpdate = React.useCallback(() => {
-        if (updatePendingRef.current) {
-            // If an update is already pending, then we do nothing.
-            return;
-        }
-
-        // Otherwise, if we haven't been asked to force an update since our
-        // last render then we toggle the state to invoke a render.
-        setUpdateToggle((toggle) => !toggle);
-        updatePendingRef.current = true;
+        setUpdateState((state) => {
+            let newState = Math.random();
+            while (state === newState) {
+                newState = Math.random();
+            }
+            return newState;
+        });
     }, []);
-
-    // Reset to false when we've rendered.
-    // This ensures that we reset our counter the next time we're asked to
-    // force an update.
-    updatePendingRef.current = false;
 
     return forceUpdate;
 };

@@ -90,5 +90,28 @@ describe("#useForceUpdate", () => {
             // Assert
             expect(result).toBe("4");
         });
+
+        it("should cause a consuming hook to update without a render", async () => {
+            // Arrange
+            const useTestHook = (): [number, () => void] => {
+                const countRef = React.useRef(0);
+                const forceUpdate = useForceUpdate();
+                const updateMe = React.useCallback(() => {
+                    countRef.current++;
+                    forceUpdate();
+                }, [forceUpdate]);
+                return [countRef.current, updateMe];
+            };
+
+            // Act
+            const {result} = renderHook(() => useTestHook());
+            const [, updateMe] = result.current;
+            act(() => {
+                updateMe();
+            });
+
+            // Assert
+            expect(result.current[0]).toBe(1);
+        });
     });
 });
