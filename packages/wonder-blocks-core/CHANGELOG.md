@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-core
 
+## 5.2.3
+
+### Patch Changes
+
+-   d4c412b5: Update useForceUpdate to ensure consuming hooks properly refresh
+
+## 5.2.2
+
+### Patch Changes
+
+-   64a188e3: Fix useForceUpdate so that regardless of how many times it is called before a new render, it will always cause a new render
+
 ## 5.2.1
 
 ### Patch Changes

@@ -2,6 +2,9 @@ import * as React from "react";
 import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
+import {View} from "@khanacademy/wonder-blocks-core";
+import Button from "@khanacademy/wonder-blocks-button";
+
 import SearchField from "../search-field";
 
 describe("SearchField", () => {
@@ -347,5 +350,52 @@ describe("SearchField", () => {
 
         // Assert
         expect(searchField.getAttribute("id")).toMatch(/^uid-.*-field$/);
+    });
+
+    test("has focus if autoFocus is true", () => {
+        // Arrange
+        render(
+            <View>
+                <Button onClick={() => {}}>
+                    Some other focusable element.
+                </Button>
+                <SearchField
+                    autoFocus
+                    testId="search-field-test"
+                    onChange={() => {}}
+                    value=""
+                />
+                ,
+            </View>,
+        );
+
+        // Act
+        const searchField = screen.getByTestId("search-field-test");
+
+        // Assert
+        expect(searchField).toHaveFocus();
+    });
+
+    test("does not have focus if autoFocus is undefined", () => {
+        // Arrange
+        render(
+            <View>
+                <Button onClick={() => {}}>
+                    Some other focusable element.
+                </Button>
+                <SearchField
+                    testId="search-field-test"
+                    onChange={() => {}}
+                    value=""
+                />
+                ,
+            </View>,
+        );
+
+        // Act
+        const searchField = screen.getByTestId("search-field-test");
+
+        // Assert
+        expect(searchField).not.toHaveFocus();
     });
 });

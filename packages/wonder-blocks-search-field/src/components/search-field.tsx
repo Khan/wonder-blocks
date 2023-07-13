@@ -32,6 +32,10 @@ type Props = AriaProps & {
      */
     placeholder?: string;
     /**
+     * Whether this field should autofocus on page load.
+     */
+    autoFocus?: boolean;
+    /**
      * Makes a read-only input field that cannot be focused.
      * Defaults to false.
      */
@@ -100,6 +104,7 @@ const SearchField: React.ForwardRefExoticComponent<
 ) {
     const {
         clearAriaLabel = defaultLabels.clearSearch,
+        autoFocus,
         disabled = false,
         light = false,
         id,
@@ -159,6 +164,7 @@ const SearchField: React.ForwardRefExoticComponent<
                     <TextField
                         id={`${uniqueId}-field`}
                         type="text"
+                        autoFocus={autoFocus}
                         disabled={disabled}
                         light={light}
                         onChange={onChange}
