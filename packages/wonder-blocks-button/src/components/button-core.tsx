@@ -4,15 +4,9 @@ import {Link} from "react-router-dom";
 import {__RouterContext} from "react-router";
 
 import {LabelLarge, LabelSmall} from "@khanacademy/wonder-blocks-typography";
-import Color, {
-    SemanticColor,
-    mix,
-    fade,
-} from "@khanacademy/wonder-blocks-color";
 import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import Icon from "@khanacademy/wonder-blocks-icon";
-import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 
 import type {
@@ -60,14 +54,9 @@ function ButtonCore(props: Props) {
             ...restProps
         } = props;
 
-        const buttonColor =
-            color === "destructive"
-                ? theme.color.bg.critical
-                : theme.color.bg.action;
-
         const iconWidth = icon ? (size === "small" ? 16 : 24) + 8 : 0;
         const buttonStyles = _generateStyles(
-            buttonColor,
+            color,
             kind,
             light,
             iconWidth,
@@ -194,10 +183,10 @@ const wbThemeStyles: ThemedStylesFn = (theme: ThemeContract) => ({
         height: 40,
         paddingTop: 0,
         paddingBottom: 0,
-        paddingLeft: theme.spacing.medium,
-        paddingRight: theme.spacing.medium,
+        paddingLeft: theme.spacing.medium_16,
+        paddingRight: theme.spacing.medium_16,
         border: "none",
-        borderRadius: 4,
+        borderRadius: theme.border.radius.medium,
         cursor: "pointer",
         outline: "none",
         textDecoration: "none",
@@ -222,7 +211,7 @@ const wbThemeStyles: ThemedStylesFn = (theme: ThemeContract) => ({
         height: 32,
     },
     large: {
-        borderRadius: Spacing.xxSmall_6,
+        borderRadius: theme.border.radius.large,
         height: 56,
     },
     text: {
@@ -251,39 +240,50 @@ const wbThemeStyles: ThemedStylesFn = (theme: ThemeContract) => ({
         position: "absolute",
     },
     icon: {
-        paddingRight: Spacing.xSmall_8,
+        paddingRight: theme.spacing.xSmall_8,
     },
 });
 
 const styles: Record<string, any> = {};
 
 const _generateStyles = (
-    color: string,
+    buttonColor: string,
     kind: "primary" | "secondary" | "tertiary",
     light: boolean,
     iconWidth: number,
     size: "large" | "medium" | "small",
     theme: ThemeContract,
 ) => {
+    const color =
+        buttonColor === "destructive"
+            ? theme.color.bg.critical
+            : theme.color.bg.action;
+
     const buttonType =
         color + kind + light.toString() + iconWidth.toString() + size;
     if (styles[buttonType]) {
         return styles[buttonType];
     }
 
-    const {white, white50, white64, offBlack32, offBlack50, darkBlue} = Color;
-    const fadedColor = mix(fade(color, 0.32), white);
-    const activeColor = mix(offBlack32, color);
+    const fadedColor =
+        buttonColor === "destructive"
+            ? theme.color.bg.criticalInverse
+            : theme.color.bg.actionInverse;
+    const activeColor =
+        buttonColor === "destructive"
+            ? theme.color.bg.criticalActive
+            : theme.color.bg.actionActive;
+
     const padding = (
-        size === "large" ? Spacing.xLarge_32 : Spacing.medium_16
+        size === "large" ? theme.spacing.xLarge_32 : theme.spacing.medium_16
     ) as number;
 
     let newStyles: Record<string, any> = {};
     if (kind === "primary") {
         newStyles = {
             default: {
-                background: light ? white : color,
-                color: light ? color : white,
+                background: light ? theme.color.bg.primary : color,
+                color: light ? color : theme.color.bg.primary,
                 paddingLeft: padding,
                 paddingRight: padding,
             },
@@ -292,25 +292,29 @@ const _generateStyles = (
                 // a background of darkBlue for the light version. The inner
                 // box shadow/ring is also small enough for a slight variation
                 // in the background color not to matter too much.
-                boxShadow: `0 0 0 1px ${light ? darkBlue : white}, 0 0 0 3px ${
-                    light ? white : color
-                }`,
+                boxShadow: `0 0 0 1px ${
+                    light ? theme.color.bg.inverse : theme.color.bg.primary
+                }, 0 0 0 3px ${light ? theme.color.bg.primary : color}`,
             },
             active: {
-                boxShadow: `0 0 0 1px ${light ? darkBlue : white}, 0 0 0 3px ${
-                    light ? fadedColor : activeColor
-                }`,
+                boxShadow: `0 0 0 1px ${
+                    light ? theme.color.bg.inverse : theme.color.bg.primary
+                }, 0 0 0 3px ${light ? fadedColor : activeColor}`,
                 background: light ? fadedColor : activeColor,
                 color: light ? activeColor : fadedColor,
             },
             disabled: {
-                background: light ? fadedColor : offBlack32,
-                color: light ? color : white50,
+                background: light ? fadedColor : theme.color.bg.primaryDisabled,
+                color: light ? color : theme.color.text.secondaryInverse,
                 cursor: "default",
                 ":focus": {
                     boxShadow: `0 0 0 1px ${
-                        light ? offBlack32 : white
-                    }, 0 0 0 3px ${light ? fadedColor : offBlack32}`,
+                        light
+                            ? theme.color.bg.primaryDisabled
+                            : theme.color.bg.primary
+                    }, 0 0 0 3px ${
+                        light ? fadedColor : theme.color.bg.primaryDisabled
+                    }`,
                 },
             },
         };
@@ -318,17 +322,21 @@ const _generateStyles = (
         newStyles = {
             default: {
                 background: "none",
-                color: light ? white : color,
-                borderColor: light ? white50 : offBlack50,
+                color: light ? theme.color.text.primaryInverse : color,
+                borderColor: light
+                    ? theme.color.border.secondaryInverse
+                    : theme.color.border.secondary,
                 borderStyle: "solid",
-                borderWidth: 1,
+                borderWidth: theme.border.width.small,
                 paddingLeft: iconWidth ? padding - 4 : padding,
                 paddingRight: padding,
             },
             focus: {
-                background: light ? "transparent" : white,
-                borderColor: light ? white : color,
-                borderWidth: 2,
+                background: light ? "transparent" : theme.color.bg.primary,
+                borderColor: light
+                    ? theme.color.border.primaryInverseFocus
+                    : color,
+                borderWidth: theme.border.width.medium,
                 // The left padding for the button with icon should have 4px
                 // less padding
                 paddingLeft: iconWidth ? padding - 5 : padding - 1,
@@ -338,7 +346,7 @@ const _generateStyles = (
                 background: light ? activeColor : fadedColor,
                 color: light ? fadedColor : activeColor,
                 borderColor: light ? fadedColor : activeColor,
-                borderWidth: 2,
+                borderWidth: theme.border.width.medium,
                 // We need to reduce padding to offset the difference
                 // caused by the border becoming thicker on focus.
                 // The left padding for the button with icon should have 4px
@@ -347,11 +355,15 @@ const _generateStyles = (
                 paddingRight: padding - 1,
             },
             disabled: {
-                color: light ? white50 : offBlack32,
-                borderColor: light ? fadedColor : offBlack32,
+                color: light
+                    ? theme.color.text.secondaryInverse
+                    : theme.color.text.disabled,
+                borderColor: light ? fadedColor : theme.color.border.disabled,
                 cursor: "default",
                 ":focus": {
-                    borderColor: light ? white50 : offBlack32,
+                    borderColor: light
+                        ? theme.color.border.secondaryInverse
+                        : theme.color.border.disabled,
                     borderWidth: 2,
                     // We need to reduce padding to offset the difference
                     // caused by the border becoming thicker on focus.
@@ -366,7 +378,7 @@ const _generateStyles = (
         newStyles = {
             default: {
                 background: "none",
-                color: light ? white : color,
+                color: light ? theme.color.text.primaryInverse : color,
                 paddingLeft: 0,
                 paddingRight: 0,
             },
@@ -378,8 +390,8 @@ const _generateStyles = (
                     width: `calc(100% - ${iconWidth}px)`,
                     right: 0,
                     bottom: 0,
-                    background: light ? white : color,
-                    borderRadius: 2,
+                    background: light ? theme.color.bg.primary : color,
+                    borderRadius: theme.border.radius.xSmall,
                 },
             },
             active: {
@@ -392,11 +404,11 @@ const _generateStyles = (
                     right: 0,
                     bottom: -1,
                     background: light ? fadedColor : activeColor,
-                    borderRadius: 2,
+                    borderRadius: theme.border.radius.xSmall,
                 },
             },
             disabled: {
-                color: light ? fadedColor : offBlack32,
+                color: light ? fadedColor : theme.color.text.disabled,
                 cursor: "default",
                 ":focus": {
                     ":after": {
@@ -412,8 +424,10 @@ const _generateStyles = (
                          * the span).
                          */
                         bottom: `calc(50% - 11px)`,
-                        background: light ? white : offBlack32,
-                        borderRadius: 2,
+                        background: light
+                            ? theme.color.bg.primary
+                            : theme.color.bg.primaryDisabled,
+                        borderRadius: theme.border.radius.xSmall,
                     },
                 },
             },

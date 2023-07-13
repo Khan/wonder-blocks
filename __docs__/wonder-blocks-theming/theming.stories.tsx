@@ -1,6 +1,6 @@
 import * as React from "react";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
-import {css, StyleDeclaration} from "aphrodite";
+import type {ComponentMeta} from "@storybook/react";
+import {css} from "aphrodite";
 
 import ThemeContext, {
     ThemedStylesFn,
@@ -23,19 +23,12 @@ export default {
     title: "Theming",
 } as ComponentMeta<any>;
 
-// type StoryComponentType = ComponentStory<typeof ThemeContext>;
-
 const themeBrand: ThemeContract = mergeTheme(themeDefault, {
     color: {
         bg: {
             primary: tokens.colors.lightBlue,
             action: tokens.colors.red,
         },
-    },
-    spacing: {
-        small: tokens.spacing.medium_16,
-        medium: tokens.spacing.large_24,
-        large: tokens.spacing.xxLarge_48,
     },
 });
 
@@ -53,7 +46,7 @@ function CustomButton(props: WithThemeProps & Props) {
                 onClick={props.onClick}
                 className={css(props.wbThemeStyles.button)}
                 style={{
-                    padding: theme.spacing.medium,
+                    padding: theme.spacing.medium_16,
                 }}
             >
                 {props.children}
@@ -131,7 +124,7 @@ function CustomStyledButton(props: Props) {
                 onClick={props.onClick}
                 className={css(wbThemeStyles.button)}
                 style={{
-                    padding: theme.spacing.medium,
+                    padding: theme.spacing.medium_16,
                 }}
             >
                 {props.children}
