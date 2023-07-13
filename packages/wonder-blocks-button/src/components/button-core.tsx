@@ -8,18 +8,19 @@ import {addStyle} from "@khanacademy/wonder-blocks-core";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import Icon from "@khanacademy/wonder-blocks-icon";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
-
-import type {
-    ChildrenProps,
-    ClickableState,
-} from "@khanacademy/wonder-blocks-clickable";
-import type {SharedProps} from "./button";
 import {
     ThemeContract,
     ThemedStylesFn,
     useStyles,
     useTheme,
 } from "@khanacademy/wonder-blocks-theming";
+
+import type {
+    ChildrenProps,
+    ClickableState,
+} from "@khanacademy/wonder-blocks-clickable";
+
+import type {SharedProps} from "./button";
 
 type Props = SharedProps & ChildrenProps & ClickableState;
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import type {ComponentMeta} from "@storybook/react";
-import {css} from "aphrodite";
+import {css, StyleSheet} from "aphrodite";
 
 import ThemeContext, {
     ThemedStylesFn,
@@ -17,7 +17,6 @@ import ThemeContext, {
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
-import {StyleSheet} from "aphrodite";
 
 export default {
     title: "Theming",
@@ -80,7 +79,9 @@ export const Default = () => {
         <View>
             <View style={{gap: Spacing.medium_16, flexDirection: "row"}}>
                 <ThemedButton onClick={changeTheme}>Switch theme</ThemedButton>
-                <ThemedButton>Outside (doesn't affect new theme)</ThemedButton>
+                <ThemedButton>
+                    Outside (doesn&apos;t affect new theme)
+                </ThemedButton>
             </View>
             <ThemeContext.Provider value={currentTheme}>
                 <h1>Theming demo using: {theme}</h1>
@@ -104,7 +105,7 @@ export const WithThemedButton = () => {
         <>
             <View style={{gap: Spacing.medium_16, flexDirection: "row"}}>
                 <Button onClick={changeTheme}>Switch theme</Button>
-                <Button>Outside (doesn't affect new theme)</Button>
+                <Button>Outside (doesn&apos;t affect new theme)</Button>
             </View>
             <ThemeContext.Provider value={currentTheme}>
                 <h1>Theming demo using: {theme}</h1>
@@ -161,7 +162,7 @@ export const WithAphroditeStyles = () => {
                     Switch theme
                 </CustomStyledButton>
                 <CustomStyledButton>
-                    Outside (doesn't affect new theme)
+                    Outside (doesn&apos;t affect new theme)
                 </CustomStyledButton>
             </View>
             <ThemeContext.Provider value={currentTheme}>
