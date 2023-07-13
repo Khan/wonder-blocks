@@ -1,14 +1,43 @@
 import tokens from "./tokens";
-import {ThemeContract} from "./types";
 
-export const theme: ThemeContract = {
+export const theme = {
     color: {
-        primary: tokens.colors.blue,
-        secondary: tokens.colors.purple,
-        tertiary: tokens.colors.green,
-        background: tokens.colors.offBlack,
-        text: tokens.colors.offWhite,
-        textInverted: tokens.colors.white,
+        bg: {
+            action: tokens.colors.blue,
+            actionInverseActive: tokens.colors.fadedBlue,
+            accent: tokens.colors.gold,
+            mastery: tokens.colors.purple,
+            success: tokens.colors.green,
+            critical: tokens.colors.red,
+            criticalInverseActive: tokens.colors.fadedRed,
+            primary: tokens.colors.white,
+            primaryDisabled: tokens.colors.offBlack32,
+            primaryHover: tokens.colors.offBlack8,
+            primaryPressed: tokens.colors.offBlack16,
+            secondary: tokens.colors.offBlack64,
+            secondaryDisabled: tokens.colors.offWhite,
+            inverse: tokens.colors.darkBlue,
+        },
+        text: {
+            primary: tokens.colors.offBlack,
+            primaryDisabled: tokens.colors.offBlack32,
+            primaryInverse: tokens.colors.white,
+            secondary: tokens.colors.offBlack64,
+            secondaryInverse: tokens.colors.white50,
+            tertiaryInverse: tokens.colors.white64,
+            action: tokens.colors.blue,
+            actionInverseActive: tokens.colors.fadedBlue,
+            actionInverseDisabled: tokens.colors.fadedBlue,
+            critical: tokens.colors.red,
+            criticalInverseActive: tokens.colors.fadedRed,
+        },
+        border: {
+            primary: tokens.colors.offBlack16,
+            primaryDisabled: tokens.colors.offBlack32,
+            primaryInverseFocus: tokens.colors.white,
+            secondary: tokens.colors.offBlack50,
+            secondaryInverse: tokens.colors.white50,
+        },
     },
     spacing: {
         small: tokens.spacing.small_12,

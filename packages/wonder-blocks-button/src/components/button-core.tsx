@@ -62,8 +62,8 @@ function ButtonCore(props: Props) {
 
         const buttonColor =
             color === "destructive"
-                ? SemanticColor.controlDestructive
-                : theme.color.primary;
+                ? theme.color.bg.critical
+                : theme.color.bg.accent;
 
         const iconWidth = icon ? (size === "small" ? 16 : 24) + 8 : 0;
         const buttonStyles = _generateStyles(
@@ -275,7 +275,7 @@ const _generateStyles = (
     const fadedColor = mix(fade(color, 0.32), white);
     const activeColor = mix(offBlack32, color);
     const padding = (
-        size === "large" ? theme.spacing.large : theme.spacing.medium
+        size === "large" ? Spacing.xLarge_32 : Spacing.medium_16
     ) as number;
 
     let newStyles: Record<string, any> = {};
@@ -305,7 +305,7 @@ const _generateStyles = (
             },
             disabled: {
                 background: light ? fadedColor : offBlack32,
-                color: light ? color : white64,
+                color: light ? color : white50,
                 cursor: "default",
                 ":focus": {
                     boxShadow: `0 0 0 1px ${

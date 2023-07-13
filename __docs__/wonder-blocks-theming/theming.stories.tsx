@@ -10,8 +10,9 @@ import ThemeContext, {
     useTheme,
     withTheme,
     WithThemeProps,
+    ThemeContract,
+    mergeTheme,
 } from "@khanacademy/wonder-blocks-theming";
-import type {ThemeContract} from "@khanacademy/wonder-blocks-theming";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -24,33 +25,19 @@ export default {
 
 // type StoryComponentType = ComponentStory<typeof ThemeContext>;
 
-const themeBrand: ThemeContract = {
+const themeBrand: ThemeContract = mergeTheme(themeDefault, {
     color: {
-        primary: tokens.colors.lightBlue,
-        secondary: tokens.colors.red,
-        tertiary: tokens.colors.teal,
-        background: tokens.colors.offWhite,
-        text: tokens.colors.offBlack,
-        textInverted: tokens.colors.white,
+        bg: {
+            primary: tokens.colors.lightBlue,
+            action: tokens.colors.red,
+        },
     },
     spacing: {
         small: tokens.spacing.medium_16,
         medium: tokens.spacing.large_24,
         large: tokens.spacing.xxLarge_48,
     },
-    fontSize: {
-        small: `${tokens.fontSizes.xSmall}px`,
-        medium: `${tokens.fontSizes.medium}px`,
-        large: `${tokens.fontSizes.xxxLarge}px`,
-    },
-    font: tokens.fonts,
-    fontWeight: tokens.fontWeights,
-    lineHeight: {
-        small: `${tokens.lineHeights.small}px`,
-        medium: `${tokens.lineHeights.medium}px`,
-        large: `${tokens.lineHeights.large}px`,
-    },
-};
+});
 
 type Props = {
     children: string;
@@ -78,7 +65,7 @@ function CustomButton(props: WithThemeProps & Props) {
 const styles: ThemedStylesFn = (theme) =>
     StyleSheet.create({
         button: {
-            background: theme.color.primary,
+            background: theme.color.bg.action,
             fontSize: theme.fontSize.large,
             position: "relative",
         },
@@ -155,7 +142,7 @@ function CustomStyledButton(props: Props) {
 
 const themedStyles: ThemedStylesFn = (theme) => ({
     button: {
-        background: theme.color.primary,
+        background: theme.color.bg.action,
         fontSize: theme.fontSize.large,
         position: "relative",
     },
