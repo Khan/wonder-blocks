@@ -11,14 +11,12 @@ export function mergeTheme<T>(
     type Keys = keyof typeof result;
 
     for (const key of objectKeys) {
-        let currentKeyValue = result[key as Keys];
         const targetValue = target[key as Keys];
         const sourceValue = source[key as Keys];
-        if (typeof targetValue == "object" && typeof sourceValue == "object") {
-            currentKeyValue = mergeTheme(targetValue, sourceValue);
-        } else {
-            currentKeyValue = structuredClone(currentKeyValue);
-        }
+        result[key as Keys] =
+            typeof targetValue == "object" && typeof sourceValue == "object"
+                ? mergeTheme(targetValue, sourceValue)
+                : structuredClone(result[key as Keys]);
     }
 
     return result as T;

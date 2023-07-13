@@ -63,7 +63,7 @@ function ButtonCore(props: Props) {
         const buttonColor =
             color === "destructive"
                 ? theme.color.bg.critical
-                : theme.color.bg.accent;
+                : theme.color.bg.action;
 
         const iconWidth = icon ? (size === "small" ? 16 : 24) + 8 : 0;
         const buttonStyles = _generateStyles(
