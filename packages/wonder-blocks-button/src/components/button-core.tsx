@@ -312,7 +312,7 @@ const _generateStyles = (
             },
             disabled: {
                 background: light ? fadedColor : theme.color.bg.primaryDisabled,
-                color: light ? color : theme.color.text.secondaryInverse,
+                color: light ? color : theme.color.text.primaryDisabled,
                 cursor: "default",
                 ":focus": {
                     boxShadow: `0 0 0 1px ${
@@ -340,9 +340,7 @@ const _generateStyles = (
             },
             focus: {
                 background: light ? "transparent" : theme.color.bg.primary,
-                borderColor: light
-                    ? theme.color.border.primaryInverseFocus
-                    : color,
+                borderColor: light ? theme.color.border.primaryInverse : color,
                 borderWidth: theme.border.width.medium,
                 // The left padding for the button with icon should have 4px
                 // less padding
