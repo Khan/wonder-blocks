@@ -1,6 +1,6 @@
 import tokens from "./tokens";
 
-export const theme = {
+const theme = {
     border: {
         radius: {
             xSmall: 2,
