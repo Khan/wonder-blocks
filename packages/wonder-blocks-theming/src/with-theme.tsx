@@ -1,7 +1,7 @@
 import {StyleDeclaration} from "aphrodite";
 import * as React from "react";
 
-import type {ThemeContract, ThemedStylesFn} from "./types";
+import type {ThemedStylesFn} from "./types";
 import useTheme from "./use-theme";
 
 export type WithThemeProps = {

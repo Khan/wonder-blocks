@@ -14,7 +14,7 @@ export function mergeTheme<T>(
         const targetValue = target[key as Keys];
         const sourceValue = source[key as Keys];
         result[key as Keys] =
-            typeof targetValue == "object" && typeof sourceValue == "object"
+            typeof targetValue === "object" && typeof sourceValue === "object"
                 ? mergeTheme(targetValue, sourceValue)
                 : structuredClone(result[key as Keys]);
     }
