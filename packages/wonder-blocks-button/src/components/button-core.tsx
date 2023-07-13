@@ -371,7 +371,7 @@ const _generateStyles = (
                     borderColor: light
                         ? theme.color.border.secondaryInverse
                         : theme.color.border.disabled,
-                    borderWidth: 2,
+                    borderWidth: theme.border.width.medium,
                     // We need to reduce padding to offset the difference
                     // caused by the border becoming thicker on focus.
                     // The left padding for the button with icon should have 4px
