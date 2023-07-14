@@ -1,7 +1,7 @@
 import {StyleDeclaration} from "aphrodite";
 import * as React from "react";
 
-import type {ThemedStylesFn} from "./types";
+import type {ThemeContract, ThemedStylesFn} from "./types";
 import useTheme from "./use-theme";
 
 export type WithThemeProps = {
@@ -14,7 +14,7 @@ export type WithoutTheme<T> = Omit<T, keyof WithThemeProps>;
  * wrapped component as `wbThemeStyles`.
  */
 const withTheme =
-    (styleSheet: ThemedStylesFn) =>
+    (styleSheet: ThemedStylesFn<ThemeContract>) =>
     <Props extends WithThemeProps>(
         WrappedComponent: React.ComponentType<Props>,
     ) =>

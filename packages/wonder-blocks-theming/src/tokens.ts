@@ -1,8 +1,11 @@
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Color, {fade, mix} from "@khanacademy/wonder-blocks-color";
 
+/**
+ * Base tokens for the Wonder Blocks design system.
+ */
 const tokens = {
-    colors: {
+    color: {
         ...Color,
         // New colors
         activeBlue: mix(Color.offBlack32, Color.blue),
@@ -11,16 +14,16 @@ const tokens = {
         fadedRed: mix(fade(Color.red, 0.32), Color.white),
     },
     spacing: Spacing,
-    fonts: {
+    font: {
         primary: "Lato, sans-serif",
         secondary: "Source Serif sans, monospace",
     },
-    fontWeights: {
+    fontWeight: {
         light: 300,
         regular: 400,
         bold: 700,
     },
-    fontSizes: {
+    fontSize: {
         // 36, 28, 24, 20, 16, 14, 12
         xxxLarge: 36,
         xxLarge: 28,
@@ -30,7 +33,7 @@ const tokens = {
         small: 14,
         xSmall: 12,
     },
-    lineHeights: {
+    lineHeight: {
         // 40, 32, 28, 24, 20, 18, 16
         xxxLarge: 40,
         xxLarge: 32,

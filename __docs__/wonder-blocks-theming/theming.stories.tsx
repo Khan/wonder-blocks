@@ -3,6 +3,7 @@ import type {ComponentMeta} from "@storybook/react";
 import {css, StyleSheet} from "aphrodite";
 
 import ThemeContext, {
+    ThemeSwitcherContext,
     ThemedStylesFn,
     themeDefault,
     tokens,
@@ -25,8 +26,8 @@ export default {
 const themeBrand: ThemeContract = mergeTheme(themeDefault, {
     color: {
         bg: {
-            primary: tokens.colors.lightBlue,
-            action: tokens.colors.red,
+            primary: tokens.color.lightBlue,
+            action: tokens.color.red,
         },
     },
 });
@@ -54,7 +55,7 @@ function CustomButton(props: WithThemeProps & Props) {
     );
 }
 
-const styles: ThemedStylesFn = (theme) =>
+const styles: ThemedStylesFn<ThemeContract> = (theme) =>
     StyleSheet.create({
         button: {
             background: theme.color.bg.action,
@@ -91,10 +92,11 @@ export const Default = () => {
     );
 };
 
+/**
+ * WonderBlocks Button component with a custom theme.
+ */
 export const WithThemedButton = () => {
     const [theme, setTheme] = React.useState("default");
-
-    const currentTheme = theme === "brand" ? themeBrand : themeDefault;
 
     const changeTheme = () => {
         const newTheme = theme === "brand" ? "default" : "brand";
@@ -107,17 +109,17 @@ export const WithThemedButton = () => {
                 <Button onClick={changeTheme}>Switch theme</Button>
                 <Button>Outside (doesn&apos;t affect new theme)</Button>
             </View>
-            <ThemeContext.Provider value={currentTheme}>
+            <ThemeSwitcherContext.Provider value={theme}>
                 <h1>Theming demo using: {theme}</h1>
                 <Button>Themed button</Button>
-            </ThemeContext.Provider>
+            </ThemeSwitcherContext.Provider>
         </>
     );
 };
 
 function CustomStyledButton(props: Props) {
     const theme = useTheme();
-    const wbThemeStyles = useStyles(themedStyles);
+    const wbThemeStyles = useStyles(themedStyles, theme);
 
     return (
         <>
@@ -134,7 +136,7 @@ function CustomStyledButton(props: Props) {
     );
 }
 
-const themedStyles: ThemedStylesFn = (theme) => ({
+const themedStyles: ThemedStylesFn<ThemeContract> = (theme) => ({
     button: {
         background: theme.color.bg.action,
         fontSize: theme.fontSize.large,

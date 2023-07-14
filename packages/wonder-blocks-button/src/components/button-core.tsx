@@ -9,10 +9,9 @@ import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 import Icon from "@khanacademy/wonder-blocks-icon";
 import {isClientSideUrl} from "@khanacademy/wonder-blocks-clickable";
 import {
-    ThemeContract,
     ThemedStylesFn,
     useStyles,
-    useTheme,
+    useScopedTheme,
 } from "@khanacademy/wonder-blocks-theming";
 
 import type {
@@ -21,6 +20,7 @@ import type {
 } from "@khanacademy/wonder-blocks-clickable";
 
 import type {SharedProps} from "./button";
+import {ButtonThemeContext, ButtonThemeContract} from "../theme/themed-button";
 
 type Props = SharedProps & ChildrenProps & ClickableState;
 
@@ -29,8 +29,8 @@ const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
 function ButtonCore(props: Props) {
-    const theme = useTheme();
-    const sharedStyles = useStyles(wbThemeStyles);
+    const theme = useScopedTheme(ButtonThemeContext);
+    const sharedStyles = useStyles(wbThemeStyles, theme);
 
     const renderInner = (router: any): React.ReactNode => {
         const {
@@ -181,17 +181,17 @@ function ButtonCore(props: Props) {
     );
 }
 
-const wbThemeStyles: ThemedStylesFn = (theme: ThemeContract) => ({
+const wbThemeStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
     shared: {
         position: "relative",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
-        height: 40,
+        height: theme.size.medium,
         paddingTop: 0,
         paddingBottom: 0,
-        paddingLeft: theme.spacing.medium_16,
-        paddingRight: theme.spacing.medium_16,
+        paddingLeft: theme.spacing.medium,
+        paddingRight: theme.spacing.medium,
         border: "none",
         borderRadius: theme.border.radius.medium,
         cursor: "pointer",
@@ -215,11 +215,11 @@ const wbThemeStyles: ThemedStylesFn = (theme: ThemeContract) => ({
         cursor: "auto",
     },
     small: {
-        height: 32,
+        height: theme.size.small,
     },
     large: {
         borderRadius: theme.border.radius.large,
-        height: 56,
+        height: theme.size.large,
     },
     text: {
         alignItems: "center",
@@ -247,7 +247,7 @@ const wbThemeStyles: ThemedStylesFn = (theme: ThemeContract) => ({
         position: "absolute",
     },
     icon: {
-        paddingRight: theme.spacing.xSmall_8,
+        paddingRight: theme.spacing.small,
     },
 });
 
@@ -259,7 +259,7 @@ const _generateStyles = (
     light: boolean,
     iconWidth: number,
     size: "large" | "medium" | "small",
-    theme: ThemeContract,
+    theme: ButtonThemeContract,
 ) => {
     const color =
         buttonColor === "destructive"
@@ -282,7 +282,7 @@ const _generateStyles = (
             : theme.color.bg.actionActive;
 
     const padding = (
-        size === "large" ? theme.spacing.xLarge_32 : theme.spacing.medium_16
+        size === "large" ? theme.spacing.large : theme.spacing.medium
     ) as number;
 
     let newStyles: Record<string, any> = {};
@@ -290,7 +290,7 @@ const _generateStyles = (
         newStyles = {
             default: {
                 background: light ? theme.color.bg.primary : color,
-                color: light ? color : theme.color.bg.primary,
+                color: light ? color : theme.color.text.inverse,
                 paddingLeft: padding,
                 paddingRight: padding,
             },
@@ -311,16 +311,14 @@ const _generateStyles = (
                 color: light ? activeColor : fadedColor,
             },
             disabled: {
-                background: light ? fadedColor : theme.color.bg.primaryDisabled,
+                background: light ? fadedColor : theme.color.bg.disabled,
                 color: light ? color : theme.color.text.primaryDisabled,
                 cursor: "default",
                 ":focus": {
                     boxShadow: `0 0 0 1px ${
-                        light
-                            ? theme.color.bg.primaryDisabled
-                            : theme.color.bg.primary
+                        light ? theme.color.bg.disabled : theme.color.bg.primary
                     }, 0 0 0 3px ${
-                        light ? fadedColor : theme.color.bg.primaryDisabled
+                        light ? fadedColor : theme.color.bg.disabled
                     }`,
                 },
             },
@@ -329,7 +327,7 @@ const _generateStyles = (
         newStyles = {
             default: {
                 background: "none",
-                color: light ? theme.color.text.primaryInverse : color,
+                color: light ? theme.color.text.inverse : color,
                 borderColor: light
                     ? theme.color.border.secondaryInverse
                     : theme.color.border.secondary,
@@ -383,7 +381,7 @@ const _generateStyles = (
         newStyles = {
             default: {
                 background: "none",
-                color: light ? theme.color.text.primaryInverse : color,
+                color: light ? theme.color.text.inverse : color,
                 paddingLeft: 0,
                 paddingRight: 0,
             },
@@ -396,7 +394,7 @@ const _generateStyles = (
                     right: 0,
                     bottom: 0,
                     background: light ? theme.color.bg.primary : color,
-                    borderRadius: theme.border.radius.xSmall,
+                    borderRadius: theme.border.radius.small,
                 },
             },
             active: {
@@ -409,7 +407,7 @@ const _generateStyles = (
                     right: 0,
                     bottom: -1,
                     background: light ? fadedColor : activeColor,
-                    borderRadius: theme.border.radius.xSmall,
+                    borderRadius: theme.border.radius.small,
                 },
             },
             disabled: {
@@ -420,7 +418,7 @@ const _generateStyles = (
                 ":after": {
                     background: light
                         ? theme.color.bg.primary
-                        : theme.color.bg.primaryDisabled,
+                        : theme.color.bg.disabled,
                 },
             },
         };

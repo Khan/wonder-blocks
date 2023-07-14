@@ -9,6 +9,7 @@ import type {
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import ButtonCore from "./button-core";
+import ThemedButton from "../theme/themed-button";
 
 export type SharedProps =
     /**
@@ -290,9 +291,11 @@ export default class Button extends React.Component<Props> {
 
     render(): React.ReactNode {
         return (
-            <__RouterContext.Consumer>
-                {(router) => this.renderClickableBehavior(router)}
-            </__RouterContext.Consumer>
+            <ThemedButton>
+                <__RouterContext.Consumer>
+                    {(router) => this.renderClickableBehavior(router)}
+                </__RouterContext.Consumer>
+            </ThemedButton>
         );
     }
 }
