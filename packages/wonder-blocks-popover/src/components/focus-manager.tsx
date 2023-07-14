@@ -118,7 +118,7 @@ export default class FocusManager extends React.Component<Props> {
     getNextFocusableElement: () => HTMLElement | null | undefined = () => {
         const {anchorElement} = this.props;
 
-        if (!anchorElement || this.nextElementAfterPopover) {
+        if (!anchorElement) {
             return;
         }
 
