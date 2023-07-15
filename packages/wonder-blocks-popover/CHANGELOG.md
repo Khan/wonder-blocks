@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-popover
 
+## 2.1.3
+
+### Patch Changes
+
+-   57b4593a: Fix bug where shift-tab wouldn't go back to the anchor
+
 ## 2.1.2
 
 ### Patch Changes
