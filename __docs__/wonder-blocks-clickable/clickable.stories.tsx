@@ -16,6 +16,7 @@ import {
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import argTypes from "./clickable.argtypes";
+import Button from "@khanacademy/wonder-blocks-button";
 
 export default {
     title: "Clickable / Clickable",
@@ -247,22 +248,58 @@ ClientSideNavigation.storyName = "Client-side Navigation";
 ClientSideNavigation.parameters = {
     docs: {
         description: {
-            story: "If your Clickable component is within a React-Router enviroment, your component will automatically default to client-side routing with the `href` prop is set. This behavior can be toggeled by passing the `skipClientNav` prop. In this example we see two Clickable h1 tags, one which employs client-side routing, and the other uses skipClientNav to avoid this default behavior.",
-        },
-    },
-};
-
-ClientSideNavigation.parameters = {
-    chromatic: {
-        // we don't need screenshots because this story only tests behavior.
-        disableSnapshot: true,
-    },
-    docs: {
-        description: {
             story:
                 "Clickable adds support to keyboard navigation. This way, your components are accessible and emulate better the browser's behavior.\n\n" +
                 "**NOTE:** If you want to navigate to an external URL and/or reload the window, make sure to use `href` and `skipClientNav={true}`",
         },
+    },
+    chromatic: {
+        // we don't need screenshots because this story only tests behavior.
+        disableSnapshot: true,
+    },
+};
+
+export const Ref: StoryComponentType = () => {
+    const clickableRef: React.RefObject<HTMLAnchorElement> = React.createRef();
+    const handleSubmit = () => {
+        if (clickableRef.current) {
+            clickableRef.current.focus();
+        }
+    };
+
+    return (
+        <View style={[styles.centerText, styles.centered]}>
+            <Clickable ref={clickableRef}>
+                {({hovered, focused, pressed}) => (
+                    <View
+                        style={[
+                            hovered && styles.hovered,
+                            pressed && styles.pressed,
+                            focused && styles.focused,
+                        ]}
+                    >
+                        <Body>Press below to focus me!</Body>
+                    </View>
+                )}
+            </Clickable>
+            <Button style={styles.button} onClick={handleSubmit}>
+                Focus
+            </Button>
+        </View>
+    );
+};
+
+Ref.parameters = {
+    docs: {
+        storyDescription: `If you need to save a reference to the \`Clickable\` element , you can do
+        so using the \`ref\` prop. In this example, we want the element to receive focus when the
+        button is pressed. We can do this by creating a React ref of type \`HTMLButtonElement\` and
+        passing it into \`Clickable\`'s \`ref\` prop. Now we can use the ref variable in the
+        \`handleSubmit\` function to shift focus to the field.`,
+    },
+    chromatic: {
+        // we don't need screenshots because this story only tests behavior.
+        disableSnapshot: true,
     },
 };
 
@@ -305,5 +342,12 @@ const styles = StyleSheet.create({
     disabled: {
         color: Color.white,
         backgroundColor: Color.offBlack64,
+    },
+    button: {
+        maxWidth: 150,
+    },
+    centered: {
+        alignItems: "center",
+        justifyContent: "center",
     },
 });

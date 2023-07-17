@@ -28,6 +28,15 @@ export default {
             type: "text",
         },
     },
+    tabIndex: {
+        description: "Set the tabindex attribute on the rendered element.",
+        control: {type: "number", min: -1, max: 1},
+        table: {
+            type: {
+                summary: "number",
+            },
+        },
+    },
     /**
      * States
      */
