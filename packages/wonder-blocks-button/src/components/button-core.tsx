@@ -108,7 +108,6 @@ export default class ButtonCore extends React.Component<Props> {
                 style={[
                     sharedStyles.text,
                     size === "large" && sharedStyles.largeText,
-                    icon && sharedStyles.textWithIcon,
                     spinner && sharedStyles.hiddenText,
                     kind === "tertiary" && sharedStyles.textWithFocus,
                     // apply press/hover effects on the label
@@ -120,14 +119,6 @@ export default class ButtonCore extends React.Component<Props> {
                 ]}
                 testId={testId ? `${testId}-inner-label` : undefined}
             >
-                {icon && (
-                    <Icon
-                        size={iconSize}
-                        color="currentColor"
-                        icon={icon}
-                        style={sharedStyles.icon}
-                    />
-                )}
                 {children}
             </Label>
         );
@@ -140,6 +131,16 @@ export default class ButtonCore extends React.Component<Props> {
 
         const contents = (
             <React.Fragment>
+                {icon && (
+                    <Icon
+                        size={iconSize}
+                        color="currentColor"
+                        icon={icon}
+                        style={sharedStyles.icon}
+                        aria-hidden="true"
+                        testId={testId ? `${testId}-icon` : undefined}
+                    />
+                )}
                 {label}
                 {spinner && (
                     <CircularSpinner
@@ -236,9 +237,6 @@ const sharedStyles = StyleSheet.create({
     largeText: {
         fontSize: 18,
         lineHeight: "20px",
-    },
-    textWithIcon: {
-        display: "flex", // allows the text and icon to sit nicely together
     },
     textWithFocus: {
         position: "relative", // allows the tertiary button border to use the label width
@@ -365,7 +363,7 @@ const _generateStyles = (
                     content: "''",
                     position: "absolute",
                     height: 2,
-                    width: `calc(100% - ${iconWidth}px)`,
+                    width: "100%",
                     right: 0,
                     bottom: 0,
                     background: light ? white : color,

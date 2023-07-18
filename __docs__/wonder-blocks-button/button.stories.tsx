@@ -436,9 +436,15 @@ Spinner.parameters = {
 };
 
 export const TruncatingLabels: StoryComponentType = () => (
-    <Button onClick={() => {}} style={{maxWidth: 200}}>
-        label too long for the parent container
-    </Button>
+    <View style={{flexDirection: "row"}}>
+        <Button onClick={() => {}} style={{maxWidth: 200}}>
+            label too long for the parent container
+        </Button>
+        <Strut size={16} />
+        <Button onClick={() => {}} style={{maxWidth: 200}} icon={icons.add}>
+            label too long for the parent container
+        </Button>
+    </View>
 );
 
 TruncatingLabels.parameters = {
