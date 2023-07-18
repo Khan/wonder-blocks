@@ -8269,6 +8269,16 @@ exports[`ButtonCore kind:tertiary color:default size:large light:false focused 1
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#1865f2",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -8301,16 +8311,6 @@ exports[`ButtonCore kind:tertiary color:default size:large light:false focused 1
     className=""
     style={
       {
-        ":after": {
-          "background": "#1865f2",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -8475,13 +8475,7 @@ exports[`ButtonCore kind:tertiary color:default size:large light:false pressed 1
       {
         ":after": {
           "background": "#1b50b3",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -8604,6 +8598,16 @@ exports[`ButtonCore kind:tertiary color:default size:large light:true focused 1`
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#ffffff",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -8636,16 +8640,6 @@ exports[`ButtonCore kind:tertiary color:default size:large light:true focused 1`
     className=""
     style={
       {
-        ":after": {
-          "background": "#ffffff",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -8810,13 +8804,7 @@ exports[`ButtonCore kind:tertiary color:default size:large light:true pressed 1`
       {
         ":after": {
           "background": "#b5cefb",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -8939,6 +8927,16 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#1865f2",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -8971,16 +8969,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false focused 
     className=""
     style={
       {
-        ":after": {
-          "background": "#1865f2",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -9145,13 +9133,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:false pressed 
       {
         ":after": {
           "background": "#1b50b3",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -9274,6 +9256,16 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#ffffff",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -9306,16 +9298,6 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true focused 1
     className=""
     style={
       {
-        ":after": {
-          "background": "#ffffff",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -9480,13 +9462,7 @@ exports[`ButtonCore kind:tertiary color:default size:medium light:true pressed 1
       {
         ":after": {
           "background": "#b5cefb",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -9609,6 +9585,16 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#1865f2",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -9641,16 +9627,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false focused 1
     className=""
     style={
       {
-        ":after": {
-          "background": "#1865f2",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -9815,13 +9791,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:false pressed 1
       {
         ":after": {
           "background": "#1b50b3",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -9944,6 +9914,16 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#ffffff",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -9976,16 +9956,6 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true focused 1`
     className=""
     style={
       {
-        ":after": {
-          "background": "#ffffff",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -10150,13 +10120,7 @@ exports[`ButtonCore kind:tertiary color:default size:small light:true pressed 1`
       {
         ":after": {
           "background": "#b5cefb",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -10279,6 +10243,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:false focus
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#d92916",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -10311,16 +10285,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:false focus
     className=""
     style={
       {
-        ":after": {
-          "background": "#d92916",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -10485,13 +10449,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:false press
       {
         ":after": {
           "background": "#9e271d",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -10614,6 +10572,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:true focuse
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#ffffff",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -10646,16 +10614,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:true focuse
     className=""
     style={
       {
-        ":after": {
-          "background": "#ffffff",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -10820,13 +10778,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:large light:true presse
       {
         ":after": {
           "background": "#f3bbb4",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -10949,6 +10901,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#d92916",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -10981,16 +10943,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false focu
     className=""
     style={
       {
-        ":after": {
-          "background": "#d92916",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -11155,13 +11107,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:false pres
       {
         ":after": {
           "background": "#9e271d",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -11284,6 +11230,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#ffffff",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -11316,16 +11272,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true focus
     className=""
     style={
       {
-        ":after": {
-          "background": "#ffffff",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -11490,13 +11436,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:medium light:true press
       {
         ":after": {
           "background": "#f3bbb4",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -11619,6 +11559,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#d92916",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -11651,16 +11601,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false focus
     className=""
     style={
       {
-        ":after": {
-          "background": "#d92916",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -11825,13 +11765,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:false press
       {
         ":after": {
           "background": "#9e271d",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
@@ -11954,6 +11888,16 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
       "::MozFocusInner": {
         "border": 0,
       },
+      ":after": {
+        "borderColor": "#ffffff",
+        "borderRadius": 4,
+        "borderStyle": "solid",
+        "borderWidth": 2,
+        "content": "''",
+        "height": "calc(100% - 4px)",
+        "position": "absolute",
+        "width": "calc(100% + 4px)",
+      },
       ":focus": {
         "WebkitTapHighlightColor": "rgba(0,0,0,0)",
       },
@@ -11986,16 +11930,6 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true focuse
     className=""
     style={
       {
-        ":after": {
-          "background": "#ffffff",
-          "borderRadius": 2,
-          "bottom": 0,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
-        },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",
         "alignItems": "center",
@@ -12160,13 +12094,7 @@ exports[`ButtonCore kind:tertiary color:destructive size:small light:true presse
       {
         ":after": {
           "background": "#f3bbb4",
-          "borderRadius": 2,
-          "bottom": -1,
-          "content": "''",
-          "height": 2,
-          "position": "absolute",
-          "right": 0,
-          "width": "calc(100% - 0px)",
+          "height": 1,
         },
         "MozOsxFontSmoothing": "grayscale",
         "WebkitFontSmoothing": "antialiased",

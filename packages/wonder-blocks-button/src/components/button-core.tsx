@@ -79,6 +79,12 @@ export default class ButtonCore extends React.Component<Props> {
                 (pressed
                     ? buttonStyles.active
                     : (hovered || focused) && buttonStyles.focus),
+            kind === "tertiary" &&
+                !pressed &&
+                focused && [
+                    buttonStyles.focus,
+                    disabled && buttonStyles.disabledFocus,
+                ],
             size === "small" && sharedStyles.small,
             size === "large" && sharedStyles.large,
         ];
@@ -105,19 +111,14 @@ export default class ButtonCore extends React.Component<Props> {
                     icon && sharedStyles.textWithIcon,
                     spinner && sharedStyles.hiddenText,
                     kind === "tertiary" && sharedStyles.textWithFocus,
-                    // apply focus effect on the label instead
+                    // apply press/hover effects on the label
                     kind === "tertiary" &&
                         !disabled &&
                         (pressed
-                            ? buttonStyles.active
-                            : (hovered || focused) && buttonStyles.focus),
-                    kind === "tertiary" &&
-                        disabled &&
-                        focused && [
-                            buttonStyles.focus,
-                            buttonStyles.disabledFocus,
-                        ],
+                            ? [buttonStyles.hover, buttonStyles.active]
+                            : hovered && buttonStyles.hover),
                 ]}
+                testId={testId ? `${testId}-inner-label` : undefined}
             >
                 {icon && (
                     <Icon
@@ -317,16 +318,14 @@ const _generateStyles = (
                 borderColor: light ? white50 : offBlack50,
                 borderStyle: "solid",
                 borderWidth: 1,
-                paddingLeft: iconWidth ? padding - 4 : padding,
+                paddingLeft: padding,
                 paddingRight: padding,
             },
             focus: {
                 background: light ? "transparent" : white,
                 borderColor: light ? white : color,
                 borderWidth: 2,
-                // The left padding for the button with icon should have 4px
-                // less padding
-                paddingLeft: iconWidth ? padding - 5 : padding - 1,
+                paddingLeft: padding - 1,
                 paddingRight: padding - 1,
             },
             active: {
@@ -336,9 +335,7 @@ const _generateStyles = (
                 borderWidth: 2,
                 // We need to reduce padding to offset the difference
                 // caused by the border becoming thicker on focus.
-                // The left padding for the button with icon should have 4px
-                // less padding
-                paddingLeft: iconWidth ? padding - 5 : padding - 1,
+                paddingLeft: padding - 1,
                 paddingRight: padding - 1,
             },
             disabled: {
@@ -350,9 +347,7 @@ const _generateStyles = (
                     borderWidth: 2,
                     // We need to reduce padding to offset the difference
                     // caused by the border becoming thicker on focus.
-                    // The left padding for the button with icon should have 4px
-                    // less padding
-                    paddingLeft: iconWidth ? padding - 5 : padding - 1,
+                    paddingLeft: padding - 1,
                     paddingRight: padding - 1,
                 },
             },
@@ -365,7 +360,7 @@ const _generateStyles = (
                 paddingLeft: 0,
                 paddingRight: 0,
             },
-            focus: {
+            hover: {
                 ":after": {
                     content: "''",
                     position: "absolute",
@@ -377,17 +372,26 @@ const _generateStyles = (
                     borderRadius: 2,
                 },
             },
+            focus: {
+                ":after": {
+                    content: "''",
+                    // Since we are using a pseudo element, we need to manually
+                    // calculate the width/height and use absolute position to
+                    // prevent other elements from being shifted around.
+                    position: "absolute",
+                    width: `calc(100% + ${Spacing.xxxSmall_4}px)`,
+                    height: `calc(100% - ${Spacing.xxxSmall_4}px)`,
+                    borderStyle: "solid",
+                    borderColor: light ? white : color,
+                    borderWidth: Spacing.xxxxSmall_2,
+                    borderRadius: Spacing.xxxSmall_4,
+                },
+            },
             active: {
                 color: light ? fadedColor : activeColor,
                 ":after": {
-                    content: "''",
-                    position: "absolute",
-                    height: 2,
-                    width: `calc(100% - ${iconWidth}px)`,
-                    right: 0,
-                    bottom: -1,
+                    height: 1,
                     background: light ? fadedColor : activeColor,
-                    borderRadius: 2,
                 },
             },
             disabled: {
@@ -396,7 +400,7 @@ const _generateStyles = (
             },
             disabledFocus: {
                 ":after": {
-                    background: light ? white : offBlack32,
+                    borderColor: light ? white50 : offBlack32,
                 },
             },
         };
