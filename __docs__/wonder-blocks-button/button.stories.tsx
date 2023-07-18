@@ -65,7 +65,7 @@ Default.parameters = {
 };
 
 export const Tertiary: StoryComponentType = () => (
-    <Button onClick={() => {}} kind="tertiary">
+    <Button onClick={() => {}} kind="tertiary" testId="test-button">
         Hello, world!
     </Button>
 );
@@ -76,7 +76,7 @@ Tertiary.play = async ({canvasElement}) => {
     // Get HTML elements
     const button = canvas.getByRole("button");
     const computedStyleButton = getComputedStyle(button, ":after");
-    const innerLabel = canvas.getByTestId("button-inner-label");
+    const innerLabel = canvas.getByTestId("test-button-inner-label");
     const computedStyleLabel = getComputedStyle(innerLabel, ":after");
 
     // Resting style

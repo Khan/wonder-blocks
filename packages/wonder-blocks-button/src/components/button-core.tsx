@@ -118,7 +118,7 @@ export default class ButtonCore extends React.Component<Props> {
                             ? [buttonStyles.hover, buttonStyles.active]
                             : hovered && buttonStyles.hover),
                 ]}
-                testId="button-inner-label"
+                testId={testId ? `${testId}-inner-label` : undefined}
             >
                 {icon && (
                     <Icon
@@ -379,12 +379,12 @@ const _generateStyles = (
                     // calculate the width/height and use absolute position to
                     // prevent other elements from being shifted around.
                     position: "absolute",
-                    width: `calc(100% + 4px)`,
-                    height: `calc(100% - 4px)`,
+                    width: `calc(100% + ${Spacing.xxxSmall_4}px)`,
+                    height: `calc(100% - ${Spacing.xxxSmall_4}px)`,
                     borderStyle: "solid",
                     borderColor: light ? white : color,
-                    borderWidth: 2,
-                    borderRadius: 4,
+                    borderWidth: Spacing.xxxxSmall_2,
+                    borderRadius: Spacing.xxxSmall_4,
                 },
             },
             active: {
