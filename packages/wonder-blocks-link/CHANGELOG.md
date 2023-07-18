@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-link
 
+## 4.2.8
+
+### Patch Changes
+
+-   b88a4959: Vertically aligned inline text links with icons
+-   Updated dependencies [ad8beb23]
+    -   @khanacademy/wonder-blocks-clickable@3.1.0
+
 ## 4.2.7
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 3.1.0
+
+### Minor Changes
+
+-   ad8beb23: Added new tab index and ref props
+
 ## 3.0.13
 
 ### Patch Changes
