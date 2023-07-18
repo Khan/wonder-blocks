@@ -137,7 +137,8 @@ export default class ButtonCore extends React.Component<Props> {
                         color="currentColor"
                         icon={icon}
                         style={sharedStyles.icon}
-                        aria-disabled="true"
+                        aria-hidden="true"
+                        testId={testId ? `${testId}-icon` : undefined}
                     />
                 )}
                 {label}

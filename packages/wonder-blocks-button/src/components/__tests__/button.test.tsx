@@ -2,6 +2,7 @@ import * as React from "react";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import {icons} from "@khanacademy/wonder-blocks-icon";
 
 import Button from "../button";
 
@@ -825,6 +826,24 @@ describe("Button", () => {
                 // Assert
                 userEvent.click(screen.getByRole("button"));
             }).not.toThrow();
+        });
+    });
+
+    describe("button with icon", () => {
+        test("icon is displayed when button contains icon", () => {
+            // Arrange
+            render(
+                <Button testId={"button-focus-test"} icon={icons.add}>
+                    Label
+                </Button>,
+            );
+
+            // Act
+            const icon = screen.getByTestId("button-focus-test-icon");
+
+            // Assert
+            expect(icon).toBeDefined();
+            expect(icon).toHaveAttribute("aria-hidden", "true");
         });
     });
 });
