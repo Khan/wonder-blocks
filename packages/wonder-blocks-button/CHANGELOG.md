@@ -1,5 +1,14 @@
 # @khanacademy/wonder-blocks-button
 
+## 4.0.14
+
+### Patch Changes
+
+-   e0265198: Updated focus state for tertiary button to a border instead of underline
+-   0f21caaa: Truncate text for buttons with icons
+-   Updated dependencies [ad8beb23]
+    -   @khanacademy/wonder-blocks-clickable@3.1.0
+
 ## 4.0.13
 
 ### Patch Changes
