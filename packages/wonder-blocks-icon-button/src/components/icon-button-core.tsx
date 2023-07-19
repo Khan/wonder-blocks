@@ -17,6 +17,7 @@ import type {
     ClickableState,
 } from "@khanacademy/wonder-blocks-clickable";
 import type {SharedProps} from "./icon-button";
+import {viewportPixelsForSize} from "../util/icon-button-util";
 
 type Props = SharedProps &
     ChildrenProps &
@@ -51,6 +52,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
         icon,
         kind = "primary",
         light = false,
+        size = "medium",
         pressed,
         style,
         testId,
@@ -66,8 +68,13 @@ const IconButtonCore: React.ForwardRefExoticComponent<
 
         const buttonStyles = _generateStyles(buttonColor, kind, light);
 
+        const pixelSize = viewportPixelsForSize(size);
         const defaultStyle = [
             sharedStyles.shared,
+            {
+                height: pixelSize,
+                width: pixelSize,
+            },
             disabled && sharedStyles.disabled,
             buttonStyles.default,
             disabled && buttonStyles.disabled,
@@ -77,7 +84,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
                     : (hovered || focused) && buttonStyles.focus),
         ];
 
-        const child = <Icon size="medium" color="currentColor" icon={icon} />;
+        const child = <Icon size={size} color="currentColor" icon={icon} />;
 
         const commonProps = {
             "data-test-id": testId,
@@ -133,8 +140,6 @@ const sharedStyles = StyleSheet.create({
         alignItems: "center",
         justifyContent: "center",
         boxSizing: "border-box",
-        height: 40,
-        width: 40,
         padding: 0,
         cursor: "pointer",
         border: "none",

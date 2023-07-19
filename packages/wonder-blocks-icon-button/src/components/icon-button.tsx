@@ -2,7 +2,7 @@ import * as React from "react";
 import {__RouterContext} from "react-router";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
-import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
+import type {IconAsset, IconSize} from "@khanacademy/wonder-blocks-icon";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import {Link} from "react-router-dom";
 import IconButtonCore from "./icon-button-core";
@@ -111,6 +111,11 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      * href is not
      */
     onClick?: (e: React.SyntheticEvent) => unknown;
+    /**
+     * One of `xsmall` (24px, 16px icon), `small` (32px, 16px icon), `medium` (40px, 24px icon),
+     * `large` (60px, 48px icon), or `xlarge` (108px, 96px icon).
+     */
+    size?: IconSize;
 };
 
 /**
@@ -167,6 +172,7 @@ const IconButton: React.ForwardRefExoticComponent<
         kind = "primary",
         light = false,
         disabled = false,
+        size = "medium",
         ...sharedProps
     } = props;
     const renderClickableBehavior = (router: any): React.ReactNode => {
@@ -191,11 +197,12 @@ const IconButton: React.ForwardRefExoticComponent<
                             {...state}
                             {...childrenProps}
                             color={color}
-                            kind={kind}
-                            light={light}
                             disabled={disabled}
-                            skipClientNav={skipClientNav}
+                            kind={kind}
                             href={href}
+                            light={light}
+                            size={size}
+                            skipClientNav={skipClientNav}
                             target={target}
                             tabIndex={tabIndex}
                             ref={ref}

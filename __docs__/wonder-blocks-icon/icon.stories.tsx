@@ -55,6 +55,14 @@ export const Sizes: StoryComponentType = () => {
         <table>
             <tr>
                 <td>
+                    <LabelMedium>{"xsmall"}</LabelMedium>
+                </td>
+                <td>
+                    <Icon icon={icons.search} size="xsmall" />
+                </td>
+            </tr>
+            <tr>
+                <td>
                     <LabelMedium>{"small"}</LabelMedium>
                 </td>
                 <td>
@@ -95,7 +103,7 @@ Sizes.parameters = {
             story: `The size of an icon is determined by the \`Icon\`'s
             \`size\` prop. While we don't currently have assets for sizes
             larger than medium, we can still render any icon at any size
-            in a pinch. The available sizes are \`"small"\`, \`"medium"\`,
+            in a pinch. The available sizes are \`"xsmall"\`, \`"small"\`, \`"medium"\`,
             \`"large"\`, and \`"xlarge"\`. `,
         },
     },

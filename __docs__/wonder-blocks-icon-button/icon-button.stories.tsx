@@ -6,13 +6,14 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import {IconSize, icons} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
+import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 export default {
     title: "IconButton / IconButton",
@@ -29,6 +30,9 @@ export default {
         icon: {
             options: icons,
         },
+        size: {
+            options: ["xsmall", "small", "medium", "large", "xlarge"],
+        },
     },
 } as Meta<typeof IconButton>;
 
@@ -39,6 +43,7 @@ export const Default: StoryComponentType = {
         icon: icons.search,
         color: "default",
         kind: "primary",
+        size: "medium",
 
         onClick: (e: React.SyntheticEvent) => {
             console.log("Click!");
@@ -59,6 +64,53 @@ Basic.parameters = {
             story: `Minimal icon button. The only props specified in
             this example are \`icon\` and \`onClick\`.`,
         },
+    },
+};
+
+export const Sizes: StoryComponentType = () => {
+    const sharedIconProps = {
+        icon: icons.search,
+        "aria-label": "search",
+        onClick: () => console.log("Click!"),
+    };
+
+    const sizes: IconSize[] = ["xsmall", "small", "medium", "large", "xlarge"];
+
+    return (
+        <View>
+            {sizes.map((size) => (
+                <View
+                    key={size}
+                    style={{
+                        flexDirection: "row",
+                        marginBottom: Spacing.small_12,
+                    }}
+                >
+                    <LabelMedium
+                        style={{
+                            marginRight: Spacing.small_12,
+                            alignSelf: "center",
+                        }}
+                    >
+                        {size}
+                    </LabelMedium>
+                    <IconButton
+                        {...sharedIconProps}
+                        size={size}
+                        style={{
+                            alignSelf: "center",
+                        }}
+                    />
+                </View>
+            ))}
+        </View>
+    );
+};
+
+Sizes.parameters = {
+    docs: {
+        storyDescription: `In this example, we have xsmall, small, medium, large,
+         and xlarge \`IconButton\`s from top to bottom.`,
     },
 };
 

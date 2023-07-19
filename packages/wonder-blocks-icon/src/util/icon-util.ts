@@ -6,7 +6,8 @@ import type {IconAsset, IconSize} from "./icon-assets";
  */
 export const viewportPixelsForSize = (size: IconSize): number =>
     ({
-        small: 16,
+        xsmall: 16,
+        small: 20,
         medium: 24,
         large: 48,
         xlarge: 96,
