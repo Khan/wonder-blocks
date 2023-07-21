@@ -5,21 +5,19 @@ import styles from "../util/styles";
 
 import type {Props} from "../util/types";
 
-type DefaultProps = {
-    tag: Props["tag"];
-};
-
-export default class LabelMedium extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        tag: "span",
-    };
-
-    render(): React.ReactNode {
-        const {style, children, ...otherProps} = this.props;
+const LabelMedium = React.forwardRef(
+    ({style, children, tag = "span", ...otherProps}: Props, ref) => {
         return (
-            <Text {...otherProps} style={[styles.LabelMedium, style]}>
+            <Text
+                {...otherProps}
+                tag={tag}
+                style={[styles.LabelMedium, style]}
+                ref={ref}
+            >
                 {children}
             </Text>
         );
-    }
-}
+    },
+);
+
+export default LabelMedium;
