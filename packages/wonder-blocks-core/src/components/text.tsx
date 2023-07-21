@@ -7,11 +7,7 @@ import {processStyleList} from "../util/util";
 import type {TextViewSharedProps} from "../util/types";
 
 type Props = TextViewSharedProps & {
-    tag: string;
-};
-
-type DefaultProps = {
-    tag: Props["tag"];
+    tag?: string;
 };
 
 const isHeaderRegex = /^h[1-6]$/;
@@ -44,14 +40,11 @@ const styles = StyleSheet.create({
  * - An `aphrodite` StyleSheet style
  * - An array combining the above
  */
-export default class Text extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        tag: "span",
-    };
-
-    render(): React.ReactNode {
-        const {children, style, tag: Tag, testId, ...otherProps} = this.props;
-
+const Text = React.forwardRef(
+    (
+        {children, style, tag: Tag = "span", testId, ...otherProps}: Props,
+        ref,
+    ) => {
         const isHeader = isHeaderRegex.test(Tag);
         const styleAttributes = processStyleList([
             styles.text,
@@ -66,9 +59,12 @@ export default class Text extends React.Component<Props> {
                 style={styleAttributes.style}
                 className={styleAttributes.className}
                 data-test-id={testId}
+                ref={ref}
             >
                 {children}
             </Tag>
         );
-    }
-}
+    },
+);
+
+export default Text;
