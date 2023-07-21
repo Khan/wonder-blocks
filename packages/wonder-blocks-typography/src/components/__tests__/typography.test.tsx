@@ -6,20 +6,15 @@ import Tagline from "../tagline";
 
 describe("Typography elements", () => {
     test.each`
-        element    | type
-        ${Tagline} | ${HTMLSpanElement}
-        ${Title}   | ${HTMLHeadingElement}
-    `("$element forwards to ref to $type", async ({element, type}: any) => {
+        Component  | name         | type                  | typeName
+        ${Tagline} | ${"Tagline"} | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${Title}   | ${"Title"}   | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
+    `("$name forwards ref to $typeName", async ({Component, type}: any) => {
         // Arrange
-        const TypographyComponent = element;
         const ref: React.RefObject<HTMLHeadingElement> = React.createRef();
 
         // Act
-        render(
-            <TypographyComponent ref={ref}>
-                This is a title
-            </TypographyComponent>,
-        );
+        render(<Component ref={ref}>This is a title</Component>);
 
         // Assert
         await waitFor(() => {
