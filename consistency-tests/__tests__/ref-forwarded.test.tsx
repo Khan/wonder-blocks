@@ -1,12 +1,12 @@
 import * as React from "react";
-import {render, waitFor} from "@testing-library/react";
+import {render} from "@testing-library/react";
 
-import LabelLarge from "../label-large";
-import LabelMedium from "../label-medium";
-import LabelSmall from "../label-small";
-import LabelXSmall from "../label-xsmall";
-import Tagline from "../tagline";
-import Title from "../title";
+import LabelLarge from "../../packages/wonder-blocks-typography/src/components/label-large";
+import LabelMedium from "../../packages/wonder-blocks-typography/src/components/label-medium";
+import LabelSmall from "../../packages/wonder-blocks-typography/src/components/label-small";
+import LabelXSmall from "../../packages/wonder-blocks-typography/src/components/label-xsmall";
+import Tagline from "../../packages/wonder-blocks-typography/src/components/tagline";
+import Title from "../../packages/wonder-blocks-typography/src/components/title";
 
 describe("Typography elements", () => {
     test.each`
@@ -25,8 +25,6 @@ describe("Typography elements", () => {
         render(<Component ref={ref}>This is a title</Component>);
 
         // Assert
-        await waitFor(() => {
-            expect(ref.current).toBeInstanceOf(type);
-        });
+        expect(ref.current).toBeInstanceOf(type);
     });
 });
