@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-banner
 
+## 3.0.5
+
+### Patch Changes
+
+-   6b0a6b6f: Fix the banner text overflow so that long text line wraps
+
 ## 3.0.4
 
 ### Patch Changes
