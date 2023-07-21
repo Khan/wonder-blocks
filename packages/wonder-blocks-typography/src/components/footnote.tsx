@@ -5,21 +5,19 @@ import styles from "../util/styles";
 
 import type {Props} from "../util/types";
 
-type DefaultProps = {
-    tag: Props["tag"];
-};
-
-export default class Footnote extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        tag: "span",
-    };
-
-    render(): React.ReactNode {
-        const {style, children, ...otherProps} = this.props;
+const Footnote = React.forwardRef(
+    ({style, children, tag = "span", ...otherProps}: Props, ref) => {
         return (
-            <Text {...otherProps} style={[styles.Footnote, style]}>
+            <Text
+                {...otherProps}
+                tag={tag}
+                style={[styles.Footnote, style]}
+                ref={ref}
+            >
                 {children}
             </Text>
         );
-    }
-}
+    },
+);
+
+export default Footnote;

@@ -1,6 +1,8 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
 
+import Caption from "../../packages/wonder-blocks-typography/src/components/caption";
+import Footnote from "../../packages/wonder-blocks-typography/src/components/footnote";
 import HeadingLarge from "../../packages/wonder-blocks-typography/src/components/heading-large";
 import HeadingMedium from "../../packages/wonder-blocks-typography/src/components/heading-medium";
 import HeadingSmall from "../../packages/wonder-blocks-typography/src/components/heading-small";
@@ -15,6 +17,8 @@ import Title from "../../packages/wonder-blocks-typography/src/components/title"
 describe("Typography elements", () => {
     test.each`
         Component        | name               | type                  | typeName
+        ${Caption}       | ${"Caption"}       | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${Footnote}      | ${"Footnote"}      | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
         ${HeadingLarge}  | ${"HeadingLarge"}  | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
         ${HeadingMedium} | ${"HeadingMedium"} | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
         ${HeadingSmall}  | ${"HeadingSmall"}  | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
