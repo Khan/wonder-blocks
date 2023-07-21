@@ -1,6 +1,9 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
 
+import Text from "../../packages/wonder-blocks-core/src/components/text";
+
+// Typography imports
 import Body from "../../packages/wonder-blocks-typography/src/components/body";
 import BodyMonospace from "../../packages/wonder-blocks-typography/src/components/body-monospace";
 import BodySerif from "../../packages/wonder-blocks-typography/src/components/body-serif";
@@ -21,6 +24,7 @@ import Title from "../../packages/wonder-blocks-typography/src/components/title"
 describe("Typography elements", () => {
     test.each`
         Component         | name                | type                  | typeName
+        ${Text}           | ${"Text"}           | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
         ${Body}           | ${"Body"}           | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
         ${BodyMonospace}  | ${"BodyMonospace"}  | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
         ${BodySerif}      | ${"BodySerif"}      | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
