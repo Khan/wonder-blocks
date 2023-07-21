@@ -1,8 +1,8 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
 
-import Title from "../title";
-import Tagline from "../tagline";
+import Title from "../../packages/wonder-blocks-typography/src/components/title";
+import Tagline from "../../packages/wonder-blocks-typography/src/components/tagline";
 
 describe("Typography elements", () => {
     test.each`
