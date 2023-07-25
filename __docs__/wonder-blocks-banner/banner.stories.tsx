@@ -185,6 +185,31 @@ Layouts.parameters = {
     },
 };
 
+export const LongText: StoryComponentType = () => (
+    <Banner
+        layout="floating"
+        kind="critical"
+        onDismiss={() => {}}
+        actions={[
+            {
+                type: "button",
+                title: "Change your email",
+                onClick: () => {},
+            },
+        ]}
+        text="We couldn't deliver your sign-up email to Adolph.Blaine.Charles.David.Earl.Frederick.Gerald.Hubert.Irvin.John.Kenneth.Lloyd.Martin.Nero.Oliver.Paul.Quincy.Randolph.Sherman.Thomas.Uncas.Victor.William.Xerxes.Yancy.Zeus.Wolfe­schlegel­stein­hausen­berger­dorff­welche­vor­altern­waren­gewissen­haft­schafers­wessen­schafe­waren­wohl­gepflege­und­sorg­faltig­keit­be­schutzen­vor­an­greifen­durch­ihr­raub­gierig­feinde­welche­vor­altern­zwolf­hundert­tausend­jah­res­voran­die­er­scheinen­von­der­erste­erde­mensch­der­raum­schiff­genacht­mit­tung­stein­und­sieben­iridium­elek­trisch­motors­ge­brauch­licht­als­sein­ur­sprung­von­kraft­ge­start­sein­lange­fahrt­hin­zwischen­stern­artig­raum­auf­de­suchen­nach­bar­schaft­der­stern­welche­ge­habt­be­wohn­bar­planeten­kreise­drehen­sich­und­wo­hin­der­neue­rasse­von­ver­stand­ig­mensch­lich­keit­konnte­fort­pflanzen­und­sicher­freuen­an­lebens­lang­lich­freude­und­ru­he­mit­nicht­ein­furcht­vor­an­greifen­vor­anderer­intelligent­ge­schopfs­von­hin­zwischen­stern­art­ig­raum.Sr@khanacademy.org. You may need to change it."
+    />
+);
+
+LongText.parameters = {
+    docs: {
+        storyDescription: `Here is an example of a banner with long text.
+            In this case, the email address is one giant word. Notice that
+            the \`overflow-wrap\` property here is set to \`break-word\`
+            so that the email address will wrap to the next line.`,
+    },
+};
+
 export const DarkBackground: StoryComponentType = () => (
     <View style={styles.container}>
         <Banner text="kind: info" kind="info" layout="full-width" />
