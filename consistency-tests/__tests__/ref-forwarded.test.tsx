@@ -43,7 +43,7 @@ describe("Typography elements", () => {
         ${Title}          | ${"Title"}          | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
     `("$name forwards ref to $typeName", async ({Component, type}: any) => {
         // Arrange
-        const ref: React.RefObject<HTMLHeadingElement> = React.createRef();
+        const ref: React.RefObject<typeof type> = React.createRef();
 
         // Act
         render(<Component ref={ref}>This is a title</Component>);
