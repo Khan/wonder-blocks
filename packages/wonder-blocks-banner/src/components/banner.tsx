@@ -319,6 +319,7 @@ const styles = StyleSheet.create({
         flexShrink: 1,
         margin: Spacing.xSmall_8,
         textAlign: "start",
+        overflowWrap: "break-word",
     },
     actionsContainer: {
         flexDirection: "row",
