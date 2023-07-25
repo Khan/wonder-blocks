@@ -5,21 +5,19 @@ import styles from "../util/styles";
 
 import type {Props} from "../util/types";
 
-type DefaultProps = {
-    tag: Props["tag"];
-};
-
-export default class HeadingMedium extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        tag: "h3",
-    };
-
-    render(): React.ReactNode {
-        const {style, children, ...otherProps} = this.props;
+const HeadingMedium = React.forwardRef(
+    ({style, children, tag = "h3", ...otherProps}: Props, ref) => {
         return (
-            <Text {...otherProps} style={[styles.HeadingMedium, style]}>
+            <Text
+                {...otherProps}
+                tag={tag}
+                style={[styles.HeadingMedium, style]}
+                ref={ref}
+            >
                 {children}
             </Text>
         );
-    }
-}
+    },
+);
+
+export default HeadingMedium;

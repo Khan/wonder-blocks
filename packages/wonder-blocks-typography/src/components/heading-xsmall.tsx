@@ -5,21 +5,19 @@ import styles from "../util/styles";
 
 import type {Props} from "../util/types";
 
-type DefaultProps = {
-    tag: Props["tag"];
-};
-
-export default class HeadingXSmall extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        tag: "h4",
-    };
-
-    render(): React.ReactNode {
-        const {style, children, ...otherProps} = this.props;
+const HeadingXSmall = React.forwardRef(
+    ({style, children, tag = "h4", ...otherProps}: Props, ref) => {
         return (
-            <Text {...otherProps} style={[styles.HeadingXSmall, style]}>
+            <Text
+                {...otherProps}
+                tag={tag}
+                style={[styles.HeadingXSmall, style]}
+                ref={ref}
+            >
                 {children}
             </Text>
         );
-    }
-}
+    },
+);
+
+export default HeadingXSmall;
