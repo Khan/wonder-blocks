@@ -5,23 +5,19 @@ import styles from "../util/styles";
 
 import type {Props} from "../util/types";
 
-type DefaultProps = {
-    tag: Props["tag"];
-};
-
-// TODO(alex): Once style prop validation works, if all of the style prop TypeScript
-//             types are the same then switch to using functional components.
-export default class Title extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        tag: "h1",
-    };
-
-    render(): React.ReactNode {
-        const {style, children, ...otherProps} = this.props;
+const Title = React.forwardRef(
+    ({style, children, tag = "h1", ...otherProps}: Props, ref) => {
         return (
-            <Text {...otherProps} style={[styles.Title, style]}>
+            <Text
+                {...otherProps}
+                tag={tag}
+                style={[styles.Title, style]}
+                ref={ref}
+            >
                 {children}
             </Text>
         );
-    }
-}
+    },
+);
+
+export default Title;
