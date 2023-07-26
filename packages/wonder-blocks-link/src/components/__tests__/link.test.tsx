@@ -571,8 +571,8 @@ describe("Link with forwarded ref", () => {
         expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
     });
 
-    // Renders a React router Link element if it uses a router and
-    // uses client navigation.
+    // Renders an HTMLAnchorElement (the underlying ref for React router Link
+    // element) if it uses a router and uses client navigation.
     test("forwards the ref to a react router Link type element", () => {
         // Arrange
         const ref: React.RefObject<typeof ReactRouterLink> = React.createRef();
