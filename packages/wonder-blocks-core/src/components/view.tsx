@@ -30,11 +30,7 @@ type Props = TextViewSharedProps & {
     /**
      * The HTML tag to render.
      */
-    tag: ValidViewTags;
-};
-
-type DefaultProps = {
-    tag: Props["tag"];
+    tag?: ValidViewTags;
 };
 
 const StyledDiv = addStyle("div", styles.default);
@@ -69,35 +65,37 @@ const StyledSection = addStyle("section", styles.default);
  * <View>This is a View!</View>
  * ```
  */
-export default class View extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        tag: "div",
-    };
 
-    render(): React.ReactNode {
-        const {testId, tag, ...restProps} = this.props;
-        const props = {
-            ...restProps,
-            "data-test-id": testId,
-        } as const;
+const View: React.ForwardRefExoticComponent<
+    Props & React.RefAttributes<HTMLElement>
+> = React.forwardRef<HTMLElement, Props>((props, ref) => {
+    const {testId, tag = "div", ...restProps} = props;
+    const commonProps = {
+        ...restProps,
+        "data-test-id": testId,
+    } as const;
 
-        switch (tag) {
-            case "article":
-                return <StyledArticle {...props} />;
-            case "aside":
-                return <StyledAside {...props} />;
-            case "nav":
-                return <StyledNav {...props} />;
-            case "section":
-                return <StyledSection {...props} />;
-            case "div":
-                return <StyledDiv {...props} />;
-            default:
-                // eslint-disable-next-line no-unused-expressions
-                tag as never;
-                throw Error(
-                    `${tag} is not an allowed value for the 'tag' prop`,
-                );
-        }
+    switch (tag) {
+        case "article":
+            return <StyledArticle {...commonProps} ref={ref} />;
+        case "aside":
+            return <StyledAside {...commonProps} ref={ref} />;
+        case "nav":
+            return <StyledNav {...commonProps} ref={ref} />;
+        case "section":
+            return <StyledSection {...commonProps} ref={ref} />;
+        case "div":
+            return (
+                <StyledDiv
+                    {...commonProps}
+                    ref={ref as React.Ref<HTMLDivElement>}
+                />
+            );
+        default:
+            // eslint-disable-next-line no-unused-expressions
+            tag as never;
+            throw Error(`${tag} is not an allowed value for the 'tag' prop`);
     }
-}
+});
+
+export default View;

@@ -24,6 +24,7 @@ import LabelSmall from "../../packages/wonder-blocks-typography/src/components/l
 import LabelXSmall from "../../packages/wonder-blocks-typography/src/components/label-xsmall";
 import Tagline from "../../packages/wonder-blocks-typography/src/components/tagline";
 import Title from "../../packages/wonder-blocks-typography/src/components/title";
+import View from "../../packages/wonder-blocks-core/src/components/view";
 
 describe("Typography elements", () => {
     test.each`
@@ -110,5 +111,18 @@ describe("Link", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+    });
+});
+
+describe("View element", () => {
+    it("Should forward the ref", () => {
+        // Arrage
+        const ref = React.createRef<HTMLElement>();
+
+        // Act
+        render(<View ref={ref} />);
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLDivElement);
     });
 });
