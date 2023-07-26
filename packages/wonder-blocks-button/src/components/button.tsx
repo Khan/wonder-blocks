@@ -8,6 +8,7 @@ import type {
 } from "@khanacademy/wonder-blocks-clickable";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
+import {Link} from "react-router-dom";
 import ButtonCore from "./button-core";
 
 export type SharedProps =
@@ -32,11 +33,11 @@ export type SharedProps =
          *
          * TODO(kevinb): support spinner + light once we have designs
          */
-        spinner: boolean;
+        spinner?: boolean;
         /**
          * The color of the button, either blue or red.
          */
-        color: "default" | "destructive";
+        color?: "default" | "destructive";
         /**
          * The kind of the button, either primary, secondary, or tertiary.
          *
@@ -46,23 +47,23 @@ export type SharedProps =
          * - Secondary buttons have a border and no background color
          * - Tertiary buttons have no background or border
          */
-        kind: "primary" | "secondary" | "tertiary";
+        kind?: "primary" | "secondary" | "tertiary";
         /**
          * Whether the button is on a dark/colored background.
          *
          * Sets primary button background color to white, and secondary and
          * tertiary button title to color.
          */
-        light: boolean;
+        light?: boolean;
         /**
          * The size of the button. "medium" = height: 40; "small" = height: 32;
          * "large" = height: 56;
          */
-        size: "medium" | "small" | "large";
+        size?: "medium" | "small" | "large";
         /**
          * Whether the button is disabled.
          */
-        disabled: boolean;
+        disabled?: boolean;
         /**
          * An optional id attribute.
          */
@@ -171,15 +172,6 @@ export type SharedProps =
 
 type Props = SharedProps;
 
-type DefaultProps = {
-    color: Props["color"];
-    kind: Props["kind"];
-    light: Props["light"];
-    size: Props["size"];
-    disabled: Props["disabled"];
-    spinner: Props["spinner"];
-};
-
 /**
  * Reusable button component.
  *
@@ -200,33 +192,34 @@ type DefaultProps = {
  * </Button>
  * ```
  */
-export default class Button extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        color: "default",
-        kind: "primary",
-        light: false,
-        size: "medium",
-        disabled: false,
-        spinner: false,
-    };
+const Button: React.ForwardRefExoticComponent<
+    Props &
+        React.RefAttributes<typeof Link | HTMLButtonElement | HTMLAnchorElement>
+> = React.forwardRef<
+    typeof Link | HTMLButtonElement | HTMLAnchorElement,
+    Props
+>((props: Props, ref) => {
+    const {
+        href = undefined,
+        type = undefined,
+        children,
+        skipClientNav,
+        onClick,
+        beforeNav = undefined,
+        safeWithNav = undefined,
+        tabIndex,
+        target,
+        rel,
+        color = "default",
+        kind = "primary",
+        light = false,
+        size = "medium",
+        disabled = false,
+        spinner = false,
+        ...sharedButtonCoreProps
+    } = props;
 
-    renderClickableBehavior(router: any): React.ReactNode {
-        const {
-            href = undefined,
-            type = undefined,
-            children,
-            skipClientNav,
-            spinner,
-            disabled,
-            onClick,
-            beforeNav = undefined,
-            safeWithNav = undefined,
-            tabIndex,
-            target,
-            rel,
-            ...sharedButtonCoreProps
-        } = this.props;
-
+    const renderClickableBehavior = (router: any): React.ReactNode => {
         const ClickableBehavior = getClickableBehavior(
             href,
             skipClientNav,
@@ -244,11 +237,16 @@ export default class Button extends React.Component<Props> {
                     {...restChildProps}
                     disabled={disabled}
                     spinner={spinner || state.waiting}
+                    color={color}
+                    kind={kind}
+                    light={light}
+                    size={size}
                     skipClientNav={skipClientNav}
                     href={href}
                     target={target}
                     type={type}
                     tabIndex={tabIndex}
+                    ref={ref}
                 >
                     {children}
                 </ButtonCore>
@@ -286,13 +284,13 @@ export default class Button extends React.Component<Props> {
                 </ClickableBehavior>
             );
         }
-    }
+    };
 
-    render(): React.ReactNode {
-        return (
-            <__RouterContext.Consumer>
-                {(router) => this.renderClickableBehavior(router)}
-            </__RouterContext.Consumer>
-        );
-    }
-}
+    return (
+        <__RouterContext.Consumer>
+            {(router) => renderClickableBehavior(router)}
+        </__RouterContext.Consumer>
+    );
+});
+
+export default Button;

@@ -27,8 +27,14 @@ const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
-export default class ButtonCore extends React.Component<Props> {
-    renderInner(router: any): React.ReactNode {
+const ButtonCore: React.ForwardRefExoticComponent<
+    Props &
+        React.RefAttributes<typeof Link | HTMLButtonElement | HTMLAnchorElement>
+> = React.forwardRef<
+    typeof Link | HTMLButtonElement | HTMLAnchorElement,
+    Props
+>((props: Props, ref) => {
+    const renderInner = (router: any): React.ReactNode => {
         const {
             children,
             skipClientNav,
@@ -37,10 +43,10 @@ export default class ButtonCore extends React.Component<Props> {
             focused,
             hovered,
             href = undefined,
-            kind,
-            light,
+            kind = "primary",
+            light = false,
             pressed,
-            size,
+            size = "medium",
             style,
             testId,
             type = undefined,
@@ -49,7 +55,7 @@ export default class ButtonCore extends React.Component<Props> {
             id,
             waiting: _,
             ...restProps
-        } = this.props;
+        } = props;
 
         const buttonColor =
             color === "destructive"
@@ -155,11 +161,19 @@ export default class ButtonCore extends React.Component<Props> {
 
         if (href && !disabled) {
             return router && !skipClientNav && isClientSideUrl(href) ? (
-                <StyledLink {...commonProps} to={href}>
+                <StyledLink
+                    {...commonProps}
+                    to={href}
+                    ref={ref as React.Ref<typeof Link>}
+                >
                     {contents}
                 </StyledLink>
             ) : (
-                <StyledAnchor {...commonProps} href={href}>
+                <StyledAnchor
+                    {...commonProps}
+                    href={href}
+                    ref={ref as React.Ref<HTMLAnchorElement>}
+                >
                     {contents}
                 </StyledAnchor>
             );
@@ -169,21 +183,22 @@ export default class ButtonCore extends React.Component<Props> {
                     type={type || "button"}
                     {...commonProps}
                     aria-disabled={disabled}
+                    ref={ref as React.Ref<HTMLButtonElement>}
                 >
                     {contents}
                 </StyledButton>
             );
         }
-    }
+    };
 
-    render(): React.ReactNode {
-        return (
-            <__RouterContext.Consumer>
-                {(router) => this.renderInner(router)}
-            </__RouterContext.Consumer>
-        );
-    }
-}
+    return (
+        <__RouterContext.Consumer>
+            {(router) => renderInner(router)}
+        </__RouterContext.Consumer>
+    );
+});
+
+export default ButtonCore;
 
 const sharedStyles = StyleSheet.create({
     shared: {
