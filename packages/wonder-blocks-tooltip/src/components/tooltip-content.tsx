@@ -5,8 +5,10 @@ import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {HeadingSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
-
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
+import Color from "@khanacademy/wonder-blocks-color";
+
+import {ContentStyle} from "../util/types";
 
 type Props = {
     /**
@@ -21,6 +23,14 @@ type Props = {
         | string
         | React.ReactElement<React.ComponentProps<Typography>>
         | Array<React.ReactElement<React.ComponentProps<Typography>>>;
+    /**
+     * Optional custom styles for the tooltip which are a subset of valid CSS styles
+     */
+    contentStyle?: ContentStyle;
+    /**
+     * Optional background color.
+     */
+    backgroundColor?: keyof typeof Color;
 };
 
 /**
@@ -64,7 +74,15 @@ export default class TooltipContent extends React.Component<Props> {
         const children = this._renderChildren();
         const containerStyle = title ? styles.withTitle : styles.withoutTitle;
         return (
-            <View style={containerStyle}>
+            <View
+                style={[
+                    containerStyle,
+                    this.props.contentStyle,
+                    this.props.backgroundColor && {
+                        backgroundColor: Color[this.props.backgroundColor],
+                    },
+                ]}
+            >
                 {title}
                 {title && children && <Strut size={Spacing.xxxSmall_4} />}
                 {children}

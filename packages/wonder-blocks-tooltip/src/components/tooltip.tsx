@@ -27,12 +27,13 @@ import {
 import {maybeGetPortalMountedModalHostElement} from "@khanacademy/wonder-blocks-modal";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
 import type {AriaProps} from "@khanacademy/wonder-blocks-core";
+import Color from "@khanacademy/wonder-blocks-color";
 
 import TooltipAnchor from "./tooltip-anchor";
 import TooltipBubble from "./tooltip-bubble";
 import TooltipContent from "./tooltip-content";
 import TooltipPopper from "./tooltip-popper";
-import type {Placement} from "../util/types";
+import type {ContentStyle, Placement} from "../util/types";
 
 type Props = AriaProps &
     Readonly<{
@@ -42,8 +43,7 @@ type Props = AriaProps &
          */
         children: React.ReactElement<any> | string;
         /**
-         * The title of the tooltip.
-         * Optional.
+         * Optional title for the tooltip content.
          */
         title?: string | React.ReactElement<React.ComponentProps<Typography>>;
         /**
@@ -102,6 +102,14 @@ type Props = AriaProps &
          * Test ID used for e2e testing.
          */
         testId?: string;
+        /**
+         * Optional custom styles for the tooltip content which are a subset of valid CSS styles.
+         */
+        contentStyle?: ContentStyle;
+        /**
+         * Optional background color.
+         */
+        backgroundColor?: keyof typeof Color;
     }>;
 
 type State = Readonly<{
@@ -183,9 +191,17 @@ export default class Tooltip extends React.Component<Props, State> {
     _renderBubbleContent(): React.ReactElement<
         React.ComponentProps<typeof TooltipContent>
     > {
-        const {title, content} = this.props;
+        const {title, content, contentStyle, backgroundColor} = this.props;
         if (typeof content === "string") {
-            return <TooltipContent title={title}>{content}</TooltipContent>;
+            return (
+                <TooltipContent
+                    title={title}
+                    contentStyle={contentStyle}
+                    backgroundColor={backgroundColor}
+                >
+                    {content}
+                </TooltipContent>
+            );
         } else if (title) {
             return React.cloneElement(content, {title});
         } else {
@@ -194,7 +210,7 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     _renderPopper(ids?: IIdentifierFactory): React.ReactNode {
-        const {id} = this.props;
+        const {id, contentStyle, backgroundColor} = this.props;
         const bubbleId = ids ? ids.get(Tooltip.ariaContentId) : id;
         if (!bubbleId) {
             throw new Error("Did not get an identifier factory nor a id prop");
@@ -210,6 +226,8 @@ export default class Tooltip extends React.Component<Props, State> {
                     <TooltipBubble
                         id={bubbleId}
                         style={props.style}
+                        contentStyle={contentStyle}
+                        backgroundColor={backgroundColor}
                         tailOffset={props.tailOffset}
                         isReferenceHidden={props.isReferenceHidden}
                         placement={props.placement}

@@ -8,7 +8,7 @@ import type {StyleType} from "@khanacademy/wonder-blocks-core";
 import TooltipContent from "./tooltip-content";
 import TooltipTail from "./tooltip-tail";
 
-import type {getRefFn, Offset, Placement} from "../util/types";
+import type {ContentStyle, getRefFn, Offset, Placement} from "../util/types";
 
 export type PopperElementProps = {
     /** The placement of the bubble with respect to the anchor. */
@@ -31,6 +31,8 @@ export type Props = {
     /** The `TooltipContent` element that will be rendered in the bubble. */
     children: React.ReactElement<React.ComponentProps<typeof TooltipContent>>;
     onActiveChanged: (active: boolean) => unknown;
+    contentStyle?: ContentStyle;
+    backgroundColor?: keyof typeof Colors;
 } & PopperElementProps; // (v3 beta introduces this) // TODO(somewhatabstract): Update react-docgen to support spread operators
 
 type State = {
@@ -65,8 +67,8 @@ export default class TooltipBubble extends React.Component<Props, State> {
             style,
             updateTailRef,
             tailOffset,
+            backgroundColor,
         } = this.props;
-
         return (
             <View
                 id={id}
@@ -87,6 +89,7 @@ export default class TooltipBubble extends React.Component<Props, State> {
                     updateRef={updateTailRef}
                     placement={placement}
                     offset={tailOffset}
+                    color={backgroundColor}
                 />
             </View>
         );
