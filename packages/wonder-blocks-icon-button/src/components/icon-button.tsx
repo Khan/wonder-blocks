@@ -4,6 +4,7 @@ import {__RouterContext} from "react-router";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
+import {Link} from "react-router-dom";
 import IconButtonCore from "./icon-button-core";
 
 export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
@@ -15,7 +16,7 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
     /**
      * The color of the icon button, either blue or red.
      */
-    color: "default" | "destructive";
+    color?: "default" | "destructive";
     /**
      * The kind of the icon button, either primary, secondary, or tertiary.
      *
@@ -26,15 +27,15 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
      *
      * In the hover/focus/press states, all variants have a border.
      */
-    kind: "primary" | "secondary" | "tertiary";
+    kind?: "primary" | "secondary" | "tertiary";
     /**
      * Whether the icon button is on a dark/colored background.
      */
-    light: boolean;
+    light?: boolean;
     /**
      * Whether the icon button is disabled.
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * Test ID used for e2e testing.
      */
@@ -112,13 +113,6 @@ export type SharedProps = Partial<Omit<AriaProps, "aria-disabled">> & {
     onClick?: (e: React.SyntheticEvent) => unknown;
 };
 
-type DefaultProps = {
-    color: SharedProps["color"];
-    kind: SharedProps["kind"];
-    light: SharedProps["light"];
-    disabled: SharedProps["disabled"];
-};
-
 /**
  * An IconButton is a button whose contents are an SVG image.
  *
@@ -156,18 +150,26 @@ type DefaultProps = {
  * />
  * ```
  */
-export default class IconButton extends React.Component<SharedProps> {
-    static defaultProps: DefaultProps = {
-        color: "default",
-        kind: "primary",
-        light: false,
-        disabled: false,
-    };
-
-    renderClickableBehavior(router: any): React.ReactNode {
-        const {onClick, href, skipClientNav, tabIndex, target, ...sharedProps} =
-            this.props;
-
+const IconButton: React.ForwardRefExoticComponent<
+    SharedProps &
+        React.RefAttributes<typeof Link | HTMLButtonElement | HTMLAnchorElement>
+> = React.forwardRef<
+    typeof Link | HTMLButtonElement | HTMLAnchorElement,
+    SharedProps
+>((props: SharedProps, ref) => {
+    const {
+        onClick,
+        href,
+        skipClientNav,
+        tabIndex,
+        target,
+        color = "default",
+        kind = "primary",
+        light = false,
+        disabled = false,
+        ...sharedProps
+    } = props;
+    const renderClickableBehavior = (router: any): React.ReactNode => {
         const ClickableBehavior = getClickableBehavior(
             href,
             skipClientNav,
@@ -176,7 +178,7 @@ export default class IconButton extends React.Component<SharedProps> {
 
         return (
             <ClickableBehavior
-                disabled={sharedProps.disabled}
+                disabled={disabled}
                 href={href}
                 onClick={onClick}
                 role="button"
@@ -188,22 +190,27 @@ export default class IconButton extends React.Component<SharedProps> {
                             {...sharedProps}
                             {...state}
                             {...childrenProps}
+                            color={color}
+                            kind={kind}
+                            light={light}
+                            disabled={disabled}
                             skipClientNav={skipClientNav}
                             href={href}
                             target={target}
                             tabIndex={tabIndex}
+                            ref={ref}
                         />
                     );
                 }}
             </ClickableBehavior>
         );
-    }
+    };
 
-    render(): React.ReactNode {
-        return (
-            <__RouterContext.Consumer>
-                {(router) => this.renderClickableBehavior(router)}
-            </__RouterContext.Consumer>
-        );
-    }
-}
+    return (
+        <__RouterContext.Consumer>
+            {(router) => renderClickableBehavior(router)}
+        </__RouterContext.Consumer>
+    );
+});
+
+export default IconButton;
