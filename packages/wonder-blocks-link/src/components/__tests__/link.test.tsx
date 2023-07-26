@@ -1,5 +1,10 @@
 import * as React from "react";
-import {MemoryRouter, Route, Switch} from "react-router-dom";
+import {
+    MemoryRouter,
+    Route,
+    Switch,
+    Link as ReactRouterLink,
+} from "react-router-dom";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
@@ -545,5 +550,43 @@ describe("Link", () => {
                 expect.stringContaining(iconToExpect),
             );
         });
+    });
+});
+
+describe("Link with forwarded ref", () => {
+    // Renders an anchor (<a>) element if it doesn't use a router or if
+    // it skips client navigation.
+    test("forwards the ref to an HTMLAnchorElement", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLAnchorElement> = React.createRef();
+
+        // Act
+        render(
+            <Link href="/foo" skipClientNav={true} ref={ref}>
+                Click me!
+            </Link>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+    });
+
+    // Renders a React router Link element if it uses a router and
+    // uses client navigation.
+    test("forwards the ref to a react router Link type element", () => {
+        // Arrange
+        const ref: React.RefObject<typeof ReactRouterLink> = React.createRef();
+
+        // Act
+        render(
+            <MemoryRouter>
+                <Link href="/foo" skipClientNav={false} ref={ref}>
+                    Click me!
+                </Link>
+            </MemoryRouter>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
     });
 });
