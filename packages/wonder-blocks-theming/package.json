@@ -4,7 +4,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "description": "",
+    "description": "Theming in Wonder Blocks can be set per package/component level using a theme object that defines your components's colors, spacing, fonts, and more.",
     "main": "dist/index.js",
     "module": "dist/es/index.js",
     "types": "dist/index.d.ts",
