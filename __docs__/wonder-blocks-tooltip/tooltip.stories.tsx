@@ -19,25 +19,14 @@ import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
+import TooltipArgTypes from "./tooltip.argtypes";
 
 type StoryComponentType = StoryObj<typeof Tooltip>;
 
 export default {
     title: "Tooltip / Tooltip",
     component: Tooltip as unknown as React.ComponentType<any>,
-    argTypes: {
-        placement: {
-            control: {
-                type: "select",
-                options: ["top", "bottom", "right", "left"],
-            },
-        },
-        title: {
-            control: {
-                type: "text",
-            },
-        },
-    },
+    argTypes: TooltipArgTypes,
     args: {
         forceAnchorFocusivity: true,
         placement: "top",
@@ -312,6 +301,30 @@ Controlled.parameters = {
                to update \`opened\` to \`false\` in response to the
                \`onClose\` callback being triggered.`,
         },
+    },
+};
+
+export const WithStyle: StoryComponentType = () => {
+    return (
+        <View style={[styles.centered, styles.row]}>
+            <Tooltip
+                contentStyle={{
+                    color: Color.white,
+                    padding: Spacing.xLarge_32,
+                }}
+                content={`This is a styled tooltip.`}
+                backgroundColor="darkBlue"
+            >
+                My tooltip is styled!
+            </Tooltip>
+        </View>
+    );
+};
+
+WithStyle.parameters = {
+    docs: {
+        // TODO(marianmwang): update this story description once the props are finalized
+        storyDescription: ``,
     },
 };
 
