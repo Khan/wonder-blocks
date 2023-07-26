@@ -35,4 +35,20 @@ describe("Breadcrumbs", () => {
             "test",
         );
     });
+
+    it("fowards ref", () => {
+        // Arrange
+        const ref = React.createRef<HTMLElement>();
+
+        // Act
+        render(
+            <Breadcrumbs ref={ref}>
+                <BreadcrumbsItem>First</BreadcrumbsItem>
+                <BreadcrumbsItem>Last</BreadcrumbsItem>
+            </Breadcrumbs>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLElement);
+    });
 });
