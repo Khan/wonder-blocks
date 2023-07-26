@@ -5,12 +5,14 @@
         "rootDir": "./"
     },
     "references": [
+        {"path": "../packages/wonder-blocks-button/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-cell/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-clickable/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-color/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-core/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-i18n/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-icon/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-icon-button/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-layout/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-modal/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-search-field/tsconfig-build.json"},
