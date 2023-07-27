@@ -28,6 +28,10 @@ type Props = {
      */
     contentStyle?: ContentStyle;
     /**
+     * Test ID used for e2e testing.
+     */
+    testId?: string;
+    /**
      * Optional background color.
      */
     backgroundColor?: keyof typeof Color;
@@ -82,6 +86,7 @@ export default class TooltipContent extends React.Component<Props> {
                         backgroundColor: Color[this.props.backgroundColor],
                     },
                 ]}
+                testId={this.props.testId}
             >
                 {title}
                 {title && children && <Strut size={Spacing.xxxSmall_4} />}

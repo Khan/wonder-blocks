@@ -191,13 +191,15 @@ export default class Tooltip extends React.Component<Props, State> {
     _renderBubbleContent(): React.ReactElement<
         React.ComponentProps<typeof TooltipContent>
     > {
-        const {title, content, contentStyle, backgroundColor} = this.props;
+        const {title, content, contentStyle, backgroundColor, testId} =
+            this.props;
         if (typeof content === "string") {
             return (
                 <TooltipContent
                     title={title}
                     contentStyle={contentStyle}
                     backgroundColor={backgroundColor}
+                    testId={testId ? `${testId}-content` : undefined}
                 >
                     {content}
                 </TooltipContent>

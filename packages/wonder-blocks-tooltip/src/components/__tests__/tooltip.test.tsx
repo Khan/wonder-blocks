@@ -113,6 +113,35 @@ describe("Tooltip", () => {
             // Assert
             expect(tooltip).toBeInTheDocument();
         });
+
+        it("should have a background color if one is set", () => {
+            // Arrange
+            render(
+                <View>
+                    <Tooltip
+                        title="Title"
+                        content="Content"
+                        backgroundColor="blue"
+                        testId="test-tooltip"
+                    >
+                        Anchor
+                    </Tooltip>
+                </View>,
+            );
+
+            const node = screen.getByText("Anchor");
+            userEvent.hover(node);
+            jest.runOnlyPendingTimers();
+
+            // Act
+            const tooltipContent = screen.getByTestId("test-tooltip-content");
+            expect(tooltipContent).toBeInTheDocument();
+
+            // Assert
+            expect(tooltipContent.style.backgroundColor).toBe(
+                "rgb(24, 101, 242)",
+            );
+        });
     });
 
     describe("accessibility", () => {
