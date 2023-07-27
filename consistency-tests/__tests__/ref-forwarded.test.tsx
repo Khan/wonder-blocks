@@ -1,6 +1,7 @@
 import * as React from "react";
-import {render} from "@testing-library/react";
+import {render, waitFor} from "@testing-library/react";
 import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
+import * as ReactDOM from "react-dom";
 
 import Breadcrumbs from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs";
 import BreadcrumbsItem from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item";
@@ -24,6 +25,7 @@ import LabelSmall from "../../packages/wonder-blocks-typography/src/components/l
 import LabelXSmall from "../../packages/wonder-blocks-typography/src/components/label-xsmall";
 import Tagline from "../../packages/wonder-blocks-typography/src/components/tagline";
 import Title from "../../packages/wonder-blocks-typography/src/components/title";
+import View from "../../packages/wonder-blocks-core/src/components/view";
 
 describe("Typography elements", () => {
     test.each`
@@ -122,4 +124,56 @@ describe("Link", () => {
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
     });
+});
+
+describe("View elements", () => {
+    test.each`
+        tag          | type              | typeName
+        ${"div"}     | ${HTMLDivElement} | ${"HTMLDivElement"}
+        ${"section"} | ${HTMLElement}    | ${"HTMLElement"}
+        ${"article"} | ${HTMLElement}    | ${"HTMLElement"}
+        ${"aside"}   | ${HTMLElement}    | ${"HTMLElement"}
+        ${"nav"}     | ${HTMLElement}    | ${"HTMLElement"}
+    `("View with $tag tag forwards ref to $typeName", ({tag, type}: any) => {
+        // Arrange
+        const ref: React.RefObject<typeof type> = React.createRef();
+
+        // Act
+        render(
+            <View ref={ref} tag={tag}>
+                This is a view
+            </View>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(type);
+    });
+
+    test.each`
+        tag          | type              | typeName
+        ${"div"}     | ${HTMLDivElement} | ${"HTMLDivElement"}
+        ${"section"} | ${HTMLElement}    | ${"HTMLElement"}
+        ${"article"} | ${HTMLElement}    | ${"HTMLElement"}
+        ${"aside"}   | ${HTMLElement}    | ${"HTMLElement"}
+        ${"nav"}     | ${HTMLElement}    | ${"HTMLElement"}
+    `(
+        "View with $tag tag forwards ref to $typeName with callback ref",
+        async ({tag, type}: any) => {
+            // Arrange
+            let ref: Element | Text | null;
+
+            // Act
+            render(
+                <View
+                    tag={tag}
+                    ref={(node) => (ref = ReactDOM.findDOMNode(node))}
+                />,
+            );
+
+            // Assert
+            await waitFor(() => {
+                expect(ref).toBeInstanceOf(type);
+            });
+        },
+    );
 });

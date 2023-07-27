@@ -5,17 +5,17 @@
         "rootDir": "./"
     },
     "references": [
-        {"path": "../packages/wonder-blocks-cell"},
-        {"path": "../packages/wonder-blocks-clickable"},
-        {"path": "../packages/wonder-blocks-color"},
-        {"path": "../packages/wonder-blocks-core"},
-        {"path": "../packages/wonder-blocks-i18n"},
-        {"path": "../packages/wonder-blocks-icon"},
-        {"path": "../packages/wonder-blocks-layout"},
-        {"path": "../packages/wonder-blocks-modal"},
-        {"path": "../packages/wonder-blocks-search-field"},
-        {"path": "../packages/wonder-blocks-spacing"},
-        {"path": "../packages/wonder-blocks-timing"},
-        {"path": "../packages/wonder-blocks-typography"}
+        {"path": "../packages/wonder-blocks-cell/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-clickable/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-color/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-core/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-i18n/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-icon/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-layout/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-modal/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-search-field/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-spacing/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-timing/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-typography/tsconfig-build.json"},
     ]
 }
