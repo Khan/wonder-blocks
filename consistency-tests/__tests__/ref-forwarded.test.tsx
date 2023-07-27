@@ -1,6 +1,8 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
+import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
 
+import Link from "../../packages/wonder-blocks-link/src/components/link";
 import Text from "../../packages/wonder-blocks-core/src/components/text";
 
 // Typography imports
@@ -50,5 +52,43 @@ describe("Typography elements", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(type);
+    });
+});
+
+describe("Link", () => {
+    // Renders an anchor (<a>) element if it doesn't use a router or if
+    // it skips client navigation.
+    test("forwards ref to an HTMLAnchorElement", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLAnchorElement> = React.createRef();
+
+        // Act
+        render(
+            <Link href="/foo" skipClientNav={true} ref={ref}>
+                Click me!
+            </Link>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+    });
+
+    // Renders an HTMLAnchorElement (the underlying ref for react-router-dom
+    // Link element) if it uses a router and uses client navigation.
+    test("forwards ref to react-router-dom Link which is an HTMLAnchorElement", () => {
+        // Arrange
+        const ref: React.RefObject<typeof ReactRouterLink> = React.createRef();
+
+        // Act
+        render(
+            <MemoryRouter>
+                <Link href="/foo" skipClientNav={false} ref={ref}>
+                    Click me!
+                </Link>
+            </MemoryRouter>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
     });
 });
