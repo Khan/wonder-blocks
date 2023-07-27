@@ -29,40 +29,41 @@ const StyledSvg = addStyle("svg");
 /**
  * The BreadcrumbsItem represents an individual item in the breadcrumbs list.
  */
-export default class BreadcrumbsItem extends React.Component<Props> {
-    /**
-     * Renders a separator after the content
-     * It draws a circular bullet point using an SVG circle shape
-     */
-    _renderSeparator(): React.ReactNode {
-        return (
-            <StyledSvg
-                style={styles.separator}
-                width={16}
-                height={16}
-                viewBox="0 0 16 16"
-                aria-hidden={true}
-            >
-                <circle cx="8" cy="9" r="1.5" />
-            </StyledSvg>
-        );
-    }
+const BreadcrumbsItem = React.forwardRef(
+    (props: Props, ref: React.ForwardedRef<HTMLLIElement>) => {
+        const {children, showSeparator, testId, ...otherProps} = props;
 
-    render(): React.ReactNode {
-        const {children, showSeparator, testId, ...otherProps} = this.props;
+        /**
+         * Renders a separator after the content
+         * It draws a circular bullet point using an SVG circle shape
+         */
+        const _renderSeparator = (): React.ReactNode => {
+            return (
+                <StyledSvg
+                    style={styles.separator}
+                    width={16}
+                    height={16}
+                    viewBox="0 0 16 16"
+                    aria-hidden={true}
+                >
+                    <circle cx="8" cy="9" r="1.5" />
+                </StyledSvg>
+            );
+        };
 
         return (
             <StyledListItem
                 {...otherProps}
                 style={styles.item}
                 data-test-id={testId}
+                ref={ref}
             >
                 {children}
-                {showSeparator && this._renderSeparator()}
+                {showSeparator && _renderSeparator()}
             </StyledListItem>
         );
-    }
-}
+    },
+);
 
 const styles = StyleSheet.create({
     item: {
@@ -76,3 +77,5 @@ const styles = StyleSheet.create({
         marginLeft: Spacing.xxxSmall_4,
     },
 });
+
+export default BreadcrumbsItem;

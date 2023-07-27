@@ -73,6 +73,17 @@ describe("Breadcrumbs elements", () => {
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLElement);
     });
+
+    test("BreadcrumbsItem forwards ref", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLLIElement> = React.createRef();
+
+        // Act
+        render(<BreadcrumbsItem ref={ref}>Page name</BreadcrumbsItem>);
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLLIElement);
+    });
 });
 
 describe("Link", () => {
