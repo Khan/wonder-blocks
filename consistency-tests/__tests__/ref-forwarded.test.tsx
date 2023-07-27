@@ -1,6 +1,7 @@
 import * as React from "react";
-import {render} from "@testing-library/react";
+import {render, waitFor} from "@testing-library/react";
 import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
+import * as ReactDOM from "react-dom";
 
 import Breadcrumbs from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs";
 import BreadcrumbsItem from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item";
@@ -114,15 +115,54 @@ describe("Link", () => {
     });
 });
 
-describe("View element", () => {
-    it("Should forward the ref", () => {
-        // Arrage
-        const ref = React.createRef<HTMLElement>();
+describe("View elements", () => {
+    test.each`
+        tag          | type              | typeName
+        ${"div"}     | ${HTMLDivElement} | ${"HTMLDivElement"}
+        ${"section"} | ${HTMLElement}    | ${"HTMLElement"}
+        ${"article"} | ${HTMLElement}    | ${"HTMLElement"}
+        ${"aside"}   | ${HTMLElement}    | ${"HTMLElement"}
+        ${"nav"}     | ${HTMLElement}    | ${"HTMLElement"}
+    `("View with $tag tag forwards ref to $typeName", ({tag, type}: any) => {
+        // Arrange
+        const ref: React.RefObject<typeof type> = React.createRef();
 
         // Act
-        render(<View ref={ref} />);
+        render(
+            <View ref={ref} tag={tag}>
+                This is a view
+            </View>,
+        );
 
         // Assert
-        expect(ref.current).toBeInstanceOf(HTMLDivElement);
+        expect(ref.current).toBeInstanceOf(type);
     });
+
+    test.each`
+        tag          | type              | typeName
+        ${"div"}     | ${HTMLDivElement} | ${"HTMLDivElement"}
+        ${"section"} | ${HTMLElement}    | ${"HTMLElement"}
+        ${"article"} | ${HTMLElement}    | ${"HTMLElement"}
+        ${"aside"}   | ${HTMLElement}    | ${"HTMLElement"}
+        ${"nav"}     | ${HTMLElement}    | ${"HTMLElement"}
+    `(
+        "View with $tag tag forwards ref to $typeName with callback ref",
+        async ({tag, type}: any) => {
+            // Arrange
+            let ref: Element | Text | null;
+
+            // Act
+            render(
+                <View
+                    tag={tag}
+                    ref={(node) => (ref = ReactDOM.findDOMNode(node))}
+                />,
+            );
+
+            // Assert
+            await waitFor(() => {
+                expect(ref).toBeInstanceOf(type);
+            });
+        },
+    );
 });
