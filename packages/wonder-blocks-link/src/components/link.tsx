@@ -1,5 +1,6 @@
 import * as React from "react";
 import {__RouterContext} from "react-router";
+import {Link as ReactRouterLink} from "react-router-dom";
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
 
 import type {AriaProps, StyleType} from "@khanacademy/wonder-blocks-core";
@@ -26,20 +27,20 @@ export type SharedProps = AriaProps & {
      * This styles the link with an underline to distinguish it
      * from surrounding text.
      */
-    inline: boolean;
+    inline?: boolean;
     /**
      * Kind of Link. Note: Secondary light Links are not supported.
      */
-    kind: "primary" | "secondary";
+    kind?: "primary" | "secondary";
     /**
      * Whether the button is on a dark/colored background.
      */
-    light: boolean;
+    light?: boolean;
     /**
      * Whether the link should change color once it's visited.
      * secondary or primary (light) links are not allowed to be visitable.
      */
-    visitable: boolean;
+    visitable?: boolean;
     /**
      * Specifies the type of relationship between the current document and the
      * linked document. Should only be used when `href` is specified. This
@@ -153,13 +154,6 @@ export type SharedProps = AriaProps & {
     endIcon?: IconAsset;
 };
 
-type DefaultProps = {
-    inline: SharedProps["inline"];
-    kind: SharedProps["kind"];
-    light: SharedProps["light"];
-    visitable: SharedProps["visitable"];
-};
-
 /**
  * Reusable link component.
  *
@@ -178,15 +172,11 @@ type DefaultProps = {
  * </Link>
  * ```
  */
-export default class Link extends React.Component<SharedProps> {
-    static defaultProps: DefaultProps = {
-        inline: false,
-        kind: "primary",
-        light: false,
-        visitable: false,
-    };
-
-    renderClickableBehavior(router: any): React.ReactNode {
+const Link = React.forwardRef(
+    (
+        props: SharedProps,
+        ref: React.ForwardedRef<typeof ReactRouterLink | HTMLAnchorElement>,
+    ) => {
         const {
             onClick,
             beforeNav = undefined,
@@ -198,81 +188,97 @@ export default class Link extends React.Component<SharedProps> {
             onKeyDown,
             onKeyUp,
             target = undefined,
+            inline = false,
+            kind = "primary",
+            light = false,
+            visitable = false,
             ...sharedProps
-        } = this.props;
+        } = props;
 
-        const ClickableBehavior = getClickableBehavior(
-            href,
-            skipClientNav,
-            router,
-        );
-
-        if (beforeNav) {
-            return (
-                <ClickableBehavior
-                    disabled={false}
-                    href={href}
-                    role="link"
-                    onClick={onClick}
-                    beforeNav={beforeNav}
-                    safeWithNav={safeWithNav}
-                    onKeyDown={onKeyDown}
-                    onKeyUp={onKeyUp}
-                >
-                    {(state, {...childrenProps}) => {
-                        return (
-                            <LinkCore
-                                {...sharedProps}
-                                {...state}
-                                {...childrenProps}
-                                skipClientNav={skipClientNav}
-                                href={href}
-                                target={target}
-                                tabIndex={tabIndex}
-                            >
-                                {children}
-                            </LinkCore>
-                        );
-                    }}
-                </ClickableBehavior>
+        const renderClickableBehavior = (router: any): React.ReactNode => {
+            const ClickableBehavior = getClickableBehavior(
+                href,
+                skipClientNav,
+                router,
             );
-        } else {
-            return (
-                <ClickableBehavior
-                    disabled={false}
-                    href={href}
-                    role="link"
-                    onClick={onClick}
-                    safeWithNav={safeWithNav}
-                    target={target}
-                    onKeyDown={onKeyDown}
-                    onKeyUp={onKeyUp}
-                >
-                    {(state, {...childrenProps}) => {
-                        return (
-                            <LinkCore
-                                {...sharedProps}
-                                {...state}
-                                {...childrenProps}
-                                skipClientNav={skipClientNav}
-                                href={href}
-                                target={target}
-                                tabIndex={tabIndex}
-                            >
-                                {children}
-                            </LinkCore>
-                        );
-                    }}
-                </ClickableBehavior>
-            );
-        }
-    }
 
-    render(): React.ReactNode {
+            if (beforeNav) {
+                return (
+                    <ClickableBehavior
+                        disabled={false}
+                        href={href}
+                        role="link"
+                        onClick={onClick}
+                        beforeNav={beforeNav}
+                        safeWithNav={safeWithNav}
+                        onKeyDown={onKeyDown}
+                        onKeyUp={onKeyUp}
+                    >
+                        {(state, {...childrenProps}) => {
+                            return (
+                                <LinkCore
+                                    {...sharedProps}
+                                    {...state}
+                                    {...childrenProps}
+                                    skipClientNav={skipClientNav}
+                                    href={href}
+                                    target={target}
+                                    tabIndex={tabIndex}
+                                    inline={inline}
+                                    kind={kind}
+                                    light={light}
+                                    visitable={visitable}
+                                    ref={ref}
+                                >
+                                    {children}
+                                </LinkCore>
+                            );
+                        }}
+                    </ClickableBehavior>
+                );
+            } else {
+                return (
+                    <ClickableBehavior
+                        disabled={false}
+                        href={href}
+                        role="link"
+                        onClick={onClick}
+                        safeWithNav={safeWithNav}
+                        target={target}
+                        onKeyDown={onKeyDown}
+                        onKeyUp={onKeyUp}
+                    >
+                        {(state, {...childrenProps}) => {
+                            return (
+                                <LinkCore
+                                    {...sharedProps}
+                                    {...state}
+                                    {...childrenProps}
+                                    skipClientNav={skipClientNav}
+                                    href={href}
+                                    target={target}
+                                    tabIndex={tabIndex}
+                                    inline={inline}
+                                    kind={kind}
+                                    light={light}
+                                    visitable={visitable}
+                                    ref={ref}
+                                >
+                                    {children}
+                                </LinkCore>
+                            );
+                        }}
+                    </ClickableBehavior>
+                );
+            }
+        };
+
         return (
             <__RouterContext.Consumer>
-                {(router) => this.renderClickableBehavior(router)}
+                {(router) => renderClickableBehavior(router)}
             </__RouterContext.Consumer>
         );
-    }
-}
+    },
+);
+
+export default Link;
