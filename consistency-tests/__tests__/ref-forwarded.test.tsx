@@ -1,6 +1,7 @@
 import * as React from "react";
 import {render} from "@testing-library/react";
 
+import Breadcrumbs from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs";
 import BreadcrumbsItem from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item";
 import Text from "../../packages/wonder-blocks-core/src/components/text";
 
@@ -53,5 +54,23 @@ describe("Typography elements", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(type);
+    });
+});
+
+describe("Breadcrumbs elements", () => {
+    test("Breadcrumbs forwards ref", () => {
+        // Arrange
+        const ref = React.createRef<HTMLElement>();
+
+        // Act
+        render(
+            <Breadcrumbs ref={ref}>
+                <BreadcrumbsItem>First</BreadcrumbsItem>
+                <BreadcrumbsItem>Last</BreadcrumbsItem>
+            </Breadcrumbs>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLElement);
     });
 });
