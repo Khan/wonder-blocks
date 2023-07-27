@@ -25,32 +25,30 @@ import Title from "../../packages/wonder-blocks-typography/src/components/title"
 
 describe("Typography elements", () => {
     test.each`
-        Component          | name                 | type                  | typeName
-        ${BreadcrumbsItem} | ${"BreadcrumbsItem"} | ${HTMLLIElement}      | ${"HTMLLIElement"}
-        ${Text}            | ${"Text"}            | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${Text}            | ${"Text"}            | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${Body}            | ${"Body"}            | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${BodyMonospace}   | ${"BodyMonospace"}   | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${BodySerif}       | ${"BodySerif"}       | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${BodySerifBlock}  | ${"BodySerifBlock"}  | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${Caption}         | ${"Caption"}         | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${Footnote}        | ${"Footnote"}        | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${HeadingLarge}    | ${"HeadingLarge"}    | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
-        ${HeadingMedium}   | ${"HeadingMedium"}   | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
-        ${HeadingSmall}    | ${"HeadingSmall"}    | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
-        ${HeadingXSmall}   | ${"HeadingXSmall"}   | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
-        ${LabelLarge}      | ${"LabelLarge"}      | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${LabelMedium}     | ${"LabelMedium"}     | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${LabelSmall}      | ${"LabelSmall"}      | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${LabelXSmall}     | ${"LabelXSmall"}     | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${Tagline}         | ${"Tagline"}         | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
-        ${Title}           | ${"Title"}           | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
+        Component         | name                | type                  | typeName
+        ${Text}           | ${"Text"}           | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${Body}           | ${"Body"}           | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${BodyMonospace}  | ${"BodyMonospace"}  | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${BodySerif}      | ${"BodySerif"}      | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${BodySerifBlock} | ${"BodySerifBlock"} | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${Caption}        | ${"Caption"}        | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${Footnote}       | ${"Footnote"}       | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${HeadingLarge}   | ${"HeadingLarge"}   | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
+        ${HeadingMedium}  | ${"HeadingMedium"}  | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
+        ${HeadingSmall}   | ${"HeadingSmall"}   | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
+        ${HeadingXSmall}  | ${"HeadingXSmall"}  | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
+        ${LabelLarge}     | ${"LabelLarge"}     | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${LabelMedium}    | ${"LabelMedium"}    | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${LabelSmall}     | ${"LabelSmall"}     | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${LabelXSmall}    | ${"LabelXSmall"}    | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${Tagline}        | ${"Tagline"}        | ${HTMLSpanElement}    | ${"HTMLSpanElement"}
+        ${Title}          | ${"Title"}          | ${HTMLHeadingElement} | ${"HTMLHeadingElement"}
     `("$name forwards ref to $typeName", async ({Component, type}: any) => {
         // Arrange
         const ref: React.RefObject<typeof type> = React.createRef();
 
         // Act
-        render(<Component ref={ref}>Some children</Component>);
+        render(<Component ref={ref}>This is a title</Component>);
 
         // Assert
         expect(ref.current).toBeInstanceOf(type);
@@ -72,5 +70,16 @@ describe("Breadcrumbs elements", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLElement);
+    });
+
+    test("BreadcrumbsItem forwards ref", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLLIElement> = React.createRef();
+
+        // Act
+        render(<BreadcrumbsItem ref={ref}>Page name</BreadcrumbsItem>);
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLLIElement);
     });
 });
