@@ -5,8 +5,11 @@ import * as ReactDOM from "react-dom";
 
 import Breadcrumbs from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs";
 import BreadcrumbsItem from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item";
+import Button from "../../packages/wonder-blocks-button/src/components/button";
+import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "../../packages/wonder-blocks-link/src/components/link";
 import Text from "../../packages/wonder-blocks-core/src/components/text";
+import View from "../../packages/wonder-blocks-core/src/components/view";
 
 // Typography imports
 import Body from "../../packages/wonder-blocks-typography/src/components/body";
@@ -25,7 +28,7 @@ import LabelSmall from "../../packages/wonder-blocks-typography/src/components/l
 import LabelXSmall from "../../packages/wonder-blocks-typography/src/components/label-xsmall";
 import Tagline from "../../packages/wonder-blocks-typography/src/components/tagline";
 import Title from "../../packages/wonder-blocks-typography/src/components/title";
-import View from "../../packages/wonder-blocks-core/src/components/view";
+import {icons} from "@khanacademy/wonder-blocks-icon";
 
 describe("Typography elements", () => {
     test.each`
@@ -176,4 +179,111 @@ describe("View elements", () => {
             });
         },
     );
+});
+
+describe("Button", () => {
+    // Renders a button (<button>) element if it doesn't have an href.
+    test("forwards ref to an HTMLButtonElement", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLButtonElement> = React.createRef();
+
+        // Act
+        render(<Button ref={ref}>This is a button</Button>);
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+    });
+
+    // Renders an anchor (<a>) element if it doesn't use a router or if
+    // it skips client navigation.
+    test("forwards ref to an HTMLAnchorElement", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLAnchorElement> = React.createRef();
+
+        // Act
+        render(
+            <Button href="/foo" skipClientNav={true} ref={ref}>
+                This is a button
+            </Button>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+    });
+
+    // Renders an HTMLAnchorElement (the underlying ref for react-router-dom
+    // Link element) if it uses a router and uses client navigation.
+    test("forwards ref to react-router-dom Link which is an HTMLAnchorElement", () => {
+        // Arrange
+        const ref: React.RefObject<typeof ReactRouterLink> = React.createRef();
+
+        // Act
+        render(
+            <MemoryRouter>
+                <Link href="/foo" skipClientNav={false} ref={ref}>
+                    Click me!
+                </Link>
+            </MemoryRouter>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+    });
+});
+
+describe("IconButton", () => {
+    // Renders a button (<button>) element if it doesn't have an href.
+    test("forwards ref to an HTMLButtonElement", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLButtonElement> = React.createRef();
+
+        // Act
+        render(<IconButton ref={ref} icon={icons.add} />);
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLButtonElement);
+    });
+
+    // Renders an anchor (<a>) element if it doesn't use a router or if
+    // it skips client navigation.
+    test("forwards ref to an HTMLAnchorElement", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLAnchorElement> = React.createRef();
+
+        // Act
+        render(
+            <IconButton
+                href="/foo"
+                skipClientNav={true}
+                ref={ref}
+                icon={icons.add}
+            />,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+    });
+
+    // Renders an HTMLAnchorElement (the underlying ref for react-router-dom
+    // Link element) if it uses a router and uses client navigation.
+    test("forwards ref to react-router-dom Link which is an HTMLAnchorElement", () => {
+        // Arrange
+        const ref: React.RefObject<typeof ReactRouterLink> = React.createRef();
+
+        // Act
+        render(
+            <MemoryRouter>
+                <IconButton
+                    href="/foo"
+                    skipClientNav={false}
+                    ref={ref}
+                    icon={icons.add}
+                />
+                ,
+            </MemoryRouter>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+    });
 });
