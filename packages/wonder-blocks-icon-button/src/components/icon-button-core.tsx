@@ -34,25 +34,31 @@ const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");
 const StyledLink = addStyle(Link);
 
-export default class IconButtonCore extends React.Component<Props> {
-    renderInner(router: any): React.ReactNode {
-        const {
-            skipClientNav,
-            color,
-            disabled,
-            focused,
-            hovered,
-            href,
-            icon,
-            kind,
-            light,
-            pressed,
-            style,
-            testId,
-            waiting: _,
-            ...restProps
-        } = this.props;
+const IconButtonCore: React.ForwardRefExoticComponent<
+    Props &
+        React.RefAttributes<typeof Link | HTMLButtonElement | HTMLAnchorElement>
+> = React.forwardRef<
+    typeof Link | HTMLButtonElement | HTMLAnchorElement,
+    Props
+>((props: Props, ref) => {
+    const {
+        skipClientNav,
+        color,
+        disabled,
+        focused,
+        hovered,
+        href,
+        icon,
+        kind = "primary",
+        light = false,
+        pressed,
+        style,
+        testId,
+        waiting: _,
+        ...restProps
+    } = props;
 
+    const renderInner = (router: any): React.ReactNode => {
         const buttonColor =
             color === "destructive"
                 ? SemanticColor.controlDestructive
@@ -81,11 +87,19 @@ export default class IconButtonCore extends React.Component<Props> {
 
         if (href && !disabled) {
             return router && !skipClientNav && isClientSideUrl(href) ? (
-                <StyledLink {...commonProps} to={href}>
+                <StyledLink
+                    {...commonProps}
+                    to={href}
+                    ref={ref as React.Ref<typeof Link>}
+                >
                     {child}
                 </StyledLink>
             ) : (
-                <StyledAnchor {...commonProps} href={href}>
+                <StyledAnchor
+                    {...commonProps}
+                    href={href}
+                    ref={ref as React.Ref<HTMLAnchorElement>}
+                >
                     {child}
                 </StyledAnchor>
             );
@@ -95,21 +109,22 @@ export default class IconButtonCore extends React.Component<Props> {
                     type="button"
                     {...commonProps}
                     disabled={disabled}
+                    ref={ref as React.Ref<HTMLButtonElement>}
                 >
                     {child}
                 </StyledButton>
             );
         }
-    }
+    };
 
-    render(): React.ReactNode {
-        return (
-            <__RouterContext.Consumer>
-                {(router) => this.renderInner(router)}
-            </__RouterContext.Consumer>
-        );
-    }
-}
+    return (
+        <__RouterContext.Consumer>
+            {(router) => renderInner(router)}
+        </__RouterContext.Consumer>
+    );
+});
+
+export default IconButtonCore;
 
 const sharedStyles = StyleSheet.create({
     shared: {
