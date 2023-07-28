@@ -14,11 +14,11 @@ type ChoiceComponentProps = AriaProps & {
     /**
      * Whether this component is disabled
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * Whether this component should show an error state
      */
-    error: boolean;
+    error?: boolean;
     /**
      * Callback when this component is selected. The newCheckedState is the
      * new checked state of the component.
@@ -58,11 +58,6 @@ type ChoiceComponentProps = AriaProps & {
     groupName?: string;
 };
 
-type DefaultProps = {
-    disabled: ChoiceComponentProps["disabled"];
-    error: ChoiceComponentProps["error"];
-};
-
 /**
  * ☑️ A nicely styled checkbox for all your checking needs. Can optionally take
  * label and description props.
@@ -84,13 +79,23 @@ type DefaultProps = {
  * <Checkbox checked={checked} onChange={setChecked} />
  * ```
  */
-export default class Checkbox extends React.Component<ChoiceComponentProps> {
-    static defaultProps: DefaultProps = {
-        disabled: false,
-        error: false,
-    };
+const Checkbox = React.forwardRef(
+    (
+        props: ChoiceComponentProps,
+        ref: React.ForwardedRef<HTMLInputElement>,
+    ) => {
+        const {disabled = false, error = false} = props;
 
-    render(): React.ReactNode {
-        return <ChoiceInternal variant="checkbox" {...this.props} />;
-    }
-}
+        return (
+            <ChoiceInternal
+                {...props}
+                variant="checkbox"
+                disabled={disabled}
+                error={error}
+                ref={ref}
+            />
+        );
+    },
+);
+
+export default Checkbox;

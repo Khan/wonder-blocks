@@ -4,8 +4,9 @@ import type {ComponentStory, ComponentMeta} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
+import {Checkbox, CheckboxGroup, Choice} from "@khanacademy/wonder-blocks-form";
+import Spacing from "@khanacademy/wonder-blocks-spacing";
 
-import {Checkbox} from "@khanacademy/wonder-blocks-form";
 import {name, version} from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
@@ -37,8 +38,19 @@ Default.parameters = {
 };
 
 export const Controlled: StoryComponentType = () => {
-    const [checked, setChecked] = React.useState(false);
-    return <Checkbox checked={checked} onChange={setChecked} />;
+    const [checked, setChecked] = React.useState<boolean | null>(null);
+
+    const handleChange = () => {
+        if (checked === false) {
+            setChecked(true);
+        } else {
+            // If `checked` is true OR null/undefined,
+            // we want to change it to false
+            setChecked(false);
+        }
+    };
+
+    return <Checkbox checked={checked} onChange={handleChange} />;
 };
 
 Controlled.parameters = {
@@ -85,6 +97,77 @@ Indeterminate.parameters = {
         storyDescription: `The checkbox has a third state for when the checkbox
         is neither \`checked\` (true) nor \`unchecked\` (false). Set the
         \`checked\` prop to \`null\` or \`undefined\` to use the indeterminate checkbox.`,
+    },
+};
+
+export const IndeterminateWithGroup: StoryComponentType = () => {
+    const [allSelected, setAllSelected] = React.useState<boolean | null>(false);
+    const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
+        [],
+    );
+    const choices = [
+        {label: "Pepperoni", value: "pepperoni"},
+        {label: "Sausage", value: "sausage"},
+        {label: "Extra cheese", value: "cheese"},
+        {label: "Green pepper", value: "pepper"},
+        {label: "Mushroom", value: "mushroom"},
+    ];
+
+    const handleSelectAll = () => {
+        if (allSelected || allSelected === null) {
+            setSelectedValues([]);
+            setAllSelected(false);
+        } else {
+            const allValues = choices.map((choice) => choice.value);
+            setSelectedValues(allValues);
+            setAllSelected(true);
+        }
+    };
+
+    const handleCheckboxGroupSelect = (values: Array<string>) => {
+        setSelectedValues(values);
+        if (values.length === choices.length) {
+            setAllSelected(true);
+        } else if (values.length) {
+            setAllSelected(null);
+        } else {
+            setAllSelected(false);
+        }
+    };
+
+    return (
+        <View>
+            <Checkbox
+                checked={allSelected}
+                label={"Topping(s)"}
+                onChange={handleSelectAll}
+            />
+            <Strut size={Spacing.small_12} />
+            <View style={{marginInlineStart: Spacing.large_24}}>
+                <CheckboxGroup
+                    groupName="toppings"
+                    onChange={handleCheckboxGroupSelect}
+                    selectedValues={selectedValues}
+                >
+                    {choices.map((choice) => (
+                        <Choice
+                            key={choice.label}
+                            label={choice.label}
+                            value={choice.value}
+                        />
+                    ))}
+                </CheckboxGroup>
+            </View>
+        </View>
+    );
+};
+
+IndeterminateWithGroup.parameters = {
+    docs: {
+        storyDescription: `Here is an example of how you can use the
+            indeterminate checkbox to select all or deselect all options
+            in a checkbox group. If only some of the options are selected,
+            the indeterminate checkbox will be in the indeterminate state.`,
     },
 };
 

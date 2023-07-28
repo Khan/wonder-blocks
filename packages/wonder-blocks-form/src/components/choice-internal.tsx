@@ -14,9 +14,9 @@ type Props = AriaProps & {
     /** Whether this choice is checked. */
     checked: boolean | null | undefined;
     /** Whether this choice option is disabled. */
-    disabled: boolean;
+    disabled?: boolean;
     /** Whether this choice is in error mode. */
-    error: boolean;
+    error?: boolean;
     /** Returns the new checked state of the component. */
     onChange: (newCheckedState: boolean) => unknown;
     /**
@@ -48,11 +48,6 @@ type Props = AriaProps & {
     variant: "radio" | "checkbox";
 };
 
-type DefaultProps = {
-    disabled: Props["disabled"];
-    error: Props["error"];
-};
-
 /**
  * This is a potentially labeled 🔘 or ☑️ item. This is an internal component
  * that's wrapped by Checkbox and Radio. Choice is a wrapper for Checkbox and
@@ -60,60 +55,61 @@ type DefaultProps = {
  * and RadioGroup. This design allows for more explicit prop typing. For
  * example, we can make onChange a required prop on Checkbox but not on Choice
  * (because for Choice, that prop would be auto-populated by CheckboxGroup).
- */ export default class ChoiceInternal extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        disabled: false,
-        error: false,
-    };
-
-    handleClick: () => void = () => {
-        const {checked, onChange, variant} = this.props;
-        // Radio buttons cannot be unchecked
-        if (variant === "radio" && checked) {
-            return;
-        }
-        onChange(!checked);
-    };
-
-    getChoiceCoreComponent(): typeof RadioCore | typeof CheckboxCore {
-        if (this.props.variant === "radio") {
-            return RadioCore;
-        } else {
-            return CheckboxCore;
-        }
-    }
-    getLabel(id: string): React.ReactNode {
-        const {disabled, label} = this.props;
-        return (
-            <LabelMedium
-                style={[styles.label, disabled && styles.disabledLabel]}
-            >
-                <label htmlFor={id}>{label}</label>
-            </LabelMedium>
-        );
-    }
-    getDescription(id?: string): React.ReactNode {
-        const {description} = this.props;
-        return (
-            <LabelSmall style={styles.description} id={id}>
-                {description}
-            </LabelSmall>
-        );
-    }
-    render(): React.ReactNode {
+ */ const ChoiceInternal = React.forwardRef(
+    (props: Props, ref: React.ForwardedRef<HTMLInputElement>) => {
         const {
-            label,
+            checked,
             description,
+            disabled = false,
+            error = false,
             id,
+            label,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             onChange,
             style,
             className,
             // eslint-disable-next-line @typescript-eslint/no-unused-vars
             variant,
-            ...coreProps
-        } = this.props;
-        const ChoiceCore = this.getChoiceCoreComponent();
+            // ...coreProps
+        } = props;
+
+        const handleClick: () => void = () => {
+            // Radio buttons cannot be unchecked
+            if (variant === "radio" && checked) {
+                return;
+            }
+            onChange(!checked);
+        };
+
+        const getChoiceCoreComponent = ():
+            | typeof RadioCore
+            | typeof CheckboxCore => {
+            if (variant === "radio") {
+                return RadioCore;
+            } else {
+                return CheckboxCore;
+            }
+        };
+
+        const getLabel = (id: string): React.ReactNode => {
+            return (
+                <LabelMedium
+                    style={[styles.label, disabled && styles.disabledLabel]}
+                >
+                    <label htmlFor={id}>{label}</label>
+                </LabelMedium>
+            );
+        };
+
+        const getDescription = (id?: string): React.ReactNode => {
+            return (
+                <LabelSmall style={styles.description} id={id}>
+                    {description}
+                </LabelSmall>
+            );
+        };
+
+        const ChoiceCore = getChoiceCoreComponent();
 
         return (
             <UniqueIDProvider mockOnFirstRender={true} scope="choice">
@@ -142,22 +138,27 @@ type DefaultProps = {
                                 tabIndex={-1}
                             >
                                 <ChoiceCore
-                                    {...coreProps}
+                                    // {...coreProps}
+                                    {...props}
                                     id={uniqueId}
                                     aria-describedby={descriptionId}
-                                    onClick={this.handleClick}
+                                    onClick={handleClick}
+                                    disabled={disabled}
+                                    error={error}
+                                    ref={ref}
                                 />
                                 <Strut size={Spacing.xSmall_8} />
-                                {label && this.getLabel(uniqueId)}
+                                {label && getLabel(uniqueId)}
                             </View>
-                            {description && this.getDescription(descriptionId)}
+                            {description && getDescription(descriptionId)}
                         </View>
                     );
                 }}
             </UniqueIDProvider>
         );
-    }
-}
+    },
+);
+
 const styles = StyleSheet.create({
     wrapper: {
         flexDirection: "row",
@@ -181,3 +182,5 @@ const styles = StyleSheet.create({
         color: Color.offBlack64,
     },
 });
+
+export default ChoiceInternal;

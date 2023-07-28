@@ -39,27 +39,13 @@ const indeterminatePath: IconAsset = {
 /**
  * The internal stateless ☑️ Checkbox
  */
-export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
-    componentDidMount(): void {
-        if (this.props.checked == null && this.inputRef.current != null) {
-            this.inputRef.current.indeterminate = true;
-        }
-    }
+const CheckboxCore = React.forwardRef(
+    (props: ChoiceCoreProps, ref: React.ForwardedRef<HTMLInputElement>) => {
+        const handleChange: () => void = () => {
+            // Empty because change is handled by ClickableBehavior
+            return;
+        };
 
-    componentDidUpdate(prevProps: Readonly<ChoiceCoreProps>): void {
-        if (this.inputRef.current != null) {
-            this.inputRef.current.indeterminate = this.props.checked == null;
-        }
-    }
-
-    inputRef: React.RefObject<HTMLInputElement> = React.createRef();
-
-    handleChange: () => void = () => {
-        // Empty because change is handled by ClickableBehavior
-        return;
-    };
-
-    render(): React.ReactNode {
         const {
             checked,
             disabled,
@@ -68,7 +54,7 @@ export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
             id,
             testId,
             ...sharedProps
-        } = this.props;
+        } = props;
 
         const stateStyles = _generateStyles(checked, error);
 
@@ -78,10 +64,6 @@ export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
             !disabled && stateStyles.default,
             disabled && sharedStyles.disabled,
         ];
-
-        const props = {
-            "data-test-id": testId,
-        } as const;
 
         const checkboxIcon = (
             <Icon
@@ -98,7 +80,7 @@ export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
             <React.Fragment>
                 <StyledInput
                     {...sharedProps}
-                    ref={this.inputRef}
+                    ref={ref}
                     type="checkbox"
                     aria-checked={ariaChecked}
                     aria-invalid={error}
@@ -108,15 +90,15 @@ export default class CheckboxCore extends React.Component<ChoiceCoreProps> {
                     name={groupName}
                     // Need to specify because this is a controlled React form
                     // component, but we handle the click via ClickableBehavior
-                    onChange={this.handleChange}
+                    onChange={handleChange}
                     style={defaultStyle}
-                    {...props}
+                    data-test-id={testId}
                 />
                 {checked || checked == null ? checkboxIcon : <></>}
             </React.Fragment>
         );
-    }
-}
+    },
+);
 
 const size = 16;
 
@@ -237,3 +219,5 @@ const _generateStyles = (checked: Checked, error: boolean) => {
     styles[styleKey] = StyleSheet.create(newStyles);
     return styles[styleKey];
 };
+
+export default CheckboxCore;
