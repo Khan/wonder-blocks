@@ -44,8 +44,8 @@ export const Controlled: StoryComponentType = () => {
         if (checked === false) {
             setChecked(true);
         } else {
-            // If `checked` is true OR null/undefined,
-            // we want to change it to false
+            // If `checked` is true (checked) OR null/undefined (indeterminate),
+            // we want to change it to false (unchecked).
             setChecked(false);
         }
     };
