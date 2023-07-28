@@ -60,8 +60,10 @@ Controlled.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription:
-            "Use state to keep track of whether the checkbox is checked or not",
+        storyDescription: `Use state to keep track of whether the checkbox
+            is checked or not. This is in the indeterminate (null)
+            state by default. Clicking it will uncheck it, and clicking it
+            again will check it.`,
     },
 };
 
