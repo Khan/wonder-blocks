@@ -44,8 +44,8 @@ export const Controlled: StoryComponentType = () => {
         if (checked === false) {
             setChecked(true);
         } else {
-            // If `checked` is true OR null/undefined,
-            // we want to change it to false
+            // If `checked` is true (checked) OR null/undefined (indeterminate),
+            // we want to change it to false (unchecked).
             setChecked(false);
         }
     };
@@ -60,8 +60,10 @@ Controlled.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription:
-            "Use state to keep track of whether the checkbox is checked or not",
+        storyDescription: `Use state to keep track of whether the checkbox
+            is checked or not. This is in the indeterminate (null)
+            state by default. Clicking it will uncheck it, and clicking it
+            again will check it.`,
     },
 };
 
