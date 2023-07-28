@@ -106,5 +106,5 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.CHROMATIC_APP_CODE }}
-        buildScriptName: "storybook build"
+        buildScriptName: "build:storybook"
         autoAcceptChanges: true

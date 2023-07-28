@@ -49,7 +49,7 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
         autoAcceptChanges: "main"
-        buildScriptName: "storybook build"
+        buildScriptName: "build:storybook"
         # Generate snapshots for only changed stories
         # See: https://www.chromatic.com/docs/turbosnap
         onlyChanged: true
@@ -62,7 +62,7 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
-        buildScriptName: "storybook build"
+        buildScriptName: "build:storybook"
         exitZeroOnChanges: true
         # This is a flag that allows us to skip the build in the case of a
         # dependabot PR. We still need to report the build as successful so that
@@ -76,5 +76,5 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
-        buildScriptName: "storybook build"
+        buildScriptName: "build:storybook"
         autoAcceptChanges: true
