@@ -7,6 +7,8 @@ import Breadcrumbs from "../../packages/wonder-blocks-breadcrumbs/src/components
 import BreadcrumbsItem from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item";
 import Button from "../../packages/wonder-blocks-button/src/components/button";
 import Checkbox from "../../packages/wonder-blocks-form/src/components/checkbox";
+import CheckboxGroup from "../../packages/wonder-blocks-form/src/components/checkbox-group";
+import Choice from "../../packages/wonder-blocks-form/src/components/choice";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "../../packages/wonder-blocks-link/src/components/link";
 import Text from "../../packages/wonder-blocks-core/src/components/text";
@@ -299,5 +301,26 @@ describe("Form elements", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    });
+
+    test("CheckboxGroup forwards ref to an HTMLFieldSetElement", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLFieldSetElement> = React.createRef();
+
+        // Act
+        render(
+            <CheckboxGroup
+                groupName="some-group-name"
+                selectedValues={[]}
+                onChange={() => {}}
+                ref={ref}
+            >
+                <Choice label="Some choice" value="some-choice" />
+                <Choice label="Some other choice" value="some-other-choice" />
+            </CheckboxGroup>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLFieldSetElement);
     });
 });

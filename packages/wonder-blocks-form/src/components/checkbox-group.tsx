@@ -95,38 +95,47 @@ const StyledLegend = addStyle("legend");
  * </CheckboxGroup>
  * ```
  */
-export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
-    handleChange(changedValue: string, originalCheckedState: boolean) {
-        const {onChange, selectedValues} = this.props;
-
-        if (originalCheckedState) {
-            const index = selectedValues.indexOf(changedValue);
-            const updatedSelection = [
-                ...selectedValues.slice(0, index),
-                ...selectedValues.slice(index + 1),
-            ];
-            onChange(updatedSelection);
-        } else {
-            onChange([...selectedValues, changedValue]);
-        }
-    }
-
-    render(): React.ReactNode {
+const CheckboxGroup = React.forwardRef(
+    (
+        props: CheckboxGroupProps,
+        ref: React.ForwardedRef<HTMLFieldSetElement>,
+    ) => {
         const {
             children,
             label,
             description,
             errorMessage,
             groupName,
+            onChange,
             selectedValues,
             style,
             testId,
-        } = this.props;
+        } = props;
+
+        const handleChange = (
+            changedValue: string,
+            originalCheckedState: boolean,
+        ) => {
+            if (originalCheckedState) {
+                const index = selectedValues.indexOf(changedValue);
+                const updatedSelection = [
+                    ...selectedValues.slice(0, index),
+                    ...selectedValues.slice(index + 1),
+                ];
+                onChange(updatedSelection);
+            } else {
+                onChange([...selectedValues, changedValue]);
+            }
+        };
 
         const allChildren = React.Children.toArray(children).filter(Boolean);
 
         return (
-            <StyledFieldset data-test-id={testId} style={styles.fieldset}>
+            <StyledFieldset
+                data-test-id={testId}
+                style={styles.fieldset}
+                ref={ref}
+            >
                 {/* We have a View here because fieldset cannot be used with flexbox*/}
                 <View style={style}>
                     {label && (
@@ -159,7 +168,7 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
                             groupName: groupName,
                             id: `${groupName}-${value}`,
                             key: value,
-                            onChange: () => this.handleChange(value, checked),
+                            onChange: () => handleChange(value, checked),
                             style: [index > 0 && styles.defaultLineGap, style],
                             variant: "checkbox",
                         });
@@ -167,5 +176,7 @@ export default class CheckboxGroup extends React.Component<CheckboxGroupProps> {
                 </View>
             </StyledFieldset>
         );
-    }
-}
+    },
+);
+
+export default CheckboxGroup;
