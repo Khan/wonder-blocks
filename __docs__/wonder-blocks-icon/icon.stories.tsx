@@ -1,5 +1,5 @@
 import * as React from "react";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -8,13 +8,18 @@ import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {name, version} from "../../packages/wonder-blocks-icon/package.json";
+import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 
 export default {
     title: "Icon / Icon",
     component: Icon,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
     },
     argTypes: {
         icon: {
@@ -24,15 +29,13 @@ export default {
             options: ["small", "medium", "large", "xlarge"],
         },
     },
-} as ComponentMeta<typeof Icon>;
+} as Meta<typeof Icon>;
 
-type StoryComponentType = ComponentStory<typeof Icon>;
+type StoryComponentType = StoryObj<typeof Icon>;
 
-export const Default: StoryComponentType = (args) => {
-    return <Icon {...args} />;
+export const Default: StoryComponentType = {
+    args: {icon: icons.search, size: "small"},
 };
-
-Default.args = {icon: icons.search, size: "small"};
 
 export const Basic: StoryComponentType = () => {
     return <Icon icon={icons.search} />;
@@ -40,8 +43,10 @@ export const Basic: StoryComponentType = () => {
 
 Basic.parameters = {
     docs: {
-        storyDescription: `Minimal icon usage. This is a search icon.
+        description: {
+            story: `Minimal icon usage. This is a search icon.
             Icons are size \`"small"\` by default.`,
+        },
     },
 };
 
@@ -86,11 +91,13 @@ export const Sizes: StoryComponentType = () => {
 
 Sizes.parameters = {
     docs: {
-        storyDescription: `The size of an icon is determined by the \`Icon\`'s
+        description: {
+            story: `The size of an icon is determined by the \`Icon\`'s
             \`size\` prop. While we don't currently have assets for sizes
             larger than medium, we can still render any icon at any size
             in a pinch. The available sizes are \`"small"\`, \`"medium"\`,
             \`"large"\`, and \`"xlarge"\`. `,
+        },
     },
 };
 
@@ -113,10 +120,12 @@ export const Variants: StoryComponentType = () => {
 
 Variants.parameters = {
     docs: {
-        storyDescription: `The actual icon is determined by the \`Icon\`'s
+        description: {
+            story: `The actual icon is determined by the \`Icon\`'s
             \`icon\` prop. Here are the icons that are already defined in
             Wonder Blocks and ready to use. Just import \`{icons}\` from
             \`"@khanacademy/wonder-blocks-icon"\`.`,
+        },
     },
 };
 
@@ -126,8 +135,9 @@ export const WithColor: StoryComponentType = () => {
 
 WithColor.parameters = {
     docs: {
-        storyDescription:
-            "The color of an icon can be specified through its `color` prop.",
+        description: {
+            story: "The color of an icon can be specified through its `color` prop.",
+        },
     },
 };
 
@@ -143,7 +153,9 @@ export const Inline: StoryComponentType = () => {
 
 Inline.parameters = {
     docs: {
-        storyDescription: "Icons have `display: inline-block` by default.",
+        description: {
+            story: "Icons have `display: inline-block` by default.",
+        },
     },
 };
 
@@ -165,9 +177,11 @@ export const CustomIcon: StoryComponentType = () => {
 
 CustomIcon.parameters = {
     docs: {
-        storyDescription:
-            "Icons can be customized by passing in a custom icon." +
-            "The icon should be an object with a size-related property (`small | medium | large | xlarge`) that is a string containing the path data for the icon.\n\n" +
-            "NOTE: Sometimes the icon will need some custom SVG attributes to render correctly. For example, the `fillRule` and `clipRule` attributes are needed for the share icon. This can be set using the `style` prop.",
+        description: {
+            story:
+                "Icons can be customized by passing in a custom icon." +
+                "The icon should be an object with a size-related property (`small | medium | large | xlarge`) that is a string containing the path data for the icon.\n\n" +
+                "NOTE: Sometimes the icon will need some custom SVG attributes to render correctly. For example, the `fillRule` and `clipRule` attributes are needed for the share icon. This can be set using the `style` prop.",
+        },
     },
 };

@@ -1,30 +1,35 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {name, version} from "../../packages/wonder-blocks-form/package.json";
+import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import Radio from "../../packages/wonder-blocks-form/src/components/radio";
 
-type StoryComponentType = ComponentStory<typeof Radio>;
+type StoryComponentType = StoryObj<typeof Radio>;
 
 export default {
     title: "Form / Radio (internal)",
     component: Radio,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
     },
-} as ComponentMeta<typeof Radio>;
+} as Meta<typeof Radio>;
 
-export const Default: StoryComponentType = (args) => <Radio {...args} />;
-
-Default.args = {
-    checked: false,
-    onChange: () => {},
+export const Default: StoryComponentType = {
+    args: {
+        checked: false,
+        onChange: () => {},
+    },
 };
 
 Default.parameters = {
@@ -47,10 +52,12 @@ Controlled.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription: `Use state to keep track of whether
+        description: {
+            story: `Use state to keep track of whether
         the radio button has been checked. A radio button cannot be unchecked
         by the user once it has been checked. It would become unchecked if a
         different radio button is selected as part of a radio group.`,
+        },
     },
 };
 
@@ -82,9 +89,11 @@ export const Variants: StoryComponentType = () => (
 
 Variants.parameters = {
     docs: {
-        storyDescription: `The radio button has various styles for
+        description: {
+            story: `The radio button has various styles for
         clickable states. Here are sets of default radio buttons,
         radio buttons in an error state, and disabled radio buttons.`,
+        },
     },
 };
 
@@ -103,9 +112,11 @@ export const WithLabel: StoryComponentType = () => {
 
 WithLabel.parameters = {
     docs: {
-        storyDescription: `The radio button can have an optional label
+        description: {
+            story: `The radio button can have an optional label
             and description. This allows it to be used as a settings-like item,
             as opposed to its usage in a radio grid.`,
+        },
     },
 };
 
@@ -132,13 +143,15 @@ export const AdditionalClickTarget: StoryComponentType = () => {
 
 AdditionalClickTarget.parameters = {
     docs: {
-        storyDescription: `Sometimes one may wish to use a radio button
+        description: {
+            story: `Sometimes one may wish to use a radio button
             in a different context (label may not be right next to the
             radio button), like in this example content item. Use a
             \`<label htmlFor={id}>\` element where the id matches the \`id\`
             prop of the Radio. This is for accessibility purposes,
             and doing this also automatically makes the label a click target
             for the radio button.`,
+        },
     },
 };
 

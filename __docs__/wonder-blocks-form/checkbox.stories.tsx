@@ -1,12 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
 import {Checkbox} from "@khanacademy/wonder-blocks-form";
-import {name, version} from "../../packages/wonder-blocks-form/package.json";
+import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import Strut from "../../packages/wonder-blocks-layout/src/components/strut";
@@ -15,17 +15,22 @@ export default {
     title: "Form / Checkbox",
     component: Checkbox,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
     },
-} as ComponentMeta<typeof Checkbox>;
+} as Meta<typeof Checkbox>;
 
-type StoryComponentType = ComponentStory<typeof Checkbox>;
+type StoryComponentType = StoryObj<typeof Checkbox>;
 
-export const Default: StoryComponentType = (args) => <Checkbox {...args} />;
-
-Default.args = {
-    checked: false,
-    onChange: () => {},
+export const Default: StoryComponentType = {
+    args: {
+        checked: false,
+        onChange: () => {},
+    },
 };
 
 Default.parameters = {
@@ -48,8 +53,9 @@ Controlled.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription:
-            "Use state to keep track of whether the checkbox is checked or not",
+        description: {
+            story: "Use state to keep track of whether the checkbox is checked or not",
+        },
     },
 };
 
@@ -82,9 +88,11 @@ export const Indeterminate: StoryComponentType = () => {
 
 Indeterminate.parameters = {
     docs: {
-        storyDescription: `The checkbox has a third state for when the checkbox
+        description: {
+            story: `The checkbox has a third state for when the checkbox
         is neither \`checked\` (true) nor \`unchecked\` (false). Set the
         \`checked\` prop to \`null\` or \`undefined\` to use the indeterminate checkbox.`,
+        },
     },
 };
 
@@ -131,8 +139,9 @@ export const Variants: StoryComponentType = () => (
 
 Variants.parameters = {
     docs: {
-        storyDescription:
-            "The checkbox has various styles for clickable states. Here are sets of default checkboxes, checkboxes in an error state, and disabled checkboxes.",
+        description: {
+            story: "The checkbox has various styles for clickable states. Here are sets of default checkboxes, checkboxes in an error state, and disabled checkboxes.",
+        },
     },
 };
 
@@ -171,9 +180,11 @@ VariantsControlled.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription: `A demo of the different kinds of checkboxes
+        description: {
+            story: `A demo of the different kinds of checkboxes
             when they have their \`checked\` and \`onChange\` props set
             to make them toggle on click.`,
+        },
     },
 };
 
@@ -192,8 +203,9 @@ export const WithLabel: StoryComponentType = () => {
 
 WithLabel.parameters = {
     docs: {
-        storyDescription:
-            "The checkbox can have an optional label and description. This allows it to be used as a settings-like item. The user of this component is responsible for keeping track of checked state and providing an onChange callback.",
+        description: {
+            story: "The checkbox can have an optional label and description. This allows it to be used as a settings-like item. The user of this component is responsible for keeping track of checked state and providing an onChange callback.",
+        },
     },
 };
 
@@ -220,8 +232,9 @@ export const AdditionalClickTarget: StoryComponentType = () => {
 
 AdditionalClickTarget.parameters = {
     docs: {
-        storyDescription:
-            "Sometimes one may wish to use a checkbox in a different context (label may not be right next to the checkbox), like in this example content item. Use a `<label htmlFor={id}>` element where the id matches the `id` prop of the Checkbox. This is for accessibility purposes, and doing this also automatically makes the label a click target for the checkbox.",
+        description: {
+            story: "Sometimes one may wish to use a checkbox in a different context (label may not be right next to the checkbox), like in this example content item. Use a `<label htmlFor={id}>` element where the id matches the `id` prop of the Checkbox. This is for accessibility purposes, and doing this also automatically makes the label a click target for the checkbox.",
+        },
     },
 };
 

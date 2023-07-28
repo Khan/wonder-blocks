@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 import {View} from "@khanacademy/wonder-blocks-core";
 
 import Button from "@khanacademy/wonder-blocks-button";
@@ -14,24 +14,18 @@ import {MultiSelect, OptionItem} from "@khanacademy/wonder-blocks-dropdown";
 import type {Labels} from "@khanacademy/wonder-blocks-dropdown";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {
-    name,
-    version,
-} from "../../packages/wonder-blocks-dropdown/package.json";
+import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 import multiSelectArgtypes from "./base-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 
-type StoryComponentType = ComponentStory<typeof MultiSelect>;
+type StoryComponentType = StoryObj<typeof MultiSelect>;
+
+type MultiSelectArgs = Partial<typeof MultiSelect>;
 
 export default {
     title: "Dropdown / MultiSelect",
     component: MultiSelect as unknown as React.ComponentType<any>,
-    argTypes: {
-        ...multiSelectArgtypes,
-        labels: {
-            defaultValue: defaultLabels,
-        },
-    },
+    argTypes: multiSelectArgtypes,
     args: {
         isFilterable: false,
         opened: false,
@@ -51,7 +45,10 @@ export default {
     ],
     parameters: {
         componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
         ) as any,
         docs: {
             description: {
@@ -63,7 +60,7 @@ export default {
             },
         },
     },
-} satisfies ComponentMeta<typeof MultiSelect>;
+} as Meta<typeof MultiSelect>;
 
 const styles = StyleSheet.create({
     example: {
@@ -120,14 +117,14 @@ const styles = StyleSheet.create({
 });
 
 const items = [
-    <OptionItem label="Mercury" value="1" />,
-    <OptionItem label="Venus" value="2" />,
-    <OptionItem label="Earth" value="3" disabled />,
-    <OptionItem label="Mars" value="4" />,
-    <OptionItem label="Jupiter" value="5" />,
-    <OptionItem label="Saturn" value="6" />,
-    <OptionItem label="Neptune" value="7" />,
-    <OptionItem label="Uranus" value="8" />,
+    <OptionItem label="Mercury" value="1" key={1} />,
+    <OptionItem label="Venus" value="2" key={2} />,
+    <OptionItem label="Earth" value="3" disabled key={3} />,
+    <OptionItem label="Mars" value="4" key={4} />,
+    <OptionItem label="Jupiter" value="5" key={5} />,
+    <OptionItem label="Saturn" value="6" key={6} />,
+    <OptionItem label="Neptune" value="7" key={7} />,
+    <OptionItem label="Uranus" value="8" key={8} />,
 ];
 
 const Template = (args: any) => {
@@ -156,9 +153,11 @@ const Template = (args: any) => {
     );
 };
 
-export const Default: StoryComponentType = Template.bind({});
+export const Default: StoryComponentType = {
+    render: Template,
+};
 
-export const ControlledOpened: StoryComponentType = (args) => {
+const ControlledWrapper = (args: any) => {
     const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
         [],
     );
@@ -185,8 +184,11 @@ export const ControlledOpened: StoryComponentType = (args) => {
     );
 };
 
-ControlledOpened.args = {
-    opened: true,
+export const ControlledOpened: StoryComponentType = {
+    render: (args) => <ControlledWrapper {...args} />,
+    args: {
+        opened: true,
+    } as MultiSelectArgs,
 };
 
 ControlledOpened.storyName = "Controlled (opened)";
@@ -200,7 +202,7 @@ ControlledOpened.parameters = {
         },
     },
     // Added to ensure that the dropdown menu is rendered using PopperJS.
-    chromatic: {delay: 400},
+    chromatic: {delay: 500},
 };
 
 // Custom MultiSelect labels
@@ -210,12 +212,13 @@ const dropdownLabels: Labels = {
     someSelected: (numSelectedValues) => `${numSelectedValues} planets`,
 };
 
-export const CustomStyles: StoryComponentType = Template.bind({});
-
-CustomStyles.args = {
-    labels: dropdownLabels,
-    dropdownStyle: styles.customDropdown,
-    style: styles.setWidth,
+export const CustomStyles: StoryComponentType = {
+    render: Template,
+    args: {
+        labels: dropdownLabels,
+        dropdownStyle: styles.customDropdown,
+        style: styles.setWidth,
+    } as MultiSelectArgs,
 };
 
 CustomStyles.parameters = {
@@ -230,16 +233,16 @@ CustomStyles.parameters = {
     },
 };
 
-export const CustomStylesOpened: StoryComponentType = Template.bind({});
-
-CustomStylesOpened.args = {
-    labels: dropdownLabels,
-    dropdownStyle: styles.customDropdown,
-    style: styles.setWidth,
-    opened: true,
+export const CustomStylesOpened: StoryComponentType = {
+    render: Template,
+    args: {
+        labels: dropdownLabels,
+        dropdownStyle: styles.customDropdown,
+        style: styles.setWidth,
+        opened: true,
+    } as MultiSelectArgs,
+    name: "Custom styles (opened)",
 };
-
-CustomStylesOpened.storyName = "Custom styles (opened)";
 
 CustomStylesOpened.parameters = {
     docs: {
@@ -252,11 +255,12 @@ CustomStylesOpened.parameters = {
 /**
  * With shortcuts
  */
-export const Shortcuts: StoryComponentType = Template.bind({});
-
-Shortcuts.args = {
-    shortcuts: true,
-    opened: true,
+export const Shortcuts: StoryComponentType = {
+    render: Template,
+    args: {
+        shortcuts: true,
+        opened: true,
+    } as MultiSelectArgs,
 };
 
 Shortcuts.parameters = {
@@ -270,7 +274,7 @@ Shortcuts.parameters = {
 /**
  * In a Modal
  */
-export const DropdownInModal: StoryComponentType = (args) => {
+const DropdownInModalWrapper = (args: MultiSelectArgs) => {
     const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
         [],
     );
@@ -310,7 +314,10 @@ export const DropdownInModal: StoryComponentType = (args) => {
     );
 };
 
-DropdownInModal.storyName = "Dropdown in a modal";
+export const DropdownInModal: StoryComponentType = {
+    render: (args) => <DropdownInModalWrapper {...args} />,
+    name: "Dropdown in a modal",
+};
 
 DropdownInModal.parameters = {
     docs: {
@@ -345,15 +352,17 @@ Disabled.parameters = {
 /**
  * ImplicitAll enabled
  */
-export const ImplicitAllEnabled: StoryComponentType = Template.bind({});
-
-ImplicitAllEnabled.args = {
-    implicitAllEnabled: true,
-    labels: {
-        ...defaultLabels,
-        someSelected: (numSelectedValues) => `${numSelectedValues} fruits`,
-        allSelected: "All planets selected",
-    },
+export const ImplicitAllEnabled: StoryComponentType = {
+    render: Template,
+    args: {
+        implicitAllEnabled: true,
+        labels: {
+            ...defaultLabels,
+            someSelected: (numSelectedValues: number) =>
+                `${numSelectedValues} fruits`,
+            allSelected: "All planets selected",
+        },
+    } as MultiSelectArgs,
 };
 
 ImplicitAllEnabled.parameters = {
@@ -429,29 +438,29 @@ VirtualizedFilterable.parameters = {
 /**
  * Custom opener
  */
-export const CustomOpener: StoryComponentType = Template.bind({});
-
-CustomOpener.args = {
-    selectedValues: [],
-    opener: ({focused, hovered, pressed, text}) => (
-        <HeadingLarge
-            onClick={() => {
-                // eslint-disable-next-line no-console
-                console.log("custom click!!!!!");
-            }}
-            style={[
-                styles.customOpener,
-                focused && styles.focused,
-                hovered && styles.hovered,
-                pressed && styles.pressed,
-            ]}
-        >
-            {text}
-        </HeadingLarge>
-    ),
+export const CustomOpener: StoryComponentType = {
+    render: Template,
+    args: {
+        selectedValues: [],
+        opener: ({focused, hovered, pressed, text}: any) => (
+            <HeadingLarge
+                onClick={() => {
+                    // eslint-disable-next-line no-console
+                    console.log("custom click!!!!!");
+                }}
+                style={[
+                    styles.customOpener,
+                    focused && styles.focused,
+                    hovered && styles.hovered,
+                    pressed && styles.pressed,
+                ]}
+            >
+                {text}
+            </HeadingLarge>
+        ),
+    } as MultiSelectArgs,
+    name: "With custom opener",
 };
-
-CustomOpener.storyName = "With custom opener";
 
 CustomOpener.parameters = {
     docs: {
