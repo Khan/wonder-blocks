@@ -40,15 +40,15 @@ export const Default: StoryComponentType = (args) => {
                 onChange={setSelectedValues}
                 selectedValues={selectedValues}
             >
-                <Choice label="Pepperoni" value="pepperoni" />
+                <Choice label="Pepperoni" value="pepperoni-checkbox" />
                 <Choice
                     label="Sausage"
-                    value="sausage"
+                    value="sausage-checkbox"
                     description="Imported from Italy"
                 />
-                <Choice label="Extra cheese" value="cheese" />
-                <Choice label="Green pepper" value="pepper" />
-                <Choice label="Mushroom" value="mushroom" />
+                <Choice label="Extra cheese" value="cheese-checkbox" />
+                <Choice label="Green pepper" value="pepper-checkbox" />
+                <Choice label="Mushroom" value="mushroom-checkbox" />
                 <Choice {...args} />
             </CheckboxGroup>
             <Strut size={Spacing.xLarge_32} />
@@ -59,15 +59,15 @@ export const Default: StoryComponentType = (args) => {
                 onChange={setSelectedValue}
                 selectedValue={selectedValue}
             >
-                <Choice label="Pepperoni" value="pepperoni" />
+                <Choice label="Pepperoni" value="pepperoni-radio" />
                 <Choice
                     label="Sausage"
-                    value="sausage"
+                    value="sausage-radio"
                     description="Imported from Italy"
                 />
-                <Choice label="Extra cheese" value="cheese" />
-                <Choice label="Green pepper" value="pepper" />
-                <Choice label="Mushroom" value="mushroom" />
+                <Choice label="Extra cheese" value="cheese-radio" />
+                <Choice label="Green pepper" value="pepper-radio" />
+                <Choice label="Mushroom" value="mushroom-radio" />
                 <Choice {...args} />
             </RadioGroup>
         </View>
