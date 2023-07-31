@@ -41,13 +41,10 @@ export const Controlled: StoryComponentType = () => {
     const [checked, setChecked] = React.useState<boolean | null>(null);
 
     const handleChange = () => {
-        if (checked === false) {
-            setChecked(true);
-        } else {
-            // If `checked` is true (checked) OR null/undefined (indeterminate),
-            // we want to change it to false (unchecked).
-            setChecked(false);
-        }
+        // If `checked` is true (checked) OR null/undefined (indeterminate),
+        // we want to change it to false (unchecked). We only change it back
+        // to true if it the value is explicitly false.
+        setChecked(checked === false);
     };
 
     return <Checkbox checked={checked} onChange={handleChange} />;
