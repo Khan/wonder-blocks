@@ -1,0 +1,4 @@
+try{
+var f=__STORYBOOKADDONS__,{addons:t,types:_,mockChannel:h}=__STORYBOOKADDONS__;var b=__STORYBOOKTHEMING__,{CacheProvider:x,ClassNames:B,Global:S,ThemeProvider:C,background:k,color:u,convert:y,create:a,createCache:R,createGlobal:N,createReset:v,css:w,darken:D,ensure:G,ignoreSsrWarning:I,isPropValid:K,jsx:Y,keyframes:P,lighten:A,styled:E,themes:H,typography:M,useTheme:W,withTheme:j}=__STORYBOOKTHEMING__;var s=a({base:"light",brandTitle:"Wonder Blocks",brandUrl:"/",brandImage:"./logo-with-text.svg",appBg:"#f7f8fa",colorSecondary:"#1865f2",fontBase:'"Lato", sans-serif',fontCode:"Inconsolata",textColor:"#21242c"});t.setConfig({theme:s,sidebar:{showRoots:!1}});
+}catch(e){ console.error("[Storybook] One of your manager-entries failed: " + import.meta.url, e); }
+//# sourceMappingURL=manager-bundle.js.map
