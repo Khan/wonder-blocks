@@ -1,7 +1,7 @@
-import {Meta, Story, Subtitle, Canvas} from "@storybook/addon-docs";
+import {Meta, Story, Canvas} from "@storybook/blocks";
 import {IDProvider, View} from "@khanacademy/wonder-blocks-core";
 
-import {name, version} from "../../packages/wonder-blocks-timing/package.json";
+import packageConfig from "../../packages/wonder-blocks-timing/package.json";
 
 import {
     Unmounter,
@@ -26,9 +26,7 @@ import ComponentInfo from "../../.storybook/components/component-info";
 
 # withActionSceduler
 
-<Subtitle>
-    <ComponentInfo name={name} version={version} />
-</Subtitle>
+<ComponentInfo name={packageConfig.name} version={packageConfig.version} />
 
 This is a higher order component (HOC) that attaches the given component to an
 [`IScheduleActions`](#ischeduleactions) instance. Any actions scheduled will automatically be

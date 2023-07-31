@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -15,7 +15,7 @@ import {
     ModalHeader,
     ModalFooter,
 } from "@khanacademy/wonder-blocks-modal";
-import {name, version} from "../../packages/wonder-blocks-modal/package.json";
+import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 
@@ -104,7 +104,12 @@ export default {
         ),
     ],
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -138,24 +143,26 @@ export default {
             control: {type: null},
         },
     },
-} as ComponentMeta<typeof ModalPanel>;
+} as Meta<typeof ModalPanel>;
 
-type StoryComponentType = ComponentStory<typeof ModalPanel>;
+type StoryComponentType = StoryObj<typeof ModalPanel>;
 
-export const Default: StoryComponentType = (args) => (
-    <ModalDialog aria-labelledby="modal-title-0" style={styles.dialog}>
-        <ModalPanel
-            {...args}
-            content={
-                <>
-                    <Title id="modal-title-0">Modal Title</Title>
-                    <Strut size={Spacing.large_24} />
-                    {longBody}
-                </>
-            }
-        />
-    </ModalDialog>
-);
+export const Default: StoryComponentType = {
+    render: (args) => (
+        <ModalDialog aria-labelledby="modal-title-0" style={styles.dialog}>
+            <ModalPanel
+                {...args}
+                content={
+                    <>
+                        <Title id="modal-title-0">Modal Title</Title>
+                        <Strut size={Spacing.large_24} />
+                        {longBody}
+                    </>
+                }
+            />
+        </ModalDialog>
+    ),
+};
 
 export const Simple: StoryComponentType = () => (
     <ModalDialog aria-labelledby="modal-title-1" style={styles.dialog}>
@@ -173,8 +180,10 @@ export const Simple: StoryComponentType = () => (
 
 Simple.parameters = {
     docs: {
-        storyDescription: `This is a basic \`<ModalPanel>\`. It just has a
+        description: {
+            story: `This is a basic \`<ModalPanel>\`. It just has a
             \`content\` prop that contains a title and a body.`,
+        },
     },
 };
 
@@ -195,8 +204,9 @@ export const Dark: StoryComponentType = () => (
 
 Dark.parameters = {
     docs: {
-        storyDescription:
-            "This is what a modal panel looks like when its `light` prop is set to false.",
+        description: {
+            story: "This is what a modal panel looks like when its `light` prop is set to false.",
+        },
     },
 };
 
@@ -211,10 +221,12 @@ export const WithHeader: StoryComponentType = () => (
 
 WithHeader.parameters = {
     docs: {
-        storyDescription: `This is a \`<ModalPanel>\` with a \`header\`
+        description: {
+            story: `This is a \`<ModalPanel>\` with a \`header\`
             prop. Note that the header that renders here as part of the
             \`header\` prop is sticky, so it remains even if you scroll
             down in the modal.`,
+        },
     },
 };
 
@@ -239,9 +251,11 @@ export const WithFooter: StoryComponentType = () => (
 
 WithFooter.parameters = {
     docs: {
-        storyDescription: `A modal panel can have a footer with the \`footer\`
+        description: {
+            story: `A modal panel can have a footer with the \`footer\`
             prop. In this example, the footer just contains a button. Note
             that the footer is sticky.`,
+        },
     },
 };
 
@@ -264,10 +278,12 @@ export const DarkWithHeaderAndFooter: StoryComponentType = () => (
 
 DarkWithHeaderAndFooter.parameters = {
     docs: {
-        storyDescription: `Here is a dark \`<ModalPanel>\` with a header
+        description: {
+            story: `Here is a dark \`<ModalPanel>\` with a header
             and a footer. The \`<Button>\` in the footer must have the
             \`light\` prop set to true in order to be visible on the dark
             background.`,
+        },
     },
 };
 
@@ -343,12 +359,14 @@ export const TwoPanels: StoryComponentType = () => {
 
 TwoPanels.parameters = {
     docs: {
-        storyDescription: `Here is an example of how you can have a modal
+        description: {
+            story: `Here is an example of how you can have a modal
             with two panels. Observe that it is responsive, so it uses a
             row layout with a larger window size and a column layout on
             a smaller window size. The "X" close button has been disabled
             for both panels since the top right spot would change depending
             on which layout is being used.`,
+        },
     },
 };
 
@@ -374,10 +392,12 @@ export const WithStyle: StoryComponentType = () => {
 
 WithStyle.parameters = {
     docs: {
-        storyDescription: `A \`<ModalPanel>\` can have custom styles.
+        description: {
+            story: `A \`<ModalPanel>\` can have custom styles.
             In this example, the styles for the modal panel include blue
             text color, a 2px solid dark blue border, and a border
             radius of 20px.`,
+        },
     },
 };
 

@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -17,25 +17,58 @@ import {
 
 import actionMenuArgtypes from "./action-menu.argtypes";
 import ComponentInfo from "../../.storybook/components/component-info";
-import {
-    name,
-    version,
-} from "../../packages/wonder-blocks-dropdown/package.json";
+import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 import type {Item} from "../../packages/wonder-blocks-dropdown/src/util/types";
 
-type ActionMenuProps = React.ComponentProps<typeof ActionMenu>;
+const actionItems: Array<Item> = [
+    <ActionItem
+        label="Profile"
+        href="http://khanacademy.org/profile"
+        target="_blank"
+        testId="profile"
+    />,
+    <ActionItem
+        label="Teacher dashboard"
+        href="http://khanacademy.org/coach/dashboard"
+        testId="dashboard"
+    />,
+    <ActionItem
+        label="Settings (onClick)"
+        onClick={() => console.log("user clicked on settings")}
+        testId="settings"
+    />,
+    <ActionItem
+        label="Help"
+        disabled={true}
+        onClick={() => console.log("this item is disabled...")}
+        testId="help"
+    />,
+    <ActionItem
+        label="Feedback"
+        disabled={true}
+        href="/feedback"
+        testId="feedback"
+    />,
+    <SeparatorItem />,
+    <ActionItem
+        label="Log out"
+        href="http://khanacademy.org/logout"
+        testId="logout"
+    />,
+];
 
-const defaultArgs: ActionMenuProps = {
+const defaultArgs = {
     alignment: "left",
     disabled: false,
     menuText: "Betsy Appleseed",
-    onChange: (selectedItems) => {},
+    onChange: () => {},
     selectedValues: [],
     testId: "",
     dropdownStyle: {},
     style: {},
     className: "",
+    children: actionItems.map((actionItem, index) => actionItem),
 };
 
 export default {
@@ -53,7 +86,12 @@ export default {
         ),
     ],
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -64,7 +102,7 @@ export default {
             },
         },
     },
-} as ComponentMeta<typeof ActionMenu>;
+} as Meta<typeof ActionMenu>;
 
 const styles = StyleSheet.create({
     example: {
@@ -106,52 +144,9 @@ const styles = StyleSheet.create({
     },
 });
 
-const actionItems: Array<Item> = [
-    <ActionItem
-        label="Profile"
-        href="http://khanacademy.org/profile"
-        target="_blank"
-        testId="profile"
-    />,
-    <ActionItem
-        label="Teacher dashboard"
-        href="http://khanacademy.org/coach/dashboard"
-        testId="dashboard"
-    />,
-    <ActionItem
-        label="Settings (onClick)"
-        onClick={() => console.log("user clicked on settings")}
-        testId="settings"
-    />,
-    <ActionItem
-        label="Help"
-        disabled={true}
-        onClick={() => console.log("this item is disabled...")}
-        testId="help"
-    />,
-    <ActionItem
-        label="Feedback"
-        disabled={true}
-        href="/feedback"
-        testId="feedback"
-    />,
-    <SeparatorItem />,
-    <ActionItem
-        label="Log out"
-        href="http://khanacademy.org/logout"
-        testId="logout"
-    />,
-];
+type StoryComponentType = StoryObj<typeof ActionMenu>;
 
-const Template = (args: any) => (
-    <ActionMenu {...args}>
-        {actionItems.map((actionItem, index) => actionItem)}
-    </ActionMenu>
-);
-
-type StoryComponentType = ComponentStory<typeof ActionMenu>;
-
-export const Default: StoryComponentType = Template.bind({});
+export const Default: StoryComponentType = {};
 
 Default.parameters = {
     chromatic: {
@@ -164,11 +159,11 @@ Default.parameters = {
 /**
  * Right-aligned action menu.
  */
-export const RightAligned: StoryComponentType = (args) => (
-    <ActionMenu {...args} alignment="right">
-        {actionItems.map((actionItem, index) => actionItem)}
-    </ActionMenu>
-);
+export const RightAligned: StoryComponentType = {
+    args: {
+        alignment: "right",
+    } as Partial<typeof ActionMenu>,
+};
 
 RightAligned.decorators = [
     (Story: any): React.ReactElement<React.ComponentProps<typeof View>> => (
@@ -200,10 +195,10 @@ RightAligned.parameters = {
 /**
  * Menu with truncated text.
  */
-export const TruncatedOpener: StoryComponentType = Template.bind({});
-
-TruncatedOpener.args = {
-    style: {width: 100},
+export const TruncatedOpener: StoryComponentType = {
+    args: {
+        style: {width: 100},
+    } as Partial<typeof ActionMenu>,
 };
 
 TruncatedOpener.parameters = {
@@ -218,11 +213,12 @@ TruncatedOpener.parameters = {
  * With option items
  */
 export const WithOptionItems: StoryComponentType = () => {
-    const [selectedValues, setSelectedValues] = React.useState([]);
+    const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
+        [],
+    );
     const [showHiddenOption, setShowHiddenOption] = React.useState(false);
 
-    // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'selectedItems' implicitly has an 'any' type.
-    const handleChange = (selectedItems) => {
+    const handleChange = (selectedItems: Array<string>) => {
         setSelectedValues(selectedItems);
         setShowHiddenOption(selectedItems.includes("in-class"));
     };
@@ -300,13 +296,12 @@ EmptyMenu.parameters = {
 /**
  * Custom dropdownStyle
  */
-export const CustomDropdownStyle: StoryComponentType = Template.bind({});
-
-CustomDropdownStyle.args = {
-    dropdownStyle: styles.dropdown,
+export const CustomDropdownStyle: StoryComponentType = {
+    name: "Custom dropdownStyle",
+    args: {
+        dropdownStyle: styles.dropdown,
+    } as Partial<typeof ActionMenu>,
 };
-
-CustomDropdownStyle.storyName = "Custom dropdownStyle";
 
 CustomDropdownStyle.parameters = {
     docs: {
@@ -362,25 +357,25 @@ Controlled.parameters = {
  * With custom opener
  */
 
-export const CustomOpener: StoryComponentType = Template.bind({});
-
-CustomOpener.args = {
-    opener: ({focused, hovered, pressed, text}) => (
-        <LabelLarge
-            onClick={() => {
-                console.log("custom click!!!!!");
-            }}
-            testId="teacher-menu-custom-opener"
-            style={[
-                styles.customOpener,
-                focused && styles.focused,
-                hovered && styles.hovered,
-                pressed && styles.pressed,
-            ]}
-        >
-            {text}
-        </LabelLarge>
-    ),
+export const CustomOpener: StoryComponentType = {
+    args: {
+        opener: ({focused, hovered, pressed, text}: any) => (
+            <LabelLarge
+                onClick={() => {
+                    console.log("custom click!!!!!");
+                }}
+                testId="teacher-menu-custom-opener"
+                style={[
+                    styles.customOpener,
+                    focused && styles.focused,
+                    hovered && styles.hovered,
+                    pressed && styles.pressed,
+                ]}
+            >
+                {text}
+            </LabelLarge>
+        ),
+    } as Partial<typeof ActionMenu>,
 };
 
 CustomOpener.storyName = "With custom opener";

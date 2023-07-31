@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -14,7 +14,7 @@ import {
 } from "@khanacademy/wonder-blocks-typography";
 
 import {PopoverContentCore} from "@khanacademy/wonder-blocks-popover";
-import {name, version} from "../../packages/wonder-blocks-popover/package.json";
+import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 
@@ -28,7 +28,12 @@ export default {
     component: PopoverContentCore,
     argTypes: popoverContentCoreArgtypes,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -44,7 +49,7 @@ export default {
             <View style={styles.example}>{Story()}</View>
         ),
     ],
-} as ComponentMeta<typeof PopoverContentCore>;
+} as Meta<typeof PopoverContentCore>;
 
 const styles = StyleSheet.create({
     example: {
@@ -81,32 +86,36 @@ const styles = StyleSheet.create({
     },
 });
 
-const Template = (args: any) => <PopoverContentCore {...args} />;
+type StoryComponentType = StoryObj<typeof PopoverContentCore>;
 
-export const WithIcon: ComponentStory<any> = Template.bind({});
-
-WithIcon.args = {
-    children: (
-        <>
-            <Icon size="large" icon={icons.contentArticle} />
-            <View>
-                <LabelLarge>This is an article</LabelLarge>
-                <Body>With the content</Body>
-            </View>
-        </>
-    ),
-    closeButtonVisible: true,
-    style: styles.popoverWithIcon,
+export const WithIcon: StoryComponentType = {
+    args: {
+        children: (
+            <>
+                <Icon size="large" icon={icons.contentArticle} />
+                <View>
+                    <LabelLarge>This is an article</LabelLarge>
+                    <Body>With the content</Body>
+                </View>
+            </>
+        ),
+        closeButtonVisible: true,
+        style: styles.popoverWithIcon,
+    },
 };
+
+// NOTE: Adding a wrapper to cast the component so Storybook doesn't complain.
+const ClickableDetailCellWrapper = ClickableDetailCell as React.ElementType;
 
 /**
  * Using DetailCell as the content
  */
-export const WithDetailCell: ComponentStory<any> = Template.bind({});
-
-WithDetailCell.args = {
-    children: <ClickableDetailCell {...ClickableDetailCell.args} />,
-    style: styles.popoverWithCell,
+export const WithDetailCell: StoryComponentType = {
+    args: {
+        // use the composed DetailCell component
+        children: <ClickableDetailCellWrapper {...ClickableDetailCell.args} />,
+        style: styles.popoverWithCell,
+    },
 };
 
 WithDetailCell.parameters = {
@@ -168,12 +177,12 @@ const CustomPopoverContent = (
     </>
 );
 
-export const Dark: ComponentStory<any> = Template.bind({});
-
-Dark.args = {
-    children: CustomPopoverContent,
-    color: "darkBlue",
-    style: styles.customPopover,
+export const Dark: StoryComponentType = {
+    args: {
+        children: CustomPopoverContent,
+        color: "darkBlue",
+        style: styles.customPopover,
+    },
 };
 
 Dark.parameters = {

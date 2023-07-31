@@ -1,12 +1,12 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import Toolbar from "@khanacademy/wonder-blocks-toolbar";
-import {name, version} from "../../packages/wonder-blocks-toolbar/package.json";
+import packageConfig from "../../packages/wonder-blocks-toolbar/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import ToolbarArgtypes, {
@@ -14,14 +14,19 @@ import ToolbarArgtypes, {
     rightContentMappings,
 } from "./toolbar.argtypes";
 
-type StoryComponentType = ComponentStory<typeof Toolbar>;
+type StoryComponentType = StoryObj<typeof Toolbar>;
 
 export default {
     title: "Toolbar / Toolbar",
     component: Toolbar,
     argTypes: ToolbarArgtypes,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -37,7 +42,7 @@ export default {
             <View style={styles.example}>{Story()}</View>
         ),
     ],
-} as ComponentMeta<typeof Toolbar>;
+} as Meta<typeof Toolbar>;
 
 const styles = StyleSheet.create({
     example: {
@@ -47,30 +52,28 @@ const styles = StyleSheet.create({
     },
 });
 
-const Template = (args: any) => <Toolbar {...args} />;
-
 /**
  * Default example (interactive).
  *
  * A toolbar with left and right content.
  */
-export const Default: StoryComponentType = Template.bind({});
-
-Default.args = {
-    title: "Counting with small numbers",
-    leftContent: leftContentMappings.dismissButton,
-    rightContent: rightContentMappings.nextVideoButton,
+export const Default: StoryComponentType = {
+    args: {
+        title: "Counting with small numbers",
+        leftContent: leftContentMappings.dismissButton,
+        rightContent: rightContentMappings.nextVideoButton,
+    },
 };
 
 /**
  * Small toolbar with multiple left side buttons.
  */
-export const Small: StoryComponentType = Template.bind({});
-
-Small.args = {
-    size: "small",
-    leftContent: leftContentMappings.multipleContent,
-    rightContent: rightContentMappings.tertiaryButton,
+export const Small: StoryComponentType = {
+    args: {
+        size: "small",
+        leftContent: leftContentMappings.multipleContent,
+        rightContent: rightContentMappings.tertiaryButton,
+    },
 };
 
 Small.parameters = {
@@ -86,11 +89,11 @@ Small.parameters = {
 /**
  * Toolbar with left icon button and right primary button.
  */
-export const Medium: StoryComponentType = Template.bind({});
-
-Medium.args = {
-    leftContent: leftContentMappings.hintButton,
-    rightContent: rightContentMappings.primaryButton,
+export const Medium: StoryComponentType = {
+    args: {
+        leftContent: leftContentMappings.hintButton,
+        rightContent: rightContentMappings.primaryButton,
+    },
 };
 
 Medium.parameters = {
@@ -106,11 +109,11 @@ Medium.parameters = {
 /**
  * Toolbar with title.
  */
-export const WithTitle: StoryComponentType = Template.bind({});
-
-WithTitle.args = {
-    leftContent: leftContentMappings.dismissButton,
-    title: "Counting with small numbers",
+export const WithTitle: StoryComponentType = {
+    args: {
+        leftContent: leftContentMappings.dismissButton,
+        title: "Counting with small numbers",
+    },
 };
 
 WithTitle.parameters = {
@@ -126,10 +129,10 @@ WithTitle.parameters = {
 /**
  * Toolbar with multiple elements on the right.
  */
-export const WithMultipleElements: StoryComponentType = Template.bind({});
-
-WithMultipleElements.args = {
-    rightContent: rightContentMappings.multipleContent,
+export const WithMultipleElements: StoryComponentType = {
+    args: {
+        rightContent: rightContentMappings.multipleContent,
+    },
 };
 
 WithMultipleElements.parameters = {
@@ -143,13 +146,13 @@ WithMultipleElements.parameters = {
 /**
  * Header overflow text.
  */
-export const HeaderOverflowText: StoryComponentType = Template.bind({});
-
-HeaderOverflowText.args = {
-    leftContent: leftContentMappings.dismissButton,
-    subtitle: "1 of 14 questions answered",
-    title: "Patterns of migration and communal bird-feeding given the serious situation of things that will make this string long and obnoxious",
-    rightContent: rightContentMappings.link,
+export const HeaderOverflowText: StoryComponentType = {
+    args: {
+        leftContent: leftContentMappings.dismissButton,
+        subtitle: "1 of 14 questions answered",
+        title: "Patterns of migration and communal bird-feeding given the serious situation of things that will make this string long and obnoxious",
+        rightContent: rightContentMappings.link,
+    },
 };
 
 HeaderOverflowText.parameters = {
@@ -165,11 +168,11 @@ HeaderOverflowText.parameters = {
 /**
  * Flexible toolbars.
  */
-export const Responsive: StoryComponentType = Template.bind({});
-
-Responsive.args = {
-    leftContent: leftContentMappings.hintButton,
-    rightContent: rightContentMappings.responsive,
+export const Responsive: StoryComponentType = {
+    args: {
+        leftContent: leftContentMappings.hintButton,
+        rightContent: rightContentMappings.responsive,
+    },
 };
 
 Responsive.parameters = {
@@ -187,13 +190,13 @@ Responsive.parameters = {
 /**
  * Inverted dark-color scheme
  */
-export const Dark: StoryComponentType = Template.bind({});
-
-Dark.args = {
-    color: "dark",
-    title: "Title",
-    leftContent: leftContentMappings.lightButton,
-    rightContent: rightContentMappings.lightButton,
+export const Dark: StoryComponentType = {
+    args: {
+        color: "dark",
+        title: "Title",
+        leftContent: leftContentMappings.lightButton,
+        rightContent: rightContentMappings.lightButton,
+    },
 };
 
 Dark.parameters = {

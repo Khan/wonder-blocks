@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
@@ -9,17 +9,28 @@ import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
-import SearchField from "../../packages/wonder-blocks-search-field/src/components/search-field";
+import SearchField from "@khanacademy/wonder-blocks-search-field";
+
+import ComponentInfo from "../../.storybook/components/component-info";
+import packageConfig from "../../packages/wonder-blocks-search-field/package.json";
 
 export default {
     component: SearchField,
     title: "Search Field/SearchField",
     args: {disabled: false, placeholder: "Placeholder"},
-} as ComponentMeta<typeof SearchField>;
+    parameters: {
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
+    },
+} as Meta<typeof SearchField>;
 
-type StoryComponentType = ComponentStory<typeof SearchField>;
+type StoryComponentType = StoryObj<typeof SearchField>;
 
-export const Default: StoryComponentType = (args) => {
+const Template = (args: any) => {
     const [value, setValue] = React.useState("");
 
     const handleChange = (newValue: string) => {
@@ -43,6 +54,10 @@ export const Default: StoryComponentType = (args) => {
             }}
         />
     );
+};
+
+export const Default: StoryComponentType = {
+    render: Template,
 };
 
 export const Light: StoryComponentType = () => {
@@ -73,8 +88,9 @@ export const Light: StoryComponentType = () => {
 
 Light.parameters = {
     docs: {
-        storyDescription:
-            "SearchField takes a `light` prop, which gives it an extra white ring on focus to make it visible against a dark background.",
+        description: {
+            story: "SearchField takes a `light` prop, which gives it an extra white ring on focus to make it visible against a dark background.",
+        },
     },
 };
 
@@ -104,8 +120,9 @@ export const Disabled: StoryComponentType = () => {
 
 Disabled.parameters = {
     docs: {
-        storyDescription:
-            "SearchField takes a `disabled` prop, which makes it unusable. Try to avoid using this if possible as it is bad for accessibility.",
+        description: {
+            story: "SearchField takes a `disabled` prop, which makes it unusable. Try to avoid using this if possible as it is bad for accessibility.",
+        },
     },
 };
 
@@ -159,7 +176,8 @@ export const WithAutofocus: StoryComponentType = () => {
 
 WithAutofocus.parameters = {
     docs: {
-        storyDescription: `SearchField takes an \`autoFocus\` prop, which
+        description: {
+            story: `SearchField takes an \`autoFocus\` prop, which
             makes it autofocus on page load. Try to avoid using this if
             possible as it is bad for accessibility.\n\nPress the button
             to view this example. Notice that the search field automatically
@@ -167,6 +185,7 @@ WithAutofocus.parameters = {
             notice that the text appears directly in the search field.
             There is another focusable element present to demonstrate that
             focus skips that element and goes straight to the search field.`,
+        },
     },
 };
 
