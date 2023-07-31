@@ -41,6 +41,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - name: Build Storybook
+      run: yarn build:storybook
+
     # (if) Run this step on non-dependabot PRs.
     - name: Publish to Chromatic for visual testing (review PRs only)
       if: ${{ inputs.target == 'review' }}
@@ -49,7 +52,6 @@ jobs:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
         autoAcceptChanges: "main"
-        buildScriptName: "build:storybook"
         # Generate snapshots for only changed stories
         # See: https://www.chromatic.com/docs/turbosnap
         onlyChanged: true
@@ -62,7 +64,6 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
-        buildScriptName: "build:storybook"
         exitZeroOnChanges: true
         # This is a flag that allows us to skip the build in the case of a
         # dependabot PR. We still need to report the build as successful so that
@@ -76,5 +77,4 @@ jobs:
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         projectToken: ${{ secrets.projectToken }}
-        buildScriptName: "build:storybook"
         autoAcceptChanges: true

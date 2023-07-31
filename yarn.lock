@@ -3185,7 +3185,7 @@
   dependencies:
     "@figspec/react" "^1.0.0"
 
-"@storybook/addon-docs@^7.1.1":
+"@storybook/addon-docs@7.1.1", "@storybook/addon-docs@^7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@storybook/addon-docs/-/addon-docs-7.1.1.tgz#23abb8c34e310e36611bf3885c014c1ba5cbf49d"
   integrity sha512-KfsrqvR6RA0qyCwBpJjeivu/+F+n3jcMMKkBtI56E/pyQCx4+pMTJXJ2l5gJibNWYoR1CVlS9f5n5ZNGz8BzeQ==
