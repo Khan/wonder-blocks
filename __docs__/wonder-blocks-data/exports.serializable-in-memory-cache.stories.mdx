@@ -1,4 +1,4 @@
-import {Meta} from "@storybook/addon-docs";
+import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Data / Exports / SerializableInMemoryCache"
@@ -23,16 +23,16 @@ Creates a new instance. The `initialCache`, if provided, will be cloned and used
 
 ### Throws
 
-| Error Type | Error Name | Reason |
-| ------ | ------ | ------ |
+| Error Type                                        | Error Name              | Reason                             |
+| ------------------------------------------------- | ----------------------- | ---------------------------------- |
 | [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | Could not clone the initial cache. |
 
 ## inUse
 
 ```ts
-    if (cache.inUse) {
-        // Cache is in use
-    }
+if (cache.inUse) {
+    // Cache is in use
+}
 ```
 
 Is `true` if the cache contains any data; otherwise, `false`.
@@ -51,10 +51,10 @@ Sets a value in the cache within a given scope. The value is cloned and the clon
 
 ### Throws
 
-| Error Type | Error Name | Reason |
-| ------ | ------ | ------ |
+| Error Type                                        | Error Name              | Reason                                     |
+| ------------------------------------------------- | ----------------------- | ------------------------------------------ |
 | [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `id` and `scope` must be non-empty strings |
-| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `value` must be a non-function value |
+| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `value` must be a non-function value       |
 
 ## get()
 
@@ -74,8 +74,8 @@ Returns a clone of the current cache.
 
 ### Throws
 
-| Error Type | Error Name | Reason |
-| ------ | ------ | ------ |
+| Error Type                                        | Error Name          | Reason                     |
+| ------------------------------------------------- | ------------------- | -------------------------- |
 | [`DataError`](/docs/data-exports-dataerror--page) | `InternalDataError` | Could not clone the cache. |
 
 ## purge()

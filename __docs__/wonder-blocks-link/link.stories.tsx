@@ -6,7 +6,7 @@ import * as React from "react";
 import {within, userEvent, fireEvent} from "@storybook/testing-library";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -18,7 +18,7 @@ import {
     LabelLarge,
 } from "@khanacademy/wonder-blocks-typography";
 import Link from "@khanacademy/wonder-blocks-link";
-import {name, version} from "../../packages/wonder-blocks-link/package.json";
+import packageConfig from "../../packages/wonder-blocks-link/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import LinkArgTypes from "./link.argtypes";
@@ -28,21 +28,26 @@ export default {
     title: "Link",
     component: Link,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
     },
     argTypes: LinkArgTypes,
-} as ComponentMeta<typeof Link>;
+} as Meta<typeof Link>;
 
 const activeBlue = "#1b50b3";
 const fadedBlue = "#b5cefb";
 
-type StoryComponentType = ComponentStory<typeof Link>;
+type StoryComponentType = StoryObj<typeof Link>;
 
-export const Default: StoryComponentType = (args) => <Link {...args} />;
-
-Default.args = {
-    href: "/",
-    children: "Hello, world!",
+export const Default: StoryComponentType = {
+    args: {
+        href: "/",
+        children: "Hello, world!",
+    },
 };
 
 export const Primary: StoryComponentType = () => (
@@ -51,8 +56,10 @@ export const Primary: StoryComponentType = () => (
 
 Primary.parameters = {
     docs: {
-        storyDescription: `Minimal link usage.
+        description: {
+            story: `Minimal link usage.
             This links to the top of the page.`,
+        },
     },
 };
 
@@ -96,8 +103,10 @@ export const Secondary: StoryComponentType = () => (
 
 Secondary.parameters = {
     docs: {
-        storyDescription: `Minimal secondary link usage. A secondary link
+        description: {
+            story: `Minimal secondary link usage. A secondary link
             has lighter text. This links to the top of the page.`,
+        },
     },
 };
 
@@ -141,10 +150,12 @@ export const Visitable: StoryComponentType = () => (
 
 Visitable.parameters = {
     docs: {
-        storyDescription: `This is a visitable link. It changes color after
+        description: {
+            story: `This is a visitable link. It changes color after
             it has been clicked on to indicate that it's been visited before.
             This link's \`visitable\` prop is set to true.
             It links to the top of the page.`,
+        },
     },
 };
 
@@ -156,9 +167,11 @@ export const LightPrimary: StoryComponentType = () => (
 
 LightPrimary.parameters = {
     docs: {
-        storyDescription: `Minimal link usage on a dark background. This
+        description: {
+            story: `Minimal link usage on a dark background. This
             link has its \`light\` prop set to true. It links to the top
             of the page.`,
+        },
     },
     backgrounds: {
         default: "darkBlue",
@@ -208,10 +221,12 @@ LightVisitable.parameters = {
         default: "darkBlue",
     },
     docs: {
-        storyDescription: `This is a visitable link on a dark background.
+        description: {
+            story: `This is a visitable link on a dark background.
             It changes color after it has been clicked on to indicate
             that it's been visited before. This link's \`visitable\` prop
             is set to true. It links to the top of the page.`,
+        },
     },
 };
 
@@ -228,9 +243,11 @@ export const OpensInANewTab: StoryComponentType = () => (
 
 OpensInANewTab.parameters = {
     docs: {
-        storyDescription: `When a link is external and \`target="_blank"\`, the
+        description: {
+            summary: `When a link is external and \`target="_blank"\`, the
         external icon is automatically added to the end of the link. This
         indicates that the link will open in a new tab.`,
+        },
     },
 };
 
@@ -375,9 +392,11 @@ export const StartAndEndIcons: StoryComponentType = () => (
 
 StartAndEndIcons.parameters = {
     docs: {
-        storyDescription: `Link can take an optional \`startIcon\` and/or \`endIcon\`. If
+        description: {
+            summary: `Link can take an optional \`startIcon\` and/or \`endIcon\`. If
         \`target="_blank"\` and an \`endIcon\` prop is passed in, then \`endIcon\` will
         override the default \`externalIcon\`.`,
+        },
     },
 };
 
@@ -427,10 +446,12 @@ export const Inline: StoryComponentType = () => (
 
 Inline.parameters = {
     docs: {
-        storyDescription: `Inline links include an underline to distinguish
+        description: {
+            story: `Inline links include an underline to distinguish
             them from the surrounding text. Make a link inline by setting the
             \`inline\` prop to \`true\`. It is recommended to use inline
             links within paragraphs and sentences.`,
+        },
     },
 };
 
@@ -544,11 +565,13 @@ InlineLight.parameters = {
         default: "darkBlue",
     },
     docs: {
-        storyDescription: `Inline links include an underline to distinguish
+        description: {
+            story: `Inline links include an underline to distinguish
             them from the surrounding text. If the link is on a
             dark background, set the \`light\` prop to true for it to
             be appropriately visible.\n\n**NOTE:** Secondary light links are
             not supported.`,
+        },
     },
 };
 
@@ -750,7 +773,8 @@ export const Variants: StoryComponentType = () => (
 
 Variants.parameters = {
     docs: {
-        storyDescription: `By default, primary links are blue, secondary
+        description: {
+            story: `By default, primary links are blue, secondary
             links are gray, and visitable links turn purple after they've
             been clicked on. Default inline links are underlined, and the
             secondary kind is black to match surrounding text color.
@@ -758,6 +782,7 @@ Variants.parameters = {
             with visited visitable links being pink. Light inline links are
             also underlined like default inline links. Light secondary links
             are not supported and will result in an error.`,
+        },
     },
 };
 
@@ -771,10 +796,12 @@ export const WithTypography: StoryComponentType = () => (
 
 WithTypography.parameters = {
     docs: {
-        storyDescription: `Wonder Blocks Typography elements can be used
+        description: {
+            story: `Wonder Blocks Typography elements can be used
         with Links instead of plain text. We recommend that \`Typography\` is
         always the parent element of \`Link\` to avoid styling issues. Here, we
         have a \`HeadingSmall\` containing a \`Link\`.`,
+        },
     },
 };
 
@@ -841,7 +868,8 @@ export const Navigation: StoryComponentType = () => (
 
 Navigation.parameters = {
     docs: {
-        storyDescription: `If you want to navigate to an external URL
+        description: {
+            story: `If you want to navigate to an external URL
             and/or reload the window, make sure to use \`href\` and
             \`skipClientNav={true}\`, as shown in this example.
             **For navigation callbacks:** The \`onClick\`, \`beforeNav\`, and
@@ -849,6 +877,7 @@ Navigation.parameters = {
             to the new URL. Which prop to use depends on the use case. See the
             [Button documentation](/story/button-navigation-callbacks--before-nav-callbacks&viewMode=docs)
             for details.`,
+        },
     },
 };
 
@@ -862,8 +891,10 @@ export const WithTitle: StoryComponentType = () => (
 
 WithTitle.parameters = {
     docs: {
-        storyDescription: `Link can take a title prop. Give a link a title by
+        description: {
+            story: `Link can take a title prop. Give a link a title by
         setting the \`title\` prop to a string. Hover over the link to see its title.`,
+        },
     },
 };
 
@@ -900,9 +931,11 @@ export const RightToLeftWithIcons: StoryComponentType = () => (
 
 RightToLeftWithIcons.parameters = {
     docs: {
-        storyDescription: `When in the right-to-left direction, the \`startIcon\`
+        description: {
+            story: `When in the right-to-left direction, the \`startIcon\`
         and \`endIcon\` are flipped. This example has text in Arabic, a
         right-to-left language.`,
+        },
     },
 };
 

@@ -13,16 +13,25 @@ import {
     Dark as CoreDark,
 } from "./popover-content-core.stories";
 
+// NOTE: Casting to any to avoid type errors.
+const DefaultWrapper = Default as React.ElementType;
+const EmphasizedWrapper = Emphasized as React.ElementType;
+const WithIconWrapper = WithIcon as React.ElementType;
+const WithIllustrationWrapper = WithIllustration as React.ElementType;
+const CoreWithIconWrapper = CoreWithIcon as React.ElementType;
+const CoreWithDetailCellWrapper = CoreWithDetailCell as React.ElementType;
+const CoreDarkWrapper = CoreDark as React.ElementType;
+
 export const ContentMappings: {
     [key: string]: React.ReactNode;
 } = {
-    withTextOnly: <Default {...Default.args} />,
-    withEmphasis: <Emphasized {...Emphasized.args} />,
-    withIcon: <WithIcon {...WithIcon.args} />,
-    withIllustration: <WithIllustration {...WithIllustration.args} />,
-    coreWithIcon: <CoreWithIcon {...CoreWithIcon.args} />,
-    coreWithCell: <CoreWithDetailCell {...CoreWithDetailCell.args} />,
-    coreDark: <CoreDark {...CoreDark.args} />,
+    withTextOnly: <DefaultWrapper {...Default.args} />,
+    withEmphasis: <EmphasizedWrapper {...Emphasized.args} />,
+    withIcon: <WithIconWrapper {...WithIcon.args} />,
+    withIllustration: <WithIllustrationWrapper {...WithIllustration.args} />,
+    coreWithIcon: <CoreWithIconWrapper {...CoreWithIcon.args} />,
+    coreWithCell: <CoreWithDetailCellWrapper {...CoreWithDetailCell.args} />,
+    coreDark: <CoreDarkWrapper {...CoreDark.args} />,
 };
 
 export default {

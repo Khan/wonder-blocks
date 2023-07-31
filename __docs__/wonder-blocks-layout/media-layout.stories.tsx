@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -21,46 +21,52 @@ import {
 } from "@khanacademy/wonder-blocks-layout";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {name, version} from "../../packages/wonder-blocks-layout/package.json";
+import packageConfig from "../../packages/wonder-blocks-layout/package.json";
 
 export default {
     title: "Layout / MediaLayout (Deprecated)",
     component: MediaLayout,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
     },
-} as ComponentMeta<typeof MediaLayout>;
+} as Meta<typeof MediaLayout>;
 
-type StoryComponentType = ComponentStory<typeof MediaLayout>;
+type StoryComponentType = StoryObj<typeof MediaLayout>;
 
-export const Default: StoryComponentType = (args) => (
-    <MediaLayout {...args}>
-        {({mediaSize, mediaSpec, styles}) => {
-            return <View style={styles.test}>Hello, world!</View>;
-        }}
-    </MediaLayout>
-);
-
-Default.args = {
-    styleSheets: {
-        large: StyleSheet.create({
-            test: {
-                backgroundColor: Color.darkBlue,
-                color: Color.white,
-            },
-        }),
-        medium: StyleSheet.create({
-            test: {
-                backgroundColor: Color.blue,
-                color: Color.white,
-            },
-        }),
-        small: StyleSheet.create({
-            test: {
-                backgroundColor: Color.lightBlue,
-                color: Color.white,
-            },
-        }),
+export const Default: StoryComponentType = {
+    render: (args) => (
+        <MediaLayout {...args}>
+            {({mediaSize, mediaSpec, styles}) => {
+                return <View style={styles.test}>Hello, world!</View>;
+            }}
+        </MediaLayout>
+    ),
+    args: {
+        styleSheets: {
+            large: StyleSheet.create({
+                test: {
+                    backgroundColor: Color.darkBlue,
+                    color: Color.white,
+                },
+            }),
+            medium: StyleSheet.create({
+                test: {
+                    backgroundColor: Color.blue,
+                    color: Color.white,
+                },
+            }),
+            small: StyleSheet.create({
+                test: {
+                    backgroundColor: Color.lightBlue,
+                    color: Color.white,
+                },
+            }),
+        },
     },
 };
 
@@ -108,11 +114,13 @@ ScreenSizeStyles.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription: `You can switch styles for different screen sizes.
+        description: {
+            story: `You can switch styles for different screen sizes.
         By default, MediaLayout uses \`MEDIA_DEFAULT_SPEC\`. Here you can
         see an example that changes styles depending on the current spec.
         It's dark blue for a large window size, blue for a medium window
         size, and light blue for a small window size.`,
+        },
     },
 };
 
@@ -162,12 +170,14 @@ AllStyles.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription: `You can define a shared style for all sizes.
+        description: {
+            story: `You can define a shared style for all sizes.
             You can use the \`all\` key to define styles for all the
             different sizes. This means that by using this key, all
             the sizes (small, medium, large) will use the styles defined
             in \`all\`, and in case there are duplicate properties,
             more specific sizes will take more importance.`,
+        },
     },
 };
 
@@ -245,12 +255,14 @@ CustomSpec.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription: `You can use a custom spec.
+        description: {
+            story: `You can use a custom spec.
         There are cases when you might need to use a custom media query spec.
         For that situation you can define your own custom \`MEDIA_SPEC\`.
         You need to use the \`MediaLayoutContext.Provider\` to specify this
         spec value.
         **NOTE**: Make sure to import the \`MediaSpec\` and
         \`MediaLayoutContextValue\` type definitions.`,
+        },
     },
 };

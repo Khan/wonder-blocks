@@ -1,4 +1,4 @@
-import {Meta} from "@storybook/addon-docs";
+import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Testing / Mocking / Exports / mockGqlFetch()"
@@ -21,9 +21,9 @@ The `mockGqlFetch` function provides an API to easily mock GraphQL responses for
 
 Besides being a function that fits the [`GqlFetchFn`](/docs/data-types-gqlfetchfn--page) signature, the return value of `mockGqlFetch()` has an API to customize the behavior of that function. Used in conjunction with the [`RespondWith`](/docs/testing-mocking-exports-respondwith--page) API, this can create a variety of GraphQL responses for testing and stories.
 
-| Function | Purpose |
-| -------- | ------- |
-| `mockOperation` | When called, any GraphQL operation that matches the defined mock operation will respond with the given response. |
+| Function            | Purpose                                                                                                                                            |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `mockOperation`     | When called, any GraphQL operation that matches the defined mock operation will respond with the given response.                                   |
 | `mockOperationOnce` | When called, the first GraphQL operation that matches the defined mock operation will respond with the given response. The mock is only used once. |
 
 Both of these functions have the same signature:
@@ -57,8 +57,7 @@ type GqlMockOperation<
 ```
 
 1. When `matchOperation.operation` is present but `matchOperation.variables` and `matchOperation.context` are not, the mock will match any request for the
-same operation, regardless of variables or context on the request.
+   same operation, regardless of variables or context on the request.
 2. When `matchOperation.variables` is present but `matchOperation.context` is not, the mock will match any request for the same operation with matching variables, regardless of context on the request.
 3. When `matchOperation.context` is present but `matchOperation.variables` is not, the mock will match any request for the same operation with matching context, regardless of variables on the request.
 4. When `matchOperation.variables` and `matchOperation.context` are present, the mock will match any request for the same operation with matching variables and context.
-

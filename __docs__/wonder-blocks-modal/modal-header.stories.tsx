@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {
     Breadcrumbs,
@@ -15,7 +15,7 @@ import {
     ModalPanel,
     ModalHeader,
 } from "@khanacademy/wonder-blocks-modal";
-import {name, version} from "../../packages/wonder-blocks-modal/package.json";
+import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import ModalHeaderArgtypes from "./modal-header.argtypes";
@@ -105,7 +105,12 @@ export default {
         ),
     ],
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -124,19 +129,20 @@ export default {
         },
     },
     argTypes: ModalHeaderArgtypes,
-} as ComponentMeta<typeof ModalHeader>;
+} as Meta<typeof ModalHeader>;
 
-type StoryComponentType = ComponentStory<typeof ModalHeader>;
+type StoryComponentType = StoryObj<typeof ModalHeader>;
 
-export const Default: StoryComponentType = (args) => (
-    <ModalDialog aria-labelledby={args.titleId} style={styles.dialog}>
-        <ModalPanel header={<ModalHeader {...args} />} content={longBody} />
-    </ModalDialog>
-);
-
-Default.args = {
-    title: "This is a modal title.",
-    titleId: "modal-title-id-default-example",
+export const Default: StoryComponentType = {
+    render: (args) => (
+        <ModalDialog aria-labelledby={args.titleId} style={styles.dialog}>
+            <ModalPanel header={<ModalHeader {...args} />} content={longBody} />
+        </ModalDialog>
+    ),
+    args: {
+        title: "This is a modal title.",
+        titleId: "modal-title-id-default-example",
+    },
 };
 
 export const Simple: StoryComponentType = () => (
@@ -150,8 +156,10 @@ export const Simple: StoryComponentType = () => (
 
 Simple.parameters = {
     docs: {
-        storyDescription: `This is a basic \`<ModalHeader>\`. It just has a
+        description: {
+            story: `This is a basic \`<ModalHeader>\`. It just has a
             \`content\` prop that contains a title and a body.`,
+        },
     },
 };
 
@@ -173,11 +181,13 @@ export const Dark: StoryComponentType = () => (
 
 Dark.parameters = {
     docs: {
-        storyDescription: `This is \`<ModalHeader>\` when \`light\` is
+        description: {
+            story: `This is \`<ModalHeader>\` when \`light\` is
             set to false. This should only be false if the \`light\` prop
             on the encompassing \`<ModalPanel>\` is also false . Note that
             the close button is not visible on the header if the panel is
             light.`,
+        },
     },
 };
 
@@ -198,8 +208,10 @@ export const WithSubtitle: StoryComponentType = () => (
 
 WithSubtitle.parameters = {
     docs: {
-        storyDescription: `This is \`<ModalHeader>\` with a subtitle, which
+        description: {
+            story: `This is \`<ModalHeader>\` with a subtitle, which
             can be done by passing a string into the \`subtitle\` prop.`,
+        },
     },
 };
 
@@ -222,8 +234,10 @@ export const WithSubtitleDark: StoryComponentType = () => (
 
 WithSubtitleDark.parameters = {
     docs: {
-        storyDescription: `This is \`<ModalHeader>\` with a subtitle
+        description: {
+            story: `This is \`<ModalHeader>\` with a subtitle
             when it also has \`light\` set to false.`,
+        },
     },
 };
 
@@ -254,10 +268,12 @@ export const WithBreadcrumbs: StoryComponentType = () => (
 
 WithBreadcrumbs.parameters = {
     docs: {
-        storyDescription: `This is \`<ModalHeader>\` with breadcrumbs, which
+        description: {
+            story: `This is \`<ModalHeader>\` with breadcrumbs, which
             can be done by passing a Wonder Blocks \`<Breadcrumbs>\`
             element into the \`breadcrumbs\` prop. Note that \`breadcrumbs\`
             currently do not work when \`light\` is false.`,
+        },
     },
 };
 

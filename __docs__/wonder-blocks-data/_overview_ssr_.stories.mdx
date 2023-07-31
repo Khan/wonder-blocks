@@ -1,4 +1,4 @@
-import {Meta} from "@storybook/addon-docs";
+import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Data / Server-side Rendering and Hydration"
@@ -39,11 +39,7 @@ By setting Wonder Blocks into server mode, requests will not be fulfilled during
 To track the requests, the React node being rendered must be wrapped in the [`TrackData`](/docs/data-exports-trackdata--page) component.
 
 ```tsx
-const trackedElement = (
-    <TrackData>
-        {theNodeTheClientNormallyRenders}
-    </TrackData>
-);
+const trackedElement = <TrackData>{theNodeTheClientNormallyRenders}</TrackData>;
 ```
 
 The [`TrackData`](/docs/data-exports-trackdata--page) component is responsible for capturing the requests that were made during a render of the given React node. Of course to do that, we have to render the node. Rendering is usually performed by `renderToString` from the `react-dom/server` import.
@@ -126,7 +122,6 @@ async function renderApp(): Promise<string> {
             // again with the newly fulfilled data.
             continue;
         }
-
 
         // We rendered with all the data fulfilled, so we can grab the
         // hydration cache contents and exit the loop now.

@@ -2,7 +2,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {action} from "@storybook/addon-actions";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -12,38 +12,38 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {
-    name,
-    version,
-} from "../../packages/wonder-blocks-icon-button/package.json";
+import packageConfig from "../../packages/wonder-blocks-icon-button/package.json";
 
 export default {
     title: "IconButton / IconButton",
     component: IconButton,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
     },
     argTypes: {
         icon: {
             options: icons,
         },
     },
-} as ComponentMeta<typeof IconButton>;
+} as Meta<typeof IconButton>;
 
-type StoryComponentType = ComponentStory<typeof IconButton>;
+type StoryComponentType = StoryObj<typeof IconButton>;
 
-export const Default: StoryComponentType = (args) => {
-    return <IconButton {...args} />;
-};
+export const Default: StoryComponentType = {
+    args: {
+        icon: icons.search,
+        color: "default",
+        kind: "primary",
 
-Default.args = {
-    icon: icons.search,
-    color: "default",
-    kind: "primary",
-
-    onClick: (e: React.SyntheticEvent) => {
-        console.log("Click!");
-        action("clicked")(e);
+        onClick: (e: React.SyntheticEvent) => {
+            console.log("Click!");
+            action("clicked")(e);
+        },
     },
 };
 
@@ -55,8 +55,10 @@ export const Basic: StoryComponentType = () => {
 
 Basic.parameters = {
     docs: {
-        storyDescription: `Minimal icon button. The only props specified in
+        description: {
+            story: `Minimal icon button. The only props specified in
             this example are \`icon\` and \`onClick\`.`,
+        },
     },
 };
 
@@ -95,8 +97,10 @@ export const Variants: StoryComponentType = () => {
 
 Variants.parameters = {
     docs: {
-        storyDescription: `In this example, we have primary, secondary,
+        description: {
+            story: `In this example, we have primary, secondary,
             tertiary, and disabled \`IconButton\`s from left to right.`,
+        },
     },
 };
 
@@ -115,9 +119,11 @@ export const Light: StoryComponentType = () => {
 
 Light.parameters = {
     docs: {
-        storyDescription: `An IconButton on a dark background.
+        description: {
+            story: `An IconButton on a dark background.
             Only the primary kind is allowed to have the \`light\`
             prop set to true.`,
+        },
     },
 };
 
@@ -137,8 +143,9 @@ export const DisabledLight: StoryComponentType = () => {
 
 DisabledLight.parameters = {
     docs: {
-        storyDescription:
-            "This is a disabled icon button with the `light` prop set to true.",
+        description: {
+            story: "This is a disabled icon button with the `light` prop set to true.",
+        },
     },
 };
 
@@ -156,12 +163,14 @@ export const UsingHref: StoryComponentType = () => {
 
 UsingHref.parameters = {
     docs: {
-        storyDescription: `This example has an \`href\` prop in addition to the
+        description: {
+            story: `This example has an \`href\` prop in addition to the
             \`onClick\` prop. \`href\` takes a URL or path, and clicking the
             icon button will result in a navigation to the specified page.
             Note that \`onClick\` is not required if \`href\` is defined.
             The \`target="_blank"\` prop will cause the href page to open in
             a new tab.`,
+        },
     },
 };
 
@@ -184,10 +193,12 @@ export const WithAriaLabel: StoryComponentType = () => {
 
 WithAriaLabel.parameters = {
     docs: {
-        storyDescription: `By default, the icon buttons do not have
+        description: {
+            story: `By default, the icon buttons do not have
             accessible names. The \`aria-label\` prop must be used to explain
             the function of the button. Remember to keep the description
             concise but understandable.`,
+        },
     },
 };
 

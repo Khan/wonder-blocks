@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -8,7 +8,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {name, version} from "../../packages/wonder-blocks-layout/package.json";
+import packageConfig from "../../packages/wonder-blocks-layout/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 
@@ -17,7 +17,10 @@ export default {
     component: Strut,
     parameters: {
         componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
         ) as any,
     },
     argTypes: {
@@ -27,45 +30,51 @@ export default {
             },
         },
     },
-} as ComponentMeta<typeof Strut>;
+} as Meta<typeof Strut>;
 
-type StoryComponentType = ComponentStory<typeof Strut>;
+type StoryComponentType = StoryObj<typeof Strut>;
 
-export const Default: StoryComponentType = (args) => (
-    <View style={styles.row}>
-        <Button>Hello, world!</Button>
-        <Strut {...args} />
-        <Button color="destructive">Hello, world!</Button>
-    </View>
-);
-
-Default.args = {size: Spacing.xxxLarge_64, style: {}};
+export const Default: StoryComponentType = {
+    render: (args) => (
+        <View style={styles.row}>
+            <Button>Hello, world!</Button>
+            <Strut {...args} />
+            <Button color="destructive">Hello, world!</Button>
+        </View>
+    ),
+    args: {
+        size: Spacing.xxxLarge_64,
+        style: {},
+    },
+};
 
 const smallSize = Spacing.medium_16;
 const largeSize = Spacing.xxxLarge_64;
 
-export const Simple: StoryComponentType = (args) => (
-    <View style={styles.column}>
-        <View style={styles.row}>
-            <Button>Hello, world!</Button>
-            <Strut size={smallSize} />
-            <Button color="destructive">Hello, world!</Button>
-            <Strut size={largeSize} />
-            <Button color="destructive">Hello, world!</Button>
-            <Strut size={smallSize} />
-            <Button>Hello, world!</Button>
+export const Simple: StoryComponentType = {
+    render: (args) => (
+        <View style={styles.column}>
+            <View style={styles.row}>
+                <Button>Hello, world!</Button>
+                <Strut size={smallSize} />
+                <Button color="destructive">Hello, world!</Button>
+                <Strut size={largeSize} />
+                <Button color="destructive">Hello, world!</Button>
+                <Strut size={smallSize} />
+                <Button>Hello, world!</Button>
+            </View>
+            <View style={styles.row}>
+                Hello
+                <Strut size={smallSize} />
+                world!
+                <Strut size={largeSize} />
+                Hello
+                <Strut size={smallSize} />
+                world!
+            </View>
         </View>
-        <View style={styles.row}>
-            Hello
-            <Strut size={smallSize} />
-            world!
-            <Strut size={largeSize} />
-            Hello
-            <Strut size={smallSize} />
-            world!
-        </View>
-    </View>
-);
+    ),
+};
 
 export const WithStyle: StoryComponentType = () => (
     <View style={styles.column}>

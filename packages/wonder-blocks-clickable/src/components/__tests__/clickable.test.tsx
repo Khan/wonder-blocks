@@ -538,22 +538,6 @@ describe("Clickable", () => {
         expect(button).toHaveAttribute("tabIndex", "1");
     });
 
-    test("should have the tabIndex that is passed in", () => {
-        // Arrange
-
-        // Act
-        render(
-            <Clickable testId="clickable-button" tabIndex={1}>
-                {(eventState: any) => <h1>Click Me!</h1>}
-            </Clickable>,
-        );
-
-        const button = screen.getByTestId("clickable-button");
-
-        // Assert
-        expect(button).toHaveAttribute("tabIndex", "1");
-    });
-
     test("forwards the ref to the clickable button element", () => {
         // Arrange
         const ref: React.RefObject<HTMLButtonElement> = React.createRef();

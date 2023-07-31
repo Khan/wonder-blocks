@@ -15,13 +15,13 @@ type Props = AriaProps & {
           >
         | React.ReactElement<React.ComponentProps<typeof BreadcrumbsItem>>;
     /**
+     * Accessible label for the breadcrumbs.
+     */
+    "aria-label"?: string;
+    /**
      * Test ID used for e2e testing.
      */
     testId?: string;
-};
-
-type DefaultProps = {
-    ["aria-label"]: Props["aria-label"];
 };
 
 const StyledList = addStyle("ol");
@@ -63,28 +63,31 @@ const StyledList = addStyle("ol");
  * </Breadcrumbs>
  * ```
  */
-export default class Breadcrumbs extends React.Component<Props> {
-    // Moved it here, in case we need to override the label for a different
-    // language
-    static defaultProps: DefaultProps = {
-        "aria-label": "Breadcrumbs",
-    };
+const Breadcrumbs = React.forwardRef(
+    (props: Props, ref: React.ForwardedRef<HTMLElement>) => {
+        const {
+            "aria-label": ariaLabel = "Breadcrumbs",
+            children,
+            testId,
+            ...otherProps
+        } = props;
 
-    render(): React.ReactNode {
-        const {children, testId, ...otherProps} = this.props;
         // using React.Children allows to deal with opaque data structures
         // e.g. children = 'string' vs children = []
         const lastChildIndex = React.Children.count(children) - 1;
 
         return (
-            <nav {...otherProps} data-test-id={testId}>
+            <nav
+                {...otherProps}
+                aria-label={ariaLabel}
+                data-test-id={testId}
+                ref={ref}
+            >
                 <StyledList style={styles.container}>
                     {React.Children.map(children, (item, index) => {
                         const isLastChild = index === lastChildIndex;
 
-                        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
                         return React.cloneElement(item, {
-                            // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactElement<{}, string | JSXElementConstructor<any>> | (ReactElement<{}, string | JSXElementConstructor<any>> & string) | ... 12 more ... | (ReactElement<...>[] & ReactPortal)'.
                             ...item.props,
                             showSeparator: !isLastChild,
                             ["aria-current"]: isLastChild ? "page" : undefined,
@@ -93,8 +96,8 @@ export default class Breadcrumbs extends React.Component<Props> {
                 </StyledList>
             </nav>
         );
-    }
-}
+    },
+);
 
 const styles = StyleSheet.create({
     container: {
@@ -105,3 +108,5 @@ const styles = StyleSheet.create({
         overflow: "hidden",
     },
 });
+
+export default Breadcrumbs;

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -13,9 +13,9 @@ import Banner from "@khanacademy/wonder-blocks-banner";
 
 import BannerArgTypes from "./banner.argtypes";
 import ComponentInfo from "../../.storybook/components/component-info";
-import {name, version} from "../../packages/wonder-blocks-banner/package.json";
+import packageConfig from "../../packages/wonder-blocks-banner/package.json";
 
-type StoryComponentType = ComponentStory<typeof Banner>;
+type StoryComponentType = StoryObj<typeof Banner>;
 
 const bannerDescription = `
 Banner. A banner displays a prominent message and
@@ -55,7 +55,12 @@ export default {
         ),
     ],
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: bannerDescription,
@@ -67,12 +72,12 @@ export default {
         },
     },
     argTypes: BannerArgTypes,
-} as ComponentMeta<typeof Banner>;
+} as Meta<typeof Banner>;
 
-export const Default: StoryComponentType = (args) => <Banner {...args} />;
-
-Default.args = {
-    text: "Here is some example text.",
+export const Default: StoryComponentType = {
+    args: {
+        text: "Here is some example text.",
+    },
 };
 
 export const Simple: StoryComponentType = () => (
@@ -85,8 +90,10 @@ export const Simple: StoryComponentType = () => (
 
 Simple.parameters = {
     docs: {
-        storyDescription: `These are examples of banners with just
+        description: {
+            story: `These are examples of banners with just
             the \`text\` prop and the \`layout\` prop. `,
+        },
     },
 };
 
@@ -120,11 +127,13 @@ export const Kinds: StoryComponentType = () => (
 
 Kinds.parameters = {
     docs: {
-        storyDescription: `Banners have four possible kinds (\`kind\` prop) -
+        description: {
+            story: `Banners have four possible kinds (\`kind\` prop) -
             info (default), success, warning, and critical. Info is blue
             with an info "i" icon, success is green with a smiling icon,
             warning is yellow with a triangular "!" icon, and critical is
             red with a round "!" icon.`,
+        },
     },
 };
 
@@ -172,7 +181,8 @@ Layouts.parameters = {
         default: "darkBlue",
     },
     docs: {
-        storyDescription: `Banners come with two layouts: full-width
+        description: {
+            story: `Banners come with two layouts: full-width
         and floating. Full-width layout gives the banner squared edges,
         and floating layout gives the banner rounded edges. Floating
         banners should have space around them and should not be touching
@@ -182,6 +192,7 @@ Layouts.parameters = {
         outlines around them - the full-width banner is touching its outline,
         but padding has been added around the floating banner
         so that it will not touch its outline.`,
+        },
     },
 };
 
@@ -203,10 +214,12 @@ export const LongText: StoryComponentType = () => (
 
 LongText.parameters = {
     docs: {
-        storyDescription: `Here is an example of a banner with long text.
+        description: {
+            story: `Here is an example of a banner with long text.
             In this case, the email address is one giant word. Notice that
             the \`overflow-wrap\` property here is set to \`break-word\`
             so that the email address will wrap to the next line.`,
+        },
     },
 };
 
@@ -227,7 +240,7 @@ DarkBackground.parameters = {
         default: "darkBlue",
     },
     docs: {
-        storyDescription: "This is how banners look on a dark background.",
+        description: {story: "This is how banners look on a dark background."},
     },
 };
 
@@ -244,9 +257,11 @@ export const WithButtons: StoryComponentType = () => (
 
 WithButtons.parameters = {
     docs: {
-        storyDescription: `This is a banner with buttons. An action, passed
+        description: {
+            story: `This is a banner with buttons. An action, passed
             into the \`actions\` prop, becomes a button when it has an
             \`onClick\` value and does not have an \`href\` value.`,
+        },
     },
 };
 
@@ -263,10 +278,12 @@ export const WithLinks: StoryComponentType = () => (
 
 WithLinks.parameters = {
     docs: {
-        storyDescription: `This is a banner with links. An action, passed
+        description: {
+            story: `This is a banner with links. An action, passed
             into the \`actions\` prop, becomes a link when it has an
             \`href\` value. It can also have an \`onClick\` value, but it
             will be a link regardless if it navigates to a URL via \`href\`.`,
+        },
     },
 };
 
@@ -303,7 +320,8 @@ export const WithInlineLinks: StoryComponentType = () => (
 
 WithInlineLinks.parameters = {
     docs: {
-        storyDescription: `A banner can have inline links passed into
+        description: {
+            story: `A banner can have inline links passed into
             the \`text\` prop. Here, the Wonder Blocks \`<Link>\` component
             is inline with the text that is in a span. \n\nOne place to use
             this is in the case that a banner needs to have a link action
@@ -311,6 +329,7 @@ WithInlineLinks.parameters = {
             to a URL and the other doesn't. This may be unfavorable because
             buttons and links look different. One workaround is to make the
             link inline and only have buttons as actions.`,
+        },
     },
 };
 
@@ -327,8 +346,9 @@ export const Multiline: StoryComponentType = () => (
 
 Multiline.parameters = {
     docs: {
-        storyDescription:
-            "This is an example of a banner with multiple lines of text.",
+        description: {
+            story: "This is an example of a banner with multiple lines of text.",
+        },
     },
 };
 
@@ -349,9 +369,11 @@ export const MultilineWithButtons: StoryComponentType = () => (
 
 MultilineWithButtons.parameters = {
     docs: {
-        storyDescription: `When a banner has long text, the actions
+        description: {
+            story: `When a banner has long text, the actions
             move from the right of the text to the bottom. Here, the
             actions are buttons.`,
+        },
     },
 };
 
@@ -372,9 +394,11 @@ export const MultilineWithLinks: StoryComponentType = () => (
 
 MultilineWithLinks.parameters = {
     docs: {
-        storyDescription: `When a banner has long text, the actions
+        description: {
+            story: `When a banner has long text, the actions
             move from the right of the text to the bottom. Here, the
             actions are links.`,
+        },
     },
 };
 
@@ -411,7 +435,8 @@ export const WithDismissal: StoryComponentType = () => {
 
 WithDismissal.parameters = {
     docs: {
-        storyDescription: `This is a banner that can be dismissed. For the
+        description: {
+            story: `This is a banner that can be dismissed. For the
             "X" dismiss button to show up, a function must be passed into
             the \`onDismiss\` prop.\n\nHere, pressing the "X" button or the
             "Also dismiss" button will dismiss the banner. Pressing either
@@ -420,6 +445,7 @@ WithDismissal.parameters = {
             button whose \`onClick\` function sets the \`dismissed\` state
             to false. This causes the banner to reappear and the button to
             disappear.`,
+        },
     },
 };
 
@@ -447,7 +473,8 @@ export const WithCustomAction: StoryComponentType = () => (
 
 WithCustomAction.parameters = {
     docs: {
-        storyDescription: `**NOTE: Custom actions are discouraged**
+        description: {
+            story: `**NOTE: Custom actions are discouraged**
             **and should only be used as a last resort!**\n\nThere are a
             number of other props that Buttons and Links may have that are
             not currently supported by the \`actions\` prop in Banner.
@@ -458,6 +485,7 @@ WithCustomAction.parameters = {
             field. Here is an example of a case where the built in actions
             may not be enough - a button with a \`spinner\` prop would need
             a custom implementation here.`,
+        },
     },
 };
 
@@ -498,8 +526,10 @@ export const WithMixedActions: StoryComponentType = () => (
 
 WithMixedActions.parameters = {
     docs: {
-        storyDescription: `Here is an example that includes both a
+        description: {
+            story: `Here is an example that includes both a
             normal action and a custom action.`,
+        },
     },
 };
 
@@ -527,9 +557,11 @@ export const RightToLeft: StoryComponentType = () => (
 
 RightToLeft.parameters = {
     docs: {
-        storyDescription: `When in the right-to-left direction, the banner
+        description: {
+            story: `When in the right-to-left direction, the banner
             is mirrored. This example has text in Urdu, which is a
             right-to-left language.`,
+        },
     },
 };
 
@@ -554,10 +586,12 @@ export const RightToLeftMultiline: StoryComponentType = () => (
 
 RightToLeftMultiline.parameters = {
     docs: {
-        storyDescription: `When in the right-to-left direction, the banner
+        description: {
+            story: `When in the right-to-left direction, the banner
             is mirrored. This example has text in Urdu, which is a
             right-to-left language. This example also has multiple lines
             with the butotns on the bottom of the text.`,
+        },
     },
 };
 

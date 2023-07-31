@@ -1,4 +1,4 @@
-import {Meta} from "@storybook/addon-docs";
+import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Testing / Fixtures / Types / FixtureFn"
@@ -41,6 +41,6 @@ The [`fixtures`](/docs/testing-fixtures-exports-fixtures--page) method returns a
 
 This function takes two or three arguments:
 
-- `description: string`: A string describing the fixture. This should be used to explain what the fixture is expected to show.
-- `props: FixtureProps<TProps>`: The props that the fixture should be rendered with. See [`FixtureProps`](/docs/testing-fixtures-types-fixtureprops--page).
-- `wrapper?: React.ComponentType<TProps>`: An optional component that will be rendered for the fixture. This can be used to wrap the fixture in a component that adds additional functionality, such as a test harness (see [`makeTestHarness`](/docs/testing-test-harness-exports-maketestharness--page)).
+-   `description: string`: A string describing the fixture. This should be used to explain what the fixture is expected to show.
+-   `props: FixtureProps<TProps>`: The props that the fixture should be rendered with. See [`FixtureProps`](/docs/testing-fixtures-types-fixtureprops--page).
+-   `wrapper?: React.ComponentType<TProps>`: An optional component that will be rendered for the fixture. This can be used to wrap the fixture in a component that adds additional functionality, such as a test harness (see [`makeTestHarness`](/docs/testing-test-harness-exports-maketestharness--page)).

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {View, Text as _Text} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -10,7 +10,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {TextField} from "@khanacademy/wonder-blocks-form";
-import {name, version} from "../../packages/wonder-blocks-form/package.json";
+import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import TextFieldArgTypes from "./text-field.argtypes";
@@ -19,34 +19,37 @@ export default {
     title: "Form / TextField",
     component: TextField,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
     },
     argTypes: TextFieldArgTypes,
-} as ComponentMeta<typeof TextField>;
+} as Meta<typeof TextField>;
 
-type StoryComponentType = ComponentStory<typeof TextField>;
+type StoryComponentType = StoryObj<typeof TextField>;
 
-export const Default: StoryComponentType = (args) => {
-    return <TextField {...args} />;
-};
-
-Default.args = {
-    id: "some-id",
-    type: "text",
-    value: "",
-    disabled: false,
-    placeholder: "",
-    required: false,
-    light: false,
-    testId: "",
-    readOnly: false,
-    autoComplete: "off",
-    validate: () => undefined,
-    onValidate: () => {},
-    onChange: () => {},
-    onKeyDown: () => {},
-    onFocus: () => {},
-    onBlur: () => {},
+export const Default: StoryComponentType = {
+    args: {
+        id: "some-id",
+        type: "text",
+        value: "",
+        disabled: false,
+        placeholder: "",
+        required: false,
+        light: false,
+        testId: "",
+        readOnly: false,
+        autoComplete: "off",
+        validate: () => undefined,
+        onValidate: () => {},
+        onChange: () => {},
+        onKeyDown: () => {},
+        onFocus: () => {},
+        onBlur: () => {},
+    },
 };
 
 export const Text: StoryComponentType = () => {
@@ -108,9 +111,11 @@ export const Required: StoryComponentType = () => {
 
 Required.parameters = {
     docs: {
-        storyDescription: `A required field will have error styling if the
+        description: {
+            story: `A required field will have error styling if the
         field is left blank. To observe this, type something into the
         field, backspace all the way, and then shift focus out of the field.`,
+        },
     },
     chromatic: {
         // Disabling snapshot because it doesn't show the error style
@@ -146,8 +151,9 @@ export const Number: StoryComponentType = () => {
 
 Number.parameters = {
     docs: {
-        storyDescription:
-            "An input field with type `number` will only take numeric characters as input.",
+        description: {
+            story: "An input field with type `number` will only take numeric characters as input.",
+        },
     },
 };
 
@@ -213,10 +219,12 @@ export const Password: StoryComponentType = () => {
 
 Password.parameters = {
     docs: {
-        storyDescription: `An input field with type \`password\` will
+        description: {
+            story: `An input field with type \`password\` will
         obscure the input value. It also often contains validation.
         In this example, the password must be over 8 characters long and
         must contain a numeric value.`,
+        },
     },
 };
 
@@ -280,10 +288,12 @@ export const Email: StoryComponentType = () => {
 
 Email.parameters = {
     docs: {
-        storyDescription: `An input field with type \`email\` will automatically
+        description: {
+            story: `An input field with type \`email\` will automatically
         validate an input on submit to ensure it's either formatted properly
         or blank. \`TextField\` will run validation on blur if the
         \`validate\` prop is passed in, as in this example.`,
+        },
     },
 };
 
@@ -347,10 +357,12 @@ export const Telephone: StoryComponentType = () => {
 
 Telephone.parameters = {
     docs: {
-        storyDescription: `An input field with type \`tel\` will NOT
+        description: {
+            story: `An input field with type \`tel\` will NOT
         validate an input on submit by default as telephone numbers
         can vary considerably. \`TextField\` will run validation on blur
         if the \`validate\` prop is passed in, as in this example.`,
+        },
     },
 };
 
@@ -414,8 +426,10 @@ export const Error: StoryComponentType = () => {
 
 Error.parameters = {
     docs: {
-        storyDescription: `If an input value fails validation,
+        description: {
+            story: `If an input value fails validation,
         \`TextField\` will have error styling.`,
+        },
     },
 };
 
@@ -482,10 +496,12 @@ export const Light: StoryComponentType = () => {
 
 Light.parameters = {
     docs: {
-        storyDescription: `If the \`light\` prop is set to true,
+        description: {
+            story: `If the \`light\` prop is set to true,
         \`TextField\` will have light styling. This is intended to be used
         on a dark background. There is also a specific light styling for the
         error state, as seen in the \`ErrorLight\` story.`,
+        },
     },
 };
 
@@ -550,8 +566,10 @@ export const ErrorLight: StoryComponentType = () => {
 
 ErrorLight.parameters = {
     docs: {
-        storyDescription: `If an input value fails validation and the
+        description: {
+            story: `If an input value fails validation and the
         \`light\` prop is true, \`TextField\` will have light error styling.`,
+        },
     },
 };
 
@@ -567,8 +585,10 @@ export const Disabled: StoryComponentType = () => (
 
 Disabled.parameters = {
     docs: {
-        storyDescription: `If the \`disabled\` prop is set to true,
+        description: {
+            story: `If the \`disabled\` prop is set to true,
         \`TextField\` will have disabled styling and will not be interactable.`,
+        },
     },
 };
 
@@ -600,10 +620,12 @@ export const CustomStyle: StoryComponentType = () => {
 
 CustomStyle.parameters = {
     docs: {
-        storyDescription: `\`TextField\` can take in custom styles that
+        description: {
+            story: `\`TextField\` can take in custom styles that
         override the default styles. This example has custom styles for the
         \`backgroundColor\`, \`color\`, \`border\`, \`maxWidth\`, and
         placeholder \`color\` properties.`,
+        },
     },
 };
 
@@ -648,13 +670,15 @@ export const Ref: StoryComponentType = () => {
 
 Ref.parameters = {
     docs: {
-        storyDescription: `If you need to save a reference to the input
+        description: {
+            story: `If you need to save a reference to the input
         field, you can do so by using the \`ref\` prop. In this example,
         we want the input field to receive focus when the button is
         pressed. We can do this by creating a React ref of type
         \`HTMLInputElement\` and passing it into \`TextField\`'s \`ref\` prop.
         Now we can use the ref variable in the \`handleSubmit\` function to
         shift focus to the field.`,
+        },
         chromatic: {
             // Disabling snapshot because this is testing interaction,
             // not visuals.
@@ -691,10 +715,12 @@ export const ReadOnly: StoryComponentType = () => {
 
 ReadOnly.parameters = {
     docs: {
-        storyDescription: `An input field with the prop \`readOnly\` set
+        description: {
+            story: `An input field with the prop \`readOnly\` set
         to true is not interactable. It looks the same as if it were not
         read only, and it can still receive focus, but the interaction
         point will not appear and the input will not change.`,
+        },
         chromatic: {
             // Disabling snapshot because this is testing interaction,
             // not visuals.
@@ -754,7 +780,8 @@ export const WithAutofocus: StoryComponentType = () => {
 
 WithAutofocus.parameters = {
     docs: {
-        storyDescription: `TextField takes an \`autoFocus\` prop, which
+        description: {
+            story: `TextField takes an \`autoFocus\` prop, which
             makes it autofocus on page load. Try to avoid using this if
             possible as it is bad for accessibility.\n\nPress the button
             to view this example. Notice that the text field automatically
@@ -762,6 +789,7 @@ WithAutofocus.parameters = {
             notice that the text appears directly in the text field. There
             is another focusable element present to demonstrate that
             focus skips that element and goes straight to the text field.`,
+        },
     },
 };
 
@@ -797,12 +825,14 @@ export const AutoComplete: StoryComponentType = () => {
 
 AutoComplete.parameters = {
     docs: {
-        storyDescription: `If \`TextField\`'s \`autocomplete\` prop is set,
+        description: {
+            story: `If \`TextField\`'s \`autocomplete\` prop is set,
         the browser can predict values for the input. When the user starts
         to type in the field, a list of options will show up based on
         values that may have been submitted at a previous time.
         In this example, the text field provides options after you
         input a value, press the submit button, and refresh the page.`,
+        },
         chromatic: {
             // Disabling snapshot because this is testing interaction,
             // not visuals.

@@ -1,4 +1,4 @@
-import {Meta} from "@storybook/addon-docs";
+import {Meta} from "@storybook/blocks";
 import {StyleSheet} from "aphrodite";
 
 import Color from "@khanacademy/wonder-blocks-color";
@@ -23,7 +23,9 @@ import Hero from "./hero.mdx";
 />
 
 export default function Layout({children}) {
-    {/* NOTE: Adding a negative margin to move the hero right above the toolbar */}
+    {
+        /* NOTE: Adding a negative margin to move the hero right above the toolbar */
+    }
     return <main style={{marginTop: -64}}>{children}</main>;
 }
 

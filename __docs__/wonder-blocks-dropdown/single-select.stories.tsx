@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -20,16 +20,14 @@ import {
 } from "@khanacademy/wonder-blocks-dropdown";
 
 import type {SingleSelectLabels} from "@khanacademy/wonder-blocks-dropdown";
-import {
-    name,
-    version,
-} from "../../packages/wonder-blocks-dropdown/package.json";
+import packageConfig from "../../packages/wonder-blocks-dropdown/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import singleSelectArgtypes from "./base-select.argtypes";
 import {defaultLabels} from "../../packages/wonder-blocks-dropdown/src/util/constants";
 
-type StoryComponentType = ComponentStory<typeof SingleSelect>;
+type StoryComponentType = StoryObj<typeof SingleSelect>;
+type SingleSelectArgs = Partial<typeof SingleSelect>;
 
 export default {
     title: "Dropdown / SingleSelect",
@@ -55,7 +53,12 @@ export default {
         ),
     ],
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -66,7 +69,7 @@ export default {
             },
         },
     },
-} as ComponentMeta<typeof SingleSelect>;
+} as Meta<typeof SingleSelect>;
 
 const styles = StyleSheet.create({
     example: {
@@ -177,12 +180,14 @@ const Template = (args: any) => {
     );
 };
 
-export const Default: StoryComponentType = Template.bind({});
+export const Default: StoryComponentType = {
+    render: Template,
+};
 
 /**
  * Controlled SingleSelect
  */
-export const ControlledOpened: StoryComponentType = (args) => {
+const ControlledOpenedWrapper = (args: any) => {
     const [selectedValue, setSelectedValue] = React.useState("pear");
     const [opened, setOpened] = React.useState(args.opened);
     React.useEffect(() => {
@@ -206,11 +211,13 @@ export const ControlledOpened: StoryComponentType = (args) => {
     );
 };
 
-ControlledOpened.args = {
-    opened: true,
+export const ControlledOpened: StoryComponentType = {
+    render: (args) => <ControlledOpenedWrapper {...args} />,
+    args: {
+        opened: true,
+    } as SingleSelectArgs,
+    name: "Controlled (opened)",
 };
-
-ControlledOpened.storyName = "Controlled (opened)";
 
 ControlledOpened.parameters = {
     docs: {
@@ -221,7 +228,7 @@ ControlledOpened.parameters = {
         },
     },
     // Added to ensure that the dropdown menu is rendered using PopperJS.
-    chromatic: {delay: 400},
+    chromatic: {delay: 500},
 };
 
 export const LongOptionLabels: StoryComponentType = () => {
@@ -300,25 +307,30 @@ export const LongOptionLabels: StoryComponentType = () => {
 
 LongOptionLabels.parameters = {
     docs: {
-        storyDescription: `If the label for the opener or the OptionItem(s)
+        description: {
+            story: `If the label for the opener or the OptionItem(s)
             is longer than its bounding box, it will be truncated with
             an ellipsis at the end.`,
+        },
     },
 };
 
 /**
  * Disabled
  */
-export const Disabled: StoryComponentType = (args) => (
-    <SingleSelect
-        {...args}
-        onChange={() => {}}
-        selectedValue=""
-        disabled={true}
-    >
-        {items}
-    </SingleSelect>
-);
+export const Disabled: StoryComponentType = {
+    render: (args) => (
+        <SingleSelect
+            {...args}
+            placeholder="Choose a fruit"
+            onChange={() => {}}
+            selectedValue=""
+            disabled={true}
+        >
+            {items}
+        </SingleSelect>
+    ),
+};
 
 Disabled.parameters = {
     docs: {
@@ -331,7 +343,7 @@ Disabled.parameters = {
 /**
  * TwoWithText
  */
-export const TwoWithText: StoryComponentType = (args) => {
+export const TwoWithText: StoryComponentType = (args: any) => {
     const [selectedValue, setSelectedValue] = React.useState(
         args.selectedValue,
     );
@@ -385,7 +397,7 @@ TwoWithText.parameters = {
 /**
  * On dark background, right-aligned
  */
-export const Light: StoryComponentType = (args) => {
+export const Light: StoryComponentType = (args: any) => {
     const [selectedValue, setSelectedValue] = React.useState("pear");
 
     return (
@@ -486,11 +498,10 @@ VirtualizedFilterable.parameters = {
     },
 };
 
-export const VirtualizedOpened: StoryComponentType = () => (
-    <VirtualizedSingleSelect opened={true} />
-);
-
-VirtualizedOpened.storyName = "Virtualized (opened)";
+export const VirtualizedOpened: StoryComponentType = {
+    render: () => <VirtualizedSingleSelect opened={true} />,
+    name: "Virtualized (opened)",
+};
 
 VirtualizedOpened.parameters = {
     docs: {
@@ -500,11 +511,12 @@ VirtualizedOpened.parameters = {
     },
 };
 
-export const VirtualizedOpenedNoSelection: StoryComponentType = () => (
-    <VirtualizedSingleSelect opened={true} selectedValue={null} />
-);
-
-VirtualizedOpenedNoSelection.storyName = "Virtualized (opened, no selection)";
+export const VirtualizedOpenedNoSelection: StoryComponentType = {
+    render: () => (
+        <VirtualizedSingleSelect opened={true} selectedValue={null} />
+    ),
+    name: "Virtualized (opened, no selection)",
+};
 
 VirtualizedOpenedNoSelection.parameters = {
     docs: {
@@ -579,29 +591,29 @@ DropdownInModal.parameters = {
 /**
  * Custom opener
  */
-export const CustomOpener: StoryComponentType = Template.bind({});
-
-CustomOpener.args = {
-    selectedValue: "",
-    opener: ({focused, hovered, pressed, text}) => (
-        <HeadingLarge
-            onClick={() => {
-                // eslint-disable-next-line no-console
-                console.log("custom click!!!!!");
-            }}
-            style={[
-                styles.customOpener,
-                focused && styles.focused,
-                hovered && styles.hovered,
-                pressed && styles.pressed,
-            ]}
-        >
-            {text}
-        </HeadingLarge>
-    ),
+export const CustomOpener: StoryComponentType = {
+    render: Template,
+    args: {
+        selectedValue: "",
+        opener: ({focused, hovered, pressed, text}: any) => (
+            <HeadingLarge
+                onClick={() => {
+                    // eslint-disable-next-line no-console
+                    console.log("custom click!!!!!");
+                }}
+                style={[
+                    styles.customOpener,
+                    focused && styles.focused,
+                    hovered && styles.hovered,
+                    pressed && styles.pressed,
+                ]}
+            >
+                {text}
+            </HeadingLarge>
+        ),
+    } as SingleSelectArgs,
+    name: "With custom opener",
 };
-
-CustomOpener.storyName = "With custom opener";
 
 CustomOpener.parameters = {
     docs: {

@@ -1,50 +1,33 @@
-const path = require("path");
-const webpack = require("webpack");
+import { dirname, join } from "path";
 
 module.exports = {
-    stories: [
-        "../__docs__/**/*.stories.@(ts|tsx|mdx)",
-    ],
-    addons: [
-        // Includes core addons (controls, docs, actions, viewport, backgrounds)
-        "@storybook/addon-essentials",
-        // For accessibility linting
-        "@storybook/addon-a11y",
-        // To link a component with the Figma spec
-        "storybook-addon-designs",
-        // To enable interaction testing
-        "@storybook/addon-interactions",
-    ],
-    features: {
-        // Enables playback controls
-        interactionsDebugger: true,
-    },
-    reactOptions: {
-        fastRefresh: true,
-    },
-    staticDirs: ["../static"],
-    // Overriding the default webpack config to allow using storybook with our
-    // monorepo.
-    // See https://storybook.js.org/docs/react/configure/webpack
-    webpackFinal: async (config, {configType}) => {
-        const wbRegex = /^@khanacademy\/wonder-blocks(-.*)$/;
-        // Aliases for internal wonder-blocks packages
-        config.plugins.push(
-            new webpack.NormalModuleReplacementPlugin(wbRegex, function (
-                resource,
-            ) {
-                // Replace the module with a direct reference to the
-                // internal folder.
-                // $1 is the unique package name, e.g. cell, birthday-picker
-                resource.request = resource.request
-                    .replace(
-                        wbRegex,
-                        path.resolve(__dirname, "../packages/wonder-blocks$1/src"),
-                    );
-            }),
-        );
-
-        // Return the altered config
-        return config;
-    },
+  stories: ["../__docs__/**/*.stories.@(ts|tsx|mdx)"],
+  addons: [
+    getAbsolutePath("@storybook/addon-essentials"),
+    getAbsolutePath("@storybook/addon-a11y"),
+    getAbsolutePath("@storybook/addon-designs"),
+    getAbsolutePath("@storybook/addon-interactions"),
+    getAbsolutePath("@storybook/addon-mdx-gfm")
+  ],
+  features: {
+    // Enables playback controls
+    interactionsDebugger: true
+  },
+  staticDirs: ["../static"],
+  framework: {
+    name: getAbsolutePath("@storybook/react-webpack5"),
+    options: {
+      fastRefresh: true
+    }
+  },
+  docs: {
+    autodocs: true
+  }
 };
+/**
+ * This function is used to resolve the absolute path of a package.
+ * It is needed in projects that use Yarn PnP or are set up within a monorepo.
+*/
+function getAbsolutePath(value) {
+  return dirname(require.resolve(join(value, "package.json")));
+}

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -16,7 +16,7 @@ import {
 } from "@khanacademy/wonder-blocks-modal";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {name, version} from "../../packages/wonder-blocks-modal/package.json";
+import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 const customViewports = {
     phone: {
@@ -53,7 +53,12 @@ export default {
         ),
     ],
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -85,32 +90,33 @@ export default {
             control: {type: null},
         },
     },
-} as ComponentMeta<typeof ModalDialog>;
+} as Meta<typeof ModalDialog>;
 
-type StoryComponentType = ComponentStory<typeof ModalDialog>;
+type StoryComponentType = StoryObj<typeof ModalDialog>;
 
-export const Default: StoryComponentType = (args) => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <ModalDialog aria-labelledby="modal-title-0" {...args}>
-                <ModalPanel
-                    content={
-                        <>
-                            <Title id="modal-title-0">Modal Title</Title>
-                            <Strut size={Spacing.large_24} />
-                            <Body>Here is some text in the modal.</Body>
-                        </>
-                    }
-                />
-            </ModalDialog>
+export const Default: StoryComponentType = {
+    render: (args) => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <ModalDialog aria-labelledby="modal-title-0" {...args}>
+                    <ModalPanel
+                        content={
+                            <>
+                                <Title id="modal-title-0">Modal Title</Title>
+                                <Strut size={Spacing.large_24} />
+                                <Body>Here is some text in the modal.</Body>
+                            </>
+                        }
+                    />
+                </ModalDialog>
+            </View>
         </View>
-    </View>
-);
-
-Default.args = {
-    style: {
-        maxWidth: 500,
-        maxHeight: 500,
+    ),
+    args: {
+        style: {
+            maxWidth: 500,
+            maxHeight: 500,
+        },
     },
 };
 
@@ -137,7 +143,8 @@ export const Simple: StoryComponentType = () => (
 
 Simple.parameters = {
     docs: {
-        storyDescription: `This is a basic \`<ModalDialog>\` that wraps a
+        description: {
+            story: `This is a basic \`<ModalDialog>\` that wraps a
             \`<ModalPanel>\` element. The \`<ModalDialog>\` is just a a wrapper
             for the visual components of the overall modal. It sets
             the modal's role to \`"dialog"\`. If it did not have another
@@ -148,6 +155,7 @@ Simple.parameters = {
             the \`<ModalDialog>\` and the \`<ModalPanel>\` elements, the panel
             has been given a smaller height and width than \`<ModalDialog>\`,
             and \`<ModalDialog>\` has been given a dark blue background.`,
+        },
     },
 };
 
@@ -196,7 +204,8 @@ export const WithAboveAndBelow: StoryComponentType = () => {
 
 WithAboveAndBelow.parameters = {
     docs: {
-        storyDescription: `The \`above\` and \`below\` props work the same
+        description: {
+            story: `The \`above\` and \`below\` props work the same
             for \`<ModalDialog>\` as they do for \`<OnePaneDialog>\`.
             The element passed into the \`above\` prop is rendered in front
             of the modal. The element passed into the \`below\` prop is
@@ -207,6 +216,7 @@ WithAboveAndBelow.parameters = {
             prop. This results in the person's head and the orange blob
             peeking out from behind the modal, and the arc and semicircle
             going over the front of the modal.`,
+        },
     },
 };
 
@@ -248,12 +258,14 @@ WithLauncher.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription: `A modal can be launched using a launcher. Here,
+        description: {
+            story: `A modal can be launched using a launcher. Here,
             the launcher is a \`<Button>\` element whose \`onClick\` function
             opens the modal. The modal passed into the \`modal\` prop of
             the \`<ModalLauncher>\` element is a \`<ModalDialog>\` element.
             To turn an element into a launcher, wrap the element in a
             \`<ModalLauncher>\` element.`,
+        },
     },
 };
 

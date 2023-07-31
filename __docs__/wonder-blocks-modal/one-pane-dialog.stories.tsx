@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {
     Breadcrumbs,
@@ -16,7 +16,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {ModalLauncher, OnePaneDialog} from "@khanacademy/wonder-blocks-modal";
-import {name, version} from "../../packages/wonder-blocks-modal/package.json";
+import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import OnePaneDialogArgTypes from "./one-pane-dialog.argtypes";
@@ -56,7 +56,12 @@ export default {
         ),
     ],
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -75,22 +80,22 @@ export default {
         },
     },
     argTypes: OnePaneDialogArgTypes,
-} as ComponentMeta<typeof OnePaneDialog>;
+} as Meta<typeof OnePaneDialog>;
 
-type StoryComponentType = ComponentStory<typeof OnePaneDialog>;
+type StoryComponentType = StoryObj<typeof OnePaneDialog>;
 
-export const Default: StoryComponentType = (args) => (
-    <View style={styles.previewSizer}>
-        <View style={styles.modalPositioner}>
-            <OnePaneDialog {...args} />
+export const Default: StoryComponentType = {
+    render: (args) => (
+        <View style={styles.previewSizer}>
+            <View style={styles.modalPositioner}>
+                <OnePaneDialog {...args} />
+            </View>
         </View>
-    </View>
-);
-
-Default.args = {
-    content: (
-        <Body>
-            {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+    ),
+    args: {
+        content: (
+            <Body>
+                {`Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna
                 aliqua. Ut enim ad minim veniam, quis nostrud exercitation
                 ullamco laboris nisi ut aliquip ex ea commodo consequat.
@@ -98,9 +103,10 @@ Default.args = {
                 esse cillum dolore eu fugiat nulla pariatur. Excepteur sint
                 occaecat cupidatat non proident, sunt in culpa qui officia
                 deserunt mollit anim id est.`}
-        </Body>
-    ),
-    title: "Some title",
+            </Body>
+        ),
+        title: "Some title",
+    },
 };
 
 export const Simple: StoryComponentType = () => (
@@ -128,8 +134,10 @@ export const Simple: StoryComponentType = () => (
 
 Simple.parameters = {
     docs: {
-        storyDescription: `This is the most basic OnePaneDialog, with just
+        description: {
+            story: `This is the most basic OnePaneDialog, with just
             the title and content.`,
+        },
     },
 };
 
@@ -168,7 +176,7 @@ export const WithFooter: StoryComponentType = () => (
 
 WithFooter.parameters = {
     docs: {
-        storyDescription: `This OnePaneDialog includes a custom footer.`,
+        description: {story: `This OnePaneDialog includes a custom footer.`},
     },
 };
 
@@ -200,7 +208,7 @@ export const WithSubtitle: StoryComponentType = () => (
 
 WithSubtitle.parameters = {
     docs: {
-        storyDescription: `This OnePaneDialog includes a custom subtitle.`,
+        description: {story: `This OnePaneDialog includes a custom subtitle.`},
     },
 };
 
@@ -240,8 +248,10 @@ export const WithBreadcrumbs: StoryComponentType = () => (
 
 WithBreadcrumbs.parameters = {
     docs: {
-        storyDescription: `This OnePaneDialog includes a custom Breadcrumbs
+        description: {
+            story: `This OnePaneDialog includes a custom Breadcrumbs
             element.`,
+        },
     },
 };
 
@@ -321,7 +331,8 @@ export const WithAboveAndBelow: StoryComponentType = () => {
 
 WithAboveAndBelow.parameters = {
     docs: {
-        storyDescription: `The element passed into the \`above\` prop is
+        description: {
+            story: `The element passed into the \`above\` prop is
             rendered in front of the modal. The element passed into the
             \`below\` prop is rendered behind the modal. In this example,
             a \`<View>\` element with a background image of a person and an
@@ -330,6 +341,7 @@ WithAboveAndBelow.parameters = {
             is passed into the \`above\` prop. This results in the person's
             head and the orange blob peeking out from behind the modal, and
             the arc and semicircle going over the front of the modal.`,
+        },
     },
 };
 
@@ -362,9 +374,11 @@ export const WithStyle: StoryComponentType = () => (
 
 WithStyle.parameters = {
     docs: {
-        storyDescription: `A OnePaneDialog can have custom styles via the
+        description: {
+            story: `A OnePaneDialog can have custom styles via the
             \`style\` prop. Here, the modal has a \`maxWidth: 1000\` and
             \`color: Color.blue\` in its custom styles.`,
+        },
     },
 };
 
@@ -485,10 +499,12 @@ FlexibleModal.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription: `This example illustrates how we can update the
+        description: {
+            story: `This example illustrates how we can update the
             Modal's contents by wrapping it into a new component/container.
             \`Modal\` is built in a way that provides great flexibility and
             makes it work with different variations and/or layouts.`,
+        },
     },
 };
 
@@ -534,12 +550,14 @@ WithLauncher.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription: `A modal can be launched using a launcher. Here,
+        description: {
+            story: `A modal can be launched using a launcher. Here,
             the launcher is a \`<Button>\` element whose \`onClick\` function
             opens the modal. The modal passed into the \`modal\` prop of
             the \`<ModalLauncher>\` element is a \`<OnePaneDialog>\`.
             To turn an element into a launcher, wrap the element in a
             \`<ModalLauncher>\` element.`,
+        },
     },
 };
 
