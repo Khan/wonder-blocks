@@ -1,11 +1,11 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, RadioGroup} from "@khanacademy/wonder-blocks-form";
-import {name, version} from "../../packages/wonder-blocks-form/package.json";
+import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 
@@ -13,36 +13,42 @@ export default {
     title: "Form / RadioGroup",
     component: RadioGroup,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
-    },
-} as ComponentMeta<typeof RadioGroup>;
-
-type StoryComponentType = ComponentStory<typeof RadioGroup>;
-
-export const Default: StoryComponentType = (args) => {
-    return (
-        <RadioGroup {...args}>
-            <Choice label="Bulbasaur" value="bulbasaur" />
-            <Choice
-                label="Charmander"
-                value="charmander"
-                description="Oops, we ran out of Charmanders"
-                disabled
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
             />
-            <Choice label="Squirtle" value="squirtle" />
-            <Choice label="Pikachu" value="pikachu" />
-        </RadioGroup>
-    );
-};
+        ),
+    },
+} as Meta<typeof RadioGroup>;
 
-Default.args = {
-    // Required
-    groupName: "pokemon",
-    selectedValue: "bulbasaur",
-    onChange: () => {},
-    // Optional
-    label: "Pokemon",
-    description: "Your first Pokemon.",
+type StoryComponentType = StoryObj<typeof RadioGroup>;
+
+export const Default: StoryComponentType = {
+    render: (args) => {
+        return (
+            <RadioGroup {...args}>
+                <Choice label="Bulbasaur" value="bulbasaur" />
+                <Choice
+                    label="Charmander"
+                    value="charmander"
+                    description="Oops, we ran out of Charmanders"
+                    disabled
+                />
+                <Choice label="Squirtle" value="squirtle" />
+                <Choice label="Pikachu" value="pikachu" />
+            </RadioGroup>
+        );
+    },
+    args: {
+        // Required
+        groupName: "pokemon",
+        selectedValue: "bulbasaur",
+        onChange: () => {},
+        // Optional
+        label: "Pokemon",
+        description: "Your first Pokemon.",
+    },
 };
 
 export const Basic: StoryComponentType = () => {
@@ -71,10 +77,12 @@ export const Basic: StoryComponentType = () => {
 
 Basic.parameters = {
     docs: {
-        storyDescription: `This is a basic example of a radio group.
+        description: {
+            story: `This is a basic example of a radio group.
         The Wonder Blocks \`RadioGroup\` component takes \`Choice\`
         components as children. One of the \`Choice\` components here
         includes a description.`,
+        },
     },
 };
 
@@ -120,12 +128,14 @@ export const Error: StoryComponentType = () => {
 
 Error.parameters = {
     docs: {
-        storyDescription: `This is what a radio group looks like
+        description: {
+            story: `This is what a radio group looks like
         if it has an error. It displays the error that is passed into the
         \`errorMessage\` prop, provided the error is not null. It also
         uses the error styling for all the radio buttons. Here, the error
         message is saved as a state, updated in the change handler, and then
         passed in as the \`errorMessage\` prop.`,
+        },
     },
 };
 
@@ -157,12 +167,14 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
 
 MultipleChoiceStyling.parameters = {
     docs: {
-        storyDescription: `This example shows how to use custom styling
+        description: {
+            story: `This example shows how to use custom styling
         to change the appearance of the radio group to look more like
         a multiple choice question. Here, there is a line in
         between each question, which is achieved using the
         \`{borderTop: "solid 1px #CCC"}\` style on each \`Choice\`
         component.`,
+        },
     },
 };
 
@@ -191,10 +203,12 @@ export const FiltersOutFalsyChildren: StoryComponentType = () => {
 
 FiltersOutFalsyChildren.parameters = {
     docs: {
-        storyDescription: `This example shows that children can be falsy values and
+        description: {
+            story: `This example shows that children can be falsy values and
         that those falsy values are filtered out when rendering children.  In this
         case, one of the children is \`{false && <Choice .../>}\` which results in
         that choice being filtered out.`,
+        },
     },
     chromatic: {
         // The unit tests already verify that false-y children aren't rendered.

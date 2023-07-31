@@ -161,26 +161,3 @@ jobs:
           pattern: "**/dist/es/*.js"
           # Always ignore SourceMaps and node_modules:
           exclude: "{**/*.map,**/node_modules/**}"
-
-  build_storybook:
-    name: Build Storybook
-    needs: prime_cache_primary
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest]
-        node-version: [16.x]
-    steps:
-      - uses: actions/checkout@v2
-      - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Install & cache node_modules
-        uses: Khan/actions@shared-node-cache-v0
-        with:
-          node-version: ${{ matrix.node-version }}
-
-      - name: Build
-        run: yarn build:storybook

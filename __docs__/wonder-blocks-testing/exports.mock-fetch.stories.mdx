@@ -1,4 +1,4 @@
-import {Meta} from "@storybook/addon-docs";
+import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Testing / Mocking / Exports / mockFetch()"
@@ -21,9 +21,9 @@ The `mockFetch` function provides an API to easily mock `fetch()` responses. It 
 
 Besides being a function that fits the `fetch()` signature, the return value of `mockFetch()` has an API to customize the behavior of that function. Used in conjunction with the [`RespondWith`](/docs/testing-mocking-exports-respondwith--page) API, this can create a variety of responses for tests and stories.
 
-| Function | Purpose |
-| -------- | ------- |
-| `mockOperation` | When called, any request that matches the defined mock will respond with the given response. |
+| Function            | Purpose                                                                                                                        |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `mockOperation`     | When called, any request that matches the defined mock will respond with the given response.                                   |
 | `mockOperationOnce` | When called, the first request that matches the defined mock will respond with the given response. The mock is only used once. |
 
 Both of these functions have the same signature:

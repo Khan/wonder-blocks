@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -9,10 +9,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import {
-    name,
-    version,
-} from "../../packages/wonder-blocks-clickable/package.json";
+import packageConfig from "../../packages/wonder-blocks-clickable/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import argTypes from "./clickable.argtypes";
@@ -36,7 +33,12 @@ export default {
         ),
     ],
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -47,13 +49,13 @@ export default {
             },
         },
     },
-} as ComponentMeta<typeof Clickable>;
+} as Meta<typeof Clickable>;
 
-type StoryComponentType = ComponentStory<typeof Clickable>;
+type StoryComponentType = StoryObj<typeof Clickable>;
 
-export const Default: StoryComponentType = (args) => (
+export const Default: StoryComponentType = (args: any) => (
     <Clickable {...args}>
-        {({hovered, focused, pressed}) => {
+        {({hovered, pressed}) => {
             return (
                 <View
                     style={[
@@ -82,7 +84,7 @@ export const Basic: StoryComponentType = () => (
             href="https://www.khanacademy.org/about/tos"
             skipClientNav={true}
         >
-            {({hovered, focused, pressed}) => (
+            {({hovered, pressed}) => (
                 <View
                     style={[
                         hovered && styles.hovered,
@@ -120,7 +122,7 @@ export const Light: StoryComponentType = () => (
             skipClientNav={true}
             light={true}
         >
-            {({hovered, focused, pressed}) => (
+            {({hovered, pressed}) => (
                 <View
                     style={[
                         styles.clickable,
@@ -154,10 +156,10 @@ Light.parameters = {
 /**
  * Disabled state
  */
-export const Disabled: StoryComponentType = (args) => (
+export const Disabled: StoryComponentType = (args: any) => (
     <>
         <Clickable onClick={() => {}} {...args}>
-            {({hovered, focused, pressed}) => (
+            {({hovered, pressed}) => (
                 <View
                     style={[
                         styles.clickable,
@@ -291,11 +293,13 @@ export const Ref: StoryComponentType = () => {
 
 Ref.parameters = {
     docs: {
-        storyDescription: `If you need to save a reference to the \`Clickable\` element , you can do
+        description: {
+            story: `If you need to save a reference to the \`Clickable\` element , you can do
         so using the \`ref\` prop. In this example, we want the element to receive focus when the
         button is pressed. We can do this by creating a React ref of type \`HTMLButtonElement\` and
         passing it into \`Clickable\`'s \`ref\` prop. Now we can use the ref variable in the
         \`handleSubmit\` function to shift focus to the field.`,
+        },
     },
     chromatic: {
         // we don't need screenshots because this story only tests behavior.

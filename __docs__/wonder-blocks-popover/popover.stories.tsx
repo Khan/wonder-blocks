@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -10,7 +10,7 @@ import {LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import type {Placement} from "@khanacademy/wonder-blocks-tooltip";
 
 import {Popover, PopoverContent} from "@khanacademy/wonder-blocks-popover";
-import {name, version} from "../../packages/wonder-blocks-popover/package.json";
+import packageConfig from "../../packages/wonder-blocks-popover/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import PopoverArgtypes from "./popover.argtypes";
@@ -20,7 +20,12 @@ export default {
     component: Popover as unknown as React.ComponentType<any>,
     argTypes: PopoverArgtypes,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -43,7 +48,7 @@ export default {
             </View>
         ),
     ],
-} as ComponentMeta<typeof Popover>;
+} as Meta<typeof Popover>;
 
 const styles = StyleSheet.create({
     container: {
@@ -65,54 +70,54 @@ const styles = StyleSheet.create({
     },
 });
 
-// @ts-expect-error [FEI-5019] - TS7006 - Parameter 'args' implicitly has an 'any' type.
-const Template = (args) => <Popover {...args} />;
+type StoryComponentType = StoryObj<typeof Popover>;
+// NOTE: Adding arg types to be able to use the union types defined by the
+// component.
+type PopoverArgs = Partial<typeof Popover>;
 
-type StoryComponentType = ComponentStory<typeof Popover>;
+export const Default: StoryComponentType = {
+    args: {
+        children: <Button>Open default popover</Button>,
+        content: (
+            <PopoverContent
+                closeButtonVisible
+                title="Title"
+                content="The popover content."
+            />
+        ),
 
-export const Default: StoryComponentType = Template.bind({});
-
-Default.args = {
-    children: <Button>Open default popover</Button>,
-    content: (
-        <PopoverContent
-            closeButtonVisible
-            title="Title"
-            content="The popover content."
-        />
-    ),
-
-    placement: "top",
-    dismissEnabled: true,
-    id: "",
-    initialFocusId: "",
-    testId: "",
-    onClose: () => {},
+        placement: "top",
+        dismissEnabled: true,
+        id: "",
+        initialFocusId: "",
+        testId: "",
+        onClose: () => {},
+    } as PopoverArgs,
 };
 
 /**
  * No tail
  */
 
-export const NoTail: StoryComponentType = Template.bind({});
+export const NoTail: StoryComponentType = {
+    args: {
+        children: <Button>Open popover without tail</Button>,
+        content: (
+            <PopoverContent
+                closeButtonVisible
+                title="Title"
+                content="The popover content. This popover does not have a tail."
+            />
+        ),
 
-NoTail.args = {
-    children: <Button>Open popover without tail</Button>,
-    content: (
-        <PopoverContent
-            closeButtonVisible
-            title="Title"
-            content="The popover content. This popover does not have a tail."
-        />
-    ),
-
-    placement: "top",
-    dismissEnabled: true,
-    id: "",
-    initialFocusId: "",
-    testId: "",
-    onClose: () => {},
-    showTail: false,
+        placement: "top",
+        dismissEnabled: true,
+        id: "",
+        initialFocusId: "",
+        testId: "",
+        onClose: () => {},
+        showTail: false,
+    } as PopoverArgs,
 };
 
 /**
@@ -280,35 +285,35 @@ WithActions.parameters = {
     },
 };
 
-export const WithInitialFocusId: StoryComponentType = Template.bind({});
-
-WithInitialFocusId.args = {
-    children: (
-        <Button>
-            Open with initial focus on the &quot;It is focused!&quot; button
-        </Button>
-    ),
-    content: (
-        <PopoverContent
-            title="
+export const WithInitialFocusId: StoryComponentType = {
+    args: {
+        children: (
+            <Button>
+                Open with initial focus on the &quot;It is focused!&quot; button
+            </Button>
+        ),
+        content: (
+            <PopoverContent
+                title="
             Setting initialFocusId"
-            content="The focus will be set on the second button"
-            actions={
-                <View style={styles.row}>
-                    <Button kind="tertiary" id="popover-button-1">
-                        No focus
-                    </Button>
-                    <Strut size={Spacing.medium_16} />
-                    <Button kind="tertiary" id="popover-button-2">
-                        It is focused!
-                    </Button>
-                </View>
-            }
-        />
-    ),
-    placement: "top",
-    dismissEnabled: true,
-    initialFocusId: "popover-button-2",
+                content="The focus will be set on the second button"
+                actions={
+                    <View style={styles.row}>
+                        <Button kind="tertiary" id="popover-button-1">
+                            No focus
+                        </Button>
+                        <Strut size={Spacing.medium_16} />
+                        <Button kind="tertiary" id="popover-button-2">
+                            It is focused!
+                        </Button>
+                    </View>
+                }
+            />
+        ),
+        placement: "top",
+        dismissEnabled: true,
+        initialFocusId: "popover-button-2",
+    } as PopoverArgs,
 };
 
 WithInitialFocusId.storyName = "With initialFocusId";
@@ -364,11 +369,13 @@ const BasePopoverExample = ({placement}: {placement: Placement}) => {
     );
 };
 
-export const PopoverAlignment: StoryComponentType = () => (
-    <View style={styles.container}>
-        <BasePopoverExample placement="left" />
-        <BasePopoverExample placement="bottom" />
-        <BasePopoverExample placement="right" />
-        <BasePopoverExample placement="top" />
-    </View>
-);
+export const PopoverAlignment: StoryComponentType = {
+    render: () => (
+        <View style={styles.container}>
+            <BasePopoverExample placement="left" />
+            <BasePopoverExample placement="bottom" />
+            <BasePopoverExample placement="right" />
+            <BasePopoverExample placement="top" />
+        </View>
+    ),
+};

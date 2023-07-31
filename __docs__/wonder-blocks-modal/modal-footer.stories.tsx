@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -13,7 +13,7 @@ import {
     ModalPanel,
     ModalFooter,
 } from "@khanacademy/wonder-blocks-modal";
-import {name, version} from "../../packages/wonder-blocks-modal/package.json";
+import packageConfig from "../../packages/wonder-blocks-modal/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 
@@ -102,7 +102,12 @@ export default {
         ),
     ],
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -125,24 +130,26 @@ export default {
             control: {type: null},
         },
     },
-} as ComponentMeta<typeof ModalFooter>;
+} as Meta<typeof ModalFooter>;
 
-type StoryComponentType = ComponentStory<typeof ModalFooter>;
+type StoryComponentType = StoryObj<typeof ModalFooter>;
 
-export const Default: StoryComponentType = (args) => (
-    <ModalDialog aria-labelledby={"modal-id-0"} style={styles.dialog}>
-        <ModalPanel
-            content={
-                <>
-                    <Title id="modal-id-0">Modal Title</Title>
-                    <Strut size={Spacing.large_24} />
-                    {longBody}
-                </>
-            }
-            footer={<ModalFooter {...args} />}
-        />
-    </ModalDialog>
-);
+export const Default: StoryComponentType = {
+    render: (args) => (
+        <ModalDialog aria-labelledby={"modal-id-0"} style={styles.dialog}>
+            <ModalPanel
+                content={
+                    <>
+                        <Title id="modal-id-0">Modal Title</Title>
+                        <Strut size={Spacing.large_24} />
+                        {longBody}
+                    </>
+                }
+                footer={<ModalFooter {...args} />}
+            />
+        </ModalDialog>
+    ),
+};
 
 export const Simple: StoryComponentType = () => (
     <ModalDialog aria-labelledby={"modal-id-1"} style={styles.dialog}>
@@ -165,8 +172,10 @@ export const Simple: StoryComponentType = () => (
 
 Simple.parameters = {
     docs: {
-        storyDescription: `This is a basic footer. It contains an empty
+        description: {
+            story: `This is a basic footer. It contains an empty
             \`<View>\`, so it is completely blank.`,
+        },
     },
 };
 
@@ -191,9 +200,11 @@ export const WithButton: StoryComponentType = () => (
 
 WithButton.parameters = {
     docs: {
-        storyDescription: `This is a \`<ModalFooter>\` with a \`<Button>\`
+        description: {
+            story: `This is a \`<ModalFooter>\` with a \`<Button>\`
             as a child. No additional styling is needed, as the footer
             already has the style \`{justifyContent: "flex-end"}\`.`,
+        },
     },
 };
 
@@ -251,9 +262,11 @@ export const WithThreeActions: StoryComponentType = () => {
 
 WithThreeActions.parameters = {
     docs: {
-        storyDescription: `This is an example of a footer with multiple
+        description: {
+            story: `This is an example of a footer with multiple
             actions. It's fully responsive, so the buttons are in a
             column layout when the window is small.`,
+        },
     },
 };
 
@@ -299,8 +312,10 @@ export const WithMultipleActions: StoryComponentType = () => {
 
 WithMultipleActions.parameters = {
     docs: {
-        storyDescription: `This is an example of a footer that indicates
+        description: {
+            story: `This is an example of a footer that indicates
             multiple steps in a flow.`,
+        },
     },
 };
 

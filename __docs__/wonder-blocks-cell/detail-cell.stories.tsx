@@ -1,7 +1,7 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
 import {MemoryRouter, Route, Switch} from "react-router-dom";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -9,7 +9,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
 import {DetailCell} from "@khanacademy/wonder-blocks-cell";
-import {name, version} from "../../packages/wonder-blocks-cell/package.json";
+import packageConfig from "../../packages/wonder-blocks-cell/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import DetailCellArgTypes from "./detail-cell.argtypes";
@@ -19,8 +19,17 @@ export default {
     component: DetailCell,
     // TODO(FEI-5000):
     argTypes: DetailCellArgTypes as any,
+    design: {
+        type: "figma",
+        url: "https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/%F0%9F%92%A0-Main-Components?type=design&node-id=4337-2033&mode=design&t=h4nok7uwaPYDOkz6-4",
+    },
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -36,24 +45,22 @@ export default {
             <View style={styles.example}>{Story()}</View>
         ),
     ],
-} as ComponentMeta<typeof DetailCell>;
+} as Meta<typeof DetailCell>;
 
 /**
  * Default DetailCell example. It will be rendered as the first/default story and
  * it can be interacted with the controls panel in the Browser.
  */
-const Template = (args: any) => <DetailCell {...args} />;
+type StoryComponentType = StoryObj<typeof DetailCell>;
 
-type StoryComponentType = ComponentStory<typeof DetailCell>;
-
-export const DefaultDetailCell: StoryComponentType = Template.bind({});
-
-DefaultDetailCell.args = {
-    title: "Title for article item",
-    subtitle1: "Subtitle 1 for article item",
-    subtitle2: "Subtitle 2 for article item",
-    leftAccessory: <Icon icon={icons.contentVideo} size="medium" />,
-    rightAccessory: <Icon icon={icons.caretRight} />,
+export const DefaultDetailCell: StoryComponentType = {
+    args: {
+        title: "Title for article item",
+        subtitle1: "Subtitle 1 for article item",
+        subtitle2: "Subtitle 2 for article item",
+        leftAccessory: <Icon icon={icons.contentVideo} size="medium" />,
+        rightAccessory: <Icon icon={icons.caretRight} />,
+    },
 };
 
 /**
@@ -72,8 +79,9 @@ export const DetailCellActive: StoryComponentType = () => (
 
 DetailCellActive.parameters = {
     docs: {
-        storyDescription:
-            "For more complex scenarios where we need to use more content such as subtitles, we provide a DetailCell component that can be used to cover these cases. The following example shows how to include a subtitle and use the active state.",
+        description: {
+            story: "For more complex scenarios where we need to use more content such as subtitles, we provide a DetailCell component that can be used to cover these cases. The following example shows how to include a subtitle and use the active state.",
+        },
     },
 };
 
@@ -93,8 +101,9 @@ export const DetailCellDisabled: StoryComponentType = () => (
 
 DetailCellDisabled.parameters = {
     docs: {
-        storyDescription:
-            "For more complex scenarios where we need to use more content such as subtitles, we provide a DetailCell component that can be used to cover these cases. The following example shows how to include a subtitle and use the active state.",
+        description: {
+            story: "For more complex scenarios where we need to use more content such as subtitles, we provide a DetailCell component that can be used to cover these cases. The following example shows how to include a subtitle and use the active state.",
+        },
     },
 };
 
@@ -122,12 +131,13 @@ export const DetailCellWithCustomStyles: StoryComponentType = () => (
 
 DetailCellWithCustomStyles.parameters = {
     docs: {
-        storyDescription:
-            "Accessories can also be customized to adapt to different sizes and alignments. In this example, we can see how a cell can be customized for both accessories.            ",
+        description: {
+            story: "Accessories can also be customized to adapt to different sizes and alignments. In this example, we can see how a cell can be customized for both accessories.",
+        },
     },
 };
 
-export const ClickableDetailCell: ComponentStory<any> = () => (
+export const ClickableDetailCell: StoryComponentType = () => (
     <DetailCell
         title="Title for article item"
         subtitle1="Subtitle for article item"
@@ -145,41 +155,55 @@ ClickableDetailCell.parameters = {
         // to capture screenshots.
         disableSnapshot: true,
     },
+    docs: {
+        description: {
+            story: "Cell components can also also be clickable. This is done by passing a `onClick` prop to the component.",
+        },
+    },
 };
 
-export const DetailCellNavigation: StoryComponentType = () => (
-    <MemoryRouter>
-        <View>
-            <DetailCell
-                title="Data"
-                subtitle2="Subtitle for article item"
-                leftAccessory={<Icon icon={icons.contentVideo} size="medium" />}
-                rightAccessory={<Icon icon={icons.caretRight} />}
-                href="/math/algebra"
-                aria-label="Press to navigate to the article"
-            />
-            <DetailCell
-                title="Geometry"
-                subtitle2="Subtitle for article item"
-                leftAccessory={<Icon icon={icons.contentVideo} size="medium" />}
-                rightAccessory={<Icon icon={icons.caretRight} />}
-                href="/math/geometry"
-                aria-label="Press to navigate to the article"
-                horizontalRule="none"
-            />
-        </View>
+export const DetailCellNavigation: StoryComponentType = {
+    name: "Client-side navigation with DetailCell",
+    render: () => (
+        <MemoryRouter>
+            <View>
+                <DetailCell
+                    title="Data"
+                    subtitle2="Subtitle for article item"
+                    leftAccessory={
+                        <Icon icon={icons.contentVideo} size="medium" />
+                    }
+                    rightAccessory={<Icon icon={icons.caretRight} />}
+                    href="/math/algebra"
+                    aria-label="Press to navigate to the article"
+                />
+                <DetailCell
+                    title="Geometry"
+                    subtitle2="Subtitle for article item"
+                    leftAccessory={
+                        <Icon icon={icons.contentVideo} size="medium" />
+                    }
+                    rightAccessory={<Icon icon={icons.caretRight} />}
+                    href="/math/geometry"
+                    aria-label="Press to navigate to the article"
+                    horizontalRule="none"
+                />
+            </View>
 
-        <View style={styles.navigation}>
-            <Switch>
-                <Route path="/math/algebra">Navigates to /math/algebra</Route>
-                <Route path="/math/geometry">Navigates to /math/geometry</Route>
-                <Route path="*">See navigation changes here</Route>
-            </Switch>
-        </View>
-    </MemoryRouter>
-);
-
-DetailCellNavigation.storyName = "Client-side navigation with DetailCell";
+            <View style={styles.navigation}>
+                <Switch>
+                    <Route path="/math/algebra">
+                        Navigates to /math/algebra
+                    </Route>
+                    <Route path="/math/geometry">
+                        Navigates to /math/geometry
+                    </Route>
+                    <Route path="*">See navigation changes here</Route>
+                </Switch>
+            </View>
+        </MemoryRouter>
+    ),
+};
 
 DetailCellNavigation.parameters = {
     chromatic: {
@@ -188,8 +212,9 @@ DetailCellNavigation.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription:
-            "Cells accept an `href` prop to be able to navigate to a different URL. Note that this will use client-side navigation if the Cell component is within a React-Router environment.",
+        description: {
+            story: "Cells accept an `href` prop to be able to navigate to a different URL. Note that this will use client-side navigation if the Cell component is within a React-Router environment.",
+        },
     },
 };
 

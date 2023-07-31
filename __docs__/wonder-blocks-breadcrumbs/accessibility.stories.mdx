@@ -1,10 +1,11 @@
-import {Meta, Story, Canvas} from "@storybook/addon-docs";
+import {Meta, Story, Canvas} from "@storybook/blocks";
 import {StyleSheet} from "aphrodite";
 
 import {
     Breadcrumbs,
     BreadcrumbsItem,
 } from "@khanacademy/wonder-blocks-breadcrumbs";
+import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 
 <Meta
@@ -41,9 +42,7 @@ This is an example of a component with an accessible label:
                 <BreadcrumbsItem>
                     <Link href="">Unit</Link>
                 </BreadcrumbsItem>
-                <BreadcrumbsItem>
-                    Lesson
-                </BreadcrumbsItem>
+                <BreadcrumbsItem>Lesson</BreadcrumbsItem>
             </Breadcrumbs>
         </View>
     </Story>
