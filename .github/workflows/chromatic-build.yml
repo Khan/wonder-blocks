@@ -42,7 +42,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
 
     - name: Build Storybook
-      run: yarn build:storybook
+      run: yarn build && yarn build:storybook
 
     # (if) Run this step on non-dependabot PRs.
     - name: Publish to Chromatic for visual testing (review PRs only)
