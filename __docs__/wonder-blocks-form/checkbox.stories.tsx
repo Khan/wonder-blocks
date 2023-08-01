@@ -61,10 +61,12 @@ Controlled.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        description: `Use state to keep track of whether the checkbox
+        description: {
+            story: `Use state to keep track of whether the checkbox
             is checked or not. This is in the indeterminate (null)
             state by default. Clicking it will uncheck it, and clicking it
             again will check it.`,
+        },
     },
 };
 
@@ -169,10 +171,12 @@ export const IndeterminateWithGroup: StoryComponentType = () => {
 
 IndeterminateWithGroup.parameters = {
     docs: {
-        description: `Here is an example of how you can use the
+        description: {
+            story: `Here is an example of how you can use the
             indeterminate checkbox to select all or deselect all options
             in a checkbox group. If only some of the options are selected,
             the indeterminate checkbox will be in the indeterminate state.`,
+        },
     },
 };
 
