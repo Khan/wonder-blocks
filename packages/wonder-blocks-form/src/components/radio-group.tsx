@@ -110,10 +110,6 @@ const RadioGroup = React.forwardRef(
             testId,
         } = props;
 
-        const handleChange = (changedValue: string) => {
-            onChange(changedValue);
-        };
-
         const allChildren = React.Children.toArray(children).filter(Boolean);
 
         return (
@@ -154,7 +150,7 @@ const RadioGroup = React.forwardRef(
                             groupName: groupName,
                             id: `${groupName}-${value}`,
                             key: value,
-                            onChange: () => handleChange(value),
+                            onChange: () => onChange(value),
                             style: [index > 0 && styles.defaultLineGap, style],
                             variant: "radio",
                         });
