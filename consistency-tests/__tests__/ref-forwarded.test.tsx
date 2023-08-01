@@ -6,13 +6,16 @@ import * as ReactDOM from "react-dom";
 import Breadcrumbs from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs";
 import BreadcrumbsItem from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item";
 import Button from "../../packages/wonder-blocks-button/src/components/button";
-import Checkbox from "../../packages/wonder-blocks-form/src/components/checkbox";
-import CheckboxGroup from "../../packages/wonder-blocks-form/src/components/checkbox-group";
-import Choice from "../../packages/wonder-blocks-form/src/components/choice";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "../../packages/wonder-blocks-link/src/components/link";
 import Text from "../../packages/wonder-blocks-core/src/components/text";
 import View from "../../packages/wonder-blocks-core/src/components/view";
+
+// Form imports
+import Checkbox from "../../packages/wonder-blocks-form/src/components/checkbox";
+import CheckboxGroup from "../../packages/wonder-blocks-form/src/components/checkbox-group";
+import Choice from "../../packages/wonder-blocks-form/src/components/choice";
+import Radio from "../../packages/wonder-blocks-form/src/components/radio";
 
 // Typography imports
 import Body from "../../packages/wonder-blocks-typography/src/components/body";
@@ -292,12 +295,17 @@ describe("IconButton", () => {
 });
 
 describe("Form elements", () => {
-    test("Checkbox forwards ref to an HTMLInputElement", () => {
+    test.each`
+        Component   | name
+        ${Checkbox} | ${"Checkbox"}
+        ${Radio}    | ${"Radio (internal)"}
+        ${Choice}   | ${"Choice"}
+    `("$name forwards ref to an HTMLInputElement", ({Component}: any) => {
         // Arrange
         const ref: React.RefObject<HTMLInputElement> = React.createRef();
 
         // Act
-        render(<Checkbox ref={ref} checked={false} onChange={() => {}} />);
+        render(<Component ref={ref} checked={false} onChange={() => {}} />);
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLInputElement);

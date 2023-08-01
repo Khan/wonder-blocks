@@ -12,11 +12,11 @@ type ChoiceComponentProps = AriaProps & {
     /**
      * Whether this component is disabled
      */
-    disabled: boolean;
+    disabled?: boolean;
     /**
      * Whether this component should show an error state
      */
-    error: boolean;
+    error?: boolean;
     /**
      * Callback when this component is selected. The newCheckedState is the
      * new checked state of the component.
@@ -56,24 +56,29 @@ type ChoiceComponentProps = AriaProps & {
     groupName?: string;
 };
 
-type DefaultProps = {
-    disabled: ChoiceComponentProps["disabled"];
-    error: ChoiceComponentProps["error"];
-};
-
 /**
  * 🔘 A nicely styled radio button for all your non-AMFM radio button needs. Can
  * optionally take label and description props.
  *
  * This component should not really be used by itself because radio buttons are
  * often grouped together. See RadioGroup.
- */ export default class Radio extends React.Component<ChoiceComponentProps> {
-    static defaultProps: DefaultProps = {
-        disabled: false,
-        error: false,
-    };
+ */ const Radio = React.forwardRef(
+    (
+        props: ChoiceComponentProps,
+        ref: React.ForwardedRef<HTMLInputElement>,
+    ) => {
+        const {disabled = false, error = false, ...otherProps} = props;
 
-    render(): React.ReactNode {
-        return <ChoiceInternal variant="radio" {...this.props} />;
-    }
-}
+        return (
+            <ChoiceInternal
+                {...otherProps}
+                variant="radio"
+                disabled={disabled}
+                error={error}
+                ref={ref}
+            />
+        );
+    },
+);
+
+export default Radio;

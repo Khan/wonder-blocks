@@ -46,7 +46,7 @@ export type ChoiceComponentProps = ChoiceCoreProps & {
 
 export type SharedGroupProps = {
     /** Children should be Choice components. */
-    children: Choice;
+    children: typeof Choice;
     /** Group name for this checkbox or radio group. Should be unique for all
      * such groups displayed on a page. */
     groupName: string;
