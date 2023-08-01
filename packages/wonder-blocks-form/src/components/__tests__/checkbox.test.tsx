@@ -114,7 +114,7 @@ describe("Checkbox", () => {
         ${false}           | ${true}
         ${false}           | ${false}
     `(
-        "sets the indeterminate property to $indeterminateValue when checked is $checkedValue (without ref)",
+        "sets the indeterminate property to $indeterminateValue when checked is $checkedValue (innerRef)",
         ({indeterminateValue, checkedValue}) => {
             // Arrange
             render(
