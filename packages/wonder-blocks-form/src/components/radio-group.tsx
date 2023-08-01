@@ -96,27 +96,32 @@ const StyledLegend = addStyle("legend");
  * </RadioGroup>
  * ```
  */
-export default class RadioGroup extends React.Component<RadioGroupProps> {
-    handleChange(changedValue: string) {
-        this.props.onChange(changedValue);
-    }
-
-    render(): React.ReactNode {
+const RadioGroup = React.forwardRef(
+    (props: RadioGroupProps, ref: React.ForwardedRef<HTMLFieldSetElement>) => {
         const {
             children,
             label,
             description,
             errorMessage,
             groupName,
+            onChange,
             selectedValue,
             style,
             testId,
-        } = this.props;
+        } = props;
+
+        const handleChange = (changedValue: string) => {
+            onChange(changedValue);
+        };
 
         const allChildren = React.Children.toArray(children).filter(Boolean);
 
         return (
-            <StyledFieldset data-test-id={testId} style={styles.fieldset}>
+            <StyledFieldset
+                data-test-id={testId}
+                style={styles.fieldset}
+                ref={ref}
+            >
                 {/* We have a View here because fieldset cannot be used with flexbox*/}
                 <View style={style}>
                     {label && (
@@ -149,7 +154,7 @@ export default class RadioGroup extends React.Component<RadioGroupProps> {
                             groupName: groupName,
                             id: `${groupName}-${value}`,
                             key: value,
-                            onChange: () => this.handleChange(value),
+                            onChange: () => handleChange(value),
                             style: [index > 0 && styles.defaultLineGap, style],
                             variant: "radio",
                         });
@@ -157,5 +162,7 @@ export default class RadioGroup extends React.Component<RadioGroupProps> {
                 </View>
             </StyledFieldset>
         );
-    }
-}
+    },
+);
+
+export default RadioGroup;
