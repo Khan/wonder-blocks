@@ -1,4 +1,3 @@
-//@flow
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
 
@@ -81,4 +80,59 @@ describe("Checkbox", () => {
         // Assert
         expect(onChangeSpy).toHaveBeenCalled();
     });
+
+    test.each`
+        indeterminateValue | checkedValue
+        ${true}            | ${null}
+        ${false}           | ${true}
+        ${false}           | ${false}
+    `(
+        "sets the indeterminate property to $indeterminateValue when checked is $checkedValue (with ref)",
+        ({indeterminateValue, checkedValue}) => {
+            // Arrange
+            const ref = React.createRef<HTMLInputElement>();
+
+            // Act
+            render(
+                <Checkbox
+                    label="Some label"
+                    description="Some description"
+                    checked={checkedValue}
+                    onChange={() => {}}
+                    ref={ref}
+                />,
+            );
+
+            // Assert
+            expect(ref?.current?.indeterminate).toBe(indeterminateValue);
+        },
+    );
+
+    test.each`
+        indeterminateValue | checkedValue
+        ${true}            | ${null}
+        ${false}           | ${true}
+        ${false}           | ${false}
+    `(
+        "sets the indeterminate property to $indeterminateValue when checked is $checkedValue (innerRef)",
+        ({indeterminateValue, checkedValue}) => {
+            // Arrange
+            render(
+                <Checkbox
+                    label="Some label"
+                    description="Some description"
+                    checked={checkedValue}
+                    onChange={() => {}}
+                />,
+            );
+
+            // Act
+            const inputElement = screen.getByRole(
+                "checkbox",
+            ) as HTMLInputElement;
+
+            // Assert
+            expect(inputElement.indeterminate).toBe(indeterminateValue);
+        },
+    );
 });

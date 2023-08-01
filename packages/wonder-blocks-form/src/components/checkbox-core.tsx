@@ -41,11 +41,6 @@ const indeterminatePath: IconAsset = {
  */
 const CheckboxCore = React.forwardRef(
     (props: ChoiceCoreProps, ref: React.ForwardedRef<HTMLInputElement>) => {
-        const handleChange: () => void = () => {
-            // Empty because change is handled by ClickableBehavior
-            return;
-        };
-
         const {
             checked,
             disabled,
@@ -55,6 +50,20 @@ const CheckboxCore = React.forwardRef(
             testId,
             ...sharedProps
         } = props;
+
+        const innerRef = React.useRef<HTMLInputElement>(null);
+
+        React.useEffect(() => {
+            // Keep the indeterminate state in sync with the checked prop
+            if (innerRef.current != null) {
+                innerRef.current.indeterminate = checked == null;
+            }
+        }, [checked, innerRef]);
+
+        const handleChange: () => void = () => {
+            // Empty because change is handled by ClickableBehavior
+            return;
+        };
 
         const stateStyles = _generateStyles(checked, error);
 
@@ -80,7 +89,15 @@ const CheckboxCore = React.forwardRef(
             <React.Fragment>
                 <StyledInput
                     {...sharedProps}
-                    ref={ref}
+                    ref={(node) => {
+                        // @ts-expect-error: current is not actually read-only
+                        innerRef.current = node;
+                        if (typeof ref === "function") {
+                            ref(node);
+                        } else if (ref != null) {
+                            ref.current = node;
+                        }
+                    }}
                     type="checkbox"
                     aria-checked={ariaChecked}
                     aria-invalid={error}
