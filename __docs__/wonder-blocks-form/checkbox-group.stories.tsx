@@ -31,22 +31,22 @@ export const Default: StoryComponentType = {
     render: (args) => {
         return (
             <CheckboxGroup {...args}>
-                <Choice label="Pepperoni" value="pepperoni" />
+                <Choice label="Pepperoni" value="pepperoni-1" />
                 <Choice
                     label="Sausage"
-                    value="sausage"
+                    value="sausage-1"
                     description="Imported from Italy"
                 />
-                <Choice label="Extra cheese" value="cheese" />
-                <Choice label="Green pepper" value="pepper" />
-                <Choice label="Mushroom" value="mushroom" />
+                <Choice label="Extra cheese" value="cheese-1" />
+                <Choice label="Green pepper" value="pepper-1" />
+                <Choice label="Mushroom" value="mushroom-1" />
             </CheckboxGroup>
         );
     },
     args: {
         // Required
         groupName: "toppings",
-        selectedValues: ["pepperoni", "sausage"],
+        selectedValues: ["pepperoni-1", "sausage-1"],
         onChange: () => {},
         // Optional
         label: "Pizza toppings",
@@ -65,15 +65,15 @@ export const Basic: StoryComponentType = () => {
             onChange={setSelectedValues}
             selectedValues={selectedValues}
         >
-            <Choice label="Pepperoni" value="pepperoni" />
+            <Choice label="Pepperoni" value="pepperoni-2" />
             <Choice
                 label="Sausage"
-                value="sausage"
+                value="sausage-2"
                 description="Imported from Italy"
             />
-            <Choice label="Extra cheese" value="cheese" />
-            <Choice label="Green pepper" value="pepper" />
-            <Choice label="Mushroom" value="mushroom" />
+            <Choice label="Extra cheese" value="cheese-2" />
+            <Choice label="Green pepper" value="pepper-2" />
+            <Choice label="Mushroom" value="mushroom-2" />
         </CheckboxGroup>
     );
 };
@@ -92,10 +92,10 @@ Basic.parameters = {
 export const Error: StoryComponentType = () => {
     const toppingsError = "You have selected too many toppings";
     const [selectedValues, setSelectedValues] = React.useState([
-        "pepperoni",
-        "sausage",
-        "cheese",
-        "pepper",
+        "pepperoni-3",
+        "sausage-3",
+        "cheese-3",
+        "pepper-3",
     ]);
     const [error, setError] = React.useState(toppingsError);
 
@@ -126,15 +126,15 @@ export const Error: StoryComponentType = () => {
             errorMessage={error}
             selectedValues={selectedValues}
         >
-            <Choice label="Pepperoni" value="pepperoni" />
+            <Choice label="Pepperoni" value="pepperoni-3" />
             <Choice
                 label="Sausage"
-                value="sausage"
+                value="sausage-3"
                 description="Imported from Italy"
             />
-            <Choice label="Extra cheese" value="cheese" />
-            <Choice label="Green pepper" value="pepper" />
-            <Choice label="Mushroom" value="mushroom" />
+            <Choice label="Extra cheese" value="cheese-3" />
+            <Choice label="Green pepper" value="pepper-3" />
+            <Choice label="Mushroom" value="mushroom-3" />
         </CheckboxGroup>
     );
 };
@@ -223,13 +223,29 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
             onChange={setSelectedValues}
             selectedValues={selectedValues}
         >
-            <Choice label="1" value="1" style={styles.multipleChoice} />
-            <Choice label="2" value="2" style={styles.multipleChoice} />
-            <Choice label="3" value="3" style={styles.multipleChoice} />
-            <Choice label="4" value="4" style={styles.multipleChoice} />
+            <Choice
+                label="1"
+                value="1-mc-styling"
+                style={styles.multipleChoice}
+            />
+            <Choice
+                label="2"
+                value="2-mc-styling"
+                style={styles.multipleChoice}
+            />
+            <Choice
+                label="3"
+                value="3-mc-styling"
+                style={styles.multipleChoice}
+            />
+            <Choice
+                label="4"
+                value="4-mc-styling"
+                style={styles.multipleChoice}
+            />
             <Choice
                 label="5"
-                value="5"
+                value="5-mc-styling"
                 style={[styles.multipleChoice, styles.last]}
             />
         </CheckboxGroup>
@@ -251,24 +267,27 @@ MultipleChoiceStyling.parameters = {
 };
 
 export const FiltersOutFalsyChildren: StoryComponentType = () => {
+    const [selectedValues, setSelectedValues] = React.useState<Array<string>>([
+        "pepperoni-4",
+        "sausage-4",
+    ]);
     return (
         <CheckboxGroup
-            groupName="pokemon"
-            selectedValues={["pepperoni", "sausage"]}
-            onChange={() => {}}
-            label="Pokemon"
-            description="Your first Pokemon."
+            groupName="pizza"
+            onChange={setSelectedValues}
+            selectedValues={selectedValues}
+            label="Pizza toppings"
         >
-            <Choice label="Pepperoni" value="pepperoni" />
+            <Choice label="Pepperoni" value="pepperoni-4" />
             <Choice
                 label="Sausage"
-                value="sausage"
+                value="sausage-4"
                 description="Imported from Italy"
             />
-            <Choice label="Extra cheese" value="cheese" />
-            <Choice label="Green pepper" value="pepper" />
+            <Choice label="Extra cheese" value="cheese-4" />
+            <Choice label="Green pepper" value="pepper-4" />
             {/* eslint-disable-next-line no-constant-condition */}
-            {false ? <Choice label="Mushroom" value="mushroom" /> : null}
+            {false ? <Choice label="Mushroom" value="mushroom-4" /> : null}
         </CheckboxGroup>
     );
 };
@@ -279,7 +298,7 @@ FiltersOutFalsyChildren.parameters = {
             story: `This example shows that children can be falsy values and
         that those falsy values are filtered out when rendering children.  In this
         case, one of the children is \`{false && <Choice .../>}\` which results in
-        that choice being filtered out.`,
+        that choice (Mushroom) being filtered out.`,
         },
     },
     chromatic: {

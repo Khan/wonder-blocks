@@ -28,22 +28,22 @@ export const Default: StoryComponentType = {
     render: (args) => {
         return (
             <RadioGroup {...args}>
-                <Choice label="Bulbasaur" value="bulbasaur" />
+                <Choice label="Bulbasaur" value="bulbasaur-1" />
                 <Choice
                     label="Charmander"
-                    value="charmander"
+                    value="charmander-1"
                     description="Oops, we ran out of Charmanders"
                     disabled
                 />
-                <Choice label="Squirtle" value="squirtle" />
-                <Choice label="Pikachu" value="pikachu" />
+                <Choice label="Squirtle" value="squirtle-1" />
+                <Choice label="Pikachu" value="pikachu-1" />
             </RadioGroup>
         );
     },
     args: {
         // Required
         groupName: "pokemon",
-        selectedValue: "bulbasaur",
+        selectedValue: "bulbasaur-1",
         onChange: () => {},
         // Optional
         label: "Pokemon",
@@ -62,15 +62,15 @@ export const Basic: StoryComponentType = () => {
             onChange={setSelectedValue}
             selectedValue={selectedValue}
         >
-            <Choice label="Bulbasaur" value="bulbasaur" />
+            <Choice label="Bulbasaur" value="bulbasaur-2" />
             <Choice
                 label="Charmander"
-                value="charmander"
+                value="charmander-2"
                 description="Oops, we ran out of Charmanders"
                 disabled
             />
-            <Choice label="Squirtle" value="squirtle" />
-            <Choice label="Pikachu" value="pikachu" />
+            <Choice label="Squirtle" value="squirtle-2" />
+            <Choice label="Pikachu" value="pikachu-2" />
         </RadioGroup>
     );
 };
@@ -118,10 +118,10 @@ export const Error: StoryComponentType = () => {
             selectedValue={selectedValue}
             errorMessage={error}
         >
-            <Choice label="Bulbasaur" value="bulbasaur" />
-            <Choice label="Charmander" value="charmander" />
-            <Choice label="Squirtle" value="squirtle" />
-            <Choice label="Pikachu" value="pikachu" />
+            <Choice label="Bulbasaur" value="bulbasaur-3" />
+            <Choice label="Charmander" value="charmander-3" />
+            <Choice label="Squirtle" value="squirtle-3" />
+            <Choice label="Pikachu" value="pikachu-3" />
         </RadioGroup>
     );
 };
@@ -179,24 +179,26 @@ MultipleChoiceStyling.parameters = {
 };
 
 export const FiltersOutFalsyChildren: StoryComponentType = () => {
+    const [selectedValue, setSelectedValue] = React.useState("bulbasaur-4");
+
     return (
         <RadioGroup
             groupName="pokemon"
-            selectedValue="bulbasaur"
-            onChange={() => {}}
+            onChange={setSelectedValue}
+            selectedValue={selectedValue}
             label="Pokemon"
             description="Your first Pokemon."
         >
-            <Choice label="Bulbasaur" value="bulbasaur" />
+            <Choice label="Bulbasaur" value="bulbasaur-4" />
             <Choice
                 label="Charmander"
-                value="charmander"
+                value="charmander-4"
                 description="Oops, we ran out of Charmanders"
                 disabled
             />
-            <Choice label="Squirtle" value="squirtle" />
+            <Choice label="Squirtle" value="squirtle-4" />
             {/* eslint-disable-next-line no-constant-condition */}
-            {false ? <Choice label="Pikachu" value="pikachu" /> : null}
+            {false ? <Choice label="Pikachu" value="pikachu-4" /> : null}
         </RadioGroup>
     );
 };
@@ -207,7 +209,7 @@ FiltersOutFalsyChildren.parameters = {
             story: `This example shows that children can be falsy values and
         that those falsy values are filtered out when rendering children.  In this
         case, one of the children is \`{false && <Choice .../>}\` which results in
-        that choice being filtered out.`,
+        that choice (Pikachu) being filtered out.`,
         },
     },
     chromatic: {
