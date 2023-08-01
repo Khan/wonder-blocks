@@ -1,4 +1,4 @@
-import {Meta} from "@storybook/addon-docs";
+import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Data / Types / ScopedCache"
@@ -66,10 +66,10 @@ Sets a value in the cache within a given scope.
 
 ### Throws
 
-| Error Type | Error Name | Reason |
-| ------ | ------ | ------ |
+| Error Type                                        | Error Name              | Reason                                     |
+| ------------------------------------------------- | ----------------------- | ------------------------------------------ |
 | [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `id` and `scope` must be non-empty strings |
-| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `value` must be a non-function value |
+| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `value` must be a non-function value       |
 
 ## get()
 
@@ -111,4 +111,3 @@ purgeAll(
 ```
 
 Purges all items from the cache. If a predicate is provided, only items for which the predicate returns `true` will be purged; otherwise, the entire cache will be purged.
-

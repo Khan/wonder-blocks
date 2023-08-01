@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 import Color from "@khanacademy/wonder-blocks-color";
 import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import Tooltip, {TooltipContent} from "@khanacademy/wonder-blocks-tooltip";
@@ -19,103 +19,111 @@ export default {
             disableSnapshot: true,
         },
     },
-} as ComponentMeta<typeof I18nInlineMarkup>;
+} as Meta<typeof I18nInlineMarkup>;
 
-type StoryComponentType = ComponentStory<typeof I18nInlineMarkup>;
+type StoryComponentType = StoryObj<typeof I18nInlineMarkup>;
 
-export const SingleShallowSubstitution: StoryComponentType = () => {
-    return (
-        <I18nInlineMarkup
-            u={(t: string) => (
-                <React.Fragment>
-                    [Underline:<u>{t}</u>]
-                </React.Fragment>
-            )}
-        >
-            {i18n._(
-                "-6\u00b0C, Sunny, Fells like: <u>-12</u>, Wind: VR 5 km/h",
-            )}
-        </I18nInlineMarkup>
-    );
+export const SingleShallowSubstitution: StoryComponentType = {
+    render: () => {
+        return (
+            <I18nInlineMarkup
+                u={(t: string) => (
+                    <React.Fragment>
+                        [Underline:<u>{t}</u>]
+                    </React.Fragment>
+                )}
+            >
+                {i18n._(
+                    "-6\u00b0C, Sunny, Fells like: <u>-12</u>, Wind: VR 5 km/h",
+                )}
+            </I18nInlineMarkup>
+        );
+    },
 };
 
-export const MultipleShallowSubstitution: StoryComponentType = () => {
-    return (
-        <I18nInlineMarkup
-            u={(t: string) => (
-                <React.Fragment>
-                    __<u>{t}</u>__
-                </React.Fragment>
-            )}
-            i={(t: string) => (
-                <span style={{background: "lightblue"}}>
-                    *<i style={{fontStyle: "italic"}}>{t}</i>*
-                </span>
-            )}
-        >
-            {i18n._(
-                "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
-            )}
-        </I18nInlineMarkup>
-    );
+export const MultipleShallowSubstitution: StoryComponentType = {
+    render: () => {
+        return (
+            <I18nInlineMarkup
+                u={(t: string) => (
+                    <React.Fragment>
+                        __<u>{t}</u>__
+                    </React.Fragment>
+                )}
+                i={(t: string) => (
+                    <span style={{background: "lightblue"}}>
+                        *<i style={{fontStyle: "italic"}}>{t}</i>*
+                    </span>
+                )}
+            >
+                {i18n._(
+                    "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
+                )}
+            </I18nInlineMarkup>
+        );
+    },
 };
 
-export const ElementWrapper: StoryComponentType = () => {
-    return (
-        <I18nInlineMarkup
-            elementWrapper={(elem) => (
-                <span style={{background: "yellow"}}>{elem}</span>
-            )}
-            u={(t: string) => (
-                <span style={{background: "red"}}>
-                    __<u>{t}</u>__
-                </span>
-            )}
-            i={(t: string) => (
-                <span style={{background: "lightblue"}}>
-                    *<i style={{fontStyle: "italic"}}>{t}</i>*
-                </span>
-            )}
-        >
-            {i18n._(
-                "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
-            )}
-        </I18nInlineMarkup>
-    );
+export const ElementWrapper: StoryComponentType = {
+    render: () => {
+        return (
+            <I18nInlineMarkup
+                elementWrapper={(elem) => (
+                    <span style={{background: "yellow"}}>{elem}</span>
+                )}
+                u={(t: string) => (
+                    <span style={{background: "red"}}>
+                        __<u>{t}</u>__
+                    </span>
+                )}
+                i={(t: string) => (
+                    <span style={{background: "lightblue"}}>
+                        *<i style={{fontStyle: "italic"}}>{t}</i>*
+                    </span>
+                )}
+            >
+                {i18n._(
+                    "-6\u00b0C, <u>Sunny</u>, Fells <i>like</i>: <u>-12</u>,  Wind: VR 5 km/h",
+                )}
+            </I18nInlineMarkup>
+        );
+    },
 };
 
-export const HandlingTranslationErrors: StoryComponentType = () => {
-    return (
-        <I18nInlineMarkup
-            settings={(label: string) => (
-                // @ts-expect-error(FEI-5000): No overload matches this call.
-                <LabelMedium href="/settings#child-accounts">
-                    {label}
-                </LabelMedium>
-            )}
-            onError={(error) => (
-                <Tooltip
-                    content={
-                        <TooltipContent>
-                            <LabelMedium style={{color: Color.red}}>
-                                {error.message}
-                            </LabelMedium>
-                        </TooltipContent>
-                    }
-                >
-                    <Icon
-                        size="small"
-                        icon={icons.incorrect}
-                        color={Color.red}
-                    />
-                </Tooltip>
-            )}
-        >
-            {i18n._(
-                "This HTML is broken \u003cinvalid\u003einvalid\u003e innner \u003c/invalid\u003e, but here is fine.",
-            )}
-        </I18nInlineMarkup>
-    );
+export const HandlingTranslationErrors: StoryComponentType = {
+    render: () => {
+        return (
+            <I18nInlineMarkup
+                settings={(label: string) => (
+                    // @ts-expect-error(FEI-5000): No overload matches this call.
+                    <LabelMedium href="/settings#child-accounts">
+                        {label}
+                    </LabelMedium>
+                )}
+                onError={(error) => (
+                    <Tooltip
+                        content={
+                            <TooltipContent>
+                                <LabelMedium style={{color: Color.red}}>
+                                    {error.message}
+                                </LabelMedium>
+                            </TooltipContent>
+                        }
+                    >
+                        <Icon
+                            size="small"
+                            icon={icons.incorrect}
+                            color={Color.red}
+                        />
+                    </Tooltip>
+                )}
+            >
+                {i18n._(
+                    "This HTML is broken \u003cinvalid\u003einvalid\u003e innner \u003c/invalid\u003e, but here is fine.",
+                )}
+            </I18nInlineMarkup>
+        );
+    },
 };
 
 HandlingTranslationErrors.parameters = {

@@ -1,4 +1,4 @@
-import {Meta, Story, Canvas} from "@storybook/addon-docs";
+import {Meta, Story, Canvas} from "@storybook/blocks";
 
 import {OptionItem, SingleSelect} from "@khanacademy/wonder-blocks-dropdown";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -34,8 +34,16 @@ export const SingleSelectAccessibility = () => (
             placeholder="Accessible SingleSelect"
             selectedValue="one"
         >
-            <OptionItem label="First element" aria-label="First element, selected" value="one" />
-            <OptionItem label="Second element" aria-label="Second element, unselelected" value="two" />
+            <OptionItem
+                label="First element"
+                aria-label="First element, selected"
+                value="one"
+            />
+            <OptionItem
+                label="Second element"
+                aria-label="Second element, unselelected"
+                value="two"
+            />
         </SingleSelect>
     </View>
 );

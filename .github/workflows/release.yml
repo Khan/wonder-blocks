@@ -41,6 +41,10 @@ jobs:
         with:
           node-version: 16.x
 
+      - name: Build all packages
+        # Build all WB packages that Storybook depends on.
+        run: yarn build
+
       - name: Build Storybook
         # Generate a static version of storybook inside "storybook-static/"
         run: yarn build:storybook

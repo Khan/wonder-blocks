@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {within, userEvent} from "@storybook/testing-library";
 import {expect} from "@storybook/jest";
@@ -16,11 +16,11 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import Tooltip from "@khanacademy/wonder-blocks-tooltip";
-import {name, version} from "../../packages/wonder-blocks-tooltip/package.json";
+import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 
-type StoryComponentType = ComponentStory<typeof Tooltip>;
+type StoryComponentType = StoryObj<typeof Tooltip>;
 
 export default {
     title: "Tooltip / Tooltip",
@@ -43,25 +43,31 @@ export default {
         placement: "top",
     },
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
     },
     decorators: [
         (Story): React.ReactElement => (
             <View style={styles.storyCanvas}>{Story()}</View>
         ),
     ],
-} as ComponentMeta<typeof Tooltip>;
+} as Meta<typeof Tooltip>;
 
-const Template = (args: any) => <Tooltip {...args} />;
+// NOTE: Casting the args to make the types work with union types.
+type TooltipArgs = Partial<typeof Tooltip>;
 
 /**
  * Default example (interactive).
  */
-export const Default: StoryComponentType = Template.bind({});
-
-Default.args = {
-    content: "This is a text tooltip on the top",
-    children: "some text",
+export const Default: StoryComponentType = {
+    args: {
+        content: "This is a text tooltip on the top",
+        children: "some text",
+    } as TooltipArgs,
 };
 
 Default.play = async ({canvasElement}) => {
@@ -83,25 +89,25 @@ Default.play = async ({canvasElement}) => {
 /**
  * Complex anchor & title tooltip
  */
-export const ComplexAnchorAndTitle: StoryComponentType = Template.bind({});
-
-ComplexAnchorAndTitle.args = {
-    forceAnchorFocusivity: false,
-    placement: "bottom",
-    id: "my-a11y-tooltip",
-    title: "This tooltip has a title",
-    content: "I'm at the bottom!",
-    children: (
-        <View>
-            Some text
-            <TextField
-                aria-describedby="my-a11y-tooltip"
-                id=""
-                onChange={() => {}}
-                value=""
-            />
-        </View>
-    ),
+export const ComplexAnchorAndTitle: StoryComponentType = {
+    args: {
+        forceAnchorFocusivity: false,
+        placement: "bottom",
+        id: "my-a11y-tooltip",
+        title: "This tooltip has a title",
+        content: "I'm at the bottom!",
+        children: (
+            <View>
+                Some text
+                <TextField
+                    aria-describedby="my-a11y-tooltip"
+                    id=""
+                    onChange={() => {}}
+                    value=""
+                />
+            </View>
+        ),
+    } as TooltipArgs,
 };
 
 ComplexAnchorAndTitle.play = async ({canvasElement}) => {
@@ -204,24 +210,25 @@ TooltipInModal.parameters = {
 /**
  * Tooltips side-by-side
  */
-export const SideBySide: StoryComponentType = () => (
-    <View style={styles.row}>
-        <Tooltip content="Tooltip A" placement="bottom">
-            <View style={styles.block}>A</View>
-        </Tooltip>
-        <Tooltip content="Tooltip B" placement="bottom">
-            <View style={styles.block}>B</View>
-        </Tooltip>
-        <Tooltip content="Tooltip C" placement="bottom">
-            <View style={styles.block}>C</View>
-        </Tooltip>
-        <Tooltip content="Tooltip D" placement="bottom">
-            <View style={styles.block}>D</View>
-        </Tooltip>
-    </View>
-);
-
-SideBySide.storyName = "Side-by-side";
+export const SideBySide: StoryComponentType = {
+    render: () => (
+        <View style={styles.row}>
+            <Tooltip content="Tooltip A" placement="bottom">
+                <View style={styles.block}>A</View>
+            </Tooltip>
+            <Tooltip content="Tooltip B" placement="bottom">
+                <View style={styles.block}>B</View>
+            </Tooltip>
+            <Tooltip content="Tooltip C" placement="bottom">
+                <View style={styles.block}>C</View>
+            </Tooltip>
+            <Tooltip content="Tooltip D" placement="bottom">
+                <View style={styles.block}>D</View>
+            </Tooltip>
+        </View>
+    ),
+    name: "Side-by-side",
+};
 
 SideBySide.parameters = {
     // Disable Chromatic because it only shows the trigger element.

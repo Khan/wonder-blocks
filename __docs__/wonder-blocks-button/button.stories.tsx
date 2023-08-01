@@ -1,9 +1,7 @@
 import * as React from "react";
 import {expect} from "@storybook/jest";
 import {StyleSheet} from "aphrodite";
-import {withDesign} from "storybook-addon-designs";
-import {action} from "@storybook/addon-actions";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {MemoryRouter, Route, Switch} from "react-router-dom";
 
@@ -17,7 +15,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelMedium} from "@khanacademy/wonder-blocks-typography";
 
 import Button from "@khanacademy/wonder-blocks-button";
-import {name, version} from "../../packages/wonder-blocks-button/package.json";
+import packageConfig from "../../packages/wonder-blocks-button/package.json";
 import ComponentInfo from "../../.storybook/components/component-info";
 
 import ButtonArgTypes from "./button.argtypes";
@@ -26,79 +24,82 @@ export default {
     title: "Button",
     component: Button,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
     },
-    decorators: [withDesign],
     argTypes: ButtonArgTypes,
     excludeStories: ["styles"],
-} as ComponentMeta<typeof Button>;
+} as Meta<typeof Button>;
 
-const Template = (args: any) => <Button {...args} />;
+type StoryComponentType = StoryObj<typeof Button>;
 
-type StoryComponentType = ComponentStory<typeof Button>;
-
-export const Default: StoryComponentType = Template.bind({});
-
-Default.args = {
-    children: "Hello, world!",
-    kind: "primary",
-    color: "default",
-    size: "medium",
-    light: false,
-    disabled: false,
-    style: {maxWidth: 200},
-    onClick: () => {
-        // eslint-disable-next-line no-alert
-        alert("Click!");
+export const Default: StoryComponentType = {
+    args: {
+        children: "Hello, world!",
+        kind: "primary",
+        color: "default",
+        size: "medium",
+        light: false,
+        disabled: false,
+        style: {maxWidth: 200},
+        onClick: () => {
+            // eslint-disable-next-line no-alert
+            alert("Click!");
+        },
+    },
+    parameters: {
+        design: {
+            type: "figma",
+            url: "https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/%F0%9F%92%A0-Main-Components?type=design&node-id=389-0&mode=design",
+        },
+        chromatic: {
+            // We already have screenshots of other stories that cover more of the button states
+            disableSnapshot: true,
+        },
     },
 };
 
-Default.parameters = {
-    design: {
-        type: "figma",
-        url: "https://www.figma.com/file/VbVu3h2BpBhH80niq101MHHE/Wonder-Blocks-(Web)?node-id=401%3A307",
+export const Tertiary: StoryComponentType = {
+    args: {
+        onClick: () => {},
+        kind: "tertiary",
+        testId: "test-button",
+        children: "Hello, world!",
     },
-    chromatic: {
-        // We already have screenshots of other stories that cover more of the button states
-        disableSnapshot: true,
+    play: async ({canvasElement}) => {
+        const canvas = within(canvasElement);
+
+        // Get HTML elements
+        const button = canvas.getByRole("button");
+        const computedStyleButton = getComputedStyle(button, ":after");
+        const innerLabel = canvas.getByTestId("test-button-inner-label");
+        const computedStyleLabel = getComputedStyle(innerLabel, ":after");
+
+        // Resting style
+        await expect(button).toHaveStyle(`color: ${Color.blue}`);
+        await expect(button).toHaveTextContent("Hello, world!");
+
+        // Hover style
+        await userEvent.hover(button);
+        await expect(computedStyleLabel.height).toBe("2px");
+        await expect(computedStyleLabel.color).toBe("rgb(24, 101, 242)");
+
+        // Focus style
+        await fireEvent.focus(button);
+        await expect(computedStyleButton.borderColor).toBe("rgb(24, 101, 242)");
+        await expect(computedStyleButton.borderWidth).toBe("2px");
+
+        // Active (mouse down) style
+        // eslint-disable-next-line testing-library/prefer-user-event
+        await fireEvent.mouseDown(button);
+        await expect(innerLabel).toHaveStyle("color: rgb(27, 80, 179)");
+        await expect(computedStyleLabel.height).toBe("1px");
+        await expect(computedStyleLabel.color).toBe("rgb(27, 80, 179)");
     },
-};
-
-export const Tertiary: StoryComponentType = () => (
-    <Button onClick={() => {}} kind="tertiary" testId="test-button">
-        Hello, world!
-    </Button>
-);
-
-Tertiary.play = async ({canvasElement}) => {
-    const canvas = within(canvasElement);
-
-    // Get HTML elements
-    const button = canvas.getByRole("button");
-    const computedStyleButton = getComputedStyle(button, ":after");
-    const innerLabel = canvas.getByTestId("test-button-inner-label");
-    const computedStyleLabel = getComputedStyle(innerLabel, ":after");
-
-    // Resting style
-    await expect(button).toHaveStyle(`color: ${Color.blue}`);
-    await expect(button).toHaveTextContent("Hello, world!");
-
-    // Hover style
-    await userEvent.hover(button);
-    await expect(computedStyleLabel.height).toBe("2px");
-    await expect(computedStyleLabel.color).toBe("rgb(24, 101, 242)");
-
-    // Focus style
-    await fireEvent.focus(button);
-    await expect(computedStyleButton.borderColor).toBe("rgb(24, 101, 242)");
-    await expect(computedStyleButton.borderWidth).toBe("2px");
-
-    // Active (mouse down) style
-    // eslint-disable-next-line testing-library/prefer-user-event
-    await fireEvent.mouseDown(button);
-    await expect(innerLabel).toHaveStyle("color: rgb(27, 80, 179)");
-    await expect(computedStyleLabel.height).toBe("1px");
-    await expect(computedStyleLabel.color).toBe("rgb(27, 80, 179)");
 };
 
 export const styles: StyleDeclaration = StyleSheet.create({
@@ -119,87 +120,96 @@ export const styles: StyleDeclaration = StyleSheet.create({
     },
 });
 
-export const Variants: StoryComponentType = () => (
-    <View>
-        <View style={{flexDirection: "row"}}>
-            <Button onClick={() => {}}>Hello, world!</Button>
+export const Variants: StoryComponentType = {
+    render: () => (
+        <View>
+            <View style={{flexDirection: "row"}}>
+                <Button onClick={() => {}}>Hello, world!</Button>
+                <Strut size={16} />
+                <Button onClick={() => {}} kind="secondary">
+                    Hello, world!
+                </Button>
+                <Strut size={16} />
+                <Button onClick={() => {}} kind="tertiary">
+                    Hello, world!
+                </Button>
+            </View>
             <Strut size={16} />
-            <Button onClick={() => {}} kind="secondary">
-                Hello, world!
-            </Button>
+            <View style={{flexDirection: "row"}}>
+                <Button onClick={() => {}} disabled={true}>
+                    Hello, world!
+                </Button>
+                <Strut size={16} />
+                <Button onClick={() => {}} disabled={true} kind="secondary">
+                    Hello, world!
+                </Button>
+                <Strut size={16} />
+                <Button onClick={() => {}} disabled={true} kind="tertiary">
+                    Hello, world!
+                </Button>
+            </View>
             <Strut size={16} />
-            <Button onClick={() => {}} kind="tertiary">
-                Hello, world!
-            </Button>
+            <View style={{flexDirection: "row"}}>
+                <Button onClick={() => {}} color="destructive">
+                    Hello, world!
+                </Button>
+                <Strut size={16} />
+                <Button onClick={() => {}} kind="secondary" color="destructive">
+                    Hello, world!
+                </Button>
+                <Strut size={16} />
+                <Button onClick={() => {}} kind="tertiary" color="destructive">
+                    Hello, world!
+                </Button>
+            </View>
         </View>
-        <Strut size={16} />
-        <View style={{flexDirection: "row"}}>
-            <Button onClick={() => {}} disabled={true}>
-                Hello, world!
-            </Button>
-            <Strut size={16} />
-            <Button onClick={() => {}} disabled={true} kind="secondary">
-                Hello, world!
-            </Button>
-            <Strut size={16} />
-            <Button onClick={() => {}} disabled={true} kind="tertiary">
-                Hello, world!
-            </Button>
-        </View>
-        <Strut size={16} />
-        <View style={{flexDirection: "row"}}>
-            <Button onClick={() => {}} color="destructive">
-                Hello, world!
-            </Button>
-            <Strut size={16} />
-            <Button onClick={() => {}} kind="secondary" color="destructive">
-                Hello, world!
-            </Button>
-            <Strut size={16} />
-            <Button onClick={() => {}} kind="tertiary" color="destructive">
-                Hello, world!
-            </Button>
-        </View>
-    </View>
-);
+    ),
+};
 
 Variants.parameters = {
     docs: {
-        storyDescription:
-            "There are three kinds of buttons: `primary` (default), `secondary`, and `tertiary`.",
+        description: {
+            story: "There are three kinds of buttons: `primary` (default), `secondary`, and `tertiary`.",
+        },
     },
 };
 
-export const WithColor: StoryComponentType = () => (
-    <View style={styles.row}>
-        <Button style={styles.button} onClick={() => {}} color="destructive">
-            Primary
-        </Button>
-        <Button
-            style={styles.button}
-            onClick={() => {}}
-            kind="secondary"
-            color="destructive"
-        >
-            Secondary
-        </Button>
-        <Button
-            style={styles.button}
-            onClick={() => {}}
-            kind="tertiary"
-            color="destructive"
-        >
-            Tertiary
-        </Button>
-    </View>
-);
-
-WithColor.storyName = "Color";
+export const WithColor: StoryComponentType = {
+    name: "Color",
+    render: () => (
+        <View style={styles.row}>
+            <Button
+                style={styles.button}
+                onClick={() => {}}
+                color="destructive"
+            >
+                Primary
+            </Button>
+            <Button
+                style={styles.button}
+                onClick={() => {}}
+                kind="secondary"
+                color="destructive"
+            >
+                Secondary
+            </Button>
+            <Button
+                style={styles.button}
+                onClick={() => {}}
+                kind="tertiary"
+                color="destructive"
+            >
+                Tertiary
+            </Button>
+        </View>
+    ),
+};
 
 WithColor.parameters = {
     docs: {
-        storyDescription:
-            "Buttons have a `color` that is either `default` (the default, as shown above) or `destructive` (as can seen below):",
+        description: {
+            story: "Buttons have a `color` that is either `default` (the default, as shown above) or `destructive` (as can seen below):",
+        },
     },
 };
 
@@ -274,8 +284,9 @@ Dark.parameters = {
         default: "darkBlue",
     },
     docs: {
-        storyDescription:
-            "Buttons on a `darkBlue` background should set `light` to `true`.",
+        description: {
+            story: "Buttons on a `darkBlue` background should set `light` to `true`.",
+        },
     },
 };
 
@@ -313,7 +324,7 @@ export const Icon: StoryComponentType = () => (
 
 Icon.parameters = {
     docs: {
-        storyDescription: "Buttons can have an icon on it's left side.",
+        description: {story: "Buttons can have an icon on it's left side."},
     },
 };
 
@@ -397,8 +408,9 @@ export const Size: StoryComponentType = () => (
 
 Size.parameters = {
     docs: {
-        storyDescription:
-            "Buttons have a size that's either `medium` (default), `small`, or `large`.",
+        description: {
+            story: "Buttons have a size that's either `medium` (default), `small`, or `large`.",
+        },
     },
 };
 
@@ -430,50 +442,57 @@ export const Spinner: StoryComponentType = () => (
 
 Spinner.parameters = {
     docs: {
-        storyDescription:
-            "Buttons can show a spinner. This is useful when indicating to a user that their input has been recognized but that the operation will take some time. While the spinner property is set to true the button is disabled.",
+        description: {
+            story: "Buttons can show a spinner. This is useful when indicating to a user that their input has been recognized but that the operation will take some time. While the spinner property is set to true the button is disabled.",
+        },
     },
 };
 
-export const TruncatingLabels: StoryComponentType = () => (
-    <View style={{flexDirection: "row"}}>
-        <Button onClick={() => {}} style={{maxWidth: 200}}>
-            label too long for the parent container
-        </Button>
-        <Strut size={16} />
-        <Button onClick={() => {}} style={{maxWidth: 200}} icon={icons.add}>
-            label too long for the parent container
-        </Button>
-    </View>
-);
+export const TruncatingLabels: StoryComponentType = {
+    name: "Truncating labels",
+    render: () => (
+        <View style={{flexDirection: "row"}}>
+            <Button onClick={() => {}} style={{maxWidth: 200}}>
+                label too long for the parent container
+            </Button>
+            <Strut size={16} />
+            <Button onClick={() => {}} style={{maxWidth: 200}} icon={icons.add}>
+                label too long for the parent container
+            </Button>
+        </View>
+    ),
+};
 
 TruncatingLabels.parameters = {
     docs: {
-        storyDescription:
-            "If the label is too long for the button width, the text will be truncated.",
+        description: {
+            story: "If the label is too long for the button width, the text will be truncated.",
+        },
     },
 };
 
-TruncatingLabels.storyName = "Truncating labels";
-
-export const SubmittingForms: StoryComponentType = () => (
-    <form
-        onSubmit={(e) => {
-            e.preventDefault();
-            window.alert("form submitted"); // eslint-disable-line no-alert
-        }}
-    >
-        <View>
-            Foo: <input id="foo" value="bar" />
-            <Button type="submit">Submit</Button>
-        </View>
-    </form>
-);
+export const SubmittingForms: StoryComponentType = {
+    name: "Submitting forms",
+    render: () => (
+        <form
+            onSubmit={(e) => {
+                e.preventDefault();
+                window.alert("form submitted"); // eslint-disable-line no-alert
+            }}
+        >
+            <View>
+                Foo: <input id="foo" value="bar" />
+                <Button type="submit">Submit</Button>
+            </View>
+        </form>
+    ),
+};
 
 SubmittingForms.parameters = {
     docs: {
-        storyDescription:
-            'If the button is inside a form, you can use the `type="submit"` variant, so the form will be submitted on click.',
+        description: {
+            story: 'If the button is inside a form, you can use the `type="submit"` variant, so the form will be submitted on click.',
+        },
     },
     options: {
         showAddonPanel: true,
@@ -485,66 +504,67 @@ SubmittingForms.parameters = {
     },
 };
 
-SubmittingForms.storyName = "Submitting forms";
-
-export const PreventNavigation: StoryComponentType = () => (
-    <MemoryRouter>
-        <View style={styles.row}>
-            <Button
-                href="/foo"
-                style={styles.button}
-                onClick={(e) => {
-                    action("clicked")(e);
-                    e.preventDefault();
-                }}
-            >
-                This button prevents navigation.
-            </Button>
-            <Switch>
-                <Route path="/foo">
-                    <View id="foo">Hello, world!</View>
-                </Route>
-            </Switch>
-        </View>
-    </MemoryRouter>
-);
-
-PreventNavigation.storyName = "Preventing navigation";
+export const PreventNavigation: StoryComponentType = {
+    name: "Preventing navigation",
+    render: () => (
+        <MemoryRouter>
+            <View style={styles.row}>
+                <Button
+                    href="/foo"
+                    style={styles.button}
+                    onClick={(e) => {
+                        e.preventDefault();
+                    }}
+                >
+                    This button prevents navigation.
+                </Button>
+                <Switch>
+                    <Route path="/foo">
+                        <View id="foo">Hello, world!</View>
+                    </Route>
+                </Switch>
+            </View>
+        </MemoryRouter>
+    ),
+};
 
 PreventNavigation.parameters = {
     docs: {
-        storyDescription:
-            "Sometimes you may need to perform an async action either before or during navigation. This can be accomplished with `beforeNav` and `safeWithNav` respectively.",
+        description: {
+            story: "Sometimes you may need to perform an async action either before or during navigation. This can be accomplished with `beforeNav` and `safeWithNav` respectively.",
+        },
     },
     chromatic: {
         disableSnapshot: true,
     },
 };
 
-export const WithRouter: StoryComponentType = () => (
-    <MemoryRouter>
-        <View style={styles.row}>
-            <Button href="/foo" style={styles.button}>
-                Uses Client-side Nav
-            </Button>
-            <Button href="/foo" style={styles.button} skipClientNav>
-                Avoids Client-side Nav
-            </Button>
-            <Switch>
-                <Route path="/foo">
-                    <View id="foo">Hello, world!</View>
-                </Route>
-            </Switch>
-        </View>
-    </MemoryRouter>
-);
-
-WithRouter.storyName = "Navigation with React Router";
+export const WithRouter: StoryComponentType = {
+    name: "Navigation with React Router",
+    render: () => (
+        <MemoryRouter>
+            <View style={styles.row}>
+                <Button href="/foo" style={styles.button}>
+                    Uses Client-side Nav
+                </Button>
+                <Button href="/foo" style={styles.button} skipClientNav>
+                    Avoids Client-side Nav
+                </Button>
+                <Switch>
+                    <Route path="/foo">
+                        <View id="foo">Hello, world!</View>
+                    </Route>
+                </Switch>
+            </View>
+        </MemoryRouter>
+    ),
+};
 
 WithRouter.parameters = {
     docs: {
-        storyDescription:
-            "Buttons do client-side navigation by default, if React Router exists:",
+        description: {
+            story: "Buttons do client-side navigation by default, if React Router exists:",
+        },
     },
     chromatic: {
         disableSnapshot: true,

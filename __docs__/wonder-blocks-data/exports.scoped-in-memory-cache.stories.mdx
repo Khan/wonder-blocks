@@ -1,4 +1,4 @@
-import {Meta} from "@storybook/addon-docs";
+import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Data / Exports / ScopedInMemoryCache"
@@ -24,9 +24,9 @@ Creates a new instance. An initial state for the cache can be provided.
 ## inUse
 
 ```ts
-    if (cache.inUse) {
-        // Cache is in use
-    }
+if (cache.inUse) {
+    // Cache is in use
+}
 ```
 
 Is `true` if the cache contains any data; otherwise, `false`.
@@ -45,10 +45,10 @@ Sets a value in the cache within a given scope.
 
 ### Throws
 
-| Error Type | Error Name | Reason |
-| ------ | ------ | ------ |
+| Error Type                                        | Error Name              | Reason                                     |
+| ------------------------------------------------- | ----------------------- | ------------------------------------------ |
 | [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `id` and `scope` must be non-empty strings |
-| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `value` must be a non-function value |
+| [`DataError`](/docs/data-exports-dataerror--page) | `InvalidInputDataError` | `value` must be a non-function value       |
 
 ## get()
 

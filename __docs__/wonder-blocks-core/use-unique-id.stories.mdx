@@ -1,4 +1,4 @@
-import {Meta, Story, Canvas} from "@storybook/addon-docs";
+import {Meta, Story, Canvas} from "@storybook/blocks";
 
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 import {
@@ -50,7 +50,7 @@ export const WithoutMockExample = () => {
             <br />
             renders:
             {renders.current.map((value, index) => (
-                <View>
+                <View key={index}>
                     Render {index}: {value}
                 </View>
             ))}
@@ -99,7 +99,7 @@ export const WithMockExample = () => {
             <br />
             renders:
             {renders.current.map((value, index) => (
-                <View>
+                <View key={index}>
                     Render {index}: {value}
                 </View>
             ))}
@@ -156,5 +156,5 @@ export const ScopedExample = () => {
         <RenderStateRoot>
             <ScopedExample />
         </RenderStateRoot>
-    </Story>{" "}
+    </Story>
 </Canvas>

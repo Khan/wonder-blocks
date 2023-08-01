@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet, css} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -9,17 +9,17 @@ import {Body, LabelLarge} from "@khanacademy/wonder-blocks-typography";
 import {CircularSpinner} from "@khanacademy/wonder-blocks-progress-spinner";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {
-    name,
-    version,
-} from "../../packages/wonder-blocks-progress-spinner/package.json";
+import packageConfig from "../../packages/wonder-blocks-progress-spinner/package.json";
 
 export default {
     title: "ProgressSpinner/CircularSpinner",
     component: CircularSpinner,
     parameters: {
         componentSubtitle: (
-            <ComponentInfo name={name} version={version} />
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
         ) as any,
         docs: {
             description: {
@@ -38,13 +38,11 @@ export default {
             </View>
         ),
     ],
-} as ComponentMeta<typeof CircularSpinner>;
+} as Meta<typeof CircularSpinner>;
 
-type StoryComponentType = ComponentStory<typeof CircularSpinner>;
+type StoryComponentType = StoryObj<typeof CircularSpinner>;
 
-export const Default: StoryComponentType = (args) => (
-    <CircularSpinner {...args} />
-);
+export const Default: StoryComponentType = {};
 
 export const Sizes: StoryComponentType = () => (
     <table>
@@ -113,9 +111,11 @@ export const Sizes: StoryComponentType = () => (
 
 Sizes.parameters = {
     docs: {
-        storyDescription: `The available sizes for progress spinner are
+        description: {
+            story: `The available sizes for progress spinner are
             \`"xsmall"\`, \`"small"\`, \`"medium"\`, and \`"large"\`.
             This is set with the \`size\` prop.`,
+        },
     },
 };
 
@@ -126,8 +126,10 @@ Light.parameters = {
         default: "darkBlue",
     },
     docs: {
-        storyDescription: `This is a progress spinner with its \`light\`
+        description: {
+            story: `This is a progress spinner with its \`light\`
             prop set to true. This is for use on dark backgrounds.`,
+        },
     },
 };
 
@@ -140,7 +142,7 @@ export const Inline: StoryComponentType = () => (
 
 Inline.parameters = {
     docs: {
-        storyDescription: `Circular spinners also work inline.`,
+        description: {story: `Circular spinners also work inline.`},
     },
 };
 
@@ -156,11 +158,13 @@ export const WithStyle: StoryComponentType = () => {
 
 WithStyle.parameters = {
     docs: {
-        storyDescription: `\`<CircularSpinner>\` has \`style\` prop
+        description: {
+            story: `\`<CircularSpinner>\` has \`style\` prop
             that can be used to apply styles to the spinner's container.
             Here, it has been given a style that includes \`border\` that
             is \`solid 5px \${Color.teal}\` as well as a \`borderRadius\`
             of \`50%\`.`,
+        },
     },
 };
 
