@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
@@ -8,7 +8,7 @@ import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelLarge, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
 
 import {Choice, CheckboxGroup} from "@khanacademy/wonder-blocks-form";
-import {name, version} from "../../packages/wonder-blocks-form/package.json";
+import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 
@@ -16,36 +16,42 @@ export default {
     title: "Form / CheckboxGroup",
     component: CheckboxGroup,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
-    },
-} as ComponentMeta<typeof CheckboxGroup>;
-
-type StoryComponentType = ComponentStory<typeof CheckboxGroup>;
-
-export const Default: StoryComponentType = (args) => {
-    return (
-        <CheckboxGroup {...args}>
-            <Choice label="Pepperoni" value="pepperoni" />
-            <Choice
-                label="Sausage"
-                value="sausage"
-                description="Imported from Italy"
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
             />
-            <Choice label="Extra cheese" value="cheese" />
-            <Choice label="Green pepper" value="pepper" />
-            <Choice label="Mushroom" value="mushroom" />
-        </CheckboxGroup>
-    );
-};
+        ),
+    },
+} as Meta<typeof CheckboxGroup>;
 
-Default.args = {
-    // Required
-    groupName: "toppings",
-    selectedValues: ["pepperoni", "sausage"],
-    onChange: () => {},
-    // Optional
-    label: "Pizza toppings",
-    description: "Choose as many toppings as you would like.",
+type StoryComponentType = StoryObj<typeof CheckboxGroup>;
+
+export const Default: StoryComponentType = {
+    render: (args) => {
+        return (
+            <CheckboxGroup {...args}>
+                <Choice label="Pepperoni" value="pepperoni" />
+                <Choice
+                    label="Sausage"
+                    value="sausage"
+                    description="Imported from Italy"
+                />
+                <Choice label="Extra cheese" value="cheese" />
+                <Choice label="Green pepper" value="pepper" />
+                <Choice label="Mushroom" value="mushroom" />
+            </CheckboxGroup>
+        );
+    },
+    args: {
+        // Required
+        groupName: "toppings",
+        selectedValues: ["pepperoni", "sausage"],
+        onChange: () => {},
+        // Optional
+        label: "Pizza toppings",
+        description: "Choose as many toppings as you would like.",
+    },
 };
 
 export const Basic: StoryComponentType = () => {
@@ -74,10 +80,12 @@ export const Basic: StoryComponentType = () => {
 
 Basic.parameters = {
     docs: {
-        storyDescription: `This is a basic example of a checkbox group.
+        description: {
+            story: `This is a basic example of a checkbox group.
         The Wonder Blocks \`CheckboxGroup\` component takes \`Choice\`
         components as children. One of the \`Choice\` components here
         includes a description.`,
+        },
     },
 };
 
@@ -185,7 +193,8 @@ export const RowStyling: StoryComponentType = () => {
 
 RowStyling.parameters = {
     docs: {
-        storyDescription: `This example shows how one can add custom styles
+        description: {
+            story: `This example shows how one can add custom styles
         to the checkbox group and to each component to achieve desired custom
         layouts. The context in this example is inspired by the class selector
         modal. The label is created separately because we are reflowing all
@@ -193,6 +202,7 @@ RowStyling.parameters = {
         horizontally when the style on the \`CheckboxGroup\` is set to
         \`{flexDirection: "row"}\`. Here, \`{flexWrap: "wrap"}\` is also
         used so the options continue on the next line.`,
+        },
     },
 };
 
@@ -228,13 +238,15 @@ export const MultipleChoiceStyling: StoryComponentType = () => {
 
 MultipleChoiceStyling.parameters = {
     docs: {
-        storyDescription: `This example shows how to use custom styling
+        description: {
+            story: `This example shows how to use custom styling
         to change the appearance of the checkbox group to look more like
         a multiple choice question. You may also provide custom typography
         to the label and description. Here, there is a line in
         between each question, which is achieved using the
         \`{borderTop: "solid 1px #CCC"}\` style on each \`Choice\`
         component.`,
+        },
     },
 };
 
@@ -263,10 +275,12 @@ export const FiltersOutFalsyChildren: StoryComponentType = () => {
 
 FiltersOutFalsyChildren.parameters = {
     docs: {
-        storyDescription: `This example shows that children can be falsy values and
+        description: {
+            story: `This example shows that children can be falsy values and
         that those falsy values are filtered out when rendering children.  In this
         case, one of the children is \`{false && <Choice .../>}\` which results in
         that choice being filtered out.`,
+        },
     },
     chromatic: {
         // The unit tests already verify that false-y children aren't rendered.

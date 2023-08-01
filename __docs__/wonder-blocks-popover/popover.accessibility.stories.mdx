@@ -1,4 +1,4 @@
-import {Meta, Story, Canvas} from "@storybook/addon-docs";
+import {Meta, Story, Canvas} from "@storybook/blocks";
 
 <Meta
     title="Popover / Popover / Accessibility"
@@ -20,14 +20,14 @@ The Popover component should follow these guidelines:
 
 **Trigger Element:**
 
-- It should have a role of button (e.g. `<button>`).
-- When the content is visible, it's recommended to set
-  [aria-expanded](https://www.w3.org/TR/wai-aria-1.1/#aria-expanded) to true.
-  When content is hidden,
-  [aria-expanded](https://www.w3.org/TR/wai-aria-1.1/#aria-expanded) is set to
-  false.
-- It should reference the content using the
-  [aria-controls](https://www.w3.org/TR/wai-aria-1.1/#aria-controls) attribute.
+-   It should have a role of button (e.g. `<button>`).
+-   When the content is visible, it's recommended to set
+    [aria-expanded](https://www.w3.org/TR/wai-aria-1.1/#aria-expanded) to true.
+    When content is hidden,
+    [aria-expanded](https://www.w3.org/TR/wai-aria-1.1/#aria-expanded) is set to
+    false.
+-   It should reference the content using the
+    [aria-controls](https://www.w3.org/TR/wai-aria-1.1/#aria-controls) attribute.
 
 **Popover Dialog:**
 
@@ -64,13 +64,13 @@ using:
 1. **`tab`**: Moves focus to the next focusable element.
 
     **NOTE:** If the focus has reached the last focusable element inside the
-   popover, the next tab will set focus on the next focusable element that
-   exists after the PopoverAnchor.
+    popover, the next tab will set focus on the next focusable element that
+    exists after the PopoverAnchor.
 
 2. **`shift + tab`**: Moves focus to the previous focusable element.
 
     **NOTE:** If the focus is set to the first focusable element inside the
-   popover, the next shift + tab will set focus on the PopoverAnchor element.
+    popover, the next shift + tab will set focus on the PopoverAnchor element.
 
 ### Dismissing the popover
 

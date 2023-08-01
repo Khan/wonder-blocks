@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
@@ -24,10 +24,7 @@ import {
     Caption,
     Footnote,
 } from "@khanacademy/wonder-blocks-typography";
-import {
-    name,
-    version,
-} from "../../packages/wonder-blocks-typography/package.json";
+import packageConfig from "../../packages/wonder-blocks-typography/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import TypographyArgTypes from "./typography.argtypes";
@@ -48,7 +45,12 @@ import {Body, Title} from "@khanacademy/wonder-blocks-typography";
 export default {
     title: "Typography",
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {component: typographyDescription},
             source: {
@@ -59,18 +61,17 @@ export default {
     },
     // TODO(FEI-5000): Inline this
     argTypes: TypographyArgTypes as any,
-} as ComponentMeta<typeof ComponentInfo>;
+} as Meta<typeof ComponentInfo>;
 
-export const ControlProps: ComponentStory<typeof Title> = (args) => (
-    <Title {...args} />
-);
-
-ControlProps.args = {
-    children: "This is a Title typography element",
-    id: "example-title",
+export const ControlProps: StoryObj<typeof Title> = {
+    render: (args) => <Title {...args} />,
+    args: {
+        children: "This is a Title typography element",
+        id: "example-title",
+    },
 };
 
-export const TypographyElements: ComponentStory<any> = () => (
+export const TypographyElements: StoryObj<any> = () => (
     <View>
         <Title>Title</Title>
         <HeadingLarge>HeadingLarge</HeadingLarge>
@@ -93,12 +94,14 @@ export const TypographyElements: ComponentStory<any> = () => (
 
 TypographyElements.parameters = {
     docs: {
-        storyDescription: `These are all the available typography elements
+        description: {
+            story: `These are all the available typography elements
             with their names written out in their respective styles.`,
+        },
     },
 };
 
-export const WithStyle: ComponentStory<typeof Title> = () => {
+export const WithStyle: StoryObj<typeof Title> = () => {
     const styles = StyleSheet.create({
         blueText: {
             color: Color.blue,
@@ -110,12 +113,13 @@ export const WithStyle: ComponentStory<typeof Title> = () => {
 
 WithStyle.parameters = {
     docs: {
-        storyDescription:
-            "You can change the color of text with the `style` prop.",
+        description: {
+            story: "You can change the color of text with the `style` prop.",
+        },
     },
 };
 
-export const LatoForLatin: ComponentStory<any> = () => (
+export const LatoForLatin: StoryObj<any> = () => (
     <View>
         <Title>
             Для каждого ученика, независимо от возраста. Реальные результаты!
@@ -170,12 +174,14 @@ export const LatoForLatin: ComponentStory<any> = () => (
 
 LatoForLatin.parameters = {
     docs: {
-        storyDescription: `Lato is used for Latin and Cyrillic languages.
+        description: {
+            story: `Lato is used for Latin and Cyrillic languages.
             This is a example where we use Lato for Russian.`,
+        },
     },
 };
 
-export const LatoForLatinExtended: ComponentStory<any> = () => (
+export const LatoForLatinExtended: StoryObj<any> = () => (
     <View>
         <Title>Dành cho mọi học sinh, mọi lớp học. Kết quả thực tế.</Title>
         <HeadingLarge>
@@ -222,14 +228,16 @@ export const LatoForLatinExtended: ComponentStory<any> = () => (
 
 LatoForLatinExtended.parameters = {
     docs: {
-        storyDescription: `This is another example where we use Lato
+        description: {
+            story: `This is another example where we use Lato
             latin for Vietnamese. In this specific case, we also use
             the extended glyphs so we can add full support to Vietnamese
             using this font.`,
+        },
     },
 };
 
-export const NotoForNonLatin: ComponentStory<any> = () => {
+export const NotoForNonLatin: StoryObj<any> = () => {
     const languages = {
         Arabic: {text: "مرحبا", dir: "rtl"},
         Armenian: {text: "Բարեւ"},
@@ -294,11 +302,11 @@ export const NotoForNonLatin: ComponentStory<any> = () => {
 
 NotoForNonLatin.parameters = {
     docs: {
-        storyDescription: "The Noto font is used for non-Latin languages.",
+        description: {story: "The Noto font is used for non-Latin languages."},
     },
 };
 
-export const CodeFont: ComponentStory<typeof BodyMonospace> = () => {
+export const CodeFont: StoryObj<typeof BodyMonospace> = () => {
     const Code = ({children}: {children: React.ReactNode}) => (
         <BodyMonospace>{children}</BodyMonospace>
     );
@@ -308,13 +316,15 @@ export const CodeFont: ComponentStory<typeof BodyMonospace> = () => {
 
 CodeFont.parameters = {
     docs: {
-        storyDescription: `One example of using the \`BodyMonospace\`
+        description: {
+            story: `One example of using the \`BodyMonospace\`
             typography component is to create a \`Code\` component for
             rendering pre-formatted code blocks.`,
+        },
     },
 };
 
-export const Paragraph: ComponentStory<typeof Body> = () => {
+export const Paragraph: StoryObj<typeof Body> = () => {
     const longParagraph = `This is an example of a long paragraph.
         Khan Academy offers practice exercises, instructional videos,
         and a personalized learning dashboard that empower learners
@@ -329,12 +339,14 @@ export const Paragraph: ComponentStory<typeof Body> = () => {
 
 Paragraph.parameters = {
     docs: {
-        storyDescription: `The \`Body\` typography component is usually used
+        description: {
+            story: `The \`Body\` typography component is usually used
             for paragraphs and other body text.`,
+        },
     },
 };
 
-export const LineHeight: ComponentStory<any> = () => {
+export const LineHeight: StoryObj<any> = () => {
     const style = {
         outline: `1px solid ${Color.offBlack}`,
         marginBottom: Spacing.small_12,
@@ -364,7 +376,9 @@ export const LineHeight: ComponentStory<any> = () => {
 
 LineHeight.parameters = {
     docs: {
-        storyDescription: `This is a visualization of the line height
+        description: {
+            story: `This is a visualization of the line height
             for each typography element.`,
+        },
     },
 };

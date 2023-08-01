@@ -1,12 +1,12 @@
 import * as React from "react";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import Button from "@khanacademy/wonder-blocks-button";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import {Body, HeadingSmall} from "@khanacademy/wonder-blocks-typography";
 
 import {UniqueIDProvider, View} from "@khanacademy/wonder-blocks-core";
-import {name, version} from "../../packages/wonder-blocks-core/package.json";
+import packageConfig from "../../packages/wonder-blocks-core/package.json";
 
 import type {IIdentifierFactory} from "../../packages/wonder-blocks-core/src/util/types";
 
@@ -20,7 +20,12 @@ export default {
         mockOnFirstRender: false,
     },
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -32,7 +37,7 @@ export default {
         },
     },
     decorators: [(Story): React.ReactElement => <View>{Story()}</View>],
-} as ComponentMeta<typeof UniqueIDProvider>;
+} as Meta<typeof UniqueIDProvider>;
 
 const Template = (args: any) => {
     const [count, setCount] = React.useState(0);
@@ -56,7 +61,7 @@ const Template = (args: any) => {
                     renders.current.push(ids.get("my-unique-id"));
 
                     return renders.current.map((value, index) => (
-                        <View>
+                        <View key={index}>
                             Render {index}: {value}
                         </View>
                     ));
@@ -66,29 +71,33 @@ const Template = (args: any) => {
     );
 };
 
-type StoryComponentType = ComponentStory<typeof UniqueIDProvider>;
+type StoryComponentType = StoryObj<typeof UniqueIDProvider>;
 
-export const Default: StoryComponentType = Template.bind({});
+export const Default: StoryComponentType = {
+    render: Template,
+};
 
 Default.parameters = {
     docs: {
-        storyDescription:
-            "By default, `mockOnFirstRender` is `false`. The `children` prop is only called after the initial render. Each call provides the same identifier factory, meaning the same identifier gets returned. Try it below.",
+        description: {
+            story: "By default, `mockOnFirstRender` is `false`. The `children` prop is only called after the initial render. Each call provides the same identifier factory, meaning the same identifier gets returned. Try it below.",
+        },
     },
 };
 
-export const WithMockOnFirstRender: StoryComponentType = Template.bind({});
-
-WithMockOnFirstRender.args = {
-    mockOnFirstRender: true,
+export const WithMockOnFirstRender: StoryComponentType = {
+    render: Template,
+    args: {
+        mockOnFirstRender: true,
+    },
+    name: "With mockOnFirstRender",
 };
-
-WithMockOnFirstRender.storyName = "With mockOnFirstRender";
 
 WithMockOnFirstRender.parameters = {
     docs: {
-        storyDescription:
-            "When specifying `mockOnFirstRender` to be `true`, the first render will use a mock identifier factory that doesn't guarantee identifier uniqueness. Mock mode can help things appear on the screen during the initial render, but is not the default, because it is not always safe (e.g., we need actual IDs for some SVG constructs).",
+        description: {
+            story: "When specifying `mockOnFirstRender` to be `true`, the first render will use a mock identifier factory that doesn't guarantee identifier uniqueness. Mock mode can help things appear on the screen during the initial render, but is not the default, because it is not always safe (e.g., we need actual IDs for some SVG constructs).",
+        },
     },
 };
 
@@ -121,7 +130,8 @@ Scoped.args = {
 
 Scoped.parameters = {
     docs: {
-        storyDescription:
-            "`UniqueIDProvider` ensures every identifier factory is unique using a unique number for each one. However, this isn't very readable when wanting to differentiate the types of things using unique identifiers. If we want to, we can provide a `scope` prop that adds some text to each identifier provided. This can be useful for providing some quick at-a-glance component identification to identifiers when there are multiple providers.",
+        description: {
+            story: "`UniqueIDProvider` ensures every identifier factory is unique using a unique number for each one. However, this isn't very readable when wanting to differentiate the types of things using unique identifiers. If we want to, we can provide a `scope` prop that adds some text to each identifier provided. This can be useful for providing some quick at-a-glance component identification to identifiers when there are multiple providers.",
+        },
     },
 };

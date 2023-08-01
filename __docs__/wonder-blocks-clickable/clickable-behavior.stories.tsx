@@ -1,16 +1,13 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {View, addStyle} from "@khanacademy/wonder-blocks-core";
 import Color from "@khanacademy/wonder-blocks-color";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 
 import {getClickableBehavior} from "@khanacademy/wonder-blocks-clickable";
-import {
-    name,
-    version,
-} from "../../packages/wonder-blocks-clickable/package.json";
+import packageConfig from "../../packages/wonder-blocks-clickable/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import argTypes from "./clickable-behavior.argtypes";
@@ -25,7 +22,12 @@ export default {
         disabled: false,
     },
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -36,11 +38,11 @@ export default {
             },
         },
     },
-} as ComponentMeta<typeof ClickableBehavior>;
+} as Meta<typeof ClickableBehavior>;
 
-type StoryComponentType = ComponentStory<typeof ClickableBehavior>;
+type StoryComponentType = StoryObj<typeof ClickableBehavior>;
 
-export const Default: StoryComponentType = (args) => {
+export const Default: StoryComponentType = (args: any) => {
     const ClickableBehavior = getClickableBehavior();
 
     return (
@@ -73,7 +75,12 @@ Default.parameters = {
     },
 };
 
-export const WrappingButton: StoryComponentType = (args) => {
+/**
+ * This is an example of a `<ClickableBehavior>` wrapping a button. Since
+ * buttons have a built in tabIndex, a tabIndex does not need to be added to
+ * `<ClickableBehavior>` here.
+ */
+export const WrappingButton: StoryComponentType = (args: any) => {
     const ClickableBehavior = getClickableBehavior();
     const StyledButton = addStyle("button");
 
@@ -105,12 +112,6 @@ WrappingButton.parameters = {
         // we don't need screenshots because this story only displays the
         // resting/default state.
         disableSnapshot: true,
-    },
-    docs: {
-        storyDescription: `This is an example of a \`<ClickableBehavior>\`
-            wrapping a button. Since buttons have a built in tabIndex,
-            a tabIndex does not need to be added to \`<ClickableBehavior>\`
-            here.`,
     },
 };
 
@@ -146,11 +147,13 @@ WithTabIndex.parameters = {
         disableSnapshot: true,
     },
     docs: {
-        storyDescription: `A \`<ClickableBehavior>\` element does not have
+        description: {
+            story: `A \`<ClickableBehavior>\` element does not have
             a tabIndex by default, as many elements it could wrap may have
             their own built in tabIndex attribute, such as buttons. If this
             is not the case, a tabIndex should be passed in using the
             \`tabIndex\` prop.`,
+        },
     },
 };
 

@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {LabelMedium, LabelSmall} from "@khanacademy/wonder-blocks-typography";
@@ -11,7 +11,7 @@ import Button from "@khanacademy/wonder-blocks-button";
 import Link from "@khanacademy/wonder-blocks-link";
 
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
-import {name, version} from "../../packages/wonder-blocks-form/package.json";
+import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import LabeledTextFieldArgTypes from "./labeled-text-field.argtypes";
@@ -20,35 +20,38 @@ export default {
     title: "Form / LabeledTextField",
     component: LabeledTextField,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
     },
     argTypes: LabeledTextFieldArgTypes,
-} satisfies ComponentMeta<typeof LabeledTextField>;
+} as Meta<typeof LabeledTextField>;
 
-type StoryComponentType = ComponentStory<typeof LabeledTextField>;
+type StoryComponentType = StoryObj<typeof LabeledTextField>;
 
-export const Default: StoryComponentType = (args) => {
-    return <LabeledTextField {...args} />;
-};
-
-Default.args = {
-    id: "some-ltf-id",
-    type: "text",
-    label: "Label",
-    description: "Hello, this is the description for this field",
-    value: "",
-    disabled: false,
-    required: false,
-    light: false,
-    placeholder: "Placeholder",
-    readOnly: false,
-    autoComplete: "off",
-    validate: () => undefined,
-    onValidate: () => {},
-    onChange: () => {},
-    onKeyDown: () => {},
-    onFocus: () => {},
-    onBlur: () => {},
+export const Default: StoryComponentType = {
+    args: {
+        id: "some-ltf-id",
+        type: "text",
+        label: "Label",
+        description: "Hello, this is the description for this field",
+        value: "",
+        disabled: false,
+        required: false,
+        light: false,
+        placeholder: "Placeholder",
+        readOnly: false,
+        autoComplete: "off",
+        validate: () => undefined,
+        onValidate: () => {},
+        onChange: () => {},
+        onKeyDown: () => {},
+        onFocus: () => {},
+        onBlur: () => {},
+    },
 };
 
 export const Text: StoryComponentType = () => {
@@ -74,8 +77,9 @@ export const Text: StoryComponentType = () => {
 
 Text.parameters = {
     docs: {
-        storyDescription:
-            "An input field with type `text` takes all kinds of characters.",
+        description: {
+            story: "An input field with type `text` takes all kinds of characters.",
+        },
     },
 };
 
@@ -102,12 +106,14 @@ export const RequiredWithDefaultText: StoryComponentType = () => {
 
 RequiredWithDefaultText.parameters = {
     docs: {
-        storyDescription: `A required field will show the message
+        description: {
+            story: `A required field will show the message
         "This field is required." by default if someone types in it
         at some point but leaves it blank. Type in the field, then
         backspace all the way and click out of the field to see
         this message. Note that this message would not appear if
         the \`validation\` prop were set.`,
+        },
     },
     chromatic: {
         // Disabling snapshot because it doesn't show the error message
@@ -139,11 +145,13 @@ export const RequiredWithSpecifiedText: StoryComponentType = () => {
 
 RequiredWithSpecifiedText.parameters = {
     docs: {
-        storyDescription: `If a string is passed into the \`required\` prop,
+        description: {
+            story: `If a string is passed into the \`required\` prop,
         the specified message will show when the field is left blank.
         Type in the field, then backspace all the way and click out of
         the field to see this message. Note that this message would not
         appear if the \`validation\` prop were set.`,
+        },
     },
     chromatic: {
         // Disabling snapshot because it doesn't show the error message
@@ -176,8 +184,9 @@ export const Number: StoryComponentType = () => {
 
 Number.parameters = {
     docs: {
-        storyDescription:
-            "An input field with type `number` will only take numeric characters as input.",
+        description: {
+            story: "An input field with type `number` will only take numeric characters as input.",
+        },
     },
 };
 
@@ -215,10 +224,12 @@ export const Password: StoryComponentType = () => {
 
 Password.parameters = {
     docs: {
-        storyDescription: `An input field with type \`password\` will
+        description: {
+            story: `An input field with type \`password\` will
         obscure the input value. It also often contains validation.
         In this example, the password must be over 8 characters long and
         must contain a numeric value.`,
+        },
     },
 };
 
@@ -254,10 +265,12 @@ export const Email: StoryComponentType = () => {
 
 Email.parameters = {
     docs: {
-        storyDescription: `An input field with type \`email\` will automatically
+        description: {
+            story: `An input field with type \`email\` will automatically
         validate an input on submit to ensure it's either formatted properly
         or blank. \`TextField\` will run validation on blur if the
         \`validate\` prop is passed in, as in this example.`,
+        },
     },
 };
 
@@ -293,11 +306,13 @@ export const EmailRequired: StoryComponentType = () => {
 
 EmailRequired.parameters = {
     docs: {
-        storyDescription: `An example of a required field that also has
+        description: {
+            story: `An example of a required field that also has
         a \`validation\` prop passed in. \`required\` can be a boolean or
         a string. In this case, \`required\` is set to \`true\` since a
         string would not even be used if it were passed in because the
         validation overrides it.`,
+        },
     },
     chromatic: {
         // We have screenshots of other stories that cover this case.
@@ -337,10 +352,12 @@ export const Telephone: StoryComponentType = () => {
 
 Telephone.parameters = {
     docs: {
-        storyDescription: `An input field with type \`tel\` will NOT
+        description: {
+            story: `An input field with type \`tel\` will NOT
         validate an input on submit by default as telephone numbers
         can vary considerably. \`TextField\` will run validation on blur
         if the \`validate\` prop is passed in, as in this example.`,
+        },
     },
 };
 
@@ -376,12 +393,14 @@ export const Error: StoryComponentType = () => {
 
 Error.parameters = {
     docs: {
-        storyDescription: `If an input value fails validation,
+        description: {
+            story: `If an input value fails validation,
         \`TextField\` will have error styling.`,
+        },
     },
 };
 
-export const Light: StoryComponentType = (args) => {
+export const Light: StoryComponentType = (args: any) => {
     const [value, setValue] = React.useState("");
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
@@ -418,15 +437,17 @@ Light.args = {
 
 Light.parameters = {
     docs: {
-        storyDescription: `If the \`light\` prop is set to true, the
+        description: {
+            story: `If the \`light\` prop is set to true, the
         underlying \`TextField\` will have a light border when focused.
         This is intended to be used on a dark background. There is also a
         specific light styling for the error state, as seen in the
         \`ErrorLight\` story.`,
+        },
     },
 };
 
-export const ErrorLight: StoryComponentType = (args) => {
+export const ErrorLight: StoryComponentType = (args: any) => {
     const [value, setValue] = React.useState("khan");
 
     const validate = (value: string) => {
@@ -472,8 +493,10 @@ ErrorLight.args = {
 
 ErrorLight.parameters = {
     docs: {
-        storyDescription: `If an input value fails validation and the
+        description: {
+            story: `If an input value fails validation and the
         \`light\` prop is true, \`TextField\` will have light error styling.`,
+        },
     },
 };
 
@@ -490,8 +513,10 @@ export const Disabled: StoryComponentType = () => (
 
 Disabled.parameters = {
     docs: {
-        storyDescription: `If the \`disabled\` prop is set to true,
+        description: {
+            story: `If the \`disabled\` prop is set to true,
         \`TextField\` will have disabled styling and will not be interactable.`,
+        },
     },
 };
 
@@ -532,32 +557,36 @@ export const CustomStyle: StoryComponentType = () => {
 
 CustomStyle.parameters = {
     docs: {
-        storyDescription: `\`LabeledTextField\` can take in custom styles that
+        description: {
+            story: `\`LabeledTextField\` can take in custom styles that
         override the default styles. In this example, each field has the
         style property \`flexGrow: 1\``,
+        },
     },
 };
 
-export const WithMarkup: StoryComponentType = (args) => {
-    return (
-        <LabeledTextField
-            {...args}
-            label="Name"
-            description={
-                <span>
-                    Description with <strong>strong</strong> text and a{" "}
-                    <Link href="/path/to/resource" inline={true}>
-                        link
-                    </Link>
-                </span>
-            }
-        />
-    );
+export const WithMarkup: StoryComponentType = {
+    render: (args) => {
+        return (
+            <LabeledTextField
+                {...args}
+                label="Name"
+                description={
+                    <span>
+                        Description with <strong>strong</strong> text and a{" "}
+                        <Link href="/path/to/resource" inline={true}>
+                            link
+                        </Link>
+                    </span>
+                }
+            />
+        );
+    },
 };
 
 WithMarkup.parameters = {
     docs: {
-        storyDescription: `\`LabeledTextField\`'s \`label\` and \`description\` props
+        description: `\`LabeledTextField\`'s \`label\` and \`description\` props
         can accept \`React.Node\`s.  This is helpful when you need to decorate or use
         specific elements in your form field (e.g. including Popovers, Tooltips or
         emphasized text)`,
@@ -601,13 +630,15 @@ export const Ref: StoryComponentType = () => {
 
 Ref.parameters = {
     docs: {
-        storyDescription: `If you need to save a reference to the input
+        description: {
+            story: `If you need to save a reference to the input
         field, you can do so by using the \`ref\` prop. In this example,
         we want the input field to receive focus when the button is
         pressed. We can do this by creating a React ref of type
         \`HTMLInputElement\` and passing it into \`TextField\`'s \`ref\` prop.
         Now we can use the ref variable in the \`handleSubmit\` function to
         shift focus to the field.`,
+        },
         chromatic: {
             // Disabling snapshot because this is testing interaction,
             // not visuals.
@@ -640,10 +671,12 @@ export const ReadOnly: StoryComponentType = () => {
 
 ReadOnly.parameters = {
     docs: {
-        storyDescription: `An input field with the prop \`readOnly\` set
+        description: {
+            story: `An input field with the prop \`readOnly\` set
         to true is not interactable. It looks the same as if it were not
         read only, and it can still receive focus, but the interaction
         point will not appear and the input will not change.`,
+        },
         chromatic: {
             // Disabling snapshot because this is testing interaction,
             // not visuals.
@@ -680,12 +713,14 @@ export const AutoComplete: StoryComponentType = () => {
 
 AutoComplete.parameters = {
     docs: {
-        storyDescription: `If \`TextField\`'s \`autocomplete\` prop is set,
+        description: {
+            story: `If \`TextField\`'s \`autocomplete\` prop is set,
         the browser can predict values for the input. When the user starts
         to type in the field, a list of options will show up based on
         values that may have been submitted at a previous time.
         In this example, the text field provides options after you
         input a value, press the submit button, and refresh the page.`,
+        },
         chromatic: {
             // Disabling snapshot because this is testing interaction,
             // not visuals.

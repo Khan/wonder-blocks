@@ -1,6 +1,6 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 
 import {View} from "@khanacademy/wonder-blocks-core";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
@@ -13,19 +13,24 @@ import {
 } from "@khanacademy/wonder-blocks-form";
 
 import ComponentInfo from "../../.storybook/components/component-info";
-import {name, version} from "../../packages/wonder-blocks-form/package.json";
+import packageConfig from "../../packages/wonder-blocks-form/package.json";
 
 export default {
     title: "Form / Choice",
     component: Choice,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
     },
-} as ComponentMeta<typeof Choice>;
+} as Meta<typeof Choice>;
 
-type StoryComponentType = ComponentStory<typeof Choice>;
+type StoryComponentType = StoryObj<typeof Choice>;
 
-export const Default: StoryComponentType = (args) => {
+const ChoiceWrapper = (args: any) => {
     const [selectedValues, setSelectedValues] = React.useState<Array<string>>(
         [],
     );
@@ -74,10 +79,13 @@ export const Default: StoryComponentType = (args) => {
     );
 };
 
-Default.args = {
-    label: "Pineapple (Control)",
-    value: "pineapple",
-    description: "Does in fact belong on pizzas",
+export const Default: StoryComponentType = {
+    render: (args) => <ChoiceWrapper {...args} />,
+    args: {
+        label: "Pineapple (Control)",
+        value: "pineapple",
+        description: "Does in fact belong on pizzas",
+    },
 };
 
 const styles = StyleSheet.create({

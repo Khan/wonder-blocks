@@ -138,7 +138,6 @@ type Props = AriaProps & {
                                 tabIndex={-1}
                             >
                                 <ChoiceCore
-                                    // {...coreProps}
                                     {...props}
                                     id={uniqueId}
                                     aria-describedby={descriptionId}

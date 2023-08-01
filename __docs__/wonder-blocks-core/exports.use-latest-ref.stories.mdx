@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import {Meta} from "@storybook/addon-docs";
+import {Meta} from "@storybook/blocks";
 import {useLatestRef, View} from "@khanacademy/wonder-blocks-core";
 import Button from "@khanacademy/wonder-blocks-button";
 import {LabeledTextField} from "@khanacademy/wonder-blocks-form";
@@ -34,20 +34,20 @@ to use the prop's value inside the `useEffect` callback.
 
 ```ts
 export function ComponentThatAlertsOnUnmount({message}) {
-    const messageRef = useLatestRef(message)
+    const messageRef = useLatestRef(message);
     useEffect(() => {
-        return () => alert(messageRef.current)
-    }, [messageRef])
-    return <p>Message: {message}</p>
+        return () => alert(messageRef.current);
+    }, [messageRef]);
+    return <p>Message: {message}</p>;
 }
 ```
 
 export function ComponentThatAlertsOnUnmount({message}) {
-    const messageRef = useLatestRef(message)
+    const messageRef = useLatestRef(message);
     useEffect(() => {
-        return () => alert(messageRef.current)
-    }, [messageRef])
-    return <p>Message: {message}</p>
+        return () => alert(messageRef.current);
+    }, [messageRef]);
+    return <p>Message: {message}</p>;
 }
 
 The component above will `alert()` a message when it unmounts. (If you want to
@@ -61,38 +61,45 @@ prop and unmount/remount the component.
 <Example1 />
 
 export function Example1() {
-    const [message, setMessage] = useState("Hello, world!")
-    const [isMounted, setIsMounted] = useState(true)
-    const mount = () => setIsMounted(true)
-    const unmount = () => setIsMounted(false)
-    return <Context>
-        <LabeledTextField
-          label="Message"
-          description="An alert will pop up with this message when you click 'Unmount'. You can change the message while the component is mounted."
-          value={message}
-          onChange={setMessage} />
-        <Strut size={Spacing.medium_16}/>
-        <View style={{flexDirection: "row", gap: Spacing.xSmall_8}}>
-            {isMounted && <Button onClick={unmount}>Unmount</Button>}
-            {!isMounted && <Button onClick={mount}>Mount</Button>}
-        </View>
-        <Strut size={Spacing.medium_16}/>
+    const [message, setMessage] = useState("Hello, world!");
+    const [isMounted, setIsMounted] = useState(true);
+    const mount = () => setIsMounted(true);
+    const unmount = () => setIsMounted(false);
+    return (
         <Context>
-            {isMounted && <ComponentThatAlertsOnUnmount message={message} />}
+            <LabeledTextField
+                label="Message"
+                description="An alert will pop up with this message when you click 'Unmount'. You can change the message while the component is mounted."
+                value={message}
+                onChange={setMessage}
+            />
+            <Strut size={Spacing.medium_16} />
+            <View style={{flexDirection: "row", gap: Spacing.xSmall_8}}>
+                {isMounted && <Button onClick={unmount}>Unmount</Button>}
+                {!isMounted && <Button onClick={mount}>Mount</Button>}
+            </View>
+            <Strut size={Spacing.medium_16} />
+            <Context>
+                {isMounted && (
+                    <ComponentThatAlertsOnUnmount message={message} />
+                )}
+            </Context>
         </Context>
-    </Context>
+    );
 }
 
 export function Context({children}) {
-    return <View
-        style={{
-            borderRadius: 5,
-            border: "1px solid #ccc",
-            boxShadow: "inset 1px 1px 6px #0001",
-            padding: Spacing.medium_16,
-            background: Color.offWhite,
-        }}
-    >
-        {children}
-    </View>
+    return (
+        <View
+            style={{
+                borderRadius: 5,
+                border: "1px solid #ccc",
+                boxShadow: "inset 1px 1px 6px #0001",
+                padding: Spacing.medium_16,
+                background: Color.offWhite,
+            }}
+        >
+            {children}
+        </View>
+    );
 }

@@ -1,19 +1,24 @@
 import * as React from "react";
-import type {ComponentStory, ComponentMeta} from "@storybook/react";
+import type {Meta, StoryObj} from "@storybook/react";
 import {Body} from "@khanacademy/wonder-blocks-typography";
 
 import {View, WithSSRPlaceholder} from "@khanacademy/wonder-blocks-core";
-import {name, version} from "../../packages/wonder-blocks-core/package.json";
+import packageConfig from "../../packages/wonder-blocks-core/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 
-type StoryComponentType = ComponentStory<typeof WithSSRPlaceholder>;
+type StoryComponentType = StoryObj<typeof WithSSRPlaceholder>;
 
 export default {
     title: "Core / WithSSRPlaceholder",
     component: WithSSRPlaceholder,
     parameters: {
-        componentSubtitle: <ComponentInfo name={name} version={version} />,
+        componentSubtitle: (
+            <ComponentInfo
+                name={packageConfig.name}
+                version={packageConfig.version}
+            />
+        ),
         docs: {
             description: {
                 component: null,
@@ -41,13 +46,11 @@ export default {
             </View>
         ),
     },
-} as ComponentMeta<typeof WithSSRPlaceholder>;
+} as Meta<typeof WithSSRPlaceholder>;
 
-export const Default: StoryComponentType = (args) => (
-    <WithSSRPlaceholder {...args} />
-);
+export const Default: StoryComponentType = {};
 
-export const WithoutPlaceholder: StoryComponentType = (args) => (
+export const WithoutPlaceholder: StoryComponentType = () => (
     <WithSSRPlaceholder placeholder={null}>
         {() => (
             <View>
@@ -60,8 +63,9 @@ export const WithoutPlaceholder: StoryComponentType = (args) => (
 
 WithoutPlaceholder.parameters = {
     docs: {
-        storyDescription:
-            "This example shows how you can use a `null` placeholder to display nothing during server-side render.",
+        description: {
+            story: "This example shows how you can use a `null` placeholder to display nothing during server-side render.",
+        },
     },
 };
 
@@ -138,8 +142,9 @@ export const NestedComponent: StoryComponentType = (): React.ReactElement => {
 
 NestedComponent.parameters = {
     docs: {
-        storyDescription:
-            "Here, we nest two `WithSSRPlaceholder` components and use an array to track rendering, so that we can see how only the top level `WithSSRPlaceholder` component skips the initial render.",
+        description: {
+            story: "Here, we nest two `WithSSRPlaceholder` components and use an array to track rendering, so that we can see how only the top level `WithSSRPlaceholder` component skips the initial render.",
+        },
     },
 };
 
@@ -238,7 +243,8 @@ export const SideBySide: StoryComponentType = (): React.ReactElement => {
 
 SideBySide.parameters = {
     docs: {
-        storyDescription:
-            "In this example, we have side-by-side `WithSSRPlaceholder` components. This demonstrates how component non-nested `WithSSRPlaceholder` components independently track the first render.",
+        description: {
+            story: "In this example, we have side-by-side `WithSSRPlaceholder` components. This demonstrates how component non-nested `WithSSRPlaceholder` components independently track the first render.",
+        },
     },
 };

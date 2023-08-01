@@ -1,4 +1,4 @@
-import {Meta} from "@storybook/addon-docs";
+import {Meta} from "@storybook/blocks";
 
 <Meta
     title="Data / Testing"
@@ -14,6 +14,7 @@ import {Meta} from "@storybook/addon-docs";
 Wonder Blocks Data has been designed to support testing in a variety of environments including jest and storybook. In order to support the various ways in which folks need to test their code, we have considered a number of approaches to testing Wonder Blocks Data.
 
 ## Spies
+
 If you are writing unit tests, you may just want to spy on the methods you are calling using `jest.spyOn` or similar. This can be a really easy way to intercept the request handler passed to the [`useCachedEffect`](/docs/data-exports-usecachedeffect--page) hook, for example, and check that it is the handler you expect.
 
 ## Interceptors
@@ -67,8 +68,33 @@ const myFakeGqlFetch = (
 As shown above, you can interrogate parts of the requested operation to decide how to respond. However, this can get cumbersome if you have GraphQL requests nested in more complex components as each test has to mock out suitable responses for each one. To help with this the Wonder Blocks Testing package provides a [`RespondWith`](/docs/testing-exports-respondwith--page) type for defining responses that fit a specific scenario, and the [`mockGqlFetch()`](/docs/testing-exports-mockgqlfetch--page) API.
 
 ```tsx
-const myFakeGqlFetch = mockGqlFetch()
-    .mockOperationOnce(
+const myFakeGqlFetch = mockGqlFetch().mockOperationOnce(
+    {
+        operation: MyQueryOperation,
+        variables: {
+            someVar: 5,
+        },
+    },
+    RespondWith.success({
+        data: {
+            myQuery: {
+                someField: "someValue",
+            },
+        },
+    }),
+);
+
+<GqlRouter fetch={myFakeGqlFetch} defaultContext={{some: "sort of context"}}>
+    <ComponentUnderTest />
+</GqlRouter>;
+```
+
+In the above example, we now only mock our specific operation once. If something
+tries to request this data a second time, it will give an error instead. Not only that, but with a little refactoring, we can create a helper to set this mock up that others can call if they need to mock our operation for their own tests.
+
+```ts
+const mockMyQuery = (mockGqlFetchFn: GqlFetchMockFn): GqlFetchMockFn =>
+    mockGqlFetchFn().mockOperationOnce(
         {
             operation: MyQueryOperation,
             variables: {
@@ -84,38 +110,11 @@ const myFakeGqlFetch = mockGqlFetch()
         }),
     );
 
-<GqlRouter fetch={myFakeGqlFetch} defaultContext={{some: "sort of context"}}>
-    <ComponentUnderTest />
-</GqlRouter>
-```
-
-In the above example, we now only mock our specific operation once. If something
-tries to request this data a second time, it will give an error instead. Not only that, but with a little refactoring, we can create a helper to set this mock up that others can call if they need to mock our operation for their own tests.
-
-```ts
-const mockMyQuery = (mockGqlFetchFn: GqlFetchMockFn): GqlFetchMockFn =>
-    mockGqlFetchFn()
-        .mockOperationOnce(
-            {
-                operation: MyQueryOperation,
-                variables: {
-                    someVar: 5,
-                },
-            },
-            RespondWith.success({
-                data: {
-                    myQuery: {
-                        someField: "someValue",
-                    },
-                },
-            }),
-        );
-
 const myFakeGqlFetch = mockMyQuery(mockGqlFetch());
 
 <GqlRouter fetch={myFakeGqlFetch} defaultContext={{some: "sort of context"}}>
     <ComponentUnderTest />
-</GqlRouter>
+</GqlRouter>;
 ```
 
 Now, using a compose function, multiple mocks can be setup on the same `mockGqlFetch` instance.
