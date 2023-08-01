@@ -7,8 +7,11 @@ import Breadcrumbs from "../../packages/wonder-blocks-breadcrumbs/src/components
 import BreadcrumbsItem from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item";
 import Button from "../../packages/wonder-blocks-button/src/components/button";
 import Checkbox from "../../packages/wonder-blocks-form/src/components/checkbox";
+<<<<<<< HEAD
 import CheckboxGroup from "../../packages/wonder-blocks-form/src/components/checkbox-group";
 import Choice from "../../packages/wonder-blocks-form/src/components/choice";
+=======
+>>>>>>> main
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "../../packages/wonder-blocks-link/src/components/link";
 import Text from "../../packages/wonder-blocks-core/src/components/text";
