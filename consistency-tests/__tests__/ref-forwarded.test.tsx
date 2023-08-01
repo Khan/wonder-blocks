@@ -6,6 +6,7 @@ import * as ReactDOM from "react-dom";
 import Breadcrumbs from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs";
 import BreadcrumbsItem from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item";
 import Button from "../../packages/wonder-blocks-button/src/components/button";
+import Checkbox from "../../packages/wonder-blocks-form/src/components/checkbox";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "../../packages/wonder-blocks-link/src/components/link";
 import Text from "../../packages/wonder-blocks-core/src/components/text";
@@ -285,5 +286,18 @@ describe("IconButton", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+    });
+});
+
+describe("Form elements", () => {
+    test("Checkbox forwards ref to an HTMLInputElement", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLInputElement> = React.createRef();
+
+        // Act
+        render(<Checkbox ref={ref} checked={false} onChange={() => {}} />);
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLInputElement);
     });
 });
