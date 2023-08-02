@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-core
 
+## 5.3.0
+
+### Minor Changes
+
+-   c37b99aa: Forward refs for Text and Title
+-   c4cef3e6: Added ref forwarding to View
+
 ## 5.2.3
 
 ### Patch Changes
