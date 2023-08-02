@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-breadcrumbs
 
+## 2.1.0
+
+### Minor Changes
+
+-   c0b558f9: Forward refs in BreadcrumbsItem
+-   9800fbf7: Forward refs in Breacrumbs
+
+### Patch Changes
+
+-   Updated dependencies [c37b99aa]
+-   Updated dependencies [c4cef3e6]
+    -   @khanacademy/wonder-blocks-core@5.3.0
+
 ## 2.0.13
 
 ### Patch Changes

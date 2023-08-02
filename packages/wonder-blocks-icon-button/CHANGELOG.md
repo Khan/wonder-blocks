@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-icon-button
 
+## 4.1.0
+
+### Minor Changes
+
+-   0992ff2b: Add ref forwarding to Button and IconButton
+
+### Patch Changes
+
+-   Updated dependencies [c37b99aa]
+-   Updated dependencies [c4cef3e6]
+    -   @khanacademy/wonder-blocks-core@5.3.0
+    -   @khanacademy/wonder-blocks-clickable@3.1.1
+    -   @khanacademy/wonder-blocks-icon@2.0.14
+
 ## 4.0.14
 
 ### Patch Changes

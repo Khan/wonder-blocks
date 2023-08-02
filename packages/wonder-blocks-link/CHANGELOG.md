@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-link
 
+## 4.3.0
+
+### Minor Changes
+
+-   c31cdaac: Add ref forwarding to Link
+
+### Patch Changes
+
+-   Updated dependencies [c37b99aa]
+-   Updated dependencies [c4cef3e6]
+    -   @khanacademy/wonder-blocks-core@5.3.0
+    -   @khanacademy/wonder-blocks-clickable@3.1.1
+    -   @khanacademy/wonder-blocks-icon@2.0.14
+
 ## 4.2.8
 
 ### Patch Changes

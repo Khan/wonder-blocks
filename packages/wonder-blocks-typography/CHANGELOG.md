@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-typography
 
+## 2.1.0
+
+### Minor Changes
+
+-   0423a440: Forward refs in Body, BodyMonospace, BodySerif, and BodySerifBlock
+-   c37b99aa: Forward refs for Text and Title
+-   afd5a801: Forward refs in Caption and Footnote
+-   13c48aa0: Forward refs in HeadingLarge, HeadingMedium, HeadingSmall, and HeadingXSmall
+-   cade62f3: Add forwarded refs for LabelLarge, LabelMedium, LabelSmall, and LabelXSmall
+-   4c900085: Forward refs in Tagline
+
+### Patch Changes
+
+-   Updated dependencies [c37b99aa]
+-   Updated dependencies [c4cef3e6]
+    -   @khanacademy/wonder-blocks-core@5.3.0
+
 ## 2.0.13
 
 ### Patch Changes

@@ -1,5 +1,29 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.3.0
+
+### Minor Changes
+
+-   b05c5344: Forward refs in RadioGroup
+-   f84dfb23: Foward refs in CheckboxGroup
+-   13f9de9c: Forward refs in Checkbox
+-   a5116f0b: Forwards refs in Choice, Radio, and RadioCore
+
+### Patch Changes
+
+-   Updated dependencies [0423a440]
+-   Updated dependencies [c37b99aa]
+-   Updated dependencies [afd5a801]
+-   Updated dependencies [13c48aa0]
+-   Updated dependencies [cade62f3]
+-   Updated dependencies [c4cef3e6]
+-   Updated dependencies [4c900085]
+    -   @khanacademy/wonder-blocks-typography@2.1.0
+    -   @khanacademy/wonder-blocks-core@5.3.0
+    -   @khanacademy/wonder-blocks-clickable@3.1.1
+    -   @khanacademy/wonder-blocks-icon@2.0.14
+    -   @khanacademy/wonder-blocks-layout@2.0.14
+
 ## 4.2.3
 
 ### Patch Changes
