@@ -12,13 +12,13 @@ const StyledInput = addStyle("input");
 
 /**
  * The internal stateless 🔘 Radio button
- */ export default class RadioCore extends React.Component<ChoiceCoreProps> {
-    handleChange: () => void = () => {
-        // Empty because change is handled by ClickableBehavior
-        return;
-    };
+ */ const RadioCore = React.forwardRef(
+    (props: ChoiceCoreProps, ref: React.ForwardedRef<HTMLInputElement>) => {
+        const handleChange = () => {
+            // Empty because change is handled by ClickableBehavior
+            return;
+        };
 
-    render(): React.ReactNode {
         const {
             checked,
             disabled,
@@ -27,7 +27,7 @@ const StyledInput = addStyle("input");
             id,
             testId,
             ...sharedProps
-        } = this.props;
+        } = props;
 
         const stateStyles = _generateStyles(checked, error);
         const defaultStyle = [
@@ -36,9 +36,7 @@ const StyledInput = addStyle("input");
             !disabled && stateStyles.default,
             disabled && sharedStyles.disabled,
         ];
-        const props = {
-            "data-test-id": testId,
-        } as const;
+
         return (
             <React.Fragment>
                 <StyledInput
@@ -51,15 +49,17 @@ const StyledInput = addStyle("input");
                     name={groupName}
                     // Need to specify because this is a controlled React form
                     // component, but we handle the click via ClickableBehavior
-                    onChange={this.handleChange}
+                    onChange={handleChange}
                     style={defaultStyle}
-                    {...props}
+                    data-test-id={testId}
+                    ref={ref}
                 />
                 {disabled && checked && <span style={disabledChecked} />}
             </React.Fragment>
         );
-    }
-}
+    },
+);
+
 const size = 16; // circle with a different color. Here, we add that center circle. // If the checkbox is disabled and selected, it has a border but also an inner
 const disabledChecked = {
     position: "absolute",
@@ -175,3 +175,5 @@ const _generateStyles = (checked: Checked, error: boolean) => {
     styles[styleKey] = StyleSheet.create(newStyles);
     return styles[styleKey];
 };
+
+export default RadioCore;

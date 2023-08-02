@@ -11,6 +11,13 @@ import Link from "../../packages/wonder-blocks-link/src/components/link";
 import Text from "../../packages/wonder-blocks-core/src/components/text";
 import View from "../../packages/wonder-blocks-core/src/components/view";
 
+// Form imports
+import Checkbox from "../../packages/wonder-blocks-form/src/components/checkbox";
+import CheckboxGroup from "../../packages/wonder-blocks-form/src/components/checkbox-group";
+import Choice from "../../packages/wonder-blocks-form/src/components/choice";
+import Radio from "../../packages/wonder-blocks-form/src/components/radio";
+import RadioGroup from "../../packages/wonder-blocks-form/src/components/radio-group";
+
 // Typography imports
 import Body from "../../packages/wonder-blocks-typography/src/components/body";
 import BodyMonospace from "../../packages/wonder-blocks-typography/src/components/body-monospace";
@@ -285,5 +292,65 @@ describe("IconButton", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLAnchorElement);
+    });
+});
+
+describe("Form elements", () => {
+    test.each`
+        Component   | name
+        ${Checkbox} | ${"Checkbox"}
+        ${Radio}    | ${"Radio (internal)"}
+        ${Choice}   | ${"Choice"}
+    `("$name forwards ref to an HTMLInputElement", ({Component}: any) => {
+        // Arrange
+        const ref: React.RefObject<HTMLInputElement> = React.createRef();
+
+        // Act
+        render(<Component ref={ref} checked={false} onChange={() => {}} />);
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLInputElement);
+    });
+
+    test("CheckboxGroup forwards ref to an HTMLFieldSetElement", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLFieldSetElement> = React.createRef();
+
+        // Act
+        render(
+            <CheckboxGroup
+                groupName="some-group-name"
+                selectedValues={[]}
+                onChange={() => {}}
+                ref={ref}
+            >
+                <Choice label="Some choice" value="some-choice" />
+                <Choice label="Some other choice" value="some-other-choice" />
+            </CheckboxGroup>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLFieldSetElement);
+    });
+
+    test("RadioGroup forwards ref to an HTMLFieldSetElement", () => {
+        // Arrange
+        const ref: React.RefObject<HTMLFieldSetElement> = React.createRef();
+
+        // Act
+        render(
+            <RadioGroup
+                groupName="some-group-name"
+                selectedValue={""}
+                onChange={() => {}}
+                ref={ref}
+            >
+                <Choice label="Some choice" value="some-choice" />
+                <Choice label="Some other choice" value="some-other-choice" />
+            </RadioGroup>,
+        );
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(HTMLFieldSetElement);
     });
 });

@@ -12,7 +12,7 @@ type Props = AriaProps & {
     /** User-defined. Should be distinct for each item in the group. */
     value: string;
     /** User-defined. Whether this choice option is disabled. Default false. */
-    disabled: boolean;
+    disabled?: boolean;
     /** User-defined. Optional id for testing purposes. */
     testId?: string;
     /** User-defined. Optional additional styling. */
@@ -21,7 +21,7 @@ type Props = AriaProps & {
      * Auto-populated by parent. Whether this choice is checked.
      * @ignore
      */
-    checked: boolean;
+    checked?: boolean;
     /**
      * Auto-populated by parent. Whether this choice is in error mode (everything
      * in a choice group would be in error mode at the same time).
@@ -43,18 +43,12 @@ type Props = AriaProps & {
      * Auto-populated by parent. Returns the new checked state of the component.
      * @ignore
      */
-    onChange: (newCheckedState: boolean) => unknown;
+    onChange?: (newCheckedState: boolean) => unknown;
     /**
      * Auto-populated by parent.
      * @ignore
      */
     variant?: "radio" | "checkbox";
-};
-
-type DefaultProps = {
-    checked: Props["checked"];
-    disabled: Props["disabled"];
-    onChange: Props["onChange"];
 };
 
 /**
@@ -123,27 +117,40 @@ type DefaultProps = {
  * </RadioGroup>
  * ```
  */
-export default class Choice extends React.Component<Props> {
-    static defaultProps: DefaultProps = {
-        checked: false,
-        disabled: false,
-        onChange: () => {},
-    };
+const Choice = React.forwardRef(
+    (props: Props, ref: React.ForwardedRef<HTMLInputElement>) => {
+        const {
+            checked = false,
+            disabled = false,
+            onChange = () => {},
+            // we don't need this going into the ChoiceComponent
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            value,
+            variant,
+            ...remainingProps
+        } = props;
 
-    getChoiceComponent(
-        variant?: string | null,
-    ): typeof Radio | typeof Checkbox {
-        if (variant === "checkbox") {
-            return Checkbox;
-        } else {
-            return Radio;
-        }
-    }
-    render(): React.ReactNode {
-        // we don't need this going into the ChoiceComponent
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const {value, variant, ...remainingProps} = this.props;
-        const ChoiceComponent = this.getChoiceComponent(variant);
-        return <ChoiceComponent {...remainingProps} />;
-    }
-}
+        const getChoiceComponent = (
+            variant?: string | null,
+        ): typeof Radio | typeof Checkbox => {
+            if (variant === "checkbox") {
+                return Checkbox;
+            } else {
+                return Radio;
+            }
+        };
+
+        const ChoiceComponent = getChoiceComponent(variant);
+        return (
+            <ChoiceComponent
+                {...remainingProps}
+                checked={checked}
+                disabled={disabled}
+                onChange={onChange}
+                ref={ref}
+            />
+        );
+    },
+);
+
+export default Choice;
