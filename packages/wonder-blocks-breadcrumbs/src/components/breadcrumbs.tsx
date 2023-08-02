@@ -63,41 +63,42 @@ const StyledList = addStyle("ol");
  * </Breadcrumbs>
  * ```
  */
-const Breadcrumbs = React.forwardRef(
-    (props: Props, ref: React.ForwardedRef<HTMLElement>) => {
-        const {
-            "aria-label": ariaLabel = "Breadcrumbs",
-            children,
-            testId,
-            ...otherProps
-        } = props;
+const Breadcrumbs = React.forwardRef(function Breadcrumbs(
+    props: Props,
+    ref: React.ForwardedRef<HTMLElement>,
+) {
+    const {
+        "aria-label": ariaLabel = "Breadcrumbs",
+        children,
+        testId,
+        ...otherProps
+    } = props;
 
-        // using React.Children allows to deal with opaque data structures
-        // e.g. children = 'string' vs children = []
-        const lastChildIndex = React.Children.count(children) - 1;
+    // using React.Children allows to deal with opaque data structures
+    // e.g. children = 'string' vs children = []
+    const lastChildIndex = React.Children.count(children) - 1;
 
-        return (
-            <nav
-                {...otherProps}
-                aria-label={ariaLabel}
-                data-test-id={testId}
-                ref={ref}
-            >
-                <StyledList style={styles.container}>
-                    {React.Children.map(children, (item, index) => {
-                        const isLastChild = index === lastChildIndex;
+    return (
+        <nav
+            {...otherProps}
+            aria-label={ariaLabel}
+            data-test-id={testId}
+            ref={ref}
+        >
+            <StyledList style={styles.container}>
+                {React.Children.map(children, (item, index) => {
+                    const isLastChild = index === lastChildIndex;
 
-                        return React.cloneElement(item, {
-                            ...item.props,
-                            showSeparator: !isLastChild,
-                            ["aria-current"]: isLastChild ? "page" : undefined,
-                        });
-                    })}
-                </StyledList>
-            </nav>
-        );
-    },
-);
+                    return React.cloneElement(item, {
+                        ...item.props,
+                        showSeparator: !isLastChild,
+                        ["aria-current"]: isLastChild ? "page" : undefined,
+                    });
+                })}
+            </StyledList>
+        </nav>
+    );
+});
 
 const styles = StyleSheet.create({
     container: {

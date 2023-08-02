@@ -40,31 +40,29 @@ const styles = StyleSheet.create({
  * - An `aphrodite` StyleSheet style
  * - An array combining the above
  */
-const Text = React.forwardRef(
-    (
-        {children, style, tag: Tag = "span", testId, ...otherProps}: Props,
-        ref,
-    ) => {
-        const isHeader = isHeaderRegex.test(Tag);
-        const styleAttributes = processStyleList([
-            styles.text,
-            isHeader && styles.header,
-            style,
-        ]);
+const Text = React.forwardRef(function Text(
+    {children, style, tag: Tag = "span", testId, ...otherProps}: Props,
+    ref,
+) {
+    const isHeader = isHeaderRegex.test(Tag);
+    const styleAttributes = processStyleList([
+        styles.text,
+        isHeader && styles.header,
+        style,
+    ]);
 
-        return (
-            // @ts-expect-error [FEI-5019] - TS2322 - Type '{ children: ReactNode; style: any; className: string; "data-test-id": string | undefined; tabIndex?: number | undefined; id?: string | undefined; "data-modal-launcher-portal"?: boolean | undefined; ... 69 more ...; onBlur?: ((e: FocusEvent<...>) => unknown) | undefined; }' is not assignable to type 'IntrinsicAttributes'.
-            <Tag
-                {...otherProps}
-                style={styleAttributes.style}
-                className={styleAttributes.className}
-                data-test-id={testId}
-                ref={ref}
-            >
-                {children}
-            </Tag>
-        );
-    },
-);
+    return (
+        // @ts-expect-error [FEI-5019] - TS2322 - Type '{ children: ReactNode; style: any; className: string; "data-test-id": string | undefined; tabIndex?: number | undefined; id?: string | undefined; "data-modal-launcher-portal"?: boolean | undefined; ... 69 more ...; onBlur?: ((e: FocusEvent<...>) => unknown) | undefined; }' is not assignable to type 'IntrinsicAttributes'.
+        <Tag
+            {...otherProps}
+            style={styleAttributes.style}
+            className={styleAttributes.className}
+            data-test-id={testId}
+            ref={ref}
+        >
+            {children}
+        </Tag>
+    );
+});
 
 export default Text;

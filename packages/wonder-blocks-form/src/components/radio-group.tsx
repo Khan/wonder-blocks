@@ -96,69 +96,64 @@ const StyledLegend = addStyle("legend");
  * </RadioGroup>
  * ```
  */
-const RadioGroup = React.forwardRef(
-    (props: RadioGroupProps, ref: React.ForwardedRef<HTMLFieldSetElement>) => {
-        const {
-            children,
-            label,
-            description,
-            errorMessage,
-            groupName,
-            onChange,
-            selectedValue,
-            style,
-            testId,
-        } = props;
+const RadioGroup = React.forwardRef(function RadioGroup(
+    props: RadioGroupProps,
+    ref: React.ForwardedRef<HTMLFieldSetElement>,
+) {
+    const {
+        children,
+        label,
+        description,
+        errorMessage,
+        groupName,
+        onChange,
+        selectedValue,
+        style,
+        testId,
+    } = props;
 
-        const allChildren = React.Children.toArray(children).filter(Boolean);
+    const allChildren = React.Children.toArray(children).filter(Boolean);
 
-        return (
-            <StyledFieldset
-                data-test-id={testId}
-                style={styles.fieldset}
-                ref={ref}
-            >
-                {/* We have a View here because fieldset cannot be used with flexbox*/}
-                <View style={style}>
-                    {label && (
-                        <StyledLegend style={styles.legend}>
-                            <LabelMedium>{label}</LabelMedium>
-                        </StyledLegend>
-                    )}
-                    {description && (
-                        <LabelSmall style={styles.description}>
-                            {description}
-                        </LabelSmall>
-                    )}
-                    {errorMessage && (
-                        <LabelSmall style={styles.error}>
-                            {errorMessage}
-                        </LabelSmall>
-                    )}
-                    {(label || description || errorMessage) && (
-                        <Strut size={Spacing.small_12} />
-                    )}
+    return (
+        <StyledFieldset data-test-id={testId} style={styles.fieldset} ref={ref}>
+            {/* We have a View here because fieldset cannot be used with flexbox*/}
+            <View style={style}>
+                {label && (
+                    <StyledLegend style={styles.legend}>
+                        <LabelMedium>{label}</LabelMedium>
+                    </StyledLegend>
+                )}
+                {description && (
+                    <LabelSmall style={styles.description}>
+                        {description}
+                    </LabelSmall>
+                )}
+                {errorMessage && (
+                    <LabelSmall style={styles.error}>{errorMessage}</LabelSmall>
+                )}
+                {(label || description || errorMessage) && (
+                    <Strut size={Spacing.small_12} />
+                )}
 
-                    {allChildren.map((child, index) => {
-                        // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
-                        const {style, value} = child.props;
-                        const checked = selectedValue === value;
-                        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-                        return React.cloneElement(child, {
-                            checked: checked,
-                            error: !!errorMessage,
-                            groupName: groupName,
-                            id: `${groupName}-${value}`,
-                            key: value,
-                            onChange: () => onChange(value),
-                            style: [index > 0 && styles.defaultLineGap, style],
-                            variant: "radio",
-                        });
-                    })}
-                </View>
-            </StyledFieldset>
-        );
-    },
-);
+                {allChildren.map((child, index) => {
+                    // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
+                    const {style, value} = child.props;
+                    const checked = selectedValue === value;
+                    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
+                    return React.cloneElement(child, {
+                        checked: checked,
+                        error: !!errorMessage,
+                        groupName: groupName,
+                        id: `${groupName}-${value}`,
+                        key: value,
+                        onChange: () => onChange(value),
+                        style: [index > 0 && styles.defaultLineGap, style],
+                        variant: "radio",
+                    });
+                })}
+            </View>
+        </StyledFieldset>
+    );
+});
 
 export default RadioGroup;

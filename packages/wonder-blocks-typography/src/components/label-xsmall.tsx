@@ -5,19 +5,20 @@ import styles from "../util/styles";
 
 import type {Props} from "../util/types";
 
-const LabelXSmall = React.forwardRef(
-    ({style, children, tag = "span", ...otherProps}: Props, ref) => {
-        return (
-            <Text
-                {...otherProps}
-                tag={tag}
-                style={[styles.LabelXSmall, style]}
-                ref={ref}
-            >
-                {children}
-            </Text>
-        );
-    },
-);
+const LabelXSmall = React.forwardRef(function LabelXSmall(
+    {style, children, tag = "span", ...otherProps}: Props,
+    ref,
+) {
+    return (
+        <Text
+            {...otherProps}
+            tag={tag}
+            style={[styles.LabelXSmall, style]}
+            ref={ref}
+        >
+            {children}
+        </Text>
+    );
+});
 
 export default LabelXSmall;

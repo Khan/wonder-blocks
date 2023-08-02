@@ -29,41 +29,42 @@ const StyledSvg = addStyle("svg");
 /**
  * The BreadcrumbsItem represents an individual item in the breadcrumbs list.
  */
-const BreadcrumbsItem = React.forwardRef(
-    (props: Props, ref: React.ForwardedRef<HTMLLIElement>) => {
-        const {children, showSeparator, testId, ...otherProps} = props;
+const BreadcrumbsItem = React.forwardRef(function BreadCrumbsItem(
+    props: Props,
+    ref: React.ForwardedRef<HTMLLIElement>,
+) {
+    const {children, showSeparator, testId, ...otherProps} = props;
 
-        /**
-         * Renders a separator after the content
-         * It draws a circular bullet point using an SVG circle shape
-         */
-        const _renderSeparator = (): React.ReactNode => {
-            return (
-                <StyledSvg
-                    style={styles.separator}
-                    width={16}
-                    height={16}
-                    viewBox="0 0 16 16"
-                    aria-hidden={true}
-                >
-                    <circle cx="8" cy="9" r="1.5" />
-                </StyledSvg>
-            );
-        };
-
+    /**
+     * Renders a separator after the content
+     * It draws a circular bullet point using an SVG circle shape
+     */
+    const _renderSeparator = (): React.ReactNode => {
         return (
-            <StyledListItem
-                {...otherProps}
-                style={styles.item}
-                data-test-id={testId}
-                ref={ref}
+            <StyledSvg
+                style={styles.separator}
+                width={16}
+                height={16}
+                viewBox="0 0 16 16"
+                aria-hidden={true}
             >
-                {children}
-                {showSeparator && _renderSeparator()}
-            </StyledListItem>
+                <circle cx="8" cy="9" r="1.5" />
+            </StyledSvg>
         );
-    },
-);
+    };
+
+    return (
+        <StyledListItem
+            {...otherProps}
+            style={styles.item}
+            data-test-id={testId}
+            ref={ref}
+        >
+            {children}
+            {showSeparator && _renderSeparator()}
+        </StyledListItem>
+    );
+});
 
 const styles = StyleSheet.create({
     item: {

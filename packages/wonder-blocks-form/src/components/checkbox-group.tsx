@@ -95,88 +95,80 @@ const StyledLegend = addStyle("legend");
  * </CheckboxGroup>
  * ```
  */
-const CheckboxGroup = React.forwardRef(
-    (
-        props: CheckboxGroupProps,
-        ref: React.ForwardedRef<HTMLFieldSetElement>,
+const CheckboxGroup = React.forwardRef(function CheckboxGroup(
+    props: CheckboxGroupProps,
+    ref: React.ForwardedRef<HTMLFieldSetElement>,
+) {
+    const {
+        children,
+        label,
+        description,
+        errorMessage,
+        groupName,
+        onChange,
+        selectedValues,
+        style,
+        testId,
+    } = props;
+
+    const handleChange = (
+        changedValue: string,
+        originalCheckedState: boolean,
     ) => {
-        const {
-            children,
-            label,
-            description,
-            errorMessage,
-            groupName,
-            onChange,
-            selectedValues,
-            style,
-            testId,
-        } = props;
+        if (originalCheckedState) {
+            const index = selectedValues.indexOf(changedValue);
+            const updatedSelection = [
+                ...selectedValues.slice(0, index),
+                ...selectedValues.slice(index + 1),
+            ];
+            onChange(updatedSelection);
+        } else {
+            onChange([...selectedValues, changedValue]);
+        }
+    };
 
-        const handleChange = (
-            changedValue: string,
-            originalCheckedState: boolean,
-        ) => {
-            if (originalCheckedState) {
-                const index = selectedValues.indexOf(changedValue);
-                const updatedSelection = [
-                    ...selectedValues.slice(0, index),
-                    ...selectedValues.slice(index + 1),
-                ];
-                onChange(updatedSelection);
-            } else {
-                onChange([...selectedValues, changedValue]);
-            }
-        };
+    const allChildren = React.Children.toArray(children).filter(Boolean);
 
-        const allChildren = React.Children.toArray(children).filter(Boolean);
+    return (
+        <StyledFieldset data-test-id={testId} style={styles.fieldset} ref={ref}>
+            {/* We have a View here because fieldset cannot be used with flexbox*/}
+            <View style={style}>
+                {label && (
+                    <StyledLegend style={styles.legend}>
+                        <LabelMedium>{label}</LabelMedium>
+                    </StyledLegend>
+                )}
+                {description && (
+                    <LabelSmall style={styles.description}>
+                        {description}
+                    </LabelSmall>
+                )}
+                {errorMessage && (
+                    <LabelSmall style={styles.error}>{errorMessage}</LabelSmall>
+                )}
+                {(label || description || errorMessage) && (
+                    <Strut size={Spacing.small_12} />
+                )}
 
-        return (
-            <StyledFieldset
-                data-test-id={testId}
-                style={styles.fieldset}
-                ref={ref}
-            >
-                {/* We have a View here because fieldset cannot be used with flexbox*/}
-                <View style={style}>
-                    {label && (
-                        <StyledLegend style={styles.legend}>
-                            <LabelMedium>{label}</LabelMedium>
-                        </StyledLegend>
-                    )}
-                    {description && (
-                        <LabelSmall style={styles.description}>
-                            {description}
-                        </LabelSmall>
-                    )}
-                    {errorMessage && (
-                        <LabelSmall style={styles.error}>
-                            {errorMessage}
-                        </LabelSmall>
-                    )}
-                    {(label || description || errorMessage) && (
-                        <Strut size={Spacing.small_12} />
-                    )}
-
-                    {allChildren.map((child, index) => {
-                        // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
-                        const {style, value} = child.props;
-                        const checked = selectedValues.includes(value);
-                        // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-                        return React.cloneElement(child, {
-                            checked: checked,
-                            error: !!errorMessage,
-                            groupName: groupName,
-                            id: `${groupName}-${value}`,
-                            key: value,
-                            onChange: () => handleChange(value, checked),
-                            style: [index > 0 && styles.defaultLineGap, style],
-                            variant: "checkbox",
-                        });
-                    })}
-                </View>
-            </StyledFieldset>
-        );
-    },
-);
+                {allChildren.map((child, index) => {
+                    // @ts-expect-error [FEI-5019] - TS2339 - Property 'props' does not exist on type 'ReactChild | ReactFragment | ReactPortal'.
+                    const {style, value} = child.props;
+                    const checked = selectedValues.includes(value);
+                    // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
+                    return React.cloneElement(child, {
+                        checked: checked,
+                        error: !!errorMessage,
+                        groupName: groupName,
+                        id: `${groupName}-${value}`,
+                        key: value,
+                        onChange: () => handleChange(value, checked),
+                        style: [index > 0 && styles.defaultLineGap, style],
+                        variant: "checkbox",
+                    });
+                })}
+            </View>
+        </StyledFieldset>
+    );
+});
 
 export default CheckboxGroup;

@@ -5,19 +5,20 @@ import styles from "../util/styles";
 
 import type {Props} from "../util/types";
 
-const LabelLarge = React.forwardRef(
-    ({style, children, tag = "span", ...otherProps}: Props, ref) => {
-        return (
-            <Text
-                {...otherProps}
-                tag={tag}
-                style={[styles.LabelLarge, style]}
-                ref={ref}
-            >
-                {children}
-            </Text>
-        );
-    },
-);
+const LabelLarge = React.forwardRef(function LabelLarge(
+    {style, children, tag = "span", ...otherProps}: Props,
+    ref,
+) {
+    return (
+        <Text
+            {...otherProps}
+            tag={tag}
+            style={[styles.LabelLarge, style]}
+            ref={ref}
+        >
+            {children}
+        </Text>
+    );
+});
 
 export default LabelLarge;
