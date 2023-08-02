@@ -311,6 +311,8 @@ Controlled.parameters = {
                \`onClose\` callback being triggered.`,
         },
     },
+    // Added to ensure that the tooltip is rendered using PopperJS.
+    chromatic: {delay: 500},
 };
 
 const styles = StyleSheet.create({
