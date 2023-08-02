@@ -1,0 +1,31 @@
+{
+  "name": "@khanacademy/wonder-blocks-switch",
+  "version": "0.0.1",
+  "design": "v1",
+  "description": "Switch components for Wonder Blocks.",
+  "main": "dist/index.js",
+  "module": "dist/es/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@khanacademy/wonder-blocks-clickable": "^3.1.0",
+    "@khanacademy/wonder-blocks-color": "^2.0.1",
+    "@khanacademy/wonder-blocks-core": "^5.2.3",
+    "@khanacademy/wonder-blocks-typography": "^2.0.13"
+
+  },
+  "peerDependencies": {
+    "aphrodite": "^1.2.5",
+    "react": "16.14.0"
+  },
+  "devDependencies": {
+    "wb-dev-build-settings": "^0.9.7"
+  }
+}
