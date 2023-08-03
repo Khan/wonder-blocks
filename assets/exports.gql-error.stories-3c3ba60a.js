@@ -1,0 +1,10 @@
+import{M as i}from"./index-35e12253.js";import{a as e,j as a,F as c}from"./jsx-runtime-309e447d.js";import{u as s}from"./index-506666d7.js";import"./iframe-97aa1d91.js";import"../sb-preview/runtime.js";import"./chunk-6P7RB4HF-938b085e.js";import"./index-d475d2ea.js";import"./index-9f32f44c.js";import"./_commonjsHelpers-de833af9.js";import"./index-9c2d1831.js";import"./inheritsLoose-9eefaa95.js";import"./assertThisInitialized-081f9914.js";import"./index-4733a090.js";import"./_baseIsEqual-976d9d82.js";import"./uniq-944679ca.js";import"./index-356e4a49.js";function n(o){const r=Object.assign({h1:"h1",pre:"pre",code:"code",p:"p",a:"a"},s(),o.components);return a(c,{children:[e(i,{title:"Data / Exports / GqlError",parameters:{chromatic:{disableSnapshot:!0}}}),`
+`,e(r.h1,{id:"gqlerror",children:"GqlError"}),`
+`,e(r.pre,{children:e(r.code,{className:"language-ts",children:`new GqlError(
+    message: string,
+    kind: $Values<typeof GqlErrors>,
+    options?: ErrorOptions,
+);
+`})}),`
+`,a(r.p,{children:["The ",e(r.code,{children:"GqlError"})," class is a derivation of the Wonder Blocks Core ",e(r.code,{children:"KindError"})," (which is itself a derivation of ",e(r.code,{children:"Error"}),"). It is used by the Wonder Blocks Data GraphQL framework to encapsulate errors that can occur within the GraphQL API. The different kinds of errors supported are defined by the ",e(r.a,{href:"/docs/data-exports-gqlerrors--page",children:e(r.code,{children:"GqlErrors"})})," export."]})]})}function p(o={}){const{wrapper:r}=Object.assign({},s(),o.components);return r?e(r,{...o,children:e(n,{...o})}):n(o)}const d=()=>{throw new Error("Docs-only story")};d.parameters={docsOnly:!0};const t={title:"Data / Exports / GqlError",parameters:{chromatic:{disableSnapshot:!0}},tags:["stories-mdx"],includeStories:["__page"]};t.parameters=t.parameters||{};t.parameters.docs={...t.parameters.docs||{},page:p};const j=["__page"];export{j as __namedExportsOrder,d as __page,t as default};
+//# sourceMappingURL=exports.gql-error.stories-3c3ba60a.js.map

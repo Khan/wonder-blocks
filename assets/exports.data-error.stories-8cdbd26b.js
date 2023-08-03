@@ -1,0 +1,10 @@
+import{M as i}from"./index-35e12253.js";import{a as e,j as a,F as c}from"./jsx-runtime-309e447d.js";import{u as n}from"./index-506666d7.js";import"./iframe-97aa1d91.js";import"../sb-preview/runtime.js";import"./chunk-6P7RB4HF-938b085e.js";import"./index-d475d2ea.js";import"./index-9f32f44c.js";import"./_commonjsHelpers-de833af9.js";import"./index-9c2d1831.js";import"./inheritsLoose-9eefaa95.js";import"./assertThisInitialized-081f9914.js";import"./index-4733a090.js";import"./_baseIsEqual-976d9d82.js";import"./uniq-944679ca.js";import"./index-356e4a49.js";function s(t){const r=Object.assign({h1:"h1",pre:"pre",code:"code",p:"p",a:"a"},n(),t.components);return a(c,{children:[e(i,{title:"Data / Exports / DataError",parameters:{chromatic:{disableSnapshot:!0}}}),`
+`,e(r.h1,{id:"dataerror",children:"DataError"}),`
+`,e(r.pre,{children:e(r.code,{className:"language-ts",children:`new DataError(
+    message: string,
+    kind: $Values<typeof DataErrors>,
+    options?: ErrorOptions,
+);
+`})}),`
+`,a(r.p,{children:["The ",e(r.code,{children:"DataError"})," class is a derivation of the Wonder Blocks Core ",e(r.code,{children:"KindError"})," (which is itself a derivation of ",e(r.code,{children:"Error"}),"). It is used by the Wonder Blocks Data framework to encapsulate errors that can occur when using its API. The different kinds of errors supported are defined by the ",e(r.a,{href:"/docs/data-exports-dataerrors--page",children:e(r.code,{children:"DataErrors"})})," export."]})]})}function p(t={}){const{wrapper:r}=Object.assign({},n(),t.components);return r?e(r,{...t,children:e(s,{...t})}):s(t)}const d=()=>{throw new Error("Docs-only story")};d.parameters={docsOnly:!0};const o={title:"Data / Exports / DataError",parameters:{chromatic:{disableSnapshot:!0}},tags:["stories-mdx"],includeStories:["__page"]};o.parameters=o.parameters||{};o.parameters.docs={...o.parameters.docs||{},page:p};const O=["__page"];export{O as __namedExportsOrder,d as __page,o as default};
+//# sourceMappingURL=exports.data-error.stories-8cdbd26b.js.map

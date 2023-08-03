@@ -1,0 +1,9 @@
+import{M as s}from"./index-35e12253.js";import{a as r,j as n,F as d}from"./jsx-runtime-309e447d.js";import{u as i}from"./index-506666d7.js";import"./iframe-97aa1d91.js";import"../sb-preview/runtime.js";import"./chunk-6P7RB4HF-938b085e.js";import"./index-d475d2ea.js";import"./index-9f32f44c.js";import"./_commonjsHelpers-de833af9.js";import"./index-9c2d1831.js";import"./inheritsLoose-9eefaa95.js";import"./assertThisInitialized-081f9914.js";import"./index-4733a090.js";import"./_baseIsEqual-976d9d82.js";import"./uniq-944679ca.js";import"./index-356e4a49.js";function o(t){const e=Object.assign({h1:"h1",p:"p",ul:"ul",li:"li",a:"a"},i(),t.components);return n(d,{children:[r(s,{title:"Data / Overview",parameters:{chromatic:{disableSnapshot:!0}}}),`
+`,r(e.h1,{id:"wonder-blocks-data",children:"Wonder Blocks Data"}),`
+`,r(e.p,{children:"Wonder Blocks Data provides components, hooks, and additional APIs to make working with asynchronous requests easier, both client-side and server-side."}),`
+`,n(e.ul,{children:[`
+`,r(e.li,{children:r(e.a,{href:"/docs/data-graphql--page",children:"GraphQL"})}),`
+`,r(e.li,{children:r(e.a,{href:"/docs/data-server-side-rendering-and-hydration--page",children:"Server-Side Rendering and Hydration"})}),`
+`,r(e.li,{children:r(e.a,{href:"/docs/data-testing--page",children:"Testing"})}),`
+`]})]})}function c(t={}){const{wrapper:e}=Object.assign({},i(),t.components);return e?r(e,{...t,children:r(o,{...t})}):o(t)}const p=()=>{throw new Error("Docs-only story")};p.parameters={docsOnly:!0};const a={title:"Data / Overview",parameters:{chromatic:{disableSnapshot:!0}},tags:["stories-mdx"],includeStories:["__page"]};a.parameters=a.parameters||{};a.parameters.docs={...a.parameters.docs||{},page:c};const j=["__page"];export{j as __namedExportsOrder,p as __page,a as default};
+//# sourceMappingURL=_overview_.stories-52b40f8b.js.map

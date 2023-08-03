@@ -1,0 +1,13 @@
+import{a as e,j as l}from"./jsx-runtime-309e447d.js";import{L as s}from"./link-64b6fd31.js";import{B as m,a as t}from"./breadcrumbs-item-25bba318.js";import{C as u}from"./component-info-cedbe096.js";import"./index-9f32f44c.js";import"./_commonjsHelpers-de833af9.js";import"./clickable-8a7f284d.js";import"./render-state-root-891c0d56.js";import"./inheritsLoose-9eefaa95.js";import"./index-8d47fad6.js";import"./index-f641b98f.js";import"./icon-a4f17d53.js";import"./button-b2794e32.js";import"./footnote-761d2bcc.js";const b="@khanacademy/wonder-blocks-breadcrumbs",h="2.1.0",f="v1",y={access:"public"},B="",g="dist/index.js",I="dist/es/index.js",k="dist/index.d.ts",x={test:'echo "Error: no test specified" && exit 1'},v="",C="MIT",L={"@babel/runtime":"^7.18.6","@khanacademy/wonder-blocks-core":"^5.3.0","@khanacademy/wonder-blocks-spacing":"^4.0.1"},w={aphrodite:"^1.2.5",react:"16.14.0"},D={"wb-dev-build-settings":"^0.9.7"},n={name:b,version:h,design:f,publishConfig:y,description:B,main:g,module:I,types:k,scripts:x,author:v,license:C,dependencies:L,peerDependencies:w,devDependencies:D},j={children:{table:{type:{summary:"React.ChildrenArray<React.Element<BreadcrumbsItem>>",detail:"This is the content for the collection of Breadcrumbs."}},type:{name:"other",value:"React.ChildrenArray<React.Element<BreadcrumbsItem>>",required:!0}},"aria-label":{description:"The description of this component for the screenreader to read.",control:{type:"text"},table:{type:{summary:"string"}}},testId:{control:{type:"text"},table:{type:{summary:"string"}}}},J={title:"Breadcrumbs",component:m,argTypes:j,parameters:{componentSubtitle:e(u,{name:n.name,version:n.version})}},r={render:p=>l(m,{...p,children:[e(t,{children:e(s,{href:"",children:"Course"})}),e(t,{children:e(s,{href:"",children:"Unit"})}),e(t,{children:"Lesson"})]})};var o,a,i,c,d;r.parameters={...r.parameters,docs:{...(o=r.parameters)==null?void 0:o.docs,source:{originalSource:`{
+  render: args => <Breadcrumbs {...args}>
+            <BreadcrumbsItem>
+                <Link href="">Course</Link>
+            </BreadcrumbsItem>
+            <BreadcrumbsItem>
+                <Link href="">Unit</Link>
+            </BreadcrumbsItem>
+            <BreadcrumbsItem>Lesson</BreadcrumbsItem>
+        </Breadcrumbs>
+}`,...(i=(a=r.parameters)==null?void 0:a.docs)==null?void 0:i.source},description:{story:`Default Breadcrumbs example. It will be rendered as the first/default
+story and it can be interacted with the controls panel in the Browser.`,...(d=(c=r.parameters)==null?void 0:c.docs)==null?void 0:d.description}}};const K=["Default"];export{r as Default,K as __namedExportsOrder,J as default};
+//# sourceMappingURL=breadcrumbs.stories-16cc0343.js.map

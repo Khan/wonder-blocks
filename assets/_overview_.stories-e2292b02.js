@@ -1,0 +1,9 @@
+import{M as a}from"./index-35e12253.js";import{a as t,j as n,F as c}from"./jsx-runtime-309e447d.js";import{u as i}from"./index-506666d7.js";import"./iframe-97aa1d91.js";import"../sb-preview/runtime.js";import"./chunk-6P7RB4HF-938b085e.js";import"./index-d475d2ea.js";import"./index-9f32f44c.js";import"./_commonjsHelpers-de833af9.js";import"./index-9c2d1831.js";import"./inheritsLoose-9eefaa95.js";import"./assertThisInitialized-081f9914.js";import"./index-4733a090.js";import"./_baseIsEqual-976d9d82.js";import"./uniq-944679ca.js";import"./index-356e4a49.js";function s(r){const e=Object.assign({h1:"h1",p:"p",ul:"ul",li:"li",a:"a"},i(),r.components);return n(c,{children:[t(a,{title:"Testing / Overview",parameters:{chromatic:{disableSnapshot:!0}}}),`
+`,t(e.h1,{id:"wonder-blocks-testing",children:"Wonder Blocks Testing"}),`
+`,t(e.p,{children:"Wonder Blocks Testing provides various utilities to support testing of React components and Wonder Blocks features."}),`
+`,n(e.ul,{children:[`
+`,t(e.li,{children:t(e.a,{href:"/docs/testing-fixtures-overview--page",children:"Fixtures"})}),`
+`,t(e.li,{children:t(e.a,{href:"/docs/testing-mocking-overview--page",children:"Mocking"})}),`
+`,t(e.li,{children:t(e.a,{href:"/docs/testing-test-harness-overview--page",children:"Test Harness"})}),`
+`]})]})}function p(r={}){const{wrapper:e}=Object.assign({},i(),r.components);return e?t(e,{...r,children:t(s,{...r})}):s(r)}const m=()=>{throw new Error("Docs-only story")};m.parameters={docsOnly:!0};const o={title:"Testing / Overview",parameters:{chromatic:{disableSnapshot:!0}},tags:["stories-mdx"],includeStories:["__page"]};o.parameters=o.parameters||{};o.parameters.docs={...o.parameters.docs||{},page:p};const y=["__page"];export{y as __namedExportsOrder,m as __page,o as default};
+//# sourceMappingURL=_overview_.stories-e2292b02.js.map
