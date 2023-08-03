@@ -41,22 +41,6 @@ jobs:
         with:
           node-version: 16.x
 
-      - name: Build all packages
-        # Build all WB packages that Storybook depends on.
-        run: yarn build
-
-      - name: Build Storybook
-        # Generate a static version of storybook inside "storybook-static/"
-        run: yarn build:storybook
-
-      - name: Deploy to GitHub pages
-        uses: JamesIves/github-pages-deploy-action@v4
-        with:
-          # The branch the action should deploy to.
-          branch: gh-pages
-          # The folder the action should deploy.
-          folder: storybook-static
-
       - name: Create Release Pull Request or Publish to npm
         id: changesets
         uses: changesets/action@v1

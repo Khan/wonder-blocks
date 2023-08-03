@@ -1,0 +1,61 @@
+name: Deploy WB to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+  # Allows us to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# This workflow will deploy the Storybook static files to GitHub Pages.
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          ssh-key: ${{ secrets.SSH_PRIVATE_KEY }}
+          fetch-depth: 0
+
+      - name: Install & cache node_modules
+        uses: Khan/actions@shared-node-cache-v0
+        with:
+          node-version: 16.x
+
+      - name: Build all packages
+        # Build all WB packages that Storybook depends on.
+        run: yarn build
+
+      - name: Build Storybook
+        # Generate a static version of storybook inside "storybook-static/"
+        run: yarn build:storybook
+
+      - name: Upload Storybook artifact
+        uses: actions/upload-pages-artifact@v1
+        with:
+          # Upload the generated static files
+          path: "./storybook-static"
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    # Grant GITHUB_TOKEN the permissions required to make a Pages deployment
+    permissions:
+      pages: write      # to deploy to Pages
+      id-token: write   # to verify the deployment originates from an appropriate source
+
+    # Deploy to the github-pages environment
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v2
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v1
+
+      - run: echo ${{ steps.deployment.outputs.page_url }}
