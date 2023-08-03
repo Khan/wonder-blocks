@@ -49,6 +49,8 @@ export default {
                 version={packageConfig.version}
             />
         ),
+        // Added to ensure that the tooltip is rendered using PopperJS.
+        chromatic: {delay: 500},
     },
     decorators: [
         (Story): React.ReactElement => (

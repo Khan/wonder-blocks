@@ -1,8 +1,6 @@
 /**
  * Overrides for the Storybook preview iframe.
  */
-@import "./vars.css";
-
 .sbdocs ul,
 .sbdocs li,
 .sbdocs p,
