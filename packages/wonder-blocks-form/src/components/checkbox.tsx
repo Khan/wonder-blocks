@@ -79,23 +79,21 @@ type ChoiceComponentProps = AriaProps & {
  * <Checkbox checked={checked} onChange={setChecked} />
  * ```
  */
-const Checkbox = React.forwardRef(
-    (
-        props: ChoiceComponentProps,
-        ref: React.ForwardedRef<HTMLInputElement>,
-    ) => {
-        const {disabled = false, error = false} = props;
+const Checkbox = React.forwardRef(function Checkbox(
+    props: ChoiceComponentProps,
+    ref: React.ForwardedRef<HTMLInputElement>,
+) {
+    const {disabled = false, error = false} = props;
 
-        return (
-            <ChoiceInternal
-                {...props}
-                variant="checkbox"
-                disabled={disabled}
-                error={error}
-                ref={ref}
-            />
-        );
-    },
-);
+    return (
+        <ChoiceInternal
+            {...props}
+            variant="checkbox"
+            disabled={disabled}
+            error={error}
+            ref={ref}
+        />
+    );
+});
 
 export default Checkbox;

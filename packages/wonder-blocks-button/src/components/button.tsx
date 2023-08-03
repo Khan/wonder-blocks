@@ -198,7 +198,7 @@ const Button: React.ForwardRefExoticComponent<
 > = React.forwardRef<
     typeof Link | HTMLButtonElement | HTMLAnchorElement,
     Props
->((props: Props, ref) => {
+>(function Button(props: Props, ref) {
     const {
         href = undefined,
         type = undefined,

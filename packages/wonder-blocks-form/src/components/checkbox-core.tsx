@@ -39,83 +39,77 @@ const indeterminatePath: IconAsset = {
 /**
  * The internal stateless ☑️ Checkbox
  */
-const CheckboxCore = React.forwardRef(
-    (props: ChoiceCoreProps, ref: React.ForwardedRef<HTMLInputElement>) => {
-        const {
-            checked,
-            disabled,
-            error,
-            groupName,
-            id,
-            testId,
-            ...sharedProps
-        } = props;
+const CheckboxCore = React.forwardRef(function CheckboxCore(
+    props: ChoiceCoreProps,
+    ref: React.ForwardedRef<HTMLInputElement>,
+) {
+    const {checked, disabled, error, groupName, id, testId, ...sharedProps} =
+        props;
 
-        const innerRef = React.useRef<HTMLInputElement>(null);
+    const innerRef = React.useRef<HTMLInputElement>(null);
 
-        React.useEffect(() => {
-            // Keep the indeterminate state in sync with the checked prop
-            if (innerRef.current != null) {
-                innerRef.current.indeterminate = checked == null;
-            }
-        }, [checked, innerRef]);
+    React.useEffect(() => {
+        // Keep the indeterminate state in sync with the checked prop
+        if (innerRef.current != null) {
+            innerRef.current.indeterminate = checked == null;
+        }
+    }, [checked, innerRef]);
 
-        const handleChange: () => void = () => {
-            // Empty because change is handled by ClickableBehavior
-            return;
-        };
+    const handleChange: () => void = () => {
+        // Empty because change is handled by ClickableBehavior
+        return;
+    };
 
-        const stateStyles = _generateStyles(checked, error);
+    const stateStyles = _generateStyles(checked, error);
 
-        const defaultStyle = [
-            sharedStyles.inputReset,
-            sharedStyles.default,
-            !disabled && stateStyles.default,
-            disabled && sharedStyles.disabled,
-        ];
+    const defaultStyle = [
+        sharedStyles.inputReset,
+        sharedStyles.default,
+        !disabled && stateStyles.default,
+        disabled && sharedStyles.disabled,
+    ];
 
-        const checkboxIcon = (
-            <Icon
-                color={disabled ? offBlack32 : white}
-                icon={checked ? checkPath : indeterminatePath}
-                size="small"
-                style={sharedStyles.checkboxIcon}
+    const checkboxIcon = (
+        <Icon
+            color={disabled ? offBlack32 : white}
+            icon={checked ? checkPath : indeterminatePath}
+            size="small"
+            style={sharedStyles.checkboxIcon}
+        />
+    );
+
+    const ariaChecked = mapCheckedToAriaChecked(checked);
+
+    return (
+        <React.Fragment>
+            <StyledInput
+                {...sharedProps}
+                ref={(node) => {
+                    // @ts-expect-error: current is not actually read-only
+                    innerRef.current = node;
+                    if (typeof ref === "function") {
+                        ref(node);
+                    } else if (ref != null) {
+                        ref.current = node;
+                    }
+                }}
+                type="checkbox"
+                aria-checked={ariaChecked}
+                aria-invalid={error}
+                checked={checked ?? undefined}
+                disabled={disabled}
+                id={id}
+                name={groupName}
+                // Need to specify because this is a controlled React form
+                // component, but we handle the click via ClickableBehavior
+                onChange={handleChange}
+                style={defaultStyle}
+                data-test-id={testId}
             />
-        );
-
-        const ariaChecked = mapCheckedToAriaChecked(checked);
-
-        return (
-            <React.Fragment>
-                <StyledInput
-                    {...sharedProps}
-                    ref={(node) => {
-                        // @ts-expect-error: current is not actually read-only
-                        innerRef.current = node;
-                        if (typeof ref === "function") {
-                            ref(node);
-                        } else if (ref != null) {
-                            ref.current = node;
-                        }
-                    }}
-                    type="checkbox"
-                    aria-checked={ariaChecked}
-                    aria-invalid={error}
-                    checked={checked ?? undefined}
-                    disabled={disabled}
-                    id={id}
-                    name={groupName}
-                    // Need to specify because this is a controlled React form
-                    // component, but we handle the click via ClickableBehavior
-                    onChange={handleChange}
-                    style={defaultStyle}
-                    data-test-id={testId}
-                />
-                {checked || checked == null ? checkboxIcon : <></>}
-            </React.Fragment>
-        );
-    },
-);
+            {checked || checked == null ? checkboxIcon : <></>}
+        </React.Fragment>
+    );
+});
 
 const size = 16;
 

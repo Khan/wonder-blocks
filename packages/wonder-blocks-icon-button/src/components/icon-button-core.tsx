@@ -40,7 +40,7 @@ const IconButtonCore: React.ForwardRefExoticComponent<
 > = React.forwardRef<
     typeof Link | HTMLButtonElement | HTMLAnchorElement,
     Props
->((props: Props, ref) => {
+>(function IconButtonCore(props: Props, ref) {
     const {
         skipClientNav,
         color,

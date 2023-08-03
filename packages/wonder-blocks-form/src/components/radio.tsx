@@ -62,23 +62,21 @@ type ChoiceComponentProps = AriaProps & {
  *
  * This component should not really be used by itself because radio buttons are
  * often grouped together. See RadioGroup.
- */ const Radio = React.forwardRef(
-    (
-        props: ChoiceComponentProps,
-        ref: React.ForwardedRef<HTMLInputElement>,
-    ) => {
-        const {disabled = false, error = false, ...otherProps} = props;
+ */ const Radio = React.forwardRef(function Radio(
+    props: ChoiceComponentProps,
+    ref: React.ForwardedRef<HTMLInputElement>,
+) {
+    const {disabled = false, error = false, ...otherProps} = props;
 
-        return (
-            <ChoiceInternal
-                {...otherProps}
-                variant="radio"
-                disabled={disabled}
-                error={error}
-                ref={ref}
-            />
-        );
-    },
-);
+    return (
+        <ChoiceInternal
+            {...otherProps}
+            variant="radio"
+            disabled={disabled}
+            error={error}
+            ref={ref}
+        />
+    );
+});
 
 export default Radio;

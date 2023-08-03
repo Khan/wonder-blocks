@@ -156,7 +156,7 @@ const IconButton: React.ForwardRefExoticComponent<
 > = React.forwardRef<
     typeof Link | HTMLButtonElement | HTMLAnchorElement,
     SharedProps
->((props: SharedProps, ref) => {
+>(function IconButton(props: SharedProps, ref) {
     const {
         onClick,
         href,

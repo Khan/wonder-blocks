@@ -68,7 +68,7 @@ const StyledSection = addStyle("section", styles.default);
 
 const View: React.ForwardRefExoticComponent<
     Props & React.RefAttributes<HTMLElement>
-> = React.forwardRef<HTMLElement, Props>((props, ref) => {
+> = React.forwardRef<HTMLElement, Props>(function View(props, ref) {
     const {testId, tag = "div", ...restProps} = props;
     const commonProps = {
         ...restProps,

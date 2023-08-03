@@ -33,7 +33,7 @@ const ButtonCore: React.ForwardRefExoticComponent<
 > = React.forwardRef<
     typeof Link | HTMLButtonElement | HTMLAnchorElement,
     Props
->((props: Props, ref) => {
+>(function ButtonCore(props: Props, ref) {
     const renderInner = (router: any): React.ReactNode => {
         const {
             children,

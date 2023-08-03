@@ -117,40 +117,41 @@ type Props = AriaProps & {
  * </RadioGroup>
  * ```
  */
-const Choice = React.forwardRef(
-    (props: Props, ref: React.ForwardedRef<HTMLInputElement>) => {
-        const {
-            checked = false,
-            disabled = false,
-            onChange = () => {},
-            // we don't need this going into the ChoiceComponent
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            value,
-            variant,
-            ...remainingProps
-        } = props;
+const Choice = React.forwardRef(function Choice(
+    props: Props,
+    ref: React.ForwardedRef<HTMLInputElement>,
+) {
+    const {
+        checked = false,
+        disabled = false,
+        onChange = () => {},
+        // we don't need this going into the ChoiceComponent
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        value,
+        variant,
+        ...remainingProps
+    } = props;
 
-        const getChoiceComponent = (
-            variant?: string | null,
-        ): typeof Radio | typeof Checkbox => {
-            if (variant === "checkbox") {
-                return Checkbox;
-            } else {
-                return Radio;
-            }
-        };
+    const getChoiceComponent = (
+        variant?: string | null,
+    ): typeof Radio | typeof Checkbox => {
+        if (variant === "checkbox") {
+            return Checkbox;
+        } else {
+            return Radio;
+        }
+    };
 
-        const ChoiceComponent = getChoiceComponent(variant);
-        return (
-            <ChoiceComponent
-                {...remainingProps}
-                checked={checked}
-                disabled={disabled}
-                onChange={onChange}
-                ref={ref}
-            />
-        );
-    },
-);
+    const ChoiceComponent = getChoiceComponent(variant);
+    return (
+        <ChoiceComponent
+            {...remainingProps}
+            checked={checked}
+            disabled={disabled}
+            onChange={onChange}
+            ref={ref}
+        />
+    );
+});
 
 export default Choice;

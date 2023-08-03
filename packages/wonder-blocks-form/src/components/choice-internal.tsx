@@ -55,108 +55,109 @@ type Props = AriaProps & {
  * and RadioGroup. This design allows for more explicit prop typing. For
  * example, we can make onChange a required prop on Checkbox but not on Choice
  * (because for Choice, that prop would be auto-populated by CheckboxGroup).
- */ const ChoiceInternal = React.forwardRef(
-    (props: Props, ref: React.ForwardedRef<HTMLInputElement>) => {
-        const {
-            checked,
-            description,
-            disabled = false,
-            error = false,
-            id,
-            label,
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            onChange,
-            style,
-            className,
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
-            variant,
-            // ...coreProps
-        } = props;
+ */ const ChoiceInternal = React.forwardRef(function ChoiceInternal(
+    props: Props,
+    ref: React.ForwardedRef<HTMLInputElement>,
+) {
+    const {
+        checked,
+        description,
+        disabled = false,
+        error = false,
+        id,
+        label,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        onChange,
+        style,
+        className,
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        variant,
+        // ...coreProps
+    } = props;
 
-        const handleClick: () => void = () => {
-            // Radio buttons cannot be unchecked
-            if (variant === "radio" && checked) {
-                return;
-            }
-            onChange(!checked);
-        };
+    const handleClick: () => void = () => {
+        // Radio buttons cannot be unchecked
+        if (variant === "radio" && checked) {
+            return;
+        }
+        onChange(!checked);
+    };
 
-        const getChoiceCoreComponent = ():
-            | typeof RadioCore
-            | typeof CheckboxCore => {
-            if (variant === "radio") {
-                return RadioCore;
-            } else {
-                return CheckboxCore;
-            }
-        };
+    const getChoiceCoreComponent = ():
+        | typeof RadioCore
+        | typeof CheckboxCore => {
+        if (variant === "radio") {
+            return RadioCore;
+        } else {
+            return CheckboxCore;
+        }
+    };
 
-        const getLabel = (id: string): React.ReactNode => {
-            return (
-                <LabelMedium
-                    style={[styles.label, disabled && styles.disabledLabel]}
-                >
-                    <label htmlFor={id}>{label}</label>
-                </LabelMedium>
-            );
-        };
-
-        const getDescription = (id?: string): React.ReactNode => {
-            return (
-                <LabelSmall style={styles.description} id={id}>
-                    {description}
-                </LabelSmall>
-            );
-        };
-
-        const ChoiceCore = getChoiceCoreComponent();
-
+    const getLabel = (id: string): React.ReactNode => {
         return (
-            <UniqueIDProvider mockOnFirstRender={true} scope="choice">
-                {(ids) => {
-                    // A choice element should always have a unique ID set
-                    // so that the label can always refer to this element.
-                    // This guarantees that clicking on the label will
-                    // always click on the choice as well. If an ID is
-                    // passed in as a prop, use that one. Otherwise,
-                    // create a unique ID using the provider.
-                    const uniqueId = id || ids.get("main");
-
-                    // Create a unique ID for the description section to be
-                    // used by this element's `aria-describedby`.
-                    const descriptionId = description
-                        ? ids.get("description")
-                        : undefined;
-
-                    return (
-                        <View style={style} className={className}>
-                            <View
-                                style={styles.wrapper}
-                                // We are resetting the tabIndex=0 from handlers
-                                // because the ChoiceCore component will receive
-                                // focus on basis of it being an input element.
-                                tabIndex={-1}
-                            >
-                                <ChoiceCore
-                                    {...props}
-                                    id={uniqueId}
-                                    aria-describedby={descriptionId}
-                                    onClick={handleClick}
-                                    disabled={disabled}
-                                    error={error}
-                                    ref={ref}
-                                />
-                                <Strut size={Spacing.xSmall_8} />
-                                {label && getLabel(uniqueId)}
-                            </View>
-                            {description && getDescription(descriptionId)}
-                        </View>
-                    );
-                }}
-            </UniqueIDProvider>
+            <LabelMedium
+                style={[styles.label, disabled && styles.disabledLabel]}
+            >
+                <label htmlFor={id}>{label}</label>
+            </LabelMedium>
         );
-    },
-);
+    };
+
+    const getDescription = (id?: string): React.ReactNode => {
+        return (
+            <LabelSmall style={styles.description} id={id}>
+                {description}
+            </LabelSmall>
+        );
+    };
+
+    const ChoiceCore = getChoiceCoreComponent();
+
+    return (
+        <UniqueIDProvider mockOnFirstRender={true} scope="choice">
+            {(ids) => {
+                // A choice element should always have a unique ID set
+                // so that the label can always refer to this element.
+                // This guarantees that clicking on the label will
+                // always click on the choice as well. If an ID is
+                // passed in as a prop, use that one. Otherwise,
+                // create a unique ID using the provider.
+                const uniqueId = id || ids.get("main");
+
+                // Create a unique ID for the description section to be
+                // used by this element's `aria-describedby`.
+                const descriptionId = description
+                    ? ids.get("description")
+                    : undefined;
+
+                return (
+                    <View style={style} className={className}>
+                        <View
+                            style={styles.wrapper}
+                            // We are resetting the tabIndex=0 from handlers
+                            // because the ChoiceCore component will receive
+                            // focus on basis of it being an input element.
+                            tabIndex={-1}
+                        >
+                            <ChoiceCore
+                                {...props}
+                                id={uniqueId}
+                                aria-describedby={descriptionId}
+                                onClick={handleClick}
+                                disabled={disabled}
+                                error={error}
+                                ref={ref}
+                            />
+                            <Strut size={Spacing.xSmall_8} />
+                            {label && getLabel(uniqueId)}
+                        </View>
+                        {description && getDescription(descriptionId)}
+                    </View>
+                );
+            }}
+        </UniqueIDProvider>
+    );
+});
 
 const styles = StyleSheet.create({
     wrapper: {
