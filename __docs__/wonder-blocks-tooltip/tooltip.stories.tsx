@@ -315,6 +315,7 @@ export const WithStyle: StoryComponentType = () => {
                 content={`This is a styled tooltip.`}
                 backgroundColor="darkBlue"
                 opened={true}
+                testId="test-tooltip"
             >
                 My tooltip is styled!
             </Tooltip>
@@ -330,6 +331,25 @@ WithStyle.parameters = {
             shows a tooltip with a dark blue background, white text, and 32px of padding.`,
         },
     },
+};
+
+WithStyle.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement.ownerDocument.body);
+
+    // Get HTML elements
+    const tooltipContent = await canvas.findByTestId("test-tooltip-content");
+    const innerTooltipView =
+        // eslint-disable-next-line testing-library/no-node-access
+        (await canvas.findByRole("tooltip")).firstChild;
+
+    // Assert
+    await expect(innerTooltipView).toHaveStyle(
+        "background-color: rgb(11, 33, 73)",
+    );
+    await expect(tooltipContent).toHaveStyle({
+        padding: "32px",
+        color: "#fff",
+    });
 };
 
 const styles = StyleSheet.create({

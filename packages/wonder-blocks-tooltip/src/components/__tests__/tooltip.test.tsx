@@ -122,24 +122,22 @@ describe("Tooltip", () => {
                         title="Title"
                         content="Content"
                         backgroundColor="blue"
-                        testId="test-tooltip"
+                        opened={true}
                     >
                         Anchor
                     </Tooltip>
                 </View>,
             );
 
-            const node = screen.getByText("Anchor");
-            userEvent.hover(node);
-            jest.runOnlyPendingTimers();
-
             // Act
-            const tooltipContent = screen.getByTestId("test-tooltip-content");
-            expect(tooltipContent).toBeInTheDocument();
+            const tooltipContent = screen.getByRole("tooltip");
+            // eslint-disable-next-line testing-library/no-node-access
+            const innerTooltipContentView = tooltipContent.firstChild;
+            expect(innerTooltipContentView).toBeInTheDocument();
 
             // Assert
-            expect(tooltipContent.style.backgroundColor).toBe(
-                "rgb(24, 101, 242)",
+            expect(innerTooltipContentView).toHaveStyle(
+                "background-color: rgb(24, 101, 242)",
             );
         });
     });
