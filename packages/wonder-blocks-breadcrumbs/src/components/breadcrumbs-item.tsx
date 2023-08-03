@@ -29,7 +29,7 @@ const StyledSvg = addStyle("svg");
 /**
  * The BreadcrumbsItem represents an individual item in the breadcrumbs list.
  */
-const BreadcrumbsItem = React.forwardRef(function BreadCrumbsItem(
+const BreadcrumbsItem = React.forwardRef(function BreadcrumbsItem(
     props: Props,
     ref: React.ForwardedRef<HTMLLIElement>,
 ) {
