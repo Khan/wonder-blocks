@@ -2,4 +2,4 @@
 "@khanacademy/wonder-blocks-tooltip": minor
 ---
 
-Added an optional style prop to Tooltip
+Added custom styling for background color, text color, and padding to Tooltip

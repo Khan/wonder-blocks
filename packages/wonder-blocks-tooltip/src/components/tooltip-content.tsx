@@ -6,7 +6,6 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {HeadingSmall, LabelMedium} from "@khanacademy/wonder-blocks-typography";
 import type {Typography} from "@khanacademy/wonder-blocks-typography";
-import Color from "@khanacademy/wonder-blocks-color";
 
 import {ContentStyle} from "../util/types";
 
@@ -31,10 +30,6 @@ type Props = {
      * Test ID used for e2e testing.
      */
     testId?: string;
-    /**
-     * Optional background color.
-     */
-    backgroundColor?: keyof typeof Color;
 };
 
 /**
@@ -79,13 +74,7 @@ export default class TooltipContent extends React.Component<Props> {
         const containerStyle = title ? styles.withTitle : styles.withoutTitle;
         return (
             <View
-                style={[
-                    containerStyle,
-                    this.props.contentStyle,
-                    this.props.backgroundColor && {
-                        backgroundColor: Color[this.props.backgroundColor],
-                    },
-                ]}
+                style={[containerStyle, this.props.contentStyle]}
                 testId={this.props.testId}
             >
                 {title}

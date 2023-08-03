@@ -314,6 +314,7 @@ export const WithStyle: StoryComponentType = () => {
                 }}
                 content={`This is a styled tooltip.`}
                 backgroundColor="darkBlue"
+                opened={true}
             >
                 My tooltip is styled!
             </Tooltip>
@@ -323,8 +324,11 @@ export const WithStyle: StoryComponentType = () => {
 
 WithStyle.parameters = {
     docs: {
-        // TODO(marianmwang): update this story description once the props are finalized
-        storyDescription: ``,
+        description: {
+            story: `Tooltips can be styled with the \`backgroundColor\` and \`contentStyle\`
+            props. Currently, \`contentStyle\` supports padding and text color. The example below
+            shows a tooltip with a dark blue background, white text, and 32px of padding.`,
+        },
     },
 };
 

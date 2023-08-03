@@ -191,14 +191,12 @@ export default class Tooltip extends React.Component<Props, State> {
     _renderBubbleContent(): React.ReactElement<
         React.ComponentProps<typeof TooltipContent>
     > {
-        const {title, content, contentStyle, backgroundColor, testId} =
-            this.props;
+        const {title, content, contentStyle, testId} = this.props;
         if (typeof content === "string") {
             return (
                 <TooltipContent
                     title={title}
                     contentStyle={contentStyle}
-                    backgroundColor={backgroundColor}
                     testId={testId ? `${testId}-content` : undefined}
                 >
                     {content}
@@ -212,7 +210,7 @@ export default class Tooltip extends React.Component<Props, State> {
     }
 
     _renderPopper(ids?: IIdentifierFactory): React.ReactNode {
-        const {id, contentStyle, backgroundColor} = this.props;
+        const {id, backgroundColor} = this.props;
         const bubbleId = ids ? ids.get(Tooltip.ariaContentId) : id;
         if (!bubbleId) {
             throw new Error("Did not get an identifier factory nor a id prop");
@@ -228,7 +226,6 @@ export default class Tooltip extends React.Component<Props, State> {
                     <TooltipBubble
                         id={bubbleId}
                         style={props.style}
-                        contentStyle={contentStyle}
                         backgroundColor={backgroundColor}
                         tailOffset={props.tailOffset}
                         isReferenceHidden={props.isReferenceHidden}
