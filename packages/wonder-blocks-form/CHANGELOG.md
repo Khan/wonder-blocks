@@ -1,5 +1,17 @@
 # @khanacademy/wonder-blocks-form
 
+## 4.3.1
+
+### Patch Changes
+
+-   9f3752d4: Used named functions in componenets with forwarded refs
+-   Updated dependencies [9f3752d4]
+    -   @khanacademy/wonder-blocks-typography@2.1.1
+    -   @khanacademy/wonder-blocks-core@5.3.1
+    -   @khanacademy/wonder-blocks-clickable@3.1.2
+    -   @khanacademy/wonder-blocks-icon@2.0.15
+    -   @khanacademy/wonder-blocks-layout@2.0.15
+
 ## 4.3.0
 
 ### Minor Changes
