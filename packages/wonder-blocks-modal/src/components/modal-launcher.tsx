@@ -11,41 +11,46 @@ import ScrollDisabler from "./scroll-disabler";
 import type {ModalElement} from "../util/types";
 import ModalContext from "./modal-context";
 
-// TODO(FEI-5000): Convert back to conditional props after TS migration is complete.
-type Props = Readonly<{
-    /**
-     * The modal to render.
-     *
-     * The modal will be rendered inside of a container whose parent is
-     * document.body. This allows us to use ModalLauncher within menus and
-     * other components that clip their content. If the modal needs to close
-     * itself by some other means than tapping the backdrop or the default
-     * close button a render callback can be passed. The closeModal function
-     * provided to this callback can be called to close the modal.
-     *
-     * Note: Don't call `closeModal` while rendering! It should be used to
-     * respond to user intearction, like `onClick`.
-     */
-    modal: ModalElement | ((props: {closeModal: () => void}) => ModalElement);
-    /**
-     * Enables the backdrop to dismiss the modal on click/tap
-     */
-    backdropDismissEnabled?: boolean;
-    /**
-     * The selector for the element that will be focused when the dialog shows.
-     * When not set, the first tabbable element within the dialog will be used.
-     */
-    initialFocusId?: string;
-    /**
-     * The selector for the element that will be focused after the dialog
-     * closes. When not set, the last element focused outside the modal will
-     * be used if it exists.
-     */
-    closedFocusId?: string;
-    /**
-     * Test ID used for e2e testing. It's set on the ModalBackdrop
-     */
-    testId?: string;
+type CommonProps = WithActionSchedulerProps &
+    Readonly<{
+        /**
+         * The modal to render.
+         *
+         * The modal will be rendered inside of a container whose parent is
+         * document.body. This allows us to use ModalLauncher within menus and
+         * other components that clip their content. If the modal needs to close
+         * itself by some other means than tapping the backdrop or the default
+         * close button a render callback can be passed. The closeModal function
+         * provided to this callback can be called to close the modal.
+         *
+         * Note: Don't call `closeModal` while rendering! It should be used to
+         * respond to user intearction, like `onClick`.
+         */
+        modal:
+            | ModalElement
+            | ((props: {closeModal: () => void}) => ModalElement);
+        /**
+         * Enables the backdrop to dismiss the modal on click/tap
+         */
+        backdropDismissEnabled?: boolean;
+        /**
+         * The selector for the element that will be focused when the dialog shows.
+         * When not set, the first tabbable element within the dialog will be used.
+         */
+        initialFocusId?: string;
+        /**
+         * The selector for the element that will be focused after the dialog
+         * closes. When not set, the last element focused outside the modal will
+         * be used if it exists.
+         */
+        closedFocusId?: string;
+        /**
+         * Test ID used for e2e testing. It's set on the ModalBackdrop
+         */
+        testId?: string;
+    }>;
+
+type ControlledProps = CommonProps & {
     /**
      * Renders the modal when true, renders nothing when false.
      *
@@ -55,7 +60,8 @@ type Props = Readonly<{
      * should never be used with this prop.  Not doing so will result in an
      * error being thrown.
      */
-    opened?: boolean;
+    opened: boolean;
+
     /**
      * If the parent needs to be notified when the modal is closed, use this
      * prop. You probably want to use this instead of `onClose` on the modals
@@ -67,14 +73,23 @@ type Props = Readonly<{
      * This prop must be used when the component is being used as a controlled
      * component.
      */
-    onClose?: () => unknown;
+    onClose: () => unknown;
+
+    children?: never;
+};
+
+type UncontrolledProps = CommonProps & {
     /**
      * WARNING: This props should only be used when using the component as a
      * controlled component.
      */
     children?: (arg1: {openModal: () => unknown}) => React.ReactNode;
-}> &
-    WithActionSchedulerProps;
+
+    opened?: never;
+    onClose?: never;
+};
+
+type Props = ControlledProps | UncontrolledProps;
 
 type DefaultProps = Readonly<{
     backdropDismissEnabled: Props["backdropDismissEnabled"];

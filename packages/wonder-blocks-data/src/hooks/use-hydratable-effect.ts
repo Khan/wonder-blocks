@@ -10,8 +10,7 @@ import type {Result, ValidCacheData} from "../util/types";
 /**
  * Policies to define how a hydratable effect should behave client-side.
  */
-// TODO(FEI-5000): Convert to TS enum after all codebases have been migrated
-export const WhenClientSide = {
+export enum WhenClientSide {
     /**
      * The result from executing the effect server-side will not be hydrated.
      * The effect will always be executed client-side.
@@ -20,7 +19,7 @@ export const WhenClientSide = {
      * for properly hydrating this component (for example, the action invokes
      * Apollo which manages its own cache to ensure things render properly).
      */
-    DoNotHydrate: "DoNotHydrate" as const,
+    DoNotHydrate = "DoNotHydrate",
 
     /**
      * The result from executing the effect server-side will be hydrated.
@@ -28,7 +27,7 @@ export const WhenClientSide = {
      * be hydrated (i.e. both error and success hydration results prevent the
      * effect running client-side).
      */
-    ExecuteWhenNoResult: "ExecuteWhenNoResult" as const,
+    ExecuteWhenNoResult = "ExecuteWhenNoResult",
 
     /**
      * The result from executing the effect server-side will be hydrated.
@@ -37,15 +36,15 @@ export const WhenClientSide = {
      * If the hydrated result was not a success result, or there was no
      * hydrated result, the effect will not be executed.
      */
-    ExecuteWhenNoSuccessResult: "ExecuteWhenNoSuccessResult" as const,
+    ExecuteWhenNoSuccessResult = "ExecuteWhenNoSuccessResult",
 
     /**
      * The result from executing the effect server-side will be hydrated.
      * The effect will always be executed client-side, regardless of the
      * hydrated result status.
      */
-    AlwaysExecute: "AlwaysExecute" as const,
-} as const;
+    AlwaysExecute = "AlwaysExecute",
+}
 
 type HydratableEffectOptions<TData extends ValidCacheData> = {
     /**

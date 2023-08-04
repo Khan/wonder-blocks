@@ -1,11 +1,10 @@
 import * as React from "react";
 
-// TODO(FEI-5000): Convert to TS enum after all codebases have been migrated
-export const RenderState = {
-    Root: "root" as const,
-    Initial: "initial" as const,
-    Standard: "standard" as const,
-} as const;
+export enum RenderState {
+    Root = "root",
+    Initial = "initial",
+    Standard = "standard",
+}
 
 /**
  * This is the context that tracks who is doing what in our SSR component tree.
