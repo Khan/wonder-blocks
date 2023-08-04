@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 5.3.1
+
+### Patch Changes
+
+-   7e0a21ec: Used named functions in componenets with forwarded refs
+
 ## 5.3.0
 
 ### Minor Changes
