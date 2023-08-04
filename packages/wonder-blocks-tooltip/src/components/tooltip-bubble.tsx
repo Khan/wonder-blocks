@@ -31,6 +31,8 @@ export type Props = {
     /** The `TooltipContent` element that will be rendered in the bubble. */
     children: React.ReactElement<React.ComponentProps<typeof TooltipContent>>;
     onActiveChanged: (active: boolean) => unknown;
+    /** Optional background color. */
+    backgroundColor?: keyof typeof Colors;
 } & PopperElementProps; // (v3 beta introduces this) // TODO(somewhatabstract): Update react-docgen to support spread operators
 
 type State = {
@@ -65,8 +67,8 @@ export default class TooltipBubble extends React.Component<Props, State> {
             style,
             updateTailRef,
             tailOffset,
+            backgroundColor,
         } = this.props;
-
         return (
             <View
                 id={id}
@@ -82,11 +84,21 @@ export default class TooltipBubble extends React.Component<Props, State> {
                     style,
                 ]}
             >
-                <View style={styles.content}>{children}</View>
+                <View
+                    style={[
+                        styles.content,
+                        backgroundColor && {
+                            backgroundColor: Colors[backgroundColor],
+                        },
+                    ]}
+                >
+                    {children}
+                </View>
                 <TooltipTail
                     updateRef={updateTailRef}
                     placement={placement}
                     offset={tailOffset}
+                    color={backgroundColor}
                 />
             </View>
         );

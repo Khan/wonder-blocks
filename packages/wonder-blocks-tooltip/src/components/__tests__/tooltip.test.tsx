@@ -113,6 +113,33 @@ describe("Tooltip", () => {
             // Assert
             expect(tooltip).toBeInTheDocument();
         });
+
+        it("should have a background color if one is set", () => {
+            // Arrange
+            render(
+                <View>
+                    <Tooltip
+                        title="Title"
+                        content="Content"
+                        backgroundColor="blue"
+                        opened={true}
+                    >
+                        Anchor
+                    </Tooltip>
+                </View>,
+            );
+
+            // Act
+            const tooltipContent = screen.getByRole("tooltip");
+            // eslint-disable-next-line testing-library/no-node-access
+            const innerTooltipContentView = tooltipContent.firstChild;
+            expect(innerTooltipContentView).toBeInTheDocument();
+
+            // Assert
+            expect(innerTooltipContentView).toHaveStyle(
+                "background-color: rgb(24, 101, 242)",
+            );
+        });
     });
 
     describe("accessibility", () => {
