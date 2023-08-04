@@ -1,13 +1,5 @@
 # @khanacademy/wonder-blocks-typography
 
-## 2.1.1
-
-### Patch Changes
-
--   df9064c1: Used named functions in componenets with forwarded refs
--   Updated dependencies [df9064c1]
-    -   @khanacademy/wonder-blocks-core@5.3.1
-
 ## 2.1.0
 
 ### Minor Changes
