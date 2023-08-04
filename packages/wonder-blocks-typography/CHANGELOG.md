@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-typography
 
+## 2.1.1
+
+### Patch Changes
+
+-   7e0a21ec: Used named functions in componenets with forwarded refs
+-   Updated dependencies [7e0a21ec]
+    -   @khanacademy/wonder-blocks-core@5.3.1
+
 ## 2.1.0
 
 ### Minor Changes
