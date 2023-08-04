@@ -12,7 +12,7 @@
   "author": "",
   "license": "MIT",
   "publishConfig": {
-    "access": "public"
+    "access": "restricted"
   },
   "private": true,
   "dependencies": {
