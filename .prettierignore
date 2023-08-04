@@ -3,7 +3,6 @@
 docs
 *.css
 *.yml
-.storybook
 coverage
 dist
 storybook-static

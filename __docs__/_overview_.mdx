@@ -7,20 +7,7 @@ import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Caption} from "@khanacademy/wonder-blocks-typography";
 
-import Hero from "./hero.mdx";
-
-<Meta
-    title="Overview"
-    parameters={{
-        chromatic: {
-            disableSnapshot: true,
-        },
-        previewTabs: {
-            canvas: {hidden: true},
-        },
-        viewMode: "docs",
-    }}
-/>
+<Meta title="Overview" />
 
 export default function Layout({children}) {
     {
@@ -65,7 +52,11 @@ export const styles = StyleSheet.create({
 
 <View style={styles.heroWrapper}>
     <View style={styles.heroBody}>
-        <Hero />
+        <h1>Wonder Blocks (Web)</h1>
+        <p>
+            Components and utilities you can drop right into your experiences so
+            you can focus on solving the problems that really matter.
+        </p>
         <Caption style={styles.heroCaption}>
             <strong>Note:</strong> These components are only available for use
             on the web (including mobile web).
