@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 2.1.0
+
+### Minor Changes
+
+-   d37671c5: Added custom styling for background color, text color, and padding to Tooltip
+
+### Patch Changes
+
+-   Updated dependencies [df9064c1]
+    -   @khanacademy/wonder-blocks-typography@2.1.1
+    -   @khanacademy/wonder-blocks-core@5.3.1
+    -   @khanacademy/wonder-blocks-modal@4.0.17
+    -   @khanacademy/wonder-blocks-layout@2.0.15
+
 ## 2.0.16
 
 ### Patch Changes
