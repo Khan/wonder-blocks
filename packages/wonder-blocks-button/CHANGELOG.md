@@ -1,17 +1,5 @@
 # @khanacademy/wonder-blocks-button
 
-## 4.1.1
-
-### Patch Changes
-
--   7e0a21ec: Used named functions in componenets with forwarded refs
--   Updated dependencies [7e0a21ec]
-    -   @khanacademy/wonder-blocks-typography@2.1.1
-    -   @khanacademy/wonder-blocks-core@5.3.1
-    -   @khanacademy/wonder-blocks-clickable@3.1.2
-    -   @khanacademy/wonder-blocks-icon@2.0.15
-    -   @khanacademy/wonder-blocks-progress-spinner@2.0.15
-
 ## 4.1.0
 
 ### Minor Changes
