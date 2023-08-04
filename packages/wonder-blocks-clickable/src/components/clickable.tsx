@@ -23,7 +23,7 @@ type CommonProps =
          * which should be made Clickable.  The function is passed an object with
          * three boolean properties: hovered, focused, and pressed.
          */
-        children: (arg1: ClickableState) => React.ReactNode;
+        children: (clickableState: ClickableState) => React.ReactNode;
         /**
          * An onClick function which Clickable can execute when clicked
          */

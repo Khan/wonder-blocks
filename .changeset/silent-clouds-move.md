@@ -1,7 +1,6 @@
 ---
 "@khanacademy/wonder-blocks-clickable": major
 "@khanacademy/wonder-blocks-popover": major
-"@khanacademy/wonder-blocks-modal": major
 "@khanacademy/wonder-blocks-link": major
 ---
 
