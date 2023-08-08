@@ -1,2 +1,1 @@
-// Just a temporary export to include some code.
-export const NOTHING = "NOTHING";
+export {default as tokens} from "./tokens";

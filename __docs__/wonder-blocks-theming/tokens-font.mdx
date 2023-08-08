@@ -1,0 +1,144 @@
+import {Meta} from "@storybook/blocks";
+
+import Banner from "@khanacademy/wonder-blocks-banner";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {tokens} from "@khanacademy/wonder-blocks-theming";
+
+import TokenTable from "../../.storybook/components/token-table";
+
+<Meta title="Theming / Tokens / Typography" />
+
+export const sampleTextUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+export const sampleTextLower = "abcdefghijklmnopqrstuvwxyz";
+
+export const baseColumns = (kind) => [
+    {
+        label: "Token",
+        cell: (row) => (
+            <code>
+                font.{kind}.{row.label}
+            </code>
+        ),
+    },
+    {
+        label: "Value",
+        cell: "value",
+    },
+];
+
+export const mapFunction = ([key, value]) => ({
+    label: key,
+    value: value,
+});
+
+export const tokensFamilyMap = Object.entries(tokens.font.family).map(
+    mapFunction,
+);
+export const tokensWeightMap = Object.entries(tokens.font.weight).map(
+    mapFunction,
+);
+export const tokensSizeMap = Object.entries(tokens.font.size).map(mapFunction);
+export const tokensLineHeightMap = Object.entries(tokens.font.lineHeight).map(
+    mapFunction,
+);
+
+# Tokens
+
+## Typography
+
+<Banner
+    kind="warning"
+    text="Note that this is intended only internal
+    development purposes. We'll let you know as soon as this is ready for public
+    consumption."
+/>
+
+### Family
+
+<TokenTable
+    columns={[
+        ...baseColumns("family"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        fontFamily: row.value,
+                    }}
+                >
+                    <span>{sampleTextUpper}</span>
+                    <span>{sampleTextLower}</span>
+                </View>
+            ),
+        },
+    ]}
+    data={tokensFamilyMap}
+/>
+
+### Size
+
+<TokenTable
+    columns={[
+        ...baseColumns("size"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        fontSize: row.value,
+                        lineHeight: 1,
+                    }}
+                >
+                    <span>{sampleTextUpper}</span>
+                    <span>{sampleTextLower}</span>
+                </View>
+            ),
+        },
+    ]}
+    data={tokensSizeMap}
+/>
+
+### LineHeight
+
+<TokenTable
+    columns={[
+        ...baseColumns("lineHeight"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        backgroundColor: tokens.color.offBlack8,
+                        lineHeight: `${row.value}px`,
+                    }}
+                >
+                    <span>{sampleTextUpper}</span>
+                    <span>{sampleTextLower}</span>
+                </View>
+            ),
+        },
+    ]}
+    data={tokensSizeMap}
+/>
+
+### Weight
+
+<TokenTable
+    columns={[
+        ...baseColumns("weight"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        fontWeight: row.value,
+                    }}
+                >
+                    <span>{sampleTextUpper}</span>
+                    <span>{sampleTextLower}</span>
+                </View>
+            ),
+        },
+    ]}
+    data={tokensWeightMap}
+/>

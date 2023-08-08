@@ -1,0 +1,61 @@
+import {Meta, Source} from "@storybook/blocks";
+
+import TokenTable from "../../.storybook/components/token-table";
+
+import Banner from "@khanacademy/wonder-blocks-banner";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {tokens} from "@khanacademy/wonder-blocks-theming";
+
+<Meta title="Theming / Tokens / Color" />
+
+export const tokensMap = Object.entries(tokens.color).map(([key, value]) => {
+    return {
+        label: key,
+        value: value,
+    };
+});
+
+# Tokens
+
+## Color
+
+<Banner
+    kind="warning"
+    text="Note that this is intended only internal
+    development purposes. We'll let you know as soon as this is ready for public
+    consumption."
+/>
+
+<TokenTable
+    columns={[
+        {
+            label: "Token",
+            cell: (row) => <code>color.{row.label}</code>,
+        },
+        {
+            label: "Value",
+            cell: "value",
+        },
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        background: tokens.color.offBlack8,
+                        padding: tokens.spacing.xxSmall_6,
+                    }}
+                >
+                    <View
+                        style={{
+                            backgroundColor: row.value,
+                            boxShadow: "0 0 0 1px rgba(0, 0, 0, 0.1)",
+                        }}
+                    >
+                        &nbsp;
+                    </View>
+                </View>
+            ),
+        },
+    ]}
+    data={tokensMap}
+/>
