@@ -68,6 +68,7 @@ export const parameters = {
         },
     },
     docs: {
+        toc: true,
         theme: wonderBlocksTheme,
         components: {
             // Override the default link component to use the WB Link component.
