@@ -1,0 +1,67 @@
+import {Meta} from "@storybook/blocks";
+
+import Banner from "@khanacademy/wonder-blocks-banner";
+import {mergeTheme} from "@khanacademy/wonder-blocks-theming";
+
+<Meta title="Theming / mergeTheme" />
+
+# `mergeTheme`
+
+`mergeTheme` is an utility that allow us to create a new copy of the target
+theme by overriding some of its tokens with a new theme. This is useful when
+defining another theme for a given component.
+
+```ts
+function mergeTheme<T>(sourceTheme: T, targetTheme: T): T;
+```
+
+<Banner
+    kind="info"
+    text="Note that the first argument will define the
+interface/contract that the second arg needs to follow."
+/>
+
+## Usage
+
+```ts
+import {tokens, mergeTheme} from "@khanacademy/wonder-blocks-theming";
+
+const buttonDefaultTheme = {
+    color: {
+        bg: {
+            primary: tokens.color.blue,
+            secondary: tokens.color.purple,
+        },
+    },
+    border: {
+        radius: tokens.border.radius.xSmall_2,
+    },
+};
+
+const buttonCustomTheme = mergeTheme(theme, {
+    color: {
+        bg: {
+            primary: tokens.color.darkBlue,
+        },
+    },
+    border: {
+        radius: tokens.border.radius.medium_4,
+    },
+});
+```
+
+Then the resulting theme will be:
+
+```json
+{
+    color: {
+        bg: {
+            primary: tokens.color.darkBlue, // 👈 overridden
+            secondary: tokens.color.purple, // from the default theme
+        },
+    },
+    border: {
+        radius: tokens.border.radius.medium_4, // 👈 overridden
+    },
+}
+```
