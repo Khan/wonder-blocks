@@ -36,6 +36,7 @@ const ButtonThemeContext = createThemeContext(buttonDefaultTheme);
 // TODO(WB-1577): Replace this with the actual WB Button component.
 const ThemedButton = () => {
     const theme = React.useContext(ButtonThemeContext);
+
     return (
         <button
             style={{
@@ -50,6 +51,9 @@ const ThemedButton = () => {
     );
 };
 
+/**
+ * A wrapper component that provides a theme to the button.
+ */
 const ThemeWrapper = ({theme}: {theme: any}) => {
     return (
         <ButtonThemeContext.Provider value={theme}>
@@ -58,6 +62,10 @@ const ThemeWrapper = ({theme}: {theme: any}) => {
     );
 };
 
+/**
+ * NOTE: The following components are meant to be used in the Storybook docs
+ * only.
+ */
 export const ButtonWithTheme = () => (
     <ThemeWrapper theme={buttonDefaultTheme} />
 );

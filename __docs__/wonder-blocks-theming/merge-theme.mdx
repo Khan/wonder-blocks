@@ -3,7 +3,7 @@ import {Meta, Canvas} from "@storybook/blocks";
 import Banner from "@khanacademy/wonder-blocks-banner";
 import {tokens, mergeTheme} from "@khanacademy/wonder-blocks-theming";
 
-import {ButtonWithCustomTheme} from "./create-theme-context.examples";
+import {ButtonWithCustomTheme} from "./theme-examples";
 
 <Meta title="Theming / mergeTheme" />
 
@@ -52,7 +52,11 @@ const buttonCustomTheme = mergeTheme(buttonDefaultTheme, {
 });
 ```
 
-Then the resulting theme will be:
+Then the resulting themed button will be:
+
+<ButtonWithCustomTheme />
+
+And this is the resulting theme object:
 
 ```js
 {
@@ -69,5 +73,3 @@ Then the resulting theme will be:
     },
 }
 ```
-
-<ButtonWithCustomTheme />
