@@ -23,6 +23,7 @@ function withScopedTheme<T>(
 ## Usage
 
 ```tsx
+import {StyleSheet} from "aphrodite";
 import {withScopedTheme, ThemedStylesFn, tokens} from "@khanacademy/wonder-blocks-theming";
 
 // 👉 1. Define the theme.
@@ -47,8 +48,6 @@ const themes = {
 // 👉 2. Create the theme context scoped to this component.
 const ComponentThemeContext = React.createContext(themes.default);
 
-import {useStyles, withScopedTheme} from "@khanacademy/wonder-blocks-theming";
-
 function ThemedComponent(props) {
   const {wbThemeStyles} = props;
 
@@ -60,12 +59,12 @@ function ThemedComponent(props) {
 }
 
 // 👉 3. Define the styles and use the theme info to allow customizing it.
-const styles: ThemedStylesFn<ThemeContract> = (theme) => ({
+const styles: ThemedStylesFn<ThemeContract> = (theme) => (StyleSheet.create({
   wrapper: {
     background: theme.color.bg.primary,
     color: theme.color.text.primary,
   },
-});
+}));
 
 // 👉 4. Wrap the component with the HOC that receives the styles fn
 // and the current theme.
