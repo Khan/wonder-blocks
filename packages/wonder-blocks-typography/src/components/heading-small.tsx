@@ -1,9 +1,9 @@
 import * as React from "react";
-import {Text} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
 
 import styles from "../util/styles";
 
-import type {Props} from "../util/types";
+type Props = PropsFor<typeof Text>;
 
 const HeadingSmall = React.forwardRef(function HeadingSmall(
     {style, children, tag = "h4", ...otherProps}: Props,
