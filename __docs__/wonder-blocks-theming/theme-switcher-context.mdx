@@ -1,0 +1,48 @@
+import {Meta, Canvas} from "@storybook/blocks";
+
+import {
+    ThemeSwitcherContext,
+    createThemeContext,
+} from "@khanacademy/wonder-blocks-theming";
+
+import {ThemeSwitcherContextExample} from "./theme-examples";
+
+<Meta title="Theming / ThemeSwitcherContext" />
+
+# `ThemeSwitcherContext`
+
+`ThemeSwitcherContext` is a React Context that holds a reference to the selected
+theme. It should use default as the initial value as we expect that any
+theme-able component should define its initial theme as default.
+
+```ts
+const ThemeSwitcherContext: React.Context<string>;
+```
+
+## Usage
+
+<ThemeSwitcherContextExample />
+
+```ts
+import {ThemeSwitcherContext} from "@khanacademy/wonder-blocks-theming";
+
+export default function App() {
+    const [theme, setTheme] = React.useState("default");
+
+    const changeTheme = () => {
+        const newTheme = theme === "brand" ? "default" : "brand";
+        setTheme(newTheme);
+    };
+
+    return (
+        <>
+            <ThemedButton onClick={changeTheme}>Switch theme</ThemedButton>
+            <ThemedButton>Outside (doesn't affect new theme)</ThemedButton>
+            <ThemeSwitcherContext.Provider value={theme}>
+                <p>Theming demo using: {theme}</p>
+                <ThemedButton>Themed button</ThemedButton>
+            </ThemeSwitcherContext.Provider>
+        </>
+    );
+}
+```
