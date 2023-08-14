@@ -8,8 +8,12 @@ import {ButtonWithTheme} from "./theme-examples";
 
 # `createThemeContext`
 
-`createThemeContext` is an utility that allow us to create a given theme that
+`createThemeContext` is a utility that allows us to create a given theme that
 contains the component tokens associated to it.
+
+This is useful when we want to create a component that can be themed, and we
+want to provide a default theme for it. Also, this allows us to extend the
+component with more themes and swtich between them using the `ThemeProvider`.
 
 ```ts
 function createThemeContext<T>(theme: T): React.Context<T>;
@@ -34,6 +38,7 @@ const buttonDefaultTheme = {
 const ButtonThemeContext = createThemeContext(buttonDefaultTheme);
 
 const ThemedButton = () => {
+    // Note that we are using theme here to get the tokens based on the selected theme.
     const theme = React.useContext(ButtonThemeContext);
     return (
         <button

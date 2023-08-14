@@ -1,7 +1,7 @@
 import * as React from "react";
 
 /**
- * An utility that allow us to create a given theme that contains the component
+ * A utility that allow us to create a given theme that contains the component
  * tokens associated to it.
  *
  * @param theme The theme object to create the context.
