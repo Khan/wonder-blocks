@@ -23,25 +23,13 @@ export const baseColumns = (kind) => [
     },
 ];
 
-export const mapFunction = ([key, value]) => ({
-    label: key,
-    value: value,
-});
-
-export const tokensRadiusMap = Object.entries(tokens.border.radius).map(
-    mapFunction,
-);
-
-export const tokensWidthMap = Object.entries(tokens.border.width).map(
-    mapFunction,
-);
-
 # Tokens
 
 ## Border
 
 <Banner
     kind="warning"
+    layout="full-width"
     text="Note that this is intended only internal
     development purposes. We'll let you know as soon as this is ready for public
     consumption."
@@ -68,7 +56,7 @@ export const tokensWidthMap = Object.entries(tokens.border.width).map(
             ),
         },
     ]}
-    data={tokensRadiusMap}
+    tokens={tokens.border.radius}
 />
 
 ### Width
@@ -92,5 +80,5 @@ export const tokensWidthMap = Object.entries(tokens.border.width).map(
             ),
         },
     ]}
-    data={tokensWidthMap}
+    tokens={tokens.border.width}
 />
