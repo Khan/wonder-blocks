@@ -1,9 +1,9 @@
 import * as React from "react";
-import {Text} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
 
 import styles from "../util/styles";
 
-import type {Props} from "../util/types";
+type Props = PropsFor<typeof Text>;
 
 const LabelXSmall = React.forwardRef(function LabelXSmall(
     {style, children, tag = "span", ...otherProps}: Props,

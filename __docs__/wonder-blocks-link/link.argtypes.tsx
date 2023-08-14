@@ -1,5 +1,13 @@
+import * as React from "react";
+
 import type {InputType} from "@storybook/csf";
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+
+const iconsMap: Record<string, React.ReactElement<typeof Icon>> = {};
+
+Object.entries(icons).forEach(([iconLabel, iconValue]) => {
+    iconsMap[iconLabel] = <Icon icon={iconValue} />;
+});
 
 export default {
     children: {
@@ -15,11 +23,11 @@ export default {
         description: `Icon to appear after the link label. If
         \`target="_blank"\` and an \`endIcon\` is passed in, \`endIcon\` will
         override the default \`externalIcon\`.`,
-        options: [null, ...Object.keys(icons)],
-        mapping: icons,
+        options: [null, ...Object.keys(iconsMap)],
+        mapping: iconsMap,
         table: {
             category: "Icons",
-            type: {summary: "IconAsset"},
+            type: {summary: "Icon"},
         },
     },
 
@@ -115,11 +123,11 @@ export default {
     startIcon: {
         control: {type: "select", labels: {null: "none"}},
         description: "Icon to appear before the link label.",
-        options: [null, ...Object.keys(icons)],
-        mapping: icons,
+        options: [null, ...Object.keys(iconsMap)],
+        mapping: iconsMap,
         table: {
             category: "Icons",
-            type: {summary: "IconAsset"},
+            type: {summary: "Icon"},
         },
     },
 

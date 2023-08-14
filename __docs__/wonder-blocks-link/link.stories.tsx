@@ -10,6 +10,7 @@ import type {Meta, StoryObj} from "@storybook/react";
 
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {
@@ -22,7 +23,6 @@ import packageConfig from "../../packages/wonder-blocks-link/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import LinkArgTypes from "./link.argtypes";
-import {icons} from "@khanacademy/wonder-blocks-icon";
 
 export default {
     title: "Link",
@@ -257,14 +257,14 @@ export const StartAndEndIcons: StoryComponentType = () => (
         <View style={{padding: Spacing.large_24}}>
             <Link
                 href="#"
-                startIcon={icons.add}
+                startIcon={<Icon icon={icons.add} />}
                 style={styles.standaloneLinkWrapper}
             >
                 This link has a start icon
             </Link>
             <Link
                 href="#"
-                endIcon={icons.search}
+                endIcon={<Icon icon={icons.search} />}
                 kind="secondary"
                 style={styles.standaloneLinkWrapper}
             >
@@ -272,7 +272,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="https://stuffonmycat.com/"
-                endIcon={icons.info}
+                endIcon={<Icon icon={icons.info} />}
                 target="_blank"
                 style={styles.standaloneLinkWrapper}
             >
@@ -281,8 +281,8 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                startIcon={icons.caretLeft}
-                endIcon={icons.caretRight}
+                startIcon={<Icon icon={icons.caretLeft} />}
+                endIcon={<Icon icon={icons.caretRight} />}
                 kind="secondary"
                 style={styles.standaloneLinkWrapper}
             >
@@ -290,15 +290,19 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                startIcon={icons.caretLeft}
-                endIcon={icons.caretRight}
+                startIcon={<Icon icon={icons.caretLeft} />}
+                endIcon={<Icon icon={icons.caretRight} />}
                 style={styles.multiLine}
             >
                 This is a multi-line link with start and end icons
             </Link>
             <Body>
                 This is an inline{" "}
-                <Link href="#" inline={true} startIcon={icons.caretLeft}>
+                <Link
+                    href="#"
+                    inline={true}
+                    startIcon={<Icon icon={icons.caretLeft} />}
+                >
                     link with a start icon
                 </Link>{" "}
                 and an inline{" "}
@@ -306,7 +310,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
                     href="#"
                     inline={true}
                     target="_blank"
-                    endIcon={icons.caretRight}
+                    endIcon={<Icon icon={icons.caretRight} />}
                 >
                     link with an end icon
                 </Link>
@@ -322,7 +326,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
         >
             <Link
                 href="#"
-                startIcon={icons.add}
+                startIcon={<Icon icon={icons.add} />}
                 light={true}
                 style={styles.standaloneLinkWrapper}
             >
@@ -330,7 +334,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                endIcon={icons.search}
+                endIcon={<Icon icon={icons.search} />}
                 light={true}
                 style={styles.standaloneLinkWrapper}
             >
@@ -338,7 +342,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="https://stuffonmycat.com/"
-                endIcon={icons.info}
+                endIcon={<Icon icon={icons.info} />}
                 target="_blank"
                 light={true}
                 style={styles.standaloneLinkWrapper}
@@ -348,8 +352,8 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                startIcon={icons.caretLeft}
-                endIcon={icons.caretRight}
+                startIcon={<Icon icon={icons.caretLeft} />}
+                endIcon={<Icon icon={icons.caretRight} />}
                 light={true}
                 style={styles.standaloneLinkWrapper}
             >
@@ -357,8 +361,8 @@ export const StartAndEndIcons: StoryComponentType = () => (
             </Link>
             <Link
                 href="#"
-                startIcon={icons.caretLeft}
-                endIcon={icons.caretRight}
+                startIcon={<Icon icon={icons.caretLeft} />}
+                endIcon={<Icon icon={icons.caretRight} />}
                 light={true}
                 style={styles.multiLine}
             >
@@ -368,7 +372,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 This is an inline{" "}
                 <Link
                     href="#"
-                    startIcon={icons.caretLeft}
+                    startIcon={<Icon icon={icons.caretLeft} />}
                     inline={true}
                     light={true}
                 >
@@ -377,7 +381,7 @@ export const StartAndEndIcons: StoryComponentType = () => (
                 and an inline{" "}
                 <Link
                     href="#"
-                    endIcon={icons.caretRight}
+                    endIcon={<Icon icon={icons.caretRight} />}
                     inline={true}
                     light={true}
                     target="_blank"
@@ -910,18 +914,18 @@ WithTitle.play = async ({canvasElement}) => {
 export const RightToLeftWithIcons: StoryComponentType = () => (
     <View style={{padding: Spacing.medium_16}}>
         <View style={styles.rightToLeft}>
-            <Link href="/" startIcon={icons.caretRight}>
+            <Link href="/" startIcon={<Icon icon={icons.caretRight} />}>
                 هذا الرابط مكتوب باللغة العربية
             </Link>
             <Strut size={Spacing.medium_16} />
-            <Link href="/" endIcon={icons.caretLeft}>
+            <Link href="/" endIcon={<Icon icon={icons.caretLeft} />}>
                 هذا الرابط مكتوب باللغة العربية
             </Link>
             <Strut size={Spacing.medium_16} />
             <Link
                 href="/"
-                startIcon={icons.caretRight}
-                endIcon={icons.caretLeft}
+                startIcon={<Icon icon={icons.caretRight} />}
+                endIcon={<Icon icon={icons.caretLeft} />}
             >
                 هذا الرابط مكتوب باللغة العربية
             </Link>

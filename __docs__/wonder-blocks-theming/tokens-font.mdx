@@ -11,12 +11,12 @@ import TokenTable from "../../.storybook/components/token-table";
 export const sampleTextUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 export const sampleTextLower = "abcdefghijklmnopqrstuvwxyz";
 
-export const baseColumns = (kind) => [
+export const baseColumns = (property) => [
     {
         label: "Token",
         cell: (row) => (
             <code>
-                font.{kind}.{row.label}
+                font.{property}.{row.label}
             </code>
         ),
     },
@@ -26,22 +26,6 @@ export const baseColumns = (kind) => [
     },
 ];
 
-export const mapFunction = ([key, value]) => ({
-    label: key,
-    value: value,
-});
-
-export const tokensFamilyMap = Object.entries(tokens.font.family).map(
-    mapFunction,
-);
-export const tokensWeightMap = Object.entries(tokens.font.weight).map(
-    mapFunction,
-);
-export const tokensSizeMap = Object.entries(tokens.font.size).map(mapFunction);
-export const tokensLineHeightMap = Object.entries(tokens.font.lineHeight).map(
-    mapFunction,
-);
-
 # Tokens
 
 ## Typography
@@ -50,6 +34,7 @@ Text sizes, weights and font families used across Wonder Blocks.
 
 <Banner
     kind="warning"
+    layout="full-width"
     text="Note that this is intended only internal
     development purposes. We'll let you know as soon as this is ready for public
     consumption."
@@ -70,13 +55,13 @@ The available font families in our system.
                         fontFamily: row.value,
                     }}
                 >
-                    <span>{sampleTextUpper}</span>
-                    <span>{sampleTextLower}</span>
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
                 </View>
             ),
         },
     ]}
-    data={tokensFamilyMap}
+    tokens={tokens.font.family}
 />
 
 ### Size
@@ -95,13 +80,13 @@ The list of possible font sizes that can be used with our components.
                         lineHeight: 1,
                     }}
                 >
-                    <span>{sampleTextUpper}</span>
-                    <span>{sampleTextLower}</span>
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
                 </View>
             ),
         },
     ]}
-    data={tokensSizeMap}
+    tokens={tokens.font.size}
 />
 
 ### LineHeight
@@ -120,18 +105,18 @@ The vertical space associated to a given font size.
                         lineHeight: `${row.value}px`,
                     }}
                 >
-                    <span>{sampleTextUpper}</span>
-                    <span>{sampleTextLower}</span>
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
                 </View>
             ),
         },
     ]}
-    data={tokensSizeMap}
+    tokens={tokens.font.lineHeight}
 />
 
 ### Weight
 
-Font weight options include regular, bold and black.
+Font weight options include `light`, `regular` and `bold`.
 
 <TokenTable
     columns={[
@@ -144,11 +129,11 @@ Font weight options include regular, bold and black.
                         fontWeight: row.value,
                     }}
                 >
-                    <span>{sampleTextUpper}</span>
-                    <span>{sampleTextLower}</span>
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
                 </View>
             ),
         },
     ]}
-    data={tokensWeightMap}
+    tokens={tokens.font.weight}
 />
