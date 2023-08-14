@@ -1,0 +1,139 @@
+import {Meta} from "@storybook/blocks";
+
+import Banner from "@khanacademy/wonder-blocks-banner";
+import {View} from "@khanacademy/wonder-blocks-core";
+import {tokens} from "@khanacademy/wonder-blocks-theming";
+
+import TokenTable from "../../.storybook/components/token-table";
+
+<Meta title="Theming / Tokens / Typography" />
+
+export const sampleTextUpper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+export const sampleTextLower = "abcdefghijklmnopqrstuvwxyz";
+
+export const baseColumns = (property) => [
+    {
+        label: "Token",
+        cell: (row) => (
+            <code>
+                font.{property}.{row.label}
+            </code>
+        ),
+    },
+    {
+        label: "Value",
+        cell: "value",
+    },
+];
+
+# Tokens
+
+## Typography
+
+Text sizes, weights and font families used across Wonder Blocks.
+
+<Banner
+    kind="warning"
+    layout="full-width"
+    text="Note that this is intended only internal
+    development purposes. We'll let you know as soon as this is ready for public
+    consumption."
+/>
+
+### Family
+
+The available font families in our system.
+
+<TokenTable
+    columns={[
+        ...baseColumns("family"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        fontFamily: row.value,
+                    }}
+                >
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
+                </View>
+            ),
+        },
+    ]}
+    tokens={tokens.font.family}
+/>
+
+### Size
+
+The list of possible font sizes that can be used with our components.
+
+<TokenTable
+    columns={[
+        ...baseColumns("size"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        fontSize: row.value,
+                        lineHeight: 1,
+                    }}
+                >
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
+                </View>
+            ),
+        },
+    ]}
+    tokens={tokens.font.size}
+/>
+
+### LineHeight
+
+The vertical space associated to a given font size.
+
+<TokenTable
+    columns={[
+        ...baseColumns("lineHeight"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        backgroundColor: tokens.color.offBlack8,
+                        lineHeight: `${row.value}px`,
+                    }}
+                >
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
+                </View>
+            ),
+        },
+    ]}
+    tokens={tokens.font.lineHeight}
+/>
+
+### Weight
+
+Font weight options include `light`, `regular` and `bold`.
+
+<TokenTable
+    columns={[
+        ...baseColumns("weight"),
+        {
+            label: "Example",
+            cell: (row) => (
+                <View
+                    style={{
+                        fontWeight: row.value,
+                    }}
+                >
+                    <View className="sb-unstyled">{sampleTextUpper}</View>
+                    <View className="sb-unstyled">{sampleTextLower}</View>
+                </View>
+            ),
+        },
+    ]}
+    tokens={tokens.font.weight}
+/>
