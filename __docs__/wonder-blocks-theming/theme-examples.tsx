@@ -1,12 +1,14 @@
 import * as React from "react";
 
+import {View} from "@khanacademy/wonder-blocks-core";
 import {
     createThemeContext,
     mergeTheme,
     tokens,
+    useScopedTheme,
 } from "@khanacademy/wonder-blocks-theming";
 
-const buttonDefaultTheme = {
+const defaultTheme = {
     color: {
         bg: {
             primary: tokens.color.blue,
@@ -20,7 +22,7 @@ const buttonDefaultTheme = {
     },
 };
 
-const buttonCustomTheme = mergeTheme(buttonDefaultTheme, {
+const customTheme = mergeTheme(defaultTheme, {
     color: {
         bg: {
             primary: tokens.color.pink,
@@ -31,11 +33,11 @@ const buttonCustomTheme = mergeTheme(buttonDefaultTheme, {
     },
 });
 
-const ButtonThemeContext = createThemeContext(buttonDefaultTheme);
+const ThemeContext = createThemeContext(customTheme);
 
 // TODO(WB-1577): Replace this with the actual WB Button component.
 const ThemedButton = () => {
-    const theme = React.useContext(ButtonThemeContext);
+    const theme = useScopedTheme(ThemeContext);
 
     return (
         <button
@@ -51,14 +53,35 @@ const ThemedButton = () => {
     );
 };
 
+const ThemedView = () => {
+    const theme = useScopedTheme(ThemeContext);
+
+    return (
+        <View
+            style={{
+                background: theme.color.bg.primary,
+                color: theme.color.text.light,
+                borderRadius: theme.border.radius,
+                padding: tokens.spacing.medium_16,
+            }}
+        >
+            This is a themed view!
+        </View>
+    );
+};
+
 /**
  * A wrapper component that provides a theme to the button.
  */
-const ThemeWrapper = ({theme}: {theme: any}) => {
+const ThemeWrapper = ({
+    theme,
+    children,
+}: {
+    theme: any;
+    children: React.ReactNode;
+}) => {
     return (
-        <ButtonThemeContext.Provider value={theme}>
-            <ThemedButton />
-        </ButtonThemeContext.Provider>
+        <ThemeContext.Provider value={theme}>{children}</ThemeContext.Provider>
     );
 };
 
@@ -67,9 +90,19 @@ const ThemeWrapper = ({theme}: {theme: any}) => {
  * only.
  */
 export const ButtonWithTheme = () => (
-    <ThemeWrapper theme={buttonDefaultTheme} />
+    <ThemeWrapper theme={defaultTheme}>
+        <ThemedButton />
+    </ThemeWrapper>
 );
 
 export const ButtonWithCustomTheme = () => (
-    <ThemeWrapper theme={buttonCustomTheme} />
+    <ThemeWrapper theme={customTheme}>
+        <ThemedButton />
+    </ThemeWrapper>
+);
+
+export const ViewWithTheme = () => (
+    <ThemeWrapper theme={defaultTheme}>
+        <ThemedView />
+    </ThemeWrapper>
 );
