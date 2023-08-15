@@ -27,7 +27,7 @@ type Props<T> = {
      * NOTE: We use generic types here to ensure that the data passed in is of
      * the same type as the data in the rows.
      */
-    data: Array<T>;
+    tokens: Record<string, string | number | T>;
     /**
      * The columns to include in the table.
      */
@@ -36,8 +36,13 @@ type Props<T> = {
 
 export default function TokenTable<T>({
     columns,
-    data,
+    tokens,
 }: Props<T>): React.ReactElement {
+    // Convert the tokens object into an array of objects.
+    const data = Object.entries(tokens).map(
+        ([key, value]) => ({label: key, value} as T),
+    );
+
     return (
         <StyledTable style={styles.table}>
             <thead>
@@ -54,6 +59,7 @@ export default function TokenTable<T>({
                     <StyledTableRow key={idx} style={styles.row}>
                         {columns.map((column, i) => (
                             <StyledTableCell key={i} style={styles.cell}>
+                                {/* We pass the value directly or via the result of a function call. */}
                                 {typeof column.cell === "string"
                                     ? row[column.cell]
                                     : column.cell(row)}

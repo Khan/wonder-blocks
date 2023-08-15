@@ -3,9 +3,12 @@ import {render, waitFor} from "@testing-library/react";
 import {MemoryRouter, Link as ReactRouterLink} from "react-router-dom";
 import * as ReactDOM from "react-dom";
 
+import {icons} from "@khanacademy/wonder-blocks-icon";
+
 import Breadcrumbs from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs";
 import BreadcrumbsItem from "../../packages/wonder-blocks-breadcrumbs/src/components/breadcrumbs-item";
 import Button from "../../packages/wonder-blocks-button/src/components/button";
+import Icon from "../../packages/wonder-blocks-icon/src/components/icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "../../packages/wonder-blocks-link/src/components/link";
 import Text from "../../packages/wonder-blocks-core/src/components/text";
@@ -35,7 +38,6 @@ import LabelSmall from "../../packages/wonder-blocks-typography/src/components/l
 import LabelXSmall from "../../packages/wonder-blocks-typography/src/components/label-xsmall";
 import Tagline from "../../packages/wonder-blocks-typography/src/components/tagline";
 import Title from "../../packages/wonder-blocks-typography/src/components/title";
-import {icons} from "@khanacademy/wonder-blocks-icon";
 
 describe("Typography elements", () => {
     test.each`
@@ -352,5 +354,18 @@ describe("Form elements", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLFieldSetElement);
+    });
+});
+
+describe("Icon", () => {
+    test("forwards ref to an SVGElement", () => {
+        // Arrange
+        const ref: React.RefObject<SVGSVGElement> = React.createRef();
+
+        // Act
+        render(<Icon ref={ref} icon={icons.add} />);
+
+        // Assert
+        expect(ref.current).toBeInstanceOf(SVGSVGElement);
     });
 });

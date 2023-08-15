@@ -3,7 +3,7 @@ type RecursivePartial<T> = {
 };
 
 /**
- * Allow us to create a new copy of the target theme by overriding some of its
+ * Allows us to create a new copy of the target theme by overriding some of its
  * tokens with a new theme.
  *
  * This is useful when defining another theme for a given component.

@@ -1,4 +1,9 @@
-import type {AriaProps, IIdentifierFactory, StyleType} from "./util/types";
+import type {
+    AriaProps,
+    IIdentifierFactory,
+    StyleType,
+    PropsFor,
+} from "./util/types";
 
 export {default as Text} from "./components/text";
 export {default as View} from "./components/view";
@@ -20,4 +25,4 @@ export {useRenderState} from "./hooks/use-render-state";
 export {RenderStateRoot} from "./components/render-state-root";
 export {RenderState} from "./components/render-state-context";
 
-export type {AriaProps, IIdentifierFactory, StyleType};
+export type {AriaProps, IIdentifierFactory, StyleType, PropsFor};
