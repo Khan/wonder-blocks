@@ -1,9 +1,9 @@
 import * as React from "react";
-import {Text} from "@khanacademy/wonder-blocks-core";
+import {PropsFor, Text} from "@khanacademy/wonder-blocks-core";
 
 import styles from "../util/styles";
 
-import type {Props} from "../util/types";
+type Props = PropsFor<typeof Text>;
 
 const Title = React.forwardRef(function Title(
     {style, children, tag = "h1", ...otherProps}: Props,

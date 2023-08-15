@@ -1,272 +1,152 @@
 import * as React from "react";
-import * as Core from "@khanacademy/wonder-blocks-core";
 import {render} from "@testing-library/react";
 
+import Icon from "../icon";
 import * as icons from "../../util/icon-assets";
-import {getPathForIcon, viewportPixelsForSize} from "../../util/icon-util";
-
-// We mock things out so that we're in control of what really gets rendered.
-// Means we can test that we're using addStyle to generate the component
-// and then verify what that component has going on.
-jest.mock("@khanacademy/wonder-blocks-core", () => {
-    const mockStyledSVGComponent = jest.fn((props: any) => <div>Pretend</div>);
-    return {
-        _mockStyledSVGComponent: mockStyledSVGComponent,
-        addStyle: jest.fn(() => mockStyledSVGComponent),
-    };
-});
-
-// We cannot make the mock outside of the jest.mock call, so we make it inside
-// then attach it to the exports and grab it here.
-const mockStyledSVGComponent: jest.MockedFunction<any> = (Core as any)
-    ._mockStyledSVGComponent;
-
-// Also, let's type up a couple of other mocks so that TypeScript doesn't complain.
-const mockGetPathForIcon: jest.MockedFunction<any> = getPathForIcon;
-const mockViewportPixelsForSize: jest.MockedFunction<any> =
-    viewportPixelsForSize as any;
-
-jest.mock("../../util/icon-util", () => ({
-    getPathForIcon: jest.fn(() => ({})),
-    viewportPixelsForSize: jest.fn(() => ({})),
-}));
+import * as utils from "../../util/icon-util";
 
 describe("Icon", () => {
     beforeEach(() => {
         jest.clearAllMocks();
     });
 
-    test("creates a styled svg using addStyle", async () => {
-        // Arrange
-        const importModulePromise = import("../icon");
-
-        // Act
-        await importModulePromise;
-
-        // Assert
-        expect(Core.addStyle).toHaveBeenCalledWith("svg");
-    });
-
     test("applies aria-label to svg", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon");
-        const underTest = new Promise((resolve: any) => {
-            const nodes = (
-                <div>
-                    <Icon
-                        ref={() => resolve()}
-                        aria-label="ARIA LABEL"
-                        icon={icons.add}
-                    />
-                </div>
-            );
-
-            render(nodes);
-        });
+        const ref: React.RefObject<SVGSVGElement> = React.createRef();
 
         // Act
-        await underTest;
+        render(<Icon icon={icons.add} ref={ref} aria-label="something" />);
 
         // Assert
-        expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
-        expect(mockStyledSVGComponent.mock.calls[0][0]).toEqual(
-            expect.objectContaining({"aria-label": "ARIA LABEL"}),
-        );
+        expect(ref.current).toHaveAttribute("aria-label", "something");
     });
 
     test("calls getPathForIcon", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon");
-        const underTest = new Promise((resolve: any) => {
-            const nodes = (
-                <div>
-                    <Icon
-                        ref={() => resolve()}
-                        icon={icons.add}
-                        size="medium"
-                    />
-                </div>
-            );
-
-            render(nodes);
-        });
+        const getPathForIconSpy = jest.spyOn(utils, "getPathForIcon");
 
         // Act
-        await underTest;
+        render(<Icon icon={icons.add} size="medium" />);
 
         // Assert
-        expect(mockGetPathForIcon).toHaveBeenCalledTimes(1);
-        expect(mockGetPathForIcon).toHaveBeenCalledWith(icons.add, "medium");
+        expect(getPathForIconSpy).toHaveBeenCalledTimes(1);
+        expect(getPathForIconSpy).toHaveBeenCalledWith(icons.add, "medium");
     });
 
     test("calls viewportPixelsForSize with size from props and asset size from getPathForIcon", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon");
-        mockGetPathForIcon.mockImplementationOnce(() => ({
+        const viewPortPixelsForSizeSpy = jest.spyOn(
+            utils,
+            "viewportPixelsForSize",
+        );
+        jest.spyOn(utils, "getPathForIcon").mockImplementationOnce(() => ({
             assetSize: "large",
             path: "TESTPATH",
         }));
-        const underTest = new Promise((resolve: any) => {
-            const nodes = (
-                <div>
-                    <Icon ref={() => resolve()} icon={icons.add} size="small" />
-                </div>
-            );
-
-            render(nodes);
-        });
 
         // Act
-        await underTest;
+        render(<Icon icon={icons.add} size="small" />);
 
         // Assert
-        expect(mockViewportPixelsForSize).toHaveBeenCalledTimes(2);
-        expect(mockViewportPixelsForSize).toHaveBeenNthCalledWith(1, "small");
-        expect(mockViewportPixelsForSize).toHaveBeenNthCalledWith(2, "large");
+        expect(viewPortPixelsForSizeSpy).toHaveBeenCalledTimes(2);
+        expect(viewPortPixelsForSizeSpy).toHaveBeenNthCalledWith(1, "small");
+        expect(viewPortPixelsForSizeSpy).toHaveBeenNthCalledWith(2, "large");
     });
 
     test("sets viewbox to asset dimensions", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon");
         const expectedRenderSize = 42;
         const expectedAssetSize = 7;
-        mockViewportPixelsForSize.mockImplementationOnce(
+        jest.spyOn(utils, "viewportPixelsForSize").mockImplementationOnce(
             () => expectedRenderSize,
         );
-        mockViewportPixelsForSize.mockImplementationOnce(
+        jest.spyOn(utils, "viewportPixelsForSize").mockImplementationOnce(
             () => expectedAssetSize,
         );
-        mockGetPathForIcon.mockImplementationOnce(() => ({
+        jest.spyOn(utils, "getPathForIcon").mockImplementationOnce(() => ({
             assetSize: "small",
             path: "TESTPATH",
         }));
-        const underTest = new Promise((resolve: any) => {
-            const nodes = (
-                <div>
-                    <Icon ref={() => resolve()} icon={icons.add} />
-                </div>
-            );
 
-            render(nodes);
-        });
+        const svgRef = React.createRef<SVGSVGElement>();
 
         // Act
-        await underTest;
+        render(<Icon icon={icons.add} ref={svgRef} />);
 
         // Assert
-        expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
-        expect(mockStyledSVGComponent.mock.calls[0][0]).toEqual(
-            expect.objectContaining({
-                viewBox: `0 0 ${expectedAssetSize} ${expectedAssetSize}`,
-            }),
+        expect(svgRef.current).toHaveAttribute(
+            "viewBox",
+            `0 0 ${expectedAssetSize} ${expectedAssetSize}`,
         );
     });
 
     test("sets size to dimensions derived from size prop", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon");
         const expectedRenderSize = 42;
         const expectedAssetSize = 7;
-        mockViewportPixelsForSize.mockImplementationOnce(
+        jest.spyOn(utils, "viewportPixelsForSize").mockImplementationOnce(
             () => expectedRenderSize,
         );
-        mockViewportPixelsForSize.mockImplementationOnce(
+        jest.spyOn(utils, "viewportPixelsForSize").mockImplementationOnce(
             () => expectedAssetSize,
         );
-        mockGetPathForIcon.mockImplementationOnce(() => ({
+        jest.spyOn(utils, "getPathForIcon").mockImplementationOnce(() => ({
             assetSize: "small",
             path: "TESTPATH",
         }));
-        const underTest = new Promise((resolve: any) => {
-            const nodes = (
-                <div>
-                    <Icon ref={() => resolve()} icon={icons.add} />
-                </div>
-            );
 
-            render(nodes);
-        });
+        const svgRef = React.createRef<SVGSVGElement>();
 
         // Act
-        await underTest;
+        render(<Icon icon={icons.add} ref={svgRef} />);
 
         // Assert
-        expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
-        expect(mockStyledSVGComponent.mock.calls[0][0]).toEqual(
-            expect.objectContaining({
-                width: expectedRenderSize,
-                height: expectedRenderSize,
-            }),
+        expect(svgRef.current).toHaveAttribute(
+            "width",
+            String(expectedRenderSize),
+        );
+        expect(svgRef.current).toHaveAttribute(
+            "height",
+            String(expectedRenderSize),
         );
     });
 
     test("sets inner path fill and d to color prop and path from getPathForIcon", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon");
-        mockGetPathForIcon.mockImplementationOnce(() => ({
-            assetSize: "small",
-            path: "TESTPATH",
-        }));
-        const underTest = new Promise((resolve: any) => {
-            const nodes = (
-                <div>
-                    <Icon
-                        ref={() => resolve()}
-                        icon={icons.add}
-                        color={"#BADFAD"}
-                    />
-                </div>
-            );
-
-            render(nodes);
-        });
+        const svgRef = React.createRef<SVGSVGElement>();
 
         // Act
-        await underTest;
+        render(<Icon icon={icons.add} color={"#BADFAD"} ref={svgRef} />);
+        const svg = svgRef.current;
+        // There's no way to get the SVG's <path> element using
+        // react testing library, so we have to use the DOM API.
+        // eslint-disable-next-line testing-library/no-node-access
+        const innerPath = svg?.getElementsByTagName("path")[0];
 
         // Assert
-        expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
-        // eslint-disable-next-line testing-library/no-node-access
-        expect(mockStyledSVGComponent.mock.calls[0][0].children)
-            .toMatchInlineSnapshot(`
-<path
-  d="TESTPATH"
-  fill="#BADFAD"
-/>
-`);
+        expect(innerPath).toMatchInlineSnapshot(`
+            <path
+              d="M11 11V7a1 1 0 0 1 2 0v4h4a1 1 0 0 1 0 2h-4v4a1 1 0 0 1-2 0v-4H7a1 1 0 0 1 0-2h4zm1 13C5.373 24 0 18.627 0 12S5.373 0 12 0s12 5.373 12 12-5.373 12-12 12zm0-2c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+              fill="#BADFAD"
+            />
+        `);
     });
 
     test("applies style prop", async () => {
         // Arrange
-        const {default: Icon} = await import("../icon");
-        mockGetPathForIcon.mockImplementationOnce(() => ({
-            assetSize: "small",
-            path: "TESTPATH",
-        }));
         const expectedStyle = {
             display: "none",
         } as const;
-        const underTest = new Promise((resolve: any) => {
-            const nodes = (
-                <div>
-                    <Icon
-                        ref={() => resolve()}
-                        icon={icons.add}
-                        style={expectedStyle}
-                    />
-                </div>
-            );
 
-            render(nodes);
-        });
+        const svgRef = React.createRef<SVGSVGElement>();
 
         // Act
-        await underTest;
+        render(<Icon icon={icons.add} style={expectedStyle} ref={svgRef} />);
 
         // Assert
-        expect(mockStyledSVGComponent).toHaveBeenCalledTimes(1);
-        expect(mockStyledSVGComponent.mock.calls[0][0].style).toContain(
-            expectedStyle,
+        expect(svgRef.current).toHaveAttribute(
+            "style",
+            expect.stringContaining("display: none;"),
         );
     });
 });

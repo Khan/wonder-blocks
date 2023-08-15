@@ -9,7 +9,7 @@ import {ButtonWithCustomTheme} from "./theme-examples";
 
 # `mergeTheme`
 
-`mergeTheme` is an utility that allow us to create a new copy of the target
+`mergeTheme` is a utility that allows us to create a new copy of the target
 theme by overriding some of its tokens with a new theme. This is useful when
 defining another theme for a given component.
 
@@ -19,6 +19,7 @@ function mergeTheme<T>(sourceTheme: T, targetTheme: T): T;
 
 <Banner
     kind="info"
+    layout="full-width"
     text="Note that the first argument will define the
 interface/contract that the second arg needs to follow."
 />

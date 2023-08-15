@@ -107,3 +107,5 @@ export type TextViewSharedProps = {
 export interface IIdentifierFactory {
     get(id: string): string;
 }
+
+export * from "./types.propsfor";

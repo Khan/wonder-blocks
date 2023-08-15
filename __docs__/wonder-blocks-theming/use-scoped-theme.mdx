@@ -8,7 +8,7 @@ import {ViewWithTheme} from "./theme-examples";
 
 # `useScopedTheme`
 
-`useScopedTheme` is a custom hook that allow us to get the theme based on a
+`useScopedTheme` is a custom hook that allows us to get the theme based on a
 dynamic theme context.
 
 ```ts
@@ -17,8 +17,14 @@ function useScopedTheme<T>(themeContext: React.Context<T>): T;
 
 ## Usage
 
+<ViewWithTheme />
+
 ```tsx
-import {useScopedTheme, tokens} from "@khanacademy/wonder-blocks-theming";
+import {
+    createThemeContext,
+    tokens,
+    useScopedTheme,
+} from "@khanacademy/wonder-blocks-theming";
 
 // 👉 1. Define the theme.
 const defaultTheme = {
@@ -38,7 +44,7 @@ const themes = {
 };
 
 // 👉 2. Create the theme context scoped to this component.
-const ComponentThemeContext = React.createContext(themes.default);
+const ComponentThemeContext = createThemeContext(themes.default);
 
 function ThemedComponent(props) {
   // 👉 3. Use the theme during the render phase.
@@ -58,5 +64,3 @@ function ThemedComponent(props) {
   );
 }
 ```
-
-<ViewWithTheme />
