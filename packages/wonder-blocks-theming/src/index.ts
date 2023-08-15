@@ -9,3 +9,4 @@ export {
 } from "./components/with-scoped-theme";
 export {type ThemedStylesFn} from "./types";
 export {default as useStyles} from "./hooks/use-styles";
+export {ThemeSwitcherContext} from "./utils/theme-switcher-context";
