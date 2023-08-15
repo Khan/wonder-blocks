@@ -1,11 +1,15 @@
 import * as React from "react";
 
+import {StyleSheet} from "aphrodite";
 import {View} from "@khanacademy/wonder-blocks-core";
 import {
     createThemeContext,
     mergeTheme,
     tokens,
     useScopedTheme,
+    ThemedStylesFn,
+    withScopedTheme,
+    WithThemeProps,
 } from "@khanacademy/wonder-blocks-theming";
 
 const defaultTheme = {
@@ -106,3 +110,27 @@ export const ViewWithTheme = () => (
         <ThemedView />
     </ThemeWrapper>
 );
+
+/**
+ * withScopedTheme example
+ */
+type ThemeContract = typeof defaultTheme;
+
+function ThemedComponent(props: WithThemeProps) {
+    const {wbThemeStyles} = props;
+
+    return <View style={wbThemeStyles.wrapper}>This is themed!</View>;
+}
+
+const styles: ThemedStylesFn<ThemeContract> = (theme) =>
+    StyleSheet.create({
+        wrapper: {
+            background: theme.color.bg.primary,
+            color: theme.color.text.light,
+        },
+    });
+
+export const WithScopedThemeExample = withScopedTheme(
+    styles,
+    ThemeContext,
+)(ThemedComponent);

@@ -1,0 +1,77 @@
+import {Meta, Canvas} from "@storybook/blocks";
+
+import {tokens, useScopedTheme} from "@khanacademy/wonder-blocks-theming";
+
+import {WithScopedThemeExample} from "./theme-examples";
+
+<Meta title="Theming / withScopedTheme" />
+
+# `withScopedTheme`
+
+`withScopedTheme` is a higher order component that includes the themed styles in
+the props of the wrapped component as `wbThemeStyles`.
+
+```ts
+function withScopedTheme<T>(
+    styleSheet: ThemedStylesFn<T>,
+    themeContext: React.Context<T>,
+): <Props extends WithThemeProps>(
+    WrappedComponent: React.ComponentType<Props>,
+) => (props: WithoutTheme<Props>) => JSX.Element;
+```
+
+## Usage
+
+<WithScopedThemeExample />
+
+```tsx
+import {StyleSheet} from "aphrodite";
+import {withScopedTheme, ThemedStylesFn, tokens} from "@khanacademy/wonder-blocks-theming";
+
+// 👉 1. Define the theme.
+const defaultTheme = {
+  color: {
+    bg: {
+      primary: tokens.color.pink,
+    },
+    text: {
+      light: tokens.color.white,
+    },
+  },
+  ...,
+};
+
+type ThemeContract = typeof defaultTheme;
+
+const themes = {
+  default: defaultTheme,
+};
+
+// 👉 2. Create the theme context scoped to this component.
+const ComponentThemeContext = React.createContext(themes.default);
+
+function ThemedComponent(props) {
+  const {wbThemeStyles} = props;
+
+  return (
+    <View style={wbThemeStyles.wrapper}>
+      This is themed!
+    </View>
+  );
+}
+
+// 👉 3. Define the styles and use the theme info to allow customizing it.
+const styles: ThemedStylesFn<ThemeContract> = (theme) => (StyleSheet.create({
+  wrapper: {
+    background: theme.color.bg.primary,
+    color: theme.color.text.primary,
+  },
+}));
+
+// 👉 4. Wrap the component with the HOC that receives the styles fn
+// and the current theme.
+export default withScopedTheme(
+    styles,
+    ComponentThemeContext
+)(ThemedComponent);
+```
