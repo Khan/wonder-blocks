@@ -3,7 +3,7 @@ import {MemoryRouter, Route, Switch} from "react-router-dom";
 import {fireEvent, render, screen, waitFor} from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import {icons} from "@khanacademy/wonder-blocks-icon";
+import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
 
 import Link from "../link";
 
@@ -412,7 +412,10 @@ describe("Link", () => {
         test("render icon with link when startIcon prop is passed in", () => {
             // Arrange
             render(
-                <Link href="https://www.khanacademy.org/" startIcon={icons.add}>
+                <Link
+                    href="https://www.khanacademy.org/"
+                    startIcon={<Icon icon={icons.add} />}
+                >
                     Add new item
                 </Link>,
             );
@@ -440,7 +443,10 @@ describe("Link", () => {
         test("startIcon prop passed down correctly", () => {
             // Arrange
             render(
-                <Link href="https://www.khanacademy.org/" startIcon={icons.add}>
+                <Link
+                    href="https://www.khanacademy.org/"
+                    startIcon={<Icon icon={icons.add} />}
+                >
                     Add new item
                 </Link>,
             );
@@ -461,7 +467,7 @@ describe("Link", () => {
             render(
                 <Link
                     href="https://www.khanacademy.org/"
-                    endIcon={icons.caretRight}
+                    endIcon={<Icon icon={icons.caretRight} />}
                 >
                     Click to go back
                 </Link>,
@@ -492,7 +498,7 @@ describe("Link", () => {
             render(
                 <Link
                     href="https://www.google.com/"
-                    endIcon={icons.caretRight}
+                    endIcon={<Icon icon={icons.caretRight} />}
                     target="_blank"
                 >
                     Open a new tab
@@ -511,7 +517,7 @@ describe("Link", () => {
             render(
                 <Link
                     href="https://www.google.com/"
-                    endIcon={icons.caretRight}
+                    endIcon={<Icon icon={icons.caretRight} />}
                     target="_blank"
                 >
                     Open a new tab
@@ -530,7 +536,7 @@ describe("Link", () => {
         test("endIcon prop passed down correctly", () => {
             // Arrange
             render(
-                <Link href="/" endIcon={icons.caretRight}>
+                <Link href="/" endIcon={<Icon icon={icons.caretRight} />}>
                     Click to go back
                 </Link>,
             );

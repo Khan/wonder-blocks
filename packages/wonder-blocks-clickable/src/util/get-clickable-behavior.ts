@@ -11,6 +11,8 @@
 import * as React from "react";
 import {withRouter} from "react-router-dom";
 
+import {PropsFor} from "@khanacademy/wonder-blocks-core";
+
 import ClickableBehavior from "../components/clickable-behavior";
 import {isClientSideUrl} from "./is-client-side-url";
 
@@ -30,12 +32,7 @@ export default function getClickableBehavior(
      * router object added to the React context object by react-router-dom.
      */
     router?: any,
-): React.ComponentType<
-    JSX.LibraryManagedAttributes<
-        typeof ClickableBehavior,
-        React.ComponentProps<typeof ClickableBehavior>
-    >
-> {
+): React.ComponentType<PropsFor<typeof ClickableBehavior>> {
     if (router && skipClientNav !== true && href && isClientSideUrl(href)) {
         // We cast to `any` here since the type of ClickableBehaviorWithRouter
         // is slightly different from the return type of this function.
