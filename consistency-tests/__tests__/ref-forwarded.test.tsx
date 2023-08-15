@@ -11,6 +11,7 @@ import Button from "../../packages/wonder-blocks-button/src/components/button";
 import Icon from "../../packages/wonder-blocks-icon/src/components/icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "../../packages/wonder-blocks-link/src/components/link";
+import Switch from "../../packages/wonder-blocks-switch/src/components/switch";
 import Text from "../../packages/wonder-blocks-core/src/components/text";
 import View from "../../packages/wonder-blocks-core/src/components/view";
 
@@ -354,6 +355,19 @@ describe("Form elements", () => {
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLFieldSetElement);
+    });
+
+    describe("Switch", () => {
+        test("forwards ref to an HTMLInputElement", () => {
+            // Arrange
+            const ref: React.RefObject<HTMLInputElement> = React.createRef();
+
+            // Act
+            render(<Switch checked={false} ref={ref} />);
+
+            // Assert
+            expect(ref.current).toBeInstanceOf(HTMLInputElement);
+        });
     });
 });
 
