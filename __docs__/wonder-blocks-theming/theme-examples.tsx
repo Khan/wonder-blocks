@@ -7,6 +7,7 @@ import {
     mergeTheme,
     tokens,
     useScopedTheme,
+    useStyles,
     ThemedStylesFn,
     withScopedTheme,
     WithThemeProps,
@@ -134,3 +135,27 @@ export const WithScopedThemeExample = withScopedTheme(
     styles,
     ThemeContext,
 )(ThemedComponent);
+
+/**
+ * useStyles example
+ */
+
+const ThemedViewWithUseStyles = () => {
+    const theme = useScopedTheme(ThemeContext);
+    const themedStyles = useStyles(stylesExample, theme);
+
+    return <View style={themedStyles.wrapper}>This is themed!</View>;
+};
+
+export const UseStylesExample = () => (
+    <ThemeWrapper theme={defaultTheme}>
+        <ThemedViewWithUseStyles />
+    </ThemeWrapper>
+);
+
+const stylesExample: ThemedStylesFn<ThemeContract> = (theme) => ({
+    wrapper: {
+        background: theme.color.bg.primary,
+        color: theme.color.text.light,
+    },
+});
