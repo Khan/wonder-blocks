@@ -1,0 +1,58 @@
+import {Meta, Canvas} from "@storybook/blocks";
+
+import {createThemeContext} from "@khanacademy/wonder-blocks-theming";
+
+import {ButtonWithTheme} from "./theme-examples";
+
+<Meta title="Theming / createThemeContext" />
+
+# `createThemeContext`
+
+`createThemeContext` is a utility that allows us to create a given theme that
+contains the component tokens associated to it.
+
+This is useful when we want to create a component that can be themed, and we
+want to provide a default theme for it. Also, this allows us to extend the
+component with more themes and switch between them using the `ThemeProvider`.
+
+```ts
+function createThemeContext<T>(theme: T): React.Context<T>;
+```
+
+## Usage
+
+```ts
+import {tokens, createThemeContext} from "@khanacademy/wonder-blocks-theming";
+
+const buttonDefaultTheme = {
+    color: {
+        bg: {
+            primary: tokens.color.blue,
+        },
+    },
+    border: {
+        radius: tokens.border.radius.medium_4,
+    },
+};
+
+const ButtonThemeContext = createThemeContext(buttonDefaultTheme);
+
+const ThemedButton = () => {
+    // Note that we are using theme here to get the tokens based on the selected theme.
+    const theme = React.useContext(ButtonThemeContext);
+    return (
+        <button
+            style={{
+                background: theme.color.bg.primary,
+                borderRadius: theme.border.radius,
+            }}
+        >
+            This is a themed button!
+        </button>
+    );
+};
+```
+
+Then the resulting themed button will be:
+
+<ButtonWithTheme />
