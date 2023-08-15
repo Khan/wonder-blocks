@@ -15,10 +15,12 @@
       "access": "public"
     },
     "dependencies": {
-      "@khanacademy/wonder-blocks-color": "^2.0.1",
       "@khanacademy/wonder-blocks-clickable": "^3.1.2",
+      "@khanacademy/wonder-blocks-color": "^2.0.1",
       "@khanacademy/wonder-blocks-core": "^5.3.1",
-      "@khanacademy/wonder-blocks-spacing": "^4.0.1"
+      "@khanacademy/wonder-blocks-link": "^4.3.1",
+      "@khanacademy/wonder-blocks-spacing": "^4.0.1",
+      "@khanacademy/wonder-blocks-typography": "^2.1.1"
     },
     "peerDependencies": {
       "aphrodite": "^1.2.5",
