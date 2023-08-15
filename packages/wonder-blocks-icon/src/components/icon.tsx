@@ -21,7 +21,7 @@ type Props = AriaProps & {
      * One of `small` (16px), `medium` (24px), `large` (48px),
      * or `xlarge` (96px).
      */
-    size: IconSize;
+    size?: IconSize;
     /**
      * Styles that can be processed by `addStyle` — bare style objects,
      * Aphrodite style objects, or arrays thereof.
@@ -35,11 +35,6 @@ type Props = AriaProps & {
      * Test ID used for e2e testing.
      */
     testId?: string;
-};
-
-type DefaultProps = {
-    color: Props["color"];
-    size: Props["size"];
 };
 
 const StyledSVG = addStyle("svg");
@@ -79,32 +74,36 @@ const StyledSVG = addStyle("svg");
  * These icons should fit into a viewport of 16, 24, 48, and 96 pixels,
  * respectively.
  */
-export default class Icon extends React.PureComponent<Props> {
-    static defaultProps: DefaultProps = {
-        color: "currentColor",
-        size: "small",
-    };
+const Icon = React.forwardRef(function Icon(
+    props: Props,
+    ref: React.ForwardedRef<SVGSVGElement>,
+) {
+    const {
+        color = "currentColor",
+        icon,
+        size = "small",
+        style,
+        testId,
+        ...sharedProps
+    } = props;
 
-    render(): React.ReactNode {
-        const {color, icon, size, style, testId, ...sharedProps} = this.props;
-
-        const {assetSize, path} = getPathForIcon(icon, size);
-        const pixelSize = viewportPixelsForSize(size);
-        const viewboxPixelSize = viewportPixelsForSize(assetSize);
-        return (
-            <StyledSVG
-                {...sharedProps}
-                style={[styles.svg, style]}
-                width={pixelSize}
-                height={pixelSize}
-                viewBox={`0 0 ${viewboxPixelSize} ${viewboxPixelSize}`}
-                data-test-id={testId}
-            >
-                <path fill={color} d={path} />
-            </StyledSVG>
-        );
-    }
-}
+    const {assetSize, path} = getPathForIcon(icon, size);
+    const pixelSize = viewportPixelsForSize(size);
+    const viewboxPixelSize = viewportPixelsForSize(assetSize);
+    return (
+        <StyledSVG
+            {...sharedProps}
+            style={[styles.svg, style]}
+            width={pixelSize}
+            height={pixelSize}
+            viewBox={`0 0 ${viewboxPixelSize} ${viewboxPixelSize}`}
+            data-test-id={testId}
+            ref={ref}
+        >
+            <path fill={color} d={path} />
+        </StyledSVG>
+    );
+});
 
 const styles = StyleSheet.create({
     svg: {
@@ -114,3 +113,5 @@ const styles = StyleSheet.create({
         flexGrow: 0,
     },
 });
+
+export default Icon;

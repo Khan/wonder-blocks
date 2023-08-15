@@ -8,13 +8,6 @@ import {tokens} from "@khanacademy/wonder-blocks-theming";
 
 <Meta title="Theming / Tokens / Spacing" />
 
-export const tokensMap = Object.entries(tokens.spacing).map(([key, value]) => {
-    return {
-        label: key,
-        value: value,
-    };
-});
-
 # Tokens
 
 ## Spacing
@@ -24,6 +17,7 @@ height, border-width, etc.
 
 <Banner
     kind="warning"
+    layout="full-width"
     text="Note that this is intended only internal
     development purposes. We'll let you know as soon as this is ready for public
     consumption."
@@ -53,5 +47,5 @@ height, border-width, etc.
             ),
         },
     ]}
-    data={tokensMap}
+    tokens={tokens.spacing}
 />

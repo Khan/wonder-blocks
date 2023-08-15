@@ -2,7 +2,6 @@ import {renderHook} from "@testing-library/react-hooks";
 import {StyleSheet} from "aphrodite";
 import {ThemedStylesFn} from "../../types";
 
-import * as UseScopedTheme from "../use-scoped-theme";
 import useStyles from "../use-styles";
 
 describe("useStyles", () => {
@@ -19,7 +18,6 @@ describe("useStyles", () => {
             },
         };
 
-        jest.spyOn(UseScopedTheme, "default").mockReturnValue(theme);
         const styles: ThemedStylesFn<typeof theme> = (theme) =>
             StyleSheet.create({
                 testContainer: {
@@ -51,7 +49,6 @@ describe("useStyles", () => {
             },
         };
 
-        jest.spyOn(UseScopedTheme, "default").mockReturnValue(theme);
         const styles: ThemedStylesFn<typeof theme> = (theme) =>
             StyleSheet.create({
                 testContainer: {
