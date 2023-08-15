@@ -6,7 +6,7 @@ import {ThemedStylesFn} from "../types";
 /**
  * A hook that that applies styles based on a given theme.
  *
- * @param styles The styles to use.
+ * @param styles A function that returns the styles to use.
  * @param theme The theme to be passed to the styles.
  * @returns The styleSheet object.
  */

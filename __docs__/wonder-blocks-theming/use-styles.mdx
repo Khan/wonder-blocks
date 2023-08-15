@@ -14,14 +14,24 @@ import {UseStylesExample} from "./theme-examples";
 
 `useStyles` is a hook that that applies styles based on a given theme.
 
+The difference with `useScopedTheme` is that this hook will return the styles
+for the component, while `useScopedTheme` will return the theme object.
+
 ```ts
 function useStyles<T>(styles: ThemedStylesFn<T>, theme: T): StyleDeclaration;
 ```
 
 ## Usage
 
+<UseStylesExample />
+
 ```tsx
-import {useScopedTheme, useStyles, tokens} from "@khanacademy/wonder-blocks-theming";
+import {
+  createThemeContext
+  useScopedTheme,
+  useStyles,
+  tokens,
+} from "@khanacademy/wonder-blocks-theming";
 
 // 👉 1. Define the theme.
 const defaultTheme = {
@@ -41,7 +51,7 @@ const themes = {
 };
 
 // 👉 2. Create the theme context scoped to this component.
-const ComponentThemeContext = React.createContext(themes.default);
+const ComponentThemeContext = createThemeContext(themes.default);
 
 function ThemedComponent(props) {
   // 👉 3. Get the current theme for this component.
@@ -63,5 +73,3 @@ const styles = (theme) => ({
   },
 });
 ```
-
-<UseStylesExample />
