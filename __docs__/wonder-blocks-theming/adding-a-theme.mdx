@@ -1,0 +1,194 @@
+import {Meta} from "@storybook/blocks";
+
+<Meta title="Theming / Guides / Adding a theme" />
+
+# Adding a theme
+
+## Introduction
+
+In order to support theming in a particular component, we need first to define a
+default theme. This theme is composed of a set of **component tokens** that will
+be used by the component styles.
+
+## Steps
+
+### Define the default theme
+
+```ts
+// e.g. wonder-blocks-button/src/themes/default.js
+import {tokens} from "@khanacademy/wonder-blocks-theming";
+
+export default {
+    color: {
+        bg: {
+            critical: tokens.color.red,
+            action: tokens.color.blue,
+            primary: tokens.color.white,
+            disabled: tokens.color.offBlack32,
+            inverse: tokens.color.darkBlue,
+        },
+        text: {
+            primary: tokens.color.offBlack,
+            inverse: tokens.color.white,
+            disabled: tokens.color.offBlack32,
+        },
+        border: {
+            primaryInverse: tokens.color.white,
+            secondary: tokens.color.offBlack50,
+            disabled: tokens.color.offBlack32,
+        },
+    },
+    spacing: {
+        small: tokens.spacing.xSmall_8,
+        medium: tokens.spacing.medium_16,
+        large: tokens.spacing.xLarge_32,
+    },
+    border: {
+        radius: {
+            small: tokens.spacing.xxxxSmall_2,
+            medium: tokens.spacing.xxxSmall_4,
+            large: tokens.spacing.xxSmall_6,
+        },
+    },
+    size: {
+        small: tokens.spacing.xLarge_32,
+        medium: tokens.spacing.medium_16 + tokens.spacing.large_24,
+        large: tokens.spacing.xLarge_32 + tokens.spacing.large_24,
+    },
+};
+```
+
+### Include another theme
+
+After that, you can define new theme(s) to be supported by the component.
+
+```ts
+// e.g. wonder-blocks-button/src/themes/khanmigo.ts
+import {mergeTheme, tokens} from "@khanacademy/wonder-blocks-theming";
+import themeDefault from "./default";
+
+export default mergeTheme(themeDefault, {
+    color: {
+        bg: {
+            primary: tokens.color.lightBlue,
+            action: tokens.color.darkBlue,
+        },
+        text: {
+            inverse: tokens.color.gold,
+        },
+    },
+    border: {
+        radius: {
+            medium: tokens.spacing.xSmall_8,
+        },
+    },
+    spacing: {
+        medium: tokens.spacing.xxxLarge_64,
+    },
+    size: {
+        medium: tokens.spacing.xxxLarge_64,
+    },
+});
+```
+
+Then, you can create a wrapper that will allow theming the component:
+
+```tsx
+// e.g. wonder-blocks-button/src/themes/themed-button.tsx
+import {
+    createThemeContext,
+    ThemeSwitcherContext,
+} from "@khanacademy/wonder-blocks-theming";
+
+import defaultTheme from "./default";
+import brandTheme from "./brand";
+
+// Define the themes that will be available to the consumer(s).
+const themes = {
+    default: defaultTheme,
+    brand: brandTheme,
+};
+
+// Create the theme context and assign an initial value.
+export const ButtonThemeContext = createThemeContext(themes.default);
+
+// Infer the type of the theme from the default theme.
+// NOTE: Any other theme created should be compatible with this type.
+export type ButtonThemeContract = typeof defaultTheme;
+
+type Props = {
+    children: React.ReactNode;
+};
+
+export default function ThemedButton({children}: Props) {
+    const currentTheme = React.useContext(ThemeSwitcherContext);
+    const theme = themes[currentTheme as keyof typeof themes] ?? themes.default;
+
+    return (
+        <ButtonThemeContext.Provider value={theme}>
+            {children}
+        </ButtonThemeContext.Provider>
+    );
+}
+```
+
+After this, you can use use the new `ThemedButton` component to support multiple
+themes in the existing component.
+
+```tsx
+// e.g. wonder-blocks-button/src/components/button.tsx
+import * as React from "react";
+import ThemedButton from "../themes/themed-button";
+import ButtonCore from "./button-core";
+
+export default Button(props) {
+    return (
+        <ThemedButton> // 👈 This is the only change needed in the component.
+            <ButtonCore {...props} />
+        </ThemedButton>
+    );
+}
+```
+
+Finally, you can use the `theme` values in the component styles.
+
+```tsx
+// e.g. wonder-blocks-button/src/components/button-core.tsx
+import * as React from "react";
+import {StyleSheet} from "aphrodite";
+
+import {
+    ThemedStylesFn,
+    useStyles,
+    useScopedTheme,
+} from "@khanacademy/wonder-blocks-theming";
+
+import {ButtonThemeContext, ButtonThemeContract} from "../theme/themed-button";
+
+export default function ButtonCore(props) {
+    const theme = useScopedTheme(ButtonThemeContext);
+    const sharedStyles = useStyles(wbThemeStyles, theme);
+
+    return <StyledButton style={sharedStyles.button} {...props} />;
+}
+
+const wbThemeStyles: ThemedStylesFn<ButtonThemeContract> = (theme) => ({
+    shared: {
+        position: "relative",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        height: theme.size.medium,
+        paddingTop: 0,
+        paddingBottom: 0,
+        paddingLeft: theme.spacing.medium,
+        paddingRight: theme.spacing.medium,
+        border: "none",
+        borderRadius: theme.border.radius.medium,
+        cursor: "pointer",
+        outline: "none",
+        textDecoration: "none",
+    },
+    ...
+});
+```
