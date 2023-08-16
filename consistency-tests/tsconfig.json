@@ -10,6 +10,7 @@
         {"path": "../packages/wonder-blocks-clickable/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-color/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-core/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-dropdown/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-form/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-i18n/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-icon/tsconfig-build.json"},
@@ -18,6 +19,7 @@
         {"path": "../packages/wonder-blocks-modal/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-search-field/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-spacing/tsconfig-build.json"},
+        {"path": "../packages/wonder-blocks-switch/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-timing/tsconfig-build.json"},
         {"path": "../packages/wonder-blocks-typography/tsconfig-build.json"},
     ]
