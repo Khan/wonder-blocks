@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 5.4.0
+
+### Minor Changes
+
+-   1344436f: Add `PropsFor` type to simplify `JSX.LibraryManagedAttributes` usage
+
 ## 5.3.1
 
 ### Patch Changes
