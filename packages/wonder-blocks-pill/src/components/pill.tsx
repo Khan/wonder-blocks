@@ -1,8 +1,9 @@
 import * as React from "react";
 import {StyleSheet} from "aphrodite";
+import type {StyleDeclaration} from "aphrodite";
 
 import Clickable from "@khanacademy/wonder-blocks-clickable";
-import Color from "@khanacademy/wonder-blocks-color";
+import Color, {mix} from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
@@ -96,9 +97,15 @@ const Pill = React.forwardRef(function Pill(
         testId,
     } = props;
 
-    const backgroundStyle = kind === "accent" ? styles.accent : styles.neutral;
-    const wrapperStyle =
-        size === "small" ? styles.wrapperSmall : styles.wrapperLarge;
+    const wrapperSizeStyle =
+        size === "small" ? pillStyles.wrapperSmall : pillStyles.wrapperLarge;
+    const colorStyles = _generateColorStyles(!!onClick, kind, size);
+
+    const defaultStyles = [
+        pillStyles.wrapper,
+        colorStyles.pill,
+        wrapperSizeStyle,
+    ];
 
     if (onClick) {
         return (
@@ -106,12 +113,7 @@ const Pill = React.forwardRef(function Pill(
                 id={id}
                 role={role}
                 onClick={onClick}
-                style={[
-                    wrapperStyle,
-                    backgroundStyle,
-                    styles.clickableWrapper,
-                    style,
-                ]}
+                style={[defaultStyles, colorStyles.clickableWrapper, style]}
                 testId={testId}
                 ref={ref as React.ForwardedRef<HTMLButtonElement>}
             >
@@ -124,7 +126,7 @@ const Pill = React.forwardRef(function Pill(
         <View
             id={id}
             role={role}
-            style={[wrapperStyle, backgroundStyle, style]}
+            style={[defaultStyles, style]}
             testId={testId}
             ref={ref as React.ForwardedRef<HTMLElement>}
         >
@@ -133,33 +135,64 @@ const Pill = React.forwardRef(function Pill(
     );
 });
 
-const styles = StyleSheet.create({
-    wrapperSmall: {
+const styles: Record<string, any> = {};
+
+const pillStyles = StyleSheet.create({
+    wrapper: {
         display: "inline-flex",
+        width: "fit-content",
+    },
+    wrapperSmall: {
         paddingLeft: Spacing.xSmall_8,
         paddingRight: Spacing.xSmall_8,
         borderRadius: Spacing.xxxSmall_4,
-        width: "fit-content",
     },
     wrapperLarge: {
         padding: Spacing.small_12,
         borderRadius: Spacing.large_24,
-        width: "fit-content",
-    },
-    neutral: {
-        backgroundColor: Color.offBlack8,
-        color: Color.offBlack,
-    },
-    accent: {
-        backgroundColor: Color.blue,
-        color: Color.white,
-    },
-    clickableWrapper: {
-        // `display` can't be inline for width to work.
-        display: "flex",
-        width: "fit-content",
-        outline: "none",
     },
 });
+
+const _generateColorStyles = (
+    clickable: boolean,
+    kind: "neutral" | "accent",
+    size: "small" | "large",
+) => {
+    const pillType = `${kind}-${clickable.toString()}-${size.toString()}`;
+
+    const activeAccentColor = mix(Color.offBlack16, Color.blue);
+
+    const currentBackgroundColor =
+        kind === "accent" ? Color.blue : Color.offBlack8;
+    const currentTextColor = kind === "accent" ? Color.white : Color.offBlack;
+    const currentActiveColor =
+        kind === "accent" ? activeAccentColor : Color.offBlack16;
+
+    const colorStyles: StyleDeclaration = {
+        pill: {
+            backgroundColor: currentBackgroundColor,
+            color: currentTextColor,
+        },
+        clickableWrapper: {
+            outline: "none",
+            ":hover": {
+                outline: `2px solid ${Color.blue}`,
+                outlineOffset: 2,
+            },
+            ":active": {
+                backgroundColor: currentActiveColor,
+                outline: `2px solid ${activeAccentColor}`,
+                outlineOffset: 2,
+            },
+            ":focus-visible": {
+                outline: `2px solid ${Color.blue}`,
+                outlineOffset: 2,
+            },
+        },
+    };
+
+    styles[pillType] = StyleSheet.create(colorStyles);
+    return styles[pillType];
+};
 
 export default Pill;

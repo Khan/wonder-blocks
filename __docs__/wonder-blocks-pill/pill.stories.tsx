@@ -2,7 +2,7 @@ import * as React from "react";
 import type {Meta, StoryObj} from "@storybook/react";
 import {expect} from "@storybook/jest";
 
-import {within} from "@storybook/testing-library";
+import {within, userEvent} from "@storybook/testing-library";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
 import Link from "@khanacademy/wonder-blocks-link";
@@ -36,24 +36,127 @@ export const Default: StoryComponentType = {
     args: {children: "This is some text!", kind: "neutral"},
 };
 
+export const Clickable: StoryComponentType = () => (
+    <View>
+        <Pill
+            kind="accent"
+            size="large"
+            onClick={() => {
+                // eslint-disable-next-line no-alert
+                alert("Click!");
+            }}
+        >
+            With onClick
+        </Pill>
+    </View>
+);
+
+Clickable.parameters = {
+    docs: {
+        description: {
+            story: `Pills can be made clickable by specifying the \`onClick\`
+                prop. In this example, the top button has an \`onClick\`
+                prop that triggers a window alert. Note that clickable
+                pills also have an outline style on hover/click, whereas
+                non-clickable pills do not.`,
+        },
+    },
+};
+
+export const Inline: StoryComponentType = () => (
+    <View>
+        <Body>
+            Hello! This pill is{" "}
+            <Pill kind="neutral" size="small">
+                inline
+            </Pill>
+        </Body>
+        <Strut size={Spacing.small_12} />
+        <Body>
+            This pill is also{" "}
+            <Pill kind="neutral" size="small" onClick={() => {}}>
+                inline (clickable)
+            </Pill>
+        </Body>
+    </View>
+);
+
+Inline.parameters = {
+    docs: {
+        description: {
+            story: `Small pills can be used inline with text.`,
+        },
+    },
+};
+
 export const Variants: StoryComponentType = () => {
     return (
-        <View>
-            <Pill kind="neutral" size="small" testId="neutral-small-test-id">
-                Neutral, small
-            </Pill>
-            <Strut size={Spacing.small_12} />
-            <Pill kind="accent" size="small" testId="accent-small-test-id">
-                Accent, small
-            </Pill>
-            <Strut size={Spacing.small_12} />
-            <Pill kind="neutral" size="large" testId="neutral-large-test-id">
-                Neutral, large
-            </Pill>
-            <Strut size={Spacing.small_12} />
-            <Pill kind="accent" size="large" testId="accent-large-test-id">
-                Accent, large
-            </Pill>
+        <View style={{flexDirection: "row"}}>
+            {/* Non-clickable variants */}
+            <View>
+                <Pill
+                    kind="neutral"
+                    size="small"
+                    testId="neutral-small-test-id"
+                >
+                    Neutral, small
+                </Pill>
+                <Strut size={Spacing.small_12} />
+                <Pill kind="accent" size="small" testId="accent-small-test-id">
+                    Accent, small
+                </Pill>
+                <Strut size={Spacing.small_12} />
+                <Pill
+                    kind="neutral"
+                    size="large"
+                    testId="neutral-large-test-id"
+                >
+                    Neutral, large
+                </Pill>
+                <Strut size={Spacing.small_12} />
+                <Pill kind="accent" size="large" testId="accent-large-test-id">
+                    Accent, large
+                </Pill>
+            </View>
+            <Strut size={Spacing.large_24} />
+            {/* Clickable variants */}
+            <View>
+                <Pill
+                    kind="neutral"
+                    size="small"
+                    onClick={() => {}}
+                    testId="neutral-small-clickable-test-id"
+                >
+                    Neutral, small, clickable
+                </Pill>
+                <Strut size={Spacing.small_12} />
+                <Pill
+                    kind="accent"
+                    size="small"
+                    onClick={() => {}}
+                    testId="accent-small-clickable-test-id"
+                >
+                    Accent, small, clickable
+                </Pill>
+                <Strut size={Spacing.small_12} />
+                <Pill
+                    kind="neutral"
+                    size="large"
+                    onClick={() => {}}
+                    testId="neutral-large-clickable-test-id"
+                >
+                    Neutral, large, clickable
+                </Pill>
+                <Strut size={Spacing.small_12} />
+                <Pill
+                    kind="accent"
+                    size="large"
+                    onClick={() => {}}
+                    testId="accent-large-clickable-test-id"
+                >
+                    Accent, large, clickable
+                </Pill>
+            </View>
         </View>
     );
 };
@@ -76,6 +179,20 @@ Variants.play = async ({canvasElement}) => {
     const accentSmall = canvas.getByTestId("accent-small-test-id");
     const neutralLarge = canvas.getByTestId("neutral-large-test-id");
     const accentLarge = canvas.getByTestId("accent-large-test-id");
+
+    // Clickable pills
+    const neutralSmallClickable = canvas.getByTestId(
+        "neutral-small-clickable-test-id",
+    );
+    const accentSmallClickable = canvas.getByTestId(
+        "accent-small-clickable-test-id",
+    );
+    const neutralLargeClickable = canvas.getByTestId(
+        "neutral-large-clickable-test-id",
+    );
+    const accentLargeClickable = canvas.getByTestId(
+        "accent-large-clickable-test-id",
+    );
 
     await expect(neutralSmall).toHaveStyle({
         backgroundColor: Color.offBlack8,
@@ -100,61 +217,23 @@ Variants.play = async ({canvasElement}) => {
         color: Color.white,
         fontSize: 16,
     });
-};
 
-export const Clickable: StoryComponentType = () => (
-    <View>
-        <Pill
-            kind="accent"
-            size="small"
-            onClick={() => {
-                // eslint-disable-next-line no-alert
-                alert("Click!");
-            }}
-        >
-            With onClick
-        </Pill>
-        <Strut size={Spacing.small_12} />
-        <Pill
-            kind="accent"
-            size="large"
-            onClick={() => {
-                // eslint-disable-next-line no-alert
-                alert("Click!");
-            }}
-        >
-            With onClick
-        </Pill>
-    </View>
-);
+    // Clickable styles
+    await userEvent.tab();
+    let computedStyle = getComputedStyle(neutralSmallClickable, ":hover");
+    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
 
-export const Inline: StoryComponentType = () => (
-    <View>
-        <Body>
-            Hello! This pill is{" "}
-            <Pill kind="neutral" size="small">
-                inline
-            </Pill>
-        </Body>
-    </View>
-);
+    await userEvent.tab();
+    computedStyle = getComputedStyle(accentSmallClickable, ":hover");
+    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
 
-Inline.parameters = {
-    docs: {
-        description: {
-            story: `Small pills can be used inline with text.`,
-        },
-    },
-};
+    await userEvent.tab();
+    computedStyle = getComputedStyle(neutralLargeClickable, ":hover");
+    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
 
-Clickable.parameters = {
-    docs: {
-        description: {
-            story: `Pills can be made clickable by specifying the \`onClick\`
-                prop. In this example, the top button has an \`onClick\`
-                prop that triggersa window alert.`,
-        },
-    },
+    await userEvent.tab();
+    computedStyle = getComputedStyle(accentLargeClickable, ":hover");
+    await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
 };
 
 export const WithLink: StoryComponentType = () => (
@@ -178,29 +257,22 @@ export const WithStyle: StoryComponentType = () => {
         color: Color.white,
         paddingLeft: Spacing.xxLarge_48,
         paddingRight: Spacing.xxLarge_48,
-    };
 
-    const clickableStyle = {
         ":hover": {
-            outline: `2px solid ${Color.offBlack}`,
-            outlineOffset: 2,
+            outlineColor: Color.offBlack,
         },
+
         ":active": {
+            outlineColor: Color.offBlack64,
             backgroundColor: Color.offBlack64,
-            outline: `2px solid ${Color.offBlack64}`,
-            outlineOffset: 2,
-        },
-        ":focus-visible": {
-            outline: `2px solid ${Color.offBlack}`,
-            outlineOffset: 2,
         },
     };
 
     return (
         <Pill
             kind="neutral"
-            size="large"
-            style={[customStyle, clickableStyle]}
+            size="small"
+            style={customStyle}
             onClick={() => {}}
         >
             With Style
@@ -214,8 +286,9 @@ WithStyle.parameters = {
             story: `The \`style\` prop can be used to customize the
                 appearance of the pill. In this example, the pill has a
                 custom background color, text color, and padding.
-                In addition, this pill is clickable, and its hover, focus,
-                and active styles have also been customized.`,
+                In addition, this pill is clickable, and its hover
+                and active styles have also been customized to match
+                it new color.`,
         },
     },
 };
