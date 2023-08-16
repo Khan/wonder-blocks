@@ -18,7 +18,7 @@ type Props = AriaProps & {
     /**
      * The text to display within the pill.
      */
-    text: string | React.ReactElement<typeof Link>;
+    children: string | React.ReactElement<typeof Link>;
     /**
      * Determines the color of the pill. Defaults to "neutral".
      * Neutral pills are gray, accent pills are blue.
@@ -56,14 +56,14 @@ type Props = AriaProps & {
 };
 
 const PillInner = (props: {
-    text: string | React.ReactElement<typeof Link>;
+    children: string | React.ReactElement<typeof Link>;
     size: "small" | "large";
 }) => {
     if (props.size === "small") {
-        return <LabelXSmall>{props.text}</LabelXSmall>;
+        return <LabelXSmall>{props.children}</LabelXSmall>;
     }
 
-    return <Body>{props.text}</Body>;
+    return <Body>{props.children}</Body>;
 };
 
 /**
@@ -87,7 +87,7 @@ const Pill = React.forwardRef(function Pill(
 ) {
     const {
         id,
-        text,
+        children,
         kind = "neutral",
         size = "small",
         role,
@@ -115,7 +115,7 @@ const Pill = React.forwardRef(function Pill(
                 testId={testId}
                 ref={ref as React.ForwardedRef<HTMLButtonElement>}
             >
-                {() => <PillInner text={text} size={size} />}
+                {() => <PillInner size={size}>{children}</PillInner>}
             </Clickable>
         );
     }
@@ -128,7 +128,7 @@ const Pill = React.forwardRef(function Pill(
             testId={testId}
             ref={ref as React.ForwardedRef<HTMLElement>}
         >
-            <PillInner text={text} size={size} />
+            <PillInner size={size}>{children}</PillInner>
         </View>
     );
 });

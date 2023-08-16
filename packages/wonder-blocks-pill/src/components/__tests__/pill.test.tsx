@@ -6,7 +6,7 @@ import Pill from "../pill";
 describe("Pill", () => {
     test("renders the text", () => {
         // Arrange, Act
-        render(<Pill text="Hello, world!" />);
+        render(<Pill>Hello, world!</Pill>);
 
         // Assert
         expect(screen.getByText("Hello, world!")).toBeVisible();
@@ -16,13 +16,9 @@ describe("Pill", () => {
         // Arrange
         const pillRef = React.createRef<HTMLElement>();
         render(
-            <Pill
-                text="Hello, world!"
-                id="pill-id"
-                role="radio"
-                testId="pill-test-id"
-                ref={pillRef}
-            />,
+            <Pill id="pill-id" role="radio" testId="pill-test-id" ref={pillRef}>
+                Hello, world!
+            </Pill>,
         );
 
         // Assert
@@ -36,13 +32,14 @@ describe("Pill", () => {
         const pillRef = React.createRef<HTMLElement>();
         render(
             <Pill
-                text="Hello, world!"
                 id="pill-id"
                 role="radio"
                 testId="pill-test-id"
                 onClick={() => {}}
                 ref={pillRef}
-            />,
+            >
+                Hello, world!
+            </Pill>,
         );
 
         // Assert
@@ -56,7 +53,7 @@ describe("Pill", () => {
         const clickSpy = jest.fn();
 
         // Act
-        render(<Pill text="Hello, world!" onClick={clickSpy} />);
+        render(<Pill onClick={clickSpy}>Hello, world!</Pill>);
         const pillButton = screen.getByRole("button");
         pillButton.click();
 
@@ -66,7 +63,7 @@ describe("Pill", () => {
 
     test("is not Clickable if onClick is not passed in", () => {
         // Arrange, Act
-        render(<Pill text="Hello, world!" />);
+        render(<Pill>Hello, world!</Pill>);
         const pillButton = screen.queryByRole("button");
 
         // Assert

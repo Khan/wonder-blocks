@@ -33,39 +33,27 @@ export default {
 type StoryComponentType = StoryObj<typeof Pill>;
 
 export const Default: StoryComponentType = {
-    args: {text: "This is some text!", kind: "neutral"},
+    args: {children: "This is some text!", kind: "neutral"},
 };
 
 export const Variants: StoryComponentType = () => {
     return (
         <View>
-            <Pill
-                text="Neutral, small"
-                kind="neutral"
-                size="small"
-                testId="neutral-small-test-id"
-            />
+            <Pill kind="neutral" size="small" testId="neutral-small-test-id">
+                Neutral, small
+            </Pill>
             <Strut size={Spacing.small_12} />
-            <Pill
-                text="Accent, small"
-                kind="accent"
-                size="small"
-                testId="accent-small-test-id"
-            />
+            <Pill kind="accent" size="small" testId="accent-small-test-id">
+                Accent, small
+            </Pill>
             <Strut size={Spacing.small_12} />
-            <Pill
-                text="Neutral, large"
-                kind="neutral"
-                size="large"
-                testId="neutral-large-test-id"
-            />
+            <Pill kind="neutral" size="large" testId="neutral-large-test-id">
+                Neutral, large
+            </Pill>
             <Strut size={Spacing.small_12} />
-            <Pill
-                text="Accent, large"
-                kind="accent"
-                size="large"
-                testId="accent-large-test-id"
-            />
+            <Pill kind="accent" size="large" testId="accent-large-test-id">
+                Accent, large
+            </Pill>
         </View>
     );
 };
@@ -117,24 +105,26 @@ Variants.play = async ({canvasElement}) => {
 export const Clickable: StoryComponentType = () => (
     <View>
         <Pill
-            text="With onClick"
             kind="accent"
             size="small"
             onClick={() => {
                 // eslint-disable-next-line no-alert
                 alert("Click!");
             }}
-        />
+        >
+            With onClick
+        </Pill>
         <Strut size={Spacing.small_12} />
         <Pill
-            text="With onClick"
             kind="accent"
             size="large"
             onClick={() => {
                 // eslint-disable-next-line no-alert
                 alert("Click!");
             }}
-        />
+        >
+            With onClick
+        </Pill>
     </View>
 );
 
@@ -142,7 +132,9 @@ export const Inline: StoryComponentType = () => (
     <View>
         <Body>
             Hello! This pill is{" "}
-            <Pill text="inline" kind="neutral" size="small" />
+            <Pill kind="neutral" size="small">
+                inline
+            </Pill>
         </Body>
     </View>
 );
@@ -166,14 +158,9 @@ Clickable.parameters = {
 };
 
 export const WithLink: StoryComponentType = () => (
-    <Pill
-        text={
-            <>
-                This is a {<Link href="#">link</Link>} inside the text of a pill
-            </>
-        }
-        size="large"
-    />
+    <Pill size="large">
+        <>This is a {<Link href="#">link</Link>} inside the text of a pill</>
+    </Pill>
 );
 
 WithLink.parameters = {
@@ -211,12 +198,13 @@ export const WithStyle: StoryComponentType = () => {
 
     return (
         <Pill
-            text="With style"
             kind="neutral"
             size="large"
             style={[customStyle, clickableStyle]}
             onClick={() => {}}
-        />
+        >
+            With Style
+        </Pill>
     );
 };
 
@@ -242,13 +230,14 @@ export const InList: StoryComponentType = () => {
                 {options.map((option) => (
                     <Pill
                         key={option}
-                        text={option}
                         size="large"
                         kind={option === selected ? "accent" : "neutral"}
                         onClick={() => setSelected(option)}
                         role="radio"
                         style={{marginRight: Spacing.xSmall_8}}
-                    />
+                    >
+                        {option}
+                    </Pill>
                 ))}
             </View>
             <Strut size={Spacing.small_12} />

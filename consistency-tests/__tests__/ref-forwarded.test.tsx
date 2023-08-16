@@ -377,7 +377,7 @@ describe("Pill", () => {
         const ref: React.RefObject<HTMLElement> = React.createRef();
 
         // Act
-        render(<Pill ref={ref} text="This is a pill" />);
+        render(<Pill ref={ref}>This is a pill</Pill>);
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLElement);
@@ -388,7 +388,11 @@ describe("Pill", () => {
         const ref: React.RefObject<HTMLButtonElement> = React.createRef();
 
         // Act
-        render(<Pill ref={ref} text="This is a pill" onClick={() => {}} />);
+        render(
+            <Pill ref={ref} onClick={() => {}}>
+                This is a pill
+            </Pill>,
+        );
 
         // Assert
         expect(ref.current).toBeInstanceOf(HTMLButtonElement);

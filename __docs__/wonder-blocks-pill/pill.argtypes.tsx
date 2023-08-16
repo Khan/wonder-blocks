@@ -7,7 +7,7 @@ export default {
         },
         type: {name: "string", required: false},
     },
-    text: {
+    children: {
         control: {type: "text"},
         description: "Text to appear on the pill.",
         table: {
