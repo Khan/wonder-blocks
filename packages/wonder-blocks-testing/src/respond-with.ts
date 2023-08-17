@@ -228,7 +228,8 @@ const makeMockResponse = (
             if (process.env.NODE_ENV !== "production") {
                 // If we're not in production, give an immediate signal that the
                 // dev forgot to support this new type.
-                // @ts-expect-error [FEI-5019] - TS2339 - Property 'type' does not exist on type 'never'.
+                // @ts-expect-error TS knows we can't get here and so sees
+                // `response` as `never`.
                 throw new Error(`Unknown response type: ${response.type}`);
             }
             // Production; assume a rejection.

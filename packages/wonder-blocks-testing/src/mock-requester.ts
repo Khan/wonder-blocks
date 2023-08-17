@@ -4,23 +4,17 @@ import type {OperationMock, OperationMatcher, MockFn} from "./types";
 /**
  * A generic mock request function for using when mocking fetch or gqlFetch.
  */
-export const mockRequester = <
-    TOperationType,
-    TOperationMock extends OperationMock<TOperationType> = OperationMock<TOperationType>,
->(
+export const mockRequester = <TOperationType>(
     operationMatcher: OperationMatcher<any>,
-    operationToString: (
-        operationMock: TOperationMock,
-        ...args: Array<any>
-    ) => string,
+    operationToString: (...args: Array<any>) => string,
 ): MockFn<TOperationType> => {
     // We want this to work in jest and in fixtures to make life easy for folks.
     // This is the array of mocked operations that we will traverse and
     // manipulate.
     const mocks: Array<OperationMock<any>> = [];
 
-    // What we return has to be a drop in for the fetch function that is
-    // provided to `GqlRouter` which is how folks will then use this mock.
+    // What we return has to be a drop in replacement for the mocked function
+    // which is how folks will then use this mock.
     const mockFn: MockFn<TOperationType> = (
         ...args: Array<any>
     ): Promise<Response> => {
@@ -38,7 +32,6 @@ export const mockRequester = <
 
         // Default is to reject with some helpful info on what request
         // we rejected.
-        // @ts-expect-error [FEI-5019] - TS2556 - A spread argument must either have a tuple type or be passed to a rest parameter.
         const operation = operationToString(...args);
         return Promise.reject(
             new Error(`No matching mock response found for request:

@@ -27,8 +27,7 @@ export const fixtures = <
     let storyNumber = 1;
 
     const getPropsOptions = {
-        // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'message' implicitly has an 'any' type. | TS7019 - Rest parameter 'args' implicitly has an 'any[]' type.
-        log: (message, ...args) => action(message)(...args),
+        log: (message: string, ...args: Array<any>) => action(message)(...args),
         logHandler: action,
     } as const;
 

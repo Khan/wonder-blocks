@@ -4,7 +4,7 @@ import {renderAdapters} from "../render-adapters";
 import type {TestHarnessAdapter, TestHarnessConfigs} from "../types";
 
 describe("#renderAdapters", () => {
-    it("should return children if no adapters", () => {
+    it("should render children if no adapters", () => {
         // Arrange
         const children = <div>Adapt me!</div>;
 
@@ -12,7 +12,13 @@ describe("#renderAdapters", () => {
         const result = renderAdapters({}, {}, children);
 
         // Assert
-        expect(result).toBe(children);
+        expect(result).toMatchInlineSnapshot(`
+            <React.Fragment>
+              <div>
+                Adapt me!
+              </div>
+            </React.Fragment>
+        `);
     });
 
     it("should invoke the adapter with its corresponding config", () => {
@@ -38,10 +44,8 @@ describe("#renderAdapters", () => {
     it("should render each adapter and the children", () => {
         // Arrange
         const children = "Adapt me!";
-        // @ts-expect-error: `string` is not a valid `ReactElement`.
-        const adapter: TestHarnessAdapter<string> = (c: any, conf: any) => {
-            return `${conf}:${c}`;
-        };
+        const adapter: TestHarnessAdapter<string> = (c: any, conf: any) =>
+            `${conf}:${c}` as any;
         const adapters = {
             adapterA: adapter,
             adapterB: adapter,
@@ -57,16 +61,18 @@ describe("#renderAdapters", () => {
         const result = renderAdapters(adapters, configs, children);
 
         // Assert
-        expect(result).toMatchInlineSnapshot(`"C:B:A:Adapt me!"`);
+        expect(result).toMatchInlineSnapshot(`
+            <React.Fragment>
+              C:B:A:Adapt me!
+            </React.Fragment>
+        `);
     });
 
     it("should skip adapters where the corresponding config is null", () => {
         // Arrange
         const children = "Adapt me!";
-        // @ts-expect-error: `string` is not a valid `ReactElement`.
-        const adapter: TestHarnessAdapter<string> = (c: any, conf: any) => {
-            return `${conf}:${c}`;
-        };
+        const adapter: TestHarnessAdapter<string> = (c: any, conf: any) =>
+            `${conf}:${c}` as any;
         const adapters = {
             adapterA: adapter,
             adapterB: adapter,
@@ -82,6 +88,10 @@ describe("#renderAdapters", () => {
         const result = renderAdapters(adapters, configs, children);
 
         // Assert
-        expect(result).toMatchInlineSnapshot(`"C:A:Adapt me!"`);
+        expect(result).toMatchInlineSnapshot(`
+            <React.Fragment>
+              C:A:Adapt me!
+            </React.Fragment>
+        `);
     });
 });
