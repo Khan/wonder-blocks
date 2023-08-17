@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@khanacademy/wonder-stuff-core": "^1.4.2",
-    "wb-dev-build-settings": "^0.9.7"
+    "@khanacademy/wb-dev-build-settings": "^0.9.7"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",

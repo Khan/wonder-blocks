@@ -28,6 +28,6 @@
     "react-router-dom": "5.3.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.9.7"
+    "@khanacademy/wb-dev-build-settings": "^0.9.7"
   }
 }

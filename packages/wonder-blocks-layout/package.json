@@ -18,7 +18,7 @@
     "@khanacademy/wonder-blocks-spacing": "^4.0.1"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.9.7"
+    "@khanacademy/wb-dev-build-settings": "^0.9.7"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",

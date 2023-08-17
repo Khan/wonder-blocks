@@ -29,6 +29,6 @@
     "react": "16.14.0"
   },
   "devDependencies": {
-    "wb-dev-build-settings": "^0.9.7"
+    "@khanacademy/wb-dev-build-settings": "^0.9.7"
   }
 }
