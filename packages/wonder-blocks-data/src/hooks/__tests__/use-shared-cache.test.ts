@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-unassigned-import
+import "jest-extended";
 import {renderHook as clientRenderHook} from "@testing-library/react-hooks";
 
 import {useSharedCache, SharedCache} from "../use-shared-cache";
@@ -48,7 +50,6 @@ describe("#useSharedCache", () => {
         } = clientRenderHook(() => useSharedCache("id", "scope"));
 
         // Assert
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'toBeArrayOfSize' does not exist on type 'JestMatchers<[ValidCacheData | null | undefined, CacheValueFn<ValidCacheData>]>'.
         expect(result).toBeArrayOfSize(2);
     });
 
@@ -119,12 +120,13 @@ describe("#useSharedCache", () => {
                 id: "id",
                 scope: "scope",
             });
-            const result1 = wrapper.result.all[wrapper.result.all.length - 2];
-            const result2 = wrapper.result.current;
+            const value1 = wrapper.result.all[wrapper.result.all.length - 2];
+            const value2 = wrapper.result.current;
+            const result1 = Array.isArray(value1) ? value1[1] : "BAD1";
+            const result2 = Array.isArray(value2) ? value2[1] : "BAD2";
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS7053 - Element implicitly has an 'any' type because expression of type '1' can't be used to index type 'Error | [ValidCacheData | null | undefined, CacheValueFn<ValidCacheData>]'.
-            expect(result1[1]).toBe(result2[1]);
+            expect(result1).toBe(result2);
         });
 
         it("should be a new function if the id changes", () => {
@@ -138,12 +140,13 @@ describe("#useSharedCache", () => {
 
             // Act
             wrapper.rerender({id: "new-id"});
-            const result1 = wrapper.result.all[wrapper.result.all.length - 2];
-            const result2 = wrapper.result.current;
+            const value1 = wrapper.result.all[wrapper.result.all.length - 2];
+            const value2 = wrapper.result.current;
+            const result1 = Array.isArray(value1) ? value1[1] : "BAD1";
+            const result2 = Array.isArray(value2) ? value2[1] : "BAD2";
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS7053 - Element implicitly has an 'any' type because expression of type '1' can't be used to index type 'Error | [ValidCacheData | null | undefined, CacheValueFn<ValidCacheData>]'.
-            expect(result1[1]).not.toBe(result2[1]);
+            expect(result1).not.toBe(result2);
         });
 
         it("should be a new function if the scope changes", () => {
@@ -157,12 +160,13 @@ describe("#useSharedCache", () => {
 
             // Act
             wrapper.rerender({scope: "new-scope"});
-            const result1 = wrapper.result.all[wrapper.result.all.length - 2];
-            const result2 = wrapper.result.current;
+            const value1 = wrapper.result.all[wrapper.result.all.length - 2];
+            const value2 = wrapper.result.current;
+            const result1 = Array.isArray(value1) ? value1[1] : "BAD1";
+            const result2 = Array.isArray(value2) ? value2[1] : "BAD2";
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS7053 - Element implicitly has an 'any' type because expression of type '1' can't be used to index type 'Error | [ValidCacheData | null | undefined, CacheValueFn<ValidCacheData>]'.
-            expect(result1[1]).not.toBe(result2[1]);
+            expect(result1).not.toBe(result2);
         });
 
         it("should set the value in the cache", () => {

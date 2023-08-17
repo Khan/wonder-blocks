@@ -30,25 +30,22 @@ export const useRequestInterception = <TData extends ValidCacheData>(
     const interceptedHandler = React.useCallback((): Promise<TData> => {
         // Call the interceptors from closest to furthest.
         // If one returns a non-null result, then we keep that.
-        const interceptResponse = interceptors.reduceRight(
-            (
-                prev:
-                    | Promise<ValidCacheData | null | undefined>
-                    | null
-                    | undefined,
-                interceptor,
-            ) => {
-                if (prev != null) {
-                    return prev;
-                }
-                return interceptor(requestId);
-            },
-            null,
-        );
+        const interceptResponse: Promise<TData> | null | undefined =
+            interceptors.reduceRight(
+                (prev: Promise<TData> | null | undefined, interceptor) => {
+                    if (prev != null) {
+                        return prev;
+                    }
+                    return interceptor(requestId) as
+                        | Promise<TData>
+                        | null
+                        | undefined;
+                },
+                null,
+            );
         // If nothing intercepted this request, invoke the original handler.
         // NOTE: We can't guarantee all interceptors return the same type
         // as our handler, so how can TypeScript know? Let's just suppress that.
-        // @ts-expect-error [FEI-5019] - TS2739 - Type '(requestId: string) => Promise<ValidCacheData | null | undefined> | null | undefined' is missing the following properties from type 'Promise<TData>': then, catch, finally, [Symbol.toStringTag]
         return interceptResponse ?? handler();
     }, [handler, interceptors, requestId]);
 
