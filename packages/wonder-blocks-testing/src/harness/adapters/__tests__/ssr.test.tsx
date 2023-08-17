@@ -17,7 +17,7 @@ describe("SSR.adapter", () => {
         const renderStateRootSpy = jest.spyOn(WBCore, "RenderStateRoot");
 
         // Act
-        render(SSR.adapter(children, "Default"));
+        render(SSR.adapter(children, true));
 
         // Assert
         expect(renderStateRootSpy).toHaveBeenCalledWith(
@@ -33,7 +33,7 @@ describe("SSR.adapter", () => {
         const children = <div>CHILDREN!</div>;
 
         // Act
-        render(SSR.adapter(children, "Default"));
+        render(SSR.adapter(children, true));
 
         // Assert
         expect(screen.getByText("CHILDREN!")).toBeInTheDocument();

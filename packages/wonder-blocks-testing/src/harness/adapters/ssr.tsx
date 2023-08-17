@@ -6,10 +6,12 @@ import type {TestHarnessAdapter} from "../types";
 
 // We only support one configuration for this adapter; the default
 // behavior - it's either on or off.
-type Config = "Default";
+type Config = true | null;
 
-// The default configuration is to do the default behavior.
-export const defaultConfig: Config = "Default";
+// The default configuration is off since this will likely cause state changes
+// and add Testing Library act/waitFor calls in tests using the harness when
+// its enabled.
+export const defaultConfig: Config = null;
 
 /**
  * Test harness adapter for supporting portals.
@@ -22,7 +24,7 @@ export const adapter: TestHarnessAdapter<Config> = (
     children: React.ReactNode,
     config: Config,
 ): React.ReactElement<any> => {
-    if (config !== "Default") {
+    if (config !== true) {
         throw new KindError("Unexpected configuraiton", Errors.InvalidInput, {
             metadata: {config},
         });

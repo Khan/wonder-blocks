@@ -195,9 +195,7 @@ By default, the router adapter is configured with `{location: "/"}`.
 The `ssr` adapter ensures that the render state is being managed by rendering a `RenderStateRoot` component around the harnessed component.
 
 ```ts
-type Config = "Default";
+type Config =  true | null;
 ```
 
-By default, this adapter is on.
-
-NOTE: If you are updating existing tests with this version of Wonder Blocks Testing, you may see failures in tests that already use `RenderStateRoot` as it will throw when nested. Just remove the `RenderStateRoot` you are rendering in your tests and use this adapter instead.
+By default, this adapter is off since state changes occur when `RenderStateRoot` is used that may require tests to make accommodations, such as adding appropriate `act` or `waitFor` calls when using Testing Library.
