@@ -162,13 +162,12 @@ describe("../request-tracking.js", () => {
             it("should cache errors occurring in promises", async () => {
                 // Arrange
                 const requestTracker = createRequestTracker();
-                const fakeBadRequestHandler = () =>
+                const fakeBadRequestHandler = (): Promise<any> =>
                     new Promise((resolve: any, reject: any) =>
                         reject("OH NO!"),
                     );
                 requestTracker.trackDataRequest(
                     "ID",
-                    // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '() => Promise<unknown>' is not assignable to parameter of type '() => Promise<ValidCacheData>'.
                     fakeBadRequestHandler,
                     true,
                 );
@@ -192,23 +191,22 @@ describe("../request-tracking.js", () => {
                  * - Handlers that reject the promise
                  * - Handlers that resolve
                  */
-                const fakeBadRequestHandler = () =>
+                const fakeBadRequestHandler = (): Promise<any> =>
                     new Promise((resolve: any, reject: any) =>
                         reject("OH NO!"),
                     );
-                const fakeBadHandler = () => {
+                const fakeBadHandler = (): Promise<any> => {
                     throw new Error("OH NO!");
                 };
-                const fakeValidHandler = (() => {
+                const fakeValidHandler = ((): (() => Promise<any>) => {
                     let counter = 0;
-                    return (o: any) => {
+                    return () => {
                         counter++;
                         return Promise.resolve(`DATA:${counter}`);
                     };
                 })();
                 requestTracker.trackDataRequest(
                     "BAD_REQUEST",
-                    // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '() => Promise<unknown>' is not assignable to parameter of type '() => Promise<ValidCacheData>'.
                     fakeBadRequestHandler,
                     true,
                 );
@@ -219,13 +217,11 @@ describe("../request-tracking.js", () => {
                 );
                 requestTracker.trackDataRequest(
                     "VALID_HANDLER1",
-                    // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '(o: any) => Promise<string>' is not assignable to parameter of type '() => Promise<string>'.
                     fakeValidHandler,
                     true,
                 );
                 requestTracker.trackDataRequest(
                     "VALID_HANDLER2",
-                    // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '(o: any) => Promise<string>' is not assignable to parameter of type '() => Promise<string>'.
                     fakeValidHandler,
                     true,
                 );

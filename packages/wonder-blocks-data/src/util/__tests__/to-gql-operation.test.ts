@@ -9,11 +9,10 @@ describe("#toGqlOperation", () => {
         const documentNode: any = {};
         const parserSpy = jest
             .spyOn(GDNP, "graphQLDocumentNodeParser")
-            // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '{ name: string; type: string; }' is not assignable to parameter of type 'IDocumentDefinition'.
             .mockReturnValue({
                 name: "operationName",
                 type: "query",
-            });
+            } as any);
 
         // Act
         toGqlOperation(documentNode);
@@ -25,11 +24,10 @@ describe("#toGqlOperation", () => {
     it("should return the Wonder Blocks Data representation of the given document node", () => {
         // Arrange
         const documentNode: any = {};
-        // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '{ name: string; type: string; }' is not assignable to parameter of type 'IDocumentDefinition'.
         jest.spyOn(GDNP, "graphQLDocumentNodeParser").mockReturnValue({
             name: "operationName",
             type: "mutation",
-        });
+        } as any);
 
         // Act
         const result = toGqlOperation(documentNode);

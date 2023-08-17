@@ -63,6 +63,12 @@ type CachedEffectOptions<TData extends ValidCacheData> = {
     scope?: string;
 };
 
+type InflightRequest<TData extends ValidCacheData> = {
+    requestId: string;
+    request: Promise<Result<TData>>;
+    cancel(): void;
+};
+
 const DefaultScope = "useCachedEffect";
 
 /**
@@ -114,19 +120,16 @@ export const useCachedEffect = <TData extends ValidCacheData>(
     const forceUpdate = useForceUpdate();
     // For the NetworkOnly fetch policy, we ignore the cached value.
     // So we need somewhere else to store the network value.
-    const networkResultRef = React.useRef();
+    const networkResultRef = React.useRef<Result<TData> | null>();
 
     // Set up the function that will do the fetching.
-    const currentRequestRef = React.useRef();
+    const currentRequestRef = React.useRef<InflightRequest<TData> | null>();
     const fetchRequest = React.useMemo(() => {
         // We aren't using useCallback here because we need to make sure that
         // if we are rememo-izing, we cancel any inflight request for the old
         // callback.
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'cancel' does not exist on type 'never'.
         currentRequestRef.current?.cancel();
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'undefined'.
         currentRequestRef.current = null;
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'undefined'.
         networkResultRef.current = null;
 
         const fetchFn = () => {
@@ -153,7 +156,6 @@ export const useCachedEffect = <TData extends ValidCacheData>(
                 },
             );
 
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'request' does not exist on type 'never'.
             if (request === currentRequestRef.current?.request) {
                 // The request inflight is the same, so do nothing.
                 // NOTE: Perhaps if invoked via a refetch, we will want to
@@ -162,11 +164,9 @@ export const useCachedEffect = <TData extends ValidCacheData>(
             }
 
             // Clear the last network result.
-            // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'undefined'.
             networkResultRef.current = null;
 
             // Cancel the previous request.
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'cancel' does not exist on type 'never'.
             currentRequestRef.current?.cancel();
 
             // TODO(somewhatabstract, FEI-4276):
@@ -178,7 +178,6 @@ export const useCachedEffect = <TData extends ValidCacheData>(
             // Catching shouldn't serve a purpose.
             // eslint-disable-next-line promise/catch-or-return
             request.then((result) => {
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'undefined'.
                 currentRequestRef.current = null;
                 if (cancel) {
                     // We don't modify our result if the request was cancelled
@@ -189,7 +188,6 @@ export const useCachedEffect = <TData extends ValidCacheData>(
 
                 // Now we need to update the cache and notify or force a rerender.
                 setMostRecentResult(result);
-                // @ts-expect-error [FEI-5019] - TS2322 - Type 'Result<TData>' is not assignable to type 'undefined'.
                 networkResultRef.current = result;
 
                 if (onResultChanged != null) {
@@ -204,7 +202,6 @@ export const useCachedEffect = <TData extends ValidCacheData>(
                 return; // Shut up eslint always-return rule.
             });
 
-            // @ts-expect-error [FEI-5019] - TS2322 - Type '{ requestId: string; request: Promise<Result<TData>>; cancel(): void; }' is not assignable to type 'undefined'.
             currentRequestRef.current = {
                 requestId,
                 request,
@@ -265,29 +262,36 @@ export const useCachedEffect = <TData extends ValidCacheData>(
         }
         fetchRequest();
         return () => {
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'cancel' does not exist on type 'never'.
             currentRequestRef.current?.cancel();
-            // @ts-expect-error [FEI-5019] - TS2322 - Type 'null' is not assignable to type 'undefined'.
             currentRequestRef.current = null;
         };
     }, [shouldFetch, fetchRequest]);
 
     // We track the last result we returned in order to support the
-    // "retainResultOnChange" option.
-    const lastResultAgnosticOfIdRef = React.useRef(Status.loading());
+    // "retainResultOnChange" option. To begin, the last result is no-data.
+    const lastResultAgnosticOfIdRef = React.useRef<Result<TData>>(
+        Status.noData<TData>(),
+    );
+    // The default return value is:
+    // - The last result we returned if we're retaining results on change.
+    // - The no-data state if shouldFetch is false, and therefore there is no
+    //   in-flight request.
+    // - Otherwise, the loading state (we can assume there's an inflight
+    //   request if skip is not true).
     const loadingResult = retainResultOnChange
         ? lastResultAgnosticOfIdRef.current
-        : Status.loading();
+        : shouldFetch
+        ? Status.loading<TData>()
+        : Status.noData<TData>();
 
-    // Loading is a transient state, so we only use it here; it's not something
-    // we cache.
-    const result =
+    // Loading and no-data are transient states, so we only use them here;
+    // they're not something we cache.
+    const result: Result<TData> =
         (fetchPolicy === FetchPolicy.NetworkOnly
             ? networkResultRef.current
             : mostRecentResult) ?? loadingResult;
     lastResultAgnosticOfIdRef.current = result;
 
     // We return the result and a function for triggering a refetch.
-    // @ts-expect-error [FEI-5019] - TS2322 - Type '{ status: "loading"; } | { status: "error"; error: Error; } | { status: "aborted"; } | { status: "success"; data: ValidCacheData; }' is not assignable to type 'Result<TData>'.
     return [result, fetchRequest];
 };

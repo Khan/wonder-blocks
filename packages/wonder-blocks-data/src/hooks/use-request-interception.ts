@@ -31,8 +31,13 @@ export const useRequestInterception = <TData extends ValidCacheData>(
         // Call the interceptors from closest to furthest.
         // If one returns a non-null result, then we keep that.
         const interceptResponse = interceptors.reduceRight(
-            // @ts-expect-error [FEI-5019] - TS2769 - No overload matches this call.
-            (prev, interceptor) => {
+            (
+                prev:
+                    | Promise<ValidCacheData | null | undefined>
+                    | null
+                    | undefined,
+                interceptor,
+            ) => {
                 if (prev != null) {
                     return prev;
                 }
