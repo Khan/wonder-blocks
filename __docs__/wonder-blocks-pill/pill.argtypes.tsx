@@ -72,7 +72,7 @@ export default {
     },
     testId: {
         control: {type: "text"},
-        description: "Option test ID for e2e testing.",
+        description: "Optional test ID for e2e testing.",
         table: {
             type: {summary: "string"},
         },

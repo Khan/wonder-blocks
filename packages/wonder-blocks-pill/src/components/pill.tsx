@@ -51,7 +51,7 @@ type Props = AriaProps & {
      */
     style?: StyleType;
     /**
-     * Option test ID for e2e testing.
+     * Optional test ID for e2e testing.
      */
     testId?: string;
 };
@@ -82,9 +82,7 @@ const PillInner = (props: {
  */
 const Pill = React.forwardRef(function Pill(
     props: Props,
-    ref: React.ForwardedRef<
-        HTMLElement | HTMLButtonElement | HTMLAnchorElement
-    >,
+    ref: React.ForwardedRef<HTMLElement | HTMLButtonElement>,
 ) {
     const {
         id,
@@ -145,10 +143,13 @@ const pillStyles = StyleSheet.create({
     wrapperSmall: {
         paddingLeft: Spacing.xSmall_8,
         paddingRight: Spacing.xSmall_8,
-        borderRadius: Spacing.xxxSmall_4,
+        borderRadius: Spacing.xxSmall_6,
     },
     wrapperLarge: {
-        padding: Spacing.small_12,
+        paddingLeft: Spacing.small_12,
+        paddingRight: Spacing.small_12,
+        paddingTop: Spacing.xxSmall_6,
+        paddingBottom: Spacing.xxSmall_6,
         borderRadius: Spacing.large_24,
     },
 });
