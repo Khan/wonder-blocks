@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-core
 
+## 6.0.0
+
+### Major Changes
+
+-   674a1e5c: POJOs have been replace with TS enums
+
+### Patch Changes
+
+-   674a1e5c: We're no longer building flow types
+
 ## 5.4.0
 
 ### Minor Changes

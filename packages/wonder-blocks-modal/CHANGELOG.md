@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-modal
 
+## 4.0.19
+
+### Patch Changes
+
+-   674a1e5c: We're no longer building flow types
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-core@6.0.0
+    -   @khanacademy/wonder-blocks-icon-button@4.1.3
+    -   @khanacademy/wonder-blocks-breadcrumbs@2.1.3
+    -   @khanacademy/wonder-blocks-icon@2.1.1
+    -   @khanacademy/wonder-blocks-layout@2.0.17
+    -   @khanacademy/wonder-blocks-typography@2.1.3
+
 ## 4.0.18
 
 ### Patch Changes
