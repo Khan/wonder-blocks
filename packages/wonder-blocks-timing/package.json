@@ -17,7 +17,7 @@
     "react": "16.14.0"
   },
   "devDependencies": {
-    "@khanacademy/wb-dev-build-settings": "^0.9.7"
+    "@khanacademy/wb-dev-build-settings": "^1.0.0"
   },
   "author": "",
   "license": "MIT"

@@ -1,5 +1,22 @@
 # @khanacademy/wonder-blocks-link
 
+## 5.0.0
+
+### Major Changes
+
+-   674a1e5c: Props are using discriminated union types to prevent invalid combinations of props
+
+### Patch Changes
+
+-   674a1e5c: We're no longer building flow types
+-   Updated dependencies [8c77f29d]
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-clickable@4.0.0
+    -   @khanacademy/wonder-blocks-core@6.0.0
+    -   @khanacademy/wonder-blocks-icon@2.1.1
+
 ## 4.4.0
 
 ### Minor Changes

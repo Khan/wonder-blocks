@@ -1,5 +1,19 @@
 # @khanacademy/wonder-blocks-cell
 
+## 3.0.18
+
+### Patch Changes
+
+-   674a1e5c: We're no longer building flow types
+-   Updated dependencies [8c77f29d]
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-clickable@4.0.0
+    -   @khanacademy/wonder-blocks-core@6.0.0
+    -   @khanacademy/wonder-blocks-layout@2.0.17
+    -   @khanacademy/wonder-blocks-typography@2.1.3
+
 ## 3.0.17
 
 ### Patch Changes

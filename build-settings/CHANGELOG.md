@@ -1,5 +1,16 @@
 # wb-dev-build-settings
 
+## 1.0.0
+
+### Major Changes
+
+-   2a109a4c: Move build settings to Khan Academy namespace
+
+### Patch Changes
+
+-   d8e2f46a: Merge build-scripts directory into build-settings
+-   674a1e5c: We're no longer building flow types
+
 ## 0.9.7
 
 ### Patch Changes
