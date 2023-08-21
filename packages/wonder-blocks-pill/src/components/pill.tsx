@@ -176,6 +176,7 @@ const _generateColorStyles = (
         },
         clickableWrapper: {
             outline: "none",
+
             ":hover": {
                 outline: `2px solid ${Color.blue}`,
                 outlineOffset: 2,
