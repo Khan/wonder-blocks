@@ -9,7 +9,7 @@ import Link from "@khanacademy/wonder-blocks-link";
 import Pill from "@khanacademy/wonder-blocks-pill";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Strut} from "@khanacademy/wonder-blocks-layout";
-import {Body} from "@khanacademy/wonder-blocks-typography";
+import {Body, BodySerif} from "@khanacademy/wonder-blocks-typography";
 
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-search-field/package.json";
@@ -166,7 +166,10 @@ Variants.parameters = {
         description: {
             story: `There are two kinds of pills: neutral and accent.
                 This can be specified using the \`kind\` prop.
-                Neutral pills are gray, accent pills are blue.`,
+                Neutral pills are gray, accent pills are blue. Pills can
+                also be of two different sizes: small and large. By default,
+                Small pills use Wonder Blocks \`LabelXSmall\` typography,
+                and large pills use Wonder Blocks \`Body\`.`,
         },
     },
 };
@@ -236,17 +239,22 @@ Variants.play = async ({canvasElement}) => {
     await expect(computedStyle.outline).toBe("rgb(24, 101, 242) solid 2px");
 };
 
-export const WithLink: StoryComponentType = () => (
+export const WithTypography: StoryComponentType = () => (
     <Pill size="large">
-        <>This is a {<Link href="#">link</Link>} inside the text of a pill</>
+        <BodySerif>
+            This is a {<Link href="#">link</Link>} inside the text of a pill.
+        </BodySerif>
     </Pill>
 );
 
-WithLink.parameters = {
+WithTypography.parameters = {
     docs: {
         description: {
-            story: `The \`text\` prop can be a string or a Wonder Blocks Link.
-                In this example, the text of the pill contains a link.`,
+            story: `Pills can have Wonder Blocks Typography elements
+                as children. In this example, the Pill has a Wonder Blocks
+                Typography \`BodySerif\` component as its child.
+                Note that this also allows you to include a link inside
+                the text, as is shown here.`,
         },
     },
 };

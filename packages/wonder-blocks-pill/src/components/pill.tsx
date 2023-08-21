@@ -5,11 +5,11 @@ import type {StyleDeclaration} from "aphrodite";
 import Clickable from "@khanacademy/wonder-blocks-clickable";
 import Color, {mix} from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {Body, LabelXSmall} from "@khanacademy/wonder-blocks-typography";
 import type {StyleType, AriaProps} from "@khanacademy/wonder-blocks-core";
 import type {ClickableRole} from "@khanacademy/wonder-blocks-clickable";
+import type {Typography} from "@khanacademy/wonder-blocks-typography";
 
 type Props = AriaProps & {
     /**
@@ -19,7 +19,7 @@ type Props = AriaProps & {
     /**
      * The text to display within the pill.
      */
-    children: string | React.ReactElement<typeof Link>;
+    children: string | React.ReactElement<React.ComponentProps<Typography>>;
     /**
      * Determines the color of the pill. Defaults to "neutral".
      * Neutral pills are gray, accent pills are blue.
@@ -57,14 +57,20 @@ type Props = AriaProps & {
 };
 
 const PillInner = (props: {
-    children: string | React.ReactElement<typeof Link>;
+    children: string | React.ReactElement<React.ComponentProps<Typography>>;
     size: "small" | "large";
 }) => {
-    if (props.size === "small") {
+    const {children, size} = props;
+
+    if (typeof children !== "string") {
+        return children;
+    }
+
+    if (size === "small") {
         return <LabelXSmall>{props.children}</LabelXSmall>;
     }
 
-    return <Body>{props.children}</Body>;
+    return <Body>{children}</Body>;
 };
 
 /**
