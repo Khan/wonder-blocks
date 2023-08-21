@@ -1,5 +1,29 @@
 # @khanacademy/wonder-blocks-clickable
 
+## 4.0.0
+
+### Major Changes
+
+-   674a1e5c: Props are using discriminated union types to prevent invalid combinations of props
+
+### Minor Changes
+
+-   8c77f29d: Create new Switch component and add 'switch' role to ClickableRole
+
+### Patch Changes
+
+-   674a1e5c: We're no longer building flow types
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-core@6.0.0
+
+## 3.1.3
+
+### Patch Changes
+
+-   Updated dependencies [1344436f]
+    -   @khanacademy/wonder-blocks-core@5.4.0
+
 ## 3.1.2
 
 ### Patch Changes

@@ -1,5 +1,36 @@
 # @khanacademy/wonder-blocks-popover
 
+## 3.0.0
+
+### Major Changes
+
+-   674a1e5c: Props are using discriminated union types to prevent invalid combinations of props
+
+### Patch Changes
+
+-   674a1e5c: We're no longer building flow types
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-modal@4.0.19
+    -   @khanacademy/wonder-blocks-core@6.0.0
+    -   @khanacademy/wonder-blocks-icon-button@4.1.3
+    -   @khanacademy/wonder-blocks-icon@2.1.1
+    -   @khanacademy/wonder-blocks-tooltip@2.1.2
+    -   @khanacademy/wonder-blocks-typography@2.1.3
+
+## 2.1.7
+
+### Patch Changes
+
+-   Updated dependencies [ec6a33a4]
+-   Updated dependencies [1344436f]
+    -   @khanacademy/wonder-blocks-icon@2.1.0
+    -   @khanacademy/wonder-blocks-core@5.4.0
+    -   @khanacademy/wonder-blocks-icon-button@4.1.2
+    -   @khanacademy/wonder-blocks-modal@4.0.18
+    -   @khanacademy/wonder-blocks-tooltip@2.1.1
+    -   @khanacademy/wonder-blocks-typography@2.1.2
+
 ## 2.1.6
 
 ### Patch Changes

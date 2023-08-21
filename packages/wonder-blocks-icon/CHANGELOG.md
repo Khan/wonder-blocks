@@ -1,5 +1,25 @@
 # @khanacademy/wonder-blocks-icon
 
+## 2.1.1
+
+### Patch Changes
+
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-core@6.0.0
+
+## 2.1.0
+
+### Minor Changes
+
+-   ec6a33a4: Forward refs in Icon
+    Use Icon type instead of IconAsset for startIcon and endIcon in Link
+
+### Patch Changes
+
+-   Updated dependencies [1344436f]
+    -   @khanacademy/wonder-blocks-core@5.4.0
+
 ## 2.0.15
 
 ### Patch Changes

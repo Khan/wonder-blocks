@@ -4,8 +4,6 @@ import {SettleSignal} from "./settle-signal";
  * A controller for the `RespondWith` API to control response settlement.
  */
 export class SettleController {
-    // `flowgen` can't handle `#` so we're using `_` and TypeScript `private` access modifier.
-    // TODO(FEI-5000): Replace `_` with `#` after all code is on TypeScript.
     // @ts-expect-error [FEI-5019] - TS2564 - Property '#settleFn' has no initializer and is not definitely assigned in the constructor.
     private _settleFn: () => void;
     private _signal: SettleSignal;

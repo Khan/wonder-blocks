@@ -11,8 +11,7 @@ import type {PopoverContextType} from "./popover-context";
 import PopoverContentCore from "./popover-content-core";
 import PopoverContext from "./popover-context";
 
-// TODO(FEI-5000): Convert back to conditional props after TS migration is complete.
-type Props = AriaProps & {
+type CommonProps = AriaProps & {
     /**
      * The content to render inside the popover.
      */
@@ -48,28 +47,39 @@ type Props = AriaProps & {
      * Test ID used for e2e testing.
      */
     testId?: string;
-    /**
-     * Decorate the popover with an illustrated icon. It cannot be used at the
-     * same time with image.
-     */
-    icon?:
-        | string
-        | React.ReactElement<React.ComponentProps<"img">>
-        | React.ReactElement<React.ComponentProps<"svg">>;
-    /**
-     * Decorate the popover with a full-bleed illustration. It cannot be used at
-     * the same time with icon.
-     */
-    image?:
-        | React.ReactElement<React.ComponentProps<"img">>
-        | React.ReactElement<React.ComponentProps<"svg">>;
-    /**
-     * When true, changes the popover dialog background to blue; otherwise, the
-     * popover dialog background is not modified. It can be used only with
-     * Text-only popovers. It cannot be used with icon or image.
-     */
-    emphasized?: boolean;
 };
+
+type Props =
+    | (CommonProps & {
+          /**
+           * Decorate the popover with an illustrated icon. It cannot be used at the
+           * same time with image.
+           */
+          icon?:
+              | string
+              | React.ReactElement<React.ComponentProps<"img">>
+              | React.ReactElement<React.ComponentProps<"svg">>;
+          /**
+           * Decorate the popover with a full-bleed illustration. It cannot be used at
+           * the same time with icon.
+           */
+          image?:
+              | React.ReactElement<React.ComponentProps<"img">>
+              | React.ReactElement<React.ComponentProps<"svg">>;
+
+          emphasized?: never;
+      })
+    | (CommonProps & {
+          /**
+           * When true, changes the popover dialog background to blue; otherwise, the
+           * popover dialog background is not modified. It can be used only with
+           * Text-only popovers. It cannot be used with icon or image.
+           */
+          emphasized?: boolean;
+
+          icon?: never;
+          image?: never;
+      });
 
 type DefaultProps = {
     closeButtonVisible: Props["closeButtonVisible"];

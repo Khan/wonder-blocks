@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-testing
 
+## 8.0.21
+
+### Patch Changes
+
+-   674a1e5c: We're no longer building flow types
+-   Updated dependencies [674a1e5c]
+-   Updated dependencies [674a1e5c]
+    -   @khanacademy/wonder-blocks-data@12.0.0
+
+## 8.0.20
+
+### Patch Changes
+
+-   @khanacademy/wonder-blocks-data@11.0.16
+
 ## 8.0.19
 
 ### Patch Changes

@@ -1,0 +1,66 @@
+import {Meta, Canvas} from "@storybook/blocks";
+
+import {tokens, useScopedTheme} from "@khanacademy/wonder-blocks-theming";
+
+import {ViewWithTheme} from "./theme-examples";
+
+<Meta title="Theming / useScopedTheme" />
+
+# `useScopedTheme`
+
+`useScopedTheme` is a custom hook that allows us to get the theme based on a
+dynamic theme context.
+
+```ts
+function useScopedTheme<T>(themeContext: React.Context<T>): T;
+```
+
+## Usage
+
+<ViewWithTheme />
+
+```tsx
+import {
+    createThemeContext,
+    tokens,
+    useScopedTheme,
+} from "@khanacademy/wonder-blocks-theming";
+
+// 👉 1. Define the theme.
+const defaultTheme = {
+  color: {
+    bg: {
+      primary: tokens.color.white,
+    },
+    text: {
+      primary: tokens.color.offBlack,
+    },
+  },
+  ...,
+};
+
+const themes = {
+  default: defaultTheme,
+};
+
+// 👉 2. Create the theme context scoped to this component.
+const ComponentThemeContext = createThemeContext(themes.default);
+
+function ThemedComponent(props) {
+  // 👉 3. Use the theme during the render phase.
+  // We know that the theme context uses `default`.
+  const theme = useScopedTheme(ComponentThemeContext);
+
+  return (
+    <View style={{
+        background: theme.color.bg.primary,
+        color: theme.color.text.light,
+        borderRadius: theme.border.radius,
+        // NOTE: We can also use tokens directly.
+        padding: tokens.spacing.medium_16,
+    }}>
+      This is themed!
+    </View>
+  );
+}
+```

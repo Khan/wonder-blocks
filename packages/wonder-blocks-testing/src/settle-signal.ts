@@ -5,8 +5,6 @@
  * complex test scenarios.
  */
 export class SettleSignal extends EventTarget {
-    // `flowgen` can't handle `#` so we're using `_` and TypeScript `private` access modifier.
-    // TODO(FEI-5000): Replace `_` with `#` after all code is on TypeScript.
     private _settled = false;
 
     constructor(

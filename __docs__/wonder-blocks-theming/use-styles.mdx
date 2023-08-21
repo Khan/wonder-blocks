@@ -1,0 +1,75 @@
+import {Meta, Canvas} from "@storybook/blocks";
+
+import {
+    tokens,
+    useScopedTheme,
+    useStyles,
+} from "@khanacademy/wonder-blocks-theming";
+
+import {UseStylesExample} from "./theme-examples";
+
+<Meta title="Theming / useStyles" />
+
+# `useStyles`
+
+`useStyles` is a hook that that applies styles based on a given theme.
+
+The difference with `useScopedTheme` is that this hook will return the styles
+for the component, while `useScopedTheme` will return the theme object.
+
+```ts
+function useStyles<T>(styles: ThemedStylesFn<T>, theme: T): StyleDeclaration;
+```
+
+## Usage
+
+<UseStylesExample />
+
+```tsx
+import {
+  createThemeContext
+  useScopedTheme,
+  useStyles,
+  tokens,
+} from "@khanacademy/wonder-blocks-theming";
+
+// 👉 1. Define the theme.
+const defaultTheme = {
+  color: {
+    bg: {
+      primary: tokens.color.blue,
+    },
+    text: {
+      primary: tokens.color.white,
+    },
+  },
+  ...,
+};
+
+const themes = {
+  default: defaultTheme,
+};
+
+// 👉 2. Create the theme context scoped to this component.
+const ComponentThemeContext = createThemeContext(themes.default);
+
+function ThemedComponent(props) {
+  // 👉 3. Get the current theme for this component.
+  const theme = useScopedTheme(SomeComponentThemeContext);
+  // 👉 4. Use the stylesheet with the theme already applied.
+  const themedStyles = useStyles(styles, theme);
+
+  return (
+    <View style={themedStyles.wrapper}>
+      This is themed!
+    </View>
+  );
+}
+
+const styles = (theme) => ({
+  wrapper: {
+    background: theme.color.bg.primary,
+    color: theme.color.text.primary,
+  },
+});
+```

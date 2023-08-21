@@ -23,6 +23,7 @@
         {"path": "./packages/wonder-blocks-layout/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-link/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-modal/tsconfig-build.json"},
+        {"path": "./packages/wonder-blocks-pill/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-popover/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-progress-spinner/tsconfig-build.json"},
         {"path": "./packages/wonder-blocks-search-field/tsconfig-build.json"},
