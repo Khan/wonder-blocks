@@ -7,7 +7,7 @@
 "@khanacademy/wonder-blocks-core": patch
 "@khanacademy/wonder-blocks-data": patch
 "@khanacademy/wonder-blocks-link": patch
-"wb-dev-build-settings": patch
+"@khanacademy/wb-dev-build-settings": patch
 ---
 
 We're no longer building flow types
