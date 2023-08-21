@@ -11,8 +11,7 @@ import getClickableBehavior from "../util/get-clickable-behavior";
 import type {ClickableRole, ClickableState} from "./clickable-behavior";
 import {isClientSideUrl} from "../util/is-client-side-url";
 
-// TODO(FEI-5000): Convert back to conditional props after TS migration is complete.
-type Props =
+type CommonProps =
     /**
      * aria-label should be used when `spinner={true}` to let people using screen
      * readers that the action taken by clicking the button will take some
@@ -24,7 +23,7 @@ type Props =
          * which should be made Clickable.  The function is passed an object with
          * three boolean properties: hovered, focused, and pressed.
          */
-        children: (arg1: ClickableState) => React.ReactNode;
+        children: (clickableState: ClickableState) => React.ReactNode;
         /**
          * An onClick function which Clickable can execute when clicked
          */
@@ -89,12 +88,6 @@ type Props =
          */
         hideDefaultFocusRing?: boolean;
         /**
-         * A target destination window for a link to open in.
-         *
-         * TODO(WB-1262): only allow this prop when `href` is also set.t
-         */
-        target?: "_blank";
-        /**
          * Set the tabindex attribute on the rendered element.
          */
         tabIndex?: number;
@@ -117,6 +110,79 @@ type Props =
          */
         safeWithNav?: () => Promise<unknown>;
     };
+
+type Props =
+    | (CommonProps & {
+          target?: never;
+          beforeNav?: never;
+          safeWithNav?: never;
+      })
+    | (CommonProps & {
+          href: string;
+
+          /**
+           * A target destination window for a link to open in.
+           */
+          target?: "_blank";
+
+          beforeNav?: never;
+          safeWithNav?: never;
+      })
+    | (CommonProps & {
+          href: string;
+
+          /**
+           * Run async code before navigating. If the promise returned rejects then
+           * navigation will not occur.
+           *
+           * If both safeWithNav and beforeNav are provided, beforeNav will be run
+           * first and safeWithNav will only be run if beforeNav does not reject.
+           */
+          beforeNav: () => Promise<unknown>;
+
+          safeWithNav?: never;
+          target?: never;
+      })
+    | (CommonProps & {
+          href: string;
+
+          /**
+           * Run async code in the background while client-side navigating. If the
+           * browser does a full page load navigation, the callback promise must be
+           * settled before the navigation will occur. Errors are ignored so that
+           * navigation is guaranteed to succeed.
+           */
+          safeWithNav: () => Promise<unknown>;
+
+          /**
+           * A target destination window for a link to open in.
+           */
+          target?: "_blank";
+
+          beforeNav?: never;
+      })
+    | (CommonProps & {
+          href: string;
+
+          /**
+           * Run async code before navigating. If the promise returned rejects then
+           * navigation will not occur.
+           *
+           * If both safeWithNav and beforeNav are provided, beforeNav will be run
+           * first and safeWithNav will only be run if beforeNav does not reject.
+           */
+          beforeNav: () => Promise<unknown>;
+
+          /**
+           * Run async code in the background while client-side navigating. If the
+           * browser does a full page load navigation, the callback promise must be
+           * settled before the navigation will occur. Errors are ignored so that
+           * navigation is guaranteed to succeed.
+           */
+          safeWithNav: () => Promise<unknown>;
+
+          target?: never;
+      });
 
 const StyledAnchor = addStyle("a");
 const StyledButton = addStyle("button");

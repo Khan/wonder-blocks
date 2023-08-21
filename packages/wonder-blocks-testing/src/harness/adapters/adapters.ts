@@ -1,6 +1,3 @@
-// WARNING: If you modify this file you may need to update adapters.js.flow
-// to ensure that the Flow types are still correct.
-
 import * as css from "./css";
 import * as data from "./data";
 import * as portal from "./portal";
