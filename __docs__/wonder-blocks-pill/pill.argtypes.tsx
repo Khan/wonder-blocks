@@ -31,9 +31,9 @@ export default {
     },
     size: {
         control: {type: "select"},
-        description: `Size of pill. Small has more of a classic “badge”
-            look and fits inline, whereas large has normal body font size
-            and is not meant to be inline.`,
+        description: `Size of pill. A small pill has more of a classic “badge”
+            look and fully fits within a line of body text inline,
+            whereas a large pill contains normal body font size.`,
         defaultValue: "small",
         table: {
             type: {summary: `"small" | "large"`},

@@ -27,8 +27,9 @@ type Props = AriaProps & {
     kind?: "neutral" | "accent";
     /**
      * The size of the pill. Defaults to "small".
-     * Small has more of a classic “badge” look and fits inline, whereas
-     * large has normal body font size and is not meant to be inline.
+     * Size of pill. A small pill has more of a classic “badge”
+     * look and fully fits within a line of body text inline,
+     * whereas a large pill contains normal body font size.
      */
     size?: "small" | "large";
     /**
@@ -74,9 +75,8 @@ const PillInner = (props: {
 };
 
 /**
- * A large pill displays text in a rounded container. This contains text
- * the same size as body text. It can be clickable. It is not meant to
- * be used inline.
+ * A Pill component displays text in a rounded, colored container.
+ * This is usually used to add label tags or indicate a status.
  *
  * ### Usage
  *
