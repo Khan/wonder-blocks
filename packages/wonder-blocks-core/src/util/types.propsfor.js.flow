@@ -1,0 +1,9 @@
+import * as React from "react";
+/**
+ * Get the props for a component, accounting for default props.
+ *
+ * This is equivalent to `React.ElementConfig`.
+ */
+export type PropsFor<
+  T: React.AbstractComponent<any> | React.ComponentType<any>,
+> = React.ElementConfig<T>;

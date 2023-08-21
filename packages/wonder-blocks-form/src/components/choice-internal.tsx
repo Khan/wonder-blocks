@@ -66,13 +66,11 @@ type Props = AriaProps & {
         error = false,
         id,
         label,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         onChange,
         style,
         className,
-        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         variant,
-        // ...coreProps
+        ...coreProps
     } = props;
 
     const handleClick: () => void = () => {
@@ -140,8 +138,9 @@ type Props = AriaProps & {
                             tabIndex={-1}
                         >
                             <ChoiceCore
-                                {...props}
+                                {...coreProps}
                                 id={uniqueId}
+                                checked={checked}
                                 aria-describedby={descriptionId}
                                 onClick={handleClick}
                                 disabled={disabled}

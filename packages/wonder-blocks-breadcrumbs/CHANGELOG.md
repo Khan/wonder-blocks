@@ -1,5 +1,20 @@
 # @khanacademy/wonder-blocks-breadcrumbs
 
+## 2.1.2
+
+### Patch Changes
+
+-   Updated dependencies [1344436f]
+    -   @khanacademy/wonder-blocks-core@5.4.0
+
+## 2.1.1
+
+### Patch Changes
+
+-   9f3752d4: Used named functions in componenets with forwarded refs
+-   Updated dependencies [9f3752d4]
+    -   @khanacademy/wonder-blocks-core@5.3.1
+
 ## 2.1.0
 
 ### Minor Changes

@@ -93,35 +93,37 @@ const LinkCore = React.forwardRef(function LinkCore(
             />
         );
 
+        let startIconElement;
+        let endIconElement;
+
+        if (startIcon) {
+            startIconElement = React.cloneElement(startIcon, {
+                style: [
+                    linkContentStyles.startIcon,
+                    linkContentStyles.centered,
+                ],
+                testId: "start-icon",
+                "aria-hidden": "true",
+                ...startIcon.props,
+            } as Partial<React.ComponentProps<typeof Icon>>);
+        }
+
+        if (endIcon) {
+            endIconElement = React.cloneElement(endIcon, {
+                style: [linkContentStyles.endIcon, linkContentStyles.centered],
+                testId: "end-icon",
+                "aria-hidden": "true",
+                ...endIcon.props,
+            } as Partial<React.ComponentProps<typeof Icon>>);
+        }
+
         const linkContent = (
             <>
-                {startIcon && (
-                    <Icon
-                        icon={startIcon}
-                        size="small"
-                        style={[
-                            linkContentStyles.startIcon,
-                            linkContentStyles.centered,
-                        ]}
-                        testId="start-icon"
-                        aria-hidden="true"
-                    />
-                )}
+                {startIcon && startIconElement}
                 {children}
-                {endIcon ? (
-                    <Icon
-                        icon={endIcon}
-                        size="small"
-                        style={[
-                            linkContentStyles.endIcon,
-                            linkContentStyles.centered,
-                        ]}
-                        testId="end-icon"
-                        aria-hidden="true"
-                    />
-                ) : (
-                    isExternalLink && target === "_blank" && externalIcon
-                )}
+                {endIcon
+                    ? endIconElement
+                    : isExternalLink && target === "_blank" && externalIcon}
             </>
         );
 

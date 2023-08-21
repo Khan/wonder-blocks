@@ -30,3 +30,11 @@ export type Placement =
     | "left"
     | "left-start"
     | "left-end";
+
+/**
+ * Subset of CSS properties to allow overriding some of the default styles
+ */
+export type ContentStyle = {
+    color?: CSSProperties["color"];
+    padding?: CSSProperties["padding"];
+};

@@ -4,7 +4,7 @@ import turbosnap from "vite-plugin-turbosnap";
 import type {StorybookConfig} from "@storybook/react-vite";
 
 const config: StorybookConfig = {
-    stories: ["../__docs__/**/*.stories.@(ts|tsx|mdx)"],
+    stories: ["../__docs__/**/*.stories.@(ts|tsx|mdx)", "../__docs__/**/*.mdx"],
     addons: [
         "@storybook/addon-essentials",
         "@storybook/addon-a11y",

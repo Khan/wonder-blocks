@@ -19,25 +19,14 @@ import Tooltip from "@khanacademy/wonder-blocks-tooltip";
 import packageConfig from "../../packages/wonder-blocks-tooltip/package.json";
 
 import ComponentInfo from "../../.storybook/components/component-info";
+import TooltipArgTypes from "./tooltip.argtypes";
 
 type StoryComponentType = StoryObj<typeof Tooltip>;
 
 export default {
     title: "Tooltip / Tooltip",
     component: Tooltip as unknown as React.ComponentType<any>,
-    argTypes: {
-        placement: {
-            control: {
-                type: "select",
-                options: ["top", "bottom", "right", "left"],
-            },
-        },
-        title: {
-            control: {
-                type: "text",
-            },
-        },
-    },
+    argTypes: TooltipArgTypes,
     args: {
         forceAnchorFocusivity: true,
         placement: "top",
@@ -313,6 +302,54 @@ Controlled.parameters = {
                \`onClose\` callback being triggered.`,
         },
     },
+};
+
+export const WithStyle: StoryComponentType = () => {
+    return (
+        <View style={[styles.centered, styles.row]}>
+            <Tooltip
+                contentStyle={{
+                    color: Color.white,
+                    padding: Spacing.xLarge_32,
+                }}
+                content={`This is a styled tooltip.`}
+                backgroundColor="darkBlue"
+                opened={true}
+                testId="test-tooltip"
+            >
+                My tooltip is styled!
+            </Tooltip>
+        </View>
+    );
+};
+
+WithStyle.parameters = {
+    docs: {
+        description: {
+            story: `Tooltips can be styled with the \`backgroundColor\` and \`contentStyle\`
+            props. Currently, \`contentStyle\` supports padding and text color. The example below
+            shows a tooltip with a dark blue background, white text, and 32px of padding.`,
+        },
+    },
+};
+
+WithStyle.play = async ({canvasElement}) => {
+    const canvas = within(canvasElement.ownerDocument.body);
+
+    // Get HTML elements
+    const tooltipContent = await canvas.findByTestId("test-tooltip-content");
+    const innerTooltipView =
+        // eslint-disable-next-line testing-library/no-node-access
+        (await canvas.findByRole("tooltip")).firstChild;
+
+    // Assert
+    await expect(innerTooltipView).toHaveStyle(
+        "background-color: rgb(11, 33, 73)",
+    );
+    await expect(tooltipContent).toHaveStyle({
+        padding: "32px",
+        color: "#fff",
+    });
 };
 
 const styles = StyleSheet.create({

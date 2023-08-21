@@ -3,13 +3,14 @@ import * as React from "react";
 // NOTE: Potentially add to this as more cases come up.
 export type ClickableRole =
     | "button"
-    | "link"
     | "checkbox"
-    | "radio"
+    | "link"
     | "listbox"
-    | "option"
-    | "menuitem"
     | "menu"
+    | "menuitem"
+    | "option"
+    | "radio"
+    | "switch"
     | "tab";
 
 const getAppropriateTriggersForRole = (role?: ClickableRole | null) => {
