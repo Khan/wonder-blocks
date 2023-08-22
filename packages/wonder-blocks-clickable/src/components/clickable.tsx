@@ -121,38 +121,12 @@ type Props =
           href: string;
 
           /**
-           * A target destination window for a link to open in.
-           */
-          target?: "_blank";
-
-          beforeNav?: never;
-          safeWithNav?: never;
-      })
-    | (CommonProps & {
-          href: string;
-
-          /**
-           * Run async code before navigating. If the promise returned rejects then
-           * navigation will not occur.
-           *
-           * If both safeWithNav and beforeNav are provided, beforeNav will be run
-           * first and safeWithNav will only be run if beforeNav does not reject.
-           */
-          beforeNav: () => Promise<unknown>;
-
-          safeWithNav?: never;
-          target?: never;
-      })
-    | (CommonProps & {
-          href: string;
-
-          /**
            * Run async code in the background while client-side navigating. If the
            * browser does a full page load navigation, the callback promise must be
            * settled before the navigation will occur. Errors are ignored so that
            * navigation is guaranteed to succeed.
            */
-          safeWithNav: () => Promise<unknown>;
+          safeWithNav?: () => Promise<unknown>;
 
           /**
            * A target destination window for a link to open in.
@@ -171,7 +145,7 @@ type Props =
            * If both safeWithNav and beforeNav are provided, beforeNav will be run
            * first and safeWithNav will only be run if beforeNav does not reject.
            */
-          beforeNav: () => Promise<unknown>;
+          beforeNav?: () => Promise<unknown>;
 
           /**
            * Run async code in the background while client-side navigating. If the
@@ -179,7 +153,7 @@ type Props =
            * settled before the navigation will occur. Errors are ignored so that
            * navigation is guaranteed to succeed.
            */
-          safeWithNav: () => Promise<unknown>;
+          safeWithNav?: () => Promise<unknown>;
 
           target?: never;
       });
