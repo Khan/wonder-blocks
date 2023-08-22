@@ -12,10 +12,8 @@ const getHref = (input: RequestInfo): string => {
         return input;
     } else if (typeof input.url === "string") {
         return input.url;
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'href' does not exist on type 'Request'.
-    } else if (typeof input.href === "string") {
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'href' does not exist on type 'Request'.
-        return input.href;
+    } else if (typeof (input as any).href === "string") {
+        return (input as any).href;
     } else {
         throw new Error(`Unsupported input type`);
     }

@@ -29,6 +29,7 @@
     "test:coverage": "yarn run test:common && yarn run jest --coverage",
     "test": "yarn run test:common && yarn run jest",
     "typecheck": "tsc",
+    "typewatch": "tsc --noEmit --watch --incremental",
     "add:devdepbysha": "bash -c 'yarn add -W --dev \"git+https://git@github.com/Khan/$0.git#$1\"'"
   },
   "author": "",

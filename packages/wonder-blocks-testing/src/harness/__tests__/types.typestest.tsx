@@ -12,13 +12,10 @@ import type {
  */
 
 //>  should assert type of config.
-// @ts-expect-error [FEI-5019] - TS2352 - Conversion of type '(children: React.ReactNode, config: number) => React.ReactElement<any>' to type 'TestHarnessAdapter<string>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
-((
-    children: React.ReactNode,
-    // TConfig is string, but we typed this arg as a number
-    // $FlowExpectedError[incompatible-cast]
-    config: number,
-): React.ReactElement<any> => <div />) as TestHarnessAdapter<string>;
+// @ts-expect-error TConfig is string, but we typed config as a number
+((children: React.ReactNode, config: number): React.ReactElement<any> => (
+    <div />
+)) as TestHarnessAdapter<string>;
 //<
 
 //>  should work for correct definition
@@ -36,10 +33,8 @@ import type {
 //<
 
 //>  should assert if adapter is not Adapter<TConfig>
-// @ts-expect-error [FEI-5019] - TS2352 - Conversion of type '{ adapterString: string; }' to type 'TestHarnessAdapters' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first.
+// @ts-expect-error  String is not a adapter function
 ({
-    // String is not a adapter function
-    // $FlowExpectedError[incompatible-cast]
     adapterString: "string",
 } as TestHarnessAdapters);
 //<
@@ -100,11 +95,9 @@ const adapters = {
 //<
 
 //>  should assert if config does not match adapter config
-// @ts-expect-error: Conversion of type '{ adapterA: string; adapterB: string; }' to type 'TestHarnessConfigs<{ readonly adapterA: TestHarnessAdapter<string>; readonly adapterB: TestHarnessAdapter<number>; }>' may be a mistake because neither type sufficiently overlaps with the other. If this was intentional, convert the expression to 'unknown' first. Types of property 'adapterB' are incompatible. Type 'string' is not comparable to type 'number'.
+// @ts-expect-error: the config type here is a number, not a string
 ({
     adapterA: "a string, this is correct",
-    // the config type here is a number, not a string
-    // $FlowExpectedError[incompatible-cast]
     adapterB: "a string, but it should be a number",
 } as TestHarnessConfigs<typeof adapters>);
 //<
