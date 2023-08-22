@@ -22,7 +22,7 @@ export default function withScopedTheme<T>(
             WrappedComponent: React.ComponentType<Props>,
         ) =>
         (props: WithoutTheme<Props>) => {
-            const theme = useScopedTheme(themeContext);
+            const {theme} = useScopedTheme(themeContext);
             // Apply the current theme to the stylesheet.
             const wbThemeStyles = styleSheet(theme);
 

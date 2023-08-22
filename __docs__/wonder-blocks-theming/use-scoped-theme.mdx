@@ -12,8 +12,17 @@ import {ViewWithTheme} from "./theme-examples";
 dynamic theme context.
 
 ```ts
-function useScopedTheme<T>(themeContext: React.Context<T>): T;
+function useScopedTheme<T>(themeContext: React.Context<T>): ScopedTheme<T>;
 ```
+
+#### Return value
+
+The `useScopedTheme` hook returns an object with the following properties:
+
+| Property    | Type     | Description            |
+| ----------- | -------- | ---------------------- |
+| `theme`     | `T`      | The theme object.      |
+| `themeName` | `string` | The name of the theme. |
 
 ## Usage
 
@@ -49,7 +58,7 @@ const ComponentThemeContext = createThemeContext(themes.default);
 function ThemedComponent(props) {
   // 👉 3. Use the theme during the render phase.
   // We know that the theme context uses `default`.
-  const theme = useScopedTheme(ComponentThemeContext);
+  const {theme, themeName} = useScopedTheme(ComponentThemeContext);
 
   return (
     <View style={{
@@ -59,7 +68,7 @@ function ThemedComponent(props) {
         // NOTE: We can also use tokens directly.
         padding: tokens.spacing.medium_16,
     }}>
-      This is themed!
+      This is themed! The theme name is {themeName}.
     </View>
   );
 }

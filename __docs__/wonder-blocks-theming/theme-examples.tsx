@@ -51,7 +51,7 @@ const ThemedButton = ({
     children = "This is a themed button!",
     onClick,
 }: ButtonProps) => {
-    const theme = useScopedTheme(ThemeContext);
+    const {theme} = useScopedTheme(ThemeContext);
 
     return (
         <button
@@ -69,7 +69,7 @@ const ThemedButton = ({
 };
 
 const ThemedView = () => {
-    const theme = useScopedTheme(ThemeContext);
+    const {theme, themeName} = useScopedTheme(ThemeContext);
 
     return (
         <View
@@ -80,7 +80,7 @@ const ThemedView = () => {
                 padding: tokens.spacing.medium_16,
             }}
         >
-            This is a themed view!
+            This is a themed view! The theme name is {themeName}.
         </View>
     );
 };
@@ -116,6 +116,9 @@ export const ButtonWithCustomTheme = () => (
     </ThemeWrapper>
 );
 
+/**
+ * useScopedTheme example
+ */
 export const ViewWithTheme = () => (
     <ThemeWrapper theme={defaultTheme}>
         <ThemedView />
@@ -151,7 +154,7 @@ export const WithScopedThemeExample = withScopedTheme(
  */
 
 const ThemedViewWithUseStyles = () => {
-    const theme = useScopedTheme(ThemeContext);
+    const {theme} = useScopedTheme(ThemeContext);
     const themedStyles = useStyles(stylesExample, theme);
 
     return <View style={themedStyles.wrapper}>This is themed!</View>;
