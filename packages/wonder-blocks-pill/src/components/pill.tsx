@@ -185,7 +185,7 @@ const _generateColorStyles = (
 
             ":hover": {
                 outline: `2px solid ${Color.blue}`,
-                outlineOffset: 2,
+                outlineOffset: Spacing.xxxxSmall_2
             },
             ":active": {
                 backgroundColor: currentActiveColor,
