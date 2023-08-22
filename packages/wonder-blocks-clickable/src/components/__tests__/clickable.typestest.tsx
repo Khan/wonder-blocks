@@ -47,3 +47,18 @@ import Clickable from "../clickable";
 >
     {(_) => "Hello, world!"}
 </Clickable>;
+
+<Clickable beforeNav={() => Promise.resolve()}>
+    {(_) => "Hello, world!"}
+</Clickable>;
+
+<Clickable safeWithNav={() => Promise.resolve()}>
+    {(_) => "Hello, world!"}
+</Clickable>;
+
+<Clickable
+    beforeNav={() => Promise.resolve()}
+    safeWithNav={() => Promise.resolve()}
+>
+    {(_) => "Hello, world!"}
+</Clickable>;
