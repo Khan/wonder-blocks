@@ -17,10 +17,10 @@
       "access": "restricted"
     },
     "dependencies": {
-      "@khanacademy/wonder-blocks-clickable": "^3.1.2",
+      "@khanacademy/wonder-blocks-clickable": "^4.0.0",
       "@khanacademy/wonder-blocks-color": "^2.0.1",
-      "@khanacademy/wonder-blocks-core": "^5.3.1",
-      "@khanacademy/wonder-blocks-link": "^4.3.1",
+      "@khanacademy/wonder-blocks-core": "^6.0.0",
+      "@khanacademy/wonder-blocks-link": "^5.0.0",
       "@khanacademy/wonder-blocks-spacing": "^4.0.1",
       "@khanacademy/wonder-blocks-typography": "^2.1.1"
     },
