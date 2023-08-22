@@ -11,7 +11,7 @@ export default {
         control: {type: "text"},
         description: "Text to appear on the pill.",
         table: {
-            type: {summary: "string | Link"},
+            type: {summary: "string | React.ReactElement<Typography>"},
         },
         type: {name: "string", required: true},
     },

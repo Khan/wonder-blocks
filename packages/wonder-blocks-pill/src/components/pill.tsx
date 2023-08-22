@@ -166,6 +166,9 @@ const _generateColorStyles = (
     size: "small" | "large",
 ) => {
     const pillType = `${kind}-${clickable.toString()}-${size.toString()}`;
+    if (styles[pillType]) {
+        return styles[pillType];
+    }
 
     const activeAccentColor = mix(Color.offBlack16, Color.blue);
 
