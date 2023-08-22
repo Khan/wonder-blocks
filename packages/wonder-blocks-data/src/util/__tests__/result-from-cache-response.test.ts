@@ -70,8 +70,8 @@ describe("#resultFromCachedResponse", () => {
         };
 
         // Act
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'error' does not exist on type 'Result<ValidCacheData> | null | undefined'.
-        const {error} = resultFromCachedResponse(cacheEntry);
+        const cacheResult = resultFromCachedResponse(cacheEntry);
+        const error = cacheResult?.status === "error" && cacheResult.error;
 
         // Assert
         expect(error).toMatchInlineSnapshot(`[HydratedDataError: ERROR]`);

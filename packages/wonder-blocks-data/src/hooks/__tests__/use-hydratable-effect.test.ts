@@ -562,10 +562,9 @@ describe("#useHydratableEffect", () => {
                 },
             );
             rerender({
-                // @ts-expect-error [FEI-5019] - TS2322 - Type '{ scope: string; }' is not assignable to type 'undefined'.
                 options: {
                     scope: "BLAH!",
-                },
+                } as any,
             });
 
             await act((): Promise<any> => response1);
