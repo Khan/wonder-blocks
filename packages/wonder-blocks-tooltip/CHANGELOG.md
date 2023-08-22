@@ -1,5 +1,15 @@
 # @khanacademy/wonder-blocks-tooltip
 
+## 2.1.4
+
+### Patch Changes
+
+-   Updated dependencies [1920feb8]
+    -   @khanacademy/wonder-blocks-core@6.0.1
+    -   @khanacademy/wonder-blocks-layout@2.0.18
+    -   @khanacademy/wonder-blocks-modal@4.0.21
+    -   @khanacademy/wonder-blocks-typography@2.1.4
+
 ## 2.1.3
 
 ### Patch Changes
