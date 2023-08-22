@@ -1,11 +1,5 @@
 # @khanacademy/wonder-blocks-clickable
 
-## 4.0.1
-
-### Patch Changes
-
--   f3d04789: Allow 'safeWithNav()' to be used on its own without 'beforeNav()' in prop types
-
 ## 4.0.0
 
 ### Major Changes
