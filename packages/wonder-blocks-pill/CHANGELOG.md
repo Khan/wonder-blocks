@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-pill
 
+## 1.0.0
+
+### Major Changes
+
+-   3455afae: Create Pill component
+
 ## 0.0.3
 
 ### Patch Changes
