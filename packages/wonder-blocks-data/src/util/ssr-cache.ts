@@ -124,7 +124,7 @@ export class SsrCache {
             : null;
 
         // Now we defer to the SSR value, and fallback to the hydration cache.
-        const internalEntry =
+        const internalEntry: ValidCacheData | null | undefined =
             ssrEntry ?? this._hydrationCache.get(DefaultScope, id);
 
         // If we are not server-side and we hydrated something, let's clear
@@ -140,8 +140,10 @@ export class SsrCache {
         }
         // Getting the typing right between the in-memory cache and this
         // is hard. Just telling TypeScript it's OK.
-        // @ts-expect-error [FEI-5019] - TS2322 - Type 'string | number | boolean | Record<any, any> | null | undefined' is not assignable to type 'Readonly<CachedResponse<TData>> | null | undefined'.
-        return internalEntry;
+        return internalEntry as
+            | Readonly<CachedResponse<TData>>
+            | null
+            | undefined;
     };
 
     /**
@@ -161,9 +163,11 @@ export class SsrCache {
         const realPredicate = predicate
             ? // We know what we're putting into the cache so let's assume it
               // conforms.
-              // @ts-expect-error [FEI-5019] - TS7006 - Parameter 'cachedEntry' implicitly has an 'any' type.
-              (_: string, key: string, cachedEntry) =>
-                  predicate(key, cachedEntry)
+              (_: string, key: string, cachedEntry: ValidCacheData) =>
+                  predicate(
+                      key,
+                      cachedEntry as Readonly<CachedResponse<ValidCacheData>>,
+                  )
             : undefined;
 
         // Apply the predicate to what we have in our caches.
@@ -184,7 +188,6 @@ export class SsrCache {
         // to an empty object.
         // We only need the default scope out of our scoped in-memory cache.
         // We know that it conforms to our expectations.
-        // @ts-expect-error [FEI-5019] - TS2322 - Type '{ [id: string]: ValidCacheData; }' is not assignable to type 'ResponseCache'.
-        return cache[DefaultScope] ?? {};
+        return (cache[DefaultScope] as ResponseCache) ?? {};
     };
 }

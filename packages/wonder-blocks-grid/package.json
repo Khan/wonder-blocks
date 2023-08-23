@@ -1,6 +1,6 @@
 {
   "name": "@khanacademy/wonder-blocks-grid",
-  "version": "2.0.17",
+  "version": "2.0.18",
   "design": "v1",
   "publishConfig": {
     "access": "public"
@@ -17,8 +17,8 @@
   "dependencies": {
     "@babel/runtime": "^7.18.6",
     "@khanacademy/wonder-blocks-color": "^2.0.1",
-    "@khanacademy/wonder-blocks-core": "^6.0.0",
-    "@khanacademy/wonder-blocks-layout": "^2.0.17",
+    "@khanacademy/wonder-blocks-core": "^6.0.1",
+    "@khanacademy/wonder-blocks-layout": "^2.0.18",
     "@khanacademy/wonder-blocks-spacing": "^4.0.1"
   },
   "peerDependencies": {

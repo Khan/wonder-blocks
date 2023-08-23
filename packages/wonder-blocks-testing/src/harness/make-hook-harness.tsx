@@ -4,8 +4,9 @@ import {makeTestHarness} from "./make-test-harness";
 
 import type {TestHarnessAdapters, TestHarnessConfigs} from "./types";
 
-// @ts-expect-error [FEI-5019] - TS7031 - Binding element 'children' implicitly has an 'any' type.
-const HookHarness = ({children}) => children;
+const HookHarness = ({
+    children,
+}: React.PropsWithChildren<unknown>): React.ReactElement => <>{children}</>;
 
 /**
  * Create a test harness method for use with React hooks.

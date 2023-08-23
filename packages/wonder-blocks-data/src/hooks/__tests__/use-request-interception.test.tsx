@@ -68,7 +68,7 @@ describe("#useRequestInterception", () => {
         const handler = jest.fn();
         const interceptor1 = jest.fn();
         const interceptor2 = jest.fn();
-        const Wrapper = ({children, interceptor}: any) => (
+        const Wrapper = ({children, interceptor}: any): React.ReactElement => (
             <InterceptRequests interceptor={interceptor}>
                 {children}
             </InterceptRequests>
@@ -80,8 +80,7 @@ describe("#useRequestInterception", () => {
             {wrapper: Wrapper, initialProps: {interceptor: interceptor1}},
         );
         const result1 = wrapper.result.current;
-        // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '{ wrapper: ({ children, interceptor, }: any) => JSX.Element; interceptor: jest.Mock<any, any, any>; }' is not assignable to parameter of type '{ interceptor: jest.Mock<any, any, any>; }'.
-        wrapper.rerender({wrapper: Wrapper, interceptor: interceptor2});
+        wrapper.rerender({interceptor: interceptor2});
         const result2 = wrapper.result.current;
 
         // Assert
@@ -126,7 +125,6 @@ describe("#useRequestInterception", () => {
             interceptedHandler();
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'toHaveBeenCalledBefore' does not exist on type 'JestMatchers<Mock<null, [], any>>'.
             expect(interceptorNearest).toHaveBeenCalledBefore(
                 interceptorFurthest,
             );
@@ -154,7 +152,6 @@ describe("#useRequestInterception", () => {
             interceptedHandler();
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'toHaveBeenCalledBefore' does not exist on type 'JestMatchers<Mock<null, [], any>>'.
             expect(interceptorFurthest).toHaveBeenCalledBefore(handler);
         });
 

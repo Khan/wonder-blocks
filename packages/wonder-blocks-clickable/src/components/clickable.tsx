@@ -113,11 +113,6 @@ type CommonProps =
 
 type Props =
     | (CommonProps & {
-          target?: never;
-          beforeNav?: never;
-          safeWithNav?: never;
-      })
-    | (CommonProps & {
           href: string;
 
           /**
@@ -136,7 +131,7 @@ type Props =
           beforeNav?: never;
       })
     | (CommonProps & {
-          href: string;
+          href?: string;
 
           /**
            * Run async code before navigating. If the promise returned rejects then

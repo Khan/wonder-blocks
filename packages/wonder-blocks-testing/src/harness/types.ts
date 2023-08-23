@@ -6,7 +6,7 @@ import * as React from "react";
 export type TestHarnessAdapter<TConfig> = (
     children: React.ReactNode,
     config: TConfig,
-) => React.ReactElement<any>;
+) => React.ReactElement;
 
 /**
  * A general map of adapters by their identifiers.

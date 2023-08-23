@@ -10,6 +10,13 @@ import type {
     GqlFetchOptions,
 } from "../util/gql-types";
 
+interface GqlFetchFn<TContext extends GqlContext> {
+    <TData, TVariables extends Record<any, any>>(
+        operation: GqlOperation<TData, TVariables>,
+        options?: GqlFetchOptions<TVariables, TContext>,
+    ): Promise<TData>;
+}
+
 /**
  * Hook to obtain a gqlFetch function for performing GraphQL requests.
  *
@@ -22,10 +29,7 @@ import type {
  */
 export const useGql = <TContext extends GqlContext>(
     context: Partial<TContext> = {} as Partial<TContext>,
-): (<TData, TVariables extends Record<any, any>>(
-    operation: GqlOperation<TData, TVariables>,
-    options?: GqlFetchOptions<TVariables, TContext>,
-) => Promise<TData>) => {
+): GqlFetchFn<TContext> => {
     // This hook only works if the `GqlRouter` has been used to setup context.
     const gqlRouterContext = useGqlRouterContext(context);
 
@@ -34,22 +38,21 @@ export const useGql = <TContext extends GqlContext>(
     // we give the same function instance back to our callers instead of
     // making a new one. That then means they can safely use the return value
     // in hooks deps without fear of it triggering extra renders.
-    const gqlFetch = useCallback(
+    const gqlFetch: GqlFetchFn<TContext> = useCallback(
         <TData, TVariables extends Record<any, any>>(
             operation: GqlOperation<TData, TVariables>,
             options: GqlFetchOptions<TVariables, TContext> = Object.freeze({}),
-        ) => {
+        ): Promise<TData> => {
             const {fetch, defaultContext} = gqlRouterContext;
             const {variables, context = {}} = options;
             const finalContext = mergeGqlContext(defaultContext, context);
 
             // Invoke the fetch and extract the data.
-            return fetch(operation, variables, finalContext).then(
-                getGqlDataFromResponse,
+            return fetch(operation, variables, finalContext).then((response) =>
+                getGqlDataFromResponse<TData>(response),
             );
         },
         [gqlRouterContext],
     );
-    // @ts-expect-error [FEI-5019] - TS2322 - Type '<TData, TVariables extends Record<any, any>>(operation: GqlOperation<TData, TVariables>, options?: GqlFetchOptions<TVariables, TContext>) => Promise<unknown>' is not assignable to type '<TData, TVariables extends Record<any, any>>(operation: GqlOperation<TData, TVariables>, options?: GqlFetchOptions<TVariables, TContext> | undefined) => Promise<...>'.
     return gqlFetch;
 };

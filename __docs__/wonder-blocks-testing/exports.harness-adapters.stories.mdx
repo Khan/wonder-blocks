@@ -20,6 +20,7 @@ const DefaultAdapters = {
     data: data.adapter,
     portal: portal.adapter,
     router: router.adapter,
+    ssr: ssr.adapter,
 };
 
 /**
@@ -30,6 +31,7 @@ const DefaultConfigs: Configs<typeof DefaultAdapters> = {
     data: data.defaultConfig,
     portal: portal.defaultConfig,
     router: router.defaultConfig,
+    ssr: ssr.defaultConfig,
 };
 ```
 
@@ -43,6 +45,7 @@ There are four build-in adapters:
 -   [`data`](#data)
 -   [`portal`](#portal)
 -   [`router`](#router)
+-   [`ssr`](#ssr)
 
 ## css
 
@@ -186,3 +189,13 @@ There are four distinct shapes to the configuration:
 The first of these provides the most flexibility, basically supporting full configuration of a `MemoryRouter`, which supports history and navigation. The second configuration type is for scenarios where we absolutely do not want navigation, such as server-side rendering scenarios; it forces the use of a `StaticRouter` instance. The third type is for when you just need to render a single location with a matched route path. The fourth and final type allows you to just provide the location as a string.
 
 By default, the router adapter is configured with `{location: "/"}`.
+
+## ssr
+
+The `ssr` adapter ensures that the render state is being managed by rendering a `RenderStateRoot` component around the harnessed component.
+
+```ts
+type Config =  true | null;
+```
+
+By default, this adapter is off since state changes occur when `RenderStateRoot` is used that may require tests to make accommodations, such as adding appropriate `act` or `waitFor` calls when using Testing Library.

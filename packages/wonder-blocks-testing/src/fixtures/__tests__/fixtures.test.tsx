@@ -114,10 +114,9 @@ describe("fixtures", () => {
 
         it("should render the component", () => {
             // Arrange
-            const fixture = fixtures(
-                // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '(props: any) => string' is not assignable to parameter of type 'ComponentType<any>'.
-                (props: any) => `I rendered ${JSON.stringify(props)}`,
-            );
+            const fixture = fixtures((props: any) => (
+                <>{`I rendered ${JSON.stringify(props)}`}</>
+            ));
             const Fixture: any = fixture("A simple story", {});
 
             // Act
@@ -131,16 +130,12 @@ describe("fixtures", () => {
 
         it("should render the wrapper", () => {
             // Arrange
-            const fixture = fixtures(
-                // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '(props: any) => string' is not assignable to parameter of type 'ComponentType<any>'.
-                (props: any) => `I rendered ${JSON.stringify(props)}`,
-            );
-            const Fixture: any = fixture(
-                "A simple story",
-                {},
-                // @ts-expect-error [FEI-5019] - TS2345 - Argument of type '() => string' is not assignable to parameter of type 'ComponentType<any> | undefined'.
-                () => "I am a wrapper",
-            );
+            const fixture = fixtures((props: any) => (
+                <>{`I rendered ${JSON.stringify(props)}`}</>
+            ));
+            const Fixture: any = fixture("A simple story", {}, () => (
+                <>I am a wrapper</>
+            ));
 
             // Act
             render(<Fixture aProp="aValue" />);

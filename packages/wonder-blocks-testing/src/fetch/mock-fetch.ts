@@ -6,7 +6,7 @@ import type {FetchMockFn, FetchMockOperation} from "./types";
  * A mock for the fetch function passed to GqlRouter.
  */
 export const mockFetch = (): FetchMockFn =>
-    mockRequester<FetchMockOperation, any>(
+    mockRequester<FetchMockOperation>(
         fetchRequestMatchesMock,
         // NOTE(somewhatabstract): The indentation is expected on the lines
         // here.
