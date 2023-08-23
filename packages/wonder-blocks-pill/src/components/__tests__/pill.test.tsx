@@ -1,5 +1,6 @@
 import * as React from "react";
 import {render, screen} from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 
 import Pill from "../pill";
 
@@ -48,7 +49,7 @@ describe("Pill", () => {
         expect(pillRef.current).toHaveAttribute("data-test-id", "pill-test-id");
     });
 
-    test("is Clickable if onClick is passed in", () => {
+    test("is Clickable if onClick is passed in (mouse click)", () => {
         // Arrange
         const clickSpy = jest.fn();
 
@@ -56,6 +57,32 @@ describe("Pill", () => {
         render(<Pill onClick={clickSpy}>Hello, world!</Pill>);
         const pillButton = screen.getByRole("button");
         pillButton.click();
+
+        // Assert
+        expect(clickSpy).toHaveBeenCalled();
+    });
+
+    test("is Clickable if onClick is passed in (keyboard enter)", () => {
+        // Arrange
+        const clickSpy = jest.fn();
+
+        // Act
+        render(<Pill onClick={clickSpy}>Hello, world!</Pill>);
+        userEvent.tab();
+        userEvent.keyboard("{enter}");
+
+        // Assert
+        expect(clickSpy).toHaveBeenCalled();
+    });
+
+    test("is Clickable if onClick is passed in (keyboard space)", () => {
+        // Arrange
+        const clickSpy = jest.fn();
+
+        // Act
+        render(<Pill onClick={clickSpy}>Hello, world!</Pill>);
+        userEvent.tab();
+        userEvent.keyboard("{space}");
 
         // Assert
         expect(clickSpy).toHaveBeenCalled();

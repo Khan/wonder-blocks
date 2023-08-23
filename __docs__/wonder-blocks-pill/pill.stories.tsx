@@ -55,7 +55,7 @@ Clickable.parameters = {
     docs: {
         description: {
             story: `Pills can be made clickable by specifying the \`onClick\`
-                prop. In this example, the top button has an \`onClick\`
+                prop. In this example, the pill has an \`onClick\`
                 prop that triggers a window alert. Note that clickable
                 pills also have an outline style on hover/click, whereas
                 non-clickable pills do not.`,
@@ -84,7 +84,10 @@ export const Inline: StoryComponentType = () => (
 Inline.parameters = {
     docs: {
         description: {
-            story: `Small pills can be used inline with text.`,
+            story: `Pills can be used inline. Note that while both small and
+                large pills can be used inline, it is recommended to use small
+                pills when inline with body text since they fit within the
+                line height whereas large pills do not.`,
         },
     },
 };

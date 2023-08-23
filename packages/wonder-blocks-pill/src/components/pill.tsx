@@ -170,7 +170,7 @@ const _generateColorStyles = (
         return styles[pillType];
     }
 
-    const activeAccentColor = mix(Color.offBlack16, Color.blue);
+    const activeAccentColor = mix(Color.offBlack32, Color.blue);
 
     const currentBackgroundColor =
         kind === "accent" ? Color.blue : Color.offBlack8;
@@ -188,16 +188,16 @@ const _generateColorStyles = (
 
             ":hover": {
                 outline: `2px solid ${Color.blue}`,
-                outlineOffset: Spacing.xxxxSmall_2
+                outlineOffset: Spacing.xxxxSmall_2,
             },
             ":active": {
                 backgroundColor: currentActiveColor,
                 outline: `2px solid ${activeAccentColor}`,
-                outlineOffset: 2,
+                outlineOffset: Spacing.xxxxSmall_2,
             },
             ":focus-visible": {
                 outline: `2px solid ${Color.blue}`,
-                outlineOffset: 2,
+                outlineOffset: Spacing.xxxxSmall_2,
             },
         },
     };
