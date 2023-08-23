@@ -40,9 +40,7 @@ const normalizeConfig = (
             return config;
         }
 
-        // @ts-expect-error: at this point, `CSSProperties` is the only thing
-        // that `config` can be.
-        return {classes: [], style: config};
+        return {classes: [], style: config as CSSProperties};
     }
 
     throw new Error(`Invalid config: ${config}`);

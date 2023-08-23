@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-unassigned-import
+import "jest-extended";
 import {renderHook} from "@testing-library/react-hooks";
 
 import {useIsMounted} from "../use-is-mounted";
@@ -10,7 +12,6 @@ describe("useIsMounted", () => {
         const {result} = renderHook(useIsMounted);
 
         // Assert
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'toBeTrue' does not exist on type 'JestMatchers<boolean>'.
         expect(result.current()).toBeTrue();
     });
 
@@ -22,7 +23,6 @@ describe("useIsMounted", () => {
         rerender();
 
         // assert
-        // @ts-expect-error [FEI-5019] - TS2339 - Property 'toBeTrue' does not exist on type 'JestMatchers<boolean>'.
         expect(result.current()).toBeTrue();
     });
 
@@ -34,7 +34,6 @@ describe("useIsMounted", () => {
         unmount();
 
         // Assert
-        // @ts-expect-error [FEI-5019] - TS2551 - Property 'toBeFalse' does not exist on type 'JestMatchers<boolean>'. Did you mean 'toBeFalsy'?
         expect(result.current()).toBeFalse();
     });
 });

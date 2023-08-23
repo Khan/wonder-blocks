@@ -1,5 +1,16 @@
 # @khanacademy/wonder-blocks-testing
 
+## 9.0.0
+
+### Major Changes
+
+-   1920feb8: Added new SSR adapter for test harnesses to support `RenderStateRoot` in tests and stories
+
+### Patch Changes
+
+-   Updated dependencies [65c02cff]
+    -   @khanacademy/wonder-blocks-data@13.0.0
+
 ## 8.0.21
 
 ### Patch Changes

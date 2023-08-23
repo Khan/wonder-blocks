@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-unassigned-import
+import "jest-extended";
 import {Server} from "@khanacademy/wonder-blocks-core";
 import {RequestFulfillment} from "../request-fulfillment";
 import {RequestTracker} from "../request-tracking";
@@ -123,7 +125,6 @@ describe("#hasTrackedRequestsToBeFetched", () => {
             const result = hasTrackedRequestsToBeFetched();
 
             // Assert
-            // @ts-expect-error [FEI-5019] - TS2339 - Property 'toBeTrue' does not exist on type 'JestMatchers<boolean>'.
             expect(result).toBeTrue();
         });
     });

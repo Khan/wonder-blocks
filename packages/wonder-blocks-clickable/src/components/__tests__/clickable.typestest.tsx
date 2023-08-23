@@ -17,6 +17,10 @@ import Clickable from "../clickable";
     {(_) => "Hello, world!"}
 </Clickable>;
 
+<Clickable href="/foo" safeWithNav={() => Promise.resolve()}>
+    {(_) => "Hello, world!"}
+</Clickable>;
+
 <Clickable href="/foo" target="_blank" safeWithNav={() => Promise.resolve()}>
     {(_) => "Hello, world!"}
 </Clickable>;
@@ -38,6 +42,21 @@ import Clickable from "../clickable";
 
 <Clickable
     href="/foo"
+    beforeNav={() => Promise.resolve()}
+    safeWithNav={() => Promise.resolve()}
+>
+    {(_) => "Hello, world!"}
+</Clickable>;
+
+<Clickable beforeNav={() => Promise.resolve()}>
+    {(_) => "Hello, world!"}
+</Clickable>;
+
+<Clickable safeWithNav={() => Promise.resolve()}>
+    {(_) => "Hello, world!"}
+</Clickable>;
+
+<Clickable
     beforeNav={() => Promise.resolve()}
     safeWithNav={() => Promise.resolve()}
 >

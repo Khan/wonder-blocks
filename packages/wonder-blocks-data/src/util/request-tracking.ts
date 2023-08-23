@@ -53,8 +53,7 @@ export class RequestTracker {
     _responseCache: SsrCache;
     _requestFulfillment: RequestFulfillment;
 
-    // @ts-expect-error [FEI-5019] - TS2322 - Type 'undefined' is not assignable to type 'SsrCache | null'.
-    constructor(responseCache: SsrCache | null = undefined) {
+    constructor(responseCache?: SsrCache | null) {
         this._responseCache = responseCache || SsrCache.Default;
         this._requestFulfillment = new RequestFulfillment();
     }
@@ -156,6 +155,11 @@ export class RequestTracker {
                                 }
 
                                 // For status === "loading":
+                                // Could never get here unless we wrote
+                                // the code wrong. Rather than bloat
+                                // code with useless error, just ignore.
+
+                                // For status === "no-data":
                                 // Could never get here unless we wrote
                                 // the code wrong. Rather than bloat
                                 // code with useless error, just ignore.
