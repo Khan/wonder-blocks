@@ -33,7 +33,6 @@ export default {
         ),
     },
     argTypes: ButtonArgTypes,
-    decorators: [(Story): React.ReactElement => <>{Story()}</>],
     excludeStories: ["styles"],
 } as Meta<typeof Button>;
 
