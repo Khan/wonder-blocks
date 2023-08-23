@@ -66,4 +66,17 @@ describe("SSR.adapter", () => {
         // Assert
         expect(underTest).not.toThrowError();
     });
+
+    it("should throw on bad configuration", () => {
+        // Arrange
+        const children = <div>CHILDREN!</div>;
+
+        // Act
+        const underTest = () => render(SSR.adapter(children, false as any));
+
+        // Assert
+        expect(underTest).toThrowErrorMatchingInlineSnapshot(
+            `"Unexpected configuration: set config to null to turn this adapter off"`,
+        );
+    });
 });
