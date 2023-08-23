@@ -15,8 +15,12 @@ const tokens = {
         // New colors
         activeBlue: mix(Color.offBlack32, Color.blue),
         fadedBlue: mix(fade(Color.blue, 0.32), Color.white),
+        fadedBlue16: fade(Color.blue, 0.16),
+        fadedBlue8: fade(Color.blue, 0.08),
         activeRed: mix(Color.offBlack32, Color.red),
         fadedRed: mix(fade(Color.red, 0.32), Color.white),
+        fadedRed16: fade(Color.red, 0.16),
+        fadedRed8: fade(Color.red, 0.08),
         // Additional colors (e.g. for use in other themes)
     },
     spacing: Spacing,
@@ -26,6 +30,7 @@ const tokens = {
             small_3: 3,
             medium_4: 4,
             large_6: 6,
+            xLarge_12: 12,
             full: "50%",
         },
         width: {
