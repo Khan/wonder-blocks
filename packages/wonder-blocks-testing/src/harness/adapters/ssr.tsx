@@ -25,9 +25,13 @@ export const adapter: TestHarnessAdapter<Config> = (
     config: Config,
 ): React.ReactElement<any> => {
     if (config !== true) {
-        throw new KindError("Unexpected configuraiton", Errors.InvalidInput, {
-            metadata: {config},
-        });
+        throw new KindError(
+            "Unexpected configuration: set config to null to turn this adapter off",
+            Errors.InvalidInput,
+            {
+                metadata: {config},
+            },
+        );
     }
     return <RenderStateRoot>{children}</RenderStateRoot>;
 };
