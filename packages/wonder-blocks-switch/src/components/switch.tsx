@@ -180,8 +180,8 @@ const _generateStyles = (
 ) => {
     const checkedStyle = `${checked}-${disabled}-${clickable}`;
     // The styles are cached to avoid creating a new object on every render.
-    if (sharedStyles[checkedStyle]) {
-        return sharedStyles[checkedStyle];
+    if (styles[checkedStyle]) {
+        return styles[checkedStyle];
     }
 
     let newStyles: Record<string, any> = {};
