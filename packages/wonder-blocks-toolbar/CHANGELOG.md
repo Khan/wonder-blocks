@@ -1,5 +1,13 @@
 # @khanacademy/wonder-blocks-toolbar
 
+## 3.0.18
+
+### Patch Changes
+
+-   Updated dependencies [1920feb8]
+    -   @khanacademy/wonder-blocks-core@6.0.1
+    -   @khanacademy/wonder-blocks-typography@2.1.4
+
 ## 3.0.17
 
 ### Patch Changes

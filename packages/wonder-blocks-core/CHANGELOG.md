@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 6.0.1
+
+### Patch Changes
+
+-   1920feb8: `RenderStateRoot` now wraps children in a React fragment
+
 ## 6.0.0
 
 ### Major Changes
