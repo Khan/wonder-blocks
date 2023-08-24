@@ -21,6 +21,9 @@ export const Adapt = <TAdapters extends TestHarnessAdapters>({
     adapters,
     configs,
 }: Props<TAdapters>): React.ReactElement =>
+    // Here we reduce the adapters in order, such that each one becomes the
+    // child of the next, that way the first adapter in the list is the
+    // innermost and the last is the outermost.
     Object.entries(adapters).reduce((newChildren, [name, adapter]) => {
         const config = configs[name];
         if (config == null) {
