@@ -95,6 +95,8 @@ jobs:
       - name: Check package.json files
         run: node utils/publish/pre-publish-check-ci.js
 
+      # We don't need changesets for infrastructure-type files (tests, stories,
+      # etc).
       - uses: Khan/actions@check-for-changeset-v0
         if: github.actor != 'dependabot[bot]' && github.actor != 'dependabot-preview[bot]'
         with:
