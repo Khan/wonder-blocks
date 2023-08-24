@@ -2,7 +2,7 @@ import * as React from "react";
 import {Route} from "react-router-dom";
 import {render} from "@testing-library/react";
 
-import * as RA from "../render-adapters";
+import * as RA from "../adapt";
 import {makeTestHarness} from "../make-test-harness";
 import {DefaultConfigs, DefaultAdapters} from "../adapters/adapters";
 
@@ -75,7 +75,7 @@ describe("#makeTestHarness", () => {
                         DefaultConfigs,
                     );
                     const Component = () => <div>test</div>;
-                    const renderSpy = jest.spyOn(RA, "renderAdapters");
+                    const renderSpy = jest.spyOn(RA, "Adapt");
 
                     // Act
                     const HarnessedComponent = testHarness(Component);
@@ -83,9 +83,12 @@ describe("#makeTestHarness", () => {
 
                     // Assert
                     expect(renderSpy).toHaveBeenCalledWith(
-                        DefaultAdapters,
-                        DefaultConfigs,
-                        expect.anything(),
+                        {
+                            adapters: DefaultAdapters,
+                            configs: DefaultConfigs,
+                            children: expect.anything(),
+                        },
+                        {},
                     );
                 });
 
@@ -132,7 +135,7 @@ describe("#makeTestHarness", () => {
                         router: "/mysecretplace",
                     };
                     const Component = () => <div>test</div>;
-                    const renderSpy = jest.spyOn(RA, "renderAdapters");
+                    const renderSpy = jest.spyOn(RA, "Adapt");
 
                     // Act
                     const HarnessedComponent = testHarness(
@@ -143,12 +146,15 @@ describe("#makeTestHarness", () => {
 
                     // Assert
                     expect(renderSpy).toHaveBeenCalledWith(
-                        DefaultAdapters,
                         {
-                            ...DefaultConfigs,
-                            router: configOverrides.router,
+                            adapters: DefaultAdapters,
+                            configs: {
+                                ...DefaultConfigs,
+                                router: configOverrides.router,
+                            },
+                            children: expect.anything(),
                         },
-                        expect.anything(),
+                        {},
                     );
                 });
 
