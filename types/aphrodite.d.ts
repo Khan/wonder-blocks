@@ -27,6 +27,7 @@ declare module "aphrodite" {
          * Pseudo-selectors
          */
         "::placeholder"?: _CSSProperties;
+        ":active"?: _CSSProperties;
         ":after"?: _CSSProperties;
         ":focus-visible"?: _CSSProperties;
         ":focus"?: _CSSProperties;

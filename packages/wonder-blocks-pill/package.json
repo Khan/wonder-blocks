@@ -1,28 +1,27 @@
 {
   "name": "@khanacademy/wonder-blocks-pill",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "design": "v1",
   "description": "Pill components for Wonder Blocks.",
   "main": "dist/index.js",
   "module": "dist/es/index.js",
-  "source": "src/index.js",
   "types": "dist/index.d.ts",
+  "source": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "MIT",
-  "private": true,
   "publishConfig": {
-    "access": "restricted"
+    "access": "public"
   },
   "dependencies": {
-    "@khanacademy/wonder-blocks-clickable": "^4.0.2",
+    "@khanacademy/wonder-blocks-clickable": "^3.1.2",
     "@khanacademy/wonder-blocks-color": "^2.0.1",
-    "@khanacademy/wonder-blocks-core": "^6.0.1",
-    "@khanacademy/wonder-blocks-link": "^5.0.2",
+    "@khanacademy/wonder-blocks-core": "^5.3.1",
+    "@khanacademy/wonder-blocks-link": "^4.3.1",
     "@khanacademy/wonder-blocks-spacing": "^4.0.1",
-    "@khanacademy/wonder-blocks-typography": "^2.1.4"
+    "@khanacademy/wonder-blocks-typography": "^2.1.1"
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
