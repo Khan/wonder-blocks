@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-switch
 
+## 1.0.2
+
+### Patch Changes
+
+-   d00f17c0: Fix style generation
+
 ## 1.0.1
 
 ### Patch Changes

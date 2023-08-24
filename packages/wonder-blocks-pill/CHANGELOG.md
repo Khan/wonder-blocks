@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-pill
 
+## 1.0.1
+
+### Patch Changes
+
+-   572fbf0a: Fix up dependency versions
+
 ## 1.0.0
 
 ### Major Changes
