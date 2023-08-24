@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-testing
 
+## 9.1.0
+
+### Minor Changes
+
+-   6ed7e928: Test harness adapters are now rendered as React components which should ensure that contexts are properly available when children are rendered inside the adapters that require those contexts
+
 ## 9.0.0
 
 ### Major Changes
