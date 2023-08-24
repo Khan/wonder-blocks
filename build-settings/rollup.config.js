@@ -5,6 +5,7 @@ import path from "path";
 import autoExternal from "rollup-plugin-auto-external";
 import babel from "rollup-plugin-babel";
 import resolve from "@rollup/plugin-node-resolve";
+import {visualizer} from "rollup-plugin-visualizer";
 
 const {presets, plugins} = require("./babel.config")({env: () => false});
 
@@ -49,6 +50,11 @@ const createConfig = (pkgName) => {
             }),
             autoExternal({
                 packagePath: `packages/${pkgName}/package.json`,
+            }),
+            // STOPSHIP(juan): Only meant to be used for debugging bundle sizes.
+            // This will be removed before landing this PR.
+            visualizer({
+                filename: `packages/${pkgName}/dist/stats.html`,
             }),
         ],
     };

@@ -4,13 +4,13 @@ import {StyleSheet} from "aphrodite";
 import Button from "@khanacademy/wonder-blocks-button";
 import Color from "@khanacademy/wonder-blocks-color";
 import {View} from "@khanacademy/wonder-blocks-core";
-import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
+import {NewIcon, icons} from "@khanacademy/wonder-blocks-icon";
 import IconButton from "@khanacademy/wonder-blocks-icon-button";
 import Link from "@khanacademy/wonder-blocks-link";
 import Spacing from "@khanacademy/wonder-blocks-spacing";
 import {LabelSmall} from "@khanacademy/wonder-blocks-typography";
 
-import * as bannerIcons from "./banner-icons";
+import bannerIcons from "./banner-icons";
 
 type ActionTriggerBase = {
     title: string;
@@ -222,6 +222,8 @@ const Banner = (props: Props): React.ReactElement => {
         });
     };
 
+    const BannerIcon = bannerIcons[kind];
+
     return (
         <View
             style={[
@@ -241,8 +243,8 @@ const Banner = (props: Props): React.ReactElement => {
                 ]}
             />
             <View style={styles.containerInner}>
-                <Icon
-                    icon={bannerIcons[kind]}
+                <NewIcon
+                    icon={<BannerIcon />}
                     size="medium"
                     style={styles.icon}
                     aria-label={kind}

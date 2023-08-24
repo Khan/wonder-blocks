@@ -24,6 +24,7 @@
   },
   "peerDependencies": {
     "aphrodite": "^1.2.5",
+    "@phosphor-icons/react": "^2.0.10",
     "react": "16.14.0"
   }
 }
