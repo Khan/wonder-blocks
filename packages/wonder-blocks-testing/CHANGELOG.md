@@ -1,5 +1,18 @@
 # @khanacademy/wonder-blocks-testing
 
+## 9.2.0
+
+### Minor Changes
+
+-   76883b4e: Make sure Wonder Blocks Testing is dependent on Core
+
+### Patch Changes
+
+-   76883b4e: Output the adapter name with the Adapter component
+-   Updated dependencies [f19da46e]
+    -   @khanacademy/wonder-blocks-core@6.0.2
+    -   @khanacademy/wonder-blocks-data@13.0.1
+
 ## 9.1.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @khanacademy/wonder-blocks-core
 
+## 6.0.2
+
+### Patch Changes
+
+-   f19da46e: Allow 'title' on View and typography components
+
 ## 6.0.1
 
 ### Patch Changes

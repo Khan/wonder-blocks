@@ -1,5 +1,12 @@
 # @khanacademy/wonder-blocks-data
 
+## 13.0.1
+
+### Patch Changes
+
+-   Updated dependencies [f19da46e]
+    -   @khanacademy/wonder-blocks-core@6.0.2
+
 ## 13.0.0
 
 ### Major Changes
