@@ -32,6 +32,26 @@ import {NewIcon, icons} from "@khanacademy/wonder-blocks-icon";
 import ComponentInfo from "../../.storybook/components/component-info";
 import packageConfig from "../../packages/wonder-blocks-icon/package.json";
 
+/**
+ * An Icon displays a small informational or decorative image as an SVG.
+ *
+ * ## Usage
+ *
+ * ```js
+ * import {NewIcon} from "@khanacademy/wonder-blocks-icon";
+ * import {Plus} from "@phosphor-icons/react";
+ *
+ * <Icon
+ *     icon={<Plus />}
+ *     color={Color.white}
+ *     size="medium"
+ *     style={{margin: 4}}
+ * />
+ * ```
+ *
+ * These icons should fit into a viewport of 16, 24, 48, and 96 pixels,
+ * respectively.
+ */
 export default {
     title: "Icon / NewIcon",
     component: NewIcon,
@@ -55,26 +75,21 @@ export default {
 
 type StoryComponentType = StoryObj<typeof NewIcon>;
 
+/**
+ * Icons are size `"small"` by default.
+ */
 export const Default: StoryComponentType = {
     args: {icon: <PlusCircle />, size: "small"},
 };
 
-export const Basic: StoryComponentType = () => {
-    return (
-        <NewIcon
-            size="large"
-            color={Color.green}
-            icon={<Circle size={32} color="#038170" weight="fill" />}
-        />
-    );
-};
-
-Basic.parameters = {
-    docs: {
-        description: {
-            story: `Minimal icon usage. This is a search icon.
-            Icons are size \`"small"\` by default.`,
-        },
+/**
+ * Minimal icon usage. This is a search icon.
+ */
+export const Basic: StoryComponentType = {
+    args: {
+        icon: <Circle size={32} color="#038170" weight="fill" />,
+        size: "large",
+        color: Color.green,
     },
 };
 
@@ -179,38 +194,34 @@ export const Variants: StoryComponentType = {
     },
 };
 
-export const WithColor: StoryComponentType = () => {
-    return <NewIcon size="small" icon={<Info />} color={Color.red} />;
-};
-
-WithColor.parameters = {
-    docs: {
-        description: {
-            story: "The color of an icon can be specified through its `color` prop.",
-        },
+/**
+ * The color of an icon can be specified through its `color` prop.
+ */
+export const WithColor: StoryComponentType = {
+    args: {
+        size: "small",
+        icon: <Info />,
+        color: Color.red,
     },
 };
 
-export const Inline: StoryComponentType = () => {
-    return (
-        <View>
-            Here is an icon
-            <NewIcon
-                size="small"
-                icon={<Info />}
-                style={{margin: 2}}
-                className="foo"
-            />
-            when it is inline.
-        </View>
-    );
-};
-
-Inline.parameters = {
-    docs: {
-        description: {
-            story: "Icons have `display: inline-block` by default.",
-        },
+/**
+ * Icons have `display: inline-block` by default.
+ */
+export const Inline: StoryComponentType = {
+    render: () => {
+        return (
+            <View>
+                Here is an icon
+                <NewIcon
+                    size="small"
+                    icon={<Info />}
+                    style={{margin: 2}}
+                    className="foo"
+                />
+                when it is inline.
+            </View>
+        );
     },
 };
 

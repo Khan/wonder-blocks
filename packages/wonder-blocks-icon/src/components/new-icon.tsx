@@ -41,38 +41,6 @@ type Props = AriaProps & {
 
 /**
  * An Icon displays a small informational or decorative image as an SVG.
- *
- * ```js
- * import Icon, {icons} from "@khanacademy/wonder-blocks-icon";
- *
- * <Icon
- *     icon={icons.search}
- *     color={Color.white}
- *     size="medium"
- *     style={{margin: 4}}
- * />
- * ```
- *
- * Wonder Blocks comes with a fixed set of icons available by importing `icons`,
- * but you can also provide your own `IconAsset`.
- *
- * ```js
- * import Icon from "@khanacademy/wonder-blocks-icon";
- * import type {IconAsset} from "@khanacademy/wonder-blocks-icon";
- *
- * // Easter egg: what shape am I?
- * const customIcon: IconAsset = {
- *     small: "M6.92820 0L13.85640 4L13.85640 12L6.92820 16L0 12L0 4Z",
- * };
- * ```
- *
- * `IconAsset` should be in the following format:
- * ```js
- * {small?: string, medium?: string, large?: string, xlarge?: string}
- * ```
- *
- * These icons should fit into a viewport of 16, 24, 48, and 96 pixels,
- * respectively.
  */
 const NewIcon = React.forwardRef(function NewIcon(
     props: Props,
@@ -85,17 +53,15 @@ const NewIcon = React.forwardRef(function NewIcon(
         style,
         testId,
         className,
-        ...sharedProps
     } = props;
 
     const pixelSize = viewportPixelsForSize(size);
 
-    const classNames = css(styles.svg, style) + " " + className;
+    const classNames = css(styles.svg) + " " + className;
 
     return React.cloneElement(icon, {
-        ...sharedProps,
         className: classNames,
-        // style,
+        style,
         "data-test-id": testId,
         weights: ["bold"],
         ref: ref,
