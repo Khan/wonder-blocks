@@ -1,6 +1,6 @@
 import * as React from "react";
 
-import {Adapter} from "./adapter";
+import {makeAdapter} from "./make-adapter";
 
 import type {TestHarnessConfigs, TestHarnessAdapters} from "./types";
 
@@ -45,8 +45,9 @@ export const Adapt = <TAdapters extends TestHarnessAdapters>({
         // we must filter by adapter name here.
         Object.entries(configs).filter(([name]) => name !== thisAdapterName),
     );
+    const Adapter = makeAdapter(thisAdapterName, thisAdapter);
     return (
-        <Adapter adapter={thisAdapter} config={thisConfig}>
+        <Adapter config={thisConfig}>
             <Adapt adapters={restAdapters} configs={restConfigs}>
                 {children}
             </Adapt>
