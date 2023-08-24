@@ -18,11 +18,20 @@ type WithoutActionScheduler<T> = Omit<T, "schedule">;
 export default function withActionScheduler<
     Props extends WithActionSchedulerProps,
 >(WrappedComponent: React.ComponentType<Props>) {
-    return (props: WithoutActionScheduler<Props>) => (
+    const displayName = `withActionScheduler(${
+        WrappedComponent.displayName || WrappedComponent.name
+    })`;
+
+    const C = (props: WithoutActionScheduler<Props>) => (
         <ActionSchedulerProvider>
             {(schedule: IScheduleActions) => (
                 <WrappedComponent {...(props as Props)} schedule={schedule} />
             )}
         </ActionSchedulerProvider>
     );
+
+    C.displayName = displayName;
+    C.WrappedComponent = WrappedComponent;
+
+    return C;
 }
