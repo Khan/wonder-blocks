@@ -16,7 +16,7 @@ jest.mock("@khanacademy/wonder-stuff-core", () => {
 });
 
 describe("SSR.adapter", () => {
-    it("should render the RenderStateRoot", () => {
+    it("should render the RenderStateRoot with throwIfNested set to false", () => {
         // Arrange
         const children = <div>CHILDREN!</div>;
         const renderStateRootSpy = jest.spyOn(WBCore, "RenderStateRoot");
@@ -28,6 +28,7 @@ describe("SSR.adapter", () => {
         expect(renderStateRootSpy).toHaveBeenCalledWith(
             {
                 children,
+                throwIfNested: false,
             },
             {},
         );
@@ -67,16 +68,19 @@ describe("SSR.adapter", () => {
         expect(underTest).not.toThrowError();
     });
 
-    it("should throw on bad configuration", () => {
+    it.each`
+        config
+        ${false}
+        ${"string"}
+        ${{thisConfig: "isNotValid"}}
+    `("should throw on bad configuration ($config)", ({config}) => {
         // Arrange
         const children = <div>CHILDREN!</div>;
 
         // Act
-        const underTest = () => render(SSR.adapter(children, false as any));
+        const underTest = () => render(SSR.adapter(children, config));
 
         // Assert
-        expect(underTest).toThrowErrorMatchingInlineSnapshot(
-            `"Unexpected configuration: set config to null to turn this adapter off"`,
-        );
+        expect(underTest).toThrowErrorMatchingSnapshot();
     });
 });
